@@ -1,4 +1,7 @@
+'use client';
+
 import Link from 'next/link';
+import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 
 export default function Header() {
   return (
@@ -19,12 +22,26 @@ export default function Header() {
         </ul>
 
         <div className="flex items-center gap-3">
-          <Link href="/sign-in" className="hidden sm:inline text-lavender-700 font-semibold hover:text-lavender-500">
-            Sign in
-          </Link>
-          <Link href="/sign-up" className="btn-primary text-sm">
-            Start free
-          </Link>
+          <SignedOut>
+            <Link href="/sign-in" className="hidden sm:inline text-lavender-700 font-semibold hover:text-lavender-500">
+              Sign in
+            </Link>
+            <Link href="/sign-up" className="btn-primary text-sm">
+              Start free
+            </Link>
+          </SignedOut>
+          <SignedIn>
+            <Link href="/dashboard" className="hidden sm:inline text-lavender-700 font-semibold hover:text-lavender-500">
+              Dashboard
+            </Link>
+            <UserButton
+              appearance={{
+                elements: {
+                  avatarBox: 'w-9 h-9 rounded-2xl ring-2 ring-lavender-300',
+                },
+              }}
+            />
+          </SignedIn>
         </div>
       </nav>
     </header>
