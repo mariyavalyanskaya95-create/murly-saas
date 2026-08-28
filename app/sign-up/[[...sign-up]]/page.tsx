@@ -1,10 +1,10 @@
 import { SignUp } from '@clerk/nextjs';
 import Link from 'next/link';
 
-export default function SignUpPage({
-  searchParams,
-}) {
-  const role = searchParams.role || 'teacher';
+type SearchParams = { role?: string; plan?: string };
+
+export default function SignUpPage(props: { searchParams: SearchParams }) {
+  const role = props.searchParams.role || 'teacher';
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-6 py-12">
       <Link href="/" className="flex items-center gap-2 mb-8 group">
@@ -24,7 +24,7 @@ export default function SignUpPage({
       <SignUp
         signInUrl="/sign-in"
         fallbackRedirectUrl={`/dashboard?role=${role}`}
-        unsafeMetadata={{ role, plan: searchParams.plan }}
+        unsafeMetadata={{ role, plan: props.searchParams.plan }}
       />
     </div>
   );
