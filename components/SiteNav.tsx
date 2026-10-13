@@ -28,7 +28,7 @@ export default function SiteNav() {
             </Link>
           </SignedOut>
           <SignedIn>
-            <Link href="/teacher" className="mu-nav__login">Кабінет</Link>
+            <Link href="/dashboard" className="mu-nav__login">Кабінет</Link>
             <UserButton />
           </SignedIn>
         </div>
