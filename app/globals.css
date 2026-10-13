@@ -945,6 +945,7 @@ a.mu-step:hover { transform: rotate(0) translateY(-4px); }
 .g-slots.is-right .g-slot { background: var(--mu-lime); border-style: solid; }
 .g-slots.is-wrong .g-slot { background: var(--mu-tomato); color: #fff; border-style: solid; }
 .g-cards { display: flex; flex-direction: column; align-items: center; }
+.g-cards .g-meta { align-self: stretch; }
 .g-card { position: relative; width: min(420px, 100%); height: 220px; perspective: 1000px; border: 0; background: none; cursor: pointer; }
 .g-card__face { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; border: 2px solid var(--mu-ink); border-radius: var(--mu-radius-lg); box-shadow: var(--mu-shadow-stamp-lg); font-family: 'Boldonse', 'Arial Black', 'Nippo', sans-serif; font-size: clamp(26px, 4vw, 40px); backface-visibility: hidden; transition: transform .45s; padding: 16px; }
 .g-card__face small { font-family: 'General Sans', sans-serif; font-size: 14px; color: var(--mu-ink-muted); font-weight: 500; }
