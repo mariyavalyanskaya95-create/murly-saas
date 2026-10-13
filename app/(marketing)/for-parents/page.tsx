@@ -1,87 +1,72 @@
 import Link from 'next/link';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import type { Metadata } from 'next';
+import Icon from '@/components/Icon';
+import Stickers from '@/components/Stickers';
+import SiteNav from '@/components/SiteNav';
+import SiteFooter from '@/components/SiteFooter';
+import Faq from '@/components/Faq';
+
+export const metadata: Metadata = {
+  title: 'Murly для батьків: підготовка дитини до НМТ з англійської',
+  description: 'Короткі щоденні квізи у форматі НМТ і щотижневий звіт про прогрес дитини.',
+};
+
+const POINTS = [
+  { icon: 'd-clock', mod: 'mu-card--lime', title: '5 хвилин на день', text: 'Короткі сесії, які легко вписати в день. Регулярність дає більше, ніж марафон перед іспитом.' },
+  { icon: 'd-crm', mod: 'mu-card--mustard', title: 'Звіт щотижня', text: 'Що пройдено, де помилки, які теми просідають. Без допитів «ти займався?».' },
+  { icon: 'e-trophy', mod: 'mu-card--sky', title: 'Формат НМТ', text: 'Завдання такі ж, як на іспиті, тож дитина звикає до формату заздалегідь.' },
+];
+
+const FAQ = [
+  { q: 'Скільки коштує?', a: 'Є безкоштовний тариф з одним квізом на день. Pro коштує 149 ₴ на місяць і відкриває все.' },
+  { q: 'Чи замінить Murly репетитора?', a: 'Murly дає регулярну практику і пояснення помилок. Якщо дитина займається з репетитором, він може вести її в кабінеті Murly.' },
+  { q: 'Як я побачу прогрес?', a: 'Щотижневий звіт приходитиме на пошту, а в кабінеті видно історію квізів і слабкі теми. Кабінет зараз у роботі.' },
+];
 
 export default function ForParentsPage() {
   return (
     <>
-      <Header />
-      <div className="max-w-6xl mx-auto px-6 pt-16 pb-24">
-        <div className="grid md:grid-cols-2 gap-12 items-center mb-20">
-          <div>
-            <p className="inline-flex items-center gap-2 bg-white rounded-full px-4 py-2 text-sm font-semibold text-lavender-700 shadow-sm mb-6">
-              👨‍👩‍👧 For parents
-            </p>
-            <h1 className="font-display text-4xl md:text-5xl font-bold text-lavender-700 leading-tight mb-6">
-              English lessons your kid will actually want to do.
-            </h1>
-            <p className="text-lg text-lavender-600 mb-8">
-              Learning with cats, coins, and games. Track progress in real time.
-              Pick self-paced with AI, or match with a certified teacher.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <Link href="/sign-up?role=parent" className="btn-primary">Start with $9/mo</Link>
-              <Link href="/pricing" className="btn-outline">See all plans</Link>
-            </div>
-          </div>
-          <div className="text-center text-9xl animate-float">👨‍👩‍👧</div>
-        </div>
-
-        <h2 className="font-display text-3xl font-bold text-center text-lavender-700 mb-12">
-          Two ways to learn
-        </h2>
-
-        <div className="grid md:grid-cols-2 gap-6 mb-16">
-          <div className="card">
-            <div className="text-5xl mb-3">🤖</div>
-            <h3 className="font-display font-bold text-xl text-lavender-700 mb-2">Self-serve with AI</h3>
-            <p className="text-lavender-600 mb-4">
-              Your kid learns with our AI cat tutor. Adaptive, patient, always available.
-              Games, videos, speaking practice.
-            </p>
-            <p className="font-bold text-lavender-700">From $9/mo per child</p>
-          </div>
-          <div className="card border-2 border-peach">
-            <div className="text-5xl mb-3">👩‍🏫</div>
-            <h3 className="font-display font-bold text-xl text-lavender-700 mb-2">Live teacher</h3>
-            <p className="text-lavender-600 mb-4">
-              Match with a certified English teacher for weekly 1-on-1 lessons on Zoom.
-              Homework, vocab, progress reports.
-            </p>
-            <p className="font-bold text-lavender-700">From 350 UAH per lesson</p>
+      <SiteNav />
+      <section className="mu-page-hero" data-stickers="6">
+        <div className="mu-container">
+          <span className="mu-section__eyebrow"><Icon id="d-heart" />Для батьків</span>
+          <h1>НМТ без <em>сварок</em> через уроки.</h1>
+          <p>Дитина проходить короткі квізи, а ви бачите прогрес раз на тиждень. Без нагадувань і контролю.</p>
+          <div className="mu-hero__cta">
+            <Link href="/quiz/teen-life" className="mu-btn mu-btn--lime mu-btn--lg">
+              Спробувати квіз<span className="mu-btn__arrow"><Icon id="e-arrow" /></span>
+            </Link>
+            <Link href="/pricing" className="mu-btn mu-btn--lg">Тарифи</Link>
           </div>
         </div>
+      </section>
 
-        <h2 className="font-display text-3xl font-bold text-center text-lavender-700 mb-12">
-          Why parents love Murly
-        </h2>
-
-        <div className="grid md:grid-cols-3 gap-6 mb-16">
-          {[
-            { icon: '🎮', title: 'Kids actually enjoy it', desc: 'Toca Boca-style world with cats. Learning feels like play.' },
-            { icon: '📊', title: 'You see real progress', desc: 'Weekly reports, vocab lists, homework completion. No mystery.' },
-            { icon: '🐱', title: 'Cat Creator', desc: 'Kids customize their own cat avatar. Earn coins for lessons.' },
-            { icon: '🇺🇦', title: 'Ukrainian + English', desc: 'UI in Ukrainian, Russian, or English. Kids read explanations in their language.' },
-            { icon: '💜', title: 'Made by a mom', desc: 'Built for real families by a mom in maternity leave who gets it.' },
-            { icon: '💳', title: 'Fair pricing', desc: 'No sneaky fees. Cancel anytime. First 7 days money-back.' },
-          ].map((f) => (
-            <div key={f.title} className="card">
-              <div className="text-4xl mb-3">{f.icon}</div>
-              <h3 className="font-display font-bold text-lg text-lavender-700 mb-2">{f.title}</h3>
-              <p className="text-lavender-600 text-sm">{f.desc}</p>
-            </div>
-          ))}
+      <section className="mu-section" style={{ paddingTop: 24 }}>
+        <div className="mu-container">
+          <div className="mu-cards">
+            {POINTS.map((p) => (
+              <div key={p.title} className={`mu-card ${p.mod}`}>
+                <div className="mu-card__icon"><Icon id={p.icon} /></div>
+                <h3 className="mu-card__title">{p.title}</h3>
+                <p className="mu-card__text">{p.text}</p>
+              </div>
+            ))}
+          </div>
         </div>
+      </section>
 
-        <div className="gradient-warm rounded-3xl p-12 text-center text-white shadow-2xl">
-          <h2 className="font-display text-3xl font-bold mb-4">Give your kid the joy of English</h2>
-          <p className="text-white/90 mb-8">Try Murly today. First 7 days money-back guaranteed.</p>
-          <Link href="/sign-up?role=parent" className="inline-block bg-white text-coral font-bold px-8 py-4 rounded-full shadow-lg hover:shadow-2xl transition">
-            Get started →
-          </Link>
+      <section className="mu-section" data-stickers="4">
+        <div className="mu-container">
+          <div className="mu-section__head">
+            <span className="mu-section__eyebrow"><Icon id="d-bulb" />FAQ</span>
+            <h2 className="mu-section__title">Питання <em>батьків.</em></h2>
+          </div>
+          <Faq items={FAQ} />
         </div>
-      </div>
-      <Footer />
+      </section>
+
+      <SiteFooter />
+      <Stickers />
     </>
   );
 }
