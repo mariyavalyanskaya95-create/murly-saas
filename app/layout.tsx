@@ -3,14 +3,15 @@ import { ClerkProvider } from '@clerk/nextjs';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Murly School — English for kids with cats',
-  description: 'Online English school for kids 4-15 with cat characters. Platform for teachers, parents, and students. Start free.',
-  keywords: ['англійська для дітей', 'english for kids', 'murly', 'online school', 'edtech'],
+  title: 'Murly: склади НМТ з англійської на 200 балів',
+  description:
+    'Інтерактивні квізи, пробні тести та AI-розбір помилок для підготовки до НМТ з англійської. Для старшокласників і репетиторів.',
+  icons: { icon: '/favicon.svg' },
   openGraph: {
-    title: 'Murly School — English for kids with cats',
-    description: 'Learning English with cats. Trusted by teachers and parents.',
+    title: 'Murly: англійська, яку не вчать у школі',
+    description: 'Квізи у форматі НМТ, streak, пробні тести і кабінет репетитора.',
     type: 'website',
-    locale: 'en_US',
+    locale: 'uk_UA',
   },
 };
 
@@ -19,15 +20,28 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <ClerkProvider
       appearance={{
         variables: {
-          colorPrimary: '#7C63C2',
-          colorBackground: '#FFF8E7',
+          colorPrimary: '#1A1A1A',
+          colorBackground: '#F4EFE3',
           borderRadius: '1rem',
-          fontFamily: 'Nunito, system-ui, sans-serif',
+          fontFamily: 'General Sans, system-ui, sans-serif',
         },
       }}
     >
-      <html lang="en">
-        <body className="antialiased">{children}</body>
+      <html lang="uk">
+        <head>
+          <link rel="preconnect" href="https://api.fontshare.com" crossOrigin="" />
+          <link
+            rel="stylesheet"
+            href="https://api.fontshare.com/v2/css?f[]=boldonse@400&f[]=nippo@700,400&f[]=general-sans@500,600,700&display=swap"
+          />
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap"
+          />
+        </head>
+        <body>{children}</body>
       </html>
     </ClerkProvider>
   );
