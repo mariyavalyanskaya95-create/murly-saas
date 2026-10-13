@@ -1,5 +1,5 @@
 // Неправильні дієслова: base, Past Simple, Past Participle, переклад
-export type Verb = { base: string; past: string; pp: string; uk: string; top?: boolean };
+export type Verb = { base: string; past: string; pp: string; uk: string; top?: boolean; rare?: boolean };
 
 export const VERBS: Verb[] = [
   { base: 'be', past: 'was / were', pp: 'been', uk: 'бути', top: true },
@@ -92,4 +92,56 @@ export const VERBS: Verb[] = [
   { base: 'wear', past: 'wore', pp: 'worn', uk: 'носити (одяг)' },
   { base: 'win', past: 'won', pp: 'won', uk: 'перемагати' },
   { base: 'write', past: 'wrote', pp: 'written', uk: 'писати', top: true },
+  // рідші дієслова: тільки для повної таблиці
+  { base: 'arise', past: 'arose', pp: 'arisen', uk: 'виникати', rare: true },
+  { base: 'awake', past: 'awoke', pp: 'awoken', uk: 'прокидатися, будити', rare: true },
+  { base: 'bear', past: 'bore', pp: 'borne / born', uk: 'терпіти, народжувати', rare: true },
+  { base: 'beat', past: 'beat', pp: 'beaten', uk: 'бити, перемагати', rare: true },
+  { base: 'bend', past: 'bent', pp: 'bent', uk: 'гнути, нахилятися', rare: true },
+  { base: 'bet', past: 'bet', pp: 'bet', uk: 'битися об заклад', rare: true },
+  { base: 'bind', past: 'bound', pp: 'bound', uk: 'зв’язувати', rare: true },
+  { base: 'bleed', past: 'bled', pp: 'bled', uk: 'кровоточити', rare: true },
+  { base: 'breed', past: 'bred', pp: 'bred', uk: 'розводити (тварин)', rare: true },
+  { base: 'burn', past: 'burnt / burned', pp: 'burnt / burned', uk: 'горіти, палити', rare: true },
+  { base: 'burst', past: 'burst', pp: 'burst', uk: 'лопатися, вибухати', rare: true },
+  { base: 'creep', past: 'crept', pp: 'crept', uk: 'повзти, підкрадатися', rare: true },
+  { base: 'deal', past: 'dealt', pp: 'dealt', uk: 'мати справу', rare: true },
+  { base: 'dig', past: 'dug', pp: 'dug', uk: 'копати', rare: true },
+  { base: 'flee', past: 'fled', pp: 'fled', uk: 'тікати', rare: true },
+  { base: 'forbid', past: 'forbade', pp: 'forbidden', uk: 'забороняти', rare: true },
+  { base: 'forecast', past: 'forecast', pp: 'forecast', uk: 'прогнозувати', rare: true },
+  { base: 'kneel', past: 'knelt / kneeled', pp: 'knelt / kneeled', uk: 'ставати на коліна', rare: true },
+  { base: 'lay', past: 'laid', pp: 'laid', uk: 'класти, накривати (на стіл)', rare: true },
+  { base: 'leap', past: 'leapt / leaped', pp: 'leapt / leaped', uk: 'стрибати', rare: true },
+  { base: 'overcome', past: 'overcame', pp: 'overcome', uk: 'долати', rare: true },
+  { base: 'quit', past: 'quit', pp: 'quit', uk: 'кидати, покидати', rare: true },
+  { base: 'seek', past: 'sought', pp: 'sought', uk: 'шукати', rare: true },
+  { base: 'sew', past: 'sewed', pp: 'sewn', uk: 'шити', rare: true },
+  { base: 'shake', past: 'shook', pp: 'shaken', uk: 'трясти', rare: true },
+  { base: 'shrink', past: 'shrank', pp: 'shrunk', uk: 'зменшуватися', rare: true },
+  { base: 'slide', past: 'slid', pp: 'slid', uk: 'ковзати', rare: true },
+  { base: 'smell', past: 'smelt / smelled', pp: 'smelt / smelled', uk: 'пахнути, нюхати', rare: true },
+  { base: 'spell', past: 'spelt / spelled', pp: 'spelt / spelled', uk: 'називати по літерах', rare: true },
+  { base: 'spill', past: 'spilt / spilled', pp: 'spilt / spilled', uk: 'розливати', rare: true },
+  { base: 'spin', past: 'spun', pp: 'spun', uk: 'крутити(ся)', rare: true },
+  { base: 'spit', past: 'spat', pp: 'spat', uk: 'плювати', rare: true },
+  { base: 'split', past: 'split', pp: 'split', uk: 'розділяти', rare: true },
+  { base: 'spoil', past: 'spoilt / spoiled', pp: 'spoilt / spoiled', uk: 'псувати', rare: true },
+  { base: 'spread', past: 'spread', pp: 'spread', uk: 'поширювати, намазувати', rare: true },
+  { base: 'spring', past: 'sprang', pp: 'sprung', uk: 'стрибати, виникати', rare: true },
+  { base: 'stick', past: 'stuck', pp: 'stuck', uk: 'приклеювати, застрягати', rare: true },
+  { base: 'strike', past: 'struck', pp: 'struck', uk: 'вдаряти, страйкувати', rare: true },
+  { base: 'swear', past: 'swore', pp: 'sworn', uk: 'клястися, лаятися', rare: true },
+  { base: 'sweep', past: 'swept', pp: 'swept', uk: 'підмітати', rare: true },
+  { base: 'swing', past: 'swung', pp: 'swung', uk: 'гойдати(ся)', rare: true },
+  { base: 'undergo', past: 'underwent', pp: 'undergone', uk: 'зазнавати, проходити', rare: true },
+  { base: 'upset', past: 'upset', pp: 'upset', uk: 'засмучувати', rare: true },
+  { base: 'weep', past: 'wept', pp: 'wept', uk: 'плакати', rare: true },
+  { base: 'wind', past: 'wound', pp: 'wound', uk: 'намотувати, заводити', rare: true },
+  { base: 'withdraw', past: 'withdrew', pp: 'withdrawn', uk: 'знімати (гроші), відступати', rare: true },
 ];
+
+// Ігри та коротка таблиця беруть лише основні дієслова
+export const CORE_VERBS = VERBS.filter((v) => !v.rare);
+// Повна таблиця за алфавітом
+export const VERBS_AZ = [...VERBS].sort((a, b) => a.base.localeCompare(b.base));
