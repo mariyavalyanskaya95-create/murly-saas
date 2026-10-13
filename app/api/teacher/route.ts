@@ -24,7 +24,7 @@ const toDb = {
 };
 const und = (v: unknown) => (v === null ? undefined : v);
 const fromDb = {
-  student: (r: Row) => ({ id: r.id, name: r.name, level: r.level, price: r.price, contact: und(r.contact), parent: und(r.parent), link: und(r.link), color: r.color, createdAt: r.created_at }),
+  student: (r: Row) => ({ id: r.id, name: r.name, level: r.level, price: r.price, contact: und(r.contact), parent: und(r.parent), link: und(r.link), color: r.color, createdAt: r.created_at, inviteCode: und(r.invite_code), joined: Boolean(r.user_id) }),
   lesson: (r: Row) => ({ id: r.id, studentId: r.student_id, start: r.start, duration: r.duration, topic: und(r.topic), link: und(r.link), status: r.status }),
   note: (r: Row) => ({ id: r.id, studentId: r.student_id, text: r.text, at: r.at }),
   word: (r: Row) => ({ id: r.id, studentId: r.student_id, en: r.en, uk: r.uk, example: und(r.example), at: r.at }),
@@ -83,6 +83,13 @@ export async function POST(req: Request) {
       case 'removeWord': await db.remove('words', t, id); break;
       case 'addPayment': await db.insert('payments', [toDb.payment(p, t)]); break;
       case 'removePayment': await db.remove('payments', t, id); break;
+      case 'invite': {
+        // Код запрошення: 8 символів без схожих літер (0/O, 1/l)
+        const abc = 'abcdefghjkmnpqrstuvwxyz23456789';
+        const code = Array.from(crypto.getRandomValues(new Uint8Array(8)), (b) => abc[b % abc.length]).join('');
+        await db.update('students', t, id, { invite_code: code });
+        return NextResponse.json({ ok: true, code });
+      }
       case 'saveSettings': await db.upsert('teacher_settings', [toDb.settings(p, t)]); break;
       case 'import': {
         // Перенесення даних, які раніше зберігались у браузері
