@@ -20,7 +20,7 @@ export default function SiteFooter() {
               <li><Link href="/for-parents">Для батьків</Link></li>
               <li><Link href="/quiz/teen-life">Квізи</Link></li>
               <li><Link href="/irregular-verbs">Неправильні дієслова</Link></li>
-              <li><Link href="/irregular-verbs/table">Таблиця дієслів</Link></li>
+              <li><Link href="/irregular-verbs/games">Ігри з дієсловами</Link></li>
             </ul>
           </div>
           <div>
