@@ -4,6 +4,7 @@ import Stickers from '@/components/Stickers';
 import SiteNav from '@/components/SiteNav';
 import SiteFooter from '@/components/SiteFooter';
 import { QUIZZES } from '@/lib/quizzes';
+import PricingSection from '@/components/PricingSection';
 
 const POLAROIDS = [
   { label: 'Teen Life', icon: 'e-speak', bg: 'var(--mu-mustard)', ink: 'var(--mu-ink)', href: '/quiz/teen-life' },
@@ -18,7 +19,7 @@ const FEATURES = [
   { icon: 'd-spark', mod: 'mu-card--lime', title: 'AI розбирає помилки', text: 'Не просто показує правильну відповідь, а пояснює ЧОМУ ти помилився і що повторити.' },
   { icon: 'd-clock', mod: 'mu-card--mustard', title: '5 хв на день', text: "Коротка сесія з ранку. Застосунок пам'ятає, де ти зупинився, і пропонує наступний крок." },
   { icon: 'e-trophy', mod: 'mu-card--sky', title: 'Mock-test як на НМТ', text: 'Повний пробник із таймером і офіційним форматом. Побачиш свій бал ще до іспиту.' },
-  { icon: 'e-board', mod: '', title: '2000+ завдань', text: 'Усі формати НМТ: reading, use of English, writing. Тренуй саме слабке місце.' },
+  { icon: 'e-board', mod: '', title: 'Банк завдань', text: 'Усі формати НМТ: reading, use of English, writing. Тренуй саме слабке місце.' },
   { icon: 'e-flame', mod: 'mu-card--ink', title: 'Streak і челенджі', text: 'Щодня нові завдання. Streak мотивує, челенджі з друзями додають азарту.' },
   { icon: 'd-team', mod: 'mu-card--lime', title: 'Для репетиторів', text: 'Веди учнів, бачи прогрес кожного, одним кліком задавай домашку. Батькам автозвіт раз на тиждень.' },
 ];
@@ -151,45 +152,7 @@ export default function HomePage() {
             <h2 className="mu-section__title">Чесні <em>тарифи.</em></h2>
             <p className="mu-section__lead">Почни безкоштовно. Якщо зайде, підписка дешевша за один урок із репетитором.</p>
           </div>
-          <div className="mu-pricing">
-            <div className="mu-price">
-              <div className="mu-price__name"><Icon id="d-smile" />Free</div>
-              <div className="mu-price__amount">0 ₴</div>
-              <div className="mu-price__period">Назавжди</div>
-              <ul className="mu-price__list">
-                <li>1 квіз на день</li>
-                <li>Streak і базова статистика</li>
-                <li>AI пояснення без деталей</li>
-              </ul>
-              <Link href={firstQuiz} className="mu-btn">Спробувати</Link>
-            </div>
-            <div className="mu-price mu-price--featured">
-              <div className="mu-price__name"><Icon id="d-rocket" />Pro</div>
-              <div className="mu-price__amount">149 ₴<span>/міс</span></div>
-              <div className="mu-price__period">або 1 490 ₴ на рік (-16%)</div>
-              <ul className="mu-price__list">
-                <li>Усі квізи та mock-тести</li>
-                <li>AI розбирає кожну помилку детально</li>
-                <li>Банк 2000+ завдань НМТ формату</li>
-                <li>Щотижневий прогрес</li>
-              </ul>
-              <Link href="/sign-up?plan=pro" className="mu-btn mu-btn--tomato">
-                Обрати Pro<span className="mu-btn__arrow"><Icon id="e-arrow" /></span>
-              </Link>
-            </div>
-            <div className="mu-price">
-              <div className="mu-price__name"><Icon id="d-team" />Tutor</div>
-              <div className="mu-price__amount">490 ₴<span>/міс</span></div>
-              <div className="mu-price__period">До 20 учнів</div>
-              <ul className="mu-price__list">
-                <li>Усе з Pro</li>
-                <li>Кабінет для ведення груп</li>
-                <li>Домашка в один клік</li>
-                <li>Автозвіт батькам щотижня</li>
-              </ul>
-              <Link href="/sign-up?role=teacher" className="mu-btn">Для вчителів</Link>
-            </div>
-          </div>
+          <PricingSection firstQuiz={firstQuiz} />
         </div>
       </section>
 
