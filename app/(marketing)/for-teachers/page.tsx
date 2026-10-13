@@ -1,61 +1,103 @@
 import Link from 'next/link';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import type { Metadata } from 'next';
+import Icon from '@/components/Icon';
+import Stickers from '@/components/Stickers';
+import SiteNav from '@/components/SiteNav';
+import SiteFooter from '@/components/SiteFooter';
+import Faq from '@/components/Faq';
+
+export const metadata: Metadata = {
+  title: 'Murly для репетиторів НМТ з англійської',
+  description: 'Кабінет для груп учнів, домашка в один клік, прогрес кожного і звіт батькам. Готові квізи у форматі НМТ.',
+};
+
+const PAINS = [
+  { icon: 'd-clock', title: 'Менше рутини', text: 'Не треба шукати й друкувати завдання. Обираєш квіз із бібліотеки і відправляєш групі.' },
+  { icon: 'd-growth', title: 'Видно прогрес', text: 'Хто що пройшов, де помиляється і які теми просідають. По кожному учню окремо.' },
+  { icon: 'd-heart', title: 'Спокійні батьки', text: 'Раз на тиждень батьки отримують короткий звіт. Менше питань у месенджерах.' },
+];
+
+const STEPS = [
+  { n: '01', icon: 'd-team', title: 'Створи групу', text: 'Додай учнів за посиланням. Вони реєструються самі.' },
+  { n: '02', icon: 'e-board', title: 'Задай домашку', text: 'Обери квіз або тему, вкажи дедлайн. Учні бачать її в кабінеті.' },
+  { n: '03', icon: 'd-crm', title: 'Дивись результати', text: 'Бали, помилки і час на кожне завдання. Слабкі теми підсвічуються.' },
+  { n: '04', icon: 'd-send', title: 'Звіт батькам', text: 'Автоматично щотижня. Ти нічого не пишеш вручну.' },
+];
+
+const FAQ = [
+  { q: 'Скільки учнів можна вести?', a: 'На тарифі Tutor до 20 учнів. Якщо потрібно більше, напиши нам.' },
+  { q: 'Чи можна додавати свої завдання?', a: 'Зараз працюють готові квізи Murly. Власні завдання в планах після запуску кабінету.' },
+  { q: 'Коли запуститься кабінет репетитора?', a: 'Він у роботі. Напиши нам на пошту зі сторінки контактів, і ми повідомимо, щойно відкриємо доступ.' },
+];
 
 export default function ForTeachersPage() {
   return (
     <>
-      <Header />
-      <div className="max-w-6xl mx-auto px-6 pt-16 pb-24">
-        <div className="grid md:grid-cols-2 gap-12 items-center mb-20">
-          <div>
-            <p className="inline-flex items-center gap-2 bg-white rounded-full px-4 py-2 text-sm font-semibold text-lavender-700 shadow-sm mb-6">
-              👩‍🏫 For English teachers
-            </p>
-            <h1 className="font-display text-4xl md:text-5xl font-bold text-lavender-700 leading-tight mb-6">
-              Run your own online English school. No tech skills needed.
-            </h1>
-            <p className="text-lg text-lavender-600 mb-8">
-              Manage students, plan lessons, track homework and vocab, chat with parents — all in one calm, cat-themed dashboard.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <Link href="/sign-up?role=teacher" className="btn-primary">Start free 14-day trial</Link>
-              <Link href="/pricing" className="btn-outline">See pricing</Link>
-            </div>
+      <SiteNav />
+      <section className="mu-page-hero" data-stickers="6">
+        <div className="mu-container">
+          <span className="mu-section__eyebrow"><Icon id="d-team" />Для репетиторів</span>
+          <h1>Готуй до НМТ <em>без рутини.</em></h1>
+          <p>Готові квізи у форматі НМТ, домашка в один клік і прогрес кожного учня в одному кабінеті.</p>
+          <div className="mu-hero__cta">
+            <Link href="/sign-up?role=teacher" className="mu-btn mu-btn--lime mu-btn--lg">
+              Хочу кабінет<span className="mu-btn__arrow"><Icon id="e-arrow" /></span>
+            </Link>
+            <Link href="/quiz/teen-life" className="mu-btn mu-btn--lg">Подивитись квіз</Link>
           </div>
-          <div className="text-center text-9xl animate-float">👩‍🏫</div>
         </div>
+      </section>
 
-        <h2 className="font-display text-3xl font-bold text-center text-lavender-700 mb-12">
-          Everything a modern English teacher needs
-        </h2>
-
-        <div className="grid md:grid-cols-2 gap-6 mb-16">
-          {[
-            { icon: '👥', title: 'Student management', desc: 'Add students, group them into classes, manage schedules. Auto-generate parent access links.' },
-            { icon: '📚', title: 'Ready-made lessons', desc: '200+ lessons for ages 4-15 across 5 levels: Kittens, Paws, Cats, Whiskers, Lions. Edit and reuse.' },
-            { icon: '📝', title: 'Homework & auto-grading', desc: 'Assign tasks, receive submissions, mark completion. AI can pre-grade for you.' },
-            { icon: '📖', title: 'Personal vocab per student', desc: 'Track every word each student is learning. Add words from lessons in one click.' },
-            { icon: '💬', title: 'Messenger with parents', desc: 'Chat inside the platform. No more juggling WhatsApp, Telegram, and Viber.' },
-            { icon: '💳', title: 'Get paid automatically', desc: 'Parents pay through the platform. You get 55% of every lesson, transferred monthly.' },
-          ].map((f) => (
-            <div key={f.title} className="card">
-              <div className="text-4xl mb-3">{f.icon}</div>
-              <h3 className="font-display font-bold text-lg text-lavender-700 mb-2">{f.title}</h3>
-              <p className="text-lavender-600">{f.desc}</p>
-            </div>
-          ))}
+      <section className="mu-section" style={{ paddingTop: 24 }}>
+        <div className="mu-container">
+          <div className="mu-cards">
+            {PAINS.map((p, i) => (
+              <div key={p.title} className={`mu-card ${['mu-card--lime', 'mu-card--mustard', 'mu-card--sky'][i]}`}>
+                <div className="mu-card__icon"><Icon id={p.icon} /></div>
+                <h3 className="mu-card__title">{p.title}</h3>
+                <p className="mu-card__text">{p.text}</p>
+              </div>
+            ))}
+          </div>
         </div>
+      </section>
 
-        <div className="gradient-purple rounded-3xl p-12 text-center text-white shadow-2xl">
-          <h2 className="font-display text-3xl font-bold mb-4">Ready to grow your teaching?</h2>
-          <p className="text-lavender-100 mb-8">Start your free 14-day trial. Cancel anytime.</p>
-          <Link href="/sign-up?role=teacher" className="inline-block bg-white text-lavender-700 font-bold px-8 py-4 rounded-full shadow-lg hover:shadow-2xl transition">
-            Start free →
-          </Link>
+      <section className="mu-section" data-stickers="4">
+        <div className="mu-container">
+          <div className="mu-section__head">
+            <span className="mu-section__eyebrow"><Icon id="e-cal" />Як це працює</span>
+            <h2 className="mu-section__title">Чотири <em>кроки.</em></h2>
+          </div>
+          <div className="mu-steps">
+            {STEPS.map((s) => (
+              <div key={s.n} className="mu-step">
+                <span className="mu-step__ic"><Icon id={s.icon} /></span>
+                <div className="mu-step__num">{s.n}</div>
+                <h3 className="mu-step__title">{s.title}</h3>
+                <p className="mu-step__text">{s.text}</p>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-      <Footer />
+      </section>
+
+      <section className="mu-section" style={{ paddingTop: 0 }}>
+        <div className="mu-container">
+          <div className="mu-section__head">
+            <span className="mu-section__eyebrow"><Icon id="d-bulb" />FAQ</span>
+            <h2 className="mu-section__title">Питання <em>репетиторів.</em></h2>
+          </div>
+          <Faq items={FAQ} />
+          <div style={{ textAlign: 'center', marginTop: 40 }}>
+            <Link href="/pricing" className="mu-btn mu-btn--tomato mu-btn--lg">
+              Тариф Tutor, 490 ₴<span className="mu-btn__arrow mu-btn__arrow--lime"><Icon id="e-arrow" /></span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <SiteFooter />
+      <Stickers />
     </>
   );
 }
