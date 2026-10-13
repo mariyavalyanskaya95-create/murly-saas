@@ -16,6 +16,7 @@ export default function SiteNav() {
           <Link href="/for-teachers">Репетиторам</Link>
           <Link href="/pricing">Тарифи</Link>
           <Link href="/quiz/teen-life">Квізи</Link>
+          <Link href="/irregular-verbs">Дієслова</Link>
         </div>
         <div className="mu-nav__cta">
           <SignedOut>
