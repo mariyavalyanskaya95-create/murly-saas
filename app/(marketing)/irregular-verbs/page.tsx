@@ -4,22 +4,13 @@ import Icon from '@/components/Icon';
 import Stickers from '@/components/Stickers';
 import SiteNav from '@/components/SiteNav';
 import SiteFooter from '@/components/SiteFooter';
-import GameHub from '@/components/games/GameHub';
-import VerbsTable from '@/components/VerbsTable';
-import type { GameSet } from '@/components/games/engine';
-import { CORE_VERBS as VERBS } from '@/lib/irregular-verbs';
+import VerbsAlphabet from '@/components/VerbsAlphabet';
 
 export const metadata: Metadata = {
-  title: 'Неправильні дієслова англійської: таблиця з перекладом та ігри',
-  description: 'Таблиця неправильних дієслів англійської мови з перекладом українською, три форми, пошук і безкоштовні ігри: квіз, пари, анаграми, картки.',
+  title: 'Таблиця неправильних дієслів англійської з вимовою та перекладом',
+  description: 'Повна таблиця неправильних дієслів англійської мови за алфавітом: три форми, переклад українською, пошук і озвучка кожного слова. Плюс безкоштовні ігри.',
   alternates: { canonical: '/irregular-verbs' },
 };
-
-const SETS: GameSet[] = [
-  { id: 'past', title: 'Past Simple', prompt: 'Яка форма Past Simple?', items: VERBS.map((v) => ({ q: v.base, a: v.past, hint: v.uk })) },
-  { id: 'pp', title: 'Past Participle', prompt: 'Яка третя форма (Past Participle)?', items: VERBS.map((v) => ({ q: v.base, a: v.pp, hint: v.uk })) },
-  { id: 'uk', title: 'Переклад', prompt: 'Як це англійською?', items: VERBS.map((v) => ({ q: v.uk, a: v.base })) },
-];
 
 const GROUPS = [
   { icon: 'd-bolt', mod: 'mu-card--lime', title: 'Усі три однакові', text: 'cut, put, let, hit, hurt, cost, set, shut. Нічого не змінюється. Підступний лише read: пишеться так само, але в минулому читається як «ред».' },
@@ -32,20 +23,20 @@ export default function IrregularVerbsPage() {
   return (
     <>
       <SiteNav />
-      <section className="mu-page-hero" data-stickers="6">
+      <section className="mu-page-hero" style={{ paddingBottom: 24 }} data-stickers="4">
         <div className="mu-container">
-          <span className="mu-section__eyebrow"><Icon id="e-abc" />Граматика</span>
-          <h1>Неправильні <em>дієслова.</em></h1>
-          <p>Таблиця з перекладом, групи, які легко запам’ятати, і ігри, щоб нарешті вивчити всі три форми.</p>
-          <a href="#play" className="mu-btn mu-btn--lime mu-btn--lg">
-            Грати<span className="mu-btn__arrow"><Icon id="e-arrow" /></span>
-          </a>
+          <span className="mu-section__eyebrow"><Icon id="e-book" />Таблиця</span>
+          <h1>Неправильні дієслова <em>за алфавітом.</em></h1>
+          <p>Натисни на будь-яку форму, щоб послухати вимову. Навушники праворуч озвучать усі три форми підряд.</p>
+          <Link href="/irregular-verbs/games" className="mu-btn mu-btn--lime mu-btn--lg">
+            Тренуватися в іграх<span className="mu-btn__arrow"><Icon id="e-arrow" /></span>
+          </Link>
         </div>
       </section>
 
-      <section className="mu-section" id="play" style={{ paddingTop: 16 }}>
+      <section className="mu-section" style={{ paddingTop: 8 }}>
         <div className="mu-container">
-          <GameHub sets={SETS} />
+          <VerbsAlphabet />
         </div>
       </section>
 
@@ -70,30 +61,14 @@ export default function IrregularVerbsPage() {
       </section>
       <div className="mu-scallop mu-scallop--up" style={{ backgroundColor: 'var(--mu-tomato)' }} />
 
-      <section className="mu-section" data-stickers="4">
-        <div className="mu-container">
-          <div className="mu-section__head">
-            <span className="mu-section__eyebrow"><Icon id="e-book" />Таблиця</span>
-            <h2 className="mu-section__title">Усі форми <em>з перекладом.</em></h2>
-            <p className="mu-section__lead">Зірочкою позначені дієслова, які трапляються найчастіше. З них і почни.</p>
-          </div>
-          <VerbsTable />
-          <div style={{ textAlign: 'center', marginTop: 28 }}>
-            <Link href="/irregular-verbs/table" className="mu-btn mu-btn--lg">
-              Повна таблиця з вимовою<span className="mu-btn__arrow"><Icon id="e-arrow" /></span>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="mu-section" style={{ paddingTop: 0 }}>
+      <section className="mu-section">
         <div className="mu-container">
           <div className="mu-cta-box">
-            <Icon id="c-cat-glass" className="mu-ic mu-ic--cta" />
-            <h2>Учителю: <em>свої ігри</em> скоро.</h2>
-            <p>Вводиш слова один раз, обираєш гру і відправляєш учням. Кабінет учителя вже в роботі.</p>
-            <Link href="/for-teachers" className="mu-btn mu-btn--tomato mu-btn--lg">
-              Для вчителів<span className="mu-btn__arrow mu-btn__arrow--lime"><Icon id="e-arrow" /></span>
+            <Icon id="e-trophy" className="mu-ic mu-ic--cta" />
+            <h2>Перевір себе <em>в іграх.</em></h2>
+            <p>Квіз, пари, анаграми і картки на всі три форми.</p>
+            <Link href="/irregular-verbs/games" className="mu-btn mu-btn--tomato mu-btn--lg">
+              Грати<span className="mu-btn__arrow mu-btn__arrow--lime"><Icon id="e-arrow" /></span>
             </Link>
           </div>
         </div>
