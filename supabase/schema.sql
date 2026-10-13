@@ -72,3 +72,8 @@ alter table lessons enable row level security;
 alter table notes enable row level security;
 alter table words enable row level security;
 alter table payments enable row level security;
+
+-- Кабінет учня: запрошення від вчителя
+alter table students add column if not exists invite_code text unique;
+alter table students add column if not exists user_id text;
+create index if not exists students_user_idx on students (user_id);
