@@ -7,7 +7,7 @@ import SiteFooter from '@/components/SiteFooter';
 import GameHub from '@/components/games/GameHub';
 import VerbsTable from '@/components/VerbsTable';
 import type { GameSet } from '@/components/games/engine';
-import { VERBS } from '@/lib/irregular-verbs';
+import { CORE_VERBS as VERBS } from '@/lib/irregular-verbs';
 
 export const metadata: Metadata = {
   title: 'Неправильні дієслова англійської: таблиця з перекладом та ігри',
@@ -78,6 +78,11 @@ export default function IrregularVerbsPage() {
             <p className="mu-section__lead">Зірочкою позначені дієслова, які трапляються найчастіше. З них і почни.</p>
           </div>
           <VerbsTable />
+          <div style={{ textAlign: 'center', marginTop: 28 }}>
+            <Link href="/irregular-verbs/table" className="mu-btn mu-btn--lg">
+              Повна таблиця з вимовою<span className="mu-btn__arrow"><Icon id="e-arrow" /></span>
+            </Link>
+          </div>
         </div>
       </section>
 
