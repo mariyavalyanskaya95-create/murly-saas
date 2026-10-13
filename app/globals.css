@@ -1014,3 +1014,49 @@ a.mu-step:hover { transform: rotate(0) translateY(-4px); }
   .va-row > span:nth-child(4) { grid-column: 1 / 3; font-size: 14px; }
   .va-row > span:nth-child(5) { grid-column: 3; grid-row: 1; }
 }
+
+/* ===== Граматика (gr-*) ===== */
+.gr { display: grid; gap: 18px; }
+.gr-h { display: flex; align-items: center; gap: 12px; font-size: clamp(24px, 3vw, 34px); margin: 28px 0 4px; }
+.gr-h .mu-ic { width: 34px; height: 34px; }
+.gr-h--center { justify-content: center; margin-bottom: 20px; }
+.gr--lime { --gr: var(--mu-lime); } .gr--mustard { --gr: var(--mu-mustard); } .gr--sky { --gr: var(--mu-sky); } .gr--tomato { --gr: #F6B5A6; }
+.gr-formula { display: grid; gap: 10px; }
+.gr-formula__row { display: grid; grid-template-columns: auto 1fr 1fr; gap: 18px; align-items: center; padding: 14px 18px; background: #fff; border: 2px solid var(--mu-ink); border-radius: var(--mu-radius); box-shadow: var(--mu-shadow-stamp); }
+.gr-sign { min-width: 46px; height: 46px; padding: 0 10px; display: grid; place-items: center; border: 2px solid var(--mu-ink); border-radius: var(--mu-radius-pill); background: var(--gr); font-weight: 800; font-size: 18px; }
+.gr-formula__text { font-weight: 700; font-size: 17px; }
+.gr-formula__ex { font-style: italic; color: var(--mu-ink-soft); }
+.gr-uses { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+.gr-use { padding: 18px; background: #fff; border: 2px solid var(--mu-ink); border-radius: var(--mu-radius); box-shadow: var(--mu-shadow-stamp); }
+.gr-use__title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--mu-tomato); margin-bottom: 8px; }
+.gr-use__ex { font-size: 19px; font-weight: 700; margin-bottom: 6px; }
+.gr-use__uk { color: var(--mu-ink-muted); }
+.gr-markers { display: flex; flex-wrap: wrap; gap: 8px; }
+.gr-markers .g-chip { cursor: default; }
+.gr-mistakes { display: grid; gap: 10px; }
+.gr-mistake { display: grid; grid-template-columns: 1fr 1fr 1.4fr; gap: 16px; align-items: center; padding: 14px 18px; background: #fff; border: 2px solid var(--mu-ink); border-radius: var(--mu-radius); }
+.gr-wrong { color: var(--mu-tomato); text-decoration: line-through; font-weight: 600; }
+.gr-right { font-weight: 800; background: var(--mu-lime); padding: 2px 8px; border-radius: 8px; justify-self: start; }
+.gr-note { color: var(--mu-ink-soft); font-size: 15px; }
+.gr-tip { display: flex; gap: 18px; align-items: center; margin-top: 18px; padding: 22px 26px; background: var(--mu-ink); color: var(--mu-paper); border-radius: var(--mu-radius-lg); }
+.gr-tip b { color: var(--mu-lime); font-size: 18px; }
+.gr-tip p { margin: 6px 0 0; font-size: 17px; line-height: 1.5; }
+.gr-tip__ic { width: 64px; height: 64px; flex: none; color: var(--mu-lime); }
+.gr-quiz { max-width: 860px; margin: 0 auto; }
+.gr-quiz .g-question { font-size: clamp(22px, 3vw, 32px); }
+.gr-pager { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.gr-level { display: inline-grid; place-items: center; padding: 4px 12px; border: 2px solid var(--mu-ink); border-radius: var(--mu-radius-pill); background: var(--mu-ink); color: var(--mu-lime); font-size: 16px; }
+.gr-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-top: 12px; }
+.gr-card { display: flex; flex-direction: column; gap: 6px; padding: 22px; background: var(--gr); border: 2px solid var(--mu-ink); border-radius: var(--mu-radius-lg); box-shadow: var(--mu-shadow-stamp-lg); color: var(--mu-ink); text-decoration: none; transition: transform .15s; }
+.gr-card:hover { transform: translateY(-4px) rotate(-.5deg); }
+.gr-card__ic { width: 52px; height: 52px; display: grid; place-items: center; border-radius: 50%; background: var(--mu-ink); color: var(--mu-lime); margin-bottom: 8px; }
+.gr-card__ic .mu-ic { width: 28px; height: 28px; }
+.gr-card__title { font-family: 'Boldonse', 'Arial Black', 'Nippo', sans-serif; font-size: 24px; line-height: 1.1; }
+.gr-card__uk { font-weight: 700; }
+.gr-card__lead { color: var(--mu-ink-soft); font-size: 15px; }
+@media (max-width: 760px) {
+  .gr-formula__row { grid-template-columns: auto 1fr; }
+  .gr-formula__ex { grid-column: 2; }
+  .gr-mistake { grid-template-columns: 1fr; gap: 6px; }
+  .gr-tip { flex-direction: column; text-align: center; }
+}
