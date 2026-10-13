@@ -44,11 +44,14 @@ export default function StudentCard({ id }: { id: string }) {
         <div className="t-hero__info">
           <h1>{s.name}</h1>
           <span>{s.level} · {fmtMoney(s.price)} за заняття{s.contact ? ` · ${s.contact}` : ''}</span>
+          {s.joined && <span className="t-tag t-tag--done" style={{ marginLeft: 8 }}>Має кабінет</span>}
         </div>
         <div className={`t-hero__bal ${b < 0 ? 't-neg' : ''}`}>
           <small>{b < 0 ? 'Борг' : 'Баланс'}</small><b>{fmtMoney(Math.abs(b))}</b>
         </div>
       </div>
+
+      <InviteBox id={s.id} />
 
       <div className="t-tabs" role="tablist">
         {TABS.map((x) => (
@@ -252,6 +255,37 @@ function ProfileTab({ id, onDelete }: { id: string; onDelete: () => void }) {
               <button className="mu-btn t-btn-sm" onClick={() => setConfirm(false)}>Ні</button>
               <button className="mu-btn mu-btn--tomato t-btn-sm" onClick={onDelete}>Так, видалити</button></>}
       </div>
+    </div>
+  );
+}
+
+function InviteBox({ id }: { id: string }) {
+  const { data, mode, createInvite } = useTeacher();
+  const s = data.students.find((x) => x.id === id)!;
+  const [busy, setBusy] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const [err, setErr] = useState(false);
+  if (s.joined || mode !== 'cloud') return null;
+
+  const link = s.inviteCode ? `${window.location.origin}/join/${s.inviteCode}` : '';
+  const make = async () => { setBusy(true); setErr(false); const c = await createInvite(id); setBusy(false); if (!c) setErr(true); };
+  const copy = async () => { try { await navigator.clipboard.writeText(link); setCopied(true); setTimeout(() => setCopied(false), 2000); } catch { /* */ } };
+
+  return (
+    <div className="t-card t-invite">
+      <div>
+        <h2><Icon id="d-send" />Запроси {s.name} в Murly</h2>
+        <p className="t-muted">Учень побачить свій розклад з кнопкою дзвінка, словник від тебе та ігри з цими словами.</p>
+      </div>
+      {link ? (
+        <div className="t-invite__link">
+          <input readOnly value={link} onFocus={(e) => e.currentTarget.select()} aria-label="Посилання-запрошення" />
+          <button className="mu-btn mu-btn--lime t-btn-sm" onClick={copy}>{copied ? 'Скопійовано' : 'Копіювати'}</button>
+        </div>
+      ) : (
+        <button className="mu-btn mu-btn--lime" onClick={make} disabled={busy}>{busy ? 'Створюю…' : 'Створити посилання'}</button>
+      )}
+      {err && <p className="t-neg">Не вийшло створити посилання. Спробуй ще раз.</p>}
     </div>
   );
 }
