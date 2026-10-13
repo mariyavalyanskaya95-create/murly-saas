@@ -20,7 +20,7 @@ export default function IrregularVerbsTablePage() {
         <div className="mu-container">
           <span className="mu-section__eyebrow"><Icon id="e-book" />Таблиця</span>
           <h1>Неправильні дієслова <em>за алфавітом.</em></h1>
-          <p>Натисни на будь-яку форму, щоб послухати вимову. Мікрофон праворуч озвучить усі три форми підряд.</p>
+          <p>Натисни на будь-яку форму, щоб послухати вимову. Навушники праворуч озвучать усі три форми підряд.</p>
           <Link href="/irregular-verbs#play" className="mu-btn mu-btn--lime mu-btn--lg">
             Тренуватися в іграх<span className="mu-btn__arrow"><Icon id="e-arrow" /></span>
           </Link>
