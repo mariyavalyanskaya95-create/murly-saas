@@ -1,7 +1,7 @@
 'use client';
 import { useMemo, useState } from 'react';
 import Icon from './Icon';
-import { VERBS } from '@/lib/irregular-verbs';
+import { CORE_VERBS as VERBS } from '@/lib/irregular-verbs';
 
 export default function VerbsTable() {
   const [q, setQ] = useState('');
