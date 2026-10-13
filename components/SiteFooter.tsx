@@ -15,7 +15,9 @@ export default function SiteFooter() {
             <ul>
               <li><Link href="/#how">Як працює</Link></li>
               <li><Link href="/#path">Шлях до НМТ</Link></li>
-              <li><Link href="/#pricing">Тарифи</Link></li>
+              <li><Link href="/pricing">Тарифи</Link></li>
+              <li><Link href="/for-teachers">Для репетиторів</Link></li>
+              <li><Link href="/for-parents">Для батьків</Link></li>
               <li><Link href="/quiz/teen-life">Квізи</Link></li>
             </ul>
           </div>

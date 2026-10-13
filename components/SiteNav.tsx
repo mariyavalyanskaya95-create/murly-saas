@@ -13,8 +13,8 @@ export default function SiteNav() {
         </Link>
         <div className="mu-nav__links">
           <Link href="/#how">Як це працює</Link>
-          <Link href="/#path">Шлях до 200</Link>
-          <Link href="/#pricing">Тарифи</Link>
+          <Link href="/for-teachers">Репетиторам</Link>
+          <Link href="/pricing">Тарифи</Link>
           <Link href="/quiz/teen-life">Квізи</Link>
         </div>
         <div className="mu-nav__cta">
