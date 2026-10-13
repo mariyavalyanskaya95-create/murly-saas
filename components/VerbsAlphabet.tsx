@@ -35,7 +35,7 @@ function Word({ text, say, ok, strong }: { text: string; say: (t: string) => voi
   if (!ok) return strong ? <b>{text}</b> : <span>{text}</span>;
   return (
     <button className={`va-word ${strong ? 'is-strong' : ''}`} onClick={() => say(text)} aria-label={`Послухати: ${text}`}>
-      {text}<Icon id="e-speak" className="mu-ic va-word__ic" />
+      {text}<Icon id="e-head" className="mu-ic va-word__ic" />
     </button>
   );
 }
@@ -96,7 +96,7 @@ export default function VerbsAlphabet() {
                 <span data-label="Past Simple"><Word text={v.past} say={say} ok={ok} /></span>
                 <span data-label="Past Participle"><Word text={v.pp} say={say} ok={ok} /></span>
                 <span className="v-uk">{v.uk}</span>
-                <span>{ok && <button className="va-all" onClick={() => sayAll(v)} aria-label={`Послухати всі три форми ${v.base}`}><Icon id="e-mic" /></button>}</span>
+                <span>{ok && <button className="va-all" onClick={() => sayAll(v)} aria-label={`Послухати всі три форми ${v.base}`}><Icon id="e-head" /></button>}</span>
               </div>
             ))}
           </section>
