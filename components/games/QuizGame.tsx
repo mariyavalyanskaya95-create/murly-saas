@@ -5,7 +5,7 @@ import GameDone from './GameDone';
 
 type Round = { item: GameItem; options: string[] };
 
-export default function QuizGame({ items, rounds = 10 }: { items: GameItem[]; rounds?: number }) {
+export default function QuizGame({ items, rounds = 10, ordered = false }: { items: GameItem[]; rounds?: number; ordered?: boolean }) {
   const [list, setList] = useState<Round[]>([]);
   const [i, setI] = useState(0);
   const [chosen, setChosen] = useState<string | null>(null);
@@ -13,7 +13,7 @@ export default function QuizGame({ items, rounds = 10 }: { items: GameItem[]; ro
   const [streak, setStreak] = useState(0);
 
   const start = () => {
-    setList(pick(items, Math.min(rounds, items.length)).map((item) => ({ item, options: shuffle([item.a, ...distractors(items, item)]) })));
+    setList((ordered ? items.slice(0, rounds) : pick(items, Math.min(rounds, items.length))).map((item) => ({ item, options: shuffle(item.options ?? [item.a, ...distractors(items, item)]) })));
     setI(0); setChosen(null); setScore(0); setStreak(0);
   };
   useEffect(start, [items]); // eslint-disable-line react-hooks/exhaustive-deps

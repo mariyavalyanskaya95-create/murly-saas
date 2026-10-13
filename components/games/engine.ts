@@ -4,6 +4,7 @@ export type GameItem = {
   q: string; // що показуємо (слово, переклад, питання)
   a: string; // правильна відповідь; варіанти через " / " вважаються рівноправними
   hint?: string;
+  options?: string[]; // свої варіанти для квізу (граматика)
 };
 
 export type GameSet = {
