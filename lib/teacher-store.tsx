@@ -2,7 +2,7 @@
 // Дані кабінету вчителя.
 // ЗАРАЗ: зберігаються в браузері (localStorage) для кожного акаунта окремо.
 // ДАЛІ: ця ж модель переїде в базу (Supabase), інтерфейс useTeacher() не зміниться.
-import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 
 export type Student = {
   id: string; name: string; level: string; price: number;
@@ -31,36 +31,81 @@ const COLORS = ['lime', 'mustard', 'sky', 'tomato', 'lilac', 'mint'];
 const uid = () => (typeof crypto !== 'undefined' && 'randomUUID' in crypto ? crypto.randomUUID() : Math.random().toString(36).slice(2));
 const now = () => new Date().toISOString();
 
+export type SyncMode = 'loading' | 'cloud' | 'local';
+
 function useStore(userId: string) {
   const key = `murly:teacher:${userId}`;
   const [data, setData] = useState<Data>(EMPTY);
   const [ready, setReady] = useState(false);
+  const [mode, setMode] = useState<SyncMode>('loading');
+  const [syncError, setSyncError] = useState(false);
+  const queue = useRef<Promise<unknown>>(Promise.resolve());
+  const modeRef = useRef<SyncMode>('loading');
+  const dataRef = useRef<Data>(EMPTY);
+  useEffect(() => { dataRef.current = data; }, [data]);
 
-  useEffect(() => {
-    try {
-      const raw = localStorage.getItem(key);
-      if (raw) setData({ ...EMPTY, ...JSON.parse(raw) });
-    } catch { /* порожньо або недоступно */ }
-    setReady(true);
+  const readLocal = useCallback((): Data | null => {
+    try { const raw = localStorage.getItem(key); return raw ? { ...EMPTY, ...JSON.parse(raw) } : null; } catch { return null; }
   }, [key]);
+
+  // Завантаження: спершу пробуємо базу, якщо її ще немає, працюємо з браузером
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      const local = readLocal();
+      try {
+        const res = await fetch('/api/teacher', { cache: 'no-store' });
+        if (!res.ok) throw new Error(String(res.status));
+        let remote: Data = { ...EMPTY, ...(await res.json()) };
+        // Перший вхід після підключення бази: переносимо дані з браузера
+        if (!remote.students.length && local?.students.length) {
+          const r = await fetch('/api/teacher', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ op: 'import', p: local }) });
+          if (r.ok) { remote = local; try { localStorage.setItem(`${key}:migrated`, new Date().toISOString()); localStorage.removeItem(key); } catch { /* */ } }
+        }
+        if (cancelled) return;
+        modeRef.current = 'cloud'; setMode('cloud'); setData(remote);
+      } catch {
+        if (cancelled) return;
+        modeRef.current = 'local'; setMode('local'); if (local) setData(local);
+      }
+      setReady(true);
+    })();
+    return () => { cancelled = true; };
+  }, [key, readLocal]);
 
   const update = useCallback((fn: (d: Data) => Data) => {
     setData((d) => {
       const next = fn(d);
-      try { localStorage.setItem(key, JSON.stringify(next)); } catch { /* немає місця */ }
+      if (modeRef.current === 'local') { try { localStorage.setItem(key, JSON.stringify(next)); } catch { /* немає місця */ } }
       return next;
     });
   }, [key]);
 
+  // Відправка змін у базу по черзі (щоб учень зберігся раніше за його заняття)
+  const sync = useCallback((op: string, p: unknown) => {
+    if (modeRef.current !== 'cloud') return;
+    const body = JSON.stringify({ op, p }, (_k, v) => (v === undefined ? null : v));
+    queue.current = queue.current.then(async () => {
+      try {
+        const r = await fetch('/api/teacher', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body });
+        if (!r.ok) throw new Error(String(r.status));
+      } catch { setSyncError(true); }
+    });
+  }, []);
+
   const actions = useMemo(() => ({
     addStudent: (s: Omit<Student, 'id' | 'createdAt' | 'color'>) => {
-      const id = uid();
-      update((d) => ({ ...d, students: [...d.students, { ...s, id, createdAt: now(), color: COLORS[d.students.length % COLORS.length] }] }));
-      return id;
+      const row: Student = { ...s, id: uid(), createdAt: now(), color: COLORS[dataRef.current.students.length % COLORS.length] };
+      dataRef.current = { ...dataRef.current, students: [...dataRef.current.students, row] };
+      update((d) => ({ ...d, students: [...d.students, row] }));
+      sync('addStudent', row);
+      return row.id;
     },
-    updateStudent: (id: string, patch: Partial<Student>) =>
-      update((d) => ({ ...d, students: d.students.map((s) => (s.id === id ? { ...s, ...patch } : s)) })),
-    removeStudent: (id: string) =>
+    updateStudent: (id: string, patch: Partial<Student>) => {
+      update((d) => ({ ...d, students: d.students.map((s) => (s.id === id ? { ...s, ...patch } : s)) }));
+      sync('updateStudent', { id, patch });
+    },
+    removeStudent: (id: string) => {
       update((d) => ({
         ...d,
         students: d.students.filter((s) => s.id !== id),
@@ -68,40 +113,58 @@ function useStore(userId: string) {
         notes: d.notes.filter((x) => x.studentId !== id),
         words: d.words.filter((x) => x.studentId !== id),
         payments: d.payments.filter((x) => x.studentId !== id),
-      })),
+      }));
+      sync('removeStudent', { id });
+    },
 
     // Заняття; repeatWeeks > 1 створює щотижневу серію
-    addLessons: (l: Omit<Lesson, 'id' | 'status'>, repeatWeeks = 1) =>
-      update((d) => {
-        const base = new Date(l.start);
-        const created = Array.from({ length: Math.max(1, repeatWeeks) }, (_, k) => {
-          const dt = new Date(base); dt.setDate(dt.getDate() + 7 * k);
-          return { ...l, id: uid(), start: dt.toISOString(), status: 'planned' as LessonStatus };
-        });
-        return { ...d, lessons: [...d.lessons, ...created] };
-      }),
-    setLessonStatus: (id: string, status: LessonStatus) =>
-      update((d) => ({ ...d, lessons: d.lessons.map((x) => (x.id === id ? { ...x, status } : x)) })),
-    updateLesson: (id: string, patch: Partial<Lesson>) =>
-      update((d) => ({ ...d, lessons: d.lessons.map((x) => (x.id === id ? { ...x, ...patch } : x)) })),
-    removeLesson: (id: string) => update((d) => ({ ...d, lessons: d.lessons.filter((x) => x.id !== id) })),
+    addLessons: (l: Omit<Lesson, 'id' | 'status'>, repeatWeeks = 1) => {
+      const base = new Date(l.start);
+      const rows: Lesson[] = Array.from({ length: Math.max(1, repeatWeeks) }, (_, k) => {
+        const dt = new Date(base); dt.setDate(dt.getDate() + 7 * k);
+        return { ...l, id: uid(), start: dt.toISOString(), status: 'planned' as LessonStatus };
+      });
+      update((d) => ({ ...d, lessons: [...d.lessons, ...rows] }));
+      sync('addLessons', { rows });
+    },
+    setLessonStatus: (id: string, status: LessonStatus) => {
+      update((d) => ({ ...d, lessons: d.lessons.map((x) => (x.id === id ? { ...x, status } : x)) }));
+      sync('updateLesson', { id, patch: { status } });
+    },
+    updateLesson: (id: string, patch: Partial<Lesson>) => {
+      update((d) => ({ ...d, lessons: d.lessons.map((x) => (x.id === id ? { ...x, ...patch } : x)) }));
+      sync('updateLesson', { id, patch });
+    },
+    removeLesson: (id: string) => {
+      update((d) => ({ ...d, lessons: d.lessons.filter((x) => x.id !== id) }));
+      sync('removeLesson', { id });
+    },
 
-    addNote: (studentId: string, text: string) =>
-      update((d) => ({ ...d, notes: [{ id: uid(), studentId, text, at: now() }, ...d.notes] })),
-    removeNote: (id: string) => update((d) => ({ ...d, notes: d.notes.filter((x) => x.id !== id) })),
+    addNote: (studentId: string, text: string) => {
+      const row: Note = { id: uid(), studentId, text, at: now() };
+      update((d) => ({ ...d, notes: [row, ...d.notes] }));
+      sync('addNote', row);
+    },
+    removeNote: (id: string) => { update((d) => ({ ...d, notes: d.notes.filter((x) => x.id !== id) })); sync('removeNote', { id }); },
 
-    addWord: (studentId: string, w: { en: string; uk: string; example?: string }) =>
-      update((d) => ({ ...d, words: [{ id: uid(), studentId, ...w, at: now() }, ...d.words] })),
-    removeWord: (id: string) => update((d) => ({ ...d, words: d.words.filter((x) => x.id !== id) })),
+    addWord: (studentId: string, w: { en: string; uk: string; example?: string }) => {
+      const row: Word = { id: uid(), studentId, ...w, at: now() };
+      update((d) => ({ ...d, words: [row, ...d.words] }));
+      sync('addWord', row);
+    },
+    removeWord: (id: string) => { update((d) => ({ ...d, words: d.words.filter((x) => x.id !== id) })); sync('removeWord', { id }); },
 
-    addPayment: (studentId: string, amount: number, note?: string) =>
-      update((d) => ({ ...d, payments: [{ id: uid(), studentId, amount, note, at: now() }, ...d.payments] })),
-    removePayment: (id: string) => update((d) => ({ ...d, payments: d.payments.filter((x) => x.id !== id) })),
+    addPayment: (studentId: string, amount: number, note?: string) => {
+      const row: Payment = { id: uid(), studentId, amount, note, at: now() };
+      update((d) => ({ ...d, payments: [row, ...d.payments] }));
+      sync('addPayment', row);
+    },
+    removePayment: (id: string) => { update((d) => ({ ...d, payments: d.payments.filter((x) => x.id !== id) })); sync('removePayment', { id }); },
 
-    saveSettings: (s: Settings) => update((d) => ({ ...d, settings: s })),
-  }), [update]);
+    saveSettings: (s: Settings) => { update((d) => ({ ...d, settings: s })); sync('saveSettings', s); },
+  }), [update, sync]);
 
-  return { data, ready, ...actions };
+  return { data, ready, mode, syncError, ...actions };
 }
 
 type Store = ReturnType<typeof useStore>;
