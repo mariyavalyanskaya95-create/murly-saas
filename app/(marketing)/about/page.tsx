@@ -1,92 +1,101 @@
 import Link from 'next/link';
-import Image from 'next/image';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import type { Metadata } from 'next';
+import Icon from '@/components/Icon';
+import Stickers from '@/components/Stickers';
+import SiteNav from '@/components/SiteNav';
+import SiteFooter from '@/components/SiteFooter';
+
+export const metadata: Metadata = {
+  title: 'Про Murly: тренажер НМТ з англійської',
+  description: 'Чому Murly не схожий на підручник: формат НМТ, пояснення кожної помилки і 5 хвилин на день.',
+};
+
+const PRINCIPLES = [
+  { icon: 'e-trophy', mod: 'mu-card--lime', title: 'Тільки формат НМТ', text: 'Кожне завдання зроблене так, як на іспиті: reading, use of English, writing. Ти тренуєш саме те, за що дають бали.' },
+  { icon: 'd-spark', mod: 'mu-card--mustard', title: 'Пояснення, а не відповіді', text: 'Після кожної помилки ти бачиш, на яке правило вона і де в тексті підказка. Так помилка не повторюється.' },
+  { icon: 'd-clock', mod: 'mu-card--sky', title: '5 хвилин на день', text: 'Короткі квізи замість двогодинних сесій. Регулярність дає більше, ніж зубріння за тиждень до іспиту.' },
+  { icon: 'e-flame', mod: 'mu-card--ink', title: 'Як гра, а не як урок', text: 'Життя, streak, наліпки і рівні. Повертатися хочеться, бо цікаво, а не бо змусили.' },
+];
+
+const ROADMAP = [
+  { live: true, icon: 'e-speak', title: 'Квізи за темами НМТ', text: 'Teen Life і Films & Netflix вже працюють, нові теми в роботі.' },
+  { live: true, icon: 'd-spark', title: 'Пояснення кожної відповіді', text: 'Блок «Чому так?» після кожного завдання.' },
+  { live: false, icon: 'e-abc', title: 'Grammar Boss', text: 'Великий квіз на всі часи, умовні речення, пасив і reported speech.' },
+  { live: false, icon: 'e-trophy', title: 'Mock-test #1', text: 'Повний пробник на 90 хвилин з таймером і прогнозом балу.' },
+  { live: false, icon: 'd-crm', title: 'Кабінет учня', text: 'Історія квізів, слабкі теми, streak і прогрес до 200 балів.' },
+  { live: false, icon: 'd-team', title: 'Кабінет репетитора', text: 'Групи учнів, домашка в один клік і щотижневий звіт батькам.' },
+];
 
 export default function AboutPage() {
   return (
     <>
-      <Header />
-      <div className="max-w-5xl mx-auto px-6 pt-20 pb-24">
-        <div className="grid md:grid-cols-[1fr,1.5fr] gap-12 mb-20 items-start">
-          <div className="relative">
-            <div className="absolute -inset-4 gradient-warm rounded-3xl -rotate-3 opacity-40"></div>
-            <div className="relative rounded-3xl overflow-hidden shadow-xl">
-              <Image
-                src="/founder.jpg"
-                alt="Masha, founder of Murly"
-                width={400}
-                height={500}
-                className="w-full h-auto object-cover"
-                priority
-              />
-            </div>
-            <div className="mt-4 text-center">
-              <div className="font-display font-bold text-lavender-700">Masha</div>
-              <div className="text-sm text-lavender-500">Founder · English teacher · Mom</div>
-            </div>
-          </div>
-
-          <div>
-            <p className="text-sm uppercase tracking-widest text-peach font-bold mb-4">Hi 👋</p>
-            <h1 className="font-display text-4xl md:text-5xl font-bold text-lavender-700 leading-tight mb-8">
-              I built Murly<br />in maternity leave.
-            </h1>
-
-            <div className="space-y-5 text-lg text-lavender-700/85 leading-relaxed">
-              <p>
-                I was on maternity leave with my baby daughter when I started noticing
-                how much learning English felt like a chore for the kids I used to teach.
-              </p>
-
-              <p>
-                Boring textbooks. Frustrated parents. Overworked teachers juggling
-                spreadsheets, WhatsApp, PDFs, and Zoom just to run 3 lessons a week.
-              </p>
-
-              <p>
-                So I built the thing I wished existed — one calm place where kids
-                learn with cats they love, teachers actually enjoy running their
-                classes, and parents finally see what&apos;s happening
-                without having to ask.
-              </p>
-
-              <p className="font-bold text-lavender-700">
-                Murly is small, honest, and made by one family for other families.
-              </p>
-
-              <p>
-                No VC. No selling your kid&apos;s data. Just an English platform
-                that respects everyone&apos;s time.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-6 mb-20">
-          <div className="bg-white rounded-3xl p-6 border border-lavender-100">
-            <div className="text-3xl font-bold text-lavender-700 mb-2">2024</div>
-            <div className="text-sm text-lavender-600">First lesson taught on Murly. My own students.</div>
-          </div>
-          <div className="bg-white rounded-3xl p-6 border border-lavender-100">
-            <div className="text-3xl font-bold text-lavender-700 mb-2">200+</div>
-            <div className="text-sm text-lavender-600">Ready-made lessons across 5 levels for ages 4-15.</div>
-          </div>
-          <div className="bg-white rounded-3xl p-6 border border-lavender-100">
-            <div className="text-3xl font-bold text-lavender-700 mb-2">🐱 × 5</div>
-            <div className="text-sm text-lavender-600">Cat characters kids fall in love with.</div>
-          </div>
-        </div>
-
-        <div className="gradient-mint rounded-3xl p-12 text-center text-white shadow-xl">
-          <h2 className="font-display text-3xl font-bold mb-4">Want to try Murly?</h2>
-          <p className="mb-8 text-white/90">Kids, teachers, and parents welcome. First step is free.</p>
-          <Link href="/sign-up" className="inline-block bg-white text-lavender-700 font-bold px-8 py-4 rounded-full shadow-lg hover:shadow-2xl transition">
-            Start free →
+      <SiteNav />
+      <section className="mu-page-hero" data-stickers="6">
+        <div className="mu-container">
+          <span className="mu-section__eyebrow"><Icon id="c-paw" />Про Murly</span>
+          <h1>Не підручник. <em>Тренажер</em> для НМТ.</h1>
+          <p>Murly допомагає підготуватися до НМТ з англійської короткими квізами у форматі іспиту. Кожна помилка розбирається, кожен день рахується.</p>
+          <Link href="/quiz/teen-life" className="mu-btn mu-btn--lime mu-btn--lg">
+            Спробувати квіз<span className="mu-btn__arrow"><Icon id="e-arrow" /></span>
           </Link>
         </div>
-      </div>
-      <Footer />
+      </section>
+
+      <div className="mu-scallop" style={{ backgroundColor: 'var(--mu-tomato)' }} />
+      <section className="mu-section mu-section--tomato" data-stickers="4">
+        <div className="mu-container">
+          <div className="mu-section__head">
+            <span className="mu-section__eyebrow mu-section__eyebrow--lime"><Icon id="d-bulb" />Як ми думаємо</span>
+            <h2 className="mu-section__title">Чотири <em>правила</em> Murly.</h2>
+          </div>
+          <div className="mu-cards" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))' }}>
+            {PRINCIPLES.map((p) => (
+              <div key={p.title} className={`mu-card ${p.mod}`}>
+                <div className="mu-card__icon"><Icon id={p.icon} /></div>
+                <h3 className="mu-card__title">{p.title}</h3>
+                <p className="mu-card__text">{p.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      <div className="mu-scallop mu-scallop--up" style={{ backgroundColor: 'var(--mu-tomato)' }} />
+
+      <section className="mu-section" data-stickers="4">
+        <div className="mu-container">
+          <div className="mu-section__head">
+            <span className="mu-section__eyebrow"><Icon id="e-cal" />Що вже є і що далі</span>
+            <h2 className="mu-section__title">Murly <em>росте.</em></h2>
+            <p className="mu-section__lead">Ми запускаємось поступово і показуємо чесно, що вже працює, а що в роботі.</p>
+          </div>
+          <div className="mu-cards">
+            {ROADMAP.map((r) => (
+              <div key={r.title} className={`mu-card ${r.live ? '' : 'mu-card--soon'}`}>
+                <span className={`mu-status ${r.live ? 'mu-status--live' : 'mu-status--soon'}`}>{r.live ? 'Вже працює' : 'Скоро'}</span>
+                <div className="mu-card__icon"><Icon id={r.icon} /></div>
+                <h3 className="mu-card__title">{r.title}</h3>
+                <p className="mu-card__text">{r.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="mu-section" style={{ paddingTop: 0 }}>
+        <div className="mu-container">
+          <div className="mu-cta-box">
+            <Icon id="c-cat-glass" className="mu-ic mu-ic--cta" />
+            <h2>Почни з <em>5 хвилин.</em></h2>
+            <p>Перший квіз безкоштовний і без реєстрації.</p>
+            <Link href="/quiz/teen-life" className="mu-btn mu-btn--tomato mu-btn--lg">
+              Почати квіз<span className="mu-btn__arrow mu-btn__arrow--lime"><Icon id="e-arrow" /></span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <SiteFooter />
+      <Stickers />
     </>
   );
 }
