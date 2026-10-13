@@ -1187,3 +1187,4 @@ a.t-stat:hover { transform: translateY(-2px); }
   .t-form--words { grid-template-columns: 1fr; }
   .t-welcome { grid-template-columns: 1fr; }
 }
+.t-demo--err { border-color: var(--mu-tomato); color: var(--mu-tomato-dark); background: #FFF0EC; }
