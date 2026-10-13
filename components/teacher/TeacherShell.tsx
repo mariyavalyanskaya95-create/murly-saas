@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { UserButton } from '@clerk/nextjs';
 import Icon from '../Icon';
-import { TeacherProvider } from '@/lib/teacher-store';
+import { TeacherProvider, useTeacher } from '@/lib/teacher-store';
 
 const NAV = [
   { href: '/teacher', icon: 'e-cal', label: 'Сьогодні' },
@@ -41,14 +41,22 @@ export default function TeacherShell({ userId, name, children }: { userId: strin
             <Link href="/grammar" className="t-side__link"><Icon id="e-book" />Граматика</Link>
           </nav>
           <main className="t-main">
-            <div className="t-demo">
-              <Icon id="d-lock" />
-              <span>Поки що дані зберігаються тільки в цьому браузері. Синхронізацію між пристроями і доступ для учнів підключимо найближчим часом.</span>
-            </div>
+            <SyncBanner />
             {children}
           </main>
         </div>
       </div>
     </TeacherProvider>
+  );
+}
+
+function SyncBanner() {
+  const { mode, syncError } = useTeacher();
+  if (syncError) return (
+    <div className="t-demo t-demo--err"><Icon id="d-bolt" /><span>Частину змін не вдалося зберегти. Онови сторінку і перевір останні дії.</span></div>
+  );
+  if (mode !== 'local') return null;
+  return (
+    <div className="t-demo"><Icon id="d-lock" /><span>Поки що дані зберігаються тільки в цьому браузері. Синхронізацію між пристроями і доступ для учнів підключимо найближчим часом.</span></div>
   );
 }
