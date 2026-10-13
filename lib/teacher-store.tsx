@@ -7,6 +7,7 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useRef, use
 export type Student = {
   id: string; name: string; level: string; price: number;
   contact?: string; parent?: string; link?: string; color: string; createdAt: string;
+  inviteCode?: string; joined?: boolean;
 };
 export type LessonStatus = 'planned' | 'done' | 'cancelled';
 export type Lesson = {
@@ -161,6 +162,17 @@ function useStore(userId: string) {
     },
     removePayment: (id: string) => { update((d) => ({ ...d, payments: d.payments.filter((x) => x.id !== id) })); sync('removePayment', { id }); },
 
+    // Запрошення учня: код генерує сервер
+    createInvite: async (id: string): Promise<string | null> => {
+      if (modeRef.current !== 'cloud') return null;
+      try {
+        const r = await fetch('/api/teacher', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ op: 'invite', p: { id } }) });
+        const j = await r.json();
+        if (!r.ok || !j.code) return null;
+        update((d) => ({ ...d, students: d.students.map((s) => (s.id === id ? { ...s, inviteCode: j.code } : s)) }));
+        return j.code as string;
+      } catch { return null; }
+    },
     saveSettings: (s: Settings) => { update((d) => ({ ...d, settings: s })); sync('saveSettings', s); },
   }), [update, sync]);
 

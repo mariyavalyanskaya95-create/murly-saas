@@ -25,6 +25,10 @@ async function call(path: string, init: RequestInit & { prefer?: string } = {}) 
 const enc = encodeURIComponent;
 
 export const db = {
+  // довільний запит з фільтрами PostgREST, напр. "students?user_id=eq.X&select=*"
+  query: (path: string) => call(path) as Promise<Record<string, unknown>[]>,
+  patchWhere: (path: string, patch: Record<string, unknown>) =>
+    call(path, { method: 'PATCH', body: JSON.stringify(patch), prefer: 'return=minimal' }),
   select: (table: string, teacherId: string, extra = '') =>
     call(`${table}?teacher_id=eq.${enc(teacherId)}&select=*${extra}`) as Promise<Record<string, unknown>[]>,
   insert: (table: string, rows: Record<string, unknown>[]) =>
