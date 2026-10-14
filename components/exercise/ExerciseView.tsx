@@ -65,6 +65,16 @@ export default function ExerciseView({ sections, answers, onChange, marks, showC
                           {ov(k)}
                         </span>
                       );
+                      if (p.options.length > 4) return (
+                        <span key={pi} className="ex-slot">
+                          <select className={`ex-input ex-select ${cls(k)}`} disabled={ro} value={answers[k] ?? ''} onChange={(e) => onChange?.(k, e.target.value)} aria-label="Обери відповідь">
+                            <option value="" disabled>Обери…</option>
+                            {(order[k] ?? p.options).map((opt) => <option key={opt} value={opt}>{opt}</option>)}
+                          </select>
+                          {showFix(k) && <span className="ex-correct">{p.options[0]}</span>}
+                          {ov(k)}
+                        </span>
+                      );
                       return (
                         <span key={pi} className="ex-slot">
                           <span className="ex-choices" role="radiogroup">
