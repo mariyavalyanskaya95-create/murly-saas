@@ -71,6 +71,21 @@ export default function TeacherToday() {
         </section>
       )}
 
+      {data.homework.some((h) => h.status === 'done') && (
+        <section className="t-card">
+          <h2><Icon id="e-board" />Домашка на перевірку</h2>
+          {data.homework.filter((h) => h.status === 'done').map((h) => {
+            const st = data.students.find((s) => s.id === h.studentId);
+            return (
+              <Link key={h.id} href={`/teacher/students/${h.studentId}?tab=hw`} className="t-row-link">
+                <span><span className={`t-dot t-dot--${st?.color ?? 'lime'}`} />{st?.name ?? 'Учень'} · {h.title}</span>
+                <b>{h.score != null ? `${h.score}/${h.total}` : 'відповідь'}</b>
+              </Link>
+            );
+          })}
+        </section>
+      )}
+
       {debtors.length > 0 && (
         <section className="t-card">
           <h2><Icon id="d-money" />Очікують оплату</h2>
