@@ -100,3 +100,9 @@ create table if not exists homework (
 create index if not exists homework_teacher_idx on homework (teacher_id);
 create index if not exists homework_student_idx on homework (student_id);
 alter table homework enable row level security;
+
+-- Вправи з автоперевіркою
+alter table homework drop constraint if exists homework_kind_check;
+alter table homework add constraint homework_kind_check check (kind in ('game', 'text', 'exercise'));
+alter table homework add column if not exists items jsonb;
+alter table homework add column if not exists answers jsonb;
