@@ -8,9 +8,10 @@ import LessonRow from './LessonRow';
 import { LessonForm } from './forms';
 import { balanceOf, fmtDate, fmtMoney, useTeacher } from '@/lib/teacher-store';
 
-type Tab = 'lessons' | 'words' | 'notes' | 'pay' | 'profile';
+type Tab = 'lessons' | 'hw' | 'words' | 'notes' | 'pay' | 'profile';
 const TABS: { id: Tab; label: string; icon: string }[] = [
   { id: 'lessons', label: 'Заняття', icon: 'e-cal' },
+  { id: 'hw', label: 'Домашка', icon: 'e-board' },
   { id: 'words', label: 'Словник', icon: 'e-abc' },
   { id: 'notes', label: 'Нотатки', icon: 'e-pencil' },
   { id: 'pay', label: 'Оплати', icon: 'd-money' },
@@ -62,6 +63,7 @@ export default function StudentCard({ id }: { id: string }) {
       </div>
 
       {tab === 'lessons' && <LessonsTab id={s.id} />}
+      {tab === 'hw' && <HomeworkTab id={s.id} />}
       {tab === 'words' && <WordsTab id={s.id} />}
       {tab === 'notes' && <NotesTab id={s.id} />}
       {tab === 'pay' && <PayTab id={s.id} />}
@@ -286,6 +288,111 @@ function InviteBox({ id }: { id: string }) {
         <button className="mu-btn mu-btn--lime" onClick={make} disabled={busy}>{busy ? 'Створюю…' : 'Створити посилання'}</button>
       )}
       {err && <p className="t-neg">Не вийшло створити посилання. Спробуй ще раз.</p>}
+    </div>
+  );
+}
+
+const GAMES = [
+  { id: 'quiz', label: 'Квіз' }, { id: 'match', label: 'Пари' }, { id: 'anagram', label: 'Анаграма' }, { id: 'cards', label: 'Картки' },
+] as const;
+
+function defaultDue() {
+  const d = new Date(); d.setDate(d.getDate() + 3); d.setHours(20, 0, 0, 0);
+  const p = (n: number) => String(n).padStart(2, '0');
+  return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}T${p(d.getHours())}:${p(d.getMinutes())}`;
+}
+
+function HomeworkTab({ id }: { id: string }) {
+  const { data, addHomework } = useTeacher();
+  const words = data.words.filter((w) => w.studentId === id).length;
+  const list = data.homework.filter((h) => h.studentId === id);
+  const [open, setOpen] = useState(false);
+  const [kind, setKind] = useState<'game' | 'text'>(words >= 4 ? 'game' : 'text');
+  const [game, setGame] = useState<'quiz' | 'match' | 'anagram' | 'cards'>('quiz');
+  const [direction, setDirection] = useState<'en' | 'uk'>('en');
+  const [title, setTitle] = useState('');
+  const [instructions, setInstructions] = useState('');
+  const [due, setDue] = useState(defaultDue());
+
+  const submit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (kind === 'text' && !instructions.trim()) return;
+    const gameLabel = GAMES.find((g) => g.id === game)!.label;
+    addHomework({
+      studentId: id, kind,
+      title: title.trim() || (kind === 'game' ? `Слова: ${gameLabel.toLowerCase()}` : 'Письмове завдання'),
+      instructions: instructions.trim() || undefined,
+      game: kind === 'game' ? game : undefined,
+      direction: kind === 'game' ? direction : undefined,
+      due: due ? new Date(due).toISOString() : undefined,
+    });
+    setTitle(''); setInstructions(''); setDue(defaultDue()); setOpen(false);
+  };
+
+  return (
+    <>
+      <div className="t-card">
+        <div className="t-card__head"><h2>Домашні завдання</h2>
+          <button className="mu-btn mu-btn--lime t-btn-sm" onClick={() => setOpen(!open)}>{open ? 'Закрити' : '+ Задати'}</button></div>
+        {open && (
+          <form className="t-hw-form" onSubmit={submit}>
+            <div className="g-chips" style={{ justifyContent: 'flex-start' }}>
+              <button type="button" className={`g-chip ${kind === 'game' ? 'is-on' : ''}`} onClick={() => setKind('game')}>Гра зі словника</button>
+              <button type="button" className={`g-chip ${kind === 'text' ? 'is-on' : ''}`} onClick={() => setKind('text')}>Письмове завдання</button>
+            </div>
+            {kind === 'game' && words < 4 && <p className="t-neg">У словнику учня {words} слів. Додай хоча б 4, щоб задати гру.</p>}
+            {kind === 'game' && (
+              <div className="t-form">
+                <label>Гра<select value={game} onChange={(e) => setGame(e.target.value as typeof game)}>{GAMES.map((g) => <option key={g.id} value={g.id}>{g.label}</option>)}</select></label>
+                <label>Напрямок<select value={direction} onChange={(e) => setDirection(e.target.value as 'en' | 'uk')}>
+                  <option value="en">Англ → Укр</option><option value="uk">Укр → Англ</option></select></label>
+              </div>
+            )}
+            <div className="t-form">
+              <label>Назва<input value={title} onChange={(e) => setTitle(e.target.value)} placeholder={kind === 'game' ? 'Напр. Слова з Unit 5' : 'Напр. Твір про літо'} /></label>
+              <label>Здати до<input type="datetime-local" value={due} onChange={(e) => setDue(e.target.value)} /></label>
+              <label className="t-form__wide">{kind === 'text' ? 'Завдання' : 'Коментар (необов’язково)'}
+                <textarea rows={3} value={instructions} onChange={(e) => setInstructions(e.target.value)}
+                  placeholder={kind === 'text' ? 'Напр. Напиши 5 речень у Present Perfect про свій тиждень' : 'Напр. Пройди двічі, поки не буде без помилок'} required={kind === 'text'} />
+              </label>
+              <div className="t-form__actions"><button className="mu-btn mu-btn--lime" type="submit" disabled={kind === 'game' && words < 4}>Задати</button></div>
+            </div>
+          </form>
+        )}
+        {!list.length && !open && <p className="t-empty">Ще немає завдань. Задай гру зі словника або письмове завдання, і учень побачить його у своєму кабінеті.</p>}
+      </div>
+      {list.map((h) => <HomeworkItem key={h.id} hwId={h.id} />)}
+    </>
+  );
+}
+
+function HomeworkItem({ hwId }: { hwId: string }) {
+  const { data, updateHomework, removeHomework } = useTeacher();
+  const h = data.homework.find((x) => x.id === hwId)!;
+  const [fb, setFb] = useState(h.feedback ?? '');
+  const overdue = h.status === 'assigned' && h.due && new Date(h.due) < new Date();
+  const statusTag = h.status === 'checked' ? <span className="t-tag t-tag--done">Перевірено</span>
+    : h.status === 'done' ? <span className="t-tag t-tag--warn">Чекає перевірки</span>
+    : overdue ? <span className="t-tag t-tag--late">Прострочено</span> : <span className="t-tag">Задано</span>;
+
+  return (
+    <div className={`t-card t-hw is-${h.status}`}>
+      <div className="t-card__head">
+        <h2 style={{ fontSize: 19 }}>{h.title}</h2>
+        <div className="t-hw__meta">{statusTag}{h.due && <span className="t-muted">до {fmtDate(h.due)}</span>}</div>
+      </div>
+      {h.instructions && <p className="t-hw__text">{h.instructions}</p>}
+      {h.kind === 'game' && h.score != null && <p><b>Результат: {h.score} / {h.total}</b></p>}
+      {h.kind === 'text' && h.answer && <div className="t-hw__answer"><small>Відповідь учня</small><p>{h.answer}</p></div>}
+      {h.status !== 'assigned' && (
+        <form className="t-note-form" onSubmit={(e) => { e.preventDefault(); updateHomework(h.id, { feedback: fb.trim() || undefined, status: 'checked' }); }}>
+          <textarea rows={2} value={fb} onChange={(e) => setFb(e.target.value)} placeholder="Коментар для учня: що вийшло, над чим попрацювати" />
+          <button className="mu-btn mu-btn--lime t-btn-sm" type="submit">{h.status === 'checked' ? 'Оновити коментар' : 'Перевірено'}</button>
+        </form>
+      )}
+      <div className="t-danger" style={{ marginTop: 0, paddingTop: 8 }}>
+        <button className="t-link-btn" onClick={() => removeHomework(h.id)}>Видалити завдання</button>
+      </div>
     </div>
   );
 }
