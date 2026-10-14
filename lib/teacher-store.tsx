@@ -17,14 +17,21 @@ export type Lesson = {
 export type Note = { id: string; studentId: string; text: string; at: string };
 export type Word = { id: string; studentId: string; en: string; uk: string; example?: string; at: string };
 export type Payment = { id: string; studentId: string; amount: number; note?: string; at: string };
+export type HomeworkStatus = 'assigned' | 'done' | 'checked';
+export type Homework = {
+  id: string; studentId: string; title: string; instructions?: string;
+  kind: 'game' | 'text'; game?: 'quiz' | 'match' | 'anagram' | 'cards'; direction?: 'en' | 'uk';
+  due?: string; status: HomeworkStatus; score?: number; total?: number; answer?: string; feedback?: string;
+  createdAt: string; doneAt?: string;
+};
 export type Settings = { name: string; link: string; linkKind: 'zoom' | 'meet' | 'other' };
 
 type Data = {
-  students: Student[]; lessons: Lesson[]; notes: Note[]; words: Word[]; payments: Payment[]; settings: Settings;
+  students: Student[]; lessons: Lesson[]; notes: Note[]; words: Word[]; payments: Payment[]; homework: Homework[]; settings: Settings;
 };
 
 const EMPTY: Data = {
-  students: [], lessons: [], notes: [], words: [], payments: [],
+  students: [], lessons: [], notes: [], words: [], payments: [], homework: [],
   settings: { name: '', link: '', linkKind: 'zoom' },
 };
 
@@ -114,6 +121,7 @@ function useStore(userId: string) {
         notes: d.notes.filter((x) => x.studentId !== id),
         words: d.words.filter((x) => x.studentId !== id),
         payments: d.payments.filter((x) => x.studentId !== id),
+        homework: d.homework.filter((x) => x.studentId !== id),
       }));
       sync('removeStudent', { id });
     },
@@ -161,6 +169,17 @@ function useStore(userId: string) {
       sync('addPayment', row);
     },
     removePayment: (id: string) => { update((d) => ({ ...d, payments: d.payments.filter((x) => x.id !== id) })); sync('removePayment', { id }); },
+
+    addHomework: (h: Omit<Homework, 'id' | 'status' | 'createdAt'>) => {
+      const row: Homework = { ...h, id: uid(), status: 'assigned', createdAt: now() };
+      update((d) => ({ ...d, homework: [row, ...d.homework] }));
+      sync('addHomework', row);
+    },
+    updateHomework: (id: string, patch: Partial<Homework>) => {
+      update((d) => ({ ...d, homework: d.homework.map((x) => (x.id === id ? { ...x, ...patch } : x)) }));
+      sync('updateHomework', { id, patch });
+    },
+    removeHomework: (id: string) => { update((d) => ({ ...d, homework: d.homework.filter((x) => x.id !== id) })); sync('removeHomework', { id }); },
 
     // Запрошення учня: код генерує сервер
     createInvite: async (id: string): Promise<string | null> => {
