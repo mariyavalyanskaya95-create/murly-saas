@@ -10,14 +10,18 @@ export type Block =
   | { id: string; type: 'pdf'; url: string; name?: string }
   | { id: string; type: 'vocab'; words: { en: string; uk: string }[] }
   | { id: string; type: 'exercise'; sections: Section[]; source?: string }
-  | { id: string; type: 'speaking'; questions: string[] };
+  | { id: string; type: 'speaking'; questions: string[] }
+  | { id: string; type: 'note'; text: string }; // нотатка лише для вчителя
 
 export type BlockType = Block['type'];
 export type Age = 'kids' | 'teens' | 'adults';
 export type Plan = {
   id: string; title: string; level: string; age: Age; topic?: string; color: string;
   blocks: Block[]; source?: string; createdAt?: string; updatedAt?: string;
+  focus?: string[]; aims?: string;
 };
+
+export const FOCUS = ['Vocabulary', 'Grammar', 'Reading', 'Listening', 'Speaking', 'Writing', 'НМТ'];
 
 export const AGES: { id: Age; label: string }[] = [
   { id: 'kids', label: 'Діти 6-11' },
@@ -36,6 +40,7 @@ export const BLOCK_TYPES: { id: BlockType; label: string; icon: string }[] = [
   { id: 'image', label: 'Картинка', icon: 'd-camera' },
   { id: 'video', label: 'Відео YouTube', icon: 'e-mic' },
   { id: 'pdf', label: 'PDF-файл', icon: 'e-book' },
+  { id: 'note', label: 'Нотатка для вчителя', icon: 'd-lock' },
 ];
 
 export const uid = () => (typeof crypto !== 'undefined' && 'randomUUID' in crypto ? crypto.randomUUID() : Math.random().toString(36).slice(2));
@@ -43,7 +48,7 @@ export const uid = () => (typeof crypto !== 'undefined' && 'randomUUID' in crypt
 export function emptyBlock(type: BlockType): Block {
   const id = uid();
   switch (type) {
-    case 'heading': case 'text': case 'tip': return { id, type, text: '' };
+    case 'heading': case 'text': case 'tip': case 'note': return { id, type, text: '' };
     case 'image': case 'video': case 'pdf': return { id, type, url: '' };
     case 'vocab': return { id, type, words: [] };
     case 'exercise': return { id, type, sections: [] };
