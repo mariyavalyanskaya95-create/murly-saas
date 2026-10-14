@@ -1299,7 +1299,7 @@ a.t-stat:hover { transform: translateY(-2px); }
 
 /* ===== Кабінети на телефоні: нижнє меню ===== */
 @media (max-width: 900px) {
-  .t-side { position: fixed; top: auto; left: 0; right: 0; bottom: 0; z-index: 50; display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; padding: 6px 6px calc(6px + env(safe-area-inset-bottom)); background: var(--mu-paper); border-top: 2px solid var(--mu-ink); overflow: visible; }
+  .t-side { position: fixed; top: auto; left: 0; right: 0; bottom: 0; z-index: 50; display: grid; grid-template-columns: repeat(6, 1fr); gap: 0; padding: 6px 4px calc(6px + env(safe-area-inset-bottom)); background: var(--mu-paper); border-top: 2px solid var(--mu-ink); overflow: visible; }
   .t-side__link { flex-direction: column; gap: 2px; padding: 6px 2px; font-size: 11px; border-radius: 12px; border: 0; white-space: nowrap; text-align: center; justify-content: center; }
   .t-side__link .mu-ic { width: 24px; height: 24px; }
   .t-side__link.is-on { box-shadow: none; border: 0; }
@@ -1327,3 +1327,67 @@ a.t-stat:hover { transform: translateY(-2px); }
 .t-mobile-only { display: none; }
 @media (max-width: 900px) { .t-mobile-only { display: grid; } }
 @media (max-width: 480px) { .va-bar { top: 74px; } }
+
+/* ===== Уроки: перегляд (ls-*) ===== */
+.ls { display: grid; gap: 22px; max-width: 860px; margin: 0 auto; }
+.ls-title { font-size: clamp(30px, 5vw, 48px); margin: 0; }
+.ls-meta { font-weight: 700; color: var(--mu-ink-muted); margin-top: -12px; }
+.ls-h { font-size: clamp(22px, 3vw, 30px); margin: 10px 0 0; }
+.ls-text p { font-size: 19px; line-height: 1.65; margin: 0 0 12px; }
+.ls-tip { display: flex; gap: 14px; align-items: flex-start; padding: 16px 20px; background: #F7FBD9; border: 2px solid var(--mu-ink); border-radius: var(--mu-radius); }
+.ls-tip p { margin: 0 0 6px; font-size: 17px; line-height: 1.55; }
+.ls-tip__ic { width: 36px; height: 36px; flex: none; }
+.ls-fig { margin: 0; }
+.ls-fig img { width: 100%; border: 2px solid var(--mu-ink); border-radius: var(--mu-radius); display: block; }
+.ls-fig figcaption { text-align: center; color: var(--mu-ink-muted); margin-top: 6px; }
+.ls-video { position: relative; padding-top: 56.25%; border: 2px solid var(--mu-ink); border-radius: var(--mu-radius); overflow: hidden; background: #000; }
+.ls-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.ls-vocab { display: grid; gap: 12px; justify-items: start; }
+.ls-vocab__grid { width: 100%; display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 8px; }
+.ls-word { display: grid; padding: 10px 14px; border: 2px solid var(--mu-ink); border-radius: 12px; background: var(--mu-sky); }
+.ls-word b { font-size: 17px; }
+.ls-vocab .g-hub { width: 100%; }
+.ls-speak { padding: 16px 20px; border: 2px solid var(--mu-ink); border-radius: var(--mu-radius); background: var(--mu-mustard); }
+.ls-speak__t { display: flex; gap: 8px; align-items: center; font-weight: 800; font-size: 18px; margin-bottom: 6px; }
+.ls-speak__t .mu-ic { width: 26px; height: 26px; }
+.ls-speak ul { margin: 0; padding-left: 22px; display: grid; gap: 6px; font-size: 18px; }
+.ls-ex { padding: 18px; border: 2px solid var(--mu-ink); border-radius: var(--mu-radius); background: #fff; }
+.ls-ex__label { display: inline-flex; gap: 8px; align-items: center; font-weight: 800; padding: 4px 12px; border-radius: var(--mu-radius-pill); background: var(--mu-ink); color: var(--mu-lime); margin-bottom: 12px; }
+.ls-ex__label .mu-ic { width: 18px; height: 18px; }
+.ls-foot { display: grid; gap: 12px; justify-items: start; }
+.le-view:fullscreen { overflow: auto; padding: 40px; background: var(--mu-paper); border: 0; border-radius: 0; }
+.le-view:fullscreen .ls { max-width: 1100px; }
+.le-view:fullscreen .ls-text p, .le-view:fullscreen .ex-task, .le-view:fullscreen .ls-speak ul { font-size: 24px; }
+.s-lesson { padding: 4px 0; }
+
+/* ===== Уроки: конструктор (le-*) ===== */
+.le { display: grid; gap: 14px; }
+.le-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; padding: 22px 24px; border: 2px solid var(--mu-ink); border-radius: var(--mu-radius-lg); background: var(--gr); box-shadow: var(--mu-shadow-stamp-lg); }
+.le-head h1 { margin: 4px 0; font-size: clamp(26px, 4vw, 42px); }
+.le-head__meta { font-weight: 700; font-size: 14px; }
+.le-label { display: grid; gap: 6px; font-size: 13px; font-weight: 700; color: var(--mu-ink-soft); }
+.le-title { font-size: 20px !important; font-weight: 700 !important; }
+.le-input { width: 100%; padding: 11px 14px; border: 2px solid var(--mu-ink); border-radius: 12px; background: #fff; font: inherit; font-size: 16px; resize: vertical; }
+.le-input--h { font-size: 20px; font-weight: 800; }
+.le-colors { display: flex; gap: 8px; }
+.le-color { width: 34px; height: 34px; border-radius: 50%; border: 2px solid var(--mu-ink); background: var(--gr); cursor: pointer; }
+.le-color.is-on { box-shadow: 0 0 0 3px var(--mu-paper), 0 0 0 5px var(--mu-ink); }
+.le-block { gap: 12px; }
+.le-block__bar { display: flex; justify-content: space-between; align-items: center; }
+.le-block__type { display: inline-flex; gap: 8px; align-items: center; font-weight: 800; font-size: 14px; text-transform: uppercase; letter-spacing: .05em; color: var(--mu-ink-soft); }
+.le-block__type .mu-ic { width: 22px; height: 22px; }
+.le-block__tools { display: flex; gap: 6px; }
+.le-block__tools .t-icon-btn:disabled { opacity: .3; cursor: default; }
+.le-img { max-width: 260px; border: 2px solid var(--mu-ink); border-radius: 12px; }
+.le-add { justify-items: center; background: var(--mu-paper); border-style: dashed; box-shadow: none; }
+.le-add__grid { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; align-items: center; }
+.le-add__item { display: inline-flex; gap: 8px; align-items: center; padding: 10px 14px; border: 2px solid var(--mu-ink); border-radius: var(--mu-radius-pill); background: #fff; font: inherit; font-weight: 700; cursor: pointer; }
+.le-add__item:hover { background: var(--mu-lime); }
+.le-add__item .mu-ic { width: 20px; height: 20px; }
+.le-filters { display: grid; gap: 10px; }
+.le-card { min-height: 170px; }
+.le-card__tags { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; margin-bottom: 6px; }
+.le-tag { font-size: 12px; font-weight: 700; padding: 3px 10px; border: 1.5px solid var(--mu-ink); border-radius: var(--mu-radius-pill); background: #fff; }
+.le-tag--murly { background: var(--mu-ink); color: var(--mu-lime); }
+.le-send { background: #F7FBD9; }
+@media (max-width: 900px) { .ls-text p { font-size: 17px; } .le-head { padding: 16px; } }
