@@ -45,7 +45,7 @@ export default function SchedulePage() {
           const ls = data.lessons.filter((l) => sameDay(new Date(l.start), d)).sort((a, b) => a.start.localeCompare(b.start));
           return (
             <section key={d.toISOString()} className={`t-day ${sameDay(d, today) ? 'is-today' : ''}`}>
-              <h3>{d.toLocaleDateString('uk-UA', { weekday: 'long' })}<span>{d.toLocaleDateString('uk-UA', { day: 'numeric', month: 'short' })}</span></h3>
+              <h3>{((w) => w.charAt(0).toUpperCase() + w.slice(1))(d.toLocaleDateString('uk-UA', { weekday: 'long' }))}<span>{d.toLocaleDateString('uk-UA', { day: 'numeric', month: 'short' })}</span></h3>
               {ls.length ? ls.map((l) => <LessonRow key={l.id} l={l} showDate={false} />) : <p className="t-empty">Вільно</p>}
             </section>
           );
