@@ -9,6 +9,7 @@ import { LessonForm } from './forms';
 import ExerciseEditor from '../exercise/ExerciseEditor';
 import ExerciseView from '../exercise/ExerciseView';
 import { grade, type Section } from '@/lib/exercise';
+import { lessonSections, type Block } from '@/lib/lesson';
 import { balanceOf, fmtDate, fmtMoney, useTeacher } from '@/lib/teacher-store';
 
 type Tab = 'lessons' | 'hw' | 'words' | 'notes' | 'pay' | 'profile';
@@ -391,18 +392,21 @@ function HomeworkItem({ hwId }: { hwId: string }) {
       </div>
       {h.instructions && <p className="t-hw__text">{h.instructions}</p>}
       {h.kind !== 'text' && h.score != null && <p><b>Результат: {h.score} / {h.total}</b></p>}
-      {h.kind === 'exercise' && h.items && (
-        <details className="t-hw__details" open={h.status === 'done'}>
-          <summary>{h.answers ? 'Відповіді учня' : 'Завдання'}</summary>
-          <ExerciseView sections={h.items} answers={h.answers ?? {}} marks={h.answers ? grade(h.items, h.answers, h.overrides).marks : undefined}
-            showCorrect={!!h.answers} overrides={h.overrides} onOverride={(k) => {
-              const ov = { ...(h.overrides ?? {}) };
-              if (ov[k]) delete ov[k]; else ov[k] = true;
-              updateHomework(h.id, { overrides: ov, score: grade(h.items!, h.answers ?? {}, ov).score });
-            }} />
-          {h.answers && <p className="t-muted" style={{ fontSize: 14 }}>Перевірка не прийняла відповідь, але вона правильна? Натисни «Зарахувати», і бал додасться.</p>}
-        </details>
-      )}
+      {(h.kind === 'exercise' || h.kind === 'lesson') && h.items && (() => {
+        const secs = h.kind === 'lesson' ? lessonSections(h.items as Block[]) : (h.items as Section[]);
+        return (
+          <details className="t-hw__details" open={h.status === 'done'}>
+            <summary>{h.answers ? 'Відповіді учня' : 'Завдання'}</summary>
+            <ExerciseView sections={secs} answers={h.answers ?? {}} marks={h.answers ? grade(secs, h.answers, h.overrides).marks : undefined}
+              showCorrect={!!h.answers} overrides={h.overrides} onOverride={(k) => {
+                const ov = { ...(h.overrides ?? {}) };
+                if (ov[k]) delete ov[k]; else ov[k] = true;
+                updateHomework(h.id, { overrides: ov, score: grade(secs, h.answers ?? {}, ov).score });
+              }} />
+            {h.answers && <p className="t-muted" style={{ fontSize: 14 }}>Перевірка не прийняла відповідь, але вона правильна? Натисни «Зарахувати», і бал додасться.</p>}
+          </details>
+        );
+      })()}
       {h.kind === 'text' && h.answer && <div className="t-hw__answer"><small>Відповідь учня</small><p>{h.answer}</p></div>}
       {h.status !== 'assigned' && (
         <form className="t-note-form" onSubmit={(e) => { e.preventDefault(); updateHomework(h.id, { feedback: fb.trim() || undefined, status: 'checked' }); }}>

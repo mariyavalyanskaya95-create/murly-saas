@@ -8,6 +8,7 @@ import { TeacherProvider, useTeacher } from '@/lib/teacher-store';
 const NAV = [
   { href: '/teacher', icon: 'e-cal', label: 'Сьогодні' },
   { href: '/teacher/students', icon: 'd-team', label: 'Учні' },
+  { href: '/teacher/lessons', icon: 'e-book', label: 'Уроки' },
   { href: '/teacher/schedule', icon: 'd-clock', label: 'Розклад' },
   { href: '/teacher/payments', icon: 'd-money', label: 'Оплати' },
   { href: '/teacher/settings', icon: 'd-log', label: 'Налаштування', short: 'Ще' },
