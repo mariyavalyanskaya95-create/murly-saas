@@ -22,6 +22,12 @@ const toDb = {
   payment: (p: Row, t: string) => ({ id: p.id, teacher_id: t, student_id: p.studentId, amount: p.amount, note: p.note ?? null, at: p.at }),
   homework: (h: Row, t: string) => ({ id: h.id, teacher_id: t, student_id: h.studentId, title: h.title, instructions: h.instructions ?? null, kind: h.kind, game: h.game ?? null, direction: h.direction ?? null, items: h.items ?? null, due: h.due ?? null, status: h.status ?? 'assigned', created_at: h.createdAt }),
   homeworkPatch: (p: Row) => pick(p, ['title', 'instructions', 'due', 'status', 'feedback', 'overrides', 'score']),
+  plan: (p: Row, t: string) => ({ id: p.id, teacher_id: t, title: p.title, level: p.level, age: p.age, topic: p.topic ?? null, color: p.color ?? 'lime', blocks: p.blocks ?? [], source: p.source ?? null, created_at: p.createdAt, updated_at: p.updatedAt }),
+  planPatch: (p: Row) => {
+    const o = pick(p, ['title', 'level', 'age', 'topic', 'color', 'blocks']);
+    if ('updatedAt' in p) o.updated_at = p.updatedAt;
+    return o;
+  },
   settings: (s: Row, t: string) => ({ teacher_id: t, name: s.name ?? '', link: s.link ?? '', link_kind: s.linkKind ?? 'zoom', updated_at: new Date().toISOString() }),
 };
 const und = (v: unknown) => (v === null ? undefined : v);
@@ -31,6 +37,7 @@ const fromDb = {
   note: (r: Row) => ({ id: r.id, studentId: r.student_id, text: r.text, at: r.at }),
   word: (r: Row) => ({ id: r.id, studentId: r.student_id, en: r.en, uk: r.uk, example: und(r.example), at: r.at }),
   payment: (r: Row) => ({ id: r.id, studentId: r.student_id, amount: r.amount, note: und(r.note), at: r.at }),
+  plan: (r: Row) => ({ id: r.id, title: r.title, level: r.level, age: r.age, topic: und(r.topic), color: r.color, blocks: r.blocks ?? [], source: und(r.source), createdAt: r.created_at, updatedAt: r.updated_at }),
   homework: (r: Row) => ({ id: r.id, studentId: r.student_id, title: r.title, instructions: und(r.instructions), kind: r.kind, game: und(r.game), direction: und(r.direction), due: und(r.due), status: r.status, score: und(r.score), total: und(r.total), answer: und(r.answer), items: und(r.items), answers: und(r.answers), overrides: und(r.overrides), feedback: und(r.feedback), createdAt: r.created_at, doneAt: und(r.done_at) }),
 };
 
@@ -39,7 +46,7 @@ export async function GET() {
   if (!userId) return NextResponse.json({ error: 'unauthorized' }, { status: 401 });
   if (!dbReady()) return NextResponse.json({ error: 'db_not_configured' }, { status: 503 });
   try {
-    const [students, lessons, notes, words, payments, settings, homework] = await Promise.all([
+    const [students, lessons, notes, words, payments, settings, homework, plans] = await Promise.all([
       db.select('students', userId, '&order=created_at.asc'),
       db.select('lessons', userId, '&order=start.asc'),
       db.select('notes', userId, '&order=at.desc'),
@@ -47,6 +54,7 @@ export async function GET() {
       db.select('payments', userId, '&order=at.desc'),
       db.select('teacher_settings', userId),
       db.select('homework', userId, '&order=created_at.desc').catch(() => []),
+      db.select('lesson_plans', userId, '&order=updated_at.desc').catch(() => []),
     ]);
     const s = settings[0];
     return NextResponse.json({
@@ -56,6 +64,7 @@ export async function GET() {
       words: words.map(fromDb.word),
       payments: payments.map(fromDb.payment),
       homework: homework.map(fromDb.homework),
+      plans: plans.map(fromDb.plan),
       settings: s ? { name: s.name, link: s.link, linkKind: s.link_kind } : { name: '', link: '', linkKind: 'zoom' },
     });
   } catch (e) {
@@ -98,6 +107,9 @@ export async function POST(req: Request) {
       case 'addHomework': await db.insert('homework', [toDb.homework(p, t)]); break;
       case 'updateHomework': await db.update('homework', t, id, toDb.homeworkPatch(p.patch as Row)); break;
       case 'removeHomework': await db.remove('homework', t, id); break;
+      case 'addPlan': await db.insert('lesson_plans', [toDb.plan(p, t)]); break;
+      case 'updatePlan': await db.update('lesson_plans', t, id, toDb.planPatch(p.patch as Row)); break;
+      case 'removePlan': await db.remove('lesson_plans', t, id); break;
       case 'saveSettings': await db.upsert('teacher_settings', [toDb.settings(p, t)]); break;
       case 'import': {
         // Перенесення даних, які раніше зберігались у браузері
