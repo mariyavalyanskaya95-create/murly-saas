@@ -9,7 +9,7 @@ import { GameFinishContext } from '../games/finish';
 import ExerciseView from '../exercise/ExerciseView';
 import { grade, type Answers, type Section } from '@/lib/exercise';
 import LessonView from '../lesson/LessonView';
-import type { Block } from '@/lib/lesson';
+import { lessonSections, type Block } from '@/lib/lesson';
 import type { StudentHomework, StudentWord } from '@/lib/student-data';
 
 const fmtDue = (iso: string) => new Date(iso).toLocaleDateString('uk-UA', { weekday: 'short', day: 'numeric', month: 'long' });
@@ -93,7 +93,7 @@ function HomeworkRow({ h, words, open, onToggle, onPatch }: {
                 submitLabel="Перевірити і здати урок"
                 onSubmit={async (answers) => {
                   const ok = await send(h.id, { answers });
-                  if (ok) onPatch({ answers, status: h.status === 'checked' ? 'checked' : 'done' });
+                  if (ok) { const g = grade(lessonSections(h.items as Block[]), answers, h.overrides); onPatch({ answers, score: g.score, total: g.total, status: h.status === 'checked' ? 'checked' : 'done' }); }
                   return ok;
                 }} />
             </div>
