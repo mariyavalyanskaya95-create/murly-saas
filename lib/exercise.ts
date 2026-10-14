@@ -10,6 +10,7 @@ export type Part = { t: 'text'; v: string } | { t: 'gap'; answers: string[] } | 
 export type Task = { parts?: Part[]; prompt?: string; answers?: string[] };
 export type Section = { type: SectionType; instruction: string; tasks: Task[] };
 export type Answers = Record<string, string>; // ключ "секція.завдання.слот"
+export type Overrides = Record<string, boolean>; // відповіді, які вчитель зарахував вручну
 
 export const SECTION_TYPES: { id: SectionType; label: string; instruction: string; hint: string; example: string }[] = [
   { id: 'gap', label: 'Розкрий дужки / встав слово', instruction: 'Розкрий дужки.', hint: 'Правильну відповідь пиши в [квадратних дужках]. Кілька правильних варіантів через /.', example: 'She [goes] (go) to school every day.\nThey [didn’t come/did not come] (not come) yesterday.' },
@@ -60,19 +61,19 @@ export const norm = (s: string) => s.toLowerCase().replace(/[’‘`ʼ]/g, "'").
 export const isRight = (given: string | undefined, answers: string[]) => !!given && answers.some((a) => norm(a) === norm(given));
 
 // Перевірка: повертає бали і позначки по кожному слоту
-export function grade(sections: Section[], answers: Answers) {
+export function grade(sections: Section[], answers: Answers, overrides: Record<string, boolean> = {}) {
   let score = 0;
   const marks: Record<string, boolean> = {};
   sections.forEach((s, si) => s.tasks.forEach((t, ti) => {
     if (s.type === 'translate') {
       const k = `${si}.${ti}.0`;
-      marks[k] = isRight(answers[k], t.answers ?? []);
+      marks[k] = isRight(answers[k], t.answers ?? []) || !!overrides[k];
       if (marks[k]) score++;
     } else if (t.parts) {
       t.parts.forEach((p, pi) => {
         if (p.t === 'text') return;
         const k = `${si}.${ti}.${pi}`;
-        marks[k] = p.t === 'gap' ? isRight(answers[k], p.answers) : answers[k] === p.options[0];
+        marks[k] = (p.t === 'gap' ? isRight(answers[k], p.answers) : answers[k] === p.options[0]) || !!overrides[k];
         if (marks[k]) score++;
       });
     }
