@@ -6,6 +6,9 @@ import Icon from '../Icon';
 import GameHub from '../games/GameHub';
 import LessonRow from './LessonRow';
 import { LessonForm } from './forms';
+import ExerciseEditor from '../exercise/ExerciseEditor';
+import ExerciseView from '../exercise/ExerciseView';
+import { grade, type Section } from '@/lib/exercise';
 import { balanceOf, fmtDate, fmtMoney, useTeacher } from '@/lib/teacher-store';
 
 type Tab = 'lessons' | 'hw' | 'words' | 'notes' | 'pay' | 'profile';
@@ -307,7 +310,8 @@ function HomeworkTab({ id }: { id: string }) {
   const words = data.words.filter((w) => w.studentId === id).length;
   const list = data.homework.filter((h) => h.studentId === id);
   const [open, setOpen] = useState(false);
-  const [kind, setKind] = useState<'game' | 'text'>(words >= 4 ? 'game' : 'text');
+  const [kind, setKind] = useState<'game' | 'text' | 'exercise'>('exercise');
+  const [sections, setSections] = useState<Section[]>([]);
   const [game, setGame] = useState<'quiz' | 'match' | 'anagram' | 'cards'>('quiz');
   const [direction, setDirection] = useState<'en' | 'uk'>('en');
   const [title, setTitle] = useState('');
@@ -317,16 +321,18 @@ function HomeworkTab({ id }: { id: string }) {
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
     if (kind === 'text' && !instructions.trim()) return;
+    if (kind === 'exercise' && !sections.length) return;
     const gameLabel = GAMES.find((g) => g.id === game)!.label;
     addHomework({
       studentId: id, kind,
-      title: title.trim() || (kind === 'game' ? `Слова: ${gameLabel.toLowerCase()}` : 'Письмове завдання'),
+      title: title.trim() || (kind === 'game' ? `Слова: ${gameLabel.toLowerCase()}` : kind === 'exercise' ? 'Вправа' : 'Письмове завдання'),
+      items: kind === 'exercise' ? sections : undefined,
       instructions: instructions.trim() || undefined,
       game: kind === 'game' ? game : undefined,
       direction: kind === 'game' ? direction : undefined,
       due: due ? new Date(due).toISOString() : undefined,
     });
-    setTitle(''); setInstructions(''); setDue(defaultDue()); setOpen(false);
+    setTitle(''); setInstructions(''); setDue(defaultDue()); setSections([]); setOpen(false);
   };
 
   return (
@@ -337,6 +343,7 @@ function HomeworkTab({ id }: { id: string }) {
         {open && (
           <form className="t-hw-form" onSubmit={submit}>
             <div className="g-chips" style={{ justifyContent: 'flex-start' }}>
+              <button type="button" className={`g-chip ${kind === 'exercise' ? 'is-on' : ''}`} onClick={() => setKind('exercise')}>Вправа з автоперевіркою</button>
               <button type="button" className={`g-chip ${kind === 'game' ? 'is-on' : ''}`} onClick={() => setKind('game')}>Гра зі словника</button>
               <button type="button" className={`g-chip ${kind === 'text' ? 'is-on' : ''}`} onClick={() => setKind('text')}>Письмове завдання</button>
             </div>
@@ -348,14 +355,15 @@ function HomeworkTab({ id }: { id: string }) {
                   <option value="en">Англ → Укр</option><option value="uk">Укр → Англ</option></select></label>
               </div>
             )}
+            {kind === 'exercise' && <ExerciseEditor key={String(open)} onChange={setSections} />}
             <div className="t-form">
-              <label>Назва<input value={title} onChange={(e) => setTitle(e.target.value)} placeholder={kind === 'game' ? 'Напр. Слова з Unit 5' : 'Напр. Твір про літо'} /></label>
+              <label>Назва<input value={title} onChange={(e) => setTitle(e.target.value)} placeholder={kind === 'game' ? 'Напр. Слова з Unit 5' : kind === 'exercise' ? 'Напр. Past Simple, Unit 3' : 'Напр. Твір про літо'} /></label>
               <label>Здати до<input type="datetime-local" value={due} onChange={(e) => setDue(e.target.value)} /></label>
-              <label className="t-form__wide">{kind === 'text' ? 'Завдання' : 'Коментар (необов’язково)'}
+              <label className="t-form__wide">{kind === 'text' ? 'Завдання' : 'Коментар для учня (необов’язково)'}
                 <textarea rows={3} value={instructions} onChange={(e) => setInstructions(e.target.value)}
                   placeholder={kind === 'text' ? 'Напр. Напиши 5 речень у Present Perfect про свій тиждень' : 'Напр. Пройди двічі, поки не буде без помилок'} required={kind === 'text'} />
               </label>
-              <div className="t-form__actions"><button className="mu-btn mu-btn--lime" type="submit" disabled={kind === 'game' && words < 4}>Задати</button></div>
+              <div className="t-form__actions"><button className="mu-btn mu-btn--lime" type="submit" disabled={(kind === 'game' && words < 4) || (kind === 'exercise' && !sections.length)}>Задати</button></div>
             </div>
           </form>
         )}
@@ -382,7 +390,13 @@ function HomeworkItem({ hwId }: { hwId: string }) {
         <div className="t-hw__meta">{statusTag}{h.due && <span className="t-muted">до {fmtDate(h.due)}</span>}</div>
       </div>
       {h.instructions && <p className="t-hw__text">{h.instructions}</p>}
-      {h.kind === 'game' && h.score != null && <p><b>Результат: {h.score} / {h.total}</b></p>}
+      {h.kind !== 'text' && h.score != null && <p><b>Результат: {h.score} / {h.total}</b></p>}
+      {h.kind === 'exercise' && h.items && (
+        <details className="t-hw__details" open={h.status === 'done'}>
+          <summary>{h.answers ? 'Відповіді учня' : 'Завдання'}</summary>
+          <ExerciseView sections={h.items} answers={h.answers ?? {}} marks={h.answers ? grade(h.items, h.answers).marks : undefined} showCorrect={!!h.answers} />
+        </details>
+      )}
       {h.kind === 'text' && h.answer && <div className="t-hw__answer"><small>Відповідь учня</small><p>{h.answer}</p></div>}
       {h.status !== 'assigned' && (
         <form className="t-note-form" onSubmit={(e) => { e.preventDefault(); updateHomework(h.id, { feedback: fb.trim() || undefined, status: 'checked' }); }}>
