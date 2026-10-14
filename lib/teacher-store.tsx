@@ -20,7 +20,7 @@ export type Payment = { id: string; studentId: string; amount: number; note?: st
 export type HomeworkStatus = 'assigned' | 'done' | 'checked';
 export type Homework = {
   id: string; studentId: string; title: string; instructions?: string;
-  kind: 'game' | 'text'; game?: 'quiz' | 'match' | 'anagram' | 'cards'; direction?: 'en' | 'uk';
+  kind: 'game' | 'text' | 'exercise'; items?: import('./exercise').Section[]; answers?: import('./exercise').Answers; game?: 'quiz' | 'match' | 'anagram' | 'cards'; direction?: 'en' | 'uk';
   due?: string; status: HomeworkStatus; score?: number; total?: number; answer?: string; feedback?: string;
   createdAt: string; doneAt?: string;
 };

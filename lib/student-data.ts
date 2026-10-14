@@ -1,5 +1,6 @@
 // Серверні дані для кабінету учня і запрошень
 import { db, dbReady } from './db';
+import { grade, type Answers, type Section } from './exercise';
 
 const enc = encodeURIComponent;
 type Row = Record<string, unknown>;
@@ -7,7 +8,7 @@ type Row = Record<string, unknown>;
 export type StudentLesson = { id: string; start: string; duration: number; topic?: string; link: string; status: string };
 export type StudentWord = { id: string; en: string; uk: string; example?: string };
 export type StudentHomework = {
-  id: string; title: string; instructions?: string; kind: 'game' | 'text';
+  id: string; title: string; instructions?: string; kind: 'game' | 'text' | 'exercise'; items?: Section[]; answers?: Answers;
   game?: 'quiz' | 'match' | 'anagram' | 'cards'; direction?: 'en' | 'uk';
   due?: string; status: 'assigned' | 'done' | 'checked'; score?: number; total?: number; answer?: string; feedback?: string;
 };
@@ -77,7 +78,8 @@ export async function getEnrollments(userId: string): Promise<Enrollment[]> {
       })),
       words: words.map((w) => ({ id: String(w.id), en: String(w.en), uk: String(w.uk), example: w.example ? String(w.example) : undefined })),
       homework: homework.map((h) => ({
-        id: String(h.id), title: String(h.title), kind: h.kind === 'text' ? 'text' : 'game',
+        id: String(h.id), title: String(h.title), kind: h.kind === 'text' ? 'text' : h.kind === 'exercise' ? 'exercise' : 'game',
+        items: (h.items as Section[] | null) ?? undefined, answers: (h.answers as Answers | null) ?? undefined,
         instructions: h.instructions ? String(h.instructions) : undefined,
         game: (h.game as StudentHomework['game']) ?? undefined, direction: (h.direction as StudentHomework['direction']) ?? undefined,
         due: h.due ? String(h.due) : undefined, status: h.status as StudentHomework['status'],
@@ -89,16 +91,25 @@ export async function getEnrollments(userId: string): Promise<Enrollment[]> {
 }
 
 // Учень здає домашку: перевіряємо, що завдання належить саме йому
-export async function submitHomework(userId: string, id: string, p: { score?: number; total?: number; answer?: string }) {
+export async function submitHomework(userId: string, id: string, p: { score?: number; total?: number; answer?: string; answers?: Answers }) {
   if (!dbReady()) return false;
-  const hw = await db.query(`homework?id=eq.${enc(id)}&select=id,student_id,status`);
+  const hw = await db.query(`homework?id=eq.${enc(id)}&select=id,student_id,status,kind,items`);
   if (!hw[0]) return false;
   const st = await db.query(`students?id=eq.${enc(String(hw[0].student_id))}&user_id=eq.${enc(userId)}&select=id`);
   if (!st[0]) return false;
   const patch: Record<string, unknown> = { done_at: new Date().toISOString() };
   if (hw[0].status !== 'checked') patch.status = 'done';
+  // Вправу перевіряємо на сервері, бал від клієнта не приймаємо
+  if (hw[0].kind === 'exercise' && p.answers && typeof p.answers === 'object') {
+    const clean: Answers = {};
+    Object.entries(p.answers).slice(0, 500).forEach(([k, v]) => { if (/^\d+\.\d+\.\d+$/.test(k)) clean[k] = String(v).slice(0, 500); });
+    const g = grade((hw[0].items as Section[]) ?? [], clean);
+    patch.answers = clean; patch.score = g.score; patch.total = g.total;
+    await db.patchWhere(`homework?id=eq.${enc(id)}`, patch);
+    return { score: g.score, total: g.total, marks: g.marks };
+  }
   if (typeof p.score === 'number' && typeof p.total === 'number') { patch.score = Math.max(0, Math.round(p.score)); patch.total = Math.max(0, Math.round(p.total)); }
   if (typeof p.answer === 'string') patch.answer = p.answer.slice(0, 5000);
   await db.patchWhere(`homework?id=eq.${enc(id)}`, patch);
-  return true;
+  return {};
 }
