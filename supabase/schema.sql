@@ -126,3 +126,12 @@ create index if not exists lesson_plans_teacher_idx on lesson_plans (teacher_id)
 alter table lesson_plans enable row level security;
 alter table homework drop constraint if exists homework_kind_check;
 alter table homework add constraint homework_kind_check check (kind in ('game', 'text', 'exercise', 'lesson'));
+
+-- Файли вчителів (картинки, PDF): публічний бакет lesson-files, до 20 МБ
+insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
+values ('lesson-files', 'lesson-files', true, 20971520, array['image/png','image/jpeg','image/webp','image/gif','application/pdf'])
+on conflict (id) do update set public = true, file_size_limit = 20971520, allowed_mime_types = excluded.allowed_mime_types;
+
+-- Фокус уроку і короткий план
+alter table lesson_plans add column if not exists focus jsonb;
+alter table lesson_plans add column if not exists aims text;
