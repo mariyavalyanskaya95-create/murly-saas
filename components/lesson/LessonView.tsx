@@ -36,13 +36,14 @@ function VocabBlock({ b }: { b: Extract<Block, { type: 'vocab' }> }) {
   );
 }
 
-export default function LessonView({ plan, interactive = true, initialAnswers, onSubmit, submitLabel = 'Перевірити відповіді', overrides }: {
+export default function LessonView({ plan, interactive = true, initialAnswers, onSubmit, submitLabel = 'Перевірити відповіді', overrides, teacher = false }: {
   plan: Pick<Plan, 'title' | 'blocks'> & Partial<Plan>;
   interactive?: boolean;
   initialAnswers?: Answers;
   onSubmit?: (answers: Answers) => Promise<boolean> | boolean | void;
   submitLabel?: string;
   overrides?: Record<string, boolean>;
+  teacher?: boolean; // показувати нотатки для вчителя
 }) {
   const sections = useMemo(() => lessonSections(plan.blocks), [plan.blocks]);
   const [answers, setAnswers] = useState<Answers>(initialAnswers ?? {});
@@ -68,10 +69,14 @@ export default function LessonView({ plan, interactive = true, initialAnswers, o
   return (
     <article className="ls">
       {plan.title && <h1 className="ls-title">{plan.title}</h1>}
-      {(plan.level || plan.topic) && <div className="ls-meta">{[plan.level, plan.topic].filter(Boolean).join(' · ')}</div>}
+      {(plan.level || plan.topic) && <div className="ls-meta">{[plan.level, plan.topic, ...(plan.focus ?? [])].filter(Boolean).join(' · ')}</div>}
+      {plan.aims && (
+        <div className="ls-aims"><b>На цьому уроці</b><ul>{plan.aims.split('\n').filter((x) => x.trim()).map((a, i) => <li key={i}>{a}</li>)}</ul></div>
+      )}
       {plan.blocks.map((b) => {
         switch (b.type) {
           case 'heading': return <h2 key={b.id} className="ls-h">{b.text}</h2>;
+          case 'note': return teacher && b.text ? <div key={b.id} className="ls-note"><Icon id="d-lock" /><div><small>Тільки для вчителя</small><Rich text={b.text} /></div></div> : null;
           case 'text': return <div key={b.id} className="ls-text"><Rich text={b.text} /></div>;
           case 'tip': return <div key={b.id} className="ls-tip"><Icon id="d-bulb" className="mu-ic ls-tip__ic" /><div><Rich text={b.text} /></div></div>;
           case 'image': return b.url ? <figure key={b.id} className="ls-fig"><img src={b.url} alt={b.caption || ''} loading="lazy" />{b.caption && <figcaption>{b.caption}</figcaption>}</figure> : null;

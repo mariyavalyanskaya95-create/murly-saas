@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Icon from '../Icon';
 import ExerciseEditor from '../exercise/ExerciseEditor';
 import { uploadFile } from '@/lib/upload';
-import { AGES, BLOCK_TYPES, LEVELS, emptyBlock, youtubeEmbed, type Block, type BlockType, type Plan } from '@/lib/lesson';
+import { AGES, BLOCK_TYPES, FOCUS, LEVELS, emptyBlock, youtubeEmbed, type Block, type BlockType, type Plan } from '@/lib/lesson';
 
 const COLORS = ['lime', 'mustard', 'sky', 'tomato'];
 
@@ -47,9 +47,9 @@ function BlockEditor({ b, onChange }: { b: Block; onChange: (b: Block) => void }
   switch (b.type) {
     case 'heading':
       return <input className="le-input le-input--h" value={b.text} onChange={(e) => onChange({ ...b, text: e.target.value })} placeholder="Заголовок розділу" />;
-    case 'text': case 'tip':
+    case 'text': case 'tip': case 'note':
       return <textarea className="le-input" rows={b.type === 'text' ? 5 : 3} value={b.text} onChange={(e) => onChange({ ...b, text: e.target.value })}
-        placeholder={b.type === 'text' ? 'Текст для читання. Новий абзац через порожній рядок. **Жирний** у двох зірочках.' : 'Правило або лайфхак, який варто запам’ятати'} />;
+        placeholder={b.type === 'text' ? 'Текст для читання. Новий абзац через порожній рядок. **Жирний** у двох зірочках.' : b.type === 'note' ? 'Підказка для себе: відповіді, як провести вправу, скільки часу. Учень цього не бачить.' : 'Правило або лайфхак, який варто запам’ятати'} />;
     case 'image':
       return (
         <div className="t-form">
@@ -101,6 +101,15 @@ export default function LessonEditor({ plan, onChange }: { plan: Plan; onChange:
           <label className="le-label">Рівень<select value={plan.level} onChange={(e) => onChange({ level: e.target.value })}>{LEVELS.map((l) => <option key={l}>{l}</option>)}</select></label>
           <label className="le-label">Вік<select value={plan.age} onChange={(e) => onChange({ age: e.target.value as Plan['age'] })}>{AGES.map((a) => <option key={a.id} value={a.id}>{a.label}</option>)}</select></label>
           <label className="le-label">Тема<input value={plan.topic ?? ''} onChange={(e) => onChange({ topic: e.target.value })} placeholder="Напр. Подорожі" /></label>
+          <div className="t-form__wide le-label">Фокус уроку
+            <div className="g-chips" style={{ justifyContent: 'flex-start' }}>{FOCUS.map((f) => {
+              const on = (plan.focus ?? []).includes(f);
+              return <button key={f} type="button" className={`g-chip ${on ? 'is-on' : ''}`} onClick={() => onChange({ focus: on ? (plan.focus ?? []).filter((x) => x !== f) : [...(plan.focus ?? []), f] })}>{f}</button>;
+            })}</div>
+          </div>
+          <label className="t-form__wide le-label">Що буде на уроці (кожен пункт з нового рядка)
+            <textarea rows={3} value={plan.aims ?? ''} onChange={(e) => onChange({ aims: e.target.value })} placeholder={'Обговоримо…\nВивчимо слова про…\nПрочитаємо текст і…'} />
+          </label>
           <div className="le-label">Колір
             <div className="le-colors">{COLORS.map((c) => (
               <button key={c} type="button" className={`le-color gr--${c} ${plan.color === c ? 'is-on' : ''}`} onClick={() => onChange({ color: c })} aria-label={c} />

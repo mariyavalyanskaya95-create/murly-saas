@@ -84,7 +84,7 @@ function SendBox({ plan, onClose }: { plan: Plan; onClose: () => void }) {
   const send = () => {
     ids.forEach((studentId) => addHomework({
       studentId, kind: 'lesson', title: plan.title || 'Урок',
-      items: plan.blocks, due: due ? new Date(due).toISOString() : undefined,
+      items: plan.blocks.filter((b) => b.type !== 'note'), due: due ? new Date(due).toISOString() : undefined,
     }));
     if (withWords && words.length) addWords(ids, words);
     setDone(true);
@@ -141,7 +141,7 @@ export default function PlanPage({ id }: { id: string }) {
     timer.current = setTimeout(() => updatePlan(next.id, patch.blocks ? { ...patch, blocks: next.blocks } : patch), 700);
   };
   const copy = () => {
-    const nid = addPlan({ title: plan.title, level: plan.level, age: plan.age, topic: plan.topic, color: plan.color, blocks: plan.blocks, source: lib ? lib.id : undefined });
+    const nid = addPlan({ title: plan.title, level: plan.level, age: plan.age, topic: plan.topic, color: plan.color, blocks: plan.blocks, focus: plan.focus, aims: plan.aims, source: lib ? lib.id : undefined });
     router.push(`/teacher/lessons/${nid}`);
   };
   const present = () => { viewRef.current?.requestFullscreen?.().catch(() => {}); };
@@ -182,7 +182,7 @@ export default function PlanPage({ id }: { id: string }) {
 
       {mode === 'edit' && !lib && draft
         ? <LessonEditor plan={draft} onChange={change} />
-        : <div ref={viewRef} className="t-card le-view"><LessonView key={plan.id + plan.blocks.length} plan={plan} /></div>}
+        : <div ref={viewRef} className="t-card le-view"><LessonView key={plan.id + plan.blocks.length} plan={plan} teacher /></div>}
     </div>
   );
 }
