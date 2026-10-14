@@ -47,7 +47,7 @@ export default function ExerciseView({ sections, answers, onChange, marks, showC
                       if (p.t === 'text') return <span key={pi}>{p.v}</span>;
                       if (p.t === 'gap') return (
                         <span key={pi} className="ex-slot">
-                          <input className={`ex-input ${cls(k)}`} readOnly={ro} value={answers[k] ?? ''} size={Math.max(6, (p.answers[0] ?? '').length + 2)}
+                          <input className={`ex-input ${cls(k)}`} readOnly={ro} value={answers[k] ?? ''} size={12}
                             onChange={(e) => onChange?.(k, e.target.value)} aria-label="Відповідь" autoCapitalize="off" autoComplete="off" spellCheck={false} />
                           {showCorrect && marks?.[k] === false && <span className="ex-correct">{p.answers[0]}</span>}
                         </span>
