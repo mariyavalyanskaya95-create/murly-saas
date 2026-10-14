@@ -22,9 +22,9 @@ const toDb = {
   payment: (p: Row, t: string) => ({ id: p.id, teacher_id: t, student_id: p.studentId, amount: p.amount, note: p.note ?? null, at: p.at }),
   homework: (h: Row, t: string) => ({ id: h.id, teacher_id: t, student_id: h.studentId, title: h.title, instructions: h.instructions ?? null, kind: h.kind, game: h.game ?? null, direction: h.direction ?? null, items: h.items ?? null, due: h.due ?? null, status: h.status ?? 'assigned', created_at: h.createdAt }),
   homeworkPatch: (p: Row) => pick(p, ['title', 'instructions', 'due', 'status', 'feedback', 'overrides', 'score']),
-  plan: (p: Row, t: string) => ({ id: p.id, teacher_id: t, title: p.title, level: p.level, age: p.age, topic: p.topic ?? null, color: p.color ?? 'lime', blocks: p.blocks ?? [], source: p.source ?? null, created_at: p.createdAt, updated_at: p.updatedAt }),
+  plan: (p: Row, t: string) => ({ id: p.id, teacher_id: t, title: p.title, level: p.level, age: p.age, topic: p.topic ?? null, color: p.color ?? 'lime', blocks: p.blocks ?? [], source: p.source ?? null, focus: p.focus ?? null, aims: p.aims ?? null, created_at: p.createdAt, updated_at: p.updatedAt }),
   planPatch: (p: Row) => {
-    const o = pick(p, ['title', 'level', 'age', 'topic', 'color', 'blocks']);
+    const o = pick(p, ['title', 'level', 'age', 'topic', 'color', 'blocks', 'focus', 'aims']);
     if ('updatedAt' in p) o.updated_at = p.updatedAt;
     return o;
   },
@@ -37,7 +37,7 @@ const fromDb = {
   note: (r: Row) => ({ id: r.id, studentId: r.student_id, text: r.text, at: r.at }),
   word: (r: Row) => ({ id: r.id, studentId: r.student_id, en: r.en, uk: r.uk, example: und(r.example), at: r.at }),
   payment: (r: Row) => ({ id: r.id, studentId: r.student_id, amount: r.amount, note: und(r.note), at: r.at }),
-  plan: (r: Row) => ({ id: r.id, title: r.title, level: r.level, age: r.age, topic: und(r.topic), color: r.color, blocks: r.blocks ?? [], source: und(r.source), createdAt: r.created_at, updatedAt: r.updated_at }),
+  plan: (r: Row) => ({ id: r.id, title: r.title, level: r.level, age: r.age, topic: und(r.topic), color: r.color, blocks: r.blocks ?? [], source: und(r.source), focus: und(r.focus), aims: und(r.aims), createdAt: r.created_at, updatedAt: r.updated_at }),
   homework: (r: Row) => ({ id: r.id, studentId: r.student_id, title: r.title, instructions: und(r.instructions), kind: r.kind, game: und(r.game), direction: und(r.direction), due: und(r.due), status: r.status, score: und(r.score), total: und(r.total), answer: und(r.answer), items: und(r.items), answers: und(r.answers), overrides: und(r.overrides), feedback: und(r.feedback), createdAt: r.created_at, doneAt: und(r.done_at) }),
 };
 
