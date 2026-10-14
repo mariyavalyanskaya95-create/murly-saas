@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import Icon from '../Icon';
 import GameHub from '../games/GameHub';
+import HomeworkList from './HomeworkList';
 import type { Enrollment } from '@/lib/student-data';
 
 const fmtDay = (iso: string) => new Date(iso).toLocaleDateString('uk-UA', { weekday: 'long', day: 'numeric', month: 'long' });
@@ -23,13 +24,13 @@ export default function StudentHome({ enrollments, name }: { enrollments: Enroll
     <div className="t-page">
       <div className="t-head">
         <div>
-          <p className="t-eyebrow">Вчитель: {e.teacherName}</p>
+          {e.teacherName && <p className="t-eyebrow">Вчитель: {e.teacherName}</p>}
           <h1>Привіт{name ? `, ${name}` : ''}!</h1>
         </div>
         {enrollments.length > 1 && (
           <div className="g-chips">
             {enrollments.map((x, i) => (
-              <button key={x.studentId} className={`g-chip ${i === idx ? 'is-on' : ''}`} onClick={() => { setIdx(i); setPlay(false); }}>{x.teacherName}</button>
+              <button key={x.studentId} className={`g-chip ${i === idx ? 'is-on' : ''}`} onClick={() => { setIdx(i); setPlay(false); }}>{x.teacherName || `Учитель ${i + 1}`}</button>
             ))}
           </div>
         )}
@@ -59,6 +60,8 @@ export default function StudentHome({ enrollments, name }: { enrollments: Enroll
           </div>
         )}
       </section>
+
+      <HomeworkList key={e.studentId} homework={e.homework} words={e.words} />
 
       <section className="t-card">
         <div className="t-card__head">
