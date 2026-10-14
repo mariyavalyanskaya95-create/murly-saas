@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import Icon from '../Icon';
 import GameHub from '../games/GameHub';
 import HomeworkList from './HomeworkList';
@@ -15,10 +15,10 @@ export default function StudentHome({ enrollments, name }: { enrollments: Enroll
   const soon = next && new Date(next.start).getTime() - Date.now() < 15 * 60000; // за 15 хв до початку
   const [play, setPlay] = useState(false);
 
-  const sets = [
+  const sets = useMemo(() => [
     { id: 'en', title: 'Англ → Укр', prompt: 'Як це перекладається?', items: e.words.map((w) => ({ q: w.en, a: w.uk })) },
     { id: 'uk', title: 'Укр → Англ', prompt: 'Як це англійською?', items: e.words.map((w) => ({ q: w.uk, a: w.en })) },
-  ];
+  ], [e.words]);
 
   return (
     <div className="t-page">

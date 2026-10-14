@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import Icon from '../Icon';
 import QuizGame from '../games/QuizGame';
 import MatchGame from '../games/MatchGame';
@@ -44,7 +44,7 @@ function HomeworkRow({ h, words, open, onToggle, onPatch }: {
   const [err, setErr] = useState(false);
   const overdue = h.status === 'assigned' && h.due && new Date(h.due) < new Date();
 
-  const items = words.map((w) => (h.direction === 'uk' ? { q: w.uk, a: w.en } : { q: w.en, a: w.uk }));
+  const items = useMemo(() => words.map((w) => (h.direction === 'uk' ? { q: w.uk, a: w.en } : { q: w.en, a: w.uk })), [words, h.direction]);
   const onFinish = async (score: number, total: number) => {
     onPatch({ score, total, status: h.status === 'checked' ? 'checked' : 'done' });
     if (!(await send(h.id, { score, total }))) setErr(true);
