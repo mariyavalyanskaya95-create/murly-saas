@@ -77,8 +77,20 @@ export default function LessonView({ plan, interactive = true, initialAnswers, o
           case 'image': return b.url ? <figure key={b.id} className="ls-fig"><img src={b.url} alt={b.caption || ''} loading="lazy" />{b.caption && <figcaption>{b.caption}</figcaption>}</figure> : null;
           case 'video': {
             const src = youtubeEmbed(b.url);
-            return src ? <figure key={b.id} className="ls-fig"><div className="ls-video"><iframe src={src} title={b.caption || 'Відео'} allow="encrypted-media; picture-in-picture" allowFullScreen loading="lazy" /></div>{b.caption && <figcaption>{b.caption}</figcaption>}</figure> : null;
+            return src ? (
+              <figure key={b.id} className="ls-fig">
+                {b.task && <div className="ls-watch"><Icon id="e-mic" />{b.task}</div>}
+                <div className="ls-video"><iframe src={src} title={b.caption || 'Відео'} allow="encrypted-media; picture-in-picture" allowFullScreen loading="lazy" /></div>
+                {b.caption && <figcaption>{b.caption}</figcaption>}
+              </figure>
+            ) : null;
           }
+          case 'pdf': return b.url ? (
+            <div key={b.id} className="ls-pdf">
+              <div className="ls-pdf__bar"><span><Icon id="e-book" />{b.name || 'PDF'}</span><a href={b.url} target="_blank" rel="noopener noreferrer" className="mu-btn t-btn-sm">Відкрити</a></div>
+              <iframe src={`${b.url}#view=FitH`} title={b.name || 'PDF'} className="ls-pdf__frame" loading="lazy" />
+            </div>
+          ) : null;
           case 'vocab': return b.words.length ? <VocabBlock key={b.id} b={b} /> : null;
           case 'speaking': return b.questions.length ? (
             <div key={b.id} className="ls-speak"><div className="ls-speak__t"><Icon id="e-speak" />Поговоримо</div><ul>{b.questions.map((q, i) => <li key={i}>{q}</li>)}</ul></div>

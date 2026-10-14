@@ -16,10 +16,69 @@ function defaultDue() {
   return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}T${p(d.getHours())}:${p(d.getMinutes())}`;
 }
 
+// Слова з усіх блоків «Слова» уроку
+const lessonWords = (plan: Plan) => plan.blocks.flatMap((b) => (b.type === 'vocab' ? b.words : []));
+
+// Додає слова в словники учнів, пропускаючи ті, що там уже є
+function useAddWords() {
+  const { data, addWord } = useTeacher();
+  return (studentIds: string[], words: { en: string; uk: string }[]) => {
+    let added = 0;
+    studentIds.forEach((sid) => {
+      const have = new Set(data.words.filter((w) => w.studentId === sid).map((w) => w.en.trim().toLowerCase()));
+      words.forEach((w) => {
+        const k = w.en.trim().toLowerCase();
+        if (!k || have.has(k)) return;
+        have.add(k); addWord(sid, { en: w.en.trim(), uk: w.uk.trim() }); added++;
+      });
+    });
+    return added;
+  };
+}
+
+function StudentPicker({ ids, setIds }: { ids: string[]; setIds: (v: string[]) => void }) {
+  const { data } = useTeacher();
+  return (
+    <div className="g-chips" style={{ justifyContent: 'flex-start' }}>
+      {data.students.map((s) => (
+        <button key={s.id} className={`g-chip ${ids.includes(s.id) ? 'is-on' : ''}`}
+          onClick={() => setIds(ids.includes(s.id) ? ids.filter((x) => x !== s.id) : [...ids, s.id])}>{s.name}</button>
+      ))}
+    </div>
+  );
+}
+
+function WordsBox({ plan, onClose }: { plan: Plan; onClose: () => void }) {
+  const { data } = useTeacher();
+  const addWords = useAddWords();
+  const words = lessonWords(plan);
+  const [ids, setIds] = useState<string[]>([]);
+  const [msg, setMsg] = useState('');
+  if (!data.students.length) return <div className="t-card"><p className="t-muted">Спочатку додай учнів.</p></div>;
+  return (
+    <div className="t-card le-send">
+      <h2><Icon id="e-abc" />Слова уроку в словник учня</h2>
+      <p className="t-muted">{words.length} слів: {words.slice(0, 6).map((w) => w.en).join(', ')}{words.length > 6 ? '…' : ''}. Слова, які вже є в словнику, не продублюються.</p>
+      {msg ? <><p className="t-pos">{msg}</p><button className="mu-btn t-btn-sm" onClick={onClose}>Закрити</button></> : (
+        <>
+          <StudentPicker ids={ids} setIds={setIds} />
+          <div className="t-form__actions">
+            <button className="mu-btn t-btn-sm" onClick={onClose}>Скасувати</button>
+            <button className="mu-btn mu-btn--lime" disabled={!ids.length} onClick={() => { const n = addWords(ids, words); setMsg(n ? `Додано ${n} слів. Учні вже можуть грати ними у своєму кабінеті.` : 'Усі ці слова вже є в словниках.'); }}>Додати</button>
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
 function SendBox({ plan, onClose }: { plan: Plan; onClose: () => void }) {
   const { data, addHomework } = useTeacher();
+  const addWords = useAddWords();
+  const words = lessonWords(plan);
   const [ids, setIds] = useState<string[]>([]);
   const [due, setDue] = useState(defaultDue());
+  const [withWords, setWithWords] = useState(true);
   const [done, setDone] = useState(false);
   if (!data.students.length) return <div className="t-card"><p className="t-muted">Спочатку додай учнів.</p></div>;
   const send = () => {
@@ -27,6 +86,7 @@ function SendBox({ plan, onClose }: { plan: Plan; onClose: () => void }) {
       studentId, kind: 'lesson', title: plan.title || 'Урок',
       items: plan.blocks, due: due ? new Date(due).toISOString() : undefined,
     }));
+    if (withWords && words.length) addWords(ids, words);
     setDone(true);
   };
   return (
@@ -36,12 +96,10 @@ function SendBox({ plan, onClose }: { plan: Plan; onClose: () => void }) {
         <><p className="t-pos">Готово! Урок з’явився в кабінеті учнів як домашка.</p><button className="mu-btn t-btn-sm" onClick={onClose}>Закрити</button></>
       ) : (
         <>
-          <div className="g-chips" style={{ justifyContent: 'flex-start' }}>
-            {data.students.map((s) => (
-              <button key={s.id} className={`g-chip ${ids.includes(s.id) ? 'is-on' : ''}`}
-                onClick={() => setIds(ids.includes(s.id) ? ids.filter((x) => x !== s.id) : [...ids, s.id])}>{s.name}</button>
-            ))}
-          </div>
+          <StudentPicker ids={ids} setIds={setIds} />
+          {words.length > 0 && (
+            <label className="le-check"><input type="checkbox" checked={withWords} onChange={(e) => setWithWords(e.target.checked)} />Додати {words.length} слів уроку в словник учня</label>
+          )}
           <div className="t-form">
             <label>Здати до<input type="datetime-local" value={due} onChange={(e) => setDue(e.target.value)} /></label>
             <div className="t-form__actions">
@@ -63,6 +121,7 @@ export default function PlanPage({ id }: { id: string }) {
   const [draft, setDraft] = useState<Plan | null>(null);
   const [mode, setMode] = useState<'edit' | 'view'>('view');
   const [sending, setSending] = useState(false);
+  const [wordsBox, setWordsBox] = useState(false);
   const [confirmDel, setConfirmDel] = useState(false);
   const viewRef = useRef<HTMLDivElement>(null);
   const timer = useRef<ReturnType<typeof setTimeout>>();
@@ -109,7 +168,8 @@ export default function PlanPage({ id }: { id: string }) {
 
       <div className="t-head__actions">
         <button className="mu-btn mu-btn--lime" onClick={() => { setMode('view'); setTimeout(present, 50); }}><Icon id="e-board" />Показати на уроці</button>
-        <button className="mu-btn" onClick={() => setSending(!sending)}><Icon id="d-send" />Відправити учню</button>
+        <button className="mu-btn" onClick={() => { setSending(!sending); setWordsBox(false); }}><Icon id="d-send" />Відправити учню</button>
+        {lessonWords(plan).length > 0 && <button className="mu-btn" onClick={() => { setWordsBox(!wordsBox); setSending(false); }}><Icon id="e-abc" />Слова в словник</button>}
         {lib && <button className="mu-btn" onClick={copy}><Icon id="e-pencil" />Скопіювати і редагувати</button>}
         {!lib && (!confirmDel
           ? <button className="t-link-btn" onClick={() => setConfirmDel(true)}>Видалити урок</button>
@@ -118,6 +178,7 @@ export default function PlanPage({ id }: { id: string }) {
       </div>
 
       {sending && <SendBox plan={plan} onClose={() => setSending(false)} />}
+      {wordsBox && <WordsBox plan={plan} onClose={() => setWordsBox(false)} />}
 
       {mode === 'edit' && !lib && draft
         ? <LessonEditor plan={draft} onChange={change} />
