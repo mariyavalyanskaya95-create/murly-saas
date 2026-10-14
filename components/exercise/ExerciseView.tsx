@@ -3,9 +3,10 @@ import { useMemo } from 'react';
 import type { Answers, Section } from '@/lib/exercise';
 
 // Показ вправи: учень заповнює (onChange), або вчитель/учень бачать перевірку (marks)
-export default function ExerciseView({ sections, answers, onChange, marks, showCorrect }: {
+export default function ExerciseView({ sections, answers, onChange, marks, showCorrect, overrides, onOverride }: {
   sections: Section[]; answers: Answers; onChange?: (key: string, v: string) => void;
   marks?: Record<string, boolean>; showCorrect?: boolean;
+  overrides?: Record<string, boolean>; onOverride?: (key: string) => void; // вчитель зараховує вручну
 }) {
   // Варіанти для вибору перемішуємо один раз, щоб правильний не був завжди першим
   const order = useMemo(() => {
@@ -20,6 +21,13 @@ export default function ExerciseView({ sections, answers, onChange, marks, showC
     return o;
   }, [sections]);
   const ro = !onChange;
+  const ov = (k: string) => {
+    if (!onOverride || !marks || !(k in marks) || !answers[k]) return null;
+    if (overrides?.[k]) return <button type="button" className="ex-ov is-on" onClick={() => onOverride(k)} title="Скасувати">зараховано вручну ✕</button>;
+    if (marks[k] === false) return <button type="button" className="ex-ov" onClick={() => onOverride(k)}>Зарахувати</button>;
+    return null;
+  };
+  const showFix = (k: string) => showCorrect && marks?.[k] === false;
   const cls = (k: string) => (marks && k in marks ? (marks[k] ? 'is-right' : 'is-wrong') : '');
 
   return (
@@ -38,7 +46,8 @@ export default function ExerciseView({ sections, answers, onChange, marks, showC
                           onChange={(e) => onChange?.(`${si}.${ti}.0`, e.target.value)} placeholder={ro ? '' : 'Твоя відповідь'} />
                       : <input className={`ex-input ex-input--wide ${cls(`${si}.${ti}.0`)}`} readOnly={ro} value={answers[`${si}.${ti}.0`] ?? ''}
                           onChange={(e) => onChange?.(`${si}.${ti}.0`, e.target.value)} placeholder={ro ? '' : 'Переклад англійською'} />}
-                    {showCorrect && marks && marks[`${si}.${ti}.0`] === false && t.answers?.length ? <span className="ex-correct">{t.answers[0]}</span> : null}
+                    {showFix(`${si}.${ti}.0`) && t.answers?.length ? <span className="ex-correct">{t.answers[0]}</span> : null}
+                    {ov(`${si}.${ti}.0`)}
                   </div>
                 ) : (
                   <span className="ex-line">
@@ -49,7 +58,8 @@ export default function ExerciseView({ sections, answers, onChange, marks, showC
                         <span key={pi} className="ex-slot">
                           <input className={`ex-input ${cls(k)}`} readOnly={ro} value={answers[k] ?? ''} size={12}
                             onChange={(e) => onChange?.(k, e.target.value)} aria-label="Відповідь" autoCapitalize="off" autoComplete="off" spellCheck={false} />
-                          {showCorrect && marks?.[k] === false && <span className="ex-correct">{p.answers[0]}</span>}
+                          {showFix(k) && <span className="ex-correct">{p.answers[0]}</span>}
+                          {ov(k)}
                         </span>
                       );
                       return (
@@ -57,10 +67,11 @@ export default function ExerciseView({ sections, answers, onChange, marks, showC
                           <span className="ex-choices" role="radiogroup">
                             {(order[k] ?? p.options).map((opt) => (
                               <button type="button" key={opt} disabled={ro} role="radio" aria-checked={answers[k] === opt}
-                                className={`ex-choice ${answers[k] === opt ? 'is-on' : ''} ${answers[k] === opt ? cls(k) : ''} ${showCorrect && marks?.[k] === false && opt === p.options[0] ? 'is-correct' : ''}`}
+                                className={`ex-choice ${answers[k] === opt ? 'is-on' : ''} ${answers[k] === opt ? cls(k) : ''} ${showFix(k) && opt === p.options[0] ? 'is-correct' : ''}`}
                                 onClick={() => onChange?.(k, opt)}>{opt}</button>
                             ))}
                           </span>
+                          {ov(k)}
                         </span>
                       );
                     })}
