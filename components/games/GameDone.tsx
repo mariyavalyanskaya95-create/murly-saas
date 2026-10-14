@@ -1,6 +1,15 @@
+'use client';
+import { useContext, useEffect, useRef } from 'react';
 import Icon from '../Icon';
+import { GameFinishContext } from './finish';
 
 export default function GameDone({ score, total, onRestart, label = 'правильних' }: { score: number; total: number; onRestart: () => void; label?: string }) {
+  const onFinish = useContext(GameFinishContext);
+  const sent = useRef(false);
+  useEffect(() => {
+    if (onFinish && !sent.current) { sent.current = true; onFinish(score, total); }
+  }, [onFinish, score, total]);
+
   const ratio = total ? score / total : 0;
   const title = ratio === 1 ? 'Ідеально!' : ratio >= 0.7 ? 'Круто!' : ratio >= 0.4 ? 'Непогано!' : 'Ще раз?';
   return (
