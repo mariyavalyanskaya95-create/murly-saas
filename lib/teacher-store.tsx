@@ -2,6 +2,7 @@
 // Дані кабінету вчителя.
 // ЗАРАЗ: зберігаються в браузері (localStorage) для кожного акаунта окремо.
 // ДАЛІ: ця ж модель переїде в базу (Supabase), інтерфейс useTeacher() не зміниться.
+import type { Plan } from './lesson';
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 
 export type Student = {
@@ -20,18 +21,18 @@ export type Payment = { id: string; studentId: string; amount: number; note?: st
 export type HomeworkStatus = 'assigned' | 'done' | 'checked';
 export type Homework = {
   id: string; studentId: string; title: string; instructions?: string;
-  kind: 'game' | 'text' | 'exercise'; items?: import('./exercise').Section[]; answers?: import('./exercise').Answers; overrides?: import('./exercise').Overrides; game?: 'quiz' | 'match' | 'anagram' | 'cards'; direction?: 'en' | 'uk';
+  kind: 'game' | 'text' | 'exercise' | 'lesson'; items?: import('./exercise').Section[] | import('./lesson').Block[]; answers?: import('./exercise').Answers; overrides?: import('./exercise').Overrides; game?: 'quiz' | 'match' | 'anagram' | 'cards'; direction?: 'en' | 'uk';
   due?: string; status: HomeworkStatus; score?: number; total?: number; answer?: string; feedback?: string;
   createdAt: string; doneAt?: string;
 };
 export type Settings = { name: string; link: string; linkKind: 'zoom' | 'meet' | 'other' };
 
 type Data = {
-  students: Student[]; lessons: Lesson[]; notes: Note[]; words: Word[]; payments: Payment[]; homework: Homework[]; settings: Settings;
+  students: Student[]; lessons: Lesson[]; notes: Note[]; words: Word[]; payments: Payment[]; homework: Homework[]; plans: Plan[]; settings: Settings;
 };
 
 const EMPTY: Data = {
-  students: [], lessons: [], notes: [], words: [], payments: [], homework: [],
+  students: [], lessons: [], notes: [], words: [], payments: [], homework: [], plans: [],
   settings: { name: '', link: '', linkKind: 'zoom' },
 };
 
@@ -180,6 +181,20 @@ function useStore(userId: string) {
       sync('updateHomework', { id, patch });
     },
     removeHomework: (id: string) => { update((d) => ({ ...d, homework: d.homework.filter((x) => x.id !== id) })); sync('removeHomework', { id }); },
+
+    // Уроки (конструктор)
+    addPlan: (p: Omit<Plan, 'id' | 'createdAt' | 'updatedAt'>) => {
+      const row: Plan = { ...p, id: uid(), createdAt: now(), updatedAt: now() };
+      update((d) => ({ ...d, plans: [row, ...d.plans] }));
+      sync('addPlan', row);
+      return row.id;
+    },
+    updatePlan: (id: string, patch: Partial<Plan>) => {
+      const p2 = { ...patch, updatedAt: now() };
+      update((d) => ({ ...d, plans: d.plans.map((x) => (x.id === id ? { ...x, ...p2 } : x)) }));
+      sync('updatePlan', { id, patch: p2 });
+    },
+    removePlan: (id: string) => { update((d) => ({ ...d, plans: d.plans.filter((x) => x.id !== id) })); sync('removePlan', { id }); },
 
     // Запрошення учня: код генерує сервер
     createInvite: async (id: string): Promise<string | null> => {

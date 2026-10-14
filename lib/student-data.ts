@@ -1,6 +1,7 @@
 // Серверні дані для кабінету учня і запрошень
 import { db, dbReady } from './db';
 import { grade, type Answers, type Section } from './exercise';
+import { lessonSections, type Block } from './lesson';
 
 const enc = encodeURIComponent;
 type Row = Record<string, unknown>;
@@ -8,7 +9,7 @@ type Row = Record<string, unknown>;
 export type StudentLesson = { id: string; start: string; duration: number; topic?: string; link: string; status: string };
 export type StudentWord = { id: string; en: string; uk: string; example?: string };
 export type StudentHomework = {
-  id: string; title: string; instructions?: string; kind: 'game' | 'text' | 'exercise'; items?: Section[]; answers?: Answers; overrides?: Record<string, boolean>;
+  id: string; title: string; instructions?: string; kind: 'game' | 'text' | 'exercise' | 'lesson'; items?: Section[] | Block[]; answers?: Answers; overrides?: Record<string, boolean>;
   game?: 'quiz' | 'match' | 'anagram' | 'cards'; direction?: 'en' | 'uk';
   due?: string; status: 'assigned' | 'done' | 'checked'; score?: number; total?: number; answer?: string; feedback?: string;
 };
@@ -78,8 +79,8 @@ export async function getEnrollments(userId: string): Promise<Enrollment[]> {
       })),
       words: words.map((w) => ({ id: String(w.id), en: String(w.en), uk: String(w.uk), example: w.example ? String(w.example) : undefined })),
       homework: homework.map((h) => ({
-        id: String(h.id), title: String(h.title), kind: h.kind === 'text' ? 'text' : h.kind === 'exercise' ? 'exercise' : 'game',
-        items: (h.items as Section[] | null) ?? undefined, answers: (h.answers as Answers | null) ?? undefined, overrides: (h.overrides as Record<string, boolean> | null) ?? undefined,
+        id: String(h.id), title: String(h.title), kind: h.kind === 'text' ? 'text' : h.kind === 'exercise' ? 'exercise' : h.kind === 'lesson' ? 'lesson' : 'game',
+        items: (h.items as Section[] | Block[] | null) ?? undefined, answers: (h.answers as Answers | null) ?? undefined, overrides: (h.overrides as Record<string, boolean> | null) ?? undefined,
         instructions: h.instructions ? String(h.instructions) : undefined,
         game: (h.game as StudentHomework['game']) ?? undefined, direction: (h.direction as StudentHomework['direction']) ?? undefined,
         due: h.due ? String(h.due) : undefined, status: h.status as StudentHomework['status'],
@@ -100,14 +101,15 @@ export async function submitHomework(userId: string, id: string, p: { score?: nu
   const patch: Record<string, unknown> = { done_at: new Date().toISOString() };
   if (hw[0].status !== 'checked') patch.status = 'done';
   // Вправу перевіряємо на сервері, бал від клієнта не приймаємо
-  if (hw[0].kind === 'exercise' && p.answers && typeof p.answers === 'object') {
+  if ((hw[0].kind === 'exercise' || hw[0].kind === 'lesson') && p.answers && typeof p.answers === 'object') {
     const clean: Answers = {};
     Object.entries(p.answers).slice(0, 500).forEach(([k, v]) => { if (/^\d+\.\d+\.\d+$/.test(k)) clean[k] = String(v).slice(0, 500); });
     // ручні зарахування вчителя зберігаємо лише для відповідей, які не змінились
     const prevA = (hw[0].answers as Answers | null) ?? {};
     const ov: Record<string, boolean> = {};
     Object.entries((hw[0].overrides as Record<string, boolean> | null) ?? {}).forEach(([k, v]) => { if (v && prevA[k] === clean[k]) ov[k] = true; });
-    const g = grade((hw[0].items as Section[]) ?? [], clean, ov);
+    const secs = hw[0].kind === 'lesson' ? lessonSections((hw[0].items as Block[]) ?? []) : ((hw[0].items as Section[]) ?? []);
+    const g = grade(secs, clean, ov);
     patch.overrides = ov;
     patch.answers = clean; patch.score = g.score; patch.total = g.total;
     await db.patchWhere(`homework?id=eq.${enc(id)}`, patch);

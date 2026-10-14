@@ -80,3 +80,12 @@ export function grade(sections: Section[], answers: Answers, overrides: Record<s
   }));
   return { score, total: maxScore(sections), marks };
 }
+
+// Зворотне перетворення: секція → текст для редактора
+export function sectionToText(s: Section): string {
+  return s.tasks.map((t) => {
+    if (s.type === 'translate') return `${t.prompt ?? ''}${t.answers?.length ? ` = ${t.answers.join(' / ')}` : ''}`;
+    if (s.type === 'open') return t.prompt ?? '';
+    return (t.parts ?? []).map((p) => (p.t === 'text' ? p.v : p.t === 'gap' ? `[${p.answers.join('/')}]` : `{${p.options.join('|')}}`)).join('');
+  }).join('\n');
+}
