@@ -394,7 +394,13 @@ function HomeworkItem({ hwId }: { hwId: string }) {
       {h.kind === 'exercise' && h.items && (
         <details className="t-hw__details" open={h.status === 'done'}>
           <summary>{h.answers ? 'Відповіді учня' : 'Завдання'}</summary>
-          <ExerciseView sections={h.items} answers={h.answers ?? {}} marks={h.answers ? grade(h.items, h.answers).marks : undefined} showCorrect={!!h.answers} />
+          <ExerciseView sections={h.items} answers={h.answers ?? {}} marks={h.answers ? grade(h.items, h.answers, h.overrides).marks : undefined}
+            showCorrect={!!h.answers} overrides={h.overrides} onOverride={(k) => {
+              const ov = { ...(h.overrides ?? {}) };
+              if (ov[k]) delete ov[k]; else ov[k] = true;
+              updateHomework(h.id, { overrides: ov, score: grade(h.items!, h.answers ?? {}, ov).score });
+            }} />
+          {h.answers && <p className="t-muted" style={{ fontSize: 14 }}>Перевірка не прийняла відповідь, але вона правильна? Натисни «Зарахувати», і бал додасться.</p>}
         </details>
       )}
       {h.kind === 'text' && h.answer && <div className="t-hw__answer"><small>Відповідь учня</small><p>{h.answer}</p></div>}

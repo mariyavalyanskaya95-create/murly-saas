@@ -10,7 +10,7 @@ const NAV = [
   { href: '/teacher/students', icon: 'd-team', label: 'Учні' },
   { href: '/teacher/schedule', icon: 'd-clock', label: 'Розклад' },
   { href: '/teacher/payments', icon: 'd-money', label: 'Оплати' },
-  { href: '/teacher/settings', icon: 'd-log', label: 'Налаштування' },
+  { href: '/teacher/settings', icon: 'd-log', label: 'Налаштування', short: 'Ще' },
 ];
 
 export default function TeacherShell({ userId, name, children }: { userId: string; name: string; children: React.ReactNode }) {
@@ -33,12 +33,12 @@ export default function TeacherShell({ userId, name, children }: { userId: strin
             {NAV.map((n) => (
               <Link key={n.href} href={n.href} className={`t-side__link ${active(n.href) ? 'is-on' : ''}`}
                 aria-current={active(n.href) ? 'page' : undefined}>
-                <Icon id={n.icon} />{n.label}
+                <Icon id={n.icon} /><span className="t-side__full">{n.label}</span><span className="t-side__short">{('short' in n && n.short) || n.label}</span>
               </Link>
             ))}
             <div className="t-side__sep" />
-            <Link href="/irregular-verbs/games" className="t-side__link"><Icon id="e-trophy" />Ігри</Link>
-            <Link href="/grammar" className="t-side__link"><Icon id="e-book" />Граматика</Link>
+            <Link href="/irregular-verbs/games" className="t-side__link t-side__extra"><Icon id="e-trophy" />Ігри</Link>
+            <Link href="/grammar" className="t-side__link t-side__extra"><Icon id="e-book" />Граматика</Link>
           </nav>
           <main className="t-main">
             <SyncBanner />
