@@ -65,7 +65,7 @@ export default function ExerciseView({ sections, answers, onChange, marks, showC
                           {ov(k)}
                         </span>
                       );
-                      if (p.options.length > 4) return (
+                      if (p.options.length > 4 || p.options.some((o) => o.length > 18)) return (
                         <span key={pi} className="ex-slot">
                           <select className={`ex-input ex-select ${cls(k)}`} disabled={ro} value={answers[k] ?? ''} onChange={(e) => onChange?.(k, e.target.value)} aria-label="Обери відповідь">
                             <option value="" disabled>Обери…</option>
