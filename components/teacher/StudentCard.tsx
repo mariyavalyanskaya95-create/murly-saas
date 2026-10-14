@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Icon from '../Icon';
 import GameHub from '../games/GameHub';
 import LessonRow from './LessonRow';
@@ -99,7 +99,7 @@ function WordsTab({ id }: { id: string }) {
   const { data, addWord, removeWord } = useTeacher();
   const [f, setF] = useState({ en: '', uk: '', example: '' });
   const [play, setPlay] = useState(false);
-  const words = data.words.filter((w) => w.studentId === id);
+  const words = useMemo(() => data.words.filter((w) => w.studentId === id), [data.words, id]);
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -109,10 +109,10 @@ function WordsTab({ id }: { id: string }) {
     (document.getElementById('word-en') as HTMLInputElement | null)?.focus();
   };
 
-  const sets = [
+  const sets = useMemo(() => [
     { id: 'en', title: 'Англ → Укр', prompt: 'Як це перекладається?', items: words.map((w) => ({ q: w.en, a: w.uk })) },
     { id: 'uk', title: 'Укр → Англ', prompt: 'Як це англійською?', items: words.map((w) => ({ q: w.uk, a: w.en })) },
-  ];
+  ], [words]);
 
   return (
     <>
