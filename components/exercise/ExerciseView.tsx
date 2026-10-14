@@ -3,15 +3,18 @@ import { useMemo } from 'react';
 import type { Answers, Section } from '@/lib/exercise';
 
 // Показ вправи: учень заповнює (onChange), або вчитель/учень бачать перевірку (marks)
-export default function ExerciseView({ sections, answers, onChange, marks, showCorrect, overrides, onOverride }: {
+export default function ExerciseView({ sections, answers, onChange, marks, showCorrect, overrides, onOverride, offset = 0, numbered = true }: {
   sections: Section[]; answers: Answers; onChange?: (key: string, v: string) => void;
   marks?: Record<string, boolean>; showCorrect?: boolean;
   overrides?: Record<string, boolean>; onOverride?: (key: string) => void; // вчитель зараховує вручну
+  offset?: number; // зсув номера секції (коли вправ кілька в уроці)
+  numbered?: boolean;
 }) {
   // Варіанти для вибору перемішуємо один раз, щоб правильний не був завжди першим
   const order = useMemo(() => {
     const o: Record<string, string[]> = {};
-    sections.forEach((s, si) => s.tasks.forEach((t, ti) => t.parts?.forEach((p, pi) => {
+    sections.forEach((s, i0) => s.tasks.forEach((t, ti) => t.parts?.forEach((p, pi) => {
+      const si = i0 + offset;
       if (p.t === 'choice') {
         const a = [...p.options];
         for (let i = a.length - 1; i > 0; i--) { const j = (si * 7 + ti * 3 + pi + i * 5) % (i + 1); [a[i], a[j]] = [a[j], a[i]]; }
@@ -19,7 +22,7 @@ export default function ExerciseView({ sections, answers, onChange, marks, showC
       }
     })));
     return o;
-  }, [sections]);
+  }, [sections, offset]);
   const ro = !onChange;
   const ov = (k: string) => {
     if (!onOverride || !marks || !(k in marks) || !answers[k]) return null;
@@ -32,9 +35,9 @@ export default function ExerciseView({ sections, answers, onChange, marks, showC
 
   return (
     <div className="ex">
-      {sections.map((s, si) => (
-        <div key={si} className="ex-sec">
-          {s.instruction && <div className="ex-sec__title">{si + 1}. {s.instruction}</div>}
+      {sections.map((s, i0) => { const si = i0 + offset; return (
+        <div key={i0} className="ex-sec">
+          {s.instruction && <div className="ex-sec__title">{numbered ? `${i0 + 1}. ` : ''}{s.instruction}</div>}
           <ol className="ex-list">
             {s.tasks.map((t, ti) => (
               <li key={ti} className="ex-task">
@@ -81,7 +84,7 @@ export default function ExerciseView({ sections, answers, onChange, marks, showC
             ))}
           </ol>
         </div>
-      ))}
+      ); })}
     </div>
   );
 }

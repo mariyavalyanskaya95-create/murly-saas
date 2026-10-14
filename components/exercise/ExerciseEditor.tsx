@@ -1,14 +1,14 @@
 'use client';
 import { useMemo, useState } from 'react';
 import ExerciseView from './ExerciseView';
-import { SECTION_TYPES, Section, SectionType, maxScore, parseSection } from '@/lib/exercise';
+import { SECTION_TYPES, Section, SectionType, maxScore, parseSection, sectionToText } from '@/lib/exercise';
 
 type Draft = { type: SectionType; instruction: string; text: string };
 const newDraft = (type: SectionType = 'gap'): Draft => ({ type, instruction: SECTION_TYPES.find((t) => t.id === type)!.instruction, text: '' });
 
 // Редактор вправи: кілька блоків, кожен свого типу. Повертає розібрані секції через onChange
-export default function ExerciseEditor({ onChange }: { onChange: (sections: Section[]) => void }) {
-  const [drafts, setDrafts] = useState<Draft[]>([newDraft()]);
+export default function ExerciseEditor({ onChange, initial, compact }: { onChange: (sections: Section[]) => void; initial?: Section[]; compact?: boolean }) {
+  const [drafts, setDrafts] = useState<Draft[]>(() => (initial?.length ? initial.map((s) => ({ type: s.type, instruction: s.instruction, text: sectionToText(s) })) : [newDraft()]));
   const [preview, setPreview] = useState(false);
   const sections = useMemo(() => drafts.map((d) => parseSection(d.type, d.instruction, d.text)).filter((s) => s.tasks.length), [drafts]);
 
@@ -37,7 +37,7 @@ export default function ExerciseEditor({ onChange }: { onChange: (sections: Sect
         return (
           <div key={i} className="ex-ed__block">
             <div className="ex-ed__head">
-              <b>Блок {i + 1}</b>
+              <b>{compact ? `Частина ${i + 1}` : `Блок ${i + 1}`}</b>
               {drafts.length > 1 && <button type="button" className="t-link-btn" onClick={() => remove(i)}>Прибрати</button>}
             </div>
             <div className="g-chips" style={{ justifyContent: 'flex-start' }}>
@@ -56,7 +56,7 @@ export default function ExerciseEditor({ onChange }: { onChange: (sections: Sect
         );
       })}
       <div className="ex-ed__bar">
-        <button type="button" className="mu-btn t-btn-sm" onClick={() => setDrafts([...drafts, newDraft(drafts[drafts.length - 1]?.type)])}>+ Ще блок</button>
+        <button type="button" className="mu-btn t-btn-sm" onClick={() => setDrafts([...drafts, newDraft(drafts[drafts.length - 1]?.type)])}>{compact ? '+ Ще частина' : '+ Ще блок'}</button>
         <span className="t-muted">{tasks} завдань · {maxScore(sections)} балів з автоперевіркою</span>
         {tasks > 0 && <button type="button" className="t-link-btn" onClick={() => setPreview(!preview)}>{preview ? 'Сховати' : 'Як побачить учень'}</button>}
       </div>
