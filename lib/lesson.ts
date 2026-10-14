@@ -6,7 +6,8 @@ export type Block =
   | { id: string; type: 'text'; text: string }
   | { id: string; type: 'tip'; text: string }
   | { id: string; type: 'image'; url: string; caption?: string }
-  | { id: string; type: 'video'; url: string; caption?: string }
+  | { id: string; type: 'video'; url: string; caption?: string; task?: string }
+  | { id: string; type: 'pdf'; url: string; name?: string }
   | { id: string; type: 'vocab'; words: { en: string; uk: string }[] }
   | { id: string; type: 'exercise'; sections: Section[]; source?: string }
   | { id: string; type: 'speaking'; questions: string[] };
@@ -34,6 +35,7 @@ export const BLOCK_TYPES: { id: BlockType; label: string; icon: string }[] = [
   { id: 'speaking', label: 'Говоріння', icon: 'e-speak' },
   { id: 'image', label: 'Картинка', icon: 'd-camera' },
   { id: 'video', label: 'Відео YouTube', icon: 'e-mic' },
+  { id: 'pdf', label: 'PDF-файл', icon: 'e-book' },
 ];
 
 export const uid = () => (typeof crypto !== 'undefined' && 'randomUUID' in crypto ? crypto.randomUUID() : Math.random().toString(36).slice(2));
@@ -42,7 +44,7 @@ export function emptyBlock(type: BlockType): Block {
   const id = uid();
   switch (type) {
     case 'heading': case 'text': case 'tip': return { id, type, text: '' };
-    case 'image': case 'video': return { id, type, url: '' };
+    case 'image': case 'video': case 'pdf': return { id, type, url: '' };
     case 'vocab': return { id, type, words: [] };
     case 'exercise': return { id, type, sections: [] };
     case 'speaking': return { id, type, questions: [] };
