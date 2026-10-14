@@ -77,3 +77,26 @@ alter table payments enable row level security;
 alter table students add column if not exists invite_code text unique;
 alter table students add column if not exists user_id text;
 create index if not exists students_user_idx on students (user_id);
+
+-- Домашні завдання
+create table if not exists homework (
+  id uuid primary key default gen_random_uuid(),
+  teacher_id text not null,
+  student_id uuid not null references students(id) on delete cascade,
+  title text not null,
+  instructions text,
+  kind text not null default 'game' check (kind in ('game', 'text')),
+  game text,
+  direction text,
+  due timestamptz,
+  status text not null default 'assigned' check (status in ('assigned', 'done', 'checked')),
+  score integer,
+  total integer,
+  answer text,
+  feedback text,
+  created_at timestamptz not null default now(),
+  done_at timestamptz
+);
+create index if not exists homework_teacher_idx on homework (teacher_id);
+create index if not exists homework_student_idx on homework (student_id);
+alter table homework enable row level security;
