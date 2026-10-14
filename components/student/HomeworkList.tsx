@@ -104,14 +104,14 @@ function ExercisePlayer({ h, onPatch }: { h: StudentHomework; onPatch: (p: Parti
   const [checked, setChecked] = useState(!!h.answers);
   const [saving, setSaving] = useState(false);
   const [err, setErr] = useState(false);
-  const result = useMemo(() => (checked ? grade(sections, answers) : null), [checked, sections, answers]);
+  const result = useMemo(() => (checked ? grade(sections, answers, h.overrides) : null), [checked, sections, answers, h.overrides]);
 
   const submit = async () => {
     setSaving(true); setErr(false);
     const ok = await send(h.id, { answers });
     setSaving(false);
     if (!ok) { setErr(true); return; }
-    const g = grade(sections, answers);
+    const g = grade(sections, answers, h.overrides);
     setChecked(true);
     onPatch({ answers, score: g.score, total: g.total, status: h.status === 'checked' ? 'checked' : 'done' });
   };
@@ -120,7 +120,7 @@ function ExercisePlayer({ h, onPatch }: { h: StudentHomework; onPatch: (p: Parti
     <div className="ex-play">
       <ExerciseView sections={sections} answers={answers}
         onChange={checked ? undefined : (k, v) => setAnswers((a) => ({ ...a, [k]: v }))}
-        marks={result?.marks} showCorrect={checked} />
+        marks={result?.marks} showCorrect={checked} overrides={h.overrides} />
       {result && (
         <div className="ex-result">
           <b>{result.score} / {result.total}</b>
