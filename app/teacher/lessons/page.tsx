@@ -5,7 +5,7 @@ import { useMemo, useState } from 'react';
 import Icon from '@/components/Icon';
 import { useTeacher } from '@/lib/teacher-store';
 import { LIBRARY } from '@/lib/library';
-import { AGES, LEVELS, emptyBlock, type Age, type Plan } from '@/lib/lesson';
+import { AGES, FOCUS, LEVELS, emptyBlock, type Age, type Plan } from '@/lib/lesson';
 
 function PlanCard({ p, lib }: { p: Plan; lib?: boolean }) {
   return (
@@ -14,6 +14,7 @@ function PlanCard({ p, lib }: { p: Plan; lib?: boolean }) {
         <span className="gr-level">{p.level}</span>
         <span className="le-tag">{AGES.find((a) => a.id === p.age)?.label}</span>
         {lib && <span className="le-tag le-tag--murly">Murly</span>}
+        {(p.focus ?? []).slice(0, 2).map((f) => <span key={f} className="le-tag">{f}</span>)}
       </span>
       <span className="gr-card__title">{p.title || 'Без назви'}</span>
       {p.topic && <span className="gr-card__uk">{p.topic}</span>}
@@ -29,10 +30,11 @@ export default function LessonsPage() {
   const [age, setAge] = useState<Age | ''>('');
   const [level, setLevel] = useState('');
   const [q, setQ] = useState('');
+  const [focus, setFocus] = useState('');
 
-  const filter = (list: Plan[]) => list.filter((p) => (!age || p.age === age) && (!level || p.level === level)
+  const filter = (list: Plan[]) => list.filter((p) => (!age || p.age === age) && (!level || p.level === level) && (!focus || (p.focus ?? []).includes(focus))
     && (!q.trim() || `${p.title} ${p.topic ?? ''}`.toLowerCase().includes(q.trim().toLowerCase())));
-  const lib = useMemo(() => filter(LIBRARY), [age, level, q]); // eslint-disable-line react-hooks/exhaustive-deps
+  const lib = useMemo(() => filter(LIBRARY), [age, level, q, focus]); // eslint-disable-line react-hooks/exhaustive-deps
   if (!ready) return null;
   const mine = filter(data.plans);
 
@@ -62,6 +64,10 @@ export default function LessonsPage() {
         <div className="g-chips" style={{ justifyContent: 'flex-start' }}>
           <button className={`g-chip ${!level ? 'is-on' : ''}`} onClick={() => setLevel('')}>Усі рівні</button>
           {LEVELS.map((l) => <button key={l} className={`g-chip ${level === l ? 'is-on' : ''}`} onClick={() => setLevel(l)}>{l}</button>)}
+        </div>
+        <div className="g-chips" style={{ justifyContent: 'flex-start' }}>
+          <button className={`g-chip ${!focus ? 'is-on' : ''}`} onClick={() => setFocus('')}>Будь-який фокус</button>
+          {FOCUS.map((f) => <button key={f} className={`g-chip ${focus === f ? 'is-on' : ''}`} onClick={() => setFocus(f)}>{f}</button>)}
         </div>
       </div>
 
