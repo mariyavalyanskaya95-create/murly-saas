@@ -7,7 +7,9 @@ import AnagramGame from '../games/AnagramGame';
 import CardsGame from '../games/CardsGame';
 import { GameFinishContext } from '../games/finish';
 import ExerciseView from '../exercise/ExerciseView';
-import { grade, type Answers } from '@/lib/exercise';
+import { grade, type Answers, type Section } from '@/lib/exercise';
+import LessonView from '../lesson/LessonView';
+import type { Block } from '@/lib/lesson';
 import type { StudentHomework, StudentWord } from '@/lib/student-data';
 
 const fmtDue = (iso: string) => new Date(iso).toLocaleDateString('uk-UA', { weekday: 'short', day: 'numeric', month: 'long' });
@@ -68,7 +70,7 @@ function HomeworkRow({ h, words, open, onToggle, onPatch }: {
   return (
     <div className={`s-hw__item is-${h.status} ${open ? 'is-open' : ''}`}>
       <button className="s-hw__head" onClick={onToggle} aria-expanded={open}>
-        <span className="s-hw__title"><Icon id={h.kind === 'game' ? 'e-trophy' : h.kind === 'exercise' ? 'e-abc' : 'e-pencil'} />{h.title}</span>
+        <span className="s-hw__title"><Icon id={h.kind === 'game' ? 'e-trophy' : h.kind === 'exercise' ? 'e-abc' : h.kind === 'lesson' ? 'e-book' : 'e-pencil'} />{h.title}</span>
         <span className="s-hw__right">{h.score != null && <b>{h.score}/{h.total}</b>}{tag}</span>
       </button>
       {open && (
@@ -85,6 +87,17 @@ function HomeworkRow({ h, words, open, onToggle, onPatch }: {
               : <p className="t-muted">У словнику поки замало слів для гри.</p>
           )}
           {h.kind === 'exercise' && h.items && <ExercisePlayer h={h} onPatch={onPatch} />}
+          {h.kind === 'lesson' && h.items && (
+            <div className="s-lesson">
+              <LessonView plan={{ title: '', blocks: h.items as Block[] }} initialAnswers={h.answers} overrides={h.overrides}
+                submitLabel="Перевірити і здати урок"
+                onSubmit={async (answers) => {
+                  const ok = await send(h.id, { answers });
+                  if (ok) onPatch({ answers, status: h.status === 'checked' ? 'checked' : 'done' });
+                  return ok;
+                }} />
+            </div>
+          )}
           {h.kind === 'text' && (
             <form className="t-note-form" onSubmit={submitText}>
               <textarea rows={5} value={answer} onChange={(e) => setAnswer(e.target.value)} placeholder="Пиши відповідь тут" />
@@ -99,7 +112,7 @@ function HomeworkRow({ h, words, open, onToggle, onPatch }: {
 }
 
 function ExercisePlayer({ h, onPatch }: { h: StudentHomework; onPatch: (p: Partial<StudentHomework>) => void }) {
-  const sections = h.items ?? [];
+  const sections = (h.items ?? []) as Section[];
   const [answers, setAnswers] = useState<Answers>(h.answers ?? {});
   const [checked, setChecked] = useState(!!h.answers);
   const [saving, setSaving] = useState(false);
