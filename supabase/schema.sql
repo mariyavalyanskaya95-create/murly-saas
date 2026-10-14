@@ -107,3 +107,22 @@ alter table homework add constraint homework_kind_check check (kind in ('game', 
 alter table homework add column if not exists items jsonb;
 alter table homework add column if not exists answers jsonb;
 alter table homework add column if not exists overrides jsonb;
+
+-- Конструктор уроків
+create table if not exists lesson_plans (
+  id uuid primary key default gen_random_uuid(),
+  teacher_id text not null,
+  title text not null,
+  level text not null default 'A2',
+  age text not null default 'teens',
+  topic text,
+  color text not null default 'lime',
+  blocks jsonb not null default '[]',
+  source text,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+create index if not exists lesson_plans_teacher_idx on lesson_plans (teacher_id);
+alter table lesson_plans enable row level security;
+alter table homework drop constraint if exists homework_kind_check;
+alter table homework add constraint homework_kind_check check (kind in ('game', 'text', 'exercise', 'lesson'));
