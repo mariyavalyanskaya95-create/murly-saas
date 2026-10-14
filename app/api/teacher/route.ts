@@ -20,7 +20,7 @@ const toDb = {
   note: (n: Row, t: string) => ({ id: n.id, teacher_id: t, student_id: n.studentId, text: n.text, at: n.at }),
   word: (w: Row, t: string) => ({ id: w.id, teacher_id: t, student_id: w.studentId, en: w.en, uk: w.uk, example: w.example ?? null, at: w.at }),
   payment: (p: Row, t: string) => ({ id: p.id, teacher_id: t, student_id: p.studentId, amount: p.amount, note: p.note ?? null, at: p.at }),
-  homework: (h: Row, t: string) => ({ id: h.id, teacher_id: t, student_id: h.studentId, title: h.title, instructions: h.instructions ?? null, kind: h.kind, game: h.game ?? null, direction: h.direction ?? null, due: h.due ?? null, status: h.status ?? 'assigned', created_at: h.createdAt }),
+  homework: (h: Row, t: string) => ({ id: h.id, teacher_id: t, student_id: h.studentId, title: h.title, instructions: h.instructions ?? null, kind: h.kind, game: h.game ?? null, direction: h.direction ?? null, items: h.items ?? null, due: h.due ?? null, status: h.status ?? 'assigned', created_at: h.createdAt }),
   homeworkPatch: (p: Row) => pick(p, ['title', 'instructions', 'due', 'status', 'feedback']),
   settings: (s: Row, t: string) => ({ teacher_id: t, name: s.name ?? '', link: s.link ?? '', link_kind: s.linkKind ?? 'zoom', updated_at: new Date().toISOString() }),
 };
@@ -31,7 +31,7 @@ const fromDb = {
   note: (r: Row) => ({ id: r.id, studentId: r.student_id, text: r.text, at: r.at }),
   word: (r: Row) => ({ id: r.id, studentId: r.student_id, en: r.en, uk: r.uk, example: und(r.example), at: r.at }),
   payment: (r: Row) => ({ id: r.id, studentId: r.student_id, amount: r.amount, note: und(r.note), at: r.at }),
-  homework: (r: Row) => ({ id: r.id, studentId: r.student_id, title: r.title, instructions: und(r.instructions), kind: r.kind, game: und(r.game), direction: und(r.direction), due: und(r.due), status: r.status, score: und(r.score), total: und(r.total), answer: und(r.answer), feedback: und(r.feedback), createdAt: r.created_at, doneAt: und(r.done_at) }),
+  homework: (r: Row) => ({ id: r.id, studentId: r.student_id, title: r.title, instructions: und(r.instructions), kind: r.kind, game: und(r.game), direction: und(r.direction), due: und(r.due), status: r.status, score: und(r.score), total: und(r.total), answer: und(r.answer), items: und(r.items), answers: und(r.answers), feedback: und(r.feedback), createdAt: r.created_at, doneAt: und(r.done_at) }),
 };
 
 export async function GET() {
