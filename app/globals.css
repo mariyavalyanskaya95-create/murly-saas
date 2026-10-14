@@ -1171,7 +1171,8 @@ a.t-stat:hover { transform: translateY(-2px); }
 .t-week { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; }
 .t-day { background: #fff; border: 2px solid var(--mu-ink); border-radius: var(--mu-radius); padding: 14px 16px; }
 .t-day.is-today { background: #F7FBD9; box-shadow: var(--mu-shadow-stamp); }
-.t-day h3 { display: flex; justify-content: space-between; margin: 0 0 6px; font-size: 17px; text-transform: capitalize; }
+.t-day h3 { display: flex; justify-content: space-between; margin: 0 0 6px; font-size: 17px; }
+.t-day h3::first-letter { text-transform: uppercase; }
 .t-day h3 span { font-family: 'General Sans', sans-serif; font-weight: 600; font-size: 14px; color: var(--mu-ink-muted); }
 .t-day .t-lesson { grid-template-columns: 70px 1fr; }
 .t-day .t-lesson__actions { grid-column: 1 / -1; justify-content: flex-start; }
@@ -1198,14 +1199,38 @@ a.t-stat:hover { transform: translateY(-2px); }
 .s-next { background: var(--mu-sky); }
 .s-next--empty { background: #fff; }
 .s-next__row { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
-.s-next__day { font-weight: 700; text-transform: capitalize; }
+.s-next__day { font-weight: 700; }
+.s-next__day::first-letter { text-transform: uppercase; }
 .s-next__time { font-family: 'Boldonse', 'Arial Black', 'Nippo', sans-serif; font-size: 40px; line-height: 1.1; }
 .s-next__time span { font-family: 'General Sans', sans-serif; font-size: 16px; font-weight: 600; color: var(--mu-ink-soft); }
 .s-next .mu-btn .mu-ic { width: 22px; height: 22px; margin-right: 8px; }
 .s-later { border-top: 2px dashed var(--mu-ink); margin-top: 8px; padding-top: 4px; }
-.s-later .t-row span { text-transform: capitalize; }
+.s-later .t-row span { display: inline-block; }
+.s-later .t-row span::first-letter { text-transform: uppercase; }
 @media (max-width: 760px) { .t-invite { grid-template-columns: 1fr; } .t-invite__link input { width: 100%; max-width: none; } .t-invite__link { flex-wrap: wrap; } }
 .auth-page { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 40px 20px; text-align: center; }
 .auth-page h1 { font-size: clamp(30px, 5vw, 52px); margin: 16px 0 0; }
 .auth-page h1 em { color: var(--mu-tomato); }
 .auth-page p { color: var(--mu-ink-soft); margin: 0 0 12px; }
+
+/* ===== Домашка ===== */
+.t-tag--warn { background: var(--mu-mustard); }
+.t-tag--late { background: #F6B5A6; }
+.t-hw-form { display: grid; gap: 12px; padding: 4px 0 8px; }
+.t-form textarea { width: 100%; padding: 11px 14px; border: 2px solid var(--mu-ink); border-radius: 12px; background: #fff; font: inherit; font-size: 16px; resize: vertical; }
+.t-hw.is-done { background: #FFF8E6; }
+.t-hw__meta { display: flex; gap: 10px; align-items: center; }
+.t-hw__text { margin: 0; white-space: pre-wrap; }
+.t-hw__answer, .s-hw__fb { padding: 12px 14px; border-left: 4px solid var(--mu-sky); background: var(--mu-paper); border-radius: 0 12px 12px 0; }
+.s-hw__fb { border-left-color: var(--mu-lime); }
+.t-hw__answer small, .s-hw__fb small { font-weight: 700; color: var(--mu-ink-muted); text-transform: uppercase; font-size: 12px; letter-spacing: .05em; }
+.t-hw__answer p, .s-hw__fb p { margin: 4px 0 0; white-space: pre-wrap; }
+.s-hw { background: #FFF8E6; }
+.s-hw__item { border: 2px solid var(--mu-ink); border-radius: var(--mu-radius); background: #fff; overflow: hidden; }
+.s-hw__item.is-assigned { box-shadow: var(--mu-shadow-stamp); }
+.s-hw__head { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 14px 16px; background: none; border: 0; font: inherit; cursor: pointer; text-align: left; }
+.s-hw__title { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 17px; }
+.s-hw__title .mu-ic { width: 24px; height: 24px; flex: none; }
+.s-hw__right { display: flex; align-items: center; gap: 10px; flex: none; }
+.s-hw__body { display: grid; gap: 12px; padding: 0 16px 16px; }
+.s-hw__body .g-stage { box-shadow: none; min-height: 300px; }
