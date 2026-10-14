@@ -1,4 +1,5 @@
 'use client';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { Settings, useTeacher } from '@/lib/teacher-store';
 
@@ -21,6 +22,14 @@ export default function SettingsPage() {
   return (
     <div className="t-page">
       <div className="t-head"><div><p className="t-eyebrow">Налаштування</p><h1>Твій кабінет</h1></div></div>
+      <div className="t-card t-mobile-only">
+        <h2>Матеріали</h2>
+        <div className="t-head__actions">
+          <Link href="/irregular-verbs/games" className="mu-btn t-btn-sm">Ігри</Link>
+          <Link href="/irregular-verbs" className="mu-btn t-btn-sm">Дієслова</Link>
+          <Link href="/grammar" className="mu-btn t-btn-sm">Граматика</Link>
+        </div>
+      </div>
       <form className="t-card" onSubmit={(e) => { e.preventDefault(); if (validLink) { saveSettings({ ...f, link: f.link.trim(), name: f.name.trim() }); setSaved(true); } }}>
         <h2>Як до тебе звертатися</h2>
         <div className="t-form">
