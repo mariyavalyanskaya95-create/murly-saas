@@ -106,3 +106,4 @@ alter table homework drop constraint if exists homework_kind_check;
 alter table homework add constraint homework_kind_check check (kind in ('game', 'text', 'exercise'));
 alter table homework add column if not exists items jsonb;
 alter table homework add column if not exists answers jsonb;
+alter table homework add column if not exists overrides jsonb;
