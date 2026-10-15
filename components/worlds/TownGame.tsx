@@ -78,7 +78,7 @@ function StartScreen({ onStart }: { onStart: (hero: string, name: string) => voi
 
 const migrate = (sv: Save): Save => ({ ...sv, houses: Object.fromEntries(Object.entries(sv.houses ?? {}).map(([k, h]) => [k, normHouse(h)])) });
 
-export default function TownGame() {
+export default function TownGame({ full: fullPage = false }: { full?: boolean }) {
   const { isSignedIn, isLoaded } = useAuth();
   const [cloud, setCloud] = useState<'off' | 'saving' | 'saved' | 'error'>('off');
   const host = useRef<HTMLDivElement>(null);
@@ -90,6 +90,7 @@ export default function TownGame() {
   const [view, setView] = useState<View>({ mode: 'city' });
   const [earn, setEarn] = useState(false);
   const [roomMenu, setRoomMenu] = useState(false);
+  const [shopOpen, setShopOpen] = useState(true);
   const [ready, setReady] = useState(0); // лічильник: нова сцена готова
   const [sel, setSel] = useState<string | null>(null);
   const [cat, setCat] = useState(CITY_CATS[0]);
@@ -386,7 +387,12 @@ export default function TownGame() {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if ((e.target as HTMLElement).closest('input, textarea, select')) return;
-      if (!cur) return;
+      const k = e.key.toLowerCase();
+      const pan: Record<string, [number, number]> = { w: [0, -1], s: [0, 1], a: [-1, 0], d: [1, 0] };
+      if (pan[k]) { scene.current?.pan(...pan[k]); return; }
+      if (k === 'q') { scene.current?.turn(-1); return; } if (k === 'e') { scene.current?.turn(1); return; }
+      if (e.key === '+' || e.key === '=') { scene.current?.zoom(1); return; } if (e.key === '-') { scene.current?.zoom(-1); return; }
+      if (!cur) { const m: Record<string, [number, number]> = { ArrowUp: [0, -1], ArrowDown: [0, 1], ArrowLeft: [-1, 0], ArrowRight: [1, 0] }; if (m[e.key]) { e.preventDefault(); scene.current?.pan(...m[e.key]); } return; }
       const map: Record<string, 'up' | 'down' | 'left' | 'right'> = { ArrowUp: 'up', ArrowDown: 'down', ArrowLeft: 'left', ArrowRight: 'right' };
       if (map[e.key]) { e.preventDefault(); nudge(map[e.key]); }
       if (e.key === 'r' || e.key === 'R') rotate();
@@ -421,8 +427,9 @@ export default function TownGame() {
   const heroName = HEROES.find((h) => h.file === s.hero)?.en;
 
   return (
-    <div className="hm" ref={wrap} lang="en">
+    <div className={`hm ${fullPage ? 'hm-full' : ''} ${shopOpen ? '' : 'is-shop-hidden'}`} ref={wrap} lang="en">
       <div className="rw-top">
+        {fullPage && <Link href="/worlds" className="mu-btn t-btn-sm hm-en hm-exit" aria-label="Exit the game">✕ Exit</Link>}
         <div className="rw-coins" aria-label={`Coins: ${s.coins}`}><span className="rw-coin" />{s.coins}</div>
         <div className="rw-task" aria-live="polite">
           {task ? (
@@ -441,7 +448,7 @@ export default function TownGame() {
           <button className="g-chip hm-en" onClick={full}>Full screen</button>
           {isSignedIn
             ? <span className={`hm-save ${cloud}`}>{cloud === 'saving' ? 'Saving…' : cloud === 'error' ? 'Not saved' : 'Saved'}</span>
-            : <Link href="/sign-in?redirect_url=/worlds/town" className="g-chip hm-en">Sign in to save</Link>}
+            : <Link href="/sign-in?redirect_url=/play/town" className="g-chip hm-en">Sign in to save</Link>}
         </div>
       </div>
       {heroes && (
@@ -475,6 +482,9 @@ export default function TownGame() {
         <div className="hm-cam">
           <button onClick={() => scene.current?.turn(-1)} aria-label="Turn left" title="Turn left">↺</button>
           <button onClick={() => scene.current?.turn(1)} aria-label="Turn right" title="Turn right">↻</button>
+          <button onClick={() => scene.current?.zoom(1)} aria-label="Zoom in" title="Zoom in">+</button>
+          <button onClick={() => scene.current?.zoom(-1)} aria-label="Zoom out" title="Zoom out">−</button>
+          <button onClick={() => scene.current?.findHero()} aria-label="Find my hero" title="Find my hero" className="hm-cam__me">Me</button>
         </div>
         {!ready && <div className="hm-loading">Loading…</div>}
         {loaded && !s.started && <StartScreen onStart={start} />}
@@ -523,6 +533,7 @@ export default function TownGame() {
 
       <div className="rw-shop">
         <div className="g-chips" role="tablist">
+          <button className="g-chip hm-en hm-shop-toggle" onClick={() => setShopOpen(!shopOpen)} aria-expanded={shopOpen}>{shopOpen ? 'Hide shop ▾' : 'Shop ▴'}</button>
           {cats.map((c) => <button key={c} role="tab" aria-selected={cat === c} className={`g-chip hm-en ${cat === c ? 'is-on' : ''}`} onClick={() => { setCat(c); say(c); }}>{c}</button>)}
         </div>
         <div className="rw-shelf">
@@ -539,7 +550,7 @@ export default function TownGame() {
         </div>
       </div>
       {ghost && <div className="hm-ghost" style={{ left: ghost.x, top: ghost.y }}><Thumb def={ghost.def} /></div>}
-      <p className="rw-help t-muted">Drag things from the shelf into the {mode === 'city' ? 'town' : mode === 'yard' ? 'garden' : 'room'}. Drag them to move. Tap the floor and your hero walks there. Choose a house and press “Go inside”.</p>
+      <p className="rw-help t-muted hm-help">Double-click to fly closer. Right mouse button or two fingers move the camera. Keys: W A S D move, Q E turn, + − zoom. Drag things from the shelf into the {mode === 'city' ? 'town' : mode === 'yard' ? 'garden' : 'room'}. Drag them to move. Tap the floor and your hero walks there. Choose a house and press “Go inside”.</p>
     </div>
   );
 }
