@@ -4,7 +4,7 @@ import Icon from '../Icon';
 import ExerciseView from '../exercise/ExerciseView';
 import GameHub from '../games/GameHub';
 import AudioPlayer from './AudioPlayer';
-import { grade, type Answers } from '@/lib/exercise';
+import { answerKey, grade, type Answers } from '@/lib/exercise';
 import { useT } from '@/components/LangProvider';
 import { lessonSections, toSlides, youtubeEmbed, type Block, type Plan } from '@/lib/lesson';
 
@@ -44,7 +44,7 @@ function VocabBlock({ b, onWord }: { b: Extract<Block, { type: 'vocab' }>; onWor
   );
 }
 
-export default function LessonView({ plan, interactive = true, initialAnswers, onSubmit, submitLabel, overrides, teacher = false, slides = false, onExit, onWord }: {
+export default function LessonView({ plan, interactive = true, initialAnswers, onSubmit, submitLabel, overrides, teacher = false, slides = false, onExit, onWord, answerKey: showKey = false }: {
   plan: Pick<Plan, 'title' | 'blocks'> & Partial<Plan>;
   interactive?: boolean;
   initialAnswers?: Answers;
@@ -55,11 +55,13 @@ export default function LessonView({ plan, interactive = true, initialAnswers, o
   slides?: boolean; // режим показу на уроці: по одному слайду
   onExit?: () => void;
   onWord?: (w: { en: string; uk: string }) => void; // вчитель: додати слово в словник учня
+  answerKey?: boolean; // версія вчителя: усі правильні відповіді вже вписані
 }) {
   const t = useT();
   const sections = useMemo(() => lessonSections(plan.blocks), [plan.blocks]);
   const [answers, setAnswers] = useState<Answers>(initialAnswers ?? {});
   const [checked, setChecked] = useState(!!initialAnswers && Object.keys(initialAnswers).length > 0);
+  const key = useMemo(() => (showKey ? answerKey(sections) : null), [showKey, sections]);
   const [saving, setSaving] = useState(false);
   const [err, setErr] = useState(false);
   const result = useMemo(() => (checked ? grade(sections, answers, overrides) : null), [checked, sections, answers, overrides]);
@@ -117,16 +119,18 @@ export default function LessonView({ plan, interactive = true, initialAnswers, o
             return (
               <div key={b.id} className="ls-ex">
                 <div className="ls-ex__label"><Icon id="e-pencil" />{t({ uk: 'Вправа', ru: 'Упражнение', en: 'Exercise' })} {exNos[b.id]}</div>
-                <ExerciseView sections={b.sections} offset={offsets[b.id]} numbered={b.sections.length > 1} answers={answers}
+                {key
+                  ? <ExerciseView sections={b.sections} offset={offsets[b.id]} numbered={b.sections.length > 1} answers={key} marks={Object.fromEntries(Object.keys(key).map((k) => [k, true]))} />
+                  : <ExerciseView sections={b.sections} offset={offsets[b.id]} numbered={b.sections.length > 1} answers={answers}
                   onChange={interactive && !checked ? (k, v) => setAnswers((a) => ({ ...a, [k]: v })) : undefined}
-                  marks={result?.marks} showCorrect={checked} overrides={overrides} />
+                  marks={result?.marks} showCorrect={checked} overrides={overrides} />}
               </div>
             );
           }
         }
   };
 
-  const footer = interactive && sections.length > 0 ? (
+  const footer = interactive && !showKey && sections.length > 0 ? (
     <div className="ls-foot">
       {result && <div className="ex-result"><b>{result.score} / {result.total}</b><span>{result.total && result.score === result.total ? t({ uk: 'Ідеально!', ru: 'Идеально!', en: 'Perfect!' }) : t({ uk: 'Правильні відповіді показані під помилками.', ru: 'Правильные ответы показаны под ошибками.', en: 'The correct answers are shown under your mistakes.' })}</span></div>}
       {!checked
