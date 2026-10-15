@@ -8,22 +8,27 @@ export default function SiteFooter() {
         <div className="mu-footer__grid">
           <div>
             <div className="mu-logo">MUR<span className="mu-logo__dot" />LY</div>
-            <p>Онлайн-платформа для підготовки до НМТ з англійської. Створено в Україні.</p>
+            <p>Онлайн-платформа англійської для дітей, підлітків і дорослих. Кабінети для вчителя й учня. Створено в Україні.</p>
           </div>
           <div>
-            <h4>Продукт</h4>
+            <h4>Murly</h4>
             <ul>
-              <li><Link href="/#how">Як працює</Link></li>
-              <li><Link href="/#path">Шлях до НМТ</Link></li>
+              <li><Link href="/#students">Учням</Link></li>
+              <li><Link href="/for-teachers">Вчителям</Link></li>
+              <li><Link href="/for-parents">Батькам</Link></li>
+              <li><Link href="/nmt">НМТ з англійської</Link></li>
               <li><Link href="/pricing">Тарифи</Link></li>
-              <li><Link href="/for-teachers">Для репетиторів</Link></li>
-              <li><Link href="/for-parents">Для батьків</Link></li>
-              <li><Link href="/quiz/teen-life">Квізи</Link></li>
-              <li><Link href="/worlds">Ігри-світи</Link></li>
-              <li><Link href="/practice">Listening і Reading</Link></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Вчитися</h4>
+            <ul>
               <li><Link href="/grammar">Граматика</Link></li>
               <li><Link href="/irregular-verbs">Неправильні дієслова</Link></li>
               <li><Link href="/irregular-verbs/games">Ігри з дієсловами</Link></li>
+              <li><Link href="/practice">Слухати і читати</Link></li>
+              <li><Link href="/quiz/teen-life">Квізи</Link></li>
+              <li><Link href="/worlds">Murly Town</Link></li>
             </ul>
           </div>
           <div>
