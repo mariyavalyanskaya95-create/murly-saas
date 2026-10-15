@@ -1,6 +1,7 @@
 'use client';
 import { useMemo } from 'react';
-import type { Answers, Section } from '@/lib/exercise';
+import { SCALE, type Answers, type Section } from '@/lib/exercise';
+import VoiceRecorder from './VoiceRecorder';
 
 // Показ вправи: учень заповнює (onChange), або вчитель/учень бачать перевірку (marks)
 export default function ExerciseView({ sections, answers, onChange, marks, showCorrect, overrides, onOverride, offset = 0, numbered = true }: {
@@ -41,7 +42,22 @@ export default function ExerciseView({ sections, answers, onChange, marks, showC
           <ol className="ex-list">
             {s.tasks.map((t, ti) => (
               <li key={ti} className="ex-task">
-                {s.type === 'translate' || s.type === 'open' ? (
+                {s.type === 'scale' ? (
+                  <div className="ex-qa">
+                    <div className="ex-prompt">{t.prompt}</div>
+                    <div className="ex-scale" role="radiogroup" aria-label={t.prompt}>
+                      {SCALE.map((opt, oi) => (
+                        <button type="button" key={opt} disabled={ro} role="radio" aria-checked={answers[`${si}.${ti}.0`] === opt}
+                          className={`ex-scale__opt s${oi} ${answers[`${si}.${ti}.0`] === opt ? 'is-on' : ''}`} onClick={() => onChange?.(`${si}.${ti}.0`, opt)}>{opt}</button>
+                      ))}
+                    </div>
+                  </div>
+                ) : s.type === 'voice' ? (
+                  <div className="ex-qa">
+                    <div className="ex-prompt">{t.prompt}</div>
+                    <VoiceRecorder value={answers[`${si}.${ti}.0`]} readOnly={ro} onChange={(url) => onChange?.(`${si}.${ti}.0`, url)} />
+                  </div>
+                ) : s.type === 'translate' || s.type === 'open' ? (
                   <div className="ex-qa">
                     <div className="ex-prompt">{t.prompt}</div>
                     {s.type === 'open'
