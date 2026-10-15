@@ -6,7 +6,7 @@ import { art, say, sfx } from '@/lib/worlds/sound';
 import type { HomePlaced, HomeScene } from '@/lib/worlds/home-scene';
 import ATLAS from '@/lib/worlds/kenney-thumbs.json';
 
-const SAVE = 'murly-home-v1';
+const SAVE = 'murly-home-v2';
 type Save = { placed: HomePlaced[]; coins: number; unlocked: string[]; wall: number; floor: number; done: number };
 type Task =
   | { kind: 'place'; file: string; en: string; uk: string }
@@ -16,14 +16,14 @@ type Task =
 
 const START: Save = {
   placed: [
-    { uid: 's1', file: 'rugRectangle', x: 0, z: -0.85, rot: 0, color: '#4A86D0' },
-    { uid: 's2', file: 'loungeSofa', x: 0, z: -1.7, rot: 0 },
-    { uid: 's3', file: 'tableCoffee', x: 0, z: -0.95, rot: 0 },
-    { uid: 's4', file: 'pottedPlant', x: -1.75, z: -1.75, rot: 0 },
-    { uid: 's5', file: 'lampRoundFloor', x: 0.8, z: -1.8, rot: 0 },
-    { uid: 's6', file: 'cabinetTelevision', x: 0, z: 0.4, rot: 2 },
-    { uid: 's7', file: 'televisionModern', x: 0, z: 0.4, rot: 2 },
-    { uid: 's8', file: 'pictureframe_large_A', x: -1.1, z: 0, rot: 0, wall: 0, y: 0.8 },
+    { uid: 's1', file: 'rugRectangle', x: 0, z: -0.5, rot: 0, color: '#4A86D0' },
+    { uid: 's2', file: 'loungeSofa', x: 0, z: -1.15, rot: 0 },
+    { uid: 's3', file: 'tableCoffee', x: 0, z: -0.5, rot: 0 },
+    { uid: 's4', file: 'pottedPlant', x: -1.2, z: -1.2, rot: 0 },
+    { uid: 's5', file: 'lampRoundFloor', x: 0.75, z: -1.25, rot: 0 },
+    { uid: 's6', file: 'cabinetTelevision', x: 0, z: 0.45, rot: 2 },
+    { uid: 's7', file: 'televisionModern', x: 0, z: 0.45, rot: 2 },
+    { uid: 's8', file: 'pictureframe_large_A', x: -0.75, z: 0, rot: 0, wall: 0, y: 0.82 },
   ],
   coins: 15, unlocked: [], wall: 0, floor: 0, done: 0,
 };
@@ -85,7 +85,18 @@ export default function HomeGame() {
         scene.current = new HomeScene(host.current, labels.current, {
           onSelect: (uid) => { setSel(uid); if (uid) sfx.pick(); },
           onTap: (uid) => { const p = sRef.current.placed.find((q) => q.uid === uid); if (p) say(`${art(nameOf(p))} ${nameOf(p)}`); },
-          onMove: (uid, patch) => { sfx.pop(); setS((cur) => ({ ...cur, placed: cur.placed.map((q) => (q.uid === uid ? { ...q, ...patch, y: HOME_ITEM[q.file].wall ? patch.y ?? q.y : undefined } : q)) })); },
+          onMove: (uid, patch, kids) => {
+            sfx.pop();
+            setS((cur) => {
+              const me = cur.placed.find((q) => q.uid === uid); if (!me) return cur;
+              const dx = (patch.x ?? me.x) - me.x, dz = (patch.z ?? me.z) - me.z;
+              return { ...cur, placed: cur.placed.map((q) => {
+                if (q.uid === uid) return { ...q, ...patch, y: HOME_ITEM[q.file].wall ? patch.y ?? q.y : undefined };
+                if (kids.includes(q.uid) && !HOME_ITEM[me.file].wall) return { ...q, x: +(q.x + dx).toFixed(2), z: +(q.z + dz).toFixed(2) };
+                return q;
+              }) };
+            });
+          },
           onBad: () => { sfx.bad(); flash('Сюди не можна: заважає інша річ або стіна.'); },
         });
         setReady(true);
@@ -167,7 +178,17 @@ export default function HomeGame() {
   const rotate = () => {
     if (!cur || !scene.current) return;
     const p = { ...cur, rot: (cur.rot + 1) % 4 };
-    if (scene.current.canPlace(cur.uid, p)) { update({ rot: p.rot }); sfx.pop(); scene.current.bounce(cur.uid); } else { sfx.bad(); flash('Тут не повернеться, бракує місця.'); }
+    if (scene.current.canPlace(cur.uid, p)) {
+      const kids = scene.current.carried(cur.uid);
+      // речі на столі повертаються разом зі столом
+      setS((c) => ({ ...c, placed: c.placed.map((q) => {
+        if (q.uid === cur.uid) return { ...q, rot: p.rot };
+        if (!kids.includes(q.uid)) return q;
+        const ox = q.x - cur.x, oz = q.z - cur.z;
+        return { ...q, x: +(cur.x + oz).toFixed(2), z: +(cur.z - ox).toFixed(2), rot: (q.rot + 1) % 4 };
+      }) }));
+      sfx.pop(); scene.current.bounce(cur.uid);
+    } else { sfx.bad(); flash('Тут не повернеться, бракує місця.'); }
   };
   const paint = (hex: string, en: string) => { update({ color: hex }); sfx.paint(); say(`${en}`); scene.current?.bounce(cur!.uid); };
   const copy = async () => {
