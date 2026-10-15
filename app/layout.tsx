@@ -1,16 +1,17 @@
 import type { Metadata } from 'next';
 import { ClerkProvider } from '@clerk/nextjs';
+import { ukUA } from '@clerk/localizations';
 import './globals.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://murly.com.ua'),
-  title: 'Murly: склади НМТ з англійської на 200 балів',
+  title: 'Murly: англійська для дітей, підлітків і дорослих',
   description:
-    'Інтерактивні квізи, пробні тести та AI-розбір помилок для підготовки до НМТ з англійської. Для старшокласників і репетиторів.',
+    'Уроки з учителем, домашка-гра, граматика простими словами і 3D-містечко, де все англійською. Кабінети для вчителя й учня.',
   icons: { icon: '/favicon.svg' },
   openGraph: {
-    title: 'Murly: англійська, яку не вчать у школі',
-    description: 'Квізи у форматі НМТ, streak, пробні тести і кабінет репетитора.',
+    title: 'Murly: англійська, яку хочеться вчити',
+    description: 'Уроки, домашка-гра, граматика і 3D-містечко англійською. Кабінети для вчителя й учня.',
     type: 'website',
     locale: 'uk_UA',
   },
@@ -19,6 +20,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <ClerkProvider
+      localization={ukUA}
       appearance={{
         variables: {
           colorPrimary: '#1A1A1A',
