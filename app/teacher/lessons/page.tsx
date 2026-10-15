@@ -18,7 +18,7 @@ function PlanCard({ p, lib }: { p: Plan; lib?: boolean }) {
       </span>
       <span className="gr-card__title">{p.title || 'Без назви'}</span>
       {p.topic && <span className="gr-card__uk">{p.topic}</span>}
-      <span className="gr-card__lead">{p.blocks.length} блоків</span>
+      <span className="gr-card__lead">{p.duration ? `${p.duration} хв · ` : ""}{p.blocks.length} блоків</span>
     </Link>
   );
 }
