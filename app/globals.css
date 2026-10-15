@@ -1442,7 +1442,7 @@ a.t-stat:hover { transform: translateY(-2px); }
 
 /* Режим «слайди» */
 .sl { display: flex; flex-direction: column; gap: 14px; background: var(--mu-paper); border: 2px solid var(--mu-ink); border-radius: 22px; box-shadow: 5px 5px 0 var(--mu-ink); padding: 16px; min-height: 72vh; }
-.sl.is-full { border: 0; border-radius: 0; box-shadow: none; height: 100vh; padding: 18px 28px; }
+.sl.is-full { position: fixed; inset: 0; z-index: 1000; border: 0; border-radius: 0; box-shadow: none; height: 100vh; padding: 18px 28px; }
 .sl__bar { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .sl__count { font-weight: 700; font-variant-numeric: tabular-nums; min-width: 56px; }
 .sl__progress { flex: 1; min-width: 120px; height: 8px; border: 2px solid var(--mu-ink); border-radius: 99px; overflow: hidden; background: #fff; }
