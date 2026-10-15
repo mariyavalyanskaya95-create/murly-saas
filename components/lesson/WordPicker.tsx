@@ -45,7 +45,7 @@ export default function WordPicker({ words, setWords, studentIds }: {
                 <input type="checkbox" checked={w.on} onChange={(e) => set(i, { on: e.target.checked })} aria-label={`Обрати ${w.en}`} />
                 <b>{w.en}</b>
               </label>
-              <input className="wp__uk" value={w.uk} placeholder="переклад" onChange={(e) => set(i, { uk: e.target.value, on: true })} aria-label={`Переклад ${w.en}`} />
+              <input className="wp__uk" autoFocus={!w.uk && w.on} value={w.uk} placeholder="переклад" onChange={(e) => set(i, { uk: e.target.value, on: true })} aria-label={`Переклад ${w.en}`} />
               {exists && <small className="t-muted">вже в словнику</small>}
             </li>
           );

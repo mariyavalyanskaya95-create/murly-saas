@@ -22,6 +22,8 @@ const lessonWords = (plan: Plan) => {
   const seen = new Set<string>();
   return plan.blocks.flatMap((b) => (b.type === 'vocab' ? b.words : [])).filter((w) => { const k = w.en.trim().toLowerCase(); if (!k || seen.has(k)) return false; seen.add(k); return true; });
 };
+// 1 слово, 2 слова, 5 слів
+const wordsN = (n: number) => `${n} ${n % 10 === 1 && n % 100 !== 11 ? 'слово' : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 'слова' : 'слів'}`;
 const toPick = (plan: Plan, on: boolean): PickWord[] => lessonWords(plan).map((w) => ({ ...w, on }));
 
 // Додає слова в словники учнів, пропускаючи ті, що там уже є
@@ -63,7 +65,7 @@ function WordsBox({ words, setWords, onClose }: { words: PickWord[]; setWords: (
   const noUk = chosen.filter((w) => !w.uk.trim()).length;
   const add = () => {
     const n = addWords(ids, chosen);
-    setMsg(n ? `Додано ${n} слів. Учні вже можуть грати ними у своєму кабінеті.` : 'Усі обрані слова вже є в словниках.');
+    setMsg(n ? `Додано ${wordsN(n)}. Учні вже можуть грати ними у своєму кабінеті.` : 'Усі обрані слова вже є в словниках.');
   };
   return (
     <div className="t-card le-send" id="words-box">
@@ -73,10 +75,10 @@ function WordsBox({ words, setWords, onClose }: { words: PickWord[]; setWords: (
           <p className="t-muted">Обери учня і слова. Кожне слово можна обрати окремо, виправити переклад або додати своє. Щоб додати слово з тексту уроку, просто виділи його мишкою.</p>
           <StudentPicker ids={ids} setIds={setIds} />
           <WordPicker words={words} setWords={setWords} studentIds={ids} />
-          {noUk > 0 && <p className="t-neg">Допиши переклад для {noUk} {noUk === 1 ? 'слова' : 'слів'}.</p>}
+          {noUk > 0 && <p className="t-neg">Допиши переклад ({wordsN(noUk)} без перекладу).</p>}
           <div className="t-form__actions">
             <button className="mu-btn t-btn-sm" onClick={onClose}>Скасувати</button>
-            <button className="mu-btn mu-btn--lime" disabled={!ids.length || !chosen.length || noUk > 0} onClick={add}>Додати {chosen.length} {chosen.length === 1 ? 'слово' : 'слів'}</button>
+            <button className="mu-btn mu-btn--lime" disabled={!ids.length || !chosen.length || noUk > 0} onClick={add}>Додати {wordsN(chosen.length)}</button>
           </div>
         </>
       )}
