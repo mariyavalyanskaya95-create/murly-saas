@@ -3,7 +3,7 @@
 import { db, dbReady } from './db';
 
 const enc = encodeURIComponent;
-export type CoinSource = 'teacher' | 'homework' | 'words' | 'game' | 'shop';
+export type CoinSource = 'teacher' | 'homework' | 'words' | 'game' | 'shop' | 'quiz';
 
 export async function balanceOf(userId: string): Promise<number> {
   if (!dbReady()) return 0;
