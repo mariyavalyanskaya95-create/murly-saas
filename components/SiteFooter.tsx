@@ -19,6 +19,7 @@ export default function SiteFooter() {
               <li><Link href="/for-teachers">Для репетиторів</Link></li>
               <li><Link href="/for-parents">Для батьків</Link></li>
               <li><Link href="/quiz/teen-life">Квізи</Link></li>
+              <li><Link href="/worlds">Ігри-світи</Link></li>
               <li><Link href="/practice">Listening і Reading</Link></li>
               <li><Link href="/grammar">Граматика</Link></li>
               <li><Link href="/irregular-verbs">Неправильні дієслова</Link></li>
