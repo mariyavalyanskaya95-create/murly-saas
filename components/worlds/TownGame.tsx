@@ -100,6 +100,13 @@ export default function TownGame({ full: fullPage = false }: { full?: boolean })
   const [party, setParty] = useState(0);
   const [heroes, setHeroes] = useState(false);
   const [heroBar, setHeroBar] = useState(false);
+  // висота магазину внизу: панель вибраного предмета і кнопки камери стоять над ним
+  const shopEl = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = shopEl.current; const root = wrap.current; if (!el || !root || typeof ResizeObserver === 'undefined') return;
+    const ro = new ResizeObserver(() => root.style.setProperty('--shop-h', `${Math.ceil(el.getBoundingClientRect().height)}px`));
+    ro.observe(el); return () => ro.disconnect();
+  }, []);
   const [ghost, setGhost] = useState<{ def: WorldItem; x: number; y: number } | null>(null);
   const [err, setErr] = useState(false);
   const sRef = useRef(s); sRef.current = s;
@@ -549,7 +556,7 @@ export default function TownGame({ full: fullPage = false }: { full?: boolean })
         </div>
       )}
 
-      <div className="rw-shop">
+      <div className="rw-shop" ref={shopEl}>
         <div className="g-chips" role="tablist">
           <button className="g-chip hm-en hm-shop-toggle" onClick={() => setShopOpen(!shopOpen)} aria-expanded={shopOpen}>{shopOpen ? 'Hide shop ▾' : 'Shop ▴'}</button>
           {cats.map((c) => <button key={c} role="tab" aria-selected={cat === c} className={`g-chip hm-en ${cat === c ? 'is-on' : ''}`} onClick={() => { setCat(c); say(c); }}>{c}</button>)}
