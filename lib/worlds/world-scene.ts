@@ -856,8 +856,11 @@ export class WorldScene {
       w.mesh.scale.y += ((hide ? 0.06 : 1) - w.mesh.scale.y) * 0.18;
       w.mesh.children.forEach((c) => { if (!c.userData.base) c.visible = !hide; });
     }
+    const tg = this.controls.target, toCam = new THREE.Vector2(cam.x - tg.x, cam.z - tg.z).normalize();
     for (const w of this.nWalls) {
-      const hide = [cam.z < w.cz - w.h, cam.x < w.cx - w.h, cam.z > w.cz + w.h, cam.x > w.cx + w.h][w.side];
+      // кімната між камерою і поточною кімнатою: стіни опущені, як у Sims
+      const front = (w.cx - tg.x) * toCam.x + (w.cz - tg.z) * toCam.y > w.h * 0.5;
+      const hide = front || [cam.z < w.cz - w.h, cam.x < w.cx - w.h, cam.z > w.cz + w.h, cam.x > w.cx + w.h][w.side];
       w.mesh.scale.y += ((hide ? 0.06 : 1) - w.mesh.scale.y) * 0.18;
       w.mesh.children.forEach((c) => { if (!c.userData.base) c.visible = !hide; });
       ((w.mesh.userData.items ?? []) as THREE.Object3D[]).forEach((o) => { o.visible = w.mesh.scale.y > 0.5; });

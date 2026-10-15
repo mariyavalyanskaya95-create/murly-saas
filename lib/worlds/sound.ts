@@ -30,4 +30,10 @@ export function say(text: string) {
     s.speak(u);
   } catch { /* без озвучки */ }
 }
-export const art = (w: string) => (/^[aeiou]/i.test(w) ? 'an' : 'a');
+// артикль: some для множини (candles, carrots), an перед голосною
+export const art = (w: string) => {
+  if (/^(two|three|four|five)\b/i.test(w)) return 'the';
+  const head = w.split(' of ')[0].trim().split(' ').pop() ?? '';
+  if (/^(grass|hay|food|water)$/i.test(head) || (/s$/i.test(head) && !/(ss|us|is)$/i.test(head))) return 'some';
+  return /^[aeiou]/i.test(w) ? 'an' : 'a';
+};
