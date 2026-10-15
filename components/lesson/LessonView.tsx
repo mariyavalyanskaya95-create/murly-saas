@@ -175,11 +175,23 @@ function SlideShow({ plan, renderBlock, footer, teacher, onExit }: {
     return () => { window.removeEventListener('keydown', onKey); document.removeEventListener('fullscreenchange', onFs); };
   }, [go, total]);
 
+  // якщо браузер не дає повний екран (iPhone, вбудовані вікна), розтягуємо слайди на все вікно
+  const [fake, setFake] = useState(false);
   const toggleFull = () => {
-    if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
-    else root.current?.requestFullscreen?.().catch(() => {});
+    if (fake) { setFake(false); return; }
+    if (document.fullscreenElement) { document.exitFullscreen().catch(() => {}); return; }
+    const el = root.current;
+    if (el?.requestFullscreen) el.requestFullscreen().catch(() => setFake(true)); else setFake(true);
   };
-  const exit = () => { if (document.fullscreenElement) document.exitFullscreen().catch(() => {}); onExit?.(); };
+  useEffect(() => { root.current?.scrollIntoView({ block: 'start', behavior: 'smooth' }); }, []);
+  useEffect(() => {
+    if (!fake) return;
+    const esc = (e: KeyboardEvent) => { if (e.key === 'Escape') setFake(false); };
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', esc);
+    return () => { document.body.style.overflow = ''; window.removeEventListener('keydown', esc); };
+  }, [fake]);
+  const exit = () => { if (document.fullscreenElement) document.exitFullscreen().catch(() => {}); setFake(false); onExit?.(); };
 
   const s = i > 0 ? slides[i - 1] : null;
   const isLast = i === total - 1;
@@ -187,12 +199,12 @@ function SlideShow({ plan, renderBlock, footer, teacher, onExit }: {
   const cur = s?.notes ?? [];
 
   return (
-    <div ref={root} className={`sl ${full ? 'is-full' : ''}`}>
+    <div ref={root} className={`sl ${full || fake ? 'is-full' : ''}`}>
       <div className="sl__bar">
         <span className="sl__count">{i + 1} / {total}</span>
         <div className="sl__progress"><span style={{ width: `${((i + 1) / total) * 100}%` }} /></div>
         {teacher && <button className={`g-chip ${notes ? 'is-on' : ''}`} onClick={() => setNotes(!notes)} aria-pressed={notes}>Нотатки{cur.length ? ` (${cur.length})` : ''}</button>}
-        <button className="g-chip" onClick={toggleFull}>{full ? 'Вийти з повного екрана' : 'На весь екран'}</button>
+        <button className="g-chip" data-full onClick={toggleFull}>{full || fake ? 'Вийти з повного екрана' : 'На весь екран'}</button>
         {onExit && <button className="g-chip" onClick={exit}>Закрити</button>}
       </div>
       <div className={`sl__body ${notes ? 'has-notes' : ''}`}>

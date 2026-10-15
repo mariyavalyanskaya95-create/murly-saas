@@ -144,7 +144,7 @@ export default function PlanPage({ id }: { id: string }) {
     const nid = addPlan({ title: plan.title, level: plan.level, age: plan.age, topic: plan.topic, color: plan.color, blocks: plan.blocks, focus: plan.focus, aims: plan.aims, source: lib ? lib.id : undefined });
     router.push(`/teacher/lessons/${nid}`);
   };
-  const present = () => { (document.querySelector('.sl') as HTMLElement | null)?.requestFullscreen?.().catch(() => {}); };
+  const present = () => { (document.querySelector('.sl [data-full]') as HTMLButtonElement | null)?.click(); };
   const points = maxScore(lessonSections(plan.blocks));
 
   return (
