@@ -5,6 +5,7 @@ import SiteNav from '@/components/SiteNav';
 import SiteFooter from '@/components/SiteFooter';
 import PracticeList from '@/components/practice/PracticeList';
 import { PRACTICE } from '@/lib/practice';
+import { localizeLesson } from '@/lib/content/lessons';
 import { tr } from '@/lib/i18n-server';
 
 export function generateMetadata(): Metadata {
@@ -33,7 +34,7 @@ export default function PracticePage() {
         </div>
       </section>
       <section className="mu-section" style={{ paddingTop: 8 }}>
-        <div className="mu-container"><PracticeList items={PRACTICE} /></div>
+        <div className="mu-container"><PracticeList items={localizeLesson(PRACTICE, t.lang)} /></div>
       </section>
       <SiteFooter />
       <Stickers />
