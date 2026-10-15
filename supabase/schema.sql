@@ -135,3 +135,6 @@ on conflict (id) do update set public = true, file_size_limit = 20971520, allowe
 -- Фокус уроку і короткий план
 alter table lesson_plans add column if not exists focus jsonb;
 alter table lesson_plans add column if not exists aims text;
+
+-- Аудіо для аудіювань
+update storage.buckets set allowed_mime_types = array['image/png','image/jpeg','image/webp','image/gif','application/pdf','audio/mpeg','audio/mp4','audio/x-m4a','audio/wav','audio/ogg'] where id = 'lesson-files';
