@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useMemo, useState } from 'react';
+import CoinsBox from './CoinsBox';
 import Icon from '../Icon';
 import GameHub from '../games/GameHub';
 import LessonRow from './LessonRow';
@@ -57,6 +58,7 @@ export default function StudentCard({ id }: { id: string }) {
       </div>
 
       <InviteBox id={s.id} />
+      <CoinsBox studentId={s.id} joined={s.joined} />
 
       <div className="t-tabs" role="tablist">
         {TABS.map((x) => (
