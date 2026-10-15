@@ -4,7 +4,8 @@ import Icon from '@/components/Icon';
 import Stickers from '@/components/Stickers';
 import SiteNav from '@/components/SiteNav';
 import SiteFooter from '@/components/SiteFooter';
-import { GRAMMAR } from '@/lib/grammar';
+import { GRAMMAR as GRAMMAR_UK } from '@/lib/grammar';
+import { localizeGrammar } from '@/lib/content/grammar';
 import { tr } from '@/lib/i18n-server';
 import type { T } from '@/lib/i18n';
 
@@ -31,6 +32,7 @@ const LEVEL_NAMES: Record<(typeof LEVELS)[number], T> = {
 
 export default function GrammarIndexPage() {
   const t = tr();
+  const GRAMMAR = localizeGrammar(GRAMMAR_UK, t.lang);
   return (
     <>
       <SiteNav />
