@@ -1777,3 +1777,11 @@ a.t-stat:hover { transform: translateY(-2px); }
 .mu-band__txt b { display: block; font-size: 24px; font-family: 'Boldonse', 'Arial Black', sans-serif; font-weight: 400; }
 .mu-band__txt small { display: block; font-size: 16px; color: rgba(255,255,255,.8); margin-top: 4px; }
 .mu-band .mu-btn { color: var(--mu-ink); }
+
+.auth-roles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; width: 100%; max-width: 680px; margin: 10px auto 0; }
+.auth-roles .mu-role { text-decoration: none; color: var(--mu-ink); text-align: left; }
+.auth-roles .mu-role:hover { transform: translate(-2px, -2px); }
+.auth-roles .mu-role h3 { font-size: 26px; }
+.auth-alt { margin-top: 18px; font-weight: 600; }
+.auth-alt a { text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 600px) { .auth-roles { grid-template-columns: 1fr; } }
