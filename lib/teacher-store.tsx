@@ -3,6 +3,7 @@
 // ЗАРАЗ: зберігаються в браузері (localStorage) для кожного акаунта окремо.
 // ДАЛІ: ця ж модель переїде в базу (Supabase), інтерфейс useTeacher() не зміниться.
 import type { Plan } from './lesson';
+import type { Lang } from './i18n';
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 
 export type Student = {
@@ -239,10 +240,22 @@ export function lessonLink(d: Data, l: Lesson) {
   return l.link || d.students.find((s) => s.id === l.studentId)?.link || d.settings.link || '';
 }
 
-export const fmtMoney = (n: number) => `${n.toLocaleString('uk-UA')} ₴`;
-export const fmtDate = (iso: string) =>
-  new Date(iso).toLocaleDateString('uk-UA', { weekday: 'short', day: 'numeric', month: 'short' });
-export const fmtTime = (iso: string) =>
-  new Date(iso).toLocaleTimeString('uk-UA', { hour: '2-digit', minute: '2-digit' });
+// Локаль дат і чисел для мови інтерфейсу
+export const localeOf = (lang: Lang = 'uk') => (lang === 'ru' ? 'ru-RU' : lang === 'en' ? 'en-GB' : 'uk-UA');
+export const fmtMoney = (n: number, lang: Lang = 'uk') => `${n.toLocaleString(localeOf(lang))} ₴`;
+export const fmtDate = (iso: string, lang: Lang = 'uk') =>
+  new Date(iso).toLocaleDateString(localeOf(lang), { weekday: 'short', day: 'numeric', month: 'short' });
+export const fmtTime = (iso: string, lang: Lang = 'uk') =>
+  new Date(iso).toLocaleTimeString(localeOf(lang), { hour: '2-digit', minute: '2-digit' });
+// Множина: 1 урок, 2 уроки, 5 уроків (uk/ru мають три форми, en дві)
+export function plural(n: number, lang: Lang, f: { uk: [string, string, string]; ru: [string, string, string]; en: [string, string] }) {
+  if (lang === 'en') return n === 1 ? f.en[0] : f.en[1];
+  const forms = f[lang];
+  const a = Math.abs(n) % 100, b = a % 10;
+  if (a > 10 && a < 20) return forms[2];
+  if (b === 1) return forms[0];
+  if (b >= 2 && b <= 4) return forms[1];
+  return forms[2];
+}
 export const sameDay = (a: Date, b: Date) =>
   a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();

@@ -5,6 +5,8 @@
 //  translate "Я люблю каву = I love coffee / I like coffee"
 //  open      будь-який рядок, відповідь перевіряє вчитель
 
+import type { T } from './i18n';
+
 export type SectionType = 'gap' | 'choice' | 'truefalse' | 'match' | 'sort' | 'translate' | 'open' | 'scale' | 'voice';
 export type Part = { t: 'text'; v: string } | { t: 'gap'; answers: string[] } | { t: 'choice'; options: string[] };
 export type Task = { parts?: Part[]; prompt?: string; answers?: string[] };
@@ -12,16 +14,39 @@ export type Section = { type: SectionType; instruction: string; tasks: Task[] };
 export type Answers = Record<string, string>; // ключ "секція.завдання.слот"
 export type Overrides = Record<string, boolean>; // відповіді, які вчитель зарахував вручну
 
-export const SECTION_TYPES: { id: SectionType; label: string; instruction: string; hint: string; example: string }[] = [
-  { id: 'gap', label: 'Розкрий дужки / встав слово', instruction: 'Розкрий дужки.', hint: 'Правильну відповідь пиши в [квадратних дужках]. Кілька правильних варіантів через /.', example: 'She [goes] (go) to school every day.\nThey [didn’t come/did not come] (not come) yesterday.' },
-  { id: 'choice', label: 'Обери правильний варіант', instruction: 'Обери правильний варіант.', hint: 'Варіанти у {фігурних дужках} через |. Перший варіант правильний, учень побачить їх перемішаними.', example: 'I {have lived|lived|live} here since 2020.\nShe is {taller|more tall|tallest} than me.' },
-  { id: 'truefalse', label: 'True / False', instruction: 'True or False?', hint: 'Твердження = True або False (можна T / F).', example: 'Tom gets up at 7 o’clock. = True\nTom goes to bed at 10. = False' },
-  { id: 'match', label: 'Знайди пару', instruction: 'Match the words with their meanings.', hint: 'Ліва частина = права частина. Учень обирає пару зі списку, праві частини перемішуються.', example: 'reliable = you can trust them\nawkward = a bit embarrassing\nto give up = to stop trying' },
-  { id: 'sort', label: 'Розклади по групах', instruction: 'Put the phrases into the right group.', hint: 'Група: фраза, фраза. Кожна група з нового рядка. Якщо у фразах є коми, розділяй їх крапкою з комою ;', example: 'Inviting: Would you like to come?; Are you free on Friday?\nAccepting: I’d love to!; Sounds great!\nDeclining: Sorry, I can’t make it.; Maybe next time.' },
-  { id: 'scale', label: 'Шкала думки', instruction: 'How much do you agree?', hint: 'Кожен рядок твердження. Учень обирає від «Strongly disagree» до «Strongly agree». Без правильної відповіді, для обговорення.', example: 'Homework should be optional.\nSocial media makes people less happy.' },
-  { id: 'voice', label: 'Голосова відповідь', instruction: 'Record your answer.', hint: 'Кожен рядок питання. Учень записує відповідь голосом, ти слухаєш у перевірці.', example: 'Describe your favourite place in your town.\nWhat did you do last weekend?' },
-  { id: 'translate', label: 'Переклад', instruction: 'Переклади англійською.', hint: 'Речення = правильний переклад. Кілька варіантів через /.', example: 'Я люблю каву = I love coffee / I like coffee\nВона вже пішла = She has already left' },
-  { id: 'open', label: 'Відкрите питання', instruction: 'Дай відповідь на питання.', hint: 'Кожен рядок окреме питання. Відповідь перевіряєш ти.', example: 'What did you do last weekend?\nDescribe your best friend in 3 sentences.' },
+// Назви, підказки і стандартні інструкції трьома мовами
+export const SECTION_TYPES: { id: SectionType; label: T; instruction: T; hint: T; example: T }[] = [
+  { id: 'gap', label: { uk: 'Розкрий дужки / встав слово', ru: 'Раскрой скобки / вставь слово', en: 'Open the brackets / fill the gap' },
+    instruction: { uk: 'Розкрий дужки.', ru: 'Раскрой скобки.', en: 'Put the verbs in brackets into the correct form.' },
+    hint: { uk: 'Правильну відповідь пиши в [квадратних дужках]. Кілька правильних варіантів через /.', ru: 'Правильный ответ пиши в [квадратных скобках]. Несколько правильных вариантов через /.', en: 'Write the correct answer in [square brackets]. Several correct answers go with /.' },
+    example: { uk: 'She [goes] (go) to school every day.\nThey [didn’t come/did not come] (not come) yesterday.' } },
+  { id: 'choice', label: { uk: 'Обери правильний варіант', ru: 'Выбери правильный вариант', en: 'Choose the right option' },
+    instruction: { uk: 'Обери правильний варіант.', ru: 'Выбери правильный вариант.', en: 'Choose the correct option.' },
+    hint: { uk: 'Варіанти у {фігурних дужках} через |. Перший варіант правильний, учень побачить їх перемішаними.', ru: 'Варианты в {фигурных скобках} через |. Первый вариант правильный, ученик увидит их перемешанными.', en: 'Options go in {curly brackets} with |. The first option is correct. The student will see them shuffled.' },
+    example: { uk: 'I {have lived|lived|live} here since 2020.\nShe is {taller|more tall|tallest} than me.' } },
+  { id: 'truefalse', label: { uk: 'True / False' }, instruction: { uk: 'True or False?' },
+    hint: { uk: 'Твердження = True або False (можна T / F).', ru: 'Утверждение = True или False (можно T / F).', en: 'Statement = True or False (T / F is fine too).' },
+    example: { uk: 'Tom gets up at 7 o’clock. = True\nTom goes to bed at 10. = False' } },
+  { id: 'match', label: { uk: 'Знайди пару', ru: 'Найди пару', en: 'Match the pairs' }, instruction: { uk: 'Match the words with their meanings.' },
+    hint: { uk: 'Ліва частина = права частина. Учень обирає пару зі списку, праві частини перемішуються.', ru: 'Левая часть = правая часть. Ученик выбирает пару из списка, правые части перемешиваются.', en: 'Left part = right part. The student picks a pair from a list, the right parts are shuffled.' },
+    example: { uk: 'reliable = you can trust them\nawkward = a bit embarrassing\nto give up = to stop trying' } },
+  { id: 'sort', label: { uk: 'Розклади по групах', ru: 'Разложи по группам', en: 'Sort into groups' }, instruction: { uk: 'Put the phrases into the right group.' },
+    hint: { uk: 'Група: фраза, фраза. Кожна група з нового рядка. Якщо у фразах є коми, розділяй їх крапкою з комою ;', ru: 'Группа: фраза, фраза. Каждая группа с новой строки. Если во фразах есть запятые, разделяй их точкой с запятой ;', en: 'Group: phrase, phrase. Each group on a new line. If the phrases have commas, separate them with a semicolon ;' },
+    example: { uk: 'Inviting: Would you like to come?; Are you free on Friday?\nAccepting: I’d love to!; Sounds great!\nDeclining: Sorry, I can’t make it.; Maybe next time.' } },
+  { id: 'scale', label: { uk: 'Шкала думки', ru: 'Шкала мнения', en: 'Opinion scale' }, instruction: { uk: 'How much do you agree?' },
+    hint: { uk: 'Кожен рядок твердження. Учень обирає від «Strongly disagree» до «Strongly agree». Без правильної відповіді, для обговорення.', ru: 'Каждая строка утверждение. Ученик выбирает от «Strongly disagree» до «Strongly agree». Без правильного ответа, для обсуждения.', en: 'Each line is a statement. The student picks from "Strongly disagree" to "Strongly agree". No right answer, it is for discussion.' },
+    example: { uk: 'Homework should be optional.\nSocial media makes people less happy.' } },
+  { id: 'voice', label: { uk: 'Голосова відповідь', ru: 'Голосовой ответ', en: 'Voice answer' }, instruction: { uk: 'Record your answer.' },
+    hint: { uk: 'Кожен рядок питання. Учень записує відповідь голосом, ти слухаєш у перевірці.', ru: 'Каждая строка вопрос. Ученик записывает ответ голосом, ты слушаешь при проверке.', en: 'Each line is a question. The student records a voice answer, you listen to it when checking.' },
+    example: { uk: 'Describe your favourite place in your town.\nWhat did you do last weekend?' } },
+  { id: 'translate', label: { uk: 'Переклад', ru: 'Перевод', en: 'Translation' },
+    instruction: { uk: 'Переклади англійською.', ru: 'Переведи на английский.', en: 'Translate into English.' },
+    hint: { uk: 'Речення = правильний переклад. Кілька варіантів через /.', ru: 'Предложение = правильный перевод. Несколько вариантов через /.', en: 'Sentence = correct translation. Several options go with /.' },
+    example: { uk: 'Я люблю каву = I love coffee / I like coffee\nВона вже пішла = She has already left', ru: 'Я люблю кофе = I love coffee / I like coffee\nОна уже ушла = She has already left' } },
+  { id: 'open', label: { uk: 'Відкрите питання', ru: 'Открытый вопрос', en: 'Open question' },
+    instruction: { uk: 'Дай відповідь на питання.', ru: 'Ответь на вопросы.', en: 'Answer the questions.' },
+    hint: { uk: 'Кожен рядок окреме питання. Відповідь перевіряєш ти.', ru: 'Каждая строка отдельный вопрос. Ответ проверяешь ты.', en: 'Each line is a separate question. You check the answer yourself.' },
+    example: { uk: 'What did you do last weekend?\nDescribe your best friend in 3 sentences.' } },
 ];
 
 const splitAlts = (s: string, sep: RegExp) => s.split(sep).map((x) => x.trim()).filter(Boolean);
