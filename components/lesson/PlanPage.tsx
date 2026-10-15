@@ -119,7 +119,7 @@ export default function PlanPage({ id }: { id: string }) {
   const lib = id.startsWith('lib-') ? getLibraryPlan(id) : undefined;
   const own = data.plans.find((p) => p.id === id);
   const [draft, setDraft] = useState<Plan | null>(null);
-  const [mode, setMode] = useState<'edit' | 'view'>('view');
+  const [mode, setMode] = useState<'edit' | 'view' | 'slides'>('view');
   const [sending, setSending] = useState(false);
   const [wordsBox, setWordsBox] = useState(false);
   const [confirmDel, setConfirmDel] = useState(false);
@@ -144,7 +144,7 @@ export default function PlanPage({ id }: { id: string }) {
     const nid = addPlan({ title: plan.title, level: plan.level, age: plan.age, topic: plan.topic, color: plan.color, blocks: plan.blocks, focus: plan.focus, aims: plan.aims, source: lib ? lib.id : undefined });
     router.push(`/teacher/lessons/${nid}`);
   };
-  const present = () => { viewRef.current?.requestFullscreen?.().catch(() => {}); };
+  const present = () => { (document.querySelector('.sl') as HTMLElement | null)?.requestFullscreen?.().catch(() => {}); };
   const points = maxScore(lessonSections(plan.blocks));
 
   return (
@@ -167,7 +167,7 @@ export default function PlanPage({ id }: { id: string }) {
       </div>
 
       <div className="t-head__actions">
-        <button className="mu-btn mu-btn--lime" onClick={() => { setMode('view'); setTimeout(present, 50); }}><Icon id="e-board" />Показати на уроці</button>
+        <button className="mu-btn mu-btn--lime" onClick={() => { setMode('slides'); setTimeout(present, 60); }}><Icon id="e-board" />Показати на уроці</button>
         <button className="mu-btn" onClick={() => { setSending(!sending); setWordsBox(false); }}><Icon id="d-send" />Відправити учню</button>
         {lessonWords(plan).length > 0 && <button className="mu-btn" onClick={() => { setWordsBox(!wordsBox); setSending(false); }}><Icon id="e-abc" />Слова в словник</button>}
         {lib && <button className="mu-btn" onClick={copy}><Icon id="e-pencil" />Скопіювати і редагувати</button>}
@@ -180,7 +180,9 @@ export default function PlanPage({ id }: { id: string }) {
       {sending && <SendBox plan={plan} onClose={() => setSending(false)} />}
       {wordsBox && <WordsBox plan={plan} onClose={() => setWordsBox(false)} />}
 
-      {mode === 'edit' && !lib && draft
+      {mode === 'slides'
+        ? <LessonView key={'s' + plan.id} plan={plan} teacher slides onExit={() => setMode('view')} />
+        : mode === 'edit' && !lib && draft
         ? <LessonEditor plan={draft} onChange={change} />
         : <div ref={viewRef} className="t-card le-view"><LessonView key={plan.id + plan.blocks.length} plan={plan} teacher /></div>}
     </div>

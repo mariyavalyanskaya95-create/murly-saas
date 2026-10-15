@@ -1,11 +1,11 @@
 'use client';
-import { useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Icon from '../Icon';
 import ExerciseView from '../exercise/ExerciseView';
 import GameHub from '../games/GameHub';
 import AudioPlayer from './AudioPlayer';
 import { grade, type Answers } from '@/lib/exercise';
-import { lessonSections, youtubeEmbed, type Block, type Plan } from '@/lib/lesson';
+import { lessonSections, toSlides, youtubeEmbed, type Block, type Plan } from '@/lib/lesson';
 
 // Текст: абзаци через порожній рядок, **жирний**
 function Rich({ text }: { text: string }) {
@@ -37,7 +37,7 @@ function VocabBlock({ b }: { b: Extract<Block, { type: 'vocab' }> }) {
   );
 }
 
-export default function LessonView({ plan, interactive = true, initialAnswers, onSubmit, submitLabel = 'Перевірити відповіді', overrides, teacher = false }: {
+export default function LessonView({ plan, interactive = true, initialAnswers, onSubmit, submitLabel = 'Перевірити відповіді', overrides, teacher = false, slides = false, onExit }: {
   plan: Pick<Plan, 'title' | 'blocks'> & Partial<Plan>;
   interactive?: boolean;
   initialAnswers?: Answers;
@@ -45,6 +45,8 @@ export default function LessonView({ plan, interactive = true, initialAnswers, o
   submitLabel?: string;
   overrides?: Record<string, boolean>;
   teacher?: boolean; // показувати нотатки для вчителя
+  slides?: boolean; // режим показу на уроці: по одному слайду
+  onExit?: () => void;
 }) {
   const sections = useMemo(() => lessonSections(plan.blocks), [plan.blocks]);
   const [answers, setAnswers] = useState<Answers>(initialAnswers ?? {});
@@ -66,15 +68,14 @@ export default function LessonView({ plan, interactive = true, initialAnswers, o
     setChecked(true);
   };
 
-  let exNo = 0;
-  return (
-    <article className="ls">
-      {plan.title && <h1 className="ls-title">{plan.title}</h1>}
-      {(plan.level || plan.topic) && <div className="ls-meta">{[plan.level, plan.topic, ...(plan.focus ?? [])].filter(Boolean).join(' · ')}</div>}
-      {plan.aims && (
-        <div className="ls-aims"><b>На цьому уроці</b><ul>{plan.aims.split('\n').filter((x) => x.trim()).map((a, i) => <li key={i}>{a}</li>)}</ul></div>
-      )}
-      {plan.blocks.map((b) => {
+  // номер кожної вправи в уроці
+  const exNos = useMemo(() => {
+    const o: Record<string, number> = {}; let n = 0;
+    plan.blocks.forEach((b) => { if (b.type === 'exercise' && b.sections.length) o[b.id] = ++n; });
+    return o;
+  }, [plan.blocks]);
+
+  const renderBlock = (b: Block) => {
         switch (b.type) {
           case 'heading': return <h2 key={b.id} className="ls-h">{b.text}</h2>;
           case 'note': return teacher && b.text ? <div key={b.id} className="ls-note"><Icon id="d-lock" /><div><small>Тільки для вчителя</small><Rich text={b.text} /></div></div> : null;
@@ -104,10 +105,9 @@ export default function LessonView({ plan, interactive = true, initialAnswers, o
           ) : null;
           case 'exercise': {
             if (!b.sections.length) return null;
-            exNo++;
             return (
               <div key={b.id} className="ls-ex">
-                <div className="ls-ex__label"><Icon id="e-pencil" />Вправа {exNo}</div>
+                <div className="ls-ex__label"><Icon id="e-pencil" />Вправа {exNos[b.id]}</div>
                 <ExerciseView sections={b.sections} offset={offsets[b.id]} numbered={b.sections.length > 1} answers={answers}
                   onChange={interactive && !checked ? (k, v) => setAnswers((a) => ({ ...a, [k]: v })) : undefined}
                   marks={result?.marks} showCorrect={checked} overrides={overrides} />
@@ -115,16 +115,116 @@ export default function LessonView({ plan, interactive = true, initialAnswers, o
             );
           }
         }
-      })}
-      {interactive && sections.length > 0 && (
-        <div className="ls-foot">
-          {result && <div className="ex-result"><b>{result.score} / {result.total}</b><span>{result.total && result.score === result.total ? 'Ідеально!' : 'Правильні відповіді показані під помилками.'}</span></div>}
-          {!checked
-            ? <button className="mu-btn mu-btn--lime mu-btn--lg" onClick={check} disabled={saving}>{saving ? 'Зберігаю…' : submitLabel}</button>
-            : <button className="mu-btn" onClick={() => setChecked(false)}>Виправити помилки</button>}
-          {err && <p className="t-neg">Не вдалося зберегти. Спробуй ще раз.</p>}
-        </div>
+  };
+
+  const footer = interactive && sections.length > 0 ? (
+    <div className="ls-foot">
+      {result && <div className="ex-result"><b>{result.score} / {result.total}</b><span>{result.total && result.score === result.total ? 'Ідеально!' : 'Правильні відповіді показані під помилками.'}</span></div>}
+      {!checked
+        ? <button className="mu-btn mu-btn--lime mu-btn--lg" onClick={check} disabled={saving}>{saving ? 'Зберігаю…' : submitLabel}</button>
+        : <button className="mu-btn" onClick={() => setChecked(false)}>Виправити помилки</button>}
+      {err && <p className="t-neg">Не вдалося зберегти. Спробуй ще раз.</p>}
+    </div>
+  ) : null;
+
+  if (slides) return <SlideShow plan={plan} renderBlock={renderBlock} footer={footer} teacher={teacher} onExit={onExit} />;
+
+  return (
+    <article className="ls">
+      {plan.title && <h1 className="ls-title">{plan.title}</h1>}
+      {(plan.level || plan.topic) && <div className="ls-meta">{[plan.level, plan.topic, ...(plan.focus ?? [])].filter(Boolean).join(' · ')}</div>}
+      {plan.aims && (
+        <div className="ls-aims"><b>На цьому уроці</b><ul>{plan.aims.split('\n').filter((x) => x.trim()).map((a, i) => <li key={i}>{a}</li>)}</ul></div>
       )}
+      {plan.blocks.map((b) => renderBlock(b))}
+      {footer}
     </article>
+  );
+}
+
+// Показ уроку слайдами: стрілки, пробіл, повний екран, нотатки вчителя збоку
+function SlideShow({ plan, renderBlock, footer, teacher, onExit }: {
+  plan: Pick<Plan, 'title' | 'blocks'> & Partial<Plan>;
+  renderBlock: (b: Block) => React.ReactNode;
+  footer: React.ReactNode;
+  teacher: boolean;
+  onExit?: () => void;
+}) {
+  const slides = useMemo(() => toSlides(plan.blocks), [plan.blocks]);
+  const total = slides.length + 1; // + титульний
+  const [i, setI] = useState(0);
+  const [notes, setNotes] = useState(false);
+  const [full, setFull] = useState(false);
+  const root = useRef<HTMLDivElement>(null);
+  const stage = useRef<HTMLDivElement>(null);
+
+  const go = useCallback((d: number) => setI((x) => Math.min(total - 1, Math.max(0, x + d))), [total]);
+  useEffect(() => { stage.current?.scrollTo({ top: 0 }); }, [i]);
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      const t = e.target as HTMLElement;
+      if (t.closest('input, textarea, select, [contenteditable]')) return;
+      if (e.key === 'ArrowRight' || e.key === 'PageDown' || (e.key === ' ' && !t.closest('button'))) { e.preventDefault(); go(1); }
+      if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); go(-1); }
+      if (e.key === 'Home') setI(0);
+      if (e.key === 'End') setI(total - 1);
+    };
+    const onFs = () => setFull(document.fullscreenElement === root.current);
+    window.addEventListener('keydown', onKey);
+    document.addEventListener('fullscreenchange', onFs);
+    return () => { window.removeEventListener('keydown', onKey); document.removeEventListener('fullscreenchange', onFs); };
+  }, [go, total]);
+
+  const toggleFull = () => {
+    if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
+    else root.current?.requestFullscreen?.().catch(() => {});
+  };
+  const exit = () => { if (document.fullscreenElement) document.exitFullscreen().catch(() => {}); onExit?.(); };
+
+  const s = i > 0 ? slides[i - 1] : null;
+  const isLast = i === total - 1;
+  const hasEx = s?.blocks.some((b) => b.type === 'exercise');
+  const cur = s?.notes ?? [];
+
+  return (
+    <div ref={root} className={`sl ${full ? 'is-full' : ''}`}>
+      <div className="sl__bar">
+        <span className="sl__count">{i + 1} / {total}</span>
+        <div className="sl__progress"><span style={{ width: `${((i + 1) / total) * 100}%` }} /></div>
+        {teacher && <button className={`g-chip ${notes ? 'is-on' : ''}`} onClick={() => setNotes(!notes)} aria-pressed={notes}>Нотатки{cur.length ? ` (${cur.length})` : ''}</button>}
+        <button className="g-chip" onClick={toggleFull}>{full ? 'Вийти з повного екрана' : 'На весь екран'}</button>
+        {onExit && <button className="g-chip" onClick={exit}>Закрити</button>}
+      </div>
+      <div className={`sl__body ${notes ? 'has-notes' : ''}`}>
+        <div ref={stage} className="sl__stage">
+          {!s ? (
+            <div className="sl__cover">
+              {(plan.level || plan.topic) && <div className="ls-meta">{[plan.level, plan.topic].filter(Boolean).join(' · ')}</div>}
+              <h1 className="ls-title">{plan.title || 'Урок'}</h1>
+              {plan.aims && <div className="ls-aims"><b>На цьому уроці</b><ul>{plan.aims.split('\n').filter((x) => x.trim()).map((a, k) => <li key={k}>{a}</li>)}</ul></div>}
+            </div>
+          ) : (
+            <article className="ls sl__slide" key={i}>
+              {s.title && <h2 className="ls-h sl__title">{s.title}</h2>}
+              {s.blocks.map((b) => renderBlock(b))}
+              {(hasEx || isLast) && footer}
+            </article>
+          )}
+        </div>
+        {notes && (
+          <aside className="sl__notes">
+            <small>Тільки для вчителя</small>
+            {cur.length ? cur.map((n, k) => <p key={k}>{n}</p>) : <p className="t-muted">На цьому слайді нотаток немає.</p>}
+          </aside>
+        )}
+      </div>
+      <div className="sl__nav">
+        <button className="mu-btn" onClick={() => go(-1)} disabled={i === 0} aria-label="Попередній слайд"><Icon id="e-arrow" className="mu-ic sl__back" />Назад</button>
+        <div className="sl__dots">
+          {Array.from({ length: total }, (_, k) => <button key={k} className={k === i ? 'is-on' : ''} onClick={() => setI(k)} aria-label={`Слайд ${k + 1}`} />)}
+        </div>
+        <button className="mu-btn mu-btn--lime" onClick={() => go(1)} disabled={isLast} aria-label="Наступний слайд">Далі<Icon id="e-arrow" /></button>
+      </div>
+    </div>
   );
 }
