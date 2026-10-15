@@ -7,20 +7,37 @@ import { useAuth } from '@clerk/nextjs';
 import Icon from '../Icon';
 import { CITY_CATS, CITY_ITEMS, FLOORS, GROUNDS, HEROES, PAINT, ROOM_CATS, ROOM_ITEMS, ROOM_SIZES, ROOM_TYPES, WALLS, YARD_CATS, YARD_ITEMS, actOf, getItem, type WorldItem } from '@/lib/worlds/world-items';
 import EarnCoins from './EarnCoins';
+import HousePlan from './HousePlan';
+import { attach, contact, doorsOf, grow, layout, sharedSides } from '@/lib/worlds/house-plan';
 import { art, say, sfx } from '@/lib/worlds/sound';
-import type { HeroAct, Placed, WorldScene, WorldMode } from '@/lib/worlds/world-scene';
+import type { CamView, HeroAct, HeroStart, Placed, ScenePlan, WorldScene, WorldMode } from '@/lib/worlds/world-scene';
 import ATLAS from '@/lib/worlds/kenney-thumbs.json';
 
 const SAVE = 'murly-town-v1';
-type Room = { id: string; name: string; placed: Placed[]; wall: number; floor: number; size: number };
+type Room = { id: string; name: string; placed: Placed[]; wall: number; floor: number; size: number; at?: { x: number; z: number }; level?: number };
 type House = { rooms: Room[]; yard: Placed[]; placed?: Placed[]; wall?: number; floor?: number };
 type View = { mode: WorldMode; house?: string; room?: string };
 const newRoom = (name: string, id = `r${Date.now().toString(36)}`): Room => ({ id, name, placed: [], wall: 0, floor: 0, size: 2.8 });
 // старі збереження: одна кімната без списку кімнат
+// кімнати без місця на плані ставимо впритул одна до одної
 const normHouse = (h?: Partial<House>): House => ({
-  rooms: h?.rooms?.length ? h.rooms : [{ id: 'r1', name: 'Living room', placed: h?.placed ?? [], wall: h?.wall ?? 0, floor: h?.floor ?? 0, size: 2.8 }],
+  rooms: layout(h?.rooms?.length ? h.rooms : [{ id: 'r1', name: 'Living room', placed: h?.placed ?? [], wall: h?.wall ?? 0, floor: h?.floor ?? 0, size: 2.8 }]),
   yard: h?.yard ?? [],
 });
+// дані для сцени: двері поточної кімнати і сусіди на тому ж поверсі
+function planFor(h: House, me: Room): ScenePlan {
+  const same = h.rooms.filter((r) => (r.level ?? 0) === (me.level ?? 0));
+  const others = same.filter((r) => r.id !== me.id);
+  const done: Room[] = [me];
+  const rooms = others.map((r) => {
+    // стіну, яку повністю вже намалювала інша кімната, не малюємо вдруге
+    const skip = [0, 1, 2, 3].filter((side) => done.some((o) => { const c = contact(r, o); return c && c.side === side && c.hi - c.lo >= r.size - 0.02; }));
+    done.push(r);
+    const f = FLOORS[r.floor] ?? FLOORS[0];
+    return { id: r.id, name: r.name, size: r.size, x: +(r.at!.x - me.at!.x).toFixed(2), z: +(r.at!.z - me.at!.z).toFixed(2), wall: (WALLS[r.wall] ?? WALLS[0]).hex, floor: { hex: f.hex, kind: f.kind }, placed: r.placed, doors: doorsOf(r.id, same), shared: sharedSides(r.id, same), skip };
+  });
+  return { me: me.id, doors: doorsOf(me.id, same), shared: sharedSides(me.id, same), entrance: me.id === h.rooms[0].id, rooms };
+}
 type Save = { coins: number; unlocked: string[]; done: number; ground: number; city: Placed[]; houses: Record<string, House>; hero: string | null; started?: boolean; playerName?: string; savedAt?: number };
 type Task = { kind: 'place' | 'color' | 'on' | 'next' | 'inside'; file: string; target?: string; color?: string; en: string };
 const START: Save = { coins: 20, unlocked: [], done: 0, ground: 0, city: [], houses: {}, hero: 'Rogue', started: false, playerName: '' };
@@ -100,6 +117,8 @@ export default function TownGame({ full: fullPage = false }: { full?: boolean })
   const [party, setParty] = useState(0);
   const [heroes, setHeroes] = useState(false);
   const [heroBar, setHeroBar] = useState(false);
+  const [planOpen, setPlanOpen] = useState(false);
+  const pending = useRef<{ heroAt: HeroStart; view: CamView } | null>(null);
   // висота магазину внизу: панель вибраного предмета і кнопки камери стоять над ним
   const shopEl = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -176,6 +195,8 @@ export default function TownGame({ full: fullPage = false }: { full?: boolean })
   const house = view.house ? s.houses[view.house] : undefined;
   const room = house && view.mode === 'room' ? house.rooms.find((r) => r.id === view.room) ?? house.rooms[0] : undefined;
   const roomSize = room?.size;
+  // сцена перебудовується, коли змінюється план або сусідні кімнати (але не колір поточної)
+  const planKey = house && room ? normHouse(house).rooms.map((r) => [r.id, r.size, r.at?.x, r.at?.z, r.level ?? 0, r.id === room.id ? '' : `${r.wall}.${r.floor}.${r.placed.length}.${r.placed.map((q) => q.x + q.z + q.rot).join('.')}`].join(',')).join('|') : '';
 
   // ---------- сцена: нова при зміні місця ----------
   useEffect(() => {
@@ -201,6 +222,7 @@ export default function TownGame({ full: fullPage = false }: { full?: boolean })
           onBad: () => { sfx.bad(); flash("Oops! You can't put it here."); },
           onHero: () => { const h = HEROES.find((x) => x.file === sRef.current.hero); say(`Hello! I'm ${sRef.current.playerName || h?.en || 'here'}!`); setSel(null); setHeroBar(true); },
           onHouse: () => enterRoom(),
+          onRoom: (id, heroAt, cam) => { pending.current = { heroAt, view: cam }; const h = normHouse(sRef.current.houses[viewRef.current.house ?? '']); const r = h.rooms.find((q) => q.id === id); setView({ mode: 'room', house: viewRef.current.house, room: id }); if (r) say(`The ${r.name.toLowerCase()}`); },
         }, view.mode, sceneOpts());
         scene.current = sc;
         sc.setHero(sRef.current.hero);
@@ -210,16 +232,18 @@ export default function TownGame({ full: fullPage = false }: { full?: boolean })
     });
     setCat(catsOf(view.mode)[0]);
     return () => { alive = false; };
-  }, [view.mode, view.house, view.room, roomSize, loaded]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [view.mode, view.house, view.room, roomSize, planKey, loaded]); // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => () => { scene.current?.dispose(); scene.current = null; }, []);
 
   const curList = () => listOf(sRef.current, viewRef.current);
   const cityFile = (uid?: string) => sRef.current.city.find((p) => p.uid === uid)?.file;
   const sceneOpts = () => {
     const v = viewRef.current; const d = getItem('city', cityFile(v.house) ?? '');
-    return { roomSize: curRoom()?.size, sky: (d?.private ? 'garden' : 'clouds') as 'garden' | 'clouds' };
+    const r = curRoom(); const h = sRef.current.houses[v.house ?? ''];
+    const p = pending.current; pending.current = null;
+    return { roomSize: r?.size, sky: (d?.private ? 'garden' : 'clouds') as 'garden' | 'clouds', plan: v.mode === 'room' && h && r ? planFor(normHouse(h), normHouse(h).rooms.find((q) => q.id === r.id)!) : undefined, heroAt: p?.heroAt, view: p?.view };
   };
-  const curRoom = () => { const v = viewRef.current; const h = sRef.current.houses[v.house ?? '']; return h ? h.rooms.find((r) => r.id === v.room) ?? h.rooms[0] : undefined; };
+  const curRoom = () => { const v = viewRef.current; const h = sRef.current.houses[v.house ?? '']; if (!h) return undefined; const n = normHouse(h); return n.rooms.find((r) => r.id === v.room) ?? n.rooms[0]; };
   const enterRoom = (rid?: string) => { const v = viewRef.current; const h = normHouse(sRef.current.houses[v.house ?? '']); setView({ mode: 'room', house: v.house, room: rid ?? h.rooms[0].id }); say(`Welcome to the ${(h.rooms.find((r) => r.id === rid) ?? h.rooms[0]).name.toLowerCase()}!`); };
   const nameOf = (p: Placed) => { const d = getItem(viewRef.current.mode, p.file); const c = colorName(p.color); return d ? (c ? `${c} ${d.en}` : d.en) : p.file; };
 
@@ -366,15 +390,15 @@ export default function TownGame({ full: fullPage = false }: { full?: boolean })
     if (!view.house) return;
     const price = (house?.rooms.length ?? 1) >= 1 ? 15 : 0;
     if (!(await pay(price, `Murly Town: ${name}`))) return;
-    const r = newRoom(name);
-    setS((c) => { const h = normHouse(c.houses[view.house!]); return { ...c, houses: { ...c.houses, [view.house!]: { ...h, rooms: [...h.rooms, r] } } }; });
-    setRoomMenu(false); setView({ mode: 'room', house: view.house, room: r.id }); say(`A new ${name.toLowerCase()}!`);
+    let r = newRoom(name);
+    setS((c) => { const h = normHouse(c.houses[view.house!]); r = attach({ ...r, level: room?.level ?? 0 }, h.rooms, room?.id); return { ...c, houses: { ...c.houses, [view.house!]: { ...h, rooms: [...h.rooms, r] } } }; });
+    setRoomMenu(false); window.setTimeout(() => setView({ mode: 'room', house: view.house, room: r.id }), 0); say(`A new ${name.toLowerCase()}! It is next to this room.`);
   };
   const growRoom = async () => {
     if (!room || !view.house) return;
     const next = ROOM_SIZES.find((x) => x.size > room.size); if (!next) return;
     if (!(await pay(next.price, `Murly Town: ${next.en} room`))) return;
-    setS((c) => { const h = normHouse(c.houses[view.house!]); return { ...c, houses: { ...c.houses, [view.house!]: { ...h, rooms: h.rooms.map((r) => (r.id === room.id ? { ...r, size: next.size } : r)) } } }; });
+    setS((c) => { const h = normHouse(c.houses[view.house!]); return { ...c, houses: { ...c.houses, [view.house!]: { ...h, rooms: grow(h.rooms, room.id, next.size) } } }; });
     say(`Now the room is ${next.en}!`);
   };
   const clearHere = () => {
@@ -485,6 +509,7 @@ export default function TownGame({ full: fullPage = false }: { full?: boolean })
               <button className="mu-btn t-btn-sm hm-en" onClick={() => (isPrivate ? setView({ mode: 'yard', house: view.house }) : backToTown())}>{isPrivate ? '← Garden' : '← Back to town'}</button>
               {house?.rooms.map((r) => <button key={r.id} className={`g-chip hm-en ${room?.id === r.id ? 'is-on' : ''}`} onClick={() => r.id !== room?.id && enterRoom(r.id)}>{r.name}</button>)}
               <button className="g-chip hm-en" onClick={() => setRoomMenu(!roomMenu)}>+ Room</button>
+              {(house?.rooms.length ?? 0) > 1 && <button className="g-chip hm-en" onClick={() => { setPlanOpen(true); say('House plan'); }}>House plan</button>}
             </>
           )}
         </div>
@@ -501,6 +526,16 @@ export default function TownGame({ full: fullPage = false }: { full?: boolean })
           <button onClick={() => scene.current?.zoom(-1)} aria-label="Zoom out" title="Zoom out">−</button>
           <button onClick={() => scene.current?.findHero()} aria-label="Find my hero" title="Find my hero" className="hm-cam__me">Me</button>
         </div>
+        {planOpen && house && view.house && (
+          <HousePlan
+            rooms={normHouse(house).rooms.map((r) => ({ ...r, wallHex: (WALLS[r.wall] ?? WALLS[0]).hex, floorHex: (FLOORS[r.floor] ?? FLOORS[0]).hex }))}
+            current={room?.id}
+            onChange={(next) => { sfx.pop(); setS((c) => { const h = normHouse(c.houses[view.house!]); return { ...c, houses: { ...c.houses, [view.house!]: { ...h, rooms: h.rooms.map((r) => { const n = next.find((q) => q.id === r.id); return n ? { ...r, at: n.at } : r; }) } } }; }); }}
+            onEnter={(id) => { setPlanOpen(false); if (id !== room?.id) enterRoom(id); }}
+            onClose={() => setPlanOpen(false)}
+            onBad={(m) => { sfx.bad(); flash(m); }}
+          />
+        )}
         {!ready && <div className="hm-loading">Loading…</div>}
         {loaded && !s.started && <StartScreen onStart={start} />}
         {earn && <EarnCoins signedIn={!!isSignedIn} onClose={() => setEarn(false)} onCoins={(n, bal) => { setS((c) => ({ ...c, coins: typeof bal === 'number' ? bal : c.coins + n })); if (n) { setParty((x) => x + 1); sfx.coin(); } }} />}
