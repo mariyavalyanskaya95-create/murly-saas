@@ -179,3 +179,16 @@ begin
 end $$;
 revoke execute on function add_coins(text, int, text, text, text) from public, anon, authenticated;
 grant execute on function add_coins(text, int, text, text, text) to service_role;
+
+-- 16.10: «Earn coins» у грі (5 завдань за темою)
+create table if not exists quiz_sessions (
+  id uuid primary key,
+  user_id text not null,
+  topic text,
+  questions jsonb not null,
+  done boolean not null default false,
+  score int,
+  created_at timestamptz not null default now()
+);
+create index if not exists quiz_sessions_user_idx on quiz_sessions (user_id, created_at desc);
+alter table quiz_sessions enable row level security;
