@@ -5,10 +5,10 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import { useAuth } from '@clerk/nextjs';
 import Icon from '../Icon';
-import { CITY_CATS, CITY_ITEMS, FLOORS, GROUNDS, HEROES, PAINT, ROOM_CATS, ROOM_ITEMS, ROOM_SIZES, ROOM_TYPES, WALLS, YARD_CATS, YARD_ITEMS, getItem, type WorldItem } from '@/lib/worlds/world-items';
+import { CITY_CATS, CITY_ITEMS, FLOORS, GROUNDS, HEROES, PAINT, ROOM_CATS, ROOM_ITEMS, ROOM_SIZES, ROOM_TYPES, WALLS, YARD_CATS, YARD_ITEMS, actOf, getItem, type WorldItem } from '@/lib/worlds/world-items';
 import EarnCoins from './EarnCoins';
 import { art, say, sfx } from '@/lib/worlds/sound';
-import type { Placed, WorldScene, WorldMode } from '@/lib/worlds/world-scene';
+import type { HeroAct, Placed, WorldScene, WorldMode } from '@/lib/worlds/world-scene';
 import ATLAS from '@/lib/worlds/kenney-thumbs.json';
 
 const SAVE = 'murly-town-v1';
@@ -99,6 +99,7 @@ export default function TownGame({ full: fullPage = false }: { full?: boolean })
   const [msg, setMsg] = useState('');
   const [party, setParty] = useState(0);
   const [heroes, setHeroes] = useState(false);
+  const [heroBar, setHeroBar] = useState(false);
   const [ghost, setGhost] = useState<{ def: WorldItem; x: number; y: number } | null>(null);
   const [err, setErr] = useState(false);
   const sRef = useRef(s); sRef.current = s;
@@ -191,7 +192,7 @@ export default function TownGame({ full: fullPage = false }: { full?: boolean })
             });
           },
           onBad: () => { sfx.bad(); flash("Oops! You can't put it here."); },
-          onHero: () => { const h = HEROES.find((x) => x.file === sRef.current.hero); say(`Hello! I'm ${sRef.current.playerName || h?.en || 'here'}!`); },
+          onHero: () => { const h = HEROES.find((x) => x.file === sRef.current.hero); say(`Hello! I'm ${sRef.current.playerName || h?.en || 'here'}!`); setSel(null); setHeroBar(true); },
           onHouse: () => enterRoom(),
         }, view.mode, sceneOpts());
         scene.current = sc;
@@ -375,6 +376,13 @@ export default function TownGame({ full: fullPage = false }: { full?: boolean })
     setSel(null);
   };
   const setHouse = (patch: Partial<Room>) => view.house && room && setS((c) => { const h = normHouse(c.houses[view.house!]); return { ...c, houses: { ...c.houses, [view.house!]: { ...h, rooms: h.rooms.map((r) => (r.id === room.id ? { ...r, ...patch } : r)) } } }; });
+  const doAct = (kind: HeroAct, p?: Placed) => {
+    const sc = scene.current; if (!sc || !sc.heroAct(kind, p?.uid)) return;
+    const n = p ? `${art(nameOf(p))} ${nameOf(p)}` : '';
+    const line: Record<HeroAct, string> = { sit: `I'm sitting on ${n}.`, sleep: 'Good night! I am going to sleep.', water: `I'm watering ${n}.`, eat: `Yummy! I'm eating ${n}.`, dance: "Let's dance!", wave: 'Hello, friends!', phone: 'Hello? Who is calling?', stand: "I'm standing up." };
+    say(line[kind]); if (p) setSel(null);
+  };
+  const ACT_LABEL: Record<string, string> = { sit: 'Sit down', sleep: 'Go to sleep', water: 'Water it', eat: 'Eat it' };
   const pickHero = (file: string | null) => { setS((c) => ({ ...c, hero: file })); scene.current?.setHero(file); setHeroes(false); const h = HEROES.find((x) => x.file === file); if (h) say(`Hi! I'm ${h.en}!`); };
   const start = (hero: string, name: string) => {
     setS((c) => ({ ...c, hero, playerName: name, started: true }));
@@ -494,7 +502,16 @@ export default function TownGame({ full: fullPage = false }: { full?: boolean })
         {msg && <div className="rw-msg" role="status">{msg}</div>}
       </div>
 
-      {cur && curDef ? (
+      {heroBar && !cur && s.hero ? (
+        <div className="rw-sel hm-herobar">
+          <b>{s.playerName || heroName || 'Hero'}</b>
+          <button className="mu-btn t-btn-sm hm-en" onClick={() => doAct('wave')}>Wave</button>
+          <button className="mu-btn t-btn-sm hm-en" onClick={() => doAct('dance')}>Dance</button>
+          <button className="mu-btn t-btn-sm hm-en" onClick={() => doAct('phone')}>Phone</button>
+          <button className="mu-btn t-btn-sm hm-en" onClick={() => doAct('stand')}>Stand up</button>
+          <button className="g-chip hm-en" onClick={() => setHeroBar(false)}>Close</button>
+        </div>
+      ) : cur && curDef ? (
         <div className="rw-sel">
           <button className="rw-say" onClick={() => say(`${art(nameOf(cur))} ${nameOf(cur)}`)} aria-label="Listen"><Icon id="e-speak" /></button>
           <div className="rw-sel__name"><b>{art(nameOf(cur))} {nameOf(cur)}</b></div>
@@ -512,6 +529,7 @@ export default function TownGame({ full: fullPage = false }: { full?: boolean })
             </div>
           )}
           {curDef.building && <button className="mu-btn mu-btn--lime t-btn-sm hm-en" onClick={goInside}>Go inside</button>}
+          {s.hero && actOf(curDef) && <button className="mu-btn mu-btn--lime t-btn-sm hm-en" onClick={() => doAct(actOf(curDef)!, cur)}>{ACT_LABEL[actOf(curDef)!]}</button>}
           {!curDef.wall && <button className="mu-btn t-btn-sm hm-en" onClick={rotate}>Turn</button>}
           {!curDef.building && <button className="mu-btn t-btn-sm hm-en" onClick={copy}>Copy</button>}
           <button className="mu-btn t-btn-sm hm-en" onClick={remove}>Remove</button>
