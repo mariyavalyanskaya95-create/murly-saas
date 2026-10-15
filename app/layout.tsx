@@ -3,6 +3,7 @@ import { ClerkProvider } from '@clerk/nextjs';
 import './globals.css';
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://murly.com.ua'),
   title: 'Murly: склади НМТ з англійської на 200 балів',
   description:
     'Інтерактивні квізи, пробні тести та AI-розбір помилок для підготовки до НМТ з англійської. Для старшокласників і репетиторів.',
