@@ -69,3 +69,24 @@ export function youtubeEmbed(url: string) {
 export function lessonSections(blocks: Block[]): Section[] {
   return blocks.flatMap((b) => (b.type === 'exercise' ? b.sections : []));
 }
+
+// Режим «слайди»: заголовок починає новий слайд; на слайді максимум один «великий» блок
+// (відео, аудіо, вправа, слова, PDF, картинка, говоріння); текст після нього йде на новий слайд.
+// Нотатки вчителя прикріплюються до слайда, де вони стоять.
+export type Slide = { title?: string; blocks: Block[]; notes: string[] };
+const BIG: BlockType[] = ['video', 'audio', 'exercise', 'vocab', 'pdf', 'image', 'speaking'];
+export function toSlides(blocks: Block[]): Slide[] {
+  const out: Slide[] = [];
+  let cur: Slide | null = null;
+  let title: string | undefined;
+  const hasBig = (s: Slide) => s.blocks.some((b) => BIG.includes(b.type));
+  const fresh = () => { cur = { title, blocks: [], notes: [] }; out.push(cur); return cur; };
+  for (const b of blocks) {
+    if (b.type === 'note') { if (b.text.trim()) (cur ?? fresh()).notes.push(b.text); continue; }
+    if (b.type === 'heading') { title = b.text; fresh(); continue; }
+    let s: Slide = cur ?? fresh();
+    if (hasBig(s)) s = fresh();
+    s.blocks.push(b);
+  }
+  return out.filter((s) => s.blocks.length || s.notes.length || s.title);
+}
