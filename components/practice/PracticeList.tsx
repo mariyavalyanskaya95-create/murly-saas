@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { useState } from 'react';
-import { AGES, LEVELS, type Age, type Plan } from '@/lib/lesson';
+import { AGES, LEVELS, ageLabel, type Age, type Plan } from '@/lib/lesson';
 import { useT } from '@/components/LangProvider';
 
 export default function PracticeList({ items }: { items: Plan[] }) {
@@ -20,7 +20,7 @@ export default function PracticeList({ items }: { items: Plan[] }) {
         </div>
         <div className="g-chips">
           <button className={`g-chip ${!age ? 'is-on' : ''}`} onClick={() => setAge('')}>{t({ uk: 'Будь-який вік', ru: 'Любой возраст', en: 'Any age' })}</button>
-          {AGES.map((a) => <button key={a.id} className={`g-chip ${age === a.id ? 'is-on' : ''}`} onClick={() => setAge(a.id)}>{a.label}</button>)}
+          {AGES.map((a) => <button key={a.id} className={`g-chip ${age === a.id ? 'is-on' : ''}`} onClick={() => setAge(a.id)}>{ageLabel(a.id, t.lang)}</button>)}
         </div>
         <div className="g-chips">
           <button className={`g-chip ${!level ? 'is-on' : ''}`} onClick={() => setLevel('')}>{t({ uk: 'Усі рівні', ru: 'Все уровни', en: 'All levels' })}</button>
@@ -32,7 +32,7 @@ export default function PracticeList({ items }: { items: Plan[] }) {
           <Link key={p.id} href={`/practice/${p.id.replace(/^lib-/, '')}`} className={`gr-card gr--${p.color} le-card`}>
             <span className="le-card__tags">
               <span className="gr-level">{p.level}</span>
-              <span className="le-tag">{AGES.find((a) => a.id === p.age)?.label}</span>
+              <span className="le-tag">{ageLabel(p.age, t.lang)}</span>
               {(p.focus ?? []).map((f) => <span key={f} className="le-tag">{f}</span>)}
             </span>
             <span className="gr-card__title">{p.title}</span>
