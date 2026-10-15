@@ -12,7 +12,10 @@ export default function HousePlan({ rooms, current, onChange, onEnter, onClose, 
   const level = rooms.find((r) => r.id === current)?.level ?? 0;
   const on = rooms.filter((r) => (r.level ?? 0) === level);
   const svg = useRef<SVGSVGElement>(null);
-  const [drag, setDrag] = useState<{ id: string; dx: number; dz: number; x: number; z: number; moved: boolean } | null>(null);
+  type Drag = { id: string; dx: number; dz: number; x: number; z: number; sx: number; sz: number; moved: boolean };
+  const [drag, setDragState] = useState<Drag | null>(null);
+  const dragRef = useRef<Drag | null>(null); // події миші бувають швидші за перемальовування
+  const setDrag = (d: Drag | null) => { dragRef.current = d; setDragState(d); };
   const b = useMemo(() => bounds(on, level), [on, level]);
   const pad = 2.2; // місце довкола, щоб було куди перетягнути
   const vb = { x: b.minX - pad, z: b.minZ - pad, w: b.maxX - b.minX + pad * 2, h: b.maxZ - b.minZ + pad * 2 };
@@ -27,17 +30,19 @@ export default function HousePlan({ rooms, current, onChange, onEnter, onClose, 
   const down = (e: React.PointerEvent, r: R) => {
     (e.target as Element).setPointerCapture?.(e.pointerId);
     const p = toPlan(e);
-    setDrag({ id: r.id, dx: p.x - r.at!.x, dz: p.z - r.at!.z, x: r.at!.x, z: r.at!.z, moved: false });
+    setDrag({ id: r.id, dx: p.x - r.at!.x, dz: p.z - r.at!.z, x: r.at!.x, z: r.at!.z, sx: r.at!.x, sz: r.at!.z, moved: false });
   };
   const move = (e: React.PointerEvent) => {
-    if (!drag) return;
+    const d = dragRef.current; if (!d) return;
     const p = toPlan(e);
-    const x = p.x - drag.dx, z = p.z - drag.dz;
-    setDrag({ ...drag, x, z, moved: drag.moved || Math.hypot(x - drag.x, z - drag.z) > 0.15 });
+    const x = p.x - d.dx, z = p.z - d.dz;
+    setDrag({ ...d, x, z, moved: d.moved || Math.hypot(x - d.sx, z - d.sz) > 0.15 });
   };
-  const up = () => {
-    if (!drag) return;
-    const d = drag; setDrag(null);
+  const up = (e: React.PointerEvent) => {
+    const d0 = dragRef.current; if (!d0) return;
+    const p = toPlan(e);
+    const d = { ...d0, x: p.x - d0.dx, z: p.z - d0.dz }; d.moved = d0.moved || Math.hypot(d.x - d.sx, d.z - d.sz) > 0.15;
+    setDrag(null);
     const r = rooms.find((q) => q.id === d.id)!;
     if (!d.moved) { onEnter(d.id); return; }
     if (on.length < 2) return;
