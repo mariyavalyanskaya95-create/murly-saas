@@ -2,7 +2,7 @@
 // У грі всі назви тільки англійською. Моделі CC0: Kenney Furniture Kit, KayKit (Furniture, Restaurant, Holiday, City Builder).
 import { HOME_ITEMS } from './home-items';
 
-export type Pack = 'kenney' | 'kaykit' | 'food' | 'holiday' | 'city' | 'suburban' | 'nature' | 'spooky' | 'proc';
+export type Pack = 'kenney' | 'kaykit' | 'food' | 'holiday' | 'city' | 'suburban' | 'nature' | 'forest' | 'spooky' | 'proc';
 export type Mode = 'room' | 'city' | 'yard';
 export type WorldItem = {
   file: string; en: string; cat: string; pack: Pack;
@@ -22,9 +22,9 @@ export type WorldItem = {
 export const PACK_URL: Record<Pack, string> = {
   kenney: '/worlds/kenney-all.glb', kaykit: '/worlds/kaykit-all.glb',
   food: '/worlds/kaykit-food.glb', holiday: '/worlds/kaykit-holiday.glb', city: '/worlds/kaykit-city.glb',
-  suburban: '/worlds/kenney-suburban.glb', nature: '/worlds/kenney-nature.glb', spooky: '/worlds/spooky.glb', proc: '',
+  suburban: '/worlds/kenney-suburban.glb', nature: '/worlds/kenney-nature.glb', spooky: '/worlds/spooky.glb', forest: '/worlds/forest.glb', proc: '',
 };
-export const PACK_SCALE: Record<Pack, number> = { kenney: 1, kaykit: 0.38, food: 0.13, holiday: 0.26, city: 1, suburban: 1, nature: 1, spooky: 1, proc: 1 };
+export const PACK_SCALE: Record<Pack, number> = { kenney: 1, kaykit: 0.38, food: 0.13, holiday: 0.26, city: 1, suburban: 1, nature: 1, forest: 1, spooky: 1, proc: 1 };
 
 // ---------- кімната ----------
 const ROOM_CAT: Record<string, string> = { living: 'Living room', bedroom: 'Bedroom', kitchen: 'Kitchen', bathroom: 'Bathroom', study: 'Study', decor: 'Decor' };
@@ -117,6 +117,22 @@ CITY_ITEMS.push(
   { file: 'driveway-short', en: 'driveway', cat: 'Roads', pack: 'suburban', scale: 1.5, rug: true, grid: 0.5, paint: 'none' },
 );
 
+// ---------- ліс (KayKit Forest Nature Pack, CC0) ----------
+const FOREST: [string, string, number][] = [
+  ['f_tree_1_a', 'leafy tree', 0.55], ['f_tree_1_b', 'big leafy tree', 0.5], ['f_tree_1_c', 'huge tree', 0.38],
+  ['f_tree_2_a', 'slim tree', 0.55], ['f_tree_2_c', 'tall tree', 0.42], ['f_tree_2_e', 'giant tree', 0.34],
+  ['f_tree_3_a', 'round bush tree', 0.6], ['f_tree_3_b', 'big round tree', 0.5], ['f_tree_3_c', 'wide tree', 0.42],
+  ['f_tree_4_a', 'spruce', 0.5], ['f_tree_4_b', 'tall spruce', 0.42], ['f_tree_4_c', 'giant spruce', 0.3],
+  ['f_tree_bare_1_a', 'bare tree', 0.7], ['f_tree_bare_2_a', 'dry tree', 0.6],
+  ['f_bush_1_c', 'green bush', 0.7], ['f_bush_1_e', 'long bush', 0.7], ['f_bush_2_a', 'small round bush', 0.9], ['f_bush_2_c', 'round bush', 0.6],
+  ['f_bush_3_a', 'low bush', 0.8], ['f_bush_3_b', 'wide bush', 0.6], ['f_bush_4_a', 'little bush', 0.9], ['f_bush_4_c', 'fluffy bush', 0.6],
+  ['f_rock_1_a', 'pebble', 0.9], ['f_rock_1_e', 'grey rock', 0.7], ['f_rock_1_j', 'boulder', 0.35], ['f_rock_2_d', 'mossy rock', 0.5],
+  ['f_rock_3_a', 'flat rock', 0.8], ['f_rock_3_e', 'stone pile', 0.7], ['f_rock_3_k', 'cliff rock', 0.4],
+  ['f_grass_1_c', 'grass tuft', 1], ['f_grass_2_c', 'tall grass tuft', 0.9],
+];
+const forest = (k: number, cat: string, grid?: number): WorldItem[] => FOREST.map(([file, en, sc]) => ({ file, en, cat, pack: 'forest' as Pack, scale: sc * k, paint: 'none' as const, ...(grid ? { grid } : {}) }));
+CITY_ITEMS.push(...forest(0.5, 'Nature', 0.25));
+
 // ---------- Halloween (Kenney Graveyard Kit + KayKit Halloween Bits) ----------
 const S = (file: string, en: string, scale: number, o: Partial<WorldItem> = {}): WorldItem => ({ file, en, cat: 'Halloween', pack: 'spooky', scale, paint: 'none', ...o });
 const spooky = (k: number, kk: number): WorldItem[] => [
@@ -160,10 +176,11 @@ export const YARD_ITEMS: WorldItem[] = [
     const h = HOME_ITEMS.find((x) => x.file === file)!;
     return { file, en: file === 'tableRound' ? 'garden table' : file === 'chair' ? 'garden chair' : h.en, cat: 'Outdoor', pack: 'kenney' as Pack, surface: h.surface, small: h.small, paint: h.paint };
   }),
+  ...forest(1, 'Forest'),
   ...spooky(1.1, 0.35).filter((i) => i.file !== 'crypt-small' || true),
   ...HOLIDAY.filter((h) => !h.wall && !h.rug).map((h) => ({ ...h, scale: h.small ? 1 : 1.2 })),
 ];
-export const YARD_CATS = ['Garden', 'Vegetables', 'Fences & paths', 'Fun', 'Outdoor', 'Halloween', 'Holiday'];
+export const YARD_CATS = ['Garden', 'Forest', 'Vegetables', 'Fences & paths', 'Fun', 'Outdoor', 'Halloween', 'Holiday'];
 
 // кімнати, які можна додати в будинок за монетки
 export const ROOM_TYPES = ['Living room', 'Bedroom', 'Kitchen', 'Bathroom', 'Toilet', 'Kids room', 'Study', 'Upstairs bedroom', 'Attic', 'Playroom'];
@@ -198,3 +215,14 @@ export const GROUNDS = [
 export const HEROES = [
   { file: 'Rogue', en: 'Robin' }, { file: 'Ranger', en: 'Leo' }, { file: 'Mage', en: 'Max' }, { file: 'Knight', en: 'Alex' }, { file: 'Barbarian', en: 'Ben' },
 ];
+
+// що герой може зробити з предметом
+export function actOf(def: WorldItem | undefined): 'sit' | 'sleep' | 'water' | 'eat' | null {
+  if (!def) return null;
+  const f = def.file;
+  if (/^bed/i.test(f)) return 'sleep';
+  if (/sofa|couch|chair|bench|stool|ottoman/i.test(f) && !/table|cabinet/i.test(f)) return 'sit';
+  if (def.pack === 'food') return 'eat';
+  if ((def.pack === 'nature' || def.pack === 'forest') && /tree|bush|flower|crop|plant|grass|lily|cactus|pot/i.test(f)) return 'water';
+  return null;
+}

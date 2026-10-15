@@ -5,6 +5,12 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { getItem, PACK_SCALE, PACK_URL, type Pack, type WorldItem } from './world-items';
+import { retargetClips } from './retarget';
+
+export type HeroAct = 'sit' | 'sleep' | 'water' | 'eat' | 'dance' | 'wave' | 'phone' | 'stand';
+// додаткові рухи (Universal Animation Library, Quaternius, CC0), переносимо на скелет героя
+let extraAnims: Promise<{ scene: THREE.Object3D; clips: THREE.AnimationClip[] }[]> | null = null;
+const heroClips = new Map<string, THREE.AnimationClip[]>();
 
 export type WorldMode = 'room' | 'city' | 'yard';
 export type Placed = { uid: string; file: string; x: number; z: number; rot: number; color?: string; wall?: number; y?: number };
@@ -112,7 +118,7 @@ export class WorldScene {
   private ro: ResizeObserver;
   private hop: { uid: string; t0: number } | null = null;
   private clock = new THREE.Clock();
-  private hero: { obj: THREE.Object3D; mixer: THREE.AnimationMixer; acts: Record<string, THREE.AnimationAction>; cur: string; target: THREE.Vector3 | null } | null = null;
+  private hero: { obj: THREE.Object3D; mixer: THREE.AnimationMixer; acts: Record<string, THREE.AnimationAction>; cur: string; target: THREE.Vector3 | null; pose: 'stand' | 'sit' | 'lie'; then: (() => void) | null; seat: string | null } | null = null;
   private heroToken = 0;
   private c: { size: number; wallH: number; cam: readonly number[]; target: number; dist: readonly number[]; shadow: number; snap: number; hero: number; speed: number };
   readonly half: number;
@@ -410,33 +416,107 @@ export class WorldScene {
     if (this.hero) { this.scene.remove(this.hero.obj); this.hero = null; }
     if (!file) return;
     try {
-      const [char, a1, a2] = await Promise.all([
-        loader.loadAsync(`/worlds/heroes/${file}.glb`), loader.loadAsync('/worlds/heroes/anim-move.glb'), loader.loadAsync('/worlds/heroes/anim-general.glb'),
+      extraAnims = extraAnims ?? Promise.all(['/worlds/heroes/anim-ual1.glb', '/worlds/heroes/anim-ual2.glb'].map((u) => loader.loadAsync(u).then((g) => ({ scene: g.scene, clips: g.animations })))).catch(() => []);
+      const [char, a1, a2, extra] = await Promise.all([
+        loader.loadAsync(`/worlds/heroes/${file}.glb`), loader.loadAsync('/worlds/heroes/anim-move.glb'), loader.loadAsync('/worlds/heroes/anim-general.glb'), extraAnims,
       ]);
       if (token !== this.heroToken) return;
-      const obj = char.scene; obj.scale.setScalar(this.c.hero);
+      const obj = char.scene;
+      if (!heroClips.has(file)) { try { heroClips.set(file, extra.flatMap((x) => retargetClips(x.scene, x.clips, obj))); } catch { heroClips.set(file, []); } }
+      obj.scale.setScalar(this.c.hero);
       obj.traverse((o) => { const m = o as THREE.Mesh; if (m.isMesh) { m.castShadow = true; m.frustumCulled = false; } });
       const mixer = new THREE.AnimationMixer(obj);
       const acts: Record<string, THREE.AnimationAction> = {};
-      [...a1.animations, ...a2.animations].forEach((clip) => { acts[clip.name] = mixer.clipAction(clip); });
-      if (acts.Interact) { acts.Interact.setLoop(THREE.LoopOnce, 1); acts.Interact.clampWhenFinished = true; }
+      [...a1.animations, ...a2.animations, ...(heroClips.get(file) ?? [])].forEach((clip) => { acts[clip.name] = mixer.clipAction(clip); });
+      ['Interact', 'Yes', 'Consume', 'Farm_Watering', 'Sitting_Enter', 'Sitting_Exit', 'PickUp_Table'].forEach((n) => { if (acts[n]) { acts[n].setLoop(THREE.LoopOnce, 1); acts[n].clampWhenFinished = true; } });
+      if (acts.LayToIdle) { acts.LayToIdle.setLoop(THREE.LoopOnce, 1); acts.LayToIdle.clampWhenFinished = true; }
       obj.position.set(this.mode === 'room' ? 0.6 : 1, 0, this.mode === 'room' ? 0.6 : 1);
       obj.rotation.y = Math.PI / 4;
       obj.userData.hero = true;
       this.scene.add(obj);
-      this.hero = { obj, mixer, acts, cur: '', target: null };
+      this.hero = { obj, mixer, acts, cur: '', target: null, pose: 'stand', then: null, seat: null };
       this.play('Idle_A');
-      mixer.addEventListener('finished', () => this.play('Idle_A'));
+      mixer.addEventListener('finished', (e) => {
+        const h = this.hero; if (!h) return;
+        const name = (e.action as THREE.AnimationAction).getClip().name;
+        if (name === 'Sitting_Enter') { this.play('Sitting_Idle_Loop'); return; }
+        if (h.pose === 'sit' || h.pose === 'lie') return;
+        this.play('Idle_A');
+      });
     } catch { /* без героя */ }
   }
-  private play(name: string) {
+  private play(name: string, fade = 0.2) {
     const h = this.hero; if (!h || h.cur === name || !h.acts[name]) return;
-    const next = h.acts[name]; next.reset().fadeIn(0.2).play();
-    if (h.cur && h.acts[h.cur]) h.acts[h.cur].fadeOut(0.2);
+    const next = h.acts[name]; next.reset().fadeIn(fade).play();
+    if (h.cur && h.acts[h.cur]) h.acts[h.cur].fadeOut(fade);
     h.cur = name;
+  }
+  /** чи вміє герой робити додаткові рухи (сісти, лягти, танцювати) */
+  get heroCan() { return !!this.hero?.acts.Sitting_Idle_Loop; }
+  /** дія героя: сісти чи лягти на предмет, полити рослину, з'їсти, потанцювати */
+  heroAct(kind: HeroAct, uid?: string) {
+    const h = this.hero; if (!h) return false;
+    if (kind === 'stand') { this.standUp(); return true; }
+    if (kind === 'dance' || kind === 'wave' || kind === 'phone') {
+      this.standUp(true);
+      h.target = null;
+      this.play(kind === 'dance' ? 'Dance_Loop' : kind === 'wave' ? 'Yes' : 'Idle_TalkingPhone_Loop');
+      return true;
+    }
+    const it = uid ? this.items.get(uid) : null; if (!it) return false;
+    const front = new THREE.Vector3(0, 0, 1).applyAxisAngle(new THREE.Vector3(0, 1, 0), it.root.rotation.y);
+    const f = this.footprint(it);
+    const reach = (Math.max(f.w, f.d) / 2) + 0.12;
+    this.standUp(true);
+    if (kind === 'sit' || kind === 'sleep') {
+      const stand = it.root.position.clone().addScaledVector(front, (kind === 'sit' ? it.size.z / 2 : it.size.x / 2) + 0.12);
+      if (kind === 'sleep') stand.copy(it.root.position).add(new THREE.Vector3(-front.z, 0, front.x).multiplyScalar(it.size.x / 2 + 0.12));
+      h.then = () => this.settle(kind, it, front);
+      this.walkTo(stand.x, stand.z);
+      return true;
+    }
+    // полити чи з'їсти: підійти ближче і зробити рух
+    const dir = h.obj.position.clone().sub(it.root.position); dir.y = 0; if (dir.lengthSq() < 1e-4) dir.set(1, 0, 0);
+    const at = it.root.position.clone().addScaledVector(dir.normalize(), reach);
+    h.then = () => { const d = it.root.position.clone().sub(h.obj.position); h.obj.rotation.y = Math.atan2(d.x, d.z); this.play(kind === 'water' ? 'Farm_Watering' : 'Consume'); };
+    this.walkTo(at.x, at.z);
+    return true;
+  }
+  private settle(kind: 'sit' | 'sleep', it: Inst, front: THREE.Vector3) {
+    const h = this.hero; if (!h) return;
+    const k = this.c.hero;
+    const top = it.size.y * (kind === 'sleep' ? 0.55 : /bench|stool|ottoman/i.test(it.def.file) ? 0.92 : 0.5);
+    const base = it.root.position.clone();
+    if (kind === 'sit') {
+      base.addScaledVector(front, -it.size.z * 0.08);
+      h.obj.position.set(base.x, top - 0.14 * k, base.z);
+      h.obj.rotation.y = Math.atan2(front.x, front.z);
+      h.pose = 'sit'; h.seat = it.p.uid;
+      this.play(h.acts.Sitting_Enter ? 'Sitting_Enter' : 'Sitting_Idle_Loop', 0.25);
+    } else {
+      base.addScaledVector(front, it.size.z * 0.12);
+      h.obj.position.set(base.x, top, base.z);
+      h.obj.rotation.y = Math.atan2(front.x, front.z);
+      h.pose = 'lie'; h.seat = it.p.uid;
+      const a = h.acts.LayToIdle; if (!a) return;
+      if (h.cur && h.acts[h.cur]) h.acts[h.cur].fadeOut(0.25);
+      a.reset(); a.paused = true; a.time = 0; a.setEffectiveWeight(1); a.fadeIn(0.25).play(); h.cur = 'LayToIdle';
+    }
+  }
+  private standUp(quick = false) {
+    const h = this.hero; if (!h || h.pose === 'stand') return;
+    const was = h.pose; h.pose = 'stand'; h.seat = null;
+    const it = [...this.items.values()].find((x) => x.root.position.distanceTo(h.obj.position) < 2 && x.p.uid);
+    const front = new THREE.Vector3(Math.sin(h.obj.rotation.y), 0, Math.cos(h.obj.rotation.y));
+    h.obj.position.y = 0;
+    h.obj.position.addScaledVector(front, (it ? 0.2 : 0.1) * (this.mode === 'room' ? 1 : 1.5));
+    if (was === 'lie' && h.acts.LayToIdle && !quick) { const a = h.acts.LayToIdle; a.paused = false; h.cur = 'LayToIdle'; return; }
+    if (was === 'sit' && h.acts.Sitting_Exit && !quick) { this.play('Sitting_Exit', 0.15); return; }
+    this.play('Idle_A');
   }
   private walkTo(x: number, z: number) {
     if (!this.hero) return;
+    if (this.hero.pose !== 'stand') this.standUp(true);
     const m = 0.15;
     this.hero.target = new THREE.Vector3(Math.max(-this.half + m, Math.min(this.half - m, x)), 0, Math.max(-this.half + m, Math.min(this.half - m, z)));
   }
@@ -483,6 +563,7 @@ export class WorldScene {
     if (e.button !== undefined && e.button > 0) return;
     if (this.hitHero(e)) { e.stopImmediatePropagation(); this.play('Interact'); this.ev.onHero?.(); return; }
     const hit = this.pick(e);
+    if (hit && this.hero && hit.uid === this.hero.seat) this.standUp(true);
     if (hit?.uid === '__house') { e.stopImmediatePropagation(); this.ev.onHouse?.(); return; }
     if (!hit) { this.drag = null; this.downAt = { x: e.clientX, y: e.clientY }; return; }
     // натиснули на предмет: камера не крутиться, тягнемо предмет
@@ -520,7 +601,7 @@ export class WorldScene {
     if (!d) {
       if (this.downAt && Math.hypot(e.clientX - this.downAt.x, e.clientY - this.downAt.y) < 5 && e.target === this.renderer.domElement) {
         this.sel = null; this.ev.onSelect(null); this.updateMarker();
-        const p = this.floorPoint(e); if (p) this.walkTo(p.x, p.z); // герой іде туди, куди натиснули
+        const p = this.floorPoint(e); if (p && this.hero) { this.hero.then = null; this.walkTo(p.x, p.z); } // герой іде туди, куди натиснули
       }
       this.downAt = null; return;
     }
@@ -636,7 +717,7 @@ export class WorldScene {
       if (h.target) {
         const dir = h.target.clone().sub(h.obj.position); dir.y = 0;
         const dist = dir.length();
-        if (dist < 0.03) { h.target = null; this.play('Idle_A'); }
+        if (dist < 0.03) { h.target = null; const then = h.then; h.then = null; if (then) then(); else this.play('Idle_A'); }
         else {
           const sp = Math.min(dist, this.c.speed * dt);
           h.obj.position.addScaledVector(dir.normalize(), sp);
