@@ -1493,3 +1493,68 @@ a.t-stat:hover { transform: translateY(-2px); }
 .wp__add { display: flex; gap: 8px; flex-wrap: wrap; }
 .wp__add input { flex: 1; min-width: 150px; border: 2px solid var(--mu-ink); border-radius: 10px; padding: 8px 10px; font: inherit; background: #fff; }
 .ls-word:has(.ls-word__add) { padding-right: 42px; }
+
+/* Світи: «Моя кімната» */
+.rw-page { padding-top: 24px; }
+.rw-title { display: flex; align-items: center; gap: 10px; margin: 6px 0 14px; font-size: clamp(28px, 4vw, 44px); }
+.rw-title .mu-ic { width: 40px; height: 40px; }
+.rw { display: grid; gap: 12px; user-select: none; -webkit-user-select: none; }
+.rw-top { display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: center; }
+.rw-coins { display: flex; align-items: center; gap: 8px; font: 800 22px/1 var(--mu-font-display, inherit); padding: 8px 14px; border: 2px solid var(--mu-ink); border-radius: 99px; background: #fff; box-shadow: 3px 3px 0 var(--mu-ink); font-variant-numeric: tabular-nums; }
+.rw-coin { width: 18px; height: 18px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #FFF2A8, #F5C842 55%, #D9A21E); border: 2px solid var(--mu-ink); display: inline-block; flex: none; }
+.rw-task { display: flex; align-items: center; gap: 12px; padding: 10px 14px; border: 2px solid var(--mu-ink); border-radius: 18px; background: var(--mu-lime); box-shadow: 4px 4px 0 var(--mu-ink); min-height: 58px; }
+.rw-task > div { flex: 1; display: grid; gap: 2px; }
+.rw-task b { font-size: 18px; }
+.rw-task small { font-size: 14px; opacity: .8; }
+.rw-well { font-size: 20px; animation: rwPop .4s ease; }
+.rw-say { width: 40px; height: 40px; flex: none; border-radius: 50%; border: 2px solid var(--mu-ink); background: #fff; display: grid; place-items: center; cursor: pointer; padding: 0; }
+.rw-say .mu-ic { width: 22px; height: 22px; }
+.rw-tools { display: flex; align-items: center; gap: 10px; }
+.rw-themes, .rw-colors { display: flex; gap: 6px; flex-wrap: wrap; }
+.rw-sw { width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--mu-ink); cursor: pointer; padding: 0; transition: transform .12s; }
+.rw-sw.is-on { box-shadow: 0 0 0 3px #fff, 0 0 0 5px var(--mu-ink); }
+.rw-sw:hover { transform: scale(1.12); }
+.rw-stage { position: relative; border: 2px solid var(--mu-ink); border-radius: 24px; background: radial-gradient(ellipse at 50% 30%, #FFFDF6, #F1E8D6); box-shadow: 6px 6px 0 var(--mu-ink); overflow: hidden; }
+.rw-svg { display: block; width: 100%; height: auto; max-height: 68vh; touch-action: none; }
+.rw-item { cursor: grab; transition: transform .25s cubic-bezier(.3,1.6,.5,1); transform-box: fill-box; transform-origin: 50% 100%; }
+.rw-item.is-drag { cursor: grabbing; opacity: .85; transition: none; }
+.rw-item.is-hop { animation: rwHop .45s cubic-bezier(.3,1.6,.5,1); }
+.rw-item.is-pet:not(.is-drag) { animation: rwBreathe 2.6s ease-in-out infinite; }
+.rw-item.is-pet.is-hop { animation: rwHop .45s cubic-bezier(.3,1.6,.5,1); }
+.rw-foot { pointer-events: none; }
+.rw-foot.ok, .rw-foot.sel { fill: var(--mu-lime); fill-opacity: .55; stroke: var(--mu-ink); stroke-width: 1.5; stroke-dasharray: 4 3; }
+.rw-foot.bad { fill: #E5533D; fill-opacity: .45; stroke: #E5533D; stroke-width: 1.5; }
+.rw-label text { font: 700 11px/1 var(--mu-font-body, sans-serif); fill: var(--mu-ink); paint-order: stroke; stroke: #fff; stroke-width: 3.5px; stroke-linejoin: round; }
+.rw-msg { position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%); background: var(--mu-ink); color: #fff; padding: 8px 14px; border-radius: 12px; font-weight: 600; font-size: 14px; animation: rwFade .25s ease; }
+.rw-party { position: absolute; inset: 0; pointer-events: none; }
+.rw-party i { position: absolute; left: 50%; top: 30%; width: 12px; height: 12px; border: 2px solid var(--mu-ink); border-radius: 3px; background: hsl(calc(var(--i) * 40), 85%, 60%); animation: rwConfetti 1.3s cubic-bezier(.2,.7,.4,1) forwards; --a: calc(var(--i) * 20deg); }
+.rw-sel { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding: 10px 14px; border: 2px solid var(--mu-ink); border-radius: 18px; background: #fff; box-shadow: 4px 4px 0 var(--mu-ink); animation: rwPop .2s ease; }
+.rw-sel__name { display: grid; margin-right: auto; }
+.rw-sel__name b { font-size: 18px; }
+.rw-shop { display: grid; gap: 10px; padding: 12px; border: 2px solid var(--mu-ink); border-radius: 20px; background: #fff; }
+.rw-shelf { display: flex; gap: 10px; overflow-x: auto; padding: 4px 2px 8px; scroll-snap-type: x proximity; }
+.rw-card { flex: none; width: 112px; display: grid; justify-items: center; gap: 2px; padding: 10px 8px; border: 2px solid var(--mu-ink); border-radius: 16px; background: #FFFDF6; cursor: pointer; scroll-snap-align: start; transition: transform .12s, box-shadow .12s; font: inherit; color: inherit; }
+.rw-card:hover { transform: translate(-2px, -2px); box-shadow: 3px 3px 0 var(--mu-ink); }
+.rw-card:active { transform: none; box-shadow: none; }
+.rw-card b { font-size: 15px; }
+.rw-card small { font-size: 12px; opacity: .75; }
+.rw-card.is-locked .rw-thumb { filter: grayscale(1) opacity(.45); }
+.rw-price { display: flex; align-items: center; gap: 4px; font-weight: 700; opacity: 1 !important; }
+.rw-price .rw-coin { width: 14px; height: 14px; }
+.rw-thumb { width: 84px; height: 70px; }
+.rw-help { font-size: 14px; margin: 0; }
+.rw-soon { opacity: .7; }
+@keyframes rwHop { 0% { transform: translateY(0) scale(1); } 35% { transform: translateY(-14px) scale(1.04, .97); } 70% { transform: translateY(0) scale(.97, 1.04); } 100% { transform: none; } }
+@keyframes rwBreathe { 0%, 100% { transform: scale(1, 1); } 50% { transform: scale(1.015, 1.035); } }
+@keyframes rwPop { from { transform: scale(.92); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes rwConfetti { from { transform: translate(-50%, 0) rotate(0); opacity: 1; } to { transform: translate(calc(-50% + cos(var(--a)) * 260px), calc(sin(var(--a)) * 200px + 120px)) rotate(540deg); opacity: 0; } }
+.rw-msg { transform: translateX(-50%); }
+@media (prefers-reduced-motion: reduce) { .rw-item, .rw-item.is-hop, .rw-item.is-pet { animation: none !important; transition: none; } .rw-party { display: none; } }
+@media (max-width: 760px) {
+  .rw-top { grid-template-columns: auto 1fr; }
+  .rw-task { grid-column: 1 / -1; order: 3; }
+  .rw-tools { justify-content: flex-end; }
+  .rw-themes { display: none; }
+  .rw-card { width: 96px; }
+}
+@keyframes rwFade { from { opacity: 0; } to { opacity: 1; } }
