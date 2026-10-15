@@ -1706,3 +1706,5 @@ a.t-stat:hover { transform: translateY(-2px); }
 .hm-plan__room.is-me > rect:nth-child(2) { stroke: #D0F834; stroke-width: .08; }
 .hm-plan__room.is-drag { opacity: .8; cursor: grabbing; }
 .hm-plan__door { fill: #C99A6B; stroke: var(--mu-ink); stroke-width: .02; pointer-events: none; }
+.hm-floorpick { margin-bottom: 8px; }
+.hm-floor { font-weight: 800; }
