@@ -139,3 +139,43 @@ alter table lesson_plans add column if not exists aims text;
 -- Аудіо для аудіювань
 update storage.buckets set allowed_mime_types = array['image/png','image/jpeg','image/webp','image/gif','application/pdf','audio/mpeg','audio/mp4','audio/x-m4a','audio/wav','audio/ogg'] where id = 'lesson-files';
 update storage.buckets set allowed_mime_types = array_append(allowed_mime_types, 'audio/webm') where id = 'lesson-files' and not ('audio/webm' = any(allowed_mime_types));
+
+-- 16.10: монетки (один гаманець на користувача для всіх ігор) і збереження ігор
+create table if not exists coin_wallets (
+  user_id text primary key,
+  balance int not null default 0,
+  updated_at timestamptz not null default now()
+);
+create table if not exists coin_log (
+  id uuid primary key default gen_random_uuid(),
+  user_id text not null,
+  amount int not null,
+  reason text,
+  source text,
+  teacher_id text,
+  created_at timestamptz not null default now()
+);
+create index if not exists coin_log_user_idx on coin_log (user_id, created_at desc);
+create table if not exists game_saves (
+  user_id text not null,
+  game text not null,
+  data jsonb not null,
+  updated_at timestamptz not null default now(),
+  primary key (user_id, game)
+);
+alter table coin_wallets enable row level security;
+alter table coin_log enable row level security;
+alter table game_saves enable row level security;
+create or replace function add_coins(p_user text, p_amount int, p_reason text, p_source text, p_teacher text default null)
+returns int language plpgsql as $$
+declare b int;
+begin
+  insert into coin_wallets (user_id, balance) values (p_user, 0) on conflict (user_id) do nothing;
+  select balance into b from coin_wallets where user_id = p_user for update;
+  if b + p_amount < 0 then return -1; end if;
+  update coin_wallets set balance = b + p_amount, updated_at = now() where user_id = p_user;
+  insert into coin_log (user_id, amount, reason, source, teacher_id) values (p_user, p_amount, p_reason, p_source, p_teacher);
+  return b + p_amount;
+end $$;
+revoke execute on function add_coins(text, int, text, text, text) from public, anon, authenticated;
+grant execute on function add_coins(text, int, text, text, text) to service_role;
