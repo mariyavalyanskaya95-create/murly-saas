@@ -1414,3 +1414,17 @@ a.t-stat:hover { transform: translateY(-2px); }
 .ls-note small { font-weight: 800; text-transform: uppercase; font-size: 11px; letter-spacing: .06em; color: #5B4B8A; }
 .ls-note p { margin: 4px 0 0; }
 .le-view:fullscreen .ls-note { display: none; }
+
+/* ===== Аудіювання (ap-*) ===== */
+.ap { display: grid; gap: 10px; padding: 16px 18px; border: 2px solid var(--mu-ink); border-radius: var(--mu-radius); background: #EAF4F9; }
+.ap__head { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.ap__head .mu-ic { width: 28px; height: 28px; }
+.ap__head b { font-size: 18px; }
+.ap__controls { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.ap__controls .mu-btn .mu-ic { width: 22px; height: 22px; margin-right: 6px; }
+.ap__audio { width: 100%; }
+.ap__text { display: grid; gap: 6px; padding: 12px 14px; background: #fff; border-radius: 12px; border: 1.5px solid var(--mu-ink); }
+.ap__text p { margin: 0; padding: 4px 8px; border-radius: 8px; cursor: pointer; line-height: 1.5; }
+.ap__text p:hover { background: var(--mu-paper); }
+.ap__text p.is-now { background: var(--mu-lime); }
+.ap__now { margin: 0; font-size: 14px; color: var(--mu-ink-soft); }
