@@ -5,7 +5,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { HOME_ITEM, type HomeItem } from './home-items';
 
-export const ROOM = 4;          // кімната ROOM × ROOM
+export const ROOM = 2.8;        // кімната ROOM × ROOM (у масштабі моделей Kenney)
 export const HALF = ROOM / 2;
 const WALL_H = 1.3;
 const SNAP = 0.05;
@@ -17,7 +17,7 @@ type Inst = { root: THREE.Group; model: THREE.Object3D; p: HomePlaced; def: Home
 
 export type SceneEvents = {
   onSelect: (uid: string | null) => void;
-  onMove: (uid: string, patch: Partial<HomePlaced>) => void;
+  onMove: (uid: string, patch: Partial<HomePlaced>, kids: string[]) => void;
   onTap: (uid: string) => void;
   onBad: () => void;
 };
@@ -110,7 +110,7 @@ export class HomeScene {
   private floorMat = new THREE.MeshStandardMaterial({ color: '#ffffff', roughness: 0.85 });
   private marker: THREE.Mesh;
   private markerMat = new THREE.MeshBasicMaterial({ color: '#D0F834', transparent: true, opacity: 0.5, depthWrite: false });
-  private drag: { uid: string; off: THREE.Vector3; start: { x: number; y: number }; moved: boolean; ok: boolean; patch: Partial<HomePlaced> } | null = null;
+  private drag: { uid: string; off: THREE.Vector3; start: { x: number; y: number }; moved: boolean; ok: boolean; patch: Partial<HomePlaced>; kids?: string[] } | null = null;
   private sel: string | null = null;
   private raf = 0;
   private ro: ResizeObserver;
@@ -128,21 +128,21 @@ export class HomeScene {
     host.appendChild(this.renderer.domElement);
 
     this.camera = new THREE.PerspectiveCamera(32, 1, 0.1, 100);
-    this.camera.position.set(5.6, 5.2, 5.6);
+    this.camera.position.set(3.7, 3.4, 3.7);
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
-    this.controls.target.set(0, 0.35, 0);
+    this.controls.target.set(0, 0.3, 0);
     this.controls.enableDamping = true; this.controls.dampingFactor = 0.08;
     this.controls.enablePan = false;
     this.controls.minPolarAngle = 0.45; this.controls.maxPolarAngle = 1.2;
-    this.controls.minDistance = 3.2; this.controls.maxDistance = 12;
+    this.controls.minDistance = 1.8; this.controls.maxDistance = 8;
 
     // світло: м'яке небо + тепле «сонце» з тінями
     this.scene.add(new THREE.HemisphereLight('#fff6e8', '#b9a58c', 1.35));
     const sun = new THREE.DirectionalLight('#fff1dc', 2.1);
-    sun.position.set(3.5, 6.5, 2.5);
+    sun.position.set(2.5, 5, 1.8);
     sun.castShadow = true;
     sun.shadow.mapSize.set(2048, 2048);
-    Object.assign(sun.shadow.camera, { left: -4, right: 4, top: 4, bottom: -4, near: 0.5, far: 20 });
+    Object.assign(sun.shadow.camera, { left: -2.6, right: 2.6, top: 2.6, bottom: -2.6, near: 0.5, far: 20 });
     sun.shadow.bias = -0.0004; sun.shadow.normalBias = 0.02; sun.shadow.radius = 4;
     this.scene.add(sun);
     const fill = new THREE.DirectionalLight('#dbe8ff', 0.45); fill.position.set(-4, 3, -2); this.scene.add(fill);
@@ -176,8 +176,8 @@ export class HomeScene {
       w.position.y = WALL_H / 2; w.castShadow = true; w.receiveShadow = true; g.add(w);
       const sk = new THREE.Mesh(new THREE.BoxGeometry(ROOM, 0.07, 0.03), trim); sk.position.set(0, 0.035, 0.065); g.add(sk);
       const cap = new THREE.Mesh(new THREE.BoxGeometry(ROOM + 0.12, 0.03, 0.14), trim); cap.position.y = WALL_H + 0.015; g.add(cap);
-      if (side === 0) this.addWindow(g, 0.7, trim);
-      if (side === 1) this.addWindow(g, -0.6, trim);
+      if (side === 0) this.addWindow(g, 0.55, trim);
+      if (side === 1) this.addWindow(g, -0.45, trim);
       if (side === 3) this.addDoor(g, trim);
       g.rotation.y = [0, Math.PI / 2, Math.PI, -Math.PI / 2][side];
       const d = HALF + 0.05;
@@ -194,11 +194,11 @@ export class HomeScene {
   }
   private addDoor(g: THREE.Group, trim: THREE.Material) {
     const door = new THREE.Mesh(new THREE.BoxGeometry(0.55, 1.0, 0.03), new THREE.MeshStandardMaterial({ color: '#B98457', roughness: 0.7 }));
-    door.position.set(0.9, 0.5, 0.065); g.add(door);
-    const frame: [number, number, number, number][] = [[0.9, 1.03, 0.65, 0.06], [0.6, 0.5, 0.05, 1.06], [1.2, 0.5, 0.05, 1.06]];
+    door.position.set(0.7, 0.5, 0.065); g.add(door);
+    const frame: [number, number, number, number][] = [[0.7, 1.03, 0.65, 0.06], [0.4, 0.5, 0.05, 1.06], [1.0, 0.5, 0.05, 1.06]];
     frame.forEach(([fx, fy, w, h]) => { const b = new THREE.Mesh(new THREE.BoxGeometry(w, h, 0.06), trim); b.position.set(fx, fy, 0.07); g.add(b); });
     const knob = new THREE.Mesh(new THREE.SphereGeometry(0.025, 12, 12), new THREE.MeshStandardMaterial({ color: '#E8C35A', metalness: 0.6, roughness: 0.3 }));
-    knob.position.set(0.7, 0.5, 0.09); g.add(knob);
+    knob.position.set(0.5, 0.5, 0.09); g.add(knob);
   }
   setWall(hex: string) { this.wallMat.color.set(hex); }
   setFloor(hex: string, kind: 'wood' | 'tiles' | 'carpet') {
@@ -268,6 +268,12 @@ export class HomeScene {
       if (Math.abs(x - o.p.x) <= f.w / 2 && Math.abs(z - o.p.z) <= f.d / 2) y = Math.max(y, o.size.y);
     }
     return y;
+  }
+  // дрібні речі, що стоять на цьому предметі (щоб переносити їх разом із ним)
+  carried(uid: string): string[] {
+    const base = this.items.get(uid); if (!base || !base.def.surface) return [];
+    const f = this.footprint(base);
+    return [...this.items.values()].filter((o) => o.p.uid !== uid && o.def.small && Math.abs(o.p.x - base.p.x) <= f.w / 2 && Math.abs(o.p.z - base.p.z) <= f.d / 2).map((o) => o.p.uid);
   }
   supportOf(uid: string): string | null {
     const it = this.items.get(uid); if (!it || !it.def.small) return null;
@@ -410,7 +416,10 @@ export class HomeScene {
       const x = Math.round((fp.x - d.off.x) / SNAP) * SNAP, z = Math.round((fp.z - d.off.z) / SNAP) * SNAP;
       const p = { ...it.p, x: +x.toFixed(2), z: +z.toFixed(2), y: undefined };
       d.ok = this.canPlace(d.uid, p); d.patch = { x: p.x, z: p.z };
+      const dx = p.x - it.p.x, dz = p.z - it.p.z;
       it.root.position.set(p.x, this.supportY(d.uid, p.x, p.z, it.def) + 0.04, p.z);
+      if (!d.kids) d.kids = this.carried(d.uid);
+      d.kids.forEach((k) => { const o = this.items.get(k); if (o) o.root.position.set(o.p.x + dx, it.size.y + 0.04, o.p.z + dz); });
     }
     this.updateMarker();
   };
@@ -423,8 +432,8 @@ export class HomeScene {
     this.drag = null;
     const it = this.items.get(d.uid); if (!it) return;
     if (!d.moved) { this.ev.onTap(d.uid); this.bounce(d.uid); return; }
-    if (d.ok) { this.ev.onMove(d.uid, d.patch); this.bounce(d.uid); }
-    else { this.ev.onBad(); this.place(it); this.updateMarker(); }
+    if (d.ok) { this.ev.onMove(d.uid, d.patch, d.kids ?? this.carried(d.uid)); this.bounce(d.uid); }
+    else { this.ev.onBad(); this.place(it); (d.kids ?? []).forEach((k) => { const o = this.items.get(k); if (o) this.place(o); }); this.updateMarker(); }
   };
   private hover(e: PointerEvent) {
     if (e.target !== this.renderer.domElement) return;
