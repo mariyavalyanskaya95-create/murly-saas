@@ -5,6 +5,7 @@ import ExerciseView from '../exercise/ExerciseView';
 import GameHub from '../games/GameHub';
 import AudioPlayer from './AudioPlayer';
 import { grade, type Answers } from '@/lib/exercise';
+import { useT } from '@/components/LangProvider';
 import { lessonSections, toSlides, youtubeEmbed, type Block, type Plan } from '@/lib/lesson';
 
 // Текст: абзаци через порожній рядок, **жирний**
@@ -19,30 +20,31 @@ function Rich({ text }: { text: string }) {
 }
 
 function VocabBlock({ b, onWord }: { b: Extract<Block, { type: 'vocab' }>; onWord?: (w: { en: string; uk: string }) => void }) {
+  const t = useT();
   const [play, setPlay] = useState(false);
   const sets = useMemo(() => [
-    { id: 'en', title: 'Англ → Укр', prompt: 'Як це перекладається?', items: b.words.map((w) => ({ q: w.en, a: w.uk })) },
-    { id: 'uk', title: 'Укр → Англ', prompt: 'Як це англійською?', items: b.words.map((w) => ({ q: w.uk, a: w.en })) },
-  ], [b.words]);
+    { id: 'en', title: t({ uk: 'Англ → Укр', ru: 'Англ → Перевод', en: 'English → Translation' }), prompt: t({ uk: 'Як це перекладається?', ru: 'Как это переводится?', en: 'What does it mean?' }), items: b.words.map((w) => ({ q: w.en, a: w.uk })) },
+    { id: 'uk', title: t({ uk: 'Укр → Англ', ru: 'Перевод → Англ', en: 'Translation → English' }), prompt: t({ uk: 'Як це англійською?', ru: 'Как это по-английски?', en: 'How do you say it in English?' }), items: b.words.map((w) => ({ q: w.uk, a: w.en })) },
+  ], [b.words, t.lang]);
   return (
     <div className="ls-vocab">
       <div className="ls-vocab__grid">
         {b.words.map((w, i) => (
           <div key={i} className="ls-word">
             <b>{w.en}</b><span>{w.uk}</span>
-            {onWord && <button type="button" className="ls-word__add" onClick={() => onWord(w)} title="У словник учня" aria-label={`Додати «${w.en}» у словник учня`}>+</button>}
+            {onWord && <button type="button" className="ls-word__add" onClick={() => onWord(w)} title={t({ uk: 'У словник учня', ru: 'В словарь ученика', en: 'To the student’s dictionary' })} aria-label={t({ uk: `Додати «${w.en}» у словник учня`, ru: `Добавить «${w.en}» в словарь ученика`, en: `Add “${w.en}” to the student’s dictionary` })}>+</button>}
           </div>
         ))}
       </div>
       {b.words.length >= 4 && (
-        <button className="mu-btn t-btn-sm" onClick={() => setPlay(!play)}><Icon id="e-trophy" />{play ? 'Сховати гру' : 'Пограти цими словами'}</button>
+        <button className="mu-btn t-btn-sm" onClick={() => setPlay(!play)}><Icon id="e-trophy" />{play ? t({ uk: 'Сховати гру', ru: 'Скрыть игру', en: 'Hide game' }) : t({ uk: 'Пограти цими словами', ru: 'Поиграть этими словами', en: 'Play with these words' })}</button>
       )}
       {play && <GameHub sets={sets} />}
     </div>
   );
 }
 
-export default function LessonView({ plan, interactive = true, initialAnswers, onSubmit, submitLabel = 'Перевірити відповіді', overrides, teacher = false, slides = false, onExit, onWord }: {
+export default function LessonView({ plan, interactive = true, initialAnswers, onSubmit, submitLabel, overrides, teacher = false, slides = false, onExit, onWord }: {
   plan: Pick<Plan, 'title' | 'blocks'> & Partial<Plan>;
   interactive?: boolean;
   initialAnswers?: Answers;
@@ -54,6 +56,7 @@ export default function LessonView({ plan, interactive = true, initialAnswers, o
   onExit?: () => void;
   onWord?: (w: { en: string; uk: string }) => void; // вчитель: додати слово в словник учня
 }) {
+  const t = useT();
   const sections = useMemo(() => lessonSections(plan.blocks), [plan.blocks]);
   const [answers, setAnswers] = useState<Answers>(initialAnswers ?? {});
   const [checked, setChecked] = useState(!!initialAnswers && Object.keys(initialAnswers).length > 0);
@@ -84,7 +87,7 @@ export default function LessonView({ plan, interactive = true, initialAnswers, o
   const renderBlock = (b: Block) => {
         switch (b.type) {
           case 'heading': return <h2 key={b.id} className="ls-h">{b.text}</h2>;
-          case 'note': return teacher && b.text ? <div key={b.id} className="ls-note"><Icon id="d-lock" /><div><small>Тільки для вчителя</small><Rich text={b.text} /></div></div> : null;
+          case 'note': return teacher && b.text ? <div key={b.id} className="ls-note"><Icon id="d-lock" /><div><small>{t({ uk: 'Тільки для вчителя', ru: 'Только для учителя', en: 'Teacher only' })}</small><Rich text={b.text} /></div></div> : null;
           case 'text': return <div key={b.id} className="ls-text"><Rich text={b.text} /></div>;
           case 'tip': return <div key={b.id} className="ls-tip"><Icon id="d-bulb" className="mu-ic ls-tip__ic" /><div><Rich text={b.text} /></div></div>;
           case 'image': return b.url ? <figure key={b.id} className="ls-fig"><img src={b.url} alt={b.caption || ''} loading="lazy" />{b.caption && <figcaption>{b.caption}</figcaption>}</figure> : null;
@@ -93,7 +96,7 @@ export default function LessonView({ plan, interactive = true, initialAnswers, o
             return src ? (
               <figure key={b.id} className="ls-fig">
                 {b.task && <div className="ls-watch"><Icon id="e-mic" />{b.task}</div>}
-                <div className="ls-video"><iframe src={src} title={b.caption || 'Відео'} allow="encrypted-media; picture-in-picture" allowFullScreen loading="lazy" /></div>
+                <div className="ls-video"><iframe src={src} title={b.caption || t({ uk: 'Відео', ru: 'Видео', en: 'Video' })} allow="encrypted-media; picture-in-picture" allowFullScreen loading="lazy" /></div>
                 {b.caption && <figcaption>{b.caption}</figcaption>}
               </figure>
             ) : null;
@@ -101,19 +104,19 @@ export default function LessonView({ plan, interactive = true, initialAnswers, o
           case 'audio': return b.script.trim() || b.audioUrl ? <AudioPlayer key={b.id} script={b.script} title={b.title} audioUrl={b.audioUrl} /> : null;
           case 'pdf': return b.url ? (
             <div key={b.id} className="ls-pdf">
-              <div className="ls-pdf__bar"><span><Icon id="e-book" />{b.name || 'PDF'}</span><a href={b.url} target="_blank" rel="noopener noreferrer" className="mu-btn t-btn-sm">Відкрити</a></div>
+              <div className="ls-pdf__bar"><span><Icon id="e-book" />{b.name || 'PDF'}</span><a href={b.url} target="_blank" rel="noopener noreferrer" className="mu-btn t-btn-sm">{t({ uk: 'Відкрити', ru: 'Открыть', en: 'Open' })}</a></div>
               <iframe src={`${b.url}#view=FitH`} title={b.name || 'PDF'} className="ls-pdf__frame" loading="lazy" />
             </div>
           ) : null;
           case 'vocab': return b.words.length ? <VocabBlock key={b.id} b={b} onWord={onWord} /> : null;
           case 'speaking': return b.questions.length ? (
-            <div key={b.id} className="ls-speak"><div className="ls-speak__t"><Icon id="e-speak" />Поговоримо</div><ul>{b.questions.map((q, i) => <li key={i}>{q}</li>)}</ul></div>
+            <div key={b.id} className="ls-speak"><div className="ls-speak__t"><Icon id="e-speak" />{t({ uk: 'Поговоримо', ru: 'Поговорим', en: 'Let’s talk' })}</div><ul>{b.questions.map((q, i) => <li key={i}>{q}</li>)}</ul></div>
           ) : null;
           case 'exercise': {
             if (!b.sections.length) return null;
             return (
               <div key={b.id} className="ls-ex">
-                <div className="ls-ex__label"><Icon id="e-pencil" />Вправа {exNos[b.id]}</div>
+                <div className="ls-ex__label"><Icon id="e-pencil" />{t({ uk: 'Вправа', ru: 'Упражнение', en: 'Exercise' })} {exNos[b.id]}</div>
                 <ExerciseView sections={b.sections} offset={offsets[b.id]} numbered={b.sections.length > 1} answers={answers}
                   onChange={interactive && !checked ? (k, v) => setAnswers((a) => ({ ...a, [k]: v })) : undefined}
                   marks={result?.marks} showCorrect={checked} overrides={overrides} />
@@ -125,11 +128,11 @@ export default function LessonView({ plan, interactive = true, initialAnswers, o
 
   const footer = interactive && sections.length > 0 ? (
     <div className="ls-foot">
-      {result && <div className="ex-result"><b>{result.score} / {result.total}</b><span>{result.total && result.score === result.total ? 'Ідеально!' : 'Правильні відповіді показані під помилками.'}</span></div>}
+      {result && <div className="ex-result"><b>{result.score} / {result.total}</b><span>{result.total && result.score === result.total ? t({ uk: 'Ідеально!', ru: 'Идеально!', en: 'Perfect!' }) : t({ uk: 'Правильні відповіді показані під помилками.', ru: 'Правильные ответы показаны под ошибками.', en: 'The correct answers are shown under your mistakes.' })}</span></div>}
       {!checked
-        ? <button className="mu-btn mu-btn--lime mu-btn--lg" onClick={check} disabled={saving}>{saving ? 'Зберігаю…' : submitLabel}</button>
-        : <button className="mu-btn" onClick={() => setChecked(false)}>Виправити помилки</button>}
-      {err && <p className="t-neg">Не вдалося зберегти. Спробуй ще раз.</p>}
+        ? <button className="mu-btn mu-btn--lime mu-btn--lg" onClick={check} disabled={saving}>{saving ? t({ uk: 'Зберігаю…', ru: 'Сохраняю…', en: 'Saving…' }) : submitLabel ?? t({ uk: 'Перевірити відповіді', ru: 'Проверить ответы', en: 'Check answers' })}</button>
+        : <button className="mu-btn" onClick={() => setChecked(false)}>{t({ uk: 'Виправити помилки', ru: 'Исправить ошибки', en: 'Fix mistakes' })}</button>}
+      {err && <p className="t-neg">{t({ uk: 'Не вдалося зберегти. Спробуй ще раз.', ru: 'Не удалось сохранить. Попробуй ещё раз.', en: 'Could not save. Please try again.' })}</p>}
     </div>
   ) : null;
 
@@ -140,7 +143,7 @@ export default function LessonView({ plan, interactive = true, initialAnswers, o
       {plan.title && <h1 className="ls-title">{plan.title}</h1>}
       {(plan.level || plan.topic) && <div className="ls-meta">{[plan.level, plan.topic, ...(plan.focus ?? [])].filter(Boolean).join(' · ')}</div>}
       {plan.aims && (
-        <div className="ls-aims"><b>На цьому уроці</b><ul>{plan.aims.split('\n').filter((x) => x.trim()).map((a, i) => <li key={i}>{a}</li>)}</ul></div>
+        <div className="ls-aims"><b>{t({ uk: 'На цьому уроці', ru: 'На этом уроке', en: 'In this lesson' })}</b><ul>{plan.aims.split('\n').filter((x) => x.trim()).map((a, i) => <li key={i}>{a}</li>)}</ul></div>
       )}
       {plan.blocks.map((b) => renderBlock(b))}
       {footer}
@@ -156,6 +159,7 @@ function SlideShow({ plan, renderBlock, footer, teacher, onExit }: {
   teacher: boolean;
   onExit?: () => void;
 }) {
+  const t = useT();
   const slides = useMemo(() => toSlides(plan.blocks), [plan.blocks]);
   const total = slides.length + 1; // + титульний
   const [i, setI] = useState(0);
@@ -209,17 +213,17 @@ function SlideShow({ plan, renderBlock, footer, teacher, onExit }: {
       <div className="sl__bar">
         <span className="sl__count">{i + 1} / {total}</span>
         <div className="sl__progress"><span style={{ width: `${((i + 1) / total) * 100}%` }} /></div>
-        {teacher && <button className={`g-chip ${notes ? 'is-on' : ''}`} onClick={() => setNotes(!notes)} aria-pressed={notes}>Нотатки{cur.length ? ` (${cur.length})` : ''}</button>}
-        <button className="g-chip" data-full onClick={toggleFull}>{full || fake ? 'Вийти з повного екрана' : 'На весь екран'}</button>
-        {onExit && <button className="g-chip" onClick={exit}>Закрити</button>}
+        {teacher && <button className={`g-chip ${notes ? 'is-on' : ''}`} onClick={() => setNotes(!notes)} aria-pressed={notes}>{t({ uk: 'Нотатки', ru: 'Заметки', en: 'Notes' })}{cur.length ? ` (${cur.length})` : ''}</button>}
+        <button className="g-chip" data-full onClick={toggleFull}>{full || fake ? t({ uk: 'Вийти з повного екрана', ru: 'Выйти из полноэкранного режима', en: 'Exit full screen' }) : t({ uk: 'На весь екран', ru: 'На весь экран', en: 'Full screen' })}</button>
+        {onExit && <button className="g-chip" onClick={exit}>{t({ uk: 'Закрити', ru: 'Закрыть', en: 'Close' })}</button>}
       </div>
       <div className={`sl__body ${notes ? 'has-notes' : ''}`}>
         <div ref={stage} className="sl__stage">
           {!s ? (
             <div className="sl__cover">
               {(plan.level || plan.topic) && <div className="ls-meta">{[plan.level, plan.topic].filter(Boolean).join(' · ')}</div>}
-              <h1 className="ls-title">{plan.title || 'Урок'}</h1>
-              {plan.aims && <div className="ls-aims"><b>На цьому уроці</b><ul>{plan.aims.split('\n').filter((x) => x.trim()).map((a, k) => <li key={k}>{a}</li>)}</ul></div>}
+              <h1 className="ls-title">{plan.title || t({ uk: 'Урок', ru: 'Урок', en: 'Lesson' })}</h1>
+              {plan.aims && <div className="ls-aims"><b>{t({ uk: 'На цьому уроці', ru: 'На этом уроке', en: 'In this lesson' })}</b><ul>{plan.aims.split('\n').filter((x) => x.trim()).map((a, k) => <li key={k}>{a}</li>)}</ul></div>}
             </div>
           ) : (
             <article className="ls sl__slide" key={i}>
@@ -231,17 +235,17 @@ function SlideShow({ plan, renderBlock, footer, teacher, onExit }: {
         </div>
         {notes && (
           <aside className="sl__notes">
-            <small>Тільки для вчителя</small>
-            {cur.length ? cur.map((n, k) => <p key={k}>{n}</p>) : <p className="t-muted">На цьому слайді нотаток немає.</p>}
+            <small>{t({ uk: 'Тільки для вчителя', ru: 'Только для учителя', en: 'Teacher only' })}</small>
+            {cur.length ? cur.map((n, k) => <p key={k}>{n}</p>) : <p className="t-muted">{t({ uk: 'На цьому слайді нотаток немає.', ru: 'На этом слайде заметок нет.', en: 'No notes on this slide.' })}</p>}
           </aside>
         )}
       </div>
       <div className="sl__nav">
-        <button className="mu-btn" onClick={() => go(-1)} disabled={i === 0} aria-label="Попередній слайд"><Icon id="e-arrow" className="mu-ic sl__back" />Назад</button>
+        <button className="mu-btn" onClick={() => go(-1)} disabled={i === 0} aria-label={t({ uk: 'Попередній слайд', ru: 'Предыдущий слайд', en: 'Previous slide' })}><Icon id="e-arrow" className="mu-ic sl__back" />{t({ uk: 'Назад', ru: 'Назад', en: 'Back' })}</button>
         <div className="sl__dots">
-          {Array.from({ length: total }, (_, k) => <button key={k} className={k === i ? 'is-on' : ''} onClick={() => setI(k)} aria-label={`Слайд ${k + 1}`} />)}
+          {Array.from({ length: total }, (_, k) => <button key={k} className={k === i ? 'is-on' : ''} onClick={() => setI(k)} aria-label={`${t({ uk: 'Слайд', ru: 'Слайд', en: 'Slide' })} ${k + 1}`} />)}
         </div>
-        <button className="mu-btn mu-btn--lime" onClick={() => go(1)} disabled={isLast} aria-label="Наступний слайд">Далі<Icon id="e-arrow" /></button>
+        <button className="mu-btn mu-btn--lime" onClick={() => go(1)} disabled={isLast} aria-label={t({ uk: 'Наступний слайд', ru: 'Следующий слайд', en: 'Next slide' })}>{t({ uk: 'Далі', ru: 'Далее', en: 'Next' })}<Icon id="e-arrow" /></button>
       </div>
     </div>
   );
