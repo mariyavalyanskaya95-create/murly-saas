@@ -1,0 +1,628 @@
+// 3D-рушій «Murly Town» на Three.js. Два режими: місто (будинки, дороги, машини) і кімната всередині будинку.
+// Світло з м'якими тінями, камера як у режимі будівництва, перетягування з сіткою, речі на столах і стінах,
+// фарбування, герой з анімаціями, який ходить туди, куди натиснеш.
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { getItem, PACK_SCALE, PACK_URL, type Pack, type WorldItem } from './world-items';
+
+export type WorldMode = 'room' | 'city';
+export type Placed = { uid: string; file: string; x: number; z: number; rot: number; color?: string; wall?: number; y?: number };
+type Template = { obj: THREE.Object3D; size: THREE.Vector3 };
+type Inst = { root: THREE.Group; model: THREE.Object3D; p: Placed; def: WorldItem; size: THREE.Vector3; label: HTMLDivElement; born: number };
+
+export type SceneEvents = {
+  onSelect: (uid: string | null) => void;
+  onMove: (uid: string, patch: Partial<Placed>, kids: string[]) => void;
+  onTap: (uid: string) => void;
+  onBad: () => void;
+  onHero?: () => void;
+};
+
+const CFG = {
+  room: { size: 2.8, wallH: 1.3, cam: [3.7, 3.4, 3.7], target: 0.3, dist: [1.8, 8], shadow: 2.6, snap: 0.05, hero: 0.34, speed: 0.55 },
+  city: { size: 20, wallH: 0, cam: [17, 16, 17], target: 0, dist: [7, 42], shadow: 12, snap: 0.25, hero: 0.24, speed: 1.6 },
+} as const;
+
+const loader = new GLTFLoader();
+const packs = new Map<Pack, Promise<Map<string, THREE.Object3D>>>();
+function pack(name: Pack) {
+  if (!packs.has(name)) packs.set(name, loader.loadAsync(PACK_URL[name]).then((g) => new Map(g.scenes.map((sc) => [sc.name, sc as THREE.Object3D]))));
+  return packs.get(name)!;
+}
+const cache = new Map<string, Promise<Template>>();
+// Модель нормалізуємо: центр сліду в (0,0), низ на y=0; для настінних задня грань на z=0
+function template(def: WorldItem): Promise<Template> {
+  const key = `${def.pack}:${def.file}:${def.scale ?? 1}`;
+  if (!cache.has(key)) {
+    cache.set(key, pack(def.pack).then((scenes) => {
+      const src = scenes.get(def.file);
+      if (!src) throw new Error(`model ${def.file} not found`);
+      const inner = new THREE.Group(); src.children.forEach((c) => inner.add(c.clone(true)));
+      inner.scale.setScalar(PACK_SCALE[def.pack] * (def.scale ?? 1));
+      const wrap = new THREE.Group(); wrap.add(inner);
+      const box = new THREE.Box3().setFromObject(wrap);
+      const c = box.getCenter(new THREE.Vector3());
+      if (def.wall) inner.position.set(-c.x, -c.y, -box.min.z);
+      else inner.position.set(-c.x, -box.min.y, -c.z);
+      wrap.traverse((o) => {
+        const m = o as THREE.Mesh;
+        if (m.isMesh) {
+          m.castShadow = !def.rug; m.receiveShadow = true;
+          (Array.isArray(m.material) ? m.material : [m.material]).forEach((mt) => { const s = mt as THREE.MeshStandardMaterial; if (s.roughness !== undefined) { s.roughness = Math.max(s.roughness, 0.55); s.metalness = Math.min(s.metalness ?? 0, 0.3); } });
+        }
+      });
+      return { obj: wrap, size: box.getSize(new THREE.Vector3()) };
+    }));
+  }
+  return cache.get(key)!;
+}
+export const canPaint = (def?: WorldItem) => !!def && def.pack === 'kenney' && def.paint !== 'none';
+function paintTarget(def: WorldItem, obj: THREE.Object3D): RegExp | null {
+  if (!canPaint(def)) return null;
+  let fabric = false;
+  obj.traverse((o) => { const m = o as THREE.Mesh; if (m.isMesh) (Array.isArray(m.material) ? m.material : [m.material]).forEach((x) => { if (/^carpet/i.test(x.name)) fabric = true; }); });
+  if (def.paint === 'wood') return /^wood$/i;
+  return fabric ? /^carpet(?!White)/i : /^wood$/i;
+}
+
+function groundTexture(hex: string, kind: 'wood' | 'tiles' | 'carpet' | 'grass', repeat: number) {
+  const cv = document.createElement('canvas'); cv.width = cv.height = 512;
+  const g = cv.getContext('2d')!;
+  const base = new THREE.Color(hex);
+  const tone = (k: number) => { const c = base.clone(); c.offsetHSL(0, 0, k); return `#${c.getHexString()}`; };
+  g.fillStyle = tone(0); g.fillRect(0, 0, 512, 512);
+  if (kind === 'wood') {
+    for (let r = 0; r < 8; r++) {
+      const off = (r * 157) % 512;
+      for (let i = -1; i < 3; i++) { g.fillStyle = tone(((r * 7 + i * 3) % 5 - 2) * 0.018); g.fillRect(off + i * 256, r * 64, 256, 64); g.fillStyle = 'rgba(0,0,0,.18)'; g.fillRect(off + i * 256, r * 64, 2, 64); }
+      g.fillStyle = 'rgba(0,0,0,.16)'; g.fillRect(0, r * 64, 512, 2);
+    }
+  } else if (kind === 'tiles') {
+    for (let r = 0; r < 4; r++) for (let c = 0; c < 4; c++) { g.fillStyle = tone(((r + c) % 2) * 0.03); g.fillRect(c * 128 + 2, r * 128 + 2, 124, 124); }
+  } else if (kind === 'grass') {
+    for (let i = 0; i < 2600; i++) { g.fillStyle = `rgba(${Math.random() < 0.5 ? '255,255,255' : '0,60,0'},${Math.random() * 0.07})`; g.fillRect(Math.random() * 512, Math.random() * 512, 3, 3); }
+    g.strokeStyle = 'rgba(0,0,0,.07)'; g.lineWidth = 2; g.strokeRect(1, 1, 510, 510);
+  } else {
+    for (let i = 0; i < 3000; i++) { g.fillStyle = `rgba(255,255,255,${Math.random() * 0.06})`; g.fillRect(Math.random() * 512, Math.random() * 512, 2, 2); }
+  }
+  const t = new THREE.CanvasTexture(cv);
+  t.colorSpace = THREE.SRGBColorSpace; t.wrapS = t.wrapT = THREE.RepeatWrapping; t.repeat.set(repeat, repeat); t.anisotropy = 8;
+  return t;
+}
+
+export class WorldScene {
+  private renderer: THREE.WebGLRenderer;
+  private scene = new THREE.Scene();
+  private camera: THREE.PerspectiveCamera;
+  private controls!: OrbitControls;
+  private ray = new THREE.Raycaster();
+  private items = new Map<string, Inst>();
+  private walls: { mesh: THREE.Group; side: number }[] = [];
+  private wallMat = new THREE.MeshStandardMaterial({ color: '#F1E6CF', roughness: 0.95 });
+  private floorMat = new THREE.MeshStandardMaterial({ color: '#ffffff', roughness: 0.85 });
+  private marker: THREE.Mesh;
+  private markerMat = new THREE.MeshBasicMaterial({ color: '#D0F834', transparent: true, opacity: 0.5, depthWrite: false });
+  private drag: { uid: string; off: THREE.Vector3; start: { x: number; y: number }; moved: boolean; ok: boolean; patch: Partial<Placed>; kids?: string[] } | null = null;
+  private downAt: { x: number; y: number } | null = null;
+  private sel: string | null = null;
+  private raf = 0;
+  private ro: ResizeObserver;
+  private hop: { uid: string; t0: number } | null = null;
+  private clock = new THREE.Clock();
+  private hero: { obj: THREE.Object3D; mixer: THREE.AnimationMixer; acts: Record<string, THREE.AnimationAction>; cur: string; target: THREE.Vector3 | null } | null = null;
+  private heroToken = 0;
+  private c: (typeof CFG)[WorldMode];
+  readonly half: number;
+  showLabels = true;
+
+  constructor(private host: HTMLDivElement, private labels: HTMLDivElement, private ev: SceneEvents, readonly mode: WorldMode) {
+    this.c = CFG[mode]; this.half = this.c.size / 2;
+    this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    this.renderer.shadowMap.enabled = true;
+    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    this.renderer.toneMappingExposure = 1.05;
+    this.renderer.outputColorSpace = THREE.SRGBColorSpace;
+    host.appendChild(this.renderer.domElement);
+    const el = this.renderer.domElement;
+    el.style.touchAction = 'none';
+    // наш обробник ставимо ПЕРШИМ, щоб натискання на предмет не крутило камеру
+    el.addEventListener('pointerdown', this.down);
+
+    this.camera = new THREE.PerspectiveCamera(32, 1, 0.1, 200);
+    this.camera.position.set(...(this.c.cam as unknown as [number, number, number]));
+    this.controls = new OrbitControls(this.camera, el);
+    this.controls.target.set(0, this.c.target, 0);
+    this.controls.enableDamping = true; this.controls.dampingFactor = 0.08;
+    this.controls.enablePan = mode === 'city'; this.controls.screenSpacePanning = false;
+    this.controls.minPolarAngle = 0.4; this.controls.maxPolarAngle = 1.2;
+    this.controls.minDistance = this.c.dist[0]; this.controls.maxDistance = this.c.dist[1];
+
+    this.scene.add(new THREE.HemisphereLight('#fff6e8', '#b9a58c', mode === 'city' ? 1.5 : 1.35));
+    const sun = new THREE.DirectionalLight('#fff1dc', 2.1);
+    sun.position.set(this.c.shadow, this.c.shadow * 2, this.c.shadow * 0.7);
+    sun.castShadow = true;
+    sun.shadow.mapSize.set(2048, 2048);
+    const sb = this.c.shadow;
+    Object.assign(sun.shadow.camera, { left: -sb, right: sb, top: sb, bottom: -sb, near: 0.5, far: sb * 8 });
+    sun.shadow.bias = -0.0004; sun.shadow.normalBias = 0.02; sun.shadow.radius = 4;
+    this.scene.add(sun);
+    const fill = new THREE.DirectionalLight('#dbe8ff', 0.45); fill.position.set(-4, 3, -2); this.scene.add(fill);
+
+    if (mode === 'room') this.buildRoom(); else this.buildCity();
+    this.marker = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), this.markerMat);
+    this.marker.rotation.x = -Math.PI / 2; this.marker.visible = false; this.marker.renderOrder = 2;
+    this.scene.add(this.marker);
+
+    window.addEventListener('pointermove', this.move);
+    window.addEventListener('pointerup', this.up);
+    this.ro = new ResizeObserver(() => this.resize()); this.ro.observe(host);
+    this.resize();
+    this.loop();
+  }
+
+  // ---------- оточення ----------
+  private buildRoom() {
+    const S = this.c.size, H = this.c.wallH, half = this.half;
+    const floor = new THREE.Mesh(new THREE.BoxGeometry(S, 0.08, S), this.floorMat);
+    floor.position.y = -0.04; floor.receiveShadow = true; this.scene.add(floor);
+    const base = new THREE.Mesh(new THREE.BoxGeometry(S + 0.3, 0.2, S + 0.3), new THREE.MeshStandardMaterial({ color: '#E9DCC1', roughness: 1 }));
+    base.position.y = -0.18; base.receiveShadow = true; this.scene.add(base);
+    const trim = new THREE.MeshStandardMaterial({ color: '#FBF8F1', roughness: 0.8 });
+    for (let side = 0; side < 4; side++) {
+      const g = new THREE.Group();
+      const w = new THREE.Mesh(new THREE.BoxGeometry(S + 0.1, H, 0.1), this.wallMat);
+      w.position.y = H / 2; w.castShadow = true; w.receiveShadow = true; g.add(w);
+      const sk = new THREE.Mesh(new THREE.BoxGeometry(S, 0.07, 0.03), trim); sk.position.set(0, 0.035, 0.065); g.add(sk);
+      const cap = new THREE.Mesh(new THREE.BoxGeometry(S + 0.12, 0.03, 0.14), trim); cap.position.y = H + 0.015; g.add(cap);
+      if (side === 0) this.addWindow(g, 0.55, trim);
+      if (side === 1) this.addWindow(g, -0.45, trim);
+      if (side === 3) this.addDoor(g, trim);
+      g.rotation.y = [0, Math.PI / 2, Math.PI, -Math.PI / 2][side];
+      const d = half + 0.05;
+      g.position.set([0, -d, 0, d][side], 0, [-d, 0, d, 0][side]);
+      this.scene.add(g); this.walls.push({ mesh: g, side });
+    }
+  }
+  private addWindow(g: THREE.Group, x: number, trim: THREE.Material) {
+    const glass = new THREE.Mesh(new THREE.PlaneGeometry(0.9, 0.62), new THREE.MeshStandardMaterial({ color: '#BFE4FA', emissive: '#9fd4f5', emissiveIntensity: 0.45, roughness: 0.2 }));
+    glass.position.set(x, 0.72, 0.056); g.add(glass);
+    const bars: [number, number, number, number][] = [[0, 0.405, 1.0, 0.05], [0, -0.335, 1.0, 0.07], [-0.475, 0.035, 0.05, 0.74], [0.475, 0.035, 0.05, 0.74], [0, 0.035, 0.035, 0.66], [0, 0.035, 0.9, 0.03]];
+    bars.forEach(([bx, by, w, h]) => { const b = new THREE.Mesh(new THREE.BoxGeometry(w, h, 0.05), trim); b.position.set(x + bx, 0.72 + by, 0.07); b.castShadow = true; g.add(b); });
+  }
+  private addDoor(g: THREE.Group, trim: THREE.Material) {
+    const door = new THREE.Mesh(new THREE.BoxGeometry(0.55, 1.0, 0.03), new THREE.MeshStandardMaterial({ color: '#B98457', roughness: 0.7 }));
+    door.position.set(0.7, 0.5, 0.065); g.add(door);
+    ([[0.7, 1.03, 0.65, 0.06], [0.4, 0.5, 0.05, 1.06], [1.0, 0.5, 0.05, 1.06]] as [number, number, number, number][]).forEach(([fx, fy, w, h]) => { const b = new THREE.Mesh(new THREE.BoxGeometry(w, h, 0.06), trim); b.position.set(fx, fy, 0.07); g.add(b); });
+    const knob = new THREE.Mesh(new THREE.SphereGeometry(0.025, 12, 12), new THREE.MeshStandardMaterial({ color: '#E8C35A', metalness: 0.6, roughness: 0.3 }));
+    knob.position.set(0.5, 0.5, 0.09); g.add(knob);
+  }
+  private buildCity() {
+    const S = this.c.size;
+    const ground = new THREE.Mesh(new THREE.BoxGeometry(S, 0.1, S), this.floorMat);
+    ground.position.y = -0.05; ground.receiveShadow = true; this.scene.add(ground);
+    const edge = new THREE.Mesh(new THREE.BoxGeometry(S + 0.8, 0.6, S + 0.8), new THREE.MeshStandardMaterial({ color: '#B98A5E', roughness: 1 }));
+    edge.position.y = -0.4; edge.receiveShadow = true; this.scene.add(edge);
+    this.setGround('#8FC46A');
+  }
+  setWall(hex: string) { this.wallMat.color.set(hex); }
+  setFloor(hex: string, kind: 'wood' | 'tiles' | 'carpet') { this.floorMat.map?.dispose(); this.floorMat.map = groundTexture(hex, kind, this.c.size / 2); this.floorMat.color.set('#ffffff'); this.floorMat.needsUpdate = true; }
+  setGround(hex: string) { this.floorMat.map?.dispose(); this.floorMat.map = groundTexture(hex, 'grass', this.c.size / 2); this.floorMat.color.set('#ffffff'); this.floorMat.needsUpdate = true; }
+
+  // ---------- предмети ----------
+  private def(file: string) { return getItem(this.mode, file); }
+  async sync(list: Placed[]) {
+    const keep = new Set(list.map((p) => p.uid));
+    for (const [uid, it] of this.items) if (!keep.has(uid)) { this.scene.remove(it.root); it.label.remove(); this.items.delete(uid); }
+    for (const p of list) {
+      const def = this.def(p.file); if (!def) continue;
+      let it = this.items.get(p.uid);
+      if (!it) {
+        let tpl: Template;
+        try { tpl = await template(def); } catch { continue; }
+        if (!keep.has(p.uid) || this.items.has(p.uid)) continue;
+        const model = tpl.obj.clone(true);
+        model.traverse((o) => { const m = o as THREE.Mesh; if (m.isMesh) m.material = Array.isArray(m.material) ? m.material.map((x) => x.clone()) : m.material.clone(); });
+        const root = new THREE.Group(); root.add(model); root.userData.uid = p.uid;
+        this.scene.add(root);
+        const label = document.createElement('div'); label.className = 'hm-label'; this.labels.appendChild(label);
+        it = { root, model, p, def, size: tpl.size, label, born: performance.now() };
+        this.items.set(p.uid, it);
+      }
+      it.p = p;
+      this.place(it);
+      this.paint(it, p.color);
+    }
+    this.updateMarker();
+  }
+  private footprint(it: { size: THREE.Vector3; p: Placed }) {
+    const odd = it.p.rot % 2 === 1;
+    return { w: odd ? it.size.z : it.size.x, d: odd ? it.size.x : it.size.z };
+  }
+  private place(it: Inst) {
+    const { p, def, root } = it;
+    if (def.wall) {
+      const side = p.wall ?? 0, d = this.half;
+      root.rotation.y = [0, Math.PI / 2, Math.PI, -Math.PI / 2][side];
+      root.position.set([p.x, -d, -p.x, d][side], p.y ?? 0.8, [-d, p.x, d, -p.x][side]);
+    } else {
+      root.rotation.y = (p.rot % 4) * Math.PI / 2;
+      root.position.set(p.x, p.y ?? this.supportY(p.uid, p.x, p.z, def), p.z);
+    }
+  }
+  private paint(it: Inst, color?: string) {
+    const re = paintTarget(it.def, it.model); if (!re) return;
+    it.model.traverse((o) => {
+      const m = o as THREE.Mesh; if (!m.isMesh) return;
+      (Array.isArray(m.material) ? m.material : [m.material]).forEach((mt) => {
+        const s = mt as THREE.MeshStandardMaterial;
+        if (s.userData.orig === undefined) s.userData.orig = s.color.getHex();
+        if (re.test(s.name)) s.color.set(color ?? s.userData.orig);
+      });
+    });
+  }
+  private supportY(uid: string, x: number, z: number, def: WorldItem) {
+    if (!def.small) return 0;
+    let y = 0;
+    for (const [id, o] of this.items) {
+      if (id === uid || !o.def.surface) continue;
+      const f = this.footprint(o);
+      if (Math.abs(x - o.p.x) <= f.w / 2 && Math.abs(z - o.p.z) <= f.d / 2) y = Math.max(y, o.size.y);
+    }
+    return y;
+  }
+  carried(uid: string): string[] {
+    const base = this.items.get(uid); if (!base || !base.def.surface) return [];
+    const f = this.footprint(base);
+    return [...this.items.values()].filter((o) => o.p.uid !== uid && o.def.small && Math.abs(o.p.x - base.p.x) <= f.w / 2 && Math.abs(o.p.z - base.p.z) <= f.d / 2).map((o) => o.p.uid);
+  }
+  supportOf(uid: string): string | null {
+    const it = this.items.get(uid); if (!it || !it.def.small) return null;
+    for (const [id, o] of this.items) {
+      if (id === uid || !o.def.surface) continue;
+      const f = this.footprint(o);
+      if (Math.abs(it.p.x - o.p.x) <= f.w / 2 && Math.abs(it.p.z - o.p.z) <= f.d / 2) return o.p.file;
+    }
+    return null;
+  }
+  gap(a: string, b: string) {
+    const A = this.items.get(a), B = this.items.get(b); if (!A || !B) return Infinity;
+    const fa = this.footprint(A), fb = this.footprint(B);
+    return Math.max(Math.abs(A.p.x - B.p.x) - (fa.w + fb.w) / 2, Math.abs(A.p.z - B.p.z) - (fa.d + fb.d) / 2);
+  }
+  canPlace(uid: string, p: Placed, sizeOverride?: THREE.Vector3) {
+    const def = this.def(p.file); const it = this.items.get(uid);
+    const size = sizeOverride ?? it?.size; if (!def || !size) return false;
+    const half = this.half;
+    if (def.wall) return Math.abs(p.x) <= half - 0.2 && (p.y ?? 0.8) >= 0.25 && (p.y ?? 0.8) <= this.c.wallH - 0.2;
+    const f = this.footprint({ size, p });
+    if (p.x - f.w / 2 < -half - 0.001 || p.x + f.w / 2 > half + 0.001 || p.z - f.d / 2 < -half - 0.001 || p.z + f.d / 2 > half + 0.001) return false;
+    for (const [id, o] of this.items) {
+      if (id === uid || o.def.wall) continue;
+      const g = this.footprint(o);
+      const hit = Math.abs(p.x - o.p.x) < (f.w + g.w) / 2 - 0.01 && Math.abs(p.z - o.p.z) < (f.d + g.d) / 2 - 0.01;
+      if (!hit) continue;
+      if (def.rug || o.def.rug) {
+        if (def.rug && o.def.rug) return false;
+        if ((def.building && o.def.rug) || (o.def.building && def.rug)) return false; // будинок не ставимо на дорогу
+        continue;
+      }
+      if (def.small && o.def.surface && Math.abs(p.x - o.p.x) <= g.w / 2 && Math.abs(p.z - o.p.z) <= g.d / 2) continue;
+      if (o.def.small && def.surface) continue;
+      return false;
+    }
+    return true;
+  }
+  private snap(def: WorldItem, v: number, len: number) {
+    const g = def.grid ?? this.c.snap;
+    if (g >= 1) return Math.round((v - len / 2) / g) * g + len / 2; // плитки міста: край по сітці
+    return +(Math.round(v / g) * g).toFixed(2);
+  }
+  // місце для нового предмета: біля точки (x, z) або найближче до центру
+  async findSpot(file: string, near?: { x: number; z: number; wall?: number; y?: number }): Promise<Placed | null> {
+    const def = this.def(file); if (!def) return null;
+    let tpl: Template; try { tpl = await template(def); } catch { return null; }
+    const uid = '__probe';
+    if (def.wall) {
+      if (near?.wall !== undefined) { const p = { uid, file, x: +near.x.toFixed(2), z: 0, rot: 0, wall: near.wall, y: +(near.y ?? 0.85).toFixed(2) }; return this.canPlace(uid, p, tpl.size) ? p : null; }
+      const used = [...this.items.values()].filter((o) => o.def.wall);
+      for (const side of [0, 1]) for (let a = 0; a <= this.half - 0.3; a += 0.25) for (const s of [1, -1]) {
+        const p = { uid, file, x: a * s, z: 0, rot: 0, wall: side, y: 0.85 };
+        if (!used.some((q) => q.p.wall === side && Math.abs(q.p.x - p.x) < 0.45 && Math.abs((q.p.y ?? 0.85) - 0.85) < 0.4)) return p;
+      }
+      return null;
+    }
+    const tryAt = (x: number, z: number, rot: number) => {
+      const f = rot % 2 ? { w: tpl.size.z, d: tpl.size.x } : { w: tpl.size.x, d: tpl.size.z };
+      const p = { uid, file, x: this.snap(def, x, f.w), z: this.snap(def, z, f.d), rot };
+      return this.canPlace(uid, p, tpl.size) ? p : null;
+    };
+    if (near) return tryAt(near.x, near.z, 0) ?? tryAt(near.x, near.z, 1);
+    if (def.small) {
+      for (const o of this.items.values()) {
+        if (!o.def.surface) continue;
+        const busy = [...this.items.values()].some((q) => q.def.small && Math.abs(q.p.x - o.p.x) < 0.2 && Math.abs(q.p.z - o.p.z) < 0.2);
+        const p = { uid, file, x: o.p.x, z: o.p.z, rot: o.p.rot };
+        if (!busy && this.canPlace(uid, p, tpl.size)) return p;
+      }
+    }
+    const step = Math.max(def.grid ?? this.c.snap, this.mode === 'city' ? 0.5 : 0.1);
+    const spots: [number, number][] = [];
+    for (let x = -this.half; x <= this.half; x += step) for (let z = -this.half; z <= this.half; z += step) spots.push([x, z]);
+    spots.sort((a, b) => Math.hypot(a[0], a[1]) - Math.hypot(b[0], b[1]));
+    for (const rot of [0, 1]) for (const [x, z] of spots) { const p = tryAt(x, z, rot); if (p) return p; }
+    return null;
+  }
+  // точка на підлозі (або стіні) під пальцем: для перетягування з каталогу
+  pointAt(clientX: number, clientY: number, wall = false): { x: number; z: number; wall?: number; y?: number } | null {
+    const r = this.renderer.domElement.getBoundingClientRect();
+    if (clientX < r.left || clientX > r.right || clientY < r.top || clientY > r.bottom) return null;
+    const e = { clientX, clientY } as PointerEvent;
+    if (wall) { const w = this.wallPoint(e); return w ? { x: w.along, z: 0, wall: w.side, y: w.y } : null; }
+    const p = this.floorPoint(e); if (!p || Math.abs(p.x) > this.half || Math.abs(p.z) > this.half) return null;
+    return { x: p.x, z: p.z };
+  }
+
+  select(uid: string | null) { this.sel = uid; this.updateMarker(); }
+  bounce(uid: string) { this.hop = { uid, t0: performance.now() }; }
+  private updateMarker() {
+    const it = this.sel ? this.items.get(this.sel) : null;
+    if (!it || it.def.wall) { this.marker.visible = false; return; }
+    const f = this.footprint(it);
+    this.marker.visible = true;
+    this.marker.scale.set(f.w + 0.06, f.d + 0.06, 1);
+    this.marker.position.set(it.root.position.x, it.root.position.y + (it.def.rug ? 0.12 : 0.012), it.root.position.z);
+    this.markerMat.color.set(this.drag && !this.drag.ok ? '#E5533D' : '#D0F834');
+  }
+
+  // ---------- герой ----------
+  async setHero(file: string | null) {
+    const token = ++this.heroToken;
+    if (this.hero) { this.scene.remove(this.hero.obj); this.hero = null; }
+    if (!file) return;
+    try {
+      const [char, a1, a2] = await Promise.all([
+        loader.loadAsync(`/worlds/heroes/${file}.glb`), loader.loadAsync('/worlds/heroes/anim-move.glb'), loader.loadAsync('/worlds/heroes/anim-general.glb'),
+      ]);
+      if (token !== this.heroToken) return;
+      const obj = char.scene; obj.scale.setScalar(this.c.hero);
+      obj.traverse((o) => { const m = o as THREE.Mesh; if (m.isMesh) { m.castShadow = true; m.frustumCulled = false; } });
+      const mixer = new THREE.AnimationMixer(obj);
+      const acts: Record<string, THREE.AnimationAction> = {};
+      [...a1.animations, ...a2.animations].forEach((clip) => { acts[clip.name] = mixer.clipAction(clip); });
+      if (acts.Interact) { acts.Interact.setLoop(THREE.LoopOnce, 1); acts.Interact.clampWhenFinished = true; }
+      obj.position.set(this.mode === 'room' ? 0.6 : 1, 0, this.mode === 'room' ? 0.6 : 1);
+      obj.rotation.y = Math.PI / 4;
+      obj.userData.hero = true;
+      this.scene.add(obj);
+      this.hero = { obj, mixer, acts, cur: '', target: null };
+      this.play('Idle_A');
+      mixer.addEventListener('finished', () => this.play('Idle_A'));
+    } catch { /* без героя */ }
+  }
+  private play(name: string) {
+    const h = this.hero; if (!h || h.cur === name || !h.acts[name]) return;
+    const next = h.acts[name]; next.reset().fadeIn(0.2).play();
+    if (h.cur && h.acts[h.cur]) h.acts[h.cur].fadeOut(0.2);
+    h.cur = name;
+  }
+  private walkTo(x: number, z: number) {
+    if (!this.hero) return;
+    const m = 0.15;
+    this.hero.target = new THREE.Vector3(Math.max(-this.half + m, Math.min(this.half - m, x)), 0, Math.max(-this.half + m, Math.min(this.half - m, z)));
+  }
+  private hitHero(e: PointerEvent) {
+    if (!this.hero) return false;
+    this.ray.setFromCamera(this.ndc(e), this.camera);
+    return this.ray.intersectObject(this.hero.obj, true).length > 0;
+  }
+
+  // ---------- миша і пальці ----------
+  private ndc(e: { clientX: number; clientY: number }) {
+    const r = this.renderer.domElement.getBoundingClientRect();
+    return new THREE.Vector2(((e.clientX - r.left) / r.width) * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1);
+  }
+  private pick(e: PointerEvent) {
+    this.ray.setFromCamera(this.ndc(e), this.camera);
+    const roots = [...this.items.values()].filter((i) => i.root.visible).map((i) => i.root);
+    const hits = this.ray.intersectObjects(roots, true);
+    // спершу не килими й не дороги: їх легко зачепити випадково
+    const sorted = [...hits].sort((a, b) => Number(this.isFlat(a.object)) - Number(this.isFlat(b.object)));
+    for (const h of sorted) { let o: THREE.Object3D | null = h.object; while (o && !o.userData.uid) o = o.parent; if (o) return { uid: o.userData.uid as string, point: h.point }; }
+    return null;
+  }
+  private isFlat(o: THREE.Object3D) { let x: THREE.Object3D | null = o; while (x && !x.userData.uid) x = x.parent; return !!(x && this.items.get(x.userData.uid)?.def.rug); }
+  private floorPoint(e: { clientX: number; clientY: number }, y = 0) {
+    this.ray.setFromCamera(this.ndc(e), this.camera);
+    const p = new THREE.Vector3();
+    return this.ray.ray.intersectPlane(new THREE.Plane(new THREE.Vector3(0, 1, 0), -y), p) ? p : null;
+  }
+  private wallPoint(e: { clientX: number; clientY: number }) {
+    this.ray.setFromCamera(this.ndc(e), this.camera);
+    let best: { side: number; along: number; y: number; d: number } | null = null;
+    for (const w of this.walls.filter((x) => x.mesh.scale.y > 0.5)) {
+      const n = [new THREE.Vector3(0, 0, 1), new THREE.Vector3(1, 0, 0), new THREE.Vector3(0, 0, -1), new THREE.Vector3(-1, 0, 0)][w.side];
+      const p = new THREE.Vector3();
+      if (!this.ray.ray.intersectPlane(new THREE.Plane(n, this.half), p)) continue;
+      const along = [p.x, p.z, -p.x, -p.z][w.side];
+      const d = this.ray.ray.origin.distanceTo(p);
+      if (Math.abs(along) <= this.half && p.y >= 0 && p.y <= this.c.wallH && (!best || d < best.d)) best = { side: w.side, along, y: p.y, d };
+    }
+    return best;
+  }
+  private down = (e: PointerEvent) => {
+    if (e.button !== undefined && e.button > 0) return;
+    if (this.hitHero(e)) { e.stopImmediatePropagation(); this.play('Interact'); this.ev.onHero?.(); return; }
+    const hit = this.pick(e);
+    if (!hit) { this.drag = null; this.downAt = { x: e.clientX, y: e.clientY }; return; }
+    // натиснули на предмет: камера не крутиться, тягнемо предмет
+    e.stopImmediatePropagation(); e.preventDefault();
+    const it = this.items.get(hit.uid)!;
+    const fp = it.def.wall ? new THREE.Vector3() : this.floorPoint(e, 0) ?? new THREE.Vector3();
+    this.drag = { uid: hit.uid, off: new THREE.Vector3(fp.x - it.p.x, 0, fp.z - it.p.z), start: { x: e.clientX, y: e.clientY }, moved: false, ok: true, patch: {} };
+    this.sel = hit.uid; this.ev.onSelect(hit.uid); this.updateMarker();
+  };
+  private move = (e: PointerEvent) => {
+    if (!this.drag) { this.hover(e); return; }
+    const d = this.drag; const it = this.items.get(d.uid); if (!it) return;
+    if (!d.moved && Math.hypot(e.clientX - d.start.x, e.clientY - d.start.y) < 4) return;
+    d.moved = true;
+    if (it.def.wall) {
+      const w = this.wallPoint(e); if (!w) return;
+      const patch = { wall: w.side, x: +(Math.round(w.along / 0.05) * 0.05).toFixed(2), y: +(Math.round(w.y / 0.05) * 0.05).toFixed(2) };
+      const p = { ...it.p, ...patch };
+      d.ok = this.canPlace(d.uid, p); d.patch = patch;
+      this.place({ ...it, p } as Inst);
+    } else {
+      const fp = this.floorPoint(e, 0); if (!fp) return;
+      const f = this.footprint(it);
+      const p = { ...it.p, x: this.snap(it.def, fp.x - d.off.x, f.w), z: this.snap(it.def, fp.z - d.off.z, f.d), y: undefined };
+      d.ok = this.canPlace(d.uid, p); d.patch = { x: p.x, z: p.z };
+      const dx = p.x - it.p.x, dz = p.z - it.p.z;
+      it.root.position.set(p.x, this.supportY(d.uid, p.x, p.z, it.def) + (it.def.rug ? 0.02 : 0.04), p.z);
+      if (!d.kids) d.kids = this.carried(d.uid);
+      d.kids.forEach((k) => { const o = this.items.get(k); if (o) o.root.position.set(o.p.x + dx, it.size.y + 0.04, o.p.z + dz); });
+    }
+    this.updateMarker();
+  };
+  private up = (e: PointerEvent) => {
+    const d = this.drag;
+    if (!d) {
+      if (this.downAt && Math.hypot(e.clientX - this.downAt.x, e.clientY - this.downAt.y) < 5 && e.target === this.renderer.domElement) {
+        this.sel = null; this.ev.onSelect(null); this.updateMarker();
+        const p = this.floorPoint(e); if (p) this.walkTo(p.x, p.z); // герой іде туди, куди натиснули
+      }
+      this.downAt = null; return;
+    }
+    this.drag = null;
+    const it = this.items.get(d.uid); if (!it) return;
+    if (!d.moved) { this.ev.onTap(d.uid); this.bounce(d.uid); return; }
+    if (d.ok) { this.ev.onMove(d.uid, d.patch, d.kids ?? this.carried(d.uid)); this.bounce(d.uid); }
+    else { this.ev.onBad(); this.place(it); (d.kids ?? []).forEach((k) => { const o = this.items.get(k); if (o) this.place(o); }); this.updateMarker(); }
+  };
+  private hover(e: PointerEvent) {
+    if (e.target !== this.renderer.domElement) return;
+    this.renderer.domElement.style.cursor = this.pick(e) || this.hitHero(e) ? 'grab' : 'default';
+  }
+  // зсув вибраного предмета стрілками (для клавіатури і кнопок)
+  nudge(uid: string, dx: number, dz: number): Partial<Placed> | null {
+    const it = this.items.get(uid); if (!it || it.def.wall) return null;
+    const step = it.def.grid ?? (this.mode === 'city' ? 0.25 : 0.1);
+    const p = { ...it.p, x: +(it.p.x + dx * step).toFixed(2), z: +(it.p.z + dz * step).toFixed(2) };
+    return this.canPlace(uid, p) ? { x: p.x, z: p.z } : null;
+  }
+  // напрямок «вперед/вправо» відносно камери, щоб стрілки рухали предмет так, як бачить дитина
+  screenDir(key: 'up' | 'down' | 'left' | 'right') {
+    const f = new THREE.Vector3(); this.camera.getWorldDirection(f); f.y = 0; f.normalize();
+    const r = new THREE.Vector3(-f.z, 0, f.x);
+    const v = key === 'up' ? f : key === 'down' ? f.clone().negate() : key === 'right' ? r : r.clone().negate();
+    return Math.abs(v.x) > Math.abs(v.z) ? { dx: Math.sign(v.x), dz: 0 } : { dx: 0, dz: Math.sign(v.z) };
+  }
+
+  turn(dir: 1 | -1) {
+    const off = this.camera.position.clone().sub(this.controls.target);
+    const start = Math.atan2(off.x, off.z), end = start + dir * Math.PI / 2, r = Math.hypot(off.x, off.z), t0 = performance.now();
+    const step = () => {
+      const k = Math.min(1, (performance.now() - t0) / 450), e = 1 - Math.pow(1 - k, 3);
+      const a = start + (end - start) * e;
+      this.camera.position.set(this.controls.target.x + Math.sin(a) * r, this.camera.position.y, this.controls.target.z + Math.cos(a) * r);
+      if (k < 1) requestAnimationFrame(step);
+    };
+    step();
+  }
+
+  // ---------- кадр ----------
+  private loop = () => {
+    this.raf = requestAnimationFrame(this.loop);
+    const dt = Math.min(0.05, this.clock.getDelta());
+    this.controls.update();
+    const cam = this.camera.position, half = this.half;
+    for (const w of this.walls) {
+      const hide = [cam.z < -half, cam.x < -half, cam.z > half, cam.x > half][w.side];
+      w.mesh.scale.y += ((hide ? 0.06 : 1) - w.mesh.scale.y) * 0.18;
+      w.mesh.children.forEach((c, i) => { if (i > 1) c.visible = !hide; });
+    }
+    // герой
+    if (this.hero) {
+      const h = this.hero;
+      h.mixer.update(dt);
+      if (h.target) {
+        const dir = h.target.clone().sub(h.obj.position); dir.y = 0;
+        const dist = dir.length();
+        if (dist < 0.03) { h.target = null; this.play('Idle_A'); }
+        else {
+          const sp = Math.min(dist, this.c.speed * dt);
+          h.obj.position.addScaledVector(dir.normalize(), sp);
+          const want = Math.atan2(dir.x, dir.z);
+          let diff = want - h.obj.rotation.y; diff = Math.atan2(Math.sin(diff), Math.cos(diff));
+          h.obj.rotation.y += diff * Math.min(1, dt * 10);
+          this.play(dist > half * 0.6 ? 'Running_A' : 'Walking_A');
+        }
+      }
+    }
+    const now = performance.now();
+    const r = this.renderer.domElement.getBoundingClientRect();
+    for (const it of this.items.values()) {
+      if (it.def.wall && this.walls.length) { const wl = this.walls[it.p.wall ?? 0]; it.root.visible = wl.mesh.scale.y > 0.5; }
+      const age = (now - it.born) / 380;
+      const s = age >= 1 ? 1 : 1 + Math.sin(age * Math.PI) * 0.12 * (1 - age) - (1 - age) * 0.25;
+      it.model.scale.setScalar(Math.max(0.6, s));
+      let lift = 0;
+      if (this.hop?.uid === it.p.uid) { const k = (now - this.hop.t0) / 360; if (k < 1) lift = Math.sin(k * Math.PI) * (this.mode === 'city' ? 0.4 : 0.12); else this.hop = null; }
+      it.model.position.y = lift;
+      const show = it.root.visible && (this.showLabels || this.sel === it.p.uid) && (!it.def.rug || this.sel === it.p.uid);
+      it.label.style.display = show ? 'block' : 'none';
+      if (show) {
+        const top = it.def.wall ? it.size.y / 2 + 0.05 : it.size.y + (this.mode === 'city' ? 0.25 : 0.08);
+        const v = new THREE.Vector3(0, top, 0).applyMatrix4(it.root.matrixWorld).project(this.camera);
+        it.label.style.transform = `translate(-50%, -100%) translate(${((v.x + 1) / 2) * r.width}px, ${((1 - v.y) / 2) * r.height}px)`;
+        it.label.classList.toggle('is-sel', this.sel === it.p.uid);
+      }
+    }
+    if (this.sel) this.updateMarker();
+    this.renderer.render(this.scene, this.camera);
+  };
+  setLabel(uid: string, text: string) { const it = this.items.get(uid); if (it) it.label.textContent = text; }
+  private resize() {
+    const w = this.host.clientWidth, h = this.host.clientHeight;
+    this.renderer.setSize(w, h, false);
+    this.renderer.domElement.style.width = '100%'; this.renderer.domElement.style.height = '100%';
+    this.camera.aspect = w / h; this.camera.updateProjectionMatrix();
+  }
+  dispose() {
+    cancelAnimationFrame(this.raf); this.ro.disconnect();
+    this.renderer.domElement.removeEventListener('pointerdown', this.down);
+    window.removeEventListener('pointermove', this.move); window.removeEventListener('pointerup', this.up);
+    this.controls.dispose(); this.renderer.dispose(); this.renderer.domElement.remove();
+    this.items.forEach((it) => it.label.remove());
+  }
+}
+
+// Мініатюри: рендеримо модель один раз у прихованому полотні
+let thumbR: THREE.WebGLRenderer | null = null;
+const thumbCache = new Map<string, Promise<string>>();
+let queue: Promise<unknown> = Promise.resolve();
+export function renderThumb(def: WorldItem): Promise<string> {
+  const key = `${def.pack}:${def.file}`;
+  if (!thumbCache.has(key)) {
+    const job = queue.then(() => template({ ...def, scale: 1 }).then((tpl) => {
+      thumbR = thumbR ?? new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
+      thumbR.setSize(180, 160); thumbR.outputColorSpace = THREE.SRGBColorSpace; thumbR.toneMapping = THREE.ACESFilmicToneMapping;
+      const sc = new THREE.Scene();
+      sc.add(new THREE.HemisphereLight('#ffffff', '#b9a58c', 1.6));
+      const l = new THREE.DirectionalLight('#ffffff', 1.6); l.position.set(3, 5, 4); sc.add(l);
+      const o = tpl.obj.clone(true); sc.add(o);
+      const box = new THREE.Box3().setFromObject(o); const c = box.getCenter(new THREE.Vector3()); const s = box.getSize(new THREE.Vector3()).length();
+      const cam = new THREE.PerspectiveCamera(30, 180 / 160, 0.001, 100);
+      const dir = def.wall ? new THREE.Vector3(0.5, 0.3, 1) : new THREE.Vector3(1, 0.85, 1);
+      cam.position.copy(c).add(dir.normalize().multiplyScalar(s * 1.9)); cam.lookAt(c);
+      thumbR.render(sc, cam);
+      return thumbR.domElement.toDataURL('image/png');
+    }));
+    queue = job.catch(() => {});
+    thumbCache.set(key, job);
+  }
+  return thumbCache.get(key)!;
+}
