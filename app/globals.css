@@ -1558,3 +1558,27 @@ a.t-stat:hover { transform: translateY(-2px); }
   .rw-card { width: 96px; }
 }
 @keyframes rwFade { from { opacity: 0; } to { opacity: 1; } }
+
+/* Світи: «My home» 3D */
+.hm { display: grid; gap: 12px; user-select: none; -webkit-user-select: none; }
+.hm:fullscreen { background: var(--mu-paper); padding: 16px; overflow: auto; align-content: start; }
+.hm:fullscreen .hm-stage { height: 70vh; }
+.hm-badge { font-size: 14px; padding: 4px 10px; border: 2px solid var(--mu-ink); border-radius: 99px; background: var(--mu-lime); font-family: inherit; vertical-align: middle; }
+.hm-stage { position: relative; height: min(64vh, 620px); min-height: 360px; border: 2px solid var(--mu-ink); border-radius: 24px; background: radial-gradient(ellipse at 50% 35%, #FFFDF6 0%, #F3EAD8 60%, #E7DAC1 100%); box-shadow: 6px 6px 0 var(--mu-ink); overflow: hidden; }
+.hm-canvas { position: absolute; inset: 0; }
+.hm-canvas canvas { display: block; }
+.hm-labels { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.hm-label { position: absolute; left: 0; top: 0; font: 700 12px/1 var(--mu-font-body, sans-serif); padding: 4px 8px; background: #fff; border: 1.5px solid var(--mu-ink); border-radius: 99px; white-space: nowrap; box-shadow: 2px 2px 0 var(--mu-ink); will-change: transform; }
+.hm-label.is-sel { background: var(--mu-lime); font-size: 14px; z-index: 2; }
+.hm-cam { position: absolute; right: 12px; top: 12px; display: flex; gap: 6px; }
+.hm-cam button { width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--mu-ink); background: #fff; font-size: 20px; line-height: 1; cursor: pointer; box-shadow: 2px 2px 0 var(--mu-ink); }
+.hm-cam button:active { transform: translate(2px, 2px); box-shadow: none; }
+.hm-loading { position: absolute; inset: 0; display: grid; place-items: center; font-weight: 700; }
+.hm-room { justify-content: flex-start; }
+.hm-room__g { display: flex; align-items: center; gap: 8px; }
+.hm-thumb { width: 84px; height: 72px; object-fit: contain; display: block; }
+.hm-thumb--wait { background: #F1E8D6; border-radius: 10px; animation: hmPulse 1.2s ease-in-out infinite; }
+.hm-card { width: 118px; }
+.hm-credits { font-size: 13px; margin-top: 10px; }
+@keyframes hmPulse { 50% { opacity: .5; } }
+@media (max-width: 760px) { .hm-stage { height: 56vh; } .hm-card { width: 100px; } .hm-label { font-size: 11px; } }
