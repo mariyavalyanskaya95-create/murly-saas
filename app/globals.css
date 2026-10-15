@@ -1428,3 +1428,14 @@ a.t-stat:hover { transform: translateY(-2px); }
 .ap__text p:hover { background: var(--mu-paper); }
 .ap__text p.is-now { background: var(--mu-lime); }
 .ap__now { margin: 0; font-size: 14px; color: var(--mu-ink-soft); }
+.ex-scale { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+.ex-scale__opt { font: inherit; font-size: 14px; font-weight: 600; padding: 6px 12px; border: 2px solid var(--mu-ink); border-radius: var(--mu-radius-pill); background: #fff; cursor: pointer; line-height: 1.3; }
+.ex-scale__opt.is-on.s0 { background: #F6B5A6; } .ex-scale__opt.is-on.s1 { background: #FBD3C9; } .ex-scale__opt.is-on.s2 { background: var(--mu-paper-dark); }
+.ex-scale__opt.is-on.s3 { background: #E6F7A8; } .ex-scale__opt.is-on.s4 { background: var(--mu-lime); }
+.ex-scale__opt:disabled { cursor: default; }
+.vr { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 4px; }
+.vr__btn .mu-ic { width: 18px; height: 18px; }
+.vr__audio { height: 38px; max-width: 100%; }
+.vr__dot { width: 10px; height: 10px; border-radius: 50%; background: #fff; display: inline-block; margin-right: 6px; animation: vr-blink 1s infinite; }
+@keyframes vr-blink { 50% { opacity: .2; } }
+@media (prefers-reduced-motion: reduce) { .vr__dot { animation: none; } }
