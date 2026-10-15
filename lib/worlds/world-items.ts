@@ -123,5 +123,5 @@ export const GROUNDS = [
 
 // Герої (KayKit Adventurers, CC0), анімації Rig_Medium
 export const HEROES = [
-  { file: 'Rogue', en: 'Robin' }, { file: 'Ranger', en: 'Rose' }, { file: 'Mage', en: 'Max' }, { file: 'Knight', en: 'Kate' }, { file: 'Barbarian', en: 'Ben' },
+  { file: 'Rogue', en: 'Robin' }, { file: 'Ranger', en: 'Leo' }, { file: 'Mage', en: 'Max' }, { file: 'Knight', en: 'Alex' }, { file: 'Barbarian', en: 'Ben' },
 ];
