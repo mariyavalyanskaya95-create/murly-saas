@@ -95,8 +95,11 @@ function StartScreen({ onStart }: { onStart: (hero: string, name: string) => voi
 
 const migrate = (sv: Save): Save => ({ ...sv, houses: Object.fromEntries(Object.entries(sv.houses ?? {}).map(([k, h]) => [k, normHouse(h)])) });
 
-export default function TownGame({ full: fullPage = false }: { full?: boolean }) {
-  const { isSignedIn, isLoaded } = useAuth();
+export default function TownGame({ full: fullPage = false, guest = false }: { full?: boolean; guest?: boolean }) {
+  const auth = useAuth();
+  // гостьовий режим (?guest=1): окреме збереження в браузері, без акаунта й гаманця
+  const isLoaded = auth.isLoaded, isSignedIn = guest ? false : auth.isSignedIn;
+  const SAVE_KEY = guest ? `${SAVE}-guest` : SAVE;
   const [cloud, setCloud] = useState<'off' | 'saving' | 'saved' | 'error'>('off');
   const host = useRef<HTMLDivElement>(null);
   const labels = useRef<HTMLDivElement>(null);
@@ -137,7 +140,7 @@ export default function TownGame({ full: fullPage = false }: { full?: boolean })
   // ---------- збереження: у браузері завжди, у хмарі для тих, хто увійшов ----------
   useEffect(() => {
     let local: Save = START;
-    try { const raw = localStorage.getItem(SAVE); if (raw) local = { ...START, ...JSON.parse(raw) }; } catch { /* новий гравець */ }
+    try { const raw = localStorage.getItem(SAVE_KEY); if (raw) local = { ...START, ...JSON.parse(raw) }; } catch { /* новий гравець */ }
     if (!isLoaded) return;
     if (!isSignedIn) { setS(migrate(local)); setLoaded(true); return; }
     Promise.all([
@@ -154,7 +157,7 @@ export default function TownGame({ full: fullPage = false }: { full?: boolean })
   useEffect(() => {
     if (!loaded) return;
     const data = { ...s, savedAt: Date.now() };
-    try { localStorage.setItem(SAVE, JSON.stringify(data)); } catch { /* немає сховища */ }
+    try { localStorage.setItem(SAVE_KEY, JSON.stringify(data)); } catch { /* немає сховища */ }
     if (!isSignedIn) return;
     window.clearTimeout(cloudTimer.current);
     setCloud('saving');
