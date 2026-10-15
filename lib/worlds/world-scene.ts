@@ -1032,12 +1032,12 @@ function procModel(file: string): THREE.Object3D {
   } else if (file === 'stairs') {
     // сходи на другий поверх: низ спереду (+z), верх ззаду
     const wood = mat('#C99A6B'), dark = mat('#8E623E'), rail = mat('#F4F1EA');
-    const N = 7, W = 0.55, D = 1.0, H = 1.2, sd = D / N, sh = H / N;
+    const N = 7, W = 0.55, D = 1.0, H = 1.12, sd = D / N, sh = H / N;
     for (let i = 0; i < N; i++) { box(W, sh * (i + 1), sd, i % 2 ? wood : mat('#D4A877'), 0, 0, D / 2 - sd * (i + 0.5)); }
     box(0.04, H + 0.05, D, dark, -W / 2 - 0.02, 0, 0);
-    for (let i = 0; i < N; i += 2) box(0.025, 0.32, 0.025, rail, W / 2 + 0.015, sh * (i + 1), D / 2 - sd * (i + 0.5));
+    for (let i = 0; i < N - 1; i += 2) box(0.025, 0.2, 0.025, rail, W / 2 + 0.015, sh * (i + 1), D / 2 - sd * (i + 0.5));
     const hand = new THREE.Mesh(new THREE.BoxGeometry(0.035, 0.035, Math.hypot(D, H)), rail);
-    hand.position.set(W / 2 + 0.015, H / 2 + 0.36, 0); hand.rotation.x = Math.atan2(H, D); g.add(hand);
+    hand.scale.z = 0.85; hand.position.set(W / 2 + 0.015, H / 2 + 0.2, 0.05); hand.rotation.x = Math.atan2(H, D); g.add(hand);
   } else if (file === 'trampoline') {
     const ring = new THREE.Mesh(new THREE.CylinderGeometry(0.65, 0.65, 0.06, 32), mat('#4A86D0')); ring.position.y = 0.35; g.add(ring);
     const mat2 = new THREE.Mesh(new THREE.CylinderGeometry(0.55, 0.55, 0.065, 32), mat('#2B2B2B')); mat2.position.y = 0.355; g.add(mat2);

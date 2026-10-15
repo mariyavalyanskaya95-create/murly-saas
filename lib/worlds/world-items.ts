@@ -60,7 +60,7 @@ const HOLIDAY: WorldItem[] = [
 ];
 
 export const ROOM_ITEMS: WorldItem[] = [...fromHome, ...FOOD, ...HOLIDAY,
-  { file: 'stairs', en: 'stairs', cat: 'Living room', pack: 'proc', paint: 'none' }, // сходи на другий поверх
+  { file: 'stairs', en: 'staircase', cat: 'Living room', pack: 'proc', paint: 'none' }, // сходи на другий поверх
 ];
 export const ROOM_CATS = ['Living room', 'Bedroom', 'Kitchen', 'Food', 'Bathroom', 'Study', 'Decor', 'Holiday', 'Halloween'];
 
