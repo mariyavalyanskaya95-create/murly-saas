@@ -20,6 +20,7 @@ export type Plan = {
   id: string; title: string; level: string; age: Age; topic?: string; color: string;
   blocks: Block[]; source?: string; createdAt?: string; updatedAt?: string;
   focus?: string[]; aims?: string;
+  duration?: number; // тривалість уроку в хвилинах
 };
 
 export const FOCUS = ['Vocabulary', 'Grammar', 'Reading', 'Listening', 'Speaking', 'Writing', 'НМТ'];
