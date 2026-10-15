@@ -1582,3 +1582,4 @@ a.t-stat:hover { transform: translateY(-2px); }
 .hm-credits { font-size: 13px; margin-top: 10px; }
 @keyframes hmPulse { 50% { opacity: .5; } }
 @media (max-width: 760px) { .hm-stage { height: 56vh; } .hm-card { width: 100px; } .hm-label { font-size: 11px; } }
+.hm-atlas { background-image: url('/worlds/kenney-thumbs.webp'); background-repeat: no-repeat; width: 90px; height: 80px; }
