@@ -24,14 +24,22 @@ export type SceneEvents = {
 
 const loader = new GLTFLoader();
 const cache = new Map<string, Promise<Template>>();
-const urlOf = (d: HomeItem) => (d.pack === 'kaykit' ? `/worlds/kaykit/${d.file}.gltf` : `/worlds/kenney/m/${d.file}.glb`);
+// Усі моделі зібрані в два файли (glTF-Transform merge): одна сцена = один предмет, назва сцени = file
+const PACK_URL = { kenney: '/worlds/kenney-all.glb', kaykit: '/worlds/kaykit-all.glb' } as const;
+const packs = new Map<string, Promise<Map<string, THREE.Object3D>>>();
+function pack(name: 'kenney' | 'kaykit') {
+  if (!packs.has(name)) packs.set(name, loader.loadAsync(PACK_URL[name]).then((g) => new Map(g.scenes.map((sc) => [sc.name, sc as THREE.Object3D]))));
+  return packs.get(name)!;
+}
 
 // Завантажуємо модель один раз і нормалізуємо: центр сліду в (0,0), низ на y=0; для настінних задня грань на z=0
 function template(def: HomeItem): Promise<Template> {
   const key = def.file;
   if (!cache.has(key)) {
-    cache.set(key, loader.loadAsync(urlOf(def)).then((g) => {
-      const inner = g.scene;
+    cache.set(key, pack(def.pack ?? 'kenney').then((scenes) => {
+      const src = scenes.get(def.file);
+      if (!src) throw new Error(`model ${def.file} not found`);
+      const inner = new THREE.Group(); src.children.forEach((c) => inner.add(c.clone(true)));
       if (def.pack === 'kaykit') inner.scale.setScalar(KAYKIT_SCALE);
       const wrap = new THREE.Group(); wrap.add(inner);
       const box = new THREE.Box3().setFromObject(wrap);
@@ -205,7 +213,8 @@ export class HomeScene {
       const def = HOME_ITEM[p.file]; if (!def) continue;
       let it = this.items.get(p.uid);
       if (!it) {
-        const tpl = await template(def);
+        let tpl: Template;
+        try { tpl = await template(def); } catch { continue; }
         if (!keep.has(p.uid) || this.items.has(p.uid)) continue;
         const model = tpl.obj.clone(true);
         model.traverse((o) => { const m = o as THREE.Mesh; if (m.isMesh) m.material = Array.isArray(m.material) ? m.material.map((x) => x.clone()) : m.material.clone(); });
