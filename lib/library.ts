@@ -3,6 +3,7 @@
 import { parseSection } from './exercise';
 import type { Block, Plan } from './lesson';
 import { PRACTICE } from './practice';
+import { MORE } from './library-more';
 
 let n = 0;
 const id = () => `lib-${++n}`;
@@ -461,6 +462,6 @@ const FOCUS_MAP: Record<string, string[]> = {
 LIBRARY.forEach((p) => { if (!p.focus && FOCUS_MAP[p.id]) p.focus = FOCUS_MAP[p.id]; });
 
 // Listening і Reading з розділу «Практика» теж доступні вчителю в бібліотеці
-LIBRARY.push(...PRACTICE);
+LIBRARY.push(...MORE, ...PRACTICE);
 
 export const getLibraryPlan = (planId: string) => LIBRARY.find((p) => p.id === planId);
