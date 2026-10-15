@@ -5,10 +5,12 @@ import SiteNav from '@/components/SiteNav';
 import SiteFooter from '@/components/SiteFooter';
 import LessonView from '@/components/lesson/LessonView';
 import { PRACTICE } from '@/lib/practice';
+import { localizeLesson } from '@/lib/content/lessons';
+import { getLang } from '@/lib/i18n-server';
 import { tr } from '@/lib/i18n-server';
 
 export const dynamicParams = false;
-const find = (slug: string) => PRACTICE.find((p) => p.id === `lib-${slug}`);
+const find = (slug: string) => { const p = PRACTICE.find((x) => x.id === `lib-${slug}`); return p ? localizeLesson(p, getLang()) : p; };
 
 export function generateStaticParams() {
   return PRACTICE.map((p) => ({ id: p.id.replace(/^lib-/, '') }));
