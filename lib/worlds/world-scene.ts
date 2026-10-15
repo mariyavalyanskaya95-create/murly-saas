@@ -626,3 +626,30 @@ export function renderThumb(def: WorldItem): Promise<string> {
   }
   return thumbCache.get(key)!;
 }
+
+// Портрет героя для екрана вибору: модель у позі Idle, рендер один раз
+const heroThumbs = new Map<string, Promise<string>>();
+export function renderHero(file: string): Promise<string> {
+  if (!heroThumbs.has(file)) {
+    const job = queue.then(async () => {
+      const [char, anim] = await Promise.all([loader.loadAsync(`/worlds/heroes/${file}.glb`), loader.loadAsync('/worlds/heroes/anim-general.glb')]);
+      thumbR = thumbR ?? new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
+      thumbR.setSize(180, 160); thumbR.outputColorSpace = THREE.SRGBColorSpace; thumbR.toneMapping = THREE.ACESFilmicToneMapping;
+      const sc = new THREE.Scene();
+      sc.add(new THREE.HemisphereLight('#ffffff', '#b9a58c', 1.7));
+      const l = new THREE.DirectionalLight('#ffffff', 1.5); l.position.set(2, 4, 5); sc.add(l);
+      const obj = char.scene; sc.add(obj);
+      const mixer = new THREE.AnimationMixer(obj);
+      const idle = anim.animations.find((a) => a.name === 'Idle_A');
+      if (idle) { mixer.clipAction(idle).play(); mixer.update(0.6); }
+      obj.updateMatrixWorld(true);
+      const cam = new THREE.PerspectiveCamera(28, 180 / 160, 0.01, 50);
+      cam.position.set(0.9, 1.7, 4.2); cam.lookAt(0, 1.05, 0);
+      thumbR.render(sc, cam);
+      return thumbR.domElement.toDataURL('image/png');
+    });
+    queue = job.catch(() => {});
+    heroThumbs.set(file, job);
+  }
+  return heroThumbs.get(file)!;
+}
