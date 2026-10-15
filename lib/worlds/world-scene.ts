@@ -21,7 +21,7 @@ export type SceneEvents = {
 
 const CFG = {
   room: { size: 2.8, wallH: 1.3, cam: [3.7, 3.4, 3.7], target: 0.3, dist: [1.8, 8], shadow: 2.6, snap: 0.05, hero: 0.34, speed: 0.55 },
-  city: { size: 20, wallH: 0, cam: [17, 16, 17], target: 0, dist: [7, 42], shadow: 12, snap: 0.25, hero: 0.24, speed: 1.6 },
+  city: { size: 20, wallH: 0, cam: [12, 12, 12], target: 0, dist: [7, 42], shadow: 12, snap: 0.25, hero: 0.24, speed: 1.6 },
 } as const;
 
 const loader = new GLTFLoader();

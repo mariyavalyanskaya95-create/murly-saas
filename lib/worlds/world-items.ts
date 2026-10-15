@@ -43,7 +43,7 @@ const FOOD: WorldItem[] = [
 
 const X = (file: string, en: string, o: Partial<WorldItem> = {}): WorldItem => ({ file, en, cat: 'Holiday', pack: 'holiday', paint: 'none', ...o });
 const HOLIDAY: WorldItem[] = [
-  X('christmas_tree_decorated', 'Christmas tree', { price: 10 }), X('christmas_tree', 'fir tree'),
+  X('christmas_tree_decorated', 'Christmas tree with lights', { price: 10 }), X('christmas_tree', 'Christmas tree'),
   X('present_A_red', 'red present', { small: true }), X('present_B_blue', 'blue present', { small: true }), X('present_C_green', 'green present', { small: true }),
   X('present_D_yellow', 'yellow present', { small: true }), X('present_sphere_A_white', 'round present', { small: true }),
   X('snowman_A', 'snowman', { price: 5 }), X('snowman_B', 'little snowman'), X('snowball_pile', 'snowballs'),
@@ -90,8 +90,8 @@ export const CITY_ITEMS: WorldItem[] = [
   C('box_A', 'box', 'Street', { grid: 0.25 }),
   C('watertower', 'water tower', 'Street', { grid: 0.25, price: 10 }),
   C('bush', 'bush', 'Nature', { grid: 0.25 }),
-  { file: 'christmas_tree', en: 'fir tree', cat: 'Nature', pack: 'holiday', scale: 2.4, grid: 0.25, paint: 'none' },
-  { file: 'christmas_tree_decorated', en: 'Christmas tree', cat: 'Nature', pack: 'holiday', scale: 2.4, grid: 0.25, paint: 'none', price: 10 },
+  { file: 'christmas_tree', en: 'Christmas tree', cat: 'Nature', pack: 'holiday', scale: 2.4, grid: 0.25, paint: 'none' },
+  { file: 'christmas_tree_decorated', en: 'tree with lights', cat: 'Nature', pack: 'holiday', scale: 2.4, grid: 0.25, paint: 'none', price: 10 },
   { file: 'snowman_A', en: 'snowman', cat: 'Nature', pack: 'holiday', scale: 1.4, grid: 0.25, paint: 'none' },
   { file: 'pottedPlant', en: 'plant pot', cat: 'Nature', pack: 'kenney', scale: 1.4, grid: 0.25, paint: 'none' },
 ];
