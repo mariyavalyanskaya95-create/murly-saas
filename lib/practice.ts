@@ -126,6 +126,8 @@ Check-out time: [11/eleven]`],
 The lift is on the right. = False
 Breakfast is included. = True`],
       ),
+      ex(['voice', 'Speaking: record your answers.', `You are at a hotel reception. Say who you are and that you have a reservation.
+Ask two questions about breakfast or Wi-Fi.`]),
       talk(`Role play: you arrive at a hotel. Ask about breakfast, Wi-Fi and check-out.
 What is important for you when you choose a hotel?`),
     ],
@@ -227,6 +229,9 @@ According to experts, the key idea is working smarter. = True`],
         ['sort', 'Arguments for or against the four-day week?', `For: people take fewer sick days; less stress; more time for family
 Against: hospitals need staff every day; the workload stays the same; working days become more intense`],
       ),
+      ex(['scale', 'How much do you agree?', `A four-day week would make people happier.
+My job (or my future job) could work in four days.
+Companies should decide this, not the government.`]),
       talk(`Would you like to work four days a week? What would you do with the extra day?
 Which jobs could easily move to a four-day week, and which could not?`),
       ex(['open', 'Writing: 100-120 words.', 'Write a short opinion: Should your country introduce a four-day work week? Give two arguments and an example.']),

@@ -5,7 +5,7 @@
 //  translate "Я люблю каву = I love coffee / I like coffee"
 //  open      будь-який рядок, відповідь перевіряє вчитель
 
-export type SectionType = 'gap' | 'choice' | 'truefalse' | 'match' | 'sort' | 'translate' | 'open';
+export type SectionType = 'gap' | 'choice' | 'truefalse' | 'match' | 'sort' | 'translate' | 'open' | 'scale' | 'voice';
 export type Part = { t: 'text'; v: string } | { t: 'gap'; answers: string[] } | { t: 'choice'; options: string[] };
 export type Task = { parts?: Part[]; prompt?: string; answers?: string[] };
 export type Section = { type: SectionType; instruction: string; tasks: Task[] };
@@ -18,6 +18,8 @@ export const SECTION_TYPES: { id: SectionType; label: string; instruction: strin
   { id: 'truefalse', label: 'True / False', instruction: 'True or False?', hint: 'Твердження = True або False (можна T / F).', example: 'Tom gets up at 7 o’clock. = True\nTom goes to bed at 10. = False' },
   { id: 'match', label: 'Знайди пару', instruction: 'Match the words with their meanings.', hint: 'Ліва частина = права частина. Учень обирає пару зі списку, праві частини перемішуються.', example: 'reliable = you can trust them\nawkward = a bit embarrassing\nto give up = to stop trying' },
   { id: 'sort', label: 'Розклади по групах', instruction: 'Put the phrases into the right group.', hint: 'Група: фраза, фраза. Кожна група з нового рядка. Якщо у фразах є коми, розділяй їх крапкою з комою ;', example: 'Inviting: Would you like to come?; Are you free on Friday?\nAccepting: I’d love to!; Sounds great!\nDeclining: Sorry, I can’t make it.; Maybe next time.' },
+  { id: 'scale', label: 'Шкала думки', instruction: 'How much do you agree?', hint: 'Кожен рядок твердження. Учень обирає від «Strongly disagree» до «Strongly agree». Без правильної відповіді, для обговорення.', example: 'Homework should be optional.\nSocial media makes people less happy.' },
+  { id: 'voice', label: 'Голосова відповідь', instruction: 'Record your answer.', hint: 'Кожен рядок питання. Учень записує відповідь голосом, ти слухаєш у перевірці.', example: 'Describe your favourite place in your town.\nWhat did you do last weekend?' },
   { id: 'translate', label: 'Переклад', instruction: 'Переклади англійською.', hint: 'Речення = правильний переклад. Кілька варіантів через /.', example: 'Я люблю каву = I love coffee / I like coffee\nВона вже пішла = She has already left' },
   { id: 'open', label: 'Відкрите питання', instruction: 'Дай відповідь на питання.', hint: 'Кожен рядок окреме питання. Відповідь перевіряєш ти.', example: 'What did you do last weekend?\nDescribe your best friend in 3 sentences.' },
 ];
@@ -32,7 +34,7 @@ export function parseLine(type: SectionType, line: string): Task | null {
     if (i < 0) return { prompt: l, answers: [] };
     return { prompt: l.slice(0, i).trim(), answers: splitAlts(l.slice(i + 1), /\s*\/\s*/) };
   }
-  if (type === 'open') return { prompt: l };
+  if (type === 'open' || type === 'scale' || type === 'voice') return { prompt: l };
   if (type === 'truefalse') {
     const i = l.lastIndexOf('=');
     const st = (i < 0 ? l : l.slice(0, i)).trim();
@@ -119,7 +121,9 @@ export function sectionToText(s: Section): string {
   }
   return s.tasks.map((t) => {
     if (s.type === 'translate') return `${t.prompt ?? ''}${t.answers?.length ? ` = ${t.answers.join(' / ')}` : ''}`;
-    if (s.type === 'open') return t.prompt ?? '';
+    if (s.type === 'open' || s.type === 'scale' || s.type === 'voice') return t.prompt ?? '';
     return (t.parts ?? []).map((p) => (p.t === 'text' ? p.v : p.t === 'gap' ? `[${p.answers.join('/')}]` : `{${p.options.join('|')}}`)).join('');
   }).join('\n');
 }
+
+export const SCALE = ['Strongly disagree', 'Disagree', 'Not sure', 'Agree', 'Strongly agree'];
