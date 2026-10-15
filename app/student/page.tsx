@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { auth, currentUser } from '@clerk/nextjs/server';
 import Icon from '@/components/Icon';
 import StudentHome from '@/components/student/StudentHome';
+import JoinCode from '@/components/JoinCode';
 import { getEnrollments } from '@/lib/student-data';
 
 export const dynamic = 'force-dynamic';
@@ -19,11 +20,14 @@ export default async function StudentPage() {
           <Icon id="c-cat-sit" className="mu-ic t-welcome__ic" />
           <div>
             <h2>Привіт{first ? `, ${first}` : ''}!</h2>
-            <p className="t-muted">Твій кабінет з’явиться, коли вчитель надішле тобі посилання-запрошення. Відкрий його, і тут будуть розклад, словник та ігри.</p>
-            <p className="t-muted">А поки можна потренуватися самостійно:</p>
-            <div className="t-head__actions" style={{ marginTop: 10 }}>
-              <Link href="/irregular-verbs/games" className="mu-btn mu-btn--lime">Ігри з дієсловами</Link>
-              <Link href="/grammar" className="mu-btn">Граматика</Link>
+            <p className="t-muted">Тут з’являться твій розклад, домашка і слова від учителя. Учитель дав код або посилання? Введи його:</p>
+            <div style={{ margin: '12px 0 18px' }}><JoinCode /></div>
+            <p className="t-muted">А поки можна вчитися самому:</p>
+            <div className="t-head__actions" style={{ marginTop: 10, flexWrap: 'wrap' }}>
+              <Link href="/grammar" className="mu-btn mu-btn--lime">Граматика</Link>
+              <Link href="/irregular-verbs/games" className="mu-btn">Ігри з дієсловами</Link>
+              <Link href="/practice" className="mu-btn">Слухати і читати</Link>
+              <Link href="/play/town" className="mu-btn">Murly Town</Link>
             </div>
           </div>
         </div>
