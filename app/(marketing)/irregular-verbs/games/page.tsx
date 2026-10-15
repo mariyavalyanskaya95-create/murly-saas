@@ -6,7 +6,8 @@ import SiteNav from '@/components/SiteNav';
 import SiteFooter from '@/components/SiteFooter';
 import GameHub from '@/components/games/GameHub';
 import type { GameSet } from '@/components/games/engine';
-import { CORE_VERBS as VERBS } from '@/lib/irregular-verbs';
+import { CORE_VERBS } from '@/lib/irregular-verbs';
+import { localizeVerbs } from '@/lib/content/verbs';
 import { tr } from '@/lib/i18n-server';
 
 export function generateMetadata(): Metadata {
@@ -24,6 +25,7 @@ export function generateMetadata(): Metadata {
 
 export default function IrregularVerbsGamesPage() {
   const t = tr();
+  const VERBS = localizeVerbs(CORE_VERBS, t.lang);
   const SETS: GameSet[] = [
     { id: 'past', title: 'Past Simple', prompt: t({ uk: 'Яка форма Past Simple?', ru: 'Какая форма Past Simple?', en: 'What is the Past Simple form?' }), items: VERBS.map((v) => ({ q: v.base, a: v.past, hint: v.uk })) },
     { id: 'pp', title: 'Past Participle', prompt: t({ uk: 'Яка третя форма (Past Participle)?', ru: 'Какая третья форма (Past Participle)?', en: 'What is the third form (Past Participle)?' }), items: VERBS.map((v) => ({ q: v.base, a: v.pp, hint: v.uk })) },
