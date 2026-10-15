@@ -2,8 +2,10 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { AGES, LEVELS, type Age, type Plan } from '@/lib/lesson';
+import { useT } from '@/components/LangProvider';
 
 export default function PracticeList({ items }: { items: Plan[] }) {
+  const t = useT();
   const [skill, setSkill] = useState<'' | 'Listening' | 'Reading'>('');
   const [age, setAge] = useState<Age | ''>('');
   const [level, setLevel] = useState('');
@@ -12,16 +14,16 @@ export default function PracticeList({ items }: { items: Plan[] }) {
     <>
       <div className="le-filters">
         <div className="g-chips">
-          <button className={`g-chip ${!skill ? 'is-on' : ''}`} onClick={() => setSkill('')}>Усе</button>
+          <button className={`g-chip ${!skill ? 'is-on' : ''}`} onClick={() => setSkill('')}>{t({ uk: 'Усе', ru: 'Всё', en: 'All' })}</button>
           <button className={`g-chip ${skill === 'Listening' ? 'is-on' : ''}`} onClick={() => setSkill('Listening')}>Listening</button>
           <button className={`g-chip ${skill === 'Reading' ? 'is-on' : ''}`} onClick={() => setSkill('Reading')}>Reading</button>
         </div>
         <div className="g-chips">
-          <button className={`g-chip ${!age ? 'is-on' : ''}`} onClick={() => setAge('')}>Будь-який вік</button>
+          <button className={`g-chip ${!age ? 'is-on' : ''}`} onClick={() => setAge('')}>{t({ uk: 'Будь-який вік', ru: 'Любой возраст', en: 'Any age' })}</button>
           {AGES.map((a) => <button key={a.id} className={`g-chip ${age === a.id ? 'is-on' : ''}`} onClick={() => setAge(a.id)}>{a.label}</button>)}
         </div>
         <div className="g-chips">
-          <button className={`g-chip ${!level ? 'is-on' : ''}`} onClick={() => setLevel('')}>Усі рівні</button>
+          <button className={`g-chip ${!level ? 'is-on' : ''}`} onClick={() => setLevel('')}>{t({ uk: 'Усі рівні', ru: 'Все уровни', en: 'All levels' })}</button>
           {LEVELS.map((l) => <button key={l} className={`g-chip ${level === l ? 'is-on' : ''}`} onClick={() => setLevel(l)}>{l}</button>)}
         </div>
       </div>
@@ -38,7 +40,7 @@ export default function PracticeList({ items }: { items: Plan[] }) {
           </Link>
         ))}
       </div>
-      {!list.length && <p className="t-empty" style={{ textAlign: 'center' }}>Під ці фільтри поки нічого немає. Розділ поповнюється.</p>}
+      {!list.length && <p className="t-empty" style={{ textAlign: 'center' }}>{t({ uk: 'Під ці фільтри поки нічого немає. Розділ поповнюється.', ru: 'Под эти фильтры пока ничего нет. Раздел пополняется.', en: 'Nothing matches these filters yet. New items are added regularly.' })}</p>}
     </>
   );
 }
