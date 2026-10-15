@@ -6,7 +6,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { getItem, PACK_SCALE, PACK_URL, type Pack, type WorldItem } from './world-items';
 
-export type WorldMode = 'room' | 'city';
+export type WorldMode = 'room' | 'city' | 'yard';
 export type Placed = { uid: string; file: string; x: number; z: number; rot: number; color?: string; wall?: number; y?: number };
 type Template = { obj: THREE.Object3D; size: THREE.Vector3 };
 type Inst = { root: THREE.Group; model: THREE.Object3D; p: Placed; def: WorldItem; size: THREE.Vector3; label: HTMLDivElement; born: number };
@@ -17,11 +17,13 @@ export type SceneEvents = {
   onTap: (uid: string) => void;
   onBad: () => void;
   onHero?: () => void;
+  onHouse?: () => void; // натиснули на будинок у дворі
 };
 
 const CFG = {
   room: { size: 2.8, wallH: 1.3, cam: [3.7, 3.4, 3.7], target: 0.3, dist: [1.8, 8], shadow: 2.6, snap: 0.05, hero: 0.34, speed: 0.55 },
   city: { size: 20, wallH: 0, cam: [12, 12, 12], target: 0, dist: [7, 42], shadow: 12, snap: 0.25, hero: 0.24, speed: 1.6 },
+  yard: { size: 10, wallH: 0, cam: [8, 7.5, 8], target: 0.3, dist: [3, 22], shadow: 7, snap: 0.1, hero: 0.34, speed: 0.9 },
 } as const;
 
 const loader = new GLTFLoader();
@@ -35,7 +37,7 @@ const cache = new Map<string, Promise<Template>>();
 function template(def: WorldItem): Promise<Template> {
   const key = `${def.pack}:${def.file}:${def.scale ?? 1}`;
   if (!cache.has(key)) {
-    cache.set(key, pack(def.pack).then((scenes) => {
+    cache.set(key, (def.pack === 'proc' ? Promise.resolve(new Map([[def.file, procModel(def.file)]])) : pack(def.pack)).then((scenes) => {
       const src = scenes.get(def.file);
       if (!src) throw new Error(`model ${def.file} not found`);
       const inner = new THREE.Group(); src.children.forEach((c) => inner.add(c.clone(true)));
@@ -112,12 +114,15 @@ export class WorldScene {
   private clock = new THREE.Clock();
   private hero: { obj: THREE.Object3D; mixer: THREE.AnimationMixer; acts: Record<string, THREE.AnimationAction>; cur: string; target: THREE.Vector3 | null } | null = null;
   private heroToken = 0;
-  private c: (typeof CFG)[WorldMode];
+  private c: { size: number; wallH: number; cam: readonly number[]; target: number; dist: readonly number[]; shadow: number; snap: number; hero: number; speed: number };
   readonly half: number;
   showLabels = true;
 
-  constructor(private host: HTMLDivElement, private labels: HTMLDivElement, private ev: SceneEvents, readonly mode: WorldMode) {
-    this.c = CFG[mode]; this.half = this.c.size / 2;
+  constructor(private host: HTMLDivElement, private labels: HTMLDivElement, private ev: SceneEvents, readonly mode: WorldMode, private opts: { roomSize?: number; sky?: 'clouds' | 'garden' } = {}) {
+    const base = CFG[mode];
+    const k = mode === 'room' && opts.roomSize ? opts.roomSize / base.size : 1;
+    this.c = { ...base, size: mode === 'room' ? opts.roomSize ?? base.size : base.size, cam: base.cam.map((v) => v * k), dist: [base.dist[0], base.dist[1] * k], shadow: base.shadow * k };
+    this.half = this.c.size / 2;
     this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     this.renderer.shadowMap.enabled = true;
@@ -187,7 +192,7 @@ export class WorldScene {
     }
   }
   private addWindow(g: THREE.Group, x: number, trim: THREE.Material) {
-    const glass = new THREE.Mesh(new THREE.PlaneGeometry(0.9, 0.62), new THREE.MeshStandardMaterial({ color: '#BFE4FA', emissive: '#9fd4f5', emissiveIntensity: 0.45, roughness: 0.2 }));
+    const glass = new THREE.Mesh(new THREE.PlaneGeometry(0.9, 0.62), new THREE.MeshBasicMaterial({ map: skyTexture(this.opts.sky ?? 'clouds') }));
     glass.position.set(x, 0.72, 0.056); g.add(glass);
     const bars: [number, number, number, number][] = [[0, 0.405, 1.0, 0.05], [0, -0.335, 1.0, 0.07], [-0.475, 0.035, 0.05, 0.74], [0.475, 0.035, 0.05, 0.74], [0, 0.035, 0.035, 0.66], [0, 0.035, 0.9, 0.03]];
     bars.forEach(([bx, by, w, h]) => { const b = new THREE.Mesh(new THREE.BoxGeometry(w, h, 0.05), trim); b.position.set(x + bx, 0.72 + by, 0.07); b.castShadow = true; g.add(b); });
@@ -207,6 +212,18 @@ export class WorldScene {
     edge.position.y = -0.4; edge.receiveShadow = true; this.scene.add(edge);
     this.setGround('#8FC46A');
   }
+  // будинок посеред двору: стоїть на місці, натискання веде всередину
+  async setHouse(def: WorldItem | undefined) {
+    const old = this.items.get('__house'); if (old) { this.scene.remove(old.root); old.label.remove(); this.items.delete('__house'); }
+    if (!def) return;
+    let tpl: Template; try { tpl = await template({ ...def, scale: (def.scale ?? 1) * 2.1 }); } catch { return; }
+    const model = tpl.obj.clone(true);
+    const root = new THREE.Group(); root.add(model); root.userData.uid = '__house'; this.scene.add(root);
+    const label = document.createElement('div'); label.className = 'hm-label hm-label--door'; label.textContent = 'Go inside'; this.labels.appendChild(label);
+    const z = -this.half + tpl.size.z / 2 + 0.3;
+    const it: Inst = { root, model, p: { uid: '__house', file: def.file, x: 0, z: +z.toFixed(2), rot: 0 }, def: { ...def, building: true }, size: tpl.size, label, born: performance.now() };
+    this.items.set('__house', it); this.place(it);
+  }
   setWall(hex: string) { this.wallMat.color.set(hex); }
   setFloor(hex: string, kind: 'wood' | 'tiles' | 'carpet') { this.floorMat.map?.dispose(); this.floorMat.map = groundTexture(hex, kind, this.c.size / 2); this.floorMat.color.set('#ffffff'); this.floorMat.needsUpdate = true; }
   setGround(hex: string) { this.floorMat.map?.dispose(); this.floorMat.map = groundTexture(hex, 'grass', this.c.size / 2); this.floorMat.color.set('#ffffff'); this.floorMat.needsUpdate = true; }
@@ -215,7 +232,7 @@ export class WorldScene {
   private def(file: string) { return getItem(this.mode, file); }
   async sync(list: Placed[]) {
     const keep = new Set(list.map((p) => p.uid));
-    for (const [uid, it] of this.items) if (!keep.has(uid)) { this.scene.remove(it.root); it.label.remove(); this.items.delete(uid); }
+    for (const [uid, it] of this.items) if (!keep.has(uid) && !uid.startsWith('__')) { this.scene.remove(it.root); it.label.remove(); this.items.delete(uid); }
     for (const p of list) {
       const def = this.def(p.file); if (!def) continue;
       let it = this.items.get(p.uid);
@@ -456,6 +473,7 @@ export class WorldScene {
     if (e.button !== undefined && e.button > 0) return;
     if (this.hitHero(e)) { e.stopImmediatePropagation(); this.play('Interact'); this.ev.onHero?.(); return; }
     const hit = this.pick(e);
+    if (hit?.uid === '__house') { e.stopImmediatePropagation(); this.ev.onHouse?.(); return; }
     if (!hit) { this.drag = null; this.downAt = { x: e.clientX, y: e.clientY }; return; }
     // натиснули на предмет: камера не крутиться, тягнемо предмет
     e.stopImmediatePropagation(); e.preventDefault();
@@ -652,4 +670,48 @@ export function renderHero(file: string): Promise<string> {
     heroThumbs.set(file, job);
   }
   return heroThumbs.get(file)!;
+}
+
+// Небо за вікном: блакитний градієнт і хмаринки (у висотках) або дерева (у приватному будинку)
+const skyCache = new Map<string, THREE.Texture>();
+function skyTexture(kind: 'clouds' | 'garden') {
+  if (skyCache.has(kind)) return skyCache.get(kind)!;
+  const cv = document.createElement('canvas'); cv.width = 256; cv.height = 180;
+  const g = cv.getContext('2d')!;
+  const grd = g.createLinearGradient(0, 0, 0, 180); grd.addColorStop(0, '#6EC1F2'); grd.addColorStop(1, '#D8F0FF');
+  g.fillStyle = grd; g.fillRect(0, 0, 256, 180);
+  const cloud = (x: number, y: number, r: number) => { g.fillStyle = 'rgba(255,255,255,.95)'; [[0, 0, 1], [0.9, -0.3, 0.8], [1.7, 0, 0.9], [0.8, 0.3, 0.9]].forEach(([dx, dy, k]) => { g.beginPath(); g.arc(x + dx * r, y + dy * r, r * k, 0, Math.PI * 2); g.fill(); }); };
+  if (kind === 'clouds') { cloud(40, 50, 16); cloud(150, 35, 12); cloud(200, 90, 14); cloud(90, 120, 10); }
+  else {
+    cloud(60, 35, 12); cloud(190, 45, 10);
+    g.fillStyle = '#7CC36A'; g.fillRect(0, 140, 256, 40);
+    [[30, 120, 26], [95, 128, 20], [170, 118, 30], [230, 130, 18]].forEach(([x, y, r]) => { g.fillStyle = '#4E9F43'; g.beginPath(); g.arc(x, y, r, 0, Math.PI * 2); g.fill(); });
+  }
+  const t = new THREE.CanvasTexture(cv); t.colorSpace = THREE.SRGBColorSpace; skyCache.set(kind, t); return t;
+}
+
+// Предмети, намальовані кодом: басейни, пісочниця, батут
+function procModel(file: string): THREE.Object3D {
+  const g = new THREE.Group();
+  const mat = (c: string, o: Partial<THREE.MeshStandardMaterialParameters> = {}) => new THREE.MeshStandardMaterial({ color: c, roughness: 0.6, ...o });
+  const box = (w: number, h: number, d: number, m: THREE.Material, x = 0, y = 0, z = 0) => { const b = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), m); b.position.set(x, y + h / 2, z); g.add(b); return b; };
+  if (file === 'pool' || file === 'pool_small') {
+    const [W, D, H] = file === 'pool' ? [2.4, 1.5, 0.22] : [1.1, 1.1, 0.18];
+    const rim = mat(file === 'pool' ? '#F4F1EA' : '#5DA9E9'), water = mat('#3FB4E6', { transparent: true, opacity: 0.85, roughness: 0.1, metalness: 0.1, emissive: '#1E8FC9', emissiveIntensity: 0.25 });
+    const t = 0.1;
+    box(W, H, t, rim, 0, 0, -D / 2 + t / 2); box(W, H, t, rim, 0, 0, D / 2 - t / 2); box(t, H, D, rim, -W / 2 + t / 2); box(t, H, D, rim, W / 2 - t / 2);
+    box(W - 2 * t, 0.02, D - 2 * t, mat('#2D8FC2'), 0, 0.01, 0);
+    box(W - 2 * t, 0.02, D - 2 * t, water, 0, H - 0.05, 0);
+    if (file === 'pool') { const ladder = mat('#C9CED3', { metalness: 0.6, roughness: 0.3 }); box(0.03, 0.4, 0.03, ladder, W / 2 - 0.25, 0, -D / 2 + 0.05); box(0.03, 0.4, 0.03, ladder, W / 2 - 0.45, 0, -D / 2 + 0.05); }
+  } else if (file === 'sandpit') {
+    const wood = mat('#B98457');
+    box(1.2, 0.12, 0.08, wood, 0, 0, -0.56); box(1.2, 0.12, 0.08, wood, 0, 0, 0.56); box(0.08, 0.12, 1.2, wood, -0.56); box(0.08, 0.12, 1.2, wood, 0.56);
+    box(1.06, 0.07, 1.06, mat('#F1D48B', { roughness: 1 }));
+    const bucket = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.05, 0.1, 12), mat('#E5533D')); bucket.position.set(0.25, 0.12, 0.2); g.add(bucket);
+  } else if (file === 'trampoline') {
+    const ring = new THREE.Mesh(new THREE.CylinderGeometry(0.65, 0.65, 0.06, 32), mat('#4A86D0')); ring.position.y = 0.35; g.add(ring);
+    const mat2 = new THREE.Mesh(new THREE.CylinderGeometry(0.55, 0.55, 0.065, 32), mat('#2B2B2B')); mat2.position.y = 0.355; g.add(mat2);
+    for (let i = 0; i < 4; i++) { const a = (i / 4) * Math.PI * 2 + 0.4; const leg = new THREE.Mesh(new THREE.CylinderGeometry(0.025, 0.025, 0.35, 8), mat('#9EA3A8')); leg.position.set(Math.cos(a) * 0.58, 0.175, Math.sin(a) * 0.58); g.add(leg); }
+  }
+  const wrap = new THREE.Group(); wrap.add(g); return wrap;
 }
