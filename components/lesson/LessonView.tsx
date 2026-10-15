@@ -18,7 +18,7 @@ function Rich({ text }: { text: string }) {
   );
 }
 
-function VocabBlock({ b }: { b: Extract<Block, { type: 'vocab' }> }) {
+function VocabBlock({ b, onWord }: { b: Extract<Block, { type: 'vocab' }>; onWord?: (w: { en: string; uk: string }) => void }) {
   const [play, setPlay] = useState(false);
   const sets = useMemo(() => [
     { id: 'en', title: 'Англ → Укр', prompt: 'Як це перекладається?', items: b.words.map((w) => ({ q: w.en, a: w.uk })) },
@@ -27,7 +27,12 @@ function VocabBlock({ b }: { b: Extract<Block, { type: 'vocab' }> }) {
   return (
     <div className="ls-vocab">
       <div className="ls-vocab__grid">
-        {b.words.map((w, i) => <div key={i} className="ls-word"><b>{w.en}</b><span>{w.uk}</span></div>)}
+        {b.words.map((w, i) => (
+          <div key={i} className="ls-word">
+            <b>{w.en}</b><span>{w.uk}</span>
+            {onWord && <button type="button" className="ls-word__add" onClick={() => onWord(w)} title="У словник учня" aria-label={`Додати «${w.en}» у словник учня`}>+</button>}
+          </div>
+        ))}
       </div>
       {b.words.length >= 4 && (
         <button className="mu-btn t-btn-sm" onClick={() => setPlay(!play)}><Icon id="e-trophy" />{play ? 'Сховати гру' : 'Пограти цими словами'}</button>
@@ -37,7 +42,7 @@ function VocabBlock({ b }: { b: Extract<Block, { type: 'vocab' }> }) {
   );
 }
 
-export default function LessonView({ plan, interactive = true, initialAnswers, onSubmit, submitLabel = 'Перевірити відповіді', overrides, teacher = false, slides = false, onExit }: {
+export default function LessonView({ plan, interactive = true, initialAnswers, onSubmit, submitLabel = 'Перевірити відповіді', overrides, teacher = false, slides = false, onExit, onWord }: {
   plan: Pick<Plan, 'title' | 'blocks'> & Partial<Plan>;
   interactive?: boolean;
   initialAnswers?: Answers;
@@ -47,6 +52,7 @@ export default function LessonView({ plan, interactive = true, initialAnswers, o
   teacher?: boolean; // показувати нотатки для вчителя
   slides?: boolean; // режим показу на уроці: по одному слайду
   onExit?: () => void;
+  onWord?: (w: { en: string; uk: string }) => void; // вчитель: додати слово в словник учня
 }) {
   const sections = useMemo(() => lessonSections(plan.blocks), [plan.blocks]);
   const [answers, setAnswers] = useState<Answers>(initialAnswers ?? {});
@@ -99,7 +105,7 @@ export default function LessonView({ plan, interactive = true, initialAnswers, o
               <iframe src={`${b.url}#view=FitH`} title={b.name || 'PDF'} className="ls-pdf__frame" loading="lazy" />
             </div>
           ) : null;
-          case 'vocab': return b.words.length ? <VocabBlock key={b.id} b={b} /> : null;
+          case 'vocab': return b.words.length ? <VocabBlock key={b.id} b={b} onWord={onWord} /> : null;
           case 'speaking': return b.questions.length ? (
             <div key={b.id} className="ls-speak"><div className="ls-speak__t"><Icon id="e-speak" />Поговоримо</div><ul>{b.questions.map((q, i) => <li key={i}>{q}</li>)}</ul></div>
           ) : null;
