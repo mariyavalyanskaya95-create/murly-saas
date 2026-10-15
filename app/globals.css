@@ -1478,7 +1478,7 @@ a.t-stat:hover { transform: translateY(-2px); }
 .ls-word__add { position: absolute; top: 6px; right: 6px; width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--mu-ink); background: var(--mu-lime); font: 700 18px/1 var(--mu-font-body, inherit); cursor: pointer; display: grid; place-items: center; padding: 0; }
 .ls-word__add:hover { transform: translate(-1px, -1px); box-shadow: 2px 2px 0 var(--mu-ink); }
 .ls-word__add:focus-visible { outline: 3px solid var(--mu-ink); outline-offset: 2px; }
-.le-selbtn { position: fixed; transform: translate(-50%, calc(-100% - 8px)); z-index: 1100; white-space: nowrap; }
+.le-selbtn { text-transform: none; position: fixed; transform: translate(-50%, calc(-100% - 8px)); z-index: 1100; white-space: nowrap; }
 .wp { display: grid; gap: 10px; margin: 6px 0; }
 .wp__bar { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
 .wp__list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 6px; max-height: 340px; overflow: auto; }
