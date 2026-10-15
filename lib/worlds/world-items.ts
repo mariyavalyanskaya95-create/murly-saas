@@ -59,7 +59,9 @@ const HOLIDAY: WorldItem[] = [
   X('footstool_blue', 'footstool'), X('stool', 'stool'), X('carpet_round_large', 'round carpet', { rug: true }),
 ];
 
-export const ROOM_ITEMS: WorldItem[] = [...fromHome, ...FOOD, ...HOLIDAY];
+export const ROOM_ITEMS: WorldItem[] = [...fromHome, ...FOOD, ...HOLIDAY,
+  { file: 'stairs', en: 'stairs', cat: 'Living room', pack: 'proc', paint: 'none' }, // сходи на другий поверх
+];
 export const ROOM_CATS = ['Living room', 'Bedroom', 'Kitchen', 'Food', 'Bathroom', 'Study', 'Decor', 'Holiday', 'Halloween'];
 
 // ---------- місто ----------
@@ -217,9 +219,10 @@ export const HEROES = [
 ];
 
 // що герой може зробити з предметом
-export function actOf(def: WorldItem | undefined): 'sit' | 'sleep' | 'water' | 'eat' | null {
+export function actOf(def: WorldItem | undefined): 'sit' | 'sleep' | 'water' | 'eat' | 'stairs' | null {
   if (!def) return null;
   const f = def.file;
+  if (f === 'stairs') return 'stairs';
   if (/^bed/i.test(f)) return 'sleep';
   if (/sofa|couch|chair|bench|stool|ottoman/i.test(f) && !/table|cabinet/i.test(f)) return 'sit';
   if (def.pack === 'food') return 'eat';

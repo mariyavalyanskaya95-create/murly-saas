@@ -10,13 +10,13 @@ import { DOOR_W, GAP, doorsOf, roomPath, type Door, type PlanRoom } from './hous
 
 // сусідні кімнати на плані будинку (координати центру відносно поточної кімнати)
 export type PlanNeighbor = { id: string; name: string; size: number; x: number; z: number; wall: string; floor: { hex: string; kind: 'wood' | 'tiles' | 'carpet' }; placed: Placed[]; doors: Door[]; shared: number[]; skip: number[] };
-export type ScenePlan = { me: string; doors: Door[]; shared: number[]; entrance: boolean; rooms: PlanNeighbor[] };
+export type ScenePlan = { me: string; doors: Door[]; shared: number[]; entrance: boolean; rooms: PlanNeighbor[]; below?: PlanNeighbor[] };
 export type HeroStart = { x: number; z: number; rot: number; goal?: { x: number; z: number } };
 export type CamView = { cam: [number, number, number]; target: [number, number, number] };
 
 // рідні анімації KayKit (CC0) для сидіння і лежання
 const POSE = { sit: 'Sit_Chair_Idle', lie: 'Lie_Idle' };
-export type HeroAct = 'sit' | 'sleep' | 'water' | 'eat' | 'dance' | 'wave' | 'phone' | 'stand';
+export type HeroAct = 'sit' | 'sleep' | 'water' | 'eat' | 'dance' | 'wave' | 'phone' | 'stand' | 'go';
 // додаткові рухи (Universal Animation Library, Quaternius, CC0), переносимо на скелет героя
 let extraAnims: Promise<{ scene: THREE.Object3D; clips: THREE.AnimationClip[] }[]> | null = null;
 const heroClips = new Map<string, THREE.AnimationClip[]>();
@@ -34,6 +34,7 @@ export type SceneEvents = {
   onHero?: () => void;
   onHouse?: () => void; // натиснули на будинок у дворі
   onRoom?: (id: string, hero: HeroStart, view: CamView) => void; // герой зайшов у сусідню кімнату
+  onArrive?: (uid: string) => void; // герой дійшов до предмета (сходи)
 };
 
 const CFG = {
@@ -222,6 +223,14 @@ export class WorldScene {
         list.forEach((w) => this.nWalls.push({ ...w, cx: n.x, cz: n.z, h: n.size / 2 }));
         this.neighborItems(n);
       });
+      // нижній поверх під ногами, коли ми нагорі
+      const down = new THREE.Group(); down.position.y = -(this.c.wallH + 0.16); this.scene.add(down);
+      (plan.below ?? []).forEach((n, i) => {
+        const wm = new THREE.MeshStandardMaterial({ color: n.wall, roughness: 0.95 });
+        const fm = new THREE.MeshStandardMaterial({ color: '#ffffff', roughness: 0.85, map: groundTexture(n.floor.hex, n.floor.kind, n.size / 2) });
+        this.shell(down, n.size, n.x, n.z, wm, fm, n.doors, n.shared, n.skip, i === 0, [], Math.max(0.06, 0.092 - i * 0.004));
+        this.neighborItems(n, down);
+      });
     }
   }
   // підлога, плінтус і стіни кімнати з дверними прорізами
@@ -272,7 +281,7 @@ export class WorldScene {
     }
   }
   // речі в сусідніх кімнатах: лише показуємо (змінювати можна, коли зайдеш у ту кімнату)
-  private async neighborItems(n: PlanNeighbor) {
+  private async neighborItems(n: PlanNeighbor, parent: THREE.Object3D = this.scene) {
     const tpls = new Map<string, Template>();
     for (const p of n.placed) { const def = getItem('room', p.file); if (!def || tpls.has(p.file)) continue; try { tpls.set(p.file, await template(def)); } catch { /* немає моделі */ } }
     if (this.disposed) return;
@@ -286,14 +295,14 @@ export class WorldScene {
         const side = p.wall ?? 0;
         root.rotation.y = [0, Math.PI / 2, Math.PI, -Math.PI / 2][side];
         root.position.set(n.x + [p.x, -h, -p.x, h][side], p.y ?? 0.8, n.z + [-h, p.x, h, -p.x][side]);
-        const wl = this.nWalls.find((w) => w.cx === n.x && w.cz === n.z && w.side === side); if (wl) wl.mesh.userData.items = [...(wl.mesh.userData.items ?? []), root];
+        const wl = parent === this.scene ? this.nWalls.find((w) => w.cx === n.x && w.cz === n.z && w.side === side) : undefined; if (wl) wl.mesh.userData.items = [...(wl.mesh.userData.items ?? []), root];
       } else {
         let y = 0;
         if (def.small) for (const q of n.placed) { const qd = getItem('room', q.file); const qt = tpls.get(q.file); if (!qd?.surface || !qt || q.uid === p.uid) continue; const odd = q.rot % 2 === 1; const w = odd ? qt.size.z : qt.size.x, dd = odd ? qt.size.x : qt.size.z; if (Math.abs(p.x - q.x) <= w / 2 && Math.abs(p.z - q.z) <= dd / 2) y = Math.max(y, qt.size.y); }
         root.rotation.y = (p.rot % 4) * Math.PI / 2;
         root.position.set(n.x + p.x, y, n.z + p.z);
       }
-      this.scene.add(root);
+      parent.add(root);
     }
   }
   private addWindow(g: THREE.Group, x: number, trim: THREE.Material) {
@@ -580,6 +589,12 @@ export class WorldScene {
       if (kind === 'sleep') stand.copy(it.root.position).add(new THREE.Vector3(-front.z, 0, front.x).multiplyScalar(it.size.x / 2 + 0.12));
       h.then = () => this.settle(kind, it, front);
       this.walkTo(stand.x, stand.z);
+      return true;
+    }
+    if (kind === 'go') {
+      const at = it.root.position.clone().addScaledVector(front, it.size.z / 2 + 0.15);
+      h.then = () => { h.obj.rotation.y = Math.atan2(-front.x, -front.z); this.ev.onArrive?.(it.p.uid); };
+      this.walkTo(at.x, at.z);
       return true;
     }
     // полити чи з'їсти: підійти ближче і зробити рух
@@ -1014,6 +1029,15 @@ function procModel(file: string): THREE.Object3D {
     box(1.2, 0.12, 0.08, wood, 0, 0, -0.56); box(1.2, 0.12, 0.08, wood, 0, 0, 0.56); box(0.08, 0.12, 1.2, wood, -0.56); box(0.08, 0.12, 1.2, wood, 0.56);
     box(1.06, 0.07, 1.06, mat('#F1D48B', { roughness: 1 }));
     const bucket = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.05, 0.1, 12), mat('#E5533D')); bucket.position.set(0.25, 0.12, 0.2); g.add(bucket);
+  } else if (file === 'stairs') {
+    // сходи на другий поверх: низ спереду (+z), верх ззаду
+    const wood = mat('#C99A6B'), dark = mat('#8E623E'), rail = mat('#F4F1EA');
+    const N = 7, W = 0.55, D = 1.0, H = 1.2, sd = D / N, sh = H / N;
+    for (let i = 0; i < N; i++) { box(W, sh * (i + 1), sd, i % 2 ? wood : mat('#D4A877'), 0, 0, D / 2 - sd * (i + 0.5)); }
+    box(0.04, H + 0.05, D, dark, -W / 2 - 0.02, 0, 0);
+    for (let i = 0; i < N; i += 2) box(0.025, 0.32, 0.025, rail, W / 2 + 0.015, sh * (i + 1), D / 2 - sd * (i + 0.5));
+    const hand = new THREE.Mesh(new THREE.BoxGeometry(0.035, 0.035, Math.hypot(D, H)), rail);
+    hand.position.set(W / 2 + 0.015, H / 2 + 0.36, 0); hand.rotation.x = Math.atan2(H, D); g.add(hand);
   } else if (file === 'trampoline') {
     const ring = new THREE.Mesh(new THREE.CylinderGeometry(0.65, 0.65, 0.06, 32), mat('#4A86D0')); ring.position.y = 0.35; g.add(ring);
     const mat2 = new THREE.Mesh(new THREE.CylinderGeometry(0.55, 0.55, 0.065, 32), mat('#2B2B2B')); mat2.position.y = 0.355; g.add(mat2);
