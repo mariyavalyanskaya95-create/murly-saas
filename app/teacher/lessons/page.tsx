@@ -4,7 +4,8 @@ import { useRouter } from 'next/navigation';
 import { useMemo, useState } from 'react';
 import Icon from '@/components/Icon';
 import { useTeacher } from '@/lib/teacher-store';
-import { LIBRARY } from '@/lib/library';
+import { LIBRARY as LIBRARY_UK } from '@/lib/library';
+import { localizeLesson } from '@/lib/content/lessons';
 import { AGES, FOCUS, LEVELS, emptyBlock, type Age, type Plan } from '@/lib/lesson';
 import { useT } from '@/components/LangProvider';
 import type { T } from '@/lib/i18n';
@@ -37,6 +38,7 @@ function PlanCard({ p, lib }: { p: Plan; lib?: boolean }) {
 
 export default function LessonsPage() {
   const t = useT();
+  const LIBRARY = localizeLesson(LIBRARY_UK, t.lang);
   const { data, ready, addPlan } = useTeacher();
   const router = useRouter();
   const [tab, setTab] = useState<'mine' | 'lib'>('mine');
@@ -47,7 +49,7 @@ export default function LessonsPage() {
 
   const filter = (list: Plan[]) => list.filter((p) => (!age || p.age === age) && (!level || p.level === level) && (!focus || (p.focus ?? []).includes(focus))
     && (!q.trim() || `${p.title} ${p.topic ?? ''}`.toLowerCase().includes(q.trim().toLowerCase())));
-  const lib = useMemo(() => filter(LIBRARY), [age, level, q, focus]); // eslint-disable-line react-hooks/exhaustive-deps
+  const lib = useMemo(() => filter(LIBRARY), [age, level, q, focus, LIBRARY]); // eslint-disable-line react-hooks/exhaustive-deps
   if (!ready) return null;
   const mine = filter(data.plans);
 
