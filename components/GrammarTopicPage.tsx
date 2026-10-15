@@ -6,12 +6,18 @@ import SiteNav from './SiteNav';
 import SiteFooter from './SiteFooter';
 import QuizGame from './games/QuizGame';
 import { GRAMMAR, getTopic } from '@/lib/grammar';
+import { tr } from '@/lib/i18n-server';
 
 export function topicMetadata(slug: string): Metadata {
   const t = getTopic(slug)!;
+  const L = tr();
   return {
-    title: `${t.title}: правила, приклади і вправи | Murly`,
-    description: `${t.uk} в англійській простими словами: формула, коли вживати, приклади з перекладом, типові помилки і квіз.`,
+    title: L({ uk: `${t.title}: правила, приклади і вправи | Murly`, ru: `${t.title}: правила, примеры и упражнения | Murly`, en: `${t.title}: rules, examples and exercises | Murly` }),
+    description: L({
+      uk: `${t.uk} в англійській простими словами: формула, коли вживати, приклади з перекладом, типові помилки і квіз.`,
+      ru: `${t.title} в английском простыми словами: формула, когда употреблять, примеры с переводом, типичные ошибки и квиз.`,
+      en: `${t.title} in English made simple: the formula, when to use it, examples with translations, common mistakes and a quiz.`,
+    }),
     alternates: { canonical: `/grammar/${t.slug}` },
   };
 }
@@ -21,6 +27,7 @@ export default function GrammarTopicPage({ slug }: { slug: string }) {
   const idx = GRAMMAR.findIndex((g) => g.slug === slug);
   const prev = GRAMMAR[idx - 1];
   const next = GRAMMAR[idx + 1];
+  const L = tr();
 
   return (
     <>
@@ -31,14 +38,14 @@ export default function GrammarTopicPage({ slug }: { slug: string }) {
           <h1>{t.title}<em>.</em></h1>
           <p>{t.lead}</p>
           <a href="#quiz" className="mu-btn mu-btn--lime mu-btn--lg">
-            Одразу до квізу<span className="mu-btn__arrow"><Icon id="e-arrow" /></span>
+            {L({ uk: 'Одразу до квізу', ru: 'Сразу к квизу', en: 'Skip to the quiz' })}<span className="mu-btn__arrow"><Icon id="e-arrow" /></span>
           </a>
         </div>
       </section>
 
       <section className="mu-section" style={{ paddingTop: 8 }}>
         <div className="mu-container gr">
-          <h2 className="gr-h"><Icon id="e-pencil" />Формула</h2>
+          <h2 className="gr-h"><Icon id="e-pencil" />{L({ uk: 'Формула', ru: 'Формула', en: 'Formula' })}</h2>
           <div className="gr-formula">
             {t.formula.map((f) => (
               <div key={f.sign} className={`gr-formula__row gr--${t.color}`}>
@@ -49,7 +56,7 @@ export default function GrammarTopicPage({ slug }: { slug: string }) {
             ))}
           </div>
 
-          <h2 className="gr-h"><Icon id="d-bulb" />Коли вживаємо</h2>
+          <h2 className="gr-h"><Icon id="d-bulb" />{L({ uk: 'Коли вживаємо', ru: 'Когда употребляем', en: 'When we use it' })}</h2>
           <div className="gr-uses">
             {t.uses.map((u) => (
               <div key={u.title} className="gr-use">
@@ -62,12 +69,12 @@ export default function GrammarTopicPage({ slug }: { slug: string }) {
 
           {t.markers && (
             <>
-              <h2 className="gr-h"><Icon id="d-seo" />Слова-маркери</h2>
+              <h2 className="gr-h"><Icon id="d-seo" />{L({ uk: 'Слова-маркери', ru: 'Слова-маркеры', en: 'Signal words' })}</h2>
               <div className="gr-markers">{t.markers.map((m) => <span key={m} className="g-chip">{m}</span>)}</div>
             </>
           )}
 
-          <h2 className="gr-h"><Icon id="d-lock" />Типові помилки</h2>
+          <h2 className="gr-h"><Icon id="d-lock" />{L({ uk: 'Типові помилки', ru: 'Типичные ошибки', en: 'Common mistakes' })}</h2>
           <div className="gr-mistakes">
             {t.mistakes.map((m) => (
               <div key={m.wrong} className="gr-mistake">
@@ -80,16 +87,16 @@ export default function GrammarTopicPage({ slug }: { slug: string }) {
 
           <div className="gr-tip">
             <Icon id="c-cat-glass" className="mu-ic gr-tip__ic" />
-            <div><b>Лайфхак</b><p>{t.tip}</p></div>
+            <div><b>{L({ uk: 'Лайфхак', ru: 'Лайфхак', en: 'Pro tip' })}</b><p>{t.tip}</p></div>
           </div>
         </div>
       </section>
 
       <section className="mu-section" id="quiz" style={{ paddingTop: 0 }}>
         <div className="mu-container">
-          <h2 className="gr-h gr-h--center"><Icon id="e-trophy" />Перевір себе</h2>
+          <h2 className="gr-h gr-h--center"><Icon id="e-trophy" />{L({ uk: 'Перевір себе', ru: 'Проверь себя', en: 'Test yourself' })}</h2>
           <div className="g-stage gr-quiz">
-            <div className="g-stage__prompt">Обери правильний варіант</div>
+            <div className="g-stage__prompt">{L({ uk: 'Обери правильний варіант', ru: 'Выбери правильный вариант', en: 'Choose the right answer' })}</div>
             <QuizGame items={t.quiz} ordered />
           </div>
         </div>
@@ -98,7 +105,7 @@ export default function GrammarTopicPage({ slug }: { slug: string }) {
       <section className="mu-section" style={{ paddingTop: 0 }}>
         <div className="mu-container gr-pager">
           {prev ? <Link href={`/grammar/${prev.slug}`} className="mu-btn">← {prev.title}</Link> : <span />}
-          <Link href="/grammar" className="mu-btn">Усі теми</Link>
+          <Link href="/grammar" className="mu-btn">{L({ uk: 'Усі теми', ru: 'Все темы', en: 'All topics' })}</Link>
           {next ? <Link href={`/grammar/${next.slug}`} className="mu-btn mu-btn--lime">{next.title} →</Link> : <span />}
         </div>
       </section>

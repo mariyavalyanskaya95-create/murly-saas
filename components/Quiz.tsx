@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import Icon from './Icon';
+import { useT } from './LangProvider';
 import type { Quiz as QuizT } from '@/lib/quizzes';
 
 type Props = { quiz: QuizT; next?: { slug: string; title: string; number: string } };
@@ -10,6 +11,7 @@ type Props = { quiz: QuizT; next?: { slug: string; title: string; number: string
 const LIVES = 3;
 
 export default function Quiz({ quiz, next }: Props) {
+  const t = useT();
   const total = quiz.questions.length;
   const [current, setCurrent] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
@@ -65,7 +67,7 @@ export default function Quiz({ quiz, next }: Props) {
   return (
     <div className="q-wrap">
       <div className="q-top">
-        <Link href="/" className="q-close" title="Вийти">✕</Link>
+        <Link href="/" className="q-close" title={t({ uk: 'Вийти', ru: 'Выйти', en: 'Exit' })}>✕</Link>
         <div className="q-progress"><div className="q-progress__bar" style={{ width: `${progress}%` }} /></div>
         <div className="q-hearts"><Icon id="d-heart" /><span>{hearts}</span></div>
       </div>
@@ -75,7 +77,7 @@ export default function Quiz({ quiz, next }: Props) {
           <>
             {q.passage && quiz.passage && (
               <details className="q-passage" open={current === 0}>
-                <summary><Icon id="e-book" />Текст для читання</summary>
+                <summary><Icon id="e-book" />{t({ uk: 'Текст для читання', ru: 'Текст для чтения', en: 'Reading text' })}</summary>
                 <div className="q-passage__body" dangerouslySetInnerHTML={{ __html: quiz.passage }} />
               </details>
             )}
@@ -100,7 +102,7 @@ export default function Quiz({ quiz, next }: Props) {
             </div>
             {locked && (
               <div className="q-ai on">
-                <b><Icon id="d-spark" />Чому так?</b>
+                <b><Icon id="d-spark" />{t({ uk: 'Чому так?', ru: 'Почему так?', en: 'Why?' })}</b>
                 {q.ai}
               </div>
             )}
@@ -117,11 +119,11 @@ export default function Quiz({ quiz, next }: Props) {
       {q && (
         <div className="q-footer">
           <div className={`q-feedback${locked ? (selected === q.answer ? ' right' : ' wrong') : ''}`}>
-            {locked && (selected === q.answer ? '✓ Чудово!' : `✗ Не той варіант. Правильно: ${q.options[q.answer]}`)}
+            {locked && (selected === q.answer ? `✓ ${t({ uk: 'Чудово!', ru: 'Отлично!', en: 'Great!' })}` : `✗ ${t({ uk: 'Не той варіант. Правильно', ru: 'Не тот вариант. Правильно', en: 'Not quite. The right answer is' })}: ${q.options[q.answer]}`)}
           </div>
           {locked && (
             <button ref={nextRef} className="mu-btn mu-btn--lime" onClick={goNext}>
-              Далі<span className="mu-btn__arrow"><Icon id="e-arrow" /></span>
+              {t({ uk: 'Далі', ru: 'Дальше', en: 'Next' })}<span className="mu-btn__arrow"><Icon id="e-arrow" /></span>
             </button>
           )}
         </div>
@@ -134,8 +136,12 @@ function Done({ correct, total, hearts, seconds, next, onRestart }: {
   correct: number; total: number; hearts: number; seconds: number;
   next?: Props['next']; onRestart: () => void;
 }) {
+  const t = useT();
   const pct = Math.round((correct / total) * 100);
-  const title = pct >= 90 ? 'Крекнув!' : pct >= 70 ? 'Непогано!' : pct >= 40 ? 'Є над чим попрацювати' : 'Нічого страшного, спробуй ще раз';
+  const title = t(pct >= 90 ? { uk: 'Крекнув!', ru: 'Взломал!', en: 'You cracked it!' }
+    : pct >= 70 ? { uk: 'Непогано!', ru: 'Неплохо!', en: 'Not bad!' }
+    : pct >= 40 ? { uk: 'Є над чим попрацювати', ru: 'Есть над чем поработать', en: 'Room to improve' }
+    : { uk: 'Нічого страшного, спробуй ще раз', ru: 'Ничего страшного, попробуй ещё раз', en: 'No worries, try again' });
   const time = `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
   return (
     <div className="q-done">
@@ -144,7 +150,7 @@ function Done({ correct, total, hearts, seconds, next, onRestart }: {
         <svg className="mu-stk__ic" aria-hidden="true"><use href="/ikonky.svg#c-cat-speak" /></svg>
       </span>
       <h2>{title}</h2>
-      <p style={{ color: 'var(--mu-ink-soft)' }}>Квіз завершено. Ось твій результат:</p>
+      <p style={{ color: 'var(--mu-ink-soft)' }}>{t({ uk: 'Квіз завершено. Ось твій результат:', ru: 'Квиз завершён. Вот твой результат:', en: 'Quiz complete. Here is your result:' })}</p>
       <div className="q-done__score">{correct}/{total}</div>
       <div className="q-done__meta">
         <span className="q-done__chip"><Icon id="d-clock" />{time}</span>
@@ -152,15 +158,15 @@ function Done({ correct, total, hearts, seconds, next, onRestart }: {
         <span className="q-done__chip"><Icon id="d-heart" />{hearts}</span>
       </div>
       <div className="q-done__actions">
-        <Link href="/" className="mu-btn mu-btn--lg"><Icon id="e-arrow" className="mu-ic mu-ic--back" />На головну</Link>
+        <Link href="/" className="mu-btn mu-btn--lg"><Icon id="e-arrow" className="mu-ic mu-ic--back" />{t({ uk: 'На головну', ru: 'На главную', en: 'Home' })}</Link>
         {next && (
           <Link href={`/quiz/${next.slug}`} className="mu-btn mu-btn--tomato mu-btn--lg">
-            Квіз {next.number}: {next.title}
+            {t({ uk: 'Квіз', ru: 'Квиз', en: 'Quiz' })} {next.number}: {next.title}
             <span className="mu-btn__arrow mu-btn__arrow--lime"><Icon id="e-arrow" /></span>
           </Link>
         )}
         <button className="mu-btn mu-btn--lime mu-btn--lg" onClick={onRestart}>
-          <Icon id="d-auto" />Пройти знову
+          <Icon id="d-auto" />{t({ uk: 'Пройти знову', ru: 'Пройти снова', en: 'Try again' })}
         </button>
       </div>
     </div>

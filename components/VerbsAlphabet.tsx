@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import Icon from './Icon';
+import { useT } from './LangProvider';
 import { VERBS_AZ, Verb } from '@/lib/irregular-verbs';
 
 const ABC = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
@@ -32,15 +33,17 @@ function useSpeech() {
 }
 
 function Word({ text, say, ok, strong }: { text: string; say: (t: string) => void; ok: boolean; strong?: boolean }) {
+  const t = useT();
   if (!ok) return strong ? <b>{text}</b> : <span>{text}</span>;
   return (
-    <button className={`va-word ${strong ? 'is-strong' : ''}`} onClick={() => say(text)} aria-label={`Послухати: ${text}`}>
+    <button className={`va-word ${strong ? 'is-strong' : ''}`} onClick={() => say(text)} aria-label={`${t({ uk: 'Послухати', ru: 'Послушать', en: 'Listen' })}: ${text}`}>
       {text}<Icon id="e-head" className="mu-ic va-word__ic" />
     </button>
   );
 }
 
 export default function VerbsAlphabet() {
+  const t = useT();
   const { ok, say } = useSpeech();
   const [q, setQ] = useState('');
   const [topOnly, setTopOnly] = useState(false);
@@ -63,7 +66,7 @@ export default function VerbsAlphabet() {
   return (
     <div className="va">
       <div className="va-bar">
-        <nav className="va-abc" aria-label="Алфавіт">
+        <nav className="va-abc" aria-label={t({ uk: 'Алфавіт', ru: 'Алфавит', en: 'Alphabet' })}>
           {ABC.map((L) => groups.has(L)
             ? <a key={L} href={`#letter-${L}`}>{L}</a>
             : <span key={L} aria-hidden="true">{L}</span>)}
@@ -72,36 +75,36 @@ export default function VerbsAlphabet() {
           <label className="v-search">
             <Icon id="d-seo" />
             <input type="search" value={q} onChange={(e) => setQ(e.target.value)}
-              placeholder="Пошук: go, went, бачити…" aria-label="Пошук дієслова" />
+              placeholder={t({ uk: 'Пошук: go, went, бачити…', ru: 'Поиск: go, went, видеть…', en: 'Search: go, went, see…' })} aria-label={t({ uk: 'Пошук дієслова', ru: 'Поиск глагола', en: 'Search for a verb' })} />
           </label>
           <button className={`g-chip ${topOnly ? 'is-on' : ''}`} onClick={() => setTopOnly(!topOnly)} aria-pressed={topOnly}>
-            Найчастіші
+            {t({ uk: 'Найчастіші', ru: 'Самые частые', en: 'Most common' })}
           </button>
-          <span className="v-count">{count} дієслів</span>
+          <span className="v-count">{count} {t({ uk: 'дієслів', ru: 'глаголов', en: 'verbs' })}</span>
         </div>
       </div>
 
-      {!ok && <p className="va-note">Твій браузер не підтримує озвучку, але таблиця працює.</p>}
+      {!ok && <p className="va-note">{t({ uk: 'Твій браузер не підтримує озвучку, але таблиця працює.', ru: 'Твой браузер не поддерживает озвучку, но таблица работает.', en: 'Your browser doesn’t support audio, but the table still works.' })}</p>}
 
       <div className="va-list">
         <div className="va-row va-row--head" aria-hidden="true">
-          <span>Infinitive</span><span>Past Simple</span><span>Past Participle</span><span>Переклад</span><span />
+          <span>Infinitive</span><span>Past Simple</span><span>Past Participle</span><span>{t({ uk: 'Переклад', ru: 'Перевод', en: 'Translation' })}</span><span />
         </div>
         {Array.from(groups.entries()).map(([L, verbs]) => (
           <section key={L} id={`letter-${L}`} className="va-group">
             <h2 className="va-letter">{L}</h2>
             {verbs.map((v) => (
               <div key={v.base} className="va-row">
-                <span data-label="Infinitive"><Word text={v.base} say={say} ok={ok} strong />{v.top && <span className="v-top" title="Одне з найчастіших">★</span>}</span>
+                <span data-label="Infinitive"><Word text={v.base} say={say} ok={ok} strong />{v.top && <span className="v-top" title={t({ uk: 'Одне з найчастіших', ru: 'Один из самых частых', en: 'One of the most common' })}>★</span>}</span>
                 <span data-label="Past Simple"><Word text={v.past} say={say} ok={ok} /></span>
                 <span data-label="Past Participle"><Word text={v.pp} say={say} ok={ok} /></span>
                 <span className="v-uk">{v.uk}</span>
-                <span>{ok && <button className="va-all" onClick={() => sayAll(v)} aria-label={`Послухати всі три форми ${v.base}`}><Icon id="e-head" /></button>}</span>
+                <span>{ok && <button className="va-all" onClick={() => sayAll(v)} aria-label={`${t({ uk: 'Послухати всі три форми', ru: 'Послушать все три формы', en: 'Listen to all three forms of' })} ${v.base}`}><Icon id="e-head" /></button>}</span>
               </div>
             ))}
           </section>
         ))}
-        {!count && <p className="v-empty">Нічого не знайшли. Спробуй іншу форму слова.</p>}
+        {!count && <p className="v-empty">{t({ uk: 'Нічого не знайшли. Спробуй іншу форму слова.', ru: 'Ничего не нашли. Попробуй другую форму слова.', en: 'Nothing found. Try another form of the word.' })}</p>}
       </div>
     </div>
   );
