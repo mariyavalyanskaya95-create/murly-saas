@@ -6,6 +6,13 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { getItem, PACK_SCALE, PACK_URL, type Pack, type WorldItem } from './world-items';
 import { retargetClips } from './retarget';
+import { DOOR_W, GAP, doorsOf, roomPath, type Door, type PlanRoom } from './house-plan';
+
+// сусідні кімнати на плані будинку (координати центру відносно поточної кімнати)
+export type PlanNeighbor = { id: string; name: string; size: number; x: number; z: number; wall: string; floor: { hex: string; kind: 'wood' | 'tiles' | 'carpet' }; placed: Placed[]; doors: Door[]; shared: number[]; skip: number[] };
+export type ScenePlan = { me: string; doors: Door[]; shared: number[]; entrance: boolean; rooms: PlanNeighbor[] };
+export type HeroStart = { x: number; z: number; rot: number; goal?: { x: number; z: number } };
+export type CamView = { cam: [number, number, number]; target: [number, number, number] };
 
 // рідні анімації KayKit (CC0) для сидіння і лежання
 const POSE = { sit: 'Sit_Chair_Idle', lie: 'Lie_Idle' };
@@ -26,6 +33,7 @@ export type SceneEvents = {
   onBad: () => void;
   onHero?: () => void;
   onHouse?: () => void; // натиснули на будинок у дворі
+  onRoom?: (id: string, hero: HeroStart, view: CamView) => void; // герой зайшов у сусідню кімнату
 };
 
 const CFG = {
@@ -124,13 +132,26 @@ export class WorldScene {
   private heroToken = 0;
   private c: { size: number; wallH: number; cam: readonly number[]; target: number; dist: readonly number[]; shadow: number; snap: number; hero: number; speed: number };
   readonly half: number;
+  private bounds: { minX: number; maxX: number; minZ: number; maxZ: number };
+  private nWalls: { mesh: THREE.Group; side: number; cx: number; cz: number; h: number }[] = [];
+  private nav: PlanRoom[] = [];
+  private switched = false;
+  private disposed = false;
+  private path: THREE.Vector3[] = [];
   showLabels = true;
 
-  constructor(private host: HTMLDivElement, private labels: HTMLDivElement, private ev: SceneEvents, readonly mode: WorldMode, private opts: { roomSize?: number; sky?: 'clouds' | 'garden' } = {}) {
+  constructor(private host: HTMLDivElement, private labels: HTMLDivElement, private ev: SceneEvents, readonly mode: WorldMode, private opts: { roomSize?: number; sky?: 'clouds' | 'garden'; plan?: ScenePlan; heroAt?: HeroStart; view?: CamView } = {}) {
     const base = CFG[mode];
     const k = mode === 'room' && opts.roomSize ? opts.roomSize / base.size : 1;
     this.c = { ...base, size: mode === 'room' ? opts.roomSize ?? base.size : base.size, cam: base.cam.map((v) => v * k), dist: [base.dist[0], base.dist[1] * k], shadow: base.shadow * k };
     this.half = this.c.size / 2;
+    // план будинку: камера й тіні охоплюють усі кімнати поверху
+    this.bounds = { minX: -this.half, maxX: this.half, minZ: -this.half, maxZ: this.half };
+    for (const n of opts.plan?.rooms ?? []) { const h = n.size / 2; this.bounds = { minX: Math.min(this.bounds.minX, n.x - h), maxX: Math.max(this.bounds.maxX, n.x + h), minZ: Math.min(this.bounds.minZ, n.z - h), maxZ: Math.max(this.bounds.maxZ, n.z + h) }; }
+    if (opts.plan?.rooms.length) {
+      const span = Math.max(this.bounds.maxX - this.bounds.minX, this.bounds.maxZ - this.bounds.minZ);
+      this.c = { ...this.c, dist: [this.c.dist[0], Math.max(this.c.dist[1], span * 1.7)], shadow: Math.max(this.c.shadow, span * 0.75) };
+    }
     this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     this.renderer.shadowMap.enabled = true;
@@ -157,12 +178,15 @@ export class WorldScene {
     this.controls.zoomSpeed = 1.2;
     this.controls.minPolarAngle = 0.4; this.controls.maxPolarAngle = 1.2;
     this.controls.minDistance = this.c.dist[0]; this.controls.maxDistance = this.c.dist[1];
+    if (opts.view) { this.camera.position.set(...opts.view.cam); this.controls.target.set(...opts.view.target); }
 
     this.scene.background = skyBackground();
     this.addClouds();
     this.scene.add(new THREE.HemisphereLight('#eaf6ff', '#a8c48a', mode === 'room' ? 1.35 : 1.55));
     const sun = new THREE.DirectionalLight('#fff1dc', 2.1);
-    sun.position.set(this.c.shadow, this.c.shadow * 2, this.c.shadow * 0.7);
+    const bc = { x: (this.bounds.minX + this.bounds.maxX) / 2, z: (this.bounds.minZ + this.bounds.maxZ) / 2 };
+    sun.position.set(bc.x + this.c.shadow, this.c.shadow * 2, bc.z + this.c.shadow * 0.7);
+    sun.target.position.set(bc.x, 0, bc.z); this.scene.add(sun.target);
     sun.castShadow = true;
     sun.shadow.mapSize.set(2048, 2048);
     const sb = this.c.shadow;
@@ -185,25 +209,91 @@ export class WorldScene {
 
   // ---------- оточення ----------
   private buildRoom() {
-    const S = this.c.size, H = this.c.wallH, half = this.half;
-    const floor = new THREE.Mesh(new THREE.BoxGeometry(S, 0.08, S), this.floorMat);
-    floor.position.y = -0.04; floor.receiveShadow = true; this.scene.add(floor);
+    const plan = this.opts.plan;
+    this.shell(this.scene, this.c.size, 0, 0, this.wallMat, this.floorMat, plan?.doors ?? [], plan?.shared ?? [], [], plan ? plan.entrance : true, this.walls, 0.1);
+    // сусідні кімнати поверху: їх видно крізь двері, герой може туди зайти
+    if (plan) {
+      this.nav = [{ id: plan.me, size: this.c.size, at: { x: 0, z: 0 } }, ...plan.rooms.map((n) => ({ id: n.id, size: n.size, at: { x: n.x, z: n.z } }))];
+      plan.rooms.forEach((n, i) => {
+        const wm = new THREE.MeshStandardMaterial({ color: n.wall, roughness: 0.95 });
+        const fm = new THREE.MeshStandardMaterial({ color: '#ffffff', roughness: 0.85, map: groundTexture(n.floor.hex, n.floor.kind, n.size / 2) });
+        const list: { mesh: THREE.Group; side: number }[] = [];
+        this.shell(this.scene, n.size, n.x, n.z, wm, fm, n.doors, n.shared, n.skip, false, list, Math.max(0.06, 0.092 - i * 0.004));
+        list.forEach((w) => this.nWalls.push({ ...w, cx: n.x, cz: n.z, h: n.size / 2 }));
+        this.neighborItems(n);
+      });
+    }
+  }
+  // підлога, плінтус і стіни кімнати з дверними прорізами
+  private shell(parent: THREE.Object3D, S: number, cx: number, cz: number, wallMat: THREE.Material, floorMat: THREE.Material, doors: Door[], shared: number[], skip: number[], entrance: boolean, store: { mesh: THREE.Group; side: number }[], T: number) {
+    const H = this.c.wallH, half = S / 2;
+    const floor = new THREE.Mesh(new THREE.BoxGeometry(S, 0.08, S), floorMat);
+    floor.position.set(cx, -0.04, cz); floor.receiveShadow = true; parent.add(floor);
     const base = new THREE.Mesh(new THREE.BoxGeometry(S + 0.3, 0.2, S + 0.3), new THREE.MeshStandardMaterial({ color: '#E9DCC1', roughness: 1 }));
-    base.position.y = -0.18; base.receiveShadow = true; this.scene.add(base);
+    base.position.set(cx, -0.181, cz); base.receiveShadow = true; parent.add(base);
     const trim = new THREE.MeshStandardMaterial({ color: '#FBF8F1', roughness: 0.8 });
+    const wood = new THREE.MeshStandardMaterial({ color: '#C99A6B', roughness: 0.7 });
+    const DH = 1.05; // висота прорізу
     for (let side = 0; side < 4; side++) {
+      if (skip.includes(side)) continue;
       const g = new THREE.Group();
-      const w = new THREE.Mesh(new THREE.BoxGeometry(S + 0.1, H, 0.1), this.wallMat);
-      w.position.y = H / 2; w.castShadow = true; w.receiveShadow = true; g.add(w);
-      const sk = new THREE.Mesh(new THREE.BoxGeometry(S, 0.07, 0.03), trim); sk.position.set(0, 0.035, 0.065); g.add(sk);
-      const cap = new THREE.Mesh(new THREE.BoxGeometry(S + 0.12, 0.03, 0.14), trim); cap.position.y = H + 0.015; g.add(cap);
-      if (side === 0) this.addWindow(g, 0.55, trim);
-      if (side === 1) this.addWindow(g, -0.45, trim);
-      if (side === 3) this.addDoor(g, trim);
+      const L = S + 0.1;
+      // прорізи в локальних координатах стіни
+      const holes = doors.filter((d) => d.side === side).map((d) => (side === 0 || side === 3 ? d.at : -d.at)).sort((p, q) => p - q);
+      let from = -L / 2;
+      const seg = (x0: number, x1: number) => {
+        if (x1 - x0 < 0.01) return;
+        const w = new THREE.Mesh(new THREE.BoxGeometry(x1 - x0, H, T), wallMat);
+        w.position.set((x0 + x1) / 2, H / 2, 0); w.castShadow = true; w.receiveShadow = true; w.userData.base = true; g.add(w);
+        const sk = new THREE.Mesh(new THREE.BoxGeometry(Math.max(0.01, x1 - x0 - 0.02), 0.07, 0.03), trim); sk.position.set((x0 + x1) / 2, 0.035, 0.065); sk.userData.base = true; g.add(sk);
+      };
+      for (const u of holes) {
+        seg(from, u - DOOR_W / 2);
+        const top = new THREE.Mesh(new THREE.BoxGeometry(DOOR_W, H - DH, T), wallMat);
+        top.position.set(u, DH + (H - DH) / 2, 0); top.castShadow = true; g.add(top);
+        // наличник і поріг
+        ([[u, DH + 0.025, DOOR_W + 0.1, 0.05], [u - DOOR_W / 2 - 0.025, DH / 2, 0.05, DH], [u + DOOR_W / 2 + 0.025, DH / 2, 0.05, DH]] as [number, number, number, number][])
+          .forEach(([fx, fy, w, h]) => { for (const zz of [0.065, -0.065]) { const b = new THREE.Mesh(new THREE.BoxGeometry(w, h, 0.03), trim); b.position.set(fx, fy, zz); g.add(b); } });
+        const sill = new THREE.Mesh(new THREE.BoxGeometry(DOOR_W, 0.02, 0.2 + GAP), wood); sill.position.set(u, 0.0, 0); sill.receiveShadow = true; sill.userData.base = true; sill.userData.keep = true; g.add(sill);
+        from = u + DOOR_W / 2;
+      }
+      seg(from, L / 2);
+      const cap = new THREE.Mesh(new THREE.BoxGeometry(S + 0.12 - (0.1 - T), 0.03, T + 0.04), trim); cap.position.y = H + 0.015 - (0.1 - T) * 0.2; g.add(cap);
+      const clear = (x: number) => holes.every((u) => Math.abs(u - x) > DOOR_W / 2 + 0.6);
+      if (!shared.includes(side)) {
+        if (side === 0 && clear(0.55 * S / 2.8)) this.addWindow(g, 0.55 * S / 2.8, trim);
+        if (side === 1 && clear(-0.45 * S / 2.8)) this.addWindow(g, -0.45 * S / 2.8, trim);
+        if (side === 3 && entrance && clear(0.7)) this.addDoor(g, trim);
+      }
       g.rotation.y = [0, Math.PI / 2, Math.PI, -Math.PI / 2][side];
       const d = half + 0.05;
-      g.position.set([0, -d, 0, d][side], 0, [-d, 0, d, 0][side]);
-      this.scene.add(g); this.walls.push({ mesh: g, side });
+      g.position.set(cx + [0, -d, 0, d][side], 0, cz + [-d, 0, d, 0][side]);
+      parent.add(g); store.push({ mesh: g, side });
+    }
+  }
+  // речі в сусідніх кімнатах: лише показуємо (змінювати можна, коли зайдеш у ту кімнату)
+  private async neighborItems(n: PlanNeighbor) {
+    const tpls = new Map<string, Template>();
+    for (const p of n.placed) { const def = getItem('room', p.file); if (!def || tpls.has(p.file)) continue; try { tpls.set(p.file, await template(def)); } catch { /* немає моделі */ } }
+    if (this.disposed) return;
+    const h = n.size / 2;
+    for (const p of n.placed) {
+      const def = getItem('room', p.file); const tpl = tpls.get(p.file); if (!def || !tpl) continue;
+      const model = tpl.obj.clone(true);
+      if (p.color && paintTarget(def, model)) { const re = paintTarget(def, model)!; model.traverse((o) => { const m = o as THREE.Mesh; if (!m.isMesh) return; m.material = Array.isArray(m.material) ? m.material.map((x) => x.clone()) : m.material.clone(); (Array.isArray(m.material) ? m.material : [m.material]).forEach((mt) => { if (re.test(mt.name)) (mt as THREE.MeshStandardMaterial).color.set(p.color!); }); }); }
+      const root = new THREE.Group(); root.add(model);
+      if (def.wall) {
+        const side = p.wall ?? 0;
+        root.rotation.y = [0, Math.PI / 2, Math.PI, -Math.PI / 2][side];
+        root.position.set(n.x + [p.x, -h, -p.x, h][side], p.y ?? 0.8, n.z + [-h, p.x, h, -p.x][side]);
+        const wl = this.nWalls.find((w) => w.cx === n.x && w.cz === n.z && w.side === side); if (wl) wl.mesh.userData.items = [...(wl.mesh.userData.items ?? []), root];
+      } else {
+        let y = 0;
+        if (def.small) for (const q of n.placed) { const qd = getItem('room', q.file); const qt = tpls.get(q.file); if (!qd?.surface || !qt || q.uid === p.uid) continue; const odd = q.rot % 2 === 1; const w = odd ? qt.size.z : qt.size.x, dd = odd ? qt.size.x : qt.size.z; if (Math.abs(p.x - q.x) <= w / 2 && Math.abs(p.z - q.z) <= dd / 2) y = Math.max(y, qt.size.y); }
+        root.rotation.y = (p.rot % 4) * Math.PI / 2;
+        root.position.set(n.x + p.x, y, n.z + p.z);
+      }
+      this.scene.add(root);
     }
   }
   private addWindow(g: THREE.Group, x: number, trim: THREE.Material) {
@@ -446,10 +536,14 @@ export class WorldScene {
       if (acts.LayToIdle) { acts.LayToIdle.setLoop(THREE.LoopOnce, 1); acts.LayToIdle.clampWhenFinished = true; }
       obj.position.set(this.mode === 'room' ? 0.6 : 1, 0, this.mode === 'room' ? 0.6 : 1);
       obj.rotation.y = Math.PI / 4;
+      const st = this.opts.heroAt;
+      if (st) { obj.position.set(st.x, 0, st.z); obj.rotation.y = st.rot; }
       obj.userData.hero = true;
       this.scene.add(obj);
       this.hero = { obj, mixer, acts, cur: '', target: null, pose: 'stand', then: null, seat: null, hipsAt };
       this.play('Idle_A');
+      if (st?.goal) { this.walkTo(st.goal.x, st.goal.z); }
+      this.opts.heroAt = undefined;
       mixer.addEventListener('finished', (e) => {
         const h = this.hero; if (!h) return;
         const name = (e.action as THREE.AnimationAction).getClip().name;
@@ -536,7 +630,38 @@ export class WorldScene {
     if (!this.hero) return;
     if (this.hero.pose !== 'stand') this.standUp(true);
     const m = 0.15;
+    this.path = [];
+    // точка в сусідній кімнаті: іти через двері
+    const goal = this.nav.slice(1).find((r) => Math.abs(x - r.at!.x) < r.size / 2 - 0.05 && Math.abs(z - r.at!.z) < r.size / 2 - 0.05);
+    const ids = goal ? roomPath(this.nav, this.nav[0].id, goal.id) : null;
+    if (goal && ids && ids.length > 1) {
+      const pts: THREE.Vector3[] = [];
+      for (let i = 0; i < ids.length - 1; i++) {
+        const A = this.nav.find((r) => r.id === ids[i])!, d = doorsOf(A.id, this.nav).find((q) => q.to === ids[i + 1]); if (!d) break;
+        const ha = A.size / 2 + GAP / 2, ax = A.at!.x, az = A.at!.z;
+        const door = d.side === 0 ? [ax + d.at, az - ha] : d.side === 1 ? [ax - ha, az + d.at] : d.side === 2 ? [ax + d.at, az + ha] : [ax + ha, az + d.at];
+        const nrm = [[0, -1], [-1, 0], [0, 1], [1, 0]][d.side];
+        pts.push(new THREE.Vector3(door[0] - nrm[0] * 0.25, 0, door[1] - nrm[1] * 0.25), new THREE.Vector3(door[0] + nrm[0] * 0.3, 0, door[1] + nrm[1] * 0.3));
+      }
+      const gh = goal.size / 2 - m;
+      pts.push(new THREE.Vector3(Math.max(goal.at!.x - gh, Math.min(goal.at!.x + gh, x)), 0, Math.max(goal.at!.z - gh, Math.min(goal.at!.z + gh, z))));
+      this.hero.target = pts.shift()!; this.path = pts;
+      return;
+    }
     this.hero.target = new THREE.Vector3(Math.max(-this.half + m, Math.min(this.half - m, x)), 0, Math.max(-this.half + m, Math.min(this.half - m, z)));
+  }
+  // герой перейшов у сусідню кімнату: гра відкриває ту кімнату, герой і камера на тих самих місцях
+  private checkRoom() {
+    const h = this.hero; if (!h || this.switched || this.nav.length < 2) return;
+    const p = h.obj.position;
+    const r = this.nav.slice(1).find((q) => Math.abs(p.x - q.at!.x) < q.size / 2 - 0.08 && Math.abs(p.z - q.at!.z) < q.size / 2 - 0.08);
+    if (!r) return;
+    this.switched = true;
+    const ox = r.at!.x, oz = r.at!.z;
+    const last = this.path[this.path.length - 1] ?? h.target;
+    const t = this.controls.target, c = this.camera.position;
+    this.ev.onRoom?.(r.id, { x: +(p.x - ox).toFixed(2), z: +(p.z - oz).toFixed(2), rot: h.obj.rotation.y, goal: last ? { x: last.x - ox, z: last.z - oz } : undefined },
+      { cam: [c.x - ox, c.y, c.z - oz], target: [t.x - ox, t.y, t.z - oz] });
   }
   private hitHero(e: PointerEvent) {
     if (!this.hero) return false;
@@ -720,15 +845,22 @@ export class WorldScene {
     const dt = Math.min(0.05, this.clock.getDelta());
     this.controls.update();
     // камера не відлітає далеко від ділянки
-    const lim = this.half * 1.1;
+    const B = this.bounds, pad = this.half * 0.1;
     const t = this.controls.target;
-    if (Math.abs(t.x) > lim || Math.abs(t.z) > lim) { const cx = Math.max(-lim, Math.min(lim, t.x)), cz = Math.max(-lim, Math.min(lim, t.z)); this.camera.position.x += cx - t.x; this.camera.position.z += cz - t.z; t.x = cx; t.z = cz; }
+    const cx = Math.max(B.minX - pad, Math.min(B.maxX + pad, t.x)), cz = Math.max(B.minZ - pad, Math.min(B.maxZ + pad, t.z));
+    if (cx !== t.x || cz !== t.z) { this.camera.position.x += cx - t.x; this.camera.position.z += cz - t.z; t.x = cx; t.z = cz; }
     for (const c of this.clouds) { c.userData.a += c.userData.speed * dt; c.position.x = Math.cos(c.userData.a) * c.userData.r; c.position.z = Math.sin(c.userData.a) * c.userData.r; c.rotation.y = -c.userData.a; }
     const cam = this.camera.position, half = this.half;
     for (const w of this.walls) {
       const hide = [cam.z < -half, cam.x < -half, cam.z > half, cam.x > half][w.side];
       w.mesh.scale.y += ((hide ? 0.06 : 1) - w.mesh.scale.y) * 0.18;
-      w.mesh.children.forEach((c, i) => { if (i > 1) c.visible = !hide; });
+      w.mesh.children.forEach((c) => { if (!c.userData.base) c.visible = !hide; });
+    }
+    for (const w of this.nWalls) {
+      const hide = [cam.z < w.cz - w.h, cam.x < w.cx - w.h, cam.z > w.cz + w.h, cam.x > w.cx + w.h][w.side];
+      w.mesh.scale.y += ((hide ? 0.06 : 1) - w.mesh.scale.y) * 0.18;
+      w.mesh.children.forEach((c) => { if (!c.userData.base) c.visible = !hide; });
+      ((w.mesh.userData.items ?? []) as THREE.Object3D[]).forEach((o) => { o.visible = w.mesh.scale.y > 0.5; });
     }
     // герой
     if (this.hero) {
@@ -737,16 +869,17 @@ export class WorldScene {
       if (h.target) {
         const dir = h.target.clone().sub(h.obj.position); dir.y = 0;
         const dist = dir.length();
-        if (dist < 0.03) { h.target = null; const then = h.then; h.then = null; if (then) then(); else this.play('Idle_A'); }
+        if (dist < 0.03) { if (this.path.length) h.target = this.path.shift()!; else { h.target = null; const then = h.then; h.then = null; if (then) then(); else this.play('Idle_A'); } }
         else {
           const sp = Math.min(dist, this.c.speed * dt);
           h.obj.position.addScaledVector(dir.normalize(), sp);
           const want = Math.atan2(dir.x, dir.z);
           let diff = want - h.obj.rotation.y; diff = Math.atan2(Math.sin(diff), Math.cos(diff));
           h.obj.rotation.y += diff * Math.min(1, dt * 10);
-          this.play(dist > half * 0.6 ? 'Running_A' : 'Walking_A');
+          this.play(dist > half * 0.6 || this.path.length ? 'Running_A' : 'Walking_A');
         }
       }
+      this.checkRoom();
     }
     const now = performance.now();
     const r = this.renderer.domElement.getBoundingClientRect();
@@ -778,6 +911,7 @@ export class WorldScene {
     this.camera.aspect = w / h; this.camera.updateProjectionMatrix();
   }
   dispose() {
+    this.disposed = true;
     cancelAnimationFrame(this.raf); this.ro.disconnect();
     this.renderer.domElement.removeEventListener('pointerdown', this.down);
     this.renderer.domElement.removeEventListener('dblclick', this.dbl);
