@@ -2,10 +2,12 @@
 import { useEffect, useState } from 'react';
 import { GameItem, pick, shuffle } from './engine';
 import GameDone from './GameDone';
+import { useT } from '../LangProvider';
 
 type Card = { id: number; text: string };
 
 export default function MatchGame({ items, pairs = 6 }: { items: GameItem[]; pairs?: number }) {
+  const t = useT();
   const [set, setSet] = useState<GameItem[]>([]);
   const [left, setLeft] = useState<Card[]>([]);
   const [right, setRight] = useState<Card[]>([]);
@@ -27,7 +29,7 @@ export default function MatchGame({ items, pairs = 6 }: { items: GameItem[]; pai
 
   if (!set.length) return null;
   if (done.length === set.length) {
-    return <GameDone score={Math.max(set.length - mistakes, 0)} total={set.length} onRestart={start} label="без помилок" />;
+    return <GameDone score={Math.max(set.length - mistakes, 0)} total={set.length} onRestart={start} label={{ uk: 'без помилок', ru: 'без ошибок', en: 'without mistakes' }} />;
   }
 
   const clickRight = (id: number) => {
@@ -39,8 +41,8 @@ export default function MatchGame({ items, pairs = 6 }: { items: GameItem[]; pai
   return (
     <div className="g-match">
       <div className="g-meta">
-        <span>Пар: {done.length} / {set.length}</span>
-        <span>Помилок: {mistakes}</span>
+        <span>{t({ uk: 'Пар', ru: 'Пар', en: 'Pairs' })}: {done.length} / {set.length}</span>
+        <span>{t({ uk: 'Помилок', ru: 'Ошибок', en: 'Mistakes' })}: {mistakes}</span>
       </div>
       <div className="g-match__cols">
         <div className="g-match__col">

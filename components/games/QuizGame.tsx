@@ -2,10 +2,12 @@
 import { useEffect, useState } from 'react';
 import { GameItem, distractors, pick, shuffle } from './engine';
 import GameDone from './GameDone';
+import { useT } from '../LangProvider';
 
 type Round = { item: GameItem; options: string[] };
 
 export default function QuizGame({ items, rounds = 10, ordered = false }: { items: GameItem[]; rounds?: number; ordered?: boolean }) {
+  const t = useT();
   const [list, setList] = useState<Round[]>([]);
   const [i, setI] = useState(0);
   const [chosen, setChosen] = useState<string | null>(null);
@@ -32,7 +34,7 @@ export default function QuizGame({ items, rounds = 10, ordered = false }: { item
     <div className="g-quiz">
       <div className="g-meta">
         <span>{i + 1} / {list.length}</span>
-        <span>Бали: {score}{streak > 2 ? ` · серія ${streak}` : ''}</span>
+        <span>{t({ uk: 'Бали', ru: 'Баллы', en: 'Points' })}: {score}{streak > 2 ? ` · ${t({ uk: 'серія', ru: 'серия', en: 'streak' })} ${streak}` : ''}</span>
       </div>
       <div className="g-question">{item.q}</div>
       {item.hint && <div className="g-hint">{item.hint}</div>}
@@ -46,7 +48,7 @@ export default function QuizGame({ items, rounds = 10, ordered = false }: { item
       </div>
       {chosen && (
         <button className="mu-btn mu-btn--lime g-next" onClick={() => { setI(i + 1); setChosen(null); }}>
-          Далі
+          {t({ uk: 'Далі', ru: 'Дальше', en: 'Next' })}
         </button>
       )}
     </div>

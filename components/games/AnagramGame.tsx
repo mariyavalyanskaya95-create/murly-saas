@@ -2,10 +2,12 @@
 import { useEffect, useState } from 'react';
 import { GameItem, mainAnswer, pick, shuffle } from './engine';
 import GameDone from './GameDone';
+import { useT } from '../LangProvider';
 
 type Letter = { id: number; ch: string };
 
 export default function AnagramGame({ items, rounds = 8 }: { items: GameItem[]; rounds?: number }) {
+  const t = useT();
   const [list, setList] = useState<GameItem[]>([]);
   const [i, setI] = useState(0);
   const [pool, setPool] = useState<Letter[]>([]);
@@ -51,7 +53,7 @@ export default function AnagramGame({ items, rounds = 8 }: { items: GameItem[]; 
     <div className="g-anagram">
       <div className="g-meta">
         <span>{i + 1} / {list.length}</span>
-        <span>Бали: {score}</span>
+        <span>{t({ uk: 'Бали', ru: 'Баллы', en: 'Points' })}: {score}</span>
       </div>
       <div className="g-question">{list[i].q}</div>
       <div className={`g-slots ${result ? `is-${result}` : ''}`}>
@@ -62,10 +64,10 @@ export default function AnagramGame({ items, rounds = 8 }: { items: GameItem[]; 
       <div className="g-letters">
         {pool.map((l) => <button key={l.id} className="g-letter" onClick={() => add(l)}>{l.ch}</button>)}
       </div>
-      {result === 'wrong' && <div className="g-hint">Правильно: <b>{word}</b></div>}
-      {result && <button className="mu-btn mu-btn--lime g-next" onClick={next}>Далі</button>}
+      {result === 'wrong' && <div className="g-hint">{t({ uk: 'Правильно', ru: 'Правильно', en: 'Correct answer' })}: <b>{word}</b></div>}
+      {result && <button className="mu-btn mu-btn--lime g-next" onClick={next}>{t({ uk: 'Далі', ru: 'Дальше', en: 'Next' })}</button>}
       {!result && built.length > 0 && (
-        <button className="mu-btn g-next" onClick={() => { setPool(shuffle([...pool, ...built])); setBuilt([]); }}>Скинути</button>
+        <button className="mu-btn g-next" onClick={() => { setPool(shuffle([...pool, ...built])); setBuilt([]); }}>{t({ uk: 'Скинути', ru: 'Сбросить', en: 'Reset' })}</button>
       )}
     </div>
   );
