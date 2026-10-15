@@ -1818,3 +1818,34 @@ a.t-stat:hover { transform: translateY(-2px); }
   .auth-split__points, .auth-split__cat { display: none; }
   .auth-split__main { padding: 18px 18px 32px; }
 }
+
+/* Сторінка готового уроку /lessons/[id] */
+.lp-wrap { padding-top: 28px; padding-bottom: 60px; }
+.lp-card { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(260px, 1fr); gap: 28px; padding: 28px; border: 2px solid var(--mu-ink); border-radius: var(--mu-radius-lg); box-shadow: var(--mu-shadow-stamp-lg); background: var(--mu-paper); }
+.lp-card.gr--lime { background: var(--mu-lime); } .lp-card.gr--mustard { background: var(--mu-mustard); } .lp-card.gr--sky { background: var(--mu-sky); } .lp-card.gr--tomato { background: #F7C9BC; }
+.lp-tags { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 14px; }
+.lp-tags .le-tag { display: inline-flex; align-items: center; gap: 6px; }
+.lp-card h1 { font-size: clamp(30px, 4vw, 52px); line-height: 1.02; margin: 0 0 16px; }
+.lp-sub { font-size: 16px; text-transform: uppercase; letter-spacing: .05em; margin: 8px 0 8px; font-family: 'General Sans', system-ui, sans-serif; font-weight: 800; }
+.lp-aims { margin: 0; padding-left: 20px; display: grid; gap: 6px; font-size: 17px; line-height: 1.4; }
+.lp-card__side { display: flex; flex-direction: column; gap: 16px; justify-content: flex-start; }
+.lp-switch { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; border: 2px solid var(--mu-ink); border-radius: 18px; background: #fff; }
+.lp-switch button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 10px; border: 0; border-radius: 14px; background: transparent; font-weight: 800; font-size: 15px; cursor: pointer; color: var(--mu-ink); }
+.lp-switch button.is-on { background: var(--mu-ink); color: var(--mu-lime); }
+.lp-actions { display: grid; gap: 10px; }
+.lp-actions .mu-btn { justify-content: center; }
+.lp-body { margin-top: 26px; }
+.lp-banner { display: flex; align-items: center; gap: 10px; padding: 12px 16px; margin-bottom: 18px; border: 2px dashed var(--mu-ink); border-radius: 14px; background: #fff; font-weight: 700; }
+.lp-lock { display: flex; gap: 18px; align-items: flex-start; margin-top: 26px; padding: 26px; border: 2px solid var(--mu-ink); border-radius: var(--mu-radius-lg); background: #fff; box-shadow: var(--mu-shadow-stamp); }
+.lp-lock h2 { margin: 0 0 8px; font-size: 26px; }
+.lp-lock p { margin: 0 0 14px; line-height: 1.5; max-width: 620px; }
+.lp-lock__ic { width: 56px; height: 56px; flex-shrink: 0; }
+@media (max-width: 860px) { .lp-card { grid-template-columns: 1fr; padding: 20px; } }
+/* Друк A4: тільки сам урок */
+@media print {
+  .mu-nav, .mu-footer, .lp-card__side, .lp-banner, .ls-foot, .mu-stk { display: none !important; }
+  body { background: #fff; }
+  .lp-card { box-shadow: none; border: 1px solid #999; background: #fff !important; }
+  .lp-body { margin-top: 12px; }
+  .ls-ex, .ls-speak, .ls-tip, .ls-note, .ls-vocab { break-inside: avoid; }
+}
