@@ -1583,3 +1583,16 @@ a.t-stat:hover { transform: translateY(-2px); }
 @keyframes hmPulse { 50% { opacity: .5; } }
 @media (max-width: 760px) { .hm-stage { height: 56vh; } .hm-card { width: 100px; } .hm-label { font-size: 11px; } }
 .hm-atlas { background-image: url('/worlds/kenney-thumbs.webp'); background-repeat: no-repeat; width: 90px; height: 80px; }
+
+/* Murly Town */
+.hm-en { text-transform: none !important; }
+.hm-where { position: absolute; left: 12px; top: 12px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.hm-chip { padding: 6px 12px; border: 2px solid var(--mu-ink); border-radius: 99px; background: #fff; font-weight: 700; font-size: 14px; box-shadow: 2px 2px 0 var(--mu-ink); }
+.hm-empty { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); background: rgba(255,255,255,.92); border: 2px dashed var(--mu-ink); border-radius: 16px; padding: 12px 18px; font-weight: 700; text-align: center; pointer-events: none; max-width: 80%; }
+.hm-arrows { display: grid; grid-template-columns: repeat(4, 34px); gap: 4px; }
+.hm-arrows button { height: 34px; border: 2px solid var(--mu-ink); border-radius: 10px; background: #fff; font-size: 17px; cursor: pointer; }
+.hm-arrows button:active { background: var(--mu-lime); }
+.hm-ghost { position: fixed; z-index: 2000; pointer-events: none; transform: translate(-50%, -60%) scale(1.1); filter: drop-shadow(3px 4px 0 rgba(0,0,0,.25)); }
+.hm-task-thumb .hm-thumb { width: 52px; height: 46px; }
+.hm-heroes { gap: 8px; }
+.rw-card { touch-action: pan-x; }
