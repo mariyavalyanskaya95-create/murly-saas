@@ -3,6 +3,8 @@ import { useMemo, useState } from 'react';
 import Icon from '../Icon';
 import GameHub from '../games/GameHub';
 import HomeworkList from './HomeworkList';
+import CoinsCard from './CoinsCard';
+import { GameFinishContext } from '../games/finish';
 import type { Enrollment } from '@/lib/student-data';
 
 const fmtDay = (iso: string) => new Date(iso).toLocaleDateString('uk-UA', { weekday: 'long', day: 'numeric', month: 'long' });
@@ -14,6 +16,13 @@ export default function StudentHome({ enrollments, name }: { enrollments: Enroll
   const next = e.lessons[0];
   const soon = next && new Date(next.start).getTime() - Date.now() < 15 * 60000; // за 15 хв до початку
   const [play, setPlay] = useState(false);
+  // гра зі словами: 1 монетка за кожну правильну відповідь (до 10 за гру, до 40 на день)
+  const earnWords = (score: number) => {
+    const n = Math.min(10, Math.max(0, Math.round(score)));
+    if (!n) return;
+    fetch('/api/coins', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ op: 'earn', amount: n, source: 'words', reason: 'word game' }) })
+      .then(() => window.dispatchEvent(new Event('murly:coins'))).catch(() => {});
+  };
 
   const sets = useMemo(() => [
     { id: 'en', title: 'Англ → Укр', prompt: 'Як це перекладається?', items: e.words.map((w) => ({ q: w.en, a: w.uk })) },
@@ -61,6 +70,8 @@ export default function StudentHome({ enrollments, name }: { enrollments: Enroll
         )}
       </section>
 
+      <CoinsCard />
+
       <HomeworkList key={e.studentId} homework={e.homework} words={e.words} />
 
       <section className="t-card">
@@ -70,7 +81,7 @@ export default function StudentHome({ enrollments, name }: { enrollments: Enroll
             <button className="mu-btn mu-btn--lime t-btn-sm" onClick={() => setPlay(!play)}><Icon id="e-trophy" />{play ? 'Сховати гру' : 'Грати моїми словами'}</button>
           )}
         </div>
-        {play && <div className="t-game"><GameHub sets={sets} /></div>}
+        {play && <div className="t-game"><GameFinishContext.Provider value={earnWords}><GameHub sets={sets} /></GameFinishContext.Provider></div>}
         {e.words.length ? (
           <div className="t-words">
             {e.words.map((w) => (

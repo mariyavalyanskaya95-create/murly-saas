@@ -16,6 +16,7 @@ const fmtDue = (iso: string) => new Date(iso).toLocaleDateString('uk-UA', { week
 
 async function send(id: string, p: { score?: number; total?: number; answer?: string; answers?: Answers }) {
   const r = await fetch('/api/student', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ op: 'submitHomework', id, ...p }) });
+  if (r.ok) window.dispatchEvent(new Event('murly:coins'));
   return r.ok;
 }
 
