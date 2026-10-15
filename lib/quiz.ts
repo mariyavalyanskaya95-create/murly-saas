@@ -21,6 +21,8 @@ function fromTask(parts: Part[]): QuizQ | null {
   if (inter.length !== 1) return null;
   const text = parts.map((p) => (p.t === 'text' ? p.v : '___')).join('').replace(/\s+/g, ' ').trim();
   if (text.length > 140 || /[а-яіїєґ]/i.test(text.replace(/\(.*?\)/g, ''))) return null;
+  // питання, які потребують тексту, відео чи аудіо уроку, тут не підходять
+  if (/\b(text|story|video|dialogue|listen|cartoon|article|paragraph|speaker|says?|said)\b/i.test(text)) return null;
   const p = inter[0];
   if (p.t === 'choice') {
     if (p.options.length < 2 || p.options.some((o) => o.length > 30)) return null;
@@ -40,7 +42,9 @@ export function buildQuiz(pairsIn: Pair[], sections: Section[], extraWords: stri
   let i = 0;
   while (out.length < 5 && i < pairs.length) {
     const p = pairs[i]; const kind = i % 3;
-    const wrong = shuffle(pool.filter((w) => w.toLowerCase() !== p.en.toLowerCase())).slice(0, 3);
+    // хибні варіанти спершу з цієї ж теми, а з інших уроків лише якщо слів замало
+    const same = shuffle(pairs.map((x) => x.en).filter((w) => w.toLowerCase() !== p.en.toLowerCase()));
+    const wrong = [...same, ...shuffle(pool.filter((w) => w.toLowerCase() !== p.en.toLowerCase() && !same.includes(w)))].slice(0, 3);
     if (kind === 0 && wrong.length >= 2) out.push({ kind: 'choice', prompt: `Choose the English word: «${p.uk}»`, options: shuffle([p.en, ...wrong]), answers: [p.en], say: p.en });
     else if (kind === 1) out.push({ kind: 'type', prompt: `Write in English: «${p.uk}»`, answers: [p.en], say: p.en });
     else {
