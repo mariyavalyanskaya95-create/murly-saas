@@ -29,7 +29,7 @@ export async function GET() {
     en.flatMap((e) => e.homework).filter((h) => (h.kind === 'lesson' || h.kind === 'exercise') && h.items).slice(0, 12)
       .forEach((h) => topics.push({ id: `hw:${h.id}`, title: h.title, mine: true }));
   }
-  LIBRARY.filter((p) => p.blocks.some((b) => b.type === 'vocab')).forEach((p) => topics.push({ id: `lib:${p.id}`, title: p.title, level: p.level }));
+  LIBRARY.filter((p) => p.blocks.some((b) => b.type === 'vocab')).forEach((p) => topics.push({ id: `lib:${p.id}`, title: p.title.replace(/НМТ/g, 'NMT'), level: p.level }));
   return NextResponse.json({ topics, signedIn: !!userId });
 }
 
