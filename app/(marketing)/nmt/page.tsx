@@ -187,7 +187,7 @@ export default function NmtPage() {
             <h2 className="mu-section__title">{t({ uk: 'Чесні', ru: 'Честные', en: 'Honest' })} <em>{t({ uk: 'тарифи.', ru: 'тарифы.', en: 'pricing.' })}</em></h2>
             <p className="mu-section__lead">{t({ uk: 'Почни безкоштовно. Якщо зайде, підписка дешевша за один урок із репетитором.', ru: 'Начни бесплатно. Если понравится, подписка дешевле одного урока с репетитором.', en: 'Start for free. If you like it, the subscription costs less than one lesson with a tutor.' })}</p>
           </div>
-          <PricingSection firstQuiz={firstQuiz} />
+          <PricingSection firstQuiz={firstQuiz} start="student" />
         </div>
       </section>
 
