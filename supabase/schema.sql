@@ -138,3 +138,4 @@ alter table lesson_plans add column if not exists aims text;
 
 -- Аудіо для аудіювань
 update storage.buckets set allowed_mime_types = array['image/png','image/jpeg','image/webp','image/gif','application/pdf','audio/mpeg','audio/mp4','audio/x-m4a','audio/wav','audio/ogg'] where id = 'lesson-files';
+update storage.buckets set allowed_mime_types = array_append(allowed_mime_types, 'audio/webm') where id = 'lesson-files' and not ('audio/webm' = any(allowed_mime_types));
