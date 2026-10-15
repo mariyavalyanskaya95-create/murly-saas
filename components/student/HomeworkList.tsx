@@ -11,8 +11,12 @@ import { grade, type Answers, type Section } from '@/lib/exercise';
 import LessonView from '../lesson/LessonView';
 import { lessonSections, type Block } from '@/lib/lesson';
 import type { StudentHomework, StudentWord } from '@/lib/student-data';
+import { useT } from '@/components/LangProvider';
+import type { Lang } from '@/lib/i18n';
 
-const fmtDue = (iso: string) => new Date(iso).toLocaleDateString('uk-UA', { weekday: 'short', day: 'numeric', month: 'long' });
+const LOCALE: Record<Lang, string> = { uk: 'uk-UA', ru: 'ru-RU', en: 'en-GB' };
+
+const fmtDue = (iso: string, lang: Lang) => new Date(iso).toLocaleDateString(LOCALE[lang], { weekday: 'short', day: 'numeric', month: 'long' });
 
 async function send(id: string, p: { score?: number; total?: number; answer?: string; answers?: Answers }) {
   const r = await fetch('/api/student', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ op: 'submitHomework', id, ...p }) });
@@ -21,6 +25,7 @@ async function send(id: string, p: { score?: number; total?: number; answer?: st
 }
 
 export default function HomeworkList({ homework, words }: { homework: StudentHomework[]; words: StudentWord[] }) {
+  const t = useT();
   const [list, setList] = useState(homework);
   const [openId, setOpenId] = useState<string | null>(null);
   const todo = list.filter((h) => h.status === 'assigned');
@@ -31,8 +36,8 @@ export default function HomeworkList({ homework, words }: { homework: StudentHom
 
   return (
     <section className="t-card s-hw">
-      <h2><Icon id="e-board" />Домашка{todo.length ? ` (${todo.length})` : ''}</h2>
-      {!todo.length && <p className="t-muted">Усе здано. Молодець!</p>}
+      <h2><Icon id="e-board" />{t({ uk: 'Домашка', ru: 'Домашка', en: 'Homework' })}{todo.length ? ` (${todo.length})` : ''}</h2>
+      {!todo.length && <p className="t-muted">{t({ uk: 'Усе здано. Молодець!', ru: 'Всё сдано. Молодец!', en: 'All done. Well done!' })}</p>}
       {[...todo, ...done].map((h) => (
         <HomeworkRow key={h.id} h={h} words={words} open={openId === h.id}
           onToggle={() => setOpenId(openId === h.id ? null : h.id)} onPatch={(p) => patch(h.id, p)} />
@@ -44,6 +49,7 @@ export default function HomeworkList({ homework, words }: { homework: StudentHom
 function HomeworkRow({ h, words, open, onToggle, onPatch }: {
   h: StudentHomework; words: StudentWord[]; open: boolean; onToggle: () => void; onPatch: (p: Partial<StudentHomework>) => void;
 }) {
+  const t = useT();
   const [answer, setAnswer] = useState(h.answer ?? '');
   const [saving, setSaving] = useState(false);
   const [err, setErr] = useState(false);
@@ -63,10 +69,10 @@ function HomeworkRow({ h, words, open, onToggle, onPatch }: {
     if (ok) onPatch({ answer: answer.trim(), status: h.status === 'checked' ? 'checked' : 'done' }); else setErr(true);
   };
 
-  const tag = h.status === 'checked' ? <span className="t-tag t-tag--done">Перевірено</span>
-    : h.status === 'done' ? <span className="t-tag t-tag--warn">Здано</span>
-    : overdue ? <span className="t-tag t-tag--late">Прострочено</span>
-    : h.due ? <span className="t-tag">до {fmtDue(h.due)}</span> : null;
+  const tag = h.status === 'checked' ? <span className="t-tag t-tag--done">{t({ uk: 'Перевірено', ru: 'Проверено', en: 'Checked' })}</span>
+    : h.status === 'done' ? <span className="t-tag t-tag--warn">{t({ uk: 'Здано', ru: 'Сдано', en: 'Handed in' })}</span>
+    : overdue ? <span className="t-tag t-tag--late">{t({ uk: 'Прострочено', ru: 'Просрочено', en: 'Late' })}</span>
+    : h.due ? <span className="t-tag">{t({ uk: 'до', ru: 'до', en: 'due' })} {fmtDue(h.due, t.lang)}</span> : null;
 
   return (
     <div className={`s-hw__item is-${h.status} ${open ? 'is-open' : ''}`}>
@@ -77,7 +83,7 @@ function HomeworkRow({ h, words, open, onToggle, onPatch }: {
       {open && (
         <div className="s-hw__body">
           {h.instructions && <p className="t-hw__text">{h.instructions}</p>}
-          {h.feedback && <div className="s-hw__fb"><small>Коментар учителя</small><p>{h.feedback}</p></div>}
+          {h.feedback && <div className="s-hw__fb"><small>{t({ uk: 'Коментар учителя', ru: 'Комментарий учителя', en: 'Teacher’s comment' })}</small><p>{h.feedback}</p></div>}
           {h.kind === 'game' && (
             items.length >= 4
               ? <GameFinishContext.Provider value={onFinish}>
@@ -85,13 +91,13 @@ function HomeworkRow({ h, words, open, onToggle, onPatch }: {
                     {h.game === 'match' ? <MatchGame items={items} /> : h.game === 'anagram' ? <AnagramGame items={items} /> : h.game === 'cards' ? <CardsGame items={items} /> : <QuizGame items={items} />}
                   </div>
                 </GameFinishContext.Provider>
-              : <p className="t-muted">У словнику поки замало слів для гри.</p>
+              : <p className="t-muted">{t({ uk: 'У словнику поки замало слів для гри.', ru: 'В словаре пока мало слов для игры.', en: 'There are not enough words in your dictionary for a game yet.' })}</p>
           )}
           {h.kind === 'exercise' && h.items && <ExercisePlayer h={h} onPatch={onPatch} />}
           {h.kind === 'lesson' && h.items && (
             <div className="s-lesson">
               <LessonView plan={{ title: '', blocks: h.items as Block[] }} initialAnswers={h.answers} overrides={h.overrides}
-                submitLabel="Перевірити і здати урок"
+                submitLabel={t({ uk: 'Перевірити і здати урок', ru: 'Проверить и сдать урок', en: 'Check and hand in the lesson' })}
                 onSubmit={async (answers) => {
                   const ok = await send(h.id, { answers });
                   if (ok) { const g = grade(lessonSections(h.items as Block[]), answers, h.overrides); onPatch({ answers, score: g.score, total: g.total, status: h.status === 'checked' ? 'checked' : 'done' }); }
@@ -101,11 +107,11 @@ function HomeworkRow({ h, words, open, onToggle, onPatch }: {
           )}
           {h.kind === 'text' && (
             <form className="t-note-form" onSubmit={submitText}>
-              <textarea rows={5} value={answer} onChange={(e) => setAnswer(e.target.value)} placeholder="Пиши відповідь тут" />
-              <button className="mu-btn mu-btn--lime" type="submit" disabled={saving}>{saving ? 'Надсилаю…' : h.answer ? 'Оновити відповідь' : 'Здати'}</button>
+              <textarea rows={5} value={answer} onChange={(e) => setAnswer(e.target.value)} placeholder={t({ uk: 'Пиши відповідь тут', ru: 'Пиши ответ здесь', en: 'Write your answer here' })} />
+              <button className="mu-btn mu-btn--lime" type="submit" disabled={saving}>{saving ? t({ uk: 'Надсилаю…', ru: 'Отправляю…', en: 'Sending…' }) : h.answer ? t({ uk: 'Оновити відповідь', ru: 'Обновить ответ', en: 'Update answer' }) : t({ uk: 'Здати', ru: 'Сдать', en: 'Hand in' })}</button>
             </form>
           )}
-          {err && <p className="t-neg">Не вдалося зберегти. Перевір інтернет і спробуй ще раз.</p>}
+          {err && <p className="t-neg">{t({ uk: 'Не вдалося зберегти. Перевір інтернет і спробуй ще раз.', ru: 'Не удалось сохранить. Проверь интернет и попробуй ещё раз.', en: 'Could not save. Check your internet and try again.' })}</p>}
         </div>
       )}
     </div>
@@ -113,6 +119,7 @@ function HomeworkRow({ h, words, open, onToggle, onPatch }: {
 }
 
 function ExercisePlayer({ h, onPatch }: { h: StudentHomework; onPatch: (p: Partial<StudentHomework>) => void }) {
+  const t = useT();
   const sections = (h.items ?? []) as Section[];
   const [answers, setAnswers] = useState<Answers>(h.answers ?? {});
   const [checked, setChecked] = useState(!!h.answers);
@@ -138,15 +145,15 @@ function ExercisePlayer({ h, onPatch }: { h: StudentHomework; onPatch: (p: Parti
       {result && (
         <div className="ex-result">
           <b>{result.score} / {result.total}</b>
-          <span>{result.total && result.score === result.total ? 'Ідеально, усе правильно!' : 'Правильні відповіді підсвічені під помилками.'}</span>
+          <span>{result.total && result.score === result.total ? t({ uk: 'Ідеально, усе правильно!', ru: 'Идеально, всё правильно!', en: 'Perfect, all correct!' }) : t({ uk: 'Правильні відповіді підсвічені під помилками.', ru: 'Правильные ответы показаны под ошибками.', en: 'The correct answers are shown under your mistakes.' })}</span>
         </div>
       )}
       <div className="ex-play__bar">
         {!checked
-          ? <button className="mu-btn mu-btn--lime" onClick={submit} disabled={saving}>{saving ? 'Перевіряю…' : 'Перевірити і здати'}</button>
-          : <button className="mu-btn" onClick={() => setChecked(false)}>Виправити і здати ще раз</button>}
+          ? <button className="mu-btn mu-btn--lime" onClick={submit} disabled={saving}>{saving ? t({ uk: 'Перевіряю…', ru: 'Проверяю…', en: 'Checking…' }) : t({ uk: 'Перевірити і здати', ru: 'Проверить и сдать', en: 'Check and hand in' })}</button>
+          : <button className="mu-btn" onClick={() => setChecked(false)}>{t({ uk: 'Виправити і здати ще раз', ru: 'Исправить и сдать ещё раз', en: 'Fix and hand in again' })}</button>}
       </div>
-      {err && <p className="t-neg">Не вдалося зберегти. Перевір інтернет і спробуй ще раз.</p>}
+      {err && <p className="t-neg">{t({ uk: 'Не вдалося зберегти. Перевір інтернет і спробуй ще раз.', ru: 'Не удалось сохранить. Проверь интернет и попробуй ещё раз.', en: 'Could not save. Check your internet and try again.' })}</p>}
     </div>
   );
 }
