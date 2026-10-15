@@ -4,6 +4,7 @@ import Icon from '../Icon';
 import { FLOORS, HOME_CATS, HOME_ITEM, HOME_ITEMS, PAINT, WALLS, type HomeCat, type HomeItem } from '@/lib/worlds/home-items';
 import { art, say, sfx } from '@/lib/worlds/sound';
 import type { HomePlaced, HomeScene } from '@/lib/worlds/home-scene';
+import ATLAS from '@/lib/worlds/kenney-thumbs.json';
 
 const SAVE = 'murly-home-v1';
 type Save = { placed: HomePlaced[]; coins: number; unlocked: string[]; wall: number; floor: number; done: number };
@@ -31,14 +32,20 @@ const nameOf = (p: HomePlaced) => { const d = HOME_ITEM[p.file]; const c = color
 const owned = (d: HomeItem, s: Save) => !d.price || s.unlocked.includes(d.file);
 const floorKind = (i: number) => (i < 2 ? 'wood' : i < 4 ? 'tiles' : 'carpet') as 'wood' | 'tiles' | 'carpet';
 
+// мініатюри Kenney: один атлас-картинка (lib/worlds/kenney-thumbs.json), KayKit рендеримо в браузері
 function Thumb({ def }: { def: HomeItem }) {
-  const [src, setSrc] = useState<string | null>(def.pack ? null : `/worlds/kenney/t/${def.file}.png`);
+  const [src, setSrc] = useState<string | null>(null);
+  const i = ATLAS.idx[def.file as keyof typeof ATLAS.idx] as number | undefined;
   useEffect(() => {
     if (!def.pack) return;
     let on = true;
     import('@/lib/worlds/home-scene').then((m) => m.renderThumb(def)).then((u) => { if (on) setSrc(u); }).catch(() => {});
     return () => { on = false; };
   }, [def]);
+  if (!def.pack && i !== undefined) {
+    const x = i % ATLAS.cols, y = Math.floor(i / ATLAS.cols);
+    return <span className="hm-thumb hm-atlas" style={{ backgroundPosition: `${(x / (ATLAS.cols - 1)) * 100}% ${(y / (ATLAS.rows - 1)) * 100}%`, backgroundSize: `${ATLAS.cols * 100}% ${ATLAS.rows * 100}%` }} />;
+  }
   return src ? <img src={src} alt="" className="hm-thumb" loading="lazy" draggable={false} /> : <span className="hm-thumb hm-thumb--wait" />;
 }
 
