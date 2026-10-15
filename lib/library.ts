@@ -2,6 +2,7 @@
 // Вправи пишемо тим самим текстовим форматом, що й учитель у конструкторі.
 import { parseSection } from './exercise';
 import type { Block, Plan } from './lesson';
+import { PRACTICE } from './practice';
 
 let n = 0;
 const id = () => `lib-${++n}`;
@@ -458,5 +459,8 @@ const FOCUS_MAP: Record<string, string[]> = {
   'lib-present-perfect-life': ['Grammar', 'НМТ'], 'lib-small-talk-work': ['Speaking'],
 };
 LIBRARY.forEach((p) => { if (!p.focus && FOCUS_MAP[p.id]) p.focus = FOCUS_MAP[p.id]; });
+
+// Listening і Reading з розділу «Практика» теж доступні вчителю в бібліотеці
+LIBRARY.push(...PRACTICE);
 
 export const getLibraryPlan = (planId: string) => LIBRARY.find((p) => p.id === planId);

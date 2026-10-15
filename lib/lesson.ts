@@ -11,6 +11,7 @@ export type Block =
   | { id: string; type: 'vocab'; words: { en: string; uk: string }[] }
   | { id: string; type: 'exercise'; sections: Section[]; source?: string }
   | { id: string; type: 'speaking'; questions: string[] }
+  | { id: string; type: 'audio'; title?: string; script: string; audioUrl?: string } // аудіювання: репліки «A: текст»
   | { id: string; type: 'note'; text: string }; // нотатка лише для вчителя
 
 export type BlockType = Block['type'];
@@ -38,6 +39,7 @@ export const BLOCK_TYPES: { id: BlockType; label: string; icon: string }[] = [
   { id: 'exercise', label: 'Вправа', icon: 'e-pencil' },
   { id: 'speaking', label: 'Говоріння', icon: 'e-speak' },
   { id: 'image', label: 'Картинка', icon: 'd-camera' },
+  { id: 'audio', label: 'Аудіювання', icon: 'e-head' },
   { id: 'video', label: 'Відео YouTube', icon: 'e-mic' },
   { id: 'pdf', label: 'PDF-файл', icon: 'e-book' },
   { id: 'note', label: 'Нотатка для вчителя', icon: 'd-lock' },
@@ -53,6 +55,7 @@ export function emptyBlock(type: BlockType): Block {
     case 'vocab': return { id, type, words: [] };
     case 'exercise': return { id, type, sections: [] };
     case 'speaking': return { id, type, questions: [] };
+    case 'audio': return { id, type, script: '' };
   }
 }
 
