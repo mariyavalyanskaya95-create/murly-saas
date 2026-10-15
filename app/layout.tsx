@@ -1,26 +1,32 @@
 import type { Metadata } from 'next';
 import { ClerkProvider } from '@clerk/nextjs';
-import { ukUA } from '@clerk/localizations';
+import { ruRU, ukUA } from '@clerk/localizations';
+import LangProvider from '@/components/LangProvider';
+import { getLang } from '@/lib/i18n-server';
 import './globals.css';
 
-export const metadata: Metadata = {
-  metadataBase: new URL('https://murly.com.ua'),
-  title: 'Murly: англійська для дітей, підлітків і дорослих',
-  description:
-    'Уроки з учителем, домашка-гра, граматика простими словами і 3D-містечко, де все англійською. Кабінети для вчителя й учня.',
-  icons: { icon: '/favicon.svg' },
-  openGraph: {
-    title: 'Murly: англійська, яку хочеться вчити',
-    description: 'Уроки, домашка-гра, граматика і 3D-містечко англійською. Кабінети для вчителя й учня.',
-    type: 'website',
-    locale: 'uk_UA',
-  },
+const META = {
+  uk: { title: 'Murly: англійська для дітей, підлітків і дорослих', desc: 'Уроки з учителем, домашка-гра, граматика простими словами і 3D-містечко, де все англійською. Кабінети для вчителя й учня.', og: 'Murly: англійська, яку хочеться вчити', locale: 'uk_UA' },
+  ru: { title: 'Murly: английский для детей, подростков и взрослых', desc: 'Уроки с учителем, домашка-игра, грамматика простыми словами и 3D-городок, где всё на английском. Кабинеты для учителя и ученика.', og: 'Murly: английский, который хочется учить', locale: 'ru_UA' },
+  en: { title: 'Murly: English for kids, teens and adults', desc: 'Lessons with a teacher, homework as a game, simple grammar and a 3D town where everything is in English. Dashboards for teachers and students.', og: 'Murly: English you actually want to learn', locale: 'en_US' },
 };
 
+export function generateMetadata(): Metadata {
+  const m = META[getLang()];
+  return {
+    metadataBase: new URL('https://murly.com.ua'),
+    title: m.title,
+    description: m.desc,
+    icons: { icon: '/favicon.svg' },
+    openGraph: { title: m.og, description: m.desc, type: 'website', locale: m.locale },
+  };
+}
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const lang = getLang();
   return (
     <ClerkProvider
-      localization={ukUA}
+      localization={lang === 'ru' ? ruRU : lang === 'en' ? undefined : ukUA}
       appearance={{
         variables: {
           colorPrimary: '#1A1A1A',
@@ -30,7 +36,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         },
       }}
     >
-      <html lang="uk">
+      <html lang={lang}>
         <head>
           <link rel="preconnect" href="https://api.fontshare.com" crossOrigin="" />
           <link
@@ -44,7 +50,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap"
           />
         </head>
-        <body>{children}</body>
+        <body><LangProvider lang={lang}>{children}</LangProvider></body>
       </html>
     </ClerkProvider>
   );
