@@ -1472,3 +1472,24 @@ a.t-stat:hover { transform: translateY(-2px); }
   .sl__body.has-notes { grid-template-columns: 1fr; }
   .sl__dots { display: none; }
 }
+
+/* Вибір слів для словника */
+.ls-word { position: relative; }
+.ls-word__add { position: absolute; top: 6px; right: 6px; width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--mu-ink); background: var(--mu-lime); font: 700 18px/1 var(--mu-font-body, inherit); cursor: pointer; display: grid; place-items: center; padding: 0; }
+.ls-word__add:hover { transform: translate(-1px, -1px); box-shadow: 2px 2px 0 var(--mu-ink); }
+.ls-word__add:focus-visible { outline: 3px solid var(--mu-ink); outline-offset: 2px; }
+.le-selbtn { position: fixed; transform: translate(-50%, calc(-100% - 8px)); z-index: 1100; white-space: nowrap; }
+.wp { display: grid; gap: 10px; margin: 6px 0; }
+.wp__bar { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+.wp__list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 6px; max-height: 340px; overflow: auto; }
+.wp__item { display: grid; grid-template-columns: auto 1fr; gap: 4px 10px; align-items: center; padding: 8px 10px; border: 2px solid var(--mu-ink); border-radius: 12px; background: #fff; opacity: .6; }
+.wp__item.is-on { opacity: 1; background: #fff; box-shadow: 3px 3px 0 var(--mu-ink); }
+.wp__item.is-have { border-style: dashed; }
+.wp__item small { grid-column: 1 / -1; }
+.wp__check { display: flex; gap: 8px; align-items: center; cursor: pointer; grid-column: 1 / -1; }
+.wp__check input { width: 18px; height: 18px; accent-color: var(--mu-ink); }
+.wp__uk { grid-column: 1 / -1; border: 0; border-bottom: 1.5px dashed #999; background: transparent; font: inherit; padding: 2px 0; }
+.wp__uk:focus { outline: none; border-bottom-color: var(--mu-ink); }
+.wp__add { display: flex; gap: 8px; flex-wrap: wrap; }
+.wp__add input { flex: 1; min-width: 150px; border: 2px solid var(--mu-ink); border-radius: 10px; padding: 8px 10px; font: inherit; background: #fff; }
+.ls-word:has(.ls-word__add) { padding-right: 42px; }
