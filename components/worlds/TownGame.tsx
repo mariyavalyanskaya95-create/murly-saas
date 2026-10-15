@@ -5,18 +5,29 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import { useAuth } from '@clerk/nextjs';
 import Icon from '../Icon';
-import { CITY_CATS, CITY_ITEMS, FLOORS, GROUNDS, HEROES, PAINT, ROOM_CATS, ROOM_ITEMS, WALLS, getItem, type WorldItem } from '@/lib/worlds/world-items';
+import { CITY_CATS, CITY_ITEMS, FLOORS, GROUNDS, HEROES, PAINT, ROOM_CATS, ROOM_ITEMS, ROOM_SIZES, ROOM_TYPES, WALLS, YARD_CATS, YARD_ITEMS, getItem, type WorldItem } from '@/lib/worlds/world-items';
+import EarnCoins from './EarnCoins';
 import { art, say, sfx } from '@/lib/worlds/sound';
 import type { Placed, WorldScene, WorldMode } from '@/lib/worlds/world-scene';
 import ATLAS from '@/lib/worlds/kenney-thumbs.json';
 
 const SAVE = 'murly-town-v1';
-type House = { placed: Placed[]; wall: number; floor: number };
+type Room = { id: string; name: string; placed: Placed[]; wall: number; floor: number; size: number };
+type House = { rooms: Room[]; yard: Placed[]; placed?: Placed[]; wall?: number; floor?: number };
+type View = { mode: WorldMode; house?: string; room?: string };
+const newRoom = (name: string, id = `r${Date.now().toString(36)}`): Room => ({ id, name, placed: [], wall: 0, floor: 0, size: 2.8 });
+// старі збереження: одна кімната без списку кімнат
+const normHouse = (h?: Partial<House>): House => ({
+  rooms: h?.rooms?.length ? h.rooms : [{ id: 'r1', name: 'Living room', placed: h?.placed ?? [], wall: h?.wall ?? 0, floor: h?.floor ?? 0, size: 2.8 }],
+  yard: h?.yard ?? [],
+});
 type Save = { coins: number; unlocked: string[]; done: number; ground: number; city: Placed[]; houses: Record<string, House>; hero: string | null; started?: boolean; playerName?: string; savedAt?: number };
 type Task = { kind: 'place' | 'color' | 'on' | 'next' | 'inside'; file: string; target?: string; color?: string; en: string };
 const START: Save = { coins: 20, unlocked: [], done: 0, ground: 0, city: [], houses: {}, hero: 'Rogue', started: false, playerName: '' };
 const uidOf = () => `u${Date.now().toString(36)}${Math.floor(Math.random() * 99)}`;
 const key = (mode: WorldMode, file: string) => `${mode}:${file}`;
+const catalog = (m: WorldMode) => (m === 'city' ? CITY_ITEMS : m === 'yard' ? YARD_ITEMS : ROOM_ITEMS);
+const catsOf = (m: WorldMode) => (m === 'city' ? CITY_CATS : m === 'yard' ? YARD_CATS : ROOM_CATS);
 const colorName = (hex?: string) => PAINT.find((p) => p.hex === hex)?.en;
 
 function Thumb({ def }: { def: WorldItem }) {
@@ -65,6 +76,8 @@ function StartScreen({ onStart }: { onStart: (hero: string, name: string) => voi
   );
 }
 
+const migrate = (sv: Save): Save => ({ ...sv, houses: Object.fromEntries(Object.entries(sv.houses ?? {}).map(([k, h]) => [k, normHouse(h)])) });
+
 export default function TownGame() {
   const { isSignedIn, isLoaded } = useAuth();
   const [cloud, setCloud] = useState<'off' | 'saving' | 'saved' | 'error'>('off');
@@ -74,7 +87,9 @@ export default function TownGame() {
   const scene = useRef<WorldScene | null>(null);
   const [s, setS] = useState<Save>(START);
   const [loaded, setLoaded] = useState(false);
-  const [view, setView] = useState<{ mode: WorldMode; house?: string }>({ mode: 'city' });
+  const [view, setView] = useState<View>({ mode: 'city' });
+  const [earn, setEarn] = useState(false);
+  const [roomMenu, setRoomMenu] = useState(false);
   const [ready, setReady] = useState(0); // лічильник: нова сцена готова
   const [sel, setSel] = useState<string | null>(null);
   const [cat, setCat] = useState(CITY_CATS[0]);
@@ -96,7 +111,7 @@ export default function TownGame() {
     let local: Save = START;
     try { const raw = localStorage.getItem(SAVE); if (raw) local = { ...START, ...JSON.parse(raw) }; } catch { /* новий гравець */ }
     if (!isLoaded) return;
-    if (!isSignedIn) { setS(local); setLoaded(true); return; }
+    if (!isSignedIn) { setS(migrate(local)); setLoaded(true); return; }
     Promise.all([
       fetch('/api/game?game=town').then((r) => (r.ok ? r.json() : null)).catch(() => null),
       fetch('/api/coins').then((r) => (r.ok ? r.json() : null)).catch(() => null),
@@ -104,7 +119,7 @@ export default function TownGame() {
       const cloudSave = g?.data as Save | null;
       const pick = cloudSave && (cloudSave.savedAt ?? 0) >= (local.savedAt ?? 0) ? { ...START, ...cloudSave } : local;
       if (c && typeof c.balance === 'number') pick.coins = c.balance; // монетки беремо з гаманця
-      setS(pick); setLoaded(true); setCloud('saved');
+      setS(migrate(pick)); setLoaded(true); setCloud('saved');
     });
   }, [isLoaded, isSignedIn]);
   const cloudTimer = useRef<number>();
@@ -131,15 +146,27 @@ export default function TownGame() {
   };
 
   // список предметів поточного місця
-  const list = mode === 'city' ? s.city : s.houses[view.house ?? '']?.placed ?? [];
+  const listOf = (c: Save, v: View): Placed[] => {
+    if (v.mode === 'city') return c.city;
+    const h = c.houses[v.house ?? '']; if (!h) return [];
+    if (v.mode === 'yard') return h.yard ?? [];
+    return (h.rooms.find((r) => r.id === v.room) ?? h.rooms[0])?.placed ?? [];
+  };
+  const list = listOf(s, view);
   const setList = useCallback((fn: (l: Placed[]) => Placed[]) => {
     setS((c) => {
       const v = viewRef.current;
       if (v.mode === 'city') return { ...c, city: fn(c.city) };
-      const h = c.houses[v.house!] ?? { placed: [], wall: 0, floor: 0 };
-      return { ...c, houses: { ...c.houses, [v.house!]: { ...h, placed: fn(h.placed) } } };
+      const h = normHouse(c.houses[v.house!]);
+      if (v.mode === 'yard') return { ...c, houses: { ...c.houses, [v.house!]: { ...h, yard: fn(h.yard) } } };
+      const rid = v.room ?? h.rooms[0].id;
+      return { ...c, houses: { ...c.houses, [v.house!]: { ...h, rooms: h.rooms.map((r) => (r.id === rid ? { ...r, placed: fn(r.placed) } : r)) } } };
     });
   }, []);
+
+  const house = view.house ? s.houses[view.house] : undefined;
+  const room = house && view.mode === 'room' ? house.rooms.find((r) => r.id === view.room) ?? house.rooms[0] : undefined;
+  const roomSize = room?.size;
 
   // ---------- сцена: нова при зміні місця ----------
   useEffect(() => {
@@ -164,27 +191,35 @@ export default function TownGame() {
           },
           onBad: () => { sfx.bad(); flash("Oops! You can't put it here."); },
           onHero: () => { const h = HEROES.find((x) => x.file === sRef.current.hero); say(`Hello! I'm ${sRef.current.playerName || h?.en || 'here'}!`); },
-        }, view.mode);
+          onHouse: () => enterRoom(),
+        }, view.mode, sceneOpts());
         scene.current = sc;
         sc.setHero(sRef.current.hero);
+        if (view.mode === 'yard') sc.setHouse(getItem('city', cityFile(view.house) ?? ''));
         setReady((n) => n + 1);
       } catch { setErr(true); }
     });
-    setCat(view.mode === 'city' ? CITY_CATS[0] : ROOM_CATS[0]);
+    setCat(catsOf(view.mode)[0]);
     return () => { alive = false; };
-  }, [view.mode, view.house, loaded]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [view.mode, view.house, view.room, roomSize, loaded]); // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => () => { scene.current?.dispose(); scene.current = null; }, []);
 
-  const curList = () => { const v = viewRef.current, c = sRef.current; return v.mode === 'city' ? c.city : c.houses[v.house ?? '']?.placed ?? []; };
+  const curList = () => listOf(sRef.current, viewRef.current);
+  const cityFile = (uid?: string) => sRef.current.city.find((p) => p.uid === uid)?.file;
+  const sceneOpts = () => {
+    const v = viewRef.current; const d = getItem('city', cityFile(v.house) ?? '');
+    return { roomSize: curRoom()?.size, sky: (d?.private ? 'garden' : 'clouds') as 'garden' | 'clouds' };
+  };
+  const curRoom = () => { const v = viewRef.current; const h = sRef.current.houses[v.house ?? '']; return h ? h.rooms.find((r) => r.id === v.room) ?? h.rooms[0] : undefined; };
+  const enterRoom = (rid?: string) => { const v = viewRef.current; const h = normHouse(sRef.current.houses[v.house ?? '']); setView({ mode: 'room', house: v.house, room: rid ?? h.rooms[0].id }); say(`Welcome to the ${(h.rooms.find((r) => r.id === rid) ?? h.rooms[0]).name.toLowerCase()}!`); };
   const nameOf = (p: Placed) => { const d = getItem(viewRef.current.mode, p.file); const c = colorName(p.color); return d ? (c ? `${c} ${d.en}` : d.en) : p.file; };
 
   // кольори і герой
-  const house = view.house ? s.houses[view.house] : undefined;
   useEffect(() => {
     const sc = scene.current; if (!sc || !ready) return;
-    if (mode === 'city') sc.setGround(GROUNDS[s.ground]?.hex ?? GROUNDS[0].hex);
-    else { sc.setWall(WALLS[house?.wall ?? 0].hex); const f = FLOORS[house?.floor ?? 0]; sc.setFloor(f.hex, f.kind); }
-  }, [ready, mode, s.ground, house?.wall, house?.floor]); // eslint-disable-line react-hooks/exhaustive-deps
+    if (mode !== 'room') sc.setGround(GROUNDS[s.ground]?.hex ?? GROUNDS[0].hex);
+    else { sc.setWall(WALLS[room?.wall ?? 0].hex); const f = FLOORS[room?.floor ?? 0]; sc.setFloor(f.hex, f.kind); }
+  }, [ready, mode, s.ground, room?.wall, room?.floor]); // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => { if (scene.current) scene.current.showLabels = labelsOn; }, [labelsOn, ready]);
   useEffect(() => { scene.current?.select(sel); }, [sel]);
 
@@ -199,10 +234,10 @@ export default function TownGame() {
 
   // ---------- завдання ----------
   const owned = (d: WorldItem) => !d.price || s.unlocked.includes(key(mode, d.file));
-  const makeTask = useCallback((st: Save, v: { mode: WorldMode; house?: string }, prev?: Task): Task => {
+  const makeTask = useCallback((st: Save, v: View, prev?: Task): Task => {
     const pick = <T,>(a: T[]) => a[Math.floor(Math.random() * a.length)];
     const own = (d: WorldItem) => !d.price || st.unlocked.includes(key(v.mode, d.file));
-    const l = v.mode === 'city' ? st.city : st.houses[v.house ?? '']?.placed ?? [];
+    const l = listOf(st, v);
     const files = l.map((p) => p.file);
     const def = (f: string) => getItem(v.mode, f)!;
     const opts: Task[] = [];
@@ -210,10 +245,10 @@ export default function TownGame() {
       const houses = l.filter((p) => def(p.file)?.building);
       if (!houses.length) return { kind: 'place', file: 'building_A', en: 'Build a house in the town.' };
       if (!files.some((f) => f.startsWith('road'))) return { kind: 'place', file: 'road_straight', en: 'Put a road next to your house.' };
-      if (!Object.values(st.houses).some((h) => h.placed.length)) return { kind: 'inside', file: houses[0].file, en: `Go inside the ${def(houses[0].file).en}.` };
+      if (!Object.values(st.houses).some((h) => normHouse(h).rooms.some((r) => r.placed.length) || (h.yard?.length ?? 0) > 0)) return { kind: 'inside', file: houses[0].file, en: `Go inside the ${def(houses[0].file).en}.` };
     }
-    const pool = (v.mode === 'city' ? CITY_ITEMS : ROOM_ITEMS).filter((d) => own(d) && !d.wall && !files.includes(d.file));
-    if (pool.length) { const d = pick(pool); opts.push({ kind: 'place', file: d.file, en: `Put ${art(d.en)} ${d.en} in the ${v.mode === 'city' ? 'town' : 'room'}.` }); }
+    const pool = catalog(v.mode).filter((d) => own(d) && !d.wall && !files.includes(d.file));
+    if (pool.length) { const d = pick(pool); opts.push({ kind: 'place', file: d.file, en: `Put ${art(d.en)} ${d.en} in the ${v.mode === 'city' ? 'town' : v.mode === 'yard' ? 'garden' : 'room'}.` }); }
     const paintable = l.filter((p) => { const d = def(p.file); return d?.pack === 'kenney' && d.paint !== 'none' && v.mode === 'room'; });
     if (paintable.length) { const p = pick(paintable); const c = pick(PAINT.filter((x) => x.hex !== p.color)); opts.push({ kind: 'color', file: p.file, color: c.hex, en: `Make the ${def(p.file).en} ${c.en}.` }); }
     const smalls = [...new Set(l.filter((p) => def(p.file)?.small).map((p) => p.file))];
@@ -227,13 +262,13 @@ export default function TownGame() {
   const done = (t: Task) => {
     const sc = scene.current; if (!sc) return false;
     const v = viewRef.current;
-    if (t.kind === 'inside') return v.mode === 'room';
+    if (t.kind === 'inside') return v.mode !== 'city';
     const l = curList();
     const of = (f: string) => l.filter((p) => p.file === f);
     if (t.kind === 'place') return of(t.file).length > 0 && (t.file !== 'road_straight' || true);
     if (t.kind === 'color') return of(t.file).some((p) => p.color === t.color);
     if (t.kind === 'on') return of(t.file).some((p) => sc.supportOf(p.uid) === t.target);
-    return of(t.file).some((a) => of(t.target!).some((b) => { const g = sc.gap(a.uid, b.uid); return g >= -0.001 && g <= (v.mode === 'city' ? 0.6 : 0.15); }));
+    return of(t.file).some((a) => of(t.target!).some((b) => { const g = sc.gap(a.uid, b.uid); return g >= -0.001 && g <= (v.mode === 'city' ? 0.6 : v.mode === 'yard' ? 0.3 : 0.15); }));
   };
   const reward = () => {
     sfx.coin(); setParty((n) => n + 1); say('Well done!');
@@ -242,11 +277,11 @@ export default function TownGame() {
     const prev = task; setTask(null);
     window.setTimeout(() => setTask(makeTask(sRef.current, viewRef.current, prev ?? undefined)), 1500);
   };
-  useEffect(() => { if (loaded && ready) { if (task && done(task)) reward(); else if (!task || (task.kind !== 'inside' && !(mode === 'city' ? CITY_ITEMS : ROOM_ITEMS).some((d) => d.file === task.file))) setTask(makeTask(sRef.current, view)); } }, [ready]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => { if (loaded && ready) { if (task && done(task)) reward(); else if (!task || (task.kind !== 'inside' && !catalog(mode).some((d) => d.file === task.file))) setTask(makeTask(sRef.current, view)); } }, [ready]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // ---------- дії ----------
-  const items = useMemo(() => (mode === 'city' ? CITY_ITEMS : ROOM_ITEMS).filter((d) => d.cat === cat), [mode, cat]);
-  const cats = mode === 'city' ? CITY_CATS : ROOM_CATS;
+  const items = useMemo(() => catalog(mode).filter((d) => d.cat === cat), [mode, cat]);
+  const cats = catsOf(mode);
   const add = async (d: WorldItem, at?: { clientX: number; clientY: number }) => {
     if (!owned(d)) {
       if (s.coins < (d.price ?? 0)) { sfx.bad(); flash(`You need ${d.price} coins. Do tasks to get more!`); return; }
@@ -261,7 +296,7 @@ export default function TownGame() {
     if (!spot) { sfx.bad(); flash(near ? "Oops! You can't put it here." : 'No free space. Move or remove something.'); return; }
     const uid = uidOf();
     setList((l) => [...l, { ...spot, uid }]);
-    if (d.building) setS((c) => ({ ...c, houses: { ...c.houses, [uid]: { placed: [], wall: 0, floor: 0 } } }));
+    if (d.building) setS((c) => ({ ...c, houses: { ...c.houses, [uid]: normHouse() } }));
     setSel(uid); sfx.pop(); say(`${art(d.en)} ${d.en}`);
   };
   const cur = list.find((p) => p.uid === sel) ?? null;
@@ -301,14 +336,44 @@ export default function TownGame() {
     if (curDef?.building) setS((c) => { const h = { ...c.houses }; delete h[cur.uid]; return { ...c, houses: h }; });
     setSel(null); sfx.pick();
   };
-  const goInside = () => { if (!cur || !curDef?.building) return; setS((c) => (c.houses[cur.uid] ? c : { ...c, houses: { ...c.houses, [cur.uid]: { placed: [], wall: 0, floor: 0 } } })); setView({ mode: 'room', house: cur.uid }); say(`Welcome to your ${curDef.en}!`); };
+  const goInside = () => {
+    if (!cur || !curDef?.building) return;
+    const h = normHouse(s.houses[cur.uid]);
+    setS((c) => ({ ...c, houses: { ...c.houses, [cur.uid]: h } }));
+    if (curDef.private) { setView({ mode: 'yard', house: cur.uid }); say(`Welcome to your ${curDef.en}! This is your garden.`); }
+    else { setView({ mode: 'room', house: cur.uid, room: h.rooms[0].id }); say(`Welcome to your flat!`); }
+  };
   const backToTown = () => { setView({ mode: 'city' }); say('Back to town!'); };
+  const isPrivate = !!getItem('city', cityFile(view.house) ?? '')?.private;
+  // платимо монетками: з гаманця (якщо увійшов) або з гри
+  const pay = async (amount: number, reason: string) => {
+    if (!amount) return true;
+    if (s.coins < amount) { sfx.bad(); flash(`You need ${amount} coins. Press “Earn coins”!`); return false; }
+    const paid = await coinsApi('spend', amount, reason);
+    if (paid === -1) { sfx.bad(); flash(`You need ${amount} coins. Press “Earn coins”!`); return false; }
+    setS((c) => ({ ...c, coins: typeof paid === 'number' ? paid : c.coins - amount })); sfx.coin(); return true;
+  };
+  const addRoom = async (name: string) => {
+    if (!view.house) return;
+    const price = (house?.rooms.length ?? 1) >= 1 ? 15 : 0;
+    if (!(await pay(price, `Murly Town: ${name}`))) return;
+    const r = newRoom(name);
+    setS((c) => { const h = normHouse(c.houses[view.house!]); return { ...c, houses: { ...c.houses, [view.house!]: { ...h, rooms: [...h.rooms, r] } } }; });
+    setRoomMenu(false); setView({ mode: 'room', house: view.house, room: r.id }); say(`A new ${name.toLowerCase()}!`);
+  };
+  const growRoom = async () => {
+    if (!room || !view.house) return;
+    const next = ROOM_SIZES.find((x) => x.size > room.size); if (!next) return;
+    if (!(await pay(next.price, `Murly Town: ${next.en} room`))) return;
+    setS((c) => { const h = normHouse(c.houses[view.house!]); return { ...c, houses: { ...c.houses, [view.house!]: { ...h, rooms: h.rooms.map((r) => (r.id === room.id ? { ...r, size: next.size } : r)) } } }; });
+    say(`Now the room is ${next.en}!`);
+  };
   const clearHere = () => {
-    if (!confirm(mode === 'city' ? 'Start the town again?' : 'Make this room empty?')) return;
+    if (!confirm(mode === 'city' ? 'Start the town again?' : mode === 'yard' ? 'Make the garden empty?' : 'Make this room empty?')) return;
     if (mode === 'city') setS((c) => ({ ...c, city: [], houses: {} })); else setList(() => []);
     setSel(null);
   };
-  const setHouse = (patch: Partial<House>) => view.house && setS((c) => ({ ...c, houses: { ...c.houses, [view.house!]: { ...(c.houses[view.house!] ?? { placed: [], wall: 0, floor: 0 }), ...patch } } }));
+  const setHouse = (patch: Partial<Room>) => view.house && room && setS((c) => { const h = normHouse(c.houses[view.house!]); return { ...c, houses: { ...c.houses, [view.house!]: { ...h, rooms: h.rooms.map((r) => (r.id === room.id ? { ...r, ...patch } : r)) } } }; });
   const pickHero = (file: string | null) => { setS((c) => ({ ...c, hero: file })); scene.current?.setHero(file); setHeroes(false); const h = HEROES.find((x) => x.file === file); if (h) say(`Hi! I'm ${h.en}!`); };
   const start = (hero: string, name: string) => {
     setS((c) => ({ ...c, hero, playerName: name, started: true }));
@@ -372,6 +437,7 @@ export default function TownGame() {
         <div className="rw-tools">
           <button className={`g-chip hm-en ${labelsOn ? 'is-on' : ''}`} onClick={() => setLabelsOn(!labelsOn)} aria-pressed={labelsOn}>Labels</button>
           <button className="g-chip hm-en" onClick={() => setHeroes(!heroes)}>{s.playerName || heroName || 'Hero'}</button>
+          <button className="mu-btn mu-btn--lime t-btn-sm hm-en" onClick={() => setEarn(true)}><span className="rw-coin" />Earn coins</button>
           <button className="g-chip hm-en" onClick={full}>Full screen</button>
           {isSignedIn
             ? <span className={`hm-save ${cloud}`}>{cloud === 'saving' ? 'Saving…' : cloud === 'error' ? 'Not saved' : 'Saved'}</span>
@@ -390,18 +456,30 @@ export default function TownGame() {
         <div ref={host} className="hm-canvas" />
         <div ref={labels} className="hm-labels" aria-hidden="true" />
         <div className="hm-where">
-          {mode === 'room'
-            ? <button className="mu-btn t-btn-sm hm-en" onClick={backToTown}>← Back to town</button>
-            : <span className="hm-chip">My town</span>}
-          {mode === 'room' && <span className="hm-chip">Inside: {getItem('city', s.city.find((p) => p.uid === view.house)?.file ?? '')?.en ?? 'house'}</span>}
+          {mode === 'city' && <span className="hm-chip">My town</span>}
+          {mode === 'yard' && <><button className="mu-btn t-btn-sm hm-en" onClick={backToTown}>← Back to town</button><button className="mu-btn mu-btn--lime t-btn-sm hm-en" onClick={() => enterRoom()}>Go inside</button></>}
+          {mode === 'room' && (
+            <>
+              <button className="mu-btn t-btn-sm hm-en" onClick={() => (isPrivate ? setView({ mode: 'yard', house: view.house }) : backToTown())}>{isPrivate ? '← Garden' : '← Back to town'}</button>
+              {house?.rooms.map((r) => <button key={r.id} className={`g-chip hm-en ${room?.id === r.id ? 'is-on' : ''}`} onClick={() => r.id !== room?.id && enterRoom(r.id)}>{r.name}</button>)}
+              <button className="g-chip hm-en" onClick={() => setRoomMenu(!roomMenu)}>+ Room</button>
+            </>
+          )}
         </div>
+        {roomMenu && mode === 'room' && (
+          <div className="hm-roommenu">
+            <b>Add a room <span className="rw-price"><span className="rw-coin" />15</span></b>
+            <div className="g-chips">{ROOM_TYPES.map((t) => <button key={t} className="g-chip hm-en" onClick={() => addRoom(t)}>{t}</button>)}</div>
+          </div>
+        )}
         <div className="hm-cam">
           <button onClick={() => scene.current?.turn(-1)} aria-label="Turn left" title="Turn left">↺</button>
           <button onClick={() => scene.current?.turn(1)} aria-label="Turn right" title="Turn right">↻</button>
         </div>
         {!ready && <div className="hm-loading">Loading…</div>}
         {loaded && !s.started && <StartScreen onStart={start} />}
-        {list.length === 0 && ready > 0 && <div className="hm-empty">{mode === 'city' ? 'Your town is empty. Pick a house below and drag it here!' : 'This room is empty. Drag furniture here!'}</div>}
+        {earn && <EarnCoins signedIn={!!isSignedIn} onClose={() => setEarn(false)} onCoins={(n, bal) => { setS((c) => ({ ...c, coins: typeof bal === 'number' ? bal : c.coins + n })); if (n) { setParty((x) => x + 1); sfx.coin(); } }} />}
+        {list.length === 0 && ready > 0 && <div className="hm-empty">{mode === 'city' ? 'Your town is empty. Pick a house below and drag it here!' : mode === 'yard' ? 'This is your garden. Drag trees, flowers and a pool here!' : 'This room is empty. Drag furniture here!'}</div>}
         {party > 0 && <div key={party} className="rw-party" aria-hidden="true">{Array.from({ length: 18 }, (_, i) => <i key={i} style={{ ['--i' as string]: i }} />)}</div>}
         {msg && <div className="rw-msg" role="status">{msg}</div>}
       </div>
@@ -432,13 +510,14 @@ export default function TownGame() {
         <div className="rw-sel hm-room">
           {mode === 'room' ? (
             <>
-              <div className="hm-room__g"><b>Walls</b><div className="rw-colors">{WALLS.map((w, i) => <button key={w.en} title={w.en} aria-label={`${w.en} walls`} className={`rw-sw ${(house?.wall ?? 0) === i ? 'is-on' : ''}`} style={{ background: w.hex }} onClick={() => { setHouse({ wall: i }); sfx.paint(); say(`${w.en} walls`); }} />)}</div></div>
-              <div className="hm-room__g"><b>Floor</b><div className="rw-colors">{FLOORS.map((f, i) => <button key={f.en} title={f.en} aria-label={`${f.en} floor`} className={`rw-sw ${(house?.floor ?? 0) === i ? 'is-on' : ''}`} style={{ background: f.hex }} onClick={() => { setHouse({ floor: i }); sfx.paint(); say(f.en); }} />)}</div></div>
+              <div className="hm-room__g"><b>Walls</b><div className="rw-colors">{WALLS.map((w, i) => <button key={w.en} title={w.en} aria-label={`${w.en} walls`} className={`rw-sw ${(room?.wall ?? 0) === i ? 'is-on' : ''}`} style={{ background: w.hex }} onClick={() => { setHouse({ wall: i }); sfx.paint(); say(`${w.en} walls`); }} />)}</div></div>
+              <div className="hm-room__g"><b>Floor</b><div className="rw-colors">{FLOORS.map((f, i) => <button key={f.en} title={f.en} aria-label={`${f.en} floor`} className={`rw-sw ${(room?.floor ?? 0) === i ? 'is-on' : ''}`} style={{ background: f.hex }} onClick={() => { setHouse({ floor: i }); sfx.paint(); say(f.en); }} />)}</div></div>
+              {room && ROOM_SIZES.find((x) => x.size > room.size) && (() => { const n = ROOM_SIZES.find((x) => x.size > room.size)!; return <button className="mu-btn t-btn-sm hm-en" onClick={growRoom}>Make it {n.en} <span className="rw-price"><span className="rw-coin" />{n.price}</span></button>; })()}
             </>
           ) : (
-            <div className="hm-room__g"><b>Ground</b><div className="rw-colors">{GROUNDS.map((g, i) => <button key={g.en} title={g.en} aria-label={g.en} className={`rw-sw ${s.ground === i ? 'is-on' : ''}`} style={{ background: g.hex }} onClick={() => { setS((c) => ({ ...c, ground: i })); sfx.paint(); say(g.en); }} />)}</div></div>
+            <div className="hm-room__g"><b>{mode === 'yard' ? 'Grass' : 'Ground'}</b><div className="rw-colors">{GROUNDS.map((g, i) => <button key={g.en} title={g.en} aria-label={g.en} className={`rw-sw ${s.ground === i ? 'is-on' : ''}`} style={{ background: g.hex }} onClick={() => { setS((c) => ({ ...c, ground: i })); sfx.paint(); say(g.en); }} />)}</div></div>
           )}
-          <button className="t-link-btn hm-en" onClick={clearHere}>{mode === 'city' ? 'New town' : 'Empty room'}</button>
+          <button className="t-link-btn hm-en" onClick={clearHere}>{mode === 'city' ? 'New town' : mode === 'yard' ? 'Empty garden' : 'Empty room'}</button>
         </div>
       )}
 
@@ -460,7 +539,7 @@ export default function TownGame() {
         </div>
       </div>
       {ghost && <div className="hm-ghost" style={{ left: ghost.x, top: ghost.y }}><Thumb def={ghost.def} /></div>}
-      <p className="rw-help t-muted">Drag things from the shelf into the {mode === 'city' ? 'town' : 'room'}. Drag them to move. Tap the floor and your hero walks there. Choose a house and press “Go inside”.</p>
+      <p className="rw-help t-muted">Drag things from the shelf into the {mode === 'city' ? 'town' : mode === 'yard' ? 'garden' : 'room'}. Drag them to move. Tap the floor and your hero walks there. Choose a house and press “Go inside”.</p>
     </div>
   );
 }
