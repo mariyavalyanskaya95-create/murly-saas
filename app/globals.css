@@ -1694,3 +1694,15 @@ a.t-stat:hover { transform: translateY(-2px); }
   .hm-full .hm-cam { bottom: calc(var(--shop-h, 220px) + 120px); }
   .hm-full .hm-card { width: 84px; }
 }
+
+/* Murly Town: план будинку */
+.hm-plan { position: absolute; inset: 70px 70px calc(var(--shop-h, 170px) + 20px) 10px; z-index: 30; display: flex; flex-direction: column; background: rgba(255,255,255,.97); border: 2px solid var(--mu-ink); border-radius: 18px; box-shadow: 4px 4px 0 var(--mu-ink); overflow: hidden; }
+.hm-plan__head { display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-bottom: 2px solid var(--mu-ink); flex-wrap: wrap; }
+.hm-plan__head b { font-size: 18px; }
+.hm-plan__head span { flex: 1; min-width: 200px; font-size: 14px; opacity: .75; }
+.hm-plan svg { flex: 1; width: 100%; min-height: 200px; touch-action: none; background: #EAF5E0; }
+.hm-plan__room { cursor: grab; }
+.hm-plan__room text { fill: var(--mu-ink); font-weight: 800; pointer-events: none; user-select: none; }
+.hm-plan__room.is-me > rect:nth-child(2) { stroke: #D0F834; stroke-width: .08; }
+.hm-plan__room.is-drag { opacity: .8; cursor: grabbing; }
+.hm-plan__door { fill: #C99A6B; stroke: var(--mu-ink); stroke-width: .02; pointer-events: none; }
