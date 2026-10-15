@@ -12,7 +12,8 @@ export const metadata: Metadata = {
 };
 
 const WORLDS = [
-  { href: '/worlds/room', title: 'My room', uk: 'Моя кімната', text: 'Облаштуй кімнату: меблі, кольори, тварини. Виконуй завдання англійською і відкривай нові речі.', tag: 'Діти 6-11 · A1-A2', color: 'lime', ready: true },
+  { href: '/worlds/home', title: 'My home 3D', uk: 'Мій дім у 3D', text: 'Справжня 3D-кімната: понад 120 предметів для вітальні, спальні, кухні й ванної, кольори, картини на стінах і завдання англійською.', tag: 'Нове · 3D · A1-B1', color: 'tomato', ready: true },
+  { href: '/worlds/room', title: 'My room', uk: 'Моя кімната (легка версія)', text: 'Проста кімната для найменших і слабких пристроїв: меблі, кольори, тварини і завдання англійською.', tag: 'Діти 6-11 · A1-A2', color: 'lime', ready: true },
   { href: '', title: 'Block world', uk: 'Світ з блоків', text: 'Будуй будинки і ферми з блоків, а кожен блок має англійську назву.', tag: 'Скоро', color: 'sky', ready: false },
   { href: '', title: 'City quest', uk: 'Місто-квест', text: 'Гуляй містом, питай дорогу, купуй, замовляй їжу і виконуй місії англійською.', tag: 'Скоро', color: 'mustard', ready: false },
 ];
