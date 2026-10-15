@@ -2,6 +2,8 @@
 // Гра «Murly Town»: будуєш місто, обираєш будинок, заходиш усередину й облаштовуєш кімнату.
 // Увесь текст у грі англійською (вимога Марії): гра сама вчить словам.
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import Link from 'next/link';
+import { useAuth } from '@clerk/nextjs';
 import Icon from '../Icon';
 import { CITY_CATS, CITY_ITEMS, FLOORS, GROUNDS, HEROES, PAINT, ROOM_CATS, ROOM_ITEMS, WALLS, getItem, type WorldItem } from '@/lib/worlds/world-items';
 import { art, say, sfx } from '@/lib/worlds/sound';
@@ -10,9 +12,9 @@ import ATLAS from '@/lib/worlds/kenney-thumbs.json';
 
 const SAVE = 'murly-town-v1';
 type House = { placed: Placed[]; wall: number; floor: number };
-type Save = { coins: number; unlocked: string[]; done: number; ground: number; city: Placed[]; houses: Record<string, House>; hero: string | null };
+type Save = { coins: number; unlocked: string[]; done: number; ground: number; city: Placed[]; houses: Record<string, House>; hero: string | null; started?: boolean; playerName?: string; savedAt?: number };
 type Task = { kind: 'place' | 'color' | 'on' | 'next' | 'inside'; file: string; target?: string; color?: string; en: string };
-const START: Save = { coins: 20, unlocked: [], done: 0, ground: 0, city: [], houses: {}, hero: 'Rogue' };
+const START: Save = { coins: 20, unlocked: [], done: 0, ground: 0, city: [], houses: {}, hero: 'Rogue', started: false, playerName: '' };
 const uidOf = () => `u${Date.now().toString(36)}${Math.floor(Math.random() * 99)}`;
 const key = (mode: WorldMode, file: string) => `${mode}:${file}`;
 const colorName = (hex?: string) => PAINT.find((p) => p.hex === hex)?.en;
@@ -34,7 +36,38 @@ function Thumb({ def }: { def: WorldItem }) {
   return src ? <img src={src} alt="" className="hm-thumb" draggable={false} /> : <span className="hm-thumb hm-thumb--wait" />;
 }
 
+function HeroPic({ file }: { file: string }) {
+  const [src, setSrc] = useState<string | null>(null);
+  useEffect(() => { let on = true; import('@/lib/worlds/world-scene').then((m) => m.renderHero(file)).then((u) => { if (on) setSrc(u); }).catch(() => {}); return () => { on = false; }; }, [file]);
+  return src ? <img src={src} alt="" className="hm-hero-pic" draggable={false} /> : <span className="hm-hero-pic hm-thumb--wait" />;
+}
+
+// Екран початку гри: вибір героя та ім'я
+function StartScreen({ onStart }: { onStart: (hero: string, name: string) => void }) {
+  const [hero, setHero] = useState(HEROES[0].file);
+  const [name, setName] = useState('');
+  return (
+    <div className="hm-start" role="dialog" aria-label="Choose your hero">
+      <h2>Welcome to Murly Town!</h2>
+      <p>Choose your hero</p>
+      <div className="hm-start__heroes" role="radiogroup">
+        {HEROES.map((h) => (
+          <button key={h.file} role="radio" aria-checked={hero === h.file} className={`hm-start__hero ${hero === h.file ? 'is-on' : ''}`} onClick={() => { setHero(h.file); say(`Hi! I'm ${h.en}!`); }}>
+            <HeroPic file={h.file} /><b>{h.en}</b>
+          </button>
+        ))}
+      </div>
+      <label className="hm-start__name">What’s your name?
+        <input value={name} maxLength={20} onChange={(e) => setName(e.target.value.replace(/[^a-zA-Z '-]/g, ''))} placeholder="Type in English" />
+      </label>
+      <button className="mu-btn mu-btn--lime mu-btn--lg hm-en" onClick={() => onStart(hero, name.trim())}>Let’s play!</button>
+    </div>
+  );
+}
+
 export default function TownGame() {
+  const { isSignedIn, isLoaded } = useAuth();
+  const [cloud, setCloud] = useState<'off' | 'saving' | 'saved' | 'error'>('off');
   const host = useRef<HTMLDivElement>(null);
   const labels = useRef<HTMLDivElement>(null);
   const wrap = useRef<HTMLDivElement>(null);
@@ -58,12 +91,44 @@ export default function TownGame() {
 
   const flash = (t: string) => { setMsg(t); window.setTimeout(() => setMsg(''), 2400); };
 
-  // ---------- збереження ----------
+  // ---------- збереження: у браузері завжди, у хмарі для тих, хто увійшов ----------
   useEffect(() => {
-    try { const raw = localStorage.getItem(SAVE); if (raw) setS({ ...START, ...JSON.parse(raw) }); } catch { /* новий гравець */ }
-    setLoaded(true);
-  }, []);
-  useEffect(() => { if (loaded) try { localStorage.setItem(SAVE, JSON.stringify(s)); } catch { /* немає сховища */ } }, [s, loaded]);
+    let local: Save = START;
+    try { const raw = localStorage.getItem(SAVE); if (raw) local = { ...START, ...JSON.parse(raw) }; } catch { /* новий гравець */ }
+    if (!isLoaded) return;
+    if (!isSignedIn) { setS(local); setLoaded(true); return; }
+    Promise.all([
+      fetch('/api/game?game=town').then((r) => (r.ok ? r.json() : null)).catch(() => null),
+      fetch('/api/coins').then((r) => (r.ok ? r.json() : null)).catch(() => null),
+    ]).then(([g, c]) => {
+      const cloudSave = g?.data as Save | null;
+      const pick = cloudSave && (cloudSave.savedAt ?? 0) >= (local.savedAt ?? 0) ? { ...START, ...cloudSave } : local;
+      if (c && typeof c.balance === 'number') pick.coins = c.balance; // монетки беремо з гаманця
+      setS(pick); setLoaded(true); setCloud('saved');
+    });
+  }, [isLoaded, isSignedIn]);
+  const cloudTimer = useRef<number>();
+  useEffect(() => {
+    if (!loaded) return;
+    const data = { ...s, savedAt: Date.now() };
+    try { localStorage.setItem(SAVE, JSON.stringify(data)); } catch { /* немає сховища */ }
+    if (!isSignedIn) return;
+    window.clearTimeout(cloudTimer.current);
+    setCloud('saving');
+    cloudTimer.current = window.setTimeout(() => {
+      fetch('/api/game', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ game: 'town', data }) })
+        .then((r) => setCloud(r.ok ? 'saved' : 'error')).catch(() => setCloud('error'));
+    }, 1500);
+  }, [s, loaded, isSignedIn]);
+  // монетки: якщо учень увійшов, рахуємо в спільному гаманці сайту
+  const coinsApi = async (op: 'earn' | 'spend', amount: number, reason: string): Promise<number | null> => {
+    if (!isSignedIn) return null;
+    const r = await fetch('/api/coins', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ op, amount, reason, source: 'game' }) }).catch(() => null);
+    if (!r) return null;
+    const d = await r.json().catch(() => ({}));
+    if (!r.ok) return op === 'spend' ? -1 : null;
+    return typeof d.balance === 'number' ? d.balance : null;
+  };
 
   // список предметів поточного місця
   const list = mode === 'city' ? s.city : s.houses[view.house ?? '']?.placed ?? [];
@@ -98,7 +163,7 @@ export default function TownGame() {
             });
           },
           onBad: () => { sfx.bad(); flash("Oops! You can't put it here."); },
-          onHero: () => { const h = HEROES.find((x) => x.file === sRef.current.hero); say(`Hello! I'm ${h?.en ?? 'here'}!`); },
+          onHero: () => { const h = HEROES.find((x) => x.file === sRef.current.hero); say(`Hello! I'm ${sRef.current.playerName || h?.en || 'here'}!`); },
         }, view.mode);
         scene.current = sc;
         sc.setHero(sRef.current.hero);
@@ -173,6 +238,7 @@ export default function TownGame() {
   const reward = () => {
     sfx.coin(); setParty((n) => n + 1); say('Well done!');
     setS((c) => ({ ...c, coins: c.coins + 5, done: c.done + 1 }));
+    coinsApi('earn', 5, 'town task').then((b) => { if (typeof b === 'number' && b >= 0) setS((c) => ({ ...c, coins: b })); });
     const prev = task; setTask(null);
     window.setTimeout(() => setTask(makeTask(sRef.current, viewRef.current, prev ?? undefined)), 1500);
   };
@@ -184,7 +250,9 @@ export default function TownGame() {
   const add = async (d: WorldItem, at?: { clientX: number; clientY: number }) => {
     if (!owned(d)) {
       if (s.coins < (d.price ?? 0)) { sfx.bad(); flash(`You need ${d.price} coins. Do tasks to get more!`); return; }
-      setS((c) => ({ ...c, coins: c.coins - (d.price ?? 0), unlocked: [...c.unlocked, key(mode, d.file)] })); sfx.coin(); flash(`New: ${d.en}!`); say(`${art(d.en)} ${d.en}`); return;
+      const paid = await coinsApi('spend', d.price ?? 0, `Murly Town: ${d.en}`);
+      if (paid === -1) { sfx.bad(); flash(`You need ${d.price} coins. Do tasks to get more!`); return; }
+      setS((c) => ({ ...c, coins: typeof paid === 'number' ? paid : c.coins - (d.price ?? 0), unlocked: [...c.unlocked, key(mode, d.file)] })); sfx.coin(); flash(`New: ${d.en}!`); say(`${art(d.en)} ${d.en}`); return;
     }
     const sc = scene.current; if (!sc) return;
     const near = at ? sc.pointAt(at.clientX, at.clientY, !!d.wall) : null;
@@ -242,6 +310,11 @@ export default function TownGame() {
   };
   const setHouse = (patch: Partial<House>) => view.house && setS((c) => ({ ...c, houses: { ...c.houses, [view.house!]: { ...(c.houses[view.house!] ?? { placed: [], wall: 0, floor: 0 }), ...patch } } }));
   const pickHero = (file: string | null) => { setS((c) => ({ ...c, hero: file })); scene.current?.setHero(file); setHeroes(false); const h = HEROES.find((x) => x.file === file); if (h) say(`Hi! I'm ${h.en}!`); };
+  const start = (hero: string, name: string) => {
+    setS((c) => ({ ...c, hero, playerName: name, started: true }));
+    scene.current?.setHero(hero);
+    say(`Hello${name ? `, ${name}` : ''}! Let's build a town!`);
+  };
   const full = () => { const el = wrap.current; if (!el) return; if (document.fullscreenElement) document.exitFullscreen().catch(() => {}); else el.requestFullscreen?.().catch(() => {}); };
 
   // клавіатура: стрілки рухають, R повертає, Delete прибирає
@@ -298,8 +371,11 @@ export default function TownGame() {
         </div>
         <div className="rw-tools">
           <button className={`g-chip hm-en ${labelsOn ? 'is-on' : ''}`} onClick={() => setLabelsOn(!labelsOn)} aria-pressed={labelsOn}>Labels</button>
-          <button className="g-chip hm-en" onClick={() => setHeroes(!heroes)}>{heroName ? `Hero: ${heroName}` : 'Hero'}</button>
+          <button className="g-chip hm-en" onClick={() => setHeroes(!heroes)}>{s.playerName || heroName || 'Hero'}</button>
           <button className="g-chip hm-en" onClick={full}>Full screen</button>
+          {isSignedIn
+            ? <span className={`hm-save ${cloud}`}>{cloud === 'saving' ? 'Saving…' : cloud === 'error' ? 'Not saved' : 'Saved'}</span>
+            : <Link href="/sign-in?redirect_url=/worlds/town" className="g-chip hm-en">Sign in to save</Link>}
         </div>
       </div>
       {heroes && (
@@ -324,6 +400,7 @@ export default function TownGame() {
           <button onClick={() => scene.current?.turn(1)} aria-label="Turn right" title="Turn right">↻</button>
         </div>
         {!ready && <div className="hm-loading">Loading…</div>}
+        {loaded && !s.started && <StartScreen onStart={start} />}
         {list.length === 0 && ready > 0 && <div className="hm-empty">{mode === 'city' ? 'Your town is empty. Pick a house below and drag it here!' : 'This room is empty. Drag furniture here!'}</div>}
         {party > 0 && <div key={party} className="rw-party" aria-hidden="true">{Array.from({ length: 18 }, (_, i) => <i key={i} style={{ ['--i' as string]: i }} />)}</div>}
         {msg && <div className="rw-msg" role="status">{msg}</div>}
