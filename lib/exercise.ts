@@ -133,6 +133,19 @@ export function grade(sections: Section[], answers: Answers, overrides: Record<s
   return { score, total: maxScore(sections), marks };
 }
 
+// Ключ відповідей для версії вчителя: перша правильна відповідь у кожному пропуску й виборі
+export function answerKey(sections: Section[]): Answers {
+  const a: Answers = {};
+  sections.forEach((s, si) => s.tasks.forEach((t, ti) => {
+    if (s.type === 'translate') { if (t.answers?.[0]) a[`${si}.${ti}.0`] = t.answers[0]; return; }
+    (t.parts ?? []).forEach((p, pi) => {
+      if (p.t === 'gap' && p.answers[0]) a[`${si}.${ti}.${pi}`] = p.answers[0];
+      if (p.t === 'choice' && p.options[0]) a[`${si}.${ti}.${pi}`] = p.options[0];
+    });
+  }));
+  return a;
+}
+
 // Зворотне перетворення: секція → текст для редактора
 export function sectionToText(s: Section): string {
   const label = (t: Task) => (t.parts?.[0]?.t === 'text' ? t.parts[0].v.trim() : '');
