@@ -1596,3 +1596,33 @@ a.t-stat:hover { transform: translateY(-2px); }
 .hm-task-thumb .hm-thumb { width: 52px; height: 46px; }
 .hm-heroes { gap: 8px; }
 .rw-card { touch-action: pan-x; }
+
+/* Монетки */
+.t-coins { display: grid; gap: 12px; }
+.t-coins__head { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.t-coins__head .rw-coin { width: 40px; height: 40px; }
+.t-coins__head small { display: block; font-size: 13px; opacity: .7; }
+.t-coins__head b { font-size: 28px; font-variant-numeric: tabular-nums; }
+.t-coins__head p { flex: 1; min-width: 220px; margin: 0; font-size: 14px; }
+.t-coins__give { display: grid; gap: 8px; }
+.t-coins__btns { display: flex; gap: 8px; flex-wrap: wrap; }
+.t-coins__log { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; font-size: 14px; }
+.s-coins { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; background: #FFF6D6; }
+.s-coins .s-coins__big { width: 56px; height: 56px; border-width: 3px; }
+.s-coins small { display: block; opacity: .7; }
+.s-coins b { font-size: 34px; font-variant-numeric: tabular-nums; }
+.s-coins p { margin: 2px 0 0; font-size: 14px; max-width: 460px; }
+.s-coins .mu-btn { margin-left: auto; }
+.hm-start { position: absolute; inset: 0; z-index: 5; display: grid; place-content: center; justify-items: center; gap: 10px; padding: 16px; background: rgba(250, 245, 233, .94); text-align: center; overflow: auto; }
+.hm-start h2 { margin: 0; font-size: clamp(24px, 4vw, 38px); }
+.hm-start p { margin: 0; font-weight: 700; }
+.hm-start__heroes { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+.hm-start__hero { display: grid; justify-items: center; gap: 2px; padding: 8px; border: 2px solid var(--mu-ink); border-radius: 18px; background: #fff; cursor: pointer; font: inherit; transition: transform .12s; }
+.hm-start__hero.is-on { background: var(--mu-lime); box-shadow: 4px 4px 0 var(--mu-ink); transform: translate(-2px, -2px); }
+.hm-hero-pic { width: 110px; height: 98px; display: block; object-fit: contain; }
+.hm-start__name { display: grid; gap: 4px; font-weight: 700; }
+.hm-start__name input { border: 2px solid var(--mu-ink); border-radius: 12px; padding: 10px 14px; font: inherit; font-size: 18px; text-align: center; min-width: 240px; }
+.hm-save { padding: 6px 12px; border-radius: 99px; border: 2px solid var(--mu-ink); font-weight: 700; font-size: 13px; background: #fff; }
+.hm-save.saved { background: #E4F6D6; }
+.hm-save.error { background: #FADBD6; }
+@media (max-width: 760px) { .hm-hero-pic { width: 80px; height: 72px; } }
