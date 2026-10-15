@@ -7,27 +7,34 @@ import SiteFooter from '@/components/SiteFooter';
 import Faq from '@/components/Faq';
 
 export const metadata: Metadata = {
-  title: 'Murly для репетиторів НМТ з англійської',
-  description: 'Кабінет для груп учнів, домашка в один клік, прогрес кожного і звіт батькам. Готові квізи у форматі НМТ.',
+  title: 'Murly для вчителів англійської: кабінет, уроки, домашка',
+  description: 'Учні, розклад, 24 готові уроки по 60 хвилин, домашка з автоперевіркою, словник кожного учня, оплати і монетки для мотивації.',
+  alternates: { canonical: '/for-teachers' },
 };
 
-const PAINS = [
-  { icon: 'd-clock', title: 'Менше рутини', text: 'Не треба шукати й друкувати завдання. Обираєш квіз із бібліотеки і відправляєш групі.' },
-  { icon: 'd-growth', title: 'Видно прогрес', text: 'Хто що пройшов, де помиляється і які теми просідають. По кожному учню окремо.' },
-  { icon: 'd-heart', title: 'Спокійні батьки', text: 'Раз на тиждень батьки отримують короткий звіт. Менше питань у месенджерах.' },
+const TOOLS = [
+  { id: 'students', icon: 'd-team', mod: 'mu-card--lime', title: 'Учні', text: 'Рівень, ціна заняття, контакти учня й батьків. Кожному свій код-запрошення.' },
+  { id: 'schedule', icon: 'e-cal', mod: 'mu-card--mustard', title: 'Розклад', text: 'Заняття на тиждень, посилання на Zoom чи Meet, нотатки до уроку.' },
+  { id: 'lessons', icon: 'e-board', mod: 'mu-card--sky', title: 'Готові уроки', text: '24 уроки по 60 хвилин за рівнями й віком. Можна змінити під себе або зібрати свій.' },
+  { id: 'homework', icon: 'e-pencil', mod: '', title: 'Домашка', text: 'Вправи з автоперевіркою, ігри зі словами учня і письмові завдання, які ти перевіряєш сам.' },
+  { id: 'words', icon: 'e-book', mod: 'mu-card--lime', title: 'Словник учня', text: 'Слова з уроку одним кліком потрапляють у словник учня. Він повторює їх в іграх.' },
+  { id: 'coins', icon: 'c-fish', mod: 'mu-card--ink', title: 'Монетки', text: 'Нараховуй монетки за урок, домашку, поведінку. Учень витрачає їх у Murly Town.' },
+  { id: 'payments', icon: 'd-money', mod: 'mu-card--mustard', title: 'Оплати', text: 'Хто заплатив і за скільки уроків. Без таблиць і нотаток у телефоні.' },
+  { id: 'practice', icon: 'e-head', mod: 'mu-card--sky', title: 'Граматика і практика', text: 'Правила, неправильні дієслова, listening і reading, щоб давати учням між уроками.' },
 ];
 
 const STEPS = [
-  { n: '01', icon: 'd-team', title: 'Створи групу', text: 'Додай учнів за посиланням. Вони реєструються самі.' },
-  { n: '02', icon: 'e-board', title: 'Задай домашку', text: 'Обери квіз або тему, вкажи дедлайн. Учні бачать її в кабінеті.' },
-  { n: '03', icon: 'd-crm', title: 'Дивись результати', text: 'Бали, помилки і час на кожне завдання. Слабкі теми підсвічуються.' },
-  { n: '04', icon: 'd-send', title: 'Звіт батькам', text: 'Автоматично щотижня. Ти нічого не пишеш вручну.' },
+  { n: '01', icon: 'd-team', title: 'Створи кабінет', text: 'Реєстрація за хвилину. Додай учнів: ім’я, рівень, ціна.' },
+  { n: '02', icon: 'd-send', title: 'Надішли код', text: 'У кожного учня свій код або посилання. Він вводить його і бачить свій кабінет.' },
+  { n: '03', icon: 'e-board', title: 'Проведи урок', text: 'Відкрий готовий урок на 60 хвилин або свій. Нові слова одразу в словник учня.' },
+  { n: '04', icon: 'e-pencil', title: 'Задай домашку', text: 'Учень робить її в кабінеті, вправи перевіряються самі, ти бачиш результат.' },
 ];
 
 const FAQ = [
-  { q: 'Скільки учнів можна вести?', a: 'На тарифі Tutor до 20 учнів. Якщо потрібно більше, напиши нам.' },
-  { q: 'Чи можна додавати свої завдання?', a: 'Зараз працюють готові квізи Murly. Власні завдання в планах після запуску кабінету.' },
-  { q: 'Коли запуститься кабінет репетитора?', a: 'Він у роботі. Напиши нам на пошту зі сторінки контактів, і ми повідомимо, щойно відкриємо доступ.' },
+  { q: 'Чи можна вести дітей і дорослих?', a: 'Так. Уроки розбиті за рівнями й віком: діти, підлітки, дорослі, а також підготовка до НМТ.' },
+  { q: 'Чи можна додавати свої уроки й завдання?', a: 'Так. Є конструктор уроків: тексти, вправи, аудіо, відео. Готовий урок з бібліотеки теж можна змінити під себе.' },
+  { q: 'Що бачить учень?', a: 'Свій розклад, домашку, словник від тебе, ігри зі своїми словами і монетки. Усе просто, щоб розібралася навіть дитина.' },
+  { q: 'Скільки коштує?', a: 'Почати можна безкоштовно. Ціни на тарифи дивись на сторінці «Тарифи».' },
 ];
 
 export default function ForTeachersPage() {
@@ -36,33 +43,33 @@ export default function ForTeachersPage() {
       <SiteNav />
       <section className="mu-page-hero" data-stickers="6">
         <div className="mu-container">
-          <span className="mu-section__eyebrow"><Icon id="d-team" />Для репетиторів</span>
-          <h1>Готуй до НМТ <em>без рутини.</em></h1>
-          <p>Готові квізи у форматі НМТ, домашка в один клік і прогрес кожного учня в одному кабінеті.</p>
+          <span className="mu-section__eyebrow"><Icon id="d-team" />Для вчителів</span>
+          <h1>Усе для уроків англійської <em>в одному кабінеті.</em></h1>
+          <p>Учні, розклад, готові уроки, домашка з автоперевіркою і словник кожного учня. Менше рутини, більше часу на саме навчання.</p>
           <div className="mu-hero__cta">
             <Link href="/sign-up?role=teacher" className="mu-btn mu-btn--lime mu-btn--lg">
-              Хочу кабінет<span className="mu-btn__arrow"><Icon id="e-arrow" /></span>
+              Створити кабінет<span className="mu-btn__arrow"><Icon id="e-arrow" /></span>
             </Link>
-            <Link href="/quiz/teen-life" className="mu-btn mu-btn--lg">Подивитись квіз</Link>
+            <a href="#how" className="mu-btn mu-btn--lg">Як це працює</a>
           </div>
         </div>
       </section>
 
       <section className="mu-section" style={{ paddingTop: 24 }}>
         <div className="mu-container">
-          <div className="mu-cards">
-            {PAINS.map((p, i) => (
-              <div key={p.title} className={`mu-card ${['mu-card--lime', 'mu-card--mustard', 'mu-card--sky'][i]}`}>
-                <div className="mu-card__icon"><Icon id={p.icon} /></div>
-                <h3 className="mu-card__title">{p.title}</h3>
-                <p className="mu-card__text">{p.text}</p>
+          <div className="mu-cards mu-cards--4">
+            {TOOLS.map((t) => (
+              <div key={t.id} id={t.id} className={`mu-card ${t.mod}`} style={{ scrollMarginTop: 110 }}>
+                <div className="mu-card__icon"><Icon id={t.icon} /></div>
+                <h3 className="mu-card__title">{t.title}</h3>
+                <p className="mu-card__text">{t.text}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="mu-section" data-stickers="4">
+      <section className="mu-section" id="how" data-stickers="4" style={{ scrollMarginTop: 90 }}>
         <div className="mu-container">
           <div className="mu-section__head">
             <span className="mu-section__eyebrow"><Icon id="e-cal" />Як це працює</span>
@@ -84,13 +91,13 @@ export default function ForTeachersPage() {
       <section className="mu-section" style={{ paddingTop: 0 }}>
         <div className="mu-container">
           <div className="mu-section__head">
-            <span className="mu-section__eyebrow"><Icon id="d-bulb" />FAQ</span>
-            <h2 className="mu-section__title">Питання <em>репетиторів.</em></h2>
+            <span className="mu-section__eyebrow"><Icon id="d-bulb" />Питання</span>
+            <h2 className="mu-section__title">Питання <em>вчителів.</em></h2>
           </div>
           <Faq items={FAQ} />
           <div style={{ textAlign: 'center', marginTop: 40 }}>
-            <Link href="/pricing" className="mu-btn mu-btn--tomato mu-btn--lg">
-              Тариф Tutor, 490 ₴<span className="mu-btn__arrow mu-btn__arrow--lime"><Icon id="e-arrow" /></span>
+            <Link href="/sign-up?role=teacher" className="mu-btn mu-btn--tomato mu-btn--lg">
+              Почати безкоштовно<span className="mu-btn__arrow mu-btn__arrow--lime"><Icon id="e-arrow" /></span>
             </Link>
           </div>
         </div>
