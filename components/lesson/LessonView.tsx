@@ -3,6 +3,7 @@ import { useMemo, useState } from 'react';
 import Icon from '../Icon';
 import ExerciseView from '../exercise/ExerciseView';
 import GameHub from '../games/GameHub';
+import AudioPlayer from './AudioPlayer';
 import { grade, type Answers } from '@/lib/exercise';
 import { lessonSections, youtubeEmbed, type Block, type Plan } from '@/lib/lesson';
 
@@ -90,6 +91,7 @@ export default function LessonView({ plan, interactive = true, initialAnswers, o
               </figure>
             ) : null;
           }
+          case 'audio': return b.script.trim() || b.audioUrl ? <AudioPlayer key={b.id} script={b.script} title={b.title} audioUrl={b.audioUrl} /> : null;
           case 'pdf': return b.url ? (
             <div key={b.id} className="ls-pdf">
               <div className="ls-pdf__bar"><span><Icon id="e-book" />{b.name || 'PDF'}</span><a href={b.url} target="_blank" rel="noopener noreferrer" className="mu-btn t-btn-sm">Відкрити</a></div>

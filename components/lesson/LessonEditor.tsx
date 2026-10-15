@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Icon from '../Icon';
 import ExerciseEditor from '../exercise/ExerciseEditor';
 import { uploadFile } from '@/lib/upload';
+import AudioPlayer from './AudioPlayer';
 import { AGES, BLOCK_TYPES, FOCUS, LEVELS, emptyBlock, youtubeEmbed, type Block, type BlockType, type Plan } from '@/lib/lesson';
 
 const COLORS = ['lime', 'mustard', 'sky', 'tomato'];
@@ -66,6 +67,21 @@ function BlockEditor({ b, onChange }: { b: Block; onChange: (b: Block) => void }
           <label className="t-form__wide le-label">Підпис<input value={b.caption ?? ''} onChange={(e) => onChange({ ...b, caption: e.target.value })} /></label>
           <label className="t-form__wide le-label">Завдання до відео (необов’язково)<input value={b.task ?? ''} onChange={(e) => onChange({ ...b, task: e.target.value })} placeholder="Напр. Подивись і запиши 3 слова про їжу" /></label>
           {b.url && (youtubeEmbed(b.url) ? <p className="t-pos">Відео знайдено</p> : <p className="t-neg">Не схоже на посилання YouTube</p>)}
+        </div>
+      );
+    case 'audio':
+      return (
+        <div className="t-form">
+          <label className="t-form__wide le-label">Назва<input value={b.title ?? ''} onChange={(e) => onChange({ ...b, title: e.target.value })} placeholder="Напр. At the café" /></label>
+          <label className="t-form__wide le-label">Текст аудіо: кожна репліка з нового рядка у форматі «Ім’я: текст»
+            <textarea rows={6} value={b.script} spellCheck={false} onChange={(e) => onChange({ ...b, script: e.target.value })} placeholder={'Anna: Hi! Are you free on Saturday?\nTom: I think so. Why?'} />
+          </label>
+          <div className="t-form__wide le-row">
+            <UploadButton accept="audio/mpeg,audio/mp4,audio/x-m4a,audio/wav,audio/ogg" label={b.audioUrl ? 'Замінити аудіофайл' : 'Або завантажити свій аудіофайл'} onDone={(url) => onChange({ ...b, audioUrl: url })} />
+            {b.audioUrl && <button type="button" className="t-link-btn" onClick={() => onChange({ ...b, audioUrl: undefined })}>Прибрати файл (озвучка голосом)</button>}
+          </div>
+          <p className="t-muted t-form__wide">Без файлу текст озвучується автоматично: кожен персонаж своїм голосом, можна сповільнити. Учень спершу слухає, текст відкривається кнопкою.</p>
+          {b.script.trim() && <div className="t-form__wide"><AudioPlayer script={b.script} title={b.title} audioUrl={b.audioUrl} /></div>}
         </div>
       );
     case 'pdf':
