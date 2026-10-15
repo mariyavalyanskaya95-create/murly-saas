@@ -8,6 +8,6 @@ export const metadata: Metadata = {
 };
 
 // Гра на весь екран, без шапки сайту
-export default function PlayTown() {
-  return <main className="hm-page"><TownGame full /></main>;
+export default function PlayTown({ searchParams }: { searchParams?: { guest?: string } }) {
+  return <main className="hm-page"><TownGame full guest={searchParams?.guest === '1'} /></main>;
 }
