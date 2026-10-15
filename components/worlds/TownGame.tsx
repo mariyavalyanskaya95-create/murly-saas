@@ -36,8 +36,24 @@ function planFor(h: House, me: Room): ScenePlan {
     const f = FLOORS[r.floor] ?? FLOORS[0];
     return { id: r.id, name: r.name, size: r.size, x: +(r.at!.x - me.at!.x).toFixed(2), z: +(r.at!.z - me.at!.z).toFixed(2), wall: (WALLS[r.wall] ?? WALLS[0]).hex, floor: { hex: f.hex, kind: f.kind }, placed: r.placed, doors: doorsOf(r.id, same), shared: sharedSides(r.id, same), skip };
   });
-  return { me: me.id, doors: doorsOf(me.id, same), shared: sharedSides(me.id, same), entrance: me.id === h.rooms[0].id, rooms };
+  // нагорі: під ногами видно кімнати нижнього поверху
+  const lower = h.rooms.filter((r) => (r.level ?? 0) === (me.level ?? 0) - 1);
+  const shown: Room[] = [];
+  const below = lower.map((r) => {
+    const skip = [0, 1, 2, 3].filter((side) => shown.some((o) => { const c = contact(r, o); return c && c.side === side && c.hi - c.lo >= r.size - 0.02; }));
+    shown.push(r);
+    const f = FLOORS[r.floor] ?? FLOORS[0];
+    return { id: r.id, name: r.name, size: r.size, x: +(r.at!.x - me.at!.x).toFixed(2), z: +(r.at!.z - me.at!.z).toFixed(2), wall: (WALLS[r.wall] ?? WALLS[0]).hex, floor: { hex: f.hex, kind: f.kind }, placed: r.placed, doors: doorsOf(r.id, lower), shared: sharedSides(r.id, lower), skip };
+  });
+  return { me: me.id, doors: doorsOf(me.id, same), shared: sharedSides(me.id, same), entrance: me.id === h.rooms[0].id, rooms, below };
 }
+// кімната на іншому поверсі над / під точкою (або перша на тому поверсі)
+const roomOnLevel = (h: House, level: number, near?: { x: number; z: number }) => {
+  const on = h.rooms.filter((r) => (r.level ?? 0) === level); if (!on.length) return undefined;
+  if (!near) return on[0];
+  return on.find((r) => Math.abs(r.at!.x - near.x) <= r.size / 2 && Math.abs(r.at!.z - near.z) <= r.size / 2)
+    ?? [...on].sort((a, b) => Math.hypot(a.at!.x - near.x, a.at!.z - near.z) - Math.hypot(b.at!.x - near.x, b.at!.z - near.z))[0];
+};
 type Save = { coins: number; unlocked: string[]; done: number; ground: number; city: Placed[]; houses: Record<string, House>; hero: string | null; started?: boolean; playerName?: string; savedAt?: number };
 type Task = { kind: 'place' | 'color' | 'on' | 'next' | 'inside'; file: string; target?: string; color?: string; en: string };
 const START: Save = { coins: 20, unlocked: [], done: 0, ground: 0, city: [], houses: {}, hero: 'Rogue', started: false, playerName: '' };
@@ -121,6 +137,7 @@ export default function TownGame({ full: fullPage = false, guest = false }: { fu
   const [heroes, setHeroes] = useState(false);
   const [heroBar, setHeroBar] = useState(false);
   const [planOpen, setPlanOpen] = useState(false);
+  const [newFloor, setNewFloor] = useState(0); // на якому поверсі будувати нову кімнату
   const pending = useRef<{ heroAt: HeroStart; view: CamView } | null>(null);
   // висота магазину внизу: панель вибраного предмета і кнопки камери стоять над ним
   const shopEl = useRef<HTMLDivElement>(null);
@@ -225,6 +242,7 @@ export default function TownGame({ full: fullPage = false, guest = false }: { fu
           onBad: () => { sfx.bad(); flash("Oops! You can't put it here."); },
           onHero: () => { const h = HEROES.find((x) => x.file === sRef.current.hero); say(`Hello! I'm ${sRef.current.playerName || h?.en || 'here'}!`); setSel(null); setHeroBar(true); },
           onHouse: () => enterRoom(),
+          onArrive: () => changeFloor(),
           onRoom: (id, heroAt, cam) => { pending.current = { heroAt, view: cam }; const h = normHouse(sRef.current.houses[viewRef.current.house ?? '']); const r = h.rooms.find((q) => q.id === id); setView({ mode: 'room', house: viewRef.current.house, room: id }); if (r) say(`The ${r.name.toLowerCase()}`); },
         }, view.mode, sceneOpts());
         scene.current = sc;
@@ -247,6 +265,15 @@ export default function TownGame({ full: fullPage = false, guest = false }: { fu
     return { roomSize: r?.size, sky: (d?.private ? 'garden' : 'clouds') as 'garden' | 'clouds', plan: v.mode === 'room' && h && r ? planFor(normHouse(h), normHouse(h).rooms.find((q) => q.id === r.id)!) : undefined, heroAt: p?.heroAt, view: p?.view };
   };
   const curRoom = () => { const v = viewRef.current; const h = sRef.current.houses[v.house ?? '']; if (!h) return undefined; const n = normHouse(h); return n.rooms.find((r) => r.id === v.room) ?? n.rooms[0]; };
+  const changeFloor = (to?: number) => {
+    const v = viewRef.current; if (v.mode !== 'room' || !v.house) return;
+    const h = normHouse(sRef.current.houses[v.house]); const me = h.rooms.find((r) => r.id === v.room) ?? h.rooms[0];
+    const lv = me.level ?? 0, target = to ?? (lv === 0 || h.rooms.some((r) => (r.level ?? 0) === lv + 1) ? lv + 1 : lv - 1);
+    const r = roomOnLevel(h, target, me.at);
+    if (!r) { sfx.bad(); flash(target > lv ? 'Build a room upstairs first: + Room, then Upstairs.' : 'There is no floor below.'); return; }
+    setView({ mode: 'room', house: v.house, room: r.id });
+    say(target > lv ? `Upstairs! The ${r.name.toLowerCase()}.` : `Downstairs! The ${r.name.toLowerCase()}.`);
+  };
   const enterRoom = (rid?: string) => { const v = viewRef.current; const h = normHouse(sRef.current.houses[v.house ?? '']); setView({ mode: 'room', house: v.house, room: rid ?? h.rooms[0].id }); say(`Welcome to the ${(h.rooms.find((r) => r.id === rid) ?? h.rooms[0]).name.toLowerCase()}!`); };
   const nameOf = (p: Placed) => { const d = getItem(viewRef.current.mode, p.file); const c = colorName(p.color); return d ? (c ? `${c} ${d.en}` : d.en) : p.file; };
 
@@ -393,9 +420,14 @@ export default function TownGame({ full: fullPage = false, guest = false }: { fu
     if (!view.house) return;
     const price = (house?.rooms.length ?? 1) >= 1 ? 15 : 0;
     if (!(await pay(price, `Murly Town: ${name}`))) return;
-    let r = newRoom(name);
-    setS((c) => { const h = normHouse(c.houses[view.house!]); r = attach({ ...r, level: room?.level ?? 0 }, h.rooms, room?.id); return { ...c, houses: { ...c.houses, [view.house!]: { ...h, rooms: [...h.rooms, r] } } }; });
-    setRoomMenu(false); window.setTimeout(() => setView({ mode: 'room', house: view.house, room: r.id }), 0); say(`A new ${name.toLowerCase()}! It is next to this room.`);
+    const level = newFloor;
+    const h0 = normHouse(sRef.current.houses[view.house]);
+    const me = h0.rooms.find((q) => q.id === room?.id) ?? h0.rooms[0];
+    const onLevel = h0.rooms.filter((q) => (q.level ?? 0) === level);
+    // перша кімната нагорі стоїть прямо над поточною; інші поруч із найближчою на тому поверсі
+    const r = onLevel.length ? attach({ ...newRoom(name), level }, h0.rooms, roomOnLevel(h0, level, me.at)?.id) : { ...newRoom(name), level, at: { ...me.at! } };
+    setS((c) => { const h = normHouse(c.houses[view.house!]); return { ...c, houses: { ...c.houses, [view.house!]: { ...h, rooms: [...h.rooms, r] } } }; });
+    setRoomMenu(false); window.setTimeout(() => setView({ mode: 'room', house: view.house, room: r.id }), 0); say(level !== (me.level ?? 0) ? `A new ${name.toLowerCase()} upstairs!` : `A new ${name.toLowerCase()}! It is next to this room.`);
   };
   const growRoom = async () => {
     if (!room || !view.house) return;
@@ -413,8 +445,8 @@ export default function TownGame({ full: fullPage = false, guest = false }: { fu
   const doAct = (kind: HeroAct, p?: Placed) => {
     const sc = scene.current; if (!sc || !sc.heroAct(kind, p?.uid)) return;
     const n = p ? `${art(nameOf(p))} ${nameOf(p)}` : '';
-    const line: Record<HeroAct, string> = { sit: `I'm sitting on ${n}.`, sleep: 'Good night! I am going to sleep.', water: `I'm watering ${n}.`, eat: `Yummy! I'm eating ${n}.`, dance: "Let's dance!", wave: 'Hello, friends!', phone: 'Hello? Who is calling?', stand: "I'm standing up." };
-    say(line[kind]); if (p) setSel(null);
+    const line: Record<HeroAct, string> = { go: '', sit: `I'm sitting on ${n}.`, sleep: 'Good night! I am going to sleep.', water: `I'm watering ${n}.`, eat: `Yummy! I'm eating ${n}.`, dance: "Let's dance!", wave: 'Hello, friends!', phone: 'Hello? Who is calling?', stand: "I'm standing up." };
+    if (line[kind]) say(line[kind]); if (p) setSel(null);
   };
   const ACT_LABEL: Record<string, string> = { sit: 'Sit down', sleep: 'Go to sleep', water: 'Water it', eat: 'Eat it' };
   const pickHero = (file: string | null) => { setS((c) => ({ ...c, hero: file })); scene.current?.setHero(file); setHeroes(false); const h = HEROES.find((x) => x.file === file); if (h) say(`Hi! I'm ${h.en}!`); };
@@ -510,8 +542,9 @@ export default function TownGame({ full: fullPage = false, guest = false }: { fu
           {mode === 'room' && (
             <>
               <button className="mu-btn t-btn-sm hm-en" onClick={() => (isPrivate ? setView({ mode: 'yard', house: view.house }) : backToTown())}>{isPrivate ? '← Garden' : '← Back to town'}</button>
-              {house?.rooms.map((r) => <button key={r.id} className={`g-chip hm-en ${room?.id === r.id ? 'is-on' : ''}`} onClick={() => r.id !== room?.id && enterRoom(r.id)}>{r.name}</button>)}
-              <button className="g-chip hm-en" onClick={() => setRoomMenu(!roomMenu)}>+ Room</button>
+              {house && normHouse(house).rooms.some((r) => (r.level ?? 0) > 0) && [0, 1].map((lv) => <button key={`f${lv}`} className={`g-chip hm-en hm-floor ${(room?.level ?? 0) === lv ? 'is-on' : ''}`} onClick={() => (room?.level ?? 0) !== lv && changeFloor(lv)}>{lv ? '↑ Upstairs' : '↓ Ground floor'}</button>)}
+              {house && normHouse(house).rooms.filter((r) => (r.level ?? 0) === (room?.level ?? 0)).map((r) => <button key={r.id} className={`g-chip hm-en ${room?.id === r.id ? 'is-on' : ''}`} onClick={() => r.id !== room?.id && enterRoom(r.id)}>{r.name}</button>)}
+              <button className="g-chip hm-en" onClick={() => { setNewFloor(room?.level ?? 0); setRoomMenu(!roomMenu); }}>+ Room</button>
               {(house?.rooms.length ?? 0) > 1 && <button className="g-chip hm-en" onClick={() => { setPlanOpen(true); say('House plan'); }}>House plan</button>}
             </>
           )}
@@ -519,6 +552,7 @@ export default function TownGame({ full: fullPage = false, guest = false }: { fu
         {roomMenu && mode === 'room' && (
           <div className="hm-roommenu">
             <b>Add a room <span className="rw-price"><span className="rw-coin" />15</span></b>
+            <div className="g-chips hm-floorpick">{[0, 1].map((lv) => <button key={lv} className={`g-chip hm-en ${newFloor === lv ? 'is-on' : ''}`} onClick={() => { setNewFloor(lv); say(lv ? 'Upstairs' : 'Ground floor'); }}>{lv ? 'Upstairs' : 'Ground floor'}</button>)}</div>
             <div className="g-chips">{ROOM_TYPES.map((t) => <button key={t} className="g-chip hm-en" onClick={() => addRoom(t)}>{t}</button>)}</div>
           </div>
         )}
@@ -574,7 +608,8 @@ export default function TownGame({ full: fullPage = false, guest = false }: { fu
             </div>
           )}
           {curDef.building && <button className="mu-btn mu-btn--lime t-btn-sm hm-en" onClick={goInside}>Go inside</button>}
-          {s.hero && actOf(curDef) && <button className="mu-btn mu-btn--lime t-btn-sm hm-en" onClick={() => doAct(actOf(curDef)!, cur)}>{ACT_LABEL[actOf(curDef)!]}</button>}
+          {actOf(curDef) === 'stairs' && <button className="mu-btn mu-btn--lime t-btn-sm hm-en" onClick={() => { setSel(null); if (!(s.hero && scene.current?.heroAct('go', cur.uid))) changeFloor(); }}>{(room?.level ?? 0) > 0 && !normHouse(house).rooms.some((r) => (r.level ?? 0) > (room?.level ?? 0)) ? 'Go downstairs' : 'Go upstairs'}</button>}
+          {s.hero && actOf(curDef) && actOf(curDef) !== 'stairs' && <button className="mu-btn mu-btn--lime t-btn-sm hm-en" onClick={() => doAct(actOf(curDef) as HeroAct, cur)}>{ACT_LABEL[actOf(curDef)!]}</button>}
           {!curDef.wall && <button className="mu-btn t-btn-sm hm-en" onClick={rotate}>Turn</button>}
           {!curDef.building && <button className="mu-btn t-btn-sm hm-en" onClick={copy}>Copy</button>}
           <button className="mu-btn t-btn-sm hm-en" onClick={remove}>Remove</button>
