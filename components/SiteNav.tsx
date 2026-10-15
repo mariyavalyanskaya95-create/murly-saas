@@ -7,7 +7,7 @@ import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 import Icon from './Icon';
 
 const LINKS = [
-  { href: '/#how', label: 'Як це працює' },
+  { href: '/practice', label: 'Практика' },
   { href: '/for-teachers', label: 'Репетиторам' },
   { href: '/pricing', label: 'Тарифи' },
   { href: '/quiz/teen-life', label: 'Квізи' },
