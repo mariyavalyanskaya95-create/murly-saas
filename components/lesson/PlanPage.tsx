@@ -8,6 +8,7 @@ import LessonEditor from './LessonEditor';
 import WordPicker, { type PickWord } from './WordPicker';
 import { useTeacher } from '@/lib/teacher-store';
 import { getLibraryPlan } from '@/lib/library';
+import { localizeLesson } from '@/lib/content/lessons';
 import { ageLabel, lessonSections, type Plan } from '@/lib/lesson';
 import { useT } from '@/components/LangProvider';
 import type { Lang } from '@/lib/i18n';
@@ -147,7 +148,8 @@ export default function PlanPage({ id }: { id: string }) {
   const t = useT();
   const { data, ready, addPlan, updatePlan, removePlan } = useTeacher();
   const router = useRouter();
-  const lib = id.startsWith('lib-') ? getLibraryPlan(id) : undefined;
+  const libUk = id.startsWith('lib-') ? getLibraryPlan(id) : undefined;
+  const lib = libUk ? localizeLesson(libUk, t.lang) : undefined;
   const own = data.plans.find((p) => p.id === id);
   const [draft, setDraft] = useState<Plan | null>(null);
   const [mode, setMode] = useState<'edit' | 'view' | 'slides'>('view');
