@@ -1670,11 +1670,11 @@ a.t-stat:hover { transform: translateY(-2px); }
 .hm-full .hm-heroes { position: absolute; top: 74px; right: 10px; z-index: 21; }
 .hm-full .hm-where { top: 78px; }
 .hm-full .hm-roommenu { top: 122px; }
-.hm-full .hm-cam { top: auto; bottom: 236px; right: 10px; flex-direction: column; }
-.hm-full.is-shop-hidden .hm-cam { bottom: 120px; }
+.hm-full .hm-cam { top: auto; bottom: calc(var(--shop-h, 220px) + 64px); right: 10px; flex-direction: column; }
+.hm-full.is-shop-hidden .hm-cam { bottom: calc(var(--shop-h, 50px) + 64px); }
 .hm-full .hm-cam__me { font-size: 13px !important; font-weight: 800; }
-.hm-full .rw-sel { position: absolute; left: 10px; right: 70px; bottom: 182px; z-index: 20; padding: 8px 12px; }
-.hm-full.is-shop-hidden .rw-sel { bottom: 66px; }
+.hm-full .rw-sel { position: absolute; left: 10px; right: 70px; bottom: calc(var(--shop-h, 170px) + 18px); z-index: 21; padding: 8px 12px; }
+
 .hm-full .rw-shop { position: absolute; left: 10px; right: 10px; bottom: 10px; z-index: 20; padding: 8px 10px; gap: 6px; background: rgba(255,255,255,.95); box-shadow: 4px 4px 0 var(--mu-ink); }
 .hm-full .rw-shop .g-chips { flex-wrap: nowrap; overflow-x: auto; justify-content: flex-start; padding-bottom: 2px; }
 .hm-full .rw-shelf { padding: 2px; gap: 8px; }
@@ -1683,14 +1683,14 @@ a.t-stat:hover { transform: translateY(-2px); }
 .hm-full .hm-card b { font-size: 12.5px; line-height: 1.15; }
 .hm-full.is-shop-hidden .rw-shelf { display: none; }
 .hm-full .hm-help { display: none; }
-.hm-full .rw-msg { bottom: 200px; }
+.hm-full .rw-msg { bottom: calc(var(--shop-h, 170px) + 80px); }
 .hm-shop-toggle { flex: none; background: var(--mu-ink) !important; color: #fff !important; }
 .hm-exit { flex: none; background: #fff; }
 .hm-full .hm-empty { top: 42%; }
 @media (max-width: 760px) {
   .hm-full .rw-task { order: 3; flex-basis: 100%; }
   .hm-full .hm-where { top: 128px; }
-  .hm-full .rw-sel { right: 10px; bottom: 170px; flex-wrap: wrap; }
-  .hm-full .hm-cam { bottom: 300px; }
+  .hm-full .rw-sel { right: 10px; flex-wrap: wrap; }
+  .hm-full .hm-cam { bottom: calc(var(--shop-h, 220px) + 120px); }
   .hm-full .hm-card { width: 84px; }
 }
