@@ -19,7 +19,7 @@ export default function CoinsCard() {
         <b>{bal ?? '…'}</b>
         <p className="t-muted">Заробляй за уроки, домашку і слова. Витрачай у грі Murly Town на нові будинки, меблі й прикраси.</p>
       </div>
-      <Link href="/worlds/town" className="mu-btn mu-btn--lime">Грати в Murly Town</Link>
+      <Link href="/play/town" className="mu-btn mu-btn--lime">Грати в Murly Town</Link>
     </section>
   );
 }
