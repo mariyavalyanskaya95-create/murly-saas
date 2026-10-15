@@ -684,7 +684,9 @@ export class WorldScene {
   private clouds: THREE.Group[] = [];
   private addClouds() {
     const mat = new THREE.MeshStandardMaterial({ color: '#ffffff', roughness: 1, flatShading: true });
-    const R = this.c.size * 1.6 + 6;
+    // хмари ходять по колу далеко за камерою: ніколи не пролітають крізь неї
+    const R = this.c.dist[1] * 1.5 + this.c.size + 6;
+    const grow = R / (this.c.size * 1.6 + 6); // далі = більші, щоб виглядали так само
     for (let i = 0; i < 9; i++) {
       const g = new THREE.Group();
       const n = 3 + (i % 3);
@@ -694,9 +696,9 @@ export class WorldScene {
       }
       const a = (i / 9) * Math.PI * 2;
       const k = this.c.size / 8 + 0.6;
-      g.scale.setScalar(k);
+      g.scale.setScalar(k * Math.min(1.8, grow));
       g.position.set(Math.cos(a) * R, 3 + (i % 4) * 1.2 + this.c.size * 0.35, Math.sin(a) * R);
-      g.userData.speed = 0.02 + (i % 3) * 0.01;
+      g.userData.speed = 0.012 + (i % 3) * 0.006; g.userData.a = a; g.userData.r = R;
       this.scene.add(g); this.clouds.push(g);
     }
   }
@@ -721,7 +723,7 @@ export class WorldScene {
     const lim = this.half * 1.1;
     const t = this.controls.target;
     if (Math.abs(t.x) > lim || Math.abs(t.z) > lim) { const cx = Math.max(-lim, Math.min(lim, t.x)), cz = Math.max(-lim, Math.min(lim, t.z)); this.camera.position.x += cx - t.x; this.camera.position.z += cz - t.z; t.x = cx; t.z = cz; }
-    for (const c of this.clouds) { c.position.x += c.userData.speed * dt * 10; if (c.position.x > this.c.size * 2.5 + 8) c.position.x = -(this.c.size * 2.5 + 8); }
+    for (const c of this.clouds) { c.userData.a += c.userData.speed * dt; c.position.x = Math.cos(c.userData.a) * c.userData.r; c.position.z = Math.sin(c.userData.a) * c.userData.r; c.rotation.y = -c.userData.a; }
     const cam = this.camera.position, half = this.half;
     for (const w of this.walls) {
       const hide = [cam.z < -half, cam.x < -half, cam.z > half, cam.x > half][w.side];
