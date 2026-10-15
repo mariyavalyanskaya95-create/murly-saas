@@ -3,11 +3,13 @@ import { auth, currentUser } from '@clerk/nextjs/server';
 import Icon from '@/components/Icon';
 import StudentHome from '@/components/student/StudentHome';
 import JoinCode from '@/components/JoinCode';
+import { tr } from '@/lib/i18n-server';
 import { getEnrollments } from '@/lib/student-data';
 
 export const dynamic = 'force-dynamic';
 
 export default async function StudentPage() {
+  const t = tr();
   const { userId } = await auth();
   const user = await currentUser();
   const enrollments = userId ? await getEnrollments(userId).catch(() => []) : [];
@@ -19,14 +21,14 @@ export default async function StudentPage() {
         <div className="t-card t-welcome">
           <Icon id="c-cat-sit" className="mu-ic t-welcome__ic" />
           <div>
-            <h2>Привіт{first ? `, ${first}` : ''}!</h2>
-            <p className="t-muted">Тут з’являться твій розклад, домашка і слова від учителя. Учитель дав код або посилання? Введи його:</p>
+            <h2>{t({ uk: 'Привіт', ru: 'Привет', en: 'Hi' })}{first ? `, ${first}` : ''}!</h2>
+            <p className="t-muted">{t({ uk: 'Тут з’являться твій розклад, домашка і слова від учителя. Учитель дав код або посилання? Введи його:', ru: 'Здесь появятся твоё расписание, домашка и слова от учителя. Учитель дал код или ссылку? Введи его:', en: 'Your schedule, homework and words from your teacher will appear here. Got a code or link from your teacher? Enter it:' })}</p>
             <div style={{ margin: '12px 0 18px' }}><JoinCode /></div>
-            <p className="t-muted">А поки можна вчитися самому:</p>
+            <p className="t-muted">{t({ uk: 'А поки можна вчитися самому:', ru: 'А пока можно учиться самому:', en: 'Meanwhile, you can learn on your own:' })}</p>
             <div className="t-head__actions" style={{ marginTop: 10, flexWrap: 'wrap' }}>
-              <Link href="/grammar" className="mu-btn mu-btn--lime">Граматика</Link>
-              <Link href="/irregular-verbs/games" className="mu-btn">Ігри з дієсловами</Link>
-              <Link href="/practice" className="mu-btn">Слухати і читати</Link>
+              <Link href="/grammar" className="mu-btn mu-btn--lime">{t({ uk: 'Граматика', ru: 'Грамматика', en: 'Grammar' })}</Link>
+              <Link href="/irregular-verbs/games" className="mu-btn">{t({ uk: 'Ігри з дієсловами', ru: 'Игры с глаголами', en: 'Verb games' })}</Link>
+              <Link href="/practice" className="mu-btn">{t({ uk: 'Слухати і читати', ru: 'Слушать и читать', en: 'Listening and reading' })}</Link>
               <Link href="/play/town" className="mu-btn">Murly Town</Link>
             </div>
           </div>
