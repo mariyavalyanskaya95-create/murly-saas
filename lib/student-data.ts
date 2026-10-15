@@ -1,4 +1,5 @@
 // Серверні дані для кабінету учня і запрошень
+import { addCoins } from './coins';
 import { db, dbReady } from './db';
 import { grade, type Answers, type Section } from './exercise';
 import { lessonSections, type Block } from './lesson';
@@ -94,7 +95,7 @@ export async function getEnrollments(userId: string): Promise<Enrollment[]> {
 // Учень здає домашку: перевіряємо, що завдання належить саме йому
 export async function submitHomework(userId: string, id: string, p: { score?: number; total?: number; answer?: string; answers?: Answers }) {
   if (!dbReady()) return false;
-  const hw = await db.query(`homework?id=eq.${enc(id)}&select=id,student_id,status,kind,items,answers,overrides`);
+  const hw = await db.query(`homework?id=eq.${enc(id)}&select=id,student_id,status,kind,items,answers,overrides,done_at`);
   if (!hw[0]) return false;
   const st = await db.query(`students?id=eq.${enc(String(hw[0].student_id))}&user_id=eq.${enc(userId)}&select=id`);
   if (!st[0]) return false;
@@ -113,10 +114,19 @@ export async function submitHomework(userId: string, id: string, p: { score?: nu
     patch.overrides = ov;
     patch.answers = clean; patch.score = g.score; patch.total = g.total;
     await db.patchWhere(`homework?id=eq.${enc(id)}`, patch);
-    return { score: g.score, total: g.total, marks: g.marks };
+    const coins = await homeworkCoins(userId, hw[0].done_at, g.score, g.total);
+    return { score: g.score, total: g.total, marks: g.marks, coins };
   }
   if (typeof p.score === 'number' && typeof p.total === 'number') { patch.score = Math.max(0, Math.round(p.score)); patch.total = Math.max(0, Math.round(p.total)); }
   if (typeof p.answer === 'string') patch.answer = p.answer.slice(0, 5000);
   await db.patchWhere(`homework?id=eq.${enc(id)}`, patch);
-  return {};
+  const coins = await homeworkCoins(userId, hw[0].done_at, Number(patch.score ?? 1), Number(patch.total ?? 1));
+  return { coins };
+}
+
+// монетки за першу здачу домашки: 5 за здачу + до 5 за результат
+async function homeworkCoins(userId: string, doneBefore: unknown, score: number, total: number) {
+  if (doneBefore) return 0;
+  const n = 5 + (total > 0 ? Math.round((Math.max(0, score) / total) * 5) : 5);
+  try { await addCoins(userId, n, 'homework', 'homework'); return n; } catch { return 0; }
 }

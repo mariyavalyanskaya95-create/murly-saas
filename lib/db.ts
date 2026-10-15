@@ -37,6 +37,8 @@ export const db = {
     call(table, { method: 'POST', body: JSON.stringify(rows), prefer: 'resolution=merge-duplicates,return=minimal' }),
   update: (table: string, teacherId: string, id: string, patch: Record<string, unknown>) =>
     call(`${table}?id=eq.${enc(id)}&teacher_id=eq.${enc(teacherId)}`, { method: 'PATCH', body: JSON.stringify(patch), prefer: 'return=minimal' }),
+  // виклик SQL-функції (POST /rest/v1/rpc/<name>)
+  rpc: (name: string, args: Record<string, unknown>) => call(`rpc/${name}`, { method: 'POST', body: JSON.stringify(args) }),
   remove: (table: string, teacherId: string, id: string) =>
     call(`${table}?id=eq.${enc(id)}&teacher_id=eq.${enc(teacherId)}`, { method: 'DELETE', prefer: 'return=minimal' }),
 };
