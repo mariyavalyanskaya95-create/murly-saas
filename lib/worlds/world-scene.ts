@@ -127,7 +127,7 @@ export class WorldScene {
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-    this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    this.renderer.toneMapping = THREE.NeutralToneMapping; // яскравіші кольори, ніж ACES
     this.renderer.toneMappingExposure = 1.05;
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
     host.appendChild(this.renderer.domElement);
@@ -135,17 +135,24 @@ export class WorldScene {
     el.style.touchAction = 'none';
     // наш обробник ставимо ПЕРШИМ, щоб натискання на предмет не крутило камеру
     el.addEventListener('pointerdown', this.down);
+    el.addEventListener('dblclick', this.dbl);
+    el.addEventListener('contextmenu', (e) => e.preventDefault());
 
     this.camera = new THREE.PerspectiveCamera(32, 1, 0.1, 200);
     this.camera.position.set(...(this.c.cam as unknown as [number, number, number]));
     this.controls = new OrbitControls(this.camera, el);
     this.controls.target.set(0, this.c.target, 0);
     this.controls.enableDamping = true; this.controls.dampingFactor = 0.08;
-    this.controls.enablePan = mode === 'city'; this.controls.screenSpacePanning = false;
+    this.controls.enablePan = true; this.controls.screenSpacePanning = false; this.controls.panSpeed = 0.8;
+    this.controls.mouseButtons = { LEFT: THREE.MOUSE.ROTATE, MIDDLE: THREE.MOUSE.DOLLY, RIGHT: THREE.MOUSE.PAN };
+    this.controls.touches = { ONE: THREE.TOUCH.ROTATE, TWO: THREE.TOUCH.DOLLY_PAN };
+    this.controls.zoomSpeed = 1.2;
     this.controls.minPolarAngle = 0.4; this.controls.maxPolarAngle = 1.2;
     this.controls.minDistance = this.c.dist[0]; this.controls.maxDistance = this.c.dist[1];
 
-    this.scene.add(new THREE.HemisphereLight('#fff6e8', '#b9a58c', mode === 'city' ? 1.5 : 1.35));
+    this.scene.background = skyBackground();
+    this.addClouds();
+    this.scene.add(new THREE.HemisphereLight('#eaf6ff', '#a8c48a', mode === 'room' ? 1.35 : 1.55));
     const sun = new THREE.DirectionalLight('#fff1dc', 2.1);
     sun.position.set(this.c.shadow, this.c.shadow * 2, this.c.shadow * 0.7);
     sun.castShadow = true;
@@ -208,6 +215,9 @@ export class WorldScene {
     const S = this.c.size;
     const ground = new THREE.Mesh(new THREE.BoxGeometry(S, 0.1, S), this.floorMat);
     ground.position.y = -0.05; ground.receiveShadow = true; this.scene.add(ground);
+    // зелена земля довкола, щоб ділянка не «висіла» в повітрі
+    const around = new THREE.Mesh(new THREE.CircleGeometry(S * 3.2, 48), new THREE.MeshStandardMaterial({ color: '#7DBB5A', roughness: 1 }));
+    around.rotation.x = -Math.PI / 2; around.position.y = -0.62; around.receiveShadow = true; this.scene.add(around);
     const edge = new THREE.Mesh(new THREE.BoxGeometry(S + 0.8, 0.6, S + 0.8), new THREE.MeshStandardMaterial({ color: '#B98A5E', roughness: 1 }));
     edge.position.y = -0.4; edge.receiveShadow = true; this.scene.add(edge);
     this.setGround('#8FC46A');
@@ -539,6 +549,58 @@ export class WorldScene {
     return Math.abs(v.x) > Math.abs(v.z) ? { dx: Math.sign(v.x), dz: 0 } : { dx: 0, dz: Math.sign(v.z) };
   }
 
+  // плавно перелетіти камерою до точки (подвійне натискання, «Find me»)
+  private flyTo(x: number, z: number, dist?: number) {
+    const off = this.camera.position.clone().sub(this.controls.target);
+    const d = Math.max(this.c.dist[0], Math.min(this.c.dist[1], dist ?? off.length() * 0.6));
+    off.setLength(d);
+    const t0 = performance.now(), fromT = this.controls.target.clone(), fromC = this.camera.position.clone();
+    const toT = new THREE.Vector3(x, this.controls.target.y, z), toC = toT.clone().add(off);
+    const step = () => {
+      const k = Math.min(1, (performance.now() - t0) / 550), e = 1 - Math.pow(1 - k, 3);
+      this.controls.target.lerpVectors(fromT, toT, e); this.camera.position.lerpVectors(fromC, toC, e);
+      if (k < 1) requestAnimationFrame(step);
+    };
+    step();
+  }
+  private dbl = (e: MouseEvent) => {
+    const hit = this.pick(e as PointerEvent);
+    if (hit) { const it = this.items.get(hit.uid); if (it) this.flyTo(it.root.position.x, it.root.position.z); return; }
+    const p = this.floorPoint(e); if (p) this.flyTo(p.x, p.z);
+  };
+  findHero() { if (this.hero) this.flyTo(this.hero.obj.position.x, this.hero.obj.position.z, this.c.dist[0] * 1.6); }
+  zoom(dir: 1 | -1) {
+    const off = this.camera.position.clone().sub(this.controls.target);
+    const d = Math.max(this.c.dist[0], Math.min(this.c.dist[1], off.length() * (dir > 0 ? 0.75 : 1.33)));
+    off.setLength(d); this.camera.position.copy(this.controls.target).add(off);
+  }
+  // рух камери клавішами WASD
+  pan(dx: number, dz: number) {
+    const f = new THREE.Vector3(); this.camera.getWorldDirection(f); f.y = 0; f.normalize();
+    const r = new THREE.Vector3(-f.z, 0, f.x);
+    const step = Math.max(0.3, this.camera.position.distanceTo(this.controls.target) * 0.08);
+    const mv = f.multiplyScalar(-dz * step).add(r.multiplyScalar(dx * step));
+    this.controls.target.add(mv); this.camera.position.add(mv);
+  }
+  private clouds: THREE.Group[] = [];
+  private addClouds() {
+    const mat = new THREE.MeshStandardMaterial({ color: '#ffffff', roughness: 1, flatShading: true });
+    const R = this.c.size * 1.6 + 6;
+    for (let i = 0; i < 9; i++) {
+      const g = new THREE.Group();
+      const n = 3 + (i % 3);
+      for (let k = 0; k < n; k++) {
+        const b = new THREE.Mesh(new THREE.IcosahedronGeometry(0.6 + Math.random() * 0.6, 1), mat);
+        b.position.set(k * 0.9 - n * 0.45, Math.random() * 0.3, Math.random() * 0.5); b.scale.y = 0.7; g.add(b);
+      }
+      const a = (i / 9) * Math.PI * 2;
+      const k = this.c.size / 8 + 0.6;
+      g.scale.setScalar(k);
+      g.position.set(Math.cos(a) * R, 3 + (i % 4) * 1.2 + this.c.size * 0.35, Math.sin(a) * R);
+      g.userData.speed = 0.02 + (i % 3) * 0.01;
+      this.scene.add(g); this.clouds.push(g);
+    }
+  }
   turn(dir: 1 | -1) {
     const off = this.camera.position.clone().sub(this.controls.target);
     const start = Math.atan2(off.x, off.z), end = start + dir * Math.PI / 2, r = Math.hypot(off.x, off.z), t0 = performance.now();
@@ -556,6 +618,11 @@ export class WorldScene {
     this.raf = requestAnimationFrame(this.loop);
     const dt = Math.min(0.05, this.clock.getDelta());
     this.controls.update();
+    // камера не відлітає далеко від ділянки
+    const lim = this.half * 1.1;
+    const t = this.controls.target;
+    if (Math.abs(t.x) > lim || Math.abs(t.z) > lim) { const cx = Math.max(-lim, Math.min(lim, t.x)), cz = Math.max(-lim, Math.min(lim, t.z)); this.camera.position.x += cx - t.x; this.camera.position.z += cz - t.z; t.x = cx; t.z = cz; }
+    for (const c of this.clouds) { c.position.x += c.userData.speed * dt * 10; if (c.position.x > this.c.size * 2.5 + 8) c.position.x = -(this.c.size * 2.5 + 8); }
     const cam = this.camera.position, half = this.half;
     for (const w of this.walls) {
       const hide = [cam.z < -half, cam.x < -half, cam.z > half, cam.x > half][w.side];
@@ -612,6 +679,7 @@ export class WorldScene {
   dispose() {
     cancelAnimationFrame(this.raf); this.ro.disconnect();
     this.renderer.domElement.removeEventListener('pointerdown', this.down);
+    this.renderer.domElement.removeEventListener('dblclick', this.dbl);
     window.removeEventListener('pointermove', this.move); window.removeEventListener('pointerup', this.up);
     this.controls.dispose(); this.renderer.dispose(); this.renderer.domElement.remove();
     this.items.forEach((it) => it.label.remove());
@@ -714,4 +782,14 @@ function procModel(file: string): THREE.Object3D {
     for (let i = 0; i < 4; i++) { const a = (i / 4) * Math.PI * 2 + 0.4; const leg = new THREE.Mesh(new THREE.CylinderGeometry(0.025, 0.025, 0.35, 8), mat('#9EA3A8')); leg.position.set(Math.cos(a) * 0.58, 0.175, Math.sin(a) * 0.58); g.add(leg); }
   }
   const wrap = new THREE.Group(); wrap.add(g); return wrap;
+}
+
+// Небо гри: блакитний градієнт
+function skyBackground() {
+  const cv = document.createElement('canvas'); cv.width = 4; cv.height = 256;
+  const g = cv.getContext('2d')!;
+  const grd = g.createLinearGradient(0, 0, 0, 256);
+  grd.addColorStop(0, '#5BB8F0'); grd.addColorStop(0.55, '#A8DCF8'); grd.addColorStop(1, '#F4F9E8');
+  g.fillStyle = grd; g.fillRect(0, 0, 4, 256);
+  const t = new THREE.CanvasTexture(cv); t.colorSpace = THREE.SRGBColorSpace; return t;
 }
