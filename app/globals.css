@@ -2059,3 +2059,4 @@ button.mk-gap { border: 0; border-bottom: 2px solid var(--mu-ink); cursor: point
 .mk-gap.is-cur { outline: 2px solid var(--mu-tomato); outline-offset: 1px; }
 .mk-finish { text-align: center; margin: 16px 0 0; }
 @media (max-width: 900px) { .mk-body, .mk-body--two { grid-template-columns: 1fr; } .mk-poster-one { max-width: 320px; margin: 0 auto; } .mk-body .mk-text { max-height: 45vh; } }
+.mk-hint-btn { border-style: solid; background: var(--mu-sky); } .mk-hint { background: #EEF7FB; border-left-color: #5BA4C4; }
