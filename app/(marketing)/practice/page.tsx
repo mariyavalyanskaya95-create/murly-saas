@@ -7,6 +7,7 @@ import PracticeList from '@/components/practice/PracticeList';
 import { PRACTICE } from '@/lib/practice';
 import { localizeLesson } from '@/lib/content/lessons';
 import { tr } from '@/lib/i18n-server';
+import Kit from '@/components/Kit';
 
 export function generateMetadata(): Metadata {
   const t = tr();
@@ -28,6 +29,7 @@ export default function PracticePage() {
       <SiteNav />
       <section className="mu-page-hero" style={{ paddingBottom: 16 }} data-stickers="4">
         <div className="mu-container">
+          <Kit id="il-cat-headphones" className="kit-hero" />
           <span className="mu-section__eyebrow"><Icon id="e-head" />{t({ uk: 'Практика', ru: 'Практика', en: 'Practice' })}</span>
           <h1>Listening {t({ uk: 'і', ru: 'и', en: 'and' })} <em>Reading.</em></h1>
           <p>{t({ uk: 'Діалоги з озвучкою і тексти за рівнями. Слухай, читай, відповідай, і Murly одразу перевірить.', ru: 'Диалоги с озвучкой и тексты по уровням. Слушай, читай, отвечай, и Murly сразу проверит.', en: 'Dialogues with audio and texts by level. Listen, read, answer, and Murly checks it right away.' })}</p>
