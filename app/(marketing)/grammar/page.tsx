@@ -8,6 +8,7 @@ import { GRAMMAR as GRAMMAR_UK } from '@/lib/grammar';
 import { localizeGrammar } from '@/lib/content/grammar';
 import { tr } from '@/lib/i18n-server';
 import type { T } from '@/lib/i18n';
+import Kit from '@/components/Kit';
 
 export function generateMetadata(): Metadata {
   const t = tr();
@@ -38,6 +39,7 @@ export default function GrammarIndexPage() {
       <SiteNav />
       <section className="mu-page-hero" data-stickers="6">
         <div className="mu-container">
+          <Kit id="il-cat-read" className="kit-hero" />
           <span className="mu-section__eyebrow"><Icon id="e-book" />{t({ uk: 'Граматика', ru: 'Грамматика', en: 'Grammar' })}</span>
           <h1>{t({ uk: 'Граматика', ru: 'Грамматика', en: 'Grammar' })} <em>{t({ uk: 'без нудьги.', ru: 'без скуки.', en: 'without the boredom.' })}</em></h1>
           <p>{t({ uk: 'Кожна тема на одній сторінці: формула, коли вживати, приклади з перекладом, типові помилки і квіз наприкінці.', ru: 'Каждая тема на одной странице: формула, когда употреблять, примеры с переводом, типичные ошибки и квиз в конце.', en: 'Each topic on one page: the formula, when to use it, examples with translations, common mistakes and a quiz at the end.' })}</p>
