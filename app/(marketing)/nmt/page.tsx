@@ -8,6 +8,7 @@ import { QUIZZES } from '@/lib/quizzes';
 import PricingSection from '@/components/PricingSection';
 import { tr } from '@/lib/i18n-server';
 import type { T } from '@/lib/i18n';
+import Kit from '@/components/Kit';
 
 const POLAROIDS = [
   { label: 'Teen Life', icon: 'e-speak', bg: 'var(--mu-mustard)', ink: 'var(--mu-ink)', href: '/quiz/teen-life' },
@@ -57,6 +58,7 @@ export default function NmtPage() {
       {/* HERO */}
       <section className="mu-hero" data-stickers="8">
         <div className="mu-container mu-hero__inner">
+          <Kit id="il-cat-exam" className="kit-home kit-home--r" />
           <div className="mu-hero__badge">
             <Icon id="c-paw" className="mu-ic mu-ic--badge" />
             {t({ uk: 'Перша платформа НМТ на вайбі', ru: 'Первая платформа НМТ на вайбе', en: 'The first NMT platform with a vibe' })}
