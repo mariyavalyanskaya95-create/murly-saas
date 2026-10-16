@@ -2061,3 +2061,14 @@ button.mk-gap { border: 0; border-bottom: 2px solid var(--mu-ink); cursor: point
 .mk-finish { text-align: center; margin: 16px 0 0; }
 @media (max-width: 900px) { .mk-body, .mk-body--two { grid-template-columns: 1fr; } .mk-poster-one { width: 100%; max-width: 320px; margin: 0 auto; } .mk-body .mk-text { max-height: 45vh; } }
 .mk-hint-btn { border-style: solid; background: var(--mu-sky); } .mk-hint { background: #EEF7FB; border-left-color: #5BA4C4; }
+
+/* Довгі оголошення: трохи менший шрифт, щоб текст не обрізався */
+.pst--long p { font-size: 4.7cqw; line-height: 1.28; }
+.pst--long h3 { font-size: 85%; }
+.pst--long.pst--event h3 { font-size: 11.5cqw; }
+.pst--long.pst--warm h3 { font-size: 10.5cqw; }
+.pst--long.pst--fun h3 { font-size: 10.5cqw; }
+.pst--long.pst--block .pst__split p { font-size: 4.2cqw; }
+.pst--long.pst--block .pst__split h3 { font-size: 6cqw; }
+.pst--long .pst__burst { width: 30cqw; height: 30cqw; }
+.pst--long .pst__burst .pst__hero { width: 19cqw; height: 19cqw; }
