@@ -114,7 +114,7 @@ export const VARIANT_1: MockVariant = {
         },
         {
           name: 'Olena, 16',
-          text: 'Olena’s older sister is a doctor who worked in a hospital near the front line. Listening to her sister’s stories, Olena decided she wanted to help too. She learned first aid, and now she runs short courses for her classmates every month, using a training doll that her school bought after her request.',
+          text: 'Olena’s older sister is a doctor in a busy children’s hospital. Listening to her sister’s stories, Olena decided she wanted to help too. She learned first aid, and now she runs short courses for her classmates every month, using a training doll that her school bought after her request.',
           answer: 2,
           why: 'Олена вирішила допомагати, listening to her sister’s stories (слухаючи історії сестри-лікарки). Її надихнула рідна людина: was inspired by a family member. Пастка H: вона навчає однокласників, але наживо, а не онлайн.', hint: 'Чиї історії вплинули на Олену? І де вона проводить курси: онлайн чи наживо?',
         },

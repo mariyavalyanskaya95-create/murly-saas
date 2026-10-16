@@ -923,3 +923,22 @@ export const NMT_FALSE: { w: string; m: string; t: string }[] = [
   "t": "не «комплекція» (це build)"
  }
 ];
+
+// Російські переклади і назви тем для сторінки /bonus/100-words
+export const NMT_TOPICS_T: Record<string, { ru: string; en: string }> = {
+  'Освіта': { ru: 'Образование', en: 'Education' }, 'Робота': { ru: 'Работа', en: 'Work' }, 'Здоров’я і спорт': { ru: 'Здоровье и спорт', en: 'Health and sport' },
+  'Подорожі': { ru: 'Путешествия', en: 'Travel' }, 'Природа і довкілля': { ru: 'Природа и экология', en: 'Nature and environment' }, 'Технології і медіа': { ru: 'Технологии и медиа', en: 'Technology and media' },
+  'Люди і стосунки': { ru: 'Люди и отношения', en: 'People and relationships' }, 'Покупки і гроші': { ru: 'Покупки и деньги', en: 'Shopping and money' }, 'Культура і дозвілля': { ru: 'Культура и досуг', en: 'Culture and free time' }, 'Слова-зв’язки': { ru: 'Слова-связки', en: 'Linking words' },
+};
+export const NMT_WORDS_RU: Record<string, string> = {
+  achieve: 'достигать', attend: 'посещать', require: 'требовать, нуждаться', improve: 'улучшать', knowledge: 'знания', degree: 'степень (образования), диплом', skill: 'навык', subject: 'школьный предмет; тема', deadline: 'крайний срок', graduate: 'оканчивать (школу, университет)',
+  employee: 'работник', salary: 'зарплата', experience: 'опыт', 'apply for': 'подавать заявление на', 'responsible for': 'ответственный за', career: 'карьера', earn: 'зарабатывать', colleague: 'коллега', opportunity: 'возможность', succeed: 'добиваться успеха',
+  healthy: 'здоровый, полезный', exercise: 'физические упражнения; тренироваться', disease: 'болезнь', recover: 'выздоравливать', injury: 'травма', diet: 'рацион, питание', habit: 'привычка', prevent: 'предотвращать', compete: 'соревноваться', stress: 'стресс',
+  destination: 'место назначения', journey: 'поездка, путешествие', luggage: 'багаж', abroad: 'за границу, за границей', accommodation: 'жильё (в поездке)', delay: 'задержка; задерживать', book: 'бронировать', sightseeing: 'осмотр достопримечательностей', local: 'местный', explore: 'исследовать, осматривать',
+  environment: 'окружающая среда', pollution: 'загрязнение', protect: 'защищать', waste: 'отходы; тратить впустую', recycle: 'перерабатывать', climate: 'климат', species: 'вид (животных, растений)', resource: 'ресурс', destroy: 'разрушать, уничтожать', reduce: 'уменьшать',
+  device: 'устройство', invent: 'изобретать', research: 'исследование', download: 'скачивать', access: 'доступ', 'rely on': 'полагаться на', available: 'доступный, имеющийся', advertisement: 'реклама, объявление', source: 'источник', update: 'обновлять; обновление',
+  relationship: 'отношения', trust: 'доверять; доверие', support: 'поддерживать; поддержка', argue: 'спорить, ссориться', behaviour: 'поведение', confident: 'уверенный', generous: 'щедрый', reliable: 'надёжный', 'get on with': 'ладить с', respect: 'уважение; уважать',
+  afford: 'мочь себе позволить', borrow: 'брать взаймы (у кого-то)', discount: 'скидка', receipt: 'чек', refund: 'возврат денег', save: 'экономить, копить', spend: 'тратить', customer: 'покупатель, клиент', purchase: 'покупка; покупать', budget: 'бюджет',
+  audience: 'зрители, аудитория', perform: 'выступать, исполнять', exhibition: 'выставка', entertainment: 'развлечения', tradition: 'традиция', celebrate: 'праздновать', leisure: 'досуг, свободное время', popular: 'популярный', admire: 'восхищаться', author: 'автор',
+  however: 'однако', although: 'хотя', despite: 'несмотря на', therefore: 'поэтому, следовательно', moreover: 'кроме того', unless: 'если не', 'instead of': 'вместо', 'as a result': 'в результате', 'on the other hand': 'с другой стороны', 'in order to': 'для того чтобы',
+};

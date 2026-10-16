@@ -5,7 +5,7 @@ import Stickers from '@/components/Stickers';
 import SiteNav from '@/components/SiteNav';
 import SiteFooter from '@/components/SiteFooter';
 import Kit from '@/components/Kit';
-import { MOCKS, SOON } from '@/lib/mock';
+import { MOCKS, SOON, FREE } from '@/lib/mock';
 import { tr } from '@/lib/i18n-server';
 
 export function generateMetadata(): Metadata {
@@ -34,7 +34,7 @@ export default function MockListPage() {
         <div className="mu-container mk-vars">
           {MOCKS.map((m) => (
             <Link key={m.id} href={`/nmt/mock/${m.id}`} className="mk-card" style={{ textDecoration: 'none', color: 'inherit' }}>
-              <span className="mk-task__tag">{m.level}</span>
+              <span className="mk-task__tag">{m.level}</span>{' '}<span className={`mk-free ${FREE.includes(m.id) ? 'is-free' : ''}`}>{FREE.includes(m.id) ? t({ uk: 'Безкоштовно', ru: 'Бесплатно', en: 'Free' }) : t({ uk: 'Повний пакет', ru: 'Полный пакет', en: 'Full pack' })}</span>
               <h3 style={{ margin: '10px 0 6px' }}>{t({ uk: `Варіант ${m.id}`, ru: `Вариант ${m.id}`, en: `Test ${m.id}` })}</h3>
               <p className="muted">{t({ uk: '32 завдання · близько 60 хвилин', ru: '32 задания · около 60 минут', en: '32 questions · about 60 minutes' })}</p>
               <span className="mu-btn mu-btn--lime">{t({ uk: 'Почати', ru: 'Начать', en: 'Start' })}<span className="mu-btn__arrow"><Icon id="e-arrow" /></span></span>
