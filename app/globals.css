@@ -1902,3 +1902,15 @@ a.t-stat:hover { transform: translateY(-2px); }
   .mu-role__kit { width: 90px; top: -30px; }
 }
 .pr-mini__old { font-size: 14px; color: var(--mu-ink-muted); margin-right: 8px; font-family: inherit; }
+
+/* ===== Бонус: дієслова за 30 днів ===== */
+.vp__progress { margin: 0 0 10px; }
+.vp__days { display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); gap: 8px; margin-bottom: 18px; }
+.vp__day { aspect-ratio: 1; border: 2px solid var(--mu-ink); border-radius: 12px; background: #fff; font: 700 16px 'General Sans', system-ui, sans-serif; cursor: pointer; position: relative; }
+.vp__day.is-review { background: var(--mu-lime); }
+.vp__day.is-on { background: var(--mu-ink); color: var(--mu-lime); }
+.vp__day.is-done::after { content: ''; position: absolute; right: 4px; top: 4px; width: 9px; height: 9px; border-radius: 50%; background: var(--mu-tomato); }
+.vp__head { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: 14px; }
+.vp__head h2 { margin: 0 0 4px; font-size: 26px; }
+.vp__head p { margin: 0; color: var(--mu-ink-soft); }
+@media (max-width: 640px) { .vp__days { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
