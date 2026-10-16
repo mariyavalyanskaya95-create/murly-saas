@@ -22,12 +22,13 @@ export function generateMetadata(): Metadata {
 }
 
 // Міні-продукти: купуються один раз, без підписки. Мінімум 85 ₴.
-const MINI: { icon: string; price: number; name: T; text: T; who: 'student' | 'teacher'; bundle?: boolean }[] = [
+const MINI: { icon: string; price: number; old?: number; name: T; text: T; who: 'student' | 'teacher'; bundle?: boolean }[] = [
   { icon: 'e-pencil', price: 99, who: 'student', name: { uk: 'Чек-лист підготовки до НМТ', ru: 'Чек-лист подготовки к НМТ', en: 'NMT prep checklist' }, text: { uk: 'План на 8 тижнів, стратегії і день іспиту', ru: 'План на 8 недель, стратегии и день экзамена', en: 'An 8-week plan, strategies and exam day' } },
   { icon: 'e-trophy', price: 85, who: 'student', name: { uk: 'Пробний НМТ з розбором', ru: 'Пробный НМТ с разбором', en: 'NMT mock test with answers explained' }, text: { uk: 'Повний тест як на іспиті і пояснення кожної відповіді', ru: 'Полный тест как на экзамене и объяснение каждого ответа', en: 'A full exam-style test and every answer explained' } },
   { icon: 'e-abc', price: 149, who: 'student', name: { uk: 'Уся базова граматика A1-B1', ru: 'Вся базовая грамматика A1-B1', en: 'All basic grammar A1-B1' }, text: { uk: 'Супер просто, з прикладами і вправами', ru: 'Супер просто, с примерами и упражнениями', en: 'Super simple, with examples and exercises' } },
   { icon: 'e-book', price: 85, who: 'student', name: { uk: 'Неправильні дієслова: картки і план на 30 днів', ru: 'Неправильные глаголы: карточки и план на 30 дней', en: 'Irregular verbs: cards and a 30-day plan' }, text: { uk: 'Друкуєш, вчиш по 5 на день', ru: 'Печатаешь, учишь по 5 в день', en: 'Print them, learn 5 a day' } },
   { icon: 'e-speak', price: 85, who: 'student', name: { uk: '100 важливих слів для НМТ', ru: '100 важных слов для НМТ', en: '100 key words for the NMT' }, text: { uk: '10 тем, приклади і тест', ru: '10 тем, примеры и тест', en: '10 topics, examples and a test' } },
+  { icon: 'd-heart', price: 199, old: 269, who: 'student', bundle: true, name: { uk: 'Старт до НМТ: 3 в 1', ru: 'Старт к НМТ: 3 в 1', en: 'NMT starter: 3 in 1' }, text: { uk: 'Чек-лист, 100 слів і дієслова за 30 днів разом з іграми для друку', ru: 'Чек-лист, 100 слов и глаголы за 30 дней вместе с играми для печати', en: 'Checklist, 100 words and 30-day verbs, plus printable games' } },
   { icon: 'd-spark', price: 299, who: 'student', bundle: true, name: { uk: 'Усе для НМТ', ru: 'Всё для НМТ', en: 'Everything for the NMT' }, text: { uk: 'Чек-лист, пробник, граматика, дієслова і 100 слів разом', ru: 'Чек-лист, пробник, грамматика, глаголы и 100 слов вместе', en: 'Checklist, mock test, grammar, verbs and 100 words together' } },
   { icon: 'e-mic', price: 199, who: 'teacher', name: { uk: '10 уроків для Speaking club', ru: '10 уроков для Speaking club', en: '10 Speaking club lessons' }, text: { uk: 'Теми, питання і картки, бери і веди', ru: 'Темы, вопросы и карточки, бери и веди', en: 'Topics, questions and cards, ready to teach' } },
   { icon: 'e-board', price: 85, who: 'teacher', name: { uk: 'Шаблон першого уроку з новим учнем', ru: 'Шаблон первого урока с новым учеником', en: 'First lesson template for a new student' }, text: { uk: 'Знайомство, тест рівня і план навчання', ru: 'Знакомство, тест уровня и план обучения', en: 'Getting to know, level test and a study plan' } },
@@ -79,7 +80,7 @@ export default function PricingPage() {
                     <b>{t(m.name)}</b>
                     <small>{t(m.text)}</small>
                     <div className="pr-mini__foot">
-                      <span className="pr-mini__price">{m.price} ₴</span>
+                      <span className="pr-mini__price">{m.old && <s className="pr-mini__old">{m.old} ₴</s>}{m.price} ₴</span>
                       <span className="pr-mini__soon">{t({ uk: 'Скоро', ru: 'Скоро', en: 'Soon' })}</span>
                     </div>
                   </div>
