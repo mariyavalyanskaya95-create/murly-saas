@@ -10,6 +10,7 @@ import { BATCH_3 } from '@/lib/lessons/batch-3';
 import { BATCH_4 } from '@/lib/lessons/batch-4';
 import { localizeLesson } from '@/lib/content/lessons';
 import { tr } from '@/lib/i18n-server';
+import Kit from '@/components/Kit';
 
 // Готові уроки на 60 хвилин (без розділу «Практика»)
 const LESSONS = [...BATCH_1, ...BATCH_2, ...BATCH_3, ...BATCH_4];
@@ -34,6 +35,7 @@ export default function LessonsPage() {
       <SiteNav />
       <section className="mu-page-hero" data-stickers="5" style={{ paddingBottom: 16 }}>
         <div className="mu-container">
+          <Kit id="il-cat-laptop" className="kit-hero" />
           <span className="mu-section__eyebrow"><Icon id="e-board" />{t({ uk: 'Готові уроки', ru: 'Готовые уроки', en: 'Ready-made lessons' })}</span>
           <h1>{t({ uk: 'Урок на 60 хвилин', ru: 'Урок на 60 минут', en: 'A 60-minute lesson' })} <em>{t({ uk: 'за хвилину.', ru: 'за минуту.', en: 'in a minute.' })}</em></h1>
           <p>{t({
