@@ -18,14 +18,14 @@ export type AdsTask = {
   kind: 'ads';
   stem: string; // «This advertisement is for people who want to ___»
   options: string[]; // 8 варіантів
-  items: { poster: PosterSpec; answer: number; why: string }[];
+  items: { poster: PosterSpec; answer: number; why: string; hint?: string }[];
 };
 // Task 2: текст + питання A-D
 export type ReadingTask = {
   kind: 'reading';
   title: string;
   paragraphs: string[];
-  items: { q: string; options: string[]; answer: number; why: string }[];
+  items: { q: string; options: string[]; answer: number; why: string; hint?: string }[];
 };
 // Task 3: короткі тексти про людей + спільні варіанти A-H
 export type PeopleTask = {
@@ -33,7 +33,7 @@ export type PeopleTask = {
   title: string;
   stem: string; // «This person ___»
   options: string[];
-  items: { name: string; text: string; answer: number; why: string }[];
+  items: { name: string; text: string; answer: number; why: string; hint?: string }[];
 };
 // Task 4: текст з пропусками, варіанти-фрази A-H
 export type GappedTask = {
@@ -41,7 +41,7 @@ export type GappedTask = {
   title: string;
   text: string; // пропуски позначені {0}, {1} ...
   options: string[];
-  items: { answer: number; why: string }[];
+  items: { answer: number; why: string; hint?: string }[];
 };
 // Task 5-6: текст з пропусками, у кожного свої 4 варіанти
 export type ClozeTask = {
@@ -49,7 +49,7 @@ export type ClozeTask = {
   focus: 'lexis' | 'grammar';
   title: string;
   text: string; // {0}, {1} ...
-  items: { options: string[]; answer: number; why: string }[];
+  items: { options: string[]; answer: number; why: string; hint?: string }[];
 };
 
 export type MockTask = AdsTask | ReadingTask | PeopleTask | GappedTask | ClozeTask;
