@@ -1869,3 +1869,24 @@ a.t-stat:hover { transform: translateY(-2px); }
 .pr-mini__foot { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; }
 .pr-mini__price { font-family: 'Boldonse', 'Arial Black', 'Nippo', sans-serif; font-size: 22px; }
 .pr-mini__soon { font-size: 12px; border: 2px solid var(--mu-ink); border-radius: var(--mu-radius-pill); padding: 3px 10px; }
+
+/* ===== Котики Murly (public/kotyky.svg, components/Kit.tsx) ===== */
+.kit { display: block; width: 100%; height: auto; color: var(--mu-ink); overflow: visible; filter: drop-shadow(0 4px 4px rgba(26,26,26,.14)); }
+.mu-page-hero .mu-container, .mu-hero__inner { position: relative; }
+.kit-hero { position: absolute; right: 0; top: -44px; width: clamp(120px, 15vw, 200px); transform: rotate(6deg); pointer-events: none; }
+.kit-home { position: absolute; bottom: -10px; width: clamp(130px, 15vw, 220px); pointer-events: none; }
+.kit-home--l { left: 0; transform: rotate(-7deg); }
+.kit-home--r { right: 0; transform: rotate(7deg); }
+.mu-role { position: relative; }
+.mu-role__kit { position: absolute; right: 8px; top: -40px; width: 112px; transform: rotate(5deg); pointer-events: none; }
+.t-welcome__kit { width: 140px; }
+.nf { padding: 60px 0 80px; text-align: center; }
+.nf .kit { width: 220px; margin: 0 auto 10px; }
+.nf h1 { font-size: clamp(34px, 5vw, 60px); margin: 0 0 12px; }
+@media (max-width: 1180px) { .kit-hero { width: 120px; top: -52px; } .kit-home { width: 130px; } }
+@media (max-width: 900px) {
+  .kit-hero { position: static; width: 120px; margin: 0 auto 6px; transform: rotate(4deg); }
+  .kit-home--l { display: none; }
+  .kit-home--r { position: static; width: 130px; margin: 0 auto 8px; }
+  .mu-role__kit { width: 90px; top: -30px; }
+}

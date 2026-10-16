@@ -6,9 +6,9 @@ import { getLang } from '@/lib/i18n-server';
 import './globals.css';
 
 const META = {
-  uk: { title: 'Murly: англійська для дітей, підлітків і дорослих', desc: 'Уроки з учителем, домашка-гра, граматика простими словами і 3D-містечко, де все англійською. Кабінети для вчителя й учня.', og: 'Murly: англійська, яку хочеться вчити', locale: 'uk_UA' },
-  ru: { title: 'Murly: английский для детей, подростков и взрослых', desc: 'Уроки с учителем, домашка-игра, грамматика простыми словами и 3D-городок, где всё на английском. Кабинеты для учителя и ученика.', og: 'Murly: английский, который хочется учить', locale: 'ru_UA' },
-  en: { title: 'Murly: English for kids, teens and adults', desc: 'Lessons with a teacher, homework as a game, simple grammar and a 3D town where everything is in English. Dashboards for teachers and students.', og: 'Murly: English you actually want to learn', locale: 'en_US' },
+  uk: { title: 'Murly: англійська, яку хочеться вчити', desc: 'Уроки з учителем, домашка-гра, граматика простими словами і 3D-містечко, де все англійською. Кабінети для вчителя й учня.', og: 'Murly: англійська, яку хочеться вчити', locale: 'uk_UA' },
+  ru: { title: 'Murly: английский, который хочется учить', desc: 'Уроки с учителем, домашка-игра, грамматика простыми словами и 3D-городок, где всё на английском. Кабинеты для учителя и ученика.', og: 'Murly: английский, который хочется учить', locale: 'ru_UA' },
+  en: { title: 'Murly: English you actually want to learn', desc: 'Lessons with a teacher, homework as a game, simple grammar and a 3D town where everything is in English. Dashboards for teachers and students.', og: 'Murly: English you actually want to learn', locale: 'en_US' },
 };
 
 export function generateMetadata(): Metadata {

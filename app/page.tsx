@@ -7,11 +7,12 @@ import SiteFooter from '@/components/SiteFooter';
 import JoinCode from '@/components/JoinCode';
 import { tr } from '@/lib/i18n-server';
 import type { T } from '@/lib/i18n';
+import Kit from '@/components/Kit';
 
 export function generateMetadata(): Metadata {
   const t = tr();
   return {
-    title: t({ uk: 'Murly: англійська для дітей, підлітків і дорослих', ru: 'Murly: английский для детей, подростков и взрослых', en: 'Murly: English for kids, teens and adults' }),
+    title: t({ uk: 'Murly: англійська, яку хочеться вчити', ru: 'Murly: английский, который хочется учить', en: 'Murly: English you actually want to learn' }),
     description: t({
       uk: 'Уроки з учителем, домашка-гра, граматика простими словами, неправильні дієслова і 3D-містечко, де все англійською. Кабінети для вчителя й учня.',
       ru: 'Уроки с учителем, домашка-игра, грамматика простыми словами, неправильные глаголы и 3D-городок, где всё на английском. Кабинеты для учителя и ученика.',
@@ -22,23 +23,23 @@ export function generateMetadata(): Metadata {
 }
 
 // Хто ти: три дороги з головної
-const ROLES: { id: string; icon: string; mod: string; who: T; text: T; main: { href: string; label: T }; alt: { href: string; label: T } }[] = [
+const ROLES: { id: string; kit: string; icon: string; mod: string; who: T; text: T; main: { href: string; label: T }; alt: { href: string; label: T } }[] = [
   {
-    id: 'students', icon: 'd-kid', mod: 'mu-role--lime',
+    id: 'students', kit: 'st-boy-backpack', icon: 'd-kid', mod: 'mu-role--lime',
     who: { uk: 'Я учень', ru: 'Я ученик', en: 'I’m a student' },
     text: { uk: 'Граматика, ігри зі словами і своє 3D-містечко. Учитель дав код? Введи його нижче.', ru: 'Грамматика, игры со словами и свой 3D-городок. Учитель дал код? Введи его ниже.', en: 'Grammar, word games and your own 3D town. Got a code from your teacher? Enter it below.' },
     main: { href: '/sign-up?role=student', label: { uk: 'Почати вчитися', ru: 'Начать учиться', en: 'Start learning' } },
     alt: { href: '/grammar', label: { uk: 'Спробувати без реєстрації', ru: 'Попробовать без регистрации', en: 'Try without signing up' } },
   },
   {
-    id: 'teachers', icon: 'd-team', mod: 'mu-role--mustard',
+    id: 'teachers', kit: 'st-cat-coffee', icon: 'd-team', mod: 'mu-role--mustard',
     who: { uk: 'Я вчитель', ru: 'Я учитель', en: 'I’m a teacher' },
     text: { uk: 'Учні, розклад, 24 готові уроки по 60 хвилин, домашка з автоперевіркою і словник кожного учня.', ru: 'Ученики, расписание, 24 готовых урока по 60 минут, домашка с автопроверкой и словарь каждого ученика.', en: 'Students, schedule, 24 ready-made 60-minute lessons, auto-checked homework and a word list for every student.' },
     main: { href: '/sign-up?role=teacher', label: { uk: 'Створити кабінет', ru: 'Создать кабинет', en: 'Create a dashboard' } },
     alt: { href: '/for-teachers', label: { uk: 'Що вміє кабінет', ru: 'Что умеет кабинет', en: 'What it can do' } },
   },
   {
-    id: 'parents', icon: 'd-heart', mod: 'mu-role--sky',
+    id: 'parents', kit: 'st-cat-heart', icon: 'd-heart', mod: 'mu-role--sky',
     who: { uk: 'Я з батьків', ru: 'Я родитель', en: 'I’m a parent' },
     text: { uk: 'Як Murly допомагає дитині вчитися регулярно і з задоволенням, без сварок через уроки.', ru: 'Как Murly помогает ребёнку учиться регулярно и с удовольствием, без ссор из-за уроков.', en: 'How Murly helps your child learn regularly and happily, without fights over homework.' },
     main: { href: '/for-parents', label: { uk: 'Для батьків', ru: 'Для родителей', en: 'For parents' } },
@@ -73,6 +74,8 @@ export default function HomePage() {
       {/* HERO */}
       <section className="mu-hero mu-hero--home" data-stickers="8">
         <div className="mu-container mu-hero__inner">
+          <Kit id="st-girl-bow" className="kit-home kit-home--l" />
+          <Kit id="st-boy-cap" className="kit-home kit-home--r" />
           <div className="mu-hero__badge">
             <Icon id="c-paw" className="mu-ic mu-ic--badge" />
             {t({ uk: 'Для дітей, підлітків і дорослих', ru: 'Для детей, подростков и взрослых', en: 'For kids, teens and adults' })}
@@ -104,6 +107,7 @@ export default function HomePage() {
             {ROLES.map((r) => (
               <div key={r.id} id={r.id} className={`mu-role ${r.mod}`}>
                 <span className="mu-role__ic"><Icon id={r.icon} /></span>
+                <Kit id={r.kit} className="mu-role__kit" />
                 <h3>{t(r.who)}</h3>
                 <p>{t(r.text)}</p>
                 <div className="mu-role__cta">
