@@ -36,6 +36,7 @@ export default function MockTest({ v }: { v: MockVariant }) {
   const [exam, setExam] = useState(false);
   const [done, setDone] = useState(false);
   const [why, setWhy] = useState(false);
+  const [hint, setHint] = useState(false);
   const [cur, setCur] = useState(0);
   const [sec, setSec] = useState(0);
 
@@ -61,7 +62,7 @@ export default function MockTest({ v }: { v: MockVariant }) {
   const score = flat.filter(({ ti, qi }) => isRight(ti, qi)).length;
   const answered = Object.keys(ans).length;
 
-  const go = (n: number) => { setCur(Math.max(0, Math.min(total - 1, n))); setWhy(false); };
+  const go = (n: number) => { setCur(Math.max(0, Math.min(total - 1, n))); setWhy(false); setHint(false); };
   const { ti, qi } = flat[cur];
   const tk = v.tasks[ti];
   const k = key(ti, qi);
@@ -144,6 +145,12 @@ export default function MockTest({ v }: { v: MockVariant }) {
                 );
               })}
             </ul>
+            {!show && !exam && item.hint && (
+              <button type="button" className="mk-why-btn mk-hint-btn" aria-expanded={hint} onClick={() => setHint(!hint)}>
+                <Icon id="c-cat-glass" />{t({ uk: 'Підказка', ru: 'Подсказка', en: 'Hint' })}
+              </button>
+            )}
+            {!show && hint && item.hint && <div className="mk-why mk-hint">{item.hint}</div>}
             {show && (
               <button type="button" className="mk-why-btn" aria-expanded={why} onClick={() => setWhy(!why)}>
                 <Icon id="d-bulb" />{t({ uk: 'Чому так?', ru: 'Почему так?', en: 'Why?' })}
