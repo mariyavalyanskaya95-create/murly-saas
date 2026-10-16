@@ -7,6 +7,7 @@ import SiteFooter from '@/components/SiteFooter';
 import Faq from '@/components/Faq';
 import { tr } from '@/lib/i18n-server';
 import type { T } from '@/lib/i18n';
+import Kit from '@/components/Kit';
 
 export function generateMetadata(): Metadata {
   const t = tr();
@@ -47,6 +48,7 @@ export default function ContactPage() {
       <SiteNav />
       <section className="mu-page-hero" data-stickers="6">
         <div className="mu-container">
+          <Kit id="st-cat-please" className="kit-hero" />
           <span className="mu-section__eyebrow"><Icon id="d-chat" />{t({ uk: 'Контакти', ru: 'Контакты', en: 'Contact' })}</span>
           <h1>{t({ uk: 'Є питання?', ru: 'Есть вопросы?', en: 'Got questions?' })} <em>{t({ uk: 'Пиши.', ru: 'Пиши.', en: 'Write to us.' })}</em></h1>
           <p>{t({ uk: 'Пиши на пошту. Ідеї нових квізів і знайдені помилки теж сюди.', ru: 'Пиши на почту. Идеи новых квизов и найденные ошибки тоже сюда.', en: 'Send us an email. Ideas for new quizzes and bugs you found go here too.' })}</p>

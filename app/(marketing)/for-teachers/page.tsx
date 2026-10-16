@@ -7,6 +7,7 @@ import SiteFooter from '@/components/SiteFooter';
 import Faq from '@/components/Faq';
 import { tr } from '@/lib/i18n-server';
 import type { T } from '@/lib/i18n';
+import Kit from '@/components/Kit';
 
 export function generateMetadata(): Metadata {
   const t = tr();
@@ -53,6 +54,7 @@ export default function ForTeachersPage() {
       <SiteNav />
       <section className="mu-page-hero" data-stickers="6">
         <div className="mu-container">
+          <Kit id="il-cat-teacher" className="kit-hero" />
           <span className="mu-section__eyebrow"><Icon id="d-team" />{t({ uk: 'Для вчителів', ru: 'Для учителей', en: 'For teachers' })}</span>
           <h1>{t({ uk: 'Усе для уроків англійської', ru: 'Всё для уроков английского', en: 'Everything for English lessons' })} <em>{t({ uk: 'в одному кабінеті.', ru: 'в одном кабинете.', en: 'in one dashboard.' })}</em></h1>
           <p>{t({ uk: 'Учні, розклад, готові уроки, домашка з автоперевіркою і словник кожного учня. Менше рутини, більше часу на саме навчання.', ru: 'Ученики, расписание, готовые уроки, домашка с автопроверкой и словарь каждого ученика. Меньше рутины, больше времени на само обучение.', en: 'Students, schedule, ready-made lessons, auto-checked homework and a word list for every student. Less routine, more time for actual teaching.' })}</p>

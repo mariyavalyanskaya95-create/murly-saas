@@ -8,6 +8,7 @@ import { QUIZZES } from '@/lib/quizzes';
 import PricingSection from '@/components/PricingSection';
 import { tr } from '@/lib/i18n-server';
 import type { T } from '@/lib/i18n';
+import Kit from '@/components/Kit';
 
 const POLAROIDS = [
   { label: 'Teen Life', icon: 'e-speak', bg: 'var(--mu-mustard)', ink: 'var(--mu-ink)', href: '/quiz/teen-life' },
@@ -57,6 +58,7 @@ export default function NmtPage() {
       {/* HERO */}
       <section className="mu-hero" data-stickers="8">
         <div className="mu-container mu-hero__inner">
+          <Kit id="il-cat-exam" className="kit-home kit-home--r" />
           <div className="mu-hero__badge">
             <Icon id="c-paw" className="mu-ic mu-ic--badge" />
             {t({ uk: 'Перша платформа НМТ на вайбі', ru: 'Первая платформа НМТ на вайбе', en: 'The first NMT platform with a vibe' })}
@@ -187,7 +189,7 @@ export default function NmtPage() {
             <h2 className="mu-section__title">{t({ uk: 'Чесні', ru: 'Честные', en: 'Honest' })} <em>{t({ uk: 'тарифи.', ru: 'тарифы.', en: 'pricing.' })}</em></h2>
             <p className="mu-section__lead">{t({ uk: 'Почни безкоштовно. Якщо зайде, підписка дешевша за один урок із репетитором.', ru: 'Начни бесплатно. Если понравится, подписка дешевле одного урока с репетитором.', en: 'Start for free. If you like it, the subscription costs less than one lesson with a tutor.' })}</p>
           </div>
-          <PricingSection firstQuiz={firstQuiz} />
+          <PricingSection firstQuiz={firstQuiz} start="student" />
         </div>
       </section>
 

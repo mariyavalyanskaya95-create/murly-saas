@@ -7,10 +7,11 @@ import SiteFooter from './SiteFooter';
 import QuizGame from './games/QuizGame';
 import { GRAMMAR, getTopic } from '@/lib/grammar';
 import { tr } from '@/lib/i18n-server';
+import { localizeGrammar } from '@/lib/content/grammar';
 
 export function topicMetadata(slug: string): Metadata {
-  const t = getTopic(slug)!;
   const L = tr();
+  const t = localizeGrammar(getTopic(slug)!, L.lang);
   return {
     title: L({ uk: `${t.title}: правила, приклади і вправи | Murly`, ru: `${t.title}: правила, примеры и упражнения | Murly`, en: `${t.title}: rules, examples and exercises | Murly` }),
     description: L({
@@ -23,7 +24,7 @@ export function topicMetadata(slug: string): Metadata {
 }
 
 export default function GrammarTopicPage({ slug }: { slug: string }) {
-  const t = getTopic(slug)!;
+  const t = localizeGrammar(getTopic(slug)!, tr().lang);
   const idx = GRAMMAR.findIndex((g) => g.slug === slug);
   const prev = GRAMMAR[idx - 1];
   const next = GRAMMAR[idx + 1];

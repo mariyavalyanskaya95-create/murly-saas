@@ -1,5 +1,6 @@
 // Уроки Murly: урок складається з блоків. Один формат для конструктора, бібліотеки і показу учню.
 import type { Section } from './exercise';
+import { pick, type Lang, type T } from './i18n';
 
 export type Block =
   | { id: string; type: 'heading'; text: string }
@@ -30,20 +31,30 @@ export const AGES: { id: Age; label: string }[] = [
   { id: 'teens', label: 'Підлітки 12-17' },
   { id: 'adults', label: 'Дорослі' },
 ];
+// Те саме трьома мовами (AGES лишаємо для старого коду)
+export const AGES_T: { id: Age; label: T }[] = [
+  { id: 'kids', label: { uk: 'Діти 6-11', ru: 'Дети 6-11', en: 'Kids 6-11' } },
+  { id: 'teens', label: { uk: 'Підлітки 12-17', ru: 'Подростки 12-17', en: 'Teens 12-17' } },
+  { id: 'adults', label: { uk: 'Дорослі', ru: 'Взрослые', en: 'Adults' } },
+];
+export const ageLabel = (age: Age | undefined, lang: Lang) => {
+  const a = AGES_T.find((x) => x.id === age);
+  return a ? pick(a.label, lang) : undefined;
+};
 export const LEVELS = ['A1', 'A2', 'B1', 'B2', 'C1'];
 
-export const BLOCK_TYPES: { id: BlockType; label: string; icon: string }[] = [
-  { id: 'heading', label: 'Заголовок', icon: 'e-board' },
-  { id: 'text', label: 'Текст', icon: 'e-book' },
-  { id: 'tip', label: 'Правило / лайфхак', icon: 'd-bulb' },
-  { id: 'vocab', label: 'Слова', icon: 'e-abc' },
-  { id: 'exercise', label: 'Вправа', icon: 'e-pencil' },
-  { id: 'speaking', label: 'Говоріння', icon: 'e-speak' },
-  { id: 'image', label: 'Картинка', icon: 'd-camera' },
-  { id: 'audio', label: 'Аудіювання', icon: 'e-head' },
-  { id: 'video', label: 'Відео YouTube', icon: 'e-mic' },
-  { id: 'pdf', label: 'PDF-файл', icon: 'e-book' },
-  { id: 'note', label: 'Нотатка для вчителя', icon: 'd-lock' },
+export const BLOCK_TYPES: { id: BlockType; label: T; icon: string }[] = [
+  { id: 'heading', label: { uk: 'Заголовок', ru: 'Заголовок', en: 'Heading' }, icon: 'e-board' },
+  { id: 'text', label: { uk: 'Текст', ru: 'Текст', en: 'Text' }, icon: 'e-book' },
+  { id: 'tip', label: { uk: 'Правило / лайфхак', ru: 'Правило / лайфхак', en: 'Rule / tip' }, icon: 'd-bulb' },
+  { id: 'vocab', label: { uk: 'Слова', ru: 'Слова', en: 'Words' }, icon: 'e-abc' },
+  { id: 'exercise', label: { uk: 'Вправа', ru: 'Упражнение', en: 'Exercise' }, icon: 'e-pencil' },
+  { id: 'speaking', label: { uk: 'Говоріння', ru: 'Говорение', en: 'Speaking' }, icon: 'e-speak' },
+  { id: 'image', label: { uk: 'Картинка', ru: 'Картинка', en: 'Picture' }, icon: 'd-camera' },
+  { id: 'audio', label: { uk: 'Аудіювання', ru: 'Аудирование', en: 'Listening' }, icon: 'e-head' },
+  { id: 'video', label: { uk: 'Відео YouTube', ru: 'Видео YouTube', en: 'YouTube video' }, icon: 'e-mic' },
+  { id: 'pdf', label: { uk: 'PDF-файл', ru: 'PDF-файл', en: 'PDF file' }, icon: 'e-book' },
+  { id: 'note', label: { uk: 'Нотатка для вчителя', ru: 'Заметка для учителя', en: 'Teacher note' }, icon: 'd-lock' },
 ];
 
 export const uid = () => (typeof crypto !== 'undefined' && 'randomUUID' in crypto ? crypto.randomUUID() : Math.random().toString(36).slice(2));

@@ -2,6 +2,7 @@
 import { useMemo } from 'react';
 import { SCALE, type Answers, type Section } from '@/lib/exercise';
 import VoiceRecorder from './VoiceRecorder';
+import { useT } from '@/components/LangProvider';
 
 // Показ вправи: учень заповнює (onChange), або вчитель/учень бачать перевірку (marks)
 export default function ExerciseView({ sections, answers, onChange, marks, showCorrect, overrides, onOverride, offset = 0, numbered = true }: {
@@ -11,6 +12,7 @@ export default function ExerciseView({ sections, answers, onChange, marks, showC
   offset?: number; // зсув номера секції (коли вправ кілька в уроці)
   numbered?: boolean;
 }) {
+  const tx = useT();
   // Варіанти для вибору перемішуємо один раз, щоб правильний не був завжди першим
   const order = useMemo(() => {
     const o: Record<string, string[]> = {};
@@ -27,8 +29,8 @@ export default function ExerciseView({ sections, answers, onChange, marks, showC
   const ro = !onChange;
   const ov = (k: string) => {
     if (!onOverride || !marks || !(k in marks) || !answers[k]) return null;
-    if (overrides?.[k]) return <button type="button" className="ex-ov is-on" onClick={() => onOverride(k)} title="Скасувати">зараховано вручну ✕</button>;
-    if (marks[k] === false) return <button type="button" className="ex-ov" onClick={() => onOverride(k)}>Зарахувати</button>;
+    if (overrides?.[k]) return <button type="button" className="ex-ov is-on" onClick={() => onOverride(k)} title={tx({ uk: 'Скасувати', ru: 'Отменить', en: 'Undo' })}>{tx({ uk: 'зараховано вручну', ru: 'засчитано вручную', en: 'accepted by hand' })} ✕</button>;
+    if (marks[k] === false) return <button type="button" className="ex-ov" onClick={() => onOverride(k)}>{tx({ uk: 'Зарахувати', ru: 'Засчитать', en: 'Accept' })}</button>;
     return null;
   };
   const showFix = (k: string) => showCorrect && marks?.[k] === false;
@@ -62,9 +64,9 @@ export default function ExerciseView({ sections, answers, onChange, marks, showC
                     <div className="ex-prompt">{t.prompt}</div>
                     {s.type === 'open'
                       ? <textarea className="ex-input ex-input--wide" rows={2} readOnly={ro} value={answers[`${si}.${ti}.0`] ?? ''}
-                          onChange={(e) => onChange?.(`${si}.${ti}.0`, e.target.value)} placeholder={ro ? '' : 'Твоя відповідь'} />
+                          onChange={(e) => onChange?.(`${si}.${ti}.0`, e.target.value)} placeholder={ro ? '' : tx({ uk: 'Твоя відповідь', ru: 'Твой ответ', en: 'Your answer' })} />
                       : <input className={`ex-input ex-input--wide ${cls(`${si}.${ti}.0`)}`} readOnly={ro} value={answers[`${si}.${ti}.0`] ?? ''}
-                          onChange={(e) => onChange?.(`${si}.${ti}.0`, e.target.value)} placeholder={ro ? '' : 'Переклад англійською'} />}
+                          onChange={(e) => onChange?.(`${si}.${ti}.0`, e.target.value)} placeholder={ro ? '' : tx({ uk: 'Переклад англійською', ru: 'Перевод на английский', en: 'Translation in English' })} />}
                     {showFix(`${si}.${ti}.0`) && t.answers?.length ? <span className="ex-correct">{t.answers[0]}</span> : null}
                     {ov(`${si}.${ti}.0`)}
                   </div>
@@ -76,15 +78,15 @@ export default function ExerciseView({ sections, answers, onChange, marks, showC
                       if (p.t === 'gap') return (
                         <span key={pi} className="ex-slot">
                           <input className={`ex-input ${cls(k)}`} readOnly={ro} value={answers[k] ?? ''} size={12}
-                            onChange={(e) => onChange?.(k, e.target.value)} aria-label="Відповідь" autoCapitalize="off" autoComplete="off" spellCheck={false} />
+                            onChange={(e) => onChange?.(k, e.target.value)} aria-label={tx({ uk: 'Відповідь', ru: 'Ответ', en: 'Answer' })} autoCapitalize="off" autoComplete="off" spellCheck={false} />
                           {showFix(k) && <span className="ex-correct">{p.answers[0]}</span>}
                           {ov(k)}
                         </span>
                       );
                       if (p.options.length > 4 || p.options.some((o) => o.length > 18)) return (
                         <span key={pi} className="ex-slot">
-                          <select className={`ex-input ex-select ${cls(k)}`} disabled={ro} value={answers[k] ?? ''} onChange={(e) => onChange?.(k, e.target.value)} aria-label="Обери відповідь">
-                            <option value="" disabled>Обери…</option>
+                          <select className={`ex-input ex-select ${cls(k)}`} disabled={ro} value={answers[k] ?? ''} onChange={(e) => onChange?.(k, e.target.value)} aria-label={tx({ uk: 'Обери відповідь', ru: 'Выбери ответ', en: 'Choose an answer' })}>
+                            <option value="" disabled>{tx({ uk: 'Обери…', ru: 'Выбери…', en: 'Choose…' })}</option>
                             {(order[k] ?? p.options).map((opt) => <option key={opt} value={opt}>{opt}</option>)}
                           </select>
                           {showFix(k) && <span className="ex-correct">{p.options[0]}</span>}

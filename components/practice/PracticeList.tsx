@@ -1,12 +1,13 @@
 'use client';
 import Link from 'next/link';
 import { useState } from 'react';
-import { AGES, LEVELS, type Age, type Plan } from '@/lib/lesson';
+import { AGES, LEVELS, ageLabel, type Age, type Plan } from '@/lib/lesson';
 import { useT } from '@/components/LangProvider';
 
-export default function PracticeList({ items }: { items: Plan[] }) {
+// Каталог уроків або практики з фільтрами (base: куди веде картка, skills: фільтр навичок)
+export default function PracticeList({ items, base = '/practice', skills = ['Listening', 'Reading'] }: { items: Plan[]; base?: string; skills?: string[] }) {
   const t = useT();
-  const [skill, setSkill] = useState<'' | 'Listening' | 'Reading'>('');
+  const [skill, setSkill] = useState('');
   const [age, setAge] = useState<Age | ''>('');
   const [level, setLevel] = useState('');
   const list = items.filter((p) => (!skill || (p.focus ?? []).includes(skill)) && (!age || p.age === age) && (!level || p.level === level));
@@ -15,12 +16,11 @@ export default function PracticeList({ items }: { items: Plan[] }) {
       <div className="le-filters">
         <div className="g-chips">
           <button className={`g-chip ${!skill ? 'is-on' : ''}`} onClick={() => setSkill('')}>{t({ uk: 'Усе', ru: 'Всё', en: 'All' })}</button>
-          <button className={`g-chip ${skill === 'Listening' ? 'is-on' : ''}`} onClick={() => setSkill('Listening')}>Listening</button>
-          <button className={`g-chip ${skill === 'Reading' ? 'is-on' : ''}`} onClick={() => setSkill('Reading')}>Reading</button>
+          {skills.map((sk) => <button key={sk} className={`g-chip ${skill === sk ? 'is-on' : ''}`} onClick={() => setSkill(sk)}>{sk === 'НМТ' && t.lang === 'en' ? 'NMT' : sk}</button>)}
         </div>
         <div className="g-chips">
           <button className={`g-chip ${!age ? 'is-on' : ''}`} onClick={() => setAge('')}>{t({ uk: 'Будь-який вік', ru: 'Любой возраст', en: 'Any age' })}</button>
-          {AGES.map((a) => <button key={a.id} className={`g-chip ${age === a.id ? 'is-on' : ''}`} onClick={() => setAge(a.id)}>{a.label}</button>)}
+          {AGES.map((a) => <button key={a.id} className={`g-chip ${age === a.id ? 'is-on' : ''}`} onClick={() => setAge(a.id)}>{ageLabel(a.id, t.lang)}</button>)}
         </div>
         <div className="g-chips">
           <button className={`g-chip ${!level ? 'is-on' : ''}`} onClick={() => setLevel('')}>{t({ uk: 'Усі рівні', ru: 'Все уровни', en: 'All levels' })}</button>
@@ -29,10 +29,10 @@ export default function PracticeList({ items }: { items: Plan[] }) {
       </div>
       <div className="gr-grid" style={{ marginTop: 20 }}>
         {list.map((p) => (
-          <Link key={p.id} href={`/practice/${p.id.replace(/^lib-/, '')}`} className={`gr-card gr--${p.color} le-card`}>
+          <Link key={p.id} href={`${base}/${p.id.replace(/^lib-/, '')}`} className={`gr-card gr--${p.color} le-card`}>
             <span className="le-card__tags">
               <span className="gr-level">{p.level}</span>
-              <span className="le-tag">{AGES.find((a) => a.id === p.age)?.label}</span>
+              <span className="le-tag">{ageLabel(p.age, t.lang)}</span>
               {(p.focus ?? []).map((f) => <span key={f} className="le-tag">{f}</span>)}
             </span>
             <span className="gr-card__title">{p.title}</span>

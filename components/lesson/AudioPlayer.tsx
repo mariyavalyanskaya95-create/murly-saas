@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import Icon from '../Icon';
+import { useT } from '@/components/LangProvider';
 
 type Line = { who: string; text: string };
 
@@ -28,6 +29,7 @@ function pickVoices(): SpeechSynthesisVoice[] {
 }
 
 export default function AudioPlayer({ script, title, audioUrl }: { script: string; title?: string; audioUrl?: string }) {
+  const t = useT();
   const lines = useMemo(() => parseScript(script), [script]);
   const speakers = useMemo(() => Array.from(new Set(lines.map((l) => l.who))), [lines]);
   const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
@@ -78,7 +80,7 @@ export default function AudioPlayer({ script, title, audioUrl }: { script: strin
       <div className="ap">
         <div className="ap__head"><Icon id="e-head" /><b>{title || 'Listening'}</b></div>
         <audio controls preload="none" src={audioUrl} className="ap__audio" />
-        {script.trim() && <button className="t-link-btn" onClick={() => setShowText(!showText)}>{showText ? 'Сховати текст' : 'Показати текст'}</button>}
+        {script.trim() && <button className="t-link-btn" onClick={() => setShowText(!showText)}>{showText ? t({ uk: 'Сховати текст', ru: 'Скрыть текст', en: 'Hide text' }) : t({ uk: 'Показати текст', ru: 'Показать текст', en: 'Show text' })}</button>}
         {showText && <div className="ap__text">{lines.map((l, i) => <p key={i}>{l.who && <b>{l.who}: </b>}{l.text}</p>)}</div>}
       </div>
     );
@@ -87,25 +89,25 @@ export default function AudioPlayer({ script, title, audioUrl }: { script: strin
   return (
     <div className="ap">
       <div className="ap__head"><Icon id="e-head" /><b>{title || 'Listening'}</b>{speakers.filter(Boolean).length > 0 && <span className="t-muted">{speakers.filter(Boolean).join(', ')}</span>}</div>
-      {!ok ? <p className="t-muted">Цей браузер не вміє озвучувати текст. Відкрий у Chrome або Safari.</p> : (
+      {!ok ? <p className="t-muted">{t({ uk: 'Цей браузер не вміє озвучувати текст. Відкрий у Chrome або Safari.', ru: 'Этот браузер не умеет озвучивать текст. Открой в Chrome или Safari.', en: 'This browser cannot read text aloud. Open it in Chrome or Safari.' })}</p> : (
         <div className="ap__controls">
           {!playing
-            ? <button className="mu-btn mu-btn--lime" onClick={() => play(0)}><Icon id="e-head" />Слухати</button>
-            : <button className="mu-btn" onClick={stop}>Стоп</button>}
-          <button className={`g-chip ${slow ? 'is-on' : ''}`} onClick={() => setSlow(!slow)} aria-pressed={slow}>Повільніше</button>
-          <button className={`g-chip ${showText ? 'is-on' : ''}`} onClick={() => setShowText(!showText)} aria-pressed={showText}>Текст</button>
+            ? <button className="mu-btn mu-btn--lime" onClick={() => play(0)}><Icon id="e-head" />{t({ uk: 'Слухати', ru: 'Слушать', en: 'Listen' })}</button>
+            : <button className="mu-btn" onClick={stop}>{t({ uk: 'Стоп', ru: 'Стоп', en: 'Stop' })}</button>}
+          <button className={`g-chip ${slow ? 'is-on' : ''}`} onClick={() => setSlow(!slow)} aria-pressed={slow}>{t({ uk: 'Повільніше', ru: 'Медленнее', en: 'Slower' })}</button>
+          <button className={`g-chip ${showText ? 'is-on' : ''}`} onClick={() => setShowText(!showText)} aria-pressed={showText}>{t({ uk: 'Текст', ru: 'Текст', en: 'Text' })}</button>
         </div>
       )}
       {showText && (
         <div className="ap__text">
           {lines.map((l, i) => (
-            <p key={i} className={i === current ? 'is-now' : ''} onClick={() => play(i)} title="Слухати з цього місця">
+            <p key={i} className={i === current ? 'is-now' : ''} onClick={() => play(i)} title={t({ uk: 'Слухати з цього місця', ru: 'Слушать с этого места', en: 'Listen from here' })}>
               {l.who && <b>{l.who}: </b>}{l.text}
             </p>
           ))}
         </div>
       )}
-      {!showText && playing && current >= 0 && lines[current]?.who && <p className="ap__now">Говорить: <b>{lines[current].who}</b></p>}
+      {!showText && playing && current >= 0 && lines[current]?.who && <p className="ap__now">{t({ uk: 'Говорить', ru: 'Говорит', en: 'Speaking' })}: <b>{lines[current].who}</b></p>}
     </div>
   );
 }

@@ -6,6 +6,7 @@ import SiteNav from '@/components/SiteNav';
 import SiteFooter from '@/components/SiteFooter';
 import { tr } from '@/lib/i18n-server';
 import type { T } from '@/lib/i18n';
+import Kit from '@/components/Kit';
 
 export function generateMetadata(): Metadata {
   const t = tr();
@@ -42,6 +43,7 @@ export default function AboutPage() {
       <SiteNav />
       <section className="mu-page-hero" data-stickers="6">
         <div className="mu-container">
+          <Kit id="st-cat-box" className="kit-hero" />
           <span className="mu-section__eyebrow"><Icon id="c-paw" />{t({ uk: 'Про Murly', ru: 'О Murly', en: 'About Murly' })}</span>
           <h1>{t({ uk: 'Не підручник.', ru: 'Не учебник.', en: 'Not a textbook.' })} <em>{t({ uk: 'Тренажер', ru: 'Тренажёр', en: 'A trainer' })}</em> {t({ uk: 'для НМТ.', ru: 'для НМТ.', en: 'for the NMT.' })}</h1>
           <p>{t({ uk: 'Murly допомагає підготуватися до НМТ з англійської короткими квізами у форматі іспиту. Кожна помилка розбирається, кожен день рахується.', ru: 'Murly помогает подготовиться к НМТ по английскому с помощью коротких квизов в формате экзамена. Каждая ошибка разбирается, каждый день засчитывается.', en: 'Murly helps you prepare for the English NMT (Ukrainian school exam) with short exam-style quizzes. Every mistake is explained, every day counts.' })}</p>

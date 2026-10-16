@@ -5,6 +5,7 @@ import StudentHome from '@/components/student/StudentHome';
 import JoinCode from '@/components/JoinCode';
 import { tr } from '@/lib/i18n-server';
 import { getEnrollments } from '@/lib/student-data';
+import Kit from '@/components/Kit';
 
 export const dynamic = 'force-dynamic';
 
@@ -19,7 +20,7 @@ export default async function StudentPage() {
     return (
       <div className="t-page">
         <div className="t-card t-welcome">
-          <Icon id="c-cat-sit" className="mu-ic t-welcome__ic" />
+          <Kit id="il-cat-laptop" className="t-welcome__kit" />
           <div>
             <h2>{t({ uk: 'Привіт', ru: 'Привет', en: 'Hi' })}{first ? `, ${first}` : ''}!</h2>
             <p className="t-muted">{t({ uk: 'Тут з’являться твій розклад, домашка і слова від учителя. Учитель дав код або посилання? Введи його:', ru: 'Здесь появятся твоё расписание, домашка и слова от учителя. Учитель дал код или ссылку? Введи его:', en: 'Your schedule, homework and words from your teacher will appear here. Got a code or link from your teacher? Enter it:' })}</p>

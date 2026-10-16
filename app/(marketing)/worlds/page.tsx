@@ -6,6 +6,7 @@ import SiteFooter from '@/components/SiteFooter';
 import Stickers from '@/components/Stickers';
 import { tr } from '@/lib/i18n-server';
 import type { T } from '@/lib/i18n';
+import Kit from '@/components/Kit';
 
 export function generateMetadata(): Metadata {
   const t = tr();
@@ -35,6 +36,7 @@ export default function WorldsPage() {
       <SiteNav />
       <section className="mu-page-hero" data-stickers="4">
         <div className="mu-container">
+          <Kit id="st-boy-cap" className="kit-hero" />
           <span className="mu-section__eyebrow"><Icon id="d-kid" />{t({ uk: 'Світи', ru: 'Миры', en: 'Worlds' })}</span>
           <h1>{t({ uk: 'Грай і', ru: 'Играй и', en: 'Play and' })} <em>{t({ uk: 'говори.', ru: 'говори.', en: 'speak.' })}</em></h1>
           <p>{t({ uk: 'Ігрові світи, де англійська звучить на кожному кроці. Натискай, будуй, виконуй завдання, і слова запам’ятовуються самі.', ru: 'Игровые миры, где английский звучит на каждом шагу. Нажимай, строй, выполняй задания, и слова запоминаются сами.', en: 'Game worlds where English is everywhere. Tap, build, complete tasks, and the words stick by themselves.' })}</p>

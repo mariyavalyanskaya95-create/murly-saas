@@ -2,10 +2,12 @@
 import { useMemo, useState } from 'react';
 import Icon from './Icon';
 import { useT } from './LangProvider';
-import { CORE_VERBS as VERBS } from '@/lib/irregular-verbs';
+import { CORE_VERBS } from '@/lib/irregular-verbs';
+import { localizeVerbs } from '@/lib/content/verbs';
 
 export default function VerbsTable() {
   const t = useT();
+  const VERBS = localizeVerbs(CORE_VERBS, t.lang);
   const [q, setQ] = useState('');
   const [topOnly, setTopOnly] = useState(false);
 

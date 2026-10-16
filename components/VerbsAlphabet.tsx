@@ -2,7 +2,8 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import Icon from './Icon';
 import { useT } from './LangProvider';
-import { VERBS_AZ, Verb } from '@/lib/irregular-verbs';
+import { VERBS_AZ as VERBS_AZ_UK, Verb } from '@/lib/irregular-verbs';
+import { localizeVerbs } from '@/lib/content/verbs';
 
 const ABC = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 
@@ -44,6 +45,7 @@ function Word({ text, say, ok, strong }: { text: string; say: (t: string) => voi
 
 export default function VerbsAlphabet() {
   const t = useT();
+  const VERBS_AZ = localizeVerbs(VERBS_AZ_UK, t.lang);
   const { ok, say } = useSpeech();
   const [q, setQ] = useState('');
   const [topOnly, setTopOnly] = useState(false);

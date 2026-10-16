@@ -33,7 +33,7 @@ const MENU: { title: T; items: { href: string; icon: string; label: T; text: T; 
     title: { uk: 'З учителем', ru: 'С учителем', en: 'With a teacher' },
     items: [
       { href: '/for-teachers', icon: 'd-team', label: { uk: 'Кабінет вчителя', ru: 'Кабинет учителя', en: 'Teacher dashboard' }, text: { uk: 'Учні, розклад, уроки, домашка', ru: 'Ученики, расписание, уроки, домашка', en: 'Students, schedule, lessons, homework' } },
-      { href: '/for-teachers#lessons', icon: 'e-board', label: { uk: 'Готові уроки', ru: 'Готовые уроки', en: 'Ready-made lessons' }, text: { uk: '24 уроки по 60 хвилин', ru: '24 урока по 60 минут', en: '24 lessons, 60 minutes each' } },
+      { href: '/lessons', icon: 'e-board', label: { uk: 'Готові уроки', ru: 'Готовые уроки', en: 'Ready-made lessons' }, text: { uk: 'Версія учня і версія вчителя', ru: 'Версия ученика и версия учителя', en: 'Student’s and teacher’s versions' } },
       { href: '/#students', icon: 'd-kid', label: { uk: 'Кабінет учня', ru: 'Кабинет ученика', en: 'Student dashboard' }, text: { uk: 'Домашка, слова, монетки', ru: 'Домашка, слова, монетки', en: 'Homework, words, coins' } },
       { href: '/#code', icon: 'd-lock', label: { uk: 'Є код від учителя?', ru: 'Есть код от учителя?', en: 'Have a teacher code?' }, text: { uk: 'Приєднатися до свого вчителя', ru: 'Присоединиться к своему учителю', en: 'Join your teacher' } },
     ],
@@ -42,7 +42,8 @@ const MENU: { title: T; items: { href: string; icon: string; label: T; text: T; 
     title: { uk: 'Іспити', ru: 'Экзамены', en: 'Exams' },
     items: [
       { href: '/nmt', icon: 'e-trophy', label: { uk: 'НМТ з англійської', ru: 'НМТ по английскому', en: 'NMT English exam' }, text: { uk: 'Квізи у форматі іспиту', ru: 'Квизы в формате экзамена', en: 'Quizzes in the exam format' } },
-      { href: '/pricing', icon: 'e-pencil', label: { uk: 'Чек-листи підготовки', ru: 'Чек-листы подготовки', en: 'Exam checklists' }, text: { uk: 'Скоро', ru: 'Скоро', en: 'Coming soon' }, soon: true },
+      { href: '/nmt/mock', icon: 'e-board', label: { uk: 'Пробний НМТ', ru: 'Пробный НМТ', en: 'Mock NMT test' }, text: { uk: 'З поясненнями «Чому так?»', ru: 'С объяснениями «Почему так?»', en: 'With «Why?» explanations' } },
+      { href: '/pricing#mini', icon: 'e-pencil', label: { uk: 'Чек-листи підготовки', ru: 'Чек-листы подготовки', en: 'Exam checklists' }, text: { uk: 'Дешевше, ніж кава', ru: 'Дешевле, чем кофе', en: 'Cheaper than a coffee' } },
     ],
   },
   {
