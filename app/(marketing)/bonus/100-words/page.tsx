@@ -7,7 +7,7 @@ import SiteFooter from '@/components/SiteFooter';
 import GameHub from '@/components/games/GameHub';
 import Kit from '@/components/Kit';
 import type { GameSet } from '@/components/games/engine';
-import { NMT_WORDS } from '@/lib/content/nmt-bonus';
+import { NMT_WORDS, NMT_TOPICS_T, NMT_WORDS_RU } from '@/lib/content/nmt-bonus';
 import { tr } from '@/lib/i18n-server';
 
 // Бонус до PDF «100 важливих слів для НМТ»: ігри по темах (сюди веде QR-код)
@@ -22,11 +22,14 @@ export function generateMetadata(): Metadata {
 
 export default function Words100Page() {
   const t = tr();
+  // для RU показуємо російський переклад, для UK і EN український (продукт українською)
+  const tr2 = (x: { w: string; uk: string }) => (t.lang === 'ru' ? NMT_WORDS_RU[x.w] ?? x.uk : x.uk);
+  const topic = (n: string) => (t.lang === 'uk' ? n : NMT_TOPICS_T[n]?.[t.lang] ?? n);
   const all = NMT_WORDS.flatMap((g) => g.items);
   const SETS: GameSet[] = [
-    { id: 'all', title: t({ uk: 'Усі 100 слів', ru: 'Все 100 слов', en: 'All 100 words' }), prompt: t({ uk: 'Що означає це слово?', ru: 'Что значит это слово?', en: 'What does this word mean?' }), items: all.map((x) => ({ q: x.w, a: x.uk, hint: x.ex })) },
-    { id: 'back', title: t({ uk: 'Навпаки', ru: 'Наоборот', en: 'Reverse' }), prompt: t({ uk: 'Як це англійською?', ru: 'Как это по-английски?', en: 'How do you say it in English?' }), items: all.map((x) => ({ q: x.uk, a: x.w })) },
-    ...NMT_WORDS.map((g, i) => ({ id: `t${i + 1}`, title: g.topic, prompt: t({ uk: 'Що означає це слово?', ru: 'Что значит это слово?', en: 'What does this word mean?' }), items: g.items.map((x) => ({ q: x.w, a: x.uk, hint: x.ex })) })),
+    { id: 'all', title: t({ uk: 'Усі 100 слів', ru: 'Все 100 слов', en: 'All 100 words' }), prompt: t({ uk: 'Що означає це слово?', ru: 'Что значит это слово?', en: 'What does this word mean?' }), items: all.map((x) => ({ q: x.w, a: tr2(x), hint: x.ex })) },
+    { id: 'back', title: t({ uk: 'Навпаки', ru: 'Наоборот', en: 'Reverse' }), prompt: t({ uk: 'Як це англійською?', ru: 'Как это по-английски?', en: 'How do you say it in English?' }), items: all.map((x) => ({ q: tr2(x), a: x.w })) },
+    ...NMT_WORDS.map((g, i) => ({ id: `t${i + 1}`, title: topic(g.topic), prompt: t({ uk: 'Що означає це слово?', ru: 'Что значит это слово?', en: 'What does this word mean?' }), items: g.items.map((x) => ({ q: x.w, a: tr2(x), hint: x.ex })) })),
   ];
   return (
     <>
