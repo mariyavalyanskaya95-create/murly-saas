@@ -11,7 +11,7 @@ export default function Poster({ p, label }: { p: PosterSpec; label?: string }) 
   const style = { '--pb': p.bg, '--pa': p.accent } as React.CSSProperties;
   const [i0, i1, i2, i3] = p.icons;
   return (
-    <figure className={`pst pst--${p.theme}`} style={style} aria-label={label ?? `${p.brand}: ${p.title}`}>
+    <figure className={`pst pst--${p.theme} ${p.body.length + p.title.length * 2 + (p.theme === 'fun' ? 40 : 0) > 190 ? 'pst--long' : ''}`} style={style} aria-label={label ?? `${p.brand}: ${p.title}`}>
       {p.theme === 'block' && (
         <>
           <div className="pst__band"><span className="pst__logo"><Pic id={i0} className="pst__ic" /></span><b>{p.brand}</b></div>
