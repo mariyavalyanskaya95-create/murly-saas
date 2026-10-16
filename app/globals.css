@@ -2072,3 +2072,8 @@ button.mk-gap { border: 0; border-bottom: 2px solid var(--mu-ink); cursor: point
 .pst--long.pst--block .pst__split h3 { font-size: 6cqw; }
 .pst--long .pst__burst { width: 30cqw; height: 30cqw; }
 .pst--long .pst__burst .pst__hero { width: 19cqw; height: 19cqw; }
+.mk-free { display: inline-block; font: 700 12px 'General Sans', system-ui, sans-serif; padding: 4px 10px; border-radius: 99px; border: 1.5px solid var(--mu-ink); background: #fff; }
+.mk-free.is-free { background: var(--mu-lime); }
+/* Виправлення: на телефоні й планшеті перемикач мови ховається в меню, інакше кнопка «Меню» виїжджає за екран */
+@media (max-width: 1080px) { .mu-lang.mu-nav__desk { display: none; } }
+@media (max-width: 380px) { .mu-nav__cta .mu-btn { padding: 9px 10px; font-size: 12px; } .mu-logo { font-size: 20px; } }
