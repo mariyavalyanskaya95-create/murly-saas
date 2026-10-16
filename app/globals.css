@@ -1880,9 +1880,20 @@ a.t-stat:hover { transform: translateY(-2px); }
 .mu-role { position: relative; }
 .mu-role__kit { position: absolute; right: 8px; top: -40px; width: 112px; transform: rotate(5deg); pointer-events: none; }
 .t-welcome__kit { width: 140px; }
-.nf { padding: 60px 0 80px; text-align: center; }
-.nf .kit { width: 220px; margin: 0 auto 10px; }
-.nf h1 { font-size: clamp(34px, 5vw, 60px); margin: 0 0 12px; }
+.nf { padding: 40px 0 70px; }
+.nf__head { display: flex; gap: 28px; align-items: center; margin-bottom: 22px; }
+.nf__kit { width: 190px; flex: none; }
+.nf__code { font-family: 'Boldonse', 'Arial Black', sans-serif; font-size: 18px; color: var(--mu-tomato); margin: 0 0 6px; letter-spacing: .1em; }
+.nf h1 { font-size: clamp(30px, 4.6vw, 54px); margin: 0 0 12px; line-height: 1.02; }
+.nf .mu-section__lead { margin: 0; text-align: left; }
+.nf__tip { margin: 16px 0 22px; padding: 12px 16px; border: 2px dashed var(--mu-ink); border-radius: 16px; background: #fff; }
+.nf__links { display: flex; flex-wrap: wrap; gap: 10px; }
+.runner { position: relative; border: 2px solid var(--mu-ink); border-radius: 22px; overflow: hidden; box-shadow: var(--mu-shadow-stamp-lg); background: #F4EFE3; touch-action: manipulation; user-select: none; }
+.runner canvas { display: block; width: 100%; height: auto; aspect-ratio: 720 / 220; cursor: pointer; }
+.runner__msg { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; background: rgba(244,239,227,.72); border: 0; cursor: pointer; font: inherit; color: var(--mu-ink); text-align: center; padding: 12px; }
+.runner__msg b { font-family: 'Boldonse', 'Arial Black', sans-serif; font-size: clamp(18px, 3vw, 28px); }
+.runner__go { margin-top: 6px; background: var(--mu-ink); color: var(--mu-lime); padding: 6px 14px; border-radius: 99px; font-weight: 700; font-size: 14px; }
+@media (max-width: 700px) { .nf__head { flex-direction: column; text-align: center; } .nf .mu-section__lead { text-align: center; } .nf__kit { width: 140px; } }
 @media (max-width: 1180px) { .kit-hero { width: 120px; top: -52px; } .kit-home { width: 130px; } }
 @media (max-width: 900px) {
   .kit-hero { position: static; width: 120px; margin: 0 auto 6px; transform: rotate(4deg); }
