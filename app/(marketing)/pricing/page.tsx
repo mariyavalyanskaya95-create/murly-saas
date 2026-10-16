@@ -7,6 +7,7 @@ import PricingSection from '@/components/PricingSection';
 import Faq from '@/components/Faq';
 import { tr } from '@/lib/i18n-server';
 import type { T } from '@/lib/i18n';
+import Kit from '@/components/Kit';
 
 export function generateMetadata(): Metadata {
   const t = tr();
@@ -48,6 +49,7 @@ export default function PricingPage() {
       <SiteNav />
       <section className="mu-page-hero" data-stickers="6">
         <div className="mu-container">
+          <Kit id="st-cat-coffee" className="kit-hero" />
           <span className="mu-section__eyebrow"><Icon id="d-money" />{t({ uk: 'Тарифи', ru: 'Тарифы', en: 'Pricing' })}</span>
           <h1>{t({ uk: 'Ціна', ru: 'Цена', en: 'The price of' })} <em>{t({ uk: 'чашки кави,', ru: 'чашки кофе,', en: 'a coffee,' })}</em> {t({ uk: 'а не уроку з репетитором.', ru: 'а не урока с репетитором.', en: 'not a tutor lesson.' })}</h1>
           <p>{t({ uk: 'Почни безкоштовно. Платні тарифи від 99 ₴ на місяць, міні-продукти від 85 ₴ один раз.', ru: 'Начни бесплатно. Платные тарифы от 99 ₴ в месяц, мини-продукты от 85 ₴ один раз.', en: 'Start for free. Paid plans from 99 ₴ a month, mini products from 85 ₴ once.' })}</p>
