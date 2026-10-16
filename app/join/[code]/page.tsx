@@ -6,6 +6,7 @@ import Icon from '@/components/Icon';
 import SiteNav from '@/components/SiteNav';
 import { claimInvite, inviteInfo } from '@/lib/student-data';
 import { tr } from '@/lib/i18n-server';
+import Kit from '@/components/Kit';
 
 export function generateMetadata(): Metadata {
   const t = tr();
@@ -19,6 +20,7 @@ function Box({ title, text, children }: { title: string; text: string; children?
       <SiteNav />
       <section className="mu-page-hero">
         <div className="mu-container">
+          <Kit id="st-girl-bow" className="kit-hero" />
           <span className="mu-section__eyebrow"><Icon id="d-send" />{tr()({ uk: 'Запрошення', ru: 'Приглашение', en: 'Invitation' })}</span>
           <h1>{title}</h1>
           <p>{text}</p>
