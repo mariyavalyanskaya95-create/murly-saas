@@ -7,6 +7,7 @@ import SiteFooter from '@/components/SiteFooter';
 import Faq from '@/components/Faq';
 import { tr } from '@/lib/i18n-server';
 import type { T } from '@/lib/i18n';
+import Kit from '@/components/Kit';
 
 export function generateMetadata(): Metadata {
   const t = tr();
@@ -41,6 +42,7 @@ export default function ForParentsPage() {
       <SiteNav />
       <section className="mu-page-hero" data-stickers="6">
         <div className="mu-container">
+          <Kit id="st-cat-heart" className="kit-hero" />
           <span className="mu-section__eyebrow"><Icon id="d-heart" />{t({ uk: 'Для батьків', ru: 'Для родителей', en: 'For parents' })}</span>
           <h1>
             {t.lang === 'en' ? (
