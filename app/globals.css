@@ -1890,3 +1890,4 @@ a.t-stat:hover { transform: translateY(-2px); }
   .kit-home--r { position: static; width: 130px; margin: 0 auto 8px; }
   .mu-role__kit { width: 90px; top: -30px; }
 }
+.pr-mini__old { font-size: 14px; color: var(--mu-ink-muted); margin-right: 8px; font-family: inherit; }
