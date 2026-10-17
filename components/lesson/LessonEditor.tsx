@@ -97,6 +97,29 @@ function BlockEditor({ b, onChange }: { b: Block; onChange: (b: Block) => void }
           <p className="t-muted t-form__wide">{t({ uk: 'Завантажуй лише власні матеріали або ті, що маєш право показувати учням.', ru: 'Загружай только свои материалы или те, которые имеешь право показывать ученикам.', en: 'Only upload your own materials or ones you have the right to show to students.' })}</p>
         </div>
       );
+    case 'meme':
+      return (
+        <div className="t-form">
+          <label className="t-form__wide le-label">{t({ uk: 'Котик', ru: 'Котик', en: 'Cat' })}
+            <select value={b.kit} onChange={(e) => onChange({ ...b, kit: e.target.value })}>
+              {['st-cat-shock', 'st-cat-cool', 'st-cat-coffee', 'st-cat-please', 'st-cat-blep', 'st-cat-loaf', 'st-cat-heart', 'st-cat-box', 'st-cat-nightcap', 'st-girl-bow', 'st-boy-cap', 'st-boy-backpack'].map((k) => <option key={k} value={k}>{k.replace('st-', '')}</option>)}
+            </select>
+          </label>
+          <label className="t-form__wide le-label">{t({ uk: 'Верхній напис (англійською)', ru: 'Верхняя надпись (по-английски)', en: 'Top text' })}<input value={b.top} onChange={(e) => onChange({ ...b, top: e.target.value })} placeholder="When the teacher says “pop quiz”" /></label>
+          <label className="t-form__wide le-label">{t({ uk: 'Нижній напис', ru: 'Нижняя надпись', en: 'Bottom text' })}<input value={b.bottom ?? ''} onChange={(e) => onChange({ ...b, bottom: e.target.value })} /></label>
+          <label className="t-form__wide le-label">{t({ uk: 'Переклад (необов’язково)', ru: 'Перевод (необязательно)', en: 'Translation (optional)' })}<input value={b.uk ?? ''} onChange={(e) => onChange({ ...b, uk: e.target.value })} /></label>
+        </div>
+      );
+    case 'game':
+      return (
+        <div className="t-form">
+          <label className="t-form__wide le-label">{t({ uk: 'Назва гри', ru: 'Название игры', en: 'Game title' })}<input value={b.title} onChange={(e) => onChange({ ...b, title: e.target.value })} /></label>
+          <label className="t-form__wide le-label">{t({ uk: 'Завдання', ru: 'Задание', en: 'Prompt' })}<input value={b.prompt} onChange={(e) => onChange({ ...b, prompt: e.target.value })} placeholder="What is the past form?" /></label>
+          <label className="t-form__wide le-label">{t({ uk: 'Пари «питання = відповідь», кожна з нового рядка', ru: 'Пары «вопрос = ответ», каждая с новой строки', en: 'Pairs "question = answer", one per line' })}
+            <textarea rows={6} value={b.items.map((x) => `${x.q} = ${x.a}`).join('\n')} onChange={(e) => onChange({ ...b, items: e.target.value.split('\n').map((l) => { const i = l.indexOf('='); return i < 0 ? { q: l, a: '' } : { q: l.slice(0, i).trim(), a: l.slice(i + 1).trim() }; }) })} placeholder={'go = went\nsee = saw'} />
+          </label>
+        </div>
+      );
     case 'vocab':
       return <VocabEditor b={b} onChange={onChange} />;
     case 'speaking':
