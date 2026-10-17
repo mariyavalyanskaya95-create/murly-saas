@@ -19,6 +19,11 @@ export function makeHelpers(prefix: string) {
     ex: (...parts: [SectionType, string, string][]): Block => ({
       id: id(), type: 'exercise', sections: parts.map(([type, instr, text]) => parseSection(type, instr, text.trim())),
     }),
+    meme: (kit: string, top: string, bottom = '', uk = ''): Block => ({ id: id(), type: 'meme', kit, top, bottom, uk }),
+    game: (title: string, prompt: string, pairs: string): Block => ({
+      id: id(), type: 'game', title, prompt,
+      items: pairs.trim().split('\n').map((l) => { const i = l.indexOf('='); return { q: l.slice(0, i).trim(), a: l.slice(i + 1).trim() }; }).filter((x) => x.q && x.a),
+    }),
     talk: (q: string): Block => ({ id: id(), type: 'speaking', questions: q.trim().split('\n').map((x) => x.trim()) }),
   };
 }
