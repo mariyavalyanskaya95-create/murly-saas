@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Icon from './Icon';
 import { LangSwitch } from './LangProvider';
+import Kit from '@/components/Kit';
 
 // Вхід і реєстрація на весь екран: ліворуч яскрава панель Murly, праворуч форма
 export default function AuthShell({ title, lead, points, aside, children }: {
@@ -12,7 +13,7 @@ export default function AuthShell({ title, lead, points, aside, children }: {
   return (
     <div className="auth-split">
       <aside className="auth-split__brand">
-        <Link href="/" className="mu-logo auth-split__logo">MUR<span className="mu-logo__dot" />LY</Link>
+        <Link href="/" className="mu-logo auth-split__logo">MUR<Kit id="st-cat-blep" className="mu-logo__cat" />LY</Link>
         <h1>{title}</h1>
         <p className="auth-split__lead">{lead}</p>
         <ul className="auth-split__points">

@@ -7,6 +7,7 @@ import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 import Icon from './Icon';
 import { LangSwitch, useT } from './LangProvider';
 import type { T } from '@/lib/i18n';
+import Kit from '@/components/Kit';
 
 // Головні розділи: видно завжди
 const TOP: { href: string; label: T }[] = [
@@ -74,7 +75,7 @@ export default function SiteNav() {
     <nav className={`mu-nav ${open ? 'is-open' : ''}`} aria-label={t({ uk: 'Головне меню', ru: 'Главное меню', en: 'Main menu' })}>
       <div className="mu-nav__inner">
         <Link href="/" className="mu-logo" aria-label={t({ uk: 'Murly, на головну', ru: 'Murly, на главную', en: 'Murly, home' })}>
-          MUR<span className="mu-logo__dot" />LY
+          MUR<Kit id="st-cat-blep" className="mu-logo__cat" />LY
         </Link>
         <div className="mu-nav__links">
           {TOP.map((l) => <Link key={l.href} href={l.href} className={path === l.href ? 'is-on' : ''}>{t(l.label)}</Link>)}

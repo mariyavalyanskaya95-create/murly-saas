@@ -4,6 +4,7 @@ import { auth } from '@clerk/nextjs/server';
 import { UserButton } from '@clerk/nextjs';
 import { redirect } from 'next/navigation';
 import { tr } from '@/lib/i18n-server';
+import Kit from '@/components/Kit';
 
 export function generateMetadata(): Metadata {
   const t = tr();
@@ -17,7 +18,7 @@ export default async function StudentLayout({ children }: { children: React.Reac
   return (
     <div className="t-app">
       <header className="t-top">
-        <Link href="/" className="mu-logo">MUR<span className="mu-logo__dot" />LY</Link>
+        <Link href="/" className="mu-logo">MUR<Kit id="st-cat-blep" className="mu-logo__cat" />LY</Link>
         <span className="t-top__badge t-top__badge--student">{t({ uk: 'Мій кабінет', ru: 'Мой кабинет', en: 'My account' })}</span>
         <div className="t-top__user"><UserButton /></div>
       </header>

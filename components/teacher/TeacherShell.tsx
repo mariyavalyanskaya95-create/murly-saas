@@ -6,6 +6,7 @@ import Icon from '../Icon';
 import { TeacherProvider, useTeacher } from '@/lib/teacher-store';
 import { useT } from '../LangProvider';
 import type { T } from '@/lib/i18n';
+import Kit from '@/components/Kit';
 
 const NAV: { href: string; icon: string; label: T; short?: T }[] = [
   { href: '/teacher', icon: 'e-cal', label: { uk: 'Сьогодні', ru: 'Сегодня', en: 'Today' } },
@@ -25,7 +26,7 @@ export default function TeacherShell({ userId, name, children }: { userId: strin
     <TeacherProvider userId={userId}>
       <div className="t-app">
         <header className="t-top">
-          <Link href="/" className="mu-logo">MUR<span className="mu-logo__dot" />LY</Link>
+          <Link href="/" className="mu-logo">MUR<Kit id="st-cat-blep" className="mu-logo__cat" />LY</Link>
           <span className="t-top__badge">{t({ uk: 'Кабінет вчителя', ru: 'Кабинет учителя', en: 'Teacher dashboard' })}</span>
           <div className="t-top__user">
             <span>{name}</span>
