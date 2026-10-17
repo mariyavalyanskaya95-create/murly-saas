@@ -3,6 +3,8 @@ import Icon from './Icon';
 import { LangSwitch } from './LangProvider';
 import { tr } from '@/lib/i18n-server';
 import Kit from '@/components/Kit';
+import { LEGAL } from '@/lib/legal-config';
+import { LEGAL_DOCS } from '@/lib/legal';
 
 export default function SiteFooter() {
   const t = tr();
@@ -51,6 +53,13 @@ export default function SiteFooter() {
             <LangSwitch className="mu-lang--footer" />
           </div>
         </div>
+        {LEGAL.ready && (
+          <div className="mu-footer__legal">
+            {Object.values(LEGAL_DOCS).map((d) => (
+              <Link key={d.id} href={d.href}>{t(d.title)}</Link>
+            ))}
+          </div>
+        )}
         <div className="mu-footer__bottom">
           <Icon id="c-cat-sleep" className="mu-ic mu-ic--sleep" />© {new Date().getFullYear()} Murly · {t({ uk: 'Зроблено в Україні', ru: 'Сделано в Украине', en: 'Made in Ukraine' })}
         </div>
