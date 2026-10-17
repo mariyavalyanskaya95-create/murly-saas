@@ -10,12 +10,14 @@ import { BATCH_3 } from '@/lib/lessons/batch-3';
 import { BATCH_4 } from '@/lib/lessons/batch-4';
 import { BATCH_5 } from '@/lib/lessons/batch-5';
 import { BATCH_6 } from '@/lib/lessons/batch-6';
+import { BATCH_7 } from '@/lib/lessons/batch-7';
+import { BATCH_8 } from '@/lib/lessons/batch-8';
 import { localizeLesson } from '@/lib/content/lessons';
 import { tr } from '@/lib/i18n-server';
 import Kit from '@/components/Kit';
 
 // Готові уроки на 60 хвилин (без розділу «Практика»)
-const LESSONS = [...BATCH_1, ...BATCH_2, ...BATCH_3, ...BATCH_4, ...BATCH_5, ...BATCH_6];
+const LESSONS = [...BATCH_1, ...BATCH_2, ...BATCH_3, ...BATCH_4, ...BATCH_5, ...BATCH_6, ...BATCH_7, ...BATCH_8];
 
 export function generateMetadata(): Metadata {
   const t = tr();

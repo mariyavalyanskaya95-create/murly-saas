@@ -39,7 +39,7 @@ export const clerkLook = {
     cardBox: { width: '100%', maxWidth: '100%', boxShadow: 'none', border: '0', background: 'transparent' },
     card: { width: '100%', boxShadow: 'none', background: 'transparent', padding: '8px 0', border: '0' },
     header: { textAlign: 'left', alignItems: 'flex-start' },
-    headerTitle: { fontSize: '30px', lineHeight: '1.15', fontFamily: 'Boldonse, Arial Black, sans-serif', fontWeight: '400' },
+    headerTitle: { fontSize: '30px', lineHeight: '1.15', fontFamily: 'Unbounded, Boldonse, Arial Black, sans-serif', fontWeight: '400' },
     headerSubtitle: { fontSize: '15px' },
     formButtonPrimary: { background: '#1A1A1A', color: '#D0F834', borderRadius: '999px', height: '48px', fontSize: '15px', textTransform: 'none', boxShadow: '0 3px 0 #1A1A1A' },
     formFieldInput: { height: '46px', borderRadius: '14px', border: '2px solid #1A1A1A', background: '#fff' },

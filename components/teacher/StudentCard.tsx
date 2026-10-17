@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useMemo, useState } from 'react';
 import CoinsBox from './CoinsBox';
+import MockResults from '../mock/MockResults';
+import { MOCKS } from '@/lib/mock';
 import Icon from '../Icon';
 import GameHub from '../games/GameHub';
 import LessonRow from './LessonRow';
@@ -62,6 +64,7 @@ export default function StudentCard({ id }: { id: string }) {
 
       <InviteBox id={s.id} />
       <CoinsBox studentId={s.id} joined={s.joined} />
+      {s.joined && <MockResults student={s.id} all={MOCKS.map((m) => m.id)} />}
 
       <div className="t-tabs" role="tablist">
         {TABS.map((x) => (
