@@ -6,6 +6,8 @@ import JoinCode from '@/components/JoinCode';
 import { tr } from '@/lib/i18n-server';
 import { getEnrollments } from '@/lib/student-data';
 import Kit from '@/components/Kit';
+import MockResults from '@/components/mock/MockResults';
+import { MOCKS } from '@/lib/mock';
 
 export const dynamic = 'force-dynamic';
 
@@ -30,13 +32,20 @@ export default async function StudentPage() {
               <Link href="/grammar" className="mu-btn mu-btn--lime">{t({ uk: 'Граматика', ru: 'Грамматика', en: 'Grammar' })}</Link>
               <Link href="/irregular-verbs/games" className="mu-btn">{t({ uk: 'Ігри з дієсловами', ru: 'Игры с глаголами', en: 'Verb games' })}</Link>
               <Link href="/practice" className="mu-btn">{t({ uk: 'Слухати і читати', ru: 'Слушать и читать', en: 'Listening and reading' })}</Link>
+              <Link href="/nmt/mock" className="mu-btn">{t({ uk: 'Пробний НМТ', ru: 'Пробный НМТ', en: 'Mock NMT' })}</Link>
               <Link href="/play/town" className="mu-btn">Murly Town</Link>
             </div>
           </div>
         </div>
+        <MockResults all={MOCKS.map((m) => m.id)} />
       </div>
     );
   }
 
-  return <StudentHome enrollments={enrollments} name={first} />;
+  return (
+    <>
+      <StudentHome enrollments={enrollments} name={first} />
+      <div className="t-page" style={{ paddingTop: 0 }}><MockResults all={MOCKS.map((m) => m.id)} /></div>
+    </>
+  );
 }
