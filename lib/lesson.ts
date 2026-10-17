@@ -13,7 +13,9 @@ export type Block =
   | { id: string; type: 'exercise'; sections: Section[]; source?: string }
   | { id: string; type: 'speaking'; questions: string[] }
   | { id: string; type: 'audio'; title?: string; script: string; audioUrl?: string } // аудіювання: репліки «A: текст»
-  | { id: string; type: 'note'; text: string }; // нотатка лише для вчителя
+  | { id: string; type: 'note'; text: string } // нотатка лише для вчителя
+  | { id: string; type: 'meme'; kit: string; top: string; bottom?: string; uk?: string } // мем-стікер з котиком
+  | { id: string; type: 'game'; title: string; prompt: string; items: { q: string; a: string }[] }; // гра всередині уроку (квіз, пари, анаграми, картки)
 
 export type BlockType = Block['type'];
 export type Age = 'kids' | 'teens' | 'adults';
@@ -54,6 +56,8 @@ export const BLOCK_TYPES: { id: BlockType; label: T; icon: string }[] = [
   { id: 'audio', label: { uk: 'Аудіювання', ru: 'Аудирование', en: 'Listening' }, icon: 'e-head' },
   { id: 'video', label: { uk: 'Відео YouTube', ru: 'Видео YouTube', en: 'YouTube video' }, icon: 'e-mic' },
   { id: 'pdf', label: { uk: 'PDF-файл', ru: 'PDF-файл', en: 'PDF file' }, icon: 'e-book' },
+  { id: 'game', label: { uk: 'Гра', ru: 'Игра', en: 'Game' }, icon: 'e-trophy' },
+  { id: 'meme', label: { uk: 'Мем з котиком', ru: 'Мем с котиком', en: 'Cat meme' }, icon: 'c-cat' },
   { id: 'note', label: { uk: 'Нотатка для вчителя', ru: 'Заметка для учителя', en: 'Teacher note' }, icon: 'd-lock' },
 ];
 
@@ -68,6 +72,8 @@ export function emptyBlock(type: BlockType): Block {
     case 'exercise': return { id, type, sections: [] };
     case 'speaking': return { id, type, questions: [] };
     case 'audio': return { id, type, script: '' };
+    case 'meme': return { id, type, kit: 'st-cat-shock', top: '', bottom: '' };
+    case 'game': return { id, type, title: 'Quick game', prompt: '', items: [] };
   }
 }
 
@@ -86,7 +92,7 @@ export function lessonSections(blocks: Block[]): Section[] {
 // (відео, аудіо, вправа, слова, PDF, картинка, говоріння); текст після нього йде на новий слайд.
 // Нотатки вчителя прикріплюються до слайда, де вони стоять.
 export type Slide = { title?: string; blocks: Block[]; notes: string[] };
-const BIG: BlockType[] = ['video', 'audio', 'exercise', 'vocab', 'pdf', 'image', 'speaking'];
+const BIG: BlockType[] = ['video', 'audio', 'exercise', 'vocab', 'pdf', 'image', 'speaking', 'game'];
 export function toSlides(blocks: Block[]): Slide[] {
   const out: Slide[] = [];
   let cur: Slide | null = null;
