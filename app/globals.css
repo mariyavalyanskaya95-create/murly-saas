@@ -2077,3 +2077,22 @@ button.mk-gap { border: 0; border-bottom: 2px solid var(--mu-ink); cursor: point
 /* Виправлення: на телефоні й планшеті перемикач мови ховається в меню, інакше кнопка «Меню» виїжджає за екран */
 @media (max-width: 1080px) { .mu-lang.mu-nav__desk { display: none; } }
 @media (max-width: 380px) { .mu-nav__cta .mu-btn { padding: 9px 10px; font-size: 12px; } .mu-logo { font-size: 20px; } }
+
+/* Уроки: мем з котиком і гра всередині уроку */
+.ls-meme { display: flex; align-items: center; gap: 18px; margin: 18px auto; max-width: 560px; padding: 14px 18px; background: #fff; border: 2px solid var(--mu-ink); border-radius: 20px; box-shadow: var(--mu-shadow-stamp); transform: rotate(-1deg); }
+.ls-meme__kit { width: 120px; flex: none; }
+.ls-meme figcaption { display: flex; flex-direction: column; gap: 6px; }
+.ls-meme b { font-family: 'Boldonse', 'Arial Black', sans-serif; font-size: 20px; line-height: 1.15; text-transform: uppercase; }
+.ls-meme b + b { color: var(--mu-tomato); }
+.ls-meme small { color: var(--mu-ink-soft); font-size: 14px; }
+.ls-game { margin: 18px 0; padding: 16px; border: 2px dashed var(--mu-ink); border-radius: 20px; background: var(--mu-paper); }
+.ls-game__t { display: flex; align-items: center; gap: 8px; margin: 0 0 10px; font-size: 20px; }
+.ls-game__t .mu-ic { width: 24px; height: 24px; }
+.ls-game__print { display: none; }
+@media print {
+  .ls-game__live { display: none !important; }
+  .ls-game__print { display: block; columns: 2; font-size: 12pt; }
+  .ls-game__print span { color: #555; }
+  .ls-meme { box-shadow: none; transform: none; break-inside: avoid; }
+}
+@media (max-width: 600px) { .ls-meme { flex-direction: column; text-align: center; } .ls-meme b { font-size: 17px; } }

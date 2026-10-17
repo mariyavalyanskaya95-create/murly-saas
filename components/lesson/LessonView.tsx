@@ -4,6 +4,7 @@ import Icon from '../Icon';
 import ExerciseView from '../exercise/ExerciseView';
 import GameHub from '../games/GameHub';
 import AudioPlayer from './AudioPlayer';
+import Kit from '../Kit';
 import { answerKey, grade, type Answers } from '@/lib/exercise';
 import { useT } from '@/components/LangProvider';
 import { lessonSections, toSlides, youtubeEmbed, type Block, type Plan } from '@/lib/lesson';
@@ -103,6 +104,19 @@ export default function LessonView({ plan, interactive = true, initialAnswers, o
               </figure>
             ) : null;
           }
+          case 'meme': return (
+            <figure key={b.id} className="ls-meme">
+              <Kit id={b.kit} className="ls-meme__kit" />
+              <figcaption><b>{b.top}</b>{b.bottom && <b>{b.bottom}</b>}{b.uk && <small>{b.uk}</small>}</figcaption>
+            </figure>
+          );
+          case 'game': return b.items.length ? (
+            <section key={b.id} className="ls-game">
+              <h3 className="ls-game__t"><Icon id="e-trophy" />{b.title}</h3>
+              <div className="ls-game__live"><GameHub sets={[{ id: b.id, title: b.title, prompt: b.prompt, items: b.items }]} /></div>
+              <ol className="ls-game__print">{b.items.map((x, i) => <li key={i}>{x.q} <span>→ {teacher ? x.a : '__________'}</span></li>)}</ol>
+            </section>
+          ) : null;
           case 'audio': return b.script.trim() || b.audioUrl ? <AudioPlayer key={b.id} script={b.script} title={b.title} audioUrl={b.audioUrl} /> : null;
           case 'pdf': return b.url ? (
             <div key={b.id} className="ls-pdf">
