@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Icon from './Icon';
 import { LangSwitch } from './LangProvider';
 import { tr } from '@/lib/i18n-server';
+import Kit from '@/components/Kit';
 
 export default function SiteFooter() {
   const t = tr();
@@ -10,7 +11,7 @@ export default function SiteFooter() {
       <div className="mu-container">
         <div className="mu-footer__grid">
           <div>
-            <div className="mu-logo">MUR<span className="mu-logo__dot" />LY</div>
+            <div className="mu-logo">MUR<Kit id="st-cat-blep" className="mu-logo__cat" />LY</div>
             <p>{t({
               uk: 'Онлайн-платформа англійської для дітей, підлітків і дорослих. Кабінети для вчителя й учня. Створено в Україні.',
               ru: 'Онлайн-платформа английского для детей, подростков и взрослых. Кабинеты для учителя и ученика. Создано в Украине.',
