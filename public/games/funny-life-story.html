@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Funny Life Story</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap">
+<style>
+html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}
+/* Layout: a manga book on a pancake-butter desk: art panel left, story page right; tabs for Drawings, Studio, Shelf */
+:root{
+  --paper:#fffbe9; --desk:#fdf1b8; --ink:#25213a; --ink-soft:#5d5774;
+  --star:#ffe46b; --boba:#ff9fc6; --seed:#79c9ec; --tang:#b9a3f2; --orange:#ff9a3d;
+  --panel:#ffffff; --line:#25213a; --dot:rgba(37,33,58,.10);
+  --f-display:"Dela Gothic One","Arial Black",system-ui,sans-serif;
+  --f-body:"M PLUS Rounded 1c","Trebuchet MS",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#26223a; --desk:#17142a; --ink:#fff6d6; --ink-soft:#c9c2e4; --panel:#2f2a47; --line:#fff6d6; --dot:rgba(255,246,214,.08); color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#26223a; --desk:#17142a; --ink:#fff6d6; --ink-soft:#c9c2e4; --panel:#2f2a47; --line:#fff6d6; --dot:rgba(255,246,214,.08); color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--desk);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6;
+  background-image:radial-gradient(var(--dot) 1.4px,transparent 1.6px);background-size:14px 14px;}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 48px}
+header{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 20px;margin-bottom:18px}
+.logo{display:flex;align-items:center;gap:10px}
+.logo svg{width:52px;height:52px;flex:none}
+.logo h1{font-family:var(--f-display);font-weight:400;font-size:clamp(24px,4vw,34px);line-height:1;margin:0;letter-spacing:.5px}
+.logo h1 span{color:var(--orange)}
+.logo p{margin:2px 0 0;font-size:13px;color:var(--ink-soft)}
+nav{display:flex;flex-wrap:wrap;gap:6px}
+.exit{font:700 14px var(--f-body);color:var(--ink);text-decoration:none;border:2.5px solid var(--line);border-radius:999px;padding:7px 14px;display:inline-flex;align-items:center;min-height:36px}
+nav button{font:700 14px var(--f-body);color:var(--ink);background:var(--panel);border:2.5px solid var(--line);border-radius:999px;padding:7px 14px;cursor:pointer;box-shadow:3px 3px 0 var(--line)}
+nav button[aria-selected="true"]{background:var(--star);color:#25213a}
+nav button:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--line)}
+button:focus-visible,select:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--orange);outline-offset:2px}
+
+/* BOOK */
+.book{display:grid;grid-template-columns:1.05fr 1fr;background:var(--paper);border:3px solid var(--line);border-radius:6px 18px 18px 6px;box-shadow:8px 8px 0 var(--line);overflow:hidden;min-height:480px}
+.art{position:relative;border-right:3px solid var(--line);background:var(--sky,#dff3ff);display:flex;align-items:center;justify-content:center;min-width:0;overflow:hidden}
+.art::after{content:"";position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(rgba(37,33,58,.13) 1.3px,transparent 1.5px);background-size:9px 9px;mix-blend-mode:multiply}
+.art svg.scene{width:100%;height:auto;display:block;position:relative;z-index:1}
+.art img.pageimg{position:relative;z-index:1;max-width:92%;max-height:440px;object-fit:contain;background:#fff;border:3px solid #25213a;transform:rotate(-1.2deg);box-shadow:5px 5px 0 #25213a}
+.sfx{position:absolute;z-index:2;top:14px;right:14px;font-family:var(--f-display);font-size:clamp(26px,4.4vw,44px);color:var(--orange);-webkit-text-stroke:2px #25213a;paint-order:stroke fill;transform:rotate(8deg);letter-spacing:1px;text-shadow:3px 3px 0 #25213a}
+.addpage{position:absolute;z-index:3;left:12px;bottom:12px;font:700 13px var(--f-body);background:#fff;color:#25213a;border:2px solid #25213a;border-radius:999px;padding:5px 12px;cursor:pointer}
+.page{padding:28px 30px 22px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.chap{font:800 12px var(--f-body);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+.page h2{font-family:var(--f-display);font-weight:400;font-size:clamp(24px,3.4vw,34px);line-height:1.15;margin:0;text-wrap:balance}
+.page .txt{font-size:17px;max-width:62ch}
+.page .txt p{margin:0 0 .7em}
+.bubble{position:relative;align-self:flex-start;display:flex;gap:10px;align-items:center;background:var(--panel);border:2.5px solid var(--line);border-radius:22px;padding:10px 16px 10px 10px;font-weight:800;max-width:100%}
+.bubble svg{width:42px;height:42px;flex:none}
+.bubble::before{content:"";position:absolute;left:26px;top:-12px;width:18px;height:18px;background:var(--panel);border-left:2.5px solid var(--line);border-top:2.5px solid var(--line);transform:rotate(45deg) skew(8deg,8deg)}
+.pnum{margin-top:auto;font-size:13px;color:var(--ink-soft);display:flex;justify-content:space-between}
+.cover .page{justify-content:center}
+.motto{font-family:var(--f-display);font-size:clamp(18px,2.4vw,22px);line-height:1.3;background:var(--star);color:#25213a;border:2.5px solid #25213a;padding:12px 16px;border-radius:10px;transform:rotate(-1deg)}
+.controls{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px;margin-top:22px}
+.btn{font:800 15px var(--f-body);color:#25213a;background:var(--star);border:2.5px solid var(--line);border-radius:12px;padding:10px 18px;cursor:pointer;box-shadow:3px 3px 0 var(--line)}
+.btn.alt{background:var(--panel);color:var(--ink)}
+.btn:disabled{opacity:.4;cursor:default}
+.btn:active:not(:disabled){transform:translate(2px,2px);box-shadow:1px 1px 0 var(--line)}
+select,input,textarea{font:16px var(--f-body);color:var(--ink);background:var(--panel);border:2.5px solid var(--line);border-radius:10px;padding:9px 12px;max-width:100%}
+.dots{display:flex;flex-wrap:wrap;gap:4px;justify-content:center;margin-top:12px}
+.dots i{width:9px;height:9px;border-radius:50%;background:var(--ink-soft);opacity:.3}
+.dots i.on{opacity:1;background:var(--orange)}
+.dots i.ch{width:14px;border-radius:4px}
+
+/* SECTIONS */
+.panelbox{background:var(--paper);border:3px solid var(--line);border-radius:16px;box-shadow:6px 6px 0 var(--line);padding:24px}
+.sec-h{font-family:var(--f-display);font-weight:400;font-size:clamp(22px,3vw,30px);margin:0 0 6px}
+.lead{color:var(--ink-soft);margin:0 0 20px;max-width:65ch}
+.cast{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.card{background:var(--panel);border:2.5px solid var(--line);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.card .pic{aspect-ratio:1;max-width:100%;border-radius:10px;border:2px dashed var(--ink-soft);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.card .pic svg,.card .pic img{width:88%;height:88%;object-fit:contain}
+.card h3{font-family:var(--f-display);font-weight:400;font-size:19px;margin:0}
+.card .role{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.card p{margin:0;font-size:14px;color:var(--ink-soft)}
+.card .row{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto}
+.small{font:700 13px var(--f-body);color:var(--ink);background:transparent;border:2px solid var(--line);border-radius:999px;padding:5px 12px;cursor:pointer}
+.note{font-size:13px;color:var(--ink-soft);margin-top:16px}
+.studio{display:grid;grid-template-columns:1.3fr 1fr;gap:22px}
+.studio form{display:flex;flex-direction:column;gap:12px;min-width:0}
+label{font-weight:800;font-size:14px;display:flex;flex-direction:column;gap:4px}
+textarea{min-height:110px;resize:vertical}
+.chapters{display:flex;flex-direction:column;gap:12px}
+.chapters fieldset{border:2.5px dashed var(--ink-soft);border-radius:12px;padding:10px 12px;margin:0;display:flex;flex-direction:column;gap:8px}
+.chapters legend{font-weight:800;font-size:13px;padding:0 6px}
+.spark{background:var(--panel);border:2.5px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:10px;align-self:start}
+.spark h3{font-family:var(--f-display);font-weight:400;margin:0;font-size:19px}
+.spark ul{margin:0;padding-left:18px}
+.spark .idea{font-weight:700;background:var(--star);color:#25213a;border-radius:10px;padding:12px;border:2px solid #25213a}
+.status{font-weight:800;font-size:14px;min-height:1.4em}
+.shelf{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
+.spine{background:var(--panel);border:2.5px solid var(--line);border-left:12px solid var(--c,var(--boba));border-radius:8px 14px 14px 8px;padding:14px 16px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.spine h3{font-family:var(--f-display);font-weight:400;font-size:18px;margin:0;overflow-wrap:anywhere}
+.spine p{margin:0;font-size:14px;color:var(--ink-soft);overflow-wrap:anywhere}
+.empty{border:2.5px dashed var(--ink-soft);border-radius:14px;padding:28px;text-align:center;color:var(--ink-soft)}
+.tag{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;background:var(--tang);color:#25213a;border-radius:999px;padding:2px 8px;align-self:flex-start}
+
+@media (max-width:1024px){
+  .book{min-height:0}
+  .page .txt{font-size:18px}
+}
+@media (max-width:900px){
+  header{flex-direction:column;align-items:flex-start}
+  nav{width:100%}
+  nav button{flex:1 1 auto;min-height:44px}
+  .controls{position:sticky;bottom:0;z-index:5;background:var(--desk);padding-block:10px calc(10px + env(safe-area-inset-bottom,0px));margin-top:14px;flex-wrap:nowrap;border-top:2.5px solid var(--line)}
+  .controls .btn{min-height:48px;padding:10px 14px;flex:none}
+  #chapSel{flex:1 1 auto;min-width:0;min-height:48px;font-size:15px}
+  .addpage{min-height:40px}
+  .small{min-height:40px;padding:6px 14px}
+  .sfx{font-size:clamp(22px,7vw,34px);top:10px;right:10px}
+  .art img.pageimg{max-height:56vh}
+}
+@media (max-width:900px){
+  .book{grid-template-columns:1fr;min-height:0}
+  .art{border-right:0;border-bottom:3px solid var(--line)}
+  .page{padding:20px 18px}
+  .cast{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .studio{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:no-preference){
+  .flip{animation:flip .35s ease-out}
+  @keyframes flip{from{opacity:.25;transform:translateX(14px) rotateY(-6deg)}to{opacity:1;transform:none}}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div class="logo">
+      <svg viewBox="0 0 120 120" aria-hidden="true" id="logoStar"></svg>
+      <div><h1>Funny Life <span>Story</span></h1><p>Read our book. Draw the heroes. Write your own.</p></div>
+    </div>
+    <nav role="tablist" aria-label="Sections">
+      <a href="/worlds" target="_top" class="exit">Exit</a>
+      <button role="tab" id="t-book" data-v="book" aria-selected="true">Read the book</button>
+      <button role="tab" id="t-drawings" data-v="drawings" aria-selected="false">Our drawings</button>
+      <button role="tab" id="t-studio" data-v="studio" aria-selected="false">Make your story</button>
+      <button role="tab" id="t-shelf" data-v="shelf" aria-selected="false">Story shelf</button>
+    </nav>
+  </header>
+
+  <section id="v-book">
+    <div class="book" id="book"><div class="page" style="grid-column:1/-1"><h2>The book didn't open here</h2><div class="txt"><p>This viewer can't run the book. Please turn on JavaScript or open this page in Safari or Chrome.</p></div></div></div>
+    <div class="controls">
+      <button class="btn alt" id="prev" aria-label="Previous page">◀ Back</button>
+      <select id="chapSel" aria-label="Jump to chapter"></select>
+      <button class="btn" id="next" aria-label="Next page">Next ▶</button>
+    </div>
+    <div class="dots" id="dots" aria-hidden="true"></div>
+  </section>
+
+  <section id="v-drawings" hidden>
+    <div class="panelbox">
+      <h2 class="sec-h">Our drawings</h2>
+      <p class="lead">Upload your student's drawing of each hero and it replaces the placeholder on every page of the book. You can also add a full drawing to any single page from the book itself, with the “Add drawing to this page” button.</p>
+      <div class="cast" id="cast"></div>
+      <p class="note" id="artNote"></p>
+    </div>
+  </section>
+
+  <section id="v-studio" hidden>
+    <div class="panelbox">
+      <h2 class="sec-h">Make your own funny life story</h2>
+      <p class="lead">Invent your heroes, give each one a favourite food and a secret, add a troublemaker, and write it chapter by chapter. Your story goes onto the Story shelf, where you can read it like a book.</p>
+      <div class="studio">
+        <form id="storyForm">
+          <label for="sTitle">Story title<input id="sTitle" required maxlength="80" placeholder="The Cloud Who Loved Waffles"></label>
+          <label for="sBy">Author name<input id="sBy" maxlength="40" placeholder="Your nickname"></label>
+          <label for="sHeroes">Who are the heroes?<textarea id="sHeroes" maxlength="600" placeholder="A blue cloud named Drizzle who loves waffles. Her best friend is a sock named Lefty…"></textarea></label>
+          <label for="sMotto">Your story's motto<input id="sMotto" maxlength="120" placeholder="Friends first, homework later!"></label>
+          <div class="chapters" id="chapters"></div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <button type="button" class="btn alt" id="addChap">+ Add a chapter</button>
+            <button type="submit" class="btn">Put it on the shelf</button>
+          </div>
+          <div class="status" id="saveStatus" role="status"></div>
+        </form>
+        <aside class="spark">
+          <h3>Idea machine</h3>
+          <p style="margin:0;font-size:14px">Stuck? Press the button for a random story start.</p>
+          <div class="idea" id="idea"></div>
+          <button type="button" class="btn alt" id="newIdea">Give me another idea</button>
+          <h3 style="margin-top:6px">How Prinz's book is built</h3>
+          <ul style="font-size:14px">
+            <li>One chapter for each hero and the thing they love</li>
+            <li>A troublemaker who is secretly lonely</li>
+            <li>A big mess where friends fall apart</li>
+            <li>A brave moment that brings them back</li>
+            <li>A happy meal where everyone gets a plate</li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section id="v-shelf" hidden>
+    <div class="panelbox">
+      <h2 class="sec-h">Story shelf</h2>
+      <p class="lead">Stories written in the studio. Press “Read” to open one as a book.</p>
+      <div class="shelf" id="shelf"></div>
+      <p class="note" id="shelfNote"></p>
+    </div>
+  </section>
+  <input type="file" id="fileIn" accept="image/*" hidden>
+</div>
+
+<script>
+(function(){
+const INK="#25213a";
+let uid=0;
+const COL={star:"#ffe46b",boba:"#ff9fc6",seed:"#79c9ec",tang:"#b9a3f2"};
+
+function face(cx,cy,m,s,noMouth){s=s||1;const e=7*s,ex=13*s;let eyes,mouth;
+  if(m==="sly"){eyes=`<path d="M${cx-ex-5*s} ${cy} h${10*s} M${cx+ex-5*s} ${cy} h${10*s}" stroke="${INK}" stroke-width="${4*s}" stroke-linecap="round"/>`}
+  else{eyes=`<circle cx="${cx-ex}" cy="${cy}" r="${e*.7}" fill="${INK}"/><circle cx="${cx+ex}" cy="${cy}" r="${e*.7}" fill="${INK}"/><circle cx="${cx-ex+1.6*s}" cy="${cy-1.6*s}" r="${1.6*s}" fill="#fff"/><circle cx="${cx+ex+1.6*s}" cy="${cy-1.6*s}" r="${1.6*s}" fill="#fff"/>`}
+  const my=cy+11*s;
+  if(m==="sad")mouth=`<path d="M${cx-7*s} ${my+4*s} Q${cx} ${my-3*s} ${cx+7*s} ${my+4*s}" fill="none" stroke="${INK}" stroke-width="${3*s}" stroke-linecap="round"/><path d="M${cx+ex+2*s} ${cy+5*s} q${3*s} ${6*s} 0 ${9*s} q${-3*s} ${-3*s} 0 ${-9*s}" fill="#7fd0ff" stroke="${INK}" stroke-width="${1.5*s}"/>`;
+  else if(m==="shock")mouth=`<ellipse cx="${cx}" cy="${my+2*s}" rx="${4.5*s}" ry="${6*s}" fill="${INK}"/>`;
+  else if(m==="sly")mouth=`<path d="M${cx-8*s} ${my} Q${cx+2*s} ${my+7*s} ${cx+9*s} ${my-3*s}" fill="none" stroke="${INK}" stroke-width="${3*s}" stroke-linecap="round"/>`;
+  else mouth=`<path d="M${cx-8*s} ${my} Q${cx} ${my+9*s} ${cx+8*s} ${my}" fill="${m==="laugh"?INK:"none"}" stroke="${INK}" stroke-width="${3*s}" stroke-linecap="round"/>`;
+  const blush=m==="sly"?"":`<ellipse cx="${cx-ex-7*s}" cy="${cy+8*s}" rx="${5*s}" ry="${3*s}" fill="#ff7aa8" opacity=".55"/><ellipse cx="${cx+ex+7*s}" cy="${cy+8*s}" rx="${5*s}" ry="${3*s}" fill="#ff7aa8" opacity=".55"/>`;
+  return eyes+blush+(noMouth?"":mouth);}
+
+function starPts(cx,cy,R,r){let p=[];for(let i=0;i<10;i++){const a=-Math.PI/2+i*Math.PI/5,rad=i%2?r:R;p.push((cx+rad*Math.cos(a)).toFixed(1)+","+(cy+rad*Math.sin(a)).toFixed(1))}return p.join(" ")}
+const DRAW={
+ star:m=>`<polygon points="${starPts(60,64,52,27)}" fill="${COL.star}" stroke="${INK}" stroke-width="5" stroke-linejoin="round"/>`+(m==="dim"?`<polygon points="${starPts(60,64,52,27)}" fill="#fff" opacity=".45"/>`:"")+face(60,62,m==="dim"?"sad":m,1),
+ boba:m=>`<circle cx="30" cy="32" r="15" fill="${COL.boba}" stroke="${INK}" stroke-width="4"/><circle cx="30" cy="32" r="7" fill="#ff7fb0"/><circle cx="90" cy="32" r="15" fill="${COL.boba}" stroke="${INK}" stroke-width="4"/><circle cx="90" cy="32" r="7" fill="#ff7fb0"/><circle cx="60" cy="64" r="44" fill="${COL.boba}" stroke="${INK}" stroke-width="4"/><ellipse cx="60" cy="80" rx="18" ry="13" fill="#ffd8e8" stroke="${INK}" stroke-width="3"/><ellipse cx="60" cy="73" rx="6" ry="4.5" fill="${INK}"/>`+face(60,56,m,1,true)+(m==="sad"?`<path d="M52 89 Q60 83 68 89" fill="none" stroke="${INK}" stroke-width="3" stroke-linecap="round"/>`:m==="shock"?`<ellipse cx="60" cy="87" rx="4" ry="5" fill="${INK}"/>`:`<path d="M52 82 Q56 88 60 82 Q64 88 68 82" fill="none" stroke="${INK}" stroke-width="3" stroke-linecap="round"/>`),
+ seed:m=>{const id="c"+(++uid);return `<path d="M88 58 L114 36 L110 60 L114 84 Z" fill="${COL.seed}" stroke="${INK}" stroke-width="4" stroke-linejoin="round"/><path d="M42 80 L38 104 M66 82 L68 104" stroke="${INK}" stroke-width="4.5" stroke-linecap="round"/><ellipse cx="34" cy="106" rx="8" ry="4" fill="${INK}"/><ellipse cx="73" cy="106" rx="8" ry="4" fill="${INK}"/><clipPath id="${id}"><ellipse cx="54" cy="58" rx="40" ry="27"/></clipPath><ellipse cx="54" cy="58" rx="40" ry="27" fill="${COL.seed}"/><g clip-path="url(#${id})"><rect x="50" y="20" width="9" height="80" fill="#ff9a3d" transform="rotate(8 54 58)"/><rect x="70" y="20" width="8" height="80" fill="#ff9a3d" transform="rotate(8 74 58)"/></g><ellipse cx="54" cy="58" rx="40" ry="27" fill="none" stroke="${INK}" stroke-width="4"/>`+face(32,52,m,.8)},
+ tang:m=>`<path d="M74 96 C112 96 118 60 104 34 C96 18 76 18 78 36 C80 50 98 46 96 62 C94 78 80 80 74 96 Z" fill="${COL.tang}" stroke="${INK}" stroke-width="4" stroke-linejoin="round"/><path d="M86 30 q8 2 12 10 M92 54 q-6 6 -2 14" stroke="#8e74d6" stroke-width="3" fill="none" stroke-linecap="round"/><ellipse cx="50" cy="86" rx="22" ry="22" fill="${COL.orange||"#ff9a3d"}" stroke="${INK}" stroke-width="4"/><ellipse cx="50" cy="90" rx="12" ry="14" fill="#ffe0bd"/><path d="M30 34 L26 8 L44 26 Z M70 34 L74 8 L56 26 Z" fill="#ff9a3d" stroke="${INK}" stroke-width="4" stroke-linejoin="round"/><circle cx="50" cy="48" r="27" fill="#ff9a3d" stroke="${INK}" stroke-width="4"/><ellipse cx="50" cy="58" rx="13" ry="9" fill="#ffe0bd"/><rect x="46" y="64" width="8" height="7" rx="1.5" fill="#fff" stroke="${INK}" stroke-width="2"/>`+face(50,46,m,.85)
+};
+COL.orange="#ff9a3d";
+const PROPS={
+ pancakes:`<ellipse cx="60" cy="100" rx="50" ry="10" fill="#fff" stroke="${INK}" stroke-width="3"/>`+[86,74,62,50].map(y=>`<ellipse cx="60" cy="${y}" rx="40" ry="11" fill="#f4b85c" stroke="${INK}" stroke-width="3"/>`).join("")+`<path d="M28 46 Q60 30 92 46 L88 60 Q84 50 80 66 Q76 54 70 58 Q60 50 50 60 Q44 52 38 64 Q34 52 30 58 Z" fill="#b5651d" stroke="${INK}" stroke-width="2.5"/><rect x="50" y="30" width="20" height="10" rx="3" fill="#ffe46b" stroke="${INK}" stroke-width="2.5"/>`,
+ ramen:`<path d="M12 56 h96 a48 44 0 0 1 -96 0z" fill="#ff6b6b" stroke="${INK}" stroke-width="4"/><path d="M20 66 h80" stroke="#fff" stroke-width="4" stroke-dasharray="6 8"/><ellipse cx="60" cy="56" rx="48" ry="10" fill="#f6d27a" stroke="${INK}" stroke-width="3"/><path d="M30 54 q6 -8 12 0 t12 0 t12 0 t12 0 t12 0" fill="none" stroke="#fff3c4" stroke-width="3"/><circle cx="76" cy="52" r="8" fill="#fff" stroke="${INK}" stroke-width="2.5"/><circle cx="76" cy="52" r="4" fill="#ffb21e"/><path d="M70 6 L48 52 M84 8 L58 52" stroke="#a0522d" stroke-width="5" stroke-linecap="round"/><path d="M40 30 q-4 -8 0 -16 M56 28 q-4 -8 0 -16" stroke="#9aa" stroke-width="3" fill="none" stroke-linecap="round"/>`,
+ hotdog:`<rect x="10" y="50" width="100" height="30" rx="15" fill="#f4b85c" stroke="${INK}" stroke-width="4"/><rect x="4" y="44" width="112" height="20" rx="10" fill="#e0533d" stroke="${INK}" stroke-width="4"/><path d="M14 54 q8 -8 16 0 t16 0 t16 0 t16 0 t16 0 t16 0" fill="none" stroke="#ffe46b" stroke-width="4"/><path d="M80 20 q12 8 4 30 q-6 -8 -16 -10 q-4 -12 12 -20z" fill="#e0533d" stroke="${INK}" stroke-width="3"/><path d="M80 20 q2 -8 8 -10" stroke="#3a9a4a" stroke-width="4" stroke-linecap="round" fill="none"/>`,
+ pepper:`<path d="M60 26 q30 6 26 44 q-4 34 -26 44 q-22 -10 -26 -44 q-4 -38 26 -44z" fill="#e0533d" stroke="${INK}" stroke-width="4"/><path d="M60 26 q0 -14 12 -18" stroke="#3a9a4a" stroke-width="6" stroke-linecap="round" fill="none"/><path d="M46 46 q-4 18 2 34" stroke="#fff" stroke-width="4" opacity=".6" fill="none" stroke-linecap="round"/>`,
+ volcano:`<rect x="26" y="20" width="68" height="88" rx="10" fill="#e9f6ff" stroke="${INK}" stroke-width="4" opacity=".95"/><rect x="22" y="12" width="76" height="14" rx="4" fill="#ff9a3d" stroke="${INK}" stroke-width="3"/><path d="M60 46 q18 4 16 28 q-2 20 -16 26 q-14 -6 -16 -26 q-2 -24 16 -28z" fill="#8e44ad" stroke="${INK}" stroke-width="3"/><rect x="32" y="84" width="56" height="16" fill="#ffe46b" stroke="${INK}" stroke-width="2"/><text x="60" y="96" font-size="11" text-anchor="middle" font-family="Arial Black,sans-serif" fill="${INK}">DANGER</text>`,
+ letter:`<rect x="12" y="30" width="96" height="66" rx="6" fill="#ffd8e8" stroke="${INK}" stroke-width="4"/><path d="M12 34 L60 70 L108 34" fill="none" stroke="${INK}" stroke-width="4" stroke-linejoin="round"/><circle cx="60" cy="72" r="9" fill="#ff9a3d" stroke="${INK}" stroke-width="3"/>`,
+ heart:`<path d="M60 104 C10 70 10 30 36 26 C50 24 58 34 60 42 C62 34 70 24 84 26 C110 30 110 70 60 104Z" fill="#ff6b9a" stroke="${INK}" stroke-width="4" stroke-linejoin="round"/>`,
+ tree:`<rect x="50" y="56" width="20" height="60" fill="#8a5a3b" stroke="${INK}" stroke-width="4"/><circle cx="60" cy="40" r="38" fill="#6cc070" stroke="${INK}" stroke-width="4"/><rect x="42" y="30" width="36" height="26" fill="#d9a066" stroke="${INK}" stroke-width="3"/><path d="M38 32 L60 14 L82 32Z" fill="#b9a3f2" stroke="${INK}" stroke-width="3" stroke-linejoin="round"/>`,
+ binoculars:`<circle cx="38" cy="66" r="24" fill="#555" stroke="${INK}" stroke-width="4"/><circle cx="82" cy="66" r="24" fill="#555" stroke="${INK}" stroke-width="4"/><circle cx="38" cy="66" r="13" fill="#9fe0ff"/><circle cx="82" cy="66" r="13" fill="#9fe0ff"/><rect x="52" y="54" width="16" height="16" fill="#333" stroke="${INK}" stroke-width="3"/>`,
+ notebook:`<rect x="18" y="16" width="84" height="94" rx="6" fill="#fff" stroke="${INK}" stroke-width="4"/><path d="M30 38 h60 M30 54 h60 M30 70 h46 M30 86 h54" stroke="#b9a3f2" stroke-width="4" stroke-linecap="round"/><path d="M24 16 v94" stroke="#e0533d" stroke-width="3"/>`,
+ jam:`<rect x="26" y="34" width="68" height="72" rx="12" fill="#ff9a3d" stroke="${INK}" stroke-width="4"/><rect x="22" y="22" width="76" height="16" rx="5" fill="#b9a3f2" stroke="${INK}" stroke-width="3"/><circle cx="60" cy="72" r="16" fill="#ffd27a" stroke="${INK}" stroke-width="3"/><path d="M60 56 v32 M44 72 h32" stroke="#ff9a3d" stroke-width="2"/>`,
+ phone:`<path d="M30 30 q30 -24 60 0 l-8 18 q-22 -12 -44 0z" fill="#ff9fc6" stroke="${INK}" stroke-width="4" stroke-linejoin="round"/><rect x="36" y="60" width="48" height="44" rx="10" fill="#ff9fc6" stroke="${INK}" stroke-width="4"/><circle cx="60" cy="82" r="11" fill="#fff" stroke="${INK}" stroke-width="3"/>`,
+ cookies:[[36,70],[84,70],[60,44]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="22" fill="#d9a066" stroke="${INK}" stroke-width="4"/><circle cx="${x-7}" cy="${y-5}" r="3.5" fill="#6b3e1f"/><circle cx="${x+6}" cy="${y+6}" r="3.5" fill="#6b3e1f"/>`).join(""),
+ table:`<rect x="6" y="56" width="108" height="14" rx="6" fill="#d9a066" stroke="${INK}" stroke-width="4"/><path d="M20 70 v40 M100 70 v40" stroke="${INK}" stroke-width="6" stroke-linecap="round"/>`+[24,48,72,96].map(x=>`<ellipse cx="${x}" cy="52" rx="11" ry="4" fill="#fff" stroke="${INK}" stroke-width="2.5"/>`).join(""),
+ sign:`<rect x="8" y="30" width="104" height="50" rx="8" fill="#ffe46b" stroke="${INK}" stroke-width="4"/><text x="60" y="52" font-size="12" text-anchor="middle" font-family="Arial Black,sans-serif" fill="${INK}">JUST WANT</text><text x="60" y="68" font-size="12" text-anchor="middle" font-family="Arial Black,sans-serif" fill="${INK}">TO BE HAPPY</text><path d="M34 80 v30 M86 80 v30" stroke="${INK}" stroke-width="5"/>`,
+ fur:`<path d="M30 90 C40 40 70 30 96 22 C80 40 70 60 74 96 C62 80 48 84 30 90Z" fill="#b9a3f2" stroke="${INK}" stroke-width="3"/><circle cx="74" cy="74" r="40" fill="none" stroke="${INK}" stroke-width="5"/><path d="M102 102 l14 14" stroke="${INK}" stroke-width="8" stroke-linecap="round"/>`,
+ falling:`<polygon points="${starPts(60,60,28,14)}" fill="#ffe46b" stroke="${INK}" stroke-width="3" stroke-linejoin="round"/><path d="M40 40 L6 6 M50 34 L26 2 M34 52 L2 26" stroke="#ffe46b" stroke-width="5" stroke-linecap="round"/>`
+};
+const BG={
+ morning:{sky:"#dff3ff",ground:"#a8e07a"}, kitchen:{sky:"#fff0c2",ground:"#f2c48d",check:1}, noodle:{sky:"#ffe2d6",ground:"#e9a27c",check:1},
+ farm:{sky:"#e6f8d8",ground:"#7cc062",rows:1}, tree:{sky:"#efe6ff",ground:"#a8e07a"}, night:{sky:"#3b3566",ground:"#5a5480",stars:1},
+ festival:{sky:"#fff4b0",ground:"#ffc9a3",flags:1}, gloomy:{sky:"#cfd4e6",ground:"#9aa4bd"}, storm:{sky:"#4d5578",ground:"#3d6b8a",rain:1}, warm:{sky:"#ffe7c7",ground:"#f2c48d",check:1}
+};
+
+function sceneSVG(items,bgk){const bg=BG[bgk]||BG.morning;const n=items.length;const slot=400/n;let out="";
+  let deco="";
+  if(bg.stars)for(let i=0;i<22;i++)deco+=`<circle cx="${(i*73)%400}" cy="${(i*41)%150+8}" r="${i%3?1.5:2.6}" fill="#fff6d6"/>`;
+  if(bg.flags){for(let i=0;i<10;i++)deco+=`<path d="M${i*42} 22 l21 30 l21 -30z" fill="${[COL.star,COL.boba,COL.seed,COL.tang][i%4]}" stroke="${INK}" stroke-width="2"/>`;deco=`<path d="M0 22 H400" stroke="${INK}" stroke-width="2"/>`+deco}
+  if(bg.rain)for(let i=0;i<40;i++)deco+=`<path d="M${(i*37)%410} ${(i*53)%200} l-8 18" stroke="#bfe6ff" stroke-width="2.5" stroke-linecap="round"/>`;
+  if(bg.rain)deco+=`<path d="M300 10 l-20 40 h18 l-16 36 l40 -50 h-20 l14 -26z" fill="#ffe46b" stroke="${INK}" stroke-width="2.5"/>`;
+  let ground=`<rect x="0" y="246" width="400" height="54" fill="${bg.ground}"/>`;
+  if(bg.check)for(let i=0;i<20;i++)ground+=`<rect x="${i*20}" y="${246+(i%2)*14}" width="20" height="14" fill="#fff" opacity=".35"/>`;
+  if(bg.rows)for(let i=0;i<8;i++)ground+=`<circle cx="${i*52+20}" cy="262" r="7" fill="#e0533d" stroke="${INK}" stroke-width="2"/>`;
+  ground+=`<path d="M0 246 H400" stroke="${INK}" stroke-width="3"/>`;
+  items.forEach((it,i)=>{const [k,m]=it.split(":");const isProp=!DRAW[k];let size=isProp?(n>3?92:112):(n>3?100:n===1?190:140);size=Math.min(size,slot+10);
+    const x=slot*i+slot/2-size/2;const y=272-size;
+    let inner;
+    if(!isProp&&ART[k])inner=`<image href="${ART[k]}" x="0" y="0" width="120" height="120" preserveAspectRatio="xMidYMid meet"/>`;
+    else inner=isProp?PROPS[k]:DRAW[k](m||"happy");
+    out+=`<ellipse cx="${x+size/2}" cy="${272}" rx="${size*.36}" ry="7" fill="${INK}" opacity=".18"/><svg x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${size}" height="${size}" viewBox="0 0 120 120" overflow="visible">${inner}</svg>`});
+  return `<svg class="scene" viewBox="0 0 400 300" role="img" aria-label="Story picture"><rect width="400" height="300" fill="${bg.sky}"/>${deco}${ground}${out}</svg>`}
+
+/* ---------------- THE STORY ---------------- */
+const NAMES={star:"Pineapple Prinz",seed:"Seed",boba:"Pink Boba",tang:"Tangerine"};
+const CH=[
+ "The Day of Star","Seed and the Bottomless Bowl","Pink Boba's Pepper Farm","Tangerine in the Old Oak","The Secret Letters","The Volcano at the Festival","Three Houses, Zero Laughs","Detective Star","The Storm","The Truth","The Fourth Plate"];
+const S=[
+ {ch:1,scene:["star:happy"],bg:"morning",sfx:"TWINKLE!",title:"A star who stayed",text:["In the little town of Sunnyside Hill, where the clouds look like whipped cream, lives a light-yellow star named Pineapple Prinz. Everybody just says Prinz.","One summer night Prinz fell out of the sky, bounced twice in a field of daisies, looked around, and decided Earth was far too fun to leave.","Above Prinz's front door hangs a hand-painted sign with the most important rule in town."],say:["star","We just want to be happy. Everything else? Not our problem!"]},
+ {ch:1,scene:["star:laugh","prop:pancakes"],bg:"kitchen",sfx:"FLIP! FLIP!",title:"Stack number 37",text:["Every morning starts the same way. Flour, eggs, milk, and one secret ingredient: a spoonful of crushed pineapple.","Prinz flips pancakes so high they almost touch the ceiling. Flip! Flip! FLIP! Stack number 37 wobbles like a tower in an earthquake, and Prinz glows a little brighter with every pancake."],say:["star","Perfect! Way too perfect to eat alone…"]},
+ {ch:1,scene:["star:happy","prop:phone","seed:shock","boba:happy"],bg:"kitchen",sfx:"RING RING!",title:"Pancake emergency",text:["Prinz grabs the pink shell telephone. “Seed! Boba! This is a PANCAKE EMERGENCY. Come right now!”","Ten minutes later the door bursts open. A fish on two tiny legs runs in, followed by a big pink bear wearing an apron covered in chili peppers.","The three friends squeeze around the round table. This is how every good day in Sunnyside Hill begins."],say:["seed","Did somebody say emergency? I ran the whole way!"]},
+
+ {ch:2,scene:["seed:happy"],bg:"morning",sfx:"BLUB!",title:"A fish who walks",text:["Seed is a striped fish who got tired of swimming in circles. So one day he simply grew two little legs and walked out of the sea.","He lives in a round glass house with a front door and a tiny garden. And Seed loves one thing more than anything in the world: RAMEN.","He knows every noodle shop in town, and he has one big dream: the Golden Chopsticks, the prize for anyone who finishes the Bottomless Bowl at Mr. Noodle's."]},
+ {ch:2,scene:["star:shock","prop:ramen","seed:laugh","boba:happy"],bg:"noodle",sfx:"SLUUURP!",title:"How to eat ramen",text:["Seed teaches his friends the rules. Rule one: slurping is polite, the louder the better. Rule two: the broth must be as hot as a volcano. Rule three: the egg is always cut in half, never in thirds.","Boba drops in a few slices of his own red pepper. Prinz drops in a pancake, which is against every rule. Seed gasps… then tastes it. “Actually,” he says, “that's not bad.”"],say:["seed","SLUUURP! Ten out of ten!"]},
+ {ch:2,scene:["seed:sad","prop:heart","star:happy"],bg:"night",sfx:"…",title:"Seed's secret",text:["On the walk home, Seed goes quiet. A long time ago, in the deep blue sea, he lost his whole school of fish in a storm. He searched for days and never found them.","Prinz takes his fin. Boba puts a big soft paw on his head. Nobody says anything for a while, and that is exactly right."],say:["seed","You two are my school now. A school of three!"]},
+
+ {ch:3,scene:["boba:happy","prop:pepper"],bg:"farm",sfx:"STOMP!",title:"The pink bear at the edge of town",text:["Pink Boba is a big pink bear, as soft as a marshmallow and as strong as a tractor. He lives at the edge of town on a farm with exactly one hundred pepper plants.","There are red peppers, green peppers and yellow peppers. And in the corner, under a glass dome, grows one tiny purple pepper called The Volcano. Boba never, ever cooks with it."]},
+ {ch:3,scene:["boba:laugh","prop:hotdog","star:happy"],bg:"farm",sfx:"SIZZLE!",title:"A little bit spicy",text:["Boba cooks hot dogs on the grill and dips corn dogs in golden batter. Then he adds his special sauce, made from his own peppers.","“A little bit spicy makes you smile,” Boba says. “Too spicy makes you cry.” Prinz takes a bite, smiles, glows, and asks for a second one before finishing the first."],say:["boba","Just a little bit spicy. Always just a little bit!"]},
+ {ch:3,scene:["seed:shock","prop:volcano","boba:happy"],bg:"farm",sfx:"DANGER!",title:"The jar with the orange lid",text:["Boba gives each friend a baby pepper plant to look after. Then he shows them a glass jar with an orange lid and a yellow label: DANGER.","Inside is one dried Volcano pepper. “One crumb of this,” Boba whispers, “and smoke comes out of your ears for a week.” Seed takes three big steps back."]},
+
+ {ch:4,scene:["prop:tree","tang:sad"],bg:"tree",sfx:"RUSTLE…",title:"The most beautiful tail in town",text:["High up in the old oak tree in the middle of town lives a squirrel named Tangerine. She has bright orange fur and a huge, fluffy, light-purple tail. It is the most beautiful tail in Sunnyside Hill.","But there is nobody to show it to. Tangerine lives alone, eats alone, and talks to her acorns."]},
+ {ch:4,scene:["tang:sly","prop:binoculars"],bg:"tree",sfx:"ZOOM",title:"Watching the trio",text:["Every morning Tangerine takes out her binoculars and watches Prinz's kitchen window. She sees the pancakes. She hears the laughing. She hears Seed's ridiculous slurping.","Once she baked acorn cookies and waited by Prinz's gate for an hour. But when the door opened, she got scared and hid. The three friends walked right past her.","After that, something sour started to grow inside her, like weeds in a garden."],say:["tang","Why do THEY get to laugh all day?"]},
+ {ch:4,scene:["tang:sly","prop:notebook"],bg:"night",sfx:"SCRIBBLE!",title:"Operation Crumble",text:["That night, Tangerine opens a purple notebook and writes a plan in big letters.","OPERATION CRUMBLE. Step 1: the letters. Step 2: the Volcano. Step 3: they end up alone, just like me.","She closes the notebook and swishes her tail."],say:["tang","If I can't have friends, nobody can!"]},
+
+ {ch:5,scene:["tang:sly","prop:letter"],bg:"night",sfx:"SHHH…",title:"Three fake letters",text:["Tangerine is very good at copying handwriting. She writes three letters on pink paper.","One “from Prinz” to Seed: Your slurping is SO annoying. One “from Seed” to Boba: Your corn dogs taste like old socks. One “from Boba” to Prinz: Your pancakes are as flat as pizza.","Before sunrise she drops them into three mailboxes."]},
+ {ch:5,scene:["seed:shock","prop:letter","boba:sad"],bg:"morning",sfx:"RRRIP!",title:"Bad mail",text:["Seed reads his letter and drops his chopsticks. Boba reads his and sits down right in the pepper bed. Prinz reads the last one and, for the first time ever, flickers like a broken lamp.","Nobody calls anybody to check. That is the mistake people make when their feelings are hurt."]},
+ {ch:5,scene:["star:dim","prop:pancakes"],bg:"gloomy",sfx:"…",title:"Cold pancakes",text:["The next morning Prinz makes stack number 37 as usual and waits. And waits. Nobody comes.","Up in the oak, Tangerine giggles. But the giggle comes out strange and thin, and it doesn't feel nearly as good as she expected."],say:["star","Maybe they're just… a little late?"]},
+
+ {ch:6,scene:["star:happy","seed:sad","boba:sad"],bg:"festival",sfx:"TA-DA!",title:"The Trio Kitchen",text:["Saturday is the Sunnyside Food Festival. Prinz has an idea: the three friends will cook together in one booth called The Trio Kitchen. Maybe cooking will fix things.","Seed and Boba agree, but they don't look at each other. They are very, very polite, which is the worst way friends can be."]},
+ {ch:6,scene:["tang:sly","prop:volcano","prop:ramen"],bg:"festival",sfx:"PLOP!",title:"Step 2",text:["While Boba is busy at the grill, a fluffy purple tail slips behind the booth. Tangerine has the jar with the orange lid. She drops the whole Volcano pepper into Seed's big pot of broth.","Then the mayor arrives for the first official taste."],say:["tang","Enjoy your lunch, Mr. Mayor…"]},
+ {ch:6,scene:["seed:shock","prop:ramen","boba:shock"],bg:"festival",sfx:"HOOOOOT!!",title:"Smoke from the ears",text:["The mayor slurps. His face turns red, then purple. Smoke shoots out of his ears with a whistle like a teakettle, and he runs straight into the fountain.","“You put a pepper in my broth!” shouts Seed. “It's YOUR broth!” shouts Boba. Prinz stands in the middle, holding a spatula, not knowing what to say.","The Trio Kitchen closes. Three friends walk away in three different directions."]},
+
+ {ch:7,scene:["seed:sad","prop:ramen"],bg:"gloomy",sfx:"slurp.",title:"Ramen tastes like nothing",text:["Seed sits alone in his glass house. He slurps his ramen as loudly as he can, but nobody laughs, and it tastes like warm water.","At the farm, Boba cooks forty corn dogs and feeds them to the crows. The crows think it is the best day of their lives. Boba does not."]},
+ {ch:7,scene:["star:dim","prop:sign"],bg:"gloomy",sfx:"FLICKER",title:"Can you be happy alone?",text:["Prinz's light has faded to the color of a pale lemon. Prinz stands in the doorway and looks up at the sign: WE JUST WANT TO BE HAPPY.","Then Prinz has a thought. Happiness isn't something you sit and wait for. You make it, like pancakes. You mix it, you flip it, and you share it while it's warm."],say:["star","Okay. Time to cook up some happiness."]},
+ {ch:7,scene:["star:shock","prop:fur"],bg:"kitchen",sfx:"!?",title:"A clue",text:["Prinz reads the mean letter one more time. And there, stuck to the pink paper, is one fluffy hair. It is light purple.","Prinz holds it up to the window. Fish don't have purple hair. Pink bears don't either."],say:["star","Purple fur… Who in this town has a purple tail?"]},
+
+ {ch:8,scene:["star:happy","prop:pancakes","seed:sad"],bg:"morning",sfx:"KNOCK KNOCK",title:"Pancake delivery",text:["Prinz knocks on Seed's glass door with a plate of pancakes and the letter. Seed looks at the handwriting and frowns.","“I never write my S like that,” he says. “And I would never, EVER say anything bad about corn dogs.”","Together they march to the pepper farm."]},
+ {ch:8,scene:["seed:laugh","prop:heart","star:laugh","boba:laugh"],bg:"farm",sfx:"SQUEEEEZE!",title:"Same paper, same smell",text:["Boba brings out his letter too. All three are on the same pink paper, and all three smell like… tangerines.","Seed realises. Boba realises. Prinz is already crying happy tears that sparkle on the ground. Boba hugs them both so hard that Seed's eyes pop."],say:["boba","I KNEW your pancakes weren't flat!"]},
+ {ch:8,scene:["boba:shock","star:happy","seed:happy"],bg:"farm",sfx:"HMM…",title:"Why would someone do this?",text:["“Let's tell the whole town!” growls Boba. “Let's put a sign on her tree!” bubbles Seed.","But Prinz is thinking. “Wait. Who writes letters like that? Someone who watches us every single day. Someone who maybe wishes they were sitting at our table.”"],say:["star","I think someone in this town is very, very lonely."]},
+
+ {ch:9,scene:["prop:tree","tang:shock"],bg:"storm",sfx:"KRA-KOOM!",title:"The biggest storm in years",text:["That night the biggest storm in years rolls over Sunnyside Hill. The wind howls, the river rises, and lightning splits the sky.","With a terrible CRACK, the old oak's branch breaks. Tangerine's little house tumbles down, and Tangerine ends up clinging to a branch above the rushing river."],say:["tang","HELP! Somebody, please!"]},
+ {ch:9,scene:["star:happy","seed:happy","boba:happy"],bg:"storm",sfx:"GO GO GO!",title:"The trio runs",text:["Boba hears the cry first. “That's her,” he says. “After everything she did?”","But Prinz is already running, shining as bright as a flashlight through the rain. Seed dives into the flood, because he is, after all, a fish. Boba grabs the branch with his strong arms and holds on with everything he has."]},
+ {ch:9,scene:["tang:sad","star:happy","boba:happy"],bg:"storm",sfx:"HEAVE!",title:"Why did you save me?",text:["Together they pull Tangerine to the riverbank. She is soaked, shivering, and her beautiful tail hangs flat and drippy like a wet mop.","She looks at the three of them. “Why did you save me? I'm the one who wrote the letters. I'm the one who…”"],say:["star","We know."]},
+
+ {ch:10,scene:["tang:sad","prop:pancakes","star:happy"],bg:"warm",sfx:"drip… drip…",title:"Everything, from the start",text:["In Prinz's warm kitchen, wrapped in a blanket, Tangerine tells them everything. The letters. The Volcano. The purple notebook.","Then she tells them why. Every morning she watched them laugh. She had never had a single friend. She baked acorn cookies once, and was too scared to knock."]},
+ {ch:10,scene:["boba:sad","star:happy","tang:sad"],bg:"warm",sfx:"…",title:"Sorry is a start",text:["It is quiet for a long time. Boba crosses his arms. Seed blows a few nervous bubbles.","Then Prinz puts a warm pancake on Tangerine's plate."],say:["star","Sorry is a start. Fixing it is the rest."]},
+ {ch:10,scene:["tang:shock","prop:sign","boba:laugh"],bg:"festival",sfx:"HA HA HA!",title:"The town square",text:["The next day Tangerine stands in the town square and tells everyone the truth, with her tail shaking like a leaf.","The whole town goes silent. Then the mayor starts to laugh. “My ears are still warm!” he says. “But that was the bravest thing I've seen all year.”","That afternoon Tangerine helps rebuild The Trio Kitchen, board by board."]},
+
+ {ch:11,scene:["tang:laugh","prop:pancakes","boba:happy"],bg:"farm",sfx:"OOPS!",title:"Earning it",text:["Trust doesn't come back in one day. So Tangerine works for it. She waters Boba's hundred peppers. She washes Seed's ramen bowls. She learns to flip pancakes, and drops the first twelve on the floor.","Little by little, the sour weeds inside her are replaced by something new. It feels warm, and it feels a lot like laughing."]},
+ {ch:11,scene:["star:laugh","seed:laugh","prop:table","boba:laugh","tang:laugh"],bg:"warm",sfx:"CHOMP!",title:"The fourth plate",text:["One Sunday morning, Prinz sets the table and puts down four plates instead of three.","Pineapple pancakes. Seed's ramen. Boba's corn dogs, a little bit spicy. And on top of everything, a spoonful of Tangerine's homemade tangerine jam. It goes with pancakes, ramen and even corn dogs, which nobody expected."],say:["tang","Is this… my plate?"]},
+ {ch:11,scene:["star:laugh","prop:falling","tang:happy"],bg:"night",sfx:"THE END?",title:"Four names on the sign",text:["Now the sign above Prinz's door has four names painted underneath it: Prinz, Seed, Boba and Tangerine.","They just want to be happy, and they don't care about anything else.","And tonight, high above Sunnyside Hill, another little star is falling from the sky…"],say:["star","Quick, everyone! Get the pancake pan!"]}
+];
+
+/* ---------------- STATE / CAPABILITIES ---------------- */
+let ART={}, PAGEART={}, db=null, assets=null, artMode="local", stories=[], storyMode="local";
+const ls={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}}};
+ART=ls.get("fls-art",{});PAGEART=ls.get("fls-pages",{});stories=ls.get("fls-stories",[]);
+
+/* ---------------- BOOK ---------------- */
+let idx=0, reading=null; // reading = user story or null
+const book=document.getElementById("book"),sel=document.getElementById("chapSel"),dots=document.getElementById("dots");
+function esc(s){return String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+function mini(k){return ART[k]?`<svg viewBox="0 0 120 120"><image href="${ART[k]}" width="120" height="120"/></svg>`:`<svg viewBox="0 0 120 120">${DRAW[k]("happy")}</svg>`}
+function slides(){
+  if(reading){const st=reading;const list=[{cover:1}];(st.chapters||[]).forEach((c,i)=>list.push({ch:i+1,title:c.title||("Chapter "+(i+1)),text:String(c.text||"").split(/\n+/).filter(Boolean),user:1}));return list}
+  return [{cover:1},...S]}
+function render(){
+  const L=slides();idx=Math.max(0,Math.min(idx,L.length-1));const s=L[idx];
+  let artHtml,pageHtml;
+  if(s.cover){
+    if(reading){artHtml=`<div style="padding:30px;position:relative;z-index:1;text-align:center"><svg viewBox="0 0 400 300" class="scene"><rect width="400" height="300" fill="#efe6ff"/>${[0,1,2].map(i=>`<svg x="${30+i*120}" y="110" width="110" height="110" viewBox="0 0 120 120"><polygon points="${starPts(60,60,50,26)}" fill="${[COL.star,COL.boba,COL.seed][i]}" stroke="${INK}" stroke-width="4" stroke-linejoin="round"/></svg>`).join("")}</svg></div>`;
+      pageHtml=`<div class="chap">A story from the shelf</div><h2>${esc(reading.title)}</h2><div class="txt"><p>by ${esc(reading.by||"a secret author")}</p>${reading.heroes?`<p>${esc(reading.heroes)}</p>`:""}</div>${reading.motto?`<div class="motto">${esc(reading.motto)}</div>`:""}<div class="pnum"><span><button class="small" id="closeStory">Back to our book</button></span><span>Cover</span></div>`}
+    else{artHtml=sceneSVG(["seed:laugh","star:laugh","boba:laugh"],"morning")+`<div class="sfx">YUM!</div>`;
+      pageHtml=`<div class="chap">A manga-style book · 11 chapters</div><h2>Prinz, Seed, Boba and the Purple Tail</h2><div class="txt"><p>A story about a star who bakes pancakes, a fish who walks to ramen shops, a pink bear with a pepper farm, and a lonely squirrel who tries to break them apart.</p></div><div class="motto">“They just want to be happy, and they don't care about anything else.”</div><div class="pnum"><span>For readers 10-13</span><span>Tap Next ▶ or swipe</span></div>`}
+  } else if(s.user){
+    artHtml=PAGEART["u"+reading.id+"-"+idx]?`<img class="pageimg" src="${PAGEART["u"+reading.id+"-"+idx]}" alt="Drawing for this page">`:`<div style="position:relative;z-index:1;padding:30px;font-family:var(--f-display);font-size:64px;color:${INK}">${s.ch}</div>`;
+    pageHtml=`<div class="chap">Chapter ${s.ch}</div><h2>${esc(s.title)}</h2><div class="txt">${s.text.map(p=>`<p>${esc(p)}</p>`).join("")}</div><div class="pnum"><span><button class="small" id="closeStory">Back to our book</button></span><span>Page ${idx} of ${L.length-1}</span></div>`;
+  } else {
+    const pa=PAGEART["p"+idx];
+    artHtml=(pa?`<img class="pageimg" src="${pa}" alt="Student drawing for this page">`:sceneSVG(s.scene,s.bg))+`<div class="sfx">${esc(s.sfx)}</div>`;
+    const bub=s.say?`<div class="bubble">${mini(s.say[0])}<span><small style="display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)">${NAMES[s.say[0]]}</small>${esc(s.say[1])}</span></div>`:"";
+    pageHtml=`<div class="chap">Chapter ${s.ch} · ${esc(CH[s.ch-1])}</div><h2>${esc(s.title)}</h2><div class="txt">${s.text.map(p=>`<p>${esc(p)}</p>`).join("")}</div>${bub}<div class="pnum"><span>${idx===L.length-1?"The end":""}</span><span>Page ${idx} of ${L.length-1}</span></div>`;
+  }
+  const canPage=!s.cover&&(assets||artMode==="local");
+  book.innerHTML=`<div class="art">${artHtml}${canPage?`<button class="addpage" id="addPage">${(reading?PAGEART["u"+reading.id+"-"+idx]:PAGEART["p"+idx])?"Change drawing":"Add drawing to this page"}</button>`:""}</div><div class="page flip">${pageHtml}</div>`;
+  const cs=document.getElementById("closeStory");if(cs)cs.onclick=()=>{reading=null;idx=0;buildSel();render()};
+  const ap=document.getElementById("addPage");if(ap)ap.onclick=()=>pick(reading?"u"+reading.id+"-"+idx:"p"+idx,true);
+  document.getElementById("prev").disabled=idx===0;document.getElementById("next").disabled=idx===L.length-1;
+  sel.value=s.cover?"0":String(s.ch);
+  dots.innerHTML=L.map((x,i)=>`<i class="${i===idx?"on":""} ${(!x.cover&&L[i-1]&&L[i-1].ch!==x.ch)?"ch":""}"></i>`).join("");
+}
+function buildSel(){const L=slides();let o=`<option value="0">Cover</option>`;const seen={};L.forEach((s,i)=>{if(!s.cover&&!seen[s.ch]){seen[s.ch]=1;o+=`<option value="${s.ch}">Chapter ${s.ch}: ${esc(reading?s.title:CH[s.ch-1])}</option>`}});sel.innerHTML=o}
+sel.onchange=()=>{const v=+sel.value;const L=slides();idx=v===0?0:L.findIndex(s=>s.ch===v);render()};
+function toTop(){if(window.innerWidth<=900){const y=book.getBoundingClientRect().top+window.scrollY-8;if(window.scrollY>y)window.scrollTo({top:y,behavior:"smooth"})}}
+document.getElementById("prev").onclick=()=>{idx--;render();toTop()};
+document.getElementById("next").onclick=()=>{idx++;render();toTop()};
+document.addEventListener("keydown",e=>{if(document.getElementById("v-book").hidden||/INPUT|TEXTAREA|SELECT/.test(e.target.tagName))return;if(e.key==="ArrowRight"){idx++;render()}if(e.key==="ArrowLeft"){idx--;render()}});
+let tx=null;book.addEventListener("touchstart",e=>{tx=e.touches[0].clientX},{passive:true});book.addEventListener("touchend",e=>{if(tx==null)return;const d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>50){idx+=d<0?1:-1;render();toTop()}tx=null});
+
+/* ---------------- DRAWINGS ---------------- */
+const CAST=[
+ {k:"star",role:"Main hero",c:COL.star,d:"A light-yellow star who bakes pineapple pancakes and wants everyone to be happy."},
+ {k:"seed",role:"Best friend",c:COL.seed,d:"A striped fish on two little legs. Loves ramen and loud slurping."},
+ {k:"boba",role:"Best friend",c:COL.boba,d:"A big pink bear with a pepper farm. Hot dogs and corn dogs, a little bit spicy."},
+ {k:"tang",role:"Troublemaker",c:COL.tang,d:"An orange squirrel with a light-purple tail. Jealous, lonely, and secretly kind."}];
+function renderCast(){document.getElementById("cast").innerHTML=CAST.map(x=>`<div class="card"><div class="pic" style="background:${x.c}33">${ART[x.k]?`<img src="${ART[x.k]}" alt="Drawing of ${NAMES[x.k]}">`:`<svg viewBox="0 0 120 120" role="img" aria-label="${NAMES[x.k]}">${DRAW[x.k]("happy")}</svg>`}</div><span class="role" style="color:var(--ink-soft)">${x.role}</span><h3>${NAMES[x.k]}</h3><p>${x.d}</p><div class="row">${(assets||artMode==="local")?`<button class="small" data-up="${x.k}">${ART[x.k]?"Change drawing":"Upload drawing"}</button>${ART[x.k]?`<button class="small" data-rm="${x.k}">Use placeholder</button>`:""}`:""}</div></div>`).join("");
+  document.querySelectorAll("[data-up]").forEach(b=>b.onclick=()=>pick(b.dataset.up,false));
+  document.querySelectorAll("[data-rm]").forEach(b=>b.onclick=()=>{delete ART[b.dataset.rm];saveArt();});
+  document.getElementById("artNote").textContent=artMode==="shared"?"Drawings are saved with the book, so everyone who opens it sees them.":(assets===null&&artMode==="view"?"Only the book's editors can upload drawings.":"Drawings are saved in this browser only.");
+}
+let pickTarget=null,pickIsPage=false;const fileIn=document.getElementById("fileIn");
+function pick(t,isPage){pickTarget=t;pickIsPage=isPage;fileIn.value="";fileIn.click()}
+function shrink(file){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const m=1200,sc=Math.min(1,m/Math.max(im.width,im.height));const c=document.createElement("canvas");c.width=im.width*sc;c.height=im.height*sc;const g=c.getContext("2d");g.fillStyle="#fff";g.fillRect(0,0,c.width,c.height);g.drawImage(im,0,0,c.width,c.height);c.toBlob(b=>res({blob:b,data:c.toDataURL("image/jpeg",.82)}),"image/jpeg",.82)};im.onerror=rej;im.src=r.result};r.onerror=rej;r.readAsDataURL(file)})}
+fileIn.onchange=async()=>{const f=fileIn.files[0];if(!f)return;try{const {blob,data}=await shrink(f);let url=data;
+  if(assets&&db){const up=await assets.upload(blob);url="/_blob/"+up.id}
+  if(pickIsPage)PAGEART[pickTarget]=url;else ART[pickTarget]=url;saveArt();}catch(e){document.getElementById("artNote").textContent="That picture couldn't be uploaded. Try a smaller JPG or PNG photo."}};
+async function saveArt(){if(artMode==="shared"&&db){try{await db.doc("book/art").set({chars:ART,pages:PAGEART})}catch(e){}}else{ls.set("fls-art",ART);ls.set("fls-pages",PAGEART)}renderCast();render();drawLogo()}
+
+/* ---------------- STUDIO ---------------- */
+const chapWrap=document.getElementById("chapters");let chapCount=0;
+function addChap(){chapCount++;const n=chapCount;const f=document.createElement("fieldset");f.innerHTML=`<legend>Chapter ${n}</legend><label for="ct${n}">Chapter title<input id="ct${n}" maxlength="80" placeholder="${n===1?"The Day of Drizzle":"What happens next?"}"></label><label for="cx${n}">What happens<textarea id="cx${n}" maxlength="3000" placeholder="Write the chapter here. Press Enter for a new paragraph."></textarea></label>`;chapWrap.appendChild(f)}
+addChap();addChap();
+document.getElementById("addChap").onclick=()=>{if(chapCount<15)addChap()};
+const A={who:["a cloud who is scared of heights","a sock who lost its other sock","a cactus who wants hugs","a snail who wants to win a race","a robot who can't stop sneezing","a cat who runs a tiny bakery"],food:["waffles with honey","spicy dumplings","strawberry milkshakes","popcorn with chocolate","giant pizza slices","rainbow sushi"],bad:["a raccoon who steals birthday cakes","a cloud who rains on every picnic","a pigeon who spreads silly rumours","a mosquito who is very, very bored"],twist:["but the troublemaker is just looking for a friend","and a big storm changes everything","and someone gets lost on the way home","and the friends must win a cooking contest"]};
+function r(a){return a[Math.floor(Math.random()*a.length)]}
+function idea(){document.getElementById("idea").textContent=`Your hero is ${r(A.who)} who loves ${r(A.food)}. The troublemaker is ${r(A.bad)}, ${r(A.twist)}.`}
+idea();document.getElementById("newIdea").onclick=idea;
+document.getElementById("storyForm").onsubmit=async e=>{e.preventDefault();const st=document.getElementById("saveStatus");
+  const chapters=[];for(let i=1;i<=chapCount;i++){const t=document.getElementById("ct"+i).value.trim(),x=document.getElementById("cx"+i).value.trim();if(t||x)chapters.push({title:t,text:x})}
+  if(!chapters.length){st.textContent="Write at least one chapter first.";return}
+  const story={title:document.getElementById("sTitle").value.trim(),by:document.getElementById("sBy").value.trim(),heroes:document.getElementById("sHeroes").value.trim(),motto:document.getElementById("sMotto").value.trim(),chapters,createdAt:Date.now()};
+  st.textContent="Saving…";
+  try{if(storyMode==="shared"&&db){await db.collection("stories").add(story)}else{story.id="l"+Date.now();stories.unshift(story);ls.set("fls-stories",stories);renderShelf()}
+    st.textContent="Saved! Your story is on the Story shelf.";e.target.reset();chapWrap.innerHTML="";chapCount=0;addChap();addChap();}
+  catch(err){st.textContent=err&&err.code==="permission_denied"?"You can read stories here but can't add one. Ask the book's owner for edit access.":"Couldn't save the story. Check your connection and try again."}};
+
+/* ---------------- SHELF ---------------- */
+function renderShelf(){const el=document.getElementById("shelf");const cols=[COL.boba,COL.seed,COL.star,COL.tang];
+  const list=[{id:"_ours",title:"Prinz, Seed, Boba and the Purple Tail",by:"Our class",heroes:"A star, a fish, a pink bear and a squirrel.",ours:1,chapters:CH}, ...stories];
+  el.innerHTML=list.map((s,i)=>`<div class="spine" style="--c:${cols[i%4]}">${s.ours?`<span class="tag">Our book</span>`:""}<h3>${esc(s.title)}</h3><p>by ${esc(s.by||"a secret author")} · ${(s.chapters||[]).length} chapters</p>${s.heroes?`<p>${esc(s.heroes.slice(0,120))}${s.heroes.length>120?"…":""}</p>`:""}<div><button class="small" data-read="${esc(s.id)}">Read</button></div></div>`).join("")+(stories.length?"":`<div class="empty">No stories from the studio yet. Write the first one in “Make your story”.</div>`);
+  el.querySelectorAll("[data-read]").forEach(b=>b.onclick=()=>{const id=b.dataset.read;reading=id==="_ours"?null:stories.find(s=>String(s.id)===id)||null;idx=0;buildSel();go("book");render()});
+  document.getElementById("shelfNote").textContent=storyMode==="shared"?"Stories on this shelf are shared with everyone who opens the book.":"Stories are saved in this browser only.";}
+
+/* ---------------- TABS ---------------- */
+const VIEWS=["book","drawings","studio","shelf"];
+function go(v){VIEWS.forEach(x=>{document.getElementById("v-"+x).hidden=x!==v;document.getElementById("t-"+x).setAttribute("aria-selected",x===v)});try{history.replaceState(null,"","#"+v)}catch(e){}}
+document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>go(b.dataset.v));
+function drawLogo(){document.getElementById("logoStar").innerHTML=ART.star?`<image href="${ART.star}" width="120" height="120"/>`:DRAW.star("laugh")}
+
+drawLogo();buildSel();render();renderCast();renderShelf();
+const h=(location.hash||"").slice(1);if(VIEWS.includes(h))go(h);
+
+/* ---------------- SHARED STORAGE (lights up when available) ---------------- */
+(async()=>{if(!(window.claude&&typeof window.claude.use==="function"))return;
+  try{db=await window.claude.use("db")}catch(e){db=null}
+  try{assets=await window.claude.use("assets")}catch(e){assets=null}
+  if(!db)return;
+  artMode=assets?"shared":"view";storyMode="shared";
+  db.doc("book/art").onSnapshot(s=>{const d=s.exists?s.data()||{}:{};
+      if(assets||s.exists){ART=d.chars||{};PAGEART=d.pages||{}}
+      if(!assets)artMode=s.exists?"shared":"view";
+      renderCast();render();drawLogo()},()=>{});
+  db.collection("stories").orderBy("createdAt","desc").limit(200).onSnapshot(q=>{stories=q.docs.map(d=>Object.assign({id:d.id},d.data()));renderShelf();if(reading&&reading.id){const f=stories.find(s=>s.id===reading.id);if(f)reading=f}},()=>{storyMode="local";renderShelf()});
+  renderCast();renderShelf();render();
+})();
+})();
+</script>
+
+</body>
+</html>
