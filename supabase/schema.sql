@@ -196,3 +196,15 @@ alter table quiz_sessions enable row level security;
 -- 2026-10-20: домашка «Пробний НМТ» (kind 'mock', номер варіанта в колонці game)
 alter table homework drop constraint if exists homework_kind_check;
 alter table homework add constraint homework_kind_check check (kind in ('game', 'text', 'exercise', 'lesson', 'mock'));
+
+-- 2026-10-20: свої ігри вчителя (/teacher/games, гра за посиланням /play/g/<id>)
+create table if not exists teacher_games (
+  id text primary key,
+  teacher_id text not null,
+  title text not null,
+  prompt text,
+  items jsonb not null default '[]',
+  created_at timestamptz not null default now()
+);
+create index if not exists teacher_games_teacher_idx on teacher_games (teacher_id, created_at desc);
+alter table teacher_games enable row level security;
