@@ -28,6 +28,7 @@ export default function SettingsPage() {
       <div className="t-card t-mobile-only">
         <h2>{t({ uk: 'Матеріали', ru: 'Материалы', en: 'Materials' })}</h2>
         <div className="t-head__actions">
+          <Link href="/teacher/games" className="mu-btn mu-btn--lime t-btn-sm">{t({ uk: 'Мої ігри', ru: 'Мои игры', en: 'My games' })}</Link>
           <Link href="/irregular-verbs/games" className="mu-btn t-btn-sm">{t({ uk: 'Ігри', ru: 'Игры', en: 'Games' })}</Link>
           <Link href="/irregular-verbs" className="mu-btn t-btn-sm">{t({ uk: 'Дієслова', ru: 'Глаголы', en: 'Verbs' })}</Link>
           <Link href="/grammar" className="mu-btn t-btn-sm">{t({ uk: 'Граматика', ru: 'Грамматика', en: 'Grammar' })}</Link>
