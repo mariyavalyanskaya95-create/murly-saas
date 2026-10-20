@@ -1220,6 +1220,10 @@ a.t-stat:hover { transform: translateY(-2px); }
 .t-invite__link { display: flex; gap: 8px; align-items: center; }
 .t-invite__link input { width: 300px; max-width: 60vw; padding: 9px 12px; border: 2px solid var(--mu-ink); border-radius: 12px; font: inherit; font-size: 14px; background: #fff; }
 .t-top__badge--student { background: var(--mu-lime); color: var(--mu-ink); border: 2px solid var(--mu-ink); }
+.s-nav { display: flex; gap: 8px; padding: 10px 28px; overflow-x: auto; border-bottom: 2px solid var(--mu-ink); background: var(--mu-paper); scrollbar-width: none; }
+.s-nav a { flex: none; padding: 6px 14px; border: 2px solid var(--mu-ink); border-radius: var(--mu-radius-pill); font-weight: 700; font-size: 14px; background: #fff; white-space: nowrap; }
+.s-nav a:hover { background: var(--mu-lime); }
+@media (max-width: 720px) { .s-nav { padding: 8px 16px; } }
 .s-main { max-width: 960px; margin: 0 auto; padding: 28px 20px 60px; }
 .s-next { background: var(--mu-sky); }
 .s-next--empty { background: #fff; }

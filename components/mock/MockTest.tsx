@@ -76,7 +76,7 @@ export default function MockTest({ v }: { v: MockVariant }) {
   const finish = () => {
     setDone(true); setWhy(false);
     // зберігаємо результат у кабінеті (якщо учень увійшов; для гостей запит просто не пройде)
-    fetch('/api/mock', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ variant: v.id, score, total }) }).catch(() => {});
+    fetch('/api/mock', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ variant: v.id, score, total, hw: new URLSearchParams(window.location.search).get('hw') || undefined }) }).catch(() => {});
   };
   const reset = () => { setAns({}); setDone(false); setWhy(false); setSec(0); setCur(0); };
 

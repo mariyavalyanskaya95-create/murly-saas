@@ -192,3 +192,7 @@ create table if not exists quiz_sessions (
 );
 create index if not exists quiz_sessions_user_idx on quiz_sessions (user_id, created_at desc);
 alter table quiz_sessions enable row level security;
+
+-- 2026-10-20: домашка «Пробний НМТ» (kind 'mock', номер варіанта в колонці game)
+alter table homework drop constraint if exists homework_kind_check;
+alter table homework add constraint homework_kind_check check (kind in ('game', 'text', 'exercise', 'lesson', 'mock'));

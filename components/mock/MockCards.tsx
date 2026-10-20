@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { MOCKS, FREE } from '@/lib/mock';
 import { useT } from '@/components/LangProvider';
 
-const COLORS = ['tomato', 'sky', 'lime', 'mustard', 'pink'];
+const COLORS = ['tomato', 'sky', 'lime', 'mustard'];
 
 // Чи показувати пробні НМТ під поточні фільтри (вони B1-B2, для підлітків)
 export const mockFits = (f: { focus?: string; age?: string; level?: string; q?: string }) =>

@@ -328,7 +328,8 @@ function HomeworkTab({ id }: { id: string }) {
   const list = data.homework.filter((h) => h.studentId === id);
   const wordsRu = plural(words, 'ru', { uk: ['слово', 'слова', 'слів'], ru: ['слово', 'слова', 'слов'], en: ['word', 'words'] });
   const [open, setOpen] = useState(false);
-  const [kind, setKind] = useState<'game' | 'text' | 'exercise'>('exercise');
+  const [kind, setKind] = useState<'game' | 'text' | 'exercise' | 'mock'>('exercise');
+  const [mock, setMock] = useState(MOCKS[0].id);
   const [sections, setSections] = useState<Section[]>([]);
   const [game, setGame] = useState<'quiz' | 'match' | 'anagram' | 'cards'>('quiz');
   const [direction, setDirection] = useState<'en' | 'uk'>('en');
@@ -343,10 +344,10 @@ function HomeworkTab({ id }: { id: string }) {
     const gameLabel = t(GAMES.find((g) => g.id === game)!.label);
     addHomework({
       studentId: id, kind,
-      title: title.trim() || (kind === 'game' ? `${t({ uk: 'Слова', ru: 'Слова', en: 'Words' })}: ${gameLabel.toLowerCase()}` : kind === 'exercise' ? t({ uk: 'Вправа', ru: 'Упражнение', en: 'Exercise' }) : t({ uk: 'Письмове завдання', ru: 'Письменное задание', en: 'Written task' })),
+      title: title.trim() || (kind === 'mock' ? t({ uk: `Пробний НМТ №${mock}`, ru: `Пробный НМТ №${mock}`, en: `NMT mock test #${mock}` }) : kind === 'game' ? `${t({ uk: 'Слова', ru: 'Слова', en: 'Words' })}: ${gameLabel.toLowerCase()}` : kind === 'exercise' ? t({ uk: 'Вправа', ru: 'Упражнение', en: 'Exercise' }) : t({ uk: 'Письмове завдання', ru: 'Письменное задание', en: 'Written task' })),
       items: kind === 'exercise' ? sections : undefined,
       instructions: instructions.trim() || undefined,
-      game: kind === 'game' ? game : undefined,
+      game: kind === 'game' ? game : kind === 'mock' ? mock : undefined,
       direction: kind === 'game' ? direction : undefined,
       due: due ? new Date(due).toISOString() : undefined,
     });
@@ -364,7 +365,14 @@ function HomeworkTab({ id }: { id: string }) {
               <button type="button" className={`g-chip ${kind === 'exercise' ? 'is-on' : ''}`} onClick={() => setKind('exercise')}>{t({ uk: 'Вправа з автоперевіркою', ru: 'Упражнение с автопроверкой', en: 'Auto-checked exercise' })}</button>
               <button type="button" className={`g-chip ${kind === 'game' ? 'is-on' : ''}`} onClick={() => setKind('game')}>{t({ uk: 'Гра зі словника', ru: 'Игра со словами из словаря', en: 'Vocabulary game' })}</button>
               <button type="button" className={`g-chip ${kind === 'text' ? 'is-on' : ''}`} onClick={() => setKind('text')}>{t({ uk: 'Письмове завдання', ru: 'Письменное задание', en: 'Written task' })}</button>
+              <button type="button" className={`g-chip ${kind === 'mock' ? 'is-on' : ''}`} onClick={() => setKind('mock')}>{t({ uk: 'Пробний НМТ', ru: 'Пробный НМТ', en: 'NMT mock test' })}</button>
             </div>
+            {kind === 'mock' && (
+              <div className="t-form">
+                <label>{t({ uk: 'Варіант', ru: 'Вариант', en: 'Variant' })}<select value={mock} onChange={(e) => setMock(e.target.value)}>{MOCKS.map((m) => <option key={m.id} value={m.id}>{t({ uk: `Пробний НМТ №${m.id}`, ru: `Пробный НМТ №${m.id}`, en: `NMT mock test #${m.id}` })}</option>)}</select></label>
+                <p className="t-muted t-form__wide">{t({ uk: 'Учень пройде тест на сайті, бал збережеться в домашці автоматично. Результати всіх спроб видно нижче в «Пробні НМТ».', ru: 'Ученик пройдёт тест на сайте, балл сохранится в домашке автоматически. Результаты всех попыток видно ниже в «Пробные НМТ».', en: 'The student takes the test on the site and the score is saved to the homework automatically. All attempts are shown below under mock tests.' })}</p>
+              </div>
+            )}
             {kind === 'game' && words < 4 && <p className="t-neg">{t({ uk: `У словнику учня ${words} слів. Додай хоча б 4, щоб задати гру.`, ru: `В словаре ученика ${words} ${wordsRu}. Добавь хотя бы 4, чтобы задать игру.`, en: `The student has ${words} ${words === 1 ? 'word' : 'words'} in their vocabulary. Add at least 4 to assign a game.` })}</p>}
             {kind === 'game' && (
               <div className="t-form">

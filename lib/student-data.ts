@@ -10,8 +10,8 @@ type Row = Record<string, unknown>;
 export type StudentLesson = { id: string; start: string; duration: number; topic?: string; link: string; status: string };
 export type StudentWord = { id: string; en: string; uk: string; example?: string };
 export type StudentHomework = {
-  id: string; title: string; instructions?: string; kind: 'game' | 'text' | 'exercise' | 'lesson'; items?: Section[] | Block[]; answers?: Answers; overrides?: Record<string, boolean>;
-  game?: 'quiz' | 'match' | 'anagram' | 'cards'; direction?: 'en' | 'uk';
+  id: string; title: string; instructions?: string; kind: 'game' | 'text' | 'exercise' | 'lesson' | 'mock'; items?: Section[] | Block[]; answers?: Answers; overrides?: Record<string, boolean>;
+  game?: 'quiz' | 'match' | 'anagram' | 'cards' | (string & {}); direction?: 'en' | 'uk';
   due?: string; status: 'assigned' | 'done' | 'checked'; score?: number; total?: number; answer?: string; feedback?: string;
 };
 export type Enrollment = {
@@ -80,7 +80,7 @@ export async function getEnrollments(userId: string): Promise<Enrollment[]> {
       })),
       words: words.map((w) => ({ id: String(w.id), en: String(w.en), uk: String(w.uk), example: w.example ? String(w.example) : undefined })),
       homework: homework.map((h) => ({
-        id: String(h.id), title: String(h.title), kind: h.kind === 'text' ? 'text' : h.kind === 'exercise' ? 'exercise' : h.kind === 'lesson' ? 'lesson' : 'game',
+        id: String(h.id), title: String(h.title), kind: h.kind === 'text' ? 'text' : h.kind === 'exercise' ? 'exercise' : h.kind === 'lesson' ? 'lesson' : h.kind === 'mock' ? 'mock' : 'game',
         items: (h.items as Section[] | Block[] | null) ?? undefined, answers: (h.answers as Answers | null) ?? undefined, overrides: (h.overrides as Record<string, boolean> | null) ?? undefined,
         instructions: h.instructions ? String(h.instructions) : undefined,
         game: (h.game as StudentHomework['game']) ?? undefined, direction: (h.direction as StudentHomework['direction']) ?? undefined,
