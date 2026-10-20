@@ -2135,3 +2135,11 @@ button.mk-gap { border: 0; border-bottom: 2px solid var(--mu-ink); cursor: point
 .mk-mine__list li { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding: 8px 10px; border: 1.5px solid #E2DCCD; border-radius: 12px; }
 .mk-mine__score { font-weight: 800; padding: 2px 10px; border-radius: 99px; border: 1.5px solid var(--mu-ink); }
 .mk-mine__score.is-top { background: var(--mu-lime); } .mk-mine__score.is-ok { background: var(--mu-sky); } .mk-mine__score.is-low { background: #FFB4A2; }
+
+/* Свої ігри вчителя */
+.tg-list { display: grid; gap: 12px; }
+.tg-item { border: 2px solid var(--mu-ink); border-radius: var(--mu-radius); padding: 12px 14px; display: grid; gap: 12px; background: var(--mu-paper); }
+.tg-item__head { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.tg-item__head .t-head__actions { margin-left: auto; flex-wrap: wrap; }
+.pg-top { display: flex; align-items: center; padding: 14px 28px; border-bottom: 2px solid var(--mu-ink); background: var(--mu-paper); }
+.pg-title { font-size: clamp(30px, 5vw, 52px); margin: 8px 0 20px; }
