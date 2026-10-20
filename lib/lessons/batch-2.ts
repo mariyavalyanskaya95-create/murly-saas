@@ -373,8 +373,8 @@ Story chain: start with "It was a dark and rainy night. We were driving through 
 
   // ───────────────────────── 5. Present Perfect (teens, НМТ) ─────────────────────────
   {
-    id: 'lib-present-perfect-life', title: 'Have you ever…?', level: 'B1', age: 'teens', topic: 'Present Perfect · НМТ', color: 'lime', source: 'murly',
-    focus: ['Grammar', 'Vocabulary', 'Reading', 'Listening', 'Speaking', 'НМТ'],
+    id: 'lib-present-perfect-life', title: 'Have you ever…?', level: 'B1', age: 'teens', topic: 'Present Perfect', color: 'lime', source: 'murly',
+    focus: ['Grammar', 'Vocabulary', 'Reading', 'Listening', 'Speaking'],
     aims: 'Навчимося говорити про життєвий досвід з Present Perfect\nРозрізнятимемо Present Perfect і Past Simple\nВиконаємо завдання у форматі НМТ: читання і граматичний тест\nПоставимо одне одному питання Have you ever…?',
     duration: 60,
     blocks: [
