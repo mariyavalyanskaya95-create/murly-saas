@@ -3,13 +3,15 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { AGES, LEVELS, ageLabel, type Age, type Plan } from '@/lib/lesson';
 import { useT } from '@/components/LangProvider';
+import MockCards, { mockFits } from '@/components/mock/MockCards';
 
 // Каталог уроків або практики з фільтрами (base: куди веде картка, skills: фільтр навичок)
-export default function PracticeList({ items, base = '/practice', skills = ['Listening', 'Reading'] }: { items: Plan[]; base?: string; skills?: string[] }) {
+export default function PracticeList({ items, base = '/practice', skills = ['Listening', 'Reading'], mocks = false }: { items: Plan[]; base?: string; skills?: string[]; mocks?: boolean }) {
   const t = useT();
   const [skill, setSkill] = useState('');
   const [age, setAge] = useState<Age | ''>('');
   const [level, setLevel] = useState('');
+  const showMocks = mocks && mockFits({ focus: skill, age, level });
   const list = items.filter((p) => (!skill || (p.focus ?? []).includes(skill)) && (!age || p.age === age) && (!level || p.level === level));
   return (
     <>
@@ -39,8 +41,9 @@ export default function PracticeList({ items, base = '/practice', skills = ['Lis
             {p.topic && <span className="gr-card__uk">{p.topic}</span>}
           </Link>
         ))}
+        {showMocks && <MockCards />}
       </div>
-      {!list.length && <p className="t-empty" style={{ textAlign: 'center' }}>{t({ uk: 'Під ці фільтри поки нічого немає. Розділ поповнюється.', ru: 'Под эти фильтры пока ничего нет. Раздел пополняется.', en: 'Nothing matches these filters yet. New items are added regularly.' })}</p>}
+      {!list.length && !showMocks && <p className="t-empty" style={{ textAlign: 'center' }}>{t({ uk: 'Під ці фільтри поки нічого немає. Розділ поповнюється.', ru: 'Под эти фильтры пока ничего нет. Раздел пополняется.', en: 'Nothing matches these filters yet. New items are added regularly.' })}</p>}
     </>
   );
 }
