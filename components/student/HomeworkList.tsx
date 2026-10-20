@@ -77,7 +77,7 @@ function HomeworkRow({ h, words, open, onToggle, onPatch }: {
   return (
     <div className={`s-hw__item is-${h.status} ${open ? 'is-open' : ''}`}>
       <button className="s-hw__head" onClick={onToggle} aria-expanded={open}>
-        <span className="s-hw__title"><Icon id={h.kind === 'game' ? 'e-trophy' : h.kind === 'exercise' ? 'e-abc' : h.kind === 'lesson' ? 'e-book' : 'e-pencil'} />{h.title}</span>
+        <span className="s-hw__title"><Icon id={h.kind === 'mock' ? 'e-cap' : h.kind === 'game' ? 'e-trophy' : h.kind === 'exercise' ? 'e-abc' : h.kind === 'lesson' ? 'e-book' : 'e-pencil'} />{h.title}</span>
         <span className="s-hw__right">{h.score != null && <b>{h.score}/{h.total}</b>}{tag}</span>
       </button>
       {open && (
@@ -92,6 +92,10 @@ function HomeworkRow({ h, words, open, onToggle, onPatch }: {
                   </div>
                 </GameFinishContext.Provider>
               : <p className="t-muted">{t({ uk: 'У словнику поки замало слів для гри.', ru: 'В словаре пока мало слов для игры.', en: 'There are not enough words in your dictionary for a game yet.' })}</p>
+          )}
+          {h.kind === 'mock' && h.game && (
+            <p><a className="mu-btn mu-btn--lime" href={`/nmt/mock/${h.game}?hw=${encodeURIComponent(h.id)}`}>{h.status === 'assigned' ? t({ uk: 'Пройти тест', ru: 'Пройти тест', en: 'Take the test' }) : t({ uk: 'Пройти ще раз', ru: 'Пройти ещё раз', en: 'Take it again' })}</a>
+              <span className="t-muted" style={{ display: 'block', marginTop: 8 }}>{t({ uk: 'Коли завершиш тест, бал сам потрапить у домашку.', ru: 'Когда завершишь тест, балл сам попадёт в домашку.', en: 'When you finish, your score is saved here automatically.' })}</span></p>
           )}
           {h.kind === 'exercise' && h.items && <ExercisePlayer h={h} onPatch={onPatch} />}
           {h.kind === 'lesson' && h.items && (
