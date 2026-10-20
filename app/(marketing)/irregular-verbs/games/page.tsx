@@ -56,15 +56,15 @@ export default function IrregularVerbsGamesPage() {
           <div className="mu-cta-box">
             <Icon id="c-cat-glass" className="mu-ic mu-ic--cta" />
             {t.lang === 'ru' ? (
-              <h2>Учителю: <em>свои игры</em> скоро.</h2>
+              <h2>Учителю: <em>свои игры</em> уже здесь.</h2>
             ) : t.lang === 'en' ? (
-              <h2>Teachers: <em>your own games</em> are coming soon.</h2>
+              <h2>Teachers: <em>your own games</em> are here.</h2>
             ) : (
-              <h2>Учителю: <em>свої ігри</em> скоро.</h2>
+              <h2>Учителю: <em>свої ігри</em> вже тут.</h2>
             )}
-            <p>{t({ uk: 'Вводиш слова один раз, обираєш гру і відправляєш учням. Кабінет учителя вже в роботі.', ru: 'Вводишь слова один раз, выбираешь игру и отправляешь ученикам. Кабинет учителя уже в работе.', en: 'Enter the words once, choose a game and send it to your students. The teacher dashboard is in the works.' })}</p>
-            <Link href="/for-teachers" className="mu-btn mu-btn--tomato mu-btn--lg">
-              {t({ uk: 'Для вчителів', ru: 'Для учителей', en: 'For teachers' })}<span className="mu-btn__arrow mu-btn__arrow--lime"><Icon id="e-arrow" /></span>
+            <p>{t({ uk: 'Вводиш слова один раз, обираєш гру і відправляєш учням. Учні відкривають гру за посиланням, без реєстрації.', ru: 'Вводишь слова один раз, выбираешь игру и отправляешь ученикам. Ученики открывают игру по ссылке, без регистрации.', en: 'Enter the words once, choose a game and send it to your students. Students open the game by link, no sign-up needed.' })}</p>
+            <Link href="/teacher/games" className="mu-btn mu-btn--tomato mu-btn--lg">
+              {t({ uk: 'Створити свою гру', ru: 'Создать свою игру', en: 'Create your game' })}<span className="mu-btn__arrow mu-btn__arrow--lime"><Icon id="e-arrow" /></span>
             </Link>
           </div>
         </div>
