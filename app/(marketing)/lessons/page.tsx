@@ -50,7 +50,7 @@ export default function LessonsPage() {
         </div>
       </section>
       <section className="mu-section" style={{ paddingTop: 0 }}>
-        <div className="mu-container"><PracticeList items={localizeLesson(LESSONS, t.lang)} base="/lessons" skills={['Vocabulary', 'Grammar', 'Reading', 'Listening', 'Speaking', 'Writing', 'НМТ']} /></div>
+        <div className="mu-container"><PracticeList items={localizeLesson(LESSONS, t.lang)} base="/lessons" skills={['Vocabulary', 'Grammar', 'Reading', 'Listening', 'Speaking', 'Writing', 'НМТ']} mocks /></div>
       </section>
       <SiteFooter />
       <Stickers />

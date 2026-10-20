@@ -26,6 +26,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const lang = getLang();
   return (
     <ClerkProvider
+      signInUrl="/sign-in"
+      signUpUrl="/sign-up"
+      afterSignOutUrl="/"
       localization={lang === 'ru' ? ruRU : lang === 'en' ? undefined : ukUA}
       appearance={{
         variables: {

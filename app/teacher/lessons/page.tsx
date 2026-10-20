@@ -10,6 +10,8 @@ import { AGES, FOCUS, LEVELS, emptyBlock, type Age, type Plan } from '@/lib/less
 import { useT } from '@/components/LangProvider';
 import type { T } from '@/lib/i18n';
 import { plural } from '@/lib/teacher-store';
+import MockCards, { mockFits } from '@/components/mock/MockCards';
+import { MOCKS } from '@/lib/mock';
 
 // Підписи віку для показу (значення в AGES лишаються як є)
 const AGE_T: Record<string, T> = {
@@ -52,6 +54,7 @@ export default function LessonsPage() {
   const lib = useMemo(() => filter(LIBRARY), [age, level, q, focus, LIBRARY]); // eslint-disable-line react-hooks/exhaustive-deps
   if (!ready) return null;
   const mine = filter(data.plans);
+  const showMocks = mockFits({ focus, age, level, q });
 
   const create = () => {
     const id = addPlan({ title: t({ uk: 'Новий урок', ru: 'Новый урок', en: 'New lesson' }), level: 'A2', age: 'teens', color: 'lime', blocks: [emptyBlock('heading'), emptyBlock('text')] });
@@ -67,7 +70,7 @@ export default function LessonsPage() {
 
       <div className="t-tabs" role="tablist">
         <button role="tab" aria-selected={tab === 'mine'} className={`t-tab ${tab === 'mine' ? 'is-on' : ''}`} onClick={() => setTab('mine')}><Icon id="e-pencil" />{t({ uk: 'Мої уроки', ru: 'Мои уроки', en: 'My lessons' })} ({data.plans.length})</button>
-        <button role="tab" aria-selected={tab === 'lib'} className={`t-tab ${tab === 'lib' ? 'is-on' : ''}`} onClick={() => setTab('lib')}><Icon id="e-book" />{t({ uk: 'Бібліотека Murly', ru: 'Библиотека Murly', en: 'Murly library' })} ({LIBRARY.length})</button>
+        <button role="tab" aria-selected={tab === 'lib'} className={`t-tab ${tab === 'lib' ? 'is-on' : ''}`} onClick={() => setTab('lib')}><Icon id="e-book" />{t({ uk: 'Бібліотека Murly', ru: 'Библиотека Murly', en: 'Murly library' })} ({LIBRARY.length + MOCKS.length})</button>
       </div>
 
       <div className="le-filters">
@@ -104,7 +107,7 @@ export default function LessonsPage() {
           )
       )}
       {tab === 'lib' && (
-        lib.length ? <div className="gr-grid">{lib.map((p) => <PlanCard key={p.id} p={p} lib />)}</div> : <p className="t-empty">{t({ uk: 'Під ці фільтри уроків поки немає. Бібліотека поповнюється.', ru: 'Под эти фильтры уроков пока нет. Библиотека пополняется.', en: 'No lessons match these filters yet. The library keeps growing.' })}</p>
+        lib.length || showMocks ? <div className="gr-grid">{lib.map((p) => <PlanCard key={p.id} p={p} lib />)}{showMocks && <MockCards />}</div> : <p className="t-empty">{t({ uk: 'Під ці фільтри уроків поки немає. Бібліотека поповнюється.', ru: 'Под эти фильтры уроков пока нет. Библиотека пополняется.', en: 'No lessons match these filters yet. The library keeps growing.' })}</p>
       )}
     </div>
   );

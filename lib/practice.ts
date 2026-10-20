@@ -74,7 +74,7 @@ Invite a friend to a place you like. Say the time and the meeting place.`),
     ],
   },
   {
-    id: 'lib-l-school-trip', title: 'School trip announcement', level: 'B1', age: 'teens', topic: 'НМТ Listening', color: 'mustard', source: 'murly', focus: ['Listening', 'НМТ'],
+    id: 'lib-l-school-trip', title: 'School trip announcement', level: 'B1', age: 'teens', topic: 'Listening', color: 'mustard', source: 'murly', focus: ['Listening'],
     aims: 'Потренуємо аудіювання у форматі НМТ\nНавчимося виловлювати цифри, час і деталі',
     blocks: [
       tip('Лайфхак НМТ: перед прослуховуванням прочитай питання і підкресли, що саме треба почути (час, місце, число). Варіанти часто звучать усі, а правильний той, що залишився після уточнення.'),
@@ -179,7 +179,7 @@ strange = unusual`],
     ],
   },
   {
-    id: 'lib-r-volunteering', title: 'Teens who help', level: 'B1', age: 'teens', topic: 'НМТ Reading', color: 'mustard', source: 'murly', focus: ['Reading', 'НМТ'],
+    id: 'lib-r-volunteering', title: 'Teens who help', level: 'B1', age: 'teens', topic: 'Reading', color: 'mustard', source: 'murly', focus: ['Reading'],
     aims: 'Читання у форматі НМТ: деталі, вибір відповіді, слова з контексту\nОбговоримо волонтерство',
     blocks: [
       tip('Лайфхак НМТ: відповіді в тексті йдуть по порядку питань. Якщо знайшла відповідь на питання 2, відповідь на 3 шукай нижче.'),

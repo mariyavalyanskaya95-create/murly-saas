@@ -8,8 +8,8 @@ const { h, t, tip, note, audio, vocab, ex, talk } = makeHelpers('b3');
 export const BATCH_3: Plan[] = [
   // ---------- 1. The phone-free school ----------
   {
-    id: 'lib-phone-free-school', title: 'The phone-free school', level: 'B1', age: 'teens', topic: 'Школа · НМТ Reading', color: 'mustard', source: 'murly',
-    focus: ['Reading', 'Listening', 'Grammar', 'Speaking', 'Writing', 'НМТ'],
+    id: 'lib-phone-free-school', title: 'The phone-free school', level: 'B1', age: 'teens', topic: 'Школа · Reading', color: 'mustard', source: 'murly',
+    focus: ['Reading', 'Listening', 'Grammar', 'Speaking', 'Writing'],
     aims: 'Потренуємо читання у форматі НМТ з вибором відповіді A-D\nВивчимо лексику про шкільні правила і телефони\nПовторимо модальні дієслова для правил: have to, mustn’t, be allowed to\nНапишемо лист директору на 50+ слів',
     duration: 60,
     blocks: [
@@ -127,8 +127,8 @@ Imagine you are the head teacher. What three phone rules would you make?`),
 
   // ---------- 2. НМТ Use of English: tricky pairs ----------
   {
-    id: 'lib-nmt-use-of-english', title: 'НМТ Use of English: tricky pairs', level: 'B1', age: 'teens', topic: 'НМТ', color: 'tomato', source: 'murly',
-    focus: ['Grammar', 'Vocabulary', 'Speaking', 'НМТ'],
+    id: 'lib-nmt-use-of-english', title: 'Use of English: tricky pairs', level: 'B1', age: 'teens', topic: 'Use of English', color: 'tomato', source: 'murly',
+    focus: ['Grammar', 'Vocabulary', 'Speaking'],
     aims: 'Розберемо пари слів, на яких часто помиляються в НМТ: make/do, say/tell, since/for\nДодамо пари borrow/lend, remember/remind, lose/miss\nПотренуємо Use of English з чотирма варіантами в зв’язному тексті\nЗакріпимо пари в усному мовленні та перекладі',
     duration: 60,
     blocks: [
@@ -215,8 +215,8 @@ Did you [remind] (remind / remember) Tom about the party?`]),
 
   // ---------- 3. НМТ: Use of English (тест-формат) ----------
   {
-    id: 'lib-nmt-cloze', title: 'НМТ: Use of English (тест-формат)', level: 'B1', age: 'teens', topic: 'НМТ', color: 'tomato', source: 'murly',
-    focus: ['НМТ', 'Grammar', 'Vocabulary', 'Listening'],
+    id: 'lib-nmt-cloze', title: 'Use of English: пропуски в тексті', level: 'B1', age: 'teens', topic: 'Use of English', color: 'tomato', source: 'murly',
+    focus: ['Grammar', 'Vocabulary', 'Listening'],
     aims: 'Потренуємо завдання як на НМТ: текст з пропусками і варіантами A-D\nПовторимо часи, прийменники і сталі словосполучення\nРозберемо типові пастки і навчимося визначати тип пропуску\nЗакріпимо лексику про хобі та волонтерство',
     duration: 60,
     blocks: [
@@ -311,8 +311,8 @@ I’d like to take [part] in the school marathon.`]),
 
   // ---------- 4. НМТ Reading: заголовки до абзаців ----------
   {
-    id: 'lib-nmt-headings', title: 'НМТ Reading: заголовки до абзаців', level: 'B1', age: 'teens', topic: 'НМТ · Reading', color: 'sky', source: 'murly',
-    focus: ['НМТ', 'Reading', 'Vocabulary', 'Speaking'],
+    id: 'lib-nmt-headings', title: 'Reading: заголовки до абзаців', level: 'B1', age: 'teens', topic: 'Reading', color: 'sky', source: 'murly',
+    focus: ['Reading', 'Vocabulary', 'Speaking'],
     aims: 'Потренуємо завдання НМТ «підбери заголовок до абзацу» із зайвими варіантами\nНавчимось шукати головну думку і перефразування, а не окремі слова\nВивчимо лексику про сон, звички і дозвілля\nОбговоримо режим дня підлітків',
     duration: 60,
     blocks: [
@@ -425,8 +425,8 @@ Paragraph 3: {A dangerous shortcut|The best drinks for students|How to make ener
 
   // ---------- 5. НМТ Writing: лист другові ----------
   {
-    id: 'lib-nmt-letter', title: 'НМТ Writing: лист другові', level: 'B1', age: 'teens', topic: 'НМТ · Writing', color: 'mustard', source: 'murly',
-    focus: ['НМТ', 'Writing', 'Vocabulary', 'Listening'],
+    id: 'lib-nmt-letter', title: 'Writing: лист другові', level: 'B1', age: 'teens', topic: 'Writing', color: 'mustard', source: 'murly',
+    focus: ['Writing', 'Vocabulary', 'Listening'],
     aims: 'Розберемо структуру неформального листа на НМТ\nВивчимо фрази для початку, кінця листа і для порад\nПотренуємо зв’язки because, so, but, also\nНапишемо лист 50+ слів, що розкриває три пункти завдання',
     duration: 60,
     blocks: [
@@ -538,7 +538,7 @@ Which phrases from today will you use in your letter?`),
   // ---------- 6. The true cost of fast fashion ----------
   {
     id: 'lib-fast-fashion', title: 'The true cost of fast fashion', level: 'B2', age: 'teens', topic: 'Екологія · Мода', color: 'tomato', source: 'murly',
-    focus: ['Reading', 'Listening', 'Vocabulary', 'Speaking', 'Writing', 'НМТ'],
+    focus: ['Reading', 'Listening', 'Vocabulary', 'Speaking', 'Writing'],
     aims: 'Прочитаємо статтю про швидку моду і виконаємо завдання у форматі НМТ A-D\nВивчимо лексику про споживання і екологію\nПослухаємо діалог про обмін одягом\nНавчимось аргументувати позицію усно і письмово',
     duration: 60,
     blocks: [
