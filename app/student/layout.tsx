@@ -22,6 +22,14 @@ export default async function StudentLayout({ children }: { children: React.Reac
         <span className="t-top__badge t-top__badge--student">{t({ uk: 'Мій кабінет', ru: 'Мой кабинет', en: 'My account' })}</span>
         <div className="t-top__user"><UserButton /></div>
       </header>
+      <nav className="s-nav" aria-label={t({ uk: 'Розділи', ru: 'Разделы', en: 'Sections' })}>
+        <Link href="/student">{t({ uk: 'Мій кабінет', ru: 'Мой кабинет', en: 'My account' })}</Link>
+        <Link href="/nmt/mock">{t({ uk: 'Пробні НМТ', ru: 'Пробные НМТ', en: 'Mock NMT' })}</Link>
+        <Link href="/grammar">{t({ uk: 'Граматика', ru: 'Грамматика', en: 'Grammar' })}</Link>
+        <Link href="/irregular-verbs">{t({ uk: 'Неправильні дієслова', ru: 'Неправильные глаголы', en: 'Irregular verbs' })}</Link>
+        <Link href="/practice">{t({ uk: 'Слухати і читати', ru: 'Слушать и читать', en: 'Listening and reading' })}</Link>
+        <Link href="/play/town">Murly Town</Link>
+      </nav>
       <main className="s-main">{children}</main>
     </div>
   );
