@@ -2255,3 +2255,10 @@ button.mk-gap { border: 0; border-bottom: 2px solid var(--mu-ink); cursor: point
 .u-bg--ocean { background: linear-gradient(160deg, #B9DBE9, #7FB8D6 60%, #A8E6CF); }
 .u-bg--night { background: #2C2950 radial-gradient(circle, rgba(255,255,255,.8) 1.2px, transparent 1.6px) 0 0 / 28px 28px; }
 @media (max-width: 640px) { .u-banner { height: 160px; } .u-banner__nick { font-size: 18px; } }
+
+/* Учні: змінити / видалити */
+.t-student-wrap { display: grid; gap: 8px; align-content: start; }
+.t-student__acts { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; padding: 0 4px; font-size: 14px; }
+.t-student__acts .mu-btn .mu-ic, .t-student__acts .mu-btn svg { width: 16px; height: 16px; }
+.t-hero__edit { align-self: center; }
+.t-hero__edit svg { width: 16px; height: 16px; }
