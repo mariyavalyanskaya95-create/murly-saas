@@ -3,6 +3,9 @@ import { useState } from 'react';
 import LessonRow from '@/components/teacher/LessonRow';
 import { LessonForm } from '@/components/teacher/forms';
 import ScheduleImport from '@/components/teacher/ScheduleImport';
+import WeekGrid from '@/components/teacher/WeekGrid';
+import Link from 'next/link';
+import Icon from '@/components/Icon';
 import { localeOf, plural, sameDay, useTeacher } from '@/lib/teacher-store';
 import { useT } from '@/components/LangProvider';
 
@@ -20,6 +23,7 @@ export default function SchedulePage() {
   const [offset, setOffset] = useState(0);
   const [open, setOpen] = useState(false);
   const [imp, setImp] = useState(false);
+  const [view, setView] = useState<'grid' | 'list'>('grid');
   if (!ready) return null;
 
   const monday = startOfWeek(new Date()); monday.setDate(monday.getDate() + offset * 7);
@@ -47,16 +51,29 @@ export default function SchedulePage() {
 
       <p className="t-muted">{((n) => `${n} ${plural(n, t.lang, { uk: ['заняття', 'заняття', 'занять'], ru: ['занятие', 'занятия', 'занятий'], en: ['lesson', 'lessons'] })} ${t({ uk: 'цього тижня', ru: 'на этой неделе', en: 'this week' })}`)(weekLessons.filter((l) => l.status !== 'cancelled').length)}</p>
 
-      <div className="t-week">
-        {days.map((d) => {
-          const ls = data.lessons.filter((l) => sameDay(new Date(l.start), d)).sort((a, b) => a.start.localeCompare(b.start));
-          return (
-            <section key={d.toISOString()} className={`t-day ${sameDay(d, today) ? 'is-today' : ''}`}>
-              <h3>{((w) => w.charAt(0).toUpperCase() + w.slice(1))(d.toLocaleDateString(loc, { weekday: 'long' }))}<span>{d.toLocaleDateString(loc, { day: 'numeric', month: 'short' })}</span></h3>
-              {ls.length ? ls.map((l) => <LessonRow key={l.id} l={l} showDate={false} />) : <p className="t-empty">{t({ uk: 'Вільно', ru: 'Свободно', en: 'Free' })}</p>}
-            </section>
-          );
-        })}
+      <div className="g-chips" style={{ justifyContent: 'flex-start' }}>
+        <button className={`g-chip ${view === 'grid' ? 'is-on' : ''}`} onClick={() => setView('grid')}>{t({ uk: 'Сітка', ru: 'Сетка', en: 'Grid' })}</button>
+        <button className={`g-chip ${view === 'list' ? 'is-on' : ''}`} onClick={() => setView('list')}>{t({ uk: 'Список', ru: 'Список', en: 'List' })}</button>
+      </div>
+
+      {view === 'grid' ? <WeekGrid days={days} /> : (
+        <div className="t-week">
+          {days.map((d) => {
+            const ls = data.lessons.filter((l) => sameDay(new Date(l.start), d)).sort((a, b) => a.start.localeCompare(b.start));
+            return (
+              <section key={d.toISOString()} className={`t-day ${sameDay(d, today) ? 'is-today' : ''}`}>
+                <h3>{((w) => w.charAt(0).toUpperCase() + w.slice(1))(d.toLocaleDateString(loc, { weekday: 'long' }))}<span>{d.toLocaleDateString(loc, { day: 'numeric', month: 'short' })}</span></h3>
+                {ls.length ? ls.map((l) => <LessonRow key={l.id} l={l} showDate={false} />) : <p className="t-empty">{t({ uk: 'Вільно', ru: 'Свободно', en: 'Free' })}</p>}
+              </section>
+            );
+          })}
+        </div>
+      )}
+
+      <div className="wg-call">
+        {data.settings.link
+          ? <a href={data.settings.link} target="_blank" rel="noopener noreferrer" className="mu-btn mu-btn--lime mu-btn--lg"><Icon id="d-phone" />{t({ uk: 'Почати дзвінок', ru: 'Начать звонок', en: 'Start the call' })}</a>
+          : <Link href="/teacher/settings" className="mu-btn mu-btn--lg"><Icon id="d-phone" />{t({ uk: 'Додати посилання на дзвінок', ru: 'Добавить ссылку на звонок', en: 'Add your call link' })}</Link>}
       </div>
     </div>
   );
