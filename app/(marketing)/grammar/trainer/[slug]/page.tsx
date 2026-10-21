@@ -12,6 +12,25 @@ import { tr } from '@/lib/i18n-server';
 import { localizeDrill } from '@/lib/content/drills';
 
 export const dynamicParams = false;
+
+// таблиці, де перший рядок: заголовки колонок
+const HEAD_FIRST = new Set(['articles', 'future-forms', 'past-continuous', 'quantifiers', 'simple-vs-continuous', 'there-is-are']);
+// довгий текст блоку «extra» ділимо на речення, а переліки через «;» на пункти списку
+function extraParts(text: string): (string | string[])[] {
+  const out: (string | string[])[] = [];
+  for (const para of text.split(/\n+/)) {
+    let cur = '';
+    for (const sent of para.split(/(?<=[.!?])\s+(?=[A-ZА-ЯІЇЄҐ])/)) {
+      const list = sent.match(/^([^:;]{1,40}:)\s*(.+;.+)$/);
+      if (list) { if (cur) out.push(cur); out.push(list[1], list[2].split(/;\s*/)); cur = ''; continue; }
+      // нове «гасло» на кшталт «V2: ...» або «Правильні дієслова: ...» починає новий абзац
+      if (cur && /^[^.,]{1,30}:/.test(sent)) { out.push(cur); cur = sent; } else cur = cur ? `${cur} ${sent}` : sent;
+    }
+    if (cur) out.push(cur);
+  }
+  return out;
+}
+
 export function generateStaticParams() { return DRILLS.map((d) => ({ slug: d.slug })); }
 
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
@@ -85,15 +104,18 @@ export default function DrillPage({ params }: { params: { slug: string } }) {
           {th.extra && (
             <>
               <h2 className="gr-h"><Icon id="e-book" />{th.extra.title}</h2>
-              <div className="gr-tip dr-extra">
-                <div>
-                  {th.extra.text.split(/\n+/).map((p, k) => <p key={k}>{p}</p>)}
-                  {th.extra.rows && (
-                    <div className="dr-table-wrap">
-                      <table className="dr-table"><tbody>{th.extra.rows.map((r, k) => <tr key={k}>{r.map((c, j) => <td key={j}>{c}</td>)}</tr>)}</tbody></table>
-                    </div>
-                  )}
-                </div>
+              <div className="dr-extra">
+                {extraParts(th.extra.text).map((p, k) => (Array.isArray(p)
+                  ? <ul key={k}>{p.map((li) => <li key={li}>{li}</li>)}</ul>
+                  : <p key={k}>{(() => { const m = p.match(/^([^.,]{1,30}:)(.*)$/); return m ? <><b>{m[1]}</b>{m[2]}</> : p; })()}</p>))}
+                {th.extra.rows && (
+                  <div className="dr-table-wrap">
+                    <table className="dr-table">
+                      {HEAD_FIRST.has(d0.slug) && <thead><tr>{th.extra.rows[0].map((c, j) => <th key={j}>{c}</th>)}</tr></thead>}
+                      <tbody>{th.extra.rows.slice(HEAD_FIRST.has(d0.slug) ? 1 : 0).map((r, k) => <tr key={k}>{r.map((c, j) => <td key={j}>{c}</td>)}</tr>)}</tbody>
+                    </table>
+                  </div>
+                )}
               </div>
             </>
           )}
