@@ -4,6 +4,8 @@ import type { Plan } from '../lesson';
 import { makeHelpers } from './helpers';
 
 const { h, t, tip, note, audio, vocab, ex, talk } = makeHelpers('b3');
+// Додаткова практика і Homework plus: окремий префікс, щоб не зсувати id старих блоків
+const X = makeHelpers('b3x');
 
 export const BATCH_3: Plan[] = [
   // ---------- 1. The phone-free school ----------
@@ -118,10 +120,62 @@ Mark wants a phone zone near the bus stop. Is it a good compromise?
 Which rule would you change at your school? Use have to, mustn’t or be allowed to.
 Imagine you are the head teacher. What three phone rules would you make?`),
 
+      X.h('Extra practice · якщо лишився час або на наступний урок'),
+      X.ex(
+        ['gap', 'Встав слово: locker, collect, calm, emergency, contact, distraction.', `Please put your bag in your [locker] before the lesson.
+You can [collect] your phone from the office at 3 pm.
+The library is a [calm] place to study.
+Call this number only in an [emergency].
+How can parents [contact] the school during the day?
+Loud music is a big [distraction] when I do my homework.`],
+        ['choice', 'Обери правильний варіант: обов’язок, заборона чи вибір.', `It’s Saturday, so we {don’t have to|mustn’t|have to} get up early.
+You {mustn’t|don’t have to|can} run in the corridor. It’s dangerous.
+Everybody wears a blue jacket because we {have to|don’t have to|aren’t allowed to} wear a uniform.
+Are we {allowed to|allow to|allowed} use calculators in the maths test?
+You {don’t have to|mustn’t|have to} bring lunch, but you can if you want.
+Phones are a distraction, so students {aren’t allowed to|don’t have to|are allowed to} use them during tests.`],
+        ['translate', 'Переклади англійською.', `Ми маємо залишати сумки в шафках = We have to leave our bags in lockers / We have to leave our bags in the lockers / We must leave our bags in lockers / We must leave our bags in the lockers
+Тобі не обов’язково телефонувати мамі = You don’t have to call your mum / You do not have to call your mum / You don’t have to call your mom / You do not have to call your mom / You don’t have to phone your mum / You do not have to phone your mum
+Можна мені зателефонувати додому? = Can I call home? / May I call home? / Can I phone home? / May I phone home? / Am I allowed to call home?
+Не гортай стрічку на уроці = Don’t scroll in the lesson / Do not scroll in the lesson / Don’t scroll during the lesson / Do not scroll during the lesson / Don’t scroll in class / Do not scroll in class
+Учні стали більш зосередженими = Students have become more focused / Students became more focused / The students have become more focused / The students became more focused
+Школа заборонила телефони = The school has banned phones / The school banned phones / The school has banned mobile phones / The school banned mobile phones`],
+      ),
+      X.game('Phone rules: quick match', 'З’єднай слово з перекладом.', `a locker = шафка
+to collect = забирати
+calm = спокійний
+focused = зосереджений
+an emergency = надзвичайна ситуація
+to scroll = гортати стрічку
+a distraction = те, що відволікає
+to be allowed to = мати дозвіл
+to ban = забороняти
+research = дослідження`),
+      X.note('Extra practice можна виконати, якщо лишився час, або дати як розминку на початку наступного уроку. У секції з модальними нагадайте шкалу: mustn’t = заборона, don’t have to = не обов’язково. У реченні про обід правильна відповідь don’t have to, бо далі сказано «but you can if you want». У перекладі зараховуйте вручну синонімічні варіанти (must / have to, phone / call), яких немає в ключі. Гру можна пройти на швидкість двічі: спершу з англійської, потім з української.'),
+
       h('НМТ Writing and wrap-up · 5 хв'),
       tip('Лист на НМТ: звертання (**Dear Mr Collins,**) → одне речення, навіщо пишеш → кожен пункт завдання окремим абзацом → завершення (**I hope you will consider my ideas.**) → підпис. Мінімум 50 слів, усі пункти обов’язкові.'),
       note('На уроці учень складає план листа (2 хв), а сам лист пише вдома. Домашнє завдання: написати лист 50-70 слів і вивчити слова уроку в грі. Наостанок поверніться до шкали думок з Warm-up: чи змінилася думка учня?'),
       ex(['open', 'НМТ Writing: 50-70 words.', 'Write an email to your head teacher. Say if you support a phone-free day at your school, give two reasons and suggest one rule that would make it fair for everyone.']),
+
+      X.h('Homework plus'),
+      X.ex(
+        ['gap', 'Встав have to, don’t have to, mustn’t або can.', `It’s a test, so you [mustn’t/must not/can’t/cannot] talk to your friends.
+Tomorrow is a holiday, so we [don’t have to/do not have to] go to school.
+In the library you [can] read any book you like, it’s free.
+If you are late, you [have to/must] go to the office first.
+We [don’t have to/do not have to] buy books, the school gives them to us.
+The concert has started, so you [mustn’t/must not/can’t/cannot] talk now.`],
+        ['choice', 'Обери правильну відповідь за текстом уроку.', `At Oakfield, students collect their phones {at 3 pm|at lunch|in the morning}.
+In the first week, Daria felt {lost|happy|calm} without her phone.
+Mr Collins says that fewer students {come to class late|forget their homework|get bad marks}.
+During breaks, the library became {much busier|closed|quieter}.
+Max has read {four books|two books|ten books} this term.
+Almost two thirds of the students would {keep the rule|cancel the rule|make the rule stricter}.`],
+        ['open', 'Письмо: 2-3 речення на кожне питання.', `What are three rules at your school? Use have to, mustn’t or be allowed to.
+Imagine one school day without your phone. What would you do instead?
+Should parents be able to contact their children at school at any time? Why or why not?`],
+      ),
     ],
   },
 
@@ -199,6 +253,40 @@ What do you often forget? Who reminds you?
 Have you ever missed a bus, a train or an important event? What happened?
 How long have you known your best friend?`),
 
+      X.h('Extra practice · якщо лишився час або на наступний урок'),
+      X.ex(
+        ['choice', 'НМТ: обери правильний варіант (A-D).', `I’m sorry, I {made|did|took|had} a mistake in your name.
+Can you {do|make|take|give} me a favour and close the window?
+My teacher {told|said|spoke|talked} us to start the test.
+She {said|told|spoke|talked} that the shop was closed.
+Tom has played the guitar {since|for|from|during} he was nine.
+I need to {borrow|lend|owe|pay} some money from my brother.
+Oh no! We’ve {missed|lost|left|passed} the last train.`],
+        ['gap', 'Встав правильне слово з пари в дужках.', `Please [remind] (remember / remind) me to call Grandma.
+I can’t [remember] (remember / remind) his phone number.
+Our team [lost] (lost / missed) the match yesterday.
+I really [miss] (lose / miss) my friends from the summer camp.
+Could you [lend] (borrow / lend) me your umbrella?
+We’ve lived in this flat [for] (since / for) ten years.`],
+        ['match', 'З’єднай вираз з перекладом.', `make a noise = шуміти
+do a favour = зробити послугу
+tell a lie = збрехати
+say sorry = вибачитися
+miss the bus = спізнитися на автобус
+lose a game = програти гру`],
+      ),
+      X.game('Tricky pairs: meanings', 'Знайди значення кожного слова з пари.', `borrow = take something for a short time
+lend = give something for a short time
+remember = keep something in your mind
+remind = help someone not to forget
+lose = not be able to find something
+miss = be too late for a bus or a train
+since = from a point in time until now
+for = during a period of time
+say = speak words
+tell = give information to someone`),
+      X.note('Extra practice можна виконати, якщо лишився час, або на початку наступного уроку як повторення. У тесті A-D пастки: do me a favour (не make), told us (після tell потрібен об’єкт), said that (без об’єкта). У перекладі виразів зверніть увагу: say sorry, але tell a lie. Гра на значення: попросіть учня після кожної пари скласти власне речення.'),
+
       h('Mini test and wrap-up · 10 хв'),
       note('Міні-тест учень виконує без підказок. Переклад перевіряйте гнучко: зараховуйте вручну правильні варіанти, яких немає в ключі. Домашнє завдання: скласти 10 власних речень, по два на кожну пару, і пройти гру зі словами уроку.'),
       ex(['gap', 'Встав правильне слово з пари в дужках.', `Could you [tell] (say / tell) me your address?
@@ -210,6 +298,24 @@ Did you [remind] (remind / remember) Tom about the party?`]),
 Ми знаємо одне одного вже три роки = We have known each other for three years / We’ve known each other for three years
 Можеш позичити мені свій зошит? = Can you lend me your notebook? / Could you lend me your notebook? / Can you lend me your exercise book? / Could you lend me your exercise book?
 Я не хочу пропустити початок фільму = I don’t want to miss the beginning of the film / I do not want to miss the beginning of the film / I don’t want to miss the start of the film / I do not want to miss the start of the film / I don’t want to miss the beginning of the movie / I don’t want to miss the start of the movie`]),
+
+      X.h('Homework plus'),
+      X.ex(
+        ['choice', 'НМТ Text C: My first job. Обери правильний варіант (A-D).', `Last summer I {got|made|did|won} a part-time job in a café.
+On my first day the manager {told|said|spoke|explained} me the rules.
+I {made|did|had|got} a lot of mistakes with the coffee machine.
+I had to {borrow|lend|rent|owe} a black shirt from my cousin.
+One morning I {missed|lost|left|passed} the bus and arrived late.
+I have saved a lot of money {since|for|from|during} June.`],
+        ['translate', 'Переклади англійською.', `Нагадай мені про тест = Remind me about the test / Please remind me about the test / Remind me about the test, please
+Я загубив ключі = I lost my keys / I’ve lost my keys / I have lost my keys
+Він завжди каже правду = He always tells the truth
+Ми ухвалили рішення = We made a decision / We have made a decision / We’ve made a decision
+Я сумую за бабусею = I miss my grandma / I miss my granny / I miss my grandmother
+Я позичив книжку в Ані = I borrowed a book from Anya / I borrowed a book from Ania / I borrowed the book from Anya / I borrowed the book from Ania / I borrowed a book from Anna / I borrowed the book from Anna`],
+        ['open', 'Письмо: дай розгорнуту відповідь.', `Write three sentences about things you have done since September. Use since and for.
+Tell a short story (4-5 sentences) about a day when you missed or lost something. Use at least three words from today’s pairs.`],
+      ),
     ],
   },
 
@@ -295,6 +401,38 @@ Max is saving money for a new camera. = False`]),
 What skills can you develop by volunteering?
 Tell me about a competition you took part in.`),
 
+      X.h('Extra practice · якщо лишився час або на наступний урок'),
+      X.ex(
+        ['choice', 'НМТ Text C: A school garden. Обери правильний варіант (A-D).', `Two years ago our class decided to {take|make|do|get} part in a school garden project.
+At first, nobody was really interested {in|on|at|for} plants.
+But our biology teacher was very good {at|in|on|with} explaining things.
+Every week we {spent|passed|took|lost} two hours in the garden after lessons.
+We learnt to pay attention {to|on|at|for} the weather and the soil.
+Since then we {have grown|grew|grow|are growing} tomatoes, beans and pumpkins.
+Last autumn we {gave|have given|give|were giving} our vegetables to elderly people in our town.`],
+        ['gap', 'Встав одне слово: up, in, at, after, to, for.', `My little brother wants to take [up] chess.
+Are you interested [in] science?
+She is very good [at] drawing.
+Who looks [after] your dog when you are away?
+Please pay attention [to] the instructions.
+I have volunteered at the shelter [for] two years.`],
+        ['match', 'З’єднай частини речення.', `Volunteering helps you = develop useful skills.
+At the animal shelter, we look = after cats and dogs.
+She took part = in a local competition.
+I spend most of my free time = reading books.
+Many teenagers make = new friends at summer camps.
+He has been interested in robots = since he was twelve.`],
+      ),
+      X.game('Collocations race', 'Склади сталий вираз: початок = кінець.', `take part = in a project
+be interested = in photography
+be good = at sport
+look = after elderly people
+pay attention = to details
+make = new friends
+develop = useful skills
+spend = time with friends`),
+      X.note('Extra practice можна виконати, якщо лишився час, або як розминку на наступному уроці. Text C учень виконує на час: 4 хвилини, як на НМТ, і називає тип кожного пропуску (граматика, лексика, прийменник). Пастки: spend, а не pass time; have grown через since then; gave через last autumn. У грі учень бачить початок виразу і має швидко знайти кінець.'),
+
       h('Mini test and wrap-up · 10 хв'),
       note('Міні-тест без підказок, 5 хвилин. Потім підсумок: учень називає три пастки, які запам’ятав. Домашнє завдання: скласти власний текст на 6 речень з пропусками і варіантами A-D на тему хобі та обмінятися ним на наступному уроці.'),
       ex(['gap', 'Встав одне слово.', `I have known her [since] 2020.
@@ -306,6 +444,24 @@ I’d like to take [part] in the school marathon.`]),
       ex(['translate', 'Переклади англійською.', `Я цікавлюся фотографією = I am interested in photography / I’m interested in photography
 Вона почала займатися йогою минулого року = She took up yoga last year
 Ми проводимо вихідні в притулку для тварин = We spend our weekends at an animal shelter / We spend our weekends in an animal shelter / We spend weekends at an animal shelter / We spend weekends in an animal shelter`]),
+
+      X.h('Homework plus'),
+      X.ex(
+        ['choice', 'НМТ Text D: A charity run. Обери правильний варіант (A-D).', `Last month our school {organised|has organised|organises|was organising} a charity run.
+More than two hundred students took {part|place|care|time} in it.
+Before the race I {had trained|have trained|train|am training} for three months.
+My best friend is not good {at|in|on|with} running, so she helped at the finish line.
+We collected money to help an animal {shelter|shell|shield|shade} in our town.
+Next year I hope {to run|running|run|ran} again with my brother.`],
+        ['translate', 'Переклади англійською.', `Мій брат доглядає за нашим собакою = My brother looks after our dog / My brother takes care of our dog
+Вона добре вміє малювати = She is good at drawing / She’s good at drawing / She is good at painting / She’s good at painting
+Я хочу взяти участь у конкурсі = I want to take part in the competition / I want to take part in a competition / I’d like to take part in the competition / I would like to take part in the competition / I’d like to take part in a competition / I would like to take part in a competition
+Він волонтер з 2022 року = He has been a volunteer since 2022 / He’s been a volunteer since 2022 / He has volunteered since 2022 / He has been volunteering since 2022 / He’s been volunteering since 2022
+Ми проводимо багато часу разом = We spend a lot of time together / We spend lots of time together
+Вона завжди звертає увагу на деталі = She always pays attention to details / She always pays attention to the details`],
+        ['open', 'Письмо: дай розгорнуту відповідь.', `Write a short text (5-6 sentences) about your hobby. Use take up, be interested in and be good at.
+Would you like to volunteer? Where and why? Write 3-4 sentences.`],
+      ),
     ],
   },
 
@@ -407,6 +563,38 @@ What helps you concentrate when you are tired?
 Do you prefer board games or video games? Why?
 What advice would you give a friend who can’t fall asleep?`),
 
+      X.h('Extra practice · якщо лишився час або на наступний урок'),
+      X.ex(
+        ['choice', 'НМТ: обери найкращий заголовок до кожного міні-абзацу (A-D).', `“I used to drink cola in the evening and then stay awake until 2 am. Now I drink only water after 6 pm.” {Changing one habit|Cola is good for you|Staying up all night|A new evening job}
+“Our school starts at 9:30 now. Students say they feel less tired in the first lesson.” {A later start helps|Lessons get longer|Teachers come late|No first lesson any more}
+“After three nights of little sleep, Ira couldn’t concentrate in the test and got a low grade.” {When tiredness costs you marks|How to pass every test|A night at the library|Ira’s favourite subject}
+“Doctors recommend going to bed and getting up at the same time every day, even at weekends.” {Keep a regular routine|Sleep longer at weekends|Doctors who never sleep|Weekend plans}
+“Board game cafés are full every Friday. Young people come to play, talk and forget about their phones.” {Offline fun is popular again|Cafés sell new phones|A Friday homework club|Why games are expensive}
+“Some games take hours to learn, and the boxes can cost as much as a new pair of trainers.” {The downside of a hobby|Cheap fun for everyone|How to buy trainers|Games for small children}`],
+        ['gap', 'Встав слово: exhausted, concentrate, recommend, habit, routine, laziness.', `After the long hike we were completely [exhausted].
+I can’t [concentrate] when my brother plays loud music.
+Doctors [recommend] eight to ten hours of sleep for teenagers.
+Reading a paper book before bed is a good [habit].
+My evening [routine] is simple: shower, book, sleep.
+Not doing your homework just because you don’t want to is [laziness].`],
+        ['match', 'З’єднай фразу з її перефразуванням, як у заголовках НМТ.', `go to bed late = stay up late
+extremely tired = exhausted
+can’t focus = find it hard to concentrate
+a doctor’s suggestion = medical advice
+make a comeback = become popular again
+put your phone away = take a break from screens`],
+      ),
+      X.game('Synonym hunt', 'Знайди синонім або перефразування.', `exhausted = very tired
+to advise = to suggest
+a habit = something you do often
+to concentrate = to focus
+a grade = a mark
+laziness = not wanting to work
+a routine = the usual order of your day
+adolescence = the teenage years
+to recommend = to say something is a good idea`),
+      X.note('Extra practice можна виконати, якщо лишився час, або на початку наступного уроку. У заголовках учень спершу формулює головну думку міні-абзацу своїми словами, потім обирає варіант. Пастки: «Staying up all night» і «Sleep longer at weekends» повторюють слова з тексту, але не передають головну думку. Вправа на перефразування і гра тренують головну навичку завдання НМТ: бачити той самий зміст у різних словах.'),
+
       h('Mini test and wrap-up · 10 хв'),
       note('Міні-тест: три короткі абзаци, 4 хвилини. Потім учень сам пише заголовок до абзацу 1 і пояснює вибір. Домашнє завдання: знайти коротку статтю англійською (3-4 абзаци), написати заголовок до кожного абзацу і один зайвий заголовок-пастку.'),
       t(`**1.** Mia used to sleep with her phone next to her pillow. Now she charges it in the kitchen and reads a paper book before bed. She says she falls asleep twenty minutes faster.
@@ -419,6 +607,24 @@ What advice would you give a friend who can’t fall asleep?`),
 Paragraph 2: {Fresh air for a fresh mind|Winter sports at school|Longer lessons, better results|Teachers who love the cold}
 Paragraph 3: {A dangerous shortcut|The best drinks for students|How to make energy drinks|Sugar-free and safe}`],
         ['open', 'Write your own heading.', 'Write a different heading for paragraph 1 (3-6 words). Explain in one sentence why it fits.'],
+      ),
+
+      X.h('Homework plus'),
+      X.ex(
+        ['choice', 'НМТ: обери найкращу відповідь за текстом «Sleep and teenagers» (A-D).', `According to paragraph A, teenagers feel sleepy later because {their body produces a hormone later|they are lazy|they use phones in bed|school starts early}.
+Experts recommend that teenagers sleep {eight to ten hours|six or seven hours|five hours|twelve hours}.
+Tired students find it harder to {remember new information|get up late|play board games|use their phones}.
+In the studies, a later start helped students to {get better grades|finish school earlier|use phones less|have longer breaks}.
+The bright screen of a phone {tells the brain it is still daytime|helps you fall asleep|makes you hungry|keeps the room warm}.
+Doctors advise putting the phone away {at least an hour before bed|just before you close your eyes|in the morning|during lessons}.`],
+        ['translate', 'Переклади англійською.', `Я часто довго не лягаю спати = I often stay up late
+Лікарі радять менше користуватися телефоном = Doctors advise using the phone less / Doctors advise using your phone less / Doctors advise using phones less / Doctors advise people to use their phones less
+Я не можу зосередитися = I can’t concentrate / I cannot concentrate / I can’t focus / I cannot focus
+У мене погана звичка = I have a bad habit / I’ve got a bad habit / I have got a bad habit
+Після тренування я виснажений = I am exhausted after training / I’m exhausted after training / I am exhausted after the training / I’m exhausted after the training / After training I am exhausted / After training I’m exhausted
+Вона отримала гарну оцінку = She got a good grade / She got a good mark / She has got a good grade / She has got a good mark`],
+        ['open', 'Письмо: дай розгорнуту відповідь.', `Write a paragraph (4-5 sentences) about your sleep habits. Then write a heading for it.
+Write one extra trap heading for your paragraph and explain in one sentence why it does not fit.`],
       ),
     ],
   },
@@ -521,6 +727,39 @@ What are the 2-3 main steps to cook it?
 When can Alex come to cook with you?
 Which phrases from today will you use in your letter?`),
 
+      X.h('Extra practice · якщо лишився час або на наступний урок'),
+      X.ex(
+        ['choice', 'НМТ: обери правильний варіант (A-D).', `{Thanks for|Thanks to|Thank for|Thanks of} your letter!
+It was great to {hear from|hear to|listen from|hearing from} you.
+You should {bring|to bring|bringing|brought} a raincoat.
+How about {going|go|to go|went} to the lake on Sunday?
+Why don’t we {meet|to meet|meeting|met} at the station?
+I can’t wait {to see|seeing|see|for see} you!
+{Say hello|Tell hello|Speak hello|Talk hello} to your parents!`],
+        ['gap', 'Встав: because, so, but, also, By the way, Take care.', `I can’t come on Friday [because] I have a piano lesson.
+It will be cold, [so] bring a warm sweater.
+The hotel is small, [but] it is very cosy.
+We can [also] visit the zoo if you want.
+[By the way], my sister says hi!
+See you soon! [Take care], Olya`],
+        ['translate', 'Переклади англійською.', `Дякую за твого листа = Thanks for your letter / Thank you for your letter
+Як у тебе справи? = How are you doing? / How are you? / How are things?
+Тобі варто взяти зручне взуття = You should bring comfortable shoes / You should take comfortable shoes
+Чому б нам не піти в кіно? = Why don’t we go to the cinema? / Why don’t we go to the movies? / Why not go to the cinema?
+Як щодо того, щоб покататися на велосипедах? = How about riding bikes? / How about cycling? / How about going cycling? / How about riding our bikes? / How about going for a bike ride?
+Не можу дочекатися зустрічі = I can’t wait to see you / Can’t wait to see you / I cannot wait to see you / I can’t wait to meet you / I cannot wait to meet you`],
+      ),
+      X.game('Letter builder', 'Склади фразу для листа: початок = кінець.', `Thanks for = your letter
+It was great to hear = from you
+I’m writing to tell you = about my trip
+You should = bring a hat
+Why don’t we = go to the river?
+How about = trying varenyky?
+I can’t wait = to see you
+Say hello = to your family
+Write back = soon`),
+      X.note('Extra practice можна виконати, якщо лишився час, або як розминку перед написанням листа на наступному уроці. Головні пастки тесту: should + V без to, How about + V-ing, Why don’t we + V, can’t wait to + V. У gap вираз By the way стоїть на початку речення, Take care перед підписом. Після гри попросіть учня усно скласти короткий лист з 5-6 фраз гри.'),
+
       h('НМТ Writing and wrap-up · 15 хв'),
       tip('Чекліст перед здачею: 1) усі три пункти розкриті; 2) є звертання, вступ, завершення і підпис; 3) не менше 50 слів; 4) кожен пункт окремим абзацом; 5) перевір should + V, часи і артиклі.'),
       note('Спершу 3 хвилини на вправу з помилками, потім 10 хвилин на лист. Перевіряйте за критеріями НМТ: зміст, структура, лексика, граматика. Домашнє завдання: переписати лист з урахуванням виправлень і написати ще один лист на тему «Запроси друга на свій день народження» (50-70 слів).'),
@@ -531,6 +770,24 @@ Which phrases from today will you use in your letter?`),
 {First, you boil the potatoes.|First, you are boil the potatoes.|First, you boiling the potatoes.|First, boil you the potatoes.}
 {Say hello to your family!|Say hello for your family!|Tell hello to your family!|Say hello your family!}`],
         ['open', 'Your turn: 50-70 words.', 'Your friend Alex wants to learn Ukrainian cooking. Write him a letter. Tell him: what your favourite Ukrainian dish is; how to cook it (2-3 steps); when he can come and cook it with you.'],
+      ),
+
+      X.h('Homework plus'),
+      X.ex(
+        ['choice', 'НМТ: обери правильне речення (A-D).', `{You should visit the old town.|You should to visit the old town.|You should visiting the old town.|You must to visit the old town.}
+{Why don’t we go swimming?|Why we don’t go swimming?|Why don’t we to go swimming?|Why not we go swimming?}
+{How about visiting my grandparents?|How about visit my grandparents?|How about to visit my grandparents?|What about to visit my grandparents?}
+{I’m writing to tell you about my holiday.|I write for tell you about my holiday.|I’m writing for telling you about my holiday.|I’m write to tell you about my holiday.}
+{Let’s meet at the café.|Let’s to meet at the café.|Let’s meeting at the café.|Let us meets at the café.}
+{I’m looking forward to your visit.|I’m looking forward your visit.|I look forward for your visit.|I’m looking forward to visit.}`],
+        ['gap', 'Встав слово: should, about, don’t, because, so, forward.', `You [should] try my mum’s cheesecake.
+How [about] going to the park?
+Why [don’t] we play tennis on Saturday?
+Bring a swimsuit [because] there is a pool.
+It’s far, [so] we’ll take a bus.
+I’m looking [forward] to seeing you.`],
+        ['open', 'НМТ Writing: 50-70 слів у першому завданні.', `Your friend Emma wants to visit your town in winter. Write her a letter (50-70 words). Tell her: what the weather is like; what you can do together; what she should bring.
+Write three suggestions for a weekend with a friend. Use should, Why don’t we…? and How about…?`],
       ),
     ],
   },
@@ -635,6 +892,39 @@ Would you organise a clothes swap at your school? How would it work?
 Is it fair to blame buyers, or are the brands responsible?
 What is one realistic change you could make to your shopping habits?`),
 
+      X.h('Extra practice · якщо лишився час або на наступний урок'),
+      X.ex(
+        ['gap', 'Встав слово: garment, landfill, trend, disposable, sustainable, swap.', `Every [garment] in this shop is made from recycled cotton.
+Millions of old clothes end up in [landfill] every year.
+Neon colours were a huge [trend] last summer.
+Cheap clothes have become almost [disposable]: people wear them once or twice and throw them away.
+Shopping second-hand is a more [sustainable] choice.
+Why don’t we [swap] jackets for the weekend?`],
+        ['choice', 'Обери правильний варіант.', `{Although|Despite|However|Because of} the T-shirt was cheap, it fell apart after two washes.
+{Despite|Although|Even|However} the low price, the jacket was badly made.
+Fast fashion harms the planet. {What is more|On the other hand|To sum up|Despite this}, workers are often paid very little.
+I can’t afford new trainers, so I’ll make {do|did|done|doing} with my old ones.
+These jeans have only been {worn|wore|wear|wearing} twice.
+Many people buy clothes they don’t need {on impulse|in impulse|by impulse|at impulse}.`],
+        ['translate', 'Переклади англійською.', `Я купую вживаний одяг = I buy second-hand clothes / I buy secondhand clothes
+Ця сукня була імпульсивною покупкою = This dress was an impulse buy / This dress was an impulse purchase
+Більшість старого одягу потрапляє на звалище = Most old clothes end up in landfill / Most old clothes go to landfill / Most old clothes end up in a landfill / Most old clothes go to a landfill / Most old clothes end up in landfills
+Ми можемо обійтися тим, що маємо = We can make do with what we have / We can make do with what we’ve got / We can make do with what we have got
+Давай обміняємося куртками = Let’s swap jackets / Let us swap jackets / Let’s swap our jackets
+Мій гардероб повний = My wardrobe is full`],
+      ),
+      X.game('Fashion vocab', 'З’єднай слово з перекладом.', `fast fashion = швидка мода
+a garment = предмет одягу
+disposable = одноразовий
+landfill = звалище
+second-hand = вживаний
+a trend = тренд
+an impulse buy = імпульсивна покупка
+sustainable = сталий, екологічний
+a wardrobe = гардероб
+to swap = обмінюватися`),
+      X.note('Extra practice можна виконати, якщо лишився час, або на початку наступного уроку перед перевіркою opinion paragraph. У вправі на вибір головна пастка: although + речення, despite + іменник. What is more додає аргумент у тому ж напрямку, тому On the other hand тут не підходить. Make do with: після make дієслово без змін. Переклади з кількома правильними формами зараховуйте вручну, якщо їх немає в ключі.'),
+
       h('Writing and wrap-up · 10 хв'),
       tip('Структура opinion paragraph: 1) твоя думка (**In my opinion…**); 2) перший аргумент з прикладом; 3) другий аргумент (**What is more…**); 4) можлива протилежна думка (**On the other hand…**); 5) висновок (**To sum up…**).'),
       note('На уроці учень виконує сортування і складає план абзацу (5 хв). Домашнє завдання: написати opinion paragraph 100-120 слів, використавши щонайменше 4 слова з уроку і 3 зв’язки з сортування. Додатково: порахувати речі в шафі, які не вдягалися понад рік.'),
@@ -644,6 +934,25 @@ Adding a point: What is more; In addition
 Contrasting: On the other hand; However
 Concluding: To sum up; All in all`],
         ['open', 'Writing: 100-120 words.', 'Write an opinion paragraph: “Should fast fashion brands pay a special tax?” Give two arguments, mention the opposite view and write a conclusion.'],
+      ),
+
+      X.h('Homework plus'),
+      X.ex(
+        ['choice', 'НМТ: обери найкращу відповідь за текстом і діалогом уроку (A-D).', `Fast fashion brands release new collections {every few weeks|once a year|every winter|every five years}.
+Cheap synthetic fabrics are made from {oil|cotton|wood|recycled paper}.
+To keep prices low, factories {are under pressure to produce quickly|use expensive materials|pay their workers more|close at weekends}.
+At the clothes swap, everything must be {clean and in good condition|brand new|bought last year|made of cotton}.
+Tom bought his hoodie {on impulse last winter|at a clothes swap|in a second-hand shop|as a present for Lily}.
+Clothes that are too damaged go to {a textile recycling point|a charity shop|landfill|Lily’s wardrobe}.`],
+        ['gap', 'Встав фразу-зв’язку з уроку (можливі кілька варіантів).', `[In my opinion/In my view], fast fashion brands should pay a special tax.
+They produce a lot of waste. [What is more/In addition], their workers earn very little.
+[On the other hand/However], some families can’t afford expensive clothes.
+[To sum up/All in all], we should all buy less and choose better.
+I buy second-hand clothes [because] they are cheaper and greener.
+Swaps are fun. [In addition/What is more], they help you meet new people.`],
+        ['open', 'Письмо: дай розгорнуту відповідь.', `Write an opinion paragraph (100-120 words): “Teenagers should buy only second-hand clothes.” Use at least three linking phrases.
+Describe a garment you own and really love. Why do you keep it?
+Plan a clothes swap at your school: when, where and what are the rules? Write 3-4 sentences.`],
       ),
     ],
   },

@@ -4,6 +4,9 @@ import type { Plan } from '../lesson';
 import { makeHelpers } from './helpers';
 
 const { h, t, tip, note, audio, video, vocab, ex, talk } = makeHelpers('b1');
+// Додаткові блоки (Extra practice, Homework plus) мають окремий префікс, щоб не зсувати id старих блоків.
+const X = makeHelpers('b1x');
+const EXTRA = 'Extra practice · якщо лишився час або на наступний урок';
 
 export const BATCH_1: Plan[] = [
   // ---------- ANIMALS AT THE ZOO ----------
@@ -102,6 +105,54 @@ What animals can you see in your city?`),
       h('Wrap-up · 6 хв'),
       ex(['open', 'Напиши про свою улюблену тварину (3 речення).', 'My favourite animal is... It is... It can... It can’t...']),
       note('Exit task: дитина називає 5 тварин за 30 секунд. Домашнє завдання: намалювати «свій зоопарк» з 4 тваринами і підписати по реченню з can / can’t до кожної. Можна повторити слова в іграх Murly.'),
+
+      X.h(EXTRA),
+      X.ex(
+        ['gap', 'Напиши can або can’t.', `A bird [can] fly.
+A fish [can’t/cannot] walk.
+A giraffe [can’t/cannot] fly.
+A monkey [can] jump.
+A crocodile [can] swim.
+A zebra [can] run.`],
+        ['choice', 'Обери правильне слово.', `A {penguin|parrot} is black and white.
+An elephant is {big|small}.
+The {giraffe|penguin|monkey} is very tall.
+A {parrot|lion|zebra} can talk.
+{Can|Is|Does} a monkey climb? Yes, it can.
+Can a fish fly? No, it {can’t|isn’t|doesn’t}.`],
+        ['translate', 'Переклади англійською.', `Лев великий = The lion is big / A lion is big / Lions are big
+Папуга вміє говорити = A parrot can talk / The parrot can talk / Parrots can talk / A parrot can speak
+Ведмідь не вміє літати = A bear can’t fly / A bear cannot fly / The bear can’t fly / The bear cannot fly / Bears can’t fly
+Мавпи смішні = Monkeys are funny / The monkeys are funny
+Жирафа вміє бігати = A giraffe can run / The giraffe can run / Giraffes can run
+Крокодил вміє плавати = A crocodile can swim / The crocodile can swim / Crocodiles can swim`],
+      ),
+      X.game('Animal riddles', 'Read and write the animal', `It is black and white. It can swim, but it can’t fly. = penguin
+It is big and grey. It has got a long nose. = elephant
+It has got a very long neck. = giraffe
+It is big and yellow. It can run very fast. = lion
+It can fly and it can talk. = parrot
+It is funny. It can climb trees. = monkey
+It is black and white. It looks like a horse. = zebra
+It is green. It can swim. It has got big teeth. = crocodile`),
+      X.note('Extra practice дай наприкінці уроку, якщо лишився час, або на початку наступного як повторення. У перекладі зараховуються варіанти з a, the і множиною (Monkeys are funny). У грі «Animal riddles» дитина читає загадку вголос і пише тварину англійською. Загадки про пінгвіна і зебру починаються однаково, тож попроси дочитати до кінця. Homework plus можна дати разом із малюнком «свій зоопарк».'),
+      X.h('Homework plus'),
+      X.ex(
+        ['choice', 'Обери правильний варіант.', `A lion {can|cans|can to} run fast.
+A penguin {can’t|can’t to|don’t} fly.
+{Can|Do|Is} a parrot talk?
+Can a bear swim? Yes, it {can|is|does}.
+Can an elephant fly? No, it {can’t|isn’t|don’t}.
+A zebra {is|are|can} black and white.`],
+        ['gap', 'Встав слово: lion, giraffe, parrot, penguin, monkey, zebra.', `The [giraffe] has got a long neck.
+The [parrot] can fly and talk.
+The [penguin] can swim, but it can’t fly.
+The [monkey] can climb trees and it is funny.
+The [lion] is big and yellow.
+The [zebra] is black and white and it can run fast.`],
+        ['open', 'Напиши відповіді (2-3 речення).', `What can you do? What can’t you do? Write with I can and I can’t.
+Choose an animal from the zoo. What can it do? What can’t it do?`],
+      ),
     ],
   },
 
@@ -202,6 +253,56 @@ When do you go to bed?`),
       t('Read Tom’s day: My name is Tom. I get up at 7 o’clock. I have breakfast with my mum. I go to school at 8. After school I do my homework and play with my dog. I go to bed at 9.'),
       ex(['open', 'Напиши про свій день (4-5 речень), як Том.', 'I get up at... I have breakfast... I go to school at... After school I... I go to bed at...']),
       note('Exit task: дитина називає 3 речі, які вона робить щодня, і одну річ, яку робить мама або тато (з -s). Домашнє завдання: зробити комікс «My day» з 4-6 картинок і підписати кожну реченням у Present Simple.'),
+
+      X.h(EXTRA),
+      X.ex(
+        ['gap', 'Розкрий дужки.', `Tom [plays] (play) with his dog.
+I [have] (have) lunch at school.
+My mum [gets] (get) up at six.
+Max [comes] (come) home at two o’clock.
+My brother [goes] (go) to school at eight.
+They [have] (have) dinner at seven.`],
+        ['choice', 'Обери правильне слово.', `I get up in the {morning|evening}.
+I have {breakfast|dinner} in the morning.
+I have {dinner|breakfast} in the evening.
+I {go to bed|get up} at nine in the evening.
+After school I {do|make} my homework.
+I {wash|eat} my face.`],
+        ['match', 'Знайди пару.', `wash my face = вмиватися
+brush my teeth = чистити зуби
+go to school = йти до школи
+have lunch = обідати
+come home = приходити додому
+play = гратися`],
+      ),
+      X.game('He or she: add -s', 'Write the verb for he or she', `get = gets
+go = goes
+do = does
+have = has
+play = plays
+come = comes
+eat = eats
+read = reads
+sleep = sleeps
+drink = drinks`),
+      X.note('Extra practice підходить для кінця уроку або для повторення на наступному занятті. Головне в gap-вправі: -s тільки після he / she / it (Tom, My mum, Max, My brother), а після I і They без -s. Особливі форми, на які варто звернути увагу: goes, does, has, а в Homework plus brushes (після sh додаємо -es). У грі дитина пише форму для he / she; якщо пише have = haves, нагадай правило з tip. Homework plus дай разом з коміксом «My day».'),
+      X.h('Homework plus'),
+      X.ex(
+        ['choice', 'Обери правильний варіант.', `She {gets|get} up at seven.
+I {go|goes} to school at eight.
+My dad {has|have} lunch at work.
+We {do|does} our homework after school.
+Anna {plays|play} the piano.
+Tom {goes|go} to bed at nine.`],
+        ['translate', 'Переклади англійською.', `Я снідаю о восьмій = I have breakfast at eight / I have breakfast at 8 / I have breakfast at eight o’clock
+Він чистить зуби = He brushes his teeth
+Ми обідаємо в школі = We have lunch at school / We have lunch in school
+Мама приходить додому о шостій = Mum comes home at six / My mum comes home at six / Mum comes home at 6 / My mum comes home at 6 / Mum comes home at six o’clock / My mum comes home at six o’clock
+Я роблю домашнє завдання = I do my homework / I do homework
+Вона одягається = She gets dressed`],
+        ['open', 'Напиши відповіді (2-3 речення).', `What do you do in the morning? Write 3 sentences.
+What does your mum or dad do in the evening? Use he or she.`],
+      ),
     ],
   },
 
@@ -288,6 +389,55 @@ Ice cream is the best food.`]),
       h('Wrap-up · 7 хв'),
       ex(['open', 'Придумай чудернацьке меню з 3 страв і напиши, чи тобі подобається.', 'My crazy menu: ... I like... I don’t like...']),
       note('Exit task: назви 3 речі, які ти любиш, і 2, які не любиш. Домашнє завдання: намалювати «crazy menu» кафе з 4 дивними стравами (наприклад, banana soup) і підписати yummy або yucky. Можна ще раз проспівати пісню з батьками.'),
+
+      X.h(EXTRA),
+      X.ex(
+        ['gap', 'Встав do або don’t.', `Do you like milk? Yes, I [do].
+Do you like soup? No, I [don’t/do not].
+[Do] you like popcorn? Yes, I do.
+I [don’t/do not] like broccoli. It’s yucky!
+Do you like cheese? Yes, I [do]. It’s yummy!
+[Do] you like carrots? No, I don’t.`],
+        ['choice', 'Обери правильне слово.', `I drink {milk|pizza} in the morning.
+I eat {soup|juice} with a spoon.
+A banana is {yellow|blue}.
+Broccoli is {green|pink}.
+We eat {popcorn|milk} at the cinema.
+Do you like pizza? {Yes, I do|Yes, I like|Yes, I am}.`],
+        ['translate', 'Переклади англійською.', `Я люблю морозиво = I like ice cream / I love ice cream
+Я не люблю суп = I don’t like soup / I do not like soup
+Ти любиш банани? = Do you like bananas?
+Так, люблю = Yes, I do
+Ні, не люблю = No, I don’t / No, I do not
+Шоколад смачний = Chocolate is yummy / Chocolate is tasty / The chocolate is yummy / Chocolate is delicious`],
+      ),
+      X.game('Food riddles', 'Read and write the food', `It is cold and sweet. = ice cream
+It is long and yellow. Monkeys love it. = banana
+It is orange. Rabbits love it. = carrot
+It is white. Cows give it. = milk
+It is green. It looks like a little tree. = broccoli
+It is brown and sweet. = chocolate
+You eat it at the cinema. = popcorn
+It is round. It has got cheese and tomatoes on it. = pizza
+You eat it hot with a spoon. = soup`),
+      X.note('Extra practice можна зробити в кінці уроку або як розминку наступного разу. Нагадай, що коротка відповідь повторює do: Yes, I do / No, I don’t, тому Так, люблю = Yes, I do. У грі «Food riddles» спочатку прочитай загадки разом, слово cows поясни жестом (му-у). Homework plus дай разом з малюнком «crazy menu».'),
+      X.h('Homework plus'),
+      X.ex(
+        ['choice', 'Обери правильну відповідь.', `Do you like juice? No, I {don’t|not|doesn’t}.
+{Do|Does|Are} you like cheese?
+I {like|likes|am like} popcorn.
+I {don’t like|not like|doesn’t like} carrots.
+Do you like ice cream? Yes, I {do|like|am}.
+We {like|likes|are like} pizza.`],
+        ['gap', 'Встав слово: pizza, milk, soup, banana, chocolate, popcorn.', `I drink [milk] with my breakfast.
+A [banana] is long and yellow.
+I eat [pizza] with cheese and tomatoes.
+[Chocolate] is brown and sweet.
+I eat hot [soup] with a spoon.
+We eat [popcorn] at the cinema.`],
+        ['open', 'Напиши відповіді (2-3 речення).', `What food do you like? Write 3 sentences with I like.
+What food don’t you like? Is it yucky?`],
+      ),
     ],
   },
 
@@ -378,6 +528,57 @@ What do you like doing on a sunny day?`),
       h('Writing · 6 хв'),
       ex(['open', 'Напиши відповідь Мії (3-4 речення).', 'Hi Mia! What’s the weather like in your city? What are you wearing?']),
       note('Нагадай структуру листа: привітання, 2-3 речення, підпис (Love, …). Домашнє завдання: тиждень вести «weather diary» з малюнком і реченням щодня: Monday: It’s cloudy. I’m wearing a jacket.'),
+
+      X.h(EXTRA),
+      X.ex(
+        ['gap', 'Встав am, is або are.', `I [am/’m] wearing a hat.
+Mia [is/’s] wearing a red jacket.
+We [are/’re] wearing boots.
+My brother [is/’s] wearing shorts.
+You [are/’re] wearing a nice scarf.
+They [are/’re] wearing raincoats.`],
+        ['choice', 'Choose the right word.', `It’s raining. Take {an umbrella|sunglasses|an ice cream}.
+It’s hot and sunny. I’m wearing {shorts|boots and a scarf|a warm jacket}.
+It’s snowy. Put on your warm {boots|shorts|T-shirt}.
+What’s the weather like? It’s {cloudy|clouds|cloud}.
+It’s {sunny|sun|suns} today.
+She {is wearing|wearing|are wearing} a scarf.`],
+        ['translate', 'Переклади англійською.', `Сьогодні сонячно = It’s sunny today / It is sunny today / Today it’s sunny / Today it is sunny
+Сьогодні холодно = It’s cold today / It is cold today / Today it’s cold / Today it is cold
+Я вдягнений у шорти = I’m wearing shorts / I am wearing shorts
+Вона вдягнена в шарф = She’s wearing a scarf / She is wearing a scarf
+Яка сьогодні погода? = What’s the weather like today? / What is the weather like today?
+Візьми парасольку = Take an umbrella / Take your umbrella / Take an umbrella with you`],
+      ),
+      X.game('Weather and clothes', 'Write the missing word', `It’s raining. Take an ___. = umbrella
+It’s hot. I’m wearing ___ and a T-shirt. = shorts
+It’s snowy. I’m wearing warm ___ on my feet. = boots
+It’s cold. I’m wearing a ___ around my neck. = scarf
+I’m wearing a ___ on my head. = hat
+There is a lot of sun. It’s ___. = sunny
+There is a lot of wind. It’s ___. = windy
+There are a lot of clouds. It’s ___. = cloudy
+There is a lot of snow. It’s ___. = snowy
+Mia ___ wearing a red jacket. = is`),
+      X.note('Extra practice для кінця уроку або повторення на наступному. У gap-вправі приймаються і повні, і короткі форми (am / ’m, is / ’s, are / ’re). У перекладі «Я вдягнений у шорти» дитина часто пише I wear shorts; поясни, що зараз, у цю хвилину, кажемо I’m wearing. Homework plus можна поєднати з «weather diary»: питання письма і є першим записом.'),
+      X.h('Homework plus'),
+      X.ex(
+        ['gap', 'Встав слово: boots, scarf, umbrella, shorts, hat, jacket.', `It’s rainy. I’ve got my [umbrella].
+It’s hot. I’m wearing [shorts] and a T-shirt.
+It’s snowy. I’m wearing warm [boots] on my feet.
+It’s windy and cold. I’m wearing a [scarf] around my neck.
+The sun is hot. I’m wearing a [hat] on my head.
+It’s cold. I’m wearing a warm [jacket] over my jumper.`],
+        ['choice', 'Choose the right word.', `Look! Dad {is wearing|are wearing|wear} his boots.
+I {am wearing|is wearing|are wearing} a jacket.
+They {are wearing|is wearing|wearing} hats.
+What’s the weather {like|likes|liking} in Lviv?
+There is a lot of snow. It’s {snowy|sunny|hot}.
+There are a lot of clouds. It’s {cloudy|sunny|hot}.`],
+        ['open', 'Напиши відповіді (2-3 речення).', `What’s the weather like today in your city?
+What are you wearing today?
+What do you wear on a rainy day?`],
+      ),
     ],
   },
 
@@ -475,6 +676,56 @@ Have you got a pet? What is its name?`),
       t('Read Max’s text: Hello! I’m Max. I’m eight. I have got a big family. I have got one sister. Her name is Lily. She has got long hair. My grandma and grandpa live with us. My cousin Tom has got a funny dog called Biscuit.'),
       ex(['open', 'Напиши про свою сім’ю (4-5 речень), як Макс.', 'Hello! I’m... I have got... My mum... My dad... I have got / I haven’t got a pet.']),
       note('Exit task: назви 5 членів сім’ї за 20 секунд. Домашнє завдання: намалювати сімейне дерево (family tree) і підписати кожного: This is my grandma. She has got a garden.'),
+
+      X.h(EXTRA),
+      X.ex(
+        ['gap', 'Встав have got або has got.', `My brother [has got] a bike.
+I [have got] two cousins.
+My grandma [has got] a garden.
+They [have got] a baby.
+Lily [has got] a cat.
+You [have got] a nice family.`],
+        ['choice', 'Обери правильну відповідь.', `{Have|Has|Do} you got a sister?
+Has your dad got a car? Yes, he {has|have|is}.
+Have you got a pet? No, I {haven’t|hasn’t|don’t}.
+{Has|Have|Is} Max got a brother? No, he hasn’t.
+My mum’s brother is my {uncle|aunt|cousin}.
+My dad’s mum is my {grandma|aunt|sister}.`],
+        ['match', 'Знайди пару.', `dad = тато
+sister = сестра
+grandma = бабуся
+baby = немовля
+family = сім’я
+pet = домашній улюбленець`],
+      ),
+      X.game('Have got or has got?', 'Write have got or has got', `I ___ a big family. = have got
+My sister ___ long hair. = has got
+We ___ a dog. = have got
+Grandpa ___ a garden. = has got
+They ___ two cats. = have got
+Tom ___ a cousin. = has got
+You ___ a nice mum. = have got
+The baby ___ a toy. = has got
+Max ___ a sister. = has got
+My aunt and uncle ___ a car. = have got`),
+      X.note('Extra practice для кінця уроку або повторення на наступному. Перед грою повтори правило: he / she / it і одне ім’я (Tom, Max, Grandpa) має has got, а I / you / we / they і двоє людей (My aunt and uncle) мають have got. У питанні про Макса (… Max got a brother?) правильне Has, бо Max це he. Homework plus дай разом із сімейним деревом.'),
+      X.h('Homework plus'),
+      X.ex(
+        ['translate', 'Переклади англійською.', `Це мій тато = This is my dad
+У мене є сестра = I have got a sister / I’ve got a sister / I have a sister
+У нього є собака = He has got a dog / He’s got a dog / He has a dog
+У тебе є брат? = Have you got a brother? / Do you have a brother?
+У мене немає домашнього улюбленця = I haven’t got a pet / I have not got a pet / I don’t have a pet / I do not have a pet
+У моєї тітки є кіт = My aunt has got a cat / My aunt’s got a cat / My aunt has a cat`],
+        ['gap', 'Хто це? Напиши слово.', `My dad’s sister is my [aunt].
+My mum’s brother is my [uncle].
+My mum’s dad is my [grandpa/granddad].
+My dad’s mum is my [grandma/granny].
+My uncle’s daughter is my [cousin].
+A very little child is a [baby].`],
+        ['open', 'Напиши відповіді (2-3 речення).', `Who is in your family? Write 3 sentences.
+Has your friend got a pet? What has he or she got?`],
+      ),
     ],
   },
 
@@ -559,6 +810,56 @@ Do you love jumping in puddles? Why?`),
       h('Wrap-up · 6 хв'),
       ex(['open', 'Напиши 3 речення: що ти любиш робити.', 'I love... I love... I love...']),
       note('Exit task: дитина називає 3 слова про дощ і одне речення з I love…ing. Домашнє завдання: намалювати себе в дощовий день (boots, raincoat, umbrella) і підписати: It’s raining. I love jumping in puddles! Можна ще раз подивитися серію з батьками.'),
+
+      X.h(EXTRA),
+      X.ex(
+        ['gap', 'Допиши -ing.', `I love [splashing] (splash) in puddles.
+George loves [laughing] (laugh).
+We love [running] (run) in the rain.
+Peppa loves [jumping] (jump).
+I love [singing] (sing) songs.
+My dad loves [swimming] (swim).`],
+        ['choice', 'Обери правильне слово.', `I haven’t got an umbrella. I am {wet|dry}.
+Put on your {raincoat|shorts} and boots.
+Jump in the {puddle|sky}!
+The puddle is brown. It is {muddy|sunny}.
+It’s funny! We {laugh|cry}.
+I love {splashing|splash} in puddles.`],
+        ['match', 'Знайди пару.', `rain = дощ
+It’s raining. = Іде дощ.
+muddy = брудний, у багнюці
+an umbrella = парасолька
+to splash = хлюпати, бризкати
+dry = сухий`],
+      ),
+      X.game('-ing challenge', 'Write the -ing form', `jump = jumping
+play = playing
+splash = splashing
+laugh = laughing
+read = reading
+sing = singing
+swim = swimming
+run = running
+dance = dancing
+ride = riding`),
+      X.note('Extra practice для кінця уроку або як розминка на наступному. Слово dry (сухий) нове, покажи його як протилежність до wet. У грі звертай увагу на подвоєння: swimming, running, і на зникнення e: dancing, riding. Homework plus дай разом з малюнком «я в дощовий день».'),
+      X.h('Homework plus'),
+      X.ex(
+        ['translate', 'Переклади англійською.', `Я люблю танцювати = I love dancing / I like dancing
+Я люблю плавати = I love swimming / I like swimming
+Я мокрий = I’m wet / I am wet
+Калюжа брудна = The puddle is muddy / A puddle is muddy / The puddle is dirty
+Вдягни чоботи! = Put on your boots / Put on boots / Put your boots on
+Пеппа любить стрибати = Peppa loves jumping / Peppa likes jumping`],
+        ['choice', 'Обери правильний варіант.', `I love {reading|read|reads} books.
+We love {swimming|swiming|swim}.
+Peppa loves {jumping|jump|jumps} in puddles.
+My mum loves {dancing|danceing|dance}.
+I love {running|runing|run}.
+George {loves|love|loving} his boots.`],
+        ['open', 'Напиши відповіді (2-3 речення).', `What do you love doing on a rainy day? Write 3 sentences with I love.
+What do you love doing with your family?`],
+      ),
     ],
   },
 ];

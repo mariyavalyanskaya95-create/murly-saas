@@ -1,6 +1,7 @@
 import type { Plan } from '../lesson';
 import { makeHelpers } from './helpers';
 const { h, t, tip, note, audio, video, vocab, ex, talk } = makeHelpers('b2');
+const X = makeHelpers('b2x');
 
 export const BATCH_2: Plan[] = [
   // ───────────────────────── 1. Cartoon: balloon (kids) ─────────────────────────
@@ -80,11 +81,61 @@ Who usually wins games in your family?`),
       ex(['voice', 'Запиши своє аудіо.', `Tell us about your game. Say its name and three rules. For example: Hit the balloon. Don’t let it touch the floor. Don’t run in the kitchen!`]),
       note('Дай дитині 2 хвилини подумати і, якщо треба, намалювати свою гру. Потім учень пояснює правила, а ви разом пробуєте зіграти 1-2 хвилини (у Zoom можна з подушкою або м’якою іграшкою). Ти теж придумай одне «дивне» правило (Don’t laugh!), щоб було весело. Помилки в наказовому способі виправляй через перепитування.'),
 
+      X.h('Extra practice · якщо лишився час або на наступний урок'),
+      X.ex(
+        ['gap', 'Встав слово: catch, drop, touch, hit, careful, rule, win.', `Don’t [drop] the egg! It can break.
+[Catch] the ball! It is flying to you!
+Don’t [touch] the floor! The floor is lava!
+[Hit] the balloon up high!
+Be [careful]! The floor is wet.
+Our new [rule] is: don’t run!
+I want to [win] the game!`],
+        ['choice', 'Обери правильний варіант.', `{Don’t|Not|No} run in the kitchen!
+{Catch|Catches|Catching} the ball, Mum!
+Please {be|is|are} quiet!
+{Don’t|Doesn’t|Isn’t} touch the cake!
+The balloon is on the {floor|sky}.
+{Hit|Hits|Hitting} it up high!`],
+        ['translate', 'Переклади англійською.', `Вдар кульку! = Hit the balloon!
+Не біжи! = Don’t run! / Do not run!
+Торкнись підлоги! = Touch the floor!
+Будь обережна! = Be careful!
+Не падай! = Don’t fall! / Do not fall!
+Злови м’яч! = Catch the ball!`],
+      ),
+      X.game('Команди для гри', 'Знайди переклад команди.', `Catch it! = Злови!
+Hit it! = Вдар!
+Don’t drop it! = Не впусти!
+Don’t run! = Не біжи!
+Be careful! = Будь обережним!
+Touch the floor! = Торкнись підлоги!
+Hit it up high! = Вдар високо вгору!
+Don’t fall! = Не падай!
+Please be quiet! = Будь ласка, тихо!`),
+      X.note('Ці вправи можна дати наприкінці уроку, якщо лишився час, або як розминку на наступному. Спершу виконуйте усно: дитина читає команду і показує її рухом. Підказки до першої секції: drop - яйце розіб’ється, якщо його впустити; touch the floor - як у грі «Підлога - це лава». У перекладі зараховуються обидві форми: Don’t і Do not. Після гри попроси дитину дати тобі 3 команди з картки, а ти виконуй.'),
+
       h('Wrap-up · 6 хв'),
       ex(['open', 'Напиши 3 правила своєї гри англійською.', `My game is called… Rule 1: … Rule 2: Don’t… Rule 3: …`]),
       talk(`Which new word do you remember best?
 Say one Do and one Don’t for our English lesson.`),
       note('Наприкінці повтори 3-4 слова через жести: ти показуєш рух, учень називає дієслово. Домашнє завдання: зіграти в keepy uppy з родиною і записати голосове повідомлення з трьома правилами (Do… / Don’t…), або намалювати постер «Rules of our game» з підписами англійською.'),
+      X.ex(
+        ['gap', 'Homework plus. Встав слово: Be, Catch, Don’t, Touch, win, Hit.', `[Be] quick!
+[Catch] the balloon before it falls!
+[Don’t/Do not] drop your ice cream!
+[Touch] your nose!
+I always [win] this game!
+[Hit] the ball with the racket!`],
+        ['choice', 'Обери правильний варіант.', `Please {don’t shout|not shout|no shout}!
+{Be|Is|Are} kind to your sister!
+The balloon {is|are} blue.
+{Don’t|No|Not} eat in the bedroom!
+We {play|plays} with a balloon.
+{Wash|Washes|Washing} your hands, please!`],
+        ['open', 'Напиши відповіді англійською.', `Write three rules for your bedroom: Do… / Don’t…
+What game do you play with your family? Write two sentences.
+Write two rules for a balloon game.`],
+      ),
     ],
   },
 
@@ -165,9 +216,57 @@ What is your family doing at home now?`),
       ex(['voice', 'Speaking: постав відео на паузу і запиши, що відбувається.', `Describe one moment from the cartoon. Say three sentences: The farmer is… The sheep are… The dog is…`]),
       note('Гра «Charades»: ти без слів показуєш дію (You are a sheep and you are hiding), дитина вгадує: You are hiding! Потім міняєтесь ролями, і вже ти вгадуєш. Це той самий принцип, що й у мультику без слів. Далі - запис голосом про стоп-кадр. 12 хвилин.'),
 
+      X.h('Extra practice · якщо лишився час або на наступний урок'),
+      X.ex(
+        ['gap', 'Розкрий дужки (Present Continuous).', `The dog [is jumping/’s jumping] (jump) over the fence.
+The sheep [are hiding/’re hiding] (hide) behind the barn.
+The farmer [is climbing/’s climbing] (climb) a tree.
+I [am running/’m running] (run) in the field.
+The pig [is sleeping/’s sleeping] (sleep) in the barn.
+We [are watching/’re watching] (watch) the sheep.`],
+        ['choice', 'Обери правильний варіант.', `Ten {sheep|sheeps} are in the field.
+Look! The dog {is running|running|run} to the farmer.
+Three sheep {are|is} eating grass.
+{Are|Is} the pigs sleeping? Yes, they are.
+The cat {isn’t|aren’t} hiding. It is sleeping.
+The farmer {is|are} sitting on the fence.`],
+        ['match', 'З’єднай дію з перекладом.', `is running = біжить
+are hiding = ховаються
+is climbing = лізе
+are jumping = стрибають
+is sleeping = спить
+are eating = їдять`],
+      ),
+      X.game('Тварини на фермі', 'Знайди переклад слова.', `a cow = корова
+a horse = кінь
+a hen = курка
+a duck = качка
+a goat = коза
+a pig = свиня
+a sheep = вівця
+a farmer = фермер
+a fence = паркан`),
+      X.note('Секції можна робити на наступному уроці як розминку. Перед першою секцією нагадай схему: хто + is/are + дія-ing. У match підказка: is - одна тварина або людина, are - кілька (біжить / біжать). У грі є нові слова cow, horse, hen, duck, goat: покажи картинки і зіграй «Animal sounds» (Moo, Neigh, Cluck, Quack, Maa). Після гри дитина складає речення: The cow is sleeping. The ducks are swimming.'),
+
       h('Wrap-up · 6 хв'),
       ex(['open', 'Напиши 3 речення: що зараз роблять люди або тварини у тебе вдома?', `My mum is… My cat is… I am…`]),
       note('Підсумок: дитина називає 3 нові слова і одне речення у Present Continuous. Домашнє завдання: подивитися ще одну серію Shaun the Sheep, зупинити в будь-якому місці, намалювати цей момент і підписати 3 речення (The sheep are…, The dog is…).'),
+      X.ex(
+        ['gap', 'Homework plus. Розкрий дужки (Present Continuous).', `My mum [is cooking/’s cooking] (cook) dinner.
+My cat [is sleeping/’s sleeping] (sleep) on the sofa.
+I [am doing/’m doing] (do) my homework.
+My brother [is playing/’s playing] (play) a game.
+The birds [are singing/’re singing] (sing).
+We [are drawing/’re drawing] (draw) a farm.`],
+        ['choice', 'Обери правильний варіант.', `The dog {is|are} playing with a ball.
+Two sheep {are|is} running.
+{Is|Are} the farmer sleeping? No, he isn’t.
+I {am|is|are} jumping.
+The pigs {are eating|is eating|eating} apples.
+Look! The sheep {are climbing|climbs|climbing} on the barn.`],
+        ['open', 'Напиши відповіді англійською.', `Draw a farm. Write three sentences: what are the animals doing?
+What is your favourite farm animal? What is it doing in your picture?`],
+      ),
     ],
   },
 
@@ -265,9 +364,60 @@ Role-play: you are Max and Sofia one week later. Did the challenge work?
 What is one good thing and one bad thing about social media?`),
       note('Аудіо прослухати двічі: спершу без завдання (хто про що говорить), потім із True/False. Далі рольова гра: учень і вчитель - Max і Sofia через тиждень. Учень має вжити мінімум 2 прислівники частоти і 2 нові слова. Виправляй м’яко, повторюючи фразу правильно. 14 хвилин.'),
 
+      X.h('Extra practice · якщо лишився час або на наступний урок'),
+      X.ex(
+        ['gap', 'Встав слово: post, follow, notifications, blocked, profile, share, scroll.', `I usually [post] photos of my cat at the weekend.
+Do you [follow] any football players?
+Turn off [notifications] at night and sleep better.
+Ann [blocked] a stranger who sent her strange messages.
+My [profile] is private, so strangers can’t see my photos.
+Never [share] your password with anyone.
+I sometimes [scroll] TikTok for an hour and forget about my homework.`],
+        ['choice', 'Обери правильний варіант.', `I {never post|post never} my phone number online.
+She {is usually|usually is} online after school.
+They {often share|share often} funny videos.
+{How often|How many} do you post photos?
+He {always checks|checks always} his notifications in the morning.
+We {are never|never are} online during lessons.
+Max {hardly ever uses|uses hardly ever} Facebook.`],
+        ['translate', 'Переклади англійською.', `Я зазвичай гортаю стрічку ввечері = I usually scroll my feed in the evening / I usually scroll through my feed in the evening / I usually scroll in the evening
+Вона ніколи не ділиться своєю адресою = She never shares her address
+Мій профіль приватний = My profile is private
+Він часто лайкає мої фото = He often likes my photos / He often likes my pictures
+Ми завжди вимикаємо сповіщення вночі = We always turn off notifications at night / We always turn notifications off at night / We always switch off notifications at night
+Як часто ти публікуєш відео? = How often do you post videos?`],
+      ),
+      X.game('Як часто?', 'Знайди переклад.', `always = завжди
+usually = зазвичай
+often = часто
+sometimes = іноді
+hardly ever = майже ніколи
+never = ніколи
+How often…? = Як часто…?
+screen time = час перед екраном
+a follower = підписник`),
+      X.note('Секції можна дати наприкінці уроку або як розминку на наступному. Нове тут hardly ever (майже ніколи): воно стоїть там само, де never. Нагадай про to be: She is usually online. У першій секції blocked у минулому часі, бо в реченні є sent. У перекладі «гортаю стрічку» зараховуються scroll, scroll my feed і scroll through my feed. Після гри попроси учня сказати про себе по одному реченню з кожним прислівником.'),
+
       h('Writing · 6 хв'),
       ex(['open', 'Write a short post (40-50 words) for a school blog.', `My social media rules: How often do you use social media? What do you always or never do online? Use at least three adverbs of frequency.`]),
       note('Якщо часу мало, учень пише лише 3 речення-правила. Домашнє завдання: подивитися свою статистику screen time за тиждень і записати голосове на 1 хвилину: How much time do I spend online? What can I change? Можна запропонувати власний challenge на тиждень, як у Mia.'),
+      X.ex(
+        ['gap', 'Homework plus. Встав прислівник частоти: always, usually, often, sometimes, never. Подивись на відсотки.', `I [always] (100%) do my homework before I go online.
+She [usually] (80%) posts on Saturday.
+They [often] (60%) watch videos together.
+We [sometimes] (30%) play games online.
+He [never] (0%) shares his password.
+I am [never] (0%) online after 10 p.m.`],
+        ['choice', 'Обери правильний варіант.', `Mia {usually posts|posts usually} at the weekend.
+Mia’s profile {is|are} private.
+Sofia {never uses|uses never} her phone after nine.
+Max {is always|always is} tired in the morning because he scrolls at night.
+I got fifty {notifications|profiles} in one hour, so I turned off the sound.
+Don’t {share|follow} your home address online.`],
+        ['open', 'Напиши відповіді англійською.', `How often do you use social media? Write three sentences with always, usually or never.
+What are your three rules for a safe life online?
+Do you want to try Mia’s challenge? Why or why not?`],
+      ),
     ],
   },
 
@@ -365,9 +515,61 @@ Have you ever missed a train, a bus or a plane?
 Story chain: start with "It was a dark and rainy night. We were driving through the forest when…" and continue together.`),
       note('Аудіо прослухати двічі. Потім гра «Story chain»: вчитель і учень по черзі додають по одному реченню до історії, використовуючи when / while / suddenly / luckily. Далі учень розповідає власну історію 1-2 хвилини. Виправляй тільки помилки з минулими часами, повторюючи фразу правильно. 14 хвилин.'),
 
+      X.h('Extra practice · якщо лишився час або на наступний урок'),
+      X.ex(
+        ['gap', 'Розкрий дужки: Past Simple або Past Continuous.', `I [was reading] (read) a book when the train [stopped] (stop).
+While we [were walking] (walk) in the park, it [started] (start) to rain.
+She [was sleeping] (sleep) when her phone [rang] (ring).
+We [got] (get) lost because we [didn’t have/did not have] (not have) a map.
+They [were having] (have) lunch when a bird [took] (take) their sandwich.
+What [were] you [doing] (do) at 8 p.m. yesterday? I was watching a film.
+Suddenly the lights [went] (go) out.`],
+        ['choice', 'Обери правильне слово.', `We {got lost|set off} in the old town because we didn’t have a map.
+The bus left at seven, so we {set off|got lost} at half past six.
+I {missed|noticed} the bus, so I walked to school.
+The photo was {blurry|still} because I moved my hands.
+We missed the train, but {luckily|quietly} there was another one an hour later.
+I bought a small {souvenir|view} for my grandma.
+We didn’t move. We stood very {still|blurry}.`],
+        ['translate', 'Переклади англійською.', `Ми заблукали в лісі = We got lost in the forest / We got lost in the woods
+Раптом я помітив ведмедя = Suddenly I noticed a bear / Suddenly, I noticed a bear / Suddenly I saw a bear / Suddenly, I saw a bear
+Поки ми чекали на автобус, почався дощ = While we were waiting for the bus, it started to rain / While we were waiting for the bus, it started raining / While we were waiting for the bus, it began to rain
+Ми вирушили о шостій ранку = We set off at six in the morning / We set off at 6 a.m. / We set off at six a.m.
+На щастя, ми не спізнилися на потяг = Luckily, we didn’t miss the train / Luckily we didn’t miss the train / Luckily, we did not miss the train
+Краєвид був чудовий = The view was amazing / The view was wonderful / The view was beautiful / The view was great`],
+      ),
+      X.game('Story halves', 'З’єднай початок речення з кінцем.', `We were walking near a lake = when we saw a bear.
+While Mum was buying tickets, = we were waiting in a cafe.
+I missed the bus = because I got up late.
+The photo was blurry = because his hands were shaking.
+We got lost = because we didn’t have a map.
+Luckily, there was = another train two hours later.
+The sun was shining = when we set off.
+I bought a souvenir = for my little sister.
+It was raining all day, = so we played board games.`),
+      X.note('Можна використати як розминку на наступному уроці. Перед першою секцією намалюй ще раз часову лінію: довга дія (was/were + -ing) і коротка подія (Past Simple). Неочевидні місця: got lost у Past Simple, бо це одна подія; stood very still - стояли нерухомо. У перекладі зараховуються різні правильні варіанти (saw / noticed, amazing / beautiful), інші логічні відповіді можна зарахувати вручну. Після гри попроси учня продовжити 2-3 речення власними кінцівками.'),
+
       h('Writing · 6 хв'),
       ex(['open', 'Write the beginning of a travel story (50-70 words).', `Start with: "It was the first day of our holiday. The sun was shining and we were…" Use at least two Past Continuous and two Past Simple verbs, and the words suddenly or luckily.`]),
       note('Якщо часу мало, учень пише лише перші 3-4 речення, а закінчує вдома. Домашнє завдання: дописати історію до 120-150 слів і додати фото або малюнок; або записати голосову розповідь на 1-2 хвилини про реальну поїздку.'),
+      X.ex(
+        ['choice', 'Homework plus. Обери правильний варіант.', `I {was having|had|have} a shower when the doorbell rang.
+We {were swimming|swam} in the sea when it started to rain.
+{Were|Was} you sleeping when I called?
+She {didn’t notice|wasn’t noticing} the bear.
+What {did you buy|were you buying} in Lviv? I bought chocolate.
+Last summer we {went|were going} to the sea for two weeks.`],
+        ['gap', 'Встав слово: trip, view, souvenir, missed, quietly, Suddenly, luckily.', `Our school [trip] to Lviv was great.
+The [view] from the tower was beautiful.
+I bought a fridge magnet as a [souvenir].
+We [missed] the bus, so we took a taxi.
+The baby was sleeping, so we talked [quietly].
+[Suddenly] the dog started to bark.
+I forgot my umbrella, but [luckily] it didn’t rain.`],
+        ['open', 'Напиши відповіді англійською.', `Write 5-6 sentences about a trip you remember. Use when and while.
+What happened on the most interesting day of your last holiday?
+Imagine you got lost in a new city. What did you do?`],
+      ),
     ],
   },
 
@@ -468,9 +670,61 @@ Find someone who…: ask your teacher five Have you ever…? questions and one f
       ex(['voice', 'НМТ-style speaking practice: record a 1-minute answer.', `Talk about an experience that changed you. What have you done? When did it happen? How did you feel?`]),
       note('Після аудіо зверни увагу на модель: питання в Present Perfect, а уточнення (When? How?) уже в Past Simple. Гра «Find someone who…»: учень ставить питання з картки (…has eaten something strange, …has been abroad, …has met a famous person), на кожне Yes - уточнення в Past Simple. Потім запис голосом. 12 хвилин.'),
 
+      X.h('Extra practice · якщо лишився час або на наступний урок'),
+      X.ex(
+        ['choice', 'НМТ-формат: прочитай текст і обери правильний варіант для кожного пропуску.', `My grandma Nina {has lived|lives|is living|lived} in Odesa since 1975.
+She {has worked|works|is working|was work} as a teacher for forty years and she still loves her job.
+In 2015 she {visited|has visited|visits|is visiting} Paris for the first time.
+Since then she {has been|was|is|had being} abroad five times.
+Last month she {bought|has bought|buys|is buying} a new camera.
+She {has already taken|already takes|is already taking|has already take} more than five hundred photos with it.
+My friends often ask me: "Has she ever {been|went|go|was} on TV?"`],
+        ['gap', 'Розкрий дужки: Present Perfect або Past Simple.', `I [have been/’ve been] (be) to Kraków three times.
+We [went] (go) there last winter.
+She [has never eaten/’s never eaten] (never / eat) pizza with pineapple.
+My brother [broke] (break) his phone yesterday.
+[Have] you [finished] (finish) your project yet?
+They [have known/’ve known] (know) each other for ten years.
+He [has just come/’s just come] (just / come) home, so he is tired.`],
+        ['choice', 'НМТ-формат: обери правильне слово.', `I have lived in this town {since|for|ago|yet} 2020.
+We have been friends {for|since|ago|already} five years.
+I haven’t done my homework {yet|already|just|ever}.
+She has {just|yet|ever|since} left, so you can still catch her at the bus stop.
+Have you {ever|yet|since|ago} been to the sea?
+I {have never|never have|haven’t never|has never} seen a real tiger.
+I visited Lviv two years {ago|since|for|yet}.`],
+      ),
+      X.game('Third forms', 'Назви третю форму дієслова (V3).', `go = gone
+be = been
+see = seen
+eat = eaten
+write = written
+break = broken
+buy = bought
+meet = met
+try = tried
+know = known`),
+      X.note('Формат як у НМТ: перша і третя секції - вибір з чотирьох варіантів. Навчи стратегію: спершу знайти маркер часу (since, for, last month, in 2015, so far, yet), потім обирати. Неочевидні місця: «She has worked… and she still loves» - дія триває досі, тому Present Perfect; «Since then she has been abroad» - since then вимагає Present Perfect; «Has she ever been» - після has потрібна V3. У грі з V3 учень спершу відповідає усно, потім складає 2-3 речення з I have… Можна використати як розминку на наступному уроці.'),
+
       h('Wrap-up · 6 хв'),
       ex(['open', 'Write 4-5 sentences: My bucket list.', `Write about two things you have already done and two things you have never done but want to do. Use already, never, and one sentence in Past Simple with a time expression.`]),
       note('Наприкінці учень називає одну різницю між Present Perfect і Past Simple своїми словами. Домашнє завдання: скласти bucket list з 10 пунктів і позначити, що вже зроблено (I have already…) та що ще ні (I haven’t… yet); додатково - одна граматична вправа у форматі НМТ на платформі.'),
+      X.ex(
+        ['choice', 'Homework plus. НМТ-формат: прочитай лист і обери правильний варіант для кожного пропуску.', `Hi Dan! Guess what? I {have just got|just get|am just getting|have just get} a letter from the summer camp.
+I {have never been|never was|was never|am never} to a camp abroad before, so I am a bit nervous.
+Last year my sister {went|has gone|goes|has been going} there.
+She {has kept|kept|keeps|is keeping} in touch with her camp friends since then.
+{Have|Did|Has|Do} you ever been to a camp?
+Write soon! I {haven’t heard|didn’t hear|don’t hear|am not hearing} from you for a month.`],
+        ['translate', 'Переклади англійською.', `Я ніколи не був за кордоном = I have never been abroad / I’ve never been abroad
+Вона щойно повернулася додому = She has just come home / She’s just come home / She has just returned home / She has just got home / She’s just got home / She has just come back home
+Ми знаємо одне одного з 2018 року = We have known each other since 2018 / We’ve known each other since 2018
+Ти вже бачив цей фільм? = Have you seen this film yet? / Have you already seen this film? / Have you seen this movie yet? / Have you already seen this movie?
+Я відвідав Львів минулого літа = I visited Lviv last summer / I went to Lviv last summer
+Він ще не відповів на моє повідомлення = He hasn’t answered my message yet / He has not answered my message yet / He hasn’t replied to my message yet / He has not replied to my message yet`],
+        ['open', 'Напиши відповіді англійською.', `Write 5 sentences about things you have done this year. Add one sentence in Past Simple with a time expression.
+Write an email to a friend (60-80 words) about a new experience you have had recently.`],
+      ),
     ],
   },
 
@@ -549,9 +803,58 @@ Look at your answers on the scale from the warm-up. Has your opinion changed aft
       ex(['voice', 'Record a 1-minute opinion.', `"Every child should learn two foreign languages at school." Do you agree? Give two arguments and one example from the video or your life.`]),
       note('Міні-дебати: вчитель бере протилежну позицію, учень захищає свою. Кожна сторона говорить 1 хвилину, потім 1 хвилина на відповідь. Слідкуй за використанням фраз One advantage of…, On the other hand… Помилки записуй і розбирай після дебатів, а не під час. 14 хвилин.'),
 
+      X.h('Extra practice · якщо лишився час або на наступний урок'),
+      X.ex(
+        ['gap', 'Встав слово: native, skill, decline, bilingual, brain, focus, memory.', `My [native] language is Ukrainian.
+Learning a language is a [skill], like swimming or cooking.
+Some abilities [decline] when people get older.
+A person who speaks two languages is [bilingual].
+Our [brain] controls everything we do.
+I can’t [focus] when my phone is ringing.
+Learning new words is good for your [memory].`],
+        ['choice', 'Обери правильний варіант.', `One advantage of {speaking|speak|to speak} two languages is better memory.
+It helps you {remember|remembering|remembers} new words.
+The best thing about travelling {is that|it is that|are that} you meet new people.
+One {disadvantage|disadvantages} is that it takes a lot of time.
+{On the other hand|In other hand|On other hand}, it is a lot of fun.
+She is fluent {in|on|at} three languages.`],
+        ['translate', 'Переклади англійською.', `Він вільно говорить англійською = He is fluent in English / He speaks English fluently / He speaks fluent English
+Діти швидко засвоюють мови = Children acquire languages quickly / Children acquire languages fast / Kids acquire languages quickly
+Моя рідна мова українська = My native language is Ukrainian / Ukrainian is my native language
+Читання покращує пам’ять = Reading improves memory / Reading improves your memory / Reading improves our memory
+Мені важко зосередитися = It is hard for me to focus / It’s hard for me to focus / I find it hard to focus
+З іншого боку, це займає багато часу = On the other hand, it takes a lot of time / On the other hand it takes a lot of time / On the other hand, it takes much time`],
+      ),
+      X.game('Brain words', 'Знайди переклад слова.', `bilingual = двомовний
+the brain = мозок
+memory = пам’ять
+fluent = вільний (про мову)
+to switch = перемикатися
+an advantage = перевага
+a skill = навичка
+to focus = зосереджуватися
+to improve = покращувати`),
+      X.note('Можна дати наприкінці уроку або як розминку на наступному. Неочевидні місця: після One advantage of потрібне дієслово з -ing (speaking); у фразі On the other hand обов’язкові the і on; fluent in English, а не on. У перекладі зараховуються різні правильні варіанти (He is fluent in English / He speaks English fluently); інші логічні відповіді зарахуй вручну. Після гри попроси учня скласти 2 речення з новими словами про себе: I want to improve my… / I can’t focus when…'),
+
       h('Writing · 6 хв'),
       ex(['open', 'Writing: 60-80 words.', 'Write a short post: "Why I learn English". Use at least three words from the lesson and one phrase for advantages.']),
       note('Якщо учень не встигає, нехай напише план і перше речення, а пост доробить удома. Домашнє завдання: дописати пост до 100-120 слів; або знайти людину, яка знає 2+ мови, взяти коротке інтерв’ю (3 питання) і розповісти про це на наступному уроці.'),
+      X.ex(
+        ['choice', 'Homework plus. Обери правильний варіант.', `Bilingual people can {switch|decline} between languages easily.
+Some skills {decline|improve} when we stop using them.
+English helps you to travel. That is a big {advantage|disadvantage}.
+I want to become {fluent|native} in Spanish.
+Learning a language helps you {to understand|understanding} other cultures.
+Reading every day {improves|declines} your vocabulary.`],
+        ['gap', 'Встав фразу: One advantage, It helps you, The best thing, Another advantage, One disadvantage, On the other hand.', `[One advantage] of online lessons is that you can study at home.
+[It helps you] to save time on the road.
+[The best thing] about my English class is the games.
+[Another advantage] is that you can watch the recording later.
+[One disadvantage] is that you sit at the computer all day.
+[On the other hand], you can’t meet your classmates in person.`],
+        ['open', 'Напиши відповіді англійською.', `Write 5-6 sentences: What are the advantages and disadvantages of learning English online?
+Ask a family member: What languages do you speak? When did you learn them? Write their answers in English.`],
+      ),
     ],
   },
 ];
