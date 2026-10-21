@@ -1,22 +1,36 @@
 // Розбір розкладу, написаного списком (або розпізнаного зі скріну). Підтримує:
 // «Пн 16:00 Аня», «вт 18:30-19:30 Полина», «24.10 17:00 Вика 45 хв», «щосереди 15:00 Yeva»,
+// кілька днів: «вт, пт 15:00 Олег», день після часу: «Олег 12.00 вторник»,
 // кілька занять в одному рядку: «Пн 10:00 Аня, 11:00 Ева С, 12:00 Игорь»,
 // і день окремим рядком, а під ним заняття: «Понеділок» / «10:00 Аня» / «11:00 Ева».
 export type ParsedRow = { line: string; studentId: string; date: string; time: string; duration: number; weekly: boolean; ok: boolean };
 
+// день тижня: слово цілком (щоб «Серёжа» чи «все» не ставали днями)
 const DAYS: [RegExp, number][] = [
-  [/^(пн|пон|mon)/, 1], [/^(вт|вів|втор|tue)/, 2], [/^(ср|сер|сред|wed)/, 3], [/^(чт|чет|thu)/, 4],
-  [/^(пт|пят|пятн|fri)/, 5], [/^(сб|суб|sat)/, 6], [/^(нд|нед|вс|воскр|sun)/, 0],
+  [/^(пн|пон|понед\p{L}*|понеділ\p{L}*|mon|mondays?)$/u, 1],
+  [/^(вт|вів|вівтор\p{L}*|втор\p{L}*|tue|tues|tuesdays?)$/u, 2],
+  [/^(ср|сер|серед\p{L}*|сред\p{L}*|wed|wednesdays?)$/u, 3],
+  [/^(чт|чет|четвер\p{L}*|четверг\p{L}*|thu|thur|thurs|thursdays?)$/u, 4],
+  [/^(пт|пят|пятниц\p{L}*|fri|fridays?)$/u, 5],
+  [/^(сб|суб|субот\p{L}*|sat|saturdays?)$/u, 6],
+  [/^(нд|нед|вс|неділ\p{L}*|воскр\p{L}*|sun|sundays?)$/u, 0],
 ];
-const WEEKLY = /(щотиж|кожн|еженед|кажд|every|weekly|щопон|щовів|щосер|щочет|щопят|щосуб|щонед)/;
+const WEEKLY = /(щотиж|кожн|еженед|кажд|every|weekly|щопон|щовів|щосер|щочет|щопят|щосуб|щонед|по (понед|вторн|сред|четв|пятн|субб|воскр))/;
 const TIME = /(\d{1,2})[:.](\d{2})(?:\s*[-–—]\s*(\d{1,2})[:.](\d{2}))?/g;
 
 const pad = (n: number) => String(n).padStart(2, '0');
 const iso = (d: Date) => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
 const norm = (s: string) => s.toLowerCase().replace(/ё/g, 'е').replace(/[’'`]/g, '');
 
-function findDate(rest: string, now: Date, time: string, dotIsDate = false): { date: Date | null; rest: string } {
-  // явна дата 24.10, 24/10, 24.10.2026 (час 16.00 не чіпаємо: місяць 00 і 30 неможливі)
+const dayOf = (w: string) => {
+  const x = w.replace(/^(що|по)/, '');
+  const hit = DAYS.find(([re]) => re.test(w) || re.test(x));
+  return hit ? hit[1] : -1;
+};
+
+// усі дати в шматку тексту: явні 24.10 і дні тижня (кілька: «вт пт», «вторник и пятница»)
+function findDates(rest: string, now: Date, time: string, dotIsDate = false): { dates: Date[]; rest: string } {
+  const dates: Date[] = [];
   for (const dm of Array.from(rest.matchAll(/(\d{1,2})[./](\d{1,2})(?:[./](\d{2,4}))?/g))) {
     const d = Number(dm[1]), m = Number(dm[2]);
     if (m < 1 || m > 12 || d < 1 || d > 31) continue;
@@ -27,20 +41,23 @@ function findDate(rest: string, now: Date, time: string, dotIsDate = false): { d
     const y = dm[3] ? (dm[3].length === 2 ? 2000 + Number(dm[3]) : Number(dm[3])) : now.getFullYear();
     const date = new Date(y, m - 1, d);
     if (!dm[3] && date < new Date(now.getFullYear(), now.getMonth(), now.getDate() - 7)) date.setFullYear(y + 1);
-    return { date, rest: rest.replace(dm[0], ' ') };
+    dates.push(date);
+    rest = rest.replace(dm[0], ' ');
   }
-  for (const w of rest.split(/[\s,;]+/)) {
-    const ww = w.replace(/^що/, '');
-    const hit = DAYS.find(([re]) => re.test(w) || re.test(ww));
-    if (!hit || /^\d/.test(w)) continue;
+  for (const w of rest.split(/[\s,;/+&]+/)) {
+    if (!w || /^\d/.test(w)) continue;
+    const wd = dayOf(w.replace(/[.:]$/, ''));
+    if (wd < 0) continue;
     const d = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    let add = (hit[1] - d.getDay() + 7) % 7;
+    let add = (wd - d.getDay() + 7) % 7;
     if (add === 0 && time) { const [h, m] = time.split(':').map(Number); if (h * 60 + m <= now.getHours() * 60 + now.getMinutes()) add = 7; }
     d.setDate(d.getDate() + add);
-    return { date: d, rest: rest.replace(w, ' ') };
+    if (!dates.some((x) => sameD(x, d))) dates.push(d);
+    rest = rest.replace(w, ' ');
   }
-  return { date: null, rest };
+  return { dates, rest };
 }
+const sameD = (a: Date, b: Date) => a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
 
 // найкращий збіг імені: повне ім’я важить більше, ніж перші літери (щоб «Ева С» і «Ева мол» не плутались)
 function matchStudent(seg: string, students: { id: string; name: string }[]) {
@@ -61,7 +78,7 @@ function matchStudent(seg: string, students: { id: string; name: string }[]) {
 
 export function parseSchedule(text: string, students: { id: string; name: string }[], now = new Date()): ParsedRow[] {
   const rows: ParsedRow[] = [];
-  let ctxDate: Date | null = null; // день із попереднього рядка-заголовка
+  let ctxDates: Date[] = []; // дні з попереднього рядка-заголовка
   let ctxWeekly = false;
   for (const raw of text.split('\n')) {
     const line = raw.trim();
@@ -72,26 +89,34 @@ export function parseSchedule(text: string, students: { id: string; name: string
     let dotIsDate = false;
     if (times.length >= 2 && times[0][0].includes('.') && !times[0][3] && Number(times[0][2]) >= 1 && Number(times[0][2]) <= 12
       && !low.slice((times[0].index ?? 0) + times[0][0].length, times[1].index).trim()) { times = times.slice(1); dotIsDate = true; }
-    const first = times[0] ? `${pad(Number(times[0][1]))}:${times[0][2]}` : '';
-    const head = times.length ? low.slice(0, times[0].index) : low;
-    const { date, rest: headRest } = findDate(head, now, first, dotIsDate || times.length > 0);
-    const weekly = WEEKLY.test(low) || (!date && ctxWeekly);
-    if (!times.length) { if (date) { ctxDate = date; ctxWeekly = WEEKLY.test(low); } continue; }
-    const day = date ?? ctxDate;
+    const lineWeekly = WEEKLY.test(low);
+    if (!times.length) {
+      const { dates } = findDates(low, now, '', false);
+      if (dates.length) { ctxDates = dates; ctxWeekly = lineWeekly; }
+      continue;
+    }
+    const first = `${pad(Number(times[0][1]))}:${times[0][2]}`;
+    const head = findDates(low.slice(0, times[0].index), now, first, dotIsDate || times.length > 0);
     // кожен час відкриває окреме заняття: текст до наступного часу
     times.forEach((m, i) => {
       const end = i + 1 < times.length ? times[i + 1].index : low.length;
-      let seg = low.slice((m.index ?? 0) + m[0].length, end);
-      if (i === 0) seg = `${headRest} ${seg}`;
+      const time = `${pad(Number(m[1]))}:${m[2]}`;
+      const own = findDates(low.slice((m.index ?? 0) + m[0].length, end), now, time, true);
+      let seg = own.rest;
+      if (i === 0) seg = `${head.rest} ${seg}`;
+      // день після часу («Олег 12.00 вторник») теж рахується; інакше день з початку рядка або із заголовка
+      const days = own.dates.length ? own.dates : head.dates.length ? head.dates : ctxDates;
+      const explicit = own.dates.length > 0 || head.dates.length > 0;
       let duration = 60;
       if (m[3]) { const d = (Number(m[3]) * 60 + Number(m[4])) - (Number(m[1]) * 60 + Number(m[2])); if (d > 0 && d <= 240) duration = d; }
       const dur = seg.match(/(\d{2,3})\s*(хв|мин|min|m\b)/);
       if (dur) { duration = Math.min(240, Math.max(15, Number(dur[1]))); seg = seg.replace(dur[0], ' '); }
-      const time = `${pad(Number(m[1]))}:${m[2]}`;
-      let d = day;
-      if (!date && ctxDate === null && !d) d = null;
       const studentId = matchStudent(seg, students);
-      rows.push({ line: times.length > 1 ? `${line} · ${time}` : line, studentId, date: d ? iso(d) : '', time, duration, weekly, ok: Boolean(studentId && d) });
+      // кілька днів («вторник пятница 15:00») = щотижневі заняття в кожен з них
+      const weekly = lineWeekly || days.length > 1 || (!explicit && ctxWeekly);
+      const label = times.length > 1 ? `${line} · ${time}` : line;
+      if (!days.length) rows.push({ line: label, studentId, date: '', time, duration, weekly, ok: false });
+      for (const d of days) rows.push({ line: days.length > 1 ? `${label} · ${d.toLocaleDateString('uk', { weekday: 'short' })}` : label, studentId, date: iso(d), time, duration, weekly, ok: Boolean(studentId) });
     });
   }
   return rows;
