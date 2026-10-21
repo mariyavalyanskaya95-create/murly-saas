@@ -6,6 +6,7 @@ import SiteNav from '@/components/SiteNav';
 import SiteFooter from '@/components/SiteFooter';
 import { DRILLS } from '@/lib/drills';
 import { tr } from '@/lib/i18n-server';
+import { localizeDrill } from '@/lib/content/drills';
 
 export function generateMetadata(): Metadata {
   const L = tr();
@@ -35,7 +36,7 @@ export default function TrainerIndex() {
           <div className="mu-container">
             <h2 className="gr-h"><span className="gr-level">{lv}</span></h2>
             <div className="gr-grid">
-              {DRILLS.filter((d) => d.level === lv).map((d) => (
+              {localizeDrill(DRILLS, L.lang).filter((d) => d.level === lv).map((d) => (
                 <Link key={d.slug} href={`/grammar/trainer/${d.slug}`} className={`gr-card gr--${d.color === 'pink' ? 'tomato' : d.color}`}>
                   <span className="gr-card__ic"><Icon id={d.icon} /></span>
                   <span className="gr-card__title">{d.title}</span>
