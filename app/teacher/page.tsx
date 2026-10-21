@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Icon from '@/components/Icon';
 import LessonRow from '@/components/teacher/LessonRow';
 import { LessonForm, StudentForm } from '@/components/teacher/forms';
-import { balanceOf, fmtMoney, localeOf, plural, sameDay, useTeacher } from '@/lib/teacher-store';
+import { balanceOf, balanceText, fmtMoney, localeOf, plural, sameDay, useTeacher } from '@/lib/teacher-store';
 import { useT } from '@/components/LangProvider';
 
 export default function TeacherToday() {
@@ -43,7 +43,7 @@ export default function TeacherToday() {
         <Link href="/teacher/students" className="t-stat t-stat--lime"><b>{data.students.length}</b><span>{plural(data.students.length, t.lang, { uk: ['учень', 'учні', 'учнів'], ru: ['ученик', 'ученика', 'учеников'], en: ['student', 'students'] })}</span></Link>
         <Link href="/teacher/schedule" className="t-stat t-stat--sky"><b>{todays.length}</b><span>{t({ uk: 'занять сьогодні', ru: 'занятий сегодня', en: 'lessons today' })}</span></Link>
         <Link href="/teacher/schedule" className="t-stat t-stat--mustard"><b>{week.length}</b><span>{t({ uk: 'на 7 днів', ru: 'на 7 дней', en: 'next 7 days' })}</span></Link>
-        <Link href="/teacher/payments" className="t-stat t-stat--tomato"><b>{debtors.length}</b><span>{t({ uk: 'з боргом', ru: 'с долгом', en: 'with debt' })}</span></Link>
+        <Link href="/teacher/payments" className="t-stat t-stat--tomato"><b>{debtors.length}</b><span>{t({ uk: 'чекають оплату', ru: 'ждут оплату', en: 'awaiting payment' })}</span></Link>
       </div>
 
       {!data.students.length && (
@@ -94,7 +94,7 @@ export default function TeacherToday() {
           {debtors.map(({ s, b }) => (
             <Link key={s.id} href={`/teacher/students/${s.id}?tab=pay`} className="t-row-link">
               <span><span className={`t-dot t-dot--${s.color}`} />{s.name}</span>
-              <b className="t-neg">{fmtMoney(b, t.lang)}</b>
+              {(() => { const bt = balanceText(s, b, t.lang); return <b className={bt.cls}>{bt.text}</b>; })()}
             </Link>
           ))}
         </section>
