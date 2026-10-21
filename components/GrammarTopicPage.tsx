@@ -8,6 +8,7 @@ import QuizGame from './games/QuizGame';
 import { GRAMMAR, getTopic } from '@/lib/grammar';
 import { tr } from '@/lib/i18n-server';
 import { localizeGrammar } from '@/lib/content/grammar';
+import { drillForGrammar } from '@/lib/drills';
 
 export function topicMetadata(slug: string): Metadata {
   const L = tr();
@@ -29,6 +30,7 @@ export default function GrammarTopicPage({ slug }: { slug: string }) {
   const prev = GRAMMAR[idx - 1];
   const next = GRAMMAR[idx + 1];
   const L = tr();
+  const drill = drillForGrammar(slug);
 
   return (
     <>
@@ -100,6 +102,11 @@ export default function GrammarTopicPage({ slug }: { slug: string }) {
             <div className="g-stage__prompt">{L({ uk: 'Обери правильний варіант', ru: 'Выбери правильный вариант', en: 'Choose the right answer' })}</div>
             <QuizGame items={t.quiz} ordered />
           </div>
+          {drill && (
+            <div className="gr-trainer-cta">
+              <Link href={`/grammar/trainer/${drill.slug}`} className="mu-btn mu-btn--lime mu-btn--lg">{L({ uk: 'Тренажер: ще 100 завдань', ru: 'Тренажёр: ещё 100 заданий', en: 'Trainer: 100 more tasks' })}<span className="mu-btn__arrow"><Icon id="e-arrow" /></span></Link>
+            </div>
+          )}
         </div>
       </section>
 

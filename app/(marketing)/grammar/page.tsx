@@ -43,6 +43,7 @@ export default function GrammarIndexPage() {
           <span className="mu-section__eyebrow"><Icon id="e-book" />{t({ uk: 'Граматика', ru: 'Грамматика', en: 'Grammar' })}</span>
           <h1>{t({ uk: 'Граматика', ru: 'Грамматика', en: 'Grammar' })} <em>{t({ uk: 'без нудьги.', ru: 'без скуки.', en: 'without the boredom.' })}</em></h1>
           <p>{t({ uk: 'Кожна тема на одній сторінці: формула, коли вживати, приклади з перекладом, типові помилки і квіз наприкінці.', ru: 'Каждая тема на одной странице: формула, когда употреблять, примеры с переводом, типичные ошибки и квиз в конце.', en: 'Each topic on one page: the formula, when to use it, examples with translations, common mistakes and a quiz at the end.' })}</p>
+          <Link href="/grammar/trainer" className="mu-btn mu-btn--lime mu-btn--lg">{t({ uk: 'Тренажери на 100 завдань', ru: 'Тренажёры на 100 заданий', en: '100-task trainers' })}</Link>{' '}
           <Link href="/irregular-verbs" className="mu-btn mu-btn--lg">{t({ uk: 'Неправильні дієслова', ru: 'Неправильные глаголы', en: 'Irregular verbs' })}</Link>
         </div>
       </section>
