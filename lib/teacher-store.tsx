@@ -18,7 +18,7 @@ export type Lesson = {
   id: string; studentId: string; start: string; duration: number;
   topic?: string; link?: string; status: LessonStatus;
 };
-export type Note = { id: string; studentId: string; text: string; at: string };
+export type Note = { id: string; studentId: string; text: string; at: string; images?: string[] };
 export type Word = { id: string; studentId: string; en: string; uk: string; example?: string; at: string };
 export type Payment = { id: string; studentId: string; amount: number; note?: string; at: string };
 export type HomeworkStatus = 'assigned' | 'done' | 'checked';
@@ -153,10 +153,14 @@ function useStore(userId: string) {
       sync('removeLesson', { id });
     },
 
-    addNote: (studentId: string, text: string) => {
-      const row: Note = { id: uid(), studentId, text, at: now() };
+    addNote: (studentId: string, text: string, extra?: { images?: string[]; at?: string }) => {
+      const row: Note = { id: uid(), studentId, text, at: extra?.at || now(), images: extra?.images?.length ? extra.images : undefined };
       update((d) => ({ ...d, notes: [row, ...d.notes] }));
       sync('addNote', row);
+    },
+    updateNote: (id: string, patch: { text?: string; images?: string[]; at?: string }) => {
+      update((d) => ({ ...d, notes: d.notes.map((x) => (x.id === id ? { ...x, ...patch } : x)) }));
+      sync('updateNote', { id, patch });
     },
     removeNote: (id: string) => { update((d) => ({ ...d, notes: d.notes.filter((x) => x.id !== id) })); sync('removeNote', { id }); },
 
