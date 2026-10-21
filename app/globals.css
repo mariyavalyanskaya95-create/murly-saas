@@ -2331,3 +2331,43 @@ button.mk-gap { border: 0; border-bottom: 2px solid var(--mu-ink); cursor: point
 .wg-pop h2 { font-size: 18px; }
 .wg-call { display: flex; justify-content: center; padding: 6px 0 10px; }
 .wg-call .mu-btn svg { width: 20px; height: 20px; }
+
+/* Тренажери граматики (100 завдань) */
+.dr { max-width: 860px; margin: 0 auto; scroll-margin-top: 90px; }
+.dr-tabs { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin-bottom: 16px; }
+.dr-tab { display: flex; flex-direction: column; gap: 2px; padding: 10px 8px; border: 2px solid var(--mu-ink); border-radius: var(--mu-radius); background: #fff; cursor: pointer; text-align: center; font: inherit; min-height: 44px; }
+.dr-tab small { font-size: 12px; color: var(--mu-ink-muted); line-height: 1.25; }
+.dr-tab.is-on { background: var(--mu-lime); box-shadow: var(--mu-shadow-stamp); }
+.dr-tab:focus-visible, .dr-type input:focus-visible { outline: 3px solid var(--mu-ink); outline-offset: 2px; }
+.dr-stage { min-height: 420px; }
+.dr-bar { height: 8px; border: 2px solid var(--mu-ink); border-radius: 99px; overflow: hidden; margin-bottom: 10px; background: var(--mu-paper); }
+.dr-bar span { display: block; height: 100%; background: var(--mu-lime); transition: width .25s; }
+.dr-q { text-align: center; }
+.dr-options--long { grid-template-columns: 1fr; }
+.dr-options--long .g-option { font-size: 17px; text-align: left; }
+.dr-type { display: flex; gap: 10px; justify-content: center; margin-top: 14px; flex-wrap: wrap; }
+.dr-type input { font: inherit; font-size: 20px; padding: 12px 16px; border: 2px solid var(--mu-ink); border-radius: var(--mu-radius); min-width: min(320px, 100%); background: #fff; }
+.dr-type input.is-right { background: var(--mu-lime); }
+.dr-type input.is-wrong { background: #F6B5A6; }
+.dr-why { margin-top: 16px; padding: 14px 16px; border: 2px solid var(--mu-ink); border-radius: var(--mu-radius); background: var(--mu-paper); }
+.dr-why.is-ok > b { color: #2f6b00; }
+.dr-why.is-bad > b { color: #b3321b; }
+.dr-why p { display: flex; gap: 8px; align-items: flex-start; margin: 8px 0 0; line-height: 1.5; }
+.dr-why p .mu-ic { flex: none; width: 22px; height: 22px; }
+.dr-why .g-next { margin-top: 12px; }
+.dr-done { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.dr-done__btns { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+.dr-mist { width: 100%; text-align: left; margin-top: 18px; }
+.dr-mist h3 { font-size: 18px; margin-bottom: 8px; }
+.dr-mist__row { padding: 10px 0; border-top: 1px dashed var(--mu-ink-muted); display: grid; gap: 4px; }
+.dr-mist__q { font-weight: 700; }
+.dr-mist__why { color: var(--mu-ink-muted); font-size: 15px; }
+.dr-trap__title { display: block; margin-bottom: 4px; }
+.dr-extra p { margin: 0 0 8px; }
+.dr-table-wrap { overflow-x: auto; }
+.dr-table { border-collapse: collapse; margin-top: 8px; font-variant-numeric: tabular-nums; }
+.dr-table td { border: 1px solid var(--mu-ink); padding: 6px 10px; background: #fff; }
+.dr-table tr:first-child td { font-weight: 700; }
+.gr-trainer-cta { display: flex; justify-content: center; margin-top: 18px; }
+@media (max-width: 700px) { .dr-tabs { grid-template-columns: repeat(3, 1fr); } .dr-type input { font-size: 18px; } }
+@media (prefers-reduced-motion: reduce) { .dr-bar span { transition: none; } }
