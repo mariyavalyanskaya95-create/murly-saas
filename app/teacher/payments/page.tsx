@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import { balanceOf, fmtDate, fmtMoney, localeOf, plural, useTeacher } from '@/lib/teacher-store';
+import { balanceOf, balanceText, fmtDate, fmtMoney, localeOf, plural, useTeacher } from '@/lib/teacher-store';
 import { useT } from '@/components/LangProvider';
 
 export default function PaymentsPage() {
@@ -23,7 +23,7 @@ export default function PaymentsPage() {
       <div className="t-stats">
         <div className="t-stat t-stat--lime"><b>{fmtMoney(monthPaid, t.lang)}</b><span>{t({ uk: 'отримано цього місяця', ru: 'получено в этом месяце', en: 'received this month' })}</span></div>
         <div className="t-stat t-stat--sky"><b>{fmtMoney(monthEarned, t.lang)}</b><span>{t({ uk: 'за', ru: 'за', en: 'for' })} {monthDone.length} {plural(monthDone.length, t.lang, { uk: ['проведене заняття', 'проведені заняття', 'проведених занять'], ru: ['проведённое занятие', 'проведённых занятия', 'проведённых занятий'], en: ['lesson taught', 'lessons taught'] })}</span></div>
-        <div className="t-stat t-stat--tomato"><b>{fmtMoney(debt, t.lang)}</b><span>{t({ uk: 'загальний борг учнів', ru: 'общий долг учеников', en: 'total student debt' })}</span></div>
+        <div className="t-stat t-stat--tomato"><b>{fmtMoney(debt, t.lang)}</b><span>{t({ uk: 'учні мають доплатити', ru: 'ученики должны доплатить', en: 'still to be paid' })}</span></div>
       </div>
 
       <div className="t-card">
@@ -31,7 +31,7 @@ export default function PaymentsPage() {
         {rows.length ? rows.map(({ s, b }) => (
           <Link key={s.id} href={`/teacher/students/${s.id}?tab=pay`} className="t-row-link">
             <span><span className={`t-dot t-dot--${s.color}`} />{s.name}</span>
-            <b className={b < 0 ? 't-neg' : b > 0 ? 't-pos' : ''}>{b < 0 ? `${t({ uk: 'борг', ru: 'долг', en: 'owes' })} ${fmtMoney(-b, t.lang)}` : b > 0 ? `${t({ uk: 'аванс', ru: 'аванс', en: 'prepaid' })} ${fmtMoney(b, t.lang)}` : '0 ₴'}</b>
+            {(() => { const bt = balanceText(s, b, t.lang); return <b className={bt.cls}>{b === 0 ? '0 ₴' : bt.text}</b>; })()}
           </Link>
         )) : <p className="t-empty">{t({ uk: 'Додай учнів, і тут з’явиться їхній баланс.', ru: 'Добавь учеников, и здесь появится их баланс.', en: 'Add students and their balances will show up here.' })}</p>}
       </div>
