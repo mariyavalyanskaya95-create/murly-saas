@@ -131,6 +131,40 @@ function WordsTab({ id }: { id: string }) {
     return () => clearTimeout(timer);
   }, [f.en, t.lang]);
 
+  // Додати списком: учитель вставляє слова (по одному в рядку), Murly підбирає переклад і приклад
+  type Row = { en: string; uk: string; example: string; options: string[]; examples: string[]; loading: boolean };
+  const [bulkOpen, setBulkOpen] = useState(false);
+  const [bulkText, setBulkText] = useState('');
+  const [rows, setRows] = useState<Row[]>([]);
+  const fetchBulk = async () => {
+    const lines = bulkText.split('\n').map((l) => l.trim()).filter(Boolean).slice(0, 40);
+    const init: Row[] = lines.map((l) => {
+      const [en, ...rest] = l.split(/\s*=\s*/);
+      const uk = rest.join(' = ').trim();
+      return { en: en.trim(), uk, example: '', options: uk ? [uk] : [], examples: [], loading: !uk };
+    });
+    setRows(init);
+    const to = t.lang === 'ru' ? 'ru' : 'uk';
+    let next = 0;
+    const work = async () => {
+      while (next < init.length) {
+        const i = next++;
+        try {
+          const d = await fetch(`/api/dict?w=${encodeURIComponent(init[i].en)}&to=${to}`).then((r) => r.json());
+          const opts: string[] = d.translations ?? [];
+          const exs: string[] = (d.examples ?? []).map((x: { en: string }) => x.en);
+          setRows((rs) => rs.map((r, j) => j !== i ? r : { ...r, options: r.uk ? r.options : opts, uk: r.uk || opts[0] || '', examples: exs, example: exs[0] || '', loading: false }));
+        } catch { setRows((rs) => rs.map((r, j) => (j === i ? { ...r, loading: false } : r))); }
+      }
+    };
+    await Promise.all([work(), work(), work()]);
+  };
+  const addAll = () => {
+    const ok = rows.filter((r) => r.en && r.uk.trim());
+    ok.forEach((r) => addWord(id, { en: r.en, uk: r.uk.trim(), example: r.example.trim() || undefined }));
+    setRows([]); setBulkText(''); setBulkOpen(false);
+  };
+
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!f.en.trim() || !f.uk.trim()) return;
@@ -147,7 +181,42 @@ function WordsTab({ id }: { id: string }) {
   return (
     <>
       <div className="t-card">
-        <h2>{t({ uk: 'Додати слово', ru: 'Добавить слово', en: 'Add a word' })}</h2>
+        <div className="t-card__head">
+          <h2>{t({ uk: 'Додати слово', ru: 'Добавить слово', en: 'Add a word' })}</h2>
+          <button type="button" className="mu-btn t-btn-sm" onClick={() => setBulkOpen(!bulkOpen)}>{bulkOpen ? t({ uk: 'По одному', ru: 'По одному', en: 'One by one' }) : t({ uk: 'Додати списком', ru: 'Добавить списком', en: 'Add a list' })}</button>
+        </div>
+        {bulkOpen && (
+          <div className="t-bulk">
+            <p className="t-muted">{t({ uk: 'Встав слова, по одному в рядку. Можна одразу з перекладом: word = переклад. Murly підбере варіанти перекладу і приклади, ти лише перевіриш.', ru: 'Вставь слова, по одному в строке. Можно сразу с переводом: word = перевод. Murly подберёт варианты перевода и примеры, ты только проверишь.', en: 'Paste words, one per line. You can add a translation right away: word = translation. Murly suggests translations and examples, you just check them.' })}</p>
+            <textarea rows={6} value={bulkText} onChange={(e) => setBulkText(e.target.value)} placeholder={'weird\nto look forward to\nbrave\nhonest = чесний'} />
+            <div className="t-head__actions"><button type="button" className="mu-btn mu-btn--lime t-btn-sm" disabled={!bulkText.trim()} onClick={fetchBulk}>{t({ uk: 'Підібрати переклади', ru: 'Подобрать переводы', en: 'Suggest translations' })}</button></div>
+            {rows.length > 0 && (
+              <div className="t-bulk__rows">
+                {rows.map((r, i) => (
+                  <div key={i} className="t-bulk__row">
+                    <b>{r.en}</b>
+                    {r.loading ? <span className="t-muted">…</span> : (
+                      <div className="t-bulk__pick">
+                        <input value={r.uk} onChange={(e) => setRows((rs) => rs.map((x, j) => (j === i ? { ...x, uk: e.target.value } : x)))} placeholder={t({ uk: 'Переклад', ru: 'Перевод', en: 'Translation' })} />
+                        {r.options.length > 1 && <div className="g-chips" style={{ justifyContent: 'flex-start' }}>{r.options.map((o) => <button key={o} type="button" className={`g-chip ${r.uk === o ? 'is-on' : ''}`} onClick={() => setRows((rs) => rs.map((x, j) => (j === i ? { ...x, uk: o } : x)))}>{o}</button>)}</div>}
+                        {r.examples.length > 0 && (
+                          <select value={r.example} onChange={(e) => setRows((rs) => rs.map((x, j) => (j === i ? { ...x, example: e.target.value } : x)))}>
+                            <option value="">{t({ uk: 'Без прикладу', ru: 'Без примера', en: 'No example' })}</option>
+                            {r.examples.map((x) => <option key={x} value={x}>{x}</option>)}
+                          </select>
+                        )}
+                      </div>
+                    )}
+                    <button type="button" className="t-icon-btn" aria-label={t({ uk: "Прибрати", ru: "Убрать", en: "Remove" })} onClick={() => setRows((rs) => rs.filter((_, j) => j !== i))}>✕</button>
+                  </div>
+                ))}
+                <div className="t-head__actions">
+                  <button type="button" className="mu-btn mu-btn--lime" disabled={rows.some((r) => r.loading)} onClick={addAll}>{t({ uk: `Додати всі (${rows.filter((r) => r.uk.trim()).length})`, ru: `Добавить все (${rows.filter((r) => r.uk.trim()).length})`, en: `Add all (${rows.filter((r) => r.uk.trim()).length})` })}</button>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
         <form className="t-form t-form--words" onSubmit={submit}>
           <label>English<input id="word-en" value={f.en} onChange={(e) => setF({ ...f, en: e.target.value })} placeholder="to look forward to" /></label>
           <label>{t({ uk: 'Переклад', ru: 'Перевод', en: 'Translation' })}<input value={f.uk} onChange={(e) => setF({ ...f, uk: e.target.value })} placeholder={t({ uk: 'з нетерпінням чекати', ru: 'с нетерпением ждать', en: 'з нетерпінням чекати' })} /></label>

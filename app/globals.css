@@ -2171,3 +2171,50 @@ button.mk-gap { border: 0; border-bottom: 2px solid var(--mu-ink); cursor: point
 .u-prof__bg { width: 32px; height: 32px; border: 2px solid var(--mu-ink); border-radius: 50%; cursor: pointer; }
 .u-prof__bg.is-on { outline: 3px solid var(--mu-ink); outline-offset: 2px; }
 .u-prof__save { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-top: 6px; }
+
+/* Страшні історії */
+.sr-wrap { max-width: 1000px; }
+.sr__head { display: flex; gap: 18px; align-items: center; margin: 8px 0 18px; }
+.sr__head h1 { font-size: clamp(30px, 5vw, 50px); margin: 8px 0 6px; }
+.sr__kit { width: 110px; height: 110px; flex: none; }
+.sr { display: grid; gap: 18px; }
+.sr__bar { display: flex; gap: 10px; flex-wrap: wrap; }
+.sr__layout { display: grid; gap: 18px; }
+.sr__layout.has-gloss { grid-template-columns: minmax(0, 1fr) 260px; }
+.sr__text { background: #fff; border: 2px solid var(--mu-ink); border-radius: var(--mu-radius-lg); padding: 22px 26px; font-size: 18px; line-height: 1.7; box-shadow: var(--mu-shadow-stamp); }
+.sr__text p { margin: 0 0 14px; border-radius: 8px; transition: background .2s; }
+.sr__text p.is-reading { background: #F7FBD9; }
+.sr__hint { font-size: 13px; }
+.sr__gloss { background: var(--mu-paper); border: 2px solid var(--mu-ink); border-radius: var(--mu-radius); padding: 16px; align-self: start; position: sticky; top: 100px; }
+.sr__gloss dl { margin: 10px 0 0; display: grid; gap: 8px; }
+.sr__gloss dt { font-weight: 700; }
+.sr__gloss dd { margin: 0; color: var(--mu-ink-soft); font-size: 14px; }
+.sr__q p { margin: 0 0 8px; }
+.sr__opts { display: grid; gap: 6px; margin-bottom: 14px; }
+.sr__opt { text-align: left; padding: 10px 14px; border: 2px solid var(--mu-ink); border-radius: 14px; background: #fff; font: inherit; cursor: pointer; }
+.sr__opt.is-on { background: var(--mu-sky); }
+.sr__opt.is-right { background: var(--mu-lime); }
+.sr__opt.is-wrong { background: #F6B5A3; text-decoration: line-through; }
+.sr__score { font-size: 22px; }
+.sr__discuss { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+@media (max-width: 820px) { .sr__layout.has-gloss { grid-template-columns: 1fr; } .sr__gloss { position: static; } .sr__head { flex-direction: column; align-items: flex-start; } }
+
+/* Скоромовки */
+.tw-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; margin-top: 20px; }
+.tw-card { background: #fff; border: 2px solid var(--mu-ink); border-radius: var(--mu-radius-lg); box-shadow: var(--mu-shadow-stamp); padding: 18px 20px; display: grid; gap: 10px; align-content: start; }
+.tw--1 { background: #F7FBD9; } .tw--2 { background: #EAF4F8; } .tw--3 { background: #FCEBE6; }
+.tw-card__top { display: flex; gap: 8px; align-items: center; }
+.tw-card__text { font-family: 'Unbounded', 'Boldonse', sans-serif; font-size: 20px; line-height: 1.35; margin: 0; }
+.tw-card p { margin: 0; }
+.tw-card__res { font-size: 14px; }
+.tw-card__tip summary { cursor: pointer; font-weight: 700; }
+.tw-card__tip p { margin-top: 6px; font-size: 15px; }
+
+/* Слова списком */
+.t-bulk { display: grid; gap: 10px; }
+.t-bulk textarea { width: 100%; padding: 10px 14px; border: 2px solid var(--mu-ink); border-radius: 14px; font: inherit; }
+.t-bulk__rows { display: grid; gap: 8px; }
+.t-bulk__row { display: grid; grid-template-columns: 160px 1fr auto; gap: 10px; align-items: start; padding: 10px; border: 2px solid var(--mu-paper-dark); border-radius: 14px; }
+.t-bulk__pick { display: grid; gap: 6px; }
+.t-bulk__pick input, .t-bulk__pick select { padding: 8px 12px; border: 2px solid var(--mu-ink); border-radius: 12px; font: inherit; max-width: 100%; }
+@media (max-width: 640px) { .t-bulk__row { grid-template-columns: 1fr auto; } .t-bulk__row b { grid-column: 1 / -1; } }
