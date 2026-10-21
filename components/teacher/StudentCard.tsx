@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import CoinsBox from './CoinsBox';
 import MockResults from '../mock/MockResults';
 import { MOCKS } from '@/lib/mock';
@@ -16,6 +16,7 @@ import { grade, type Section } from '@/lib/exercise';
 import { lessonSections, type Block } from '@/lib/lesson';
 import { balanceOf, fmtDate, fmtMoney, plural, useTeacher } from '@/lib/teacher-store';
 import { useT } from '../LangProvider';
+import { uploadFile } from '@/lib/upload';
 import type { T } from '@/lib/i18n';
 
 type Tab = 'lessons' | 'hw' | 'words' | 'notes' | 'pay' | 'profile';
@@ -23,7 +24,7 @@ const TABS: { id: Tab; label: T; icon: string }[] = [
   { id: 'lessons', label: { uk: 'Заняття', ru: 'Занятия', en: 'Lessons' }, icon: 'e-cal' },
   { id: 'hw', label: { uk: 'Домашка', ru: 'Домашка', en: 'Homework' }, icon: 'e-board' },
   { id: 'words', label: { uk: 'Словник', ru: 'Словарь', en: 'Vocabulary' }, icon: 'e-abc' },
-  { id: 'notes', label: { uk: 'Нотатки', ru: 'Заметки', en: 'Notes' }, icon: 'e-pencil' },
+  { id: 'notes', label: { uk: 'Журнал і нотатки', ru: 'Журнал и заметки', en: 'Log and notes' }, icon: 'e-pencil' },
   { id: 'pay', label: { uk: 'Оплати', ru: 'Оплаты', en: 'Payments' }, icon: 'd-money' },
   { id: 'profile', label: { uk: 'Профіль', ru: 'Профиль', en: 'Profile' }, icon: 'd-smile' },
 ];
@@ -76,6 +77,17 @@ export default function StudentCard({ id }: { id: string }) {
           {s.selfAbout && <p><b>{tt({ uk: 'Учень про себе', ru: 'Ученик о себе', en: 'In their own words' })}:</b> {s.selfAbout}</p>}
         </div>
       )}
+      {(() => {
+        const last = data.notes.filter((n) => n.studentId === s.id).sort((a, z) => z.at.localeCompare(a.at))[0];
+        return last ? (
+          <div className="t-card t-last">
+            <div className="t-card__head"><h2>{tt({ uk: 'Останній урок', ru: 'Последний урок', en: 'Last lesson' })}: {fmtDate(last.at, tt.lang)}</h2>
+              <button type="button" className="mu-btn t-btn-sm" onClick={() => { setTab('notes'); setTimeout(() => document.querySelector('.t-tabs')?.scrollIntoView({ behavior: 'smooth' }), 50); }}>{tt({ uk: 'Увесь журнал', ru: 'Весь журнал', en: 'Full log' })}</button></div>
+            {last.text && <p>{last.text.length > 280 ? `${last.text.slice(0, 280)}…` : last.text}</p>}
+            {last.images && last.images.length > 0 && <div className="t-log-thumbs">{last.images.slice(0, 4).map((u) => <a key={u} href={u} target="_blank" rel="noreferrer" className="t-log-thumb"><img src={u} alt="" loading="lazy" /></a>)}</div>}
+          </div>
+        ) : null;
+      })()}
       <InviteBox id={s.id} />
       <CoinsBox studentId={s.id} joined={s.joined} />
       {s.joined && <MockResults student={s.id} all={MOCKS.map((m) => m.id)} />}
@@ -286,22 +298,79 @@ function WordsTab({ id }: { id: string }) {
 
 function NotesTab({ id }: { id: string }) {
   const t = useT();
-  const { data, addNote, removeNote } = useTeacher();
+  const { data, addNote, updateNote, removeNote } = useTeacher();
+  const today = () => new Date().toISOString().slice(0, 10);
   const [text, setText] = useState('');
+  const [day, setDay] = useState(today());
+  const [files, setFiles] = useState<{ file: File; url: string }[]>([]);
+  const [busy, setBusy] = useState(false);
+  const [err, setErr] = useState('');
+  const [edit, setEdit] = useState<string | null>(null);
+  const [editText, setEditText] = useState('');
+  const fileRef = useRef<HTMLInputElement>(null);
   const notes = data.notes.filter((n) => n.studentId === id);
+
+  const addFiles = (list: FileList | File[]) => {
+    const imgs = Array.from(list).filter((f) => f.type.startsWith('image/')).slice(0, 8 - files.length);
+    setFiles((fs) => [...fs, ...imgs.map((file) => ({ file, url: URL.createObjectURL(file) }))]);
+  };
+  const save = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!text.trim() && !files.length) return;
+    setBusy(true); setErr('');
+    const urls: string[] = [];
+    for (const f of files) {
+      const r = await uploadFile(f.file);
+      if ('error' in r) { setErr(r.error); setBusy(false); return; }
+      urls.push(r.url);
+    }
+    const at = day === today() ? undefined : new Date(`${day}T12:00:00`).toISOString();
+    addNote(id, text.trim(), { images: urls, at });
+    setText(''); setFiles([]); setDay(today()); setBusy(false);
+  };
+
   return (
     <div className="t-card">
-      <h2>{t({ uk: 'Нотатки', ru: 'Заметки', en: 'Notes' })}</h2>
-      <p className="t-muted">{t({ uk: 'Бачиш тільки ти. Що пройшли, на чому спотикається, що задати наступного разу.', ru: 'Видишь только ты. Что прошли, на чём спотыкается, что задать в следующий раз.', en: 'Only you can see these. What you covered, where they struggle, what to set next time.' })}</p>
-      <form className="t-note-form" onSubmit={(e) => { e.preventDefault(); if (text.trim()) { addNote(id, text.trim()); setText(''); } }}>
-        <textarea value={text} onChange={(e) => setText(e.target.value)} rows={3} placeholder={t({ uk: 'Напр.: плутає Past Simple і Present Perfect, наступного разу повторити since / for', ru: 'Напр.: путает Past Simple и Present Perfect, в следующий раз повторить since / for', en: 'e.g. mixes up Past Simple and Present Perfect, review since / for next time' })} />
-        <button className="mu-btn mu-btn--lime" type="submit">{t({ uk: 'Зберегти', ru: 'Сохранить', en: 'Save' })}</button>
+      <h2>{t({ uk: 'Журнал уроків і нотатки', ru: 'Журнал уроков и заметки', en: 'Lesson log and notes' })}</h2>
+      <p className="t-muted">{t({ uk: 'Бачиш тільки ти. Що робили на уроці, скріни дошки чи вправ, на чому спотикається, що задати наступного разу. Скрін можна вставити просто Ctrl+V у поле.', ru: 'Видишь только ты. Что делали на уроке, скрины доски или упражнений, на чём спотыкается, что задать в следующий раз. Скрин можно вставить просто Ctrl+V в поле.', en: 'Only you can see this. What you did in the lesson, screenshots, where they struggle, what to set next. You can paste a screenshot with Ctrl+V.' })}</p>
+      <form className="t-note-form t-log-form" onSubmit={save}>
+        <label className="t-log-form__day">{t({ uk: 'Дата уроку', ru: 'Дата урока', en: 'Lesson date' })}<input type="date" value={day} max={today()} onChange={(e) => setDay(e.target.value)} /></label>
+        <textarea value={text} onChange={(e) => setText(e.target.value)} rows={4}
+          onPaste={(e) => { const imgs = Array.from(e.clipboardData.files || []).filter((f) => f.type.startsWith('image/')); if (imgs.length) { e.preventDefault(); addFiles(imgs); } }}
+          placeholder={t({ uk: 'Напр.: пройшли Present Perfect, читали текст про подорожі, нові слова: luggage, boarding pass. Плутає since / for. Наступного разу: гра на since / for.', ru: 'Напр.: прошли Present Perfect, читали текст о путешествиях, новые слова: luggage, boarding pass. Путает since / for. В следующий раз: игра на since / for.', en: 'e.g. Did Present Perfect, read a travel text, new words: luggage, boarding pass. Mixes up since / for. Next time: a since / for game.' })} />
+        {files.length > 0 && (
+          <div className="t-log-thumbs">
+            {files.map((f, i) => (
+              <span key={f.url} className="t-log-thumb"><img src={f.url} alt="" /><button type="button" onClick={() => setFiles((fs) => fs.filter((_, j) => j !== i))} aria-label={t({ uk: 'Прибрати', ru: 'Убрать', en: 'Remove' })}>✕</button></span>
+            ))}
+          </div>
+        )}
+        <div className="t-head__actions" style={{ flexWrap: 'wrap' }}>
+          <input ref={fileRef} type="file" accept="image/*" multiple hidden onChange={(e) => { if (e.target.files) addFiles(e.target.files); e.target.value = ''; }} />
+          <button type="button" className="mu-btn t-btn-sm" onClick={() => fileRef.current?.click()} disabled={files.length >= 8}><Icon id="d-camera" />{t({ uk: 'Додати скріни', ru: 'Добавить скрины', en: 'Add screenshots' })}</button>
+          <button className="mu-btn mu-btn--lime" type="submit" disabled={busy}>{busy ? t({ uk: 'Завантажую…', ru: 'Загружаю…', en: 'Uploading…' }) : t({ uk: 'Зберегти', ru: 'Сохранить', en: 'Save' })}</button>
+          {err && <span className="t-neg">{err}</span>}
+        </div>
       </form>
       {notes.map((n) => (
         <div key={n.id} className="t-note">
           <small>{fmtDate(n.at, t.lang)}</small>
-          <p>{n.text}</p>
-          <button className="t-icon-btn" onClick={() => removeNote(n.id)} aria-label={t({ uk: 'Видалити нотатку', ru: 'Удалить заметку', en: 'Delete note' })}>✕</button>
+          {edit === n.id ? (
+            <div className="t-note-form">
+              <textarea rows={3} value={editText} onChange={(e) => setEditText(e.target.value)} />
+              <div className="t-head__actions">
+                <button type="button" className="mu-btn mu-btn--lime t-btn-sm" onClick={() => { updateNote(n.id, { text: editText.trim() }); setEdit(null); }}>{t({ uk: 'Зберегти', ru: 'Сохранить', en: 'Save' })}</button>
+                <button type="button" className="mu-btn t-btn-sm" onClick={() => setEdit(null)}>{t({ uk: 'Скасувати', ru: 'Отмена', en: 'Cancel' })}</button>
+              </div>
+            </div>
+          ) : n.text && <p>{n.text}</p>}
+          {n.images && n.images.length > 0 && (
+            <div className="t-log-thumbs">{n.images.map((u) => <a key={u} href={u} target="_blank" rel="noreferrer" className="t-log-thumb"><img src={u} alt="" loading="lazy" /></a>)}</div>
+          )}
+          <div className="t-note__acts">
+            {edit !== n.id && <button className="t-link-btn" onClick={() => { setEdit(n.id); setEditText(n.text); }}>{t({ uk: 'Змінити', ru: 'Изменить', en: 'Edit' })}</button>}
+            <button className="t-icon-btn" onClick={() => removeNote(n.id)} aria-label={t({ uk: 'Видалити нотатку', ru: 'Удалить заметку', en: 'Delete note' })}>✕</button>
+          </div>
         </div>
       ))}
     </div>
