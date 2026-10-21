@@ -2414,3 +2414,13 @@ button.mk-gap { border: 0; border-bottom: 2px solid var(--mu-ink); cursor: point
 .dp-card__n { flex: none; width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--mu-ink); display: grid; place-items: center; font-weight: 700; background: #fff; }
 .dp-talk { margin: 0; padding-left: 20px; display: grid; gap: 8px; font-size: 18px; }
 @media (max-width: 700px) { .dp-mcq__opts { grid-template-columns: 1fr; } .dp-part { padding: 16px; } .dp-top { top: 76px; } }
+/* блок «extra» у тренажері: світла картка замість темної плашки */
+.dr-extra { background: #fff; border: 2px solid var(--mu-ink); border-radius: var(--mu-radius-lg); padding: 20px 24px; color: var(--mu-ink); font-size: 17px; line-height: 1.55; }
+.dr-extra p { margin: 0 0 8px; max-width: 72ch; }
+.dr-extra ul { margin: 0 0 10px; padding-left: 22px; }
+.dr-extra li { margin: 2px 0; }
+.dr-extra .dr-table td { color: var(--mu-ink); }
+.dr-extra .dr-table tr:first-child td { font-weight: 400; }
+.dr-extra .dr-table td:first-child { font-weight: 700; }
+.dr-extra .dr-table th { text-align: left; padding: 6px 10px; border: 1px solid var(--mu-ink); background: var(--mu-lime); font-size: 14px; }
+.dr-extra .dr-table tbody tr:nth-child(even) td { background: var(--mu-paper); }
