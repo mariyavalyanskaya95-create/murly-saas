@@ -21,23 +21,26 @@ export default function LessonRow({ l, showStudent = true, showDate = true }: { 
       <div className="t-lesson__info">
         {showStudent && st && <Link href={`/teacher/students/${st.id}`} className="t-lesson__name"><span className={`t-dot t-dot--${st.color}`} />{st.name}</Link>}
         {l.topic && <span className="t-lesson__topic">{l.topic}</span>}
-        {l.status === 'done' && <span className="t-tag t-tag--done">{t({ uk: 'Проведено', ru: 'Проведено', en: 'Done' })}</span>}
-        {l.status === 'cancelled' && <span className="t-tag">{t({ uk: 'Скасовано', ru: 'Отменено', en: 'Cancelled' })}</span>}
+        {l.status === 'done' && <span className="t-tag t-tag--done">{t({ uk: 'Відбувся', ru: 'Состоялся', en: 'Took place' })}</span>}
+        {l.status === 'missed' && <span className="t-tag t-tag--late">{t({ uk: 'Не прийшов', ru: 'Не пришёл', en: 'No-show' })}</span>}
+        {l.status === 'cancelled' && <span className="t-tag">{t({ uk: 'Скасовано', ru: 'Отменён', en: 'Cancelled' })}</span>}
+        {l.status === 'planned' && past && <span className="t-tag t-tag--warn">{t({ uk: 'Познач, чи був урок', ru: 'Отметь, был ли урок', en: 'Mark what happened' })}</span>}
       </div>
       <div className="t-lesson__actions">
         {l.status === 'planned' && link && !past && (
           <a href={link} target="_blank" rel="noopener noreferrer" className="mu-btn mu-btn--lime t-btn-sm"><Icon id="d-phone" />{t({ uk: 'Дзвінок', ru: 'Звонок', en: 'Call' })}</a>
         )}
         {l.status === 'planned' && (
-          <button className="mu-btn t-btn-sm" onClick={() => setLessonStatus(l.id, 'done')} title={t({ uk: 'Позначити проведеним', ru: 'Отметить проведённым', en: 'Mark as done' })}>{t({ uk: 'Проведено', ru: 'Проведено', en: 'Done' })}</button>
-        )}
-        {l.status === 'planned' && (
-          <button className="t-icon-btn" onClick={() => setLessonStatus(l.id, 'cancelled')} aria-label={t({ uk: 'Скасувати заняття', ru: 'Отменить занятие', en: 'Cancel lesson' })} title={t({ uk: 'Скасувати', ru: 'Отменить', en: 'Cancel' })}>✕</button>
+          <span className="t-lesson__st">
+            <button className="mu-btn t-btn-sm t-st--done" onClick={() => setLessonStatus(l.id, 'done')} title={t({ uk: 'Урок відбувся', ru: 'Урок состоялся', en: 'The lesson took place' })}>{t({ uk: 'Був', ru: 'Был', en: 'Done' })}</button>
+            <button className="mu-btn t-btn-sm t-st--missed" onClick={() => setLessonStatus(l.id, 'missed')} title={t({ uk: 'Учень не прийшов', ru: 'Ученик не пришёл', en: 'The student did not come' })}>{t({ uk: 'Не прийшов', ru: 'Не пришёл', en: 'No-show' })}</button>
+            <button className="mu-btn t-btn-sm" onClick={() => setLessonStatus(l.id, 'cancelled')} title={t({ uk: 'Урок скасовано', ru: 'Урок отменён', en: 'The lesson was cancelled' })}>{t({ uk: 'Скасовано', ru: 'Отменён', en: 'Cancelled' })}</button>
+          </span>
         )}
         {l.status !== 'planned' && (
-          <button className="t-icon-btn" onClick={() => setLessonStatus(l.id, 'planned')} aria-label={t({ uk: 'Повернути в заплановані', ru: 'Вернуть в запланированные', en: 'Move back to planned' })} title={t({ uk: 'Повернути', ru: 'Вернуть', en: 'Restore' })}>↺</button>
+          <button className="t-icon-btn" onClick={() => setLessonStatus(l.id, 'planned')} aria-label={t({ uk: 'Змінити статус', ru: 'Изменить статус', en: 'Change status' })} title={t({ uk: 'Змінити статус', ru: 'Изменить статус', en: 'Change status' })}>↺</button>
         )}
-        {l.status === 'cancelled' && (
+        {(l.status === 'cancelled' || l.status === 'missed') && (
           <button className="t-link-btn" onClick={() => removeLesson(l.id)}>{t({ uk: 'Видалити', ru: 'Удалить', en: 'Delete' })}</button>
         )}
       </div>
