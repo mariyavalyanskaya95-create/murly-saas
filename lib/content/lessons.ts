@@ -25,5 +25,20 @@ import ruXb4 from './ru/extra-b4.json';
 import enXb4 from './en/extra-b4.json';
 import ruXpr from './ru/extra-pr.json';
 import enXpr from './en/extra-pr.json';
-import { localizeWith } from './localize';
-export const localizeLesson = localizeWith({ ru: { ...ruP, ...ru1, ...ru2, ...ru3, ...ru4, ...ru5, ...ru6, ...ru7, ...ruXb1, ...ruXb2, ...ruXb3, ...ruXb4, ...ruXpr }, en: { ...enP, ...en1, ...en2, ...en3, ...en4, ...en5, ...en6, ...en7, ...enXb1, ...enXb2, ...enXb3, ...enXb4, ...enXpr } });
+import { localizeWith, type Dict } from './localize';
+import { DRILLS, DRILL_LABELS, drillToPlan } from '../drills';
+import { localizeDrill } from './drills';
+import type { Lang } from '../i18n';
+
+// Уроки-тренажери складені з рядків теорії, тому словник для них будуємо порівнянням української і перекладеної версії
+function drillDict(lang: Exclude<Lang, 'uk'>): Dict {
+  const d: Dict = {};
+  const pair = (a: unknown, b: unknown) => {
+    if (typeof a === 'string' && typeof b === 'string') { if (a !== b) d[a] = b; return; }
+    if (Array.isArray(a) && Array.isArray(b)) { a.forEach((x, i) => pair(x, b[i])); return; }
+    if (a && b && typeof a === 'object' && typeof b === 'object') for (const k of Object.keys(a)) pair((a as Record<string, unknown>)[k], (b as Record<string, unknown>)[k]);
+  };
+  for (const dr of DRILLS) pair(drillToPlan(dr), drillToPlan(localizeDrill(dr, lang), DRILL_LABELS[lang]));
+  return d;
+}
+export const localizeLesson = localizeWith({ ru: { ...ruP, ...ru1, ...ru2, ...ru3, ...ru4, ...ru5, ...ru6, ...ru7, ...ruXb1, ...ruXb2, ...ruXb3, ...ruXb4, ...ruXpr, ...drillDict('ru') }, en: { ...enP, ...en1, ...en2, ...en3, ...en4, ...en5, ...en6, ...en7, ...enXb1, ...enXb2, ...enXb3, ...enXb4, ...enXpr, ...drillDict('en') } });
