@@ -217,3 +217,7 @@ alter table notes add column if not exists images jsonb;
 
 -- 2026-10-21: як учень платить (pre: наперед, post: після занять)
 alter table students add column if not exists pay_mode text not null default 'pre';
+
+-- 2026-10-21: статус уроку «не прийшов»
+alter table lessons drop constraint if exists lessons_status_check;
+alter table lessons add constraint lessons_status_check check (status in ('planned', 'done', 'missed', 'cancelled'));
