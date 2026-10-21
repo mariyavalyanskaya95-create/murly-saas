@@ -26,3 +26,16 @@ export type Drill = {
   };
   rounds: DrillRound[];      // рівно 5 раундів по 20 завдань
 };
+
+// Додаткові частини тренажера (як у квізі Марії): таблиця дієслів, історії з дужками, читання, порядок подій, переклад, розмова.
+// Розмітка в text:
+//   історії: «Last Saturday I [went](go) to the mall.»  у [ ] правильна відповідь (кілька через /), у ( ) підказка
+//   читання: «Last Saturday I {celebrated|святкувала} my birthday.»  слово з перекладом по кліку
+export type DrillPlus = {
+  verbs?: { title: string; text: string; rows: { v1: string; v2: string; v3: string; uk: string }[] };
+  stories?: { title: string; text: string; story: string }[];
+  reading?: { title: string; text: string; story: string; questions: { q: string; options: string[]; a: number; why: string }[] };
+  order?: { title: string; text: string; items: string[] }; // items у правильному порядку, учень бачить перемішаними
+  translate?: { title: string; text: string; items: { q: string; options: string[]; a: number; why: string }[] };
+  speaking?: { title: string; text: string; questions: string[] };
+};
