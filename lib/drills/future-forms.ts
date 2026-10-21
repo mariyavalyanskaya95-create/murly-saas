@@ -72,7 +72,7 @@ export const DRILL: Drill = {
       ],
     },
     {
-      title: 'Раунд 2. Не і питання',
+      title: 'Раунд 2. Заперечення і питання',
       questions: [
         { k: 'choice', q: 'I ___ tell anyone your secret.', options: ['won’t', 'willn’t', 'don’t will', 'am not will'], a: 0, why: 'Заперечення will: won’t (will not). Willn’t не існує.' },
         { k: 'type', q: 'Take the bus. It ___ (will / not / take) long.', answers: ['won’t take', 'will not take'], why: 'won’t + V: won’t take.' },

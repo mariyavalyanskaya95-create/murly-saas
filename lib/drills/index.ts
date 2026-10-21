@@ -41,33 +41,43 @@ function toLine(q: DrillQ): { type: 'choice' | 'gap'; line: string } {
   return { type: 'choice', line: q.q.includes('___') ? q.q.replace('___', `{${opts}}`) : `${q.q.replace(/[.:]\s*$/, '')}: {${opts}}` };
 }
 
-export function drillToPlan(d: Drill): Plan {
+// підписи уроку-тренажера трьома мовами (переклад тексту теорії береться зі словника тренажерів)
+export const DRILL_LABELS = {
+  uk: { theory: 'Теорія · 10 хв', when: 'Коли вживаємо', forms: 'Форми', ex: 'Приклад', trap: 'Головна пастка', markers: 'Маркери', choice: 'Обери правильний варіант.', gap: 'Впиши правильну форму.', topic: 'Граматика: тренажер', aims: (u: string) => `Повторимо правило: ${u}\n100 завдань від простого до складного\nРозберемо головні пастки`,
+    note: 'Тренажер на 100 завдань: 5 раундів по 20. На уроці можна пройти 1-2 раунди, решту задати додому. Пояснення до кожної відповіді учень бачить у тренажері на сайті (розділ «Граматика»).' },
+  ru: { theory: 'Теория · 10 мин', when: 'Когда употребляем', forms: 'Формы', ex: 'Пример', trap: 'Главная ловушка', markers: 'Маркеры', choice: 'Выбери правильный вариант.', gap: 'Впиши правильную форму.', topic: 'Грамматика: тренажёр', aims: (u: string) => `Повторим правило: ${u}\n100 заданий от простого к сложному\nРазберём главные ловушки`,
+    note: 'Тренажёр на 100 заданий: 5 раундов по 20. На уроке можно пройти 1-2 раунда, остальное задать домой. Объяснение к каждому ответу ученик видит в тренажёре на сайте (раздел «Грамматика»).' },
+  en: { theory: 'Theory · 10 min', when: 'When we use it', forms: 'Forms', ex: 'Example', trap: 'The main trap', markers: 'Signal words', choice: 'Choose the correct option.', gap: 'Write the correct form.', topic: 'Grammar: trainer', aims: (u: string) => `Review the rule: ${u}\n100 tasks from easy to hard\nGo through the main traps`,
+    note: 'A 100-task trainer: 5 rounds of 20. Do 1-2 rounds in class and set the rest as homework. The student sees an explanation for every answer in the trainer on the website (Grammar section).' },
+};
+
+export function drillToPlan(d: Drill, L = DRILL_LABELS.uk): Plan {
   const H = makeHelpers(`dr-${d.slug}`);
   const th = d.theory;
   const blocks = [
-    H.h('Теорія · 10 хв'),
-    H.tip(`**Коли вживаємо**\n\n${th.when.map((w) => `${w.title}: ${w.example} (${w.uk})`).join('\n\n')}`),
-    H.tip(`**Форми**\n\n${th.forms.map((f) => `${f.sign}  ${f.text}. Приклад: ${f.example}`).join('\n\n')}`),
-    H.tip(`**Головна пастка**\n\n${th.trap.map((t) => `${t.title}. ${t.text}\n\n✗ ${t.wrong}\n\n✓ ${t.right}`).join('\n\n')}`),
-    ...(th.markers.length ? [H.tip(`**Маркери:** ${th.markers.join(', ')}`)] : []),
+    H.h(L.theory),
+    H.tip(`**${L.when}**\n\n${th.when.map((w) => `${w.title}: ${w.example} (${w.uk})`).join('\n\n')}`),
+    H.tip(`**${L.forms}**\n\n${th.forms.map((f) => `${f.sign}  ${f.text}. ${L.ex}: ${f.example}`).join('\n\n')}`),
+    H.tip(`**${L.trap}**\n\n${th.trap.map((t) => `${t.title}. ${t.text}\n\n✗ ${t.wrong}\n\n✓ ${t.right}`).join('\n\n')}`),
+    ...(th.markers.length ? [H.tip(`**${L.markers}:** ${th.markers.join(', ')}`)] : []),
     ...(th.extra ? [H.tip(`**${th.extra.title}**\n\n${th.extra.text}${th.extra.rows ? `\n\n${th.extra.rows.map((r) => r.join(' · ')).join('\n\n')}` : ''}`)] : []),
-    H.note('Тренажер на 100 завдань: 5 раундів по 20. На уроці можна пройти 1-2 раунди, решту задати додому. Пояснення до кожної відповіді учень бачить у тренажері на сайті (розділ «Граматика»).'),
+    H.note(L.note),
   ];
   d.rounds.forEach((r) => {
     const lines = r.questions.map(toLine);
     const ch = lines.filter((l) => l.type === 'choice').map((l) => l.line).join('\n');
     const gp = lines.filter((l) => l.type === 'gap').map((l) => l.line).join('\n');
     const parts: ['choice' | 'gap', string, string][] = [];
-    if (ch) parts.push(['choice', 'Обери правильний варіант.', ch]);
-    if (gp) parts.push(['gap', 'Впиши правильну форму.', gp]);
+    if (ch) parts.push(['choice', L.choice, ch]);
+    if (gp) parts.push(['gap', L.gap, gp]);
     blocks.push(H.h(r.title), H.ex(...parts));
   });
   return {
     id: `lib-drill-${d.slug}`, title: `${d.title}: 100 tasks`, level: d.level, age: 'teens',
-    topic: `Граматика: тренажер ${d.uk}`, color: d.color, source: 'murly', focus: ['Grammar'],
-    aims: `Повторимо правило: ${d.uk}\n100 завдань від простого до складного\nРозберемо головні пастки`,
+    topic: `${L.topic} ${d.uk}`, color: d.color, source: 'murly', focus: ['Grammar'],
+    aims: L.aims(d.uk),
     duration: 60, blocks,
   };
 }
 
-export const DRILL_PLANS: Plan[] = DRILLS.map(drillToPlan);
+export const DRILL_PLANS: Plan[] = DRILLS.map((d) => drillToPlan(d));
