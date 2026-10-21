@@ -9,7 +9,8 @@ import { useT } from '@/components/LangProvider';
 
 export default function StudentsPage() {
   const t = useT();
-  const { data, ready } = useTeacher();
+  const { data, ready, removeStudent } = useTeacher();
+  const [del, setDel] = useState<string | null>(null);
   const [open, setOpen] = useState(false);
   const [q, setQ] = useState('');
   if (!ready) return null;
@@ -51,7 +52,8 @@ export default function StudentsPage() {
           const n = nextLesson(s.id);
           const words = data.words.filter((w) => w.studentId === s.id).length;
           return (
-            <Link key={s.id} href={`/teacher/students/${s.id}`} className={`t-student t-student--${s.color}`}>
+            <div key={s.id} className="t-student-wrap">
+            <Link href={`/teacher/students/${s.id}`} className={`t-student t-student--${s.color}`}>
               <div className="t-student__top">
                 <Avatar avatar={s.avatar} image={s.image} name={s.name} />
                 <div><b>{s.name}</b><span>{s.level} · {fmtMoney(s.price, t.lang)} {t({ uk: 'за заняття', ru: 'за занятие', en: 'per lesson' })}</span></div>
@@ -62,6 +64,21 @@ export default function StudentsPage() {
                 <span className={b < 0 ? 't-neg' : b > 0 ? 't-pos' : ''}><Icon id="d-money" />{b < 0 ? `${t({ uk: 'Борг', ru: 'Долг', en: 'Owes' })} ${fmtMoney(-b, t.lang)}` : b > 0 ? `${t({ uk: 'Аванс', ru: 'Аванс', en: 'Prepaid' })} ${fmtMoney(b, t.lang)}` : t({ uk: 'Розраховані', ru: 'Рассчитались', en: 'Settled' })}</span>
               </div>
             </Link>
+            <div className="t-student__acts">
+              {del === s.id ? (
+                <>
+                  <span>{t({ uk: `Видалити ${s.name} з усіма заняттями, словником і оплатами?`, ru: `Удалить ${s.name} со всеми занятиями, словарём и оплатами?`, en: `Delete ${s.name} with all lessons, vocabulary and payments?` })}</span>
+                  <button type="button" className="mu-btn t-btn-sm" onClick={() => setDel(null)}>{t({ uk: 'Ні', ru: 'Нет', en: 'No' })}</button>
+                  <button type="button" className="mu-btn mu-btn--tomato t-btn-sm" onClick={() => { removeStudent(s.id); setDel(null); }}>{t({ uk: 'Так, видалити', ru: 'Да, удалить', en: 'Yes, delete' })}</button>
+                </>
+              ) : (
+                <>
+                  <Link href={`/teacher/students/${s.id}?tab=profile`} className="mu-btn t-btn-sm"><Icon id="e-pencil" />{t({ uk: 'Змінити', ru: 'Изменить', en: 'Edit' })}</Link>
+                  <button type="button" className="mu-btn t-btn-sm" onClick={() => setDel(s.id)}>{t({ uk: 'Видалити', ru: 'Удалить', en: 'Delete' })}</button>
+                </>
+              )}
+            </div>
+            </div>
           );
         })}
       </div>
