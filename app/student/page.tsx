@@ -8,6 +8,7 @@ import { getEnrollments } from '@/lib/student-data';
 import Kit from '@/components/Kit';
 import MockResults from '@/components/mock/MockResults';
 import { MOCKS } from '@/lib/mock';
+import ProfileCard from '@/components/ProfileCard';
 
 export const dynamic = 'force-dynamic';
 
@@ -16,11 +17,12 @@ export default async function StudentPage() {
   const { userId } = await auth();
   const user = await currentUser();
   const enrollments = userId ? await getEnrollments(userId).catch(() => []) : [];
-  const first = user?.firstName || enrollments[0]?.name || '';
+  const first = String((user?.unsafeMetadata as { nick?: string } | undefined)?.nick || '') || user?.firstName || enrollments[0]?.name || '';
 
   if (!enrollments.length) {
     return (
       <div className="t-page">
+        <ProfileCard />
         <div className="t-card t-welcome">
           <Kit id="il-cat-laptop" className="t-welcome__kit" />
           <div>
@@ -44,6 +46,7 @@ export default async function StudentPage() {
 
   return (
     <>
+      <div className="t-page" style={{ paddingBottom: 0 }}><ProfileCard /></div>
       <StudentHome enrollments={enrollments} name={first} />
       <div className="t-page" style={{ paddingTop: 0 }}><MockResults all={MOCKS.map((m) => m.id)} /></div>
     </>

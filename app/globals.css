@@ -2143,3 +2143,31 @@ button.mk-gap { border: 0; border-bottom: 2px solid var(--mu-ink); cursor: point
 .tg-item__head .t-head__actions { margin-left: auto; flex-wrap: wrap; }
 .pg-top { display: flex; align-items: center; padding: 14px 28px; border-bottom: 2px solid var(--mu-ink); background: var(--mu-paper); }
 .pg-title { font-size: clamp(30px, 5vw, 52px); margin: 8px 0 20px; }
+
+/* Підказки перекладу і прикладів у словнику учня */
+.t-sug { display: grid; gap: 12px; margin-top: 6px; padding-top: 12px; border-top: 2px dashed var(--mu-paper-dark); }
+.t-sug small { display: block; font-weight: 700; margin-bottom: 6px; }
+.t-sug__ex { display: grid; gap: 6px; }
+.t-sug__item { text-align: left; display: grid; gap: 2px; padding: 8px 12px; border: 2px solid var(--mu-ink); border-radius: 14px; background: var(--mu-paper); cursor: pointer; font: inherit; }
+.t-sug__item span { color: var(--mu-ink-muted); font-size: 14px; }
+.t-sug__item:hover, .t-sug__item.is-on { background: var(--mu-lime); }
+
+/* Профіль: нік і аватар */
+.u-ava { overflow: hidden; padding: 0; }
+.u-ava__kit { width: 118%; height: 118%; margin-top: 10%; }
+.u-ava__img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.u-prof__head { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.u-prof__head > div { display: grid; }
+.u-prof__head .mu-btn { margin-left: auto; }
+.u-prof__body { display: grid; gap: 10px; margin-top: 8px; }
+.u-prof__body > small { font-weight: 700; }
+.u-prof__nick { display: grid; gap: 6px; font-weight: 700; max-width: 360px; }
+.u-prof__nick input { padding: 10px 14px; border: 2px solid var(--mu-ink); border-radius: 14px; font: inherit; }
+.u-prof__kits { display: flex; flex-wrap: wrap; gap: 8px; }
+.u-prof__kit { width: 64px; height: 64px; border: 2px solid var(--mu-ink); border-radius: 50%; overflow: hidden; padding: 0; cursor: pointer; }
+.u-prof__kit .kit { width: 118%; height: 118%; margin: 6% 0 0 -9%; }
+.u-prof__kit.is-on { outline: 4px solid var(--mu-tomato); outline-offset: 2px; }
+.u-prof__bgs { display: flex; gap: 8px; }
+.u-prof__bg { width: 32px; height: 32px; border: 2px solid var(--mu-ink); border-radius: 50%; cursor: pointer; }
+.u-prof__bg.is-on { outline: 3px solid var(--mu-ink); outline-offset: 2px; }
+.u-prof__save { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-top: 6px; }

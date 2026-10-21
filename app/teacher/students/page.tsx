@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import Icon from '@/components/Icon';
+import Avatar from '@/components/Avatar';
 import { StudentForm } from '@/components/teacher/forms';
 import { balanceOf, fmtDate, fmtMoney, fmtTime, plural, useTeacher } from '@/lib/teacher-store';
 import { useT } from '@/components/LangProvider';
@@ -52,7 +53,7 @@ export default function StudentsPage() {
           return (
             <Link key={s.id} href={`/teacher/students/${s.id}`} className={`t-student t-student--${s.color}`}>
               <div className="t-student__top">
-                <span className="t-avatar">{s.name.slice(0, 1).toUpperCase()}</span>
+                <Avatar avatar={s.avatar} image={s.image} name={s.name} />
                 <div><b>{s.name}</b><span>{s.level} · {fmtMoney(s.price, t.lang)} {t({ uk: 'за заняття', ru: 'за занятие', en: 'per lesson' })}</span></div>
               </div>
               <div className="t-student__meta">
