@@ -5,6 +5,8 @@ import Stickers from '@/components/Stickers';
 import SiteNav from '@/components/SiteNav';
 import SiteFooter from '@/components/SiteFooter';
 import DrillTrainer from '@/components/DrillTrainer';
+import DrillPlus from '@/components/DrillPlus';
+import { DRILL_PLUS } from '@/lib/drills/plus';
 import { DRILLS, getDrill } from '@/lib/drills';
 import { tr } from '@/lib/i18n-server';
 import { localizeDrill } from '@/lib/content/drills';
@@ -30,6 +32,7 @@ export default function DrillPage({ params }: { params: { slug: string } }) {
   const prev = DRILLS[idx - 1];
   const next = DRILLS[idx + 1];
   const th = d.theory;
+  const plus = DRILL_PLUS[d0.slug] ? localizeDrill(DRILL_PLUS[d0.slug], L.lang) : null;
   return (
     <>
       <SiteNav />
@@ -103,6 +106,15 @@ export default function DrillPage({ params }: { params: { slug: string } }) {
           <DrillTrainer drill={d} />
         </div>
       </section>
+
+      {plus && (
+        <section className="mu-section" id="practice-2" style={{ paddingTop: 0 }}>
+          <div className="mu-container gr-quiz">
+            <h2 className="gr-h gr-h--center"><Icon id="e-book" />{L({ uk: 'Частина 2: таблиця, історії, читання', ru: 'Часть 2: таблица, истории, чтение', en: 'Part 2: table, stories, reading' })}</h2>
+            <DrillPlus plus={plus} />
+          </div>
+        </section>
+      )}
 
       <section className="mu-section" style={{ paddingTop: 0 }}>
         <div className="mu-container gr-pager">
