@@ -214,3 +214,6 @@ alter table students add column if not exists song text, add column if not exist
 
 -- 2026-10-21: скріни до нотаток / журналу уроків
 alter table notes add column if not exists images jsonb;
+
+-- 2026-10-21: як учень платить (pre: наперед, post: після занять)
+alter table students add column if not exists pay_mode text not null default 'pre';
