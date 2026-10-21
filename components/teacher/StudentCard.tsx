@@ -63,6 +63,18 @@ export default function StudentCard({ id }: { id: string }) {
         </div>
       </div>
 
+      {(s.song || s.about || s.selfSong || s.selfAbout) && (
+        <div className="t-card t-about">
+          {(s.song || s.selfSong) && (
+            <p><b>{tt({ uk: 'Улюблена пісня', ru: 'Любимая песня', en: 'Favourite song' })}:</b> {s.song || s.selfSong}
+              {(s.songUrl || s.selfSongUrl) && /^https?:\/\//.test(s.songUrl || s.selfSongUrl || '') && <> <a className="mu-btn t-btn-sm" href={s.songUrl || s.selfSongUrl} target="_blank" rel="noreferrer">{tt({ uk: 'Слухати', ru: 'Слушать', en: 'Listen' })}</a></>}
+              {s.song && s.selfSong && s.selfSong !== s.song && <span className="t-muted"> · {tt({ uk: 'учень пише', ru: 'ученик пишет', en: 'the student says' })}: {s.selfSong}</span>}
+            </p>
+          )}
+          {s.about && <p><b>{tt({ uk: 'Про учня', ru: 'Об ученике', en: 'About' })}:</b> {s.about}</p>}
+          {s.selfAbout && <p><b>{tt({ uk: 'Учень про себе', ru: 'Ученик о себе', en: 'In their own words' })}:</b> {s.selfAbout}</p>}
+        </div>
+      )}
       <InviteBox id={s.id} />
       <CoinsBox studentId={s.id} joined={s.joined} />
       {s.joined && <MockResults student={s.id} all={MOCKS.map((m) => m.id)} />}
@@ -349,17 +361,17 @@ function ProfileTab({ id, onDelete }: { id: string; onDelete: () => void }) {
   const t = useT();
   const { data, updateStudent } = useTeacher();
   const s = data.students.find((x) => x.id === id)!;
-  const [f, setF] = useState({ name: s.name, level: s.level, price: String(s.price), contact: s.contact ?? '', parent: s.parent ?? '', link: s.link ?? '' });
+  const [f, setF] = useState({ name: s.name, level: s.level, price: String(s.price), contact: s.contact ?? '', parent: s.parent ?? '', link: s.link ?? '', song: s.song ?? '', songUrl: s.songUrl ?? '', about: s.about ?? '' });
   const [saved, setSaved] = useState(false);
   const [confirm, setConfirm] = useState(false);
-  const set = (k: keyof typeof f) => (e: React.ChangeEvent<HTMLInputElement>) => { setF({ ...f, [k]: e.target.value }); setSaved(false); };
+  const set = (k: keyof typeof f) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => { setF({ ...f, [k]: e.target.value }); setSaved(false); };
 
   return (
     <div className="t-card">
       <h2>{t({ uk: 'Профіль учня', ru: 'Профиль ученика', en: 'Student profile' })}</h2>
       <form className="t-form" onSubmit={(e) => {
         e.preventDefault();
-        updateStudent(id, { name: f.name.trim() || s.name, level: f.level, price: Number(f.price) || 0, contact: f.contact.trim() || undefined, parent: f.parent.trim() || undefined, link: f.link.trim() || undefined });
+        updateStudent(id, { name: f.name.trim() || s.name, level: f.level, price: Number(f.price) || 0, contact: f.contact.trim() || undefined, parent: f.parent.trim() || undefined, link: f.link.trim() || undefined, song: f.song.trim() || undefined, songUrl: f.songUrl.trim() || undefined, about: f.about.trim() || undefined });
         setSaved(true);
       }}>
         <label>{t({ uk: 'Ім’я', ru: 'Имя', en: 'Name' })}<input value={f.name} onChange={set('name')} /></label>
@@ -368,6 +380,9 @@ function ProfileTab({ id, onDelete }: { id: string; onDelete: () => void }) {
         <label>{t({ uk: 'Контакт учня', ru: 'Контакт ученика', en: 'Student contact' })}<input value={f.contact} onChange={set('contact')} /></label>
         <label>{t({ uk: 'Контакт батьків', ru: 'Контакт родителей', en: 'Parent contact' })}<input value={f.parent} onChange={set('parent')} /></label>
         <label className="t-form__wide">{t({ uk: 'Посилання на дзвінок', ru: 'Ссылка на звонок', en: 'Call link' })}<input value={f.link} onChange={set('link')} placeholder={t({ uk: 'Порожньо: твоє посилання з налаштувань', ru: 'Пусто: твоя ссылка из настроек', en: 'Empty: your link from Settings' })} /></label>
+        <label>{t({ uk: 'Улюблена пісня', ru: 'Любимая песня', en: 'Favourite song' })}<input value={f.song} onChange={set('song')} placeholder={t({ uk: 'Напр. Imagine Dragons, Believer', ru: 'Напр. Imagine Dragons, Believer', en: 'e.g. Imagine Dragons, Believer' })} /></label>
+        <label>{t({ uk: 'Посилання на пісню', ru: 'Ссылка на песню', en: 'Link to the song' })}<input value={f.songUrl} onChange={set('songUrl')} placeholder="YouTube / Spotify" /></label>
+        <label className="t-form__wide">{t({ uk: 'Про учня', ru: 'Об ученике', en: 'About the student' })}<textarea rows={3} value={f.about} onChange={set('about')} maxLength={600} placeholder={t({ uk: 'Хобі, цілі, що любить обговорювати, на що звернути увагу', ru: 'Хобби, цели, что любит обсуждать, на что обратить внимание', en: 'Hobbies, goals, favourite topics, things to keep in mind' })} /></label>
         <div className="t-form__actions">
           {saved && <span className="t-pos">{t({ uk: 'Збережено', ru: 'Сохранено', en: 'Saved' })}</span>}
           <button className="mu-btn mu-btn--lime" type="submit">{t({ uk: 'Зберегти', ru: 'Сохранить', en: 'Save' })}</button>
