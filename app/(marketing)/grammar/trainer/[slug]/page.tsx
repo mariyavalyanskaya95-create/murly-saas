@@ -107,7 +107,7 @@ export default function DrillPage({ params }: { params: { slug: string } }) {
               <div className="dr-extra">
                 {extraParts(th.extra.text).map((p, k) => (Array.isArray(p)
                   ? <ul key={k}>{p.map((li) => <li key={li}>{li}</li>)}</ul>
-                  : <p key={k}>{(() => { const m = p.match(/^([^.,]{1,30}:)(.*)$/); return m ? <><b>{m[1]}</b>{m[2]}</> : p; })()}</p>))}
+                  : <p key={k}>{(() => { const m = p.match(/^([^.,]{1,30}:)(.*)$/); return m && m[1].trim().split(/\s+/).length <= 3 ? <><b>{m[1]}</b>{m[2]}</> : p; })()}</p>))}
                 {th.extra.rows && (
                   <div className="dr-table-wrap">
                     <table className="dr-table">
