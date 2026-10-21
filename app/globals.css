@@ -2296,3 +2296,38 @@ button.mk-gap { border: 0; border-bottom: 2px solid var(--mu-ink); cursor: point
 
 .t-words-days { display: grid; gap: 16px; }
 .t-words-day { font-size: 16px; margin: 0 0 8px; }
+
+/* Розклад сіткою */
+.wg { display: grid; gap: 14px; }
+.wg-scroll { overflow-x: auto; border: 2px solid var(--mu-ink); border-radius: var(--mu-radius-lg); background: #fff; box-shadow: var(--mu-shadow-stamp); }
+.wg-grid { display: grid; min-width: 720px; }
+.wg-corner { border-bottom: 2px solid var(--mu-ink); }
+.wg-head { display: grid; justify-items: center; padding: 8px 4px; border-bottom: 2px solid var(--mu-ink); border-left: 1px solid var(--mu-paper-dark); }
+.wg-head small { text-transform: uppercase; font-size: 11px; font-weight: 700; color: var(--mu-ink-muted); }
+.wg-head b { font-size: 20px; }
+.wg-head.is-today b { background: var(--mu-lime); border-radius: 999px; padding: 0 10px; border: 2px solid var(--mu-ink); }
+.wg-times { position: relative; }
+.wg-times span { position: absolute; right: 6px; transform: translateY(-50%); font-size: 11px; color: var(--mu-ink-muted); font-weight: 600; }
+.wg-times span:first-child { transform: none; }
+.wg-col { position: relative; border-left: 1px solid var(--mu-paper-dark); background-image: linear-gradient(to bottom, var(--mu-paper-dark) 1px, transparent 1px); }
+.wg-col.is-today { background-color: #FBFDEB; }
+.wg-l { position: absolute; left: 3px; right: 3px; display: grid; align-content: start; gap: 0; padding: 3px 6px; text-align: left; border: 2px solid var(--mu-ink); border-radius: 10px; background: var(--c, var(--mu-lime)); font: inherit; cursor: pointer; overflow: hidden; }
+.wg-l b { font-size: 13px; line-height: 1.15; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.wg-l span { font-size: 11px; color: var(--mu-ink-soft); }
+.wg-l.is-sel { outline: 3px solid var(--mu-ink); outline-offset: 1px; z-index: 2; }
+.wg-l.is-done { box-shadow: inset 0 0 0 3px #2E8B57; }
+.wg-l.is-missed { background: repeating-linear-gradient(135deg, #F6B5A6 0 6px, #fff 6px 12px); }
+.wg-l.is-cancelled { opacity: .45; }
+.wg-l.is-cancelled b { text-decoration: line-through; }
+.wg-l.is-unmarked { border-style: dashed; }
+.wg-mark { position: absolute; top: 2px; right: 5px; font-style: normal; font-weight: 800; font-size: 13px; }
+.wg-legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; color: var(--mu-ink-soft); }
+.wg-legend span { display: inline-flex; gap: 6px; align-items: center; }
+.wg-sw { width: 18px; height: 14px; border: 2px solid var(--mu-ink); border-radius: 4px; background: var(--mu-lime); display: inline-block; }
+.wg-sw.is-done { box-shadow: inset 0 0 0 2px #2E8B57; }
+.wg-sw.is-missed { background: repeating-linear-gradient(135deg, #F6B5A6 0 3px, #fff 3px 6px); }
+.wg-sw.is-cancelled { opacity: .45; }
+.wg-sw.is-unmarked { border-style: dashed; }
+.wg-pop h2 { font-size: 18px; }
+.wg-call { display: flex; justify-content: center; padding: 6px 0 10px; }
+.wg-call .mu-btn svg { width: 20px; height: 20px; }
