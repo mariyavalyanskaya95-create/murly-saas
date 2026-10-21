@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Icon from '@/components/Icon';
 import Avatar from '@/components/Avatar';
 import { StudentForm } from '@/components/teacher/forms';
-import { balanceOf, fmtDate, fmtMoney, fmtTime, plural, useTeacher } from '@/lib/teacher-store';
+import { balanceOf, balanceText, fmtDate, fmtMoney, fmtTime, plural, useTeacher } from '@/lib/teacher-store';
 import { useT } from '@/components/LangProvider';
 
 export default function StudentsPage() {
@@ -61,7 +61,7 @@ export default function StudentsPage() {
               <div className="t-student__meta">
                 <span><Icon id="e-cal" />{n ? `${fmtDate(n.start, t.lang)}, ${fmtTime(n.start, t.lang)}` : t({ uk: 'Немає занять', ru: 'Нет занятий', en: 'No lessons' })}</span>
                 <span><Icon id="e-abc" />{words} {plural(words, t.lang, { uk: ['слово', 'слова', 'слів'], ru: ['слово', 'слова', 'слов'], en: ['word', 'words'] })} {t({ uk: 'у словнику', ru: 'в словаре', en: 'in vocabulary' })}</span>
-                <span className={b < 0 ? 't-neg' : b > 0 ? 't-pos' : ''}><Icon id="d-money" />{b < 0 ? `${t({ uk: 'Борг', ru: 'Долг', en: 'Owes' })} ${fmtMoney(-b, t.lang)}` : b > 0 ? `${t({ uk: 'Аванс', ru: 'Аванс', en: 'Prepaid' })} ${fmtMoney(b, t.lang)}` : t({ uk: 'Розраховані', ru: 'Рассчитались', en: 'Settled' })}</span>
+                {(() => { const bt = balanceText(s, b, t.lang); return <span className={bt.cls}><Icon id="d-money" />{bt.text.charAt(0).toUpperCase() + bt.text.slice(1)}</span>; })()}
               </div>
             </Link>
             <div className="t-student__acts">
