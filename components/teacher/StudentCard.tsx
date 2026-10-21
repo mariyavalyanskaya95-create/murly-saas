@@ -6,6 +6,7 @@ import CoinsBox from './CoinsBox';
 import MockResults from '../mock/MockResults';
 import { MOCKS } from '@/lib/mock';
 import Icon from '../Icon';
+import Avatar from '../Avatar';
 import GameHub from '../games/GameHub';
 import LessonRow from './LessonRow';
 import { LessonForm } from './forms';
@@ -51,7 +52,7 @@ export default function StudentCard({ id }: { id: string }) {
     <div className="t-page">
       <Link href="/teacher/students" className="t-back">← {tt({ uk: 'Усі учні', ru: 'Все ученики', en: 'All students' })}</Link>
       <div className={`t-hero t-student--${s.color}`}>
-        <span className="t-avatar t-avatar--lg">{s.name.slice(0, 1).toUpperCase()}</span>
+        <Avatar avatar={s.avatar} image={s.image} name={s.name} className="t-avatar--lg" />
         <div className="t-hero__info">
           <h1>{s.name}</h1>
           <span>{s.level} · {fmtMoney(s.price, tt.lang)} {tt({ uk: 'за заняття', ru: 'за занятие', en: 'per lesson' })}{s.contact ? ` · ${s.contact}` : ''}</span>
@@ -114,12 +115,27 @@ function WordsTab({ id }: { id: string }) {
   const [f, setF] = useState({ en: '', uk: '', example: '' });
   const [play, setPlay] = useState(false);
   const words = useMemo(() => data.words.filter((w) => w.studentId === id), [data.words, id]);
+  // Підказки: варіанти перекладу і приклади з’являються, коли вчитель вводить англійське слово
+  const [sug, setSug] = useState<{ for: string; translations: string[]; examples: { en: string; tr: string }[] } | null>(null);
+  const [loadingSug, setLoadingSug] = useState(false);
+  useEffect(() => {
+    const w = f.en.trim();
+    if (w.length < 2) { setSug(null); return; }
+    const to = t.lang === 'ru' ? 'ru' : 'uk';
+    const timer = setTimeout(() => {
+      setLoadingSug(true);
+      fetch(`/api/dict?w=${encodeURIComponent(w)}&to=${to}`).then((r) => r.json())
+        .then((d) => setSug({ for: w, translations: d.translations ?? [], examples: d.examples ?? [] }))
+        .catch(() => setSug(null)).finally(() => setLoadingSug(false));
+    }, 600);
+    return () => clearTimeout(timer);
+  }, [f.en, t.lang]);
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!f.en.trim() || !f.uk.trim()) return;
     addWord(id, { en: f.en.trim(), uk: f.uk.trim(), example: f.example.trim() || undefined });
-    setF({ en: '', uk: '', example: '' });
+    setF({ en: '', uk: '', example: '' }); setSug(null);
     (document.getElementById('word-en') as HTMLInputElement | null)?.focus();
   };
 
@@ -138,6 +154,27 @@ function WordsTab({ id }: { id: string }) {
           <label>{t({ uk: 'Приклад', ru: 'Пример', en: 'Example' })}<input value={f.example} onChange={(e) => setF({ ...f, example: e.target.value })} placeholder="I look forward to the trip." /></label>
           <div className="t-form__actions"><button className="mu-btn mu-btn--lime" type="submit">{t({ uk: 'Додати', ru: 'Добавить', en: 'Add' })}</button></div>
         </form>
+        {f.en.trim().length >= 2 && (loadingSug || sug) && (
+          <div className="t-sug">
+            {loadingSug && !sug && <p className="t-muted">{t({ uk: 'Шукаю переклад і приклади…', ru: 'Ищу перевод и примеры…', en: 'Looking for translations and examples…' })}</p>}
+            {sug && sug.translations.length > 0 && (
+              <div><small>{t({ uk: 'Обери переклад', ru: 'Выбери перевод', en: 'Pick a translation' })}</small>
+                <div className="g-chips" style={{ justifyContent: 'flex-start' }}>
+                  {sug.translations.map((x) => <button key={x} type="button" className={`g-chip ${f.uk === x ? 'is-on' : ''}`} onClick={() => setF({ ...f, uk: f.uk && f.uk !== x && !f.uk.split(', ').includes(x) && f.uk.length < 40 ? `${f.uk}, ${x}` : x })}>{x}</button>)}
+                </div>
+              </div>
+            )}
+            {sug && sug.examples.length > 0 && (
+              <div><small>{t({ uk: 'Обери приклад', ru: 'Выбери пример', en: 'Pick an example' })}</small>
+                <div className="t-sug__ex">
+                  {sug.examples.map((x) => <button key={x.en} type="button" className={`t-sug__item ${f.example === x.en ? 'is-on' : ''}`} onClick={() => setF({ ...f, example: x.en })}><b>{x.en}</b>{x.tr && <span>{x.tr}</span>}</button>)}
+                </div>
+                <small className="t-muted">{t({ uk: 'Приклади: Tatoeba (CC BY 2.0 FR)', ru: 'Примеры: Tatoeba (CC BY 2.0 FR)', en: 'Examples: Tatoeba (CC BY 2.0 FR)' })}</small>
+              </div>
+            )}
+            {sug && !sug.translations.length && !sug.examples.length && <p className="t-muted">{t({ uk: 'Підказок не знайшлося, впиши переклад вручну.', ru: 'Подсказок не нашлось, впиши перевод вручную.', en: 'No suggestions found, type the translation yourself.' })}</p>}
+          </div>
+        )}
       </div>
 
       <div className="t-card">
