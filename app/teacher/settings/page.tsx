@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { Settings, useTeacher } from '@/lib/teacher-store';
 import { useT } from '@/components/LangProvider';
+import ProfileCard from '@/components/ProfileCard';
 import type { T } from '@/lib/i18n';
 
 const KINDS: { id: Settings['linkKind']; label: T; hint: T }[] = [
@@ -25,6 +26,7 @@ export default function SettingsPage() {
   return (
     <div className="t-page">
       <div className="t-head"><div><p className="t-eyebrow">{t({ uk: 'Налаштування', ru: 'Настройки', en: 'Settings' })}</p><h1>{t({ uk: 'Твій кабінет', ru: 'Твой кабинет', en: 'Your dashboard' })}</h1></div></div>
+      <ProfileCard />
       <div className="t-card t-mobile-only">
         <h2>{t({ uk: 'Матеріали', ru: 'Материалы', en: 'Materials' })}</h2>
         <div className="t-head__actions">
