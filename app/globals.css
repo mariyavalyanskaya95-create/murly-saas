@@ -2273,3 +2273,5 @@ button.mk-gap { border: 0; border-bottom: 2px solid var(--mu-ink); cursor: point
 .t-log-thumb button { position: absolute; top: 4px; right: 4px; width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--mu-ink); background: #fff; font-size: 11px; padding: 0; cursor: pointer; }
 .t-note__acts { display: flex; gap: 10px; align-items: center; }
 .t-last p { margin: 0; white-space: pre-wrap; }
+
+.t-warn { color: #B26A00; }
