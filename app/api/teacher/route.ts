@@ -9,10 +9,11 @@ const pick = (o: Row, keys: string[]) => Object.fromEntries(keys.filter((k) => k
 
 // camelCase у застосунку ↔ snake_case у базі
 const toDb = {
-  student: (s: Row, t: string) => ({ id: s.id, teacher_id: t, name: s.name, level: s.level, price: s.price, contact: s.contact ?? null, parent: s.parent ?? null, link: s.link ?? null, color: s.color, created_at: s.createdAt }),
+  student: (s: Row, t: string) => ({ id: s.id, teacher_id: t, name: s.name, level: s.level, price: s.price, contact: s.contact ?? null, parent: s.parent ?? null, link: s.link ?? null, color: s.color, song: s.song ?? null, song_url: s.songUrl ?? null, about: s.about ?? null, created_at: s.createdAt }),
   studentPatch: (p: Row) => {
-    const o: Row = pick(p, ['name', 'level', 'price', 'contact', 'parent', 'link', 'color']);
-    for (const k of ['contact', 'parent', 'link']) if (k in p && p[k] === undefined) o[k] = null;
+    const o: Row = pick(p, ['name', 'level', 'price', 'contact', 'parent', 'link', 'color', 'song', 'about']);
+    if ('songUrl' in p) o.song_url = p.songUrl ?? null;
+    for (const k of ['contact', 'parent', 'link', 'song', 'about']) if (k in p && p[k] === undefined) o[k] = null;
     return o;
   },
   lesson: (l: Row, t: string) => ({ id: l.id, teacher_id: t, student_id: l.studentId, start: l.start, duration: l.duration, topic: l.topic ?? null, link: l.link ?? null, status: l.status }),
@@ -32,7 +33,7 @@ const toDb = {
 };
 const und = (v: unknown) => (v === null ? undefined : v);
 const fromDb = {
-  student: (r: Row) => ({ id: r.id, name: r.name, level: r.level, price: r.price, contact: und(r.contact), parent: und(r.parent), link: und(r.link), color: r.color, createdAt: r.created_at, inviteCode: und(r.invite_code), joined: Boolean(r.user_id) }),
+  student: (r: Row) => ({ id: r.id, name: r.name, level: r.level, price: r.price, contact: und(r.contact), parent: und(r.parent), link: und(r.link), color: r.color, createdAt: r.created_at, inviteCode: und(r.invite_code), joined: Boolean(r.user_id), song: und(r.song), songUrl: und(r.song_url), about: und(r.about) }),
   lesson: (r: Row) => ({ id: r.id, studentId: r.student_id, start: r.start, duration: r.duration, topic: und(r.topic), link: und(r.link), status: r.status }),
   note: (r: Row) => ({ id: r.id, studentId: r.student_id, text: r.text, at: r.at }),
   word: (r: Row) => ({ id: r.id, studentId: r.student_id, en: r.en, uk: r.uk, example: und(r.example), at: r.at }),
@@ -58,12 +59,12 @@ export async function GET() {
     ]);
     const s = settings[0];
     // нік і аватар учнів, які вже приєдналися (з їхнього профілю Clerk)
-    const prof: Record<string, { nick?: string; avatar?: string; image?: string }> = {};
+    const prof: Record<string, { nick?: string; avatar?: string; image?: string; selfSong?: string; selfSongUrl?: string; selfAbout?: string }> = {};
     const uids = students.map((x) => x.user_id).filter(Boolean).map(String);
     if (uids.length) {
       try {
         const list = await (await clerkClient()).users.getUserList({ userId: uids, limit: 100 });
-        for (const u of list.data) { const m = (u.unsafeMetadata ?? {}) as { nick?: string; avatar?: string }; prof[u.id] = { nick: m.nick || undefined, avatar: m.avatar || undefined, image: u.hasImage ? u.imageUrl : undefined }; }
+        for (const u of list.data) { const m = (u.unsafeMetadata ?? {}) as { nick?: string; avatar?: string; song?: string; songUrl?: string; bio?: string }; prof[u.id] = { nick: m.nick || undefined, avatar: m.avatar || undefined, image: u.hasImage ? u.imageUrl : undefined, selfSong: m.song || undefined, selfSongUrl: m.songUrl || undefined, selfAbout: m.bio || undefined }; }
       } catch (e) { console.error(e); }
     }
     return NextResponse.json({

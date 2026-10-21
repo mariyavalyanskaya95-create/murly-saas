@@ -2218,3 +2218,40 @@ button.mk-gap { border: 0; border-bottom: 2px solid var(--mu-ink); cursor: point
 .t-bulk__pick { display: grid; gap: 6px; }
 .t-bulk__pick input, .t-bulk__pick select { padding: 8px 12px; border: 2px solid var(--mu-ink); border-radius: 12px; font: inherit; max-width: 100%; }
 @media (max-width: 640px) { .t-bulk__row { grid-template-columns: 1fr auto; } .t-bulk__row b { grid-column: 1 / -1; } }
+
+.u-prof__about { max-width: 560px; }
+.u-prof__about textarea { padding: 10px 14px; border: 2px solid var(--mu-ink); border-radius: 14px; font: inherit; }
+.u-prof__bio { max-width: 520px; }
+.t-about p { margin: 0; }
+
+/* Обкладинка профілю */
+.u-banner { position: relative; height: 190px; border: 2px solid var(--mu-ink); border-radius: var(--mu-radius-lg); overflow: hidden; touch-action: none; }
+.u-banner__me { position: absolute; left: 18px; bottom: 14px; display: flex; align-items: center; gap: 12px; z-index: 2; pointer-events: none; }
+.u-banner__nick { font-family: 'Unbounded', 'Boldonse', sans-serif; font-size: 24px; background: #fff; border: 2px solid var(--mu-ink); border-radius: 999px; padding: 6px 16px; box-shadow: var(--mu-shadow-stamp); }
+.u-st { position: absolute; width: 56px; height: 56px; display: grid; place-items: center; z-index: 1; user-select: none; }
+.u-banner.is-edit .u-st { cursor: grab; outline: 2px dashed rgba(26,26,26,.35); border-radius: 12px; }
+.u-st__kit { width: 56px; height: 56px; }
+.u-st__icon { width: 40px; height: 40px; }
+.u-st__emoji { font-size: 38px; line-height: 1; }
+.u-st__tools { position: absolute; top: -26px; left: 50%; transform: translateX(-50%); display: flex; gap: 2px; }
+.u-st__tools button { width: 22px; height: 22px; border: 2px solid var(--mu-ink); border-radius: 50%; background: #fff; font-size: 12px; line-height: 1; padding: 0; cursor: pointer; }
+.u-prof__pbg { width: 44px; height: 32px; border: 2px solid var(--mu-ink); border-radius: 10px; cursor: pointer; }
+.u-prof__pbg.is-on { outline: 3px solid var(--mu-tomato); outline-offset: 2px; }
+.u-prof__pal { display: flex; flex-wrap: wrap; gap: 6px; }
+.u-prof__pal button { width: 48px; height: 48px; display: grid; place-items: center; border: 2px solid var(--mu-ink); border-radius: 12px; background: #fff; cursor: pointer; padding: 2px; }
+.u-prof__pal .u-st__kit { width: 44px; height: 44px; }
+.u-prof__pal .u-st__icon { width: 28px; height: 28px; }
+.u-prof__pal .u-st__emoji { font-size: 26px; }
+.u-bg--lime { background: #D0F834; }
+.u-bg--sky { background: #B9DBE9; }
+.u-bg--mustard { background: #F2B544; }
+.u-bg--pink { background: #F6B5C9; }
+.u-bg--lavender { background: #C9B8F2; }
+.u-bg--mint { background: #A8E6CF; }
+.u-bg--dots { background: #FFF4E3 radial-gradient(circle, rgba(216,58,30,.35) 3px, transparent 3.5px) 0 0 / 22px 22px; }
+.u-bg--stripes { background: repeating-linear-gradient(135deg, #D0F834 0 18px, #F4EFE3 18px 36px); }
+.u-bg--checks { background: #fff conic-gradient(#B9DBE9 25%, #fff 0 50%, #B9DBE9 0 75%, #fff 0) 0 0 / 36px 36px; }
+.u-bg--sunset { background: linear-gradient(135deg, #F2B544, #F6B5C9 55%, #C9B8F2); }
+.u-bg--ocean { background: linear-gradient(160deg, #B9DBE9, #7FB8D6 60%, #A8E6CF); }
+.u-bg--night { background: #2C2950 radial-gradient(circle, rgba(255,255,255,.8) 1.2px, transparent 1.6px) 0 0 / 28px 28px; }
+@media (max-width: 640px) { .u-banner { height: 160px; } .u-banner__nick { font-size: 18px; } }
