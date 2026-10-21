@@ -211,3 +211,6 @@ alter table teacher_games enable row level security;
 
 -- 2026-10-21: улюблена пісня і опис учня (заповнює вчитель)
 alter table students add column if not exists song text, add column if not exists song_url text, add column if not exists about text;
+
+-- 2026-10-21: скріни до нотаток / журналу уроків
+alter table notes add column if not exists images jsonb;

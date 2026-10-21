@@ -2262,3 +2262,14 @@ button.mk-gap { border: 0; border-bottom: 2px solid var(--mu-ink); cursor: point
 .t-student__acts .mu-btn .mu-ic, .t-student__acts .mu-btn svg { width: 16px; height: 16px; }
 .t-hero__edit { align-self: center; }
 .t-hero__edit svg { width: 16px; height: 16px; }
+
+/* Журнал уроків */
+.t-log-form { display: grid; gap: 10px; }
+.t-log-form__day { display: grid; gap: 4px; font-weight: 700; max-width: 220px; }
+.t-log-form__day input { padding: 8px 12px; border: 2px solid var(--mu-ink); border-radius: 12px; font: inherit; }
+.t-log-thumbs { display: flex; flex-wrap: wrap; gap: 8px; }
+.t-log-thumb { position: relative; width: 120px; height: 84px; border: 2px solid var(--mu-ink); border-radius: 12px; overflow: hidden; display: block; background: #fff; }
+.t-log-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.t-log-thumb button { position: absolute; top: 4px; right: 4px; width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--mu-ink); background: #fff; font-size: 11px; padding: 0; cursor: pointer; }
+.t-note__acts { display: flex; gap: 10px; align-items: center; }
+.t-last p { margin: 0; white-space: pre-wrap; }
