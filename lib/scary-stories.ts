@@ -1,5 +1,6 @@
 export type StoryQ = { q: string; options: string[]; answer: number };
 export type Story = {
+  genre?: 'scary' | 'romance' | 'comedy';
   id: string;
   title: string;
   level: 'A2' | 'B1' | 'B2';
