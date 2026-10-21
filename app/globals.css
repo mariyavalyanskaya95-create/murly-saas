@@ -2371,3 +2371,46 @@ button.mk-gap { border: 0; border-bottom: 2px solid var(--mu-ink); cursor: point
 .gr-trainer-cta { display: flex; justify-content: center; margin-top: 18px; }
 @media (max-width: 700px) { .dr-tabs { grid-template-columns: repeat(3, 1fr); } .dr-type input { font-size: 18px; } }
 @media (prefers-reduced-motion: reduce) { .dr-bar span { transition: none; } }
+
+/* Тренажер, частина 2 (таблиця, історії, читання, порядок, переклад, розмова) */
+.dp { max-width: 860px; margin: 0 auto; display: grid; gap: 18px; }
+.dp-top { position: sticky; top: 92px; z-index: 5; display: grid; gap: 6px; padding: 10px 14px; background: var(--mu-paper); border: 2px solid var(--mu-ink); border-radius: var(--mu-radius); }
+.dp-top .dr-bar { margin: 0; }
+.dp-part { background: #fff; border: 2px solid var(--mu-ink); border-radius: var(--mu-radius-lg); box-shadow: var(--mu-shadow-stamp); padding: 22px; }
+.dp-part h3 { display: flex; align-items: center; gap: 8px; font-size: 20px; margin: 0 0 4px; }
+.dp-part h3 .mu-ic { width: 24px; height: 24px; }
+.dp-part > .t-muted { margin: 0 0 14px; }
+.dp-check { display: flex; align-items: center; gap: 12px; margin-top: 14px; flex-wrap: wrap; }
+.dp-score { font-size: 20px; font-variant-numeric: tabular-nums; }
+.dp-verbs { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
+.dp-verbs th { text-align: left; font-size: 13px; color: var(--mu-ink-muted); padding: 4px 6px; }
+.dp-verbs td { padding: 4px 6px; border-top: 1px dashed #d8d3c4; vertical-align: top; }
+.dp-verbs input, .dp-gap input { font: inherit; padding: 6px 8px; border: 2px solid var(--mu-ink); border-radius: 8px; background: #fff; min-width: 0; }
+.dp-verbs input { width: 100%; max-width: 150px; }
+.dp-verbs input:focus-visible, .dp-gap input:focus-visible { outline: 3px solid var(--mu-lime); outline-offset: 1px; }
+.dp .is-right { background: var(--mu-lime); }
+.dp .is-wrong { background: #F6B5A6; }
+.dp-fix { display: block; color: #2f6b00; font-weight: 700; font-size: 13px; }
+.dp-story { font-size: 18px; line-height: 2.3; margin: 0; }
+.dp-gap { display: inline-flex; align-items: baseline; gap: 4px; flex-wrap: wrap; margin: 0 2px; }
+.dp-gap input { padding: 2px 6px; font-size: 17px; }
+.dp-gap .dp-fix { display: inline; }
+.dp-hint { color: var(--mu-ink-muted); }
+.dp-read { font-size: 18px; line-height: 1.7; margin-bottom: 14px; }
+.dp-read p { margin: 0 0 10px; }
+.dp-word { position: relative; font: inherit; background: #fff3a6; border: 0; border-bottom: 2px dotted var(--mu-ink); padding: 0 2px; cursor: pointer; color: inherit; }
+.dp-word.is-open { background: var(--mu-lime); }
+.dp-word__tip { position: absolute; left: 50%; bottom: calc(100% + 6px); transform: translateX(-50%); white-space: nowrap; background: var(--mu-ink); color: #fff; font-size: 14px; padding: 4px 10px; border-radius: 8px; z-index: 3; }
+.dp-mcq { margin: 0; padding-left: 22px; display: grid; gap: 14px; }
+.dp-mcq__q { font-weight: 700; margin-bottom: 6px; }
+.dp-mcq__opts { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.dp-opt { text-align: left; font: inherit; padding: 10px 12px; border: 2px solid var(--mu-ink); border-radius: var(--mu-radius); background: var(--mu-paper); cursor: pointer; min-height: 44px; }
+.dp-opt.is-dim { opacity: .45; }
+.dp-why { display: flex; gap: 8px; align-items: flex-start; margin: 8px 0 0; color: var(--mu-ink); line-height: 1.5; }
+.dp-why .mu-ic { flex: none; width: 20px; height: 20px; }
+.dp-order { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.dp-card { width: 100%; display: flex; gap: 10px; align-items: center; text-align: left; font: inherit; padding: 10px 12px; border: 2px solid var(--mu-ink); border-radius: var(--mu-radius); background: var(--mu-paper); cursor: pointer; min-height: 44px; }
+.dp-card.is-sel { background: #fff3a6; box-shadow: var(--mu-shadow-stamp); }
+.dp-card__n { flex: none; width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--mu-ink); display: grid; place-items: center; font-weight: 700; background: #fff; }
+.dp-talk { margin: 0; padding-left: 20px; display: grid; gap: 8px; font-size: 18px; }
+@media (max-width: 700px) { .dp-mcq__opts { grid-template-columns: 1fr; } .dp-part { padding: 16px; } .dp-top { top: 76px; } }
