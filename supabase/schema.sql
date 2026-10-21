@@ -208,3 +208,6 @@ create table if not exists teacher_games (
 );
 create index if not exists teacher_games_teacher_idx on teacher_games (teacher_id, created_at desc);
 alter table teacher_games enable row level security;
+
+-- 2026-10-21: улюблена пісня і опис учня (заповнює вчитель)
+alter table students add column if not exists song text, add column if not exists song_url text, add column if not exists about text;
