@@ -11,6 +11,7 @@ export type Student = {
   contact?: string; parent?: string; link?: string; color: string; createdAt: string;
   inviteCode?: string; joined?: boolean;
   song?: string; songUrl?: string; about?: string; // заповнює вчитель
+  payMode?: 'pre' | 'post'; // pre: платить наперед пакетом, post: платить після занять
   nick?: string; avatar?: string; image?: string; selfSong?: string; selfSongUrl?: string; selfAbout?: string; // з профілю учня (лише для показу)
 };
 export type LessonStatus = 'planned' | 'done' | 'cancelled';
@@ -235,6 +236,20 @@ export function useTeacher() {
 }
 
 // ---- Похідні величини ----
+// Підпис балансу з урахуванням того, як учень платить (наперед чи після занять)
+export function balanceText(s: Student | undefined, b: number, lang: Lang): { text: string; cls: string } {
+  const T = (o: { uk: string; ru: string; en: string }) => (lang === 'ru' ? o.ru : lang === 'en' ? o.en : o.uk);
+  const post = s?.payMode === 'post';
+  if (b < 0) {
+    const n = s?.price ? Math.round(-b / s.price) : 0;
+    return post
+      ? { text: `${T({ uk: 'до оплати', ru: 'к оплате', en: 'to pay' })} ${fmtMoney(-b, lang)}${n > 0 ? ` (${n} ${T({ uk: 'зан.', ru: 'зан.', en: n === 1 ? 'lesson' : 'lessons' })})` : ''}`, cls: 't-warn' }
+      : { text: `${T({ uk: 'борг', ru: 'долг', en: 'owes' })} ${fmtMoney(-b, lang)}`, cls: 't-neg' };
+  }
+  if (b > 0) return { text: `${T({ uk: 'аванс', ru: 'аванс', en: 'prepaid' })} ${fmtMoney(b, lang)}`, cls: 't-pos' };
+  return { text: post ? T({ uk: 'усе оплачено', ru: 'всё оплачено', en: 'all paid' }) : T({ uk: 'розраховані', ru: 'рассчитались', en: 'settled' }), cls: '' };
+}
+
 export function balanceOf(d: Data, studentId: string) {
   const st = d.students.find((s) => s.id === studentId);
   const paid = d.payments.filter((p) => p.studentId === studentId).reduce((n, p) => n + p.amount, 0);
