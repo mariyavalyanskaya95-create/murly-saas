@@ -10,7 +10,8 @@ export type Student = {
   id: string; name: string; level: string; price: number;
   contact?: string; parent?: string; link?: string; color: string; createdAt: string;
   inviteCode?: string; joined?: boolean;
-  nick?: string; avatar?: string; image?: string; // з профілю учня (лише для показу)
+  song?: string; songUrl?: string; about?: string; // заповнює вчитель
+  nick?: string; avatar?: string; image?: string; selfSong?: string; selfSongUrl?: string; selfAbout?: string; // з профілю учня (лише для показу)
 };
 export type LessonStatus = 'planned' | 'done' | 'cancelled';
 export type Lesson = {
