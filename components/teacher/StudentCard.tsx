@@ -58,6 +58,7 @@ export default function StudentCard({ id }: { id: string }) {
           <span>{s.level} · {fmtMoney(s.price, tt.lang)} {tt({ uk: 'за заняття', ru: 'за занятие', en: 'per lesson' })}{s.contact ? ` · ${s.contact}` : ''}</span>
           {s.joined && <span className="t-tag t-tag--done" style={{ marginLeft: 8 }}>{tt({ uk: 'Має кабінет', ru: 'Есть кабинет', en: 'Has an account' })}</span>}
         </div>
+        <button type="button" className="mu-btn t-btn-sm t-hero__edit" onClick={() => { setTab('profile'); setTimeout(() => document.querySelector('.t-tabs')?.scrollIntoView({ behavior: 'smooth' }), 50); }}><Icon id="e-pencil" />{tt({ uk: 'Змінити дані', ru: 'Изменить данные', en: 'Edit details' })}</button>
         <div className={`t-hero__bal ${b < 0 ? 't-neg' : ''}`}>
           <small>{b < 0 ? tt({ uk: 'Борг', ru: 'Долг', en: 'Owes' }) : tt({ uk: 'Баланс', ru: 'Баланс', en: 'Balance' })}</small><b>{fmtMoney(Math.abs(b), tt.lang)}</b>
         </div>

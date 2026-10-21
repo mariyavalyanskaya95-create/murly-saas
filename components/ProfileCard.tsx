@@ -38,11 +38,13 @@ export default function ProfileCard() {
   const preview = photo ? '' : `${curKit}|${curBg}`;
   const curPage: PageDeco = page ?? meta.page ?? { bg: 'lime', items: [] };
   const count = (curPage.items ?? []).length;
-  const addSticker = (k: string) => {
-    const items = curPage.items ?? [];
-    if (items.length >= MAX_ITEMS) return;
-    setPage({ ...curPage, items: [...items, { k, x: 30 + Math.round(Math.random() * 60), y: 15 + Math.round(Math.random() * 45), s: 1 }] });
-  };
+  // функціональні оновлення, щоб швидкі кліки не перетирали один одного
+  const base = (p: PageDeco | null): PageDeco => p ?? meta.page ?? { bg: 'lime', items: [] };
+  const addSticker = (k: string) => setPage((p) => {
+    const cur = base(p); const items = cur.items ?? [];
+    if (items.length >= MAX_ITEMS) return cur;
+    return { ...cur, items: [...items, { k, x: 30 + Math.round(Math.random() * 60), y: 15 + Math.round(Math.random() * 45), s: 1 }] };
+  });
 
   const save = async () => {
     setSaving(true); setMsg('');
@@ -104,7 +106,7 @@ export default function ProfileCard() {
 
           <small>{t({ uk: 'Фон сторінки', ru: 'Фон страницы', en: 'Page background' })}</small>
           <div className="u-prof__bgs">
-            {PAGE_BGS.map((b) => <button key={b} type="button" className={`u-prof__pbg u-bg--${b} ${curPage.bg === b ? 'is-on' : ''}`} onClick={() => setPage({ ...curPage, bg: b })} aria-label={b} />)}
+            {PAGE_BGS.map((b) => <button key={b} type="button" className={`u-prof__pbg u-bg--${b} ${curPage.bg === b ? 'is-on' : ''}`} onClick={() => setPage((p) => ({ ...base(p), bg: b }))} aria-label={b} />)}
           </div>
           <small>{t({ uk: `Стікери: натисни, щоб додати, і перетягни на фоні (${count}/${MAX_ITEMS})`, ru: `Стикеры: нажми, чтобы добавить, и перетащи на фоне (${count}/${MAX_ITEMS})`, en: `Stickers: tap to add, then drag them on the background (${count}/${MAX_ITEMS})` })}</small>
           <div className="u-prof__pal">
@@ -112,7 +114,7 @@ export default function ProfileCard() {
             {PAGE_ICONS.map((k) => <button key={k} type="button" onClick={() => addSticker(`icon:${k}`)} aria-label={k}><Sticker k={`icon:${k}`} /></button>)}
             {PAGE_EMOJI.map((k) => <button key={k} type="button" onClick={() => addSticker(`emoji:${k}`)} aria-label={k}><Sticker k={`emoji:${k}`} /></button>)}
           </div>
-          {count > 0 && <div><button type="button" className="t-link-btn" onClick={() => setPage({ ...curPage, items: [] })}>{t({ uk: 'Прибрати всі стікери', ru: 'Убрать все стикеры', en: 'Remove all stickers' })}</button></div>}
+          {count > 0 && <div><button type="button" className="t-link-btn" onClick={() => setPage((p) => ({ ...base(p), items: [] }))}>{t({ uk: 'Прибрати всі стікери', ru: 'Убрать все стикеры', en: 'Remove all stickers' })}</button></div>}
 
           <small>{t({ uk: 'Обери котика для аватара', ru: 'Выбери котика для аватара', en: 'Pick a cat for your avatar' })}</small>
           <div className="u-prof__kits">
