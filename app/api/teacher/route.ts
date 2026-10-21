@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { auth } from '@clerk/nextjs/server';
+import { auth, clerkClient } from '@clerk/nextjs/server';
 import { db, dbReady } from '@/lib/db';
 
 export const dynamic = 'force-dynamic';
@@ -57,8 +57,17 @@ export async function GET() {
       db.select('lesson_plans', userId, '&order=updated_at.desc').catch(() => []),
     ]);
     const s = settings[0];
+    // нік і аватар учнів, які вже приєдналися (з їхнього профілю Clerk)
+    const prof: Record<string, { nick?: string; avatar?: string; image?: string }> = {};
+    const uids = students.map((x) => x.user_id).filter(Boolean).map(String);
+    if (uids.length) {
+      try {
+        const list = await (await clerkClient()).users.getUserList({ userId: uids, limit: 100 });
+        for (const u of list.data) { const m = (u.unsafeMetadata ?? {}) as { nick?: string; avatar?: string }; prof[u.id] = { nick: m.nick || undefined, avatar: m.avatar || undefined, image: u.hasImage ? u.imageUrl : undefined }; }
+      } catch (e) { console.error(e); }
+    }
     return NextResponse.json({
-      students: students.map(fromDb.student),
+      students: students.map((r) => ({ ...fromDb.student(r), ...(r.user_id ? prof[String(r.user_id)] ?? {} : {}) })),
       lessons: lessons.map(fromDb.lesson),
       notes: notes.map(fromDb.note),
       words: words.map(fromDb.word),
