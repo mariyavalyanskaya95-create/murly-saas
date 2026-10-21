@@ -2421,6 +2421,6 @@ button.mk-gap { border: 0; border-bottom: 2px solid var(--mu-ink); cursor: point
 .dr-extra li { margin: 2px 0; }
 .dr-extra .dr-table td { color: var(--mu-ink); }
 .dr-extra .dr-table tr:first-child td { font-weight: 400; }
-.dr-extra .dr-table td:first-child { font-weight: 700; }
+.dr-extra .dr-table tr td:first-child { font-weight: 700; }
 .dr-extra .dr-table th { text-align: left; padding: 6px 10px; border: 1px solid var(--mu-ink); background: var(--mu-lime); font-size: 14px; }
 .dr-extra .dr-table tbody tr:nth-child(even) td { background: var(--mu-paper); }
