@@ -7,8 +7,6 @@ import LessonView from './LessonView';
 import LessonEditor from './LessonEditor';
 import WordPicker, { type PickWord } from './WordPicker';
 import { useTeacher } from '@/lib/teacher-store';
-import { getLibraryPlan } from '@/lib/library';
-import { localizeLesson } from '@/lib/content/lessons';
 import { ageLabel, lessonSections, type Plan } from '@/lib/lesson';
 import { useT } from '@/components/LangProvider';
 import type { Lang } from '@/lib/i18n';
@@ -144,12 +142,11 @@ function SendBox({ plan, onClose }: { plan: Plan; onClose: () => void }) {
   );
 }
 
-export default function PlanPage({ id }: { id: string }) {
+export default function PlanPage({ id, libPlans }: { id: string; libPlans?: Record<Lang, Plan> }) {
   const t = useT();
   const { data, ready, addPlan, updatePlan, removePlan } = useTeacher();
   const router = useRouter();
-  const libUk = id.startsWith('lib-') ? getLibraryPlan(id) : undefined;
-  const lib = libUk ? localizeLesson(libUk, t.lang) : undefined;
+  const lib = libPlans ? libPlans[t.lang] ?? libPlans.uk : undefined;
   const own = data.plans.find((p) => p.id === id);
   const [draft, setDraft] = useState<Plan | null>(null);
   const [mode, setMode] = useState<'edit' | 'view' | 'slides'>('view');

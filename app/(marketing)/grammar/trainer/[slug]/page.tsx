@@ -7,13 +7,14 @@ import SiteFooter from '@/components/SiteFooter';
 import DrillTrainer from '@/components/DrillTrainer';
 import { DRILLS, getDrill } from '@/lib/drills';
 import { tr } from '@/lib/i18n-server';
+import { localizeDrill } from '@/lib/content/drills';
 
 export const dynamicParams = false;
 export function generateStaticParams() { return DRILLS.map((d) => ({ slug: d.slug })); }
 
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  const d = getDrill(params.slug)!;
   const L = tr();
+  const d = localizeDrill(getDrill(params.slug)!, L.lang);
   return {
     title: L({ uk: `${d.title}: тренажер на 100 завдань | Murly`, ru: `${d.title}: тренажёр на 100 заданий | Murly`, en: `${d.title}: 100-task grammar trainer | Murly` }),
     description: L({ uk: `${d.uk}: коротка теорія, головні пастки і 100 завдань з поясненням кожної відповіді.`, ru: `${d.title}: короткая теория, главные ловушки и 100 заданий с объяснением каждого ответа.`, en: `${d.title}: short theory, the main traps and 100 tasks with an explanation for every answer.` }),
@@ -22,9 +23,10 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
 }
 
 export default function DrillPage({ params }: { params: { slug: string } }) {
-  const d = getDrill(params.slug)!;
   const L = tr();
-  const idx = DRILLS.indexOf(d);
+  const d0 = getDrill(params.slug)!;
+  const d = localizeDrill(d0, L.lang);
+  const idx = DRILLS.indexOf(d0);
   const prev = DRILLS[idx - 1];
   const next = DRILLS[idx + 1];
   const th = d.theory;
