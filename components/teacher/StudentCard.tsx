@@ -60,8 +60,8 @@ export default function StudentCard({ id }: { id: string }) {
           {s.joined && <span className="t-tag t-tag--done" style={{ marginLeft: 8 }}>{tt({ uk: 'Має кабінет', ru: 'Есть кабинет', en: 'Has an account' })}</span>}
         </div>
         <button type="button" className="mu-btn t-btn-sm t-hero__edit" onClick={() => { setTab('profile'); setTimeout(() => document.querySelector('.t-tabs')?.scrollIntoView({ behavior: 'smooth' }), 50); }}><Icon id="e-pencil" />{tt({ uk: 'Змінити дані', ru: 'Изменить данные', en: 'Edit details' })}</button>
-        <div className={`t-hero__bal ${b < 0 ? 't-neg' : ''}`}>
-          <small>{b < 0 ? tt({ uk: 'Борг', ru: 'Долг', en: 'Owes' }) : tt({ uk: 'Баланс', ru: 'Баланс', en: 'Balance' })}</small><b>{fmtMoney(Math.abs(b), tt.lang)}</b>
+        <div className={`t-hero__bal ${b < 0 ? (s.payMode === 'post' ? 't-warn' : 't-neg') : ''}`}>
+          <small>{b < 0 ? (s.payMode === 'post' ? tt({ uk: 'До оплати', ru: 'К оплате', en: 'To pay' }) : tt({ uk: 'Борг', ru: 'Долг', en: 'Owes' })) : tt({ uk: 'Баланс', ru: 'Баланс', en: 'Balance' })}</small><b>{fmtMoney(Math.abs(b), tt.lang)}</b>
         </div>
       </div>
 
@@ -381,7 +381,9 @@ function PayTab({ id }: { id: string }) {
   const t = useT();
   const { data, addPayment, removePayment } = useTeacher();
   const s = data.students.find((x) => x.id === id)!;
-  const [amount, setAmount] = useState(String(s.price * 4 || ''));
+  const post = s.payMode === 'post';
+  const owed0 = Math.max(0, -balanceOf(data, id));
+  const [amount, setAmount] = useState(String(post ? (owed0 || s.price || '') : (s.price * 4 || '')));
   const [note, setNote] = useState('');
   const pays = data.payments.filter((p) => p.studentId === id);
   const done = data.lessons.filter((l) => l.studentId === id && l.status === 'done').length;
@@ -395,7 +397,7 @@ function PayTab({ id }: { id: string }) {
         <div className="t-stat t-stat--lime"><b>{fmtMoney(paid, t.lang)}</b><span>{t({ uk: 'оплачено', ru: 'оплачено', en: 'paid' })}</span></div>
         <div className="t-stat t-stat--sky"><b>{done}</b><span>{t({ uk: 'проведено занять', ru: 'проведено занятий', en: 'lessons taught' })}</span></div>
         <div className={`t-stat ${b < 0 ? 't-stat--tomato' : 't-stat--mustard'}`}>
-          <b>{fmtMoney(Math.abs(b), t.lang)}</b><span>{b < 0 ? t({ uk: 'борг', ru: 'долг', en: 'owes' }) : lessonsLeft > 0 ? t({ uk: `аванс, ще ${lessonsLeft} зан.`, ru: `аванс, ещё ${lessonsLeft} зан.`, en: `prepaid, ${lessonsLeft} more ${lessonsLeft === 1 ? 'lesson' : 'lessons'}` }) : t({ uk: 'баланс', ru: 'баланс', en: 'balance' })}</span>
+          <b>{fmtMoney(Math.abs(b), t.lang)}</b><span>{b < 0 ? (post ? t({ uk: `до оплати${s.price ? `, ${Math.round(-b / s.price)} зан.` : ''}`, ru: `к оплате${s.price ? `, ${Math.round(-b / s.price)} зан.` : ''}`, en: `to pay${s.price ? `, ${Math.round(-b / s.price)} lessons` : ''}` }) : t({ uk: 'борг', ru: 'долг', en: 'owes' })) : lessonsLeft > 0 ? t({ uk: `аванс, ще ${lessonsLeft} зан.`, ru: `аванс, ещё ${lessonsLeft} зан.`, en: `prepaid, ${lessonsLeft} more ${lessonsLeft === 1 ? 'lesson' : 'lessons'}` }) : t({ uk: 'баланс', ru: 'баланс', en: 'balance' })}</span>
         </div>
       </div>
       <div className="t-card">
@@ -404,7 +406,9 @@ function PayTab({ id }: { id: string }) {
           <label>{t({ uk: 'Сума, ₴', ru: 'Сумма, ₴', en: 'Amount, ₴' })}<input type="number" min="1" value={amount} onChange={(e) => setAmount(e.target.value)} /></label>
           <label>{t({ uk: 'Коментар', ru: 'Комментарий', en: 'Comment' })}<input value={note} onChange={(e) => setNote(e.target.value)} placeholder={t({ uk: 'Напр. пакет 4 заняття, карткою', ru: 'Напр. пакет 4 занятия, картой', en: 'e.g. 4-lesson pack, by card' })} /></label>
           <div className="t-form__actions">
-            {s.price > 0 && [4, 8].map((k) => (
+            {post && s.price > 0 && <button type="button" className="mu-btn t-btn-sm" onClick={() => { setAmount(String(s.price)); setNote(t({ uk: 'За 1 заняття', ru: 'За 1 занятие', en: 'For 1 lesson' })); }}>{t({ uk: 'За 1 заняття', ru: 'За 1 занятие', en: 'For 1 lesson' })}</button>}
+            {post && b < 0 && <button type="button" className="mu-btn t-btn-sm" onClick={() => { setAmount(String(-b)); setNote(t({ uk: 'За всі проведені заняття', ru: 'За все проведённые занятия', en: 'For all lessons taught' })); }}>{t({ uk: `Усе (${fmtMoney(-b, t.lang)})`, ru: `Всё (${fmtMoney(-b, t.lang)})`, en: `All (${fmtMoney(-b, t.lang)})` })}</button>}
+            {!post && s.price > 0 && [4, 8].map((k) => (
               <button key={k} type="button" className="mu-btn t-btn-sm" onClick={() => { setAmount(String(s.price * k)); setNote(t({ uk: `Пакет ${k} занять`, ru: `Пакет ${k} занятий`, en: `${k}-lesson pack` })); }}>{t({ uk: `Пакет ${k}`, ru: `Пакет ${k}`, en: `Pack of ${k}` })}</button>
             ))}
             <button className="mu-btn mu-btn--lime" type="submit">{t({ uk: 'Записати', ru: 'Записать', en: 'Record' })}</button>
@@ -431,22 +435,26 @@ function ProfileTab({ id, onDelete }: { id: string; onDelete: () => void }) {
   const t = useT();
   const { data, updateStudent } = useTeacher();
   const s = data.students.find((x) => x.id === id)!;
-  const [f, setF] = useState({ name: s.name, level: s.level, price: String(s.price), contact: s.contact ?? '', parent: s.parent ?? '', link: s.link ?? '', song: s.song ?? '', songUrl: s.songUrl ?? '', about: s.about ?? '' });
+  const [f, setF] = useState({ name: s.name, level: s.level, price: String(s.price), contact: s.contact ?? '', parent: s.parent ?? '', link: s.link ?? '', song: s.song ?? '', songUrl: s.songUrl ?? '', about: s.about ?? '', payMode: s.payMode ?? 'pre' });
   const [saved, setSaved] = useState(false);
   const [confirm, setConfirm] = useState(false);
-  const set = (k: keyof typeof f) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => { setF({ ...f, [k]: e.target.value }); setSaved(false); };
+  const set = (k: keyof typeof f) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => { setF({ ...f, [k]: e.target.value }); setSaved(false); };
 
   return (
     <div className="t-card">
       <h2>{t({ uk: 'Профіль учня', ru: 'Профиль ученика', en: 'Student profile' })}</h2>
       <form className="t-form" onSubmit={(e) => {
         e.preventDefault();
-        updateStudent(id, { name: f.name.trim() || s.name, level: f.level, price: Number(f.price) || 0, contact: f.contact.trim() || undefined, parent: f.parent.trim() || undefined, link: f.link.trim() || undefined, song: f.song.trim() || undefined, songUrl: f.songUrl.trim() || undefined, about: f.about.trim() || undefined });
+        updateStudent(id, { name: f.name.trim() || s.name, level: f.level, price: Number(f.price) || 0, contact: f.contact.trim() || undefined, parent: f.parent.trim() || undefined, link: f.link.trim() || undefined, song: f.song.trim() || undefined, songUrl: f.songUrl.trim() || undefined, about: f.about.trim() || undefined, payMode: f.payMode === 'post' ? 'post' : 'pre' });
         setSaved(true);
       }}>
         <label>{t({ uk: 'Ім’я', ru: 'Имя', en: 'Name' })}<input value={f.name} onChange={set('name')} /></label>
         <label>{t({ uk: 'Рівень', ru: 'Уровень', en: 'Level' })}<input value={f.level} onChange={set('level')} /></label>
         <label>{t({ uk: 'Ціна заняття, ₴', ru: 'Цена занятия, ₴', en: 'Price per lesson, ₴' })}<input type="number" min="0" value={f.price} onChange={set('price')} /></label>
+        <label>{t({ uk: 'Як платить', ru: 'Как платит', en: 'How they pay' })}<select value={f.payMode} onChange={set('payMode')}>
+          <option value="pre">{t({ uk: 'Наперед (пакетом)', ru: 'Заранее (пакетом)', en: 'In advance (pack)' })}</option>
+          <option value="post">{t({ uk: 'Після занять', ru: 'После занятий', en: 'After lessons' })}</option>
+        </select></label>
         <label>{t({ uk: 'Контакт учня', ru: 'Контакт ученика', en: 'Student contact' })}<input value={f.contact} onChange={set('contact')} /></label>
         <label>{t({ uk: 'Контакт батьків', ru: 'Контакт родителей', en: 'Parent contact' })}<input value={f.parent} onChange={set('parent')} /></label>
         <label className="t-form__wide">{t({ uk: 'Посилання на дзвінок', ru: 'Ссылка на звонок', en: 'Call link' })}<input value={f.link} onChange={set('link')} placeholder={t({ uk: 'Порожньо: твоє посилання з налаштувань', ru: 'Пусто: твоя ссылка из настроек', en: 'Empty: your link from Settings' })} /></label>

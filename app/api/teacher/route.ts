@@ -9,10 +9,11 @@ const pick = (o: Row, keys: string[]) => Object.fromEntries(keys.filter((k) => k
 
 // camelCase у застосунку ↔ snake_case у базі
 const toDb = {
-  student: (s: Row, t: string) => ({ id: s.id, teacher_id: t, name: s.name, level: s.level, price: s.price, contact: s.contact ?? null, parent: s.parent ?? null, link: s.link ?? null, color: s.color, song: s.song ?? null, song_url: s.songUrl ?? null, about: s.about ?? null, created_at: s.createdAt }),
+  student: (s: Row, t: string) => ({ id: s.id, teacher_id: t, name: s.name, level: s.level, price: s.price, contact: s.contact ?? null, parent: s.parent ?? null, link: s.link ?? null, color: s.color, song: s.song ?? null, song_url: s.songUrl ?? null, about: s.about ?? null, pay_mode: s.payMode ?? 'pre', created_at: s.createdAt }),
   studentPatch: (p: Row) => {
     const o: Row = pick(p, ['name', 'level', 'price', 'contact', 'parent', 'link', 'color', 'song', 'about']);
     if ('songUrl' in p) o.song_url = p.songUrl ?? null;
+    if ('payMode' in p) o.pay_mode = p.payMode === 'post' ? 'post' : 'pre';
     for (const k of ['contact', 'parent', 'link', 'song', 'about']) if (k in p && p[k] === undefined) o[k] = null;
     return o;
   },
@@ -33,7 +34,7 @@ const toDb = {
 };
 const und = (v: unknown) => (v === null ? undefined : v);
 const fromDb = {
-  student: (r: Row) => ({ id: r.id, name: r.name, level: r.level, price: r.price, contact: und(r.contact), parent: und(r.parent), link: und(r.link), color: r.color, createdAt: r.created_at, inviteCode: und(r.invite_code), joined: Boolean(r.user_id), song: und(r.song), songUrl: und(r.song_url), about: und(r.about) }),
+  student: (r: Row) => ({ id: r.id, name: r.name, level: r.level, price: r.price, contact: und(r.contact), parent: und(r.parent), link: und(r.link), color: r.color, createdAt: r.created_at, inviteCode: und(r.invite_code), joined: Boolean(r.user_id), song: und(r.song), songUrl: und(r.song_url), about: und(r.about), payMode: r.pay_mode === 'post' ? 'post' : 'pre' }),
   lesson: (r: Row) => ({ id: r.id, studentId: r.student_id, start: r.start, duration: r.duration, topic: und(r.topic), link: und(r.link), status: r.status }),
   note: (r: Row) => ({ id: r.id, studentId: r.student_id, text: r.text, at: r.at, images: und(r.images) }),
   word: (r: Row) => ({ id: r.id, studentId: r.student_id, en: r.en, uk: r.uk, example: und(r.example), at: r.at }),

@@ -8,7 +8,7 @@ const LEVELS = ['A1', 'A2', 'B1', 'B2', 'C1', 'НМТ'];
 export function StudentForm({ onDone }: { onDone?: (id: string) => void }) {
   const t = useT();
   const { addStudent } = useTeacher();
-  const [f, setF] = useState({ name: '', level: 'A2', price: '400', contact: '', parent: '', link: '' });
+  const [f, setF] = useState({ name: '', level: 'A2', price: '400', contact: '', parent: '', link: '', payMode: 'pre' });
   const set = (k: keyof typeof f) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => setF({ ...f, [k]: e.target.value });
 
   const submit = (e: React.FormEvent) => {
@@ -17,8 +17,9 @@ export function StudentForm({ onDone }: { onDone?: (id: string) => void }) {
     const id = addStudent({
       name: f.name.trim(), level: f.level, price: Number(f.price) || 0,
       contact: f.contact.trim() || undefined, parent: f.parent.trim() || undefined, link: f.link.trim() || undefined,
+      payMode: f.payMode === 'post' ? 'post' : 'pre',
     });
-    setF({ name: '', level: 'A2', price: f.price, contact: '', parent: '', link: '' });
+    setF({ name: '', level: 'A2', price: f.price, contact: '', parent: '', link: '', payMode: f.payMode });
     onDone?.(id);
   };
 
@@ -27,6 +28,10 @@ export function StudentForm({ onDone }: { onDone?: (id: string) => void }) {
       <label>{t({ uk: 'Ім’я учня', ru: 'Имя ученика', en: 'Student name' })}<input value={f.name} onChange={set('name')} placeholder={t({ uk: 'Напр. Софія', ru: 'Напр. София', en: 'e.g. Sophia' })} required autoFocus /></label>
       <label>{t({ uk: 'Рівень', ru: 'Уровень', en: 'Level' })}<select value={f.level} onChange={set('level')}>{LEVELS.map((l) => <option key={l}>{l}</option>)}</select></label>
       <label>{t({ uk: 'Ціна заняття, ₴', ru: 'Цена занятия, ₴', en: 'Price per lesson, ₴' })}<input type="number" min="0" step="10" value={f.price} onChange={set('price')} /></label>
+      <label>{t({ uk: 'Як платить', ru: 'Как платит', en: 'How they pay' })}<select value={f.payMode} onChange={set('payMode')}>
+        <option value="pre">{t({ uk: 'Наперед (пакетом)', ru: 'Заранее (пакетом)', en: 'In advance (pack)' })}</option>
+        <option value="post">{t({ uk: 'Після занять', ru: 'После занятий', en: 'After lessons' })}</option>
+      </select></label>
       <label>{t({ uk: 'Контакт учня', ru: 'Контакт ученика', en: 'Student contact' })}<input value={f.contact} onChange={set('contact')} placeholder={t({ uk: 'Telegram або телефон', ru: 'Telegram или телефон', en: 'Telegram or phone' })} /></label>
       <label>{t({ uk: 'Контакт батьків', ru: 'Контакт родителей', en: 'Parent contact' })}<input value={f.parent} onChange={set('parent')} placeholder={t({ uk: 'Для дітей і підлітків', ru: 'Для детей и подростков', en: 'For kids and teens' })} /></label>
       <label className="t-form__wide">{t({ uk: 'Посилання на дзвінок для цього учня', ru: 'Ссылка на звонок для этого ученика', en: 'Call link for this student' })}<input value={f.link} onChange={set('link')} placeholder={t({ uk: 'Якщо порожньо, візьмемо твоє посилання з налаштувань', ru: 'Если пусто, возьмём твою ссылку из настроек', en: 'If empty, we will use your link from Settings' })} /></label>
