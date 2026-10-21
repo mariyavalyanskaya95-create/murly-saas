@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import LessonRow from '@/components/teacher/LessonRow';
 import { LessonForm } from '@/components/teacher/forms';
+import ScheduleImport from '@/components/teacher/ScheduleImport';
 import { localeOf, plural, sameDay, useTeacher } from '@/lib/teacher-store';
 import { useT } from '@/components/LangProvider';
 
@@ -18,6 +19,7 @@ export default function SchedulePage() {
   const { data, ready } = useTeacher();
   const [offset, setOffset] = useState(0);
   const [open, setOpen] = useState(false);
+  const [imp, setImp] = useState(false);
   if (!ready) return null;
 
   const monday = startOfWeek(new Date()); monday.setDate(monday.getDate() + offset * 7);
@@ -35,10 +37,12 @@ export default function SchedulePage() {
           <button className="mu-btn t-btn-sm" onClick={() => setOffset(offset - 1)} aria-label={t({ uk: 'Попередній тиждень', ru: 'Предыдущая неделя', en: 'Previous week' })}>←</button>
           {offset !== 0 && <button className="mu-btn t-btn-sm" onClick={() => setOffset(0)}>{t({ uk: 'Цей тиждень', ru: 'Эта неделя', en: 'This week' })}</button>}
           <button className="mu-btn t-btn-sm" onClick={() => setOffset(offset + 1)} aria-label={t({ uk: 'Наступний тиждень', ru: 'Следующая неделя', en: 'Next week' })}>→</button>
-          <button className="mu-btn mu-btn--lime" onClick={() => setOpen(!open)}>{open ? t({ uk: 'Закрити', ru: 'Закрыть', en: 'Close' }) : t({ uk: '+ Заняття', ru: '+ Занятие', en: '+ Lesson' })}</button>
+          <button className="mu-btn" onClick={() => { setImp(!imp); setOpen(false); }}>{imp ? t({ uk: 'Закрити', ru: 'Закрыть', en: 'Close' }) : t({ uk: 'Списком або зі скріну', ru: 'Списком или со скрина', en: 'From a list or screenshot' })}</button>
+          <button className="mu-btn mu-btn--lime" onClick={() => { setOpen(!open); setImp(false); }}>{open ? t({ uk: 'Закрити', ru: 'Закрыть', en: 'Close' }) : t({ uk: '+ Заняття', ru: '+ Занятие', en: '+ Lesson' })}</button>
         </div>
       </div>
 
+      {imp && <div className="t-card"><h2>{t({ uk: 'Розклад списком або зі скріну', ru: 'Расписание списком или со скрина', en: 'Schedule from a list or screenshot' })}</h2><ScheduleImport onDone={() => setImp(false)} /></div>}
       {open && <div className="t-card"><h2>{t({ uk: 'Нове заняття', ru: 'Новое занятие', en: 'New lesson' })}</h2><LessonForm onDone={() => setOpen(false)} /></div>}
 
       <p className="t-muted">{((n) => `${n} ${plural(n, t.lang, { uk: ['заняття', 'заняття', 'занять'], ru: ['занятие', 'занятия', 'занятий'], en: ['lesson', 'lessons'] })} ${t({ uk: 'цього тижня', ru: 'на этой неделе', en: 'this week' })}`)(weekLessons.filter((l) => l.status !== 'cancelled').length)}</p>
