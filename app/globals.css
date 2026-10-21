@@ -2275,3 +2275,24 @@ button.mk-gap { border: 0; border-bottom: 2px solid var(--mu-ink); cursor: point
 .t-last p { margin: 0; white-space: pre-wrap; }
 
 .t-warn { color: #B26A00; }
+
+/* Розклад списком / зі скріну */
+.t-imp { display: grid; gap: 10px; }
+.t-imp textarea { width: 100%; padding: 10px 14px; border: 2px solid var(--mu-ink); border-radius: 14px; font: inherit; }
+.t-imp__rows { display: grid; gap: 8px; }
+.t-imp__row { display: grid; gap: 4px; padding: 10px; border: 2px solid var(--mu-paper-dark); border-radius: 14px; }
+.t-imp__row.is-bad { border-color: var(--mu-tomato); }
+.t-imp__fields { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.t-imp__fields select, .t-imp__fields input[type=date], .t-imp__fields input[type=time], .t-imp__weeks select { padding: 8px 10px; border: 2px solid var(--mu-ink); border-radius: 12px; font: inherit; background: #fff; }
+.t-imp__weekly { display: flex; gap: 6px; align-items: center; font-weight: 600; }
+.t-imp__weeks { display: flex; gap: 8px; align-items: center; font-weight: 700; }
+
+/* Статус уроку */
+.t-lesson__st { display: inline-flex; flex-wrap: wrap; gap: 4px; }
+.t-st--done:hover { background: var(--mu-lime); }
+.t-st--missed:hover { background: #F6B5A3; }
+.t-tag--warn { background: #FFE7B3; }
+.t-lesson.is-missed { opacity: .75; }
+
+.t-words-days { display: grid; gap: 16px; }
+.t-words-day { font-size: 16px; margin: 0 0 8px; }

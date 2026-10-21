@@ -14,7 +14,7 @@ export type Student = {
   payMode?: 'pre' | 'post'; // pre: платить наперед пакетом, post: платить після занять
   nick?: string; avatar?: string; image?: string; selfSong?: string; selfSongUrl?: string; selfAbout?: string; // з профілю учня (лише для показу)
 };
-export type LessonStatus = 'planned' | 'done' | 'cancelled';
+export type LessonStatus = 'planned' | 'done' | 'missed' | 'cancelled'; // missed: учень не прийшов
 export type Lesson = {
   id: string; studentId: string; start: string; duration: number;
   topic?: string; link?: string; status: LessonStatus;
@@ -165,8 +165,8 @@ function useStore(userId: string) {
     },
     removeNote: (id: string) => { update((d) => ({ ...d, notes: d.notes.filter((x) => x.id !== id) })); sync('removeNote', { id }); },
 
-    addWord: (studentId: string, w: { en: string; uk: string; example?: string }) => {
-      const row: Word = { id: uid(), studentId, ...w, at: now() };
+    addWord: (studentId: string, w: { en: string; uk: string; example?: string; at?: string }) => {
+      const row: Word = { id: uid(), studentId, en: w.en, uk: w.uk, example: w.example, at: w.at || now() };
       update((d) => ({ ...d, words: [row, ...d.words] }));
       sync('addWord', row);
     },

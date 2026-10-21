@@ -134,10 +134,20 @@ function LessonsTab({ id }: { id: string }) {
   );
 }
 
+// кілька варіантів перекладу через кому: клік додає або прибирає варіант
+const toggleTr = (cur: string, x: string) => {
+  const list = cur.split(',').map((v) => v.trim()).filter(Boolean);
+  return (list.includes(x) ? list.filter((v) => v !== x) : [...list, x]).join(', ');
+};
+const hasTr = (cur: string, x: string) => cur.split(',').map((v) => v.trim()).includes(x);
+const todayIso = () => new Date().toISOString().slice(0, 10);
+const dayAt = (d: string) => (d && d !== todayIso() ? new Date(`${d}T12:00:00`).toISOString() : undefined);
+
 function WordsTab({ id }: { id: string }) {
   const t = useT();
   const { data, addWord, removeWord } = useTeacher();
   const [f, setF] = useState({ en: '', uk: '', example: '' });
+  const [wDay, setWDay] = useState(todayIso());
   const [play, setPlay] = useState(false);
   const words = useMemo(() => data.words.filter((w) => w.studentId === id), [data.words, id]);
   // Підказки: варіанти перекладу і приклади з’являються, коли вчитель вводить англійське слово
@@ -186,14 +196,14 @@ function WordsTab({ id }: { id: string }) {
   };
   const addAll = () => {
     const ok = rows.filter((r) => r.en && r.uk.trim());
-    ok.forEach((r) => addWord(id, { en: r.en, uk: r.uk.trim(), example: r.example.trim() || undefined }));
+    ok.forEach((r) => addWord(id, { en: r.en, uk: r.uk.trim(), example: r.example.trim() || undefined, at: dayAt(wDay) }));
     setRows([]); setBulkText(''); setBulkOpen(false);
   };
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!f.en.trim() || !f.uk.trim()) return;
-    addWord(id, { en: f.en.trim(), uk: f.uk.trim(), example: f.example.trim() || undefined });
+    addWord(id, { en: f.en.trim(), uk: f.uk.trim(), example: f.example.trim() || undefined, at: dayAt(wDay) });
     setF({ en: '', uk: '', example: '' }); setSug(null);
     (document.getElementById('word-en') as HTMLInputElement | null)?.focus();
   };
@@ -214,6 +224,7 @@ function WordsTab({ id }: { id: string }) {
           <div className="t-bulk">
             <p className="t-muted">{t({ uk: 'Встав слова, по одному в рядку. Можна одразу з перекладом: word = переклад. Murly підбере варіанти перекладу і приклади, ти лише перевіриш.', ru: 'Вставь слова, по одному в строке. Можно сразу с переводом: word = перевод. Murly подберёт варианты перевода и примеры, ты только проверишь.', en: 'Paste words, one per line. You can add a translation right away: word = translation. Murly suggests translations and examples, you just check them.' })}</p>
             <textarea rows={6} value={bulkText} onChange={(e) => setBulkText(e.target.value)} placeholder={'weird\nto look forward to\nbrave\nhonest = чесний'} />
+            <label className="t-log-form__day">{t({ uk: 'Дата уроку', ru: 'Дата урока', en: 'Lesson date' })}<input type="date" value={wDay} max={todayIso()} onChange={(e) => setWDay(e.target.value)} /></label>
             <div className="t-head__actions"><button type="button" className="mu-btn mu-btn--lime t-btn-sm" disabled={!bulkText.trim()} onClick={fetchBulk}>{t({ uk: 'Підібрати переклади', ru: 'Подобрать переводы', en: 'Suggest translations' })}</button></div>
             {rows.length > 0 && (
               <div className="t-bulk__rows">
@@ -223,7 +234,7 @@ function WordsTab({ id }: { id: string }) {
                     {r.loading ? <span className="t-muted">…</span> : (
                       <div className="t-bulk__pick">
                         <input value={r.uk} onChange={(e) => setRows((rs) => rs.map((x, j) => (j === i ? { ...x, uk: e.target.value } : x)))} placeholder={t({ uk: 'Переклад', ru: 'Перевод', en: 'Translation' })} />
-                        {r.options.length > 1 && <div className="g-chips" style={{ justifyContent: 'flex-start' }}>{r.options.map((o) => <button key={o} type="button" className={`g-chip ${r.uk === o ? 'is-on' : ''}`} onClick={() => setRows((rs) => rs.map((x, j) => (j === i ? { ...x, uk: o } : x)))}>{o}</button>)}</div>}
+                        {r.options.length > 1 && <div className="g-chips" style={{ justifyContent: 'flex-start' }}>{r.options.map((o) => <button key={o} type="button" className={`g-chip ${hasTr(r.uk, o) ? 'is-on' : ''}`} onClick={() => setRows((rs) => rs.map((x, j) => (j === i ? { ...x, uk: toggleTr(x.uk, o) } : x)))}>{o}</button>)}</div>}
                         {r.examples.length > 0 && (
                           <select value={r.example} onChange={(e) => setRows((rs) => rs.map((x, j) => (j === i ? { ...x, example: e.target.value } : x)))}>
                             <option value="">{t({ uk: 'Без прикладу', ru: 'Без примера', en: 'No example' })}</option>
@@ -245,6 +256,7 @@ function WordsTab({ id }: { id: string }) {
         <form className="t-form t-form--words" onSubmit={submit}>
           <label>English<input id="word-en" value={f.en} onChange={(e) => setF({ ...f, en: e.target.value })} placeholder="to look forward to" /></label>
           <label>{t({ uk: 'Переклад', ru: 'Перевод', en: 'Translation' })}<input value={f.uk} onChange={(e) => setF({ ...f, uk: e.target.value })} placeholder={t({ uk: 'з нетерпінням чекати', ru: 'с нетерпением ждать', en: 'з нетерпінням чекати' })} /></label>
+          <label>{t({ uk: 'Дата уроку', ru: 'Дата урока', en: 'Lesson date' })}<input type="date" value={wDay} max={todayIso()} onChange={(e) => setWDay(e.target.value)} /></label>
           <label>{t({ uk: 'Приклад', ru: 'Пример', en: 'Example' })}<input value={f.example} onChange={(e) => setF({ ...f, example: e.target.value })} placeholder="I look forward to the trip." /></label>
           <div className="t-form__actions"><button className="mu-btn mu-btn--lime" type="submit">{t({ uk: 'Додати', ru: 'Добавить', en: 'Add' })}</button></div>
         </form>
@@ -252,9 +264,9 @@ function WordsTab({ id }: { id: string }) {
           <div className="t-sug">
             {loadingSug && !sug && <p className="t-muted">{t({ uk: 'Шукаю переклад і приклади…', ru: 'Ищу перевод и примеры…', en: 'Looking for translations and examples…' })}</p>}
             {sug && sug.translations.length > 0 && (
-              <div><small>{t({ uk: 'Обери переклад', ru: 'Выбери перевод', en: 'Pick a translation' })}</small>
+              <div><small>{t({ uk: 'Обери переклад (можна кілька)', ru: 'Выбери перевод (можно несколько)', en: 'Pick translations (you can choose several)' })}</small>
                 <div className="g-chips" style={{ justifyContent: 'flex-start' }}>
-                  {sug.translations.map((x) => <button key={x} type="button" className={`g-chip ${f.uk === x ? 'is-on' : ''}`} onClick={() => setF({ ...f, uk: f.uk && f.uk !== x && !f.uk.split(', ').includes(x) && f.uk.length < 40 ? `${f.uk}, ${x}` : x })}>{x}</button>)}
+                  {sug.translations.map((x) => <button key={x} type="button" className={`g-chip ${hasTr(f.uk, x) ? 'is-on' : ''}`} onClick={() => setF({ ...f, uk: toggleTr(f.uk, x) })}>{x}</button>)}
                 </div>
               </div>
             )}
@@ -281,14 +293,23 @@ function WordsTab({ id }: { id: string }) {
         {words.length > 0 && words.length < 4 && <p className="t-muted">{t({ uk: `Додай ще ${4 - words.length}, і з цих слів можна буде грати.`, ru: `Добавь ещё ${4 - words.length}, и этими словами можно будет играть.`, en: `Add ${4 - words.length} more and you can play with these words.` })}</p>}
         {play && <div className="t-game"><GameHub sets={sets} /></div>}
         {words.length ? (
-          <div className="t-words">
-            {words.map((w) => (
-              <div key={w.id} className="t-word">
-                <b>{w.en}</b><span>{w.uk}</span>
-                {w.example && <i>{w.example}</i>}
-                <button className="t-icon-btn" onClick={() => removeWord(w.id)} aria-label={`${t({ uk: 'Видалити', ru: 'Удалить', en: 'Delete' })} ${w.en}`}>✕</button>
-              </div>
-            ))}
+          <div className="t-words-days">
+            {Array.from(words.reduce((m, w) => { const k = (w.at || '').slice(0, 10); m.set(k, [...(m.get(k) ?? []), w]); return m; }, new Map<string, typeof words>()))
+              .sort((a, b) => b[0].localeCompare(a[0]))
+              .map(([day, ws]) => (
+                <div key={day}>
+                  <h3 className="t-words-day">{day ? fmtDate(`${day}T12:00:00`, t.lang) : t({ uk: 'Без дати', ru: 'Без даты', en: 'No date' })} <span className="t-muted">· {ws.length}</span></h3>
+                  <div className="t-words">
+                    {ws.map((w) => (
+                      <div key={w.id} className="t-word">
+                        <b>{w.en}</b><span>{w.uk}</span>
+                        {w.example && <i>{w.example}</i>}
+                        <button className="t-icon-btn" onClick={() => removeWord(w.id)} aria-label={`${t({ uk: 'Видалити', ru: 'Удалить', en: 'Delete' })} ${w.en}`}>✕</button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
           </div>
         ) : <p className="t-empty">{t({ uk: 'Слова, які ти додаси, з’являться тут. Скоро учень бачитиме їх у своєму кабінеті і гратиме ними.', ru: 'Слова, которые ты добавишь, появятся здесь. Скоро ученик будет видеть их в своём кабинете и играть ими.', en: 'Words you add will show up here. Soon your student will see them in their account and play with them.' })}</p>}
       </div>
