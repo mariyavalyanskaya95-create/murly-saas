@@ -7,7 +7,13 @@ const URL_ = process.env.SUPABASE_URL || '';
 const KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || '';
 const BUCKET = 'lesson-files';
 const MAX = 20 * 1024 * 1024;
-const TYPES = ['image/png', 'image/jpeg', 'image/webp', 'image/gif', 'application/pdf', 'audio/mpeg', 'audio/mp4', 'audio/x-m4a', 'audio/wav', 'audio/ogg', 'audio/webm'];
+const DOCS: Record<string, string> = {
+  'application/msword': 'doc', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document': 'docx',
+  'application/vnd.ms-powerpoint': 'ppt', 'application/vnd.openxmlformats-officedocument.presentationml.presentation': 'pptx',
+  'application/vnd.ms-excel': 'xls', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': 'xlsx',
+  'text/plain': 'txt', 'application/vnd.oasis.opendocument.text': 'odt',
+};
+const TYPES = ['image/png', 'image/jpeg', 'image/webp', 'image/gif', 'application/pdf', 'audio/mpeg', 'audio/mp4', 'audio/x-m4a', 'audio/wav', 'audio/ogg', 'audio/webm', ...Object.keys(DOCS)];
 
 // Видаємо одноразове посилання для завантаження прямо в Supabase Storage
 // (файл не йде через наш сервер, тож великі PDF теж проходять)
@@ -20,10 +26,10 @@ export async function POST(req: Request) {
   try { body = await req.json(); } catch { return NextResponse.json({ error: 'bad_json' }, { status: 400 }); }
   const type = String(body.type || '');
   const size = Number(body.size || 0);
-  if (!TYPES.includes(type)) return NextResponse.json({ error: 'type', message: 'Можна завантажувати картинки (PNG, JPG, WEBP, GIF), PDF і аудіо (MP3, M4A, WAV, OGG).' }, { status: 400 });
+  if (!TYPES.includes(type)) return NextResponse.json({ error: 'type', message: 'Можна завантажувати картинки, PDF, Word, PowerPoint, Excel, TXT і аудіо.' }, { status: 400 });
   if (!size || size > MAX) return NextResponse.json({ error: 'size', message: 'Файл завеликий. Максимум 20 МБ.' }, { status: 400 });
 
-  const ext = type === 'application/pdf' ? 'pdf' : type === 'audio/mpeg' ? 'mp3' : type === 'audio/mp4' || type === 'audio/x-m4a' ? 'm4a' : type === 'audio/webm' ? 'webm' : type.split('/')[1].replace('jpeg', 'jpg');
+  const ext = DOCS[type] ? DOCS[type] : type === 'application/pdf' ? 'pdf' : type === 'audio/mpeg' ? 'mp3' : type === 'audio/mp4' || type === 'audio/x-m4a' ? 'm4a' : type === 'audio/webm' ? 'webm' : type.split('/')[1].replace('jpeg', 'jpg');
   const base = String(body.name || 'file').replace(/\.[^.]+$/, '').normalize('NFKD').replace(/[^\w-]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 40) || 'file';
   const path = `${userId}/${crypto.randomUUID().slice(0, 8)}-${base}.${ext}`;
 
