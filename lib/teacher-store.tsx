@@ -12,6 +12,7 @@ export type Student = {
   inviteCode?: string; joined?: boolean;
   loginPhone?: string; loginPin?: string; // вхід учня за номером і PIN
   adult?: boolean; nmt?: boolean; // дорослий: без монеток; nmt: показувати НМТ
+  owedLessons?: number; prepaidLessons?: number; // стартовий баланс: уроки до Murly (борг / оплачено наперед)
   song?: string; songUrl?: string; about?: string; // заповнює вчитель
   payMode?: 'pre' | 'post'; // pre: платить наперед пакетом, post: платить після занять
   nick?: string; avatar?: string; image?: string; selfSong?: string; selfSongUrl?: string; selfAbout?: string; // з профілю учня (лише для показу)
@@ -268,7 +269,8 @@ export function balanceOf(d: Data, studentId: string) {
   const st = d.students.find((s) => s.id === studentId);
   const paid = d.payments.filter((p) => p.studentId === studentId).reduce((n, p) => n + p.amount, 0);
   const spent = d.lessons.filter((l) => l.studentId === studentId && l.status === 'done').length * (st?.price ?? 0);
-  return paid - spent; // < 0 означає борг
+  const start = ((st?.prepaidLessons ?? 0) - (st?.owedLessons ?? 0)) * (st?.price ?? 0); // стартовий баланс у уроках
+  return paid - spent + start; // < 0 означає борг
 }
 
 export function lessonLink(d: Data, l: Lesson) {
