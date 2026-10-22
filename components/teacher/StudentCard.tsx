@@ -344,6 +344,8 @@ function NotesTab({ id }: { id: string }) {
   const [edit, setEdit] = useState<string | null>(null);
   const [editText, setEditText] = useState('');
   const fileRef = useRef<HTMLInputElement>(null);
+  const docRef = useRef<HTMLInputElement>(null);
+  const [docs, setDocs] = useState<File[]>([]);
   const notes = data.notes.filter((n) => n.studentId === id);
 
   const addFiles = (list: FileList | File[]) => {
@@ -352,7 +354,7 @@ function NotesTab({ id }: { id: string }) {
   };
   const save = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!text.trim() && !files.length && !mark) return;
+    if (!text.trim() && !files.length && !docs.length && !mark) return;
     setBusy(true); setErr('');
     const urls: string[] = [];
     for (const f of files) {
@@ -360,8 +362,14 @@ function NotesTab({ id }: { id: string }) {
       if ('error' in r) { setErr(r.error); setBusy(false); return; }
       urls.push(r.url);
     }
+    const docFiles: { url: string; name: string }[] = [];
+    for (const f of docs) {
+      const r = await uploadFile(f);
+      if ('error' in r) { setErr(r.error); setBusy(false); return; }
+      docFiles.push({ url: r.url, name: f.name });
+    }
     const at = day === today() ? undefined : new Date(`${day}T12:00:00`).toISOString();
-    if (text.trim() || urls.length) addNote(id, text.trim(), { images: urls, at });
+    if (text.trim() || urls.length || docFiles.length) addNote(id, text.trim(), { images: urls, files: docFiles, at });
     // позначка «був / не прийшов»: заняття цього дня, а якщо його нема в розкладі, створюємо
     if (mark) {
       const sameDay = data.lessons.filter((l) => l.studentId === id && (() => { const d = new Date(l.start); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}` === day; })());
@@ -374,13 +382,13 @@ function NotesTab({ id }: { id: string }) {
         addLessons({ studentId: id, start: new Date(`${day}T${hh}:00`).toISOString(), duration: prev?.duration ?? 60, status: mark });
       }
     }
-    setText(''); setFiles([]); setDay(today()); setBusy(false);
+    setText(''); setFiles([]); setDocs([]); setDay(today()); setBusy(false);
   };
 
   return (
     <div className="t-card">
       <h2>{t({ uk: 'Що було на уроці', ru: 'Что было на уроке', en: 'Lesson log' })}</h2>
-      <p className="t-muted t-private">{t({ uk: 'Бачиш тільки ти. Що робили на уроці, скріни дошки чи вправ, на чому спотикається, що задати наступного разу. Скрін можна вставити просто Ctrl+V у поле.', ru: 'Видишь только ты. Что делали на уроке, скрины доски или упражнений, на чём спотыкается, что задать в следующий раз. Скрин можно вставить просто Ctrl+V в поле.', en: 'Only you can see this. What you did in the lesson, screenshots, where they struggle, what to set next. You can paste a screenshot with Ctrl+V.' })}</p>
+      <p className="t-muted t-private">{t({ uk: 'Бачиш тільки ти. Що робили на уроці, скріни дошки чи вправ, на чому спотикається, що задати наступного разу. Скрін можна вставити просто Ctrl+V у поле. Документи (PDF, Word, PowerPoint) учень теж бачить у своєму кабінеті в «Матеріалах з уроків».', ru: 'Видишь только ты. Что делали на уроке, скрины доски или упражнений, на чём спотыкается, что задать в следующий раз. Скрин можно вставить просто Ctrl+V в поле. Документы (PDF, Word, PowerPoint) ученик тоже видит у себя в кабинете в «Материалах с уроков».', en: 'Only you can see this. What you did in the lesson, screenshots, where they struggle, what to set next. You can paste a screenshot with Ctrl+V. Documents (PDF, Word, PowerPoint) are also shown to the student under Lesson materials.' })}</p>
       <form className="t-note-form t-log-form" onSubmit={save}>
         <div className="t-log-form__top">
           <label className="t-log-form__day">{t({ uk: 'Дата уроку', ru: 'Дата урока', en: 'Lesson date' })}<input type="date" value={day} max={today()} onChange={(e) => setDay(e.target.value)} /></label>
@@ -400,9 +408,16 @@ function NotesTab({ id }: { id: string }) {
             ))}
           </div>
         )}
+        {docs.length > 0 && (
+          <div className="t-docs">
+            {docs.map((f, i) => <span key={`${f.name}-${i}`} className="t-doc"><Icon id="e-book" />{f.name}<button type="button" onClick={() => setDocs((d) => d.filter((_, j) => j !== i))} aria-label={t({ uk: 'Прибрати', ru: 'Убрать', en: 'Remove' })}>✕</button></span>)}
+          </div>
+        )}
         <div className="t-head__actions" style={{ flexWrap: 'wrap' }}>
           <input ref={fileRef} type="file" accept="image/*" multiple hidden onChange={(e) => { if (e.target.files) addFiles(e.target.files); e.target.value = ''; }} />
           <button type="button" className="mu-btn t-btn-sm" onClick={() => fileRef.current?.click()} disabled={files.length >= 8}><Icon id="d-camera" />{t({ uk: 'Додати скріни', ru: 'Добавить скрины', en: 'Add screenshots' })}</button>
+          <input ref={docRef} type="file" multiple hidden accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.txt,.odt,application/pdf" onChange={(e) => { if (e.target.files) { const add = Array.from(e.target.files); setDocs((d) => [...d, ...add].slice(0, 8)); } e.target.value = ''; }} />
+          <button type="button" className="mu-btn t-btn-sm" onClick={() => docRef.current?.click()} disabled={docs.length >= 8}><Icon id="e-book" />{t({ uk: 'Додати документ', ru: 'Добавить документ', en: 'Add a document' })}</button>
           <button className="mu-btn mu-btn--lime" type="submit" disabled={busy}>{busy ? t({ uk: 'Завантажую…', ru: 'Загружаю…', en: 'Uploading…' }) : t({ uk: 'Зберегти', ru: 'Сохранить', en: 'Save' })}</button>
           {err && <span className="t-neg">{err}</span>}
         </div>
@@ -421,6 +436,9 @@ function NotesTab({ id }: { id: string }) {
           ) : n.text && <p>{n.text}</p>}
           {n.images && n.images.length > 0 && (
             <div className="t-log-thumbs">{n.images.map((u) => <a key={u} href={u} target="_blank" rel="noreferrer" className="t-log-thumb"><img src={u} alt="" loading="lazy" /></a>)}</div>
+          )}
+          {n.files && n.files.length > 0 && (
+            <div className="t-docs">{n.files.map((f) => <a key={f.url} href={f.url} target="_blank" rel="noreferrer" className="t-doc"><Icon id="e-book" />{f.name}</a>)}</div>
           )}
           <div className="t-note__acts">
             {edit !== n.id && <button className="t-link-btn" onClick={() => { setEdit(n.id); setEditText(n.text); }}>{t({ uk: 'Змінити', ru: 'Изменить', en: 'Edit' })}</button>}
