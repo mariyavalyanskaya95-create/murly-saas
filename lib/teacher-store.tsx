@@ -10,6 +10,7 @@ export type Student = {
   id: string; name: string; level: string; price: number;
   contact?: string; parent?: string; link?: string; color: string; createdAt: string;
   inviteCode?: string; joined?: boolean;
+  loginPhone?: string; loginPin?: string; // вхід учня за номером і PIN
   song?: string; songUrl?: string; about?: string; // заповнює вчитель
   payMode?: 'pre' | 'post'; // pre: платить наперед пакетом, post: платить після занять
   nick?: string; avatar?: string; image?: string; selfSong?: string; selfSongUrl?: string; selfAbout?: string; // з профілю учня (лише для показу)
@@ -214,6 +215,17 @@ function useStore(userId: string) {
         update((d) => ({ ...d, students: d.students.map((s) => (s.id === id ? { ...s, inviteCode: j.code } : s)) }));
         return j.code as string;
       } catch { return null; }
+    },
+    // Вхід за номером і PIN: сервер створює учню акаунт, якщо його ще нема
+    setLogin: async (id: string, phone: string, pin: string): Promise<{ ok: boolean; error?: string }> => {
+      if (modeRef.current !== 'cloud') return { ok: false, error: 'offline' };
+      try {
+        const r = await fetch('/api/teacher', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ op: 'setLogin', p: { id, phone, pin } }) });
+        const j = await r.json().catch(() => ({}));
+        if (!r.ok) return { ok: false, error: j.error || 'error' };
+        update((d) => ({ ...d, students: d.students.map((s) => (s.id === id ? { ...s, loginPhone: j.phone || undefined, loginPin: j.pin || undefined, joined: j.joined ? true : s.joined } : s)) }));
+        return { ok: true };
+      } catch { return { ok: false, error: 'error' }; }
     },
     saveSettings: (s: Settings) => { update((d) => ({ ...d, settings: s })); sync('saveSettings', s); },
   }), [update, sync]);

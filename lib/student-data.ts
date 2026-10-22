@@ -16,6 +16,7 @@ export type StudentHomework = {
 };
 export type Enrollment = {
   studentId: string; name: string; level: string; teacherName: string;
+  loginPhone?: string; loginPin?: string;
   lessons: StudentLesson[]; words: StudentWord[]; homework: StudentHomework[];
 };
 
@@ -73,6 +74,8 @@ export async function getEnrollments(userId: string): Promise<Enrollment[]> {
       name: String(s.name),
       level: String(s.level),
       teacherName: String(settings[0]?.name || ''),
+      loginPhone: s.login_phone ? String(s.login_phone) : undefined,
+      loginPin: s.login_pin ? String(s.login_pin) : undefined,
       lessons: lessons.map((l) => ({
         id: String(l.id), start: String(l.start), duration: Number(l.duration), status: String(l.status),
         topic: l.topic ? String(l.topic) : undefined,
