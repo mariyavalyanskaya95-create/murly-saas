@@ -23,12 +23,12 @@ import { uploadFile } from '@/lib/upload';
 import type { T } from '@/lib/i18n';
 
 type Tab = 'lessons' | 'hw' | 'words' | 'notes' | 'pay' | 'profile';
-const PRIV_TABS: Tab[] = ['notes', 'pay', 'profile'];
+const PRIV_TABS: Tab[] = ['pay', 'profile'];
 const TABS: { id: Tab; label: T; icon: string }[] = [
   { id: 'lessons', label: { uk: 'Заняття', ru: 'Занятия', en: 'Lessons' }, icon: 'e-cal' },
   { id: 'hw', label: { uk: 'Домашка', ru: 'Домашка', en: 'Homework' }, icon: 'e-board' },
   { id: 'words', label: { uk: 'Словник', ru: 'Словарь', en: 'Vocabulary' }, icon: 'e-abc' },
-  { id: 'notes', label: { uk: 'Журнал і нотатки', ru: 'Журнал и заметки', en: 'Log and notes' }, icon: 'e-pencil' },
+  { id: 'notes', label: { uk: 'Що було на уроці', ru: 'Что было на уроке', en: 'Lesson log' }, icon: 'e-pencil' },
   { id: 'pay', label: { uk: 'Оплати', ru: 'Оплаты', en: 'Payments' }, icon: 'd-money' },
   { id: 'profile', label: { uk: 'Профіль', ru: 'Профиль', en: 'Profile' }, icon: 'd-smile' },
 ];
@@ -333,8 +333,9 @@ function WordsTab({ id }: { id: string }) {
 
 function NotesTab({ id }: { id: string }) {
   const t = useT();
-  const { data, addNote, updateNote, removeNote } = useTeacher();
-  const today = () => new Date().toISOString().slice(0, 10);
+  const { data, addNote, updateNote, removeNote, addLessons, setLessonStatus } = useTeacher();
+  const today = () => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; };
+  const [mark, setMark] = useState<'done' | 'missed' | ''>('done');
   const [text, setText] = useState('');
   const [day, setDay] = useState(today());
   const [files, setFiles] = useState<{ file: File; url: string }[]>([]);
@@ -351,7 +352,7 @@ function NotesTab({ id }: { id: string }) {
   };
   const save = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!text.trim() && !files.length) return;
+    if (!text.trim() && !files.length && !mark) return;
     setBusy(true); setErr('');
     const urls: string[] = [];
     for (const f of files) {
@@ -360,16 +361,35 @@ function NotesTab({ id }: { id: string }) {
       urls.push(r.url);
     }
     const at = day === today() ? undefined : new Date(`${day}T12:00:00`).toISOString();
-    addNote(id, text.trim(), { images: urls, at });
+    if (text.trim() || urls.length) addNote(id, text.trim(), { images: urls, at });
+    // позначка «був / не прийшов»: заняття цього дня, а якщо його нема в розкладі, створюємо
+    if (mark) {
+      const sameDay = data.lessons.filter((l) => l.studentId === id && (() => { const d = new Date(l.start); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}` === day; })());
+      const target = sameDay.find((l) => l.status === 'planned') ?? sameDay[0];
+      if (target) setLessonStatus(target.id, mark);
+      else {
+        const prev = data.lessons.filter((l) => l.studentId === id).sort((a, b) => b.start.localeCompare(a.start))[0];
+        const tm = prev ? new Date(prev.start) : null;
+        const hh = tm ? `${String(tm.getHours()).padStart(2, '0')}:${String(tm.getMinutes()).padStart(2, '0')}` : '12:00';
+        addLessons({ studentId: id, start: new Date(`${day}T${hh}:00`).toISOString(), duration: prev?.duration ?? 60, status: mark });
+      }
+    }
     setText(''); setFiles([]); setDay(today()); setBusy(false);
   };
 
   return (
     <div className="t-card">
-      <h2>{t({ uk: 'Журнал уроків і нотатки', ru: 'Журнал уроков и заметки', en: 'Lesson log and notes' })}</h2>
-      <p className="t-muted">{t({ uk: 'Бачиш тільки ти. Що робили на уроці, скріни дошки чи вправ, на чому спотикається, що задати наступного разу. Скрін можна вставити просто Ctrl+V у поле.', ru: 'Видишь только ты. Что делали на уроке, скрины доски или упражнений, на чём спотыкается, что задать в следующий раз. Скрин можно вставить просто Ctrl+V в поле.', en: 'Only you can see this. What you did in the lesson, screenshots, where they struggle, what to set next. You can paste a screenshot with Ctrl+V.' })}</p>
+      <h2>{t({ uk: 'Що було на уроці', ru: 'Что было на уроке', en: 'Lesson log' })}</h2>
+      <p className="t-muted t-private">{t({ uk: 'Бачиш тільки ти. Що робили на уроці, скріни дошки чи вправ, на чому спотикається, що задати наступного разу. Скрін можна вставити просто Ctrl+V у поле.', ru: 'Видишь только ты. Что делали на уроке, скрины доски или упражнений, на чём спотыкается, что задать в следующий раз. Скрин можно вставить просто Ctrl+V в поле.', en: 'Only you can see this. What you did in the lesson, screenshots, where they struggle, what to set next. You can paste a screenshot with Ctrl+V.' })}</p>
       <form className="t-note-form t-log-form" onSubmit={save}>
-        <label className="t-log-form__day">{t({ uk: 'Дата уроку', ru: 'Дата урока', en: 'Lesson date' })}<input type="date" value={day} max={today()} onChange={(e) => setDay(e.target.value)} /></label>
+        <div className="t-log-form__top">
+          <label className="t-log-form__day">{t({ uk: 'Дата уроку', ru: 'Дата урока', en: 'Lesson date' })}<input type="date" value={day} max={today()} onChange={(e) => setDay(e.target.value)} /></label>
+          <div className="t-log-mark" role="group" aria-label={t({ uk: 'Чи був урок', ru: 'Был ли урок', en: 'Did the lesson happen' })}>
+            <button type="button" className={`g-chip ${mark === 'done' ? 'is-on' : ''}`} aria-pressed={mark === 'done'} onClick={() => setMark('done')}>{t({ uk: 'Урок був', ru: 'Урок был', en: 'Lesson took place' })}</button>
+            <button type="button" className={`g-chip ${mark === 'missed' ? 'is-on' : ''}`} aria-pressed={mark === 'missed'} onClick={() => setMark('missed')}>{t({ uk: 'Не прийшов', ru: 'Не пришёл', en: 'No-show' })}</button>
+            <button type="button" className={`g-chip ${mark === '' ? 'is-on' : ''}`} aria-pressed={mark === ''} onClick={() => setMark('')}>{t({ uk: 'Без позначки', ru: 'Без отметки', en: 'No mark' })}</button>
+          </div>
+        </div>
         <textarea value={text} onChange={(e) => setText(e.target.value)} rows={4}
           onPaste={(e) => { const imgs = Array.from(e.clipboardData.files || []).filter((f) => f.type.startsWith('image/')); if (imgs.length) { e.preventDefault(); addFiles(imgs); } }}
           placeholder={t({ uk: 'Напр.: пройшли Present Perfect, читали текст про подорожі, нові слова: luggage, boarding pass. Плутає since / for. Наступного разу: гра на since / for.', ru: 'Напр.: прошли Present Perfect, читали текст о путешествиях, новые слова: luggage, boarding pass. Путает since / for. В следующий раз: игра на since / for.', en: 'e.g. Did Present Perfect, read a travel text, new words: luggage, boarding pass. Mixes up since / for. Next time: a since / for game.' })} />

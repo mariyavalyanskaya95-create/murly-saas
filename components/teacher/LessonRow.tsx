@@ -10,6 +10,7 @@ export default function LessonRow({ l, showStudent = true, showDate = true }: { 
   const st = data.students.find((s) => s.id === l.studentId);
   const link = lessonLink(data, l);
   const past = new Date(l.start).getTime() + l.duration * 60000 < Date.now();
+  const started = new Date(l.start).getTime() <= Date.now(); // «був / не прийшов» можна відмітити тільки коли урок уже почався
 
   return (
     <div className={`t-lesson is-${l.status}`}>
@@ -32,8 +33,8 @@ export default function LessonRow({ l, showStudent = true, showDate = true }: { 
         )}
         {l.status === 'planned' && (
           <span className="t-lesson__st">
-            <button className="mu-btn t-btn-sm t-st--done" onClick={() => setLessonStatus(l.id, 'done')} title={t({ uk: 'Урок відбувся', ru: 'Урок состоялся', en: 'The lesson took place' })}>{t({ uk: 'Був', ru: 'Был', en: 'Done' })}</button>
-            <button className="mu-btn t-btn-sm t-st--missed" onClick={() => setLessonStatus(l.id, 'missed')} title={t({ uk: 'Учень не прийшов', ru: 'Ученик не пришёл', en: 'The student did not come' })}>{t({ uk: 'Не прийшов', ru: 'Не пришёл', en: 'No-show' })}</button>
+            {started && <button className="mu-btn t-btn-sm t-st--done" onClick={() => setLessonStatus(l.id, 'done')} title={t({ uk: 'Урок відбувся', ru: 'Урок состоялся', en: 'The lesson took place' })}>{t({ uk: 'Був', ru: 'Был', en: 'Done' })}</button>}
+            {started && <button className="mu-btn t-btn-sm t-st--missed" onClick={() => setLessonStatus(l.id, 'missed')} title={t({ uk: 'Учень не прийшов', ru: 'Ученик не пришёл', en: 'The student did not come' })}>{t({ uk: 'Не прийшов', ru: 'Не пришёл', en: 'No-show' })}</button>}
             <button className="mu-btn t-btn-sm" onClick={() => setLessonStatus(l.id, 'cancelled')} title={t({ uk: 'Урок скасовано', ru: 'Урок отменён', en: 'The lesson was cancelled' })}>{t({ uk: 'Скасовано', ru: 'Отменён', en: 'Cancelled' })}</button>
           </span>
         )}
