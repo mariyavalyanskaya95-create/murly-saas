@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import SectionTabs from '@/components/SectionTabs';
 import type { Metadata } from 'next';
 import Icon from '@/components/Icon';
 import Stickers from '@/components/Stickers';
@@ -35,6 +36,7 @@ export default function IrregularVerbsGamesPage() {
   return (
     <>
       <SiteNav />
+      <SectionTabs group="grammar" active="/irregular-verbs/games" />
       <section className="mu-page-hero" style={{ paddingBottom: 16 }} data-stickers="6">
         <div className="mu-container">
           <Kit id="st-cat-blep" className="kit-hero" />
