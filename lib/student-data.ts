@@ -1,7 +1,7 @@
 // Серверні дані для кабінету учня і запрошень
 import { addCoins } from './coins';
 import { db, dbReady } from './db';
-import { grade, type Answers, type Section } from './exercise';
+import { grade, normalizeSections, type Answers, type Section } from './exercise';
 import { lessonSections, type Block } from './lesson';
 
 const enc = encodeURIComponent;
@@ -90,7 +90,7 @@ export async function getEnrollments(userId: string): Promise<Enrollment[]> {
       words: words.map((w) => ({ id: String(w.id), en: String(w.en), uk: String(w.uk), example: w.example ? String(w.example) : undefined })),
       homework: homework.map((h) => ({
         id: String(h.id), title: String(h.title), kind: h.kind === 'text' ? 'text' : h.kind === 'exercise' ? 'exercise' : h.kind === 'lesson' ? 'lesson' : h.kind === 'mock' ? 'mock' : 'game',
-        items: (h.items as Section[] | Block[] | null) ?? undefined, answers: (h.answers as Answers | null) ?? undefined, overrides: (h.overrides as Record<string, boolean> | null) ?? undefined,
+        items: h.kind === 'exercise' ? normalizeSections(h.items as Section[] | null) : (h.items as Section[] | Block[] | null) ?? undefined, answers: (h.answers as Answers | null) ?? undefined, overrides: (h.overrides as Record<string, boolean> | null) ?? undefined,
         instructions: h.instructions ? String(h.instructions) : undefined,
         game: (h.game as StudentHomework['game']) ?? undefined, direction: (h.direction as StudentHomework['direction']) ?? undefined,
         due: h.due ? String(h.due) : undefined, status: h.status as StudentHomework['status'],
@@ -118,7 +118,7 @@ export async function submitHomework(userId: string, id: string, p: { score?: nu
     const prevA = (hw[0].answers as Answers | null) ?? {};
     const ov: Record<string, boolean> = {};
     Object.entries((hw[0].overrides as Record<string, boolean> | null) ?? {}).forEach(([k, v]) => { if (v && prevA[k] === clean[k]) ov[k] = true; });
-    const secs = hw[0].kind === 'lesson' ? lessonSections((hw[0].items as Block[]) ?? []) : ((hw[0].items as Section[]) ?? []);
+    const secs = hw[0].kind === 'lesson' ? lessonSections((hw[0].items as Block[]) ?? []) : (normalizeSections(hw[0].items as Section[] | null) ?? []);
     const g = grade(secs, clean, ov);
     patch.overrides = ov;
     patch.answers = clean; patch.score = g.score; patch.total = g.total;

@@ -18,7 +18,7 @@ export type Overrides = Record<string, boolean>; // відповіді, які �
 export const SECTION_TYPES: { id: SectionType; label: T; instruction: T; hint: T; example: T }[] = [
   { id: 'gap', label: { uk: 'Розкрий дужки / встав слово', ru: 'Раскрой скобки / вставь слово', en: 'Open the brackets / fill the gap' },
     instruction: { uk: 'Розкрий дужки.', ru: 'Раскрой скобки.', en: 'Put the verbs in brackets into the correct form.' },
-    hint: { uk: 'Правильну відповідь пиши в [квадратних дужках]. Кілька правильних варіантів через /.', ru: 'Правильный ответ пиши в [квадратных скобках]. Несколько правильных вариантов через /.', en: 'Write the correct answer in [square brackets]. Several correct answers go with /.' },
+    hint: { uk: 'Правильну відповідь пиши в [квадратних дужках], тоді перевірка автоматична. Кілька варіантів через /. Можна просто ____ (підкреслення): учень впише відповідь, а перевіриш ти.', ru: 'Правильный ответ пиши в [квадратных скобках], тогда проверка автоматическая. Несколько вариантов через /. Можно просто ____ (подчёркивания): ученик впишет ответ, а проверишь ты.', en: 'Write the correct answer in [square brackets] for auto-check. Several answers go with /. Or just ____ (underscores): the student types an answer and you check it.' },
     example: { uk: 'She [goes] (go) to school every day.\nThey [didn’t come/did not come] (not come) yesterday.' } },
   { id: 'choice', label: { uk: 'Обери правильний варіант', ru: 'Выбери правильный вариант', en: 'Choose the right option' },
     instruction: { uk: 'Обери правильний варіант.', ru: 'Выбери правильный вариант.', en: 'Choose the correct option.' },
@@ -67,12 +67,13 @@ export function parseLine(type: SectionType, line: string): Task | null {
     const isFalse = v.startsWith('f') || v === '-' || v.startsWith('н');
     return { parts: [{ t: 'text', v: st + ' ' }, { t: 'choice', options: isFalse ? ['False', 'True'] : ['True', 'False'] }] };
   }
-  const re = type === 'gap' ? /\[([^\]]+)\]/g : /\{([^}]+)\}/g;
+  // у «розкрий дужки» пропуск можна позначити [відповіддю] або просто підкресленнями ____ (тоді перевіряє вчитель)
+  const re = type === 'gap' ? /\[([^\]]+)\]|_{2,}|…{1,}|\.{3,}/g : /\{([^}]+)\}/g;
   const parts: Part[] = [];
   let last = 0; let m: RegExpExecArray | null;
   while ((m = re.exec(l))) {
     if (m.index > last) parts.push({ t: 'text', v: l.slice(last, m.index) });
-    if (type === 'gap') parts.push({ t: 'gap', answers: splitAlts(m[1], /\//) });
+    if (type === 'gap') parts.push({ t: 'gap', answers: m[1] ? splitAlts(m[1], /\//) : [] });
     else parts.push({ t: 'choice', options: splitAlts(m[1], /\|/) });
     last = m.index + m[0].length;
   }
@@ -104,7 +105,7 @@ export function maxScore(sections: Section[]) {
   let n = 0;
   sections.forEach((s) => s.tasks.forEach((t) => {
     if (s.type === 'translate') n += 1;
-    else if (t.parts) n += t.parts.filter((p) => p.t !== 'text').length;
+    else if (t.parts) n += t.parts.filter((p) => p.t !== 'text' && !(p.t === 'gap' && !p.answers.length)).length;
   }));
   return n;
 }
@@ -125,6 +126,7 @@ export function grade(sections: Section[], answers: Answers, overrides: Record<s
       t.parts.forEach((p, pi) => {
         if (p.t === 'text') return;
         const k = `${si}.${ti}.${pi}`;
+        if (p.t === 'gap' && !p.answers.length) return; // без ключа: відповідь перевіряє вчитель
         marks[k] = (p.t === 'gap' ? isRight(answers[k], p.answers) : answers[k] === p.options[0]) || !!overrides[k];
         if (marks[k]) score++;
       });
@@ -165,3 +167,25 @@ export function sectionToText(s: Section): string {
 }
 
 export const SCALE = ['Strongly disagree', 'Disagree', 'Not sure', 'Agree', 'Strongly agree'];
+
+// Старі завдання, де пропуски були позначені ____ без [відповіді], перетворюємо на поля для вводу
+const BLANK = /_{2,}|…+|\.{3,}/;
+export function normalizeSections<S extends Section>(sections: S[] | undefined | null): S[] | undefined {
+  if (!sections || !Array.isArray(sections)) return sections ?? undefined;
+  return sections.map((s) => {
+    if (!s || s.type !== 'gap' || !Array.isArray(s.tasks)) return s;
+    return { ...s, tasks: s.tasks.map((t) => {
+      if (!t.parts || !t.parts.some((p) => p.t === 'text' && BLANK.test(p.v))) return t;
+      const parts: Part[] = [];
+      for (const p of t.parts) {
+        if (p.t !== 'text' || !BLANK.test(p.v)) { parts.push(p); continue; }
+        p.v.split(/(_{2,}|…+|\.{3,})/).forEach((chunk) => {
+          if (!chunk) return;
+          if (BLANK.test(chunk) && /^(_{2,}|…+|\.{3,})$/.test(chunk)) parts.push({ t: 'gap', answers: [] });
+          else parts.push({ t: 'text', v: chunk });
+        });
+      }
+      return { ...t, parts };
+    }) };
+  });
+}
