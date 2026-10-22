@@ -20,6 +20,21 @@ export default function TeacherToday() {
   const week = planned.filter((l) => new Date(l.start) <= weekEnd && new Date(l.start) >= today);
   const overdue = planned.filter((l) => new Date(l.start).getTime() + l.duration * 60000 < Date.now());
   const debtors = data.students.map((s) => ({ s, b: balanceOf(data, s.id) })).filter((x) => x.b < 0);
+  // заробіток: проведені уроки × ціна учня, по тижнях (з понеділка) і за місяць
+  const price = (sid: string) => data.students.find((x) => x.id === sid)?.price ?? 0;
+  const monday = new Date(today.getFullYear(), today.getMonth(), today.getDate() - ((today.getDay() + 6) % 7));
+  const nextMon = new Date(monday); nextMon.setDate(monday.getDate() + 7);
+  const prevMon = new Date(monday); prevMon.setDate(monday.getDate() - 7);
+  const monthStart = new Date(today.getFullYear(), today.getMonth(), 1);
+  const inRange = (iso: string, a: Date, b: Date) => { const d = new Date(iso); return d >= a && d < b; };
+  const earned = (a: Date, b: Date) => data.lessons.filter((l) => l.status === 'done' && inRange(l.start, a, b));
+  const sum = (ls: typeof data.lessons) => ls.reduce((n, l) => n + price(l.studentId), 0);
+  const thisWeek = earned(monday, nextMon);
+  const lastWeek = earned(prevMon, monday);
+  const thisMonth = earned(monthStart, new Date(today.getFullYear(), today.getMonth() + 1, 1));
+  const ahead = data.lessons.filter((l) => l.status === 'planned' && inRange(l.start, today, nextMon));
+  const paidWeek = data.payments.filter((x) => inRange(x.at, monday, nextMon)).reduce((n, x) => n + x.amount, 0);
+  const lessonsWord = (n: number) => plural(n, t.lang, { uk: ['урок', 'уроки', 'уроків'], ru: ['урок', 'урока', 'уроков'], en: ['lesson', 'lessons'] });
   const hour = today.getHours();
   const hello = hour < 12 ? t({ uk: 'Доброго ранку', ru: 'Доброе утро', en: 'Good morning' }) : hour < 18 ? t({ uk: 'Добрий день', ru: 'Добрый день', en: 'Good afternoon' }) : t({ uk: 'Добрий вечір', ru: 'Добрый вечер', en: 'Good evening' });
 
@@ -44,6 +59,21 @@ export default function TeacherToday() {
         <Link href="/teacher/schedule" className="t-stat t-stat--sky"><b>{todays.length}</b><span>{t({ uk: 'занять сьогодні', ru: 'занятий сегодня', en: 'lessons today' })}</span></Link>
         <Link href="/teacher/schedule" className="t-stat t-stat--mustard"><b>{week.length}</b><span>{t({ uk: 'на 7 днів', ru: 'на 7 дней', en: 'next 7 days' })}</span></Link>
         <Link href="/teacher/payments" className="t-stat t-stat--tomato"><b>{debtors.length}</b><span>{t({ uk: 'чекають оплату', ru: 'ждут оплату', en: 'awaiting payment' })}</span></Link>
+      </div>
+
+      <div className="t-card t-earn">
+        <h2><Icon id="d-money" />{t({ uk: 'Заробіток', ru: 'Заработок', en: 'Earnings' })}</h2>
+        <div className="t-earn__grid">
+          <div className="t-earn__main">
+            <small>{t({ uk: 'Цей тиждень', ru: 'Эта неделя', en: 'This week' })}</small>
+            <b>{fmtMoney(sum(thisWeek), t.lang)}</b>
+            <span>{thisWeek.length} {lessonsWord(thisWeek.length)} {t({ uk: 'проведено', ru: 'проведено', en: 'done' })}{ahead.length ? ` · ${t({ uk: 'ще', ru: 'ещё', en: 'plus' })} ${fmtMoney(sum(ahead), t.lang)} ${t({ uk: 'до неділі', ru: 'до воскресенья', en: 'by Sunday' })}` : ''}</span>
+          </div>
+          <div><small>{t({ uk: 'Минулий тиждень', ru: 'Прошлая неделя', en: 'Last week' })}</small><b>{fmtMoney(sum(lastWeek), t.lang)}</b><span>{lastWeek.length} {lessonsWord(lastWeek.length)}</span></div>
+          <div><small>{t({ uk: 'Цей місяць', ru: 'Этот месяц', en: 'This month' })}</small><b>{fmtMoney(sum(thisMonth), t.lang)}</b><span>{thisMonth.length} {lessonsWord(thisMonth.length)}</span></div>
+          <div><small>{t({ uk: 'Отримано оплат за тиждень', ru: 'Получено оплат за неделю', en: 'Payments received this week' })}</small><b>{fmtMoney(paidWeek, t.lang)}</b></div>
+        </div>
+        <p className="t-muted">{t({ uk: 'Рахуємо уроки зі статусом «Був» за ціною учня. «Не прийшов» і «Скасовано» не враховуються.', ru: 'Считаем уроки со статусом «Был» по цене ученика. «Не пришёл» и «Отменён» не учитываются.', en: 'We count lessons marked “Done” at each student’s price. No-shows and cancellations are not counted.' })}</p>
       </div>
 
       {!data.students.length && (
