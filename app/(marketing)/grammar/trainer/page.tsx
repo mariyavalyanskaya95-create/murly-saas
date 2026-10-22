@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import SectionTabs from '@/components/SectionTabs';
 import type { Metadata } from 'next';
 import Icon from '@/components/Icon';
 import Stickers from '@/components/Stickers';
@@ -23,6 +24,7 @@ export default function TrainerIndex() {
   return (
     <>
       <SiteNav />
+      <SectionTabs group="grammar" active="/grammar/trainer" />
       <section className="mu-page-hero" data-stickers="6">
         <div className="mu-container">
           <span className="mu-section__eyebrow"><Icon id="e-trophy" />{L({ uk: 'Граматика', ru: 'Грамматика', en: 'Grammar' })}</span>
