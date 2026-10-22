@@ -11,13 +11,15 @@ const pick = (o: Row, keys: string[]) => Object.fromEntries(keys.filter((k) => k
 
 // camelCase у застосунку ↔ snake_case у базі
 const toDb = {
-  student: (s: Row, t: string) => ({ id: s.id, teacher_id: t, name: s.name, level: s.level, price: s.price, contact: s.contact ?? null, parent: s.parent ?? null, link: s.link ?? null, color: s.color, song: s.song ?? null, song_url: s.songUrl ?? null, about: s.about ?? null, pay_mode: s.payMode ?? 'pre', is_adult: Boolean(s.adult), nmt: Boolean(s.nmt), created_at: s.createdAt }),
+  student: (s: Row, t: string) => ({ id: s.id, teacher_id: t, name: s.name, level: s.level, price: s.price, contact: s.contact ?? null, parent: s.parent ?? null, link: s.link ?? null, color: s.color, song: s.song ?? null, song_url: s.songUrl ?? null, about: s.about ?? null, pay_mode: s.payMode ?? 'pre', is_adult: Boolean(s.adult), nmt: Boolean(s.nmt), owed_lessons: Number(s.owedLessons) || 0, prepaid_lessons: Number(s.prepaidLessons) || 0, created_at: s.createdAt }),
   studentPatch: (p: Row) => {
     const o: Row = pick(p, ['name', 'level', 'price', 'contact', 'parent', 'link', 'color', 'song', 'about']);
     if ('songUrl' in p) o.song_url = p.songUrl ?? null;
     if ('payMode' in p) o.pay_mode = p.payMode === 'post' ? 'post' : 'pre';
     if ('adult' in p) o.is_adult = Boolean(p.adult);
     if ('nmt' in p) o.nmt = Boolean(p.nmt);
+    if ('owedLessons' in p) o.owed_lessons = Math.max(0, Math.round(Number(p.owedLessons) || 0));
+    if ('prepaidLessons' in p) o.prepaid_lessons = Math.max(0, Math.round(Number(p.prepaidLessons) || 0));
     for (const k of ['contact', 'parent', 'link', 'song', 'about']) if (k in p && p[k] === undefined) o[k] = null;
     return o;
   },
@@ -38,7 +40,7 @@ const toDb = {
 };
 const und = (v: unknown) => (v === null ? undefined : v);
 const fromDb = {
-  student: (r: Row) => ({ id: r.id, name: r.name, level: r.level, price: r.price, contact: und(r.contact), parent: und(r.parent), link: und(r.link), color: r.color, createdAt: r.created_at, inviteCode: und(r.invite_code), joined: Boolean(r.user_id), song: und(r.song), songUrl: und(r.song_url), about: und(r.about), payMode: r.pay_mode === 'post' ? 'post' : 'pre', loginPhone: und(r.login_phone), loginPin: und(r.login_pin), adult: Boolean(r.is_adult), nmt: Boolean(r.nmt) }),
+  student: (r: Row) => ({ id: r.id, name: r.name, level: r.level, price: r.price, contact: und(r.contact), parent: und(r.parent), link: und(r.link), color: r.color, createdAt: r.created_at, inviteCode: und(r.invite_code), joined: Boolean(r.user_id), song: und(r.song), songUrl: und(r.song_url), about: und(r.about), payMode: r.pay_mode === 'post' ? 'post' : 'pre', loginPhone: und(r.login_phone), loginPin: und(r.login_pin), adult: Boolean(r.is_adult), nmt: Boolean(r.nmt), owedLessons: Number(r.owed_lessons) || 0, prepaidLessons: Number(r.prepaid_lessons) || 0 }),
   lesson: (r: Row) => ({ id: r.id, studentId: r.student_id, start: r.start, duration: r.duration, topic: und(r.topic), link: und(r.link), status: r.status }),
   note: (r: Row) => ({ id: r.id, studentId: r.student_id, text: r.text, at: r.at, images: und(r.images), files: und(r.files) }),
   word: (r: Row) => ({ id: r.id, studentId: r.student_id, en: r.en, uk: r.uk, example: und(r.example), at: r.at }),
