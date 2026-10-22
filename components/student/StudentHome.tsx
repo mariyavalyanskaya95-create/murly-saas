@@ -109,13 +109,63 @@ export default function StudentHome({ enrollments, name }: { enrollments: Enroll
         </div>
       </section>
 
-      {e.loginPin && (
-        <section className="t-card s-login">
-          <h2><Icon id="d-lock" />{t({ uk: 'Мій вхід', ru: 'Мой вход', en: 'My login' })}</h2>
-          <p>{t({ uk: 'Номер', ru: 'Номер', en: 'Number' })}: <b>{e.loginPhone ? `+${e.loginPhone}` : ''}</b> · PIN: <b className="t-login__pin">{e.loginPin}</b></p>
-          <p className="t-muted">{t({ uk: 'Запам’ятай або запиши. Входити тут: murly.com.ua/login', ru: 'Запомни или запиши. Входить здесь: murly.com.ua/login', en: 'Remember or write it down. Log in at murly.com.ua/login' })}</p>
+      {e.materials.length > 0 && (
+        <section className="t-card">
+          <h2><Icon id="e-book" />{t({ uk: 'Матеріали з уроків', ru: 'Материалы с уроков', en: 'Lesson materials' })}</h2>
+          {e.materials.map((m, i) => (
+            <div key={i} className="s-mat">
+              <small className="t-muted">{fmtDay(m.at, lang)}</small>
+              <div className="t-docs">{m.files.map((f) => <a key={f.url} href={f.url} target="_blank" rel="noreferrer" className="t-doc"><Icon id="e-book" />{f.name}</a>)}</div>
+            </div>
+          ))}
         </section>
       )}
+
+      <MyLogin key={e.studentId} phone={e.loginPhone} pin={e.loginPin} />
     </div>
+  );
+}
+
+// «Мій вхід»: номер і PIN, щоб заходити з будь-якого пристрою без пароля
+function MyLogin({ phone: phone0, pin: pin0 }: { phone?: string; pin?: string }) {
+  const t = useT();
+  const [cur, setCur] = useState({ phone: phone0, pin: pin0 });
+  const [open, setOpen] = useState(false);
+  const [phone, setPhone] = useState(phone0 ? `+${phone0}` : '');
+  const [pin, setPin] = useState(pin0 ?? '');
+  const [busy, setBusy] = useState(false);
+  const [err, setErr] = useState('');
+  const save = async (ev: React.FormEvent) => {
+    ev.preventDefault(); setBusy(true); setErr('');
+    const r = await fetch('/api/student', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ op: 'setPin', phone, pin }) }).catch(() => null);
+    const j = r ? await r.json().catch(() => ({})) : {};
+    setBusy(false);
+    if (r && r.ok) { setCur({ phone: j.phone, pin: j.pin }); setOpen(false); return; }
+    setErr(j.error === 'bad_phone' ? t({ uk: 'Перевір номер телефону.', ru: 'Проверь номер телефона.', en: 'Check the phone number.' })
+      : j.error === 'bad_pin' ? t({ uk: 'PIN: від 4 до 8 цифр або латинських літер.', ru: 'PIN: от 4 до 8 цифр или латинских букв.', en: 'PIN: 4 to 8 digits or Latin letters.' })
+      : j.error === 'pin_taken' ? t({ uk: 'Такий PIN на цьому номері вже зайнятий, обери інший.', ru: 'Такой PIN на этом номере уже занят, выбери другой.', en: 'This PIN is taken for this number, pick another.' })
+      : t({ uk: 'Не вдалося зберегти. Спробуй ще раз.', ru: 'Не удалось сохранить. Попробуй ещё раз.', en: 'Could not save. Please try again.' }));
+  };
+  return (
+    <section className="t-card s-login">
+      <h2><Icon id="d-lock" />{t({ uk: 'Мій вхід', ru: 'Мой вход', en: 'My login' })}</h2>
+      {cur.pin && !open ? (
+        <>
+          <p>{t({ uk: 'Номер', ru: 'Номер', en: 'Number' })}: <b>{cur.phone ? `+${cur.phone}` : ''}</b> · PIN: <b className="t-login__pin">{cur.pin}</b></p>
+          <p className="t-muted">{t({ uk: 'З будь-якого телефону чи компʼютера: murly.com.ua/login, номер і PIN.', ru: 'С любого телефона или компьютера: murly.com.ua/login, номер и PIN.', en: 'From any phone or computer: murly.com.ua/login, number and PIN.' })}</p>
+          <button type="button" className="t-link-btn" onClick={() => setOpen(true)}>{t({ uk: 'Змінити', ru: 'Изменить', en: 'Change' })}</button>
+        </>
+      ) : (
+        <>
+          <p className="t-muted">{t({ uk: 'Щоб заходити з будь-якого пристрою без пароля, придумай простий PIN (наприклад 4 цифри). Його бачиш ти і твій учитель.', ru: 'Чтобы входить с любого устройства без пароля, придумай простой PIN (например 4 цифры). Его видишь ты и твой учитель.', en: 'To log in from any device without a password, make up a simple PIN (for example 4 digits). You and your teacher can see it.' })}</p>
+          <form className="t-login__form" onSubmit={save}>
+            <label>{t({ uk: 'Номер телефону', ru: 'Номер телефона', en: 'Phone number' })}<input type="tel" value={phone} onChange={(ev) => setPhone(ev.target.value)} placeholder="+380 67 123 45 67" required /></label>
+            <label>PIN<input value={pin} onChange={(ev) => setPin(ev.target.value.trim())} maxLength={8} required className="t-login__pin" /></label>
+            <button type="submit" className="mu-btn mu-btn--lime t-btn-sm" disabled={busy}>{busy ? '…' : t({ uk: 'Зберегти', ru: 'Сохранить', en: 'Save' })}</button>
+          </form>
+          {err && <p className="t-neg">{err}</p>}
+        </>
+      )}
+    </section>
   );
 }
