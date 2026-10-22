@@ -13,6 +13,7 @@ export default function LoginPage() {
   const t = tr();
   return (
     <AuthShell
+      pinLink={false}
       title={<>{t({ uk: 'Привіт', ru: 'Привет', en: 'Hi there' })}<em>!</em></>}
       lead={t({ uk: 'Без пошти і складних паролів: номер телефону і PIN.', ru: 'Без почты и сложных паролей: номер телефона и PIN.', en: 'No email, no hard passwords: just a phone number and a PIN.' })}
       points={[
