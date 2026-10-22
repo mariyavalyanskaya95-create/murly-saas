@@ -20,7 +20,7 @@ const toDb = {
   },
   lesson: (l: Row, t: string) => ({ id: l.id, teacher_id: t, student_id: l.studentId, start: l.start, duration: l.duration, topic: l.topic ?? null, link: l.link ?? null, status: l.status }),
   lessonPatch: (p: Row) => pick(p, ['start', 'duration', 'topic', 'link', 'status']),
-  note: (n: Row, t: string) => ({ id: n.id, teacher_id: t, student_id: n.studentId, text: n.text, at: n.at, images: n.images ?? null }),
+  note: (n: Row, t: string) => ({ id: n.id, teacher_id: t, student_id: n.studentId, text: n.text, at: n.at, images: n.images ?? null, files: n.files ?? null }),
   word: (w: Row, t: string) => ({ id: w.id, teacher_id: t, student_id: w.studentId, en: w.en, uk: w.uk, example: w.example ?? null, at: w.at }),
   payment: (p: Row, t: string) => ({ id: p.id, teacher_id: t, student_id: p.studentId, amount: p.amount, note: p.note ?? null, at: p.at }),
   homework: (h: Row, t: string) => ({ id: h.id, teacher_id: t, student_id: h.studentId, title: h.title, instructions: h.instructions ?? null, kind: h.kind, game: h.game ?? null, direction: h.direction ?? null, items: h.items ?? null, due: h.due ?? null, status: h.status ?? 'assigned', created_at: h.createdAt }),
@@ -37,7 +37,7 @@ const und = (v: unknown) => (v === null ? undefined : v);
 const fromDb = {
   student: (r: Row) => ({ id: r.id, name: r.name, level: r.level, price: r.price, contact: und(r.contact), parent: und(r.parent), link: und(r.link), color: r.color, createdAt: r.created_at, inviteCode: und(r.invite_code), joined: Boolean(r.user_id), song: und(r.song), songUrl: und(r.song_url), about: und(r.about), payMode: r.pay_mode === 'post' ? 'post' : 'pre', loginPhone: und(r.login_phone), loginPin: und(r.login_pin) }),
   lesson: (r: Row) => ({ id: r.id, studentId: r.student_id, start: r.start, duration: r.duration, topic: und(r.topic), link: und(r.link), status: r.status }),
-  note: (r: Row) => ({ id: r.id, studentId: r.student_id, text: r.text, at: r.at, images: und(r.images) }),
+  note: (r: Row) => ({ id: r.id, studentId: r.student_id, text: r.text, at: r.at, images: und(r.images), files: und(r.files) }),
   word: (r: Row) => ({ id: r.id, studentId: r.student_id, en: r.en, uk: r.uk, example: und(r.example), at: r.at }),
   payment: (r: Row) => ({ id: r.id, studentId: r.student_id, amount: r.amount, note: und(r.note), at: r.at }),
   plan: (r: Row) => ({ id: r.id, title: r.title, level: r.level, age: r.age, topic: und(r.topic), color: r.color, blocks: r.blocks ?? [], source: und(r.source), focus: und(r.focus), aims: und(r.aims), createdAt: r.created_at, updatedAt: r.updated_at }),
@@ -104,7 +104,7 @@ export async function POST(req: Request) {
       case 'updateLesson': await db.update('lessons', t, id, toDb.lessonPatch(p.patch as Row)); break;
       case 'removeLesson': await db.remove('lessons', t, id); break;
       case 'addNote': await db.insert('notes', [toDb.note(p, t)]); break;
-      case 'updateNote': await db.update('notes', t, id, pick(p.patch as Row, ['text', 'images', 'at'])); break;
+      case 'updateNote': await db.update('notes', t, id, pick(p.patch as Row, ['text', 'images', 'files', 'at'])); break;
       case 'removeNote': await db.remove('notes', t, id); break;
       case 'addWord': await db.insert('words', [toDb.word(p, t)]); break;
       case 'removeWord': await db.remove('words', t, id); break;
