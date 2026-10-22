@@ -17,6 +17,7 @@ export type StudentHomework = {
 export type Enrollment = {
   studentId: string; name: string; level: string; teacherName: string;
   loginPhone?: string; loginPin?: string;
+  adult: boolean; nmt: boolean;
   materials: { at: string; files: { url: string; name: string }[] }[];
   lessons: StudentLesson[]; words: StudentWord[]; homework: StudentHomework[];
 };
@@ -77,6 +78,7 @@ export async function getEnrollments(userId: string): Promise<Enrollment[]> {
       level: String(s.level),
       teacherName: String(settings[0]?.name || ''),
       loginPhone: s.login_phone ? String(s.login_phone) : undefined,
+      adult: Boolean(s.is_adult), nmt: Boolean(s.nmt),
       loginPin: s.login_pin ? String(s.login_pin) : undefined,
       // документи, з якими працювали на уроках (текст нотаток учню не показуємо)
       materials: notes.map((n) => ({ at: String(n.at), files: ((n.files as { url: string; name: string }[] | null) ?? []).filter((f) => f && f.url) })).filter((m) => m.files.length),
@@ -146,4 +148,12 @@ export async function setOwnPin(userId: string, phone: string, pin: string): Pro
   if (same.length) return 'pin_taken';
   await db.patchWhere(`students?user_id=eq.${enc(userId)}`, { login_phone: phone, login_pin: pin, pin_fails: 0, pin_locked_until: null });
   return 'ok';
+}
+
+// Що показувати учню: монетки (не дорослим) і НМТ (якщо вчитель позначив)
+export async function studentFlags(userId: string): Promise<{ adult: boolean; nmt: boolean; any: boolean }> {
+  if (!dbReady()) return { adult: false, nmt: true, any: false };
+  const rows = await db.query(`students?user_id=eq.${enc(userId)}&select=is_adult,nmt`).catch(() => []);
+  if (!rows.length) return { adult: false, nmt: true, any: false };
+  return { adult: rows.every((r) => r.is_adult), nmt: rows.some((r) => r.nmt), any: true };
 }

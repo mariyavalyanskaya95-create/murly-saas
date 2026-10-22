@@ -11,6 +11,7 @@ export type Student = {
   contact?: string; parent?: string; link?: string; color: string; createdAt: string;
   inviteCode?: string; joined?: boolean;
   loginPhone?: string; loginPin?: string; // вхід учня за номером і PIN
+  adult?: boolean; nmt?: boolean; // дорослий: без монеток; nmt: показувати НМТ
   song?: string; songUrl?: string; about?: string; // заповнює вчитель
   payMode?: 'pre' | 'post'; // pre: платить наперед пакетом, post: платить після занять
   nick?: string; avatar?: string; image?: string; selfSong?: string; selfSongUrl?: string; selfAbout?: string; // з профілю учня (лише для показу)
