@@ -8,6 +8,7 @@ import Icon from './Icon';
 import { LangSwitch, useT } from './LangProvider';
 import type { T } from '@/lib/i18n';
 import Kit from '@/components/Kit';
+import { SKILLS, type SkillId } from '@/lib/skills';
 
 // Головні розділи: видно завжди
 const TOP: { href: string; label: T }[] = [
@@ -22,9 +23,6 @@ const MENU: { title: T; items: { href: string; icon: string; label: T; text: T; 
   {
     title: { uk: 'Вчитися самому', ru: 'Учиться самому', en: 'Learn on your own' },
     items: [
-      { href: '/grammar', icon: 'e-abc', label: { uk: 'Граматика', ru: 'Грамматика', en: 'Grammar' }, text: { uk: 'Правила, тренажери на 100 завдань, неправильні дієслова й ігри', ru: 'Правила, тренажёры на 100 заданий, неправильные глаголы и игры', en: 'Rules, 100-task trainers, irregular verbs and games' } },
-      { href: '/stories', icon: 'e-book', label: { uk: 'Читання і слухання', ru: 'Чтение и аудирование', en: 'Reading and listening' }, text: { uk: 'Історії, тексти для обговорення, аудіо, скоромовки', ru: 'Истории, тексты для обсуждения, аудио, скороговорки', en: 'Stories, texts to discuss, audio, tongue twisters' } },
-      { href: '/quiz/teen-life', icon: 'e-speak', label: { uk: 'Квізи', ru: 'Квизы', en: 'Quizzes' }, text: { uk: 'Короткі тести на 5 хвилин', ru: 'Короткие тесты на 5 минут', en: 'Short 5-minute tests' } },
       { href: '/worlds', icon: 'd-rocket', label: { uk: 'Murly Town', ru: 'Murly Town', en: 'Murly Town' }, text: { uk: '3D-містечко, де все англійською', ru: '3D-городок, где всё на английском', en: 'A 3D town where everything is in English' } },
     ],
   },
@@ -105,8 +103,9 @@ export default function SiteNav() {
           </div>
           <div className="mu-mega__grid">
             {MENU.map((g) => (
-              <div key={g.title.uk} className="mu-mega__col">
+              <div key={g.title.uk} className={`mu-mega__col ${g.title.uk === 'Вчитися самому' ? 'mu-mega__col--skills' : ''}`}>
                 <h3>{t(g.title)}</h3>
+                {g.title.uk === 'Вчитися самому' && <SkillMenu onGo={() => setOpen(false)} />}
                 {g.items.map((it) => (
                   <Link key={it.label.uk} href={it.href} className={`mu-mega__item ${it.soon ? 'is-soon' : ''}`} onClick={() => setOpen(false)}>
                     <span className="mu-mega__ic"><Icon id={it.icon} /></span>
@@ -125,5 +124,30 @@ export default function SiteNav() {
         </div>
       )}
     </nav>
+  );
+}
+
+// Як у British Council: ліворуч навичка, праворуч її рівні A1-C1
+function SkillMenu({ onGo }: { onGo: () => void }) {
+  const t = useT();
+  const [cur, setCur] = useState<SkillId>('reading');
+  const sk = SKILLS.find((x) => x.id === cur)!;
+  return (
+    <div className="sk-menu">
+      <ul className="sk-menu__list" role="list">
+        {SKILLS.map((x) => (
+          <li key={x.id}>
+            <button type="button" className={`sk-menu__skill ${cur === x.id ? 'is-on' : ''}`} onMouseEnter={() => setCur(x.id)} onFocus={() => setCur(x.id)} onClick={() => setCur(x.id)} aria-expanded={cur === x.id}>
+              <Icon id={x.icon} /><span>{t(x.label)}</span><span className="sk-menu__arrow" aria-hidden="true">›</span>
+            </button>
+          </li>
+        ))}
+      </ul>
+      <div className="sk-menu__levels">
+        <Link href={`/learn/${sk.id}`} className="sk-menu__all" onClick={onGo}>{t(sk.label)}: {t({ uk: 'усі рівні', ru: 'все уровни', en: 'all levels' })}</Link>
+        {sk.levels.map((l) => <Link key={l} href={`/learn/${sk.id}?level=${l}`} className="sk-menu__lv" onClick={onGo}>{l} {t(sk.label).toLowerCase()}</Link>)}
+        <Link href="/learn" className="sk-menu__hub" onClick={onGo}>{t({ uk: 'Усі навички', ru: 'Все навыки', en: 'All skills' })} →</Link>
+      </div>
+    </div>
   );
 }
