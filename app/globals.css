@@ -2511,3 +2511,7 @@ a.t-doc:hover { background: var(--mu-lime); }
 .t-earn__main { background: var(--mu-lime) !important; }
 .t-earn__main b { font-size: 28px; }
 @media (max-width: 900px) { .t-earn__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.t-aud { display: grid; gap: 6px; }
+.s-jump { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+.s-jump .mu-ic { width: 18px; height: 18px; }
+#homework, #words, #materials { scroll-margin-top: 90px; }
