@@ -221,3 +221,10 @@ alter table students add column if not exists pay_mode text not null default 'pr
 -- 2026-10-21: статус уроку «не прийшов»
 alter table lessons drop constraint if exists lessons_status_check;
 alter table lessons add constraint lessons_status_check check (status in ('planned', 'done', 'missed', 'cancelled'));
+
+-- 2026-10-22: вхід учня за номером телефону і PIN
+alter table students add column if not exists login_phone text;
+alter table students add column if not exists login_pin text;
+alter table students add column if not exists pin_fails int not null default 0;
+alter table students add column if not exists pin_locked_until timestamptz;
+create index if not exists students_login_phone_idx on students (login_phone);
