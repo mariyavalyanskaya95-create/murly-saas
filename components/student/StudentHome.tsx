@@ -24,6 +24,7 @@ export default function StudentHome({ enrollments, name }: { enrollments: Enroll
   const [play, setPlay] = useState(false);
   // гра зі словами: 1 монетка за кожну правильну відповідь (до 10 за гру, до 40 на день)
   const earnWords = (score: number) => {
+    if (e.adult) return;
     const n = Math.min(10, Math.max(0, Math.round(score)));
     if (!n) return;
     fetch('/api/coins', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ op: 'earn', amount: n, source: 'words', reason: 'word game' }) })
@@ -51,6 +52,12 @@ export default function StudentHome({ enrollments, name }: { enrollments: Enroll
         )}
       </div>
 
+      <nav className="s-jump" aria-label={t({ uk: 'Швидкий перехід', ru: 'Быстрый переход', en: 'Quick links' })}>
+        <a href="#homework" className="mu-btn mu-btn--lime"><Icon id="e-board" />{t({ uk: 'Домашка', ru: 'Домашка', en: 'Homework' })}{e.homework.filter((h) => h.status === 'assigned').length ? ` (${e.homework.filter((h) => h.status === 'assigned').length})` : ''}</a>
+        <a href="#words" className="mu-btn"><Icon id="e-abc" />{t({ uk: 'Мій словник', ru: 'Мой словарь', en: 'My dictionary' })}</a>
+        {e.materials.length > 0 && <a href="#materials" className="mu-btn"><Icon id="e-book" />{t({ uk: 'Матеріали з уроків', ru: 'Материалы с уроков', en: 'Lesson materials' })}</a>}
+      </nav>
+
       <section className={`t-card s-next ${next ? '' : 's-next--empty'}`}>
         <h2><Icon id="e-cal" />{t({ uk: 'Наступне заняття', ru: 'Следующее занятие', en: 'Next lesson' })}</h2>
         {next ? (
@@ -76,11 +83,11 @@ export default function StudentHome({ enrollments, name }: { enrollments: Enroll
         )}
       </section>
 
-      <CoinsCard />
+      {!e.adult && <CoinsCard />}
 
       <HomeworkList key={e.studentId} homework={e.homework} words={e.words} />
 
-      <section className="t-card">
+      <section className="t-card" id="words">
         <div className="t-card__head">
           <h2><Icon id="e-abc" />{t({ uk: 'Мій словник', ru: 'Мой словарь', en: 'My dictionary' })} ({e.words.length})</h2>
           {e.words.length >= 4 && (
@@ -110,7 +117,7 @@ export default function StudentHome({ enrollments, name }: { enrollments: Enroll
       </section>
 
       {e.materials.length > 0 && (
-        <section className="t-card">
+        <section className="t-card" id="materials">
           <h2><Icon id="e-book" />{t({ uk: 'Матеріали з уроків', ru: 'Материалы с уроков', en: 'Lesson materials' })}</h2>
           {e.materials.map((m, i) => (
             <div key={i} className="s-mat">

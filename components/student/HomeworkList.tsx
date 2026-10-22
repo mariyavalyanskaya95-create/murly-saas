@@ -35,7 +35,7 @@ export default function HomeworkList({ homework, words }: { homework: StudentHom
   if (!list.length) return null;
 
   return (
-    <section className="t-card s-hw">
+    <section className="t-card s-hw" id="homework">
       <h2><Icon id="e-board" />{t({ uk: 'Домашка', ru: 'Домашка', en: 'Homework' })}{todo.length ? ` (${todo.length})` : ''}</h2>
       {!todo.length && <p className="t-muted">{t({ uk: 'Усе здано. Молодець!', ru: 'Всё сдано. Молодец!', en: 'All done. Well done!' })}</p>}
       {[...todo, ...done].map((h) => (
