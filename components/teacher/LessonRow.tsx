@@ -1,16 +1,29 @@
 'use client';
 import Link from 'next/link';
+import { useState } from 'react';
 import Icon from '../Icon';
 import { Lesson, fmtDate, fmtTime, lessonLink, useTeacher } from '@/lib/teacher-store';
 import { useT } from '../LangProvider';
 
 export default function LessonRow({ l, showStudent = true, showDate = true }: { l: Lesson; showStudent?: boolean; showDate?: boolean }) {
   const t = useT();
-  const { data, setLessonStatus, removeLesson } = useTeacher();
+  const { data, setLessonStatus, removeLesson, addLessons } = useTeacher();
+  const [dup, setDup] = useState<string | null>(null); // дата для копії заняття
   const st = data.students.find((s) => s.id === l.studentId);
   const link = lessonLink(data, l);
   const past = new Date(l.start).getTime() + l.duration * 60000 < Date.now();
   const started = new Date(l.start).getTime() <= Date.now(); // «був / не прийшов» можна відмітити тільки коли урок уже почався
+
+  const iso = (d: Date) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+  const openDup = () => { const d = new Date(l.start); d.setDate(d.getDate() + 7); setDup(iso(d)); };
+  const makeDup = () => {
+    if (!dup) return;
+    const s0 = new Date(l.start);
+    const [y, m, dd] = dup.split('-').map(Number);
+    const n = new Date(y, m - 1, dd, s0.getHours(), s0.getMinutes());
+    addLessons({ studentId: l.studentId, start: n.toISOString(), duration: l.duration, topic: l.topic, link: l.link });
+    setDup(null);
+  };
 
   return (
     <div className={`t-lesson is-${l.status}`}>
@@ -41,6 +54,15 @@ export default function LessonRow({ l, showStudent = true, showDate = true }: { 
         {l.status !== 'planned' && (
           <button className="t-icon-btn" onClick={() => setLessonStatus(l.id, 'planned')} aria-label={t({ uk: 'Змінити статус', ru: 'Изменить статус', en: 'Change status' })} title={t({ uk: 'Змінити статус', ru: 'Изменить статус', en: 'Change status' })}>↺</button>
         )}
+        {dup === null
+          ? <button className="t-icon-btn" onClick={openDup} aria-label={t({ uk: 'Дублювати заняття', ru: 'Дублировать занятие', en: 'Duplicate lesson' })} title={t({ uk: 'Дублювати: той самий час в інший день', ru: 'Дублировать: то же время в другой день', en: 'Duplicate: same time, another day' })}>⧉</button>
+          : (
+            <span className="t-dup">
+              <input type="date" value={dup} onChange={(e) => setDup(e.target.value)} aria-label={t({ uk: 'Дата копії', ru: 'Дата копии', en: 'Copy date' })} />
+              <button className="mu-btn mu-btn--lime t-btn-sm" onClick={makeDup}>{t({ uk: 'Додати', ru: 'Добавить', en: 'Add' })} {fmtTime(l.start, t.lang)}</button>
+              <button className="t-icon-btn" onClick={() => setDup(null)} aria-label={t({ uk: 'Скасувати', ru: 'Отмена', en: 'Cancel' })}>✕</button>
+            </span>
+          )}
         {(l.status === 'cancelled' || l.status === 'missed') && (
           <button className="t-link-btn" onClick={() => removeLesson(l.id)}>{t({ uk: 'Видалити', ru: 'Удалить', en: 'Delete' })}</button>
         )}

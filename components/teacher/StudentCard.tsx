@@ -460,8 +460,8 @@ function PayTab({ id }: { id: string }) {
   const [amount, setAmount] = useState(String(post ? (owed0 || s.price || '') : (s.price * 4 || '')));
   const [note, setNote] = useState('');
   const pays = data.payments.filter((p) => p.studentId === id);
-  const done = data.lessons.filter((l) => l.studentId === id && l.status === 'done').length;
-  const paid = pays.reduce((n, p) => n + p.amount, 0);
+  const done = data.lessons.filter((l) => l.studentId === id && l.status === 'done').length + (s.owedLessons ?? 0);
+  const paid = pays.reduce((n, p) => n + p.amount, 0) + (s.prepaidLessons ?? 0) * s.price;
   const b = balanceOf(data, id);
   const lessonsLeft = s.price ? Math.floor(b / s.price) : 0;
 
@@ -509,7 +509,7 @@ function ProfileTab({ id, onDelete }: { id: string; onDelete: () => void }) {
   const t = useT();
   const { data, updateStudent } = useTeacher();
   const s = data.students.find((x) => x.id === id)!;
-  const [f, setF] = useState({ name: s.name, level: s.level, price: String(s.price), contact: s.contact ?? '', parent: s.parent ?? '', link: s.link ?? '', song: s.song ?? '', songUrl: s.songUrl ?? '', about: s.about ?? '', payMode: s.payMode ?? 'pre' });
+  const [f, setF] = useState({ owed: String(s.owedLessons ?? 0), prepaid: String(s.prepaidLessons ?? 0), name: s.name, level: s.level, price: String(s.price), contact: s.contact ?? '', parent: s.parent ?? '', link: s.link ?? '', song: s.song ?? '', songUrl: s.songUrl ?? '', about: s.about ?? '', payMode: s.payMode ?? 'pre' });
   const [saved, setSaved] = useState(false);
   const [confirm, setConfirm] = useState(false);
   const [adult, setAdult] = useState(Boolean(s.adult));
@@ -522,7 +522,7 @@ function ProfileTab({ id, onDelete }: { id: string; onDelete: () => void }) {
       <h2>{t({ uk: 'Профіль учня', ru: 'Профиль ученика', en: 'Student profile' })}</h2>
       <form className="t-form" onSubmit={(e) => {
         e.preventDefault();
-        updateStudent(id, { name: f.name.trim() || s.name, level: f.level, price: Number(f.price) || 0, contact: f.contact.trim() || undefined, parent: f.parent.trim() || undefined, link: f.link.trim() || undefined, song: f.song.trim() || undefined, songUrl: f.songUrl.trim() || undefined, about: f.about.trim() || undefined, payMode: f.payMode === 'post' ? 'post' : 'pre', adult, nmt });
+        updateStudent(id, { name: f.name.trim() || s.name, level: f.level, price: Number(f.price) || 0, contact: f.contact.trim() || undefined, parent: f.parent.trim() || undefined, link: f.link.trim() || undefined, song: f.song.trim() || undefined, songUrl: f.songUrl.trim() || undefined, about: f.about.trim() || undefined, payMode: f.payMode === 'post' ? 'post' : 'pre', adult, nmt, owedLessons: Math.max(0, Number(f.owed) || 0), prepaidLessons: Math.max(0, Number(f.prepaid) || 0) });
         setSaved(true);
       }}>
         <AudienceToggles adult={adult} nmt={nmt} onAdult={(v) => { setAdult(v); setSaved(false); }} onNmt={(v) => { setNmt(v); setSaved(false); }} />
@@ -533,6 +533,12 @@ function ProfileTab({ id, onDelete }: { id: string; onDelete: () => void }) {
           <option value="pre">{t({ uk: 'Наперед (пакетом)', ru: 'Заранее (пакетом)', en: 'In advance (pack)' })}</option>
           <option value="post">{t({ uk: 'Після занять', ru: 'После занятий', en: 'After lessons' })}</option>
         </select></label>
+        <fieldset className="t-form__wide t-start">
+          <legend>{t({ uk: 'Стартовий баланс (уроки до Murly)', ru: 'Стартовый баланс (уроки до Murly)', en: 'Opening balance (lessons before Murly)' })}</legend>
+          <label>{t({ uk: 'Проведено, але ще не оплачено, уроків', ru: 'Проведено, но ещё не оплачено, уроков', en: 'Taught but not paid yet, lessons' })}<input type="number" min="0" value={f.owed} onChange={set('owed')} /></label>
+          <label>{t({ uk: 'Оплачено наперед, уроків', ru: 'Оплачено наперёд, уроков', en: 'Paid in advance, lessons' })}<input type="number" min="0" value={f.prepaid} onChange={set('prepaid')} /></label>
+          <small className="t-muted">{t({ uk: 'Додається до балансу за ціною заняття. Нові уроки й оплати рахуються як завжди.', ru: 'Добавляется к балансу по цене занятия. Новые уроки и оплаты считаются как обычно.', en: 'Added to the balance at the lesson price. New lessons and payments count as usual.' })}</small>
+        </fieldset>
         <label>{t({ uk: 'Контакт учня', ru: 'Контакт ученика', en: 'Student contact' })}<input value={f.contact} onChange={set('contact')} /></label>
         <label>{t({ uk: 'Контакт батьків', ru: 'Контакт родителей', en: 'Parent contact' })}<input value={f.parent} onChange={set('parent')} /></label>
         <label className="t-form__wide">{t({ uk: 'Посилання на дзвінок', ru: 'Ссылка на звонок', en: 'Call link' })}<input value={f.link} onChange={set('link')} placeholder={t({ uk: 'Порожньо: твоє посилання з налаштувань', ru: 'Пусто: твоя ссылка из настроек', en: 'Empty: your link from Settings' })} /></label>
