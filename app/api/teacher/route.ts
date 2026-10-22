@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { auth, clerkClient } from '@clerk/nextjs/server';
 import { db, dbReady } from '@/lib/db';
+import { normPhone, validPhone, validPin } from '@/lib/pin-login';
 
 export const dynamic = 'force-dynamic';
 
@@ -34,7 +35,7 @@ const toDb = {
 };
 const und = (v: unknown) => (v === null ? undefined : v);
 const fromDb = {
-  student: (r: Row) => ({ id: r.id, name: r.name, level: r.level, price: r.price, contact: und(r.contact), parent: und(r.parent), link: und(r.link), color: r.color, createdAt: r.created_at, inviteCode: und(r.invite_code), joined: Boolean(r.user_id), song: und(r.song), songUrl: und(r.song_url), about: und(r.about), payMode: r.pay_mode === 'post' ? 'post' : 'pre' }),
+  student: (r: Row) => ({ id: r.id, name: r.name, level: r.level, price: r.price, contact: und(r.contact), parent: und(r.parent), link: und(r.link), color: r.color, createdAt: r.created_at, inviteCode: und(r.invite_code), joined: Boolean(r.user_id), song: und(r.song), songUrl: und(r.song_url), about: und(r.about), payMode: r.pay_mode === 'post' ? 'post' : 'pre', loginPhone: und(r.login_phone), loginPin: und(r.login_pin) }),
   lesson: (r: Row) => ({ id: r.id, studentId: r.student_id, start: r.start, duration: r.duration, topic: und(r.topic), link: und(r.link), status: r.status }),
   note: (r: Row) => ({ id: r.id, studentId: r.student_id, text: r.text, at: r.at, images: und(r.images) }),
   word: (r: Row) => ({ id: r.id, studentId: r.student_id, en: r.en, uk: r.uk, example: und(r.example), at: r.at }),
@@ -115,6 +116,30 @@ export async function POST(req: Request) {
         const code = Array.from(crypto.getRandomValues(new Uint8Array(8)), (b) => abc[b % abc.length]).join('');
         await db.update('students', t, id, { invite_code: code });
         return NextResponse.json({ ok: true, code });
+      }
+      case 'setLogin': {
+        // Вхід за телефоном і PIN: зберігаємо, а якщо учень ще не має акаунта, створюємо його в Clerk
+        const phone = normPhone(String(p.phone ?? ''));
+        const pin = String(p.pin ?? '').trim();
+        if (!phone && !pin) { await db.update('students', t, id, { login_phone: null, login_pin: null }); return NextResponse.json({ ok: true }); }
+        if (!validPhone(phone)) return NextResponse.json({ error: 'bad_phone' }, { status: 400 });
+        if (!validPin(pin)) return NextResponse.json({ error: 'bad_pin' }, { status: 400 });
+        const [row] = await db.query(`students?id=eq.${encodeURIComponent(id)}&teacher_id=eq.${encodeURIComponent(t)}&select=id,name,user_id`);
+        if (!row) return NextResponse.json({ error: 'not_found' }, { status: 404 });
+        // на одному номері можуть бути брат і сестра, але з різними PIN
+        const same = await db.query(`students?login_phone=eq.${phone}&login_pin=eq.${encodeURIComponent(pin)}&id=neq.${encodeURIComponent(id)}&select=id,user_id`);
+        if (same.some((x) => x.user_id !== row.user_id || !row.user_id)) return NextResponse.json({ error: 'pin_taken' }, { status: 409 });
+        let userId = row.user_id ? String(row.user_id) : '';
+        if (!userId) {
+          const tag = crypto.randomUUID().slice(0, 12);
+          const u = await (await clerkClient()).users.createUser({
+            emailAddress: [`s-${tag}@pupil.murly.com.ua`], firstName: String(row.name || 'Student').slice(0, 40),
+            skipPasswordRequirement: true, unsafeMetadata: { role: 'student' },
+          });
+          userId = u.id;
+        }
+        await db.update('students', t, id, { login_phone: phone, login_pin: pin, user_id: userId, pin_fails: 0, pin_locked_until: null });
+        return NextResponse.json({ ok: true, phone, pin, joined: true });
       }
       case 'addHomework': await db.insert('homework', [toDb.homework(p, t)]); break;
       case 'updateHomework': await db.update('homework', t, id, toDb.homeworkPatch(p.patch as Row)); break;
