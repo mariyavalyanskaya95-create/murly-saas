@@ -2498,3 +2498,16 @@ button.mk-gap { border: 0; border-bottom: 2px solid var(--mu-ink); cursor: point
 .skill-card__lv small { opacity: .6; margin-left: 2px; }
 .t-log-form__top { display: flex; gap: 14px; align-items: flex-end; flex-wrap: wrap; }
 .t-log-mark { display: flex; gap: 6px; flex-wrap: wrap; }
+.t-docs { display: flex; flex-wrap: wrap; gap: 8px; margin: 6px 0; }
+.t-doc { display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border: 2px solid var(--mu-ink); border-radius: 10px; background: #fff; color: var(--mu-ink); text-decoration: none; font-size: 14px; font-weight: 600; max-width: 100%; }
+.t-doc .mu-ic { width: 18px; height: 18px; flex: none; }
+.t-doc button { border: 0; background: none; cursor: pointer; font-size: 12px; padding: 0 0 0 4px; }
+a.t-doc:hover { background: var(--mu-lime); }
+.t-earn h2 { display: flex; align-items: center; gap: 8px; }
+.t-earn__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 8px 0; }
+.t-earn__grid > div { display: grid; gap: 2px; padding: 12px 14px; border: 2px solid var(--mu-ink); border-radius: 14px; background: var(--mu-paper); }
+.t-earn__grid b { font-size: 22px; font-variant-numeric: tabular-nums; }
+.t-earn__grid span, .t-earn__grid small { font-size: 13px; color: var(--mu-ink-soft); }
+.t-earn__main { background: var(--mu-lime) !important; }
+.t-earn__main b { font-size: 28px; }
+@media (max-width: 900px) { .t-earn__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
