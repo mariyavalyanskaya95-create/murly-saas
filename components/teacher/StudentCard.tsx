@@ -18,6 +18,7 @@ import { balanceOf, fmtDate, fmtMoney, plural, useTeacher } from '@/lib/teacher-
 import { useT } from '../LangProvider';
 import { fmtPhone, randomPin } from '@/lib/pin-login';
 import { useLessonMode } from '@/lib/lesson-mode';
+import { AudienceToggles } from './forms';
 import QuickWords, { splitWordLine } from './QuickWords';
 import { uploadFile } from '@/lib/upload';
 import type { T } from '@/lib/i18n';
@@ -96,8 +97,8 @@ export default function StudentCard({ id }: { id: string }) {
       })()}
       <InviteBox id={s.id} />
       {!s.loginPin && !s.joined && <LoginBox id={s.id} />}
-      <CoinsBox studentId={s.id} joined={s.joined} />
-      {s.joined && <MockResults student={s.id} all={MOCKS.map((m) => m.id)} />}
+      {!s.adult && <CoinsBox studentId={s.id} joined={s.joined} />}
+      {s.joined && s.nmt && <MockResults student={s.id} all={MOCKS.map((m) => m.id)} />}
 
       <div className="t-tabs" role="tablist">
         {TABS.map((x) => (
@@ -511,6 +512,8 @@ function ProfileTab({ id, onDelete }: { id: string; onDelete: () => void }) {
   const [f, setF] = useState({ name: s.name, level: s.level, price: String(s.price), contact: s.contact ?? '', parent: s.parent ?? '', link: s.link ?? '', song: s.song ?? '', songUrl: s.songUrl ?? '', about: s.about ?? '', payMode: s.payMode ?? 'pre' });
   const [saved, setSaved] = useState(false);
   const [confirm, setConfirm] = useState(false);
+  const [adult, setAdult] = useState(Boolean(s.adult));
+  const [nmt, setNmt] = useState(Boolean(s.nmt));
   const set = (k: keyof typeof f) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => { setF({ ...f, [k]: e.target.value }); setSaved(false); };
 
   return (
@@ -519,9 +522,10 @@ function ProfileTab({ id, onDelete }: { id: string; onDelete: () => void }) {
       <h2>{t({ uk: 'Профіль учня', ru: 'Профиль ученика', en: 'Student profile' })}</h2>
       <form className="t-form" onSubmit={(e) => {
         e.preventDefault();
-        updateStudent(id, { name: f.name.trim() || s.name, level: f.level, price: Number(f.price) || 0, contact: f.contact.trim() || undefined, parent: f.parent.trim() || undefined, link: f.link.trim() || undefined, song: f.song.trim() || undefined, songUrl: f.songUrl.trim() || undefined, about: f.about.trim() || undefined, payMode: f.payMode === 'post' ? 'post' : 'pre' });
+        updateStudent(id, { name: f.name.trim() || s.name, level: f.level, price: Number(f.price) || 0, contact: f.contact.trim() || undefined, parent: f.parent.trim() || undefined, link: f.link.trim() || undefined, song: f.song.trim() || undefined, songUrl: f.songUrl.trim() || undefined, about: f.about.trim() || undefined, payMode: f.payMode === 'post' ? 'post' : 'pre', adult, nmt });
         setSaved(true);
       }}>
+        <AudienceToggles adult={adult} nmt={nmt} onAdult={(v) => { setAdult(v); setSaved(false); }} onNmt={(v) => { setNmt(v); setSaved(false); }} />
         <label>{t({ uk: 'Ім’я', ru: 'Имя', en: 'Name' })}<input value={f.name} onChange={set('name')} /></label>
         <label>{t({ uk: 'Рівень', ru: 'Уровень', en: 'Level' })}<input value={f.level} onChange={set('level')} /></label>
         <label>{t({ uk: 'Ціна заняття, ₴', ru: 'Цена занятия, ₴', en: 'Price per lesson, ₴' })}<input type="number" min="0" value={f.price} onChange={set('price')} /></label>

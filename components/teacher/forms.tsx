@@ -9,6 +9,8 @@ export function StudentForm({ onDone }: { onDone?: (id: string) => void }) {
   const t = useT();
   const { addStudent } = useTeacher();
   const [f, setF] = useState({ name: '', level: 'A2', price: '400', contact: '', parent: '', link: '', payMode: 'pre' });
+  const [adult, setAdult] = useState(false);
+  const [nmt, setNmt] = useState(false);
   const set = (k: keyof typeof f) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => setF({ ...f, [k]: e.target.value });
 
   const submit = (e: React.FormEvent) => {
@@ -18,6 +20,7 @@ export function StudentForm({ onDone }: { onDone?: (id: string) => void }) {
       name: f.name.trim(), level: f.level, price: Number(f.price) || 0,
       contact: f.contact.trim() || undefined, parent: f.parent.trim() || undefined, link: f.link.trim() || undefined,
       payMode: f.payMode === 'post' ? 'post' : 'pre',
+      adult, nmt: nmt || f.level === 'НМТ',
     });
     setF({ name: '', level: 'A2', price: f.price, contact: '', parent: '', link: '', payMode: f.payMode });
     onDone?.(id);
@@ -26,6 +29,7 @@ export function StudentForm({ onDone }: { onDone?: (id: string) => void }) {
   return (
     <form className="t-form" onSubmit={submit}>
       <label>{t({ uk: 'Ім’я учня', ru: 'Имя ученика', en: 'Student name' })}<input value={f.name} onChange={set('name')} placeholder={t({ uk: 'Напр. Софія', ru: 'Напр. София', en: 'e.g. Sophia' })} required autoFocus /></label>
+      <AudienceToggles adult={adult} nmt={nmt} onAdult={setAdult} onNmt={setNmt} />
       <label>{t({ uk: 'Рівень', ru: 'Уровень', en: 'Level' })}<select value={f.level} onChange={set('level')}>{LEVELS.map((l) => <option key={l}>{l}</option>)}</select></label>
       <label>{t({ uk: 'Ціна заняття, ₴', ru: 'Цена занятия, ₴', en: 'Price per lesson, ₴' })}<input type="number" min="0" step="10" value={f.price} onChange={set('price')} /></label>
       <label>{t({ uk: 'Як платить', ru: 'Как платит', en: 'How they pay' })}<select value={f.payMode} onChange={set('payMode')}>
@@ -81,5 +85,20 @@ export function LessonForm({ studentId, onDone }: { studentId?: string; onDone?:
       <label className="t-form__wide">{t({ uk: 'Тема (необов’язково)', ru: 'Тема (необязательно)', en: 'Topic (optional)' })}<input value={f.topic} onChange={set('topic')} placeholder={t({ uk: 'Напр. Present Perfect, Unit 5', ru: 'Напр. Present Perfect, Unit 5', en: 'e.g. Present Perfect, Unit 5' })} /></label>
       <div className="t-form__actions"><button className="mu-btn mu-btn--lime" type="submit">{t({ uk: 'Запланувати', ru: 'Запланировать', en: 'Schedule' })}</button></div>
     </form>
+  );
+}
+
+// Хто учень: дитина (з монетками) чи дорослий (без них), і чи показувати НМТ
+export function AudienceToggles({ adult, nmt, onAdult, onNmt }: { adult: boolean; nmt: boolean; onAdult: (v: boolean) => void; onNmt: (v: boolean) => void }) {
+  const t = useT();
+  return (
+    <div className="t-form__wide t-aud">
+      <div className="g-chips" role="group" aria-label={t({ uk: 'Хто учень', ru: 'Кто ученик', en: 'Who is the student' })} style={{ justifyContent: 'flex-start' }}>
+        <button type="button" className={`g-chip ${!adult ? 'is-on' : ''}`} aria-pressed={!adult} onClick={() => onAdult(false)}>{t({ uk: 'Дитина / підліток', ru: 'Ребёнок / подросток', en: 'Kid / teen' })}</button>
+        <button type="button" className={`g-chip ${adult ? 'is-on' : ''}`} aria-pressed={adult} onClick={() => onAdult(true)}>{t({ uk: 'Дорослий', ru: 'Взрослый', en: 'Adult' })}</button>
+        <button type="button" className={`g-chip ${nmt ? 'is-on' : ''}`} aria-pressed={nmt} onClick={() => onNmt(!nmt)}>{nmt ? '✓ ' : ''}{t({ uk: 'Готується до НМТ', ru: 'Готовится к НМТ', en: 'Preparing for NMT' })}</button>
+      </div>
+      <small className="t-muted">{adult ? t({ uk: 'Дорослим не показуємо монетки й Murly Town.', ru: 'Взрослым не показываем монетки и Murly Town.', en: 'Adults do not see coins or Murly Town.' }) : t({ uk: 'Дітям нараховуються монетки за уроки, домашку й слова.', ru: 'Детям начисляются монетки за уроки, домашку и слова.', en: 'Kids earn coins for lessons, homework and words.' })} {nmt ? '' : t({ uk: 'Пробні НМТ учень не бачить, поки не позначиш «Готується до НМТ».', ru: 'Пробные НМТ ученик не видит, пока не отметишь «Готовится к НМТ».', en: 'Mock NMT tests stay hidden until you tick “Preparing for NMT”.' })}</small>
+    </div>
   );
 }
