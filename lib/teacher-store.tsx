@@ -133,11 +133,11 @@ function useStore(userId: string) {
     },
 
     // Заняття; repeatWeeks > 1 створює щотижневу серію
-    addLessons: (l: Omit<Lesson, 'id' | 'status'>, repeatWeeks = 1) => {
+    addLessons: (l: Omit<Lesson, 'id' | 'status'> & { status?: LessonStatus }, repeatWeeks = 1) => {
       const base = new Date(l.start);
       const rows: Lesson[] = Array.from({ length: Math.max(1, repeatWeeks) }, (_, k) => {
         const dt = new Date(base); dt.setDate(dt.getDate() + 7 * k);
-        return { ...l, id: uid(), start: dt.toISOString(), status: 'planned' as LessonStatus };
+        return { ...l, id: uid(), start: dt.toISOString(), status: (l.status ?? 'planned') as LessonStatus };
       });
       update((d) => ({ ...d, lessons: [...d.lessons, ...rows] }));
       sync('addLessons', { rows });
