@@ -102,6 +102,7 @@ export default function StudentHome({ enrollments, name }: { enrollments: Enroll
       <section className="t-card">
         <h2><Icon id="d-spark" />{t({ uk: 'Тренуйся сам', ru: 'Тренируйся сам', en: 'Practise on your own' })}</h2>
         <div className="t-head__actions">
+          <a href="/learn" className="mu-btn mu-btn--lime">{t({ uk: 'Усі матеріали за рівнем', ru: 'Все материалы по уровню', en: 'All materials by level' })}</a>
           <a href="/grammar" className="mu-btn">{t({ uk: 'Граматика', ru: 'Грамматика', en: 'Grammar' })}</a>
           <a href="/stories" className="mu-btn">{t({ uk: 'Читання і слухання', ru: 'Чтение и аудирование', en: 'Reading and listening' })}</a>
           <a href="/quiz/teen-life" className="mu-btn">{t({ uk: 'Квізи', ru: 'Квизы', en: 'Quizzes' })}</a>
