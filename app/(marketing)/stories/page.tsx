@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import SectionTabs from '@/components/SectionTabs';
 import Icon from '@/components/Icon';
 import Stickers from '@/components/Stickers';
 import SiteNav from '@/components/SiteNav';
@@ -19,10 +20,11 @@ export function generateMetadata(): Metadata {
 
 export default function StoriesPage({ searchParams }: { searchParams: { g?: string } }) {
   const t = tr();
-  const g = (['scary', 'romance', 'comedy'].includes(searchParams.g ?? '') ? searchParams.g : '') as Genre | '';
+  const g = (['scary', 'romance', 'comedy', 'think'].includes(searchParams.g ?? '') ? searchParams.g : '') as Genre | '';
   return (
     <>
       <SiteNav />
+      <SectionTabs group="read" active="/stories" />
       <section className="mu-page-hero" style={{ paddingBottom: 16 }} data-stickers="4">
         <div className="mu-container">
           <Kit id="il-cat-read" className="kit-hero" />
