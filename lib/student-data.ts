@@ -17,6 +17,7 @@ export type StudentHomework = {
 export type Enrollment = {
   studentId: string; name: string; level: string; teacherName: string;
   loginPhone?: string; loginPin?: string;
+  materials: { at: string; files: { url: string; name: string }[] }[];
   lessons: StudentLesson[]; words: StudentWord[]; homework: StudentHomework[];
 };
 
@@ -62,11 +63,12 @@ export async function getEnrollments(userId: string): Promise<Enrollment[]> {
   const since = new Date(Date.now() - 2 * 3600 * 1000).toISOString();
   return Promise.all(students.map(async (s: Row) => {
     const sid = enc(String(s.id));
-    const [lessons, words, settings, homework] = await Promise.all([
+    const [lessons, words, settings, homework, notes] = await Promise.all([
       db.query(`lessons?student_id=eq.${sid}&status=eq.planned&start=gte.${enc(since)}&order=start.asc&limit=20&select=*`),
       db.query(`words?student_id=eq.${sid}&order=at.desc&select=id,en,uk,example`),
       db.query(`teacher_settings?teacher_id=eq.${enc(String(s.teacher_id))}&select=name,link`),
       db.query(`homework?student_id=eq.${sid}&order=created_at.desc&limit=30&select=*`).catch(() => []),
+      db.query(`notes?student_id=eq.${sid}&files=not.is.null&order=at.desc&limit=30&select=at,files`).catch(() => []),
     ]);
     const tLink = String(settings[0]?.link || '');
     return {
@@ -76,6 +78,8 @@ export async function getEnrollments(userId: string): Promise<Enrollment[]> {
       teacherName: String(settings[0]?.name || ''),
       loginPhone: s.login_phone ? String(s.login_phone) : undefined,
       loginPin: s.login_pin ? String(s.login_pin) : undefined,
+      // документи, з якими працювали на уроках (текст нотаток учню не показуємо)
+      materials: notes.map((n) => ({ at: String(n.at), files: ((n.files as { url: string; name: string }[] | null) ?? []).filter((f) => f && f.url) })).filter((m) => m.files.length),
       lessons: lessons.map((l) => ({
         id: String(l.id), start: String(l.start), duration: Number(l.duration), status: String(l.status),
         topic: l.topic ? String(l.topic) : undefined,
@@ -132,4 +136,14 @@ async function homeworkCoins(userId: string, doneBefore: unknown, score: number,
   if (doneBefore) return 0;
   const n = 5 + (total > 0 ? Math.round((Math.max(0, score) / total) * 5) : 5);
   try { await addCoins(userId, n, 'homework', 'homework'); return n; } catch { return 0; }
+}
+
+// Учень сам задає номер і PIN для входу з будь-якого пристрою
+export async function setOwnPin(userId: string, phone: string, pin: string): Promise<'ok' | 'not_found' | 'pin_taken'> {
+  const rows = await db.query(`students?user_id=eq.${enc(userId)}&select=id`);
+  if (!rows.length) return 'not_found';
+  const same = await db.query(`students?login_phone=eq.${enc(phone)}&login_pin=eq.${enc(pin)}&user_id=neq.${enc(userId)}&select=id`);
+  if (same.length) return 'pin_taken';
+  await db.patchWhere(`students?user_id=eq.${enc(userId)}`, { login_phone: phone, login_pin: pin, pin_fails: 0, pin_locked_until: null });
+  return 'ok';
 }
