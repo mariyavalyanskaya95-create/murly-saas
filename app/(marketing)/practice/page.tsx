@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import SectionTabs from '@/components/SectionTabs';
 import Icon from '@/components/Icon';
 import Stickers from '@/components/Stickers';
 import SiteNav from '@/components/SiteNav';
@@ -27,6 +28,7 @@ export default function PracticePage() {
   return (
     <>
       <SiteNav />
+      <SectionTabs group="read" active="/practice" />
       <section className="mu-page-hero" style={{ paddingBottom: 16 }} data-stickers="4">
         <div className="mu-container">
           <Kit id="il-cat-headphones" className="kit-hero" />

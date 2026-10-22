@@ -56,15 +56,15 @@ export default function StudentsPage() {
             <Link href={`/teacher/students/${s.id}`} className={`t-student t-student--${s.color}`}>
               <div className="t-student__top">
                 <Avatar avatar={s.avatar} image={s.image} name={s.name} />
-                <div><b>{s.name}</b><span>{s.level} · {fmtMoney(s.price, t.lang)} {t({ uk: 'за заняття', ru: 'за занятие', en: 'per lesson' })}</span></div>
+                <div><b>{s.name}</b><span>{s.level}<span className="t-private"> · {fmtMoney(s.price, t.lang)} {t({ uk: 'за заняття', ru: 'за занятие', en: 'per lesson' })}</span></span></div>
               </div>
               <div className="t-student__meta">
-                <span><Icon id="e-cal" />{n ? `${fmtDate(n.start, t.lang)}, ${fmtTime(n.start, t.lang)}` : t({ uk: 'Немає занять', ru: 'Нет занятий', en: 'No lessons' })}</span>
+                <span className="t-private"><Icon id="e-cal" />{n ? `${fmtDate(n.start, t.lang)}, ${fmtTime(n.start, t.lang)}` : t({ uk: 'Немає занять', ru: 'Нет занятий', en: 'No lessons' })}</span>
                 <span><Icon id="e-abc" />{words} {plural(words, t.lang, { uk: ['слово', 'слова', 'слів'], ru: ['слово', 'слова', 'слов'], en: ['word', 'words'] })} {t({ uk: 'у словнику', ru: 'в словаре', en: 'in vocabulary' })}</span>
-                {(() => { const bt = balanceText(s, b, t.lang); return <span className={bt.cls}><Icon id="d-money" />{bt.text.charAt(0).toUpperCase() + bt.text.slice(1)}</span>; })()}
+                {(() => { const bt = balanceText(s, b, t.lang); return <span className={`${bt.cls} t-private`}><Icon id="d-money" />{bt.text.charAt(0).toUpperCase() + bt.text.slice(1)}</span>; })()}
               </div>
             </Link>
-            <div className="t-student__acts">
+            <div className="t-student__acts t-private">
               {del === s.id ? (
                 <>
                   <span>{t({ uk: `Видалити ${s.name} з усіма заняттями, словником і оплатами?`, ru: `Удалить ${s.name} со всеми занятиями, словарём и оплатами?`, en: `Delete ${s.name} with all lessons, vocabulary and payments?` })}</span>

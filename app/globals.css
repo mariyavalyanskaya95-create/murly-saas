@@ -2424,3 +2424,52 @@ button.mk-gap { border: 0; border-bottom: 2px solid var(--mu-ink); cursor: point
 .dr-extra .dr-table tr td:first-child { font-weight: 700; }
 .dr-extra .dr-table th { text-align: left; padding: 6px 10px; border: 1px solid var(--mu-ink); background: var(--mu-lime); font-size: 14px; }
 .dr-extra .dr-table tbody tr:nth-child(even) td { background: var(--mu-paper); }
+/* компактний словник: більше слів на екрані, менші кнопки */
+.t-words { grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 8px; }
+.t-word { padding: 8px 34px 8px 12px; border-radius: 12px; gap: 0; }
+.t-word b { font-size: 15px; }
+.t-word span { font-size: 14px; }
+.t-word i { font-size: 13px; }
+.t-word .t-icon-btn, .t-note .t-icon-btn { top: 6px; right: 6px; width: 22px; height: 22px; font-size: 10px; border-width: 1.5px; }
+.t-icon-btn { width: 28px; height: 28px; font-size: 12px; }
+/* вхід учня за номером і PIN */
+.pin-login { display: grid; gap: 14px; max-width: 420px; }
+.pin-login h2 { margin: 0; }
+.pin-login label { display: grid; gap: 6px; font-weight: 700; }
+.pin-login input { font: inherit; font-size: 18px; padding: 12px 14px; border: 2px solid var(--mu-ink); border-radius: var(--mu-radius); background: #fff; }
+.pin-login__pin { letter-spacing: .3em; font-variant-numeric: tabular-nums; max-width: 200px; }
+.pin-login__help { font-size: 14px; margin: 0; }
+.pin-login__alt { margin-top: 18px; }
+.pin-login__cta { display: block; margin-bottom: 14px; padding: 12px 16px; border: 2px solid var(--mu-ink); border-radius: var(--mu-radius); background: var(--mu-lime); font-weight: 700; text-decoration: none; color: var(--mu-ink); box-shadow: var(--mu-shadow-stamp); }
+.t-login__show { display: flex; gap: 18px; flex-wrap: wrap; font-size: 17px; margin: 4px 0 8px; }
+.t-login__pin { font-variant-numeric: tabular-nums; letter-spacing: .15em; }
+.t-login__form { display: flex; gap: 10px; align-items: flex-end; flex-wrap: wrap; }
+.t-login__form label { display: grid; gap: 4px; font-size: 14px; font-weight: 700; }
+.t-login__form input { font: inherit; padding: 8px 10px; border: 2px solid var(--mu-ink); border-radius: 10px; }
+.t-login__form input.t-login__pin { width: 110px; }
+.sr__gloss { max-height: calc(100vh - 120px); overflow-y: auto; }
+.sr__sub { font-size: 20px; margin: 22px 0 6px; }
+.sr__sub.is-reading { background: #fff3a6; }
+@media (max-width: 820px) { .sr__gloss { max-height: none; } }
+/* вкладки розділу (Читання, Граматика) */
+.sec-tabs { padding: 22px 0 0; position: relative; z-index: 2; }
+.sec-tabs__in { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; justify-content: center; }
+.sec-tabs__title { font-weight: 800; margin-right: 6px; font-size: 15px; }
+.sec-tab { display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border: 2px solid var(--mu-ink); border-radius: 999px; background: #fff; color: var(--mu-ink); text-decoration: none; font-weight: 700; font-size: 14px; min-height: 40px; }
+.sec-tab .mu-ic { width: 18px; height: 18px; }
+.sec-tab.is-on { background: var(--mu-lime); box-shadow: var(--mu-shadow-stamp); }
+.sec-tab:focus-visible { outline: 3px solid var(--mu-ink); outline-offset: 2px; }
+@media (max-width: 700px) { .sec-tabs__in { justify-content: flex-start; flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; } .sec-tab { white-space: nowrap; } }
+/* Режим уроку */
+.t-lesson-btn { display: inline-flex; align-items: center; gap: 8px; margin-left: auto; margin-right: 12px; padding: 8px 14px; border: 2px solid var(--mu-ink); border-radius: 999px; background: #fff; font: inherit; font-weight: 700; font-size: 14px; cursor: pointer; min-height: 40px; }
+.t-lesson-btn.is-on { background: var(--mu-lime); box-shadow: var(--mu-shadow-stamp); }
+.t-lesson-btn:focus-visible { outline: 3px solid var(--mu-ink); outline-offset: 2px; }
+.t-app.is-lesson .t-private { display: none !important; }
+@media (max-width: 700px) { .t-lesson-btn { font-size: 0; gap: 0; padding: 8px; } }
+/* Швидке додавання слів */
+.qw-fab { position: fixed; right: 22px; bottom: 22px; z-index: 50; display: inline-flex; align-items: center; gap: 8px; padding: 12px 18px; border: 2px solid var(--mu-ink); border-radius: 999px; background: var(--mu-lime); font: inherit; font-weight: 800; cursor: pointer; box-shadow: var(--mu-shadow-stamp); }
+.qw-fab .mu-ic { width: 20px; height: 20px; }
+.qw-back { position: fixed; inset: 0; z-index: 60; background: rgba(20, 20, 20, .35); display: grid; place-items: center; padding: 16px; }
+.qw { width: min(560px, 100%); background: #fff; border: 2px solid var(--mu-ink); border-radius: var(--mu-radius-lg); box-shadow: var(--mu-shadow-stamp-lg); padding: 20px; display: grid; gap: 12px; }
+.qw textarea { font: inherit; padding: 10px 12px; border: 2px solid var(--mu-ink); border-radius: var(--mu-radius); resize: vertical; }
+@media (max-width: 700px) { .qw-fab { bottom: 84px; right: 14px; } }

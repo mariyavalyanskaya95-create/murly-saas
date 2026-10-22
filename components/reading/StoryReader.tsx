@@ -18,7 +18,7 @@ export default function StoryReader({ s }: { s: Story }) {
     if (id !== run.current) return;
     if (i >= s.paragraphs.length) { setReading(-1); return; }
     setReading(i);
-    if (!speakEn(s.paragraphs[i], 0.95, () => { if (id === run.current) setTimeout(() => readFrom(i + 1, id), 250); })) setReading(-1);
+    if (!speakEn(s.paragraphs[i].replace(/^## /, ''), 0.95, () => { if (id === run.current) setTimeout(() => readFrom(i + 1, id), 250); })) setReading(-1);
   };
   const stop = () => { run.current++; stopSpeak(); setReading(-1); };
   const score = s.questions.reduce((n, q, i) => n + (ans[i] === q.answer ? 1 : 0), 0);
@@ -27,14 +27,16 @@ export default function StoryReader({ s }: { s: Story }) {
     <div className="sr">
       <div className="sr__bar">
         {reading < 0
-          ? <button type="button" className="mu-btn mu-btn--lime t-btn-sm" onClick={() => readFrom(0)}>{t({ uk: 'Слухати історію', ru: 'Слушать историю', en: 'Listen to the story' })}</button>
+          ? <button type="button" className="mu-btn mu-btn--lime t-btn-sm" onClick={() => readFrom(0)}>{t({ uk: 'Слухати текст', ru: 'Слушать текст', en: 'Listen to the text' })}</button>
           : <button type="button" className="mu-btn t-btn-sm" onClick={stop}>{t({ uk: 'Стоп', ru: 'Стоп', en: 'Stop' })}</button>}
         <button type="button" className="mu-btn t-btn-sm" onClick={() => setGloss(!gloss)}>{gloss ? t({ uk: 'Сховати словничок', ru: 'Скрыть словарик', en: 'Hide glossary' }) : t({ uk: 'Показати словничок', ru: 'Показать словарик', en: 'Show glossary' })}</button>
       </div>
 
       <div className={`sr__layout ${gloss ? 'has-gloss' : ''}`}>
         <article className="sr__text">
-          {s.paragraphs.map((p, i) => <p key={i} className={reading === i ? 'is-reading' : ''} onDoubleClick={() => readFrom(i)}>{p}</p>)}
+          {s.paragraphs.map((p, i) => (p.startsWith('## ')
+            ? <h3 key={i} className={`sr__sub ${reading === i ? 'is-reading' : ''}`}>{p.slice(3)}</h3>
+            : <p key={i} className={reading === i ? 'is-reading' : ''} onDoubleClick={() => readFrom(i)}>{p}</p>))}
           <p className="t-muted sr__hint">{t({ uk: 'Подвійний клік по абзацу: озвучити з цього місця.', ru: 'Двойной клик по абзацу: озвучить с этого места.', en: 'Double-click a paragraph to listen from there.' })}</p>
         </article>
         {gloss && (

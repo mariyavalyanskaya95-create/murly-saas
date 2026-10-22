@@ -22,12 +22,8 @@ const MENU: { title: T; items: { href: string; icon: string; label: T; text: T; 
   {
     title: { uk: 'Вчитися самому', ru: 'Учиться самому', en: 'Learn on your own' },
     items: [
-      { href: '/grammar', icon: 'e-abc', label: { uk: 'Граматика', ru: 'Грамматика', en: 'Grammar' }, text: { uk: 'Правила простими словами і вправи', ru: 'Правила простыми словами и упражнения', en: 'Simple rules and exercises' } },
-      { href: '/irregular-verbs', icon: 'e-book', label: { uk: 'Неправильні дієслова', ru: 'Неправильные глаголы', en: 'Irregular verbs' }, text: { uk: 'Таблиця з озвучкою', ru: 'Таблица с озвучкой', en: 'Table with audio' } },
-      { href: '/irregular-verbs/games', icon: 'd-cup', label: { uk: 'Ігри з дієсловами', ru: 'Игры с глаголами', en: 'Verb games' }, text: { uk: 'Картки, пари, вікторина', ru: 'Карточки, пары, викторина', en: 'Cards, pairs, quiz' } },
-      { href: '/practice', icon: 'e-head', label: { uk: 'Слухати і читати', ru: 'Слушать и читать', en: 'Listening and reading' }, text: { uk: 'Аудіо й тексти з питаннями', ru: 'Аудио и тексты с вопросами', en: 'Audio and texts with questions' } },
-      { href: '/stories', icon: 'e-book', label: { uk: 'Історії', ru: 'Истории', en: 'Stories' }, text: { uk: 'Страшні, романтичні, комедії з озвучкою', ru: 'Страшные, романтические, комедии с озвучкой', en: 'Scary, romantic and funny, with audio' } },
-      { href: '/tongue-twisters', icon: 'e-speak', label: { uk: 'Скоромовки', ru: 'Скороговорки', en: 'Tongue twisters' }, text: { uk: 'Тренуємо вимову на час', ru: 'Тренируем произношение на время', en: 'Train pronunciation against the clock' } },
+      { href: '/grammar', icon: 'e-abc', label: { uk: 'Граматика', ru: 'Грамматика', en: 'Grammar' }, text: { uk: 'Правила, тренажери на 100 завдань, неправильні дієслова й ігри', ru: 'Правила, тренажёры на 100 заданий, неправильные глаголы и игры', en: 'Rules, 100-task trainers, irregular verbs and games' } },
+      { href: '/stories', icon: 'e-book', label: { uk: 'Читання і слухання', ru: 'Чтение и аудирование', en: 'Reading and listening' }, text: { uk: 'Історії, тексти для обговорення, аудіо, скоромовки', ru: 'Истории, тексты для обсуждения, аудио, скороговорки', en: 'Stories, texts to discuss, audio, tongue twisters' } },
       { href: '/quiz/teen-life', icon: 'e-speak', label: { uk: 'Квізи', ru: 'Квизы', en: 'Quizzes' }, text: { uk: 'Короткі тести на 5 хвилин', ru: 'Короткие тесты на 5 минут', en: 'Short 5-minute tests' } },
       { href: '/worlds', icon: 'd-rocket', label: { uk: 'Murly Town', ru: 'Murly Town', en: 'Murly Town' }, text: { uk: '3D-містечко, де все англійською', ru: '3D-городок, где всё на английском', en: 'A 3D town where everything is in English' } },
     ],

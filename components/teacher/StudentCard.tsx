@@ -16,10 +16,14 @@ import { grade, type Section } from '@/lib/exercise';
 import { lessonSections, type Block } from '@/lib/lesson';
 import { balanceOf, fmtDate, fmtMoney, plural, useTeacher } from '@/lib/teacher-store';
 import { useT } from '../LangProvider';
+import { fmtPhone, randomPin } from '@/lib/pin-login';
+import { useLessonMode } from '@/lib/lesson-mode';
+import QuickWords, { splitWordLine } from './QuickWords';
 import { uploadFile } from '@/lib/upload';
 import type { T } from '@/lib/i18n';
 
 type Tab = 'lessons' | 'hw' | 'words' | 'notes' | 'pay' | 'profile';
+const PRIV_TABS: Tab[] = ['notes', 'pay', 'profile'];
 const TABS: { id: Tab; label: T; icon: string }[] = [
   { id: 'lessons', label: { uk: 'Заняття', ru: 'Занятия', en: 'Lessons' }, icon: 'e-cal' },
   { id: 'hw', label: { uk: 'Домашка', ru: 'Домашка', en: 'Homework' }, icon: 'e-board' },
@@ -35,6 +39,8 @@ export default function StudentCard({ id }: { id: string }) {
   const { data, ready } = t;
   const router = useRouter();
   const [tab, setTab] = useState<Tab>('lessons');
+  const lesson = useLessonMode();
+  useEffect(() => { if (lesson.on && PRIV_TABS.includes(tab)) setTab('words'); }, [lesson.on, tab]);
   useEffect(() => {
     const q = new URLSearchParams(window.location.search).get('tab') as Tab | null;
     if (q && TABS.some((x) => x.id === q)) setTab(q);
@@ -56,17 +62,17 @@ export default function StudentCard({ id }: { id: string }) {
         <Avatar avatar={s.avatar} image={s.image} name={s.name} className="t-avatar--lg" />
         <div className="t-hero__info">
           <h1>{s.name}</h1>
-          <span>{s.level} · {fmtMoney(s.price, tt.lang)} {tt({ uk: 'за заняття', ru: 'за занятие', en: 'per lesson' })}{s.contact ? ` · ${s.contact}` : ''}</span>
+          <span>{s.level}<span className="t-private"> · {fmtMoney(s.price, tt.lang)} {tt({ uk: 'за заняття', ru: 'за занятие', en: 'per lesson' })}{s.contact ? ` · ${s.contact}` : ''}</span></span>
           {s.joined && <span className="t-tag t-tag--done" style={{ marginLeft: 8 }}>{tt({ uk: 'Має кабінет', ru: 'Есть кабинет', en: 'Has an account' })}</span>}
         </div>
-        <button type="button" className="mu-btn t-btn-sm t-hero__edit" onClick={() => { setTab('profile'); setTimeout(() => document.querySelector('.t-tabs')?.scrollIntoView({ behavior: 'smooth' }), 50); }}><Icon id="e-pencil" />{tt({ uk: 'Змінити дані', ru: 'Изменить данные', en: 'Edit details' })}</button>
-        <div className={`t-hero__bal ${b < 0 ? (s.payMode === 'post' ? 't-warn' : 't-neg') : ''}`}>
+        <button type="button" className="mu-btn t-btn-sm t-hero__edit t-private" onClick={() => { setTab('profile'); setTimeout(() => document.querySelector('.t-tabs')?.scrollIntoView({ behavior: 'smooth' }), 50); }}><Icon id="e-pencil" />{tt({ uk: 'Змінити дані', ru: 'Изменить данные', en: 'Edit details' })}</button>
+        <div className={`t-hero__bal t-private ${b < 0 ? (s.payMode === 'post' ? 't-warn' : 't-neg') : ''}`}>
           <small>{b < 0 ? (s.payMode === 'post' ? tt({ uk: 'До оплати', ru: 'К оплате', en: 'To pay' }) : tt({ uk: 'Борг', ru: 'Долг', en: 'Owes' })) : tt({ uk: 'Баланс', ru: 'Баланс', en: 'Balance' })}</small><b>{fmtMoney(Math.abs(b), tt.lang)}</b>
         </div>
       </div>
 
       {(s.song || s.about || s.selfSong || s.selfAbout) && (
-        <div className="t-card t-about">
+        <div className="t-card t-about t-private">
           {(s.song || s.selfSong) && (
             <p><b>{tt({ uk: 'Улюблена пісня', ru: 'Любимая песня', en: 'Favourite song' })}:</b> {s.song || s.selfSong}
               {(s.songUrl || s.selfSongUrl) && /^https?:\/\//.test(s.songUrl || s.selfSongUrl || '') && <> <a className="mu-btn t-btn-sm" href={s.songUrl || s.selfSongUrl} target="_blank" rel="noreferrer">{tt({ uk: 'Слухати', ru: 'Слушать', en: 'Listen' })}</a></>}
@@ -80,7 +86,7 @@ export default function StudentCard({ id }: { id: string }) {
       {(() => {
         const last = data.notes.filter((n) => n.studentId === s.id).sort((a, z) => z.at.localeCompare(a.at))[0];
         return last ? (
-          <div className="t-card t-last">
+          <div className="t-card t-last t-private">
             <div className="t-card__head"><h2>{tt({ uk: 'Останній урок', ru: 'Последний урок', en: 'Last lesson' })}: {fmtDate(last.at, tt.lang)}</h2>
               <button type="button" className="mu-btn t-btn-sm" onClick={() => { setTab('notes'); setTimeout(() => document.querySelector('.t-tabs')?.scrollIntoView({ behavior: 'smooth' }), 50); }}>{tt({ uk: 'Увесь журнал', ru: 'Весь журнал', en: 'Full log' })}</button></div>
             {last.text && <p>{last.text.length > 280 ? `${last.text.slice(0, 280)}…` : last.text}</p>}
@@ -89,12 +95,13 @@ export default function StudentCard({ id }: { id: string }) {
         ) : null;
       })()}
       <InviteBox id={s.id} />
+      {!s.loginPin && !s.joined && <LoginBox id={s.id} />}
       <CoinsBox studentId={s.id} joined={s.joined} />
       {s.joined && <MockResults student={s.id} all={MOCKS.map((m) => m.id)} />}
 
       <div className="t-tabs" role="tablist">
         {TABS.map((x) => (
-          <button key={x.id} role="tab" aria-selected={tab === x.id} className={`t-tab ${tab === x.id ? 'is-on' : ''}`} onClick={() => setTab(x.id)}>
+          <button key={x.id} role="tab" aria-selected={tab === x.id} className={`t-tab ${tab === x.id ? 'is-on' : ''} ${PRIV_TABS.includes(x.id) ? 't-private' : ''}`} onClick={() => setTab(x.id)}>
             <Icon id={x.icon} />{tt(x.label)}
           </button>
         ))}
@@ -108,6 +115,7 @@ export default function StudentCard({ id }: { id: string }) {
       {tab === 'profile' && (
         <ProfileTab id={s.id} onDelete={() => { t.removeStudent(s.id); router.push('/teacher/students'); }} />
       )}
+      <QuickWords studentId={s.id} name={s.name} />
     </div>
   );
 }
@@ -171,13 +179,19 @@ function WordsTab({ id }: { id: string }) {
   const [bulkOpen, setBulkOpen] = useState(false);
   const [bulkText, setBulkText] = useState('');
   const [rows, setRows] = useState<Row[]>([]);
+  const [bulkMsg, setBulkMsg] = useState('');
   const fetchBulk = async () => {
-    const lines = bulkText.split('\n').map((l) => l.trim()).filter(Boolean).slice(0, 40);
-    const init: Row[] = lines.map((l) => {
-      const [en, ...rest] = l.split(/\s*=\s*/);
-      const uk = rest.join(' = ').trim();
-      return { en: en.trim(), uk, example: '', options: uk ? [uk] : [], examples: [], loading: !uk };
-    });
+    const lines = bulkText.split('\n').map((l) => l.trim().replace(/^\d+[.)]\s*/, '')).filter(Boolean)
+      .filter((l) => !/^(english|англ\S*)\s*([\t|=-]|$)/i.test(l)).slice(0, 120);
+    const parsed = lines.map(splitWordLine);
+    // слова з готовим перекладом додаємо одразу, без підбору
+    const ready = parsed.filter((r) => r.uk);
+    ready.forEach((r) => addWord(id, { en: r.en, uk: r.uk, at: dayAt(wDay) }));
+    const todo = parsed.filter((r) => !r.uk).slice(0, 40);
+    setBulkMsg(ready.length ? t({ uk: `Додано ${ready.length} сл.`, ru: `Добавлено ${ready.length} сл.`, en: `Added ${ready.length} words` }) : '');
+    if (!todo.length) { setBulkText(''); setRows([]); return; }
+    setBulkText(todo.map((r) => r.en).join('\n'));
+    const init: Row[] = todo.map((r) => ({ en: r.en, uk: '', example: '', options: [], examples: [], loading: true }));
     setRows(init);
     const to = t.lang === 'ru' ? 'ru' : 'uk';
     let next = 0;
@@ -188,7 +202,7 @@ function WordsTab({ id }: { id: string }) {
           const d = await fetch(`/api/dict?w=${encodeURIComponent(init[i].en)}&to=${to}`).then((r) => r.json());
           const opts: string[] = d.translations ?? [];
           const exs: string[] = (d.examples ?? []).map((x: { en: string }) => x.en);
-          setRows((rs) => rs.map((r, j) => j !== i ? r : { ...r, options: r.uk ? r.options : opts, uk: r.uk || opts[0] || '', examples: exs, example: exs[0] || '', loading: false }));
+          setRows((rs) => rs.map((r, j) => j !== i ? r : { ...r, options: opts, uk: r.uk || opts[0] || '', examples: exs, example: exs[0] || '', loading: false }));
         } catch { setRows((rs) => rs.map((r, j) => (j === i ? { ...r, loading: false } : r))); }
       }
     };
@@ -197,7 +211,7 @@ function WordsTab({ id }: { id: string }) {
   const addAll = () => {
     const ok = rows.filter((r) => r.en && r.uk.trim());
     ok.forEach((r) => addWord(id, { en: r.en, uk: r.uk.trim(), example: r.example.trim() || undefined, at: dayAt(wDay) }));
-    setRows([]); setBulkText(''); setBulkOpen(false);
+    setRows([]); setBulkText(''); setBulkMsg(t({ uk: `Додано ${ok.length} сл.`, ru: `Добавлено ${ok.length} сл.`, en: `Added ${ok.length} words` }));
   };
 
   const submit = (e: React.FormEvent) => {
@@ -222,10 +236,10 @@ function WordsTab({ id }: { id: string }) {
         </div>
         {bulkOpen && (
           <div className="t-bulk">
-            <p className="t-muted">{t({ uk: 'Встав слова, по одному в рядку. Можна одразу з перекладом: word = переклад. Murly підбере варіанти перекладу і приклади, ти лише перевіриш.', ru: 'Вставь слова, по одному в строке. Можно сразу с переводом: word = перевод. Murly подберёт варианты перевода и примеры, ты только проверишь.', en: 'Paste words, one per line. You can add a translation right away: word = translation. Murly suggests translations and examples, you just check them.' })}</p>
-            <textarea rows={6} value={bulkText} onChange={(e) => setBulkText(e.target.value)} placeholder={'weird\nto look forward to\nbrave\nhonest = чесний'} />
+            <p className="t-muted">{t({ uk: 'Встав слова, по одному в рядку. Слова з готовим перекладом (word = переклад, word - переклад або рядки таблиці з Word) додаються одразу. Для слів без перекладу Murly підбере варіанти.', ru: 'Вставь слова, по одному в строке. Слова с готовым переводом (word = перевод, word - перевод или строки таблицы из Word) добавляются сразу. Для слов без перевода Murly подберёт варианты.', en: 'Paste words, one per line. Words with a ready translation (word = translation, word - translation or rows of a Word table) are added right away. For words without one, Murly suggests options.' })}</p>
+            <textarea rows={6} value={bulkText} onChange={(e) => setBulkText(e.target.value)} placeholder={'honest = чесний\nboredom - нудьга\nweird'} />
             <label className="t-log-form__day">{t({ uk: 'Дата уроку', ru: 'Дата урока', en: 'Lesson date' })}<input type="date" value={wDay} max={todayIso()} onChange={(e) => setWDay(e.target.value)} /></label>
-            <div className="t-head__actions"><button type="button" className="mu-btn mu-btn--lime t-btn-sm" disabled={!bulkText.trim()} onClick={fetchBulk}>{t({ uk: 'Підібрати переклади', ru: 'Подобрать переводы', en: 'Suggest translations' })}</button></div>
+            <div className="t-head__actions"><button type="button" className="mu-btn mu-btn--lime t-btn-sm" disabled={!bulkText.trim()} onClick={fetchBulk}>{t({ uk: 'Додати', ru: 'Добавить', en: 'Add' })}</button>{bulkMsg && <span className="t-pos">{bulkMsg}</span>}</div>
             {rows.length > 0 && (
               <div className="t-bulk__rows">
                 {rows.map((r, i) => (
@@ -462,6 +476,7 @@ function ProfileTab({ id, onDelete }: { id: string; onDelete: () => void }) {
   const set = (k: keyof typeof f) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => { setF({ ...f, [k]: e.target.value }); setSaved(false); };
 
   return (
+    <>
     <div className="t-card">
       <h2>{t({ uk: 'Профіль учня', ru: 'Профиль ученика', en: 'Student profile' })}</h2>
       <form className="t-form" onSubmit={(e) => {
@@ -495,6 +510,8 @@ function ProfileTab({ id, onDelete }: { id: string; onDelete: () => void }) {
               <button className="mu-btn mu-btn--tomato t-btn-sm" onClick={onDelete}>{t({ uk: 'Так, видалити', ru: 'Да, удалить', en: 'Yes, delete' })}</button></>}
       </div>
     </div>
+    <LoginBox id={id} />
+    </>
   );
 }
 
@@ -512,7 +529,7 @@ function InviteBox({ id }: { id: string }) {
   const copy = async () => { try { await navigator.clipboard.writeText(link); setCopied(true); setTimeout(() => setCopied(false), 2000); } catch { /* */ } };
 
   return (
-    <div className="t-card t-invite">
+    <div className="t-card t-invite t-private">
       <div>
         <h2><Icon id="d-send" />{t({ uk: `Запроси ${s.name} в Murly`, ru: `Пригласи ${s.name} в Murly`, en: `Invite ${s.name} to Murly` })}</h2>
         <p className="t-muted">{t({ uk: 'Учень побачить свій розклад з кнопкою дзвінка, словник від тебе та ігри з цими словами.', ru: 'Ученик увидит своё расписание с кнопкой звонка, словарь от тебя и игры с этими словами.', en: 'Your student will see their schedule with a call button, the vocabulary from you and games with those words.' })}</p>
@@ -526,6 +543,63 @@ function InviteBox({ id }: { id: string }) {
         <button className="mu-btn mu-btn--lime" onClick={make} disabled={busy}>{busy ? t({ uk: 'Створюю…', ru: 'Создаю…', en: 'Creating…' }) : t({ uk: 'Створити посилання', ru: 'Создать ссылку', en: 'Create link' })}</button>
       )}
       {err && <p className="t-neg">{t({ uk: 'Не вийшло створити посилання. Спробуй ще раз.', ru: 'Не получилось создать ссылку. Попробуй ещё раз.', en: 'Could not create the link. Please try again.' })}</p>}
+    </div>
+  );
+}
+
+// Вхід учня за номером телефону і PIN (без пошти). PIN видно тут і в кабінеті учня, щоб підказати, якщо забув.
+function LoginBox({ id }: { id: string }) {
+  const t = useT();
+  const { data, mode, setLogin } = useTeacher();
+  const s = data.students.find((x) => x.id === id)!;
+  const [open, setOpen] = useState(false);
+  const [phone, setPhone] = useState(s.loginPhone ? `+${s.loginPhone}` : (s.contact && /\d{9,}/.test(s.contact.replace(/\D/g, '')) ? s.contact : ''));
+  const [pin, setPin] = useState(s.loginPin ?? randomPin());
+  const [busy, setBusy] = useState(false);
+  const [err, setErr] = useState('');
+  const [copied, setCopied] = useState(false);
+  if (mode !== 'cloud') return null;
+  const url = typeof window !== 'undefined' ? `${window.location.origin}/login` : '/login';
+  const msg = s.loginPhone && s.loginPin ? t({ uk: `Вхід у Murly: ${url}\nНомер: ${fmtPhone(s.loginPhone)}\nPIN: ${s.loginPin}`, ru: `Вход в Murly: ${url}\nНомер: ${fmtPhone(s.loginPhone)}\nPIN: ${s.loginPin}`, en: `Murly login: ${url}\nNumber: ${fmtPhone(s.loginPhone)}\nPIN: ${s.loginPin}` }) : '';
+  const save = async (e: React.FormEvent) => {
+    e.preventDefault(); setBusy(true); setErr('');
+    const r = await setLogin(id, phone, pin);
+    setBusy(false);
+    if (r.ok) { setOpen(false); return; }
+    setErr(r.error === 'bad_phone' ? t({ uk: 'Перевір номер телефону.', ru: 'Проверь номер телефона.', en: 'Check the phone number.' })
+      : r.error === 'bad_pin' ? t({ uk: 'PIN: від 4 до 8 цифр або латинських літер.', ru: 'PIN: от 4 до 8 цифр или латинских букв.', en: 'PIN: 4 to 8 digits or Latin letters.' })
+      : r.error === 'pin_taken' ? t({ uk: 'На цьому номері вже є учень з таким PIN. Обери інший PIN.', ru: 'На этом номере уже есть ученик с таким PIN. Выбери другой PIN.', en: 'Another student on this number has this PIN. Pick a different one.' })
+      : t({ uk: 'Не вдалося зберегти. Спробуй ще раз.', ru: 'Не удалось сохранить. Попробуй ещё раз.', en: 'Could not save. Please try again.' }));
+  };
+  const copy = async () => { try { await navigator.clipboard.writeText(msg); setCopied(true); setTimeout(() => setCopied(false), 2000); } catch { /* */ } };
+
+  return (
+    <div className="t-card t-login t-private">
+      <div className="t-card__head">
+        <h2><Icon id="d-phone" />{t({ uk: 'Вхід за номером і PIN', ru: 'Вход по номеру и PIN', en: 'Login with phone and PIN' })}</h2>
+        {s.loginPin && !open && <button type="button" className="t-link-btn" onClick={() => setOpen(true)}>{t({ uk: 'Змінити', ru: 'Изменить', en: 'Change' })}</button>}
+      </div>
+      {s.loginPhone && s.loginPin && !open ? (
+        <>
+          <div className="t-login__show">
+            <span>{t({ uk: 'Номер', ru: 'Номер', en: 'Number' })}: <b>{fmtPhone(s.loginPhone)}</b></span>
+            <span>PIN: <b className="t-login__pin">{s.loginPin}</b></span>
+          </div>
+          <p className="t-muted">{t({ uk: `Учень входить на ${url}: номер і PIN, без пошти і пароля.`, ru: `Ученик входит на ${url}: номер и PIN, без почты и пароля.`, en: `The student logs in at ${url} with the number and PIN, no email or password.` })}</p>
+          <button type="button" className="mu-btn mu-btn--lime t-btn-sm" onClick={copy}>{copied ? t({ uk: 'Скопійовано', ru: 'Скопировано', en: 'Copied' }) : t({ uk: 'Копіювати для учня', ru: 'Копировать для ученика', en: 'Copy for the student' })}</button>
+        </>
+      ) : (
+        <>
+          {!s.loginPin && <p className="t-muted">{t({ uk: 'Для дітей без пошти: учень входить за номером телефону і простим PIN. PIN бачиш ти і сам учень у кабінеті.', ru: 'Для детей без почты: ученик входит по номеру телефона и простому PIN. PIN видишь ты и сам ученик в кабинете.', en: 'For kids without email: the student logs in with a phone number and a simple PIN. You and the student can both see the PIN.' })}</p>}
+          <form className="t-login__form" onSubmit={save}>
+            <label>{t({ uk: 'Номер телефону', ru: 'Номер телефона', en: 'Phone number' })}<input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="+380 67 123 45 67" required /></label>
+            <label>PIN<input value={pin} onChange={(e) => setPin(e.target.value.trim())} maxLength={8} required className="t-login__pin" /></label>
+            <button type="submit" className="mu-btn mu-btn--lime t-btn-sm" disabled={busy}>{busy ? '…' : t({ uk: 'Зберегти', ru: 'Сохранить', en: 'Save' })}</button>
+            {s.loginPin && <button type="button" className="t-link-btn" onClick={() => setOpen(false)}>{t({ uk: 'Скасувати', ru: 'Отмена', en: 'Cancel' })}</button>}
+          </form>
+          {err && <p className="t-neg">{err}</p>}
+        </>
+      )}
     </div>
   );
 }

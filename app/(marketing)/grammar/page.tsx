@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import SectionTabs from '@/components/SectionTabs';
 import type { Metadata } from 'next';
 import Icon from '@/components/Icon';
 import Stickers from '@/components/Stickers';
@@ -37,6 +38,7 @@ export default function GrammarIndexPage() {
   return (
     <>
       <SiteNav />
+      <SectionTabs group="grammar" active="/grammar" />
       <section className="mu-page-hero" data-stickers="6">
         <div className="mu-container">
           <Kit id="il-cat-read" className="kit-hero" />

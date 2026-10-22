@@ -9,6 +9,7 @@ const GENRES: { id: Genre; label: { uk: string; ru: string; en: string } }[] = [
   { id: 'scary', label: { uk: 'Страшні', ru: 'Страшные', en: 'Scary' } },
   { id: 'romance', label: { uk: 'Романтичні', ru: 'Романтические', en: 'Romantic' } },
   { id: 'comedy', label: { uk: 'Комедії', ru: 'Комедии', en: 'Comedy' } },
+  { id: 'think', label: { uk: 'Для обговорення', ru: 'Для обсуждения', en: 'To discuss' } },
 ];
 import { useT } from '@/components/LangProvider';
 
