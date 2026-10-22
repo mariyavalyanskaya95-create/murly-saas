@@ -2473,3 +2473,26 @@ button.mk-gap { border: 0; border-bottom: 2px solid var(--mu-ink); cursor: point
 .qw { width: min(560px, 100%); background: #fff; border: 2px solid var(--mu-ink); border-radius: var(--mu-radius-lg); box-shadow: var(--mu-shadow-stamp-lg); padding: 20px; display: grid; gap: 12px; }
 .qw textarea { font: inherit; padding: 10px 12px; border: 2px solid var(--mu-ink); border-radius: var(--mu-radius); resize: vertical; }
 @media (max-width: 700px) { .qw-fab { bottom: 84px; right: 14px; } }
+/* меню «Вчитися самому»: навичка → рівні (як у British Council) */
+.mu-mega__col--skills { grid-column: span 2; }
+.sk-menu { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px; }
+.sk-menu__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.sk-menu__skill { width: 100%; display: flex; align-items: center; gap: 10px; padding: 9px 10px; border: 0; border-radius: 12px; background: transparent; font: inherit; font-weight: 700; font-size: 16px; color: var(--mu-ink); cursor: pointer; text-align: left; min-height: 44px; }
+.sk-menu__skill .mu-ic { width: 22px; height: 22px; }
+.sk-menu__skill.is-on, .sk-menu__skill:hover { background: var(--mu-lime); }
+.sk-menu__skill:focus-visible { outline: 3px solid var(--mu-ink); outline-offset: 1px; }
+.sk-menu__arrow { margin-left: auto; font-size: 20px; line-height: 1; }
+.sk-menu__levels { display: grid; align-content: start; gap: 2px; padding: 8px 12px; border-radius: 14px; background: var(--mu-paper); }
+.sk-menu__levels a { display: block; padding: 8px 6px; border-radius: 10px; color: var(--mu-ink); text-decoration: none; font-weight: 700; }
+.sk-menu__levels a:hover, .sk-menu__levels a:focus-visible { background: #fff; text-decoration: underline; }
+.sk-menu__all { font-size: 15px; }
+.sk-menu__hub { margin-top: 6px; font-size: 14px; color: var(--mu-ink-soft) !important; }
+@media (max-width: 900px) { .mu-mega__col--skills { grid-column: 1 / -1; } }
+/* сторінки /learn */
+.lv-chips { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 18px; }
+.lv-group { margin-top: 12px; }
+.skill-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+.skill-card { background: #fff; border: 2px solid var(--mu-ink); border-radius: var(--mu-radius-lg); box-shadow: var(--mu-shadow-stamp); padding: 18px; display: grid; gap: 8px; }
+.skill-card__head { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--mu-ink); font-size: 20px; }
+.skill-card__lv { display: flex; flex-wrap: wrap; gap: 6px; }
+.skill-card__lv small { opacity: .6; margin-left: 2px; }
