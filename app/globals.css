@@ -2496,3 +2496,5 @@ button.mk-gap { border: 0; border-bottom: 2px solid var(--mu-ink); cursor: point
 .skill-card__head { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--mu-ink); font-size: 20px; }
 .skill-card__lv { display: flex; flex-wrap: wrap; gap: 6px; }
 .skill-card__lv small { opacity: .6; margin-left: 2px; }
+.t-log-form__top { display: flex; gap: 14px; align-items: flex-end; flex-wrap: wrap; }
+.t-log-mark { display: flex; gap: 6px; flex-wrap: wrap; }
