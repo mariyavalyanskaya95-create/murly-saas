@@ -102,11 +102,19 @@ export default function StudentHome({ enrollments, name }: { enrollments: Enroll
       <section className="t-card">
         <h2><Icon id="d-spark" />{t({ uk: 'Тренуйся сам', ru: 'Тренируйся сам', en: 'Practise on your own' })}</h2>
         <div className="t-head__actions">
-          <a href="/irregular-verbs/games" className="mu-btn">{t({ uk: 'Неправильні дієслова', ru: 'Неправильные глаголы', en: 'Irregular verbs' })}</a>
           <a href="/grammar" className="mu-btn">{t({ uk: 'Граматика', ru: 'Грамматика', en: 'Grammar' })}</a>
+          <a href="/stories" className="mu-btn">{t({ uk: 'Читання і слухання', ru: 'Чтение и аудирование', en: 'Reading and listening' })}</a>
           <a href="/quiz/teen-life" className="mu-btn">{t({ uk: 'Квізи', ru: 'Квизы', en: 'Quizzes' })}</a>
         </div>
       </section>
+
+      {e.loginPin && (
+        <section className="t-card s-login">
+          <h2><Icon id="d-lock" />{t({ uk: 'Мій вхід', ru: 'Мой вход', en: 'My login' })}</h2>
+          <p>{t({ uk: 'Номер', ru: 'Номер', en: 'Number' })}: <b>{e.loginPhone ? `+${e.loginPhone}` : ''}</b> · PIN: <b className="t-login__pin">{e.loginPin}</b></p>
+          <p className="t-muted">{t({ uk: 'Запам’ятай або запиши. Входити тут: murly.com.ua/login', ru: 'Запомни или запиши. Входить здесь: murly.com.ua/login', en: 'Remember or write it down. Log in at murly.com.ua/login' })}</p>
+        </section>
+      )}
     </div>
   );
 }
