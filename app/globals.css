@@ -2515,3 +2515,12 @@ a.t-doc:hover { background: var(--mu-lime); }
 .s-jump { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
 .s-jump .mu-ic { width: 18px; height: 18px; }
 #homework, #words, #materials { scroll-margin-top: 90px; }
+.t-dup { display: inline-flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+.t-dup input { font: inherit; padding: 4px 8px; border: 2px solid var(--mu-ink); border-radius: 10px; }
+.wg-copy { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 8px 0; }
+.wg-copy small { font-weight: 700; margin-right: 4px; }
+.wg-tip { flex-basis: 100%; font-size: 13px; color: var(--mu-ink-soft); }
+.wg-l[draggable="true"] { cursor: grab; }
+.t-start { border: 2px dashed var(--mu-ink); border-radius: 14px; padding: 10px 14px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
+.t-start legend { font-weight: 800; padding: 0 6px; }
+.t-start small { grid-column: 1 / -1; }
