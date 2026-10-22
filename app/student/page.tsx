@@ -48,7 +48,7 @@ export default async function StudentPage() {
     <>
       <div className="t-page" style={{ paddingBottom: 0 }}><ProfileCard /></div>
       <StudentHome enrollments={enrollments} name={first} />
-      <div className="t-page" style={{ paddingTop: 0 }}><MockResults all={MOCKS.map((m) => m.id)} /></div>
+      {enrollments.some((x) => x.nmt) && <div className="t-page" style={{ paddingTop: 0 }}><MockResults all={MOCKS.map((m) => m.id)} /></div>}
     </>
   );
 }
