@@ -17,6 +17,7 @@ import { GRAMMAR } from './grammar';
 import { DRILLS } from './drills';
 import { MOCKS } from './mock';
 import { QUIZZES } from './quizzes';
+import { SERIES } from './series';
 import { localizeLesson } from './content/lessons';
 import { localizeGrammar } from './content/grammar';
 import { localizeDrill } from './content/drills';
@@ -54,6 +55,8 @@ export function catalog(lang: Lang): CatalogItem[] {
     const listen = (p.focus ?? []).includes('Listening');
     out.push({ skill: listen ? 'listening' : 'reading', level: lvl(p.level), kind: listen ? KIND.listen : KIND.read, title: p.title, text: p.topic ?? '', href: `/practice/${p.id.replace(/^lib-/, '')}`, icon: listen ? 'e-head' : 'e-book', color: p.color });
   }
+  // аудіосеріали: кожна серія в «Слухати»
+  for (const s of SERIES) for (const e of s.episodes) out.push({ skill: 'listening', level: lvl(s.level.slice(0, 2)), kind: { uk: 'Аудіосеріал', ru: 'Аудиосериал', en: 'Audio series' }, title: `${s.title}, ${e.n}: ${e.title}`, text: t(e.teaser), href: `/series/${s.slug}/${e.n}`, icon: 'e-head', color: s.color });
   // історії й тексти для обговорення
   for (const s of ALL_STORIES) {
     const g = GENRES.find((x) => x.id === s.genre);
