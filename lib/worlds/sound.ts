@@ -1,3 +1,4 @@
+import { say as speak } from '@/lib/speak';
 // Звуки ігор (WebAudio, без файлів) і озвучка англійських слів
 let ctx: AudioContext | null = null;
 function beep(freqs: number[], dur = 0.09, type: OscillatorType = 'triangle', vol = 0.12) {
@@ -19,17 +20,8 @@ export const sfx = {
   coin: () => beep([880, 1320, 1760], 0.07, 'sine', 0.1),
   paint: () => beep([440, 550, 660], 0.05, 'sine', 0.08),
 };
-export function say(text: string) {
-  try {
-    const s = window.speechSynthesis; if (!s) return;
-    s.cancel();
-    const u = new SpeechSynthesisUtterance(text);
-    const v = s.getVoices().find((x) => x.lang === 'en-GB') || s.getVoices().find((x) => x.lang.startsWith('en'));
-    if (v) u.voice = v;
-    u.lang = v?.lang || 'en-GB'; u.rate = 0.9;
-    s.speak(u);
-  } catch { /* без озвучки */ }
-}
+// Озвучка англійських слів живим голосом (з кешу), запасний варіант: голос браузера
+export function say(text: string) { void speak(text, { voice: 'narrator' }).catch(() => {}); }
 // артикль: some для множини (candles, carrots), an перед голосною
 export const art = (w: string) => {
   if (/^(two|three|four|five)\b/i.test(w)) return 'the';
