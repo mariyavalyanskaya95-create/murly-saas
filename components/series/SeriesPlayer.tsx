@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Icon from '@/components/Icon';
 import { useT } from '@/components/LangProvider';
-import { liveVoices, say, stopSpeak } from '@/lib/speak';
+import { liveVoices, say, stopSpeak, ttsUrl } from '@/lib/speak';
 import TrackPlayer, { type TrackLine } from '@/components/audio/TrackPlayer';
 import { useMemo } from 'react';
 import type { VoicePreset } from '@/lib/voices';
@@ -118,7 +118,7 @@ function TrackPlayerGuard({ lines, showText, onFail }: { lines: TrackLine[]; sho
   const [ok, setOk] = useState(true);
   useEffect(() => {
     let alive = true;
-    Promise.all(lines.slice(0, 3).map((l) => fetch(`/api/tts?v=${l.voice}&t=${encodeURIComponent(l.text)}`, { method: 'HEAD' }).then((r) => r.ok).catch(() => false)))
+    Promise.all(lines.slice(0, 3).map((l) => fetch(ttsUrl(l.text, l.voice), { method: 'HEAD' }).then((r) => r.ok).catch(() => false)))
       .then((r) => { if (alive && r.some((x) => !x)) { setOk(false); onFail(); } });
     return () => { alive = false; };
   }, [lines]); // eslint-disable-line react-hooks/exhaustive-deps
