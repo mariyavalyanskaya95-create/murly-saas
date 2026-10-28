@@ -5,6 +5,7 @@ import { PRACTICE } from '@/lib/practice';
 import { SERIES } from '@/lib/series';
 import { ALL_STORIES } from '@/lib/stories';
 import { QUESTS_TEXT } from '@/lib/quest-list';
+import { VERBS_AZ } from '@/lib/irregular-verbs';
 import { parseScript } from '@/lib/script';
 import { voicesForSpeakers, type VoicePreset } from '@/lib/voices';
 import { isTeacher } from '@/lib/student-data';
@@ -14,7 +15,7 @@ export const dynamic = 'force-dynamic';
 export const maxDuration = 60;
 
 type Item = { t: string; v: VoicePreset; s: boolean };
-// Усе, що озвучується на сайті: аудіювання, аудіосеріали, історії, квест
+// Усе, що озвучується на сайті: аудіювання, аудіосеріали, історії, квест, неправильні дієслова
 function allItems(): Item[] {
   const out: Item[] = [];
   for (const p of [...PRACTICE, ...LIBRARY]) for (const b of p.blocks) if (b.type === 'audio' && !b.audioUrl) {
@@ -24,6 +25,8 @@ function allItems(): Item[] {
   }
   for (const s of SERIES) { const vm = Object.fromEntries(s.cast.map((c) => [c.who, c.voice])) as Record<string, VoicePreset>; for (const e of s.episodes) e.lines.forEach((l) => out.push({ t: l.text, v: l.who ? vm[l.who] ?? 'woman' : 'narrator', s: false })); }
   for (const st of ALL_STORIES) st.paragraphs.forEach((p) => out.push({ t: p.replace(/^## /, ''), v: 'narrator', s: false }));
+  const vs = (x: string) => x.replace(/ \/ /g, ', ');
+  for (const v of VERBS_AZ) for (const t of [v.base, v.past, v.pp, `${v.base}. ${v.past}. ${v.pp}`]) out.push({ t: vs(t), v: 'narrator', s: false });
   for (const t of QUESTS_TEXT) out.push({ t, v: 'girl', s: true });
   for (const t of ['Yes!', 'Great!', 'Well done!', 'Super!', 'one', 'two', 'three', 'four', 'five']) out.push({ t, v: 'girl', s: false });
   const seen = new Set<string>();
