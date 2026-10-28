@@ -55,6 +55,7 @@ export default function StudentHome({ enrollments, name }: { enrollments: Enroll
 
       <nav className="s-jump" aria-label={t({ uk: 'Швидкий перехід', ru: 'Быстрый переход', en: 'Quick links' })}>
         <a href="#homework" className="mu-btn mu-btn--lime"><Icon id="e-board" />{t({ uk: 'Домашка', ru: 'Домашка', en: 'Homework' })}{e.homework.filter((h) => h.status === 'assigned').length ? ` (${e.homework.filter((h) => h.status === 'assigned').length})` : ''}</a>
+        <a href={`/student/board?s=${e.studentId}`} className="mu-btn"><Icon id="e-pencil" />{t({ uk: 'Дошка', ru: 'Доска', en: 'Board' })}</a>
         <a href="#words" className="mu-btn"><Icon id="e-abc" />{t({ uk: 'Мій словник', ru: 'Мой словарь', en: 'My dictionary' })}</a>
         {e.materials.length > 0 && <a href="#materials" className="mu-btn"><Icon id="e-book" />{t({ uk: 'Матеріали з уроків', ru: 'Материалы с уроков', en: 'Lesson materials' })}</a>}
       </nav>
