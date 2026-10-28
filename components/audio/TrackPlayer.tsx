@@ -1,7 +1,7 @@
 'use client';
 // Плеєр як у British Council: одна доріжка з репліками різних голосів,
 // повзунок, назад/вперед на 5 секунд, швидкість 0.5–1.5, текст підсвічується і клікається.
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState, type MutableRefObject } from 'react';
 import { useT } from '@/components/LangProvider';
 import { ttsUrl } from '@/lib/speak';
 import type { VoicePreset } from '@/lib/voices';
@@ -11,7 +11,8 @@ const GAP = 0.35; // пауза між репліками, секунд
 const SPEEDS = [0.5, 0.75, 1, 1.25, 1.5];
 const fmt = (s: number) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
 
-export default function TrackPlayer({ lines, showText, onEnded, narratorLabel, onFail }: { lines: TrackLine[]; showText: boolean; onEnded?: () => void; narratorLabel?: string; onFail?: () => void }) {
+export type TrackControl = { playLine: (i: number) => void };
+export default function TrackPlayer({ lines, showText, onEnded, narratorLabel, onFail, onLine, control }: { lines: TrackLine[]; showText: boolean; onEnded?: () => void; narratorLabel?: string; onFail?: () => void; onLine?: (i: number, playing: boolean) => void; control?: MutableRefObject<TrackControl | null> }) {
   const t = useT();
   const audios = useRef<HTMLAudioElement[]>([]);
   const [durs, setDurs] = useState<number[] | null>(null);
@@ -97,6 +98,9 @@ export default function TrackPlayer({ lines, showText, onEnded, narratorLabel, o
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   });
+
+  useEffect(() => { onLine?.(idx, playing); }, [idx, playing]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => { if (control) control.current = { playLine: (i: number) => { if (starts.length) playFrom(i, 0); } }; });
 
   if (failed) return null; // батьківський компонент покаже запасний плеєр
 
