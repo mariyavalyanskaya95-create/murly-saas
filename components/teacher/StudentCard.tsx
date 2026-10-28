@@ -66,6 +66,7 @@ export default function StudentCard({ id }: { id: string }) {
           <span>{s.level}<span className="t-private"> · {fmtMoney(s.price, tt.lang)} {tt({ uk: 'за заняття', ru: 'за занятие', en: 'per lesson' })}{s.contact ? ` · ${s.contact}` : ''}</span></span>
           {s.joined && <span className="t-tag t-tag--done" style={{ marginLeft: 8 }}>{tt({ uk: 'Має кабінет', ru: 'Есть кабинет', en: 'Has an account' })}</span>}
         </div>
+        <Link href={`/teacher/students/${s.id}/board`} className="mu-btn mu-btn--lime t-btn-sm t-hero__board"><Icon id="e-board" />{tt({ uk: 'Дошка', ru: 'Доска', en: 'Board' })}</Link>
         <button type="button" className="mu-btn t-btn-sm t-hero__edit t-private" onClick={() => { setTab('profile'); setTimeout(() => document.querySelector('.t-tabs')?.scrollIntoView({ behavior: 'smooth' }), 50); }}><Icon id="e-pencil" />{tt({ uk: 'Змінити дані', ru: 'Изменить данные', en: 'Edit details' })}</button>
         <div className={`t-hero__bal t-private ${b < 0 ? (s.payMode === 'post' ? 't-warn' : 't-neg') : ''}`}>
           <small>{b < 0 ? (s.payMode === 'post' ? tt({ uk: 'До оплати', ru: 'К оплате', en: 'To pay' }) : tt({ uk: 'Борг', ru: 'Долг', en: 'Owes' })) : tt({ uk: 'Баланс', ru: 'Баланс', en: 'Balance' })}</small><b>{fmtMoney(Math.abs(b), tt.lang)}</b>
