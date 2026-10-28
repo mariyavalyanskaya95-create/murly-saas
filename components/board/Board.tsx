@@ -119,7 +119,7 @@ export default function Board({ studentId, plans = [], library = [], words = [],
     const sk: any[] = [];
     // довгі рядки переносимо, щоб текст не тягнувся в одну лінію
     const wrap = (s: string, n: number) => s.split('\n').flatMap((line) => { const out: string[] = []; let cur = ''; line.split(' ').forEach((w) => { if ((cur + ' ' + w).trim().length > n) { if (cur) out.push(cur); cur = w; } else cur = (cur + ' ' + w).trim(); }); out.push(cur); return out; }).join('\n');
-    const text = (s0: string, size = 20) => { if (!s0.trim()) return; const s = wrap(s0, Math.round(1500 / size)); sk.push({ type: 'text', x, y, text: s, fontSize: size }); y += Math.ceil(s.split('\n').length * size * 1.35) + 18; };
+    const text = (s0: string, size = 20) => { if (!s0.trim()) return; const s = wrap(s0.replace(/\*\*(.+?)\*\*/g, '$1').replace(/^#+\s*/gm, ''), Math.round(1500 / size)); /* без markdown-зірочок */ sk.push({ type: 'text', x, y, text: s, fontSize: size }); y += Math.ceil(s.split('\n').length * size * 1.35) + 18; };
     text(p.title, 36);
     for (const b of p.blocks as Block[]) {
       if (b.type === 'heading') text(b.text, 28);
