@@ -2602,3 +2602,19 @@ a.t-doc:hover { background: var(--mu-lime); }
 .wg-members { display: grid; gap: 6px; margin: 10px 0; }
 .wg-member { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .wg-member a { min-width: 120px; font-weight: 700; color: var(--mu-ink); }
+/* Дошка (Excalidraw) */
+.bd-page { padding: 12px clamp(8px, 2vw, 24px) 16px; }
+.bd { display: flex; flex-direction: column; gap: 8px; }
+.bd--loading { height: calc(100vh - 170px); display: grid; place-items: center; border: 2px solid var(--mu-ink); border-radius: var(--mu-radius); background: var(--mu-card); }
+.bd-bar { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.bd-title { font-size: 18px; }
+.bd-st { font-size: 13px; padding: 3px 10px; border-radius: 99px; border: 1.5px solid var(--mu-ink); background: var(--mu-card); }
+.bd-st.is-ok { background: var(--mu-lime); }
+.bd-st.is-offline { background: #FBD3C9; }
+.bd-sel { font: inherit; font-size: 14px; padding: 7px 10px; border: 2px solid var(--mu-ink); border-radius: 99px; background: #fff; max-width: 320px; }
+.bd-tip { font-size: 13px; color: var(--mu-ink-muted); margin-left: auto; }
+.bd-note { margin: 6px 0; }
+.bd-canvas { height: calc(100vh - 170px); min-height: 460px; border: 2px solid var(--mu-ink); border-radius: var(--mu-radius); overflow: hidden; }
+.bd-canvas .excalidraw { --color-primary: #1A1A1A; --color-primary-darker: #000; --color-primary-darkest: #000; --color-primary-light: #DCE9B5; }
+@media (max-width: 700px) { .bd-tip { display: none; } .bd-canvas { height: calc(100vh - 150px); } }
+.t-hero__board { align-self: center; } .t-hero__board svg { width: 16px; height: 16px; }
