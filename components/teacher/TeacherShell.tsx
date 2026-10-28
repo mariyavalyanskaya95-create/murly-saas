@@ -6,7 +6,7 @@ import { LessonModeProvider, useLessonMode } from '@/lib/lesson-mode';
 import { UserButton } from '@clerk/nextjs';
 import Icon from '../Icon';
 import { TeacherProvider, useTeacher } from '@/lib/teacher-store';
-import { useT } from '../LangProvider';
+import { LangSwitch, useT } from '../LangProvider';
 import type { T } from '@/lib/i18n';
 import Kit from '@/components/Kit';
 
@@ -44,6 +44,7 @@ function Shell({ userId, name, children }: { userId: string; name: string; child
             <EyeIcon off={lesson.on} />{lesson.on ? t({ uk: 'Режим уроку: увімкнено', ru: 'Режим урока: включён', en: 'Lesson mode: on' }) : t({ uk: 'Режим уроку', ru: 'Режим урока', en: 'Lesson mode' })}
           </button>
           <div className="t-top__user">
+            <LangSwitch />
             <span>{name}</span>
             <UserButton />
           </div>
