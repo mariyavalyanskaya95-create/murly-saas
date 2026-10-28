@@ -2591,3 +2591,14 @@ a.t-doc:hover { background: var(--mu-lime); }
 .t-stats__item.is-warn b { color: var(--mu-tomato); }
 .t-bars { display: flex; align-items: flex-end; gap: 4px; height: 34px; }
 .t-bars i { flex: 1; min-width: 6px; background: var(--mu-lime); border: 1.5px solid var(--mu-ink); border-radius: 3px 3px 0 0; }
+/* Групи */
+.t-group__members { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 12px; }
+.t-group__members .g-chip { text-decoration: none; color: var(--mu-ink); display: inline-flex; align-items: center; gap: 6px; }
+.t-group__cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 12px; }
+.t-group__cols h3 { font-size: 15px; margin: 0 0 6px; }
+@media (max-width: 700px) { .t-group__cols { grid-template-columns: 1fr; } }
+.t-tag--group { text-decoration: none; color: var(--mu-ink); background: var(--mu-sky); }
+.wg-l.is-group { border-style: double; border-width: 3px; }
+.wg-members { display: grid; gap: 6px; margin: 10px 0; }
+.wg-member { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.wg-member a { min-width: 120px; font-weight: 700; color: var(--mu-ink); }
