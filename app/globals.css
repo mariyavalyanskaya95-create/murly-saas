@@ -2664,3 +2664,25 @@ a.t-doc:hover { background: var(--mu-lime); }
   .le-filters .g-chip, .t-tabs .t-tab { flex: none; white-space: nowrap; }
   .le-filters .g-chips { margin-bottom: 6px; }
 }
+.bd-online { font-size: 13px; padding: 3px 10px; border-radius: 99px; background: var(--mu-ink); color: #fff; }
+.bd-online::before { content: ''; display: inline-block; width: 8px; height: 8px; margin-right: 6px; border-radius: 50%; background: #7FD46B; vertical-align: 1px; }
+/* Сторінка для батьків */
+.pr-page h1 small { font-size: 18px; }
+.pr-hw { border-bottom: 1px solid var(--mu-paper-dark); padding: 4px 0; }
+.pr-fb { margin: 2px 0 6px; padding: 8px 12px; border-left: 3px solid var(--mu-lime); background: var(--mu-paper); font-size: 14px; }
+.t-parent { display: inline-flex; align-items: center; gap: 6px; align-self: center; } .t-parent svg { width: 16px; height: 16px; } .t-parent__url { font: inherit; font-size: 12px; width: 220px; padding: 4px 8px; border: 1.5px solid var(--mu-ink); border-radius: 8px; }
+/* Урок: відео + дошка */
+.lr { display: grid; grid-template-columns: var(--lr-w, 38%) minmax(0, 1fr); gap: 10px; }
+.lr.is-novideo { grid-template-columns: 220px minmax(0, 1fr); }
+.lr-video { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.lr-video__bar { display: flex; align-items: center; gap: 8px; min-height: 34px; }
+.lr-video__bar input { flex: 1; min-width: 60px; accent-color: #1A1A1A; }
+.lr-frame { width: 100%; height: calc(100vh - 170px); min-height: 360px; border: 2px solid var(--mu-ink); border-radius: var(--mu-radius); background: #111; }
+.lr-ext { display: grid; place-content: center; gap: 12px; text-align: center; height: calc(100vh - 170px); min-height: 300px; padding: 18px; border: 2px dashed var(--mu-ink); border-radius: var(--mu-radius); background: var(--mu-card); }
+.lr-board { min-width: 0; }
+.lr-board .bd-tip { display: none; }
+@media (max-width: 900px) {
+  .lr, .lr.is-novideo { grid-template-columns: 1fr; }
+  .lr-frame, .lr-ext { height: 34vh; min-height: 220px; }
+  .lr-video__bar input { display: none; }
+}
