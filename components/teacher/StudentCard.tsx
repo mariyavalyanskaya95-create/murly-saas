@@ -66,7 +66,9 @@ export default function StudentCard({ id }: { id: string }) {
           <span>{s.level}<span className="t-private"> · {fmtMoney(s.price, tt.lang)} {tt({ uk: 'за заняття', ru: 'за занятие', en: 'per lesson' })}{s.contact ? ` · ${s.contact}` : ''}</span></span>
           {s.joined && <span className="t-tag t-tag--done" style={{ marginLeft: 8 }}>{tt({ uk: 'Має кабінет', ru: 'Есть кабинет', en: 'Has an account' })}</span>}
         </div>
-        <Link href={`/teacher/students/${s.id}/board`} className="mu-btn mu-btn--lime t-btn-sm t-hero__board"><Icon id="e-board" />{tt({ uk: 'Дошка', ru: 'Доска', en: 'Board' })}</Link>
+        <Link href={`/teacher/students/${s.id}/lesson`} className="mu-btn mu-btn--lime t-btn-sm t-hero__board"><Icon id="d-phone" />{tt({ uk: 'Почати урок', ru: 'Начать урок', en: 'Start lesson' })}</Link>
+        <Link href={`/teacher/students/${s.id}/board`} className="mu-btn t-btn-sm t-hero__board"><Icon id="e-board" />{tt({ uk: 'Дошка', ru: 'Доска', en: 'Board' })}</Link>
+        <ParentLinkButton id={s.id} />
         <button type="button" className="mu-btn t-btn-sm t-hero__edit t-private" onClick={() => { setTab('profile'); setTimeout(() => document.querySelector('.t-tabs')?.scrollIntoView({ behavior: 'smooth' }), 50); }}><Icon id="e-pencil" />{tt({ uk: 'Змінити дані', ru: 'Изменить данные', en: 'Edit details' })}</button>
         <div className={`t-hero__bal t-private ${b < 0 ? (s.payMode === 'post' ? 't-warn' : 't-neg') : ''}`}>
           <small>{b < 0 ? (s.payMode === 'post' ? tt({ uk: 'До оплати', ru: 'К оплате', en: 'To pay' }) : tt({ uk: 'Борг', ru: 'Долг', en: 'Owes' })) : tt({ uk: 'Баланс', ru: 'Баланс', en: 'Balance' })}</small><b>{fmtMoney(Math.abs(b), tt.lang)}</b>
@@ -841,5 +843,26 @@ function StudentStats({ id }: { id: string }) {
         </div>
       )}
     </div>
+  );
+}
+
+// Посилання для батьків: копіюємо в буфер, щоб надіслати в месенджер
+function ParentLinkButton({ id }: { id: string }) {
+  const t = useT();
+  const [st, setSt] = useState<'' | 'copied' | 'err'>('');
+  const [url, setUrl] = useState('');
+  const go = async () => {
+    const j = await fetch(`/api/parent-link?student=${id}`).then((r) => r.json()).catch(() => null);
+    if (!j?.url) { setSt('err'); return; }
+    setUrl(j.url);
+    try { await navigator.clipboard.writeText(j.url); setSt('copied'); } catch { setSt('err'); }
+  };
+  return (
+    <span className="t-parent t-private">
+      <button type="button" className="mu-btn t-btn-sm" onClick={go} title={t({ uk: 'Сторінка з успіхами учня для батьків, без входу', ru: 'Страница с успехами ученика для родителей, без входа', en: 'A progress page for parents, no login' })}><Icon id="d-heart" />{t({ uk: 'Батькам', ru: 'Родителям', en: 'For parents' })}</button>
+      {st === 'copied' && <small className="t-pos">{t({ uk: 'Посилання скопійовано', ru: 'Ссылка скопирована', en: 'Link copied' })}</small>}
+      {st === 'err' && url && <input readOnly value={url} onFocus={(e) => e.target.select()} className="t-parent__url" />}
+      {st === 'err' && !url && <small className="t-neg">{t({ uk: 'Не вдалося', ru: 'Не удалось', en: 'Failed' })}</small>}
+    </span>
   );
 }
