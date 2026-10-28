@@ -17,7 +17,16 @@ export default function QuestGame({ loc, hw, adult, next }: { loc: QuestLocation
   const [clean, setClean] = useState(0);
   const [flags, setFlags] = useState<Set<string>>(new Set());
   const [pop, setPop] = useState<string | null>(null);
+  const [gone, setGone] = useState<Set<string>>(new Set()); // взяті предмети: зникають зі сцени
+  const [bag, setBag] = useState<string[]>([]); // що лежить у сумці Бульбашки
+  const [flying, setFlying] = useState<Set<string>>(new Set()); // летять у сумку (анімація)
+  const hasBag = loc.tasks.some((x) => x.take);
+  const takeAway = (id: string) => {
+    setFlying((s) => new Set(s).add(id));
+    setTimeout(() => { setGone((s) => new Set(s).add(id)); setFlying((s) => { const n = new Set(s); n.delete(id); return n; }); }, 650);
+  };
   const sent = useRef(false);
+  const busy = useRef(false); // поки йде перехід до наступного завдання
   const task = TASKS[step];
   const done = step >= TASKS.length;
 
@@ -31,7 +40,7 @@ export default function QuestGame({ loc, hw, adult, next }: { loc: QuestLocation
   }, [done]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const tap = (id: string) => {
-    if (!task) return;
+    if (!task || busy.current) return;
     setPop(id); setTimeout(() => setPop(null), 400);
     if (!task.target.includes(id)) {
       setMiss((m) => m + 1);
@@ -39,22 +48,31 @@ export default function QuestGame({ loc, hw, adult, next }: { loc: QuestLocation
       if (miss + 1 >= 2) setHint(true);
       return;
     }
+    if (found.includes(id) && task.all) return;
     if (task.all) {
       const f = found.includes(id) ? found : [...found, id];
       setFound(f);
       setMsg(`${f.length} / ${task.target.length}`);
       say(['one', 'two', 'three', 'four', 'five'][f.length - 1] ?? '', { voice: 'girl' });
+      if (task.take) takeAway(id);
       if (f.length < task.target.length) return;
     }
     if (task.set) setFlags((s) => new Set(s).add(task.set!));
+    if (task.take) { if (!task.all) task.target.forEach(takeAway); setBag((b) => [...b, task.take!]); }
     if (!miss) setClean((c) => c + 1);
     setMsg(t({ uk: 'Так! Молодець!', ru: 'Да! Молодец!', en: 'Yes! Well done!' }));
     say(['Yes!', 'Great!', 'Well done!', 'Super!'][step % 4], { voice: 'girl' });
-    setTimeout(() => { setMsg(''); setStep((s) => s + 1); }, 1000);
+    busy.current = true;
+    setTimeout(() => { busy.current = false; setMsg(''); setStep((s) => s + 1); }, 1000);
   };
-  const restart = () => { setFlags(new Set()); setClean(0); sent.current = false; setStep(0); };
+  const restart = () => { setFlags(new Set()); setGone(new Set()); setBag([]); setClean(0); sent.current = false; setStep(0); };
 
-  const hit = (id: string): HitProps => ({ onClick: () => tap(id), className: `sq-hit ${pop === id ? 'is-pop' : ''} ${found.includes(id) ? 'is-found' : ''}`, role: 'button', tabIndex: 0, onKeyDown: (e) => { if (e.key === 'Enter' || e.key === ' ') tap(id); } });
+  // після 3 помилок підсвічуємо правильну ціль
+  const glow = (id: string) => Boolean(task && miss >= 3 && task.target.includes(id) && !found.includes(id));
+  const hit = (id: string): HitProps => {
+    const cls = ['sq-hit', pop === id && 'is-pop', found.includes(id) && !task?.take && 'is-found', flying.has(id) && 'is-taken', gone.has(id) && 'is-gone', glow(id) && 'is-hint'].filter(Boolean).join(' ');
+    return { onClick: () => { if (!gone.has(id) && !flying.has(id)) tap(id); }, className: cls, role: 'button', tabIndex: gone.has(id) ? -1 : 0, onKeyDown: (e) => { if (e.key === 'Enter' || e.key === ' ') tap(id); } };
+  };
   const { Scene } = loc;
 
   return (
@@ -90,6 +108,17 @@ export default function QuestGame({ loc, hw, adult, next }: { loc: QuestLocation
           </div>
         )}
       </div>
+      {hasBag && step >= 0 && (
+        <div className="sq-bag" aria-live="polite">
+          <b>{t({ uk: 'Сумка Бульбашки', ru: 'Сумка Пузырька', en: 'Bubbles’ bag' })}:</b>
+          {bag.length ? bag.map((w, i) => <span key={i} className="sq-bag__it">{w}</span>) : <span className="t-muted">{t({ uk: 'поки порожньо', ru: 'пока пусто', en: 'empty for now' })}</span>}
+        </div>
+      )}
+      {loc.topics?.length > 0 && (
+        <ul className="sq-topics" aria-label={t({ uk: 'Що тренуємо', ru: 'Что тренируем', en: 'What we practise' })}>
+          {loc.topics.map((x, i) => <li key={i}>{t(x)}</li>)}
+        </ul>
+      )}
     </div>
   );
 }
