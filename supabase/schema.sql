@@ -242,3 +242,18 @@ alter table students add column if not exists tg_chat_id text;
 alter table students add column if not exists tg_lang text;
 alter table teacher_settings add column if not exists tg_chat_id text;
 alter table teacher_settings add column if not exists tg_lang text;
+
+-- Групові заняття
+create table if not exists groups (
+  id uuid primary key default gen_random_uuid(),
+  teacher_id text not null,
+  name text not null,
+  color text not null default 'sky',
+  student_ids uuid[] not null default '{}',
+  link text,
+  created_at timestamptz not null default now()
+);
+create index if not exists groups_teacher_idx on groups (teacher_id);
+alter table groups enable row level security;
+alter table lessons add column if not exists group_id uuid;
+alter table homework add column if not exists group_id uuid;
