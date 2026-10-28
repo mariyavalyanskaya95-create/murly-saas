@@ -71,11 +71,9 @@ export default function StudentHome({ enrollments, name }: { enrollments: Enroll
               <div className="s-next__time">{fmtTime(next.start, lang)}<span> · {next.duration} {t({ uk: 'хв', ru: 'мин', en: 'min' })}</span></div>
               {next.topic && <div className="t-muted">{t({ uk: 'Тема', ru: 'Тема', en: 'Topic' })}: {next.topic}</div>}
             </div>
-            {next.link && (
-              <a href={next.link} target="_blank" rel="noopener noreferrer" className={`mu-btn mu-btn--lg ${soon ? 'mu-btn--lime' : ''}`}>
-                <Icon id="d-phone" />{t({ uk: 'Приєднатися до дзвінка', ru: 'Присоединиться к звонку', en: 'Join the call' })}
-              </a>
-            )}
+            <a href={`/student/lesson?s=${e.studentId}`} className={`mu-btn mu-btn--lg ${soon ? 'mu-btn--lime' : ''}`}>
+              <Icon id="d-phone" />{t({ uk: 'Увійти на урок', ru: 'Войти на урок', en: 'Join the lesson' })}
+            </a>
           </div>
         ) : <p className="t-empty">{t({ uk: 'Поки немає запланованих занять.', ru: 'Пока нет запланированных занятий.', en: 'No lessons planned yet.' })}</p>}
         {e.lessons.length > 1 && (
