@@ -17,7 +17,7 @@ export default async function StudentBoard({ searchParams }: { searchParams: { s
   return (
     <div className="bd-page">
       <Link href="/student" className="t-back">← {t({ uk: 'Мій кабінет', ru: 'Мой кабинет', en: 'My account' })}</Link>
-      <BoardLazy studentId={e.studentId} pages={boardPages(t.lang)} files={e.materials.flatMap((m) => m.files)} words={e.words.map((w) => ({ en: w.en, uk: w.uk }))} title={t({ uk: 'Наша дошка', ru: 'Наша доска', en: 'Our board' })} />
+      <BoardLazy studentId={e.studentId} me={e.name} pages={boardPages(t.lang)} files={e.materials.flatMap((m) => m.files)} words={e.words.map((w) => ({ en: w.en, uk: w.uk }))} title={t({ uk: 'Наша дошка', ru: 'Наша доска', en: 'Our board' })} />
     </div>
   );
 }
