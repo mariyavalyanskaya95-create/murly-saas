@@ -7,6 +7,7 @@ import '@excalidraw/excalidraw/index.css';
 import type { Plan, Block } from '@/lib/lesson';
 import type { Section } from '@/lib/exercise';
 import { useT } from '@/components/LangProvider';
+import { uploadFile } from '@/lib/upload';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 type El = { id: string; version: number; isDeleted?: boolean; y: number; height: number; x: number; [k: string]: any };
@@ -105,14 +106,17 @@ export default function Board({ studentId, plans = [], library = [], words = [],
     if (!api || !skeleton.length) return;
     const add = convertToExcalidrawElements(skeleton, { regenerateIds: true });
     api.updateScene({ elements: [...api.getSceneElementsIncludingDeleted(), ...add], captureUpdate: CaptureUpdateAction.IMMEDIATELY });
-    api.scrollToContent(add, { fitToContent: true, animate: true });
+    api.scrollToContent(add.slice(0, 1), { animate: true }); // показати початок вставленого, без зменшення
+
     push();
   };
   const addPlan = async (p: Plan) => {
     setBusy(true);
     let y = bottom(); const x = 0;
     const sk: any[] = [];
-    const text = (s: string, size = 20) => { if (!s.trim()) return; sk.push({ type: 'text', x, y, text: s, fontSize: size }); y += Math.ceil(s.split('\n').length * size * 1.35) + 18; };
+    // довгі рядки переносимо, щоб текст не тягнувся в одну лінію
+    const wrap = (s: string, n: number) => s.split('\n').flatMap((line) => { const out: string[] = []; let cur = ''; line.split(' ').forEach((w) => { if ((cur + ' ' + w).trim().length > n) { if (cur) out.push(cur); cur = w; } else cur = (cur + ' ' + w).trim(); }); out.push(cur); return out; }).join('\n');
+    const text = (s0: string, size = 20) => { if (!s0.trim()) return; const s = wrap(s0, Math.round(1500 / size)); sk.push({ type: 'text', x, y, text: s, fontSize: size }); y += Math.ceil(s.split('\n').length * size * 1.35) + 18; };
     text(p.title, 36);
     for (const b of p.blocks as Block[]) {
       if (b.type === 'heading') text(b.text, 28);
@@ -144,6 +148,36 @@ export default function Board({ studentId, plans = [], library = [], words = [],
     await insert(sk);
     setBusy(false);
   };
+  // Документ на дошку: HTML-квіз або PDF стають вікном прямо на дошці, картинка вставляється як є
+  const fileInput = useRef<HTMLInputElement>(null);
+  const [upErr, setUpErr] = useState('');
+  const addDoc = async (file: File) => {
+    if (!api) return;
+    setUpErr(''); setBusy(true);
+    try {
+      const y = bottom();
+      if (file.type.startsWith('image/')) {
+        const dataURL: string = await new Promise((res) => { const fr = new FileReader(); fr.onload = () => res(String(fr.result)); fr.readAsDataURL(file); });
+        const dim: { w: number; h: number } = await new Promise((res) => { const im = new Image(); im.onload = () => res({ w: im.width, h: im.height }); im.onerror = () => res({ w: 600, h: 400 }); im.src = dataURL; });
+        const w = Math.min(800, dim.w); const h = Math.round((dim.h / dim.w) * w);
+        const fileId = `img${Math.random().toString(36).slice(2, 12)}`;
+        api.addFiles([{ id: fileId, dataURL, mimeType: file.type, created: Date.now() }]);
+        await insert([{ type: 'image', x: 0, y, width: w, height: h, fileId }]);
+      } else {
+        const type = /\.html?$/i.test(file.name) ? 'text/html' : file.type;
+        const up = await uploadFile(type === file.type ? file : new File([file], file.name, { type }));
+        if ('error' in up) { setUpErr(up.error); return; }
+        const link = type === 'text/html' ? `${location.origin}/api/doc?f=${encodeURIComponent(up.url)}` : up.url;
+        const [rect] = convertToExcalidrawElements([{ type: 'rectangle', x: 0, y, width: 960, height: 680 }], { regenerateIds: true }) as any[];
+        const el = { ...rect, type: 'embeddable', link, roundness: null, backgroundColor: 'transparent', strokeColor: '#1A1A1A' };
+        api.updateScene({ elements: [...api.getSceneElementsIncludingDeleted(), el], captureUpdate: CaptureUpdateAction.IMMEDIATELY });
+        api.scrollToContent([el], { fitToContent: true, animate: true });
+        push();
+      }
+    } finally { setBusy(false); }
+  };
+  const allowEmbed = (url: string) => url.startsWith(`${location.origin}/api/doc`) || /\.supabase\.co\/storage\/v1\/object\/public\//.test(url) || /^https:\/\/(www\.)?(youtube\.com|youtu\.be|docs\.google\.com|drive\.google\.com)\//.test(url);
+
   const addWords = () => {
     if (!words.length) return;
     const y = bottom();
@@ -172,11 +206,14 @@ export default function Board({ studentId, plans = [], library = [], words = [],
             {library.length > 0 && <optgroup label={t({ uk: 'Готові уроки', ru: 'Готовые уроки', en: 'Ready-made lessons' })}>{library.map((p) => <option key={p.id} value={p.id}>{p.title} · {p.level}</option>)}</optgroup>}
           </select>
         )}
+        <button type="button" className="mu-btn t-btn-sm" disabled={busy} onClick={() => fileInput.current?.click()}>{t({ uk: '+ Документ', ru: '+ Документ', en: '+ Document' })}</button>
+        <input ref={fileInput} type="file" hidden accept=".html,.htm,.pdf,image/*" onChange={(e) => { const f = e.target.files?.[0]; e.target.value = ''; if (f) addDoc(f); }} />
+        {upErr && <span className="t-neg" style={{ fontSize: 13 }}>{upErr}</span>}
         {words.length > 0 && <button type="button" className="mu-btn t-btn-sm" onClick={addWords}>{t({ uk: '+ Слова учня', ru: '+ Слова ученика', en: '+ Student words' })}</button>}
-        <span className="bd-tip">{t({ uk: 'Картинки й скріншоти: перетягни або встав Ctrl+V', ru: 'Картинки и скриншоты: перетащи или вставь Ctrl+V', en: 'Images and screenshots: drag in or paste with Ctrl+V' })}</span>
+        <span className="bd-tip">{t({ uk: 'Картинки: перетягни або Ctrl+V. Квіз чи PDF: «+ Документ», клікни по ньому двічі, щоб працювати всередині', ru: 'Картинки: перетащи или Ctrl+V. Квиз или PDF: «+ Документ», кликни по нему дважды, чтобы работать внутри', en: 'Images: drag in or Ctrl+V. Quiz or PDF: “+ Document”, double-click it to work inside' })}</span>
       </div>
       <div className="bd-canvas">
-        <Excalidraw excalidrawAPI={(a: any) => setApi(a)} onChange={onChange} langCode={LANG[t.lang] ?? 'en'}
+        <Excalidraw excalidrawAPI={(a: any) => setApi(a)} onChange={onChange} validateEmbeddable={allowEmbed} langCode={LANG[t.lang] ?? 'en'}
           initialData={{ appState: { viewBackgroundColor: '#FFFDF8', currentItemFontFamily: 2 } }}
           UIOptions={{ canvasActions: { loadScene: false, saveToActiveFile: false, export: { saveFileToDisk: true } } }}>
           <MainMenu>
