@@ -2526,3 +2526,48 @@ a.t-doc:hover { background: var(--mu-lime); }
 .t-start small { grid-column: 1 / -1; }
 .t-top__user .mu-lang { font-size: 12px; }
 @media (max-width: 700px) { .t-top__user .mu-lang button { padding: 4px 6px; } }
+/* ===========================================================
+   CALM: спокійна палітра. Кремовий фон, чорний текст, білі картки.
+   Лайм лише для головних кнопок і правильних відповідей.
+   =========================================================== */
+:root {
+  --mu-card: #FFFDF8;
+  --mu-sky: #E9E4D8;        /* був блакитний: тепер теплий сірий */
+  --mu-mustard: #F1E6C8;    /* був гірчичний: тепер пісочний */
+}
+/* великі червоні секції: темні */
+.mu-section--tomato { background: var(--mu-ink); }
+/* кольорові картки і плитки: білі */
+.mu-card--lime, .mu-card--mustard, .mu-card--sky,
+.mu-role--lime, .mu-role--mustard, .mu-role--sky,
+.t-stat--lime, .t-stat--sky, .t-stat--mustard, .t-stat--tomato,
+.u-bg--lime, .u-bg--sky, .u-bg--mustard,
+.mu-polaroid__visual--mustard, .mu-polaroid__visual--sky, .mu-polaroid__visual--lime,
+.lp-card.gr--lime, .lp-card.gr--mustard, .lp-card.gr--sky, .lp-card.gr--tomato,
+.s-next, .ls-word { background: var(--mu-card); }
+.gr--lime, .gr--mustard, .gr--sky, .gr--tomato, .gr--pink { --gr: var(--mu-card); }
+.mu-step:nth-child(2), .mu-step:nth-child(3) { background: var(--mu-card); }
+.mu-cta-box { background: var(--mu-card); }
+.t-earn__main { background: var(--mu-card) !important; }
+/* іконки на картках: чорне коло з лаймом, як єдиний акцент */
+.mu-card__icon { background: var(--mu-ink); color: var(--mu-lime); }
+/* мітки секцій: чорні */
+.mu-section__eyebrow { background: var(--mu-ink); color: #FFF; }
+.mu-section--tomato .mu-section__eyebrow, .mu-section__eyebrow--lime { background: var(--mu-lime); color: var(--mu-ink); }
+/* легші тіні */
+.gr-card, .lp-card, .mu-role { box-shadow: var(--mu-shadow-stamp); }
+.mu-scallop { background-color: var(--mu-ink) !important; }
+.mu-section--tomato .mu-card:not(.mu-card--ink), .mu-section--tomato .mu-card:not(.mu-card--ink) h3, .mu-section--tomato .mu-card:not(.mu-card--ink) p { color: var(--mu-ink); }
+.mu-section--tomato .mu-card--ink { background: #2B2925; border-color: #4A463F; }
+.mu-section--tomato .mu-card__icon, .mu-section--tomato .mu-card__icon * { color: var(--mu-lime); }
+
+/* Ігри: заголовки груп */
+.gm-h { font-size: clamp(22px, 3vw, 30px); margin: 0 auto 8px; }
+/* Мій прогрес (кабінет учня) */
+.s-prog { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.s-prog__item { display: flex; flex-direction: column; gap: 2px; padding: 14px 16px; border: 2px solid var(--mu-ink); border-radius: var(--mu-radius); background: var(--mu-card); }
+.s-prog__item b { font-family: 'Unbounded', 'Arial Black', sans-serif; font-size: 24px; line-height: 1.1; }
+.s-prog__item span { color: var(--mu-ink-muted); font-size: 14px; }
+.s-prog__bar { display: block; height: 6px; margin-top: 8px; border-radius: 99px; background: var(--mu-paper-dark); overflow: hidden; }
+.s-prog__bar i { display: block; height: 100%; background: var(--mu-lime); border-right: 2px solid var(--mu-ink); }
+@media (max-width: 560px) { .s-prog { grid-template-columns: 1fr 1fr 1fr; gap: 8px; } .s-prog__item { padding: 10px; } .s-prog__item b { font-size: 18px; } .s-prog__item span { font-size: 12px; } }
