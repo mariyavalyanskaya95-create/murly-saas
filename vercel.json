@@ -3,5 +3,8 @@
     "deploymentEnabled": {
       "work": false
     }
-  }
+  },
+  "crons": [
+    { "path": "/api/cron/remind", "schedule": "0 6 * * *" }
+  ]
 }
