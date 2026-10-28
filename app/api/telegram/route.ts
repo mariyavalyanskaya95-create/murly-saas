@@ -49,5 +49,22 @@ export async function GET(req: Request) {
   let linked = false;
   try { const r = await db.query(`teacher_settings?teacher_id=eq.${encodeURIComponent(userId)}&select=tg_chat_id`); linked = Boolean(r[0]?.tg_chat_id); } catch { /* */ }
   const hook = url.searchParams.get('setup') ? await setupWebhook(url.origin) : undefined;
-  return NextResponse.json({ ready: true, linked, link: teacherLink(userId, lang), hook });
+  // діагностика вебхука (без токена)
+  let diag: Record<string, unknown> | undefined;
+  if (url.searchParams.get('diag')) {
+    const w = await fetch(`https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/getWebhookInfo`).then((r) => r.json()).catch(() => null);
+    diag = w?.result ? { url: w.result.url, pending: w.result.pending_update_count, lastError: w.result.last_error_message, lastErrorAt: w.result.last_error_date } : { error: 'no_info' };
+  }
+  return NextResponse.json({ ready: true, linked, link: teacherLink(userId, lang), hook, diag });
+}
+
+// Тестове повідомлення вчителю: PUT /api/telegram
+export async function PUT() {
+  const { userId } = await auth();
+  if (!userId || !tgReady() || !dbReady()) return NextResponse.json({ ok: false }, { status: 400 });
+  const r = await db.query(`teacher_settings?teacher_id=eq.${encodeURIComponent(userId)}&select=tg_chat_id,tg_lang`).catch(() => []);
+  const chat = r[0]?.tg_chat_id;
+  if (!chat) return NextResponse.json({ ok: false, error: 'not_linked' });
+  const ok = await tgSend(String(chat), L(String(r[0]?.tg_lang || 'uk'), { uk: 'Тест від Murly: сповіщення працюють ✓', ru: 'Тест от Murly: уведомления работают ✓', en: 'Murly test: notifications work ✓' }));
+  return NextResponse.json({ ok });
 }
