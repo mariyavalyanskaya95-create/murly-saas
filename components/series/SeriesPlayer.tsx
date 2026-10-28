@@ -3,7 +3,9 @@
 import { useEffect, useRef, useState } from 'react';
 import Icon from '@/components/Icon';
 import { useT } from '@/components/LangProvider';
-import { say, stopSpeak } from '@/lib/speak';
+import { liveVoices, say, stopSpeak } from '@/lib/speak';
+import TrackPlayer, { type TrackLine } from '@/components/audio/TrackPlayer';
+import { useMemo } from 'react';
 import type { VoicePreset } from '@/lib/voices';
 import type { Episode } from '@/lib/series/types';
 
@@ -18,6 +20,10 @@ export default function SeriesPlayer({ slug, ep, voices, total }: { slug: string
   const stopRef = useRef(false);
   const lineRefs = useRef<(HTMLParagraphElement | null)[]>([]);
   useEffect(() => () => stopSpeak(), []);
+  const [live, setLive] = useState<boolean | null>(null);
+  const [trackFail, setTrackFail] = useState(false);
+  useEffect(() => { liveVoices().then(setLive); }, []);
+  const track: TrackLine[] = useMemo(() => ep.lines.map((l) => ({ who: l.who, text: l.text, voice: l.who ? voices[l.who] ?? 'woman' : 'narrator' })), [ep, voices]);
   useEffect(() => { if (text && cur >= 0) lineRefs.current[cur]?.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); }, [cur, text]);
 
   const play = (from = 0) => {
@@ -40,6 +46,15 @@ export default function SeriesPlayer({ slug, ep, voices, total }: { slug: string
 
   return (
     <div className="sp">
+      {live && !trackFail ? (
+        <>
+          <div className="sp-bar sp-bar--live">
+            <button type="button" className={`g-chip ${text ? 'is-on' : ''}`} onClick={() => setText(!text)} aria-pressed={text}>{text ? t({ uk: 'Сховати текст', ru: 'Скрыть текст', en: 'Hide text' }) : t({ uk: 'Показати текст', ru: 'Показать текст', en: 'Show text' })}</button>
+            <span className="t-muted" style={{ fontSize: 13 }}>{t({ uk: 'Стрілки ← → на клавіатурі: 5 секунд назад і вперед', ru: 'Стрелки ← → на клавиатуре: 5 секунд назад и вперёд', en: 'Arrow keys ← →: 5 seconds back and forward' })}</span>
+          </div>
+          <TrackPlayerGuard lines={track} showText={text} onFail={() => setTrackFail(true)} />
+        </>
+      ) : (<>
       <div className="sp-bar">
         {!playing
           ? <button type="button" className="mu-btn mu-btn--lime mu-btn--lg" onClick={() => play(cur >= 0 ? cur : 0)}><Icon id="e-head" />{cur > 0 ? t({ uk: 'Продовжити', ru: 'Продолжить', en: 'Continue' }) : t({ uk: 'Слухати серію', ru: 'Слушать серию', en: 'Play episode' })}</button>
@@ -58,6 +73,7 @@ export default function SeriesPlayer({ slug, ep, voices, total }: { slug: string
           ))}
         </div>
       )}
+      </>)}
 
       <section className="t-card sp-words">
         <h2><Icon id="e-abc" />{t({ uk: 'Слова серії', ru: 'Слова серии', en: 'Episode words' })}</h2>
@@ -95,4 +111,16 @@ export default function SeriesPlayer({ slug, ep, voices, total }: { slug: string
       </section>
     </div>
   );
+}
+
+// Якщо живі файли не завантажились (наприклад, гість і фрази ще не озвучені), повертаємось до звичайного плеєра
+function TrackPlayerGuard({ lines, showText, onFail }: { lines: TrackLine[]; showText: boolean; onFail: () => void }) {
+  const [ok, setOk] = useState(true);
+  useEffect(() => {
+    let alive = true;
+    Promise.all(lines.slice(0, 3).map((l) => fetch(`/api/tts?v=${l.voice}&t=${encodeURIComponent(l.text)}`, { method: 'HEAD' }).then((r) => r.ok).catch(() => false)))
+      .then((r) => { if (alive && r.some((x) => !x)) { setOk(false); onFail(); } });
+    return () => { alive = false; };
+  }, [lines]); // eslint-disable-line react-hooks/exhaustive-deps
+  return ok ? <TrackPlayer lines={lines} showText={showText} onFail={onFail} /> : null;
 }
