@@ -1,5 +1,6 @@
 // Живі голоси (Google Cloud Text-to-Speech, Neural2). Ключ GOOGLE_TTS_API_KEY вводить власниця сайту у Vercel.
 export type VoicePreset = 'narrator' | 'woman' | 'man' | 'woman2' | 'man2' | 'girl' | 'boy' | 'old' | 'us_woman' | 'us_man';
+// Ключ підключено: GOOGLE_TTS_API_KEY у Vercel (проєкт Google Cloud «Murly»).
 export const VOICES: Record<VoicePreset, { lang: string; name: string; pitch: number; rate: number }> = {
   narrator: { lang: 'en-GB', name: 'en-GB-Neural2-C', pitch: 0, rate: 0.95 },
   woman: { lang: 'en-GB', name: 'en-GB-Neural2-A', pitch: 0, rate: 1 },
