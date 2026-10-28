@@ -38,7 +38,7 @@ export default function SiteFooter() {
               <li><Link href="/irregular-verbs/games">{t({ uk: 'Ігри з дієсловами', ru: 'Игры с глаголами', en: 'Verb games' })}</Link></li>
               <li><Link href="/practice">{t({ uk: 'Слухати і читати', ru: 'Слушать и читать', en: 'Listening and reading' })}</Link></li>
               <li><Link href="/quiz/teen-life">{t({ uk: 'Квізи', ru: 'Квизы', en: 'Quizzes' })}</Link></li>
-              <li><Link href="/worlds">Murly Town</Link></li>
+              <li><Link href="/games">{t({ uk: 'Ігри', ru: 'Игры', en: 'Games' })}</Link></li>
             </ul>
           </div>
           <div>

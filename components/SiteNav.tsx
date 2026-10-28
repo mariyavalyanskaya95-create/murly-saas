@@ -16,6 +16,7 @@ const TOP: { href: string; label: T }[] = [
   { href: '/for-teachers', label: { uk: 'Вчителям', ru: 'Учителям', en: 'Teachers' } },
   { href: '/for-parents', label: { uk: 'Батькам', ru: 'Родителям', en: 'Parents' } },
   { href: '/nmt', label: { uk: 'НМТ', ru: 'НМТ', en: 'NMT exam' } },
+  { href: '/games', label: { uk: 'Ігри', ru: 'Игры', en: 'Games' } },
 ];
 
 // Усе, що є на сайті: відкривається кнопкою «Меню»
@@ -23,7 +24,7 @@ const MENU: { title: T; items: { href: string; icon: string; label: T; text: T; 
   {
     title: { uk: 'Вчитися самому', ru: 'Учиться самому', en: 'Learn on your own' },
     items: [
-      { href: '/worlds', icon: 'd-rocket', label: { uk: 'Murly Town', ru: 'Murly Town', en: 'Murly Town' }, text: { uk: '3D-містечко, де все англійською', ru: '3D-городок, где всё на английском', en: 'A 3D town where everything is in English' } },
+      { href: '/games', icon: 'd-rocket', label: { uk: 'Ігри', ru: 'Игры', en: 'Games' }, text: { uk: '3D-містечко, дієслова, квізи, скоромовки', ru: '3D-городок, глаголы, квизы, скороговорки', en: '3D town, verbs, quizzes, tongue twisters' } },
     ],
   },
   {

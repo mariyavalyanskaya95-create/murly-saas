@@ -6,9 +6,9 @@ import { useEffect } from 'react';
 const ICONS = ['c-cat', 'c-cat-glass', 'c-cat-speak', 'c-cat-sit', 'c-cat-sleep', 'c-paw', 'c-fish', 'c-yarn',
   'd-heart', 'd-smile', 'd-spark', 'd-bolt', 'd-rocket', 'd-cup', 'd-bulb', 'd-camera',
   'e-apple', 'e-abc', 'e-book', 'e-pencil', 'e-globe', 'e-mic', 'e-cap', 'e-trophy', 'e-flame', 'e-speak'];
+// спокійна палітра: кремові наліпки з чорною іконкою, зрідка чорна з лаймом
 const COLORS: [string, string][] = [
-  ['#D83A1E', '#F4EFE3'], ['#F2B544', '#1A1A1A'], ['#B9DBE9', '#1A1A1A'], ['#D0F834', '#1A1A1A'],
-  ['#F7A8C4', '#1A1A1A'], ['#8FD6B4', '#1A1A1A'], ['#C9B6F2', '#1A1A1A'], ['#1A1A1A', '#D0F834'],
+  ['#FFFDF8', '#1A1A1A'], ['#EDE6D6', '#1A1A1A'], ['#FFFDF8', '#1A1A1A'], ['#1A1A1A', '#D0F834'],
 ];
 const BLOBS = ['b1', 'b2', 'b3'];
 const NS = 'http://www.w3.org/2000/svg';
