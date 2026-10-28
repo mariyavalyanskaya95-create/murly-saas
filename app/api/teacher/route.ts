@@ -24,12 +24,12 @@ const toDb = {
     for (const k of ['contact', 'parent', 'link', 'song', 'about']) if (k in p && p[k] === undefined) o[k] = null;
     return o;
   },
-  lesson: (l: Row, t: string) => ({ id: l.id, teacher_id: t, student_id: l.studentId, start: l.start, duration: l.duration, topic: l.topic ?? null, link: l.link ?? null, status: l.status }),
+  lesson: (l: Row, t: string) => ({ id: l.id, teacher_id: t, student_id: l.studentId, start: l.start, duration: l.duration, topic: l.topic ?? null, link: l.link ?? null, status: l.status, group_id: l.groupId ?? null }),
   lessonPatch: (p: Row) => pick(p, ['start', 'duration', 'topic', 'link', 'status']),
   note: (n: Row, t: string) => ({ id: n.id, teacher_id: t, student_id: n.studentId, text: n.text, at: n.at, images: n.images ?? null, files: n.files ?? null }),
   word: (w: Row, t: string) => ({ id: w.id, teacher_id: t, student_id: w.studentId, en: w.en, uk: w.uk, example: w.example ?? null, at: w.at }),
   payment: (p: Row, t: string) => ({ id: p.id, teacher_id: t, student_id: p.studentId, amount: p.amount, note: p.note ?? null, at: p.at }),
-  homework: (h: Row, t: string) => ({ id: h.id, teacher_id: t, student_id: h.studentId, title: h.title, instructions: h.instructions ?? null, kind: h.kind, game: h.game ?? null, direction: h.direction ?? null, items: h.items ?? null, due: h.due ?? null, status: h.status ?? 'assigned', created_at: h.createdAt }),
+  homework: (h: Row, t: string) => ({ id: h.id, teacher_id: t, student_id: h.studentId, title: h.title, instructions: h.instructions ?? null, kind: h.kind, game: h.game ?? null, direction: h.direction ?? null, items: h.items ?? null, due: h.due ?? null, group_id: h.groupId ?? null, status: h.status ?? 'assigned', created_at: h.createdAt }),
   homeworkPatch: (p: Row) => pick(p, ['title', 'instructions', 'due', 'status', 'feedback', 'overrides', 'score']),
   plan: (p: Row, t: string) => ({ id: p.id, teacher_id: t, title: p.title, level: p.level, age: p.age, topic: p.topic ?? null, color: p.color ?? 'lime', blocks: p.blocks ?? [], source: p.source ?? null, focus: p.focus ?? null, aims: p.aims ?? null, created_at: p.createdAt, updated_at: p.updatedAt }),
   planPatch: (p: Row) => {
@@ -42,12 +42,13 @@ const toDb = {
 const und = (v: unknown) => (v === null ? undefined : v);
 const fromDb = {
   student: (r: Row) => ({ id: r.id, name: r.name, level: r.level, price: r.price, contact: und(r.contact), parent: und(r.parent), link: und(r.link), color: r.color, createdAt: r.created_at, inviteCode: und(r.invite_code), joined: Boolean(r.user_id), song: und(r.song), songUrl: und(r.song_url), about: und(r.about), payMode: r.pay_mode === 'post' ? 'post' : 'pre', loginPhone: und(r.login_phone), loginPin: und(r.login_pin), adult: Boolean(r.is_adult), nmt: Boolean(r.nmt), owedLessons: Number(r.owed_lessons) || 0, prepaidLessons: Number(r.prepaid_lessons) || 0 }),
-  lesson: (r: Row) => ({ id: r.id, studentId: r.student_id, start: r.start, duration: r.duration, topic: und(r.topic), link: und(r.link), status: r.status }),
+  lesson: (r: Row) => ({ id: r.id, studentId: r.student_id, start: r.start, duration: r.duration, topic: und(r.topic), link: und(r.link), status: r.status, groupId: und(r.group_id) }),
+  group: (r: Row) => ({ id: r.id, name: r.name, color: r.color, studentIds: (r.student_ids as string[] | null) ?? [], link: und(r.link), createdAt: r.created_at }),
   note: (r: Row) => ({ id: r.id, studentId: r.student_id, text: r.text, at: r.at, images: und(r.images), files: und(r.files) }),
   word: (r: Row) => ({ id: r.id, studentId: r.student_id, en: r.en, uk: r.uk, example: und(r.example), at: r.at }),
   payment: (r: Row) => ({ id: r.id, studentId: r.student_id, amount: r.amount, note: und(r.note), at: r.at }),
   plan: (r: Row) => ({ id: r.id, title: r.title, level: r.level, age: r.age, topic: und(r.topic), color: r.color, blocks: r.blocks ?? [], source: und(r.source), focus: und(r.focus), aims: und(r.aims), createdAt: r.created_at, updatedAt: r.updated_at }),
-  homework: (r: Row) => ({ id: r.id, studentId: r.student_id, title: r.title, instructions: und(r.instructions), kind: r.kind, game: und(r.game), direction: und(r.direction), due: und(r.due), status: r.status, score: und(r.score), total: und(r.total), answer: und(r.answer), items: r.kind === 'exercise' ? normalizeSections(r.items as Section[] | null) : und(r.items), answers: und(r.answers), overrides: und(r.overrides), feedback: und(r.feedback), createdAt: r.created_at, doneAt: und(r.done_at) }),
+  homework: (r: Row) => ({ id: r.id, studentId: r.student_id, title: r.title, instructions: und(r.instructions), kind: r.kind, game: und(r.game), direction: und(r.direction), due: und(r.due), status: r.status, score: und(r.score), total: und(r.total), answer: und(r.answer), items: r.kind === 'exercise' ? normalizeSections(r.items as Section[] | null) : und(r.items), answers: und(r.answers), overrides: und(r.overrides), feedback: und(r.feedback), createdAt: r.created_at, doneAt: und(r.done_at), groupId: und(r.group_id) }),
 };
 
 export async function GET() {
@@ -55,7 +56,7 @@ export async function GET() {
   if (!userId) return NextResponse.json({ error: 'unauthorized' }, { status: 401 });
   if (!dbReady()) return NextResponse.json({ error: 'db_not_configured' }, { status: 503 });
   try {
-    const [students, lessons, notes, words, payments, settings, homework, plans] = await Promise.all([
+    const [students, lessons, notes, words, payments, settings, homework, plans, groups] = await Promise.all([
       db.select('students', userId, '&order=created_at.asc'),
       db.select('lessons', userId, '&order=start.asc'),
       db.select('notes', userId, '&order=at.desc'),
@@ -64,6 +65,7 @@ export async function GET() {
       db.select('teacher_settings', userId),
       db.select('homework', userId, '&order=created_at.desc').catch(() => []),
       db.select('lesson_plans', userId, '&order=updated_at.desc').catch(() => []),
+      db.select('groups', userId, '&order=created_at.asc').catch(() => []),
     ]);
     const s = settings[0];
     // нік і аватар учнів, які вже приєдналися (з їхнього профілю Clerk)
@@ -77,6 +79,7 @@ export async function GET() {
     }
     return NextResponse.json({
       students: students.map((r) => ({ ...fromDb.student(r), ...(r.user_id ? prof[String(r.user_id)] ?? {} : {}) })),
+      groups: groups.map(fromDb.group),
       lessons: lessons.map(fromDb.lesson),
       notes: notes.map(fromDb.note),
       words: words.map(fromDb.word),
@@ -105,7 +108,24 @@ export async function POST(req: Request) {
     switch (op) {
       case 'addStudent': await db.insert('students', [toDb.student(p, t)]); break;
       case 'updateStudent': await db.update('students', t, id, toDb.studentPatch(p.patch as Row)); break;
-      case 'removeStudent': await db.remove('students', t, id); break;
+      case 'removeStudent': {
+        await db.remove('students', t, id);
+        // прибрати учня з груп
+        const gs = await db.query(`groups?teacher_id=eq.${encodeURIComponent(t)}&student_ids=cs.{${id}}&select=id,student_ids`).catch(() => []);
+        await Promise.all(gs.map((g) => db.update('groups', t, String(g.id), { student_ids: ((g.student_ids as string[]) ?? []).filter((x) => x !== id) })));
+        break;
+      }
+      case 'addGroup': await db.insert('groups', [{ id: p.id, teacher_id: t, name: String(p.name || '').slice(0, 80), color: p.color ?? 'sky', student_ids: (p.studentIds as string[]) ?? [], link: p.link ?? null, created_at: p.createdAt }]); break;
+      case 'updateGroup': {
+        const q = (p.patch ?? {}) as Row; const o: Row = {};
+        if ('name' in q) o.name = String(q.name || '').slice(0, 80);
+        if ('studentIds' in q) o.student_ids = (q.studentIds as string[]) ?? [];
+        if ('link' in q) o.link = q.link ?? null;
+        if ('color' in q) o.color = q.color;
+        await db.update('groups', t, id, o);
+        break;
+      }
+      case 'removeGroup': await db.remove('groups', t, id); break;
       case 'addLessons': await db.insert('lessons', (p.rows as Row[]).map((l) => toDb.lesson(l, t))); break;
       case 'updateLesson': await db.update('lessons', t, id, toDb.lessonPatch(p.patch as Row)); break;
       case 'removeLesson': await db.remove('lessons', t, id); break;
