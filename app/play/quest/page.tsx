@@ -1,13 +1,15 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Kit from '@/components/Kit';
-import Icon from '@/components/Icon';
 import { LangSwitch } from '@/components/LangProvider';
-import { QUEST_LIST } from '@/lib/quest-list';
+import { QUESTS } from '@/components/games/quest';
+import type { HitProps } from '@/components/games/quest/types';
 import { tr } from '@/lib/i18n-server';
 
-export const metadata: Metadata = { title: 'Find it, Bubbles! Квест англійською для дітей | Murly', description: 'Котик Бульбашка просить про допомогу англійською: кухня, кімната, школа, море. Озвучені завдання, підказки, монетки.' };
-const ICONS: Record<string, string> = { kitchen: 'e-apple', bedroom: 'c-cat-sleep', classroom: 'e-pencil', sea: 'c-fish' };
+export const metadata: Metadata = { title: 'Find it, Bubbles! Квест англійською для дітей | Murly', description: 'Котик Бульбашка просить про допомогу англійською: кухня, ванна, спальня, вітальня, школа, парк, магазин, море. Озвучені завдання, підказки, монетки.' };
+// мініатюра сцени без кліків
+const still = () => ({ className: 'sq-hit' } as unknown as HitProps);
+const none = new Set<string>();
 
 export default function QuestHub() {
   const t = tr();
@@ -20,13 +22,14 @@ export default function QuestHub() {
       </header>
       <main className="sq qh">
         <h1>{t({ uk: 'Знайди, Бульбашко!', ru: 'Найди, Пузырёк!', en: 'Find it, Bubbles!' })}</h1>
-        <p className="t-muted">{t({ uk: 'Котик Бульбашка просить про допомогу англійською. Обери місце: у кожному 9 завдань з озвучкою, підказки й монетки. Рівень A1–A2, для дітей 6–11.', ru: 'Котик Пузырёк просит о помощи по-английски. Выбери место: в каждом 9 заданий с озвучкой, подсказки и монетки. Уровень A1–A2, для детей 6–11.', en: 'Bubbles the cat needs your help in English. Pick a place: 9 voiced tasks each, hints and coins. Level A1–A2, ages 6–11.' })}</p>
+        <p className="t-muted">{t({ uk: 'Котик Бульбашка просить про допомогу англійською. Обери місце: у кожному 9–10 завдань з озвучкою, підказки й монетки. Рівень A1–A2, для дітей 6–11.', ru: 'Котик Пузырёк просит о помощи по-английски. Выбери место: в каждом 9–10 заданий с озвучкой, подсказки и монетки. Уровень A1–A2, для детей 6–11.', en: 'Bubbles the cat needs your help in English. Pick a place: 9–10 voiced tasks each, hints and coins. Level A1–A2, ages 6–11.' })}</p>
         <div className="qh-grid">
-          {QUEST_LIST.map((q, i) => (
+          {QUESTS.map((q, i) => (
             <Link key={q.id} href={`/play/quest/${q.id}`} className="qh-card">
-              <span className="qh-ic" aria-hidden="true"><Icon id={ICONS[q.id]} /></span>
-              <small>{t({ uk: 'Місце', ru: 'Место', en: 'Place' })} {i + 1}</small>
+              <span className="qh-thumb" aria-hidden="true"><q.Scene hit={still} flags={none} /></span>
+              <small>{t({ uk: 'Місце', ru: 'Место', en: 'Place' })} {i + 1} · {q.level}</small>
               <b>{t(q.title)}</b>
+              <ul className="qh-topics">{q.topics.slice(0, 2).map((x, k) => <li key={k}>{t(x)}</li>)}</ul>
             </Link>
           ))}
         </div>
