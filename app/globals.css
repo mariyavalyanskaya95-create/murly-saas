@@ -1186,7 +1186,7 @@ a.t-stat:hover { transform: translateY(-2px); }
 .t-word { position: relative; display: grid; gap: 2px; padding: 12px 44px 12px 14px; border: 2px solid var(--mu-ink); border-radius: 14px; background: var(--mu-paper); }
 .t-word b { font-size: 17px; }
 .t-word i { font-size: 14px; color: var(--mu-ink-muted); }
-.t-word .t-icon-btn, .t-note .t-icon-btn { position: absolute; top: 8px; right: 8px; width: 28px; height: 28px; font-size: 12px; }
+.t-word .t-icon-btn, .t-note .t-icon-btn { padding: 0; position: absolute; top: 8px; right: 8px; width: 28px; height: 28px; font-size: 12px; }
 .t-game { margin: 4px 0 12px; }
 .t-note-form { display: grid; gap: 10px; justify-items: end; }
 .t-note { position: relative; padding: 12px 44px 12px 14px; border-left: 4px solid var(--mu-mustard); background: var(--mu-paper); border-radius: 0 12px 12px 0; }
@@ -2430,7 +2430,7 @@ button.mk-gap { border: 0; border-bottom: 2px solid var(--mu-ink); cursor: point
 .t-word b { font-size: 15px; }
 .t-word span { font-size: 14px; }
 .t-word i { font-size: 13px; }
-.t-word .t-icon-btn, .t-note .t-icon-btn { top: 6px; right: 6px; width: 22px; height: 22px; font-size: 10px; border-width: 1.5px; }
+.t-word .t-icon-btn, .t-note .t-icon-btn { padding: 0; top: 6px; right: 6px; width: 22px; height: 22px; font-size: 10px; border-width: 1.5px; }
 .t-icon-btn { width: 28px; height: 28px; font-size: 12px; }
 /* вхід учня за номером і PIN */
 .pin-login { display: grid; gap: 14px; max-width: 420px; }
@@ -2577,3 +2577,5 @@ a.t-doc:hover { background: var(--mu-lime); }
 /* без кислотного: результат вправи на білій картці */
 .ex-result { background: var(--mu-card); }
 .ex-result b { background: var(--mu-lime); padding: 2px 10px; border-radius: 10px; }
+.t-word .t-icon-btn .mu-ic { width: 14px; height: 14px; }
+.t-word .t-icon-btn:hover { background: var(--mu-lime); }
