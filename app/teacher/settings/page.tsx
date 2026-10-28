@@ -27,6 +27,7 @@ export default function SettingsPage() {
     <div className="t-page">
       <div className="t-head"><div><p className="t-eyebrow">{t({ uk: 'Налаштування', ru: 'Настройки', en: 'Settings' })}</p><h1>{t({ uk: 'Твій кабінет', ru: 'Твой кабинет', en: 'Your dashboard' })}</h1></div></div>
       <ProfileCard />
+      <TelegramCard />
       <div className="t-card t-mobile-only">
         <h2>{t({ uk: 'Матеріали', ru: 'Материалы', en: 'Materials' })}</h2>
         <div className="t-head__actions">
@@ -62,6 +63,31 @@ export default function SettingsPage() {
         </div>
         <p className="t-muted">{t({ uk: 'Пізніше додамо автоматичне створення зустрічей у Zoom і Google Meet для кожного заняття.', ru: 'Позже добавим автоматическое создание встреч в Zoom и Google Meet для каждого занятия.', en: 'Later we will add automatic Zoom and Google Meet meetings for every lesson.' })}</p>
       </form>
+    </div>
+  );
+}
+
+// Telegram: здані домашки приходять учителю, учні отримують нові домашки й нагадування
+function TelegramCard() {
+  const t = useT();
+  const [st, setSt] = useState<{ ready: boolean; linked?: boolean; link?: string; hook?: boolean } | null>(null);
+  useEffect(() => {
+    fetch(`/api/telegram?setup=1&lang=${t.lang}`).then((r) => r.json()).then(setSt).catch(() => setSt({ ready: false }));
+  }, [t.lang]);
+  if (!st) return null;
+  return (
+    <div className="t-card">
+      <h2>{t({ uk: 'Сповіщення в Telegram', ru: 'Уведомления в Telegram', en: 'Telegram notifications' })}</h2>
+      {!st.ready ? (
+        <p className="t-muted">{t({ uk: 'Бот ще не підключений до сайту. Потрібно створити бота в @BotFather і додати його токен у налаштування Vercel (TELEGRAM_BOT_TOKEN і TELEGRAM_BOT_USERNAME).', ru: 'Бот ещё не подключён к сайту. Нужно создать бота в @BotFather и добавить его токен в настройки Vercel (TELEGRAM_BOT_TOKEN и TELEGRAM_BOT_USERNAME).', en: 'The bot is not connected yet. Create a bot in @BotFather and add its token to Vercel settings (TELEGRAM_BOT_TOKEN and TELEGRAM_BOT_USERNAME).' })}</p>
+      ) : (
+        <>
+          <p className="t-muted">{t({ uk: 'Учні отримують нові домашки, твої коментарі й ранкові нагадування про заняття. Тобі приходять здані домашки. Учень підключає Telegram сам у своєму кабінеті.', ru: 'Ученики получают новые домашки, твои комментарии и утренние напоминания о занятиях. Тебе приходят сданные домашки. Ученик подключает Telegram сам в своём кабинете.', en: 'Students get new homework, your comments and morning lesson reminders. You get handed-in homework. Students connect Telegram themselves in their account.' })}</p>
+          {st.linked
+            ? <p><span className="t-tag t-tag--done">{t({ uk: 'Твій Telegram підключено', ru: 'Твой Telegram подключён', en: 'Your Telegram is connected' })}</span> <a href={st.link} target="_blank" rel="noreferrer" className="t-link-btn">{t({ uk: 'Підключити інший', ru: 'Подключить другой', en: 'Use another' })}</a></p>
+            : <a href={st.link} target="_blank" rel="noreferrer" className="mu-btn mu-btn--lime t-btn-sm">{t({ uk: 'Підключити мій Telegram', ru: 'Подключить мой Telegram', en: 'Connect my Telegram' })}</a>}
+        </>
+      )}
     </div>
   );
 }
