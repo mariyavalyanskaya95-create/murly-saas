@@ -228,3 +228,17 @@ alter table students add column if not exists login_pin text;
 alter table students add column if not exists pin_fails int not null default 0;
 alter table students add column if not exists pin_locked_until timestamptz;
 create index if not exists students_login_phone_idx on students (login_phone);
+alter table notes add column if not exists files jsonb; -- 2026-10-22 документи уроку
+-- 2026-10-22: дорослий учень (без монеток) і НМТ
+alter table students add column if not exists is_adult boolean not null default false;
+alter table students add column if not exists nmt boolean not null default false;
+update students set nmt = true where level = 'НМТ';
+-- 2026-10-22: стартовий баланс у уроках
+alter table students add column if not exists owed_lessons int not null default 0;
+alter table students add column if not exists prepaid_lessons int not null default 0;
+
+-- Telegram-сповіщення
+alter table students add column if not exists tg_chat_id text;
+alter table students add column if not exists tg_lang text;
+alter table teacher_settings add column if not exists tg_chat_id text;
+alter table teacher_settings add column if not exists tg_lang text;
