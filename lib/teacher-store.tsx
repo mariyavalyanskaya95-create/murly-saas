@@ -21,7 +21,9 @@ export type LessonStatus = 'planned' | 'done' | 'missed' | 'cancelled'; // misse
 export type Lesson = {
   id: string; studentId: string; start: string; duration: number;
   topic?: string; link?: string; status: LessonStatus;
+  groupId?: string; // групове заняття: у кожного учасника свій рядок з тим самим groupId і часом
 };
+export type Group = { id: string; name: string; color: string; studentIds: string[]; link?: string; createdAt: string };
 export type NoteFile = { url: string; name: string };
 export type Note = { id: string; studentId: string; text: string; at: string; images?: string[]; files?: NoteFile[] };
 export type Word = { id: string; studentId: string; en: string; uk: string; example?: string; at: string };
@@ -32,15 +34,16 @@ export type Homework = {
   kind: 'game' | 'text' | 'exercise' | 'lesson' | 'mock'; items?: import('./exercise').Section[] | import('./lesson').Block[]; answers?: import('./exercise').Answers; overrides?: import('./exercise').Overrides; game?: 'quiz' | 'match' | 'anagram' | 'cards' | (string & {}); direction?: 'en' | 'uk';
   due?: string; status: HomeworkStatus; score?: number; total?: number; answer?: string; feedback?: string;
   createdAt: string; doneAt?: string;
+  groupId?: string;
 };
 export type Settings = { name: string; link: string; linkKind: 'zoom' | 'meet' | 'other' };
 
 type Data = {
-  students: Student[]; lessons: Lesson[]; notes: Note[]; words: Word[]; payments: Payment[]; homework: Homework[]; plans: Plan[]; settings: Settings;
+  students: Student[]; groups: Group[]; lessons: Lesson[]; notes: Note[]; words: Word[]; payments: Payment[]; homework: Homework[]; plans: Plan[]; settings: Settings;
 };
 
 const EMPTY: Data = {
-  students: [], lessons: [], notes: [], words: [], payments: [], homework: [], plans: [],
+  students: [], groups: [], lessons: [], notes: [], words: [], payments: [], homework: [], plans: [],
   settings: { name: '', link: '', linkKind: 'zoom' },
 };
 
@@ -131,6 +134,7 @@ function useStore(userId: string) {
         words: d.words.filter((x) => x.studentId !== id),
         payments: d.payments.filter((x) => x.studentId !== id),
         homework: d.homework.filter((x) => x.studentId !== id),
+        groups: (d.groups ?? []).map((g) => (g.studentIds.includes(id) ? { ...g, studentIds: g.studentIds.filter((x) => x !== id) } : g)),
       }));
       sync('removeStudent', { id });
     },
@@ -152,6 +156,34 @@ function useStore(userId: string) {
     updateLesson: (id: string, patch: Partial<Lesson>) => {
       update((d) => ({ ...d, lessons: d.lessons.map((x) => (x.id === id ? { ...x, ...patch } : x)) }));
       sync('updateLesson', { id, patch });
+    },
+    // Групи: заняття створюється кожному учаснику з однаковим groupId
+    addGroup: (g: Omit<Group, 'id' | 'createdAt' | 'color'>) => {
+      const row: Group = { ...g, id: uid(), createdAt: now(), color: COLORS[(dataRef.current.groups?.length ?? 0) % COLORS.length] };
+      dataRef.current = { ...dataRef.current, groups: [...(dataRef.current.groups ?? []), row] };
+      update((d) => ({ ...d, groups: [...(d.groups ?? []), row] }));
+      sync('addGroup', row);
+      return row.id;
+    },
+    updateGroup: (id: string, patch: Partial<Group>) => {
+      update((d) => ({ ...d, groups: (d.groups ?? []).map((g) => (g.id === id ? { ...g, ...patch } : g)) }));
+      sync('updateGroup', { id, patch });
+    },
+    removeGroup: (id: string) => {
+      update((d) => ({ ...d, groups: (d.groups ?? []).filter((g) => g.id !== id) }));
+      sync('removeGroup', { id });
+    },
+    addGroupLessons: (groupId: string, l: { start: string; duration: number; topic?: string }, repeatWeeks = 1) => {
+      const g = (dataRef.current.groups ?? []).find((x) => x.id === groupId);
+      if (!g || !g.studentIds.length) return;
+      const base = new Date(l.start);
+      const rows: Lesson[] = [];
+      for (let k = 0; k < Math.max(1, repeatWeeks); k++) {
+        const dt = new Date(base); dt.setDate(dt.getDate() + 7 * k);
+        g.studentIds.forEach((sid) => rows.push({ id: uid(), studentId: sid, start: dt.toISOString(), duration: l.duration, topic: l.topic, link: g.link, status: 'planned', groupId }));
+      }
+      update((d) => ({ ...d, lessons: [...d.lessons, ...rows] }));
+      sync('addLessons', { rows });
     },
     removeLesson: (id: string) => {
       update((d) => ({ ...d, lessons: d.lessons.filter((x) => x.id !== id) }));
