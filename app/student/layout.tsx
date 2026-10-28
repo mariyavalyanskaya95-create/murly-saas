@@ -5,6 +5,7 @@ import { UserButton } from '@clerk/nextjs';
 import { redirect } from 'next/navigation';
 import { tr } from '@/lib/i18n-server';
 import Kit from '@/components/Kit';
+import { LangSwitch } from '@/components/LangProvider';
 import { studentFlags } from '@/lib/student-data';
 
 export function generateMetadata(): Metadata {
@@ -22,7 +23,7 @@ export default async function StudentLayout({ children }: { children: React.Reac
       <header className="t-top">
         <Link href="/" className="mu-logo">MUR<Kit id="st-cat-blep" className="mu-logo__cat" />LY</Link>
         <span className="t-top__badge t-top__badge--student">{t({ uk: 'Мій кабінет', ru: 'Мой кабинет', en: 'My account' })}</span>
-        <div className="t-top__user"><UserButton /></div>
+        <div className="t-top__user"><LangSwitch /><UserButton /></div>
       </header>
       <nav className="s-nav" aria-label={t({ uk: 'Розділи', ru: 'Разделы', en: 'Sections' })}>
         <Link href="/student">{t({ uk: 'Мій кабінет', ru: 'Мой кабинет', en: 'My account' })}</Link>
