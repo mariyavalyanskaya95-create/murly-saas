@@ -79,6 +79,7 @@ export default function SiteNav() {
           {TOP.map((l) => <Link key={l.href} href={l.href} className={path === l.href ? 'is-on' : ''}>{t(l.label)}</Link>)}
         </div>
         <div className="mu-nav__cta">
+          <Link href="/search" className="mu-nav__search" aria-label={t({ uk: 'Пошук по сайту', ru: 'Поиск по сайту', en: 'Search the site' })} title={t({ uk: 'Пошук', ru: 'Поиск', en: 'Search' })}><Icon id="d-seo" /></Link>
           <LangSwitch className="mu-nav__desk" />
           <SignedOut>
             <Link href="/sign-in" className="mu-nav__login mu-nav__desk">{t({ uk: 'Увійти', ru: 'Войти', en: 'Log in' })}</Link>
