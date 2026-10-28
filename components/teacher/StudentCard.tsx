@@ -72,6 +72,8 @@ export default function StudentCard({ id }: { id: string }) {
         </div>
       </div>
 
+      <StudentStats id={s.id} />
+
       {(s.song || s.about || s.selfSong || s.selfAbout) && (
         <div className="t-card t-about t-private">
           {(s.song || s.selfSong) && (
@@ -742,7 +744,7 @@ function HomeworkTab({ id }: { id: string }) {
   );
 }
 
-function HomeworkItem({ hwId }: { hwId: string }) {
+export function HomeworkItem({ hwId, showStudent }: { hwId: string; showStudent?: boolean }) {
   const t = useT();
   const { data, updateHomework, removeHomework } = useTeacher();
   const h = data.homework.find((x) => x.id === hwId)!;
@@ -755,7 +757,7 @@ function HomeworkItem({ hwId }: { hwId: string }) {
   return (
     <div className={`t-card t-hw is-${h.status}`}>
       <div className="t-card__head">
-        <h2 style={{ fontSize: 19 }}>{h.title}</h2>
+        <h2 style={{ fontSize: 19 }}>{showStudent && (() => { const st = data.students.find((x) => x.id === h.studentId); return st ? <Link href={`/teacher/students/${st.id}?tab=hw`} className="t-hw__who">{st.name}</Link> : null; })()}{h.title}</h2>
         <div className="t-hw__meta">{statusTag}{h.due && <span className="t-muted">{t({ uk: 'до', ru: 'до', en: 'due' })} {fmtDate(h.due, t.lang)}</span>}</div>
       </div>
       {h.instructions && <p className="t-hw__text">{h.instructions}</p>}
@@ -785,6 +787,43 @@ function HomeworkItem({ hwId }: { hwId: string }) {
       <div className="t-danger" style={{ marginTop: 0, paddingTop: 8 }}>
         <button className="t-link-btn" onClick={() => removeHomework(h.id)}>{t({ uk: 'Видалити завдання', ru: 'Удалить задание', en: 'Delete task' })}</button>
       </div>
+    </div>
+  );
+}
+
+// Статистика учня: відвідуваність, домашки, бал, слова (зручно показати батькам)
+function StudentStats({ id }: { id: string }) {
+  const t = useT();
+  const { data } = useTeacher();
+  const ls = data.lessons.filter((l) => l.studentId === id);
+  const held = ls.filter((l) => l.status === 'done').length;
+  const missed = ls.filter((l) => l.status === 'missed').length;
+  const att = held + missed ? Math.round((held / (held + missed)) * 100) : null;
+  const hw = data.homework.filter((h) => h.studentId === id);
+  const hwDone = hw.filter((h) => h.status !== 'assigned');
+  const scored = hwDone.filter((h) => h.total);
+  const avg = scored.length ? Math.round((scored.reduce((n, h) => n + (h.score ?? 0) / (h.total || 1), 0) / scored.length) * 100) : null;
+  const late = hw.filter((h) => h.status === 'assigned' && h.due && new Date(h.due) < new Date()).length;
+  const words = data.words.filter((w) => w.studentId === id).length;
+  // останні 8 оцінок: міні-графік
+  const last = scored.slice().sort((a, b) => (a.doneAt || a.createdAt).localeCompare(b.doneAt || b.createdAt)).slice(-8);
+  const items: { v: string; l: string; warn?: boolean }[] = [
+    { v: String(held), l: t({ uk: 'занять проведено', ru: 'занятий проведено', en: 'lessons held' }) },
+    { v: att != null ? `${att}%` : '–', l: t({ uk: `відвідуваність${missed ? `, пропусків ${missed}` : ''}`, ru: `посещаемость${missed ? `, пропусков ${missed}` : ''}`, en: `attendance${missed ? `, ${missed} missed` : ''}` }), warn: att != null && att < 80 },
+    { v: `${hwDone.length}/${hw.length}`, l: t({ uk: `домашок здано${late ? `, прострочено ${late}` : ''}`, ru: `домашек сдано${late ? `, просрочено ${late}` : ''}`, en: `homework done${late ? `, ${late} overdue` : ''}` }), warn: late > 0 },
+    { v: avg != null ? `${avg}%` : '–', l: t({ uk: 'середній бал', ru: 'средний балл', en: 'average score' }) },
+    { v: String(words), l: t({ uk: 'слів у словнику', ru: 'слов в словаре', en: 'words learned' }) },
+  ];
+  if (!ls.length && !hw.length && !words) return null;
+  return (
+    <div className="t-stats" aria-label={t({ uk: 'Статистика', ru: 'Статистика', en: 'Stats' })}>
+      {items.map((x) => <div key={x.l} className={`t-stats__item ${x.warn ? 'is-warn' : ''}`}><b>{x.v}</b><span>{x.l}</span></div>)}
+      {last.length >= 2 && (
+        <div className="t-stats__item t-stats__chart" title={t({ uk: 'Останні результати', ru: 'Последние результаты', en: 'Recent scores' })}>
+          <div className="t-bars">{last.map((h) => { const p = Math.round(((h.score ?? 0) / (h.total || 1)) * 100); return <i key={h.id} style={{ height: `${Math.max(6, p)}%` }} title={`${h.title}: ${p}%`} />; })}</div>
+          <span>{t({ uk: 'останні результати', ru: 'последние результаты', en: 'recent scores' })}</span>
+        </div>
+      )}
     </div>
   );
 }

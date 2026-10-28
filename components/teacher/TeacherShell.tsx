@@ -13,6 +13,7 @@ import Kit from '@/components/Kit';
 const NAV: { href: string; icon: string; label: T; short?: T; priv?: boolean }[] = [
   { href: '/teacher', icon: 'e-cal', label: { uk: 'Сьогодні', ru: 'Сегодня', en: 'Today' }, priv: true },
   { href: '/teacher/students', icon: 'd-team', label: { uk: 'Учні', ru: 'Ученики', en: 'Students' } },
+  { href: '/teacher/review', icon: 'e-pencil', label: { uk: 'Перевірка', ru: 'Проверка', en: 'Review' } },
   { href: '/teacher/lessons', icon: 'e-book', label: { uk: 'Уроки', ru: 'Уроки', en: 'Lessons' } },
   { href: '/teacher/schedule', icon: 'd-clock', label: { uk: 'Розклад', ru: 'Расписание', en: 'Schedule' }, priv: true },
   { href: '/teacher/payments', icon: 'd-money', label: { uk: 'Оплати', ru: 'Оплаты', en: 'Payments' }, priv: true },
@@ -54,7 +55,7 @@ function Shell({ userId, name, children }: { userId: string; name: string; child
             {NAV.map((n) => (
               <Link key={n.href} href={n.href} className={`t-side__link ${active(n.href) ? 'is-on' : ''} ${n.priv ? 't-private' : ''}`}
                 aria-current={active(n.href) ? 'page' : undefined}>
-                <Icon id={n.icon} /><span className="t-side__full">{t(n.label)}</span><span className="t-side__short">{t(n.short ?? n.label)}</span>
+                <Icon id={n.icon} /><span className="t-side__full">{t(n.label)}</span><span className="t-side__short">{t(n.short ?? n.label)}</span>{n.href === '/teacher/review' && <ReviewBadge />}
               </Link>
             ))}
             <div className="t-side__sep" />
@@ -92,4 +93,11 @@ function EyeIcon({ off }: { off: boolean }) {
       {off && <path d="M3 3l18 18" />}
     </svg>
   );
+}
+
+// Скільки зданих домашок чекає перевірки
+function ReviewBadge() {
+  const { data, ready } = useTeacher();
+  const n = ready ? data.homework.filter((h) => h.status === 'done').length : 0;
+  return n ? <span className="t-side__badge" aria-label={String(n)}>{n}</span> : null;
 }
