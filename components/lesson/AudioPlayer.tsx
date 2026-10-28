@@ -2,6 +2,8 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import Icon from '../Icon';
 import { useT } from '@/components/LangProvider';
+import { say, stopSpeak } from '@/lib/speak';
+import { ROTATION, type VoicePreset } from '@/lib/voices';
 
 type Line = { who: string; text: string };
 
@@ -28,7 +30,7 @@ function pickVoices(): SpeechSynthesisVoice[] {
   return out;
 }
 
-export default function AudioPlayer({ script, title, audioUrl }: { script: string; title?: string; audioUrl?: string }) {
+export default function AudioPlayer({ script, title, audioUrl, voiceMap, onDone }: { script: string; title?: string; audioUrl?: string; voiceMap?: Record<string, VoicePreset>; onDone?: () => void }) {
   const t = useT();
   const lines = useMemo(() => parseScript(script), [script]);
   const speakers = useMemo(() => Array.from(new Set(lines.map((l) => l.who))), [lines]);
@@ -46,31 +48,31 @@ export default function AudioPlayer({ script, title, audioUrl }: { script: strin
     const load = () => setVoices(pickVoices());
     load();
     window.speechSynthesis.addEventListener('voiceschanged', load);
-    return () => { window.speechSynthesis.removeEventListener('voiceschanged', load); window.speechSynthesis.cancel(); };
+    return () => { window.speechSynthesis.removeEventListener('voiceschanged', load); stopSpeak(); };
   }, [audioUrl]);
 
-  const stop = () => { stopRef.current = true; window.speechSynthesis.cancel(); setPlaying(false); setCurrent(-1); };
+  // живі голоси: диктор для рядків без імені, решта персонажів по черзі
+  const presetOf = (who: string): VoicePreset => {
+    if (!who) return 'narrator';
+    const named = voiceMap?.[who];
+    if (named) return named;
+    const idx = speakers.filter(Boolean).indexOf(who);
+    return ROTATION[Math.max(0, idx) % ROTATION.length];
+  };
+  const stop = () => { stopRef.current = true; stopSpeak(); setPlaying(false); setCurrent(-1); };
 
   const play = (from = 0) => {
     if (!ok) return;
-    window.speechSynthesis.cancel();
+    stopSpeak();
     stopRef.current = false;
     setPlaying(true);
     const sayLine = (i: number) => {
       if (stopRef.current) return;
-      if (i >= lines.length) { setPlaying(false); setCurrent(-1); return; }
+      if (i >= lines.length) { setPlaying(false); setCurrent(-1); onDone?.(); return; }
       setCurrent(i);
       const l = lines[i];
-      const u = new SpeechSynthesisUtterance(l.text);
       const idx = Math.max(0, speakers.indexOf(l.who));
-      const v = voices.length ? voices[idx % voices.length] : null;
-      if (v) { u.voice = v; u.lang = v.lang; } else u.lang = 'en-GB';
-      // якщо голос один, розрізняємо персонажів висотою
-      if (voices.length < 2) u.pitch = [1, 0.75, 1.3, 0.9][idx % 4];
-      u.rate = slow ? 0.75 : 0.95;
-      u.onend = () => setTimeout(() => sayLine(i + 1), 350);
-      u.onerror = () => { setPlaying(false); setCurrent(-1); };
-      window.speechSynthesis.speak(u);
+      say(l.text, { voice: presetOf(l.who), slow, pitch: voices.length < 2 ? [1, 0.75, 1.3, 0.9][idx % 4] : 1, onEnd: () => setTimeout(() => sayLine(i + 1), 300) });
     };
     sayLine(from);
   };
