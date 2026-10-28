@@ -1,8 +1,9 @@
 'use client';
 // Читання страшної історії: текст з озвучкою, словничок, питання з перевіркою і питання для обговорення.
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import type { Story } from '@/lib/scary-stories';
-import { speakEn, stopSpeak } from '@/lib/speak';
+import { liveVoices, speakEn, stopSpeak } from '@/lib/speak';
+import TrackPlayer, { type TrackControl, type TrackLine } from '@/components/audio/TrackPlayer';
 import { useT } from '@/components/LangProvider';
 
 export default function StoryReader({ s }: { s: Story }) {
@@ -12,9 +13,15 @@ export default function StoryReader({ s }: { s: Story }) {
   const [checked, setChecked] = useState(false);
   const [gloss, setGloss] = useState(true);
   useEffect(() => () => stopSpeak(), []);
+  // Живий голос: плеєр з перемоткою і швидкістю; інакше старе читання голосом браузера
+  const [live, setLive] = useState<boolean | null>(null);
+  useEffect(() => { liveVoices().then(setLive); }, []);
+  const track = useMemo<TrackLine[]>(() => s.paragraphs.map((p) => ({ who: '', text: p.replace(/^## /, ''), voice: 'narrator' })), [s]);
+  const ctl = useRef<TrackControl | null>(null);
 
   const run = useRef(0); // номер поточного прослуховування, щоб «Стоп» перервав ланцюжок
   const readFrom = (i: number, id = ++run.current) => {
+    if (live && ctl.current) { ctl.current.playLine(i); return; }
     if (id !== run.current) return;
     if (i >= s.paragraphs.length) { setReading(-1); return; }
     setReading(i);
@@ -25,8 +32,9 @@ export default function StoryReader({ s }: { s: Story }) {
 
   return (
     <div className="sr">
+      {live && <TrackPlayer lines={track} showText={false} control={ctl} onFail={() => setLive(false)} onLine={(i, playing) => setReading(playing ? i : -1)} />}
       <div className="sr__bar">
-        {reading < 0
+        {live ? null : reading < 0
           ? <button type="button" className="mu-btn mu-btn--lime t-btn-sm" onClick={() => readFrom(0)}>{t({ uk: 'Слухати текст', ru: 'Слушать текст', en: 'Listen to the text' })}</button>
           : <button type="button" className="mu-btn t-btn-sm" onClick={stop}>{t({ uk: 'Стоп', ru: 'Стоп', en: 'Stop' })}</button>}
         <button type="button" className="mu-btn t-btn-sm" onClick={() => setGloss(!gloss)}>{gloss ? t({ uk: 'Сховати словничок', ru: 'Скрыть словарик', en: 'Hide glossary' }) : t({ uk: 'Показати словничок', ru: 'Показать словарик', en: 'Show glossary' })}</button>
