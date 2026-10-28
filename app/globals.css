@@ -2579,3 +2579,15 @@ a.t-doc:hover { background: var(--mu-lime); }
 .ex-result b { background: var(--mu-lime); padding: 2px 10px; border-radius: 10px; }
 .t-word .t-icon-btn .mu-ic { width: 14px; height: 14px; }
 .t-word .t-icon-btn:hover { background: var(--mu-lime); }
+/* Перевірка домашок */
+.t-side__badge { margin-left: auto; min-width: 22px; height: 22px; padding: 0 6px; display: inline-grid; place-items: center; border-radius: 99px; background: var(--mu-ink); color: #fff; font-size: 12px; font-weight: 800; }
+.t-hw__who { display: inline-block; margin-right: 10px; padding: 2px 10px; border: 2px solid var(--mu-ink); border-radius: 99px; font-size: 14px; color: var(--mu-ink); text-decoration: none; vertical-align: middle; }
+.t-hw__who:hover { background: var(--mu-lime); }
+/* Статистика учня (кабінет вчителя) */
+.t-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin: 0 0 16px; }
+.t-stats__item { display: flex; flex-direction: column; gap: 2px; padding: 12px 14px; border: 2px solid var(--mu-ink); border-radius: var(--mu-radius); background: var(--mu-card); }
+.t-stats__item b { font-family: 'Unbounded', 'Arial Black', sans-serif; font-size: 22px; line-height: 1.1; }
+.t-stats__item span { font-size: 13px; color: var(--mu-ink-muted); }
+.t-stats__item.is-warn b { color: var(--mu-tomato); }
+.t-bars { display: flex; align-items: flex-end; gap: 4px; height: 34px; }
+.t-bars i { flex: 1; min-width: 6px; background: var(--mu-lime); border: 1.5px solid var(--mu-ink); border-radius: 3px 3px 0 0; }
