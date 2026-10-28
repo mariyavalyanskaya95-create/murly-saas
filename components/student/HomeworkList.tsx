@@ -12,6 +12,7 @@ import LessonView from '../lesson/LessonView';
 import { lessonSections, type Block } from '@/lib/lesson';
 import type { StudentHomework, StudentWord } from '@/lib/student-data';
 import { useT } from '@/components/LangProvider';
+import { isQuest } from '@/lib/quest-list';
 import type { Lang } from '@/lib/i18n';
 
 const LOCALE: Record<Lang, string> = { uk: 'uk-UA', ru: 'ru-RU', en: 'en-GB' };
@@ -85,10 +86,10 @@ function HomeworkRow({ h, words, open, onToggle, onPatch }: {
         <div className="s-hw__body">
           {h.instructions && <p className="t-hw__text">{h.instructions}</p>}
           {h.feedback && <div className="s-hw__fb"><small>{t({ uk: 'Коментар учителя', ru: 'Комментарий учителя', en: 'Teacher’s comment' })}</small><p>{h.feedback}</p></div>}
-          {h.kind === 'game' && h.game === 'sea' && (
-            <p><a className="mu-btn mu-btn--lime" href={`/play/sea?hw=${encodeURIComponent(h.id)}`}>{h.status === 'assigned' ? t({ uk: 'Грати квест', ru: 'Играть квест', en: 'Play the quest' }) : t({ uk: 'Зіграти ще раз', ru: 'Сыграть ещё раз', en: 'Play again' })}</a></p>
+          {h.kind === 'game' && isQuest(h.game) && (
+            <p><a className="mu-btn mu-btn--lime" href={`/play/quest/${h.game}?hw=${encodeURIComponent(h.id)}`}>{h.status === 'assigned' ? t({ uk: 'Грати квест', ru: 'Играть квест', en: 'Play the quest' }) : t({ uk: 'Зіграти ще раз', ru: 'Сыграть ещё раз', en: 'Play again' })}</a></p>
           )}
-          {h.kind === 'game' && h.game !== 'sea' && (
+          {h.kind === 'game' && !isQuest(h.game) && (
             items.length >= 4
               ? <GameFinishContext.Provider value={onFinish}>
                   <div className="g-stage">
