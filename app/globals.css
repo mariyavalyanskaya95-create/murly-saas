@@ -2744,3 +2744,12 @@ a.t-doc:hover { background: var(--mu-lime); }
 .sq-over h2 { margin: 0; font-size: clamp(26px, 4vw, 42px); }
 .sq-over p { max-width: 560px; margin: 0 auto; font-size: 18px; }
 @media (prefers-reduced-motion: reduce) { .sq-hit, .sq-hit.is-pop { animation: none; transition: none; } }
+/* Хаб квесту */
+.qh h1 { margin: 6px 0 0; }
+.qh-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; margin-top: 8px; }
+.qh-card { display: grid; gap: 4px; padding: 20px; border: 2px solid var(--mu-ink); border-radius: 22px; background: var(--mu-card); color: var(--mu-ink); text-decoration: none; box-shadow: 0 4px 0 var(--mu-ink); transition: transform .15s; }
+.qh-card:hover { transform: translateY(-3px); background: var(--mu-lime); }
+.qh-ic { width: 56px; height: 56px; display: grid; place-items: center; border-radius: 50%; background: var(--mu-ink); color: var(--mu-lime); }
+.qh-ic .mu-ic { width: 30px; height: 30px; }
+.qh-card small { color: var(--mu-ink-muted); font-weight: 700; }
+.qh-card b { font-size: 20px; }
