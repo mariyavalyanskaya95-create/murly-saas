@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { auth, clerkClient } from '@clerk/nextjs/server';
 import { db, dbReady } from '@/lib/db';
 import { normPhone, validPhone, validPin } from '@/lib/pin-login';
+import { L, SITE, esc, notifyStudent } from '@/lib/telegram';
 import { normalizeSections, type Section } from '@/lib/exercise';
 
 export const dynamic = 'force-dynamic';
@@ -146,8 +147,24 @@ export async function POST(req: Request) {
         await db.update('students', t, id, { login_phone: phone, login_pin: pin, user_id: userId, pin_fails: 0, pin_locked_until: null });
         return NextResponse.json({ ok: true, phone, pin, joined: true });
       }
-      case 'addHomework': await db.insert('homework', [toDb.homework(p, t)]); break;
-      case 'updateHomework': await db.update('homework', t, id, toDb.homeworkPatch(p.patch as Row)); break;
+      case 'addHomework': {
+        await db.insert('homework', [toDb.homework(p, t)]);
+        const title = String(p.title || ''); const due = p.due ? String(p.due) : '';
+        await notifyStudent(String(p.studentId), (l) => `${L(l, { uk: 'Нова домашка', ru: 'Новая домашка', en: 'New homework' })}: <b>${esc(title)}</b>${due ? `\n${L(l, { uk: 'Здати до', ru: 'Сдать до', en: 'Due' })} ${new Date(due).toLocaleString(l === 'en' ? 'en-GB' : l === 'ru' ? 'ru-RU' : 'uk-UA', { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Kyiv' })}` : ''}`,
+          (l) => ({ text: L(l, { uk: 'Відкрити домашку', ru: 'Открыть домашку', en: 'Open homework' }), url: `${SITE}/student#homework` }));
+        break;
+      }
+      case 'updateHomework': {
+        const patch = p.patch as Row;
+        await db.update('homework', t, id, toDb.homeworkPatch(patch));
+        if (patch?.status === 'checked') {
+          const r = await db.query(`homework?id=eq.${encodeURIComponent(id)}&teacher_id=eq.${encodeURIComponent(t)}&select=student_id,title,feedback,score,total`).catch(() => []);
+          const h = r[0];
+          if (h) await notifyStudent(String(h.student_id), (l) => `${L(l, { uk: 'Учитель перевірив', ru: 'Учитель проверил', en: 'Your teacher checked' })}: <b>${esc(String(h.title))}</b>${h.total ? ` (${h.score}/${h.total})` : ''}${h.feedback ? `\n\n${esc(String(h.feedback))}` : ''}`,
+            (l) => ({ text: L(l, { uk: 'Подивитися', ru: 'Посмотреть', en: 'Open' }), url: `${SITE}/student#homework` }));
+        }
+        break;
+      }
       case 'removeHomework': await db.remove('homework', t, id); break;
       case 'addPlan': await db.insert('lesson_plans', [toDb.plan(p, t)]); break;
       case 'updatePlan': await db.update('lesson_plans', t, id, toDb.planPatch(p.patch as Row)); break;
