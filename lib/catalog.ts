@@ -37,7 +37,7 @@ const KIND = {
 } satisfies Record<string, T>;
 
 const FOCUS_SKILL: Record<string, SkillId> = { Listening: 'listening', Reading: 'reading', Writing: 'writing', Speaking: 'speaking', Grammar: 'grammar', Vocabulary: 'vocabulary', 'НМТ': 'nmt' };
-const LESSONS: Plan[] = [...BATCH_1, ...BATCH_2, ...BATCH_3, ...BATCH_4, ...BATCH_5, ...BATCH_6, ...BATCH_7, ...BATCH_8, ...BATCH_9];
+export const LESSONS: Plan[] = [...BATCH_1, ...BATCH_2, ...BATCH_3, ...BATCH_4, ...BATCH_5, ...BATCH_6, ...BATCH_7, ...BATCH_8, ...BATCH_9];
 const lvl = (l: string): Level => (['A1', 'A2', 'B1', 'B2', 'C1'].includes(l) ? l : 'B1') as Level;
 
 export function catalog(lang: Lang): CatalogItem[] {
