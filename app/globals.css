@@ -2524,3 +2524,5 @@ a.t-doc:hover { background: var(--mu-lime); }
 .t-start { border: 2px dashed var(--mu-ink); border-radius: 14px; padding: 10px 14px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
 .t-start legend { font-weight: 800; padding: 0 6px; }
 .t-start small { grid-column: 1 / -1; }
+.t-top__user .mu-lang { font-size: 12px; }
+@media (max-width: 700px) { .t-top__user .mu-lang button { padding: 4px 6px; } }
