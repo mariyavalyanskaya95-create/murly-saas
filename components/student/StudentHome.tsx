@@ -132,6 +132,18 @@ export default function StudentHome({ enrollments, name }: { enrollments: Enroll
         </section>
       )}
 
+      {e.tgLink && (
+        <section className="t-card s-tg">
+          <h2><Icon id="d-send" />{t({ uk: 'Сповіщення в Telegram', ru: 'Уведомления в Telegram', en: 'Telegram notifications' })}</h2>
+          {e.tgLinked
+            ? <p>{t({ uk: 'Підключено. Нові домашки, нагадування про заняття й коментарі вчителя приходять у Telegram.', ru: 'Подключено. Новые домашки, напоминания о занятиях и комментарии учителя приходят в Telegram.', en: 'Connected. New homework, lesson reminders and teacher comments arrive in Telegram.' })} <a href={e.tgLink} target="_blank" rel="noreferrer" className="t-link-btn">{t({ uk: 'Підключити інший Telegram', ru: 'Подключить другой Telegram', en: 'Use another Telegram' })}</a></p>
+            : <>
+                <p className="t-muted">{t({ uk: 'Щоб не пропустити домашку і заняття: натисни кнопку, у Telegram натисни «Start». Готово.', ru: 'Чтобы не пропустить домашку и занятия: нажми кнопку, в Telegram нажми «Start». Готово.', en: 'Never miss homework or a lesson: tap the button, then tap “Start” in Telegram. Done.' })}</p>
+                <a href={e.tgLink} target="_blank" rel="noreferrer" className="mu-btn mu-btn--lime">{t({ uk: 'Підключити Telegram', ru: 'Подключить Telegram', en: 'Connect Telegram' })}</a>
+              </>}
+        </section>
+      )}
+
       <MyLogin key={e.studentId} phone={e.loginPhone} pin={e.loginPin} />
     </div>
   );
