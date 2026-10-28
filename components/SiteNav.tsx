@@ -24,6 +24,7 @@ const MENU: { title: T; items: { href: string; icon: string; label: T; text: T; 
   {
     title: { uk: 'Вчитися самому', ru: 'Учиться самому', en: 'Learn on your own' },
     items: [
+      { href: '/series', icon: 'e-head', label: { uk: 'Аудіосеріали', ru: 'Аудиосериалы', en: 'Audio series' }, text: { uk: 'Історії з продовженням і голосами', ru: 'Истории с продолжением и голосами', en: 'Stories in episodes with voices' } },
       { href: '/games', icon: 'd-rocket', label: { uk: 'Ігри', ru: 'Игры', en: 'Games' }, text: { uk: '3D-містечко, дієслова, квізи, скоромовки', ru: '3D-городок, глаголы, квизы, скороговорки', en: '3D town, verbs, quizzes, tongue twisters' } },
     ],
   },
