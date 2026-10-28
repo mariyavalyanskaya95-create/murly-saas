@@ -16,7 +16,7 @@ export default async function StudentPage() {
   const t = tr();
   const { userId } = await auth();
   const user = await currentUser();
-  const enrollments = userId ? await getEnrollments(userId).catch(() => []) : [];
+  const enrollments = userId ? await getEnrollments(userId, t.lang).catch(() => []) : [];
   const first = String((user?.unsafeMetadata as { nick?: string } | undefined)?.nick || '') || user?.firstName || enrollments[0]?.name || '';
 
   if (!enrollments.length) {
