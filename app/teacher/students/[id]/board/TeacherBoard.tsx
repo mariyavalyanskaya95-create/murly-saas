@@ -18,7 +18,7 @@ export default function TeacherBoard({ id, library, pages }: { id: string; libra
     <div className="bd-page">
       <Link href={`/teacher/students/${id}`} className="t-back">← {s.name}</Link>
       {!s.joined && <p className="t-muted bd-note">{t({ uk: 'Учень ще не має кабінету. Дошка збережеться, і він побачить її, щойно увійде.', ru: 'У ученика ещё нет кабинета. Доска сохранится, и он увидит её, как только войдёт.', en: 'The student has no account yet. The board is saved and they will see it once they log in.' })}</p>}
-      <BoardLazy studentId={id} teacher plans={data.plans} library={library} words={words} pages={pages} files={files} title={t({ uk: `Дошка: ${s.name}`, ru: `Доска: ${s.name}`, en: `Board: ${s.name}` })} />
+      <BoardLazy studentId={id} me={data.settings.name || t({ uk: 'Учитель', ru: 'Учитель', en: 'Teacher' })} teacher plans={data.plans} library={library} words={words} pages={pages} files={files} title={t({ uk: `Дошка: ${s.name}`, ru: `Доска: ${s.name}`, en: `Board: ${s.name}` })} />
     </div>
   );
 }
