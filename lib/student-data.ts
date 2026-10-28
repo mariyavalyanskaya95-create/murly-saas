@@ -9,7 +9,7 @@ const enc = encodeURIComponent;
 type Row = Record<string, unknown>;
 
 export type StudentLesson = { id: string; start: string; duration: number; topic?: string; link: string; status: string };
-export type StudentWord = { id: string; en: string; uk: string; example?: string };
+export type StudentWord = { id: string; en: string; uk: string; example?: string; box?: number; due?: string };
 export type StudentHomework = {
   id: string; title: string; instructions?: string; kind: 'game' | 'text' | 'exercise' | 'lesson' | 'mock'; items?: Section[] | Block[]; answers?: Answers; overrides?: Record<string, boolean>;
   game?: 'quiz' | 'match' | 'anagram' | 'cards' | (string & {}); direction?: 'en' | 'uk';
@@ -68,7 +68,7 @@ export async function getEnrollments(userId: string, lang = 'uk'): Promise<Enrol
     const sid = enc(String(s.id));
     const [lessons, words, settings, homework, notes] = await Promise.all([
       db.query(`lessons?student_id=eq.${sid}&status=eq.planned&start=gte.${enc(since)}&order=start.asc&limit=20&select=*`),
-      db.query(`words?student_id=eq.${sid}&order=at.desc&select=id,en,uk,example`),
+      db.query(`words?student_id=eq.${sid}&order=at.desc&select=id,en,uk,example,srs_box,srs_due`).catch(() => db.query(`words?student_id=eq.${sid}&order=at.desc&select=id,en,uk,example`)),
       db.query(`teacher_settings?teacher_id=eq.${enc(String(s.teacher_id))}&select=name,link`),
       db.query(`homework?student_id=eq.${sid}&order=created_at.desc&limit=30&select=*`).catch(() => []),
       db.query(`notes?student_id=eq.${sid}&files=not.is.null&order=at.desc&limit=30&select=at,files`).catch(() => []),
@@ -90,7 +90,7 @@ export async function getEnrollments(userId: string, lang = 'uk'): Promise<Enrol
         topic: l.topic ? String(l.topic) : undefined,
         link: String(l.link || s.link || tLink || ''),
       })),
-      words: words.map((w) => ({ id: String(w.id), en: String(w.en), uk: String(w.uk), example: w.example ? String(w.example) : undefined })),
+      words: words.map((w) => ({ id: String(w.id), en: String(w.en), uk: String(w.uk), example: w.example ? String(w.example) : undefined, box: Number(w.srs_box) || 0, due: w.srs_due ? String(w.srs_due) : undefined })),
       homework: homework.map((h) => ({
         id: String(h.id), title: String(h.title), kind: h.kind === 'text' ? 'text' : h.kind === 'exercise' ? 'exercise' : h.kind === 'lesson' ? 'lesson' : h.kind === 'mock' ? 'mock' : 'game',
         items: h.kind === 'exercise' ? normalizeSections(h.items as Section[] | null) : (h.items as Section[] | Block[] | null) ?? undefined, answers: (h.answers as Answers | null) ?? undefined, overrides: (h.overrides as Record<string, boolean> | null) ?? undefined,
@@ -165,4 +165,21 @@ export async function studentFlags(userId: string): Promise<{ adult: boolean; nm
   const rows = await db.query(`students?user_id=eq.${enc(userId)}&select=is_adult,nmt`).catch(() => []);
   if (!rows.length) return { adult: false, nmt: true, any: false };
   return { adult: rows.every((r) => r.is_adult), nmt: rows.some((r) => r.nmt), any: true };
+}
+
+// Інтервальне повторення: правильно → слово повернеться пізніше, помилка → завтра
+const SRS_DAYS = [1, 3, 7, 30, 90];
+export async function reviewWord(userId: string, wordId: string, ok: boolean) {
+  if (!dbReady() || !/^[0-9a-f-]{36}$/i.test(wordId)) return false;
+  const w = await db.query(`words?id=eq.${enc(wordId)}&select=id,student_id,srs_box,srs_right,srs_wrong`);
+  if (!w[0]) return false;
+  const st = await db.query(`students?id=eq.${enc(String(w[0].student_id))}&user_id=eq.${enc(userId)}&select=id`);
+  if (!st[0]) return false;
+  const box = ok ? Math.min(SRS_DAYS.length - 1, (Number(w[0].srs_box) || 0) + 1) : 0;
+  const days = ok ? SRS_DAYS[box] : 1;
+  await db.patchWhere(`words?id=eq.${enc(wordId)}`, {
+    srs_box: box, srs_due: new Date(Date.now() + days * 86400000).toISOString(),
+    srs_right: (Number(w[0].srs_right) || 0) + (ok ? 1 : 0), srs_wrong: (Number(w[0].srs_wrong) || 0) + (ok ? 0 : 1),
+  });
+  return { box, days };
 }
