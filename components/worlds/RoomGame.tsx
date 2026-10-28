@@ -1,5 +1,6 @@
 'use client';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { say as speak } from '@/lib/speak';
 import Icon from '../Icon';
 import { bounds, diamond, proj, rotate, toPolys, unproj, ZH, type Poly } from '@/lib/worlds/iso';
 import { CATS, COLORS, COLOR_UK, ITEM, ITEMS, THEMES, type Cat, type ItemDef } from '@/lib/worlds/room-items';
@@ -46,16 +47,7 @@ const sfx = {
   coin: () => beep([880, 1320, 1760], 0.07, 'sine', 0.1),
   paint: () => beep([440, 550, 660], 0.05, 'sine', 0.08),
 };
-function say(text: string) {
-  try {
-    const s = window.speechSynthesis; if (!s) return;
-    s.cancel();
-    const u = new SpeechSynthesisUtterance(text);
-    const v = s.getVoices().find((x) => x.lang === 'en-GB') || s.getVoices().find((x) => x.lang.startsWith('en'));
-    if (v) u.voice = v; u.lang = v?.lang || 'en-GB'; u.rate = 0.9;
-    s.speak(u);
-  } catch { /* без озвучки */ }
-}
+function say(text: string) { void speak(text, { voice: 'narrator' }).catch(() => {}); }
 const art = (en: string) => (/^[aeiou]/i.test(en) ? 'an' : 'a');
 
 // ---------- геометрія кімнати ----------
