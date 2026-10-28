@@ -5,6 +5,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import CoinsBox from './CoinsBox';
 import MockResults from '../mock/MockResults';
 import { MOCKS } from '@/lib/mock';
+import { QUEST_LIST } from '@/lib/quest-list';
 import Icon from '../Icon';
 import Avatar from '../Avatar';
 import GameHub from '../games/GameHub';
@@ -695,6 +696,7 @@ export function HomeworkForm({ studentIds, groupId, onDone }: { studentIds: stri
   const wordsRu = plural(words, 'ru', { uk: ['слово', 'слова', 'слів'], ru: ['слово', 'слова', 'слов'], en: ['word', 'words'] });
   const [kind, setKind] = useState<'game' | 'text' | 'exercise' | 'mock' | 'quest'>('exercise');
   const [mock, setMock] = useState(MOCKS[0].id);
+  const [quest, setQuest] = useState(QUEST_LIST[0].id);
   const [sections, setSections] = useState<Section[]>([]);
   const [game, setGame] = useState<'quiz' | 'match' | 'anagram' | 'cards'>('quiz');
   const [direction, setDirection] = useState<'en' | 'uk'>('en');
@@ -712,10 +714,10 @@ export function HomeworkForm({ studentIds, groupId, onDone }: { studentIds: stri
     const gameLabel = t(GAMES.find((g) => g.id === game)!.label);
     const base = {
       kind: kind === 'quest' ? 'game' as const : kind,
-      title: title.trim() || (kind === 'quest' ? t({ uk: 'Підводний квест', ru: 'Подводный квест', en: 'Under the sea quest' }) : kind === 'mock' ? t({ uk: `Пробний НМТ №${mock}`, ru: `Пробный НМТ №${mock}`, en: `NMT mock test #${mock}` }) : kind === 'game' ? `${t({ uk: 'Слова', ru: 'Слова', en: 'Words' })}: ${gameLabel.toLowerCase()}` : kind === 'exercise' ? t({ uk: 'Вправа', ru: 'Упражнение', en: 'Exercise' }) : t({ uk: 'Письмове завдання', ru: 'Письменное задание', en: 'Written task' })),
+      title: title.trim() || (kind === 'quest' ? `${t({ uk: 'Знайди, Бульбашко!', ru: 'Найди, Пузырёк!', en: 'Find it, Bubbles!' })} ${t(QUEST_LIST.find((q) => q.id === quest)!.title)}` : kind === 'mock' ? t({ uk: `Пробний НМТ №${mock}`, ru: `Пробный НМТ №${mock}`, en: `NMT mock test #${mock}` }) : kind === 'game' ? `${t({ uk: 'Слова', ru: 'Слова', en: 'Words' })}: ${gameLabel.toLowerCase()}` : kind === 'exercise' ? t({ uk: 'Вправа', ru: 'Упражнение', en: 'Exercise' }) : t({ uk: 'Письмове завдання', ru: 'Письменное задание', en: 'Written task' })),
       items: kind === 'exercise' ? sections : undefined,
       instructions: instructions.trim() || undefined,
-      game: kind === 'quest' ? 'sea' : kind === 'game' ? game : kind === 'mock' ? mock : undefined,
+      game: kind === 'quest' ? quest : kind === 'game' ? game : kind === 'mock' ? mock : undefined,
       direction: kind === 'game' ? direction : undefined,
       due: due ? new Date(due).toISOString() : undefined,
       groupId,
@@ -734,7 +736,12 @@ export function HomeworkForm({ studentIds, groupId, onDone }: { studentIds: stri
         <button type="button" className={`g-chip ${kind === 'quest' ? 'is-on' : ''}`} onClick={() => setKind('quest')}>{t({ uk: 'Гра-квест (діти)', ru: 'Игра-квест (дети)', en: 'Quest game (kids)' })}</button>
         <button type="button" className={`g-chip ${kind === 'mock' ? 'is-on' : ''}`} onClick={() => setKind('mock')}>{t({ uk: 'Пробний НМТ', ru: 'Пробный НМТ', en: 'NMT mock test' })}</button>
       </div>
-      {kind === 'quest' && <p className="t-muted">{t({ uk: 'Підводний квест з котиком: 9 озвучених завдань англійською (A1–A2). Результат «з першої спроби» прийде в домашку.', ru: 'Подводный квест с котиком: 9 озвученных заданий на английском (A1–A2). Результат «с первой попытки» придёт в домашку.', en: 'Under the sea quest: 9 voiced tasks in English (A1–A2). The first-try score is saved to the homework.' })}</p>}
+      {kind === 'quest' && (
+        <div className="t-form">
+          <label>{t({ uk: 'Місце', ru: 'Место', en: 'Place' })}<select value={quest} onChange={(e) => setQuest(e.target.value)}>{QUEST_LIST.map((q) => <option key={q.id} value={q.id}>{t(q.title)}</option>)}</select></label>
+          <p className="t-muted t-form__wide">{t({ uk: '«Знайди, Бульбашко!»: 9 озвучених завдань англійською (A1–A2). Результат «з першої спроби» прийде в домашку.', ru: '«Найди, Пузырёк!»: 9 озвученных заданий на английском (A1–A2). Результат «с первой попытки» придёт в домашку.', en: '“Find it, Bubbles!”: 9 voiced tasks in English (A1–A2). The first-try score is saved to the homework.' })}</p>
+        </div>
+      )}
       {kind === 'mock' && (
         <div className="t-form">
           <label>{t({ uk: 'Варіант', ru: 'Вариант', en: 'Variant' })}<select value={mock} onChange={(e) => setMock(e.target.value)}>{MOCKS.map((m) => <option key={m.id} value={m.id}>{t({ uk: `Пробний НМТ №${m.id}`, ru: `Пробный НМТ №${m.id}`, en: `NMT mock test #${m.id}` })}</option>)}</select></label>
