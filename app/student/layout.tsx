@@ -31,6 +31,7 @@ export default async function StudentLayout({ children }: { children: React.Reac
         <Link href="/student#words">{t({ uk: 'Мій словник', ru: 'Мой словарь', en: 'My dictionary' })}</Link>
         {f.nmt && <Link href="/nmt/mock">{t({ uk: 'Пробні НМТ', ru: 'Пробные НМТ', en: 'Mock NMT' })}</Link>}
         <Link href="/grammar">{t({ uk: 'Граматика', ru: 'Грамматика', en: 'Grammar' })}</Link>
+        <Link href="/irregular-verbs">{t({ uk: 'Неправильні дієслова', ru: 'Неправильные глаголы', en: 'Irregular verbs' })}</Link>
         <Link href="/learn">{t({ uk: 'Усі матеріали', ru: 'Все материалы', en: 'All materials' })}</Link>
         {!f.adult && <Link href="/games">{t({ uk: 'Ігри', ru: 'Игры', en: 'Games' })}</Link>}
       </nav>
