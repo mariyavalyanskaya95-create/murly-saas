@@ -39,7 +39,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         },
       }}
     >
-      <html lang={lang}>
+      <html lang={lang} suppressHydrationWarning>
         <head>
           <link rel="preconnect" href="https://api.fontshare.com" crossOrigin="" />
           <link
@@ -52,6 +52,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap"
           />
+          {/* сторінка відкрита вікном на дошці: ховаємо меню й футер */}
+          <script dangerouslySetInnerHTML={{ __html: "try{if(window.self!==window.top)document.documentElement.classList.add('is-embed')}catch(e){document.documentElement.classList.add('is-embed')}" }} />
         </head>
         <body><LangProvider lang={lang}>{children}</LangProvider></body>
       </html>
