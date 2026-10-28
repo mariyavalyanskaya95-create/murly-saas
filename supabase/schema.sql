@@ -257,3 +257,41 @@ create index if not exists groups_teacher_idx on groups (teacher_id);
 alter table groups enable row level security;
 alter table lessons add column if not exists group_id uuid;
 alter table homework add column if not exists group_id uuid;
+
+-- Дошка учня (як Miro): спільна для вчителя й учня, все зберігається
+create table if not exists boards (
+  student_id uuid primary key references students(id) on delete cascade,
+  teacher_id text not null,
+  elements jsonb not null default '[]',
+  files jsonb not null default '{}',
+  version bigint not null default 0,
+  updated_at timestamptz not null default now(),
+  file_ids text[] not null default '{}'
+);
+alter table boards enable row level security;
+-- атомарне злиття змін: для кожного елемента лишаємо новішу версію
+create or replace function board_merge(p_student uuid, p_teacher text, p_elements jsonb, p_files jsonb)
+returns bigint language plpgsql as $$
+declare v bigint;
+begin
+  insert into boards (student_id, teacher_id) values (p_student, p_teacher) on conflict (student_id) do nothing;
+  perform 1 from boards where student_id = p_student for update;
+  update boards b set
+    elements = coalesce((
+      with allx as (
+        select e, 0 as src, ord from jsonb_array_elements(b.elements) with ordinality as t(e, ord)
+        union all
+        select e, 1 as src, 1000000 + ord from jsonb_array_elements(coalesce(p_elements, '[]'::jsonb)) with ordinality as t(e, ord)
+      ),
+      best as (select distinct on (e->>'id') e->>'id' as id, e from allx order by e->>'id', coalesce((e->>'version')::int, 0) desc, src desc),
+      pos as (select e->>'id' as id, min(ord) as o from allx group by 1)
+      select jsonb_agg(best.e order by pos.o) from best join pos using (id)
+    ), '[]'::jsonb),
+    files = b.files || coalesce(p_files, '{}'::jsonb),
+    file_ids = array(select jsonb_object_keys(b.files || coalesce(p_files, '{}'::jsonb))),
+    version = b.version + 1,
+    updated_at = now()
+  where b.student_id = p_student
+  returning b.version into v;
+  return v;
+end $$;
