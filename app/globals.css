@@ -2638,3 +2638,29 @@ a.t-doc:hover { background: var(--mu-lime); }
 }
 .is-embed .mu-nav, .is-embed .mu-footer, .is-embed .mu-stk { display: none !important; }
 .is-embed body { padding-top: 0; }
+/* Мобільна версія: шапки без переповнення */
+.mu-nav__cta .mu-btn { white-space: nowrap; }
+@media (max-width: 560px) {
+  .t-top { gap: 8px; padding: 10px 12px; }
+  .t-top__badge { display: none; }
+  .t-lesson-btn { margin-right: 4px; }
+  .t-top__user { gap: 6px; }
+}
+@media (max-width: 420px) {
+  .mu-nav__cta .mu-btn { padding: 8px 10px; font-size: 11px; }
+}
+/* Дошка на телефоні: компактна панель, більше місця для полотна */
+@media (max-width: 760px) {
+  .bd-page { padding: 6px 6px 10px; }
+  .bd-page > .t-back, .bd-note { display: none; }
+  .bd-bar .mu-btn { padding: 6px 10px; font-size: 12px; }
+  .bd-title { font-size: 15px; width: auto; }
+  .bd-canvas, .bd-drawer { height: calc(100vh - 150px); min-height: 380px; }
+}
+@media (max-width: 640px) {
+  /* фільтри уроків і вкладки: один рядок з прокруткою замість стовпчика чипів */
+  .le-filters .g-chips, .t-tabs { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; padding-bottom: 4px; }
+  .le-filters .g-chips::-webkit-scrollbar, .t-tabs::-webkit-scrollbar { display: none; }
+  .le-filters .g-chip, .t-tabs .t-tab { flex: none; white-space: nowrap; }
+  .le-filters .g-chips { margin-bottom: 6px; }
+}
