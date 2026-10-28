@@ -2788,3 +2788,19 @@ a.t-doc:hover { background: var(--mu-lime); }
 .sp-res { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
 .sp-res b { font-family: 'Unbounded', 'Arial Black', sans-serif; font-size: 26px; }
 @media (max-width: 560px) { .sp-opts { grid-template-columns: 1fr; } }
+/* Плеєр доріжки (як у British Council) */
+.tp { display: grid; gap: 10px; }
+.tp-bar { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border: 2px solid var(--mu-ink); border-radius: 999px; background: #fff; flex-wrap: wrap; }
+.tp-play { width: 46px; height: 46px; flex: none; display: grid; place-items: center; border: 2px solid var(--mu-ink); border-radius: 50%; background: var(--mu-lime); color: var(--mu-ink); cursor: pointer; }
+.tp-btn { flex: none; font: inherit; font-weight: 800; font-size: 13px; padding: 6px 10px; border: 1.5px solid var(--mu-ink); border-radius: 99px; background: var(--mu-card); cursor: pointer; }
+.tp-btn:hover, .tp-play:hover { filter: brightness(.96); }
+.tp-time { font-variant-numeric: tabular-nums; font-size: 14px; min-width: 88px; }
+.tp-seek { flex: 1; min-width: 120px; accent-color: #1A1A1A; }
+.tp-rate { font: inherit; font-size: 14px; padding: 5px 8px; border: 1.5px solid var(--mu-ink); border-radius: 99px; background: var(--mu-card); }
+.tp-load, .tp-who { margin: 0; font-size: 14px; }
+.tp-text { max-height: 420px; overflow-y: auto; padding: 12px 16px; border: 2px solid var(--mu-ink); border-radius: 18px; background: #fff; }
+.tp-text p { margin: 0 0 6px; padding: 4px 8px; border-radius: 8px; cursor: pointer; }
+.tp-text p.is-narr { color: var(--mu-ink-soft); font-style: italic; }
+.tp-text p.is-now { background: var(--mu-lime); }
+.sp-bar--live { border: 0; padding: 0; background: none; }
+@media (max-width: 560px) { .tp-bar { border-radius: 18px; } .tp-seek { order: 9; flex-basis: 100%; } }
