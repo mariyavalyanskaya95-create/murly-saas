@@ -16,6 +16,7 @@ const NAV: { href: string; icon: string; label: T; short?: T; priv?: boolean }[]
   { href: '/teacher/groups', icon: 'd-team', label: { uk: 'Групи', ru: 'Группы', en: 'Groups' } },
   { href: '/teacher/review', icon: 'e-pencil', label: { uk: 'Перевірка', ru: 'Проверка', en: 'Review' } },
   { href: '/teacher/lessons', icon: 'e-book', label: { uk: 'Уроки', ru: 'Уроки', en: 'Lessons' } },
+  { href: '/search', icon: 'd-seo', label: { uk: 'Пошук матеріалів', ru: 'Поиск материалов', en: 'Find materials' }, short: { uk: 'Пошук', ru: 'Поиск', en: 'Search' } },
   { href: '/teacher/schedule', icon: 'd-clock', label: { uk: 'Розклад', ru: 'Расписание', en: 'Schedule' }, priv: true },
   { href: '/teacher/payments', icon: 'd-money', label: { uk: 'Оплати', ru: 'Оплаты', en: 'Payments' }, priv: true },
   { href: '/teacher/settings', icon: 'd-log', label: { uk: 'Налаштування', ru: 'Настройки', en: 'Settings' }, short: { uk: 'Ще', ru: 'Ещё', en: 'More' }, priv: true },
