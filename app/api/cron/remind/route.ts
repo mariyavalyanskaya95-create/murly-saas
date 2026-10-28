@@ -19,18 +19,21 @@ export async function GET(req: Request) {
   const now = Date.now();
   const in24 = new Date(now + 24 * 3600 * 1000).toISOString();
   const ids = students.map((s) => String(s.id)).join(',');
-  const [lessons, hw] = await Promise.all([
+  const [lessons, hw, dueWords] = await Promise.all([
     db.query(`lessons?student_id=in.(${ids})&status=eq.planned&start=gte.${encodeURIComponent(new Date(now).toISOString())}&start=lt.${encodeURIComponent(in24)}&select=student_id,start,topic&order=start.asc`).catch(() => []),
     db.query(`homework?student_id=in.(${ids})&status=eq.assigned&due=gte.${encodeURIComponent(new Date(now).toISOString())}&due=lt.${encodeURIComponent(in24)}&select=student_id,title,due`).catch(() => []),
+    db.query(`words?student_id=in.(${ids})&or=(srs_due.is.null,srs_due.lte.${encodeURIComponent(new Date(now).toISOString())})&select=student_id`).catch(() => []),
   ]);
   let sent = 0;
   for (const s of students) {
     const lang = String(s.tg_lang || 'uk');
     const ls = lessons.filter((l) => l.student_id === s.id);
     const hs = hw.filter((h) => h.student_id === s.id);
-    if (!ls.length && !hs.length) continue;
+    const wn = Math.min(15, dueWords.filter((w) => w.student_id === s.id).length);
+    if (!ls.length && !hs.length && wn < 4) continue;
     const lines: string[] = [];
     ls.forEach((l) => lines.push(`📅 ${L(lang, { uk: 'Заняття о', ru: 'Занятие в', en: 'Lesson at' })} <b>${time(String(l.start), lang)}</b>${l.topic ? `: ${esc(String(l.topic))}` : ''}`));
+    if (wn >= 4) lines.push(`🔁 ${L(lang, { uk: 'Слова на сьогодні', ru: 'Слова на сегодня', en: 'Words for today' })}: <b>${wn}</b> (5 ${L(lang, { uk: 'хв', ru: 'мин', en: 'min' })})`);
     hs.forEach((h) => lines.push(`📝 ${L(lang, { uk: 'Здати до', ru: 'Сдать до', en: 'Due by' })} <b>${time(String(h.due), lang)}</b>: ${esc(String(h.title))}`));
     const ok = await tgSend(String(s.tg_chat_id), `${L(lang, { uk: 'Доброго ранку! Сьогодні:', ru: 'Доброе утро! Сегодня:', en: 'Good morning! Today:' })}\n${lines.join('\n')}`,
       { text: L(lang, { uk: 'Мій кабінет', ru: 'Мой кабинет', en: 'My account' }), url: `${SITE}/student` });
