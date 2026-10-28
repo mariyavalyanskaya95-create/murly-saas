@@ -7,3 +7,5 @@ export const QUEST_LIST: { id: string; title: T }[] = [
   { id: 'sea', title: { uk: 'Під водою', ru: 'Под водой', en: 'Under the sea' } },
 ];
 export const isQuest = (id?: string) => Boolean(id && QUEST_LIST.some((q) => q.id === id));
+// Тексти завдань квесту (для попередньої озвучки на сервері)
+export { QUESTS_TEXT } from './quest-text';

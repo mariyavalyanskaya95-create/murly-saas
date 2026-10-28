@@ -2,6 +2,7 @@
 import type { VoicePreset } from './voices';
 
 let ttsOk: boolean | null = null;
+export const ttsUrl = (text: string, voice: VoicePreset) => `/api/tts?v=${voice}&t=${encodeURIComponent(text.slice(0, 1500))}`;
 let ttsCheck: Promise<boolean> | null = null;
 let current: HTMLAudioElement | null = null;
 
@@ -41,7 +42,8 @@ export async function say(text: string, opts: { voice?: VoicePreset; slow?: bool
   stopSpeak();
   const rate = opts.slow ? 0.75 : 0.95;
   if (await liveVoices()) {
-    const a = new Audio(`/api/tts?v=${opts.voice ?? 'narrator'}&s=${opts.slow ? 1 : 0}&t=${encodeURIComponent(text.slice(0, 1500))}`);
+    const a = new Audio(ttsUrl(text, opts.voice ?? 'narrator'));
+    a.playbackRate = opts.slow ? 0.8 : 1;
     current = a;
     let fell = false;
     const fallback = () => { if (fell || current !== a) return; fell = true; current = null; browserSay(text, rate, opts.onEnd, opts.pitch); };
