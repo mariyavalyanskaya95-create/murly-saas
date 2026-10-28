@@ -126,7 +126,8 @@ function ExercisePlayer({ h, onPatch }: { h: StudentHomework; onPatch: (p: Parti
   const t = useT();
   const sections = (h.items ?? []) as Section[];
   const [answers, setAnswers] = useState<Answers>(h.answers ?? {});
-  const [checked, setChecked] = useState(!!h.answers);
+  // здано, лише якщо учень справді щось відповів (порожнє {} не блокує поля)
+  const [checked, setChecked] = useState(Object.values(h.answers ?? {}).some((v) => String(v ?? '').trim()));
   const [saving, setSaving] = useState(false);
   const [err, setErr] = useState(false);
   const result = useMemo(() => (checked ? grade(sections, answers, h.overrides) : null), [checked, sections, answers, h.overrides]);
