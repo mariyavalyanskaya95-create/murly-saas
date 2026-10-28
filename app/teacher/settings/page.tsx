@@ -84,7 +84,7 @@ function TelegramCard() {
         <>
           <p className="t-muted">{t({ uk: 'Учні отримують нові домашки, твої коментарі й ранкові нагадування про заняття. Тобі приходять здані домашки. Учень підключає Telegram сам у своєму кабінеті.', ru: 'Ученики получают новые домашки, твои комментарии и утренние напоминания о занятиях. Тебе приходят сданные домашки. Ученик подключает Telegram сам в своём кабинете.', en: 'Students get new homework, your comments and morning lesson reminders. You get handed-in homework. Students connect Telegram themselves in their account.' })}</p>
           {st.linked
-            ? <p><span className="t-tag t-tag--done">{t({ uk: 'Твій Telegram підключено', ru: 'Твой Telegram подключён', en: 'Your Telegram is connected' })}</span> <a href={st.link} target="_blank" rel="noreferrer" className="t-link-btn">{t({ uk: 'Підключити інший', ru: 'Подключить другой', en: 'Use another' })}</a></p>
+            ? <p><span className="t-tag t-tag--done">{t({ uk: 'Твій Telegram підключено', ru: 'Твой Telegram подключён', en: 'Your Telegram is connected' })}</span> <button type="button" className="mu-btn t-btn-sm" onClick={() => fetch('/api/telegram', { method: 'PUT' })}>{t({ uk: 'Надіслати тест', ru: 'Отправить тест', en: 'Send a test' })}</button> <a href={st.link} target="_blank" rel="noreferrer" className="t-link-btn">{t({ uk: 'Підключити інший', ru: 'Подключить другой', en: 'Use another' })}</a></p>
             : <a href={st.link} target="_blank" rel="noreferrer" className="mu-btn mu-btn--lime t-btn-sm">{t({ uk: 'Підключити мій Telegram', ru: 'Подключить мой Telegram', en: 'Connect my Telegram' })}</a>}
         </>
       )}
