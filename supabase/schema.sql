@@ -295,3 +295,16 @@ begin
   returning b.version into v;
   return v;
 end $$;
+
+-- Курсори на дошці (хто де вказує)
+create table if not exists board_presence (
+  student_id uuid not null references students(id) on delete cascade,
+  who text not null,
+  x double precision not null default 0,
+  y double precision not null default 0,
+  name text,
+  down boolean not null default false,
+  at timestamptz not null default now(),
+  primary key (student_id, who)
+);
+alter table board_presence enable row level security;
