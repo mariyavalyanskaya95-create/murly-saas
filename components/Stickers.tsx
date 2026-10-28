@@ -8,7 +8,7 @@ const ICONS = ['c-cat', 'c-cat-glass', 'c-cat-speak', 'c-cat-sit', 'c-cat-sleep'
   'e-apple', 'e-abc', 'e-book', 'e-pencil', 'e-globe', 'e-mic', 'e-cap', 'e-trophy', 'e-flame', 'e-speak'];
 // спокійна палітра: кремові наліпки з чорною іконкою, зрідка чорна з лаймом
 const COLORS: [string, string][] = [
-  ['#FFFDF8', '#1A1A1A'], ['#EDE6D6', '#1A1A1A'], ['#FFFDF8', '#1A1A1A'], ['#1A1A1A', '#D0F834'],
+  ['#FFFDF8', '#1A1A1A'], ['#EDE6D6', '#1A1A1A'], ['#FFFDF8', '#1A1A1A'], ['#1A1A1A', '#DCE9B5'],
 ];
 const BLOBS = ['b1', 'b2', 'b3'];
 const NS = 'http://www.w3.org/2000/svg';

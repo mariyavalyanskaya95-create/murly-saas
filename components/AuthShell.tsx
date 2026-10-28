@@ -46,7 +46,7 @@ export const clerkLook = {
     header: { textAlign: 'left', alignItems: 'flex-start' },
     headerTitle: { fontSize: '30px', lineHeight: '1.15', fontFamily: 'Unbounded, Boldonse, Arial Black, sans-serif', fontWeight: '400' },
     headerSubtitle: { fontSize: '15px' },
-    formButtonPrimary: { background: '#1A1A1A', color: '#D0F834', borderRadius: '999px', height: '48px', fontSize: '15px', textTransform: 'none', boxShadow: '0 3px 0 #1A1A1A' },
+    formButtonPrimary: { background: '#1A1A1A', color: '#DCE9B5', borderRadius: '999px', height: '48px', fontSize: '15px', textTransform: 'none', boxShadow: '0 3px 0 #1A1A1A' },
     formFieldInput: { height: '46px', borderRadius: '14px', border: '2px solid #1A1A1A', background: '#fff' },
     socialButtonsBlockButton: { height: '46px', borderRadius: '14px', border: '2px solid #1A1A1A', background: '#fff' },
     footer: { background: 'transparent' },
