@@ -1,36 +1,18 @@
 'use client';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useMemo, useState } from 'react';
 import Icon from './Icon';
 import { useT } from './LangProvider';
 import { VERBS_AZ as VERBS_AZ_UK, Verb } from '@/lib/irregular-verbs';
 import { localizeVerbs } from '@/lib/content/verbs';
+import { say as speak } from '@/lib/speak';
 
 const ABC = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 
-// Озвучка через вбудований синтез мови браузера (британська вимова, якщо є)
+// Озвучка живим голосом (Google, з кешу); якщо недоступний, голос браузера
+const verbSpeech = (text: string) => text.replace(/ \/ /g, ', ');
 function useSpeech() {
-  const [ok, setOk] = useState(false);
-  const voice = useRef<SpeechSynthesisVoice | null>(null);
-  useEffect(() => {
-    if (typeof window === 'undefined' || !('speechSynthesis' in window)) return;
-    const pickVoice = () => {
-      const vs = window.speechSynthesis.getVoices();
-      voice.current = vs.find((v) => v.lang === 'en-GB') ?? vs.find((v) => v.lang.startsWith('en')) ?? null;
-    };
-    pickVoice();
-    window.speechSynthesis.onvoiceschanged = pickVoice;
-    setOk(true);
-  }, []);
-  const say = (text: string) => {
-    if (!ok) return;
-    const u = new SpeechSynthesisUtterance(text.replace(/ \/ /g, ', '));
-    u.lang = voice.current?.lang ?? 'en-GB';
-    if (voice.current) u.voice = voice.current;
-    u.rate = 0.85;
-    window.speechSynthesis.cancel();
-    window.speechSynthesis.speak(u);
-  };
-  return { ok, say };
+  const say = (text: string) => { speak(verbSpeech(text), { voice: 'narrator' }); };
+  return { ok: true, say };
 }
 
 function Word({ text, say, ok, strong }: { text: string; say: (t: string) => void; ok: boolean; strong?: boolean }) {
