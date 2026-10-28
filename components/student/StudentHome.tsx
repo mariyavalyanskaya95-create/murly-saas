@@ -3,6 +3,7 @@ import { useMemo, useState } from 'react';
 import Icon from '../Icon';
 import GameHub from '../games/GameHub';
 import HomeworkList from './HomeworkList';
+import WordReview from './WordReview';
 import CoinsCard from './CoinsCard';
 import { GameFinishContext } from '../games/finish';
 import type { Enrollment } from '@/lib/student-data';
@@ -86,6 +87,8 @@ export default function StudentHome({ enrollments, name }: { enrollments: Enroll
       </section>
 
       {!e.adult && <CoinsCard />}
+
+      <WordReview key={`r${e.studentId}`} words={e.words} adult={e.adult} />
 
       <HomeworkList key={e.studentId} homework={e.homework} words={e.words} />
 
