@@ -324,6 +324,7 @@ function WordsTab({ id }: { id: string }) {
                       <div key={w.id} className="t-word">
                         <b>{w.en}</b><span>{w.uk}</span>
                         {w.example && <i>{w.example}</i>}
+                        {(w.wrong ?? 0) >= 2 && (w.box ?? 0) < 3 ? <small className="t-word__tag is-hard">{t({ uk: 'важке', ru: 'трудное', en: 'hard' })}</small> : (w.box ?? 0) >= 4 ? <small className="t-word__tag">{t({ uk: 'вивчене', ru: 'выучено', en: 'learned' })}</small> : null}
                         <button className="t-icon-btn" onClick={() => removeWord(w.id)} aria-label={`${t({ uk: 'Видалити', ru: 'Удалить', en: 'Delete' })} ${w.en}`}>✕</button>
                       </div>
                     ))}

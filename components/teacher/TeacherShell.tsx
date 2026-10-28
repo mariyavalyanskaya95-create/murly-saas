@@ -60,6 +60,7 @@ function Shell({ userId, name, children }: { userId: string; name: string; child
               </Link>
             ))}
             <div className="t-side__sep" />
+            <Link href="/teacher/team-game" className={`t-side__link t-side__extra ${active('/teacher/team-game') ? 'is-on' : ''}`}><Icon id="d-team" />{t({ uk: 'Командна гра', ru: 'Командная игра', en: 'Team game' })}</Link>
             <Link href="/teacher/games" className={`t-side__link t-side__extra ${active('/teacher/games') ? 'is-on' : ''}`}><Icon id="d-spark" />{t({ uk: 'Мої ігри', ru: 'Мои игры', en: 'My games' })}</Link>
             <Link href="/irregular-verbs/games" className="t-side__link t-side__extra"><Icon id="e-trophy" />{t({ uk: 'Ігри', ru: 'Игры', en: 'Games' })}</Link>
             <Link href="/grammar" className="t-side__link t-side__extra"><Icon id="e-book" />{t({ uk: 'Граматика', ru: 'Грамматика', en: 'Grammar' })}</Link>
