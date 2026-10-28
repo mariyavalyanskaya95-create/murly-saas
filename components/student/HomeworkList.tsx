@@ -28,7 +28,8 @@ export default function HomeworkList({ homework, words }: { homework: StudentHom
   const t = useT();
   const [list, setList] = useState(homework);
   const [openId, setOpenId] = useState<string | null>(null);
-  const todo = list.filter((h) => h.status === 'assigned');
+  // спочатку те, що здати найближчим часом
+  const todo = list.filter((h) => h.status === 'assigned').sort((a, b) => (a.due ? +new Date(a.due) : Infinity) - (b.due ? +new Date(b.due) : Infinity));
   const done = list.filter((h) => h.status !== 'assigned');
   const patch = (id: string, p: Partial<StudentHomework>) => setList((l) => l.map((h) => (h.id === id ? { ...h, ...p } : h)));
 

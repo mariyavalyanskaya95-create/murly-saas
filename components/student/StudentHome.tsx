@@ -8,6 +8,7 @@ import { GameFinishContext } from '../games/finish';
 import type { Enrollment } from '@/lib/student-data';
 import { useT } from '@/components/LangProvider';
 import type { Lang } from '@/lib/i18n';
+import { speakEn } from '@/lib/speak';
 
 const LOCALE: Record<Lang, string> = { uk: 'uk-UA', ru: 'ru-RU', en: 'en-GB' };
 
@@ -100,8 +101,9 @@ export default function StudentHome({ enrollments, name }: { enrollments: Enroll
         {e.words.length ? (
           <div className="t-words">
             {e.words.map((w) => (
-              <div key={w.id} className="t-word" style={{ paddingRight: 14 }}>
+              <div key={w.id} className="t-word">
                 <b>{w.en}</b><span>{w.uk}</span>{w.example && <i>{w.example}</i>}
+                <button type="button" className="t-icon-btn" onClick={() => speakEn(w.en, 0.9)} aria-label={`${t({ uk: 'Послухати', ru: 'Послушать', en: 'Listen' })}: ${w.en}`} title={t({ uk: 'Послухати', ru: 'Послушать', en: 'Listen' })}><Icon id="e-head" /></button>
               </div>
             ))}
           </div>
