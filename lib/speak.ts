@@ -2,7 +2,7 @@
 import type { VoicePreset } from './voices';
 
 let ttsOk: boolean | null = null;
-export const ttsUrl = (text: string, voice: VoicePreset) => `/api/tts?v=${voice}&t=${encodeURIComponent(text.slice(0, 1500))}`;
+export const ttsUrl = (text: string, voice: VoicePreset) => `/api/tts?q=2&v=${voice}&t=${encodeURIComponent(text.slice(0, 1500))}`;
 let ttsCheck: Promise<boolean> | null = null;
 let current: HTMLAudioElement | null = null;
 
