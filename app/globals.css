@@ -2753,6 +2753,22 @@ a.t-doc:hover { background: var(--mu-lime); }
 .qh-ic .mu-ic { width: 30px; height: 30px; }
 .qh-card small { color: var(--mu-ink-muted); font-weight: 700; }
 .qh-card b { font-size: 20px; }
+.qh-grid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+.qh-card { padding: 12px 12px 16px; }
+.qh-thumb { display: block; border: 2px solid var(--mu-ink); border-radius: 14px; overflow: hidden; background: var(--mu-paper); pointer-events: none; }
+.qh-thumb svg { display: block; width: 100%; height: auto; }
+.qh-topics { margin: 4px 0 0; padding: 0; list-style: none; display: grid; gap: 2px; font-size: 13px; color: var(--mu-ink-muted); }
+/* квест: взяті предмети летять у сумку і зникають */
+.sq-hit.is-taken { animation: sq-take .65s ease-in forwards; pointer-events: none; }
+.sq-hit.is-gone { display: none; }
+.sq-hit.is-hint { animation: sq-hint 1s ease-in-out infinite; }
+@keyframes sq-take { 0% { transform: scale(1); opacity: 1; } 35% { transform: translateY(-30px) scale(1.25); opacity: 1; } 100% { transform: translateY(-160px) scale(.2); opacity: 0; } }
+@keyframes sq-hint { 0%, 100% { filter: drop-shadow(0 0 0 #FFD54A); } 50% { filter: drop-shadow(0 0 14px #FFD54A) brightness(1.15); } }
+.sq-bag { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 10px; padding: 8px 14px; border: 2px solid var(--mu-ink); border-radius: 16px; background: var(--mu-card); }
+.sq-bag__it { padding: 3px 12px; border-radius: 99px; background: var(--mu-lime); border: 2px solid var(--mu-ink); font-weight: 700; animation: sq-pop .4s; }
+.sq-topics { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 0; padding: 0; list-style: none; }
+.sq-topics li { padding: 3px 10px; border-radius: 99px; border: 1.5px solid var(--mu-ink-muted); color: var(--mu-ink-muted); font-size: 13px; }
+@media (prefers-reduced-motion: reduce) { .sq-hit.is-taken { animation: none; opacity: 0; } .sq-hit.is-hint { animation: none; filter: drop-shadow(0 0 10px #FFD54A); } }
 /* Аудіосеріали */
 .se-cast { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
 .se-c { display: grid; gap: 2px; padding: 12px 14px; border: 2px solid var(--mu-ink); border-radius: 16px; background: var(--mu-card); }
@@ -2804,3 +2820,26 @@ a.t-doc:hover { background: var(--mu-lime); }
 .tp-text p.is-now { background: var(--mu-lime); }
 .sp-bar--live { border: 0; padding: 0; background: none; }
 @media (max-width: 560px) { .tp-bar { border-radius: 18px; } .tp-seek { order: 9; flex-basis: 100%; } }
+
+/* Пошук по сайту */
+.mu-nav__search { display: grid; place-items: center; width: 42px; height: 42px; border: 2px solid var(--mu-ink); border-radius: 50%; color: var(--mu-ink); background: var(--mu-card); flex: none; }
+.mu-nav__search:hover { background: var(--mu-lime); }
+.mu-nav__search .mu-ic { width: 20px; height: 20px; }
+.ss { display: grid; gap: 14px; max-width: 860px; }
+.ss-box { display: flex; align-items: center; gap: 10px; padding: 0 18px; border: 2px solid var(--mu-ink); border-radius: 99px; background: var(--mu-card); box-shadow: 0 4px 0 var(--mu-ink); }
+.ss-box .mu-ic { width: 22px; height: 22px; flex: none; }
+.ss-box input { flex: 1; min-width: 0; border: 0; outline: 0; background: transparent; padding: 16px 0; font: inherit; font-size: 18px; color: var(--mu-ink); }
+.ss-filters { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.ss-filters select { padding: 8px 12px; border: 2px solid var(--mu-ink); border-radius: 12px; background: var(--mu-card); font: inherit; color: var(--mu-ink); }
+.ss-count { margin-left: auto; font-weight: 700; }
+.ss-tips { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.ss-empty { font-size: 18px; }
+.ss-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.ss-it { display: flex; align-items: center; gap: 14px; padding: 12px 16px; border: 2px solid var(--mu-ink); border-radius: 18px; background: var(--mu-card); color: var(--mu-ink); text-decoration: none; transition: transform .15s; }
+.ss-it:hover { transform: translateY(-2px); background: var(--mu-lime); }
+.ss-ic { width: 44px; height: 44px; flex: none; display: grid; place-items: center; border-radius: 50%; border: 2px solid var(--mu-ink); background: var(--mu-paper); }
+.ss-ic .mu-ic { width: 22px; height: 22px; }
+.ss-txt { display: grid; flex: 1; min-width: 0; }
+.ss-txt b { font-size: 17px; }
+.ss-txt small { color: var(--mu-ink-muted); }
+.ss-go { font-weight: 800; }
