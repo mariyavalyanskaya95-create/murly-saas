@@ -2571,3 +2571,6 @@ a.t-doc:hover { background: var(--mu-lime); }
 .s-prog__bar { display: block; height: 6px; margin-top: 8px; border-radius: 99px; background: var(--mu-paper-dark); overflow: hidden; }
 .s-prog__bar i { display: block; height: 100%; background: var(--mu-lime); border-right: 2px solid var(--mu-ink); }
 @media (max-width: 560px) { .s-prog { grid-template-columns: 1fr 1fr 1fr; gap: 8px; } .s-prog__item { padding: 10px; } .s-prog__item b { font-size: 18px; } .s-prog__item span { font-size: 12px; } }
+.mu-section--tomato .mu-card--ink .mu-card__icon, .mu-section--tomato .mu-card--ink .mu-card__icon * { color: var(--mu-ink); }
+.mu-step:nth-child(1) { background: var(--mu-card); color: var(--mu-ink); }
+.mu-step:nth-child(1) * { color: var(--mu-ink); }
