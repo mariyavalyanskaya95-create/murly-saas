@@ -35,7 +35,7 @@ export default async function StudentPage() {
               <Link href="/irregular-verbs/games" className="mu-btn">{t({ uk: 'Ігри з дієсловами', ru: 'Игры с глаголами', en: 'Verb games' })}</Link>
               <Link href="/practice" className="mu-btn">{t({ uk: 'Слухати і читати', ru: 'Слушать и читать', en: 'Listening and reading' })}</Link>
               <Link href="/nmt/mock" className="mu-btn">{t({ uk: 'Пробний НМТ', ru: 'Пробный НМТ', en: 'Mock NMT' })}</Link>
-              <Link href="/play/town" className="mu-btn">Murly Town</Link>
+              <Link href="/games" className="mu-btn">{t({ uk: 'Ігри', ru: 'Игры', en: 'Games' })}</Link>
             </div>
           </div>
         </div>
@@ -46,9 +46,9 @@ export default async function StudentPage() {
 
   return (
     <>
-      <div className="t-page" style={{ paddingBottom: 0 }}><ProfileCard /></div>
       <StudentHome enrollments={enrollments} name={first} />
       {enrollments.some((x) => x.nmt) && <div className="t-page" style={{ paddingTop: 0 }}><MockResults all={MOCKS.map((m) => m.id)} /></div>}
+      <div className="t-page" style={{ paddingTop: 0 }}><ProfileCard /></div>
     </>
   );
 }
