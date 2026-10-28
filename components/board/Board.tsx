@@ -19,7 +19,7 @@ export type LibItem = { id: string; title: string; level: string };
 export type PageItem = { title: string; href: string; group: string };
 export type FileItem = { name: string; url: string };
 
-export default function Board({ studentId, plans = [], library = [], words = [], pages = [], files = [], title, teacher = false }: { studentId: string; plans?: Plan[]; library?: LibItem[]; words?: Word[]; pages?: PageItem[]; files?: FileItem[]; title?: string; teacher?: boolean }) {
+export default function Board({ studentId, plans = [], library = [], words = [], pages = [], files = [], title, teacher = false, me = '' }: { studentId: string; plans?: Plan[]; library?: LibItem[]; words?: Word[]; pages?: PageItem[]; files?: FileItem[]; title?: string; teacher?: boolean; me?: string }) {
   const t = useT();
   const [api, setApi] = useState<any>(null);
   const [status, setStatus] = useState<'loading' | 'ok' | 'offline'>('loading');
@@ -94,6 +94,31 @@ export default function Board({ studentId, plans = [], library = [], words = [],
     window.addEventListener('beforeunload', flush);
     return () => { clearInterval(id); window.removeEventListener('beforeunload', flush); push(); };
   }, [api, pull, push]);
+
+  // Курсори: свій вказівник відправляємо, чужий показуємо на дошці
+  const ptr = useRef<{ x: number; y: number; down: boolean; at: number; sent: number }>({ x: 0, y: 0, down: false, at: 0, sent: 0 });
+  const [online, setOnline] = useState(false);
+  const onPointer = useCallback((p: { pointer: { x: number; y: number }; button: 'up' | 'down' }) => {
+    ptr.current = { ...ptr.current, x: p.pointer.x, y: p.pointer.y, down: p.button === 'down', at: Date.now() };
+  }, []);
+  useEffect(() => {
+    if (!api) return;
+    const send = setInterval(() => {
+      const c = ptr.current;
+      if (c.at <= c.sent) return;
+      c.sent = Date.now();
+      fetch('/api/board/presence', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ student: studentId, x: c.x, y: c.y, down: c.down, name: me }) }).catch(() => {});
+    }, 300);
+    const get = setInterval(async () => {
+      const j = await fetch(`/api/board/presence?student=${studentId}`, { cache: 'no-store' }).then((r) => r.json()).catch(() => null);
+      const list = (j?.list ?? []) as { who: string; x: number; y: number; name?: string; down?: boolean }[];
+      setOnline(list.length > 0);
+      const m = new Map<string, any>();
+      list.forEach((u) => m.set(u.who, { pointer: { x: u.x, y: u.y, tool: 'pointer' }, button: u.down ? 'down' : 'up', username: u.name || (u.who === 'teacher' ? t({ uk: 'Учитель', ru: 'Учитель', en: 'Teacher' }) : t({ uk: 'Учень', ru: 'Ученик', en: 'Student' })), color: u.who === 'teacher' ? { background: '#1A1A1A', stroke: '#1A1A1A' } : { background: '#D83A1E', stroke: '#D83A1E' } }));
+      api.updateScene({ collaborators: m, captureUpdate: CaptureUpdateAction.NEVER });
+    }, 700);
+    return () => { clearInterval(send); clearInterval(get); };
+  }, [api, studentId, me]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const onChange = useCallback(() => {
     if (timer.current) clearTimeout(timer.current);
@@ -209,10 +234,50 @@ export default function Board({ studentId, plans = [], library = [], words = [],
     } finally { setBusy(false); }
   };
   // матеріал із панелі «Матеріали»
-  type Mat = { kind: 'page' | 'file' | 'lesson' | 'mine' | 'words'; title: string; href?: string; id?: string; group: string };
+  type Mat = { kind: 'page' | 'file' | 'lesson' | 'mine' | 'words' | 'tpl'; title: string; href?: string; id?: string; group: string };
+  // Шаблони: готові заготовки на дошку
+  const template = (id: string, at: { x: number; y: number }) => {
+    const { x, y } = at;
+    const box = (bx: number, by: number, w: number, h: number, text = '', bg = 'transparent', size = 20) => ({ type: 'rectangle', x: bx, y: by, width: w, height: h, backgroundColor: bg, fillStyle: 'solid', strokeColor: '#1A1A1A', roundness: { type: 3 }, ...(text ? { label: { text, fontSize: size } } : {}) });
+    const sk: any[] = [];
+    if (id === 'tenses') {
+      const cols = ['', 'Simple', 'Continuous', 'Perfect'];
+      const rows = ['', 'Present', 'Past', 'Future'];
+      rows.forEach((r, i) => cols.forEach((c, j) => {
+        if (!i && !j) return;
+        const head = !i || !j;
+        sk.push(box(x + j * 270, y + i * 120, 260, 110, !i ? c : !j ? r : '', head ? '#DCE9B5' : '#FFFFFF', head ? 24 : 18));
+      }));
+      sk.push({ type: 'text', x, y: y - 50, text: t({ uk: 'Часи: впиши формулу і приклад у кожну клітинку', ru: 'Времена: впиши формулу и пример в каждую клетку', en: 'Tenses: write the form and an example in each cell' }), fontSize: 24 });
+    } else if (id === 'question') {
+      const parts = ['(Wh-word)', 'Do / Does / Did', t({ uk: 'Хто? (subject)', ru: 'Кто? (subject)', en: 'Subject' }), t({ uk: 'Дієслово V1', ru: 'Глагол V1', en: 'Verb (V1)' }), '... ?'];
+      parts.forEach((p, i) => sk.push(box(x + i * 230, y, 210, 90, p, i === 1 ? '#DCE9B5' : '#FFFFFF', 22)));
+      sk.push({ type: 'text', x, y: y - 50, text: t({ uk: 'Як побудувати питання', ru: 'Как построить вопрос', en: 'How to build a question' }), fontSize: 26 });
+      sk.push({ type: 'text', x, y: y + 120, text: 'Where do you live?\nDoes she like pizza?\nWhat did you do yesterday?', fontSize: 22 });
+      ['', '', '', '', ''].forEach((_, i) => sk.push(box(x + i * 230, y + 240, 210, 80, '', '#FFFFFF')));
+    } else if (id === 'cards') {
+      const list = words.length ? words.slice(0, 30) : [{ en: 'word', uk: 'слово' }];
+      list.forEach((w, i) => sk.push(box(x + (i % 6) * 200, y + Math.floor(i / 6) * 140, 180, 120, `${w.en}\n—\n${w.uk}`, '#FFF3B0', 18)));
+    } else if (id === 'week') {
+      ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].forEach((d, i) => {
+        sk.push(box(x + (i % 4) * 290, y + Math.floor(i / 4) * 230, 270, 210, '', '#FFFFFF'));
+        sk.push({ type: 'text', x: x + (i % 4) * 290 + 14, y: y + Math.floor(i / 4) * 230 + 10, text: d, fontSize: 22 });
+      });
+      sk.push({ type: 'text', x, y: y - 50, text: 'My week', fontSize: 30 });
+    } else if (id === 'mind') {
+      sk.push({ type: 'ellipse', id: 'mc', x: x + 380, y: y + 220, width: 260, height: 130, backgroundColor: '#DCE9B5', fillStyle: 'solid', label: { text: 'Topic', fontSize: 28 } });
+      const pos = [[0, 0], [380, -40], [760, 0], [0, 470], [380, 510], [760, 470]];
+      pos.forEach(([dx, dy], i) => {
+        sk.push({ type: 'ellipse', id: `m${i}`, x: x + dx + 20, y: y + dy, width: 220, height: 100, backgroundColor: '#FFFFFF', fillStyle: 'solid', label: { text: '...', fontSize: 20 } });
+        sk.push({ type: 'arrow', x: x + 510, y: y + 285, start: { id: 'mc' }, end: { id: `m${i}` } });
+      });
+    }
+    insert(sk);
+  };
   const addMat = async (m: Mat, at = scenePoint()) => {
     if (!api) return;
     if (m.kind === 'words') return addWords();
+    if (m.kind === 'tpl' && m.id) return template(m.id, at.y === undefined ? { x: 0, y: bottom() } : at);
     if (m.kind === 'mine') { const p = plans.find((x) => x.id === m.id); if (p) addPlan(p); return; }
     if (m.kind === 'lesson' && m.id) {
       setBusy(true);
@@ -266,7 +331,13 @@ export default function Board({ studentId, plans = [], library = [], words = [],
     mine: t({ uk: 'Мої уроки', ru: 'Мои уроки', en: 'My lessons' }),
     lib: t({ uk: 'Готові уроки', ru: 'Готовые уроки', en: 'Ready-made lessons' }),
   };
+  const TPL = t({ uk: 'Шаблони', ru: 'Шаблоны', en: 'Templates' });
   const mats: Mat[] = [
+    { kind: 'tpl', id: 'tenses', title: t({ uk: 'Таблиця часів', ru: 'Таблица времён', en: 'Tenses table' }), group: TPL },
+    { kind: 'tpl', id: 'question', title: t({ uk: 'Як побудувати питання', ru: 'Как построить вопрос', en: 'Question formula' }), group: TPL },
+    { kind: 'tpl', id: 'cards', title: t({ uk: 'Картки слів учня', ru: 'Карточки слов ученика', en: 'Student word cards' }), group: TPL },
+    { kind: 'tpl', id: 'week', title: 'My week', group: TPL },
+    { kind: 'tpl', id: 'mind', title: 'Mind map', group: TPL },
     ...(words.length ? [{ kind: 'words' as const, title: t({ uk: 'Слова учня', ru: 'Слова ученика', en: 'Student words' }) + ` (${words.length})`, group: t({ uk: 'Словник', ru: 'Словарь', en: 'Vocabulary' }) }] : []),
     ...files.map((f) => ({ kind: 'file' as const, title: f.name, href: f.url, group: G.files })),
     ...(teacher ? plans.map((p) => ({ kind: 'mine' as const, title: p.title, id: p.id, group: G.mine })) : []),
@@ -281,6 +352,7 @@ export default function Board({ studentId, plans = [], library = [], words = [],
     <div className={`bd ${full ? 'is-full' : ''}`} ref={wrapRef}>
       <div className="bd-bar">
         {title && <b className="bd-title">{title}</b>}
+        {online && <span className="bd-online">{teacher ? t({ uk: 'Учень на дошці', ru: 'Ученик на доске', en: 'Student is here' }) : t({ uk: 'Учитель на дошці', ru: 'Учитель на доске', en: 'Teacher is here' })}</span>}
         <span className={`bd-st is-${status}`}>{status === 'ok' ? t({ uk: 'Збережено', ru: 'Сохранено', en: 'Saved' }) : status === 'offline' ? t({ uk: 'Немає зв’язку, зміни збережуться пізніше', ru: 'Нет связи, изменения сохранятся позже', en: 'Offline, changes will sync later' }) : t({ uk: 'Завантажую…', ru: 'Загружаю…', en: 'Loading…' })}</span>
         <button type="button" className={`mu-btn t-btn-sm ${drawer ? 'mu-btn--lime' : ''}`} onClick={() => setDrawer(!drawer)} aria-expanded={drawer}>{t({ uk: 'Матеріали', ru: 'Материалы', en: 'Materials' })}</button>
         <button type="button" className="mu-btn t-btn-sm" disabled={busy} onClick={() => fileInput.current?.click()}>{busy ? '…' : t({ uk: '+ Файл', ru: '+ Файл', en: '+ File' })}</button>
@@ -291,7 +363,7 @@ export default function Board({ studentId, plans = [], library = [], words = [],
       </div>
       <div className="bd-body">
         <div className="bd-canvas" onDropCapture={onDrop} onDragOverCapture={(e) => { if (e.dataTransfer.types.includes('application/x-murly') || e.dataTransfer.types.includes('Files')) e.preventDefault(); }}>
-          <Excalidraw excalidrawAPI={(a: any) => setApi(a)} onChange={onChange} validateEmbeddable={allowEmbed} langCode={LANG[t.lang] ?? 'en'}
+          <Excalidraw excalidrawAPI={(a: any) => setApi(a)} onChange={onChange} onPointerUpdate={onPointer} isCollaborating validateEmbeddable={allowEmbed} langCode={LANG[t.lang] ?? 'en'}
             initialData={{ appState: { viewBackgroundColor: '#FFFDF8', currentItemFontFamily: 2 } }}
             UIOptions={{ canvasActions: { loadScene: false, saveToActiveFile: false, export: { saveFileToDisk: true } } }}>
             <MainMenu>
