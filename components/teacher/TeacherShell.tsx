@@ -12,7 +12,8 @@ import Kit from '@/components/Kit';
 
 const NAV: { href: string; icon: string; label: T; short?: T; priv?: boolean }[] = [
   { href: '/teacher', icon: 'e-cal', label: { uk: 'Сьогодні', ru: 'Сегодня', en: 'Today' }, priv: true },
-  { href: '/teacher/students', icon: 'd-team', label: { uk: 'Учні', ru: 'Ученики', en: 'Students' } },
+  { href: '/teacher/students', icon: 'd-kid', label: { uk: 'Учні', ru: 'Ученики', en: 'Students' } },
+  { href: '/teacher/groups', icon: 'd-team', label: { uk: 'Групи', ru: 'Группы', en: 'Groups' } },
   { href: '/teacher/review', icon: 'e-pencil', label: { uk: 'Перевірка', ru: 'Проверка', en: 'Review' } },
   { href: '/teacher/lessons', icon: 'e-book', label: { uk: 'Уроки', ru: 'Уроки', en: 'Lessons' } },
   { href: '/teacher/schedule', icon: 'd-clock', label: { uk: 'Розклад', ru: 'Расписание', en: 'Schedule' }, priv: true },

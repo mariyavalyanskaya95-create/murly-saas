@@ -667,11 +667,28 @@ function defaultDue() {
 
 function HomeworkTab({ id }: { id: string }) {
   const t = useT();
-  const { data, addHomework } = useTeacher();
-  const words = data.words.filter((w) => w.studentId === id).length;
+  const { data } = useTeacher();
   const list = data.homework.filter((h) => h.studentId === id);
-  const wordsRu = plural(words, 'ru', { uk: ['слово', 'слова', 'слів'], ru: ['слово', 'слова', 'слов'], en: ['word', 'words'] });
   const [open, setOpen] = useState(false);
+  return (
+    <>
+      <div className="t-card">
+        <div className="t-card__head"><h2>{t({ uk: 'Домашні завдання', ru: 'Домашние задания', en: 'Homework' })}</h2>
+          <button className="mu-btn mu-btn--lime t-btn-sm" onClick={() => setOpen(!open)}>{open ? t({ uk: 'Закрити', ru: 'Закрыть', en: 'Close' }) : t({ uk: '+ Задати', ru: '+ Задать', en: '+ Assign' })}</button></div>
+        {open && <HomeworkForm studentIds={[id]} onDone={() => setOpen(false)} />}
+        {!list.length && !open && <p className="t-empty">{t({ uk: 'Ще немає завдань. Задай гру зі словника або письмове завдання, і учень побачить його у своєму кабінеті.', ru: 'Заданий пока нет. Задай игру со словами из словаря или письменное задание, и ученик увидит его в своём кабинете.', en: 'No homework yet. Assign a vocabulary game or a written task and your student will see it in their account.' })}</p>}
+      </div>
+      {list.map((h) => <HomeworkItem key={h.id} hwId={h.id} />)}
+    </>
+  );
+}
+
+// Форма домашки: для одного учня або для всієї групи (кожному свій екземпляр)
+export function HomeworkForm({ studentIds, groupId, onDone }: { studentIds: string[]; groupId?: string; onDone?: () => void }) {
+  const t = useT();
+  const { data, addHomework } = useTeacher();
+  const words = studentIds.length ? Math.min(...studentIds.map((sid) => data.words.filter((w) => w.studentId === sid).length)) : 0;
+  const wordsRu = plural(words, 'ru', { uk: ['слово', 'слова', 'слів'], ru: ['слово', 'слова', 'слов'], en: ['word', 'words'] });
   const [kind, setKind] = useState<'game' | 'text' | 'exercise' | 'mock'>('exercise');
   const [mock, setMock] = useState(MOCKS[0].id);
   const [sections, setSections] = useState<Section[]>([]);
@@ -680,67 +697,65 @@ function HomeworkTab({ id }: { id: string }) {
   const [title, setTitle] = useState('');
   const [instructions, setInstructions] = useState('');
   const [due, setDue] = useState(defaultDue());
+  const [formKey, setFormKey] = useState(0);
+  const group = studentIds.length > 1 || Boolean(groupId);
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!studentIds.length) return;
     if (kind === 'text' && !instructions.trim()) return;
     if (kind === 'exercise' && !sections.length) return;
     const gameLabel = t(GAMES.find((g) => g.id === game)!.label);
-    addHomework({
-      studentId: id, kind,
+    const base = {
+      kind,
       title: title.trim() || (kind === 'mock' ? t({ uk: `Пробний НМТ №${mock}`, ru: `Пробный НМТ №${mock}`, en: `NMT mock test #${mock}` }) : kind === 'game' ? `${t({ uk: 'Слова', ru: 'Слова', en: 'Words' })}: ${gameLabel.toLowerCase()}` : kind === 'exercise' ? t({ uk: 'Вправа', ru: 'Упражнение', en: 'Exercise' }) : t({ uk: 'Письмове завдання', ru: 'Письменное задание', en: 'Written task' })),
       items: kind === 'exercise' ? sections : undefined,
       instructions: instructions.trim() || undefined,
       game: kind === 'game' ? game : kind === 'mock' ? mock : undefined,
       direction: kind === 'game' ? direction : undefined,
       due: due ? new Date(due).toISOString() : undefined,
-    });
-    setTitle(''); setInstructions(''); setDue(defaultDue()); setSections([]); setOpen(false);
+      groupId,
+    } as const;
+    studentIds.forEach((sid) => addHomework({ ...base, studentId: sid }));
+    setTitle(''); setInstructions(''); setDue(defaultDue()); setSections([]); setFormKey((k) => k + 1);
+    onDone?.();
   };
 
   return (
-    <>
-      <div className="t-card">
-        <div className="t-card__head"><h2>{t({ uk: 'Домашні завдання', ru: 'Домашние задания', en: 'Homework' })}</h2>
-          <button className="mu-btn mu-btn--lime t-btn-sm" onClick={() => setOpen(!open)}>{open ? t({ uk: 'Закрити', ru: 'Закрыть', en: 'Close' }) : t({ uk: '+ Задати', ru: '+ Задать', en: '+ Assign' })}</button></div>
-        {open && (
-          <form className="t-hw-form" onSubmit={submit}>
-            <div className="g-chips" style={{ justifyContent: 'flex-start' }}>
-              <button type="button" className={`g-chip ${kind === 'exercise' ? 'is-on' : ''}`} onClick={() => setKind('exercise')}>{t({ uk: 'Вправа з автоперевіркою', ru: 'Упражнение с автопроверкой', en: 'Auto-checked exercise' })}</button>
-              <button type="button" className={`g-chip ${kind === 'game' ? 'is-on' : ''}`} onClick={() => setKind('game')}>{t({ uk: 'Гра зі словника', ru: 'Игра со словами из словаря', en: 'Vocabulary game' })}</button>
-              <button type="button" className={`g-chip ${kind === 'text' ? 'is-on' : ''}`} onClick={() => setKind('text')}>{t({ uk: 'Письмове завдання', ru: 'Письменное задание', en: 'Written task' })}</button>
-              <button type="button" className={`g-chip ${kind === 'mock' ? 'is-on' : ''}`} onClick={() => setKind('mock')}>{t({ uk: 'Пробний НМТ', ru: 'Пробный НМТ', en: 'NMT mock test' })}</button>
-            </div>
-            {kind === 'mock' && (
-              <div className="t-form">
-                <label>{t({ uk: 'Варіант', ru: 'Вариант', en: 'Variant' })}<select value={mock} onChange={(e) => setMock(e.target.value)}>{MOCKS.map((m) => <option key={m.id} value={m.id}>{t({ uk: `Пробний НМТ №${m.id}`, ru: `Пробный НМТ №${m.id}`, en: `NMT mock test #${m.id}` })}</option>)}</select></label>
-                <p className="t-muted t-form__wide">{t({ uk: 'Учень пройде тест на сайті, бал збережеться в домашці автоматично. Результати всіх спроб видно нижче в «Пробні НМТ».', ru: 'Ученик пройдёт тест на сайте, балл сохранится в домашке автоматически. Результаты всех попыток видно ниже в «Пробные НМТ».', en: 'The student takes the test on the site and the score is saved to the homework automatically. All attempts are shown below under mock tests.' })}</p>
-              </div>
-            )}
-            {kind === 'game' && words < 4 && <p className="t-neg">{t({ uk: `У словнику учня ${words} слів. Додай хоча б 4, щоб задати гру.`, ru: `В словаре ученика ${words} ${wordsRu}. Добавь хотя бы 4, чтобы задать игру.`, en: `The student has ${words} ${words === 1 ? 'word' : 'words'} in their vocabulary. Add at least 4 to assign a game.` })}</p>}
-            {kind === 'game' && (
-              <div className="t-form">
-                <label>{t({ uk: 'Гра', ru: 'Игра', en: 'Game' })}<select value={game} onChange={(e) => setGame(e.target.value as typeof game)}>{GAMES.map((g) => <option key={g.id} value={g.id}>{t(g.label)}</option>)}</select></label>
-                <label>{t({ uk: 'Напрямок', ru: 'Направление', en: 'Direction' })}<select value={direction} onChange={(e) => setDirection(e.target.value as 'en' | 'uk')}>
-                  <option value="en">{t({ uk: 'Англ → Укр', ru: 'Англ → Укр', en: 'Eng → Ukr' })}</option><option value="uk">{t({ uk: 'Укр → Англ', ru: 'Укр → Англ', en: 'Ukr → Eng' })}</option></select></label>
-              </div>
-            )}
-            {kind === 'exercise' && <ExerciseEditor key={String(open)} onChange={setSections} />}
-            <div className="t-form">
-              <label>{t({ uk: 'Назва', ru: 'Название', en: 'Title' })}<input value={title} onChange={(e) => setTitle(e.target.value)} placeholder={kind === 'game' ? t({ uk: 'Напр. Слова з Unit 5', ru: 'Напр. Слова из Unit 5', en: 'e.g. Words from Unit 5' }) : kind === 'exercise' ? t({ uk: 'Напр. Past Simple, Unit 3', ru: 'Напр. Past Simple, Unit 3', en: 'e.g. Past Simple, Unit 3' }) : t({ uk: 'Напр. Твір про літо', ru: 'Напр. Сочинение о лете', en: 'e.g. Essay about summer' })} /></label>
-              <label>{t({ uk: 'Здати до', ru: 'Сдать до', en: 'Due' })}<input type="datetime-local" value={due} onChange={(e) => setDue(e.target.value)} /></label>
-              <label className="t-form__wide">{kind === 'text' ? t({ uk: 'Завдання', ru: 'Задание', en: 'Task' }) : t({ uk: 'Коментар для учня (необов’язково)', ru: 'Комментарий для ученика (необязательно)', en: 'Comment for the student (optional)' })}
-                <textarea rows={3} value={instructions} onChange={(e) => setInstructions(e.target.value)}
-                  placeholder={kind === 'text' ? t({ uk: 'Напр. Напиши 5 речень у Present Perfect про свій тиждень', ru: 'Напр. Напиши 5 предложений в Present Perfect о своей неделе', en: 'e.g. Write 5 sentences in Present Perfect about your week' }) : t({ uk: 'Напр. Пройди двічі, поки не буде без помилок', ru: 'Напр. Пройди дважды, пока не будет без ошибок', en: 'e.g. Do it twice until there are no mistakes' })} required={kind === 'text'} />
-              </label>
-              <div className="t-form__actions"><button className="mu-btn mu-btn--lime" type="submit" disabled={(kind === 'game' && words < 4) || (kind === 'exercise' && !sections.length)}>{t({ uk: 'Задати', ru: 'Задать', en: 'Assign' })}</button></div>
-            </div>
-          </form>
-        )}
-        {!list.length && !open && <p className="t-empty">{t({ uk: 'Ще немає завдань. Задай гру зі словника або письмове завдання, і учень побачить його у своєму кабінеті.', ru: 'Заданий пока нет. Задай игру со словами из словаря или письменное задание, и ученик увидит его в своём кабинете.', en: 'No homework yet. Assign a vocabulary game or a written task and your student will see it in their account.' })}</p>}
+    <form className="t-hw-form" onSubmit={submit}>
+      <div className="g-chips" style={{ justifyContent: 'flex-start' }}>
+        <button type="button" className={`g-chip ${kind === 'exercise' ? 'is-on' : ''}`} onClick={() => setKind('exercise')}>{t({ uk: 'Вправа з автоперевіркою', ru: 'Упражнение с автопроверкой', en: 'Auto-checked exercise' })}</button>
+        <button type="button" className={`g-chip ${kind === 'game' ? 'is-on' : ''}`} onClick={() => setKind('game')}>{t({ uk: 'Гра зі словника', ru: 'Игра со словами из словаря', en: 'Vocabulary game' })}</button>
+        <button type="button" className={`g-chip ${kind === 'text' ? 'is-on' : ''}`} onClick={() => setKind('text')}>{t({ uk: 'Письмове завдання', ru: 'Письменное задание', en: 'Written task' })}</button>
+        <button type="button" className={`g-chip ${kind === 'mock' ? 'is-on' : ''}`} onClick={() => setKind('mock')}>{t({ uk: 'Пробний НМТ', ru: 'Пробный НМТ', en: 'NMT mock test' })}</button>
       </div>
-      {list.map((h) => <HomeworkItem key={h.id} hwId={h.id} />)}
-    </>
+      {kind === 'mock' && (
+        <div className="t-form">
+          <label>{t({ uk: 'Варіант', ru: 'Вариант', en: 'Variant' })}<select value={mock} onChange={(e) => setMock(e.target.value)}>{MOCKS.map((m) => <option key={m.id} value={m.id}>{t({ uk: `Пробний НМТ №${m.id}`, ru: `Пробный НМТ №${m.id}`, en: `NMT mock test #${m.id}` })}</option>)}</select></label>
+          <p className="t-muted t-form__wide">{t({ uk: 'Учень пройде тест на сайті, бал збережеться в домашці автоматично. Результати всіх спроб видно нижче в «Пробні НМТ».', ru: 'Ученик пройдёт тест на сайте, балл сохранится в домашке автоматически. Результаты всех попыток видно ниже в «Пробные НМТ».', en: 'The student takes the test on the site and the score is saved to the homework automatically. All attempts are shown below under mock tests.' })}</p>
+        </div>
+      )}
+      {kind === 'game' && words < 4 && <p className="t-neg">{group
+        ? t({ uk: 'У когось із групи в словнику менше 4 слів. Додай слова кожному, щоб задати гру.', ru: 'У кого-то из группы в словаре меньше 4 слов. Добавь слова каждому, чтобы задать игру.', en: 'Someone in the group has fewer than 4 words. Add words for everyone to assign a game.' })
+        : t({ uk: `У словнику учня ${words} слів. Додай хоча б 4, щоб задати гру.`, ru: `В словаре ученика ${words} ${wordsRu}. Добавь хотя бы 4, чтобы задать игру.`, en: `The student has ${words} ${words === 1 ? 'word' : 'words'} in their vocabulary. Add at least 4 to assign a game.` })}</p>}
+      {kind === 'game' && (
+        <div className="t-form">
+          <label>{t({ uk: 'Гра', ru: 'Игра', en: 'Game' })}<select value={game} onChange={(e) => setGame(e.target.value as typeof game)}>{GAMES.map((g) => <option key={g.id} value={g.id}>{t(g.label)}</option>)}</select></label>
+          <label>{t({ uk: 'Напрямок', ru: 'Направление', en: 'Direction' })}<select value={direction} onChange={(e) => setDirection(e.target.value as 'en' | 'uk')}>
+            <option value="en">{t({ uk: 'Англ → Укр', ru: 'Англ → Укр', en: 'Eng → Ukr' })}</option><option value="uk">{t({ uk: 'Укр → Англ', ru: 'Укр → Англ', en: 'Ukr → Eng' })}</option></select></label>
+        </div>
+      )}
+      {kind === 'exercise' && <ExerciseEditor key={formKey} onChange={setSections} />}
+      <div className="t-form">
+        <label>{t({ uk: 'Назва', ru: 'Название', en: 'Title' })}<input value={title} onChange={(e) => setTitle(e.target.value)} placeholder={kind === 'game' ? t({ uk: 'Напр. Слова з Unit 5', ru: 'Напр. Слова из Unit 5', en: 'e.g. Words from Unit 5' }) : kind === 'exercise' ? t({ uk: 'Напр. Past Simple, Unit 3', ru: 'Напр. Past Simple, Unit 3', en: 'e.g. Past Simple, Unit 3' }) : t({ uk: 'Напр. Твір про літо', ru: 'Напр. Сочинение о лете', en: 'e.g. Essay about summer' })} /></label>
+        <label>{t({ uk: 'Здати до', ru: 'Сдать до', en: 'Due' })}<input type="datetime-local" value={due} onChange={(e) => setDue(e.target.value)} /></label>
+        <label className="t-form__wide">{kind === 'text' ? t({ uk: 'Завдання', ru: 'Задание', en: 'Task' }) : t({ uk: 'Коментар для учня (необов’язково)', ru: 'Комментарий для ученика (необязательно)', en: 'Comment for the student (optional)' })}
+          <textarea rows={3} value={instructions} onChange={(e) => setInstructions(e.target.value)}
+            placeholder={kind === 'text' ? t({ uk: 'Напр. Напиши 5 речень у Present Perfect про свій тиждень', ru: 'Напр. Напиши 5 предложений в Present Perfect о своей неделе', en: 'e.g. Write 5 sentences in Present Perfect about your week' }) : t({ uk: 'Напр. Пройди двічі, поки не буде без помилок', ru: 'Напр. Пройди дважды, пока не будет без ошибок', en: 'e.g. Do it twice until there are no mistakes' })} required={kind === 'text'} />
+        </label>
+        <div className="t-form__actions"><button className="mu-btn mu-btn--lime" type="submit" disabled={!studentIds.length || (kind === 'game' && words < 4) || (kind === 'exercise' && !sections.length)}>{group ? t({ uk: `Задати всім (${studentIds.length})`, ru: `Задать всем (${studentIds.length})`, en: `Assign to all (${studentIds.length})` }) : t({ uk: 'Задати', ru: 'Задать', en: 'Assign' })}</button></div>
+      </div>
+    </form>
   );
 }
 

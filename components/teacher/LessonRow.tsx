@@ -21,7 +21,7 @@ export default function LessonRow({ l, showStudent = true, showDate = true }: { 
     const s0 = new Date(l.start);
     const [y, m, dd] = dup.split('-').map(Number);
     const n = new Date(y, m - 1, dd, s0.getHours(), s0.getMinutes());
-    addLessons({ studentId: l.studentId, start: n.toISOString(), duration: l.duration, topic: l.topic, link: l.link });
+    addLessons({ studentId: l.studentId, start: n.toISOString(), duration: l.duration, topic: l.topic, link: l.link, groupId: l.groupId });
     setDup(null);
   };
 
@@ -34,6 +34,7 @@ export default function LessonRow({ l, showStudent = true, showDate = true }: { 
       </div>
       <div className="t-lesson__info">
         {showStudent && st && <Link href={`/teacher/students/${st.id}`} className="t-lesson__name"><span className={`t-dot t-dot--${st.color}`} />{st.name}</Link>}
+        {l.groupId && (() => { const g = (data.groups ?? []).find((x) => x.id === l.groupId); return g ? <Link href="/teacher/groups" className="t-tag t-tag--group">{t({ uk: 'Група', ru: 'Группа', en: 'Group' })}: {g.name}</Link> : null; })()}
         {l.topic && <span className="t-lesson__topic">{l.topic}</span>}
         {l.status === 'done' && <span className="t-tag t-tag--done">{t({ uk: 'Відбувся', ru: 'Состоялся', en: 'Took place' })}</span>}
         {l.status === 'missed' && <span className="t-tag t-tag--late">{t({ uk: 'Не прийшов', ru: 'Не пришёл', en: 'No-show' })}</span>}
