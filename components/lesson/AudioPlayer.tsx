@@ -2,18 +2,12 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import Icon from '../Icon';
 import { useT } from '@/components/LangProvider';
-import { say, stopSpeak } from '@/lib/speak';
-import { ROTATION, type VoicePreset } from '@/lib/voices';
+import { liveVoices, say, stopSpeak } from '@/lib/speak';
+import TrackPlayer from '@/components/audio/TrackPlayer';
+import { ROTATION, voicesForSpeakers, type VoicePreset } from '@/lib/voices';
 
-type Line = { who: string; text: string };
-
-// «Anna: Hi!» → репліка зі спікером; рядок без двокрапки читає диктор
-export function parseScript(script: string): Line[] {
-  return script.split('\n').map((l) => l.trim()).filter(Boolean).map((l) => {
-    const m = l.match(/^([A-Z][\w .'-]{0,20}):\s*(.+)$/);
-    return m ? { who: m[1].trim(), text: m[2].trim() } : { who: '', text: l };
-  });
-}
+export { parseScript } from '@/lib/script';
+import { parseScript } from '@/lib/script';
 
 // Підбираємо різні англійські голоси для різних персонажів
 function pickVoices(): SpeechSynthesisVoice[] {
@@ -34,6 +28,7 @@ export default function AudioPlayer({ script, title, audioUrl, voiceMap, onDone 
   const t = useT();
   const lines = useMemo(() => parseScript(script), [script]);
   const speakers = useMemo(() => Array.from(new Set(lines.map((l) => l.who))), [lines]);
+  const autoVoices = useMemo(() => voicesForSpeakers(speakers), [speakers]);
   const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
   const [ok, setOk] = useState(true);
   const [playing, setPlaying] = useState(false);
@@ -54,11 +49,13 @@ export default function AudioPlayer({ script, title, audioUrl, voiceMap, onDone 
   // живі голоси: диктор для рядків без імені, решта персонажів по черзі
   const presetOf = (who: string): VoicePreset => {
     if (!who) return 'narrator';
-    const named = voiceMap?.[who];
-    if (named) return named;
-    const idx = speakers.filter(Boolean).indexOf(who);
-    return ROTATION[Math.max(0, idx) % ROTATION.length];
+    const named = voiceMap?.[who] ?? autoVoices[who];
+    return named ?? ROTATION[0];
   };
+  const [live, setLive] = useState<boolean | null>(null);
+  const [trackFail, setTrackFail] = useState(false);
+  useEffect(() => { if (!audioUrl) liveVoices().then(setLive); }, [audioUrl]);
+  const track = useMemo(() => lines.map((l) => ({ who: l.who, text: l.text, voice: presetOf(l.who) })), [lines]); // eslint-disable-line react-hooks/exhaustive-deps
   const stop = () => { stopRef.current = true; stopSpeak(); setPlaying(false); setCurrent(-1); };
 
   const play = (from = 0) => {
@@ -87,6 +84,14 @@ export default function AudioPlayer({ script, title, audioUrl, voiceMap, onDone 
       </div>
     );
   }
+
+  if (live && !trackFail) return (
+    <div className="ap">
+      <div className="ap__head"><Icon id="e-head" /><b>{title || 'Listening'}</b>{speakers.filter(Boolean).length > 0 && <span className="t-muted">{speakers.filter(Boolean).join(', ')}</span>}</div>
+      <div className="ap__controls"><button className={`g-chip ${showText ? 'is-on' : ''}`} onClick={() => setShowText(!showText)} aria-pressed={showText}>{t({ uk: 'Текст', ru: 'Текст', en: 'Text' })}</button></div>
+      <TrackPlayer lines={track} showText={showText} onEnded={onDone} onFail={() => setTrackFail(true)} />
+    </div>
+  );
 
   return (
     <div className="ap">
