@@ -58,6 +58,8 @@ export default function StudentHome({ enrollments, name }: { enrollments: Enroll
         {e.materials.length > 0 && <a href="#materials" className="mu-btn"><Icon id="e-book" />{t({ uk: 'Матеріали з уроків', ru: 'Материалы с уроков', en: 'Lesson materials' })}</a>}
       </nav>
 
+      <Progress e={e} />
+
       <section className={`t-card s-next ${next ? '' : 's-next--empty'}`}>
         <h2><Icon id="e-cal" />{t({ uk: 'Наступне заняття', ru: 'Следующее занятие', en: 'Next lesson' })}</h2>
         {next ? (
@@ -130,6 +132,23 @@ export default function StudentHome({ enrollments, name }: { enrollments: Enroll
 
       <MyLogin key={e.studentId} phone={e.loginPhone} pin={e.loginPin} />
     </div>
+  );
+}
+
+// Мій прогрес: скільки здано домашок, середній бал, слова
+function Progress({ e }: { e: Enrollment }) {
+  const t = useT();
+  const done = e.homework.filter((h) => h.status !== 'assigned');
+  const scored = done.filter((h) => h.total);
+  const avg = scored.length ? Math.round((scored.reduce((s, h) => s + (h.score ?? 0) / (h.total || 1), 0) / scored.length) * 100) : null;
+  if (!e.homework.length && !e.words.length) return null;
+  return (
+    <section className="s-prog" aria-label={t({ uk: 'Мій прогрес', ru: 'Мой прогресс', en: 'My progress' })}>
+      <div className="s-prog__item"><b>{done.length}/{e.homework.length}</b><span>{t({ uk: 'домашок здано', ru: 'домашек сдано', en: 'homework done' })}</span>
+        <i className="s-prog__bar"><i style={{ width: `${e.homework.length ? Math.round((done.length / e.homework.length) * 100) : 0}%` }} /></i></div>
+      <div className="s-prog__item"><b>{avg != null ? `${avg}%` : '–'}</b><span>{t({ uk: 'середній результат', ru: 'средний результат', en: 'average score' })}</span></div>
+      <div className="s-prog__item"><b>{e.words.length}</b><span>{t({ uk: 'слів у словнику', ru: 'слов в словаре', en: 'words in my dictionary' })}</span></div>
+    </section>
   );
 }
 
