@@ -3,6 +3,7 @@ import { addCoins } from './coins';
 import { db, dbReady } from './db';
 import { grade, normalizeSections, type Answers, type Section } from './exercise';
 import { lessonSections, type Block } from './lesson';
+import { L, SITE, esc, notifyTeacher, studentLink } from './telegram';
 
 const enc = encodeURIComponent;
 type Row = Record<string, unknown>;
@@ -18,6 +19,7 @@ export type Enrollment = {
   studentId: string; name: string; level: string; teacherName: string;
   loginPhone?: string; loginPin?: string;
   adult: boolean; nmt: boolean;
+  tgLinked: boolean; tgLink: string; // Telegram-сповіщення
   materials: { at: string; files: { url: string; name: string }[] }[];
   lessons: StudentLesson[]; words: StudentWord[]; homework: StudentHomework[];
 };
@@ -58,7 +60,7 @@ export async function isTeacher(userId: string) {
   return s.length > 0 || t.length > 0;
 }
 
-export async function getEnrollments(userId: string): Promise<Enrollment[]> {
+export async function getEnrollments(userId: string, lang = 'uk'): Promise<Enrollment[]> {
   if (!dbReady()) return [];
   const students = await db.query(`students?user_id=eq.${enc(userId)}&select=*`);
   const since = new Date(Date.now() - 2 * 3600 * 1000).toISOString();
@@ -79,6 +81,7 @@ export async function getEnrollments(userId: string): Promise<Enrollment[]> {
       teacherName: String(settings[0]?.name || ''),
       loginPhone: s.login_phone ? String(s.login_phone) : undefined,
       adult: Boolean(s.is_adult), nmt: Boolean(s.nmt),
+      tgLinked: Boolean(s.tg_chat_id), tgLink: studentLink(String(s.id), lang),
       loginPin: s.login_pin ? String(s.login_pin) : undefined,
       // документи, з якими працювали на уроках (текст нотаток учню не показуємо)
       materials: notes.map((n) => ({ at: String(n.at), files: ((n.files as { url: string; name: string }[] | null) ?? []).filter((f) => f && f.url) })).filter((m) => m.files.length),
@@ -104,10 +107,14 @@ export async function getEnrollments(userId: string): Promise<Enrollment[]> {
 // Учень здає домашку: перевіряємо, що завдання належить саме йому
 export async function submitHomework(userId: string, id: string, p: { score?: number; total?: number; answer?: string; answers?: Answers }) {
   if (!dbReady()) return false;
-  const hw = await db.query(`homework?id=eq.${enc(id)}&select=id,student_id,status,kind,items,answers,overrides,done_at`);
+  const hw = await db.query(`homework?id=eq.${enc(id)}&select=id,student_id,teacher_id,title,status,kind,items,answers,overrides,done_at`);
   if (!hw[0]) return false;
-  const st = await db.query(`students?id=eq.${enc(String(hw[0].student_id))}&user_id=eq.${enc(userId)}&select=id`);
+  const st = await db.query(`students?id=eq.${enc(String(hw[0].student_id))}&user_id=eq.${enc(userId)}&select=id,name`);
   if (!st[0]) return false;
+  // вчителю в Telegram: учень здав домашку (лише перша здача)
+  const tell = (score?: number, total?: number) => hw[0].done_at ? Promise.resolve() : notifyTeacher(String(hw[0].teacher_id), (l) =>
+    `${esc(String(st[0].name))} ${L(l, { uk: 'здав(ла) домашку', ru: 'сдал(а) домашку', en: 'handed in' })}: <b>${esc(String(hw[0].title || ''))}</b>${total ? ` (${score}/${total})` : ''}`,
+    (l) => ({ text: L(l, { uk: 'Перевірити', ru: 'Проверить', en: 'Review' }), url: `${SITE}/teacher/review` }));
   const patch: Record<string, unknown> = { done_at: new Date().toISOString() };
   if (hw[0].status !== 'checked') patch.status = 'done';
   // Вправу перевіряємо на сервері, бал від клієнта не приймаємо
@@ -124,12 +131,14 @@ export async function submitHomework(userId: string, id: string, p: { score?: nu
     patch.answers = clean; patch.score = g.score; patch.total = g.total;
     await db.patchWhere(`homework?id=eq.${enc(id)}`, patch);
     const coins = await homeworkCoins(userId, hw[0].done_at, g.score, g.total);
+    await tell(g.score, g.total);
     return { score: g.score, total: g.total, marks: g.marks, coins };
   }
   if (typeof p.score === 'number' && typeof p.total === 'number') { patch.score = Math.max(0, Math.round(p.score)); patch.total = Math.max(0, Math.round(p.total)); }
   if (typeof p.answer === 'string') patch.answer = p.answer.slice(0, 5000);
   await db.patchWhere(`homework?id=eq.${enc(id)}`, patch);
   const coins = await homeworkCoins(userId, hw[0].done_at, Number(patch.score ?? 1), Number(patch.total ?? 1));
+  await tell(patch.score as number | undefined, patch.total as number | undefined);
   return { coins };
 }
 
