@@ -149,7 +149,7 @@ export default function Board({ studentId, plans = [], library = [], words = [],
     for (const b of p.blocks as Block[]) {
       if (b.type === 'heading') text(b.text, 28);
       else if (b.type === 'text' || b.type === 'tip') text(b.text);
-      else if (b.type === 'vocab') text(b.words.map((w) => `• ${w.en} — ${w.uk}`).join('\n'));
+      else if (b.type === 'vocab') text(b.words.map((w) => `• ${w.en}: ${w.uk}`).join('\n'));
       else if (b.type === 'speaking') text(b.questions.map((q, i) => `${i + 1}. ${q}`).join('\n'));
       else if (b.type === 'audio') text(`${b.title ? `${b.title}\n` : ''}${b.script}`, 18);
       else if (b.type === 'pdf') text(`${b.name ?? 'PDF'}: ${b.url}`, 16);
@@ -257,7 +257,7 @@ export default function Board({ studentId, plans = [], library = [], words = [],
       ['', '', '', '', ''].forEach((_, i) => sk.push(box(x + i * 230, y + 240, 210, 80, '', '#FFFFFF')));
     } else if (id === 'cards') {
       const list = words.length ? words.slice(0, 30) : [{ en: 'word', uk: 'слово' }];
-      list.forEach((w, i) => sk.push(box(x + (i % 6) * 200, y + Math.floor(i / 6) * 140, 180, 120, `${w.en}\n—\n${w.uk}`, '#FFF3B0', 18)));
+      list.forEach((w, i) => sk.push(box(x + (i % 6) * 200, y + Math.floor(i / 6) * 140, 180, 120, `${w.en}\n\n${w.uk}`, '#FFF3B0', 18)));
     } else if (id === 'week') {
       ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].forEach((d, i) => {
         sk.push(box(x + (i % 4) * 290, y + Math.floor(i / 4) * 230, 270, 210, '', '#FFFFFF'));
@@ -322,7 +322,7 @@ export default function Board({ studentId, plans = [], library = [], words = [],
     if (!words.length) return;
     const y = bottom();
     insert([{ type: 'text', x: 0, y, text: t({ uk: 'Слова', ru: 'Слова', en: 'Words' }), fontSize: 28 },
-      { type: 'text', x: 0, y: y + 48, text: words.slice(0, 40).map((w) => `• ${w.en} — ${w.uk}`).join('\n'), fontSize: 20 }]);
+      { type: 'text', x: 0, y: y + 48, text: words.slice(0, 40).map((w) => `• ${w.en}: ${w.uk}`).join('\n'), fontSize: 20 }]);
   };
 
   // усі матеріали для панелі
