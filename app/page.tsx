@@ -92,6 +92,10 @@ export default function HomePage() {
             ru: 'Уроки с учителем, домашка-игра, грамматика простыми словами и свой 3D-городок, где всё на английском.',
             en: 'Lessons with a teacher, homework as a game, simple grammar and your own 3D town where everything is in English.',
           })}</p>
+          <div className="mu-hero__cta">
+            <Link href="/#who" className="mu-btn mu-btn--ink mu-btn--lg">{t({ uk: 'Почати безкоштовно', ru: 'Начать бесплатно', en: 'Start for free' })}<span className="mu-btn__arrow"><Icon id="e-arrow" /></span></Link>
+            <Link href="/#code" className="mu-btn mu-btn--lg">{t({ uk: 'У мене є код від учителя', ru: 'У меня есть код от учителя', en: 'I have a teacher code' })}</Link>
+          </div>
         </div>
       </section>
 
