@@ -2938,3 +2938,50 @@ button.mu-nav__search { cursor: pointer; font: inherit; padding: 0; }
   .mu-nav.is-search .mu-logo, .mu-nav.is-search .mu-nav__cta > .mu-btn, .mu-nav.is-search .mu-menu-btn, .mu-nav.is-search .cl-userButtonBox, .mu-nav.is-search .cl-rootBox { display: none; }
   .nsr__btn span { display: none; }
 }
+
+/* ===== Телефон і планшет: виправлення після перевірки ===== */
+.mu-nav__cab-s { display: none; }
+/* телефон: шапка вміщається, «Меню» завжди видно */
+@media (max-width: 520px) {
+  .mu-nav__cab-l { display: none; }
+  .mu-nav__cab-s { display: inline; }
+  .mu-nav .cl-rootBox, .mu-nav .cl-userButtonBox { display: none; }
+  .mu-nav__inner { gap: 8px; padding: 6px 6px 6px 14px; }
+  .mu-nav__cta { gap: 6px; }
+  .mu-nav__cta .mu-nav__cab { padding: 9px 12px; font-size: 12px; }
+  .mu-logo { font-size: 20px; }
+  .mu-nav__search { width: 40px; height: 40px; }
+}
+/* пошук відкрито на планшеті й телефоні: поле займає всю шапку */
+@media (max-width: 1080px) {
+  .mu-nav.is-search .mu-nav__cta > .mu-btn, .mu-nav.is-search .cl-rootBox, .mu-nav.is-search .cl-userButtonBox, .mu-nav.is-search .mu-menu-btn { display: none; }
+}
+@media (max-width: 520px) { .mu-nav.is-search .mu-logo { display: none; } }
+/* кнопка «+ Лексика» не закриває нижнє меню кабінету */
+@media (max-width: 900px) { .qw-fab { bottom: 92px; right: 12px; padding: 10px 14px; } }
+/* нижнє меню кабінету: видно, що його можна гортати */
+@media (max-width: 900px) {
+  .t-side { -webkit-mask-image: linear-gradient(90deg, #000 88%, transparent); mask-image: linear-gradient(90deg, #000 88%, transparent); }
+}
+/* Murly Town на телефоні й планшеті: завдання на всю ширину, текст не ламається по слову */
+@media (max-width: 1000px) {
+  .hm-full .rw-task { order: 3; flex: 1 1 100%; min-width: 0; gap: 8px; padding: 6px 8px; }
+  .hm-full .rw-task > div { min-width: 0; }
+  .hm-full .rw-task b { font-size: 15px; line-height: 1.25; }
+  .hm-full .hm-task-thumb { display: none; }
+  .hm-full .hm-showme { padding: 6px 10px; font-size: 12px; }
+  .hm-full .hm-iconbtn { width: 34px; height: 34px; }
+  .hm-full .hm-where { top: 122px; }
+  .hm-menu { top: 122px; }
+  .hm-tip { top: 128px; }
+}
+@media (max-width: 760px) { .hm-full .hm-where { top: 118px; } .hm-full .rw-coins { font-size: 18px; padding: 6px 10px; } }
+/* квест на телефоні: компактна смужка завдання */
+@media (max-width: 600px) {
+  .sq-bar { gap: 8px; padding: 8px 10px; }
+  .sq-bar > .mu-btn { padding: 6px 10px; font-size: 12px; }
+  .sq-say { font-size: 16px; flex-basis: calc(100% - 110px); }
+  .sq-step { font-size: 13px; }
+}
+/* слова серії: два стовпчики на телефоні */
+@media (max-width: 600px) { .sp-wlist { grid-template-columns: 1fr 1fr; } .sp-w { padding: 6px 10px; font-size: 14px; } }
