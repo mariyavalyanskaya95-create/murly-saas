@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import WordPick from '@/components/WordPick';
 import { ClerkProvider } from '@clerk/nextjs';
 import { ruRU, ukUA } from '@clerk/localizations';
 import LangProvider from '@/components/LangProvider';
@@ -55,7 +56,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {/* сторінка відкрита вікном на дошці: ховаємо меню й футер */}
           <script dangerouslySetInnerHTML={{ __html: "try{if(window.self!==window.top)document.documentElement.classList.add('is-embed')}catch(e){document.documentElement.classList.add('is-embed')}" }} />
         </head>
-        <body><LangProvider lang={lang}>{children}</LangProvider></body>
+        <body><LangProvider lang={lang}>{children}<WordPick /></LangProvider></body>
       </html>
     </ClerkProvider>
   );

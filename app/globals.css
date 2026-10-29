@@ -2985,3 +2985,12 @@ button.mu-nav__search { cursor: pointer; font: inherit; padding: 0; }
 }
 /* слова серії: два стовпчики на телефоні */
 @media (max-width: 600px) { .sp-wlist { grid-template-columns: 1fr 1fr; } .sp-w { padding: 6px 10px; font-size: 14px; } }
+
+/* Слово в словник: кнопка під виділеним словом і маленьке вікно */
+.wp-pill { position: fixed; z-index: 90; width: 150px; padding: 8px 12px; border: 2px solid var(--mu-ink); border-radius: 99px; background: var(--mu-lime); font: inherit; font-weight: 800; font-size: 14px; color: var(--mu-ink); box-shadow: 3px 3px 0 var(--mu-ink); cursor: pointer; animation: sq-pop .25s; }
+.wp-box { position: fixed; z-index: 91; width: 300px; display: grid; gap: 10px; padding: 14px; background: #fff; border: 2px solid var(--mu-ink); border-radius: 18px; box-shadow: 4px 4px 0 var(--mu-ink); }
+.wp-word { font-size: 20px; }
+.wp-f { display: grid; gap: 4px; font-size: 13px; font-weight: 700; color: var(--mu-ink-muted); }
+.wp-f input, .wp-f select { padding: 8px 10px; border: 2px solid var(--mu-ink); border-radius: 12px; font: inherit; font-size: 15px; color: var(--mu-ink); background: #fff; }
+.wp-ex { color: var(--mu-ink-muted); font-style: italic; line-height: 1.35; }
+.wp-btns { display: flex; align-items: center; gap: 10px; }
