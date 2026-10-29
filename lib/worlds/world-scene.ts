@@ -39,7 +39,7 @@ export type SceneEvents = {
 
 const CFG = {
   room: { size: 2.8, wallH: 1.3, cam: [3.7, 3.4, 3.7], target: 0.3, dist: [1.8, 8], shadow: 2.6, snap: 0.05, hero: 0.34, speed: 0.55 },
-  city: { size: 20, wallH: 0, cam: [12, 12, 12], target: 0, dist: [7, 42], shadow: 12, snap: 0.25, hero: 0.24, speed: 1.6 },
+  city: { size: 20, wallH: 0, cam: [9.5, 10, 9.5], target: 0, dist: [7, 42], shadow: 12, snap: 0.25, hero: 0.24, speed: 1.6 },
   yard: { size: 10, wallH: 0, cam: [8, 7.5, 8], target: 0.3, dist: [3, 22], shadow: 7, snap: 0.1, hero: 0.34, speed: 0.9 },
 } as const;
 
@@ -138,6 +138,18 @@ export class WorldScene {
   private nav: PlanRoom[] = [];
   private switched = false;
   private disposed = false;
+  // якість: слабка відеокарта або телефон отримують легший рендер; якщо гальмує, знижуємо ще
+  private q = { ratio: 1, shadows: true, n: 0, sum: 0 };
+  private awake = 0; // коли востаннє щось змінилося: тоді малюємо кожен кадр, інакше рідше
+  private tick = 0;
+  private rect = { left: 0, top: 0, width: 1, height: 1 };
+  private fitted = false;
+  static lowEnd() {
+    if (typeof window === 'undefined') return false;
+    const nav = navigator as Navigator & { deviceMemory?: number };
+    return window.matchMedia?.('(pointer: coarse)').matches || (nav.hardwareConcurrency ?? 8) <= 4 || (nav.deviceMemory ?? 8) <= 4;
+  }
+  wake = () => { this.awake = performance.now(); };
   private path: THREE.Vector3[] = [];
   showLabels = true;
 
@@ -153,10 +165,12 @@ export class WorldScene {
       const span = Math.max(this.bounds.maxX - this.bounds.minX, this.bounds.maxZ - this.bounds.minZ);
       this.c = { ...this.c, dist: [this.c.dist[0], Math.max(this.c.dist[1], span * 1.7)], shadow: Math.max(this.c.shadow, span * 0.75) };
     }
-    this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    const low = WorldScene.lowEnd();
+    this.q.ratio = low ? 1 : Math.min(window.devicePixelRatio, 1.5);
+    this.renderer = new THREE.WebGLRenderer({ antialias: !low, alpha: true, powerPreference: 'high-performance' });
+    this.renderer.setPixelRatio(this.q.ratio);
     this.renderer.shadowMap.enabled = true;
-    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    this.renderer.shadowMap.type = low ? THREE.PCFShadowMap : THREE.PCFSoftShadowMap;
     this.renderer.toneMapping = THREE.NeutralToneMapping; // яскравіші кольори, ніж ACES
     this.renderer.toneMappingExposure = 1.05;
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -165,6 +179,8 @@ export class WorldScene {
     el.style.touchAction = 'none';
     // наш обробник ставимо ПЕРШИМ, щоб натискання на предмет не крутило камеру
     el.addEventListener('pointerdown', this.down);
+    el.addEventListener('pointermove', this.wake, { passive: true });
+    el.addEventListener('wheel', this.wake, { passive: true });
     el.addEventListener('dblclick', this.dbl);
     el.addEventListener('contextmenu', (e) => e.preventDefault());
 
@@ -174,10 +190,14 @@ export class WorldScene {
     this.controls.target.set(0, this.c.target, 0);
     this.controls.enableDamping = true; this.controls.dampingFactor = 0.08;
     this.controls.enablePan = true; this.controls.screenSpacePanning = false; this.controls.panSpeed = 0.8;
-    this.controls.mouseButtons = { LEFT: THREE.MOUSE.ROTATE, MIDDLE: THREE.MOUSE.DOLLY, RIGHT: THREE.MOUSE.PAN };
-    this.controls.touches = { ONE: THREE.TOUCH.ROTATE, TWO: THREE.TOUCH.DOLLY_PAN };
+    // як на карті: тягнеш землю, і вона їде; повертати можна правою кнопкою, двома пальцями або кнопками ↺ ↻
+    this.controls.mouseButtons = { LEFT: THREE.MOUSE.PAN, MIDDLE: THREE.MOUSE.DOLLY, RIGHT: THREE.MOUSE.ROTATE };
+    this.controls.touches = { ONE: THREE.TOUCH.PAN, TWO: THREE.TOUCH.DOLLY_ROTATE };
     this.controls.zoomSpeed = 1.2;
-    this.controls.minPolarAngle = 0.4; this.controls.maxPolarAngle = 1.2;
+    // нахил камери майже не змінюється: дитина не «перевертає» світ
+    if (mode === 'room') { this.controls.minPolarAngle = 0.6; this.controls.maxPolarAngle = 1.1; }
+    else { this.controls.minPolarAngle = 0.75; this.controls.maxPolarAngle = 1.02; }
+    this.controls.addEventListener('change', this.wake);
     this.controls.minDistance = this.c.dist[0]; this.controls.maxDistance = this.c.dist[1];
     if (opts.view) { this.camera.position.set(...opts.view.cam); this.controls.target.set(...opts.view.target); }
 
@@ -189,7 +209,7 @@ export class WorldScene {
     sun.position.set(bc.x + this.c.shadow, this.c.shadow * 2, bc.z + this.c.shadow * 0.7);
     sun.target.position.set(bc.x, 0, bc.z); this.scene.add(sun.target);
     sun.castShadow = true;
-    sun.shadow.mapSize.set(2048, 2048);
+    sun.shadow.mapSize.set(low ? 1024 : 2048, low ? 1024 : 2048);
     const sb = this.c.shadow;
     Object.assign(sun.shadow.camera, { left: -sb, right: sb, top: sb, bottom: -sb, near: 0.5, far: sb * 8 });
     sun.shadow.bias = -0.0004; sun.shadow.normalBias = 0.02; sun.shadow.radius = 4;
@@ -370,6 +390,18 @@ export class WorldScene {
       this.paint(it, p.color);
     }
     this.updateMarker();
+    this.wake();
+    // перший раз показуємо все, що вже побудовано
+    if (!this.fitted) { this.fitted = true; if (!this.opts.view && this.mode !== 'room') this.fit(); }
+  }
+  // камера дивиться на побудоване: центр і відстань під розмір
+  fit() {
+    const own = [...this.items.values()].filter((it) => !it.p.uid.startsWith('__'));
+    if (!own.length) return;
+    const box = new THREE.Box3(); own.forEach((it) => box.expandByObject(it.root));
+    const c = box.getCenter(new THREE.Vector3()), sz = box.getSize(new THREE.Vector3());
+    const span = Math.max(sz.x, sz.z, this.c.size * 0.25);
+    this.flyTo(c.x, c.z, Math.max(this.c.dist[0], Math.min(this.c.dist[1], span * 1.9)));
   }
   private footprint(it: { size: THREE.Vector3; p: Placed }) {
     const odd = it.p.rot % 2 === 1;
@@ -485,7 +517,9 @@ export class WorldScene {
     const step = Math.max(def.grid ?? this.c.snap, this.mode === 'city' ? 0.5 : 0.1);
     const spots: [number, number][] = [];
     for (let x = -this.half; x <= this.half; x += step) for (let z = -this.half; z <= this.half; z += step) spots.push([x, z]);
-    spots.sort((a, b) => Math.hypot(a[0], a[1]) - Math.hypot(b[0], b[1]));
+    // новий предмет з'являється там, куди дивиться камера, а не в далекому куті
+    const lx = this.controls.target.x, lz = this.controls.target.z;
+    spots.sort((a, b) => Math.hypot(a[0] - lx, a[1] - lz) - Math.hypot(b[0] - lx, b[1] - lz));
     for (const rot of [0, 1]) for (const [x, z] of spots) { const p = tryAt(x, z, rot); if (p) return p; }
     return null;
   }
@@ -499,8 +533,8 @@ export class WorldScene {
     return { x: p.x, z: p.z };
   }
 
-  select(uid: string | null) { this.sel = uid; this.updateMarker(); }
-  bounce(uid: string) { this.hop = { uid, t0: performance.now() }; }
+  select(uid: string | null) { this.sel = uid; this.updateMarker(); this.wake(); }
+  bounce(uid: string) { this.hop = { uid, t0: performance.now() }; this.wake(); }
   private updateMarker() {
     const it = this.sel ? this.items.get(this.sel) : null;
     if (!it || it.def.wall) { this.marker.visible = false; return; }
@@ -518,31 +552,40 @@ export class WorldScene {
     if (!file) return;
     try {
       extraAnims = extraAnims ?? Promise.all(['/worlds/heroes/anim-ual1.glb', '/worlds/heroes/anim-ual2.glb'].map((u) => loader.loadAsync(u).then((g) => ({ scene: g.scene, clips: g.animations })))).catch(() => []);
-      const [char, a1, a2, extra, sim] = await Promise.all([
-        loader.loadAsync(`/worlds/heroes/${file}.glb`), loader.loadAsync('/worlds/heroes/anim-move.glb'), loader.loadAsync('/worlds/heroes/anim-general.glb'), extraAnims,
-        Promise.all(['/worlds/heroes/anim-sim.glb', '/worlds/heroes/anim-tools.glb'].map((u) => loader.loadAsync(u).then((g) => g.animations).catch(() => [] as THREE.AnimationClip[]))),
-      ]);
+      const simP = Promise.all(['/worlds/heroes/anim-sim.glb', '/worlds/heroes/anim-tools.glb'].map((u) => loader.loadAsync(u).then((g) => g.animations).catch(() => [] as THREE.AnimationClip[])));
+      // спершу тільки герой і базові рухи: він з'являється швидше, решта рухів довантажується потім
+      const [char, a1, a2] = await Promise.all([loader.loadAsync(`/worlds/heroes/${file}.glb`), loader.loadAsync('/worlds/heroes/anim-move.glb'), loader.loadAsync('/worlds/heroes/anim-general.glb')]);
       if (token !== this.heroToken) return;
       const obj = char.scene;
-      if (!heroClips.has(file)) { try { heroClips.set(file, extra.flatMap((x) => retargetClips(x.scene, x.clips, obj))); } catch { heroClips.set(file, []); } }
       obj.scale.setScalar(this.c.hero);
       obj.traverse((o) => { const m = o as THREE.Mesh; if (m.isMesh) { m.castShadow = true; m.frustumCulled = false; } });
       const mixer = new THREE.AnimationMixer(obj);
       const acts: Record<string, THREE.AnimationAction> = {};
-      [...a1.animations, ...a2.animations, ...(heroClips.get(file) ?? []), ...sim.flat()].forEach((clip) => { acts[clip.name] = mixer.clipAction(clip); });
       // де стегна героя в кожній позі (у координатах героя без масштабу): так точно садимо на диван і кладемо на ліжко
       const hipsAt: Record<string, THREE.Vector3> = {};
       const hips = obj.getObjectByName('hips');
-      if (hips) {
-        for (const n of [POSE.sit, POSE.lie, 'Sitting_Idle_Loop', 'LayToIdle']) {
-          const a = acts[n]; if (!a) continue;
-          const m2 = new THREE.AnimationMixer(obj); const t = m2.clipAction(a.getClip()); t.play(); m2.setTime(n === 'LayToIdle' ? 0 : 0.3);
-          obj.updateMatrixWorld(true); hipsAt[n] = obj.worldToLocal(hips.getWorldPosition(new THREE.Vector3()));
-          m2.stopAllAction(); m2.uncacheRoot(obj);
+      const addClips = (clips: THREE.AnimationClip[]) => {
+        const keep = { p: obj.position.clone(), r: obj.rotation.y, s: obj.scale.x };
+        clips.forEach((clip) => { if (!acts[clip.name]) acts[clip.name] = mixer.clipAction(clip); });
+        if (hips) {
+          for (const n of [POSE.sit, POSE.lie, 'Sitting_Idle_Loop', 'LayToIdle']) {
+            const a = acts[n]; if (!a || hipsAt[n]) continue;
+            obj.position.set(0, 0, 0); obj.rotation.y = 0; obj.scale.setScalar(1);
+            const m2 = new THREE.AnimationMixer(obj); const t = m2.clipAction(a.getClip()); t.play(); m2.setTime(n === 'LayToIdle' ? 0 : 0.3);
+            obj.updateMatrixWorld(true); hipsAt[n] = obj.worldToLocal(hips.getWorldPosition(new THREE.Vector3()));
+            m2.stopAllAction(); m2.uncacheRoot(obj);
+            obj.position.copy(keep.p); obj.rotation.y = keep.r; obj.scale.setScalar(keep.s);
+          }
         }
-      }
-      ['Interact', 'Yes', 'Waving', 'Consume', 'Farm_Watering', 'Sitting_Enter', 'Sitting_Exit', 'PickUp_Table'].forEach((n) => { if (acts[n]) { acts[n].setLoop(THREE.LoopOnce, 1); acts[n].clampWhenFinished = true; } });
-      if (acts.LayToIdle) { acts.LayToIdle.setLoop(THREE.LoopOnce, 1); acts.LayToIdle.clampWhenFinished = true; }
+        ['Interact', 'Yes', 'Waving', 'Consume', 'Farm_Watering', 'Sitting_Enter', 'Sitting_Exit', 'PickUp_Table', 'LayToIdle'].forEach((n) => { if (acts[n]) { acts[n].setLoop(THREE.LoopOnce, 1); acts[n].clampWhenFinished = true; } });
+      };
+      addClips([...a1.animations, ...a2.animations]);
+      // перенесення рухів рахуємо на свіжій копії героя у позі спокою (наш герой уже рухається)
+      Promise.all([extraAnims, simP, heroClips.has(file) ? null : loader.loadAsync(`/worlds/heroes/${file}.glb`)]).then(([extra, sim, rest]) => {
+        if (token !== this.heroToken) return;
+        if (!heroClips.has(file)) { try { heroClips.set(file, rest ? extra.flatMap((x) => retargetClips(x.scene, x.clips, rest.scene)) : []); } catch { heroClips.set(file, []); } }
+        addClips([...(heroClips.get(file) ?? []), ...sim.flat()]);
+      }).catch(() => {});
       obj.position.set(this.mode === 'room' ? 0.6 : 1, 0, this.mode === 'room' ? 0.6 : 1);
       obj.rotation.y = Math.PI / 4;
       const st = this.opts.heroAt;
@@ -797,7 +840,7 @@ export class WorldScene {
     const toT = new THREE.Vector3(x, this.controls.target.y, z), toC = toT.clone().add(off);
     const step = () => {
       const k = Math.min(1, (performance.now() - t0) / 550), e = 1 - Math.pow(1 - k, 3);
-      this.controls.target.lerpVectors(fromT, toT, e); this.camera.position.lerpVectors(fromC, toC, e);
+      this.controls.target.lerpVectors(fromT, toT, e); this.camera.position.lerpVectors(fromC, toC, e); this.wake();
       if (k < 1) requestAnimationFrame(step);
     };
     step();
@@ -811,7 +854,7 @@ export class WorldScene {
   zoom(dir: 1 | -1) {
     const off = this.camera.position.clone().sub(this.controls.target);
     const d = Math.max(this.c.dist[0], Math.min(this.c.dist[1], off.length() * (dir > 0 ? 0.75 : 1.33)));
-    off.setLength(d); this.camera.position.copy(this.controls.target).add(off);
+    off.setLength(d); this.camera.position.copy(this.controls.target).add(off); this.wake();
   }
   // рух камери клавішами WASD
   pan(dx: number, dz: number) {
@@ -819,7 +862,7 @@ export class WorldScene {
     const r = new THREE.Vector3(-f.z, 0, f.x);
     const step = Math.max(0.3, this.camera.position.distanceTo(this.controls.target) * 0.08);
     const mv = f.multiplyScalar(-dz * step).add(r.multiplyScalar(dx * step));
-    this.controls.target.add(mv); this.camera.position.add(mv);
+    this.controls.target.add(mv); this.camera.position.add(mv); this.wake();
   }
   private clouds: THREE.Group[] = [];
   private addClouds() {
@@ -848,7 +891,7 @@ export class WorldScene {
     const step = () => {
       const k = Math.min(1, (performance.now() - t0) / 450), e = 1 - Math.pow(1 - k, 3);
       const a = start + (end - start) * e;
-      this.camera.position.set(this.controls.target.x + Math.sin(a) * r, this.camera.position.y, this.controls.target.z + Math.cos(a) * r);
+      this.camera.position.set(this.controls.target.x + Math.sin(a) * r, this.camera.position.y, this.controls.target.z + Math.cos(a) * r); this.wake();
       if (k < 1) requestAnimationFrame(step);
     };
     step();
@@ -857,7 +900,25 @@ export class WorldScene {
   // ---------- кадр ----------
   private loop = () => {
     this.raf = requestAnimationFrame(this.loop);
-    const dt = Math.min(0.05, this.clock.getDelta());
+    const raw = this.clock.getDelta();
+    const dt = Math.min(0.05, raw);
+    // спокій (нічого не рухається): малюємо кожен 3-й кадр, герой дихає, але відеокарта відпочиває
+    const nowT = performance.now();
+    const busy = nowT - this.awake < 1200 || !!this.drag || !!this.hero?.target || !!this.hop;
+    this.tick++;
+    if (!busy && this.tick % 3) { this.controls.update(); return; }
+    // якщо кадр довгий, знижуємо якість: спершу роздільність, потім тіні
+    if (raw < 0.5 && document.visibilityState === 'visible') {
+      this.q.n++; this.q.sum += raw;
+      if (this.q.n >= 45) {
+        const avg = this.q.sum / this.q.n; this.q.n = 0; this.q.sum = 0;
+        const slow = busy ? avg > 0.045 : avg > 0.13;
+        if (slow) {
+          if (this.q.ratio > 0.75) { this.q.ratio = Math.max(0.75, this.q.ratio - 0.25); this.renderer.setPixelRatio(this.q.ratio); this.resize(); }
+          else if (this.q.shadows) { this.q.shadows = false; this.renderer.shadowMap.enabled = false; this.scene.traverse((o) => { const m = (o as THREE.Mesh).material; (Array.isArray(m) ? m : m ? [m] : []).forEach((x) => { x.needsUpdate = true; }); }); }
+        }
+      }
+    }
     this.controls.update();
     // камера не відлітає далеко від ділянки
     const B = this.bounds, pad = this.half * 0.1;
@@ -900,7 +961,7 @@ export class WorldScene {
       this.checkRoom();
     }
     const now = performance.now();
-    const r = this.renderer.domElement.getBoundingClientRect();
+    const r = this.rect;
     for (const it of this.items.values()) {
       if (it.def.wall && this.walls.length) { const wl = this.walls[it.p.wall ?? 0]; it.root.visible = wl.mesh.scale.y > 0.5; }
       const age = (now - it.born) / 380;
@@ -925,6 +986,8 @@ export class WorldScene {
   private resize() {
     const w = this.host.clientWidth, h = this.host.clientHeight;
     this.renderer.setSize(w, h, false);
+    const b = this.renderer.domElement.getBoundingClientRect(); this.rect = { left: b.left, top: b.top, width: b.width || w, height: b.height || h };
+    this.wake();
     this.renderer.domElement.style.width = '100%'; this.renderer.domElement.style.height = '100%';
     this.camera.aspect = w / h; this.camera.updateProjectionMatrix();
   }
@@ -933,6 +996,9 @@ export class WorldScene {
     cancelAnimationFrame(this.raf); this.ro.disconnect();
     this.renderer.domElement.removeEventListener('pointerdown', this.down);
     this.renderer.domElement.removeEventListener('dblclick', this.dbl);
+    this.renderer.domElement.removeEventListener('pointermove', this.wake);
+    this.renderer.domElement.removeEventListener('wheel', this.wake);
+    this.controls.removeEventListener('change', this.wake);
     window.removeEventListener('pointermove', this.move); window.removeEventListener('pointerup', this.up);
     this.controls.dispose(); this.renderer.dispose(); this.renderer.domElement.remove();
     this.items.forEach((it) => it.label.remove());
