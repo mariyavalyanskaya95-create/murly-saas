@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Icon from '@/components/Icon';
 import SiteNav from '@/components/SiteNav';
+import SectionTabs from '@/components/SectionTabs';
 import SiteFooter from '@/components/SiteFooter';
 import { SERIES } from '@/lib/series';
 import { tr } from '@/lib/i18n-server';
@@ -16,6 +17,7 @@ export default function SeriesHub() {
   return (
     <>
       <SiteNav />
+      <SectionTabs group="read" active="/series" />
       <section className="mu-page-hero" style={{ paddingBottom: 16 }}>
         <div className="mu-container">
           <span className="mu-section__eyebrow"><Icon id="e-head" />{t({ uk: 'Аудіосеріали', ru: 'Аудиосериалы', en: 'Audio series' })}</span>
