@@ -2994,3 +2994,7 @@ button.mu-nav__search { cursor: pointer; font: inherit; padding: 0; }
 .wp-f input, .wp-f select { padding: 8px 10px; border: 2px solid var(--mu-ink); border-radius: 12px; font: inherit; font-size: 15px; color: var(--mu-ink); background: #fff; }
 .wp-ex { color: var(--mu-ink-muted); font-style: italic; line-height: 1.35; }
 .wp-btns { display: flex; align-items: center; gap: 10px; }
+/* «Що було на уроці»: файл можна просто перетягнути на форму */
+.t-log-form { position: relative; }
+.t-log-form.is-drop { outline: 3px dashed var(--mu-ink); outline-offset: 6px; background: #F4F8E6; border-radius: 16px; }
+.t-drop-hint { position: absolute; inset: 0; z-index: 5; display: grid; place-items: center; border-radius: 16px; background: rgba(220, 233, 181, .85); font-weight: 800; font-size: 20px; pointer-events: none; }
