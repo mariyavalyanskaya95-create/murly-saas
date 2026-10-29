@@ -362,7 +362,21 @@ function NotesTab({ id }: { id: string }) {
   const fileRef = useRef<HTMLInputElement>(null);
   const docRef = useRef<HTMLInputElement>(null);
   const [docs, setDocs] = useState<File[]>([]);
+  const [drop, setDrop] = useState(false); // файл тягнуть над формою
   const notes = data.notes.filter((n) => n.studentId === id);
+  const MAXB = 50 * 1024 * 1024;
+  // будь-які файли (перетягнуті, вставлені чи вибрані): картинки йдуть у скріни, решта в документи
+  const takeFiles = (list: FileList | File[]) => {
+    const all = Array.from(list);
+    const big = all.filter((f) => f.size > MAXB);
+    if (big.length) setErr(t({ uk: `Завеликий файл: ${big[0].name}. Максимум 50 МБ.`, ru: `Слишком большой файл: ${big[0].name}. Максимум 50 МБ.`, en: `File too big: ${big[0].name}. Max 50 MB.` }));
+    else setErr('');
+    const ok = all.filter((f) => f.size <= MAXB);
+    const imgs = ok.filter((f) => f.type.startsWith('image/'));
+    const rest = ok.filter((f) => !f.type.startsWith('image/'));
+    if (imgs.length) addFiles(imgs);
+    if (rest.length) setDocs((d) => [...d, ...rest].slice(0, 8));
+  };
 
   const addFiles = (list: FileList | File[]) => {
     const imgs = Array.from(list).filter((f) => f.type.startsWith('image/')).slice(0, 8 - files.length);
@@ -404,8 +418,12 @@ function NotesTab({ id }: { id: string }) {
   return (
     <div className="t-card">
       <h2>{t({ uk: 'Що було на уроці', ru: 'Что было на уроке', en: 'Lesson log' })}</h2>
-      <p className="t-muted t-private">{t({ uk: 'Бачиш тільки ти. Що робили на уроці, скріни дошки чи вправ, на чому спотикається, що задати наступного разу. Скрін можна вставити просто Ctrl+V у поле. Документи (PDF, Word, PowerPoint) учень теж бачить у своєму кабінеті в «Матеріалах з уроків».', ru: 'Видишь только ты. Что делали на уроке, скрины доски или упражнений, на чём спотыкается, что задать в следующий раз. Скрин можно вставить просто Ctrl+V в поле. Документы (PDF, Word, PowerPoint) ученик тоже видит у себя в кабинете в «Материалах с уроков».', en: 'Only you can see this. What you did in the lesson, screenshots, where they struggle, what to set next. You can paste a screenshot with Ctrl+V. Documents (PDF, Word, PowerPoint) are also shown to the student under Lesson materials.' })}</p>
-      <form className="t-note-form t-log-form" onSubmit={save}>
+      <p className="t-muted t-private">{t({ uk: 'Бачиш тільки ти. Що робили на уроці, скріни дошки чи вправ, на чому спотикається, що задати наступного разу. Скрін можна вставити Ctrl+V, а будь-який файл (до 50 МБ) просто перетягнути сюди з папки чи завантажень. Документи (PDF, Word, PowerPoint) учень теж бачить у своєму кабінеті в «Матеріалах з уроків».', ru: 'Видишь только ты. Что делали на уроке, скрины доски или упражнений, на чём спотыкается, что задать в следующий раз. Скрин можно вставить Ctrl+V, а любой файл (до 50 МБ) просто перетащить сюда из папки или загрузок. Документы (PDF, Word, PowerPoint) ученик тоже видит у себя в кабинете в «Материалах с уроков».', en: 'Only you can see this. What you did in the lesson, screenshots, where they struggle, what to set next. Paste a screenshot with Ctrl+V or drag any file (up to 50 MB) here from a folder. Documents (PDF, Word, PowerPoint) are also shown to the student under Lesson materials.' })}</p>
+      <form className={`t-note-form t-log-form ${drop ? 'is-drop' : ''}`} onSubmit={save}
+        onDragOver={(e) => { if (e.dataTransfer.types.includes('Files')) { e.preventDefault(); setDrop(true); } }}
+        onDragLeave={(e) => { if (!e.currentTarget.contains(e.relatedTarget as Node)) setDrop(false); }}
+        onDrop={(e) => { if (e.dataTransfer.files.length) { e.preventDefault(); setDrop(false); takeFiles(e.dataTransfer.files); } }}>
+        {drop && <div className="t-drop-hint">{t({ uk: 'Відпусти, і файл додасться', ru: 'Отпусти, и файл добавится', en: 'Drop to add the file' })}</div>}
         <div className="t-log-form__top">
           <label className="t-log-form__day">{t({ uk: 'Дата уроку', ru: 'Дата урока', en: 'Lesson date' })}<input type="date" value={day} max={today()} onChange={(e) => setDay(e.target.value)} /></label>
           <div className="t-log-mark" role="group" aria-label={t({ uk: 'Чи був урок', ru: 'Был ли урок', en: 'Did the lesson happen' })}>
@@ -415,7 +433,7 @@ function NotesTab({ id }: { id: string }) {
           </div>
         </div>
         <textarea value={text} onChange={(e) => setText(e.target.value)} rows={4}
-          onPaste={(e) => { const imgs = Array.from(e.clipboardData.files || []).filter((f) => f.type.startsWith('image/')); if (imgs.length) { e.preventDefault(); addFiles(imgs); } }}
+          onPaste={(e) => { const fl = Array.from(e.clipboardData.files || []); if (fl.length) { e.preventDefault(); takeFiles(fl); } }}
           placeholder={t({ uk: 'Напр.: пройшли Present Perfect, читали текст про подорожі, нові слова: luggage, boarding pass. Плутає since / for. Наступного разу: гра на since / for.', ru: 'Напр.: прошли Present Perfect, читали текст о путешествиях, новые слова: luggage, boarding pass. Путает since / for. В следующий раз: игра на since / for.', en: 'e.g. Did Present Perfect, read a travel text, new words: luggage, boarding pass. Mixes up since / for. Next time: a since / for game.' })} />
         {files.length > 0 && (
           <div className="t-log-thumbs">
@@ -432,7 +450,7 @@ function NotesTab({ id }: { id: string }) {
         <div className="t-head__actions" style={{ flexWrap: 'wrap' }}>
           <input ref={fileRef} type="file" accept="image/*" multiple hidden onChange={(e) => { if (e.target.files) addFiles(e.target.files); e.target.value = ''; }} />
           <button type="button" className="mu-btn t-btn-sm" onClick={() => fileRef.current?.click()} disabled={files.length >= 8}><Icon id="d-camera" />{t({ uk: 'Додати скріни', ru: 'Добавить скрины', en: 'Add screenshots' })}</button>
-          <input ref={docRef} type="file" multiple hidden accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.txt,.odt,application/pdf" onChange={(e) => { if (e.target.files) { const add = Array.from(e.target.files); setDocs((d) => [...d, ...add].slice(0, 8)); } e.target.value = ''; }} />
+          <input ref={docRef} type="file" multiple hidden accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.txt,.odt,application/pdf" onChange={(e) => { if (e.target.files) takeFiles(e.target.files); e.target.value = ''; }} />
           <button type="button" className="mu-btn t-btn-sm" onClick={() => docRef.current?.click()} disabled={docs.length >= 8}><Icon id="e-book" />{t({ uk: 'Додати документ', ru: 'Добавить документ', en: 'Add a document' })}</button>
           <button className="mu-btn mu-btn--lime" type="submit" disabled={busy}>{busy ? t({ uk: 'Завантажую…', ru: 'Загружаю…', en: 'Uploading…' }) : t({ uk: 'Зберегти', ru: 'Сохранить', en: 'Save' })}</button>
           {err && <span className="t-neg">{err}</span>}
