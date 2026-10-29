@@ -76,6 +76,10 @@ export default function StudentCard({ id }: { id: string }) {
         </div>
       </div>
 
+      {/* поки учень не увійшов, найважливіше: як дати йому доступ */}
+      {!s.joined && <InviteBox id={s.id} />}
+      {!s.joined && !s.loginPin && <LoginBox id={s.id} />}
+
       <StudentStats id={s.id} />
 
       {(s.song || s.about || s.selfSong || s.selfAbout) && (
@@ -101,8 +105,12 @@ export default function StudentCard({ id }: { id: string }) {
           </div>
         ) : null;
       })()}
-      <InviteBox id={s.id} />
-      {!s.loginPin && !s.joined && <LoginBox id={s.id} />}
+      {s.joined && (
+        <details className="t-card t-more">
+          <summary>{tt({ uk: 'Код і доступ учня', ru: 'Код и доступ ученика', en: 'Student code and access' })}</summary>
+          <InviteBox id={s.id} />
+        </details>
+      )}
       {!s.adult && <CoinsBox studentId={s.id} joined={s.joined} />}
       {s.joined && s.nmt && <MockResults student={s.id} all={MOCKS.map((m) => m.id)} />}
 
