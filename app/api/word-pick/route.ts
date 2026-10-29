@@ -14,7 +14,7 @@ async function translate(word: string, to: string) {
   try {
     const r = await fetch(`https://api.mymemory.translated.net/get?q=${enc(word)}&langpair=en|${to === 'ru' ? 'ru' : 'uk'}`, { next: { revalidate: 86400 } });
     const j = await r.json() as { responseData?: { translatedText?: string }; responseStatus?: number };
-    const t = j.responseData?.translatedText?.trim() ?? '';
+    const t = (j.responseData?.translatedText ?? '').trim().replace(/[.!?;:]+$/, '').trim();
     // сервіс іноді повертає те саме слово або повідомлення про ліміт
     if (!t || t.toLowerCase() === word.toLowerCase() || /MYMEMORY|QUERY LENGTH|INVALID/i.test(t)) return '';
     return t.toLowerCase() === t ? t : t.charAt(0).toLowerCase() + t.slice(1);
