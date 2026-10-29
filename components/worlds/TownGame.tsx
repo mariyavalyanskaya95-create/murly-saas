@@ -54,7 +54,7 @@ const roomOnLevel = (h: House, level: number, near?: { x: number; z: number }) =
   return on.find((r) => Math.abs(r.at!.x - near.x) <= r.size / 2 && Math.abs(r.at!.z - near.z) <= r.size / 2)
     ?? [...on].sort((a, b) => Math.hypot(a.at!.x - near.x, a.at!.z - near.z) - Math.hypot(b.at!.x - near.x, b.at!.z - near.z))[0];
 };
-type Save = { coins: number; unlocked: string[]; done: number; ground: number; city: Placed[]; houses: Record<string, House>; hero: string | null; started?: boolean; playerName?: string; savedAt?: number };
+type Save = { coins: number; unlocked: string[]; done: number; ground: number; city: Placed[]; houses: Record<string, House>; hero: string | null; started?: boolean; playerName?: string; savedAt?: number; tips?: boolean };
 type Task = { kind: 'place' | 'color' | 'on' | 'next' | 'inside'; file: string; target?: string; color?: string; en: string };
 const START: Save = { coins: 20, unlocked: [], done: 0, ground: 0, city: [], houses: {}, hero: 'Rogue', started: false, playerName: '' };
 const uidOf = () => `u${Date.now().toString(36)}${Math.floor(Math.random() * 99)}`;
@@ -109,6 +109,25 @@ function StartScreen({ onStart }: { onStart: (hero: string, name: string) => voi
   );
 }
 
+// Короткі підказки на старті: що робити і як рухатися (показуються один раз, потім з меню Help)
+const TIPS: Record<WorldMode, { en: string }[]> = {
+  city: [
+    { en: 'Pick a house in the shop below and drag it onto the green ground.' },
+    { en: 'Drag the ground to move around. Buttons ↺ ↻ turn, + − zoom.' },
+    { en: 'Tap your house, then press “Go inside” to make rooms.' },
+    { en: 'Do the task at the top to get coins. New things cost coins.' },
+  ],
+  yard: [
+    { en: 'This is your garden. Drag trees, flowers and a pool here.' },
+    { en: 'Tap the house to go inside.' },
+  ],
+  room: [
+    { en: 'Drag furniture from the shop into the room.' },
+    { en: 'Tap a thing to turn it, paint it or remove it.' },
+    { en: 'Tap the floor and your hero walks there.' },
+  ],
+};
+
 const migrate = (sv: Save): Save => ({ ...sv, houses: Object.fromEntries(Object.entries(sv.houses ?? {}).map(([k, h]) => [k, normHouse(h)])) });
 
 export default function TownGame({ full: fullPage = false, guest = false }: { full?: boolean; guest?: boolean }) {
@@ -138,6 +157,9 @@ export default function TownGame({ full: fullPage = false, guest = false }: { fu
   const [heroBar, setHeroBar] = useState(false);
   const [planOpen, setPlanOpen] = useState(false);
   const [newFloor, setNewFloor] = useState(0); // на якому поверсі будувати нову кімнату
+  const [menu, setMenu] = useState(false); // меню ☰: підписи, герой, екран, нове місто
+  const [tip, setTip] = useState(-1); // крок підказки на старті (-1: сховано)
+  const [hint, setHint] = useState<string | null>(null); // картка в магазині, яку підсвічуємо для завдання
   const pending = useRef<{ heroAt: HeroStart; view: CamView } | null>(null);
   // висота магазину внизу: панель вибраного предмета і кнопки камери стоять над ним
   const shopEl = useRef<HTMLDivElement>(null);
@@ -283,7 +305,20 @@ export default function TownGame({ full: fullPage = false, guest = false }: { fu
     if (mode !== 'room') sc.setGround(GROUNDS[s.ground]?.hex ?? GROUNDS[0].hex);
     else { sc.setWall(WALLS[room?.wall ?? 0].hex); const f = FLOORS[room?.floor ?? 0]; sc.setFloor(f.hex, f.kind); }
   }, [ready, mode, s.ground, room?.wall, room?.floor]); // eslint-disable-line react-hooks/exhaustive-deps
-  useEffect(() => { if (scene.current) scene.current.showLabels = labelsOn; }, [labelsOn, ready]);
+  useEffect(() => { if (scene.current) scene.current.showLabels = labelsOn; scene.current?.wake(); }, [labelsOn, ready]);
+  // підказки показуємо один раз (для старих гравців теж), далі з меню Help
+  useEffect(() => { if (loaded && s.started && !s.tips && tip < 0) setTip(0); }, [loaded]); // eslint-disable-line react-hooks/exhaustive-deps
+  const tips = TIPS[mode];
+  const closeTips = () => { setTip(-1); setS((c) => ({ ...c, tips: true })); };
+  // «Покажи»: відкрити потрібну полицю і підсвітити картку з предметом завдання
+  const showTask = () => {
+    if (!task) return;
+    if (task.kind === 'inside') { const p = list.find((q) => q.file === task.file); if (p) { setSel(p.uid); say('Tap “Go inside”.'); } return; }
+    const d = getItem(mode, task.file); if (!d) return;
+    setShopOpen(true); setCat(d.cat); setHint(d.file); say(`${art(d.en)} ${d.en}`);
+    window.setTimeout(() => document.querySelector(`[data-card="${d.file}"]`)?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' }), 80);
+    window.setTimeout(() => setHint(null), 6000);
+  };
   useEffect(() => { scene.current?.select(sel); }, [sel]);
 
   // синхронізація предметів і перевірка завдання
@@ -452,6 +487,7 @@ export default function TownGame({ full: fullPage = false, guest = false }: { fu
   const pickHero = (file: string | null) => { setS((c) => ({ ...c, hero: file })); scene.current?.setHero(file); setHeroes(false); const h = HEROES.find((x) => x.file === file); if (h) say(`Hi! I'm ${h.en}!`); };
   const start = (hero: string, name: string) => {
     setS((c) => ({ ...c, hero, playerName: name, started: true }));
+    setTip(0);
     scene.current?.setHero(hero);
     say(`Hello${name ? `, ${name}` : ''}! Let's build a town!`);
   };
@@ -503,33 +539,47 @@ export default function TownGame({ full: fullPage = false, guest = false }: { fu
   return (
     <div className={`hm ${fullPage ? 'hm-full' : ''} ${shopOpen ? '' : 'is-shop-hidden'}`} ref={wrap} lang="en">
       <div className="rw-top">
-        {fullPage && <Link href="/worlds" className="mu-btn t-btn-sm hm-en hm-exit" aria-label="Exit the game">✕ Exit</Link>}
-        <div className="rw-coins" aria-label={`Coins: ${s.coins}`}><span className="rw-coin" />{s.coins}</div>
+        {fullPage && <Link href="/games" className="mu-btn t-btn-sm hm-en hm-exit" aria-label="Exit the game">✕ Exit</Link>}
+        <button className="rw-coins" onClick={() => setEarn(true)} aria-label={`Coins: ${s.coins}. Earn more`} title="Earn coins"><span className="rw-coin" />{s.coins}<span className="rw-coins__plus" aria-hidden="true">+</span></button>
         <div className="rw-task" aria-live="polite">
           {task ? (
             <>
               <button className="rw-say" onClick={() => say(task.en)} aria-label="Listen"><Icon id="e-speak" /></button>
               {taskDef && <span className="hm-task-thumb"><Thumb def={taskDef} /></span>}
               <div><b>{task.en}</b></div>
-              <button className="t-link-btn" onClick={() => setTask(makeTask(s, view, task))}>Another task</button>
+              <button className="mu-btn t-btn-sm hm-en hm-showme" onClick={showTask}>Show me</button>
+              <button className="hm-iconbtn" onClick={() => setTask(makeTask(s, view, task))} aria-label="Another task" title="Another task">↻</button>
             </>
           ) : <b className="rw-well">{ready ? 'Well done! +5' : 'Loading…'}</b>}
         </div>
         <div className="rw-tools">
-          <button className={`g-chip hm-en ${labelsOn ? 'is-on' : ''}`} onClick={() => setLabelsOn(!labelsOn)} aria-pressed={labelsOn}>Labels</button>
-          <button className="g-chip hm-en" onClick={() => setHeroes(!heroes)}>{s.playerName || heroName || 'Hero'}</button>
           <button className="mu-btn mu-btn--lime t-btn-sm hm-en" onClick={() => setEarn(true)}><span className="rw-coin" />Earn coins</button>
-          <button className="g-chip hm-en" onClick={full}>Full screen</button>
-          {isSignedIn
-            ? <span className={`hm-save ${cloud}`}>{cloud === 'saving' ? 'Saving…' : cloud === 'error' ? 'Not saved' : 'Saved'}</span>
-            : <Link href="/sign-in?redirect_url=/play/town" className="g-chip hm-en">Sign in to save</Link>}
+          <button className={`mu-btn t-btn-sm hm-en hm-menu-btn ${menu ? 'is-on' : ''}`} onClick={() => setMenu(!menu)} aria-expanded={menu} aria-label="Menu">☰ Menu</button>
         </div>
       </div>
+      {menu && (
+        <div className="hm-menu" role="menu">
+          <button role="menuitem" className="hm-menu__it" onClick={() => { setMenu(false); setTip(0); }}>Help: how to play</button>
+          <button role="menuitemcheckbox" aria-checked={labelsOn} className="hm-menu__it" onClick={() => setLabelsOn(!labelsOn)}>Labels: {labelsOn ? 'on' : 'off'}</button>
+          <button role="menuitem" className="hm-menu__it" onClick={() => { setMenu(false); setHeroes(true); }}>Hero: {s.playerName || heroName || 'none'}</button>
+          <button role="menuitem" className="hm-menu__it" onClick={() => { setMenu(false); full(); }}>Full screen</button>
+          {mode !== 'room' && (
+            <div className="hm-menu__row"><span>{mode === 'yard' ? 'Grass' : 'Ground'}</span><div className="rw-colors">{GROUNDS.map((g, i) => <button key={g.en} title={g.en} aria-label={g.en} className={`rw-sw ${s.ground === i ? 'is-on' : ''}`} style={{ background: g.hex }} onClick={() => { setS((c) => ({ ...c, ground: i })); sfx.paint(); say(g.en); }} />)}</div></div>
+          )}
+          <button role="menuitem" className="hm-menu__it hm-menu__danger" onClick={() => { setMenu(false); clearHere(); }}>{mode === 'city' ? 'Start a new town' : mode === 'yard' ? 'Empty the garden' : 'Empty this room'}</button>
+          <div className="hm-menu__save">
+            {isSignedIn
+              ? <span className={`hm-save ${cloud}`}>{cloud === 'saving' ? 'Saving…' : cloud === 'error' ? 'Not saved' : 'Saved'}</span>
+              : <Link href="/sign-in?redirect_url=/play/town" className="g-chip hm-en">Sign in to save</Link>}
+          </div>
+        </div>
+      )}
       {heroes && (
         <div className="rw-sel hm-heroes">
           <b>Choose your hero</b>
           {HEROES.map((h) => <button key={h.file} className={`g-chip hm-en ${s.hero === h.file ? 'is-on' : ''}`} onClick={() => pickHero(h.file)}>{h.en}</button>)}
           <button className={`g-chip hm-en ${!s.hero ? 'is-on' : ''}`} onClick={() => pickHero(null)}>No hero</button>
+          <button className="g-chip hm-en" onClick={() => setHeroes(false)}>Close</button>
         </div>
       )}
 
@@ -575,6 +625,19 @@ export default function TownGame({ full: fullPage = false, guest = false }: { fu
         )}
         {!ready && <div className="hm-loading">Loading…</div>}
         {loaded && !s.started && <StartScreen onStart={start} />}
+        {tip >= 0 && s.started && tips[tip] && (
+          <div className="hm-tip" role="dialog" aria-label="How to play">
+            <span className="hm-tip__n">{tip + 1}/{tips.length}</span>
+            <p>{tips[tip].en}</p>
+            <div className="hm-tip__btns">
+              <button className="mu-btn t-btn-sm hm-en" onClick={() => say(tips[tip].en)} aria-label="Listen">Listen</button>
+              {tip < tips.length - 1
+                ? <button className="mu-btn mu-btn--lime t-btn-sm hm-en" onClick={() => setTip(tip + 1)}>Next</button>
+                : <button className="mu-btn mu-btn--lime t-btn-sm hm-en" onClick={closeTips}>Let’s play!</button>}
+              {tip < tips.length - 1 && <button className="t-link-btn hm-en" onClick={closeTips}>Skip</button>}
+            </div>
+          </div>
+        )}
         {earn && <EarnCoins signedIn={!!isSignedIn} onClose={() => setEarn(false)} onCoins={(n, bal) => { setS((c) => ({ ...c, coins: typeof bal === 'number' ? bal : c.coins + n })); if (n) { setParty((x) => x + 1); sfx.coin(); } }} />}
         {list.length === 0 && ready > 0 && <div className="hm-empty">{mode === 'city' ? 'Your town is empty. Pick a house below and drag it here!' : mode === 'yard' ? 'This is your garden. Drag trees, flowers and a pool here!' : 'This room is empty. Drag furniture here!'}</div>}
         {party > 0 && <div key={party} className="rw-party" aria-hidden="true">{Array.from({ length: 18 }, (_, i) => <i key={i} style={{ ['--i' as string]: i }} />)}</div>}
@@ -614,20 +677,17 @@ export default function TownGame({ full: fullPage = false, guest = false }: { fu
           {!curDef.building && <button className="mu-btn t-btn-sm hm-en" onClick={copy}>Copy</button>}
           <button className="mu-btn t-btn-sm hm-en" onClick={remove}>Remove</button>
         </div>
-      ) : (
+      ) : mode === 'room' ? (
         <div className="rw-sel hm-room">
-          {mode === 'room' ? (
+          {(
             <>
               <div className="hm-room__g"><b>Walls</b><div className="rw-colors">{WALLS.map((w, i) => <button key={w.en} title={w.en} aria-label={`${w.en} walls`} className={`rw-sw ${(room?.wall ?? 0) === i ? 'is-on' : ''}`} style={{ background: w.hex }} onClick={() => { setHouse({ wall: i }); sfx.paint(); say(`${w.en} walls`); }} />)}</div></div>
               <div className="hm-room__g"><b>Floor</b><div className="rw-colors">{FLOORS.map((f, i) => <button key={f.en} title={f.en} aria-label={`${f.en} floor`} className={`rw-sw ${(room?.floor ?? 0) === i ? 'is-on' : ''}`} style={{ background: f.hex }} onClick={() => { setHouse({ floor: i }); sfx.paint(); say(f.en); }} />)}</div></div>
               {room && ROOM_SIZES.find((x) => x.size > room.size) && (() => { const n = ROOM_SIZES.find((x) => x.size > room.size)!; return <button className="mu-btn t-btn-sm hm-en" onClick={growRoom}>Make it {n.en} <span className="rw-price"><span className="rw-coin" />{n.price}</span></button>; })()}
             </>
-          ) : (
-            <div className="hm-room__g"><b>{mode === 'yard' ? 'Grass' : 'Ground'}</b><div className="rw-colors">{GROUNDS.map((g, i) => <button key={g.en} title={g.en} aria-label={g.en} className={`rw-sw ${s.ground === i ? 'is-on' : ''}`} style={{ background: g.hex }} onClick={() => { setS((c) => ({ ...c, ground: i })); sfx.paint(); say(g.en); }} />)}</div></div>
           )}
-          <button className="t-link-btn hm-en" onClick={clearHere}>{mode === 'city' ? 'New town' : mode === 'yard' ? 'Empty garden' : 'Empty room'}</button>
         </div>
-      )}
+      ) : null}
 
       <div className="rw-shop" ref={shopEl}>
         <div className="g-chips" role="tablist">
@@ -638,7 +698,7 @@ export default function TownGame({ full: fullPage = false, guest = false }: { fu
           {items.map((d) => {
             const ok = owned(d);
             return (
-              <button key={d.file} className={`rw-card hm-card ${ok ? '' : 'is-locked'}`} onPointerDown={(e) => onCardDown(e, d)} onClick={(e) => { if (e.detail === 0) add(d); }} aria-label={ok ? `Add ${d.en}` : `Open ${d.en} for ${d.price} coins`}>
+              <button key={d.file} data-card={d.file} className={`rw-card hm-card ${ok ? '' : 'is-locked'} ${hint === d.file ? 'is-hint' : ''}`} onPointerDown={(e) => onCardDown(e, d)} onClick={(e) => { if (e.detail === 0) add(d); }} aria-label={ok ? `Add ${d.en}` : `Open ${d.en} for ${d.price} coins`}>
                 <Thumb def={d} />
                 <b>{d.en}</b>
                 {!ok && <small className="rw-price"><span className="rw-coin" />{d.price}</small>}
@@ -648,7 +708,6 @@ export default function TownGame({ full: fullPage = false, guest = false }: { fu
         </div>
       </div>
       {ghost && <div className="hm-ghost" style={{ left: ghost.x, top: ghost.y }}><Thumb def={ghost.def} /></div>}
-      <p className="rw-help t-muted hm-help">Double-click to fly closer. Right mouse button or two fingers move the camera. Keys: W A S D move, Q E turn, + − zoom. Drag things from the shelf into the {mode === 'city' ? 'town' : mode === 'yard' ? 'garden' : 'room'}. Drag them to move. Tap the floor and your hero walks there. Choose a house and press “Go inside”.</p>
     </div>
   );
 }
