@@ -42,7 +42,7 @@ const MENU: { title: T; items: { href: string; icon: string; label: T; text: T; 
     items: [
       { href: '/nmt', icon: 'e-trophy', label: { uk: 'НМТ з англійської', ru: 'НМТ по английскому', en: 'NMT English exam' }, text: { uk: 'Квізи у форматі іспиту', ru: 'Квизы в формате экзамена', en: 'Quizzes in the exam format' } },
       { href: '/nmt/mock', icon: 'e-board', label: { uk: 'Пробний НМТ', ru: 'Пробный НМТ', en: 'Mock NMT test' }, text: { uk: 'З поясненнями «Чому так?»', ru: 'С объяснениями «Почему так?»', en: 'With «Why?» explanations' } },
-      { href: '/pricing#mini', icon: 'e-pencil', label: { uk: 'Чек-листи підготовки', ru: 'Чек-листы подготовки', en: 'Exam checklists' }, text: { uk: 'Дешевше, ніж кава', ru: 'Дешевле, чем кофе', en: 'Cheaper than a coffee' } },
+      { href: '/bonus/nmt-checklist', icon: 'e-pencil', label: { uk: 'НМТ-батл і вправи', ru: 'НМТ-батл и упражнения', en: 'NMT battle and drills' }, text: { uk: 'Безкоштовно: сталі вирази, хибні друзі', ru: 'Бесплатно: устойчивые выражения, ложные друзья', en: 'Free: collocations, false friends' } },
     ],
   },
   {
