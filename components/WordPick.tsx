@@ -85,7 +85,8 @@ export default function WordPick() {
     if (j) window.setTimeout(() => setForm(null), 1400);
   };
 
-  const pos = (p: { x: number; y: number }, w: number) => ({ left: Math.max(8, Math.min(window.innerWidth - w - 8, p.x - w / 2)), top: Math.min(window.innerHeight - 60, p.y) });
+  // якщо знизу мало місця, вікно відкривається над словом
+  const pos = (p: { x: number; y: number }, w: number, h = 44) => ({ left: Math.max(8, Math.min(window.innerWidth - w - 8, p.x - w / 2)), top: p.y + h > window.innerHeight - 8 ? Math.max(8, p.y - h - 40) : p.y });
 
   return (
     <>
@@ -95,7 +96,7 @@ export default function WordPick() {
         </button>
       )}
       {form && me?.students && (
-        <div ref={box} className="wp-box" role="dialog" aria-label={t({ uk: 'Додати слово', ru: 'Добавить слово', en: 'Add a word' })} style={pos(form, 300)}>
+        <div ref={box} className="wp-box" role="dialog" aria-label={t({ uk: 'Додати слово', ru: 'Добавить слово', en: 'Add a word' })} style={pos(form, 300, 290)}>
           <b className="wp-word">{form.word}</b>
           <label className="wp-f">{t({ uk: 'Переклад', ru: 'Перевод', en: 'Translation' })}
             <input value={tr} onChange={(e) => setTr(e.target.value)} placeholder={t({ uk: 'наприклад: маяк', ru: 'например: маяк', en: 'e.g. маяк' })} autoFocus />
