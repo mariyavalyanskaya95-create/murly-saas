@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import Icon from '@/components/Icon';
 import Stickers from '@/components/Stickers';
 import SiteNav from '@/components/SiteNav';
+import SectionTabs from '@/components/SectionTabs';
 import SiteFooter from '@/components/SiteFooter';
 import { SKILLS } from '@/lib/skills';
 import { catalog } from '@/lib/catalog';
@@ -23,6 +24,7 @@ export default function LearnPage() {
   return (
     <>
       <SiteNav />
+      <SectionTabs group="read" active="/learn" />
       <section className="mu-page-hero" data-stickers="6">
         <div className="mu-container">
           <span className="mu-section__eyebrow"><Icon id="e-book" />{t({ uk: 'Вчитися самому', ru: 'Учиться самому', en: 'Learn on your own' })}</span>
