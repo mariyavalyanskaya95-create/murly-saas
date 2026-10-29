@@ -2886,3 +2886,55 @@ a.t-doc:hover { background: var(--mu-lime); }
 @media (pointer: coarse) { .t-word .t-icon-btn, .t-note .t-icon-btn { width: 36px; height: 36px; font-size: 14px; } .t-icon-btn { width: 40px; height: 40px; } }
 .t-more > summary { cursor: pointer; font-weight: 800; font-size: 17px; }
 .t-more[open] > summary { margin-bottom: 12px; }
+
+/* Учень без учителя: вибір шляху і план на сьогодні */
+.ss-tracks { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; margin-top: 14px; }
+.ss-track { display: grid; justify-items: start; gap: 4px; padding: 16px; text-align: left; border: 2px solid var(--mu-ink); border-radius: 18px; background: #fff; box-shadow: 3px 3px 0 var(--mu-ink); cursor: pointer; font: inherit; color: var(--mu-ink); transition: transform .15s; }
+.ss-track:hover, .ss-track.is-on { background: var(--mu-lime); transform: translateY(-2px); }
+.ss-track b { font-size: 18px; }
+.ss-track small { color: var(--mu-ink-muted); }
+.ss-track__ic { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: var(--mu-ink); color: var(--mu-lime); margin-bottom: 4px; }
+.ss-steps { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 10px; }
+.ss-step { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border: 2px solid var(--mu-ink); border-radius: 16px; background: #fff; color: var(--mu-ink); text-decoration: none; }
+.ss-step:hover { background: var(--mu-lime); }
+.ss-step__n { display: grid; place-items: center; width: 30px; height: 30px; flex: none; border-radius: 50%; border: 2px solid var(--mu-ink); font-weight: 800; }
+.ss-step__ic { display: grid; place-items: center; width: 40px; height: 40px; flex: none; border-radius: 50%; background: var(--mu-paper); }
+.ss-step__txt { display: grid; flex: 1; min-width: 0; }
+.ss-step__txt b { font-size: 17px; }
+.ss-step__txt small { color: var(--mu-ink-muted); }
+.ss-plan h2 small { font-size: 15px; font-weight: 600; }
+.pr-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.pr-step { display: flex; gap: 14px; padding: 20px; border: 2px solid var(--mu-ink); border-radius: var(--mu-radius-lg, 22px); background: var(--mu-card, #fff); box-shadow: 4px 4px 0 var(--mu-ink); }
+.pr-step__n { display: grid; place-items: center; width: 40px; height: 40px; flex: none; border-radius: 50%; background: var(--mu-lime); border: 2px solid var(--mu-ink); font-weight: 800; font-size: 18px; }
+.pr-step b { font-size: 18px; }
+.pr-step p { margin: 6px 0 0; line-height: 1.45; color: var(--mu-ink-soft, #555); }
+
+/* Шапка: усе вміщається (кнопка «Меню» більше не вилазить), пошук відкривається в самій шапці */
+.mu-nav__inner { min-width: 0; gap: 14px; }
+.mu-nav__links { gap: 20px; flex-shrink: 1; min-width: 0; }
+.mu-nav__links a { white-space: nowrap; }
+.mu-nav__cta { gap: 10px; flex-shrink: 0; }
+button.mu-nav__search { cursor: pointer; font: inherit; padding: 0; }
+@media (max-width: 1320px) { .mu-menu-btn__txt { display: none; } .mu-menu-btn { padding: 0 6px; } .mu-nav__links { gap: 16px; } }
+.mu-nav.is-search .mu-nav__links { display: none; }
+.mu-nav.is-search .mu-nav__cta { flex: 1; justify-content: flex-end; }
+.mu-nav.is-search .mu-lang { display: none; }
+.nsr { position: relative; flex: 1; max-width: 640px; }
+.nsr__form { display: flex; align-items: center; height: 44px; border: 2px solid var(--mu-ink); border-radius: 99px; background: #fff; overflow: hidden; }
+.nsr__form input { flex: 1; min-width: 0; height: 100%; padding: 0 16px; border: 0; outline: 0; background: transparent; font: inherit; font-size: 16px; color: var(--mu-ink); }
+.nsr__form input::-webkit-search-cancel-button { display: none; }
+.nsr__btn { display: flex; align-items: center; gap: 6px; height: 100%; padding: 0 16px; border: 0; border-left: 2px solid var(--mu-ink); background: var(--mu-lime); font: inherit; font-weight: 800; color: var(--mu-ink); cursor: pointer; }
+.nsr__btn .mu-ic { width: 18px; height: 18px; }
+.nsr__x { width: 40px; height: 100%; border: 0; border-left: 2px solid var(--mu-ink); background: #fff; font-size: 22px; line-height: 1; cursor: pointer; color: var(--mu-ink); }
+.nsr__drop { position: absolute; left: 0; right: 0; top: calc(100% + 8px); z-index: 60; display: grid; padding: 8px; background: #fff; border: 2px solid var(--mu-ink); border-radius: 18px; box-shadow: 4px 4px 0 var(--mu-ink); max-height: min(60vh, 420px); overflow-y: auto; }
+.nsr__it { display: grid; padding: 9px 12px; border-radius: 12px; color: var(--mu-ink); text-decoration: none; }
+.nsr__it b { font-size: 15px; }
+.nsr__it small { color: var(--mu-ink-muted); font-size: 13px; }
+.nsr__it:hover, .nsr__it.is-on { background: var(--mu-lime); }
+.nsr__none { margin: 8px 12px; color: var(--mu-ink-muted); }
+.nsr__all { margin-top: 4px; padding: 9px 12px; border-top: 2px dashed #E6E0D2; font-weight: 800; color: var(--mu-ink); text-decoration: none; }
+.nsr__all:hover { color: var(--mu-tomato); }
+@media (max-width: 760px) {
+  .mu-nav.is-search .mu-logo, .mu-nav.is-search .mu-nav__cta > .mu-btn, .mu-nav.is-search .mu-menu-btn, .mu-nav.is-search .cl-userButtonBox, .mu-nav.is-search .cl-rootBox { display: none; }
+  .nsr__btn span { display: none; }
+}
