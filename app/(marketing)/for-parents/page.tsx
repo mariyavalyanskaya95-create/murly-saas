@@ -28,6 +28,12 @@ const POINTS: { icon: string; mod: string; title: T; text: T }[] = [
   { icon: 'd-lock', mod: 'mu-card--sky', title: { uk: 'Безпечно', ru: 'Безопасно', en: 'Safe' }, text: { uk: 'Без реклами. У грі все англійською, а кабінет учня бачить тільки його вчитель.', ru: 'Без рекламы. В игре всё на английском, а кабинет ученика видит только его учитель.', en: 'No ads. Everything in the game is in English, and only the teacher can see the student’s dashboard.' } },
 ];
 
+const STEPS: { title: T; text: T }[] = [
+  { title: { uk: 'Створіть кабінет для дитини', ru: 'Создайте кабинет для ребёнка', en: 'Create an account for your child' }, text: { uk: 'Реєструєтеся ви, кабінет належить дитині. Малюкам учитель може дати вхід за номером телефону і PIN, без пароля.', ru: 'Регистрируетесь вы, кабинет принадлежит ребёнку. Малышам учитель может дать вход по номеру телефона и PIN, без пароля.', en: 'You sign up, the account belongs to your child. For little ones a teacher can give a phone and PIN login, no password.' } },
+  { title: { uk: 'Оберіть «Я дитина 6–11» або введіть код учителя', ru: 'Выберите «Я ребёнок 6–11» или введите код учителя', en: 'Pick “I am a kid, 6–11” or enter a teacher code' }, text: { uk: 'Murly складе план на кожен день на 15–20 хвилин: квест, слова, скоромовка. З кодом учителя в кабінеті з’являться розклад і домашка.', ru: 'Murly составит план на каждый день на 15–20 минут: квест, слова, скороговорка. С кодом учителя в кабинете появятся расписание и домашка.', en: 'Murly makes a 15–20 minute plan for every day: a quest, words, a tongue twister. With a teacher code, the schedule and homework appear.' } },
+  { title: { uk: 'Дивіться прогрес', ru: 'Смотрите прогресс', en: 'Watch the progress' }, text: { uk: 'У кабінеті дитини видно домашку, слова і монетки. Якщо дитина займається з учителем, попросіть у нього посилання для батьків: там оцінки, відвідування і слова без входу в акаунт.', ru: 'В кабинете ребёнка видно домашку, слова и монетки. Если ребёнок занимается с учителем, попросите у него ссылку для родителей: там оценки, посещения и слова без входа в аккаунт.', en: 'Your child’s account shows homework, words and coins. If they study with a teacher, ask for the parent link: scores, attendance and words without logging in.' } },
+];
+
 const FAQ: { q: T; a: T }[] = [
   { q: { uk: 'Чи потрібен учитель?', ru: 'Нужен ли учитель?', en: 'Do we need a teacher?' }, a: { uk: 'Найкраще працює разом з учителем: він дає код, задає домашку і бачить прогрес. Але граматику, дієслова, слухання й читання можна проходити і самостійно.', ru: 'Лучше всего работает вместе с учителем: он даёт код, задаёт домашку и видит прогресс. Но грамматику, глаголы, аудирование и чтение можно проходить и самостоятельно.', en: 'It works best with a teacher: they give the code, set homework and see progress. But grammar, verbs, listening and reading can also be done on your own.' } },
   { q: { uk: 'Для якого віку?', ru: 'Для какого возраста?', en: 'What ages is it for?' }, a: { uk: 'Для дітей від 6 років, підлітків і дорослих. Є окремий розділ підготовки до НМТ.', ru: 'Для детей от 6 лет, подростков и взрослых. Есть отдельный раздел подготовки к НМТ.', en: 'For kids from 6, teens and adults. There is a separate section for NMT (Ukrainian school exam) prep.' } },
@@ -56,10 +62,28 @@ export default function ForParentsPage() {
           <p>{t({ uk: 'Домашка-гра, слова від учителя і своє 3D-містечко за монетки. Дитина вчиться сама, бо їй цікаво.', ru: 'Домашка-игра, слова от учителя и свой 3D-городок за монетки. Ребёнок учится сам, потому что ему интересно.', en: 'Homework as a game, words from the teacher and their own 3D town for coins. Your child learns on their own because it’s fun.' })}</p>
           <div className="mu-hero__cta">
             <Link href="/sign-up?role=student" className="mu-btn mu-btn--lime mu-btn--lg">
-              {t({ uk: 'Зареєструвати дитину', ru: 'Зарегистрировать ребёнка', en: 'Sign up your child' })}<span className="mu-btn__arrow"><Icon id="e-arrow" /></span>
+              {t({ uk: 'Створити кабінет для дитини', ru: 'Создать кабинет для ребёнка', en: 'Create your child’s account' })}<span className="mu-btn__arrow"><Icon id="e-arrow" /></span>
             </Link>
             <Link href="/pricing" className="mu-btn mu-btn--lg">{t({ uk: 'Тарифи', ru: 'Тарифы', en: 'Pricing' })}</Link>
           </div>
+        </div>
+      </section>
+
+      {/* три кроки: що робить батько, щоб дитина почала і щоб бачити прогрес */}
+      <section className="mu-section" style={{ paddingTop: 24, paddingBottom: 0 }}>
+        <div className="mu-container">
+          <div className="mu-section__head">
+            <span className="mu-section__eyebrow"><Icon id="e-arrow" />{t({ uk: '3 кроки', ru: '3 шага', en: '3 steps' })}</span>
+            <h2 className="mu-section__title">{t({ uk: 'Як почати', ru: 'Как начать', en: 'How to' })} <em>{t({ uk: 'за 2 хвилини.', ru: 'за 2 минуты.', en: 'start in 2 minutes.' })}</em></h2>
+          </div>
+          <ol className="pr-steps">
+            {STEPS.map((x, i) => (
+              <li key={i} className="pr-step">
+                <span className="pr-step__n">{i + 1}</span>
+                <div><b>{t(x.title)}</b><p>{t(x.text)}</p></div>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
