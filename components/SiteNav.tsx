@@ -92,7 +92,7 @@ export default function SiteNav() {
             </Link>
           </SignedOut>
           <SignedIn>
-            <Link href="/dashboard" className="mu-btn mu-btn--lime">{t({ uk: 'Мій кабінет', ru: 'Мой кабинет', en: 'My dashboard' })}</Link>
+            <Link href="/dashboard" className="mu-btn mu-btn--lime mu-nav__cab"><span className="mu-nav__cab-l">{t({ uk: 'Мій кабінет', ru: 'Мой кабинет', en: 'My dashboard' })}</span><span className="mu-nav__cab-s">{t({ uk: 'Кабінет', ru: 'Кабинет', en: 'Account' })}</span></Link>
             <UserButton />
           </SignedIn>
           <button className="mu-menu-btn" onClick={() => setOpen(!open)} aria-expanded={open} aria-controls="mu-mega">
