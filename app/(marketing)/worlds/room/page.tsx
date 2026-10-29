@@ -4,6 +4,7 @@ import Icon from '@/components/Icon';
 import SiteNav from '@/components/SiteNav';
 import SiteFooter from '@/components/SiteFooter';
 import RoomGame from '@/components/worlds/RoomGame';
+import { tr } from '@/lib/i18n-server';
 
 export const metadata: Metadata = {
   title: 'Моя кімната: гра англійською для дітей | Murly',
@@ -17,7 +18,7 @@ export default function RoomPage() {
       <SiteNav />
       <section className="mu-section rw-page">
         <div className="mu-container">
-          <Link href="/worlds" className="t-back">← Усі світи</Link>
+          <Link href="/games" className="t-back">← {tr()({ uk: 'Усі ігри', ru: 'Все игры', en: 'All games' })}</Link>
           <h1 className="rw-title"><Icon id="d-kid" />My room</h1>
           <RoomGame />
         </div>
