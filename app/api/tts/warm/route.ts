@@ -6,6 +6,8 @@ import { SERIES } from '@/lib/series';
 import { ALL_STORIES } from '@/lib/stories';
 import { QUESTS_TEXT } from '@/lib/quest-list';
 import { VERBS_AZ } from '@/lib/irregular-verbs';
+import { TWISTERS } from '@/lib/tongue-twisters';
+import { db, dbReady } from '@/lib/db';
 import { parseScript } from '@/lib/script';
 import { voicesForSpeakers, type VoicePreset } from '@/lib/voices';
 import { isTeacher } from '@/lib/student-data';
@@ -15,9 +17,18 @@ export const dynamic = 'force-dynamic';
 export const maxDuration = 60;
 
 type Item = { t: string; v: VoicePreset; s: boolean };
-// Усе, що озвучується на сайті: аудіювання, аудіосеріали, історії, квест, неправильні дієслова
-function allItems(): Item[] {
+// Усе, що озвучується на сайті: аудіювання (і свої уроки вчителів), аудіосеріали, історії, квест, скоромовки, неправильні дієслова
+async function allItems(): Promise<Item[]> {
   const out: Item[] = [];
+  // уроки, які вчителі склали самі в кабінеті: їхні аудіювання теж озвучуємо заздалегідь
+  const own = dbReady() ? await db.query('lesson_plans?select=blocks').catch(() => []) : [];
+  const ownBlocks = own.flatMap((r) => (Array.isArray(r.blocks) ? r.blocks : []) as { type?: string; script?: string; audioUrl?: string }[]);
+  for (const b of ownBlocks) if (b.type === 'audio' && b.script && !b.audioUrl) {
+    const lines = parseScript(b.script);
+    const vm = voicesForSpeakers(Array.from(new Set(lines.map((l) => l.who))));
+    lines.forEach((l) => out.push({ t: l.text, v: l.who ? vm[l.who] ?? 'woman' : 'narrator', s: false }));
+  }
+  for (const tw of TWISTERS) out.push({ t: tw.text, v: 'narrator', s: false });
   for (const p of [...PRACTICE, ...LIBRARY]) for (const b of p.blocks) if (b.type === 'audio' && !b.audioUrl) {
     const lines = parseScript(b.script);
     const vm = voicesForSpeakers(Array.from(new Set(lines.map((l) => l.who))));
@@ -39,7 +50,7 @@ export async function GET(req: Request) {
   if (!userId || !(await isTeacher(userId))) return NextResponse.json({ error: 'forbidden' }, { status: 403 });
   if (!ttsReady()) return NextResponse.json({ error: 'no_key' }, { status: 400 });
   const from = Math.max(0, Number(new URL(req.url).searchParams.get('from') || 0));
-  const items = allItems();
+  const items = await allItems();
   const batch = items.slice(from, from + 25);
   let made = 0, cached = 0, failed = 0;
   await Promise.all(batch.map(async (x) => {
