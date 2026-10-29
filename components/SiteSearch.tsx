@@ -6,49 +6,7 @@ import Icon from './Icon';
 import { useT } from './LangProvider';
 import { SKILLS } from '@/lib/skills';
 import type { SearchItem } from '@/lib/search-index';
-
-const norm = (s: string) => s.toLowerCase().replace(/ё/g, 'е').replace(/[’'`]/g, '').replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
-
-// Однакові теми різними мовами: що вчитель може написати
-const SYN: string[][] = [
-  ['предлог', 'прийменник', 'preposition'],
-  ['цвет', 'колір', 'кольор', 'colour', 'color'],
-  ['числ', 'цифр', 'number', 'count', 'рахув', 'счет'],
-  ['еда', 'еды', 'еду', 'їжа', 'їжі', 'їжу', 'food', 'продукт'],
-  ['одежд', 'одяг', 'clothes'],
-  ['животн', 'тварин', 'animal'],
-  ['мебел', 'меблі', 'furniture'],
-  ['кухн', 'kitchen'],
-  ['ванн', 'bathroom'],
-  ['школ', 'school', 'class'],
-  ['магазин', 'shop', 'покуп'],
-  ['парк', 'park', 'природ', 'nature'],
-  ['аудир', 'аудіюв', 'слуха', 'listen'],
-  ['чтени', 'читан', 'read'],
-  ['говор', 'speak', 'розмов', 'разговор'],
-  ['письм', 'writ'],
-  ['грамат', 'граммат', 'grammar'],
-  ['лексик', 'слова', 'vocabular', 'word'],
-  ['игра', 'игры', 'игру', 'игр', 'гра', 'гру', 'ігри', 'ігор', 'game', 'квест', 'quest'],
-  ['дети', 'детей', 'детск', 'діти', 'дітей', 'дитяч', 'kids', 'child', 'малыш', 'малюк'],
-  ['подрост', 'підліт', 'teen'],
-  ['взросл', 'доросл', 'adult'],
-  ['неправильн', 'irregular'],
-  ['времена', 'часи', 'tense'],
-  ['present simple', 'презент симпл', 'теперішній простий', 'настоящее простое'],
-  ['past simple', 'минулий простий', 'прошедшее простое'],
-  ['нмт', 'nmt', 'зно', 'экзамен', 'іспит', 'exam'],
-];
-
-// службові слова не мають впливати на пошук
-const STOP = new Set(['для', 'на', 'в', 'у', 'з', 'с', 'со', 'і', 'и', 'й', 'та', 'про', 'по', 'до', 'від', 'от', 'for', 'the', 'a', 'an', 'and', 'of', 'to', 'урок', 'уроки']);
-
-function variants(tok: string): string[] {
-  const n = norm(tok);
-  const out = new Set([n]);
-  for (const g of SYN) if (g.some((w) => { const x = norm(w); return x.length >= 4 ? n.startsWith(x) : n === x; })) g.forEach((w) => out.add(norm(w)));
-  return Array.from(out).filter(Boolean);
-}
+import { rankSearch } from '@/lib/search-match';
 
 export default function SiteSearch({ items, initial }: { items: SearchItem[]; initial: string }) {
   const t = useT();
@@ -59,32 +17,7 @@ export default function SiteSearch({ items, initial }: { items: SearchItem[]; in
   useEffect(() => { box.current?.focus(); }, []);
   useEffect(() => { const u = new URL(window.location.href); if (q) u.searchParams.set('q', q); else u.searchParams.delete('q'); window.history.replaceState(null, '', u.toString()); }, [q]);
 
-  const res = useMemo(() => {
-    const all = norm(q).split(' ').filter(Boolean);
-    const toks = all.filter((x) => !STOP.has(x)).length ? all.filter((x) => !STOP.has(x)) : all;
-    // фрази з синонімів (next to, there is) шукаємо цілими
-    const full = norm(q);
-    let list = items.filter((it) => (!skill || it.skill === skill) && (!level || it.level === level || it.level === 'all'));
-    if (!toks.length) return list.slice(0, 0);
-    const scored = list.map((it) => {
-      const title = norm(`${it.title.uk} ${it.title.ru ?? ''} ${it.title.en ?? ''}`);
-      const hay = ` ${it.hay} `;
-      const kind = ` ${norm(`${it.kind.uk} ${it.kind.ru ?? ''} ${it.kind.en ?? ''}`)}`;
-      let score = 0;
-      if (full.length > 3 && hay.includes(full)) score += 6;
-      for (const tok of toks) {
-        const vs = variants(tok);
-        // збіг з початком слова: «гра» не знаходить «граматику»
-        const inTitle = vs.some((v) => ` ${title}`.includes(` ${v}`));
-        const inHay = vs.some((v) => hay.includes(v.length <= 2 ? ` ${v} ` : ` ${v}`));
-        if (!inHay) return { it, score: -1 };
-        score += inTitle ? 4 : vs.some((v) => kind.includes(` ${v}`)) ? 3 : 1;
-      }
-      return { it, score };
-    }).filter((x) => x.score > 0);
-    scored.sort((a, b) => b.score - a.score);
-    return scored.map((x) => x.it);
-  }, [q, skill, level, items]);
+  const res = useMemo(() => rankSearch(items, q, { skill, level }), [q, skill, level, items]);
 
   const tips = [
     t({ uk: 'прийменники', ru: 'предлоги', en: 'prepositions' }),

@@ -6,11 +6,15 @@ import type { T } from '@/lib/i18n';
 
 type Tab = { href: string; icon: string; label: T };
 export const GROUPS: Record<'read' | 'grammar', { title: T; tabs: Tab[] }> = {
+  // один вхід «Вчитися самому»: усе для самостійних занять у вкладках
   read: {
-    title: { uk: 'Читання і слухання', ru: 'Чтение и аудирование', en: 'Reading and listening' },
+    title: { uk: 'Вчитися самому', ru: 'Учиться самому', en: 'Learn on your own' },
     tabs: [
+      { href: '/learn', icon: 'd-spark', label: { uk: 'За навичками й рівнем', ru: 'По навыкам и уровню', en: 'By skill and level' } },
       { href: '/stories', icon: 'e-book', label: { uk: 'Історії й тексти', ru: 'Истории и тексты', en: 'Stories and texts' } },
-      { href: '/practice', icon: 'e-head', label: { uk: 'Аудіо і тексти з питаннями', ru: 'Аудио и тексты с вопросами', en: 'Audio and texts with questions' } },
+      { href: '/practice', icon: 'e-head', label: { uk: 'Аудіо з питаннями', ru: 'Аудио с вопросами', en: 'Audio with questions' } },
+      { href: '/series', icon: 'e-head', label: { uk: 'Аудіосеріали', ru: 'Аудиосериалы', en: 'Audio series' } },
+      { href: '/grammar', icon: 'e-abc', label: { uk: 'Граматика', ru: 'Грамматика', en: 'Grammar' } },
       { href: '/tongue-twisters', icon: 'e-speak', label: { uk: 'Скоромовки', ru: 'Скороговорки', en: 'Tongue twisters' } },
     ],
   },
