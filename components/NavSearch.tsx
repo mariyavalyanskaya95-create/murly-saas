@@ -31,7 +31,7 @@ export default function NavSearch({ open, onOpen, onClose }: { open: boolean; on
     return () => { window.removeEventListener('pointerdown', down); window.removeEventListener('keydown', key); };
   }, [open, onClose]);
 
-  const res = useMemo(() => (q.trim().length >= 2 ? rankSearch(items, q).slice(0, 6) : []), [q, items]);
+  const res = useMemo(() => (q.trim().length >= 2 ? rankSearch(items, q).slice(0, 5) : []), [q, items]);
   useEffect(() => setHi(-1), [q]);
   const go = (href: string) => { onClose(); setQ(''); router.push(href); };
   const submit = (e: React.FormEvent) => {
