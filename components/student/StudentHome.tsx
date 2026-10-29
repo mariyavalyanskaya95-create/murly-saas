@@ -55,13 +55,9 @@ export default function StudentHome({ enrollments, name }: { enrollments: Enroll
       </div>
 
       <nav className="s-jump" aria-label={t({ uk: 'Швидкий перехід', ru: 'Быстрый переход', en: 'Quick links' })}>
-        <a href="#homework" className="mu-btn mu-btn--lime"><Icon id="e-board" />{t({ uk: 'Домашка', ru: 'Домашка', en: 'Homework' })}{e.homework.filter((h) => h.status === 'assigned').length ? ` (${e.homework.filter((h) => h.status === 'assigned').length})` : ''}</a>
-        <a href={`/student/board?s=${e.studentId}`} className="mu-btn"><Icon id="e-pencil" />{t({ uk: 'Дошка', ru: 'Доска', en: 'Board' })}</a>
-        <a href="#words" className="mu-btn"><Icon id="e-abc" />{t({ uk: 'Мій словник', ru: 'Мой словарь', en: 'My dictionary' })}</a>
+        <a href={`/student/board?s=${e.studentId}`} className="mu-btn mu-btn--lime"><Icon id="e-pencil" />{t({ uk: 'Дошка', ru: 'Доска', en: 'Board' })}</a>
         {e.materials.length > 0 && <a href="#materials" className="mu-btn"><Icon id="e-book" />{t({ uk: 'Матеріали з уроків', ru: 'Материалы с уроков', en: 'Lesson materials' })}</a>}
       </nav>
-
-      <Progress e={e} />
 
       <section className={`t-card s-next ${next ? '' : 's-next--empty'}`}>
         <h2><Icon id="e-cal" />{t({ uk: 'Наступне заняття', ru: 'Следующее занятие', en: 'Next lesson' })}</h2>
@@ -86,11 +82,14 @@ export default function StudentHome({ enrollments, name }: { enrollments: Enroll
         )}
       </section>
 
-      {!e.adult && <CoinsCard />}
+      {/* спершу те, що треба зробити сьогодні: домашка і слова на повторення */}
+      <HomeworkList key={e.studentId} homework={e.homework} words={e.words} />
 
       <WordReview key={`r${e.studentId}`} words={e.words} adult={e.adult} />
 
-      <HomeworkList key={e.studentId} homework={e.homework} words={e.words} />
+      <Progress e={e} />
+
+      {!e.adult && <CoinsCard />}
 
       <section className="t-card" id="words">
         <div className="t-card__head">
