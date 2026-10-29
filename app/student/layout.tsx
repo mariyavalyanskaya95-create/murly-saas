@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { auth } from '@clerk/nextjs/server';
+import { auth, currentUser } from '@clerk/nextjs/server';
 import { UserButton } from '@clerk/nextjs';
 import { redirect } from 'next/navigation';
 import { tr } from '@/lib/i18n-server';
@@ -18,6 +18,9 @@ export default async function StudentLayout({ children }: { children: React.Reac
   if (!userId) redirect('/sign-in');
   const t = tr();
   const f = await studentFlags(userId);
+  // підліток без учителя теж бачить НМТ, якщо обрав «Готуюся до НМТ»
+  const track = ((await currentUser())?.unsafeMetadata as { track?: string } | undefined)?.track;
+  const nmt = f.nmt || track === 'nmt';
   return (
     <div className="t-app">
       <header className="t-top">
@@ -27,13 +30,13 @@ export default async function StudentLayout({ children }: { children: React.Reac
       </header>
       <nav className="s-nav" aria-label={t({ uk: 'Розділи', ru: 'Разделы', en: 'Sections' })}>
         <Link href="/student">{t({ uk: 'Мій кабінет', ru: 'Мой кабинет', en: 'My account' })}</Link>
-        <Link href="/student#homework">{t({ uk: 'Домашка', ru: 'Домашка', en: 'Homework' })}</Link>
-        <Link href="/student#words">{t({ uk: 'Мій словник', ru: 'Мой словарь', en: 'My dictionary' })}</Link>
-        {f.nmt && <Link href="/nmt/mock">{t({ uk: 'Пробні НМТ', ru: 'Пробные НМТ', en: 'Mock NMT' })}</Link>}
+        {f.any && <Link href="/student#homework">{t({ uk: 'Домашка', ru: 'Домашка', en: 'Homework' })}</Link>}
+        {f.any && <Link href="/student#words">{t({ uk: 'Мій словник', ru: 'Мой словарь', en: 'My dictionary' })}</Link>}
+        {nmt && <Link href="/nmt/mock">{t({ uk: 'Пробні НМТ', ru: 'Пробные НМТ', en: 'Mock NMT' })}</Link>}
         <Link href="/grammar">{t({ uk: 'Граматика', ru: 'Грамматика', en: 'Grammar' })}</Link>
         <Link href="/irregular-verbs">{t({ uk: 'Неправильні дієслова', ru: 'Неправильные глаголы', en: 'Irregular verbs' })}</Link>
         <Link href="/learn">{t({ uk: 'Усі матеріали', ru: 'Все материалы', en: 'All materials' })}</Link>
-        {!f.adult && <Link href="/games">{t({ uk: 'Ігри', ru: 'Игры', en: 'Games' })}</Link>}
+        {!f.adult && track !== 'adult' && <Link href="/games">{t({ uk: 'Ігри', ru: 'Игры', en: 'Games' })}</Link>}
       </nav>
       <main className="s-main">{children}</main>
     </div>
