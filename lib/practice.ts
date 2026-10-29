@@ -533,4 +533,304 @@ Which meetings in your work or studies could be cut?
 How would your country’s economy change with a four-day week?`),
     ],
   },
+  {
+    id: 'lib-r-hedgehog', title: 'Pip the hedgehog', level: 'A1', age: 'kids', topic: 'Тварини', color: 'lime', source: 'murly', focus: ['Reading'],
+    aims: 'Прочитаємо короткий текст про їжачка\nПовторимо Present Simple: he lives, he likes\nРозкажемо про свою улюблену тварину',
+    blocks: [
+      tip('Перед читанням подумай: де живуть їжаки? Що вони їдять?'),
+      vocab(`a hedgehog = їжак
+a nose = ніс
+legs = лапки
+a garden = сад
+behind = за, позаду
+to sleep = спати
+at night = вночі
+to look for = шукати
+a worm = черв’як
+a bowl = мисочка`),
+      t(`This is Pip. Pip is a hedgehog. He is small and brown. He has got a little black nose and short legs.
+
+Pip lives in a garden behind Sofia’s house. In the day, Pip sleeps under a big tree. At night, he walks in the garden and looks for food. He likes worms and apples. He doesn’t like milk.
+
+Every evening, Sofia puts water in a little bowl for Pip. Pip drinks the water. Sofia smiles. Pip is her favourite animal.`),
+      ex(
+        ['truefalse', 'True or False?', `Pip is a cat. = False
+Pip is small and brown. = True
+Pip has got long legs. = False
+Pip sleeps in the day. = True
+Pip likes milk. = False
+Sofia gives Pip water. = True`],
+        ['choice', 'Choose the right word.', `Pip lives in {a garden|a school|a shop}.
+Pip sleeps under {a big tree|a car|a bed}.
+At night Pip looks for {food|toys|friends}.
+Pip likes {worms and apples|milk and bread|fish and cheese}.
+Sofia puts water in {a bowl|a cup|a box}.`],
+        ['match', 'Знайди пару: слово і переклад.', `small = маленький
+a nose = ніс
+a tree = дерево
+at night = вночі
+an apple = яблуко
+water = вода`],
+      ),
+      talk(`Do you like hedgehogs?
+What animals live near your house?
+What is your favourite animal? What does it eat?
+Where does your favourite animal sleep?`),
+    ],
+  },
+  {
+    id: 'lib-r-class-garden', title: 'Our class garden', level: 'A2', age: 'kids', topic: 'Школа', color: 'sky', source: 'murly', focus: ['Reading', 'Grammar'],
+    aims: 'Прочитаємо історію про шкільний город\nЗнайдемо в тексті дієслова в Past Simple\nПоговоримо про рослини і роботу разом',
+    blocks: [
+      tip('Перед читанням: у тебе є рослини вдома чи біля школи? Хто їх поливає?'),
+      vocab(`a seed = насінина
+to plant = садити
+to water = поливати
+the ground = земля
+leaves = листя
+a stone = камінь
+beans = квасоля
+a sunflower = соняшник
+to pick = збирати (врожай)
+the whole class = увесь клас`),
+      t(`Last spring our teacher, Ms Hanna, had a great idea. “Let’s make a garden next to our school!” she said.
+
+On Monday we cleaned the ground and took away old leaves and stones. On Tuesday Taras’s dad brought some seeds: tomatoes, carrots, beans and sunflowers. We planted them in long lines. Every child in our class got a job. Marta and I watered the plants every morning before lessons.
+
+At first nothing happened, and Bohdan was sad. “Our garden is just brown!” he said. But after two weeks we saw small green leaves. By June the sunflowers were taller than our teacher!
+
+In September we picked the tomatoes and made a big salad for the whole class. It was the best salad in the world.`),
+      ex(
+        ['truefalse', 'True or False?', `The garden was Ms Hanna’s idea. = True
+Taras’s dad brought the seeds. = True
+Bohdan was happy at first. = False
+The children saw green leaves after two days. = False
+The sunflowers grew very tall. = True`],
+        ['choice', 'Choose the correct answer.', `The children cleaned the ground on {Monday|Tuesday|Friday}.
+The writer and Marta {watered the plants|brought the seeds|picked the leaves} every morning.
+By June the sunflowers were taller than {the teacher|the school|Taras’s dad}.
+In September the class picked {the tomatoes|the sunflowers|the beans}.
+The class made {a salad|a soup|a cake}.`],
+        ['gap', 'Past Simple: розкрий дужки.', `Ms Hanna [had] (have) a great idea.
+We [cleaned] (clean) the ground on Monday.
+Taras’s dad [brought] (bring) some seeds.
+We [planted] (plant) them in long lines.
+After two weeks we [saw] (see) small green leaves.
+We [made] (make) a big salad.`],
+      ),
+      talk(`Have you got a garden or plants at home?
+Would you like a garden at your school? What would you plant?
+Which job in the garden would you choose: planting, watering or picking?
+What is your favourite vegetable?`),
+    ],
+  },
+  {
+    id: 'lib-r-flat-advert', title: 'A flat to rent', level: 'A2', age: 'adults', topic: 'Житло', color: 'sky', source: 'murly', focus: ['Reading', 'Vocabulary'],
+    aims: 'Прочитаємо оголошення про оренду квартири\nЗнайдемо ціну, умови й правила\nПовторимо must, mustn’t і can для правил',
+    blocks: [
+      tip('Перед читанням: що ти шукаєш в оголошенні про оренду насамперед? Ціну, район, поверх, правила?'),
+      vocab(`to rent = винаймати, орендувати
+rent = орендна плата
+bills = комунальні платежі
+included = включено
+a deposit = застава
+available from = вільна з
+a contract = договір
+at least = щонайменше
+to move in = заселитися
+a viewing = перегляд квартири
+weekdays = будні`),
+      t(`**FLAT TO RENT: 15 Shevchenko Street**
+
+Bright one-bedroom flat on the fourth floor. There is a lift. The flat has a modern kitchen, a small balcony and a new washing machine. It is a ten-minute walk to the metro, and there is a supermarket across the street.
+
+**Rent:** 12,000 hryvnias a month. Bills (electricity, water and gas) are not included.
+
+**Deposit:** one month’s rent.
+
+**Available from:** 1 March.
+
+**Please note:** You must sign a contract for at least six months. Pets are welcome, but you must tell us about them before you move in. You mustn’t smoke inside the flat, but you can smoke on the balcony. Please don’t make noise after 10 pm: our neighbours have small children.
+
+Interested? Call Iryna on weekdays after 6 pm or send her a message at any time. Viewings are on Saturdays only.`),
+      ex(
+        ['truefalse', 'True or False?', `The flat is on the ground floor. = False
+There is a shop near the building. = True
+The rent includes electricity and water. = False
+You can have a cat in this flat. = True
+You can call Iryna on weekday mornings. = False`],
+        ['choice', 'Choose the correct answer.', `The deposit is {12,000 hryvnias|6,000 hryvnias|24,000 hryvnias}.
+The shortest contract is {six months|one month|one year}.
+You can smoke {on the balcony|in the kitchen|in the bedroom}.
+You can see the flat {on Saturdays|on any day|after 10 pm}.
+You can move in from {1 March|1 May|1 June}.`],
+        ['gap', 'Встав must, mustn’t або can.', `You [must] sign a contract for at least six months.
+You [mustn’t/must not] smoke inside the flat.
+You [can] smoke on the balcony.
+You [must] tell the owner about your pets.
+You [mustn’t/must not] make noise after 10 pm.
+You [can] send Iryna a message at any time.`],
+      ),
+      talk(`What is important for you when you look for a flat?
+Would you prefer a flat near the metro or near a park? Why?
+Is it easy to rent a flat with pets in your city?
+Which rules for tenants do you think are fair, and which are not?`),
+    ],
+  },
+  {
+    id: 'lib-r-school-podcast', title: 'Our school podcast', level: 'B1', age: 'teens', topic: 'Хобі', color: 'mustard', source: 'murly', focus: ['Reading', 'Grammar'],
+    aims: 'Прочитаємо статтю про шкільний подкаст\nПотренуємо читання на деталі у форматі НМТ\nРозрізнимо Present Perfect і Past Simple',
+    blocks: [
+      tip('Перед читанням: ти слухаєш подкасти? Про що був би подкаст, який зробили б учні твоєї школи?'),
+      vocab(`to run (a podcast) = вести (подкаст)
+an episode = випуск
+to record = записувати
+an echo = луна
+awful = жахливий
+to lend (lent) = позичати комусь (позичив)
+to interview = брати інтерв’ю
+a former student = колишній учень
+shy = сором’язливий
+to admit = визнавати, зізнаватися
+a stranger = незнайома людина
+to get someone involved = залучити когось`),
+      t(`A year ago, Yana, Dmytro and Kira had never recorded anything except voice messages. Today they run “Corridor Talk”, a podcast made by students for students, and over four hundred people have listened to their latest episode.
+
+The idea started in the school canteen. “We realised that everyone was talking about the same things: exams, friendships, how to find time for everything,” says Yana. “So we thought: why not record these conversations?”
+
+The beginning wasn’t easy. They recorded their first episode in the gym, and the echo was awful. “We listened to it once and decided never to play it again,” laughs Dmytro. Their computer science teacher lent them a microphone, and they moved to a quiet classroom after lessons.
+
+Since then, they have made twenty-two episodes. They have interviewed the school cook, a former student who now designs video games, and even the head teacher. Each episode is about fifteen minutes long because, as Kira explains, “that’s exactly how long the walk home takes.”
+
+The project has taught them more than technical skills. “I used to be really shy,” Kira admits. “Now I can ask a stranger a question without my voice shaking.” Their next goal? To get students from other schools in the city involved.`),
+      ex(
+        ['choice', 'Choose the correct answer (A, B or C).', `How did the podcast idea start? {The friends noticed that students discussed the same topics|A teacher asked them to start a podcast|They saw a podcast competition}
+What was wrong with the first episode? {The sound was bad because of the echo|It was too long|Nobody wanted to speak}
+Who helped them with equipment? {their computer science teacher|the head teacher|the school cook}
+Why are the episodes about fifteen minutes long? {That is how long the walk home takes|Teachers asked for short episodes|Longer episodes were boring}
+How has the project changed Kira? {She feels more confident with new people|She wants to design video games|She talks less than before}`],
+        ['truefalse', 'True or False?', `More than 400 people have listened to the latest episode. = True
+The friends still play their first episode to new listeners. = False
+Now they record in a quiet classroom. = True
+Students from other schools already take part in the podcast. = False`],
+        ['gap', 'Present Perfect чи Past Simple? Розкрий дужки.', `They [have made/’ve made] (make) twenty-two episodes since then.
+They [recorded] (record) their first episode in the gym.
+Their teacher [lent] (lend) them a microphone last autumn.
+They [have interviewed/’ve interviewed] (interview) the head teacher.
+We [listened] (listen) to it once and decided never to play it again.
+[Have you ever recorded] (you / ever / record) a podcast?`],
+      ),
+      tip('**Present Perfect** (have made, have interviewed) говорить про досвід чи результат до сьогодні, без точного часу; часто з since, ever, already. **Past Simple** (recorded, lent) описує завершену подію в минулому, часто з ago, last, yesterday.'),
+      talk(`Do you listen to podcasts? What about?
+If you made a podcast, what would it be about?
+Who would you interview at your school? Why?
+Kira says the project helped her stop being shy. What has helped you feel more confident?`),
+    ],
+  },
+  {
+    id: 'lib-r-slow-mornings', title: 'How I changed my mornings', level: 'B1', age: 'adults', topic: 'Звички', color: 'tomato', source: 'murly', focus: ['Reading', 'Grammar'],
+    aims: 'Прочитаємо блог про зміну ранкових звичок\nЗнайдемо головну думку і деталі\nПотренуємо used to для минулих звичок',
+    blocks: [
+      tip('Перед читанням: як минає твій звичайний ранок? Що б ти хотів чи хотіла в ньому змінити?'),
+      vocab(`an alarm goes off = будильник дзвонить
+to press snooze = відкласти будильник
+in a panic = у паніці
+annoyed = роздратований
+to switch off = вимкнути
+to stretch = робити розтяжку
+a proper breakfast = повноцінний сніданок
+to feel rushed = почуватися в поспіху
+to come up = виникати (про проблеми)
+patient = терплячий
+a morning person = жайворонок`),
+      t(`For years my mornings looked the same. My alarm went off at 7:15, I pressed “snooze” three times and then jumped out of bed in a panic. I used to check my emails before I even opened my eyes properly. Breakfast was a coffee drunk standing up, and I usually arrived at work already tired and annoyed.
+
+Last January I decided to try something different. I didn’t change everything at once. I simply moved my alarm clock to the other side of the room. Because I had to get up to switch it off, I stopped pressing “snooze”. That small step gave me an extra twenty minutes.
+
+At first I didn’t know what to do with this time. I tried running, but I hated it. Then I tried stretching for ten minutes and making a proper breakfast, and that worked. I also made one strict rule: no phone until I’m on the bus.
+
+The results surprised me. I don’t feel rushed any more, and I’m much calmer when problems come up at work. My colleagues have even noticed that I’m more patient in morning meetings.
+
+I’m not a morning person now, and I probably never will be. But I’ve learnt that a good day often starts with a slow morning, not a perfect one.`),
+      ex(
+        ['truefalse', 'True or False?', `The writer used to get up as soon as the alarm went off. = False
+Moving the alarm clock helped the writer stop pressing “snooze”. = True
+The writer enjoyed running in the morning. = False
+Now the writer doesn’t use the phone before getting on the bus. = True
+The writer has become a real morning person. = False`],
+        ['choice', 'Choose the correct answer.', `Before the change, the writer usually arrived at work {tired and annoyed|calm and relaxed|late and hungry}.
+The first thing the writer changed was {the place of the alarm clock|the time of breakfast|the way to work}.
+The change gave the writer {an extra twenty minutes|an extra hour|ten more minutes of sleep}.
+In the mornings the writer now {stretches and makes breakfast|goes running|checks emails in bed}.
+Who noticed a difference in the writer? {colleagues|neighbours|family}`],
+        ['gap', 'Used to чи Present Simple? Розкрий дужки.', `I [used to check] (check) my emails in bed.
+I [used to press] (press) “snooze” three times.
+I [didn’t use to have/did not use to have] (not have) a proper breakfast.
+[Did you use to get] (you / get) up early as a child?
+Now I [stretch] (stretch) for ten minutes every morning.
+These days I [don’t feel/do not feel] (not feel) rushed.`],
+      ),
+      tip('**Used to + дієслово** описує те, що регулярно було в минулому, а тепер ні: I **used to** check my emails in bed. У запереченні та питанні пишемо **use to** без d: I **didn’t use to** have breakfast. **Did** you **use to** get up early?'),
+      talk(`What does your typical morning look like?
+What did you use to do in the mornings that you don’t do now?
+Do you check your phone as soon as you wake up? Why or why not?
+Do you agree that a good day starts with a slow morning? Why?
+What small change could make your mornings better?`),
+    ],
+  },
+  {
+    id: 'lib-r-repair-culture', title: 'Fix it, don’t throw it away', level: 'B2', age: 'adults', topic: 'Екологія', color: 'tomato', source: 'murly', focus: ['Reading', 'Speaking'],
+    aims: 'Прочитаємо колонку з думкою автора про ремонт речей\nВідстежимо аргументи «за» і контраргументи\nПотренуємо слова-зв’язки: although, whereas, nevertheless, admittedly',
+    blocks: [
+      tip('Перед читанням: що ти робиш, коли ламається чайник, телефон чи куртка? Лагодиш чи купуєш нове?'),
+      vocab(`a tin = бляшанка, металева коробочка
+a kettle = чайник
+to crack = тріснути
+electronic waste = електронні відходи
+a device = пристрій
+rare materials = рідкісні матеріали
+a spare part = запчастина
+admittedly = щоправда, слід визнати
+energy-efficient = енергоощадний
+a manufacturer = виробник
+to value = цінувати
+reasonable = помірний (про ціну)
+nevertheless = проте, однак`),
+      t(`**Why we should learn to repair things again**
+
+My grandmother kept a small tin full of buttons, needles and odd screws. Whenever something broke, she would sit down at the kitchen table and fix it. Today, most of us do the opposite: when a kettle stops working or a phone screen cracks, we simply buy a new one. I believe this habit is costing us far more than we realise.
+
+The most obvious cost is environmental. Electronic waste is one of the fastest-growing types of rubbish in the world, and only a small part of it is properly recycled. Every device we throw away took energy, water and rare materials to produce. Repairing it, by contrast, often requires little more than a spare part and an hour of patience.
+
+Admittedly, repair is not always easy. Many products are designed in a way that makes them difficult to open, and spare parts can be surprisingly expensive. Some people also argue that newer models are more energy-efficient, so replacing an old fridge may actually be the greener choice. That is a fair point, although it applies to far fewer products than manufacturers would like us to think.
+
+There is also a less obvious benefit. When you repair something yourself, you understand how it works, and you start to value it differently. Repair cafés, where volunteers help neighbours fix lamps, bikes and clothes for free, have appeared in many cities, and they are as much about community as about saving money.
+
+Nevertheless, individual effort has its limits. Governments should require companies to make products that last longer and to sell spare parts at reasonable prices. Until that happens, though, the simplest thing we can do is pause before we throw something away and ask: could this be fixed?`),
+      ex(
+        ['choice', 'Choose the correct answer (A, B or C).', `What is the writer’s main opinion? {People should repair things more often|Old products are always better than new ones|Recycling solves the problem of waste}
+Why does the writer mention their grandmother? {To show that repairing things used to be normal|To explain how to sew on a button|To complain about old-fashioned habits}
+What makes repair difficult, according to the text? {Products that are hard to open and expensive spare parts|There are not enough repair cafés|Most people have no free time}
+How does the writer respond to the argument about energy-efficient models? {It is true, but only for some products|It is completely wrong|Everyone should replace their old fridges}
+What does the writer think governments should do? {Make companies produce longer-lasting goods|Open repair cafés in every city|Stop people from throwing devices away}`],
+        ['match', 'Match the words from the text with their meanings.', `a spare part = a piece that replaces a broken part of a machine
+to crack = to break so that thin lines appear
+energy-efficient = using little power to work well
+admittedly = used when you accept that something is true
+reasonable = fair and not too high
+to last = to continue working for a long time`],
+        ['gap', 'Встав слово: although, whereas, nevertheless, by contrast, admittedly.', `Buying a new phone takes five minutes, [whereas] repairing it takes patience.
+[Although] spare parts can be expensive, repair is often cheaper in the end.
+New devices need rare materials. A repair, [by contrast], needs only a spare part.
+[Admittedly], some old fridges use too much energy.
+Individual effort matters. [Nevertheless], governments must act too.`],
+      ),
+      tip('Автор визнає аргумент опонентів (**Admittedly**, ... **That is a fair point, although** ...) і одразу відповідає на нього. Це типовий прийом у тексті з думкою: так аргументація звучить чесніше і переконливіше.'),
+      talk(`What was the last thing you repaired? What was the last thing you threw away instead?
+Would you go to a repair café? What would you bring?
+Should companies be forced to sell spare parts? Why or why not?
+The writer says repair is “as much about community as about saving money”. Do you agree?
+Which is more important: individual habits or laws for companies?`),
+    ],
+  },
 ];
