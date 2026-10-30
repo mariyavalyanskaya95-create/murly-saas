@@ -19,13 +19,54 @@ import { DRILL as modals } from './modals';
 import { DRILL as conditionals } from './conditionals';
 import { DRILL as passive } from './passive';
 
+// нові теми (теми за юнітами Murphy, тексти й завдання власні Murly)
+import { DRILL as dAdjectivesAdverbs } from './adjectives-adverbs';
+import { DRILL as dCausativeHave } from './causative-have';
+import { DRILL as dDependentPrepositions } from './dependent-prepositions';
+import { DRILL as dFutureTimeClauses } from './future-time-clauses';
+import { DRILL as dGerundInfinitive } from './gerund-infinitive';
+import { DRILL as dHaveGot } from './have-got';
+import { DRILL as dImperativesLets } from './imperatives-lets';
+import { DRILL as dLikeDoingWantTo } from './like-doing-want-to';
+import { DRILL as dLinkingWords } from './linking-words';
+import { DRILL as dMayMightPossibility } from './may-might-possibility';
+import { DRILL as dModalsDeduction } from './modals-deduction';
+import { DRILL as dPassiveMore } from './passive-more';
+import { DRILL as dPastPerfect } from './past-perfect';
+import { DRILL as dPhrasalVerbs } from './phrasal-verbs';
+import { DRILL as dPluralsCountable } from './plurals-countable';
+import { DRILL as dPossessiveS } from './possessive-s';
+import { DRILL as dPrepositionsPlace } from './prepositions-place';
+import { DRILL as dPrepositionsTime } from './prepositions-time';
+import { DRILL as dPresentForFuture } from './present-for-future';
+import { DRILL as dPresentPerfectContinuous } from './present-perfect-continuous';
+import { DRILL as dPronounsPossessives } from './pronouns-possessives';
+import { DRILL as dQuestionTags } from './question-tags';
+import { DRILL as dQuestionWords } from './question-words';
+import { DRILL as dReflexivePronouns } from './reflexive-pronouns';
+import { DRILL as dRelativeClauses } from './relative-clauses';
+import { DRILL as dReportedQuestions } from './reported-questions';
+import { DRILL as dReportedSpeech } from './reported-speech';
+import { DRILL as dShouldHadBetter } from './should-had-better';
+import { DRILL as dSoNeitherShortAnswers } from './so-neither-short-answers';
+import { DRILL as dThirdConditional } from './third-conditional';
+import { DRILL as dThisThatTheseThose } from './this-that-these-those';
+import { DRILL as dTooEnough } from './too-enough';
+import { DRILL as dUsedTo } from './used-to';
+import { DRILL as dWasWere } from './was-were';
+import { DRILL as dWishIfOnly } from './wish-if-only';
+import { DRILL as dWordOrder } from './word-order';
+
 export type { Drill, DrillQ } from './types';
 
+const LV: Record<string, number> = { A1: 0, A2: 1, B1: 2, B2: 3 };
 export const DRILLS: Drill[] = [
   toBe, thereIs, presentSimple, presentContinuous, simpleVsCont, articles,
   pastSimple, pastContinuous, presentPerfect, perfectVsPast, future, quantifiers, comparatives, modals,
   conditionals, passive,
-];
+].concat([
+  dHaveGot, dImperativesLets, dPrepositionsPlace, dPronounsPossessives, dThisThatTheseThose, dWasWere, dAdjectivesAdverbs, dLikeDoingWantTo, dPluralsCountable, dPossessiveS, dPrepositionsTime, dQuestionWords, dReflexivePronouns, dSoNeitherShortAnswers, dTooEnough, dCausativeHave, dDependentPrepositions, dFutureTimeClauses, dGerundInfinitive, dLinkingWords, dMayMightPossibility, dModalsDeduction, dPastPerfect, dPhrasalVerbs, dPresentForFuture, dPresentPerfectContinuous, dQuestionTags, dRelativeClauses, dReportedQuestions, dReportedSpeech, dShouldHadBetter, dUsedTo, dWishIfOnly, dWordOrder, dPassiveMore, dThirdConditional,
+]).sort((x, y) => LV[x.level] - LV[y.level]);
 
 export const getDrill = (slug: string) => DRILLS.find((d) => d.slug === slug);
 

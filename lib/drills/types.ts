@@ -13,7 +13,7 @@ export type Drill = {
   slug: string;              // напр. 'past-simple'
   title: string;             // англійською: 'Past Simple + 3 forms'
   uk: string;                // українською: 'Минулий простий час і 3 форми дієслів'
-  level: 'A1' | 'A2' | 'B1';
+  level: 'A1' | 'A2' | 'B1' | 'B2';
   color: 'lime' | 'sky' | 'mustard' | 'tomato' | 'pink';
   icon: string;              // id іконки зі спрайту
   lead: string;              // 1-2 речення: про що тема
