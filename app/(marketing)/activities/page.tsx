@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import Icon from '@/components/Icon';
-import Art from '@/components/Art';
 import SiteNav from '@/components/SiteNav';
 import SiteFooter from '@/components/SiteFooter';
 import ActivityList from '@/components/activities/ActivityList';
@@ -26,7 +25,6 @@ export default function ActivitiesHub() {
           <span className="mu-section__eyebrow"><Icon id="e-speak" />{t({ uk: 'Speaking-активності', ru: 'Speaking-активности', en: 'Speaking activities' })}</span>
           <h1>{t({ uk: 'Говоримо англійською', ru: 'Говорим по-английски', en: 'Get everyone' })} <em>{t({ uk: 'з картками.', ru: 'с карточками.', en: 'talking.' })}</em></h1>
           <p>{t({ uk: 'Готові активності на 20-40 хвилин: картки з малюнками, корисні фрази і питання для обговорення. Показуй слайди на уроці або завантаж PDF для друку.', ru: 'Готовые активности на 20-40 минут: карточки с рисунками, полезные фразы и вопросы для обсуждения. Показывай слайды на уроке или скачай PDF для печати.', en: 'Ready-made 20-40 minute activities: illustrated cards, useful phrases and discussion questions. Present the slides in class or download a PDF to print.' })}</p>
-          <div className="act-hero__art" aria-hidden="true"><Art id="a-speech" className="sl-float sl-float--0" /><Art id="a-dice" className="sl-float sl-float--1" /><Art id="a-bulb" className="sl-float sl-float--2" /></div>
         </div>
       </section>
       <section className="mu-section" style={{ paddingTop: 8 }}>
