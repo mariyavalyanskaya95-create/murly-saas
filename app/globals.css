@@ -3168,3 +3168,28 @@ button.mu-nav__search { cursor: pointer; font: inherit; padding: 0; }
   .act-print .act-thumb:last-child { break-after: auto; page-break-after: auto; }
   .sl-float { animation: none !important; }
 }
+
+/* Активності: фото-фон, аркуш поверх фото, фірмова плашка Murly */
+.asl-bg { position: absolute; inset: 0; z-index: 0; background-size: cover; background-position: center; }
+.asl-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(26,26,26,.05), rgba(26,26,26,.25)); }
+.asl .sl-in, .asl .sl-foot { z-index: 1; }
+.asl.has-photo .sl-in { inset: 2.4cqw 2.4cqw 6.4cqw; padding: 2.4cqw 3cqw 1.6cqw; background: rgba(255,253,248,.95); border: .2cqw solid var(--ink); border-radius: 2cqw; box-shadow: .5cqw .5cqw 0 var(--ink); }
+.asl.has-photo .sl-head { padding-right: 15cqw; }
+.asl.has-photo .sl-title { text-decoration: underline; text-decoration-color: var(--act); text-decoration-thickness: .7cqw; text-underline-offset: .2cqw; text-decoration-skip-ink: none; }
+.asl.has-photo .sl-foot { height: 4cqw; background: rgba(26,26,26,.82); color: #fff; border-top: 0; }
+.asl.has-photo .sl-phrase { background: var(--act); border-style: solid; }
+.asl.has-photo .sl-qs li::before, .asl.has-photo .sl-card__tag { background: var(--act); }
+.asl.has-photo .sl-group { background: #fff; }
+.asl.has-photo .sl-corner { top: auto; bottom: 1.4cqw; right: 2cqw; }
+/* обкладинка: фото на весь слайд, текст на аркуші, наліпки поверх фото */
+.asl.has-photo.sl--cover .sl-in { inset: 0 0 4cqw 0; background: none; border: 0; box-shadow: none; padding: 4cqw; }
+.asl.has-photo .sl-cover__text { flex: none; width: 52cqw; background: rgba(255,253,248,.96); border: .22cqw solid var(--ink); border-radius: 2.4cqw; box-shadow: .6cqw .6cqw 0 var(--ink); padding: 3cqw 3.2cqw; }
+.asl.has-photo .sl-cover__title { font-size: 4.8cqw; }
+.asl.has-photo .sl-cover__art .art { filter: drop-shadow(0 .6cqw .8cqw rgba(0,0,0,.25)); }
+/* плашка Murly в кутку кожного слайда */
+.asl-brand { position: absolute; z-index: 3; top: 1.1cqw; right: 1.4cqw; display: inline-flex; align-items: center; font-family: 'Unbounded', sans-serif; font-weight: 900; font-size: 1.75cqw; line-height: 1; letter-spacing: .02em; color: var(--ink); background: #fff; border: .18cqw solid var(--ink); border-radius: 99px; padding: .45cqw 1.3cqw; box-shadow: .3cqw .3cqw 0 var(--ink); }
+.asl-brand__cat { width: 3.1cqw !important; height: 3.1cqw !important; margin: -.7cqw -.05cqw; flex: none; }
+.asl .sl-brand { font-family: inherit; font-weight: 700; letter-spacing: 0; }
+@media print { .asl-bg { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+.act-card__art.has-photo { height: 150px; margin: -18px -18px 4px; padding: 12px 14px; align-items: flex-end; background-size: cover; background-position: center; border-bottom: 2px solid var(--mu-ink); border-radius: 18px 18px 0 0; }
+.act-card__art.has-photo .art { width: 72px; height: 72px; filter: drop-shadow(0 4px 6px rgba(0,0,0,.25)); }
