@@ -10,6 +10,7 @@ export type Student = {
   id: string; name: string; level: string; price: number;
   contact?: string; parent?: string; link?: string; color: string; createdAt: string;
   inviteCode?: string; joined?: boolean;
+  tg?: boolean; parentTg?: boolean; // підключили Telegram учень / батьки
   loginPhone?: string; loginPin?: string; // вхід учня за номером і PIN
   adult?: boolean; nmt?: boolean; // дорослий: без монеток; nmt: показувати НМТ
   owedLessons?: number; prepaidLessons?: number; // стартовий баланс: уроки до Murly (борг / оплачено наперед)
@@ -35,6 +36,7 @@ export type Homework = {
   due?: string; status: HomeworkStatus; score?: number; total?: number; answer?: string; feedback?: string;
   createdAt: string; doneAt?: string;
   groupId?: string;
+  toParent?: boolean; // лише сигнал серверу: надіслати батькам у Telegram
 };
 export type Settings = { name: string; link: string; linkKind: 'zoom' | 'meet' | 'other' };
 

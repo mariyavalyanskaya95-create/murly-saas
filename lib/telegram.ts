@@ -22,6 +22,13 @@ export function studentLink(studentId: string, lang: string) {
   const l = LANGS.includes(lang as Lang) ? lang : 'uk';
   return `https://t.me/${botUsername()}?start=s${id}_${l}_${sig(`s${id}${l}`)}`;
 }
+// Батьки учня: окремий чат, у той самий запис учня (parent_tg_chat_id)
+export function parentLink(studentId: string, lang: string) {
+  if (!tgReady()) return '';
+  const id = studentId.replace(/-/g, '');
+  const l = LANGS.includes(lang as Lang) ? lang : 'uk';
+  return `https://t.me/${botUsername()}?start=p${id}_${l}_${sig(`p${id}${l}`)}`;
+}
 export function teacherLink(teacherId: string, lang: string) {
   if (!tgReady()) return '';
   const id = teacherId.replace(/^user_/, '');
@@ -29,13 +36,13 @@ export function teacherLink(teacherId: string, lang: string) {
   return `https://t.me/${botUsername()}?start=t${id}_${l}_${sig(`t${id}${l}`)}`;
 }
 
-export function parsePayload(p: string): { kind: 'student' | 'teacher'; id: string; lang: Lang } | null {
-  const m = /^([st])([A-Za-z0-9]+)_(uk|ru|en)_([A-Za-z0-9]{10})$/.exec(p.trim());
+export function parsePayload(p: string): { kind: 'student' | 'parent' | 'teacher'; id: string; lang: Lang } | null {
+  const m = /^([stp])([A-Za-z0-9]+)_(uk|ru|en)_([A-Za-z0-9]{10})$/.exec(p.trim());
   if (!m || sig(`${m[1]}${m[2]}${m[3]}`) !== m[4]) return null;
-  if (m[1] === 's') {
+  if (m[1] === 's' || m[1] === 'p') {
     const h = m[2];
     if (h.length !== 32) return null;
-    return { kind: 'student', id: `${h.slice(0, 8)}-${h.slice(8, 12)}-${h.slice(12, 16)}-${h.slice(16, 20)}-${h.slice(20)}`, lang: m[3] as Lang };
+    return { kind: m[1] === 's' ? 'student' : 'parent', id: `${h.slice(0, 8)}-${h.slice(8, 12)}-${h.slice(12, 16)}-${h.slice(16, 20)}-${h.slice(20)}`, lang: m[3] as Lang };
   }
   return { kind: 'teacher', id: `user_${m[2]}`, lang: m[3] as Lang };
 }
@@ -63,6 +70,16 @@ export async function notifyStudent(studentId: string, msg: (lang: string) => st
     const chat = r[0]?.tg_chat_id; const lang = String(r[0]?.tg_lang || 'uk');
     if (chat) await tgSend(String(chat), msg(lang), button?.(lang));
   } catch { /* колонок ще нема або Telegram недоступний */ }
+}
+// Сповістити батьків учня (якщо вони підключили Telegram)
+export async function notifyParent(studentId: string, msg: (lang: string) => string, button?: (lang: string) => { text: string; url: string }) {
+  if (!tgReady() || !dbReady()) return false;
+  try {
+    const r = await db.query(`students?id=eq.${encodeURIComponent(studentId)}&select=parent_tg_chat_id,parent_tg_lang`);
+    const chat = r[0]?.parent_tg_chat_id; const lang = String(r[0]?.parent_tg_lang || 'uk');
+    if (chat) return await tgSend(String(chat), msg(lang), button?.(lang));
+  } catch { /* */ }
+  return false;
 }
 export async function notifyTeacher(teacherId: string, msg: (lang: string) => string, button?: (lang: string) => { text: string; url: string }) {
   if (!tgReady() || !dbReady()) return;
