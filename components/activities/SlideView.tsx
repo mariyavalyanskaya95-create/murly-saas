@@ -1,7 +1,7 @@
 'use client';
 // Один слайд активності. Розмір тексту залежить від ширини слайда (container query), тож однаково виглядає
 // у прев’ю, на весь екран і в PDF. live = показ на уроці: картки відкриваються, шкали клікаються, фото збільшується.
-import { useState } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 import Art from '../Art';
 import Kit from '../Kit';
 import { PHOTOS, isPhotoId, photoUrl } from '@/lib/activities/photos';
@@ -63,6 +63,33 @@ function Frame({ a, s, cover, children }: { a: Activity; s: Slide; cover?: boole
   );
 }
 
+// Вміст слайда, що сам зменшується, якщо текст не влазить (замість налізання карток одна на одну)
+function In({ zoom, children }: { zoom?: boolean; children: React.ReactNode }) {
+  const ref = useRef<HTMLDivElement>(null);
+  useLayoutEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const run = () => {
+      let k = 1;
+      el.style.setProperty('--k', '1');
+      for (let i = 0; i < 14; i++) {
+        if (el.scrollHeight <= el.clientHeight + 2 && el.scrollWidth <= el.clientWidth + 2) break;
+        k = Math.max(0.5, +(k - 0.04).toFixed(2));
+        el.style.setProperty('--k', String(k));
+        if (k <= 0.5) break;
+      }
+    };
+    run();
+    const ro = new ResizeObserver(run);
+    if (el.parentElement) ro.observe(el.parentElement);
+    document.fonts?.ready.then(run).catch(() => {});
+    const img = el.querySelector('img');
+    img?.addEventListener('load', run);
+    return () => { ro.disconnect(); img?.removeEventListener('load', run); };
+  }, [children]);
+  return <div className={`sl-in ${zoom ? 'is-zoom' : ''}`}><div ref={ref} className="sl-fit">{children}</div></div>;
+}
+
 function Head({ title, instruction }: { title: string; instruction?: string }) {
   return (
     <header className="sl-head">
@@ -106,7 +133,7 @@ export default function SlideView({ a, s, n, total, live, pick }: { a: Activity;
     const img = ok ? <img src={photoUrl(s.photo, 1600)} alt="" loading="lazy" /> : <Art id="a-camera" className="sl-pic__ph" />;
     return (
       <Frame a={a} s={s}>
-        <div className={`sl-in ${zoom ? 'is-zoom' : ''}`}>
+        <In zoom={zoom}>
           <Head title={s.title} instruction={s.instruction} />
           <div className="sl-pic">
             {live ? <button type="button" className="sl-pic__img" onClick={() => setZoom(!zoom)} aria-label="Zoom">{img}</button> : <div className="sl-pic__img">{img}</div>}
@@ -115,7 +142,7 @@ export default function SlideView({ a, s, n, total, live, pick }: { a: Activity;
               {s.words?.length ? <div className="sl-words"><b>Useful words</b>{s.words.map((w, i) => <span key={i}>{w}</span>)}</div> : null}
             </div>
           </div>
-        </div>
+        </In>
         {foot}
       </Frame>
     );
@@ -124,13 +151,13 @@ export default function SlideView({ a, s, n, total, live, pick }: { a: Activity;
   if (s.kind === 'scale') {
     return (
       <Frame a={a} s={s}>
-        <div className="sl-in">
+        <In>
           <Head title={s.title} instruction={s.instruction} />
           <div className="sl-scale">
             <div className="sl-scale__ends"><span /><span className="sl-scale__line sl-scale__labels"><i>{s.left}</i><i>{s.right}</i></span></div>
             {s.statements.map((x, i) => <ScaleRow key={i} text={x} i={i} live={live} />)}
           </div>
-        </div>
+        </In>
         {foot}
       </Frame>
     );
@@ -139,13 +166,13 @@ export default function SlideView({ a, s, n, total, live, pick }: { a: Activity;
   if (s.kind === 'questions') {
     return (
       <Frame a={a} s={s}>
-        <div className="sl-in">
+        <In>
           <Head title={s.title} instruction={s.instruction} />
           <div className="sl-qwrap">
             <ol className="sl-qs">{s.questions.map((q, i) => <li key={i} className={pick === i ? 'is-picked' : ''} style={{ ['--i' as string]: i }}>{q}</li>)}</ol>
             {s.art && <Art id={s.art} className="sl-qart sl-float sl-float--1" />}
           </div>
-        </div>
+        </In>
         {foot}
       </Frame>
     );
@@ -154,7 +181,7 @@ export default function SlideView({ a, s, n, total, live, pick }: { a: Activity;
   if (s.kind === 'phrases') {
     return (
       <Frame a={a} s={s}>
-        <div className="sl-in">
+        <In>
           <Head title={s.title} instruction={s.instruction} />
           <div className={`sl-groups sl-groups--${Math.min(3, s.groups.length)}`}>
             {s.groups.map((g, i) => (
@@ -165,7 +192,7 @@ export default function SlideView({ a, s, n, total, live, pick }: { a: Activity;
             ))}
           </div>
           {s.art && <Art id={s.art} className="sl-corner sl-float sl-float--2" />}
-        </div>
+        </In>
         {foot}
       </Frame>
     );
@@ -174,7 +201,7 @@ export default function SlideView({ a, s, n, total, live, pick }: { a: Activity;
   if (s.kind === 'choose') {
     return (
       <Frame a={a} s={s}>
-        <div className="sl-in">
+        <In>
           <Head title={s.title} instruction={s.instruction} />
           <div className={`sl-options sl-options--${s.options.length}`}>
             {s.options.map((c, i) => {
@@ -194,7 +221,7 @@ export default function SlideView({ a, s, n, total, live, pick }: { a: Activity;
             })}
           </div>
           {s.phrases?.length ? <Phrases items={s.phrases} /> : null}
-        </div>
+        </In>
         {foot}
       </Frame>
     );
@@ -204,13 +231,13 @@ export default function SlideView({ a, s, n, total, live, pick }: { a: Activity;
   const cols = s.cols ?? (s.cards.length <= 4 ? 2 : s.cards.length <= 6 ? 3 : 4);
   return (
     <Frame a={a} s={s}>
-      <div className="sl-in">
+      <In>
         <Head title={s.title} instruction={s.instruction} />
         <div className={`sl-cards sl-cards--${cols}`}>
           {s.cards.map((c, i) => <CardBox key={i} c={c} i={i} live={live} picked={pick === i} />)}
         </div>
         {s.phrases?.length ? <Phrases items={s.phrases} /> : null}
-      </div>
+      </In>
       {foot}
     </Frame>
   );
