@@ -35,7 +35,7 @@ export default function SlideView({ a, s, n, total }: { a: Activity; s: Slide; n
 
   if (s.kind === 'cover') {
     return (
-      <section className={`sl sl--cover sl--${a.color}`}>
+      <section className={`asl sl--cover sl--${a.color}`}>
         <div className="sl-in">
           <div className="sl-cover__text">
             <span className="sl-levels">{a.levels.join(' · ')}</span>
@@ -53,7 +53,7 @@ export default function SlideView({ a, s, n, total }: { a: Activity; s: Slide; n
 
   if (s.kind === 'questions') {
     return (
-      <section className={`sl sl--${a.color}`}>
+      <section className={`asl sl--${a.color}`}>
         <div className="sl-in">
           <header className="sl-head">
             <h2 className="sl-title">{s.title}</h2>
@@ -71,7 +71,7 @@ export default function SlideView({ a, s, n, total }: { a: Activity; s: Slide; n
 
   if (s.kind === 'phrases') {
     return (
-      <section className={`sl sl--${a.color}`}>
+      <section className={`asl sl--${a.color}`}>
         <div className="sl-in">
           <header className="sl-head">
             <h2 className="sl-title">{s.title}</h2>
@@ -94,7 +94,7 @@ export default function SlideView({ a, s, n, total }: { a: Activity; s: Slide; n
 
   if (s.kind === 'choose') {
     return (
-      <section className={`sl sl--${a.color}`}>
+      <section className={`asl sl--${a.color}`}>
         <div className="sl-in">
           <header className="sl-head">
             <h2 className="sl-title">{s.title}</h2>
@@ -120,7 +120,7 @@ export default function SlideView({ a, s, n, total }: { a: Activity; s: Slide; n
   // cards
   const cols = s.cols ?? (s.cards.length <= 4 ? 2 : s.cards.length <= 6 ? 3 : 4);
   return (
-    <section className={`sl sl--${a.color}`}>
+    <section className={`asl sl--${a.color}`}>
       <div className="sl-in">
         <header className="sl-head">
           <h2 className="sl-title">{s.title}</h2>
