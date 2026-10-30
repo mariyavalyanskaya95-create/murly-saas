@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { auth } from '@clerk/nextjs/server';
 import { db, dbReady } from '@/lib/db';
-import { linksOf, menuAnswer, menuKeyboard, menuTitle, notLinked } from '@/lib/tg-menu';
+import { linksOf, menuAnswer, menuKeyboard, menuTitle, notLinked, teacherAnswer, teacherKeyboard, teacherOf } from '@/lib/tg-menu';
 import { L, LANG_ASK, LANG_KEYBOARD, parsePayload, setupBotProfile, tgApi, setupWebhook, teacherLink, tgReady, tgSend, webhookSecret } from '@/lib/telegram';
 
 export const dynamic = 'force-dynamic';
@@ -13,9 +13,9 @@ type Upd = {
 };
 // Меню з кнопками (лише для учнів і батьків)
 async function sendMenu(chat: number) {
-  const { lang, links } = await linksOf(chat);
-  if (!links.length) return;
-  await tgApi('sendMessage', { chat_id: chat, text: menuTitle(lang), reply_markup: menuKeyboard(lang, links) });
+  const [{ lang, links }, teacher] = await Promise.all([linksOf(chat), teacherOf(chat)]);
+  if (teacher) await tgApi('sendMessage', { chat_id: chat, text: L(teacher.lang, { uk: 'Кабінет учителя', ru: 'Кабинет учителя', en: 'Teacher' }), reply_markup: teacherKeyboard(teacher.lang) });
+  if (links.length) await tgApi('sendMessage', { chat_id: chat, text: menuTitle(lang), reply_markup: menuKeyboard(lang, links) });
 }
 const DONE_LANG = { uk: 'Готово! Повідомлення будуть українською.', ru: 'Готово! Сообщения будут на русском.', en: 'Done! Messages will be in English.' };
 
@@ -36,6 +36,17 @@ export async function POST(req: Request) {
   // натиснули кнопку мови
   const cq = u?.callback_query;
   // кнопки меню: оплата, успішність, монетки, заняття, домашка
+  // кнопки вчителя
+  if (cq && /^t:/.test(cq.data || '')) {
+    const chat = cq.message?.chat?.id;
+    await tgApi('answerCallbackQuery', { callback_query_id: cq.id });
+    const teacher = chat && dbReady() ? await teacherOf(chat) : null;
+    if (chat && teacher) {
+      const text = await teacherAnswer((cq.data || '').slice(2), teacher.lang, teacher.id);
+      if (text) await tgApi('sendMessage', { chat_id: chat, text, parse_mode: 'HTML', disable_web_page_preview: true, reply_markup: teacherKeyboard(teacher.lang) });
+    }
+    return NextResponse.json({ ok: true });
+  }
   if (cq && /^m:/.test(cq.data || '')) {
     const chat = cq.message?.chat?.id;
     await tgApi('answerCallbackQuery', { callback_query_id: cq.id });
