@@ -3257,3 +3257,6 @@ button.sl-scale__dot:hover { transform: scale(1.2); }
 .sl-fit > .sl-cards, .sl-fit > .sl-options, .sl-fit > .sl-groups, .sl-fit > .sl-scale, .sl-fit > .sl-qwrap { flex: 0 0 auto; margin-block: auto; min-height: auto; }
 .sl-fit .sl-card, .sl-fit .sl-option, .sl-fit .sl-group, .sl-fit .sl-scale__row { min-height: auto; }
 .sl-fit > .sl-phrases { flex: none; }
+.act-pages { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 28px; }
+.act-pages .g-chip:disabled { opacity: .4; cursor: default; }
+.act-filters { scroll-margin-top: 120px; }
