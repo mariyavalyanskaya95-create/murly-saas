@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { auth, clerkClient } from '@clerk/nextjs/server';
 import { db, dbReady } from '@/lib/db';
 import { normPhone, validPhone, validPin } from '@/lib/pin-login';
-import { L, SITE, esc, notifyStudent } from '@/lib/telegram';
+import { L, SITE, esc, notifyParent, notifyStudent } from '@/lib/telegram';
 import { normalizeSections, type Section } from '@/lib/exercise';
 
 export const dynamic = 'force-dynamic';
@@ -41,7 +41,7 @@ const toDb = {
 };
 const und = (v: unknown) => (v === null ? undefined : v);
 const fromDb = {
-  student: (r: Row) => ({ id: r.id, name: r.name, level: r.level, price: r.price, contact: und(r.contact), parent: und(r.parent), link: und(r.link), color: r.color, createdAt: r.created_at, inviteCode: und(r.invite_code), joined: Boolean(r.user_id), song: und(r.song), songUrl: und(r.song_url), about: und(r.about), payMode: r.pay_mode === 'post' ? 'post' : 'pre', loginPhone: und(r.login_phone), loginPin: und(r.login_pin), adult: Boolean(r.is_adult), nmt: Boolean(r.nmt), owedLessons: Number(r.owed_lessons) || 0, prepaidLessons: Number(r.prepaid_lessons) || 0 }),
+  student: (r: Row) => ({ id: r.id, name: r.name, level: r.level, price: r.price, contact: und(r.contact), parent: und(r.parent), link: und(r.link), color: r.color, createdAt: r.created_at, inviteCode: und(r.invite_code), joined: Boolean(r.user_id), song: und(r.song), songUrl: und(r.song_url), about: und(r.about), payMode: r.pay_mode === 'post' ? 'post' : 'pre', loginPhone: und(r.login_phone), loginPin: und(r.login_pin), adult: Boolean(r.is_adult), nmt: Boolean(r.nmt), owedLessons: Number(r.owed_lessons) || 0, prepaidLessons: Number(r.prepaid_lessons) || 0, tg: Boolean(r.tg_chat_id), parentTg: Boolean(r.parent_tg_chat_id) }),
   lesson: (r: Row) => ({ id: r.id, studentId: r.student_id, start: r.start, duration: r.duration, topic: und(r.topic), link: und(r.link), status: r.status, groupId: und(r.group_id) }),
   group: (r: Row) => ({ id: r.id, name: r.name, color: r.color, studentIds: (r.student_ids as string[] | null) ?? [], link: und(r.link), createdAt: r.created_at }),
   note: (r: Row) => ({ id: r.id, studentId: r.student_id, text: r.text, at: r.at, images: und(r.images), files: und(r.files) }),
@@ -172,6 +172,14 @@ export async function POST(req: Request) {
         const title = String(p.title || ''); const due = p.due ? String(p.due) : '';
         await notifyStudent(String(p.studentId), (l) => `${L(l, { uk: 'Нова домашка', ru: 'Новая домашка', en: 'New homework' })}: <b>${esc(title)}</b>${due ? `\n${L(l, { uk: 'Здати до', ru: 'Сдать до', en: 'Due' })} ${new Date(due).toLocaleString(l === 'en' ? 'en-GB' : l === 'ru' ? 'ru-RU' : 'uk-UA', { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Kyiv' })}` : ''}`,
           (l) => ({ text: L(l, { uk: 'Відкрити домашку', ru: 'Открыть домашку', en: 'Open homework' }), url: `${SITE}/student#homework` }));
+        // батькам дитини, якщо вчитель поставив галочку
+        if (p.toParent) {
+          const st = await db.query(`students?id=eq.${encodeURIComponent(String(p.studentId))}&teacher_id=eq.${encodeURIComponent(t)}&select=name`).catch(() => []);
+          if (st[0]) {
+            const nm = esc(String(st[0].name || ''));
+            await notifyParent(String(p.studentId), (l) => `${L(l, { uk: `Учитель задав ${nm} нову домашку`, ru: `Учитель задал ${nm} новую домашку`, en: `The teacher gave ${nm} new homework` })}: <b>${esc(title)}</b>${due ? `\n${L(l, { uk: 'Здати до', ru: 'Сдать до', en: 'Due' })} ${new Date(due).toLocaleString(l === 'en' ? 'en-GB' : l === 'ru' ? 'ru-RU' : 'uk-UA', { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Kyiv' })}` : ''}${p.instructions ? `\n\n${esc(String(p.instructions).slice(0, 600))}` : ''}`);
+          }
+        }
         break;
       }
       case 'updateHomework': {
