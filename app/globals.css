@@ -3036,3 +3036,18 @@ button.mu-nav__search { cursor: pointer; font: inherit; padding: 0; }
 .gr-fun__lines p { margin: 0; font-size: 17px; line-height: 1.45; }
 .gr-fun__point { display: flex; gap: 8px; align-items: flex-start; margin: 10px 0 0; color: var(--mu-ink-soft, #555); line-height: 1.45; }
 .gr-fun__point .mu-ic { flex: none; width: 20px; height: 20px; margin-top: 2px; }
+
+/* Домашка: задати ще іншим, батькам у Telegram, кнопка Telegram у картці учня */
+.t-hw-more, .t-hw-parent { display: grid; gap: 6px; }
+.t-hw-more small, .t-hw-copy > small { font-weight: 700; }
+.t-check { display: inline-flex !important; flex-direction: row !important; align-items: center; gap: 8px; font-weight: 600; cursor: pointer; }
+.t-check input { width: 18px; height: 18px; accent-color: var(--mu-ink); margin: 0; }
+.t-hw-copy { display: grid; gap: 8px; margin-top: 10px; padding-top: 12px; border-top: 1.5px dashed rgba(0,0,0,.18); }
+.t-danger .t-link-btn + .t-link-btn { margin-left: 16px; }
+.t-tg { position: relative; display: inline-flex; align-self: center; }
+.t-tg svg { width: 16px; height: 16px; }
+.t-tg__pop { position: absolute; top: calc(100% + 8px); right: 0; z-index: 30; width: min(340px, 86vw); display: grid; gap: 10px; padding: 14px; background: #fff; border: 2px solid var(--mu-ink); border-radius: 14px; box-shadow: 0 6px 0 var(--mu-ink); text-align: left; }
+.t-tg__pop p { margin: 0; font-size: 14px; }
+.t-tg__row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.t-tg__row b { min-width: 76px; }
+@media (max-width: 640px) { .t-tg__pop { right: auto; left: 0; } }
