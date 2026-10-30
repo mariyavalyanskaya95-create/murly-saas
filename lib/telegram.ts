@@ -113,24 +113,27 @@ export async function setupWebhook(origin: string) {
 }
 
 // Оформлення бота: опис (екран до Start), короткий опис (профіль) і меню команд, для uk/ru/en
-const BOT_TEXT: Record<Lang, { description: string; short: string; start: string; lang: string }> = {
+const BOT_TEXT: Record<Lang, { description: string; short: string; start: string; lang: string; menu: string }> = {
   uk: {
-    description: 'Привіт! Я бот Murly, помічник для занять англійською на murly.com.ua.\n\nЩо я надсилаю:\n• нові домашки від учителя і термін здачі\n• нагадування про заняття зранку\n• оцінки й коментарі після перевірки\n• батькам: яку домашку отримала дитина\n\nМову повідомлень можна змінити командою /language.\n\nЯк підключити: відкрий посилання від учителя або натисни «Підключити Telegram» у своєму кабінеті на сайті, а потім Start.',
+    description: 'Привіт! Я бот Murly, помічник для занять англійською на murly.com.ua.\n\nЩо я надсилаю:\n• нові домашки від учителя і термін здачі\n• нагадування про заняття зранку\n• оцінки й коментарі після перевірки\n• батькам: яку домашку отримала дитина\n\nКнопки /menu: оплата, успішність, монетки, заняття й домашка. Мову змінює /language.\n\nЯк підключити: відкрий посилання від учителя або натисни «Підключити Telegram» у своєму кабінеті на сайті, а потім Start.',
     short: 'Домашки, нагадування про заняття й коментарі вчителя з Murly просто в Telegram.',
     start: 'Підключити сповіщення',
     lang: 'Мова повідомлень',
+    menu: 'Оплата, успішність, монетки',
   },
   ru: {
-    description: 'Привет! Я бот Murly, помощник для занятий английским на murly.com.ua.\n\nЧто я присылаю:\n• новые домашки от учителя и срок сдачи\n• напоминания о занятиях утром\n• оценки и комментарии после проверки\n• родителям: какую домашку получил ребёнок\n\nЯзык сообщений можно сменить командой /language.\n\nКак подключить: открой ссылку от учителя или нажми «Подключить Telegram» в своём кабинете на сайте, а потом Start.',
+    description: 'Привет! Я бот Murly, помощник для занятий английским на murly.com.ua.\n\nЧто я присылаю:\n• новые домашки от учителя и срок сдачи\n• напоминания о занятиях утром\n• оценки и комментарии после проверки\n• родителям: какую домашку получил ребёнок\n\nКнопки /menu: оплата, успеваемость, монетки, занятия и домашка. Язык меняет /language.\n\nКак подключить: открой ссылку от учителя или нажми «Подключить Telegram» в своём кабинете на сайте, а потом Start.',
     short: 'Домашки, напоминания о занятиях и комментарии учителя из Murly прямо в Telegram.',
     start: 'Подключить уведомления',
     lang: 'Язык сообщений',
+    menu: 'Оплата, успеваемость, монетки',
   },
   en: {
-    description: 'Hi! I am the Murly bot, your helper for English lessons on murly.com.ua.\n\nWhat I send:\n• new homework from your teacher and the due date\n• morning lesson reminders\n• scores and comments after checking\n• for parents: what homework your child got\n\nChange the message language with /language.\n\nHow to connect: open the link from your teacher or press Connect Telegram in your account on the site, then Start.',
+    description: 'Hi! I am the Murly bot, your helper for English lessons on murly.com.ua.\n\nWhat I send:\n• new homework from your teacher and the due date\n• morning lesson reminders\n• scores and comments after checking\n• for parents: what homework your child got\n\n/menu buttons: payments, progress, coins, lessons and homework. /language changes the language.\n\nHow to connect: open the link from your teacher or press Connect Telegram in your account on the site, then Start.',
     short: 'Homework, lesson reminders and teacher comments from Murly, right in Telegram.',
     start: 'Turn on notifications',
     lang: 'Message language',
+    menu: 'Payments, progress, coins',
   },
 };
 export async function setupBotProfile() {
@@ -143,12 +146,12 @@ export async function setupBotProfile() {
     const x = BOT_TEXT[l]; const lc = l === 'uk' ? {} : { language_code: l };
     res.push(await call('setMyDescription', { description: x.description, ...lc }));
     res.push(await call('setMyShortDescription', { short_description: x.short, ...lc }));
-    res.push(await call('setMyCommands', { commands: [{ command: 'start', description: x.start }, { command: 'language', description: x.lang }], ...lc }));
+    res.push(await call('setMyCommands', { commands: [{ command: 'menu', description: x.menu }, { command: 'language', description: x.lang }, { command: 'start', description: x.start }], ...lc }));
   }
   // українська ще й окремо з кодом uk, щоб українська мова застосунку теж бачила свій текст
   const u = BOT_TEXT.uk;
   res.push(await call('setMyDescription', { description: u.description, language_code: 'uk' }));
   res.push(await call('setMyShortDescription', { short_description: u.short, language_code: 'uk' }));
-  res.push(await call('setMyCommands', { commands: [{ command: 'start', description: u.start }, { command: 'language', description: u.lang }], language_code: 'uk' }));
+  res.push(await call('setMyCommands', { commands: [{ command: 'menu', description: u.menu }, { command: 'language', description: u.lang }, { command: 'start', description: u.start }], language_code: 'uk' }));
   return res.every(Boolean);
 }
