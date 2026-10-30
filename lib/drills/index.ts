@@ -57,7 +57,11 @@ import { DRILL as dWasWere } from './was-were';
 import { DRILL as dWishIfOnly } from './wish-if-only';
 import { DRILL as dWordOrder } from './word-order';
 
-export type { Drill, DrillQ } from './types';
+import { FUN_A } from './fun-a';
+import { FUN_B } from './fun-b';
+export type { Drill, DrillQ, DrillFun } from './types';
+// смішна сценка до кожної теми
+export const DRILL_FUN = { ...FUN_A, ...FUN_B };
 
 const LV: Record<string, number> = { A1: 0, A2: 1, B1: 2, B2: 3 };
 export const DRILLS: Drill[] = [

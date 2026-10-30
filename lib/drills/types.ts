@@ -39,3 +39,6 @@ export type DrillPlus = {
   translate?: { title: string; text: string; items: { q: string; options: string[]; a: number; why: string }[] };
   speaking?: { title: string; text: string; questions: string[] };
 };
+
+// Смішна сценка до теми: короткий діалог англійською з англійськими іменами і пояснення, де тут граматика
+export type DrillFun = { title: string; lines: { who: string; text: string }[]; point: string };

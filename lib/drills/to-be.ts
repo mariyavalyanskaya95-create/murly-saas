@@ -13,7 +13,7 @@ export const DRILL: Drill = {
   lead: 'To be означає «бути, є, знаходитися». В українській ми часто його пропускаємо («Я втомлений»), а в англійській без нього речення розвалюється: I am tired.',
   theory: {
     when: [
-      { title: 'Хто ти, ім’я, професія', example: 'I’m Olena. I’m a designer.', uk: 'Я Олена. Я дизайнерка.' },
+      { title: 'Хто ти, ім’я, професія', example: 'I’m Emma. I’m a designer.', uk: 'Я Емма. Я дизайнерка.' },
       { title: 'Вік', example: 'My brother is 14.', uk: 'Моєму братові 14 років.' },
       { title: 'Стан і почуття', example: 'We are hungry and a bit tired.', uk: 'Ми голодні й трохи втомлені.' },
       { title: 'Де хтось або щось знаходиться, звідки ти', example: 'Max is at the gym. He’s from Lviv.', uk: 'Макс у спортзалі. Він зі Львова.' },
@@ -52,7 +52,7 @@ export const DRILL: Drill = {
       questions: [
         c('I ___ fifteen years old.', ['is', 'am', 'are'], 1, 'З I завжди am. Is для he / she / it, are для you / we / they.'),
         c('My cat ___ very lazy.', ['are', 'am', 'is'], 2, 'My cat = it, одна тварина, тому is.'),
-        c('Max and Ira ___ best friends.', ['are', 'is', 'am'], 0, 'Max and Ira = they, двоє людей, тому are.'),
+        c('Max and Lily ___ best friends.', ['are', 'is', 'am'], 0, 'Max and Lily = they, двоє людей, тому are.'),
         c('You ___ a great singer!', ['is', 'are', 'am'], 1, 'З you завжди are, навіть коли звертаємося до однієї людини.'),
         c('The pizza ___ hot.', ['am', 'are', 'is'], 2, 'The pizza = it, тому is.'),
         c('We ___ in the same class.', ['is', 'am', 'are'], 2, 'З we завжди are.'),
@@ -81,7 +81,7 @@ export const DRILL: Drill = {
         c('___ you tired?', ['Is', 'Are', 'Am'], 1, 'У питанні to be виходить на початок. З you тільки are.'),
         c('___ your brother a gamer?', ['Are', 'Does', 'Is'], 2, 'Your brother = he, тому Is. Does не потрібне: у реченні нема іншого дієслова.'),
         c('___ I in your team?', ['Am', 'Are', 'Is'], 0, 'З I в питанні теж am: Am I...?'),
-        c('Is Olena your cousin? Yes, she ___.', ['’s', 'is', 'does'], 1, 'У короткій відповіді «так» не скорочуємо: Yes, she is.'),
+        c('Is Emma your cousin? Yes, she ___.', ['’s', 'is', 'does'], 1, 'У короткій відповіді «так» не скорочуємо: Yes, she is.'),
         c('Are your friends from Kyiv? No, they ___.', ['aren’t', 'don’t', 'isn’t'], 0, 'Питали з are, відповідаємо з are: No, they aren’t.'),
         c('Are you a student? Yes, I ___.', ['are', 'do', 'am'], 2, 'Питають you are, але відповідаєш про себе: Yes, I am.'),
         c('Is the museum open today? No, it ___.', ['doesn’t', 'isn’t', 'not'], 1, 'Питання з is, тому коротка відповідь No, it isn’t.'),
@@ -100,14 +100,14 @@ export const DRILL: Drill = {
     {
       title: 'Раунд 3. Коли вживати + this / these',
       questions: [
-        c('This ___ my best friend, Ira.', ['are', 'is', 'am'], 1, 'This (одна людина або річ) завжди з is.'),
+        c('This ___ my best friend, Lily.', ['are', 'is', 'am'], 1, 'This (одна людина або річ) завжди з is.'),
         c('These ___ my new sneakers.', ['are', 'is', 'be'], 0, 'These (кілька речей) завжди з are.'),
         c('___ are my keys.', ['This', 'It', 'These'], 2, 'Keys у множині, тому These are. This is тільки для одного.'),
         c('___ is my room. Come in!', ['These', 'This', 'They'], 1, 'Room одна, тому This is.'),
         c('It ___ cold and windy today.', ['is', 'are', 'has'], 0, 'Погоду описуємо через It is: It’s cold. Has тут не підходить.'),
         c('My dad ___ a programmer.', ['has', 'are', 'is'], 2, 'Професія через to be: He is a programmer.'),
         c('I ___ scared of spiders.', ['have', 'am', 'do'], 1, 'Почуття і стан через to be: I am scared. Have і do тут зайві.'),
-        c('Olena ___ from Odesa.', ['does', 'are', 'is'], 2, 'Звідки людина: be from. Olena = she, тому is.'),
+        c('Emma ___ from Odesa.', ['does', 'are', 'is'], 2, 'Звідки людина: be from. Emma = she, тому is.'),
         c('Mia ___ 13 today. Happy birthday!', ['has', 'is', 'are'], 1, 'Вік через to be: Mia is 13. Has тут помилка з української логіки «має 13».'),
         c('The keys ___ on the table.', ['is', 'has', 'are'], 2, 'Де щось лежить: to be. Keys у множині, тому are.'),
         c('Are these your headphones? Yes, ___ are.', ['these', 'they', 'it'], 1, 'У короткій відповіді на питання з these кажемо they: Yes, they are.'),
@@ -150,7 +150,7 @@ export const DRILL: Drill = {
     {
       title: 'Раунд 5. Фінальний бос',
       questions: [
-        c('Hi! I’m Ira. This ___ my brother, Max.', ['are', 'is', 'am'], 1, 'Знайомимо з однією людиною: This is.'),
+        c('Hi! I’m Lily. This ___ my brother, Max.', ['are', 'is', 'am'], 1, 'Знайомимо з однією людиною: This is.'),
         c('Where are my glasses? They ___ on your head!', ['is', 'am', 'are'], 2, 'Glasses (окуляри) це множина: they are.'),
         c('Is the coffee hot? No, ___. It’s cold.', ['isn’t it', 'it isn’t', 'it not'], 1, 'Коротка відповідь: займенник + isn’t. Isn’t it це вже питання.'),
         c('___ you and Dan in the same team? Yes, we are.', ['Is', 'Are', 'Am'], 1, 'You and Dan = you (ви), тому Are.'),
@@ -169,7 +169,7 @@ export const DRILL: Drill = {
         t('___ (be) your cats friendly? Yes, they love people.', ['Are', 'are'], 'Your cats = they, у питанні Are на початку.'),
         t('Don’t worry about the test. It ___ (be, −) difficult.', ['isn’t', 'is not'], 'It + заперечення: isn’t.'),
         t('Hurry up! The bus ___ (be) here.', ['is'], 'The bus = it, тому is.'),
-        t('Ira, ___ (this/these) is my friend Tom. Tom, this is Ira.', ['this'], 'Знайомимо з однією людиною: this is.'),
+        t('Lily, ___ (this/these) is my friend Tom. Tom, this is Lily.', ['this'], 'Знайомимо з однією людиною: this is.'),
       ],
     },
   ],
