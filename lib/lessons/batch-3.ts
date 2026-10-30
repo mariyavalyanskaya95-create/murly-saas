@@ -567,7 +567,7 @@ What advice would you give a friend who can’t fall asleep?`),
       X.ex(
         ['choice', 'НМТ: обери найкращий заголовок до кожного міні-абзацу (A-D).', `“I used to drink cola in the evening and then stay awake until 2 am. Now I drink only water after 6 pm.” {Changing one habit|Cola is good for you|Staying up all night|A new evening job}
 “Our school starts at 9:30 now. Students say they feel less tired in the first lesson.” {A later start helps|Lessons get longer|Teachers come late|No first lesson any more}
-“After three nights of little sleep, Ira couldn’t concentrate in the test and got a low grade.” {When tiredness costs you marks|How to pass every test|A night at the library|Ira’s favourite subject}
+“After three nights of little sleep, Lily couldn’t concentrate in the test and got a low grade.” {When tiredness costs you marks|How to pass every test|A night at the library|Lily’s favourite subject}
 “Doctors recommend going to bed and getting up at the same time every day, even at weekends.” {Keep a regular routine|Sleep longer at weekends|Doctors who never sleep|Weekend plans}
 “Board game cafés are full every Friday. Young people come to play, talk and forget about their phones.” {Offline fun is popular again|Cafés sell new phones|A Friday homework club|Why games are expensive}
 “Some games take hours to learn, and the boxes can cost as much as a new pair of trainers.” {The downside of a hobby|Cheap fun for everyone|How to buy trainers|Games for small children}`],
@@ -679,17 +679,17 @@ Don’t forget to bring sunglasses, a hat and comfortable shoes, because we will
 
 Can’t wait to see you!
 Best wishes,
-Ira`),
+Lily`),
       ex(
         ['match', 'Match each part of the letter with its purpose.', `Hi Sam, = greeting
 Thanks for your letter! I’m so happy you are coming = opening
 The weather in summer is usually hot and sunny = content point 1
 We can visit the old town = content point 2
 Don’t forget to bring sunglasses = content point 3
-Can’t wait to see you! Best wishes, Ira = closing and signature`],
-        ['truefalse', 'True or False?', `Ira answers all three points of the task. = True
+Can’t wait to see you! Best wishes, Lily = closing and signature`],
+        ['truefalse', 'True or False?', `Lily answers all three points of the task. = True
 Each content point is in a separate paragraph. = True
-Ira uses formal phrases such as “Yours faithfully”. = False`],
+Lily uses formal phrases such as “Yours faithfully”. = False`],
       ),
 
       h('Language focus: advice and linking words · 10 хв'),

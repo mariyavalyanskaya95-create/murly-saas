@@ -29,7 +29,7 @@ Is your cat busy at the weekend? What does it do all day?`),
 
 On Saturday I **woke up** at 11. My cat Muffin **jumped** on my face, so I **got up**. I **had** pancakes for breakfast and **watched** a funny video about a dancing parrot.
 
-At 1 pm I **went** to the park with my friend Ira. We **played** basketball and **ate** ice cream. Then it **started** to rain! We **ran** to Ira’s house and **stayed** there. Her mum **made** hot chocolate for us.
+At 1 pm I **went** to the park with my friend Lily. We **played** basketball and **ate** ice cream. Then it **started** to rain! We **ran** to Lily’s house and **stayed** there. Her mum **made** hot chocolate for us.
 
 In the evening I **cleaned** my room (my mum **asked** me three times). Then I **called** my grandma and **told** her about my day. I **went** to bed at 10. Muffin **slept** on my homework. Again.`),
       vocab(`wake up (woke up) = прокидатися
@@ -48,9 +48,9 @@ yesterday = вчора
 ago = тому (про час)`),
       ex(['truefalse', 'Прочитай пост і обери True або False.', `Oleh woke up at 9. = False
 Muffin jumped on Oleh’s face. = True
-Oleh and Ira played football. = False
+Oleh and Lily played football. = False
 It started to rain. = True
-Ira’s mum made pizza. = False
+Lily’s mum made pizza. = False
 Muffin slept on Oleh’s homework. = True`]),
       note('Учень читає вголос. Після True / False попроси знайти всі дієслова в минулому часі і розділити на дві купки: ті, що закінчуються на -ed (jumped, watched), і ті, що змінились повністю (went, ate, ran). Так учень сам відкриє правильні і неправильні дієслова.'),
 
@@ -275,7 +275,7 @@ Did the cat break the cup? No, {it didn’t|it doesn’t|it wasn’t}.`],
         ['match', 'Знайди відповідь на питання.', `Where did you go on Saturday? = To the skate park.
 What did you eat for lunch? = A cheese sandwich.
 When did you get home? = At 5 o’clock.
-Who did you meet? = My friend Taras.
+Who did you meet? = My friend Tom.
 Why did you laugh? = Because the video was so funny.
 Did you buy anything? = No, I didn’t.`],
         ['translate', 'Переклади англійською.', `Я не бачив тебе вчора. = I didn’t see you yesterday / I did not see you yesterday
@@ -371,7 +371,7 @@ Yesterday Mum baked 12 chocolate cookies. At 8 pm she looked at the plate. It wa
 
 **Dad:** “I **was washing** the car. Look, my hands are wet!”
 
-**Sasha (15):** “I **was doing** my homework. I **wasn’t eating** anything, I promise!”
+**Sam (15):** “I **was doing** my homework. I **wasn’t eating** anything, I promise!”
 
 **Grandma:** “I **was talking** to my friend on the phone. We **were laughing** a lot.”
 
@@ -396,7 +396,7 @@ asleep = сплячий
 awake = який не спить`),
       ex(['truefalse', 'Прочитай історію і обери True або False.', `Mum baked 12 cookies. = True
 At 8 pm Dad was washing the car. = True
-Sasha was eating cookies. = False
+Sam was eating cookies. = False
 Grandma was talking on the phone. = True
 Pixel was sleeping in the kitchen. = False
 Bohdan was really sleeping. = False`]),
@@ -436,7 +436,7 @@ My parents [were cooking] (cook) dinner at 7.
 It [was raining] (rain) all morning.
 We [were waiting] (wait) for the bus at 8:15.
 My cat [was sleeping] (sleep) on my homework again.
-Ira and Tanya [were chatting] (chat) in the corridor.
+Lily and Tanya [were chatting] (chat) in the corridor.
 I [wasn’t listening/was not listening] (not listen) to the teacher, sorry!
 The kids [weren’t doing/were not doing] (not do) their homework.`],
         ['choice', 'Обери правильний варіант.', `At midnight I {was sleeping|were sleeping|was sleep}.

@@ -128,7 +128,7 @@ doesn’t: he, she, it, my brother, the cat, our teacher`],
 5. «I am not like pizza.» (неправильно) → **I don’t like pizza.** Am not тільки з прикметниками і -ing (I am not hungry), а не зі звичайними дієсловами.`),
       ex(['choice', 'Знайди правильне речення.', `{My dog doesn’t like cats.|My dog don’t like cats.|My dog doesn’t likes cats.}
 {We don’t go to school in July.|We doesn’t go to school in July.|We not go to school in July.}
-{Ira doesn’t speak French.|Ira doesn’t speaks French.|Ira not speak French.}
+{Lily doesn’t speak French.|Lily doesn’t speaks French.|Lily not speak French.}
 {I don’t understand this joke.|I am not understand this joke.|I not understand this joke.}
 {The bus doesn’t stop here.|The bus don’t stop here.|The bus doesn’t stops here.}
 {My parents don’t watch cartoons.|My parents doesn’t watch cartoons.|My parents don’t watches cartoons.}`]),
@@ -433,7 +433,7 @@ My sister usually {wears|is wearing} black clothes.
 We {are having|have} lunch at the moment. Can I call you later?
 Water {boils|is boiling} at 100 degrees.
 I {want|am wanting} a new phone.
-Ira {doesn’t eat|isn’t eating} meat. She is a vegetarian.`],
+Lily {doesn’t eat|isn’t eating} meat. She is a vegetarian.`],
         ['gap', 'Розкрий дужки: Present Simple чи Present Continuous?', `Every day Nazar [walks] (walk) his dog after school.
 Right now Nazar [is walking/’s walking] (walk) his dog in the park.
 My mum [works] (work) in a bank.

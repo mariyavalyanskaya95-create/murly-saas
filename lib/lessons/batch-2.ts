@@ -609,25 +609,25 @@ I have {never|ever} been to Japan, but I want to go.`]),
       h('Reading · НМТ · 15 хв'),
       t(`**"I have never said no to a new experience"**
 
-**A** Seventeen-year-old Olena from Poltava has a simple rule: if something new scares her a little, she tries it. "I have climbed a mountain, I have performed on stage and I have even tried snails in France," she laughs.
+**A** Seventeen-year-old Emma from Poltava has a simple rule: if something new scares her a little, she tries it. "I have climbed a mountain, I have performed on stage and I have even tried snails in France," she laughs.
 
 **B** Her biggest adventure so far happened two years ago. She went to a summer camp abroad and didn’t know anyone there. "On the first day I was terrified. But by the end of the camp I had friends from six countries. We still chat every week."
 
-**C** Not everything has been easy. Olena has failed a few times. "I tried skateboarding last spring and broke my arm. I haven’t got on a skateboard since then!" But she says mistakes are part of the fun.
+**C** Not everything has been easy. Emma has failed a few times. "I tried skateboarding last spring and broke my arm. I haven’t got on a skateboard since then!" But she says mistakes are part of the fun.
 
-**D** Recently Olena has started a blog about her experiences. She has already written twenty posts, and more than a thousand people have read them. She hasn’t decided what to study at university yet, but she knows one thing: "I want a life full of stories."`),
+**D** Recently Emma has started a blog about her experiences. She has already written twenty posts, and more than a thousand people have read them. She hasn’t decided what to study at university yet, but she knows one thing: "I want a life full of stories."`),
       ex(['match', 'НМТ-формат: match the paragraphs (A-D) with the headings.', `Paragraph A = A personal rule
 Paragraph B = Making friends far from home
 Paragraph C = When things go wrong
 Paragraph D = Sharing stories online`]),
       ex(
-        ['truefalse', 'True or False?', `Olena has tried food in France. = True
+        ['truefalse', 'True or False?', `Emma has tried food in France. = True
 She knew many people at the summer camp before it started. = False
 She has skateboarded a lot since she broke her arm. = False
-Olena has already decided what to study at university. = False`],
-        ['choice', 'НМТ-формат: choose the correct answer.', `Olena went to the summer camp {two years ago|last spring|recently}.
+Emma has already decided what to study at university. = False`],
+        ['choice', 'НМТ-формат: choose the correct answer.', `Emma went to the summer camp {two years ago|last spring|recently}.
 How many people have read her blog? {more than a thousand|twenty|six}
-Olena thinks that mistakes are {part of the fun|a reason to stop|very dangerous}.`],
+Emma thinks that mistakes are {part of the fun|a reason to stop|very dangerous}.`],
       ),
       note('Формат як у НМТ: спершу заголовки до абзаців (на кожен абзац 30-40 секунд, шукати ключові слова), потім завдання на деталі. Навчи стратегію: підкреслювати в питанні ключове слово і шукати синонім у тексті. Після перевірки знайдіть у тексті приклади Present Perfect і Past Simple та поясніть, чому вжито саме цей час (two years ago, last spring - точний час). 15 хвилин.'),
 
@@ -644,7 +644,7 @@ She {has lost|lost} her keys, so she can’t open the door now.`],
         ['translate', 'Translate into English.', `Я ще не зробив домашнє завдання = I haven’t done my homework yet / I have not done my homework yet
 Ти коли-небудь бачив сніг? = Have you ever seen snow?`],
       ),
-      ex(['choice', 'НМТ-формат: read the text and choose the correct option for each gap.', `My cousin Taras {has visited|visited|visits|is visiting} twelve countries so far.
+      ex(['choice', 'НМТ-формат: read the text and choose the correct option for each gap.', `My cousin Tom {has visited|visited|visits|is visiting} twelve countries so far.
 Last year he {went|has gone|goes|has been going} to Portugal with his friends.
 He {has never been|never was|is never|was never being} to Asia, but he dreams about Japan.
 He {has just bought|just buys|is just buying|just has bought} a new guidebook, and he is reading it now.`]),

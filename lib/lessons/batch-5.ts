@@ -269,7 +269,7 @@ Is Biscuit hungry? Yes, {she is|she’s|she are}.`],
       ex(
         ['match', 'Знайди відповідь на питання.', `Where are you from? = I’m from Poltava.
 How old is your sister? = She’s eleven.
-Who is your best friend? = It’s Taras.
+Who is your best friend? = It’s Tom.
 What is your favourite subject? = It’s art.
 Are you into music? = Yes, I am.
 Is your teacher strict? = No, she isn’t.`],
@@ -698,7 +698,7 @@ What does your cat (or dog) do all day?`),
       h('Lead-in · 6 хв'),
       t(`**A day in the life of… a cat and a teen**
 
-**Me (Taras, 14):** I get up at 7. I have breakfast and I go to school by bus. School finishes at 2. After school I play basketball or I do my homework. I usually go to bed at 11. I never get enough sleep!
+**Me (Tom, 14):** I get up at 7. I have breakfast and I go to school by bus. School finishes at 2. After school I play basketball or I do my homework. I usually go to bed at 11. I never get enough sleep!
 
 **My cat (Pixel, 3):** Pixel wakes up at 5. He sits on my face and he meows. Then he eats his breakfast. He sleeps from 6 to 12. In the afternoon he watches birds from the window. He never does homework. He always catches my socks. He goes to bed when he wants. Life is good for Pixel!`),
       vocab(`get up = вставати
@@ -715,9 +715,9 @@ always = завжди
 usually = зазвичай
 sometimes = іноді
 never = ніколи`),
-      ex(['truefalse', 'Прочитай і обери True або False.', `Taras gets up at 7. = True
-Taras goes to school on foot. = False
-Taras usually goes to bed at 11. = True
+      ex(['truefalse', 'Прочитай і обери True або False.', `Tom gets up at 7. = True
+Tom goes to school on foot. = False
+Tom usually goes to bed at 11. = True
 Pixel wakes up at 6. = False
 Pixel watches birds in the afternoon. = True
 Pixel does homework. = False`]),
@@ -842,7 +842,7 @@ The bird ___ (fly) south in winter. = flies`),
       ex(['open', 'Напиши про свій день і день когось із родини або улюбленця (8-10 речень).', `Write 4-5 sentences about your typical day (I…).
 Write 4-5 sentences about the day of a family member or pet (He / She / It…).
 Use at least 3 words: always, usually, often, sometimes, never.`]),
-      note('Домашка: «A day in the life of…» як у тексті Taras і Pixel. Мінімум 3 слова частоти. Бонус: загадка «Who is it?» з 3-4 речень. На наступному уроці перевір -s у третій особі і правопис (goes, watches, studies). Далі за програмою: заперечення в Present Simple (don’t / doesn’t).'),
+      note('Домашка: «A day in the life of…» як у тексті Tom і Pixel. Мінімум 3 слова частоти. Бонус: загадка «Who is it?» з 3-4 речень. На наступному уроці перевір -s у третій особі і правопис (goes, watches, studies). Далі за програмою: заперечення в Present Simple (don’t / doesn’t).'),
     ],
   },
 ];

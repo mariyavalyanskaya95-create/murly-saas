@@ -387,7 +387,7 @@ How many hours can you sleep without waking up? Be honest.`),
       h('Lead-in · 7 хв'),
       t(`**My profile for the school website**
 
-Hi! My name is Taras and I’m 14. I have lived in Lviv since 2020. Before that, my family lived in a small town near Poltava.
+Hi! My name is Tom and I’m 14. I have lived in Lviv since 2020. Before that, my family lived in a small town near Poltava.
 
 I have been at this school for three years. I have known my best friend Ihor since our first day here. He sat on my bag and we started laughing. We have been best friends since that day!
 
@@ -410,12 +410,12 @@ believe = вірити
 a long time = довгий час
 a month = місяць
 a while = якийсь час`),
-      ex(['truefalse', 'Прочитай профіль і обери True або False.', `Taras has lived in Lviv for his whole life. = False
-Taras has been at this school for three years. = True
-Taras and Ihor have been friends since their first day at school. = True
-Taras has played the drums for five years. = False
-Taras has had Pixel since he was a kitten. = True
-Taras has had a dog for a long time. = False`]),
+      ex(['truefalse', 'Прочитай профіль і обери True або False.', `Tom has lived in Lviv for his whole life. = False
+Tom has been at this school for three years. = True
+Tom and Ihor have been friends since their first day at school. = True
+Tom has played the drums for five years. = False
+Tom has had Pixel since he was a kitten. = True
+Tom has had a dog for a long time. = False`]),
       note('Учень читає текст вголос. Після True / False попроси знайти всі for і since і записати, що стоїть після них: for + three years, two years, a month, a long time; since + 2020, our first day, that day, he was a kitten. Запитай: яка різниця між цими групами? Хай учень сам здогадається: for = скільки часу, since = з якого моменту.'),
 
       h('Rule · 5 хв'),
@@ -450,7 +450,7 @@ ___ half an hour = for`),
 
       h('Practice · 12 хв'),
       ex(
-        ['gap', 'Розкрий дужки (Present Perfect) і допиши for або since.', `I [have known/’ve known] (know) Sasha [since] we were in kindergarten.
+        ['gap', 'Розкрий дужки (Present Perfect) і допиши for або since.', `I [have known/’ve known] (know) Sam [since] we were in kindergarten.
 My mum [has worked/’s worked] (work) in this hospital [for] ten years.
 We [have had/’ve had] (have) this car [since] 2021.
 Oleh [has played/’s played] (play) basketball [for] four years.
@@ -531,7 +531,7 @@ Twelve months. How long? = for a year`),
 I [have studied/’ve studied] (study) Spanish [for] six months.
 We [have known/’ve known] (know) our teacher [since] September.
 Lena [has been/’s been] (be) in the school choir [for] two years.`],
-        ['open', 'Напиши свій профіль для шкільного сайту (як у Тараса): 6-8 речень з for і since.', 'I have lived in... since... I have known... for... I have had... since...'],
+        ['open', 'Напиши свій профіль для шкільного сайту (як у Том): 6-8 речень з for і since.', 'I have lived in... since... I have known... for... I have had... since...'],
       ),
       video('https://www.youtube.com/watch?v=9LhLjpsstPY', 'Watch Mr Bean at the exam. Write 3 sentences: How long has he been in the exam room? How long has he looked at the paper? Since when has he been nervous?', 'Mr Bean (офіційний канал): The Exam'),
       note('Домашнє: вправа + профіль про себе + 3 речення за кліпом The Exam. Перевір, щоб у профілі не було «I live here for...». На наступному уроці учень читає профіль, а ти ставиш питання How long...?'),
@@ -637,7 +637,7 @@ We [went] (go) to the sea two years ago.
 [Have] you ever [been] (be) to Kharkiv?
 When [did] you [buy] (buy) these sneakers?
 My cat [has broken/’s broken] (break) my headphones. Now I can’t listen to music!
-Taras [won] (win) the chess competition in 2024.`],
+Tom [won] (win) the chess competition in 2024.`],
         ['choice', 'Обери правильний варіант.', `I {lost|have lost} my keys yesterday.
 Look! I {have cut|cut} my hair. Do you like it?
 {Have you ever eaten|Have you ever ate|Did you ever ate} frogs’ legs?

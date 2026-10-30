@@ -211,13 +211,13 @@ The speaker suggests that reaching out to others can help under stress. = True`]
 
       h('Language focus · 10 хв'),
       audio('Two colleagues discuss the talk', `
-Ira: Did you watch that TED talk about stress? I couldn’t stop thinking about it.
+Lily: Did you watch that TED talk about stress? I couldn’t stop thinking about it.
 Tom: I did. To be honest, I’m not so sure about it. Stress nearly made me burn out two years ago.
-Ira: I see what you mean, but she doesn’t say stress is harmless. She says the way we perceive it matters.
+Lily: I see what you mean, but she doesn’t say stress is harmless. She says the way we perceive it matters.
 Tom: That’s a fair point. When I thought my racing heart was a disaster, I panicked even more.
-Ira: Exactly. And the part about reaching out to people? I couldn’t agree more.
+Lily: Exactly. And the part about reaching out to people? I couldn’t agree more.
 Tom: True. Although I’d say companies also need to reduce the pressure, not just change how we think.
-Ira: Good point. Nobody can cope with everything on their own.`),
+Lily: Good point. Nobody can cope with everything on their own.`),
       tip('Погоджуємося: **I couldn’t agree more. / That’s exactly what I think. / Good point.** Не погоджуємося м’яко: **I’m not so sure about that. / I see what you mean, but… / That’s not always true.** Дієслова з прийменниками: **cope with, reach out to, suffer from, worry about, take a toll on**.'),
       ex(
         ['sort', 'Which phrases are for agreeing and which are for disagreeing?', `Agreeing: That’s exactly what I think.; I couldn’t agree more.; Good point.
@@ -805,17 +805,17 @@ Criticise: cuts corners; doesn’t pull their weight; calls it a day at three o�
       t('**Before you listen:** a design team has received bad news from a client. What do you think the manager will say?'),
       audio('A team meeting', `
 Manager: Right, let’s get the ball rolling. The client didn’t like our first design.
-Olena: So it’s back to the drawing board?
+Emma: So it’s back to the drawing board?
 Manager: I’m afraid so. And this time we can’t cut corners. They noticed the small mistakes.
 Mark: To be fair, the deadline was crazy. Some of us really went the extra mile.
 Manager: I know, and I appreciate it. But we need everyone to pull their weight this time.
-Olena: Can we try something completely different? Let’s think outside the box.
+Emma: Can we try something completely different? Let’s think outside the box.
 Manager: Great. What about our new designer, Sam? Is he settling in?
 Mark: He’s doing well, but it’s a steep learning curve for him. And he’s snowed under with the other project.
 Manager: Then let’s not overload him. Mark, could you touch base with him on Wednesday?
 Mark: Sure, no problem.
 Manager: Send me your ideas by Friday. Once we send the new version, the ball is in their court.
-Olena: Sounds good. Are we all on the same page?
+Emma: Sounds good. Are we all on the same page?
 Manager: I think so. It’s six o’clock, let’s call it a day.`),
       ex(['choice', 'Gist: listen once and choose.', `The team has to {redo the design for the client|plan an office party|hire a new manager}.
 At the end of the meeting, the team {agrees on the next steps|argues about the deadline|decides to lose the client}.`]),
