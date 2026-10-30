@@ -3260,3 +3260,8 @@ button.sl-scale__dot:hover { transform: scale(1.2); }
 .act-pages { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 28px; }
 .act-pages .g-chip:disabled { opacity: .4; cursor: default; }
 .act-filters { scroll-margin-top: 120px; }
+/* каталог activities: більше повітря, сторінки знизу по центру */
+.act-grid { gap: 28px; }
+.act-filters { margin-bottom: 36px; }
+.act-pages { width: 100%; justify-self: center; display: flex; justify-content: center; align-items: center; gap: 10px; margin: 72px auto 24px; padding-top: 36px; border-top: 1.5px dashed rgba(26,26,26,.18); }
+.act-pages .g-chip { min-width: 46px; justify-content: center; }
