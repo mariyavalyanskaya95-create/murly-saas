@@ -1,7 +1,7 @@
 'use client';
 // Каталог активностей з фільтрами: для кого, рівень, тип
 import Link from 'next/link';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import Art from '../Art';
 import { PHOTOS, photoUrl } from '@/lib/activities/photos';
 import { useT } from '../LangProvider';
@@ -14,6 +14,7 @@ const WHO = [
   { id: 'adults', label: { uk: 'Дорослі', ru: 'Взрослые', en: 'Adults' } },
 ] as const;
 const LEVELS = ['A1', 'A2', 'B1', 'B2', 'C1'] as const;
+const PER = 10; // активностей на сторінці
 
 export default function ActivityList({ items }: { items: Activity[] }) {
   const t = useT();
@@ -22,10 +23,16 @@ export default function ActivityList({ items }: { items: Activity[] }) {
   const [type, setType] = useState<string>('');
   const list = useMemo(() => items.filter((a) => (who === 'all' || a.audience === who) && (!lv || (a.levels as string[]).includes(lv)) && (!type || a.type === type)), [items, who, lv, type]);
   const levels = LEVELS.filter((l) => items.some((a) => (a.levels as string[]).includes(l)));
+  const [page, setPage] = useState(1);
+  const top = useRef<HTMLDivElement>(null);
+  const pages = Math.max(1, Math.ceil(list.length / PER));
+  useEffect(() => { setPage(1); }, [who, lv, type]);
+  const shown = list.slice((page - 1) * PER, page * PER);
+  const goPage = (p: number) => { setPage(p); top.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }); };
 
   return (
     <>
-      <div className="act-filters">
+      <div className="act-filters" ref={top}>
         <div className="g-chips">{WHO.map((w) => <button key={w.id} type="button" className={`g-chip ${who === w.id ? 'is-on' : ''}`} aria-pressed={who === w.id} onClick={() => setWho(w.id)}>{t(w.label)}</button>)}</div>
         <div className="g-chips">
           {levels.map((l) => <button key={l} type="button" className={`g-chip ${lv === l ? 'is-on' : ''}`} aria-pressed={lv === l} onClick={() => setLv(lv === l ? '' : l)}>{l}</button>)}
@@ -34,7 +41,7 @@ export default function ActivityList({ items }: { items: Activity[] }) {
         </div>
       </div>
       <div className="act-grid">
-        {list.map((a) => {
+        {shown.map((a) => {
           const cover = a.slides.find((s) => s.kind === 'cover');
           const art = cover && cover.kind === 'cover' ? cover.art.slice(0, 2) : [];
           return (
@@ -52,6 +59,15 @@ export default function ActivityList({ items }: { items: Activity[] }) {
         })}
         {!list.length && <p className="t-muted">{t({ uk: 'Під ці фільтри поки нічого немає.', ru: 'Под эти фильтры пока ничего нет.', en: 'Nothing for these filters yet.' })}</p>}
       </div>
+      {pages > 1 && (
+        <nav className="act-pages" aria-label={t({ uk: 'Сторінки', ru: 'Страницы', en: 'Pages' })}>
+          <button type="button" className="g-chip" disabled={page === 1} onClick={() => goPage(page - 1)}>‹ {t({ uk: 'Назад', ru: 'Назад', en: 'Back' })}</button>
+          {Array.from({ length: pages }, (_, i) => i + 1).map((p) => (
+            <button key={p} type="button" className={`g-chip ${p === page ? 'is-on' : ''}`} aria-current={p === page ? 'page' : undefined} onClick={() => goPage(p)}>{p}</button>
+          ))}
+          <button type="button" className="g-chip" disabled={page === pages} onClick={() => goPage(page + 1)}>{t({ uk: 'Далі', ru: 'Далее', en: 'Next' })} ›</button>
+        </nav>
+      )}
     </>
   );
 }
