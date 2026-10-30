@@ -20,7 +20,7 @@ export function generateMetadata(): Metadata {
 
 export default function TrainerIndex() {
   const L = tr();
-  const levels = ['A1', 'A2', 'B1'] as const;
+  const levels = ['A1', 'A2', 'B1', 'B2'] as const;
   return (
     <>
       <SiteNav />
