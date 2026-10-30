@@ -5,10 +5,10 @@ import Icon from '@/components/Icon';
 import Stickers from '@/components/Stickers';
 import SiteNav from '@/components/SiteNav';
 import SiteFooter from '@/components/SiteFooter';
-import { GRAMMAR as GRAMMAR_UK } from '@/lib/grammar';
-import { localizeGrammar } from '@/lib/content/grammar';
+import { DRILLS } from '@/lib/drills';
+import { localizeDrill } from '@/lib/content/drills';
+import { GRAMMAR_GROUPS } from '@/lib/grammar-groups';
 import { tr } from '@/lib/i18n-server';
-import type { T } from '@/lib/i18n';
 import Kit from '@/components/Kit';
 
 export function generateMetadata(): Metadata {
@@ -24,17 +24,10 @@ export function generateMetadata(): Metadata {
   };
 }
 
-const LEVELS = ['A1', 'A2', 'B1', 'B2'] as const;
-const LEVEL_NAMES: Record<(typeof LEVELS)[number], T> = {
-  A1: { uk: 'Старт', ru: 'Старт', en: 'Starter' },
-  A2: { uk: 'Базовий', ru: 'Базовый', en: 'Elementary' },
-  B1: { uk: 'Середній', ru: 'Средний', en: 'Intermediate' },
-  B2: { uk: 'Вище середнього', ru: 'Выше среднего', en: 'Upper-intermediate' },
-};
 
 export default function GrammarIndexPage() {
   const t = tr();
-  const GRAMMAR = localizeGrammar(GRAMMAR_UK, t.lang);
+  const DR = localizeDrill(DRILLS, t.lang);
   return (
     <>
       <SiteNav />
@@ -44,23 +37,30 @@ export default function GrammarIndexPage() {
           <Kit id="il-cat-read" className="kit-hero" />
           <span className="mu-section__eyebrow"><Icon id="e-book" />{t({ uk: 'Граматика', ru: 'Грамматика', en: 'Grammar' })}</span>
           <h1>{t({ uk: 'Граматика', ru: 'Грамматика', en: 'Grammar' })} <em>{t({ uk: 'без нудьги.', ru: 'без скуки.', en: 'without the boredom.' })}</em></h1>
-          <p>{t({ uk: 'Кожна тема на одній сторінці: формула, коли вживати, приклади з перекладом, типові помилки і квіз наприкінці.', ru: 'Каждая тема на одной странице: формула, когда употреблять, примеры с переводом, типичные ошибки и квиз в конце.', en: 'Each topic on one page: the formula, when to use it, examples with translations, common mistakes and a quiz at the end.' })}</p>
+          <p>{t({ uk: '52 теми простими словами: коли вживати, формула, головні пастки, смішна сценка і 100 завдань з поясненнями.', ru: '52 темы простыми словами: когда использовать, формула, главные ловушки, смешная сценка и 100 заданий с объяснениями.', en: '52 topics in plain words: when to use them, the formula, the main traps, a funny scene and 100 tasks with explanations.' })}</p>
           <Link href="/grammar/trainer" className="mu-btn mu-btn--lime mu-btn--lg">{t({ uk: 'Тренажери на 100 завдань', ru: 'Тренажёры на 100 заданий', en: '100-task trainers' })}</Link>{' '}
           <Link href="/irregular-verbs" className="mu-btn mu-btn--lg">{t({ uk: 'Неправильні дієслова', ru: 'Неправильные глаголы', en: 'Irregular verbs' })}</Link>
         </div>
       </section>
 
-      {LEVELS.filter((l) => GRAMMAR.some((g) => g.level === l)).map((level) => (
-        <section key={level} className="mu-section" style={{ paddingTop: 0 }}>
+      {/* усі теми блоками: часи, модальні, займенники, прийменники... */}
+      <section className="mu-section" style={{ paddingTop: 0, paddingBottom: 0 }}>
+        <div className="mu-container gr-jump">
+          {GRAMMAR_GROUPS.map((g) => <a key={g.id} href={`#${g.id}`} className="g-chip"><Icon id={g.icon} />{t(g.title)} <small>{g.slugs.length}</small></a>)}
+        </div>
+      </section>
+      {GRAMMAR_GROUPS.map((g) => (
+        <section key={g.id} id={g.id} className="mu-section gr-block" style={{ paddingTop: 24 }}>
           <div className="mu-container">
-            <h2 className="gr-h"><span className="gr-level">{level}</span>{t(LEVEL_NAMES[level])}</h2>
+            <h2 className="gr-h"><Icon id={g.icon} />{t(g.title)}</h2>
             <div className="gr-grid">
-              {GRAMMAR.filter((g) => g.level === level).map((g) => (
-                <Link key={g.slug} href={`/grammar/${g.slug}`} className={`gr-card gr--${g.color}`}>
-                  <span className="gr-card__ic"><Icon id={g.icon} /></span>
-                  <span className="gr-card__title">{g.title}</span>
-                  <span className="gr-card__uk">{g.uk}</span>
-                  <span className="gr-card__lead">{g.lead}</span>
+              {g.slugs.map((slug) => DR.find((d) => d.slug === slug)).filter(Boolean).map((d) => (
+                <Link key={d!.slug} href={`/grammar/trainer/${d!.slug}`} className={`gr-card gr--${d!.color === 'pink' ? 'tomato' : d!.color}`}>
+                  <span className="gr-card__ic"><Icon id={d!.icon} /></span>
+                  <span className="gr-level gr-card__lv">{d!.level}</span>
+                  <span className="gr-card__title">{d!.title}</span>
+                  <span className="gr-card__uk">{d!.uk}</span>
+                  <span className="gr-card__lead">{d!.lead}</span>
                 </Link>
               ))}
             </div>
