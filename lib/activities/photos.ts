@@ -31,8 +31,8 @@ export const PHOTOS: Record<string, [Photo, Photo, Photo]> = {
   'food-truck-summer': [{ id: 'photo-1565123409695-7b5ef63a2efb', page: 'geeZzrAXyMQ' }, { id: 'photo-1783440609420-fb31bd38c25d', page: '4MwNm_Q_8yU' }, { id: 'photo-1518013431117-eb1465fa5752', page: '8YBHgP0WrEo' }],
 };
 // Фото переносимо в наше сховище Supabase (бакет activity-photos, публічний): 1600 і 640 px.
-// Поки MIRRORED = false, фото беремо напряму з Unsplash.
-export const MIRRORED = false;
+// Фото вже в Supabase. Нові фото: додай id сюди, запусти /api/admin/mirror-photos, тоді вони підтягнуться.
+export const MIRRORED = true;
 const SB = 'https://tdnfxrlucrafijwgmxmb.supabase.co/storage/v1/object/public/activity-photos';
 export const isPhotoId = (x: string) => /^photo-[\w-]+$/.test(x);
 export const unsplashUrl = (id: string, w = 1600) => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&h=${Math.round(w * 9 / 16)}&q=72&fm=jpg`;
