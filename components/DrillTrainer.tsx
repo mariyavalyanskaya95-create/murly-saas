@@ -1,5 +1,6 @@
 'use client';
-// Тренажер граматики: 5 раундів по 20 завдань (або всі 100 підряд), вибір і «впиши сам», після кожної відповіді «Чому так?».
+// Тренажер граматики: 5 раундів по 20 завдань (або всі 100 підряд), вибір і «впиши сам».
+// Два режими: «по одному» (одразу «Чому так?») і «тест» (заповнюєш усе, перевірка в кінці з правильними відповідями і поясненнями).
 import { useEffect, useMemo, useRef, useState } from 'react';
 import Icon from './Icon';
 import type { Drill, DrillQ } from '@/lib/drills/types';
@@ -15,6 +16,7 @@ type Res = { q: DrillQ; ok: boolean; given: string };
 export default function DrillTrainer({ drill }: { drill: Drill }) {
   const t = useT();
   const [round, setRound] = useState(0); // 0..4, 5 = усі 100
+  const [mode, setMode] = useState<'one' | 'test'>('one');
   const [list, setList] = useState<Item[]>([]);
   const [i, setI] = useState(0);
   const [given, setGiven] = useState<string | null>(null);
@@ -49,6 +51,10 @@ export default function DrillTrainer({ drill }: { drill: Drill }) {
 
   return (
     <div className="dr" ref={top}>
+      <div className="dr-mode" role="group" aria-label={t({ uk: 'Режим', ru: 'Режим', en: 'Mode' })}>
+        <button type="button" className={`g-chip ${mode === 'one' ? 'is-on' : ''}`} aria-pressed={mode === 'one'} onClick={() => setMode('one')}>{t({ uk: 'По одному, одразу пояснення', ru: 'По одному, сразу объяснение', en: 'One by one, instant feedback' })}</button>
+        <button type="button" className={`g-chip ${mode === 'test' ? 'is-on' : ''}`} aria-pressed={mode === 'test'} onClick={() => setMode('test')}>{t({ uk: 'Тест: перевірка в кінці', ru: 'Тест: проверка в конце', en: 'Test: check at the end' })}</button>
+      </div>
       <div className="dr-tabs" role="tablist">
         {tabs.map((x) => (
           <button key={x.k} type="button" role="tab" aria-selected={round === x.k} className={`dr-tab ${round === x.k ? 'is-on' : ''}`} onClick={() => pickRound(x.k)} title={x.title}>
@@ -58,6 +64,7 @@ export default function DrillTrainer({ drill }: { drill: Drill }) {
         ))}
       </div>
 
+      {mode === 'test' ? <TestSheet key={`${round}-${list.length}`} list={list} onAgain={start} onNext={round < 4 ? () => pickRound(round + 1) : undefined} /> : (
       <div className="g-stage dr-stage">
         {!done && item && (
           <>
@@ -116,6 +123,71 @@ export default function DrillTrainer({ drill }: { drill: Drill }) {
           </div>
         )}
       </div>
+      )}
+    </div>
+  );
+}
+
+// Режим «тест»: усі завдання раунду одразу, без підказок; кнопка «Перевірити» в кінці показує, де помилка, правильну відповідь і «Чому так?»
+function TestSheet({ list, onAgain, onNext }: { list: Item[]; onAgain: () => void; onNext?: () => void }) {
+  const t = useT();
+  const [ans, setAns] = useState<Record<number, string>>({});
+  const [checked, setChecked] = useState(false);
+  const box = useRef<HTMLDivElement>(null);
+  const isOk = (it: Item, v?: string) => !!v && (it.q.k === 'choice' ? v === it.q.options[it.q.a] : it.q.answers.some((a) => norm(a) === norm(v)));
+  const filled = Object.values(ans).filter((v) => v && v.trim()).length;
+  const score = list.filter((it, k) => isOk(it, ans[k])).length;
+  const check = () => { setChecked(true); box.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }); };
+  const again = () => { setAns({}); setChecked(false); onAgain(); };
+  // у реченні замість ___ показуємо поле або вибрану відповідь
+  const parts = (q: string) => { const i = q.indexOf('___'); return i < 0 ? [q, ''] as const : [q.slice(0, i), q.slice(i + 3)] as const; };
+  return (
+    <div className="dt" ref={box}>
+      {checked ? (
+        <div className={`dt-score ${score / list.length >= 0.7 ? 'is-good' : ''}`}>
+          <b>{score} / {list.length}</b>
+          <span>{score === list.length ? t({ uk: 'Ідеально!', ru: 'Идеально!', en: 'Perfect!' }) : t({ uk: 'Нижче біля кожної помилки є правильна відповідь і пояснення.', ru: 'Ниже возле каждой ошибки правильный ответ и объяснение.', en: 'Each mistake below shows the right answer and why.' })}</span>
+          <div className="dr-done__btns">
+            <button type="button" className="mu-btn" onClick={again}>{t({ uk: 'Ще раз', ru: 'Ещё раз', en: 'Try again' })}</button>
+            {onNext && <button type="button" className="mu-btn mu-btn--lime" onClick={() => { setAns({}); setChecked(false); onNext(); }}>{t({ uk: 'Наступний раунд', ru: 'Следующий раунд', en: 'Next round' })} →</button>}
+          </div>
+        </div>
+      ) : <p className="t-muted dt-lead">{t({ uk: 'Заповни всі пропуски й обери відповіді. Перевірка буде в кінці.', ru: 'Заполни все пропуски и выбери ответы. Проверка будет в конце.', en: 'Fill in all the gaps and choose the answers. You check at the end.' })}</p>}
+      <ol className="dt-list">
+        {list.map((it, k) => {
+          const v = ans[k] ?? '';
+          const ok = isOk(it, v);
+          const [a, b] = parts(it.q.q);
+          return (
+            <li key={k} className={`dt-it ${checked ? (ok ? 'is-ok' : 'is-bad') : ''}`}>
+              {it.q.k === 'type' ? (
+                <p className="dt-q">{a}<input className="dt-gap" value={v} disabled={checked} onChange={(e) => setAns((m) => ({ ...m, [k]: e.target.value }))} aria-label={t({ uk: 'Відповідь', ru: 'Ответ', en: 'Answer' })} autoComplete="off" autoCapitalize="off" spellCheck={false} size={Math.max(6, (it.q.answers[0] ?? '').length + 2)} />{b}</p>
+              ) : (
+                <>
+                  <p className="dt-q">{a}{it.q.q.includes('___') && <span className="dt-blank">{v || '____'}</span>}{b}</p>
+                  <div className="dt-opts">
+                    {it.options!.map((o) => (
+                      <button key={o} type="button" disabled={checked} className={`g-chip ${v === o ? 'is-on' : ''} ${checked && o === (it.q as Extract<DrillQ, { k: 'choice' }>).options[(it.q as Extract<DrillQ, { k: 'choice' }>).a] ? 'is-right' : ''}`} onClick={() => setAns((m) => ({ ...m, [k]: o }))}>{o}</button>
+                    ))}
+                  </div>
+                </>
+              )}
+              {checked && (
+                <div className="dt-why">
+                  {ok ? <b>{t({ uk: 'Правильно', ru: 'Правильно', en: 'Correct' })}</b> : <b>{v ? <><span className="gr-wrong">{v}</span> </> : t({ uk: 'Без відповіді. ', ru: 'Без ответа. ', en: 'No answer. ' })}{t({ uk: 'Правильно', ru: 'Правильно', en: 'Correct' })}: <span className="gr-right">{rightText(it.q)}</span></b>}
+                  <p><b>{t({ uk: 'Чому так?', ru: 'Почему так?', en: 'Why?' })}</b> {it.q.why}</p>
+                </div>
+              )}
+            </li>
+          );
+        })}
+      </ol>
+      {!checked && (
+        <div className="dt-foot">
+          <span className="t-muted">{t({ uk: 'Заповнено', ru: 'Заполнено', en: 'Answered' })}: {filled} / {list.length}</span>
+          <button type="button" className="mu-btn mu-btn--lime mu-btn--lg" onClick={check}>{t({ uk: 'Перевірити', ru: 'Проверить', en: 'Check' })}</button>
+        </div>
+      )}
     </div>
   );
 }
