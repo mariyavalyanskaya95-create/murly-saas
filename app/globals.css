@@ -2998,3 +2998,25 @@ button.mu-nav__search { cursor: pointer; font: inherit; padding: 0; }
 .t-log-form { position: relative; }
 .t-log-form.is-drop { outline: 3px dashed var(--mu-ink); outline-offset: 6px; background: #F4F8E6; border-radius: 16px; }
 .t-drop-hint { position: absolute; inset: 0; z-index: 5; display: grid; place-items: center; border-radius: 16px; background: rgba(220, 233, 181, .85); font-weight: 800; font-size: 20px; pointer-events: none; }
+
+/* Тренажер граматики: режим «тест, перевірка в кінці» */
+.dr-mode { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+.dt { display: grid; gap: 14px; }
+.dt-lead { margin: 0; }
+.dt-list { margin: 0; padding-left: 26px; display: grid; gap: 12px; }
+.dt-it { padding: 12px 14px; border: 2px solid var(--mu-ink); border-radius: 16px; background: #fff; }
+.dt-it::marker { font-weight: 800; }
+.dt-it.is-ok { border-color: #2F7D32; background: #F2FAEE; }
+.dt-it.is-bad { border-color: #C0392B; background: #FDF1EF; }
+.dt-q { margin: 0 0 8px; font-size: 17px; line-height: 1.7; }
+.dt-gap { font: inherit; font-weight: 700; padding: 2px 8px; margin: 0 4px; border: 0; border-bottom: 2px solid var(--mu-ink); background: #F7F9EE; border-radius: 6px 6px 0 0; min-width: 80px; }
+.dt-gap:focus { outline: 2px solid var(--mu-lime); }
+.dt-blank { display: inline-block; min-width: 60px; padding: 0 6px; border-bottom: 2px solid var(--mu-ink); font-weight: 700; text-align: center; }
+.dt-opts { display: flex; flex-wrap: wrap; gap: 6px; }
+.dt-opts .g-chip.is-right { background: #CFEFC7; border-color: #2F7D32; }
+.dt-why { margin-top: 8px; padding-top: 8px; border-top: 1.5px dashed #D9D2C2; font-size: 15px; }
+.dt-why p { margin: 4px 0 0; }
+.dt-foot { position: sticky; bottom: 10px; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 14px; border: 2px solid var(--mu-ink); border-radius: 18px; background: var(--mu-paper); box-shadow: 4px 4px 0 var(--mu-ink); }
+.dt-score { display: grid; gap: 6px; padding: 16px; border: 2px solid var(--mu-ink); border-radius: 18px; background: #FDF1EF; }
+.dt-score.is-good { background: #F2FAEE; }
+.dt-score > b { font-size: 34px; }
