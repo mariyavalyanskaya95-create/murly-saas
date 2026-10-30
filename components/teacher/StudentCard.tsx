@@ -70,6 +70,7 @@ export default function StudentCard({ id }: { id: string }) {
         <Link href={`/teacher/students/${s.id}/lesson`} className="mu-btn mu-btn--lime t-btn-sm t-hero__board"><Icon id="d-phone" />{tt({ uk: 'Почати урок', ru: 'Начать урок', en: 'Start lesson' })}</Link>
         <Link href={`/teacher/students/${s.id}/board`} className="mu-btn t-btn-sm t-hero__board"><Icon id="e-board" />{tt({ uk: 'Дошка', ru: 'Доска', en: 'Board' })}</Link>
         <ParentLinkButton id={s.id} />
+        <TelegramButton id={s.id} kid={!s.adult} />
         <button type="button" className="mu-btn t-btn-sm t-hero__edit t-private" onClick={() => { setTab('profile'); setTimeout(() => document.querySelector('.t-tabs')?.scrollIntoView({ behavior: 'smooth' }), 50); }}><Icon id="e-pencil" />{tt({ uk: 'Змінити дані', ru: 'Изменить данные', en: 'Edit details' })}</button>
         <div className={`t-hero__bal t-private ${b < 0 ? (s.payMode === 'post' ? 't-warn' : 't-neg') : ''}`}>
           <small>{b < 0 ? (s.payMode === 'post' ? tt({ uk: 'До оплати', ru: 'К оплате', en: 'To pay' }) : tt({ uk: 'Борг', ru: 'Долг', en: 'Owes' })) : tt({ uk: 'Баланс', ru: 'Баланс', en: 'Balance' })}</small><b>{fmtMoney(Math.abs(b), tt.lang)}</b>
@@ -730,11 +731,18 @@ export function HomeworkForm({ studentIds, groupId, onDone }: { studentIds: stri
   const [instructions, setInstructions] = useState('');
   const [due, setDue] = useState(defaultDue());
   const [formKey, setFormKey] = useState(0);
-  const group = studentIds.length > 1 || Boolean(groupId);
+  // «Задати ще й іншим»: та сама домашка кільком учням без повторного набору
+  const [extra, setExtra] = useState<string[]>([]);
+  const others = groupId ? [] : data.students.filter((x) => !studentIds.includes(x.id));
+  const targets = [...studentIds, ...extra.filter((x) => others.some((o) => o.id === x))];
+  const kids = data.students.filter((x) => targets.includes(x.id) && !x.adult);
+  const [toParent, setToParent] = useState<boolean | null>(null);
+  const parentOn = toParent ?? kids.some((x) => x.parentTg);
+  const group = targets.length > 1 || Boolean(groupId);
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!studentIds.length) return;
+    if (!targets.length) return;
     if (kind === 'text' && !instructions.trim()) return;
     if (kind === 'exercise' && !sections.length) return;
     const gameLabel = t(GAMES.find((g) => g.id === game)!.label);
@@ -748,7 +756,8 @@ export function HomeworkForm({ studentIds, groupId, onDone }: { studentIds: stri
       due: due ? new Date(due).toISOString() : undefined,
       groupId,
     } as const;
-    studentIds.forEach((sid) => addHomework({ ...base, studentId: sid }));
+    targets.forEach((sid) => addHomework({ ...base, studentId: sid, toParent: parentOn && kids.some((k) => k.id === sid) ? true : undefined }));
+    setExtra([]);
     setTitle(''); setInstructions(''); setDue(defaultDue()); setSections([]); setFormKey((k) => k + 1);
     onDone?.();
   };
@@ -792,7 +801,16 @@ export function HomeworkForm({ studentIds, groupId, onDone }: { studentIds: stri
           <textarea rows={3} value={instructions} onChange={(e) => setInstructions(e.target.value)}
             placeholder={kind === 'text' ? t({ uk: 'Напр. Напиши 5 речень у Present Perfect про свій тиждень', ru: 'Напр. Напиши 5 предложений в Present Perfect о своей неделе', en: 'e.g. Write 5 sentences in Present Perfect about your week' }) : t({ uk: 'Напр. Пройди двічі, поки не буде без помилок', ru: 'Напр. Пройди дважды, пока не будет без ошибок', en: 'e.g. Do it twice until there are no mistakes' })} required={kind === 'text'} />
         </label>
-        <div className="t-form__actions"><button className="mu-btn mu-btn--lime" type="submit" disabled={!studentIds.length || (kind === 'game' && words < 4) || (kind === 'exercise' && !sections.length)}>{group ? t({ uk: `Задати всім (${studentIds.length})`, ru: `Задать всем (${studentIds.length})`, en: `Assign to all (${studentIds.length})` }) : t({ uk: 'Задати', ru: 'Задать', en: 'Assign' })}</button></div>
+        {others.length > 0 && (
+          <div className="t-form__wide t-hw-more">
+            <small>{t({ uk: 'Задати це ж завдання ще й іншим учням', ru: 'Задать это же задание ещё и другим ученикам', en: 'Also assign this task to' })}</small>
+            <div className="g-chips" style={{ justifyContent: 'flex-start' }}>
+              {others.map((o) => <button key={o.id} type="button" className={`g-chip ${extra.includes(o.id) ? 'is-on' : ''}`} aria-pressed={extra.includes(o.id)} onClick={() => setExtra((x) => (x.includes(o.id) ? x.filter((y) => y !== o.id) : [...x, o.id]))}>{o.name}</button>)}
+            </div>
+          </div>
+        )}
+        {kids.length > 0 && <ParentToggle on={parentOn} set={setToParent} kids={kids} />}
+        <div className="t-form__actions"><button className="mu-btn mu-btn--lime" type="submit" disabled={!targets.length || (kind === 'game' && words < 4) || (kind === 'exercise' && !sections.length)}>{group ? t({ uk: `Задати всім (${targets.length})`, ru: `Задать всем (${targets.length})`, en: `Assign to all (${targets.length})` }) : t({ uk: 'Задати', ru: 'Задать', en: 'Assign' })}</button></div>
       </div>
     </form>
   );
@@ -803,6 +821,7 @@ export function HomeworkItem({ hwId, showStudent }: { hwId: string; showStudent?
   const { data, updateHomework, removeHomework } = useTeacher();
   const h = data.homework.find((x) => x.id === hwId)!;
   const [fb, setFb] = useState(h.feedback ?? '');
+  const [copy, setCopy] = useState(false);
   const overdue = h.status === 'assigned' && h.due && new Date(h.due) < new Date();
   const statusTag = h.status === 'checked' ? <span className="t-tag t-tag--done">{t({ uk: 'Перевірено', ru: 'Проверено', en: 'Checked' })}</span>
     : h.status === 'done' ? <span className="t-tag t-tag--warn">{t({ uk: 'Чекає перевірки', ru: 'Ждёт проверки', en: 'Waiting for review' })}</span>
@@ -839,8 +858,68 @@ export function HomeworkItem({ hwId, showStudent }: { hwId: string; showStudent?
         </form>
       )}
       <div className="t-danger" style={{ marginTop: 0, paddingTop: 8 }}>
+        <button className="t-link-btn" onClick={() => setCopy(!copy)}>{t({ uk: 'Задати іншому учню', ru: 'Задать другому ученику', en: 'Assign to another student' })}</button>
         <button className="t-link-btn" onClick={() => removeHomework(h.id)}>{t({ uk: 'Видалити завдання', ru: 'Удалить задание', en: 'Delete task' })}</button>
       </div>
+      {copy && <CopyHomework hwId={h.id} onDone={() => setCopy(false)} />}
+    </div>
+  );
+}
+
+// Копія домашки іншим учням: те саме завдання, нові екземпляри, свіжий термін
+function CopyHomework({ hwId, onDone }: { hwId: string; onDone: () => void }) {
+  const t = useT();
+  const { data, addHomework } = useTeacher();
+  const h = data.homework.find((x) => x.id === hwId);
+  const [pick, setPick] = useState<string[]>([]);
+  const [due, setDue] = useState(defaultDue());
+  const [toParent, setToParent] = useState<boolean | null>(null);
+  const [done, setDone] = useState(0);
+  if (!h) return null;
+  const others = data.students.filter((x) => x.id !== h.studentId);
+  const kids = others.filter((x) => pick.includes(x.id) && !x.adult);
+  const parentOn = toParent ?? kids.some((x) => x.parentTg);
+  const go = () => {
+    pick.forEach((sid) => addHomework({
+      studentId: sid, kind: h.kind, title: h.title, instructions: h.instructions, items: h.items, game: h.game, direction: h.direction,
+      due: due ? new Date(due).toISOString() : undefined,
+      toParent: parentOn && kids.some((k) => k.id === sid) ? true : undefined,
+    }));
+    setDone(pick.length); setPick([]);
+    window.setTimeout(onDone, 1600);
+  };
+  if (!others.length) return <p className="t-muted">{t({ uk: 'Інших учнів поки немає.', ru: 'Других учеников пока нет.', en: 'No other students yet.' })}</p>;
+  return (
+    <div className="t-hw-copy">
+      <small>{t({ uk: 'Кому ще задати', ru: 'Кому ещё задать', en: 'Who else gets it' })}</small>
+      <div className="g-chips" style={{ justifyContent: 'flex-start' }}>
+        {others.map((o) => <button key={o.id} type="button" className={`g-chip ${pick.includes(o.id) ? 'is-on' : ''}`} aria-pressed={pick.includes(o.id)} onClick={() => setPick((x) => (x.includes(o.id) ? x.filter((y) => y !== o.id) : [...x, o.id]))}>{o.name}</button>)}
+      </div>
+      <div className="t-form">
+        <label>{t({ uk: 'Здати до', ru: 'Сдать до', en: 'Due' })}<input type="datetime-local" value={due} onChange={(e) => setDue(e.target.value)} /></label>
+        {kids.length > 0 && <ParentToggle on={parentOn} set={setToParent} kids={kids} />}
+        <div className="t-form__actions">
+          {done > 0 ? <span className="t-pos">{t({ uk: `Задано: ${done}`, ru: `Задано: ${done}`, en: `Assigned: ${done}` })}</span>
+            : <button type="button" className="mu-btn mu-btn--lime t-btn-sm" disabled={!pick.length} onClick={go}>{t({ uk: `Задати (${pick.length})`, ru: `Задать (${pick.length})`, en: `Assign (${pick.length})` })}</button>}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Галочка «Надіслати батькам у Telegram» (лише для дітей)
+function ParentToggle({ on, set, kids }: { on: boolean; set: (v: boolean) => void; kids: { id: string; name: string; parentTg?: boolean }[] }) {
+  const t = useT();
+  const missing = kids.filter((k) => !k.parentTg);
+  return (
+    <div className="t-form__wide t-hw-parent">
+      <label className="t-check"><input type="checkbox" checked={on} onChange={(e) => set(e.target.checked)} />
+        {t({ uk: 'Надіслати батькам у Telegram', ru: 'Отправить родителям в Telegram', en: 'Send to parents on Telegram' })}</label>
+      {on && missing.length > 0 && <small className="t-muted">{t({
+        uk: `Батьки ще не підключили бота: ${missing.map((k) => k.name).join(', ')}. Посилання для них: кнопка «Telegram» у картці учня.`,
+        ru: `Родители ещё не подключили бота: ${missing.map((k) => k.name).join(', ')}. Ссылка для них: кнопка «Telegram» в карточке ученика.`,
+        en: `Parents have not connected the bot yet: ${missing.map((k) => k.name).join(', ')}. Their link is under the Telegram button on the student card.`,
+      })}</small>}
     </div>
   );
 }
@@ -899,6 +978,50 @@ function ParentLinkButton({ id }: { id: string }) {
       {st === 'copied' && <small className="t-pos">{t({ uk: 'Посилання скопійовано', ru: 'Ссылка скопирована', en: 'Link copied' })}</small>}
       {st === 'err' && url && <input readOnly value={url} onFocus={(e) => e.target.select()} className="t-parent__url" />}
       {st === 'err' && !url && <small className="t-neg">{t({ uk: 'Не вдалося', ru: 'Не удалось', en: 'Failed' })}</small>}
+    </span>
+  );
+}
+
+// Telegram: посилання підключення для учня і батьків, щоб переслати їм у месенджер
+function TelegramButton({ id, kid }: { id: string; kid: boolean }) {
+  const t = useT();
+  const [open, setOpen] = useState(false);
+  const [d, setD] = useState<{ ready?: boolean; student?: { linked: boolean; link: string }; parent?: { linked: boolean; link: string } } | null>(null);
+  const [copied, setCopied] = useState('');
+  const box = useRef<HTMLSpanElement>(null);
+  useEffect(() => {
+    if (!open) return;
+    fetch(`/api/tg-links?student=${id}&lang=${t.lang}`).then((r) => r.json()).then(setD).catch(() => setD({ ready: false }));
+    const down = (e: PointerEvent) => { if (!box.current?.contains(e.target as Node)) setOpen(false); };
+    const key = (e: KeyboardEvent) => { if (e.key === 'Escape') setOpen(false); };
+    window.addEventListener('pointerdown', down); window.addEventListener('keydown', key);
+    return () => { window.removeEventListener('pointerdown', down); window.removeEventListener('keydown', key); };
+  }, [open, id, t.lang]);
+  const copy = async (k: string, link: string) => { try { await navigator.clipboard.writeText(link); setCopied(k); window.setTimeout(() => setCopied(''), 1800); } catch { window.prompt('', link); } };
+  const row = (k: 'student' | 'parent', label: string) => {
+    const x = d?.[k]; if (!x) return null;
+    return (
+      <div className="t-tg__row">
+        <b>{label}</b>
+        {x.linked ? <span className="t-tag t-tag--done">{t({ uk: 'Підключено', ru: 'Подключено', en: 'Connected' })}</span> : <span className="t-tag">{t({ uk: 'Не підключено', ru: 'Не подключено', en: 'Not connected' })}</span>}
+        <button type="button" className="t-link-btn" onClick={() => copy(k, x.link)}>{copied === k ? t({ uk: 'Скопійовано', ru: 'Скопировано', en: 'Copied' }) : t({ uk: 'Копіювати посилання', ru: 'Копировать ссылку', en: 'Copy link' })}</button>
+      </div>
+    );
+  };
+  return (
+    <span className="t-tg t-private" ref={box}>
+      <button type="button" className="mu-btn t-btn-sm" aria-expanded={open} onClick={() => setOpen(!open)}><Icon id="d-send" />Telegram</button>
+      {open && (
+        <div className="t-tg__pop" role="dialog" aria-label="Telegram">
+          {!d && <p className="t-muted">…</p>}
+          {d && d.ready === false && <p className="t-muted">{t({ uk: 'Бот ще не налаштований.', ru: 'Бот ещё не настроен.', en: 'The bot is not set up yet.' })}</p>}
+          {d?.ready && <>
+            <p className="t-muted">{t({ uk: 'Перешли посилання. Після натискання «Start» бот надсилатиме нові домашки.', ru: 'Перешли ссылку. После нажатия «Start» бот будет присылать новые домашки.', en: 'Send this link. After they press Start, the bot will send new homework.' })}</p>
+            {row('student', t({ uk: 'Учню', ru: 'Ученику', en: 'Student' }))}
+            {kid && row('parent', t({ uk: 'Батькам', ru: 'Родителям', en: 'Parents' }))}
+          </>}
+        </div>
+      )}
     </span>
   );
 }
