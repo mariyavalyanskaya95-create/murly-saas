@@ -27,7 +27,8 @@ export const ART_IDS = [
 ] as const;
 export type ArtId = (typeof ART_IDS)[number];
 
-export type Card = { title: string; text?: string; art?: ArtId; tag?: string };
+// secret: прихований текст, з’являється по кліку під час показу (відповідь, поворот сюжету)
+export type Card = { title: string; text?: string; art?: ArtId; tag?: string; secret?: string };
 
 export type Slide =
   // обкладинка
@@ -39,7 +40,11 @@ export type Slide =
   // банк фраз (useful language), групами
   | { kind: 'phrases'; title: string; instruction?: string; groups: { title: string; items: string[] }[]; art?: ArtId }
   // два-три варіанти: обери й захисти вибір
-  | { kind: 'choose'; title: string; instruction: string; options: Card[]; phrases?: string[] };
+  | { kind: 'choose'; title: string; instruction: string; options: Card[]; phrases?: string[] }
+  // велике фото + питання «що на картинці». photo: id фото Unsplash ('photo-...') або пошуковий запит, поки фото не підібране
+  | { kind: 'picture'; title: string; instruction: string; photo: string; questions: string[]; words?: string[] }
+  // шкала згоди: учні ставлять позначку від «зовсім ні» до «так»
+  | { kind: 'scale'; title: string; instruction: string; statements: string[]; left: string; right: string };
 
 export type Activity = {
   slug: string;
