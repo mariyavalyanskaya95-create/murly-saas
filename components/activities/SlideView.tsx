@@ -1,6 +1,8 @@
 // Один слайд активності. Розмір тексту залежить від ширини слайда (container query), тож однаково виглядає
 // у прев’ю, на весь екран і в PDF.
 import Art from '../Art';
+import Kit from '../Kit';
+import { PHOTOS, photoUrl } from '@/lib/activities/photos';
 import type { Activity, Card, Slide } from '@/lib/activities';
 
 function CardBox({ c, i }: { c: Card; i: number }) {
@@ -24,10 +26,23 @@ function Phrases({ items }: { items: string[] }) {
   );
 }
 
+// Рамка слайда: фото-фон, фірмова плашка Murly, нижній рядок
+function Frame({ a, s, cover, children }: { a: Activity; s: Slide; cover?: boolean; children: React.ReactNode }) {
+  const set = PHOTOS[a.slug];
+  const ph = set ? set[s.kind === 'cover' ? 0 : s.kind === 'questions' || s.kind === 'phrases' ? 1 : 2] : null;
+  return (
+    <section className={`asl sl--${a.color} ${cover ? 'sl--cover' : ''} ${ph ? 'has-photo' : ''}`}>
+      {ph && <div className="asl-bg" style={{ backgroundImage: `url(${photoUrl(ph.id)})` }} aria-hidden="true" />}
+      <span className="asl-brand" aria-label="Murly">MUR<Kit id="st-cat-blep" className="asl-brand__cat" />LY</span>
+      {children}
+    </section>
+  );
+}
+
 export default function SlideView({ a, s, n, total }: { a: Activity; s: Slide; n: number; total: number }) {
   const foot = (
     <div className="sl-foot">
-      <span className="sl-brand">MURLY</span>
+      <span className="sl-brand">murly.com.ua</span>
       <span>{a.title}</span>
       <span>{n} / {total}</span>
     </div>
@@ -35,7 +50,7 @@ export default function SlideView({ a, s, n, total }: { a: Activity; s: Slide; n
 
   if (s.kind === 'cover') {
     return (
-      <section className={`asl sl--cover sl--${a.color}`}>
+      <Frame a={a} s={s} cover>
         <div className="sl-in">
           <div className="sl-cover__text">
             <span className="sl-levels">{a.levels.join(' · ')}</span>
@@ -47,13 +62,13 @@ export default function SlideView({ a, s, n, total }: { a: Activity; s: Slide; n
           </div>
         </div>
         {foot}
-      </section>
+      </Frame>
     );
   }
 
   if (s.kind === 'questions') {
     return (
-      <section className={`asl sl--${a.color}`}>
+      <Frame a={a} s={s}>
         <div className="sl-in">
           <header className="sl-head">
             <h2 className="sl-title">{s.title}</h2>
@@ -65,13 +80,13 @@ export default function SlideView({ a, s, n, total }: { a: Activity; s: Slide; n
           </div>
         </div>
         {foot}
-      </section>
+      </Frame>
     );
   }
 
   if (s.kind === 'phrases') {
     return (
-      <section className={`asl sl--${a.color}`}>
+      <Frame a={a} s={s}>
         <div className="sl-in">
           <header className="sl-head">
             <h2 className="sl-title">{s.title}</h2>
@@ -88,13 +103,13 @@ export default function SlideView({ a, s, n, total }: { a: Activity; s: Slide; n
           {s.art && <Art id={s.art} className="sl-corner sl-float sl-float--2" />}
         </div>
         {foot}
-      </section>
+      </Frame>
     );
   }
 
   if (s.kind === 'choose') {
     return (
-      <section className={`asl sl--${a.color}`}>
+      <Frame a={a} s={s}>
         <div className="sl-in">
           <header className="sl-head">
             <h2 className="sl-title">{s.title}</h2>
@@ -113,14 +128,14 @@ export default function SlideView({ a, s, n, total }: { a: Activity; s: Slide; n
           {s.phrases?.length ? <Phrases items={s.phrases} /> : null}
         </div>
         {foot}
-      </section>
+      </Frame>
     );
   }
 
   // cards
   const cols = s.cols ?? (s.cards.length <= 4 ? 2 : s.cards.length <= 6 ? 3 : 4);
   return (
-    <section className={`asl sl--${a.color}`}>
+    <Frame a={a} s={s}>
       <div className="sl-in">
         <header className="sl-head">
           <h2 className="sl-title">{s.title}</h2>
@@ -132,6 +147,6 @@ export default function SlideView({ a, s, n, total }: { a: Activity; s: Slide; n
         {s.phrases?.length ? <Phrases items={s.phrases} /> : null}
       </div>
       {foot}
-    </section>
+    </Frame>
   );
 }
