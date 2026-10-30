@@ -39,7 +39,7 @@ export default function ActivityList({ items }: { items: Activity[] }) {
           const art = cover && cover.kind === 'cover' ? cover.art.slice(0, 2) : [];
           return (
             <Link key={a.slug} href={`/activities/${a.slug}`} className={`act-card act--${a.color}`}>
-              <span className={`act-card__art ${PHOTOS[a.slug] ? 'has-photo' : ''}`} style={PHOTOS[a.slug] ? { backgroundImage: `url(${photoUrl(PHOTOS[a.slug][0].id, 640)})` } : undefined}>{art.map((id) => <Art key={id} id={id} />)}</span>
+              <span className={`act-card__art ${PHOTOS[a.slug] ? 'has-photo' : ''}`} style={PHOTOS[a.slug] ? { backgroundImage: `url(${photoUrl(PHOTOS[a.slug][0].id, 640)})` } : undefined}>{PHOTOS[a.slug] ? null : art.map((id) => <Art key={id} id={id} />)}</span>
               <span className="act-card__meta">
                 {a.levels.map((l) => <span key={l} className="act-lv">{l}</span>)}
                 <span className="act-type">{a.type === 'grammar' ? 'Grammar' : 'Speaking'}</span>

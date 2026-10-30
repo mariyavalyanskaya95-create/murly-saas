@@ -92,9 +92,9 @@ export default function SlideView({ a, s, n, total, live, pick }: { a: Activity;
             <h2 className="sl-cover__title">{s.title}</h2>
             {s.subtitle && <p className="sl-cover__sub">{s.subtitle}</p>}
           </div>
-          <div className={`sl-cover__art sl-cover__art--${Math.min(3, s.art.length)}`}>
+          {!PHOTOS[a.slug] && <div className={`sl-cover__art sl-cover__art--${Math.min(3, s.art.length)}`}>
             {s.art.slice(0, 3).map((id, i) => <Art key={id} id={id} className={`sl-float sl-float--${i}`} />)}
-          </div>
+          </div>}
         </div>
         {foot}
       </Frame>
