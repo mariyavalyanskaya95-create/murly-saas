@@ -3253,3 +3253,7 @@ button.sl-scale__dot:hover { transform: scale(1.2); }
 .sl-cards { align-content: start; }
 .sl-fit.is-measuring, .sl-fit.is-measuring * { transform: none !important; }
 .sl-fit.is-measuring { transform: scale(var(--k, 1)) !important; }
+/* картки не стискаються: якщо не влазить, зменшується весь слайд (автопідгонка) */
+.sl-fit > .sl-cards, .sl-fit > .sl-options, .sl-fit > .sl-groups, .sl-fit > .sl-scale, .sl-fit > .sl-qwrap { flex: 0 0 auto; margin-block: auto; min-height: auto; }
+.sl-fit .sl-card, .sl-fit .sl-option, .sl-fit .sl-group, .sl-fit .sl-scale__row { min-height: auto; }
+.sl-fit > .sl-phrases { flex: none; }
