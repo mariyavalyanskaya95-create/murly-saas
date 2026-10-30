@@ -3085,7 +3085,7 @@ button.mu-nav__search { cursor: pointer; font: inherit; padding: 0; }
 .act-tips { margin-top: 26px; } .act-tips li { margin: 6px 0; line-height: 1.5; }
 
 /* слайд 16:9, розміри від ширини слайда */
-.sl { --ink: #1A1A1A; position: relative; aspect-ratio: 16 / 9; container-type: inline-size; overflow: hidden; border: 2px solid var(--ink); border-radius: 14px; color: var(--ink); text-align: left;
+.asl { --ink: #1A1A1A; position: relative; aspect-ratio: 16 / 9; container-type: inline-size; overflow: hidden; border: 2px solid var(--ink); border-radius: 14px; color: var(--ink); text-align: left;
   background-color: var(--act); background-image: radial-gradient(rgba(26,26,26,.09) 1.2px, transparent 1.3px); background-size: 22px 22px; font-family: 'General Sans', 'Nunito', system-ui, sans-serif; }
 .sl-in { position: absolute; inset: 0 0 5.4cqw 0; padding: 3.4cqw 4cqw 1.2cqw; display: flex; flex-direction: column; gap: 1.6cqw; }
 .sl-foot { position: absolute; left: 0; right: 0; bottom: 0; height: 4.6cqw; padding: 0 4cqw; display: flex; align-items: center; justify-content: space-between; gap: 2cqw; font-size: 1.15cqw; font-weight: 600; border-top: .15cqw solid rgba(26,26,26,.18); background: rgba(255,255,255,.35); }
@@ -3150,7 +3150,7 @@ button.mu-nav__search { cursor: pointer; font: inherit; padding: 0; }
 /* показ на весь екран */
 .act-stage { position: fixed; inset: 0; z-index: 1000; background: #1A1A1A; display: grid; place-items: center; padding: 2vh 2vw 9vh; }
 .act-stage__slide { width: min(96vw, calc(89vh * 16 / 9)); }
-.act-stage__slide .sl { border-radius: 10px; }
+.act-stage__slide .asl { border-radius: 10px; }
 .act-stage__nav { position: fixed; left: 50%; bottom: 2vh; transform: translateX(-50%); display: flex; align-items: center; gap: 12px; color: #fff; font-weight: 700; }
 .act-stage__nav button { font: inherit; font-size: 22px; min-width: 46px; height: 42px; border-radius: 99px; border: 2px solid #fff; background: transparent; color: #fff; cursor: pointer; padding: 0 14px; }
 .act-stage__nav button:disabled { opacity: .35; cursor: default; }
@@ -3164,7 +3164,7 @@ button.mu-nav__search { cursor: pointer; font: inherit; padding: 0; }
   body:has(.act-print) .act-body, body:has(.act-print) .act-body .mu-container { padding: 0 !important; margin: 0 !important; max-width: none !important; }
   .act-print { display: block !important; }
   .act-print .act-thumb { display: block; width: 297mm; height: 210mm; break-after: page; page-break-after: always; transform: none !important; }
-  .act-print .sl { width: 297mm; height: 167mm; aspect-ratio: auto; margin-top: 21.5mm; border: none; border-radius: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .act-print .asl { width: 297mm; height: 167mm; aspect-ratio: auto; margin-top: 21.5mm; border: none; border-radius: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   .act-print .act-thumb:last-child { break-after: auto; page-break-after: auto; }
   .sl-float { animation: none !important; }
 }
