@@ -3020,3 +3020,19 @@ button.mu-nav__search { cursor: pointer; font: inherit; padding: 0; }
 .dt-score { display: grid; gap: 6px; padding: 16px; border: 2px solid var(--mu-ink); border-radius: 18px; background: #FDF1EF; }
 .dt-score.is-good { background: #F2FAEE; }
 .dt-score > b { font-size: 34px; }
+
+/* Граматика: блоки тем і смішна сценка */
+.gr-jump { display: flex; flex-wrap: wrap; gap: 8px; }
+.gr-jump .g-chip { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; }
+.gr-jump .g-chip small { color: var(--mu-ink-muted); font-weight: 700; }
+.gr-jump .mu-ic { width: 18px; height: 18px; }
+.gr-block { scroll-margin-top: 110px; }
+.gr-card { position: relative; }
+.gr-card__lv { position: absolute; top: 18px; right: 18px; }
+.gr-fun { margin: 0 0 28px; padding: 18px 20px; border: 2px solid var(--mu-ink); border-radius: 20px; background: #FFF8E6; box-shadow: 4px 4px 0 var(--mu-ink); }
+.gr-fun__head { display: flex; align-items: center; gap: 8px; font-size: 18px; margin-bottom: 10px; }
+.gr-fun__head .mu-ic { width: 26px; height: 26px; }
+.gr-fun__lines { display: grid; gap: 6px; padding: 12px 14px; border-radius: 14px; background: #fff; border: 1.5px dashed #D9C79A; }
+.gr-fun__lines p { margin: 0; font-size: 17px; line-height: 1.45; }
+.gr-fun__point { display: flex; gap: 8px; align-items: flex-start; margin: 10px 0 0; color: var(--mu-ink-soft, #555); line-height: 1.45; }
+.gr-fun__point .mu-ic { flex: none; width: 20px; height: 20px; margin-top: 2px; }
