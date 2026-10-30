@@ -142,3 +142,86 @@ export async function menuAnswer(kind: string, lang: Lang, links: Link[]): Promi
   }[kind] || '';
   return `<b>${title}</b>\n\n${parts.join('\n\n')}`;
 }
+
+// ---------- Меню вчителя: перевірка, оплати, розклад ----------
+const TZ = 'Europe/Kyiv';
+export async function teacherOf(chat: number): Promise<{ id: string; lang: Lang } | null> {
+  const r = await db.query(`teacher_settings?tg_chat_id=eq.${enc(String(chat))}&select=teacher_id,tg_lang`).catch(() => []);
+  return r[0] ? { id: String(r[0].teacher_id), lang: asLang(r[0].tg_lang) } : null;
+}
+
+export function teacherKeyboard(lang: Lang) {
+  const t = (o: { uk: string; ru: string; en: string }) => L(lang, o);
+  return { inline_keyboard: [
+    [{ text: t({ uk: 'На перевірку', ru: 'На проверку', en: 'To review' }), callback_data: 't:review' }, { text: t({ uk: 'Оплати й борги', ru: 'Оплаты и долги', en: 'Payments' }), callback_data: 't:pay' }],
+    [{ text: t({ uk: 'Розклад', ru: 'Расписание', en: 'Schedule' }), callback_data: 't:today' }, { text: t({ uk: 'Мова', ru: 'Язык', en: 'Language' }), callback_data: 'm:lang' }],
+  ] };
+}
+
+// Початок доби за Києвом (UTC-мітка), зсув у днях
+function kyivDayStart(addDays = 0) {
+  const now = new Date();
+  const k = new Date(now.toLocaleString('en-US', { timeZone: TZ }));
+  const off = k.getTime() - now.getTime();
+  k.setHours(0, 0, 0, 0); k.setDate(k.getDate() + addDays);
+  return new Date(k.getTime() - off);
+}
+
+// Баланс кожного учня вчителя: < 0 борг
+export async function teacherBalances(teacherId: string) {
+  const T = enc(teacherId);
+  const [st, pays, done] = await Promise.all([
+    db.query(`students?teacher_id=eq.${T}&select=id,name,price,prepaid_lessons,owed_lessons,pay_mode`).catch(() => []),
+    db.query(`payments?teacher_id=eq.${T}&select=student_id,amount`).catch(() => []),
+    db.query(`lessons?teacher_id=eq.${T}&status=eq.done&select=student_id`).catch(() => []),
+  ]);
+  return st.map((s) => {
+    const price = Number(s.price) || 0;
+    const paid = pays.filter((p) => p.student_id === s.id).reduce((n, p) => n + Number(p.amount || 0), 0);
+    const held = done.filter((l) => l.student_id === s.id).length;
+    const start = ((Number(s.prepaid_lessons) || 0) - (Number(s.owed_lessons) || 0)) * price;
+    return { name: String(s.name || ''), price, post: s.pay_mode === 'post', b: paid - held * price + start };
+  });
+}
+
+export async function teacherAnswer(kind: string, lang: Lang, teacherId: string): Promise<string> {
+  const t = (o: { uk: string; ru: string; en: string }) => L(lang, o);
+  const T = enc(teacherId);
+  if (kind === 'review') {
+    const [hw, st] = await Promise.all([
+      db.query(`homework?teacher_id=eq.${T}&status=eq.done&select=student_id,title,score,total,done_at&order=done_at.asc&limit=30`).catch(() => []),
+      db.query(`students?teacher_id=eq.${T}&select=id,name`).catch(() => []),
+    ]);
+    if (!hw.length) return `<b>${t({ uk: 'На перевірку', ru: 'На проверку', en: 'To review' })}</b>\n\n${t({ uk: 'Усе перевірено, нових здач немає.', ru: 'Всё проверено, новых сдач нет.', en: 'All checked, nothing new.' })}`;
+    const nm = (id: unknown) => esc(String(st.find((s) => s.id === id)?.name || ''));
+    return `<b>${t({ uk: `На перевірку: ${hw.length}`, ru: `На проверку: ${hw.length}`, en: `To review: ${hw.length}` })}</b>\n\n` +
+      hw.map((h) => `${nm(h.student_id)}: ${esc(String(h.title || ''))}${Number(h.total) ? ` (${h.score}/${h.total})` : ''}${h.done_at ? `, ${day(h.done_at, lang)}` : ''}`).join('\n') +
+      `\n\nmurly.com.ua/teacher/review`;
+  }
+  if (kind === 'pay') {
+    const all = await teacherBalances(teacherId);
+    const owe = all.filter((x) => x.b < 0).sort((a, b) => a.b - b.b);
+    const soon = all.filter((x) => !x.post && x.b >= 0 && x.price && x.b < x.price);
+    const ahead = all.filter((x) => x.b > 0).reduce((n, x) => n + x.b, 0);
+    const lines: string[] = [];
+    if (owe.length) {
+      lines.push(`<b>${t({ uk: 'Чекають оплати', ru: 'Ждут оплаты', en: 'Awaiting payment' })}</b> (${money(owe.reduce((n, x) => n - x.b, 0), lang)})`);
+      owe.forEach((x) => lines.push(`${esc(x.name)}: ${money(-x.b, lang)}${x.price ? ` (≈ ${Math.round(-x.b / x.price)} ${t({ uk: 'зан.', ru: 'зан.', en: 'lessons' })})` : ''}${x.post ? t({ uk: ', оплата після', ru: ', оплата после', en: ', pays after' }) : ''}`));
+    } else lines.push(t({ uk: 'Боргів немає.', ru: 'Долгов нет.', en: 'Nobody owes anything.' }));
+    if (soon.length) lines.push('', `<b>${t({ uk: 'Наступне заняття не оплачене', ru: 'Следующее занятие не оплачено', en: 'Next lesson not paid yet' })}</b>`, soon.map((x) => esc(x.name)).join(', '));
+    if (ahead) lines.push('', t({ uk: `Передоплати в учнів: ${money(ahead, lang)}`, ru: `Предоплаты у учеников: ${money(ahead, lang)}`, en: `Prepaid by students: ${money(ahead, lang)}` }));
+    return `<b>${t({ uk: 'Оплати', ru: 'Оплаты', en: 'Payments' })}</b>\n\n${lines.join('\n')}`;
+  }
+  if (kind === 'today') {
+    const [ls, st] = await Promise.all([
+      db.query(`lessons?teacher_id=eq.${T}&status=eq.planned&start=gte.${enc(kyivDayStart(0).toISOString())}&start=lt.${enc(kyivDayStart(2).toISOString())}&select=student_id,start,topic&order=start.asc`).catch(() => []),
+      db.query(`students?teacher_id=eq.${T}&select=id,name`).catch(() => []),
+    ]);
+    const nm = (id: unknown) => esc(String(st.find((s) => s.id === id)?.name || ''));
+    const tm = (iso: unknown) => new Date(String(iso)).toLocaleTimeString(LOC[lang], { hour: '2-digit', minute: '2-digit', timeZone: TZ });
+    const split = kyivDayStart(1).getTime();
+    const block = (title: string, arr: Record<string, unknown>[]) => `<b>${title}</b>\n` + (arr.length ? arr.map((l) => `${tm(l.start)} ${nm(l.student_id)}${l.topic ? `: ${esc(String(l.topic))}` : ''}`).join('\n') : t({ uk: 'Занять немає', ru: 'Занятий нет', en: 'No lessons' }));
+    return `${block(t({ uk: 'Сьогодні', ru: 'Сегодня', en: 'Today' }), ls.filter((l) => +new Date(String(l.start)) < split))}\n\n${block(t({ uk: 'Завтра', ru: 'Завтра', en: 'Tomorrow' }), ls.filter((l) => +new Date(String(l.start)) >= split))}`;
+  }
+  return '';
+}
