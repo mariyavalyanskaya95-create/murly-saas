@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { auth } from '@clerk/nextjs/server';
 import { db, dbReady } from '@/lib/db';
+import { linksOf, menuAnswer, menuKeyboard, menuTitle, notLinked } from '@/lib/tg-menu';
 import { L, LANG_ASK, LANG_KEYBOARD, parsePayload, setupBotProfile, tgApi, setupWebhook, teacherLink, tgReady, tgSend, webhookSecret } from '@/lib/telegram';
 
 export const dynamic = 'force-dynamic';
@@ -10,6 +11,12 @@ type Upd = {
   message?: { chat?: { id?: number }; text?: string };
   callback_query?: { id: string; data?: string; message?: { chat?: { id?: number }; message_id?: number } };
 };
+// Меню з кнопками (лише для учнів і батьків)
+async function sendMenu(chat: number) {
+  const { lang, links } = await linksOf(chat);
+  if (!links.length) return;
+  await tgApi('sendMessage', { chat_id: chat, text: menuTitle(lang), reply_markup: menuKeyboard(lang, links) });
+}
 const DONE_LANG = { uk: 'Готово! Повідомлення будуть українською.', ru: 'Готово! Сообщения будут на русском.', en: 'Done! Messages will be in English.' };
 
 // Змінити мову всюди, де цей чат підключений (учень, батьки, вчитель)
@@ -28,6 +35,19 @@ export async function POST(req: Request) {
 
   // натиснули кнопку мови
   const cq = u?.callback_query;
+  // кнопки меню: оплата, успішність, монетки, заняття, домашка
+  if (cq && /^m:/.test(cq.data || '')) {
+    const chat = cq.message?.chat?.id;
+    await tgApi('answerCallbackQuery', { callback_query_id: cq.id });
+    if (!chat || !dbReady()) return NextResponse.json({ ok: true });
+    const kind = (cq.data || '').slice(2);
+    if (kind === 'lang') { await tgApi('sendMessage', { chat_id: chat, text: LANG_ASK, reply_markup: LANG_KEYBOARD }); return NextResponse.json({ ok: true }); }
+    const { lang, links } = await linksOf(chat);
+    if (!links.length) { await tgSend(chat, notLinked); return NextResponse.json({ ok: true }); }
+    const text = await menuAnswer(kind, lang, links);
+    await tgApi('sendMessage', { chat_id: chat, text, parse_mode: 'HTML', disable_web_page_preview: true, reply_markup: menuKeyboard(lang, links) });
+    return NextResponse.json({ ok: true });
+  }
   if (cq) {
     const lang = /^lang:(uk|ru|en)$/.exec(cq.data || '')?.[1] as 'uk' | 'ru' | 'en' | undefined;
     const chat = cq.message?.chat?.id;
@@ -35,12 +55,17 @@ export async function POST(req: Request) {
       await setLang(chat, lang);
       await tgApi('answerCallbackQuery', { callback_query_id: cq.id, text: DONE_LANG[lang] });
       await tgApi('editMessageText', { chat_id: chat, message_id: cq.message?.message_id, text: DONE_LANG[lang] });
+      await sendMenu(chat);
     } else await tgApi('answerCallbackQuery', { callback_query_id: cq.id });
     return NextResponse.json({ ok: true });
   }
 
   const chat = u?.message?.chat?.id; const text = u?.message?.text || '';
   if (!chat) return NextResponse.json({ ok: true });
+  if (/^\/(menu|help)\b/i.test(text)) {
+    if (dbReady()) await sendMenu(chat);
+    return NextResponse.json({ ok: true });
+  }
   if (/^\/(language|lang|mova|yazyk)\b/i.test(text)) {
     await tgApi('sendMessage', { chat_id: chat, text: LANG_ASK, reply_markup: LANG_KEYBOARD });
     return NextResponse.json({ ok: true });
