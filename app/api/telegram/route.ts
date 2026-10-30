@@ -25,6 +25,13 @@ export async function POST(req: Request) {
         ru: 'Готово! Теперь сюда будут приходить новые домашки, напоминания о занятиях и комментарии учителя.',
         en: 'Done! New homework, lesson reminders and teacher comments will come here.',
       }));
+    } else if (p.kind === 'parent') {
+      await db.patchWhere(`students?id=eq.${encodeURIComponent(p.id)}`, { parent_tg_chat_id: String(chat), parent_tg_lang: p.lang });
+      await tgSend(chat, L(p.lang, {
+        uk: 'Готово! Сюди приходитимуть нові домашки дитини від учителя.',
+        ru: 'Готово! Сюда будут приходить новые домашки ребёнка от учителя.',
+        en: 'Done! Your child’s new homework from the teacher will come here.',
+      }));
     } else {
       await db.upsert('teacher_settings', [{ teacher_id: p.id, tg_chat_id: String(chat), tg_lang: p.lang }]);
       await tgSend(chat, L(p.lang, {
