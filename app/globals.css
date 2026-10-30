@@ -3246,8 +3246,10 @@ button.sl-scale__dot:hover { transform: scale(1.2); }
 
 /* Автопідгонка: вміст слайда зменшується, щоб нічого не налазило */
 .asl .sl-in:not(.sl--cover .sl-in) { display: block; }
-.sl-fit { zoom: var(--k, 1); width: calc(100% / var(--k, 1)); height: calc(100% / var(--k, 1)); display: flex; flex-direction: column; gap: 1.6cqw; overflow: hidden; }
+.sl-fit { transform: scale(var(--k, 1)); transform-origin: 0 0; width: calc(100% / var(--k, 1)); height: calc(100% / var(--k, 1)); display: flex; flex-direction: column; gap: 1.6cqw; overflow: hidden; }
 .sl-card { align-items: flex-start; }
 .sl-card__art { margin-top: .2cqw; }
 .sl-card__txt b { overflow-wrap: anywhere; hyphens: auto; }
 .sl-cards { align-content: start; }
+.sl-fit.is-measuring, .sl-fit.is-measuring * { transform: none !important; }
+.sl-fit.is-measuring { transform: scale(var(--k, 1)) !important; }
