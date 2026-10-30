@@ -70,6 +70,7 @@ function In({ zoom, children }: { zoom?: boolean; children: React.ReactNode }) {
     const el = ref.current;
     if (!el) return;
     const run = () => {
+      el.classList.add('is-measuring'); // анімації зсувають картки, на час виміру вимикаємо зсуви
       let k = 1;
       el.style.setProperty('--k', '1');
       for (let i = 0; i < 14; i++) {
@@ -78,6 +79,7 @@ function In({ zoom, children }: { zoom?: boolean; children: React.ReactNode }) {
         el.style.setProperty('--k', String(k));
         if (k <= 0.5) break;
       }
+      el.classList.remove('is-measuring');
     };
     run();
     const ro = new ResizeObserver(run);
