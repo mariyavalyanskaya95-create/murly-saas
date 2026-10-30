@@ -7,7 +7,7 @@ import SiteFooter from '@/components/SiteFooter';
 import DrillTrainer from '@/components/DrillTrainer';
 import DrillPlus from '@/components/DrillPlus';
 import { DRILL_PLUS } from '@/lib/drills/plus';
-import { DRILLS, getDrill } from '@/lib/drills';
+import { DRILL_FUN, DRILLS, getDrill } from '@/lib/drills';
 import { tr } from '@/lib/i18n-server';
 import { localizeDrill } from '@/lib/content/drills';
 
@@ -52,6 +52,7 @@ export default function DrillPage({ params }: { params: { slug: string } }) {
   const next = DRILLS[idx + 1];
   const th = d.theory;
   const plus = DRILL_PLUS[d0.slug] ? localizeDrill(DRILL_PLUS[d0.slug], L.lang) : null;
+  const fun = (DRILL_FUN as Record<string, typeof DRILL_FUN[string]>)[d0.slug] ? localizeDrill((DRILL_FUN as Record<string, typeof DRILL_FUN[string]>)[d0.slug], L.lang) : null;
   return (
     <>
       <SiteNav />
@@ -66,6 +67,13 @@ export default function DrillPage({ params }: { params: { slug: string } }) {
 
       <section className="mu-section" style={{ paddingTop: 8 }}>
         <div className="mu-container gr">
+          {fun && (
+            <div className="gr-fun">
+              <div className="gr-fun__head"><Icon id="c-cat" /><b>{L({ uk: 'Посміхнись і запам’ятай', ru: 'Улыбнись и запомни', en: 'Smile and remember' })}: </b>{fun.title}</div>
+              <div className="gr-fun__lines">{fun.lines.map((l, k) => <p key={k}><b>{l.who}:</b> {l.text}</p>)}</div>
+              <p className="gr-fun__point"><Icon id="d-bulb" /> {fun.point}</p>
+            </div>
+          )}
           <h2 className="gr-h"><Icon id="d-bulb" />{L({ uk: 'Коли використовуємо', ru: 'Когда используем', en: 'When we use it' })}</h2>
           <div className="gr-uses">
             {th.when.map((u) => (
