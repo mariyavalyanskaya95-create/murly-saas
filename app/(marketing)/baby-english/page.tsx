@@ -1,5 +1,6 @@
 // «Англійська з малюком»: для батьків, які ростять білінгва або знайомлять малюка з англійською з перших років
 import Link from 'next/link';
+import { alt } from '@/lib/seo';
 import type { Metadata } from 'next';
 import Icon from '@/components/Icon';
 import Stickers from '@/components/Stickers';
@@ -21,7 +22,7 @@ export function generateMetadata(): Metadata {
       ru: 'Для родителей билингвов и тех, кто знакомит малыша с английским с 0 до 7 лет: чёткие советы по возрасту, подборка книжек, наши сказки и стишки, фразы на каждый день и бесплатные игры для печати.',
       en: 'For parents raising bilingual children or introducing English from 0 to 7: clear tips by age, a book list, our own stories and rhymes, everyday phrases and free printable games.',
     }),
-    alternates: { canonical: '/baby-english' },
+    alternates: alt('/baby-english'),
   };
 }
 
