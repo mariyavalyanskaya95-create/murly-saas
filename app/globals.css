@@ -3361,3 +3361,54 @@ button.sl-scale__dot:hover { transform: scale(1.2); }
   body.bb-printing .bb-game.is-print .bb-sheet{position:absolute;left:0;top:0;width:100%;border:0;padding:0}
   body.bb-printing .bb-card,body.bb-printing .bb-cell{break-inside:avoid}
 }
+
+/* Знижка за рік на картках тарифів */
+.mu-price__save{display:flex;align-items:center;gap:10px;margin:-4px 0 4px;font-size:14px}
+.mu-price__save s{opacity:.55}
+.mu-price__save b{background:var(--mu-tomato);color:#fff;border-radius:999px;padding:2px 10px;font-size:12px}
+.mu-price__hint{display:inline-block;margin-top:6px;color:var(--mu-ink);font-weight:600}
+.mu-price__more{display:inline-flex;align-items:center;gap:8px;margin:0 0 18px;font-weight:700;color:var(--mu-ink);text-decoration:underline;text-underline-offset:4px}
+.mu-price__more .mu-ic{width:16px;height:16px}
+
+/* ===== Детальна сторінка тарифу ===== */
+.pl-back{text-decoration:none}
+.pl-price{display:grid;justify-items:center;gap:8px;margin:28px auto 8px;padding:22px 28px;max-width:520px;background:#fff;border:2px solid var(--mu-ink);border-radius:24px;box-shadow:var(--mu-shadow-stamp-lg)}
+.pl-price__main b{font-size:3rem;line-height:1}
+.pl-price__main span{font-size:1.1rem;opacity:.6;margin-left:4px}
+.pl-price__year{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px}
+.pl-price__year s{opacity:.5}
+.pl-price__year em{font-style:normal;background:var(--mu-tomato);color:#fff;border-radius:999px;padding:3px 12px;font-size:13px;font-weight:700}
+.pl-price small{opacity:.7}
+.pl-who{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.pl-who li{display:flex;align-items:center;gap:12px;padding:18px 20px;background:#fff;border:2px solid var(--mu-ink);border-radius:18px;font-weight:600;line-height:1.35}
+.pl-who .mu-ic{width:24px;height:24px;flex:0 0 auto}
+.pl-features{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px}
+.pl-feature{background:#fff;border:2px solid var(--mu-ink);border-radius:22px;padding:26px 24px;display:grid;gap:10px;align-content:start}
+.pl-feature__ic{width:52px;height:52px;border-radius:16px;background:var(--mu-lime);display:grid;place-items:center}
+.pl-feature__ic .mu-ic{width:30px;height:30px}
+.pl-feature h3{margin:4px 0 0;font-size:1.2rem}
+.pl-feature p{margin:0;line-height:1.55;opacity:.85}
+.pl-block{display:grid;gap:40px;align-items:center}
+.pl-block--bot{grid-template-columns:1.2fr 1fr}
+.pl-block__text{display:grid;gap:16px;max-width:760px}
+.pl-block__text .mu-section__title{text-align:left;margin:0}
+.pl-block__lead{margin:0;font-size:1.1rem;line-height:1.6}
+.pl-points{margin:0;padding:0;list-style:none;display:grid;gap:12px}
+.pl-points li{position:relative;padding-left:30px;line-height:1.55}
+.pl-points li::before{content:'';position:absolute;left:0;top:.45em;width:16px;height:16px;border-radius:50%;background:var(--mu-lime);border:2px solid var(--mu-ink)}
+.pl-bot{background:#EAF1F6;border:2px solid var(--mu-ink);border-radius:26px;box-shadow:var(--mu-shadow-stamp-lg);overflow:hidden;max-width:400px;justify-self:center;width:100%}
+.pl-bot__head{display:flex;align-items:center;gap:10px;padding:14px 18px;background:#fff;border-bottom:2px solid var(--mu-ink)}
+.pl-bot__head small{opacity:.55}
+.pl-bot__ava{width:36px;height:36px;border-radius:50%;background:var(--mu-lime);display:grid;place-items:center;overflow:hidden}
+.pl-bot__ava svg{width:30px;height:30px}
+.pl-bot__chat{display:grid;gap:10px;padding:18px}
+.pl-bot__msg{margin:0;justify-self:start;max-width:85%;padding:10px 14px;background:#fff;border-radius:16px 16px 16px 4px;white-space:pre-line;line-height:1.45;font-size:14px}
+.pl-bot__msg.is-me{justify-self:end;background:var(--mu-lime);border-radius:16px 16px 4px 16px;font-weight:600}
+.pl-bot__keys{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 18px 18px}
+.pl-bot__keys span{padding:10px;background:#fff;border-radius:12px;text-align:center;font-weight:600;font-size:14px}
+.pl-others{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+.pl-other{display:grid;gap:6px;justify-items:start;padding:20px;background:#fff;border:2px solid var(--mu-ink);border-radius:18px;color:var(--mu-ink);text-decoration:none}
+.pl-other:hover{background:var(--mu-lime)}
+.pl-other .mu-ic{width:28px;height:28px}
+.pl-other span{opacity:.7}
+@media (max-width:860px){.pl-block--bot{grid-template-columns:1fr}}
