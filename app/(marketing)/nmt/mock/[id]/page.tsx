@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { alt } from '@/lib/seo';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import SiteNav from '@/components/SiteNav';
@@ -11,7 +12,7 @@ export function generateMetadata({ params }: { params: { id: string } }): Metada
   const t = tr();
   return {
     title: t({ uk: `Пробний НМТ з англійської, варіант ${params.id}`, ru: `Пробный НМТ по английскому, вариант ${params.id}`, en: `NMT English mock test ${params.id}` }),
-    alternates: { canonical: `/nmt/mock/${params.id}` },
+    alternates: alt(`/nmt/mock/${params.id}`),
   };
 }
 
