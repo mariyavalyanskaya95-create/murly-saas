@@ -8,6 +8,7 @@ import type { T } from '@/lib/i18n';
 import { PAID_ENABLED, PRICES } from '@/lib/plans';
 
 type Plan = {
+  more?: string;
   icon: string;
   name: T;
   month: number;
@@ -23,7 +24,7 @@ type Plan = {
 const FREE_NOTE: T = { uk: 'Перший місяць безкоштовно', ru: 'Первый месяц бесплатно', en: 'First month free' };
 const TEACHER: Plan[] = [
   {
-    icon: 'd-smile', name: { uk: 'Старт', ru: 'Старт', en: 'Start' }, month: 0,
+    more: 'start', icon: 'd-smile', name: { uk: 'Старт', ru: 'Старт', en: 'Start' }, month: 0,
     note: { uk: 'Назавжди безкоштовно', ru: 'Навсегда бесплатно', en: 'Free forever' },
     items: [
       { uk: 'До 3 учнів', ru: 'До 3 учеников', en: 'Up to 3 students' },
@@ -34,7 +35,7 @@ const TEACHER: Plan[] = [
     cta: { uk: 'Почати безкоштовно', ru: 'Начать бесплатно', en: 'Start for free' }, href: '/sign-up?role=teacher',
   },
   {
-    icon: 'd-rocket', name: { uk: 'Вчитель Pro', ru: 'Учитель Pro', en: 'Teacher Pro' }, month: PRICES.teacherPro, year: PRICES.teacherProYear, hit: true, paid: true,
+    more: 'pro', icon: 'd-rocket', name: { uk: 'Вчитель Pro', ru: 'Учитель Pro', en: 'Teacher Pro' }, month: PRICES.teacherPro, year: PRICES.teacherProYear, hit: true, paid: true,
     note: FREE_NOTE,
     items: [
       { uk: 'Скільки завгодно учнів', ru: 'Сколько угодно учеников', en: 'Any number of students' },
@@ -46,7 +47,7 @@ const TEACHER: Plan[] = [
     cta: { uk: 'Спробувати місяць безкоштовно', ru: 'Попробовать месяц бесплатно', en: 'Try a month free' }, href: '/sign-up?role=teacher&plan=pro',
   },
   {
-    icon: 'd-team', name: { uk: 'Школа', ru: 'Школа', en: 'School' }, month: PRICES.school, year: PRICES.schoolYear, paid: true,
+    more: 'school', icon: 'd-team', name: { uk: 'Школа', ru: 'Школа', en: 'School' }, month: PRICES.school, year: PRICES.schoolYear, paid: true,
     note: { uk: `До 5 вчителів, далі +${PRICES.schoolExtraTeacher} ₴ за кожного`, ru: `До 5 учителей, дальше +${PRICES.schoolExtraTeacher} ₴ за каждого`, en: `Up to 5 teachers, then +${PRICES.schoolExtraTeacher} ₴ each` },
     items: [
       { uk: 'Pro для кожного вчителя', ru: 'Pro для каждого учителя', en: 'Pro for every teacher' },
@@ -71,7 +72,7 @@ const STUDENT: Plan[] = [
     cta: { uk: 'Почати', ru: 'Начать', en: 'Start' }, href: '/sign-up?role=student',
   },
   {
-    icon: 'd-rocket', name: { uk: 'Учень Плюс', ru: 'Ученик Плюс', en: 'Student Plus' }, month: PRICES.studentPlus, year: PRICES.studentPlusYear, hit: true, paid: true,
+    more: 'plus', icon: 'd-rocket', name: { uk: 'Учень Плюс', ru: 'Ученик Плюс', en: 'Student Plus' }, month: PRICES.studentPlus, year: PRICES.studentPlusYear, hit: true, paid: true,
     note: FREE_NOTE,
     items: [
       { uk: 'Усі тренажери на 100 завдань', ru: 'Все тренажёры на 100 заданий', en: 'All 100-task trainers' },
@@ -82,7 +83,7 @@ const STUDENT: Plan[] = [
     cta: { uk: 'Спробувати місяць безкоштовно', ru: 'Попробовать месяц бесплатно', en: 'Try a month free' }, href: '/sign-up?role=student&plan=plus',
   },
   {
-    icon: 'd-heart', name: { uk: "Сім'я", ru: 'Семья', en: 'Family' }, month: PRICES.family, year: PRICES.familyYear, paid: true,
+    more: 'family', icon: 'd-heart', name: { uk: "Сім'я", ru: 'Семья', en: 'Family' }, month: PRICES.family, year: PRICES.familyYear, paid: true,
     note: { uk: 'Для 2-3 дітей', ru: 'Для 2-3 детей', en: 'For 2-3 kids' },
     items: [
       { uk: 'Усе з «Учень Плюс» для кожної дитини', ru: 'Всё из «Ученик Плюс» для каждого ребёнка', en: 'Student Plus for every child' },
@@ -112,7 +113,7 @@ export default function PricingSection({ firstQuiz = '/quiz/teen-life', start = 
         </div>
         <div className="lp-switch pr-bill" role="tablist" aria-label={t({ uk: 'Період оплати', ru: 'Период оплаты', en: 'Billing period' })}>
           <button role="tab" aria-selected={!yearly} className={!yearly ? 'is-on' : ''} onClick={() => setYearly(false)}>{t({ uk: 'Місяць', ru: 'Месяц', en: 'Monthly' })}</button>
-          <button role="tab" aria-selected={yearly} className={yearly ? 'is-on' : ''} onClick={() => setYearly(true)}>{t({ uk: 'Рік', ru: 'Год', en: 'Yearly' })} <span className="pr-save">{t({ uk: 'вигідніше', ru: 'выгоднее', en: 'save' })}</span></button>
+          <button role="tab" aria-selected={yearly} className={yearly ? 'is-on' : ''} onClick={() => setYearly(true)}>{t({ uk: 'Рік', ru: 'Год', en: 'Yearly' })} <span className="pr-save">{t({ uk: 'до −33%', ru: 'до −33%', en: 'up to −33%' })}</span></button>
         </div>
       </div>
 
@@ -125,12 +126,14 @@ export default function PricingSection({ firstQuiz = '/quiz/teen-life', start = 
             <div key={p.name.uk} className={`mu-price ${p.hit ? 'mu-price--featured' : ''}`} data-hit={t({ uk: 'Хіт', ru: 'Хит', en: 'Best pick' })}>
               <div className="mu-price__name"><Icon id={p.icon} />{t(p.name)}</div>
               <div className="mu-price__amount">{amount} ₴{p.month > 0 && <span>{showYear ? yr : mo}</span>}</div>
+              {showYear && <div className="mu-price__save"><s>{fmt(p.month * 12)} ₴</s><b>−{Math.round((1 - p.year! / (p.month * 12)) * 100)}%</b></div>}
               <div className="mu-price__period">
                 {showYear
-                  ? t({ uk: `це ${fmt(Math.round(p.year! / 12))} ₴ на місяць`, ru: `это ${fmt(Math.round(p.year! / 12))} ₴ в месяц`, en: `that’s ${fmt(Math.round(p.year! / 12))} ₴ a month` })
-                  : t(p.note)}
+                  ? t({ uk: `це ${fmt(Math.round(p.year! / 12))} ₴ на місяць, економія ${fmt(p.month * 12 - p.year!)} ₴`, ru: `это ${fmt(Math.round(p.year! / 12))} ₴ в месяц, экономия ${fmt(p.month * 12 - p.year!)} ₴`, en: `that’s ${fmt(Math.round(p.year! / 12))} ₴ a month, you save ${fmt(p.month * 12 - p.year!)} ₴` })
+                  : p.year ? <>{t(p.note)}<br /><span className="mu-price__hint">{t({ uk: `За рік: ${fmt(p.year)} ₴, економія ${fmt(p.month * 12 - p.year)} ₴`, ru: `За год: ${fmt(p.year)} ₴, экономия ${fmt(p.month * 12 - p.year)} ₴`, en: `Yearly: ${fmt(p.year)} ₴, save ${fmt(p.month * 12 - p.year)} ₴` })}</span></> : t(p.note)}
               </div>
               <ul className="mu-price__list">{p.items.map((it) => <li key={it.uk}>{t(it)}</li>)}</ul>
+              {p.more && <Link href={`/pricing/${p.more}`} className="mu-price__more">{t({ uk: 'Детальніше про тариф', ru: 'Подробнее о тарифе', en: 'More about this plan' })}<Icon id="e-arrow" /></Link>}
               <Link href={href} className={`mu-btn ${p.hit ? 'mu-btn--tomato' : ''}`}>
                 {p.paid && !PAID_ENABLED ? t({ uk: 'Зараз безкоштовно', ru: 'Сейчас бесплатно', en: 'Free right now' }) : t(p.cta)}
                 {p.hit && <span className="mu-btn__arrow mu-btn__arrow--lime"><Icon id="e-arrow" /></span>}
