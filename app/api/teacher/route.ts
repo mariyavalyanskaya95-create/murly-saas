@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { PAID_ENABLED, START_ACTIVE_STUDENTS, teacherPlan } from '@/lib/plans';
 import { auth, clerkClient } from '@clerk/nextjs/server';
 import { db, dbReady } from '@/lib/db';
 import { normPhone, validPhone, validPin } from '@/lib/pin-login';
@@ -106,7 +107,13 @@ export async function POST(req: Request) {
 
   try {
     switch (op) {
-      case 'addStudent': await db.insert('students', [toDb.student(p, t)]); break;
+      case 'addStudent': {
+        if (PAID_ENABLED) {
+          const [st, ts] = await Promise.all([db.select('students', t, '&archived=is.false').catch(() => db.select('students', t)), db.query(`teacher_settings?teacher_id=eq.${encodeURIComponent(t)}&select=trial_started_at,pro_until`).catch(() => [])]);
+          if (teacherPlan(ts[0]) === 'start' && st.length >= START_ACTIVE_STUDENTS) return NextResponse.json({ error: 'plan_limit' }, { status: 402 });
+        }
+        await db.insert('students', [toDb.student(p, t)]); break;
+      }
       case 'updateStudent': await db.update('students', t, id, toDb.studentPatch(p.patch as Row)); break;
       case 'removeStudent': {
         await db.remove('students', t, id);
