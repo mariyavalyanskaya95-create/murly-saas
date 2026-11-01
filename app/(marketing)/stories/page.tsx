@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { alt } from '@/lib/seo';
 import SectionTabs from '@/components/SectionTabs';
 import Icon from '@/components/Icon';
 import Stickers from '@/components/Stickers';
@@ -14,7 +15,7 @@ export function generateMetadata(): Metadata {
   return {
     title: t({ uk: 'Історії англійською: страшні, романтичні, смішні | Murly', ru: 'Истории на английском: страшные, романтические, смешные | Murly', en: 'Stories in English: scary, romantic, funny | Murly' }),
     description: t({ uk: 'Короткі історії англійською за рівнями A2, B1, B2: озвучка, словничок з перекладом і питання на розуміння.', ru: 'Короткие истории на английском по уровням A2, B1, B2: озвучка, словарик с переводом и вопросы на понимание.', en: 'Short English stories at A2, B1 and B2: audio, a glossary with translations and comprehension questions.' }),
-    alternates: { canonical: '/stories' },
+    alternates: alt('/stories'),
   };
 }
 
