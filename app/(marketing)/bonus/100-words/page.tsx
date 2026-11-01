@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { alt } from '@/lib/seo';
 import type { Metadata } from 'next';
 import Icon from '@/components/Icon';
 import Stickers from '@/components/Stickers';
@@ -16,7 +17,7 @@ export function generateMetadata(): Metadata {
   return {
     title: t({ uk: '100 важливих слів для НМТ: ігри та картки', ru: '100 важных слов для НМТ: игры и карточки', en: '100 key words for the NMT: games and flashcards' }),
     description: t({ uk: 'Тренуй 100 слів для НМТ з англійської по 10 темах: квіз, пари, анаграми і картки.', ru: 'Тренируй 100 слов для НМТ по английскому по 10 темам: квиз, пары, анаграммы и карточки.', en: 'Practise 100 key words for the NMT English exam in 10 topics: quiz, pairs, anagrams and flashcards.' }),
-    alternates: { canonical: '/bonus/100-words' },
+    alternates: alt('/bonus/100-words'),
   };
 }
 
