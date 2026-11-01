@@ -15,15 +15,17 @@ export default function Stages({ stages }: { stages: Stage[] }) {
           <button key={k} type="button" role="tab" aria-selected={k === i} className={`bb-tab ${k === i ? 'is-on' : ''}`} onClick={() => setI(k)}>{t(x.age)}</button>
         ))}
       </div>
-      <p className="bb-goal">{t(s.goal)}</p>
       <div className="bb-tips">
         {s.tips.map((tip, k) => (
-          <article key={k} className="bb-tip">
-            <span className="bb-tip__n">{k + 1}</span>
-            <h3>{t(tip.title)}</h3>
+          <details key={`${i}-${k}`} className="bb-tip">
+            <summary>
+              <span className="bb-tip__n">{k + 1}</span>
+              <h3>{t(tip.title)}</h3>
+              <span className="bb-tip__more">{t({ uk: 'Читати', ru: 'Читать', en: 'Read' })}</span>
+            </summary>
             <p>{t(tip.text)}</p>
             {tip.example && <p className="bb-say" lang="en">{tip.example}</p>}
-          </article>
+          </details>
         ))}
       </div>
     </div>
