@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { alt } from '@/lib/seo';
 import Link from 'next/link';
 import Icon from '@/components/Icon';
 import SiteNav from '@/components/SiteNav';
@@ -17,7 +18,7 @@ export function generateMetadata(): Metadata {
       ru: '3D-городок, книжка-история, игры с неправильными глаголами, квизы и скороговорки. Английский, который запоминается сам.',
       en: 'A 3D town, a story book, irregular verb games, quizzes and tongue twisters. English that sticks by itself.',
     }),
-    alternates: { canonical: '/games' },
+    alternates: alt('/games'),
   };
 }
 
