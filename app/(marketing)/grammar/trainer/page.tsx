@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { alt } from '@/lib/seo';
 import SectionTabs from '@/components/SectionTabs';
 import type { Metadata } from 'next';
 import Icon from '@/components/Icon';
@@ -14,7 +15,7 @@ export function generateMetadata(): Metadata {
   return {
     title: L({ uk: 'Тренажери граматики англійської: по 100 завдань на тему | Murly', ru: 'Тренажёры грамматики английского: по 100 заданий на тему | Murly', en: 'English grammar trainers: 100 tasks per topic | Murly' }),
     description: L({ uk: 'Коротка теорія, головні пастки і 100 завдань з поясненням кожної відповіді: часи, артиклі, модальні, умовні речення, пасив.', ru: 'Короткая теория, главные ловушки и 100 заданий с объяснением каждого ответа: времена, артикли, модальные, условные, пассив.', en: 'Short theory, the main traps and 100 tasks with explanations: tenses, articles, modals, conditionals, the passive.' }),
-    alternates: { canonical: '/grammar/trainer' },
+    alternates: alt('/grammar/trainer'),
   };
 }
 
