@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { alt } from '@/lib/seo';
 import { notFound } from 'next/navigation';
 import { auth, currentUser } from '@clerk/nextjs/server';
 import Stickers from '@/components/Stickers';
@@ -26,7 +27,7 @@ export function generateMetadata({ params }: { params: { id: string } }): Metada
   const p = find(params.id);
   if (!p) return {};
   const aims = (p.aims ?? '').split('\n').filter(Boolean).slice(0, 2).join('. ');
-  return { title: `${p.title} · ${p.level} | Murly`, description: aims || p.title, alternates: { canonical: `/lessons/${params.id}` } };
+  return { title: `${p.title} · ${p.level} | Murly`, description: aims || p.title, alternates: alt(`/lessons/${params.id}`) };
 }
 
 export default async function LessonPage({ params }: { params: { id: string } }) {
