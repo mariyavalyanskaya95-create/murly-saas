@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { alt } from '@/lib/seo';
 import type { Metadata } from 'next';
 import Icon from '@/components/Icon';
 import Stickers from '@/components/Stickers';
@@ -31,8 +32,8 @@ const FEATURES: { icon: string; mod: string; title: T; text: T }[] = [
 const STEPS: { n: string; icon: string; title: string; text: T; href?: string }[] = [
   { n: '01', icon: 'e-speak', title: 'Teen Life', text: { uk: 'Розмовна тема № 1. Друзі, школа, соцмережі. Часи та базові конструкції.', ru: 'Разговорная тема № 1. Друзья, школа, соцсети. Времена и базовые конструкции.', en: 'Speaking topic no. 1. Friends, school, social media. Tenses and basic structures.' }, href: '/quiz/teen-life' },
   { n: '02', icon: 'd-camera', title: 'Films & Netflix', text: { uk: 'Reading-блок на знайомих темах. Вчишся розуміти контекст, а не зубрити.', ru: 'Reading-блок на знакомых темах. Учишься понимать контекст, а не зубрить.', en: 'A reading block on familiar topics. You learn to understand context instead of cramming.' }, href: '/quiz/films-netflix' },
-  { n: '03', icon: 'e-abc', title: 'Grammar Boss', text: { uk: 'Усі 12 часів + умовні, пасив, reported speech. Коротко, з прикладами.', ru: 'Все 12 времён + условные, пассив, reported speech. Коротко, с примерами.', en: 'All 12 tenses + conditionals, passive, reported speech. Short, with examples.' } },
-  { n: '04', icon: 'e-trophy', title: 'Mock-test #1', text: { uk: 'Повний пробник НМТ на 90 хв. Таймер, бали, детальний аналіз помилок.', ru: 'Полный пробный тест НМТ на 90 минут. Таймер, баллы, подробный разбор ошибок.', en: 'A full 90-minute NMT practice test. Timer, score, detailed review of mistakes.' } },
+  { n: '03', icon: 'e-abc', title: 'Grammar Boss', text: { uk: 'Усі 12 часів + умовні, пасив, reported speech. Коротко, з прикладами.', ru: 'Все 12 времён + условные, пассив, reported speech. Коротко, с примерами.', en: 'All 12 tenses + conditionals, passive, reported speech. Short, with examples.' }, href: '/grammar/trainer' },
+  { n: '04', icon: 'e-trophy', title: '20 mock tests', text: { uk: 'Повний пробник НМТ, близько 60 хв. Таймер, бали, детальний аналіз помилок.', ru: 'Полный пробный тест НМТ, около 60 минут. Таймер, баллы, подробный разбор ошибок.', en: 'A full 60-minute NMT practice test. Timer, score, detailed review of mistakes.' }, href: '/nmt/mock' },
 ];
 
 export function generateMetadata(): Metadata {
@@ -44,7 +45,7 @@ export function generateMetadata(): Metadata {
       ru: 'Подготовка к НМТ по английскому: короткие квизы в формате экзамена, грамматика, чтение и пробные тесты.',
       en: 'Prepare for the NMT (Ukrainian school exam) in English: short exam-style quizzes, grammar, reading and practice tests.',
     }),
-    alternates: { canonical: '/nmt' },
+    alternates: alt('/nmt'),
   };
 }
 
