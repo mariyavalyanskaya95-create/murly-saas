@@ -1,5 +1,6 @@
 // Детальна сторінка тарифу: для кого, що унікального, як працює бот, питання
 import Link from 'next/link';
+import { alt } from '@/lib/seo';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Icon from '@/components/Icon';
@@ -22,7 +23,7 @@ export function generateMetadata({ params }: { params: { plan: string } }): Meta
   return {
     title: `${t(p.name)}: ${p.price.month ? `${p.price.month} ₴` : '0 ₴'} | Murly`,
     description: t(p.lead),
-    alternates: { canonical: `/pricing/${p.slug}` },
+    alternates: alt(`/pricing/${p.slug}`),
   };
 }
 
