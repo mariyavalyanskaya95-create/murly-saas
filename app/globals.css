@@ -3412,3 +3412,6 @@ button.sl-scale__dot:hover { transform: scale(1.2); }
 .pl-other .mu-ic{width:28px;height:28px}
 .pl-other span{opacity:.7}
 @media (max-width:860px){.pl-block--bot{grid-template-columns:1fr}}
+.mu-price__amount{white-space:nowrap}
+.mu-price__amount.is-year{font-size:clamp(32px,3.2vw,42px)}
+.mu-price__amount span{white-space:nowrap}
