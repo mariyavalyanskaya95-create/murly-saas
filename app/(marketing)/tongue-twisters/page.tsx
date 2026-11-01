@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { alt } from '@/lib/seo';
 import SectionTabs from '@/components/SectionTabs';
 import Icon from '@/components/Icon';
 import Stickers from '@/components/Stickers';
@@ -13,7 +14,7 @@ export function generateMetadata(): Metadata {
   return {
     title: t({ uk: 'Скоромовки англійською з озвучкою | Murly', ru: 'Скороговорки на английском с озвучкой | Murly', en: 'English tongue twisters with audio | Murly' }),
     description: t({ uk: 'Англійські скоромовки для вимови: th, w і v, ship і sheep, r і l. Озвучка, повільний режим, переклад і поради.', ru: 'Английские скороговорки для произношения: th, w и v, ship и sheep, r и l. Озвучка, медленный режим, перевод и советы.', en: 'English tongue twisters for pronunciation: th, w and v, ship and sheep, r and l. Audio, slow mode, meanings and tips.' }),
-    alternates: { canonical: '/tongue-twisters' },
+    alternates: alt('/tongue-twisters'),
   };
 }
 
