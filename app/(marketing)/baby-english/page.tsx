@@ -46,7 +46,7 @@ export default function BabyEnglishPage() {
           <Kit id="st-cat-blep" className="kit-hero" />
           <span className="mu-section__eyebrow"><Icon id="d-heart" />{t({ uk: 'Для батьків малюків 0-7', ru: 'Для родителей малышей 0-7', en: 'For parents of kids 0-7' })}</span>
           <h1>{t({ uk: 'Англійська', ru: 'Английский', en: 'English' })} <em>{t({ uk: 'з малюком.', ru: 'с малышом.', en: 'with your little one.' })}</em></h1>
-          <p>{t({ uk: 'Ростите білінгва чи просто хочете, щоб англійська була поруч з дитинства? Тут чіткі поради за віком, фрази на кожен день, наші казки й віршики, добірка книжок та ігри, які можна роздрукувати.', ru: 'Растите билингва или просто хотите, чтобы английский был рядом с детства? Здесь чёткие советы по возрасту, фразы на каждый день, наши сказки и стишки, подборка книжек и игры, которые можно распечатать.', en: 'Raising a bilingual child, or just want English around from the start? Here are clear tips by age, everyday phrases, our own stories and rhymes, a book list and games you can print.' })}</p>
+          <p>{t({ uk: 'Поради за віком, казки, віршики й ігри для друку.', ru: 'Советы по возрасту, сказки, стишки и игры для печати.', en: 'Tips by age, stories, rhymes and printable games.' })}</p>
           <nav className="bb-jump" aria-label={t({ uk: 'Розділи', ru: 'Разделы', en: 'Sections' })}>
             {NAV.map((n) => <a key={n.id} href={`#${n.id}`}>{t(n)}</a>)}
           </nav>
