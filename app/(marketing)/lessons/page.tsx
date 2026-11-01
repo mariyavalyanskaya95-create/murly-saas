@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { alt } from '@/lib/seo';
 import Icon from '@/components/Icon';
 import Stickers from '@/components/Stickers';
 import SiteNav from '@/components/SiteNav';
@@ -29,7 +30,7 @@ export function generateMetadata(): Metadata {
       ru: 'Интерактивные уроки английского для детей, подростков и взрослых: версия ученика и версия учителя с ответами, презентация на урок и печать A4.',
       en: 'Interactive English lessons for kids, teens and adults: a student’s version and a teacher’s version with answers, an online presentation and A4 print.',
     }),
-    alternates: { canonical: '/lessons' },
+    alternates: alt('/lessons'),
   };
 }
 
