@@ -47,8 +47,8 @@ export default function AboutPage() {
           <span className="mu-section__eyebrow"><Icon id="c-paw" />{t({ uk: 'Про Murly', ru: 'О Murly', en: 'About Murly' })}</span>
           <h1>{t({ uk: 'Не підручник.', ru: 'Не учебник.', en: 'Not a textbook.' })} <em>{t({ uk: 'Тренажер', ru: 'Тренажёр', en: 'A trainer' })}</em> {t({ uk: 'для НМТ.', ru: 'для НМТ.', en: 'for the NMT.' })}</h1>
           <p>{t({ uk: 'Murly допомагає підготуватися до НМТ з англійської короткими квізами у форматі іспиту. Кожна помилка розбирається, кожен день рахується.', ru: 'Murly помогает подготовиться к НМТ по английскому с помощью коротких квизов в формате экзамена. Каждая ошибка разбирается, каждый день засчитывается.', en: 'Murly helps you prepare for the English NMT (Ukrainian school exam) with short exam-style quizzes. Every mistake is explained, every day counts.' })}</p>
-          <Link href="/quiz/teen-life" className="mu-btn mu-btn--lime mu-btn--lg">
-            {t({ uk: 'Спробувати квіз', ru: 'Попробовать квиз', en: 'Try a quiz' })}<span className="mu-btn__arrow"><Icon id="e-arrow" /></span>
+          <Link href="/sign-up" className="mu-btn mu-btn--lime mu-btn--lg">
+            {t({ uk: 'Почати безкоштовно', ru: 'Начать бесплатно', en: 'Start for free' })}<span className="mu-btn__arrow"><Icon id="e-arrow" /></span>
           </Link>
         </div>
       </section>
@@ -99,8 +99,8 @@ export default function AboutPage() {
             <Icon id="c-cat-glass" className="mu-ic mu-ic--cta" />
             <h2>{t({ uk: 'Почни з', ru: 'Начни с', en: 'Start with' })} <em>{t({ uk: '5 хвилин.', ru: '5 минут.', en: '5 minutes.' })}</em></h2>
             <p>{t({ uk: 'Перший квіз безкоштовний і без реєстрації.', ru: 'Первый квиз бесплатный и без регистрации.', en: 'The first quiz is free, no sign-up needed.' })}</p>
-            <Link href="/quiz/teen-life" className="mu-btn mu-btn--tomato mu-btn--lg">
-              {t({ uk: 'Почати квіз', ru: 'Начать квиз', en: 'Start a quiz' })}<span className="mu-btn__arrow mu-btn__arrow--lime"><Icon id="e-arrow" /></span>
+            <Link href="/sign-up" className="mu-btn mu-btn--tomato mu-btn--lg">
+              {t({ uk: 'Почати безкоштовно', ru: 'Начать бесплатно', en: 'Start for free' })}<span className="mu-btn__arrow mu-btn__arrow--lime"><Icon id="e-arrow" /></span>
             </Link>
           </div>
         </div>
