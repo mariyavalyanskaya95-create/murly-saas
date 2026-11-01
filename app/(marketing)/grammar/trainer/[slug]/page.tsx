@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { alt } from '@/lib/seo';
 import type { Metadata } from 'next';
 import Icon from '@/components/Icon';
 import Stickers from '@/components/Stickers';
@@ -39,7 +40,7 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   return {
     title: L({ uk: `${d.title}: тренажер на 100 завдань | Murly`, ru: `${d.title}: тренажёр на 100 заданий | Murly`, en: `${d.title}: 100-task grammar trainer | Murly` }),
     description: L({ uk: `${d.uk}: коротка теорія, головні пастки і 100 завдань з поясненням кожної відповіді.`, ru: `${d.title}: короткая теория, главные ловушки и 100 заданий с объяснением каждого ответа.`, en: `${d.title}: short theory, the main traps and 100 tasks with an explanation for every answer.` }),
-    alternates: { canonical: `/grammar/trainer/${d.slug}` },
+    alternates: alt(`/grammar/trainer/${d.slug}`),
   };
 }
 
