@@ -19,12 +19,13 @@ import { BATCH_7 } from '@/lib/lessons/batch-7';
 import { BATCH_8 } from '@/lib/lessons/batch-8';
 import { BATCH_9 } from '@/lib/lessons/batch-9';
 import { SITE_URL } from '@/lib/seo';
+import { BLOG } from '@/lib/blog';
 
 const STATIC: [string, number][] = [
   ['/', 1], ['/nmt', 0.9], ['/nmt/mock', 0.9], ['/irregular-verbs', 0.9], ['/irregular-verbs/games', 0.7],
   ['/grammar', 0.9], ['/grammar/trainer', 0.8], ['/activities', 0.9], ['/for-teachers', 0.9], ['/for-parents', 0.8], ['/baby-english', 0.8],
   ['/pricing', 0.8], ['/lessons', 0.8], ['/learn', 0.7], ['/practice', 0.7], ['/stories', 0.7], ['/series', 0.7], ['/games', 0.7],
-  ['/tongue-twisters', 0.6], ['/worlds', 0.5], ['/about', 0.5], ['/contact', 0.4],
+  ['/tongue-twisters', 0.6], ['/worlds', 0.5], ['/about', 0.5], ['/blog', 0.8], ['/contact', 0.4],
   ['/bonus/nmt-checklist', 0.6], ['/bonus/100-words', 0.6], ['/bonus/verbs-30', 0.6],
 ];
 
@@ -44,11 +45,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
   const now = new Date();
   const u = (p: string, l?: string) => `${SITE_URL}${p}${l ? `?lang=${l}` : ''}`;
-  return [...STATIC, ...dyn].map(([path, priority]) => ({
+  // статті блогу: тільки uk і ru
+  const blog = BLOG.map((b) => ({ url: u(`/blog/${b.slug}`), lastModified: new Date(b.date), changeFrequency: 'monthly' as const, priority: 0.8,
+    alternates: { languages: { 'uk-UA': u(`/blog/${b.slug}`), 'ru-UA': u(`/blog/${b.slug}`, 'ru') } } }));
+  return [...blog, ...[...STATIC, ...dyn].map(([path, priority]) => ({
     url: u(path),
     lastModified: now,
-    changeFrequency: 'weekly',
+    changeFrequency: 'weekly' as const,
     priority,
     alternates: { languages: { 'uk-UA': u(path), 'ru-UA': u(path, 'ru'), en: u(path, 'en') } },
-  }));
+  }))];
 }
