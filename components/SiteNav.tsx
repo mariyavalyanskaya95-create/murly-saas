@@ -52,6 +52,7 @@ const MENU: { title: T; items: { href: string; icon: string; label: T; text: T; 
     title: { uk: 'Murly', ru: 'Murly', en: 'Murly' },
     items: [
       { href: '/for-parents', icon: 'd-heart', label: { uk: 'Для батьків', ru: 'Для родителей', en: 'For parents' }, text: { uk: 'Як записати дитину і бачити прогрес', ru: 'Как записать ребёнка и видеть прогресс', en: 'Sign your child up, see progress' } },
+      { href: '/baby-english', icon: 'c-cat-sit', label: { uk: 'Англійська з малюком', ru: 'Английский с малышом', en: 'English with little ones' }, text: { uk: 'Поради, казки, ігри для друку 0-7', ru: 'Советы, сказки, игры для печати 0-7', en: 'Tips, stories, printable games 0-7' } },
       { href: '/pricing', icon: 'd-money', label: { uk: 'Тарифи', ru: 'Тарифы', en: 'Pricing' }, text: { uk: 'Почни безкоштовно', ru: 'Начни бесплатно', en: 'Start for free' } },
       { href: '/about', icon: 'c-cat', label: { uk: 'Про нас', ru: 'О нас', en: 'About us' }, text: { uk: 'Хто ми і навіщо Murly', ru: 'Кто мы и зачем Murly', en: 'Who we are and why Murly' } },
       { href: '/contact', icon: 'd-phone', label: { uk: 'Контакти', ru: 'Контакты', en: 'Contact' }, text: { uk: 'Напиши нам', ru: 'Напиши нам', en: 'Write to us' } },
