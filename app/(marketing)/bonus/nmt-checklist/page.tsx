@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { alt } from '@/lib/seo';
 import type { Metadata } from 'next';
 import Icon from '@/components/Icon';
 import Stickers from '@/components/Stickers';
@@ -16,7 +17,7 @@ export function generateMetadata(): Metadata {
   return {
     title: t({ uk: 'НМТ з англійської: НМТ-батл і вправи до чек-листа', ru: 'НМТ по английскому: НМТ-батл и упражнения к чек-листу', en: 'NMT English: NMT battle and checklist exercises' }),
     description: t({ uk: 'Граматика у форматі пропусків НМТ, сталі вирази make, do, take, слова-звʼязки і хибні друзі перекладача.', ru: 'Грамматика в формате пропусков НМТ, устойчивые выражения make, do, take, слова-связки и ложные друзья переводчика.', en: 'NMT-style gap grammar, make/do/take collocations, linking words and false friends.' }),
-    alternates: { canonical: '/bonus/nmt-checklist' },
+    alternates: alt('/bonus/nmt-checklist'),
   };
 }
 
