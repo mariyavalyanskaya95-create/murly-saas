@@ -44,6 +44,9 @@ export function LangSwitch({ className = '' }: { className?: string }) {
     try { sessionStorage.setItem('murly:lang-sync', l); } catch { /* */ }
     // запам'ятовуємо в акаунті, щоб на інших пристроях одразу була ця мова
     if (user) user.update({ unsafeMetadata: { ...user.unsafeMetadata, lang: l } }).catch(() => {});
+    // якщо мова була в адресі (?lang=ru), прибираємо її, інакше вона перебиватиме вибір
+    const u = new URL(window.location.href);
+    if (u.searchParams.has('lang')) { u.searchParams.delete('lang'); router.replace(u.pathname + u.search + u.hash); }
     router.refresh();
   };
   return (

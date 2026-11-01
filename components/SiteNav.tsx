@@ -25,7 +25,7 @@ const MENU: { title: T; items: { href: string; icon: string; label: T; text: T; 
     title: { uk: 'Вчитися самому', ru: 'Учиться самому', en: 'Learn on your own' },
     items: [
       { href: '/learn', icon: 'd-spark', label: { uk: 'Усі матеріали', ru: 'Все материалы', en: 'All materials' }, text: { uk: 'За навичками й рівнем A1-C1', ru: 'По навыкам и уровню A1-C1', en: 'By skill and level A1-C1' } },
-      { href: '/stories', icon: 'e-head', label: { uk: 'Читати і слухати', ru: 'Читать и слушать', en: 'Read and listen' }, text: { uk: 'Історії, аудіо, аудіосеріали', ru: 'Истории, аудио, аудиосериалы', en: 'Stories, audio, audio series' } },
+      { href: '/stories', icon: 'e-head', label: { uk: 'Історії й серіали', ru: 'Истории и сериалы', en: 'Stories and series' }, text: { uk: 'Історії, аудіо, аудіосеріали', ru: 'Истории, аудио, аудиосериалы', en: 'Stories, audio, audio series' } },
       { href: '/grammar', icon: 'e-abc', label: { uk: 'Граматика', ru: 'Грамматика', en: 'Grammar' }, text: { uk: '52 теми і тренажери на 100 завдань', ru: '52 темы и тренажёры на 100 заданий', en: '52 topics and 100-task trainers' } },
       { href: '/irregular-verbs', icon: 'e-book', label: { uk: 'Неправильні дієслова', ru: 'Неправильные глаголы', en: 'Irregular verbs' }, text: { uk: 'Таблиця з озвучкою, картки й ігри', ru: 'Таблица с озвучкой, карточки и игры', en: 'Voiced table, cards and games' } },
       { href: '/games', icon: 'd-rocket', label: { uk: 'Ігри', ru: 'Игры', en: 'Games' }, text: { uk: 'Квест, 3D-містечко, дієслова', ru: 'Квест, 3D-городок, глаголы', en: 'Quest, 3D town, verbs' } },
@@ -45,7 +45,7 @@ const MENU: { title: T; items: { href: string; icon: string; label: T; text: T; 
       { href: '/#code', icon: 'd-lock', label: { uk: 'Є код від учителя?', ru: 'Есть код от учителя?', en: 'Have a teacher code?' }, text: { uk: 'Приєднатися і бачити домашку', ru: 'Присоединиться и видеть домашку', en: 'Join and see your homework' } },
       { href: '/for-teachers', icon: 'd-team', label: { uk: 'Для вчителів', ru: 'Для учителей', en: 'For teachers' }, text: { uk: 'Учні, розклад, домашка, дошка', ru: 'Ученики, расписание, домашка, доска', en: 'Students, schedule, homework, board' } },
       { href: '/lessons', icon: 'e-board', label: { uk: 'Готові уроки', ru: 'Готовые уроки', en: 'Ready-made lessons' }, text: { uk: 'Версія учня і версія вчителя', ru: 'Версия ученика и версия учителя', en: 'Student’s and teacher’s versions' } },
-      { href: '/activities', icon: 'e-speak', label: { uk: 'Activities для уроку', ru: 'Activities для урока', en: 'Class activities' }, text: { uk: 'Картки, слайди і PDF для уроку', ru: 'Карточки, слайды и PDF для урока', en: 'Cards, slides and PDF for class' } },
+      { href: '/activities', icon: 'e-speak', label: { uk: 'Розмовні activities', ru: 'Разговорные activities', en: 'Speaking activities' }, text: { uk: 'Картки, слайди і PDF для уроку', ru: 'Карточки, слайды и PDF для урока', en: 'Cards, slides and PDF for class' } },
     ],
   },
   {

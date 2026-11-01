@@ -26,19 +26,38 @@ export default function SiteFooter() {
               <li><Link href="/#students">{t({ uk: 'Учням', ru: 'Ученикам', en: 'Students' })}</Link></li>
               <li><Link href="/for-teachers">{t({ uk: 'Вчителям', ru: 'Учителям', en: 'Teachers' })}</Link></li>
               <li><Link href="/for-parents">{t({ uk: 'Батькам', ru: 'Родителям', en: 'Parents' })}</Link></li>
-              <li><Link href="/nmt">{t({ uk: 'НМТ з англійської', ru: 'НМТ по английскому', en: 'NMT English exam' })}</Link></li>
+              <li><Link href="/baby-english">{t({ uk: 'Англійська з малюком', ru: 'Английский с малышом', en: 'English with little ones' })}</Link></li>
               <li><Link href="/pricing">{t({ uk: 'Тарифи', ru: 'Тарифы', en: 'Pricing' })}</Link></li>
+            </ul>
+          </div>
+          <div>
+            <h4>{t({ uk: 'НМТ', ru: 'НМТ', en: 'NMT' })}</h4>
+            <ul>
+              <li><Link href="/nmt">{t({ uk: 'НМТ з англійської', ru: 'НМТ по английскому', en: 'NMT English exam' })}</Link></li>
+              <li><Link href="/nmt/mock">{t({ uk: '20 пробних НМТ', ru: '20 пробных НМТ', en: '20 NMT mock tests' })}</Link></li>
+              <li><Link href="/bonus/nmt-checklist">{t({ uk: 'Чек-лист НМТ', ru: 'Чек-лист НМТ', en: 'NMT checklist' })}</Link></li>
+              <li><Link href="/bonus/100-words">{t({ uk: '100 слів для НМТ', ru: '100 слов для НМТ', en: '100 NMT words' })}</Link></li>
             </ul>
           </div>
           <div>
             <h4>{t({ uk: 'Вчитися', ru: 'Учиться', en: 'Learn' })}</h4>
             <ul>
               <li><Link href="/grammar">{t({ uk: 'Граматика', ru: 'Грамматика', en: 'Grammar' })}</Link></li>
+              <li><Link href="/grammar/trainer">{t({ uk: 'Тренажери граматики', ru: 'Тренажёры грамматики', en: 'Grammar trainers' })}</Link></li>
               <li><Link href="/irregular-verbs">{t({ uk: 'Неправильні дієслова', ru: 'Неправильные глаголы', en: 'Irregular verbs' })}</Link></li>
-              <li><Link href="/irregular-verbs/games">{t({ uk: 'Ігри з дієсловами', ru: 'Игры с глаголами', en: 'Verb games' })}</Link></li>
-              <li><Link href="/practice">{t({ uk: 'Слухати і читати', ru: 'Слушать и читать', en: 'Listening and reading' })}</Link></li>
-              <li><Link href="/quiz/teen-life">{t({ uk: 'Квізи', ru: 'Квизы', en: 'Quizzes' })}</Link></li>
+              <li><Link href="/bonus/verbs-30">{t({ uk: 'Дієслова за 30 днів', ru: 'Глаголы за 30 дней', en: 'Verbs in 30 days' })}</Link></li>
+              <li><Link href="/stories">{t({ uk: 'Історії й серіали', ru: 'Истории и сериалы', en: 'Stories and series' })}</Link></li>
+              <li><Link href="/practice">{t({ uk: 'Діалоги й тексти', ru: 'Диалоги и тексты', en: 'Dialogues and texts' })}</Link></li>
               <li><Link href="/games">{t({ uk: 'Ігри', ru: 'Игры', en: 'Games' })}</Link></li>
+            </ul>
+          </div>
+          <div>
+            <h4>{t({ uk: 'Для уроку', ru: 'Для урока', en: 'For lessons' })}</h4>
+            <ul>
+              <li><Link href="/activities">{t({ uk: 'Розмовні activities', ru: 'Разговорные activities', en: 'Speaking activities' })}</Link></li>
+              <li><Link href="/lessons">{t({ uk: 'Готові уроки', ru: 'Готовые уроки', en: 'Ready lessons' })}</Link></li>
+              <li><Link href="/search">{t({ uk: 'Пошук матеріалів', ru: 'Поиск материалов', en: 'Find materials' })}</Link></li>
+              <li><Link href="/tongue-twisters">{t({ uk: 'Скоромовки', ru: 'Скороговорки', en: 'Tongue twisters' })}</Link></li>
             </ul>
           </div>
           <div>

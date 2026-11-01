@@ -96,7 +96,7 @@ const STUDENT: Plan[] = [
 
 const fmt = (n: number) => n.toLocaleString('uk-UA').replace(/ /g, ' ');
 
-export default function PricingSection({ firstQuiz = '/quiz/teen-life', start = 'teacher' }: { firstQuiz?: string; start?: 'teacher' | 'student' }) {
+export default function PricingSection({ firstQuiz = '/sign-up?role=student', start = 'teacher' }: { firstQuiz?: string; start?: 'teacher' | 'student' }) {
   const t = useT();
   const [who, setWho] = useState<'teacher' | 'student'>(start);
   const [yearly, setYearly] = useState(false);
