@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { alt } from '@/lib/seo';
 import SectionTabs from '@/components/SectionTabs';
 import type { Metadata } from 'next';
 import Icon from '@/components/Icon';
@@ -21,7 +22,7 @@ export function generateMetadata(): Metadata {
       ru: 'Бесплатные игры, чтобы выучить три формы неправильных глаголов: квиз, пары, анаграммы и карточки.',
       en: 'Free games to learn the three forms of irregular verbs: quiz, pairs, anagrams and flashcards.',
     }),
-    alternates: { canonical: '/irregular-verbs/games' },
+    alternates: alt('/irregular-verbs/games'),
   };
 }
 
