@@ -8,6 +8,7 @@ import JoinCode from '@/components/JoinCode';
 import { tr } from '@/lib/i18n-server';
 import type { T } from '@/lib/i18n';
 import Kit from '@/components/Kit';
+import FreeMonthBanner from '@/components/FreeMonthBanner';
 
 export function generateMetadata(): Metadata {
   const t = tr();
@@ -96,6 +97,7 @@ export default function HomePage() {
             <Link href="/#who" className="mu-btn mu-btn--ink mu-btn--lg">{t({ uk: 'Почати безкоштовно', ru: 'Начать бесплатно', en: 'Start for free' })}<span className="mu-btn__arrow"><Icon id="e-arrow" /></span></Link>
             <Link href="/#code" className="mu-btn mu-btn--lg">{t({ uk: 'У мене є код від учителя', ru: 'У меня есть код от учителя', en: 'I have a teacher code' })}</Link>
           </div>
+          <div className="mu-hero__free"><FreeMonthBanner href="/pricing" /></div>
         </div>
       </section>
 
