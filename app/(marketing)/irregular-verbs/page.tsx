@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { alt } from '@/lib/seo';
 import SectionTabs from '@/components/SectionTabs';
 import type { Metadata } from 'next';
 import Icon from '@/components/Icon';
@@ -19,7 +20,7 @@ export function generateMetadata(): Metadata {
       ru: 'Полная таблица неправильных глаголов английского языка по алфавиту: три формы, перевод, поиск и озвучка каждого слова. Плюс бесплатные игры.',
       en: 'A full A-Z table of English irregular verbs: all three forms, translation, search and audio for every word. Plus free games.',
     }),
-    alternates: { canonical: '/irregular-verbs' },
+    alternates: alt('/irregular-verbs'),
   };
 }
 
