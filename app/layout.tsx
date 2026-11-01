@@ -40,6 +40,8 @@ const LD = {
   ],
 };
 const GA = process.env.NEXT_PUBLIC_GA_ID;
+// Google Tag Manager: усі лічильники (GA4, Meta Pixel тощо) налаштовуються вже в GTM, без змін коду
+const GTM = 'GTM-NKKFJ46T';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const lang = getLang();
@@ -72,12 +74,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap"
           />
           {/* сторінка відкрита вікном на дошці: ховаємо меню й футер */}
+          <script dangerouslySetInnerHTML={{ __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${GTM}');` }} />
           <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(LD) }} />
           {GA && <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA}`} />}
           {GA && <script dangerouslySetInnerHTML={{ __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','${GA}');` }} />}
           <script dangerouslySetInnerHTML={{ __html: "try{if(window.self!==window.top)document.documentElement.classList.add('is-embed')}catch(e){document.documentElement.classList.add('is-embed')}" }} />
         </head>
-        <body><LangProvider lang={lang}>{children}<WordPick /></LangProvider></body>
+        <body><noscript><iframe src={`https://www.googletagmanager.com/ns.html?id=${GTM}`} height="0" width="0" style={{ display: 'none', visibility: 'hidden' }} /></noscript><LangProvider lang={lang}>{children}<WordPick /></LangProvider></body>
       </html>
     </ClerkProvider>
   );
