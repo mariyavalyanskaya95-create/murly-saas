@@ -6,6 +6,7 @@ import LessonRow from '@/components/teacher/LessonRow';
 import { LessonForm, StudentForm } from '@/components/teacher/forms';
 import { balanceOf, balanceText, fmtMoney, localeOf, plural, sameDay, useTeacher } from '@/lib/teacher-store';
 import { useT } from '@/components/LangProvider';
+import { InviteCard } from '@/components/teacher/Growth';
 
 export default function TeacherToday() {
   const t = useT();
@@ -129,6 +130,7 @@ export default function TeacherToday() {
           ))}
         </section>
       )}
+      <InviteCard />
     </div>
   );
 }
