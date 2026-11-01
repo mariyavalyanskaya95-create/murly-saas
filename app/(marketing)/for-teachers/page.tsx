@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { alt } from '@/lib/seo';
 import type { Metadata } from 'next';
 import Icon from '@/components/Icon';
 import Stickers from '@/components/Stickers';
@@ -8,6 +9,7 @@ import Faq from '@/components/Faq';
 import { tr } from '@/lib/i18n-server';
 import type { T } from '@/lib/i18n';
 import Kit from '@/components/Kit';
+import FreeMonthBanner from '@/components/FreeMonthBanner';
 
 export function generateMetadata(): Metadata {
   const t = tr();
@@ -18,7 +20,7 @@ export function generateMetadata(): Metadata {
       ru: 'Ученики, расписание, 24 готовых урока по 60 минут, домашка с автопроверкой, словарь каждого ученика, оплаты и монетки для мотивации.',
       en: 'Students, schedule, 24 ready-made 60-minute lessons, auto-checked homework, a word list for every student, payments and coins for motivation.',
     }),
-    alternates: { canonical: '/for-teachers' },
+    alternates: alt('/for-teachers'),
   };
 }
 
@@ -31,6 +33,10 @@ const TOOLS: { id: string; icon: string; mod: string; title: T; text: T }[] = [
   { id: 'coins', icon: 'c-fish', mod: 'mu-card--ink', title: { uk: 'Монетки', ru: 'Монетки', en: 'Coins' }, text: { uk: 'Нараховуй монетки за урок, домашку, поведінку. Учень витрачає їх у Murly Town.', ru: 'Начисляй монетки за урок, домашку, поведение. Ученик тратит их в Murly Town.', en: 'Give coins for lessons, homework, behaviour. Students spend them in Murly Town.' } },
   { id: 'payments', icon: 'd-money', mod: 'mu-card--mustard', title: { uk: 'Оплати', ru: 'Оплаты', en: 'Payments' }, text: { uk: 'Хто заплатив і за скільки уроків. Без таблиць і нотаток у телефоні.', ru: 'Кто заплатил и за сколько уроков. Без таблиц и заметок в телефоне.', en: 'Who paid and for how many lessons. No spreadsheets or notes on your phone.' } },
   { id: 'practice', icon: 'e-head', mod: 'mu-card--sky', title: { uk: 'Граматика і практика', ru: 'Грамматика и практика', en: 'Grammar and practice' }, text: { uk: 'Правила, неправильні дієслова, listening і reading, щоб давати учням між уроками.', ru: 'Правила, неправильные глаголы, listening и reading, чтобы давать ученикам между уроками.', en: 'Rules, irregular verbs, listening and reading to give students between lessons.' } },
+  { id: 'bot', icon: 'd-send', mod: 'mu-card--ink', title: { uk: 'Telegram-бот', ru: 'Telegram-бот', en: 'Telegram bot' }, text: { uk: 'Оплати, відмітки уроків і ранкове зведення з телефона. Учням і батькам нагадування про домашку.', ru: 'Оплаты, отметки уроков и утренняя сводка с телефона. Ученикам и родителям напоминания о домашке.', en: 'Payments, lesson marks and a morning summary from your phone. Homework reminders for students and parents.' } },
+  { id: 'activities', icon: 'e-speak', mod: 'mu-card--lime', title: { uk: 'Розмовні activities', ru: 'Разговорные activities', en: 'Speaking activities' }, text: { uk: 'Готові слайди з фото, таймером і випадковим вибором учня. Показуй на весь екран або друкуй PDF.', ru: 'Готовые слайды с фото, таймером и случайным выбором ученика. Показывай на весь экран или печатай PDF.', en: 'Ready slides with photos, a timer and random pick. Present full screen or print a PDF.' } },
+  { id: 'room', icon: 'e-board', mod: 'mu-card--mustard', title: { uk: 'Кімната уроку і дошка', ru: 'Комната урока и доска', en: 'Lesson room and whiteboard' }, text: { uk: 'Відео й дошка в одному вікні. У кожного учня своя дошка, вона зберігається.', ru: 'Видео и доска в одном окне. У каждого ученика своя доска, она сохраняется.', en: 'Video and whiteboard in one window. Each student has their own saved board.' } },
+  { id: 'parents', icon: 'd-heart', mod: 'mu-card--sky', title: { uk: 'Батьки і групи', ru: 'Родители и группы', en: 'Parents and groups' }, text: { uk: 'Сторінка успіхів для батьків за посиланням, групи і командна гра-вікторина.', ru: 'Страница успехов для родителей по ссылке, группы и командная игра-викторина.', en: 'A progress page for parents via a link, groups and a team quiz game.' } },
 ];
 
 const STEPS: { n: string; icon: string; title: T; text: T }[] = [
@@ -77,6 +83,10 @@ export default function ForTeachersPage() {
                 <p className="mu-card__text">{t(tool.text)}</p>
               </div>
             ))}
+          </div>
+          <div className="ft-more">
+            <FreeMonthBanner href="/sign-up?role=teacher" />
+            <p><Link href="/pricing/pro">{t({ uk: 'Що входить в Учитель Pro і скільки коштує', ru: 'Что входит в Учитель Pro и сколько стоит', en: 'What Teacher Pro includes and what it costs' })}</Link> · <Link href="/activities">{t({ uk: 'Подивитися activities', ru: 'Посмотреть activities', en: 'Browse activities' })}</Link> · <Link href="/lessons">{t({ uk: 'Готові уроки', ru: 'Готовые уроки', en: 'Ready lessons' })}</Link></p>
           </div>
         </div>
       </section>
