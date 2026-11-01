@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { auth } from '@clerk/nextjs/server';
 import { db, dbReady } from '@/lib/db';
 import { linksOf, menuAnswer, notLinked, teacherAnswer, teacherOf } from '@/lib/tg-menu';
-import { buttonAction, customMarker, parseAmount, payAskCustom, payPickAmount, payPickStudent, paySave, payUndo, replyKeyboard } from '@/lib/tg-bot-ui';
+import { adhocPick, adhocSave, adhocUndo, attendAsk, attendPick, attendSave, attendUndo, buttonAction, customMarker, parseAmount, payAskCustom, payPickAmount, payPickStudent, paySave, payUndo, replyKeyboard } from '@/lib/tg-bot-ui';
 import { L, LANG_ASK, LANG_KEYBOARD, parsePayload, setupBotProfile, tgApi, setupWebhook, teacherLink, tgReady, tgSend, webhookSecret } from '@/lib/telegram';
 
 export const dynamic = 'force-dynamic';
@@ -22,7 +22,7 @@ async function sendMenu(chat: number) {
     canPay: links.some((k) => k.role === 'parent' || Boolean(k.s.is_adult)), coins: links.some((k) => !k.s.is_adult),
   });
   const hi = teacher
-    ? L(lang, { uk: '🐱 <b>Murly</b> · кабінет учителя\nМеню завжди внизу: оплати, перевірка, розклад.', ru: '🐱 <b>Murly</b> · кабинет учителя\nМеню всегда внизу: оплаты, проверка, расписание.', en: '🐱 <b>Murly</b> · teacher\nThe menu is always at the bottom: payments, reviews, schedule.' })
+    ? L(lang, { uk: '🐱 <b>Murly</b> · кабінет учителя\nМеню завжди внизу: уроки, оплати, перевірка, розклад.', ru: '🐱 <b>Murly</b> · кабинет учителя\nМеню всегда внизу: уроки, оплаты, проверка, расписание.', en: '🐱 <b>Murly</b> · teacher\nThe menu is always at the bottom: payments, reviews, schedule.' })
     : L(lang, { uk: '🐱 <b>Murly</b>\nМеню завжди внизу: заняття, домашка, успішність.', ru: '🐱 <b>Murly</b>\nМеню всегда внизу: занятия, домашка, успеваемость.', en: '🐱 <b>Murly</b>\nThe menu is always at the bottom: lessons, homework, progress.' });
   await tgApi('sendMessage', { chat_id: chat, text: hi, parse_mode: 'HTML', reply_markup: kb });
 }
@@ -47,7 +47,7 @@ export async function POST(req: Request) {
   const cq = u?.callback_query;
   // кнопки меню: оплата, успішність, монетки, заняття, домашка
   // кнопки вчителя
-  if (cq && /^t[paou]:/.test(cq.data || '')) {
+  if (cq && /^t[paoulxrnz]:/.test(cq.data || '')) {
     const chat = cq.message?.chat?.id;
     await tgApi('answerCallbackQuery', { callback_query_id: cq.id });
     const teacher = chat && dbReady() ? await teacherOf(chat) : null;
@@ -56,6 +56,14 @@ export async function POST(req: Request) {
     if (kind === 'tp') { const r = await payPickAmount(teacher.lang, teacher.id, a); await html(chat, r.text, r.reply_markup); }
     if (kind === 'ta') { const n = parseAmount(b); if (n) { const r = await paySave(teacher.lang, teacher.id, a, n); await html(chat, r.text, r.reply_markup); } }
     if (kind === 'to') { const r = await payAskCustom(teacher.lang, teacher.id, a); if (r) await html(chat, r.text, r.reply_markup); }
+    if (kind === 'tl') { const r = await attendAsk(teacher.lang, teacher.id, a); await html(chat, r.text, r.reply_markup); }
+    if (kind === 'tx') { const r = await attendSave(teacher.lang, teacher.id, a, b); await tgApi('editMessageText', { chat_id: chat, message_id: cq.message?.message_id, text: r.text, parse_mode: 'HTML', reply_markup: r.reply_markup }); }
+    if (kind === 'tr') { const msg = await attendUndo(teacher.lang, teacher.id, (cq.data || '').slice(3)); if (msg) await tgApi('editMessageText', { chat_id: chat, message_id: cq.message?.message_id, text: msg }); }
+    if (kind === 'tn') {
+      if (a === '0') { const r = await adhocPick(teacher.lang, teacher.id); await html(chat, r.text, r.reply_markup); }
+      else { const r = await adhocSave(teacher.lang, teacher.id, a); await html(chat, r.text, r.reply_markup); }
+    }
+    if (kind === 'tz') { const msg = await adhocUndo(teacher.lang, teacher.id, (cq.data || '').slice(3)); if (msg) await tgApi('editMessageText', { chat_id: chat, message_id: cq.message?.message_id, text: msg }); }
     if (kind === 'tu') {
       const id = (cq.data || '').slice(3);
       const msg = await payUndo(teacher.lang, teacher.id, id);
@@ -114,10 +122,11 @@ export async function POST(req: Request) {
   const act = buttonAction(text);
   if (act && dbReady()) {
     if (act === 'lang') { await tgApi('sendMessage', { chat_id: chat, text: LANG_ASK, reply_markup: LANG_KEYBOARD }); return NextResponse.json({ ok: true }); }
-    if (['addpay', 'review', 'debts', 'today'].includes(act)) {
+    if (['addpay', 'attend', 'review', 'debts', 'today'].includes(act)) {
       const teacher = await teacherOf(chat);
       if (teacher) {
         if (act === 'addpay') { const r = await payPickStudent(teacher.lang, teacher.id); await html(chat, r.text, r.reply_markup); }
+        else if (act === 'attend') { const r = await attendPick(teacher.lang, teacher.id); await html(chat, r.text, r.reply_markup); }
         else { const t2 = await teacherAnswer(act === 'debts' ? 'pay' : act, teacher.lang, teacher.id); if (t2) await html(chat, t2); }
       }
       return NextResponse.json({ ok: true });
