@@ -125,7 +125,7 @@ export default function PricingSection({ firstQuiz = '/quiz/teen-life', start = 
           return (
             <div key={p.name.uk} className={`mu-price ${p.hit ? 'mu-price--featured' : ''}`} data-hit={t({ uk: 'Хіт', ru: 'Хит', en: 'Best pick' })}>
               <div className="mu-price__name"><Icon id={p.icon} />{t(p.name)}</div>
-              <div className="mu-price__amount">{amount} ₴{p.month > 0 && <span>{showYear ? yr : mo}</span>}</div>
+              <div className={`mu-price__amount ${showYear ? 'is-year' : ''}`}>{amount} ₴{p.month > 0 && <span>{showYear ? yr : mo}</span>}</div>
               {showYear && <div className="mu-price__save"><s>{fmt(p.month * 12)} ₴</s><b>−{Math.round((1 - p.year! / (p.month * 12)) * 100)}%</b></div>}
               <div className="mu-price__period">
                 {showYear
