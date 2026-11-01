@@ -84,8 +84,8 @@ export default function ContactPage() {
           </div>
           <Faq items={FAQ.map((f) => ({ q: t(f.q), a: t(f.a) }))} />
           <div style={{ textAlign: 'center', marginTop: 40 }}>
-            <Link href="/quiz/teen-life" className="mu-btn mu-btn--lime mu-btn--lg">
-              {t({ uk: 'Спробувати квіз', ru: 'Попробовать квиз', en: 'Try a quiz' })}<span className="mu-btn__arrow"><Icon id="e-arrow" /></span>
+            <Link href="/sign-up" className="mu-btn mu-btn--lime mu-btn--lg">
+              {t({ uk: 'Почати безкоштовно', ru: 'Начать бесплатно', en: 'Start for free' })}<span className="mu-btn__arrow"><Icon id="e-arrow" /></span>
             </Link>
           </div>
         </div>
