@@ -35,6 +35,8 @@ export default function NotFound() {
           <Link href="/grammar" className="mu-btn">{t({ uk: 'Граматика', ru: 'Грамматика', en: 'Grammar' })}</Link>
           <Link href="/irregular-verbs/games" className="mu-btn">{t({ uk: 'Ігри з дієсловами', ru: 'Игры с глаголами', en: 'Verb games' })}</Link>
           <Link href="/nmt" className="mu-btn">{t({ uk: 'НМТ', ru: 'НМТ', en: 'NMT exam' })}</Link>
+          <Link href="/activities" className="mu-btn">{t({ uk: 'Activities для вчителів', ru: 'Activities для учителей', en: 'Activities for teachers' })}</Link>
+          <Link href="/search" className="mu-btn">{t({ uk: 'Пошук', ru: 'Поиск', en: 'Search' })}</Link>
         </div>
       </main>
       <SiteFooter />

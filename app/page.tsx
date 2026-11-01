@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { alt } from '@/lib/seo';
 import type { Metadata } from 'next';
 import Icon from '@/components/Icon';
 import Stickers from '@/components/Stickers';
@@ -19,7 +20,7 @@ export function generateMetadata(): Metadata {
       ru: 'Уроки с учителем, домашка-игра, грамматика простыми словами, неправильные глаголы и 3D-городок, где всё на английском. Кабинеты для учителя и ученика.',
       en: 'Lessons with a teacher, homework as a game, simple grammar, irregular verbs and a 3D town where everything is in English. Dashboards for teachers and students.',
     }),
-    alternates: { canonical: '/' },
+    alternates: alt('/'),
   };
 }
 
@@ -44,7 +45,14 @@ const ROLES: { id: string; kit: string; icon: string; mod: string; who: T; text:
     who: { uk: 'Я з батьків', ru: 'Я родитель', en: 'I’m a parent' },
     text: { uk: 'Як Murly допомагає дитині вчитися регулярно і з задоволенням, без сварок через уроки.', ru: 'Как Murly помогает ребёнку учиться регулярно и с удовольствием, без ссор из-за уроков.', en: 'How Murly helps your child learn regularly and happily, without fights over homework.' },
     main: { href: '/for-parents', label: { uk: 'Для батьків', ru: 'Для родителей', en: 'For parents' } },
-    alt: { href: '/pricing', label: { uk: 'Тарифи', ru: 'Тарифы', en: 'Pricing' } },
+    alt: { href: '/baby-english', label: { uk: 'Малюкам до 7 років', ru: 'Малышам до 7 лет', en: 'Kids under 7' } },
+  },
+  {
+    id: 'adults', kit: 'st-cat-coffee', icon: 'e-book', mod: 'mu-role--lilac',
+    who: { uk: 'Я дорослий або до НМТ', ru: 'Я взрослый или к НМТ', en: 'Adult or NMT prep' },
+    text: { uk: 'Вчишся сам: тексти, аудіо, граматика простими словами і 20 пробних НМТ з поясненнями.', ru: 'Учишься сам: тексты, аудио, грамматика простыми словами и 20 пробных НМТ с объяснениями.', en: 'Learning on your own: texts, audio, simple grammar and 20 NMT mock tests with explanations.' },
+    main: { href: '/sign-up?role=student&track=adult', label: { uk: 'Почати', ru: 'Начать', en: 'Start' } },
+    alt: { href: '/nmt/mock', label: { uk: 'Пробні НМТ', ru: 'Пробные НМТ', en: 'NMT mock tests' } },
   },
 ];
 
@@ -53,7 +61,7 @@ const FEATURES: { icon: string; mod: string; title: T; text: T; href: string }[]
   { icon: 'e-pencil', mod: 'mu-card--mustard', href: '/for-teachers#homework', title: { uk: 'Домашка-гра', ru: 'Домашка-игра', en: 'Homework as a game' }, text: { uk: 'Вправи з автоперевіркою та ігри з учнівськими словами. Учитель бачить результат.', ru: 'Упражнения с автопроверкой и игры со словами ученика. Учитель видит результат.', en: 'Auto-checked exercises and games with the student’s own words. The teacher sees the results.' } },
   { icon: 'e-abc', mod: 'mu-card--sky', href: '/grammar', title: { uk: 'Граматика простими словами', ru: 'Грамматика простыми словами', en: 'Grammar made simple' }, text: { uk: 'Коротко, з прикладами і вправами. Можна без реєстрації.', ru: 'Коротко, с примерами и упражнениями. Можно без регистрации.', en: 'Short, with examples and exercises. No sign-up needed.' } },
   { icon: 'e-book', mod: '', href: '/irregular-verbs', title: { uk: 'Неправильні дієслова', ru: 'Неправильные глаголы', en: 'Irregular verbs' }, text: { uk: 'Таблиця з озвучкою та ігри, щоб запам’ятати їх раз і назавжди.', ru: 'Таблица с озвучкой и игры, чтобы запомнить их раз и навсегда.', en: 'A table with audio and games to remember them once and for all.' } },
-  { icon: 'e-head', mod: 'mu-card--lime', href: '/practice', title: { uk: 'Слухати і читати', ru: 'Слушать и читать', en: 'Listening and reading' }, text: { uk: 'Аудіо й тексти з питаннями. Тренує розуміння, а не зубріння.', ru: 'Аудио и тексты с вопросами. Тренирует понимание, а не зубрёжку.', en: 'Audio and texts with questions. Builds understanding, not cramming.' } },
+  { icon: 'e-head', mod: 'mu-card--lime', href: '/practice', title: { uk: 'Діалоги й тексти з вправами', ru: 'Диалоги и тексты с упражнениями', en: 'Dialogues and texts with tasks' }, text: { uk: 'Аудіо й тексти з питаннями. Тренує розуміння, а не зубріння.', ru: 'Аудио и тексты с вопросами. Тренирует понимание, а не зубрёжку.', en: 'Audio and texts with questions. Builds understanding, not cramming.' } },
   { icon: 'd-rocket', mod: 'mu-card--ink', href: '/games', title: { uk: 'Ігри', ru: 'Игры', en: 'Games' }, text: { uk: '3D-містечко Murly Town, ігри з дієсловами, квізи і скоромовки.', ru: '3D-городок Murly Town, игры с глаголами, квизы и скороговорки.', en: 'Murly Town in 3D, verb games, quizzes and tongue twisters.' } },
   { icon: 'c-fish', mod: 'mu-card--mustard', href: '/play/town', title: { uk: 'Монетки за навчання', ru: 'Монетки за учёбу', en: 'Coins for learning' }, text: { uk: 'За домашку, слова і тести учень отримує монетки для своєї гри.', ru: 'За домашку, слова и тесты ученик получает монетки для своей игры.', en: 'Homework, words and tests earn coins to spend in the game.' } },
   { icon: 'e-trophy', mod: 'mu-card--sky', href: '/nmt', title: { uk: 'Підготовка до НМТ', ru: 'Подготовка к НМТ', en: 'NMT exam prep' }, text: { uk: 'Квізи у форматі іспиту для старшокласників.', ru: 'Квизы в формате экзамена для старшеклассников.', en: 'Quizzes in the format of the Ukrainian school exam.' } },

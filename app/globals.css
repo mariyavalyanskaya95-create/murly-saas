@@ -3415,3 +3415,48 @@ button.sl-scale__dot:hover { transform: scale(1.2); }
 .mu-price__amount{white-space:nowrap}
 .mu-price__amount.is-year{font-size:clamp(32px,3.2vw,42px)}
 .mu-price__amount span{white-space:nowrap}
+
+/* Чек-лист першого тижня вчителя */
+.t-onb{position:relative;gap:14px;background:#FBFDF3}
+.t-onb__head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-right:80px}
+.t-onb__head h2{margin:0}
+.t-onb__count{font-weight:800;font-size:18px}
+.t-onb__bar{height:10px;border-radius:999px;background:var(--mu-paper-dark);overflow:hidden}
+.t-onb__bar i{display:block;height:100%;background:var(--mu-lime-ink,#1A1A1A);border-radius:999px;transition:width .4s}
+.t-onb__list{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:10px}
+.t-onb__list li{display:flex;align-items:center;gap:14px;padding:10px 4px;border-bottom:1px dashed var(--mu-paper-dark)}
+.t-onb__list li:last-child{border-bottom:0}
+.t-onb__dot{width:30px;height:30px;flex:0 0 auto;border-radius:50%;border:2px solid var(--mu-ink);display:grid;place-items:center;font-weight:700;font-size:14px;background:#fff}
+.t-onb__list li.is-done .t-onb__dot{background:var(--mu-lime)}
+.t-onb__list li.is-done .t-onb__title{opacity:.55;text-decoration:line-through}
+.t-onb__title{flex:1;line-height:1.4}
+.t-onb__act a,.t-onb__act .t-link-btn{font-weight:700;color:var(--mu-ink);text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
+.t-onb__hide{position:absolute;top:22px;right:22px;background:none;border:0;font:inherit;font-size:14px;color:var(--mu-ink-muted);cursor:pointer;text-decoration:underline}
+
+/* Хто ти: 4 картки */
+.mu-role--sky{background:var(--mu-sky)}
+.mu-role--lilac{background:#E6DEF8}
+.auth-roles--4{max-width:760px}
+button.mu-role{font:inherit;cursor:pointer;text-align:left;color:var(--mu-ink)}
+button.mu-role:disabled{opacity:.6;cursor:wait}
+.wl{display:grid;justify-items:center;gap:14px;padding:72px 20px 96px;text-align:center}
+.wl h1{margin:0;font-size:clamp(34px,5vw,56px)}
+.wl__lead{margin:0 0 18px;max-width:560px;line-height:1.5}
+.wl__cat{width:110px;height:110px}
+@media (max-width:640px){.auth-roles{grid-template-columns:1fr}}
+
+/* Футер: більше колонок, бренд на всю першу смугу на середніх екранах */
+.mu-footer__grid{grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:32px 28px}
+.mu-footer__grid > div:first-child{grid-column:1/-1;max-width:520px}
+@media (min-width:1280px){.mu-footer__grid{grid-template-columns:1.6fr repeat(6,1fr)}.mu-footer__grid > div:first-child{grid-column:auto}}
+.mk-result__next{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}
+.mk-result__save{margin:16px 0 0;line-height:1.5}
+.mk-result__save a{font-weight:700;color:var(--mu-ink)}
+.t-paynew__row{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end}
+.t-paynew__row label{display:grid;gap:6px;flex:1 1 200px;font-weight:600}
+.t-paynew__row select,.t-paynew__row input{padding:12px 14px;border:2px solid var(--mu-ink);border-radius:14px;font:inherit;background:#fff}
+.ft-more{margin-top:48px;display:grid;gap:8px;justify-items:center;text-align:center}
+.ft-more p{margin:0;line-height:1.8}
+.ft-more a{font-weight:700;color:var(--mu-ink)}
+.mu-roles{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+@media (min-width:1200px){.mu-roles{grid-template-columns:repeat(4,minmax(0,1fr))}}

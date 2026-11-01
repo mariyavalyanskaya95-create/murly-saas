@@ -4,6 +4,8 @@ import { ClerkProvider } from '@clerk/nextjs';
 import { ruRU, ukUA } from '@clerk/localizations';
 import LangProvider from '@/components/LangProvider';
 import { getLang } from '@/lib/i18n-server';
+import { headers } from 'next/headers';
+import { alt, PRIVATE_PREFIXES, SITE_URL } from '@/lib/seo';
 import './globals.css';
 
 const META = {
@@ -14,14 +16,30 @@ const META = {
 
 export function generateMetadata(): Metadata {
   const m = META[getLang()];
+  const path = headers().get('x-path') || '/';
+  const priv = PRIVATE_PREFIXES.some((x) => path.startsWith(x.replace(/\/$/, '')));
   return {
-    metadataBase: new URL('https://murly.com.ua'),
+    metadataBase: new URL(SITE_URL),
     title: m.title,
     description: m.desc,
     icons: { icon: '/favicon.svg' },
-    openGraph: { title: m.og, description: m.desc, type: 'website', locale: m.locale },
+    alternates: priv ? undefined : alt(path),
+    robots: priv ? { index: false, follow: false } : undefined,
+    verification: process.env.GOOGLE_SITE_VERIFICATION ? { google: process.env.GOOGLE_SITE_VERIFICATION } : undefined,
+    openGraph: { title: m.og, description: m.desc, type: 'website', locale: m.locale, siteName: 'Murly', url: path },
   };
 }
+
+// Хто ми для пошуковиків: організація і сайт (з пошуком)
+const LD = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'Organization', '@id': `${SITE_URL}/#org`, name: 'Murly', url: SITE_URL, logo: `${SITE_URL}/favicon.svg` },
+    { '@type': 'WebSite', '@id': `${SITE_URL}/#site`, name: 'Murly', url: SITE_URL, inLanguage: ['uk', 'ru', 'en'], publisher: { '@id': `${SITE_URL}/#org` },
+      potentialAction: { '@type': 'SearchAction', target: `${SITE_URL}/search?q={q}`, 'query-input': 'required name=q' } },
+  ],
+};
+const GA = process.env.NEXT_PUBLIC_GA_ID;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const lang = getLang();
@@ -54,6 +72,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap"
           />
           {/* сторінка відкрита вікном на дошці: ховаємо меню й футер */}
+          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(LD) }} />
+          {GA && <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA}`} />}
+          {GA && <script dangerouslySetInnerHTML={{ __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','${GA}');` }} />}
           <script dangerouslySetInnerHTML={{ __html: "try{if(window.self!==window.top)document.documentElement.classList.add('is-embed')}catch(e){document.documentElement.classList.add('is-embed')}" }} />
         </head>
         <body><LangProvider lang={lang}>{children}<WordPick /></LangProvider></body>
