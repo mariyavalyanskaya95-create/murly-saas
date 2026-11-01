@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { alt } from '@/lib/seo';
 import Icon from '@/components/Icon';
 import SiteNav from '@/components/SiteNav';
 import SiteFooter from '@/components/SiteFooter';
@@ -11,7 +12,7 @@ export function generateMetadata(): Metadata {
   return {
     title: t({ uk: 'Activities для уроків англійської: картки, слайди, PDF | Murly', ru: 'Activities для уроков английского: карточки, слайды, PDF | Murly', en: 'ESL speaking activities: cards, slides, PDF | Murly' }),
     description: t({ uk: 'Готові розмовні активності для дітей, підлітків і дорослих A1-B2: картки з ілюстраціями, корисні фрази, питання. Показуй на уроці або друкуй PDF.', ru: 'Готовые разговорные активности для детей, подростков и взрослых A1-B2: карточки с иллюстрациями, полезные фразы, вопросы. Показывай на уроке или печатай PDF.', en: 'Ready-made speaking activities for kids, teens and adults A1-B2: illustrated cards, useful phrases, questions. Present in class or print as PDF.' }),
-    alternates: { canonical: '/activities' },
+    alternates: alt('/activities'),
   };
 }
 
