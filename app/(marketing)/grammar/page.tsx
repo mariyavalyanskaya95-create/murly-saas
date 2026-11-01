@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { alt } from '@/lib/seo';
 import SectionTabs from '@/components/SectionTabs';
 import type { Metadata } from 'next';
 import Icon from '@/components/Icon';
@@ -20,7 +21,7 @@ export function generateMetadata(): Metadata {
       ru: 'Времена, артикли, степени сравнения, условные предложения и пассив. Коротко, с примерами и переводом, а после каждой темы квиз.',
       en: 'Tenses, articles, comparatives, conditionals and the passive. Short, with examples and translations, and a quiz after every topic.',
     }),
-    alternates: { canonical: '/grammar' },
+    alternates: alt('/grammar'),
   };
 }
 
