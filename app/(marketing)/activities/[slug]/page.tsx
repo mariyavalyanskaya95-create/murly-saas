@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { alt } from '@/lib/seo';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import Icon from '@/components/Icon';
@@ -14,7 +15,7 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   const a = getActivity(params.slug);
   if (!a) return {};
   const t = tr();
-  return { title: `${a.title} (${a.levels.join('-')}) | Murly`, description: t(a.about), alternates: { canonical: `/activities/${a.slug}` } };
+  return { title: `${a.title} (${a.levels.join('-')}) | Murly`, description: t(a.about), alternates: alt(`/activities/${a.slug}`) };
 }
 
 const WHO = { kids: { uk: 'Діти', ru: 'Дети', en: 'Kids' }, teens: { uk: 'Підлітки', ru: 'Подростки', en: 'Teens' }, adults: { uk: 'Дорослі', ru: 'Взрослые', en: 'Adults' } };
