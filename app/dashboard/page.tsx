@@ -10,5 +10,8 @@ export default async function DashboardPage() {
   if (!userId) redirect('/sign-in');
   const [student, teacher, user] = await Promise.all([isStudent(userId).catch(() => false), isTeacher(userId).catch(() => false), currentUser().catch(() => null)]);
   const role = (user?.unsafeMetadata as { role?: string } | undefined)?.role;
-  redirect(!teacher && (student || role === 'student') ? '/student' : '/teacher');
+  if (teacher || role === 'teacher') redirect('/teacher');
+  if (student || role === 'student') redirect('/student');
+  // ролі ще немає (вхід через Google зі сторінки входу): спершу питаємо, хто ти
+  redirect('/welcome');
 }
