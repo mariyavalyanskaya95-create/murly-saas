@@ -314,3 +314,22 @@ alter table words add column if not exists srs_box integer not null default 0;
 alter table words add column if not exists srs_due timestamptz;
 alter table words add column if not exists srs_right integer not null default 0;
 alter table words add column if not exists srs_wrong integer not null default 0;
+alter table students add column if not exists parent_tg_chat_id text;
+alter table students add column if not exists parent_tg_lang text;
+
+-- Пробний місяць, «Запроси колегу», відгуки
+alter table teacher_settings add column if not exists trial_started_at timestamptz default now();
+alter table teacher_settings add column if not exists pro_until timestamptz;
+alter table teacher_settings add column if not exists ref_code text unique;
+alter table teacher_settings add column if not exists referred_by text;
+alter table teacher_settings add column if not exists tips_sent int not null default 0;
+alter table teacher_settings add column if not exists is_owner boolean not null default false;
+create table if not exists feedback (
+  id bigserial primary key,
+  teacher_id text not null,
+  name text not null default '',
+  page text not null default '',
+  text text not null,
+  created_at timestamptz not null default now()
+);
+alter table feedback enable row level security;
