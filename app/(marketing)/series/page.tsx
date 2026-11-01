@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { alt } from '@/lib/seo';
 import Link from 'next/link';
 import Icon from '@/components/Icon';
 import SiteNav from '@/components/SiteNav';
@@ -9,7 +10,7 @@ import { tr } from '@/lib/i18n-server';
 
 export function generateMetadata(): Metadata {
   const t = tr();
-  return { title: t({ uk: 'Аудіосеріали англійською з озвучкою | Murly', ru: 'Аудиосериалы на английском с озвучкой | Murly', en: 'English audio series | Murly' }), description: t({ uk: 'Історії англійською з продовженням: серії по 4–5 хвилин, голоси персонажів, слова й питання до кожної серії.', ru: 'Истории на английском с продолжением: серии по 4–5 минут, голоса персонажей, слова и вопросы к каждой серии.', en: 'English stories in episodes with character voices, words and questions.' }), alternates: { canonical: '/series' } };
+  return { title: t({ uk: 'Аудіосеріали англійською з озвучкою | Murly', ru: 'Аудиосериалы на английском с озвучкой | Murly', en: 'English audio series | Murly' }), description: t({ uk: 'Історії англійською з продовженням: серії по 4–5 хвилин, голоси персонажів, слова й питання до кожної серії.', ru: 'Истории на английском с продолжением: серии по 4–5 минут, голоса персонажей, слова и вопросы к каждой серии.', en: 'English stories in episodes with character voices, words and questions.' }), alternates: alt('/series') };
 }
 
 export default function SeriesHub() {
