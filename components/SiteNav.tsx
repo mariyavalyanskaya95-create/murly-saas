@@ -26,6 +26,7 @@ const MENU: { title: T; items: { href: string; icon: string; label: T; text: T; 
     items: [
       { href: '/learn', icon: 'd-spark', label: { uk: 'Усі матеріали', ru: 'Все материалы', en: 'All materials' }, text: { uk: 'За навичками й рівнем A1-C1', ru: 'По навыкам и уровню A1-C1', en: 'By skill and level A1-C1' } },
       { href: '/stories', icon: 'e-head', label: { uk: 'Історії й серіали', ru: 'Истории и сериалы', en: 'Stories and series' }, text: { uk: 'Історії, аудіо, аудіосеріали', ru: 'Истории, аудио, аудиосериалы', en: 'Stories, audio, audio series' } },
+      { href: '/blog', icon: 'e-book', label: { uk: 'Блог', ru: 'Блог', en: 'Blog' }, text: { uk: 'Поради для вчителів, учнів і батьків', ru: 'Советы для учителей, учеников и родителей', en: 'Tips for teachers, students and parents' } },
       { href: '/grammar', icon: 'e-abc', label: { uk: 'Граматика', ru: 'Грамматика', en: 'Grammar' }, text: { uk: '52 теми і тренажери на 100 завдань', ru: '52 темы и тренажёры на 100 заданий', en: '52 topics and 100-task trainers' } },
       { href: '/irregular-verbs', icon: 'e-book', label: { uk: 'Неправильні дієслова', ru: 'Неправильные глаголы', en: 'Irregular verbs' }, text: { uk: 'Таблиця з озвучкою, картки й ігри', ru: 'Таблица с озвучкой, карточки и игры', en: 'Voiced table, cards and games' } },
       { href: '/games', icon: 'd-rocket', label: { uk: 'Ігри', ru: 'Игры', en: 'Games' }, text: { uk: 'Квест, 3D-містечко, дієслова', ru: 'Квест, 3D-городок, глаголы', en: 'Quest, 3D town, verbs' } },
