@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { alt } from '@/lib/seo';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import SiteNav from '@/components/SiteNav';
@@ -25,7 +26,7 @@ export function generateMetadata({ params }: { params: { id: string } }): Metada
   return {
     title: `${p.title}: ${kind} ${p.level} | Murly`,
     description: t({ uk: `${kind} англійською, рівень ${p.level}. ${aim}`, ru: `${kind} на английском, уровень ${p.level}. ${aim}`, en: `English ${kind}, level ${p.level}. ${aim}` }),
-    alternates: { canonical: `/practice/${params.id}` },
+    alternates: alt(`/practice/${params.id}`),
   };
 }
 
