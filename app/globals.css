@@ -3272,7 +3272,7 @@ button.sl-scale__dot:hover { transform: scale(1.2); }
 .mu-free__txt{flex:1 1 260px;display:flex;flex-direction:column;gap:4px;text-align:left}
 .mu-free__txt b{font-size:1.15rem;line-height:1.25}
 .mu-free__txt span{opacity:.8;line-height:1.45}
-.mu-hero__free{margin-top:40px;width:100%}
+.mu-hero__free{margin-top:32px;margin-bottom:8px}
 .mu-hero__free .mu-free{margin-bottom:0}
 @media (max-width:640px){.mu-free{padding:18px;gap:14px}.mu-free .mu-btn{width:100%;justify-content:center}}
 

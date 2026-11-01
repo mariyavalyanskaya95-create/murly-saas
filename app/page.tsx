@@ -97,9 +97,9 @@ export default function HomePage() {
             <Link href="/#who" className="mu-btn mu-btn--ink mu-btn--lg">{t({ uk: 'Почати безкоштовно', ru: 'Начать бесплатно', en: 'Start for free' })}<span className="mu-btn__arrow"><Icon id="e-arrow" /></span></Link>
             <Link href="/#code" className="mu-btn mu-btn--lg">{t({ uk: 'У мене є код від учителя', ru: 'У меня есть код от учителя', en: 'I have a teacher code' })}</Link>
           </div>
-          <div className="mu-hero__free"><FreeMonthBanner href="/pricing" /></div>
         </div>
       </section>
+      <div className="mu-container mu-hero__free"><FreeMonthBanner href="/pricing" /></div>
 
       {/* ХТО ТИ */}
       <section className="mu-section" id="who" style={{ paddingTop: 8 }}>
