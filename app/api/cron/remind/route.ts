@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { db, dbReady } from '@/lib/db';
 import { L, SITE, esc, tgApi, tgReady, tgSend } from '@/lib/telegram';
 import { teacherBalances, teacherKeyboard } from '@/lib/tg-menu';
+import { PAID_ENABLED } from '@/lib/plans';
 
 export const dynamic = 'force-dynamic';
 
@@ -16,6 +17,7 @@ export async function GET(req: Request) {
   if (!tgReady() || !dbReady()) return NextResponse.json({ skipped: true });
 
   const tsent = await teacherMorning().catch(() => 0);
+  await trialTips().catch((e) => console.error(e));
   const students = await db.query('students?tg_chat_id=not.is.null&select=id,name,tg_chat_id,tg_lang').catch(() => []);
   if (!students.length) return NextResponse.json({ sent: 0, teachers: tsent });
   const now = Date.now();
@@ -73,4 +75,33 @@ async function teacherMorning() {
     if (ok) n++;
   }
   return n;
+}
+
+// Пробний місяць: на 7-й день порада, що спробувати; на 25-й нагадування, що місяць закінчується (тільки коли є оплати)
+async function trialTips() {
+  const rows = await db.query('teacher_settings?tg_chat_id=not.is.null&trial_started_at=not.is.null&select=teacher_id,tg_chat_id,tg_lang,trial_started_at,tips_sent').catch(() => []);
+  for (const r of rows) {
+    const day = Math.floor((Date.now() - Date.parse(String(r.trial_started_at))) / 864e5);
+    const sent = Number(r.tips_sent || 0);
+    const lang = String(r.tg_lang || 'uk');
+    let text = ''; let next = sent;
+    if (day >= 7 && day < 14 && sent < 1) {
+      next = 1;
+      text = L(lang, {
+        uk: '💡 <b>Тиждень з Murly!</b> Три речі, які варто спробувати:\n\n• <b>Activities</b>: готові слайди для розмовної практики, показуй на весь екран\n• <b>Кімната уроку</b>: відео й дошка в одному місці\n• <b>Оплати тут, у боті</b>: кнопка «Оплата», і баланс учня рахується сам',
+        ru: '💡 <b>Неделя с Murly!</b> Три вещи, которые стоит попробовать:\n\n• <b>Activities</b>: готовые слайды для разговорной практики, показывай на весь экран\n• <b>Комната урока</b>: видео и доска в одном месте\n• <b>Оплаты здесь, в боте</b>: кнопка «Оплата», и баланс ученика считается сам',
+        en: '💡 <b>One week with Murly!</b> Three things worth trying:\n\n• <b>Activities</b>: ready speaking slides, show them full screen\n• <b>Lesson room</b>: video and whiteboard in one place\n• <b>Payments right here in the bot</b>: tap “Payment” and the balance updates itself',
+      });
+    } else if (PAID_ENABLED && day >= 25 && day < 30 && sent < 2) {
+      next = 2;
+      text = L(lang, {
+        uk: '⏳ Безкоштовний місяць закінчується через кілька днів. Щоб лишити всіх учнів і всі матеріали, обери Pro. Якщо ні, кабінет перейде на «Старт»: дані збережуться, активними будуть 3 учні.',
+        ru: '⏳ Бесплатный месяц заканчивается через несколько дней. Чтобы оставить всех учеников и все материалы, выбери Pro. Если нет, кабинет перейдёт на «Старт»: данные сохранятся, активными будут 3 ученика.',
+        en: '⏳ Your free month ends in a few days. To keep all students and materials, choose Pro. Otherwise the dashboard moves to Start: your data stays, and 3 students remain active.',
+      });
+    }
+    if (!text) continue;
+    const ok = await tgSend(String(r.tg_chat_id), text, { text: L(lang, { uk: 'Відкрити Murly', ru: 'Открыть Murly', en: 'Open Murly' }), url: next === 2 ? `${SITE}/pricing` : `${SITE}/activities` });
+    if (ok) await db.patchWhere(`teacher_settings?teacher_id=eq.${encodeURIComponent(String(r.teacher_id))}`, { tips_sent: next });
+  }
 }
