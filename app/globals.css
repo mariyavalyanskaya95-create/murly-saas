@@ -3279,9 +3279,9 @@ button.sl-scale__dot:hover { transform: scale(1.2); }
 /* Пробний місяць, запросити колегу, відгук */
 .t-trial{padding:6px 14px;border:2px solid var(--mu-ink);border-radius:999px;background:var(--mu-lime);font-weight:700;font-size:14px;text-decoration:none;color:var(--mu-ink);white-space:nowrap}
 .t-trial.is-end{background:var(--mu-mustard)}
-.t-invite p{margin:0;line-height:1.5}
-.t-invite__row{display:flex;gap:12px;flex-wrap:wrap;margin-top:6px}
-.t-invite__row input{flex:1 1 240px;min-width:0;padding:12px 14px;border:2px solid var(--mu-ink);border-radius:14px;font:inherit;background:var(--mu-paper)}
+.t-refer p{margin:0;line-height:1.5}
+.t-refer__row{display:flex;gap:12px;flex-wrap:wrap;margin-top:6px}
+.t-refer__row input{flex:1 1 240px;min-width:0;padding:12px 14px;border:2px solid var(--mu-ink);border-radius:14px;font:inherit;background:var(--mu-paper)}
 .t-fb-btn{background:none;border:0;font:inherit;cursor:pointer;text-align:left;width:100%}
 .t-fb{position:fixed;inset:0;z-index:200;background:rgba(26,26,26,.45);display:grid;place-items:center;padding:20px}
 .t-fb__box{width:min(520px,100%);background:#fff;border:2px solid var(--mu-ink);border-radius:24px;box-shadow:var(--mu-shadow-stamp-lg);padding:28px;display:grid;gap:16px}
