@@ -3498,3 +3498,13 @@ button.mu-role:disabled{opacity:.6;cursor:wait}
 .bl-cta{margin:30px 0;padding:22px 24px;background:#fff;border:2px solid var(--mu-ink);border-radius:20px;box-shadow:var(--mu-shadow-stamp-lg);display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
 .bl-cta p{margin:0;flex:1 1 280px;font-weight:600}
 @media (max-width:640px){.bl-card{grid-template-columns:1fr}.bl-card__art{justify-content:flex-start}}
+/* Поради малюкам: заголовок видно, текст розкривається */
+details.bb-tip{padding:0;display:block}
+details.bb-tip > summary{list-style:none;cursor:pointer;display:grid;gap:10px;padding:22px 24px;position:relative}
+details.bb-tip > summary::-webkit-details-marker{display:none}
+details.bb-tip > summary h3{margin:0;padding-right:36px}
+.bb-tip__more{font-size:14px;font-weight:700;text-decoration:underline;text-underline-offset:3px;opacity:.7}
+details.bb-tip[open] .bb-tip__more{display:none}
+details.bb-tip > p{margin:0 24px 14px}
+details.bb-tip > p:last-child{margin-bottom:22px}
+.bb-tips{align-items:start}
