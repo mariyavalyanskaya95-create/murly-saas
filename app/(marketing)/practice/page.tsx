@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { alt } from '@/lib/seo';
 import SectionTabs from '@/components/SectionTabs';
 import Icon from '@/components/Icon';
 import Stickers from '@/components/Stickers';
@@ -19,7 +20,7 @@ export function generateMetadata(): Metadata {
       ru: 'Аудирование и чтение на английском для детей, подростков и взрослых: диалоги с озвучкой, тексты, упражнения с автопроверкой, формат НМТ.',
       en: 'English listening and reading for kids, teens and adults: dialogues with audio, texts, auto-checked exercises, NMT exam format.',
     }),
-    alternates: { canonical: '/practice' },
+    alternates: alt('/practice'),
   };
 }
 
