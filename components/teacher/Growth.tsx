@@ -36,10 +36,10 @@ export function InviteCard() {
   const url = `${typeof window !== 'undefined' ? window.location.origin : 'https://murly.com.ua'}/r/${g.refCode}`;
   const copy = async () => { try { await navigator.clipboard.writeText(url); setCopied(true); window.setTimeout(() => setCopied(false), 2000); } catch { /* */ } };
   return (
-    <section className="t-card t-invite">
+    <section className="t-card t-refer">
       <h2><Icon id="d-team" />{t({ uk: 'Запроси колегу', ru: 'Пригласи коллегу', en: 'Invite a colleague' })}</h2>
       <p className="t-muted">{t({ uk: 'Коли вчитель за твоїм посиланням оформить Pro, ви обоє отримаєте ще місяць безкоштовно.', ru: 'Когда учитель по твоей ссылке оформит Pro, вы оба получите ещё месяц бесплатно.', en: 'When a teacher who joins via your link gets Pro, you both get another month free.' })}</p>
-      <div className="t-invite__row">
+      <div className="t-refer__row">
         <input readOnly value={url} onFocus={(e) => e.currentTarget.select()} aria-label={t({ uk: 'Твоє посилання', ru: 'Твоя ссылка', en: 'Your link' })} />
         <button type="button" className="mu-btn mu-btn--lime" onClick={copy}>{copied ? t({ uk: 'Скопійовано', ru: 'Скопировано', en: 'Copied' }) : t({ uk: 'Копіювати', ru: 'Копировать', en: 'Copy' })}</button>
       </div>
