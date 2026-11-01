@@ -8,15 +8,16 @@ import Faq from '@/components/Faq';
 import { tr } from '@/lib/i18n-server';
 import type { T } from '@/lib/i18n';
 import Kit from '@/components/Kit';
+import FreeMonthBanner from '@/components/FreeMonthBanner';
 
 export function generateMetadata(): Metadata {
   const t = tr();
   return {
     title: t({ uk: 'Тарифи Murly: від 0 ₴', ru: 'Тарифы Murly: от 0 ₴', en: 'Murly pricing: from 0 ₴' }),
     description: t({
-      uk: 'Кабінет вчителя від 0 ₴, Учень Плюс 99 ₴ на місяць і міні-продукти від 85 ₴: чек-лист НМТ, граматика A1-B1, неправильні дієслова.',
-      ru: 'Кабинет учителя от 0 ₴, Ученик Плюс 99 ₴ в месяц и мини-продукты от 85 ₴: чек-лист НМТ, грамматика A1-B1, неправильные глаголы.',
-      en: 'Teacher dashboard from 0 ₴, Student Plus 99 ₴ a month and mini products from 85 ₴: NMT checklist, A1-B1 grammar, irregular verbs.',
+      uk: 'Перший місяць безкоштовно. Кабінет вчителя від 0 ₴, Учень Плюс 99 ₴ на місяць і міні-продукти від 85 ₴: чек-лист НМТ, граматика A1-B1, неправильні дієслова.',
+      ru: 'Первый месяц бесплатно. Кабинет учителя от 0 ₴, Ученик Плюс 99 ₴ в месяц и мини-продукты от 85 ₴: чек-лист НМТ, грамматика A1-B1, неправильные глаголы.',
+      en: 'First month free. Teacher dashboard from 0 ₴, Student Plus 99 ₴ a month and mini products from 85 ₴: NMT checklist, A1-B1 grammar, irregular verbs.',
     }),
   };
 }
@@ -38,7 +39,8 @@ const FAQ: { q: T; a: T }[] = [
   { q: { uk: 'Що можна безкоштовно?', ru: 'Что можно бесплатно?', en: 'What can I do for free?' }, a: { uk: 'Учням: граматика, неправильні дієслова, ігри і квіз щодня. Вчителям: кабінет на 3 учнів і 6 готових уроків. Без картки і без терміну.', ru: 'Ученикам: грамматика, неправильные глаголы, игры и квиз каждый день. Учителям: кабинет на 3 учеников и 6 готовых уроков. Без карты и без срока.', en: 'Students: grammar, irregular verbs, games and a daily quiz. Teachers: a dashboard for 3 students and 6 ready-made lessons. No card, no time limit.' } },
   { q: { uk: 'Мій вчитель уже платить. Мені теж треба?', ru: 'Мой учитель уже платит. Мне тоже надо?', en: 'My teacher already pays. Do I need to?' }, a: { uk: 'Ні. Якщо вчитель на платному тарифі, уроки, домашка і все для навчання з ним для тебе безкоштовні.', ru: 'Нет. Если учитель на платном тарифе, уроки, домашка и всё для учёбы с ним для тебя бесплатны.', en: 'No. If your teacher is on a paid plan, lessons, homework and everything for learning with them are free for you.' } },
   { q: { uk: 'Що таке міні-продукти?', ru: 'Что такое мини-продукты?', en: 'What are mini products?' }, a: { uk: 'Окремі матеріали, які купуються один раз, без підписки: чек-листи, пробники, граматика, картки. Вони лишаються в тебе назавжди.', ru: 'Отдельные материалы, которые покупаются один раз, без подписки: чек-листы, пробники, грамматика, карточки. Они остаются у тебя навсегда.', en: 'One-time materials, no subscription: checklists, mock tests, grammar, cards. They stay with you forever.' } },
-  { q: { uk: 'Як працюють 14 днів безкоштовно?', ru: 'Как работают 14 дней бесплатно?', en: 'How do the 14 free days work?' }, a: { uk: 'Вчитель отримує повний тариф на 14 днів. Якщо не продовжиш, кабінет повернеться на «Старт», учні й уроки нікуди не зникнуть.', ru: 'Учитель получает полный тариф на 14 дней. Если не продлишь, кабинет вернётся на «Старт», ученики и уроки никуда не денутся.', en: 'A teacher gets the full plan for 14 days. If you don’t continue, the dashboard goes back to Start, and your students and lessons stay.' } },
+  { q: { uk: 'Як працює безкоштовний місяць?', ru: 'Как работает бесплатный месяц?', en: 'How does the free month work?' }, a: { uk: 'Після реєстрації 30 днів у тебе всі можливості Pro, картку вводити не треба. Якщо не продовжиш, кабінет перейде на «Старт»: усі дані лишаються, активними будуть 3 учні.', ru: 'После регистрации 30 дней у тебя все возможности Pro, карту вводить не нужно. Если не продлишь, кабинет перейдёт на «Старт»: все данные остаются, активными будут 3 ученика.', en: 'For 30 days after sign-up you get everything in Pro, no card needed. If you don’t continue, the dashboard moves to Start: all your data stays, and 3 students remain active.' } },
+  { q: { uk: 'Що дає «Запроси колегу»?', ru: 'Что даёт «Пригласи коллегу»?', en: 'What does “Invite a colleague” give?' }, a: { uk: 'Коли вчитель за твоїм посиланням оформить Pro, ви обоє отримаєте ще місяць безкоштовно.', ru: 'Когда учитель по твоей ссылке оформит Pro, вы оба получите ещё месяц бесплатно.', en: 'When a teacher who joined via your link gets Pro, you both get another month free.' } },
   { q: { uk: 'Можна скасувати будь-коли?', ru: 'Можно отменить в любой момент?', en: 'Can I cancel anytime?' }, a: { uk: 'Так, у кабінеті, в один клік. Доступ лишається до кінця оплаченого періоду, без штрафів.', ru: 'Да, в кабинете, в один клик. Доступ сохраняется до конца оплаченного периода, без штрафов.', en: 'Yes, in your dashboard, in one click. You keep access until the end of the paid period, no penalties.' } },
   { q: { uk: 'Як оплатити?', ru: 'Как оплатить?', en: 'How do I pay?' }, a: { uk: 'Карткою онлайн, у гривнях. Оплату ми якраз підключаємо, а поки все безкоштовне працює без обмежень.', ru: 'Картой онлайн, в гривнах. Оплату мы как раз подключаем, а пока всё бесплатное работает без ограничений.', en: 'By card online, in hryvnias. We’re connecting payments right now. Until then, everything free works without limits.' } },
 ];
@@ -53,12 +55,13 @@ export default function PricingPage() {
           <Kit id="st-cat-coffee" className="kit-hero" />
           <span className="mu-section__eyebrow"><Icon id="d-money" />{t({ uk: 'Тарифи', ru: 'Тарифы', en: 'Pricing' })}</span>
           <h1>{t({ uk: 'Ціна', ru: 'Цена', en: 'The price of' })} <em>{t({ uk: 'чашки кави,', ru: 'чашки кофе,', en: 'a coffee,' })}</em> {t({ uk: 'а не уроку з репетитором.', ru: 'а не урока с репетитором.', en: 'not a tutor lesson.' })}</h1>
-          <p>{t({ uk: 'Почни безкоштовно. Платні тарифи від 99 ₴ на місяць, міні-продукти від 85 ₴ один раз.', ru: 'Начни бесплатно. Платные тарифы от 99 ₴ в месяц, мини-продукты от 85 ₴ один раз.', en: 'Start for free. Paid plans from 99 ₴ a month, mini products from 85 ₴ once.' })}</p>
+          <p>{t({ uk: 'Почни безкоштовно, перший місяць Pro без оплати. Далі для учня від 99 ₴, для вчителя 249 ₴ на місяць.', ru: 'Начни бесплатно, первый месяц Pro без оплаты. Дальше для ученика от 99 ₴, для учителя 249 ₴ в месяц.', en: 'Start for free, your first month of Pro costs nothing. Then from 99 ₴ for students and 249 ₴ a month for teachers.' })}</p>
         </div>
       </section>
 
       <section className="mu-section" style={{ paddingTop: 24 }}>
         <div className="mu-container">
+          <FreeMonthBanner />
           <PricingSection />
         </div>
       </section>
