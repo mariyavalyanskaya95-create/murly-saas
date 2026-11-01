@@ -65,7 +65,7 @@ export async function POST(req: Request) {
       ? await db.query(`teacher_settings?teacher_id=eq.${enc(OWNER_TEACHER_ID)}&select=tg_chat_id`).catch(() => [])
       : await db.query('teacher_settings?is_owner=is.true&select=tg_chat_id').catch(() => []);
     const chat = owner[0]?.tg_chat_id;
-    if (chat) await tgSend(String(chat), `💬 <b>Чего не хватает?</b>\n${esc(name || 'Учитель')}${page ? ` · ${esc(page)}` : ''}\n\n${esc(text)}`);
+    if (chat) await tgSend(String(chat), `🐾 <b>Мур! Учитель поделился идеей</b>\n\n💬 «${esc(text)}»\n\n👩‍🏫 ${esc(name || 'Учитель')}${page ? `\n📍 страница ${esc(page)}` : ''}\n\nСпасибо, что слушаешь своих учителей 💛`);
   }
   return NextResponse.json({ ok: true });
 }
