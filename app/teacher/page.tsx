@@ -7,6 +7,7 @@ import { LessonForm, StudentForm } from '@/components/teacher/forms';
 import { balanceOf, balanceText, fmtMoney, localeOf, plural, sameDay, useTeacher } from '@/lib/teacher-store';
 import { useT } from '@/components/LangProvider';
 import { InviteCard } from '@/components/teacher/Growth';
+import Onboarding from '@/components/teacher/Onboarding';
 
 export default function TeacherToday() {
   const t = useT();
@@ -55,6 +56,8 @@ export default function TeacherToday() {
       {open === 'student' && <div className="t-card"><h2>{t({ uk: 'Новий учень', ru: 'Новый ученик', en: 'New student' })}</h2><StudentForm onDone={() => setOpen(null)} /></div>}
       {open === 'lesson' && <div className="t-card"><h2>{t({ uk: 'Нове заняття', ru: 'Новое занятие', en: 'New lesson' })}</h2><LessonForm onDone={() => setOpen(null)} /></div>}
 
+      <Onboarding onAddStudent={() => setOpen('student')} onAddLesson={() => setOpen('lesson')} />
+
       <div className="t-stats">
         <Link href="/teacher/students" className="t-stat t-stat--lime"><b>{data.students.length}</b><span>{plural(data.students.length, t.lang, { uk: ['учень', 'учні', 'учнів'], ru: ['ученик', 'ученика', 'учеников'], en: ['student', 'students'] })}</span></Link>
         <Link href="/teacher/schedule" className="t-stat t-stat--sky"><b>{todays.length}</b><span>{t({ uk: 'занять сьогодні', ru: 'занятий сегодня', en: 'lessons today' })}</span></Link>
@@ -76,20 +79,6 @@ export default function TeacherToday() {
         </div>
         <p className="t-muted">{t({ uk: 'Рахуємо уроки зі статусом «Був» за ціною учня. «Не прийшов» і «Скасовано» не враховуються.', ru: 'Считаем уроки со статусом «Был» по цене ученика. «Не пришёл» и «Отменён» не учитываются.', en: 'We count lessons marked “Done” at each student’s price. No-shows and cancellations are not counted.' })}</p>
       </div>
-
-      {!data.students.length && (
-        <div className="t-card t-welcome">
-          <Icon id="c-cat-glass" className="mu-ic t-welcome__ic" />
-          <div>
-            <h2>{t({ uk: 'Почнімо з трьох кроків', ru: 'Начнём с трёх шагов', en: 'Let’s start with three steps' })}</h2>
-            <ol>
-              <li><Link href="/teacher/settings">{t({ uk: 'Встав своє посилання Zoom або Google Meet', ru: 'Вставь свою ссылку Zoom или Google Meet', en: 'Add your Zoom or Google Meet link' })}</Link></li>
-              <li><button className="t-link-btn" onClick={() => setOpen('student')}>{t({ uk: 'Додай першого учня', ru: 'Добавь первого ученика', en: 'Add your first student' })}</button></li>
-              <li>{t({ uk: 'Заплануй заняття, і воно з’явиться тут з кнопкою дзвінка', ru: 'Запланируй занятие, и оно появится здесь с кнопкой звонка', en: 'Schedule a lesson and it will show up here with a call button' })}</li>
-            </ol>
-          </div>
-        </div>
-      )}
 
       <section className="t-card">
         <h2><Icon id="e-cal" />{t({ uk: 'Сьогодні', ru: 'Сегодня', en: 'Today' })}</h2>
