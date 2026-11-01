@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { alt } from '@/lib/seo';
 import SiteNav from '@/components/SiteNav';
 import SiteFooter from '@/components/SiteFooter';
 import SiteSearch from '@/components/SiteSearch';
@@ -11,7 +12,7 @@ export function generateMetadata(): Metadata {
   return {
     title: t({ uk: 'Пошук матеріалів з англійської | Murly', ru: 'Поиск материалов по английскому | Murly', en: 'Search English materials | Murly' }),
     description: t({ uk: 'Знайди урок, аудіювання, правило чи гру за темою: прийменники, Present Simple, їжа, тварини.', ru: 'Найди урок, аудирование, правило или игру по теме: предлоги, Present Simple, еда, животные.', en: 'Find a lesson, listening, rule or game by topic: prepositions, Present Simple, food, animals.' }),
-    alternates: { canonical: '/search' },
+    alternates: alt('/search'),
   };
 }
 
