@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { alt } from '@/lib/seo';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import SiteNav from '@/components/SiteNav';
@@ -14,7 +15,7 @@ export function generateMetadata({ params }: { params: { id: string } }): Metada
   const s = findStory(params.id);
   if (!s) return {};
   const t = tr();
-  return { title: `${s.title} · ${s.level} | Murly`, description: t(s.teaser), alternates: { canonical: `/stories/${s.id}` } };
+  return { title: `${s.title} · ${s.level} | Murly`, description: t(s.teaser), alternates: alt(`/stories/${s.id}`) };
 }
 
 export default function StoryPage({ params }: { params: { id: string } }) {
