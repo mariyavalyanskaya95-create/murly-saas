@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { alt } from '@/lib/seo';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Icon from '@/components/Icon';
@@ -17,7 +18,7 @@ export function generateMetadata({ params, searchParams }: { params: { skill: st
   return {
     title: `${t(s.label)}${lv}: ${t({ uk: 'англійська онлайн', ru: 'английский онлайн', en: 'English online' })} | Murly`,
     description: t(s.text),
-    alternates: { canonical: `/learn/${s.id}` },
+    alternates: alt(`/learn/${s.id}`),
   };
 }
 
