@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { alt } from '@/lib/seo';
 import type { Metadata } from 'next';
 import Icon from '@/components/Icon';
 import Stickers from '@/components/Stickers';
@@ -6,6 +7,7 @@ import SiteNav from '@/components/SiteNav';
 import SiteFooter from '@/components/SiteFooter';
 import Kit from '@/components/Kit';
 import { MOCKS, SOON, FREE } from '@/lib/mock';
+import { PAID_ENABLED } from '@/lib/plans';
 import { tr } from '@/lib/i18n-server';
 
 export function generateMetadata(): Metadata {
@@ -13,7 +15,7 @@ export function generateMetadata(): Metadata {
   return {
     title: t({ uk: 'Пробний НМТ з англійської з поясненнями', ru: 'Пробный НМТ по английскому с объяснениями', en: 'NMT English mock test with explanations' }),
     description: t({ uk: '32 завдання у форматі НМТ-2026: оголошення, читання, пропуски. Біля кожної відповіді кнопка «Чому так?».', ru: '32 задания в формате НМТ-2026: объявления, чтение, пропуски. Возле каждого ответа кнопка «Почему так?».', en: '32 questions in the NMT 2026 format: notices, reading, gap fills. Every answer has a «Why?» button.' }),
-    alternates: { canonical: '/nmt/mock' },
+    alternates: alt('/nmt/mock'),
   };
 }
 
@@ -34,7 +36,7 @@ export default function MockListPage() {
         <div className="mu-container mk-vars">
           {MOCKS.map((m) => (
             <Link key={m.id} href={`/nmt/mock/${m.id}`} className="mk-card" style={{ textDecoration: 'none', color: 'inherit' }}>
-              <span className="mk-task__tag">{m.level}</span>{' '}<span className={`mk-free ${FREE.includes(m.id) ? 'is-free' : ''}`}>{FREE.includes(m.id) ? t({ uk: 'Безкоштовно', ru: 'Бесплатно', en: 'Free' }) : t({ uk: 'Повний пакет', ru: 'Полный пакет', en: 'Full pack' })}</span>
+              <span className="mk-task__tag">{m.level}</span>{' '}<span className={`mk-free ${FREE.includes(m.id) || !PAID_ENABLED ? 'is-free' : ''}`}>{FREE.includes(m.id) ? t({ uk: 'Безкоштовно', ru: 'Бесплатно', en: 'Free' }) : PAID_ENABLED ? t({ uk: 'Повний пакет', ru: 'Полный пакет', en: 'Full pack' }) : t({ uk: 'Зараз безкоштовно', ru: 'Сейчас бесплатно', en: 'Free for now' })}</span>
               <h3 style={{ margin: '10px 0 6px' }}>{t({ uk: `Варіант ${m.id}`, ru: `Вариант ${m.id}`, en: `Test ${m.id}` })}</h3>
               <p className="muted">{t({ uk: '32 завдання · близько 60 хвилин', ru: '32 задания · около 60 минут', en: '32 questions · about 60 minutes' })}</p>
               <span className="mu-btn mu-btn--lime">{t({ uk: 'Почати', ru: 'Начать', en: 'Start' })}<span className="mu-btn__arrow"><Icon id="e-arrow" /></span></span>
