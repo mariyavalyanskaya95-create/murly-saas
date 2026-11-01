@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { alt } from '@/lib/seo';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import Icon from '@/components/Icon';
@@ -9,7 +10,7 @@ import { tr } from '@/lib/i18n-server';
 
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const s = getSeries(params.slug);
-  return s ? { title: `${s.title}: аудіосеріал англійською ${s.level} | Murly`, alternates: { canonical: `/series/${s.slug}` } } : {};
+  return s ? { title: `${s.title}: аудіосеріал англійською ${s.level} | Murly`, alternates: alt(`/series/${s.slug}`) } : {};
 }
 
 export default function SeriesPage({ params }: { params: { slug: string } }) {
