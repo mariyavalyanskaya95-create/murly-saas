@@ -9,6 +9,7 @@ import { TeacherProvider, useTeacher } from '@/lib/teacher-store';
 import { LangSwitch, useT } from '../LangProvider';
 import type { T } from '@/lib/i18n';
 import Kit from '@/components/Kit';
+import { FeedbackButton, TrialPill } from './Growth';
 
 const NAV: { href: string; icon: string; label: T; short?: T; priv?: boolean }[] = [
   { href: '/teacher', icon: 'e-cal', label: { uk: 'Сьогодні', ru: 'Сегодня', en: 'Today' }, priv: true },
@@ -46,6 +47,7 @@ function Shell({ userId, name, children }: { userId: string; name: string; child
             title={t({ uk: 'Ховає ціни, оплати, розклад і нотатки, поки ти показуєш екран учню', ru: 'Скрывает цены, оплаты, расписание и заметки, пока ты показываешь экран ученику', en: 'Hides prices, payments, schedule and notes while you share your screen' })}>
             <EyeIcon off={lesson.on} />{lesson.on ? t({ uk: 'Режим уроку: увімкнено', ru: 'Режим урока: включён', en: 'Lesson mode: on' }) : t({ uk: 'Режим уроку', ru: 'Режим урока', en: 'Lesson mode' })}
           </button>
+          <TrialPill />
           <div className="t-top__user">
             <LangSwitch />
             <span>{name}</span>
@@ -65,6 +67,8 @@ function Shell({ userId, name, children }: { userId: string; name: string; child
             <Link href="/teacher/games" className={`t-side__link t-side__extra ${active('/teacher/games') ? 'is-on' : ''}`}><Icon id="d-spark" />{t({ uk: 'Мої ігри', ru: 'Мои игры', en: 'My games' })}</Link>
             <Link href="/irregular-verbs/games" className="t-side__link t-side__extra"><Icon id="e-trophy" />{t({ uk: 'Ігри', ru: 'Игры', en: 'Games' })}</Link>
             <Link href="/grammar" className="t-side__link t-side__extra"><Icon id="e-book" />{t({ uk: 'Граматика', ru: 'Грамматика', en: 'Grammar' })}</Link>
+            <div className="t-side__sep" />
+            <FeedbackButton name={name} />
           </nav>
           <main className="t-main">
             <SyncBanner />
