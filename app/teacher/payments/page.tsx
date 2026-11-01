@@ -1,12 +1,25 @@
 'use client';
 import Link from 'next/link';
+import { useState } from 'react';
 import { balanceOf, balanceText, fmtDate, fmtMoney, localeOf, plural, useTeacher } from '@/lib/teacher-store';
 import { useT } from '@/components/LangProvider';
 
 export default function PaymentsPage() {
   const t = useT();
-  const { data, ready } = useTeacher();
+  const { data, ready, addPayment } = useTeacher();
+  const [open, setOpen] = useState(false);
+  const [sid, setSid] = useState('');
+  const [amount, setAmount] = useState('');
+  const [saved, setSaved] = useState('');
   if (!ready) return null;
+  const save = (e: React.FormEvent) => {
+    e.preventDefault();
+    const st = data.students.find((x) => x.id === (sid || data.students[0]?.id));
+    const n = Number(amount);
+    if (!st || !(n > 0)) return;
+    addPayment(st.id, n);
+    setSaved(`${st.name}: ${fmtMoney(n, t.lang)}`); setAmount('');
+  };
 
   const now = new Date();
   const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
@@ -18,7 +31,28 @@ export default function PaymentsPage() {
 
   return (
     <div className="t-page">
-      <div className="t-head"><div><p className="t-eyebrow">{t({ uk: 'Оплати', ru: 'Оплаты', en: 'Payments' })}</p><h1>{t.lang === 'en' ? `Money for ${now.toLocaleDateString(localeOf('en'), { month: 'long' })}` : t.lang === 'ru' ? `Деньги за ${now.toLocaleDateString(localeOf('ru'), { month: 'long' })}` : `Гроші за ${now.toLocaleDateString('uk-UA', { month: 'long' })}`}</h1></div></div>
+      <div className="t-head"><div><p className="t-eyebrow">{t({ uk: 'Оплати', ru: 'Оплаты', en: 'Payments' })}</p><h1>{t.lang === 'en' ? `Money for ${now.toLocaleDateString(localeOf('en'), { month: 'long' })}` : t.lang === 'ru' ? `Деньги за ${now.toLocaleDateString(localeOf('ru'), { month: 'long' })}` : `Гроші за ${now.toLocaleDateString('uk-UA', { month: 'long' })}`}</h1></div>
+        {data.students.length > 0 && <div className="t-head__actions"><button type="button" className="mu-btn mu-btn--lime" onClick={() => { setOpen(!open); setSaved(''); }}>{t({ uk: '+ Оплата', ru: '+ Оплата', en: '+ Payment' })}</button></div>}
+      </div>
+
+      {open && (
+        <form className="t-card t-form t-paynew" onSubmit={save}>
+          <h2>{t({ uk: 'Записати оплату', ru: 'Записать оплату', en: 'Record a payment' })}</h2>
+          <div className="t-paynew__row">
+            <label>{t({ uk: 'Учень', ru: 'Ученик', en: 'Student' })}
+              <select value={sid || data.students[0]?.id} onChange={(e) => setSid(e.target.value)}>
+                {data.students.map((x) => <option key={x.id} value={x.id}>{x.name}</option>)}
+              </select>
+            </label>
+            <label>{t({ uk: 'Сума, ₴', ru: 'Сумма, ₴', en: 'Amount, ₴' })}
+              <input type="number" min="1" inputMode="numeric" value={amount} onChange={(e) => setAmount(e.target.value)} required />
+            </label>
+            <button type="submit" className="mu-btn mu-btn--ink">{t({ uk: 'Записати', ru: 'Записать', en: 'Save' })}</button>
+          </div>
+          {saved && <p className="t-muted">{t({ uk: 'Записано', ru: 'Записано', en: 'Saved' })}: {saved}</p>}
+          <p className="t-muted">{t({ uk: 'Порада: оплату можна записати і з телефона в Telegram-боті, кнопкою «Оплата».', ru: 'Совет: оплату можно записать и с телефона в Telegram-боте, кнопкой «Оплата».', en: 'Tip: you can also record payments from your phone with the Payment button in the Telegram bot.' })}</p>
+        </form>
+      )}
 
       <div className="t-stats">
         <div className="t-stat t-stat--lime"><b>{fmtMoney(monthPaid, t.lang)}</b><span>{t({ uk: 'отримано цього місяця', ru: 'получено в этом месяце', en: 'received this month' })}</span></div>
@@ -33,7 +67,7 @@ export default function PaymentsPage() {
             <span><span className={`t-dot t-dot--${s.color}`} />{s.name}</span>
             {(() => { const bt = balanceText(s, b, t.lang); return <b className={bt.cls}>{b === 0 ? '0 ₴' : bt.text}</b>; })()}
           </Link>
-        )) : <p className="t-empty">{t({ uk: 'Додай учнів, і тут з’явиться їхній баланс.', ru: 'Добавь учеников, и здесь появится их баланс.', en: 'Add students and their balances will show up here.' })}</p>}
+        )) : <p className="t-empty">{t({ uk: 'Додай учнів, і тут з’явиться їхній баланс.', ru: 'Добавь учеников, и здесь появится их баланс.', en: 'Add students and their balances will show up here.' })} <Link href="/teacher/students">{t({ uk: 'До учнів', ru: 'К ученикам', en: 'Go to students' })}</Link></p>}
       </div>
 
       {data.payments.length > 0 && (
