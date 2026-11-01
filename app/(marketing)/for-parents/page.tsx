@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { alt } from '@/lib/seo';
 import type { Metadata } from 'next';
 import Icon from '@/components/Icon';
 import Stickers from '@/components/Stickers';
@@ -18,7 +19,7 @@ export function generateMetadata(): Metadata {
       ru: 'Домашка-игра, слова от учителя, грамматика простыми словами и 3D-городок за монетки. Регулярная учёба без ссор.',
       en: 'Homework as a game, words from the teacher, simple grammar and a 3D town for coins. Regular learning without fights.',
     }),
-    alternates: { canonical: '/for-parents' },
+    alternates: alt('/for-parents'),
   };
 }
 
@@ -64,7 +65,7 @@ export default function ForParentsPage() {
             <Link href="/sign-up?role=student" className="mu-btn mu-btn--lime mu-btn--lg">
               {t({ uk: 'Створити кабінет для дитини', ru: 'Создать кабинет для ребёнка', en: 'Create your child’s account' })}<span className="mu-btn__arrow"><Icon id="e-arrow" /></span>
             </Link>
-            <Link href="/baby-english" className="mu-btn mu-btn--lg">{t({ uk: 'Малюку до 6 років', ru: 'Малышу до 6 лет', en: 'Kids under 6' })}</Link>
+            <Link href="/baby-english" className="mu-btn mu-btn--lg">{t({ uk: 'Малюкам до 7 років', ru: 'Малышам до 7 лет', en: 'Kids under 7' })}</Link>
           </div>
         </div>
       </section>
