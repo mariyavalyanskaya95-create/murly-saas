@@ -2,7 +2,7 @@
 // усе безкоштовно, лічильник пробного місяця і нагадування про оплату вимкнені.
 export const PAID_ENABLED = false;
 export const TRIAL_DAYS = 30;
-export const PRICES = { teacherPro: 249, teacherProYear: 2490, school: 990, schoolYear: 9900, schoolExtraTeacher: 190, studentPlus: 99, studentPlusYear: 790, family: 149, familyYear: 1490, nmtPack: 299 } as const;
+export const PRICES = { teacherPro: 249, teacherProYear: 2240, school: 990, schoolYear: 8910, schoolExtraTeacher: 190, studentPlus: 99, studentPlusYear: 790, family: 149, familyYear: 1340, nmtPack: 299 } as const;
 
 // Скільки днів пробного місяця лишилось (від дати старту)
 export function trialLeft(startIso: string | null | undefined, now = Date.now()) {

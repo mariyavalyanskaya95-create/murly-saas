@@ -1,8 +1,11 @@
 // Мова на сервері: з cookie
-import { cookies } from 'next/headers';
+import { cookies, headers } from 'next/headers';
 import { DEFAULT_LANG, LANG_COOKIE, isLang, pick, type Lang, type T } from './i18n';
 
 export function getLang(): Lang {
+  // ?lang=ru в адресі (для пошуковиків) має перевагу над cookie
+  const q = headers().get('x-lang');
+  if (isLang(q)) return q;
   const v = cookies().get(LANG_COOKIE)?.value;
   return isLang(v) ? v : DEFAULT_LANG;
 }
