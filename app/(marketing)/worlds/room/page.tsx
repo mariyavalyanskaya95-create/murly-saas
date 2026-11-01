@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { alt } from '@/lib/seo';
 import Link from 'next/link';
 import Icon from '@/components/Icon';
 import SiteNav from '@/components/SiteNav';
@@ -6,11 +7,13 @@ import SiteFooter from '@/components/SiteFooter';
 import RoomGame from '@/components/worlds/RoomGame';
 import { tr } from '@/lib/i18n-server';
 
-export const metadata: Metadata = {
-  title: 'Моя кімната: гра англійською для дітей | Murly',
-  description: 'Облаштуй свою кімнату англійською: меблі, кольори, тварини, завдання з прийменниками. Гра для дітей 6-11 років, озвучка кожного слова.',
-  alternates: { canonical: '/worlds/room' },
-};
+export function generateMetadata(): Metadata {
+  return {
+    title: 'Моя кімната: гра англійською для дітей | Murly',
+    description: 'Облаштуй свою кімнату англійською: меблі, кольори, тварини, завдання з прийменниками. Гра для дітей 6-11 років, озвучка кожного слова.',
+    alternates: alt('/worlds/room'),
+  };
+}
 
 export default function RoomPage() {
   return (
