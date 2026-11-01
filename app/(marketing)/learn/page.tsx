@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { alt } from '@/lib/seo';
 import type { Metadata } from 'next';
 import Icon from '@/components/Icon';
 import Stickers from '@/components/Stickers';
@@ -14,7 +15,7 @@ export function generateMetadata(): Metadata {
   return {
     title: t({ uk: 'Англійська самостійно: слухати, читати, писати, говорити, граматика | Murly', ru: 'Английский самостоятельно: аудирование, чтение, письмо, говорение, грамматика | Murly', en: 'Learn English on your own: listening, reading, writing, speaking, grammar | Murly' }),
     description: t({ uk: 'Усі безкоштовні матеріали Murly за навичками і рівнями A1-C1.', ru: 'Все бесплатные материалы Murly по навыкам и уровням A1-C1.', en: 'All free Murly materials by skill and level, A1 to C1.' }),
-    alternates: { canonical: '/learn' },
+    alternates: alt('/learn'),
   };
 }
 
