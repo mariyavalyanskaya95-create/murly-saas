@@ -52,16 +52,14 @@ export default function PricingPage() {
       <SiteNav />
       <section className="mu-page-hero" data-stickers="6">
         <div className="mu-container">
-          <Kit id="st-cat-coffee" className="kit-hero" />
-          <span className="mu-section__eyebrow"><Icon id="d-money" />{t({ uk: 'Тарифи', ru: 'Тарифы', en: 'Pricing' })}</span>
-          <h1>{t({ uk: 'Ціна', ru: 'Цена', en: 'The price of' })} <em>{t({ uk: 'чашки кави,', ru: 'чашки кофе,', en: 'a coffee,' })}</em> {t({ uk: 'а не уроку з репетитором.', ru: 'а не урока с репетитором.', en: 'not a tutor lesson.' })}</h1>
+          <h1>{t({ uk: 'Тарифи', ru: 'Тарифы', en: 'Pricing' })}</h1>
           <p>{t({ uk: 'Почни безкоштовно, перший місяць Pro без оплати. Далі для учня від 99 ₴, для вчителя 249 ₴ на місяць.', ru: 'Начни бесплатно, первый месяц Pro без оплаты. Дальше для ученика от 99 ₴, для учителя 249 ₴ в месяц.', en: 'Start for free, your first month of Pro costs nothing. Then from 99 ₴ for students and 249 ₴ a month for teachers.' })}</p>
         </div>
       </section>
 
       <section className="mu-section" style={{ paddingTop: 24 }}>
         <div className="mu-container">
-          <FreeMonthBanner />
+          <FreeMonthBanner href="/sign-up" />
           <PricingSection />
         </div>
       </section>
