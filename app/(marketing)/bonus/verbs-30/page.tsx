@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { alt } from '@/lib/seo';
 import type { Metadata } from 'next';
 import Icon from '@/components/Icon';
 import Stickers from '@/components/Stickers';
@@ -17,7 +18,7 @@ export function generateMetadata(): Metadata {
   return {
     title: t({ uk: 'Неправильні дієслова за 30 днів: ігри на кожен день', ru: 'Неправильные глаголы за 30 дней: игры на каждый день', en: 'Irregular verbs in 30 days: a game for every day' }),
     description: t({ uk: 'План на 30 днів: 3-4 неправильні дієслова на день, повторення кожен 5-й день, квіз, пари й анаграми.', ru: 'План на 30 дней: 3-4 неправильных глагола в день, повторение каждый 5-й день, квиз, пары и анаграммы.', en: 'A 30-day plan: 3-4 irregular verbs a day, review every 5th day, with quiz, pairs and anagrams.' }),
-    alternates: { canonical: '/bonus/verbs-30' },
+    alternates: alt('/bonus/verbs-30'),
   };
 }
 
