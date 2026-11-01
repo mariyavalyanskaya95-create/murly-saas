@@ -7,6 +7,8 @@ import Icon from '@/components/Icon';
 import Kit from '@/components/Kit';
 import Poster from './Poster';
 import { useT } from '@/components/LangProvider';
+import Link from 'next/link';
+import { useUser } from '@clerk/nextjs';
 import { LETTERS, type MockTask, type MockVariant } from '@/lib/mock/types';
 
 type Answers = Record<string, number>;
@@ -30,6 +32,7 @@ const INSTR: Record<MockTask['kind'], string> = {
 };
 
 export default function MockTest({ v }: { v: MockVariant }) {
+  const { isLoaded, isSignedIn } = useUser();
   const t = useT();
   const store = `murly-mock-${v.id}`;
   const [ans, setAns] = useState<Answers>({});
@@ -190,7 +193,13 @@ export default function MockTest({ v }: { v: MockVariant }) {
               ? t({ uk: 'Поріг НМТ (5 балів) пройдено. Тепер натискай на червоні номери вгорі й розбирай кожну помилку через «Чому так?».', ru: 'Порог НМТ (5 баллов) пройден. Теперь нажимай на красные номера вверху и разбирай каждую ошибку через «Почему так?».', en: 'You passed the NMT threshold (5 points). Click the red numbers above and open «Why?» for each mistake.' })
               : t({ uk: 'Поки нижче порогу в 5 балів. Не страшно: натисни на червоні номери вгорі, розбери кожну помилку і спробуй ще раз.', ru: 'Пока ниже порога в 5 баллов. Не страшно: нажми на красные номера вверху, разбери каждую ошибку и попробуй ещё раз.', en: 'Below the 5-point threshold for now. Click the red numbers above, review each mistake and try again.' })}</p>
             <ul className="mk-by">{v.tasks.map((x, n) => <li key={n}>Task {n + 1}: {x.items.filter((_, q) => isRight(n, q)).length} / {x.items.length}</li>)}</ul>
-            <button className="mu-btn" onClick={reset}>{t({ uk: 'Пройти ще раз', ru: 'Пройти ещё раз', en: 'Try again' })}</button>
+            <div className="mk-result__next">
+              <button className="mu-btn" onClick={reset}>{t({ uk: 'Пройти ще раз', ru: 'Пройти ещё раз', en: 'Try again' })}</button>
+              {Number(v.id) < 20 && <Link href={`/nmt/mock/${Number(v.id) + 1}`} className="mu-btn mu-btn--lime">{t({ uk: 'Наступний варіант', ru: 'Следующий вариант', en: 'Next test' })}<span className="mu-btn__arrow"><Icon id="e-arrow" /></span></Link>}
+            </div>
+            {isLoaded && !isSignedIn && (
+              <p className="mk-result__save">{t({ uk: 'Хочеш бачити свій прогрес від тесту до тесту?', ru: 'Хочешь видеть свой прогресс от теста к тесту?', en: 'Want to track your progress from test to test?' })} <Link href={`/sign-up?role=student&track=nmt&redirect_url=${encodeURIComponent(`/nmt/mock/${v.id}`)}`}>{t({ uk: 'Зареєструйся безкоштовно', ru: 'Зарегистрируйся бесплатно', en: 'Sign up for free' })}</Link></p>
+            )}
           </div>
         </section>
       )}
