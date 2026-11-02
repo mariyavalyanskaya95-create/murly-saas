@@ -3508,3 +3508,19 @@ details.bb-tip[open] .bb-tip__more{display:none}
 details.bb-tip > p{margin:0 24px 14px}
 details.bb-tip > p:last-child{margin-bottom:22px}
 .bb-tips{align-items:start}
+
+/* Перенести / видалити заняття або серію */
+.st-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.st-box{display:grid;gap:12px;padding:14px 16px;border:2px dashed var(--mu-paper-dark);border-radius:16px;background:#fff;width:100%}
+.st-fields{display:flex;flex-wrap:wrap;gap:12px}
+.st-fields label{display:grid;gap:4px;font-size:14px;font-weight:600}
+.st-fields input{padding:8px 10px;border:2px solid var(--mu-ink);border-radius:12px;font:inherit}
+.st-scope{display:grid;gap:6px}
+.st-scope label{display:flex;gap:8px;align-items:center;cursor:pointer}
+.st-del{color:var(--mu-tomato-dark)}
+.wg-l.is-charged{opacity:.85}
+.t-lesson.is-charged{opacity:.85}
+.ex-sched{display:grid;gap:14px}
+.ex-sched select{padding:8px 10px;border:2px solid var(--mu-ink);border-radius:12px;font:inherit;background:#fff;min-width:220px}
+.ex-sched__list{margin:0;padding-left:1.2em;display:grid;gap:6px;line-height:1.45}
+.ex-sched__list small{opacity:.6}
