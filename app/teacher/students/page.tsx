@@ -9,8 +9,7 @@ import { useT } from '@/components/LangProvider';
 
 export default function StudentsPage() {
   const t = useT();
-  const { data, ready, removeStudent } = useTeacher();
-  const [del, setDel] = useState<string | null>(null);
+  const { data, ready } = useTeacher();
   const [open, setOpen] = useState(false);
   const [q, setQ] = useState('');
   if (!ready) return null;
@@ -64,19 +63,10 @@ export default function StudentsPage() {
                 {(() => { const bt = balanceText(s, b, t.lang); return <span className={`${bt.cls} t-private`}><Icon id="d-money" />{bt.text.charAt(0).toUpperCase() + bt.text.slice(1)}</span>; })()}
               </div>
             </Link>
-            <div className="t-student__acts t-private">
-              {del === s.id ? (
-                <>
-                  <span>{t({ uk: `Видалити ${s.name} з усіма заняттями, словником і оплатами?`, ru: `Удалить ${s.name} со всеми занятиями, словарём и оплатами?`, en: `Delete ${s.name} with all lessons, vocabulary and payments?` })}</span>
-                  <button type="button" className="mu-btn t-btn-sm" onClick={() => setDel(null)}>{t({ uk: 'Ні', ru: 'Нет', en: 'No' })}</button>
-                  <button type="button" className="mu-btn mu-btn--tomato t-btn-sm" onClick={() => { removeStudent(s.id); setDel(null); }}>{t({ uk: 'Так, видалити', ru: 'Да, удалить', en: 'Yes, delete' })}</button>
-                </>
-              ) : (
-                <>
-                  <Link href={`/teacher/students/${s.id}?tab=profile`} className="mu-btn t-btn-sm"><Icon id="e-pencil" />{t({ uk: 'Змінити', ru: 'Изменить', en: 'Edit' })}</Link>
-                  <button type="button" className="mu-btn t-btn-sm" onClick={() => setDel(s.id)}>{t({ uk: 'Видалити', ru: 'Удалить', en: 'Delete' })}</button>
-                </>
-              )}
+            <div className="t-student__acts">
+              <Link href={`/teacher/students/${s.id}?tab=hw`} className="mu-btn t-btn-sm"><Icon id="e-board" />{t({ uk: 'Домашка', ru: 'Домашка', en: 'Homework' })}</Link>
+              <Link href={`/teacher/students/${s.id}?tab=pay`} className="mu-btn t-btn-sm t-private"><Icon id="d-money" />{t({ uk: 'Оплата', ru: 'Оплата', en: 'Payment' })}</Link>
+              <Link href={`/teacher/students/${s.id}/lesson`} className="mu-btn mu-btn--lime t-btn-sm"><Icon id="d-phone" />{t({ uk: 'Урок', ru: 'Урок', en: 'Lesson' })}</Link>
             </div>
             </div>
           );
