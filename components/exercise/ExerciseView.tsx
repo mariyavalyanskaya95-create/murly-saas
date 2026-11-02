@@ -59,10 +59,10 @@ export default function ExerciseView({ sections, answers, onChange, marks, showC
                     <div className="ex-prompt">{t.prompt}</div>
                     <VoiceRecorder value={answers[`${si}.${ti}.0`]} readOnly={ro} onChange={(url) => onChange?.(`${si}.${ti}.0`, url)} />
                   </div>
-                ) : s.type === 'translate' || s.type === 'open' ? (
+                ) : s.type === 'translate' || s.type === 'open' || (t.parts?.length && t.parts.every((p) => p.t === 'text')) ? (
                   <div className="ex-qa">
-                    <div className="ex-prompt">{t.prompt}</div>
-                    {s.type === 'open'
+                    <div className="ex-prompt">{t.prompt ?? (t.parts ?? []).map((p) => (p.t === 'text' ? p.v : '')).join('')}</div>
+                    {s.type !== 'translate'
                       ? <textarea className="ex-input ex-input--wide" rows={2} readOnly={ro} value={answers[`${si}.${ti}.0`] ?? ''}
                           onChange={(e) => onChange?.(`${si}.${ti}.0`, e.target.value)} placeholder={ro ? '' : tx({ uk: 'Твоя відповідь', ru: 'Твой ответ', en: 'Your answer' })} />
                       : <input className={`ex-input ex-input--wide ${cls(`${si}.${ti}.0`)}`} readOnly={ro} value={answers[`${si}.${ti}.0`] ?? ''}
