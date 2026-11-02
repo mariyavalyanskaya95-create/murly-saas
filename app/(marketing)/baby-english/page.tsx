@@ -1,4 +1,5 @@
 // «Англійська з малюком»: для батьків, які ростять білінгва або знайомлять малюка з англійською з перших років
+import RelatedPosts from '@/components/blog/RelatedPosts';
 import Link from 'next/link';
 import { alt } from '@/lib/seo';
 import type { Metadata } from 'next';
@@ -149,6 +150,7 @@ export default function BabyEnglishPage() {
         </div>
       </section>
 
+      <RelatedPosts slugs={['anglijska-dlya-ditej-vdoma']} />
       <SiteFooter />
       <Stickers />
     </>
