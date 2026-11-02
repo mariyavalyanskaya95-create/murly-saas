@@ -28,7 +28,7 @@ export default async function ParentPage({ params }: { params: { token: string }
   ]);
   const now = Date.now();
   const held = lessons.filter((l) => l.status === 'done').length;
-  const missed = lessons.filter((l) => l.status === 'missed').length;
+  const missed = lessons.filter((l) => l.status === 'missed' || l.status === 'charged').length;
   const att = held + missed ? Math.round((held / (held + missed)) * 100) : null;
   const upcoming = lessons.filter((l) => l.status === 'planned' && +new Date(String(l.start)) > now).sort((a, b) => String(a.start).localeCompare(String(b.start))).slice(0, 4);
   const done = hw.filter((h) => h.status !== 'assigned');
