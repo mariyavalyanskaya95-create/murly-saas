@@ -1,3 +1,4 @@
+import RelatedPosts from '@/components/blog/RelatedPosts';
 import Link from 'next/link';
 import { alt } from '@/lib/seo';
 import SectionTabs from '@/components/SectionTabs';
@@ -95,6 +96,7 @@ export default function IrregularVerbsPage() {
         </div>
       </section>
 
+      <RelatedPosts slugs={['yak-vyvchyty-nepravylni-diyeslova', 'nmt-anglijska-za-3-misyatsi']} />
       <SiteFooter />
       <Stickers />
     </>
