@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { auth } from '@clerk/nextjs/server';
 import { db, dbReady } from '@/lib/db';
 import { linksOf, menuAnswer, notLinked, teacherAnswer, teacherOf } from '@/lib/tg-menu';
-import { adhocPick, adhocSave, adhocUndo, attendAsk, attendPick, attendSave, attendUndo, buttonAction, customMarker, parseAmount, payAskCustom, payPickAmount, payPickStudent, paySave, payUndo, replyKeyboard } from '@/lib/tg-bot-ui';
+import { adhocPick, adhocSave, adhocUndo, attendAsk, attendPick, attendSave, attendUndo, buttonAction, feedbackMarker, hwAskFeedback, hwCheck, hwView, payFromText, reviewList, customMarker, parseAmount, payAskCustom, payPickAmount, payPickStudent, paySave, payUndo, replyKeyboard } from '@/lib/tg-bot-ui';
 import { L, LANG_ASK, LANG_KEYBOARD, parsePayload, setupBotProfile, tgApi, setupWebhook, teacherLink, tgReady, tgSend, webhookSecret } from '@/lib/telegram';
 
 export const dynamic = 'force-dynamic';
@@ -47,7 +47,7 @@ export async function POST(req: Request) {
   const cq = u?.callback_query;
   // кнопки меню: оплата, успішність, монетки, заняття, домашка
   // кнопки вчителя
-  if (cq && /^t[paoulxrnz]:/.test(cq.data || '')) {
+  if (cq && /^t[paoulxrnzh]:/.test(cq.data || '')) {
     const chat = cq.message?.chat?.id;
     await tgApi('answerCallbackQuery', { callback_query_id: cq.id });
     const teacher = chat && dbReady() ? await teacherOf(chat) : null;
@@ -63,6 +63,11 @@ export async function POST(req: Request) {
       if (a === '0') { const r = await adhocPick(teacher.lang, teacher.id); await html(chat, r.text, r.reply_markup); }
       else { const r = await adhocSave(teacher.lang, teacher.id, a); await html(chat, r.text, r.reply_markup); }
     }
+    if (kind === 'th') {
+      if (!b) { const r = await hwView(teacher.lang, teacher.id, a); await html(chat, r.text, r.reply_markup); }
+      else if (b === 'c') { const msg = await hwCheck(teacher.lang, teacher.id, a); await tgApi('editMessageReplyMarkup', { chat_id: chat, message_id: cq.message?.message_id, reply_markup: { inline_keyboard: [] } }); await tgSend(chat, msg); }
+      else if (b === 'f') { const r = hwAskFeedback(teacher.lang, a); await html(chat, r.text, r.reply_markup); }
+    }
     if (kind === 'tz') { const msg = await adhocUndo(teacher.lang, teacher.id, (cq.data || '').slice(3)); if (msg) await tgApi('editMessageText', { chat_id: chat, message_id: cq.message?.message_id, text: msg }); }
     if (kind === 'tu') {
       const id = (cq.data || '').slice(3);
@@ -76,8 +81,9 @@ export async function POST(req: Request) {
     await tgApi('answerCallbackQuery', { callback_query_id: cq.id });
     const teacher = chat && dbReady() ? await teacherOf(chat) : null;
     if (chat && teacher) {
-      const text = await teacherAnswer((cq.data || '').slice(2), teacher.lang, teacher.id);
-      if (text) await html(chat, text);
+      const k = (cq.data || '').slice(2);
+      if (k === 'review') { const r = await reviewList(teacher.lang, teacher.id); await html(chat, r.text, r.reply_markup); }
+      else { const text = await teacherAnswer(k, teacher.lang, teacher.id); if (text) await html(chat, text); }
     }
     return NextResponse.json({ ok: true });
   }
@@ -107,6 +113,12 @@ export async function POST(req: Request) {
 
   const chat = u?.message?.chat?.id; const text = u?.message?.text || '';
   if (!chat) return NextResponse.json({ ok: true });
+  // відгук на домашку: відповідь на повідомлення з маркером #r-xxxxxxxx
+  const fb = feedbackMarker(u?.message?.reply_to_message?.text || '');
+  if (fb && dbReady() && text.trim()) {
+    const teacher = await teacherOf(chat);
+    if (teacher) { await tgSend(chat, await hwCheck(teacher.lang, teacher.id, fb, text.trim().slice(0, 2000))); return NextResponse.json({ ok: true }); }
+  }
   // відповідь сумою на «Інша сума»
   const marker = customMarker(u?.message?.reply_to_message?.text || '');
   if (marker && dbReady()) {
@@ -127,6 +139,7 @@ export async function POST(req: Request) {
       if (teacher) {
         if (act === 'addpay') { const r = await payPickStudent(teacher.lang, teacher.id); await html(chat, r.text, r.reply_markup); }
         else if (act === 'attend') { const r = await attendPick(teacher.lang, teacher.id); await html(chat, r.text, r.reply_markup); }
+        else if (act === 'review') { const r = await reviewList(teacher.lang, teacher.id); await html(chat, r.text, r.reply_markup); }
         else { const t2 = await teacherAnswer(act === 'debts' ? 'pay' : act, teacher.lang, teacher.id); if (t2) await html(chat, t2); }
       }
       return NextResponse.json({ ok: true });
@@ -143,6 +156,10 @@ export async function POST(req: Request) {
   if (/^\/(language|lang|mova|yazyk)\b/i.test(text)) {
     await tgApi('sendMessage', { chat_id: chat, text: LANG_ASK, reply_markup: LANG_KEYBOARD });
     return NextResponse.json({ ok: true });
+  }
+  if (text && !text.startsWith('/') && dbReady()) {
+    const teacher = await teacherOf(chat);
+    if (teacher) { const r = await payFromText(teacher.lang, teacher.id, text); await html(chat, r.text, r.reply_markup); return NextResponse.json({ ok: true }); }
   }
   const m = /^\/start(?:\s+(\S+))?/.exec(text);
   const p = m?.[1] ? parsePayload(m[1]) : null;
