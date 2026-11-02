@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { useState } from 'react';
-import { balanceOf, balanceText, fmtDate, fmtMoney, localeOf, plural, useTeacher } from '@/lib/teacher-store';
+import { balanceOf, balanceText, fmtDate, fmtMoney, localeOf, plural, useTeacher , isBilled } from '@/lib/teacher-store';
 import { useT } from '@/components/LangProvider';
 
 export default function PaymentsPage() {
@@ -24,7 +24,7 @@ export default function PaymentsPage() {
   const now = new Date();
   const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
   const monthPaid = data.payments.filter((p) => new Date(p.at) >= monthStart).reduce((n, p) => n + p.amount, 0);
-  const monthDone = data.lessons.filter((l) => l.status === 'done' && new Date(l.start) >= monthStart);
+  const monthDone = data.lessons.filter((l) => isBilled(l.status) && new Date(l.start) >= monthStart);
   const monthEarned = monthDone.reduce((n, l) => n + (data.students.find((s) => s.id === l.studentId)?.price ?? 0), 0);
   const rows = data.students.map((s) => ({ s, b: balanceOf(data, s.id) })).sort((a, b) => a.b - b.b);
   const debt = rows.filter((r) => r.b < 0).reduce((n, r) => n - r.b, 0);
