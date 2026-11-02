@@ -172,7 +172,12 @@ export const SCALE = ['Strongly disagree', 'Disagree', 'Not sure', 'Agree', 'Str
 const BLANK = /_{2,}|…+|\.{3,}/;
 export function normalizeSections<S extends Section>(sections: S[] | undefined | null): S[] | undefined {
   if (!sections || !Array.isArray(sections)) return sections ?? undefined;
-  return sections.map((s) => {
+  return sections.map((s0) => {
+    // Секція без жодного поля (наприклад, речення для перекладу вставили в «Розкрий дужки»): робимо її відкритою відповіддю
+    const textOnly = (t: Task) => !!t.parts?.length && t.parts.every((p) => p.t === 'text');
+    const s = s0 && (s0.type === 'gap' || s0.type === 'choice') && Array.isArray(s0.tasks) && s0.tasks.length && s0.tasks.every(textOnly)
+      ? ({ ...s0, type: 'open', tasks: s0.tasks.map((t) => ({ prompt: (t.parts ?? []).map((p) => (p.t === 'text' ? p.v : '')).join('').trim() })) } as typeof s0)
+      : s0;
     if (!s || s.type !== 'gap' || !Array.isArray(s.tasks)) return s;
     return { ...s, tasks: s.tasks.map((t) => {
       if (!t.parts || !t.parts.some((p) => p.t === 'text' && BLANK.test(p.v))) return t;

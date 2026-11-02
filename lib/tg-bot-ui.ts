@@ -141,22 +141,24 @@ export async function attendAsk(lang: Lang, teacherId: string, id8: string) {
       { text: L(lang, { uk: '✅ Був', ru: '✅ Был', en: '✅ Attended' }), callback_data: `tx:${id8}:d` },
       { text: L(lang, { uk: '❌ Пропустив', ru: '❌ Пропустил', en: '❌ Missed' }), callback_data: `tx:${id8}:m` },
       { text: L(lang, { uk: '🚫 Скасовано', ru: '🚫 Отменён', en: '🚫 Cancelled' }), callback_data: `tx:${id8}:c` },
+    ], [
+      { text: L(lang, { uk: '💸 Не прийшов, оплату списати', ru: '💸 Не пришёл, оплату списать', en: '💸 No-show, charge it' }), callback_data: `tx:${id8}:p` },
     ]] },
   };
 }
 
 // Крок 3: зберегти статус, показати баланс, кнопка «Скасувати»
 export async function attendSave(lang: Lang, teacherId: string, id8: string, code: string) {
-  const status = code === 'd' ? 'done' : code === 'm' ? 'missed' : code === 'c' ? 'cancelled' : '';
+  const status = code === 'd' ? 'done' : code === 'm' ? 'missed' : code === 'p' ? 'charged' : code === 'c' ? 'cancelled' : '';
   const [ls, st] = await Promise.all([recentLessons(teacherId), myStudents(teacherId)]);
   const l = ls.find((x) => String(x.id).startsWith(id8));
   if (!status || !l) return { text: L(lang, { uk: 'Урок уже відмічено або не знайдено.', ru: 'Урок уже отмечен или не найден.', en: 'Lesson already marked or not found.' }) };
   await db.update('lessons', teacherId, String(l.id), { status });
   const name = st.find((x) => x.id === l.student_id)?.name || '';
-  const what = status === 'done' ? L(lang, { uk: 'був на уроці', ru: 'был на уроке', en: 'attended' }) : status === 'missed' ? L(lang, { uk: 'пропустив урок', ru: 'пропустил урок', en: 'missed the lesson' }) : L(lang, { uk: 'урок скасовано', ru: 'урок отменён', en: 'lesson cancelled' });
-  const bal = status === 'done' ? await balanceLine(lang, teacherId, name) : '';
+  const what = status === 'done' ? L(lang, { uk: 'був на уроці', ru: 'был на уроке', en: 'attended' }) : status === 'charged' ? L(lang, { uk: 'не прийшов, урок оплачений', ru: 'не пришёл, урок оплачен', en: 'no-show, lesson charged' }) : status === 'missed' ? L(lang, { uk: 'пропустив урок', ru: 'пропустил урок', en: 'missed the lesson' }) : L(lang, { uk: 'урок скасовано', ru: 'урок отменён', en: 'lesson cancelled' });
+  const bal = status === 'done' || status === 'charged' ? await balanceLine(lang, teacherId, name) : '';
   return {
-    text: `${status === 'done' ? '✅' : status === 'missed' ? '❌' : '🚫'} <b>${esc(name)}</b>: ${what} · ${when(l.start, lang)}${bal ? `\n${bal}` : ''}`,
+    text: `${status === 'done' ? '✅' : status === 'charged' ? '💸' : status === 'missed' ? '❌' : '🚫'} <b>${esc(name)}</b>: ${what} · ${when(l.start, lang)}${bal ? `\n${bal}` : ''}`,
     reply_markup: { inline_keyboard: [[{ text: L(lang, { uk: '↩️ Скасувати', ru: '↩️ Отменить', en: '↩️ Undo' }), callback_data: `tr:${l.id}` }]] },
   };
 }
@@ -219,3 +221,133 @@ export async function payUndo(lang: Lang, teacherId: string, paymentId: string) 
   }).catch(() => null);
   return L(lang, { uk: '↩️ Оплату скасовано.', ru: '↩️ Оплата отменена.', en: '↩️ Payment cancelled.' });
 }
+
+// ---------- Оплата звичайним повідомленням ----------
+// «Аня оплатила 1600», «оплата Ігор 4 уроки», «від Полини прийшло 800 грн», «Yeva +1200», «Соломія 2 заняття»
+const fold = (s: string) => s.toLowerCase().replace(/[іїий]/g, 'и').replace(/[єё]/g, 'е').replace(/ы/g, 'и').replace(/ʼ|’|'/g, '');
+const LESSON_WORD = /^(урок|занят|lesson|пар)/;
+export async function payFromText(lang: Lang, teacherId: string, text: string) {
+  const st = await myStudents(teacherId);
+  const words = fold(text).split(/[^\p{L}\p{N}+.,]+/u).filter(Boolean);
+  // сума або кількість уроків
+  const raw = fold(text).replace(/(\d)[\s.](?=\d{3}\b)/g, '$1');
+  const nm = /(\d+(?:[.,]\d+)?)\s*([\p{L}₴]*)/u.exec(raw);
+  let amount: number | null = null; let lessons = 0;
+  if (nm) {
+    const n = Math.round(Number(nm[1].replace(',', '.')));
+    const unit = nm[2] || '';
+    if (LESSON_WORD.test(unit) || (!/грн|uah|₴|гр/.test(unit) && n > 0 && n <= 20)) lessons = n; else if (n > 0 && n <= 1000000) amount = n;
+  }
+  // учень за іменем (з відмінками: Аня, Ані, Аню; Ігор, Ігоря)
+  const hits = st.filter((s) => {
+    const first = fold(s.name.split(/\s+/)[0] || '');
+    if (first.length < 2) return false;
+    const stem = first.slice(0, Math.max(2, Math.min(first.length - 1, 5)));
+    return words.some((w) => w.startsWith(stem) && w.length <= first.length + 3);
+  });
+  const price = (s: { price: number }) => (lessons ? lessons * s.price : amount || 0);
+  if (hits.length === 1) {
+    const s = hits[0];
+    const sum = price(s);
+    if (sum > 0) return paySave(lang, teacherId, s.id.slice(0, 8), sum);
+    return payPickAmount(lang, teacherId, s.id.slice(0, 8));
+  }
+  const pool = hits.length > 1 ? hits : st;
+  if ((amount || lessons) && pool.length) {
+    const rows: { text: string; callback_data: string }[][] = [];
+    pool.forEach((s, i) => { const sum = price(s); if (!sum) return; if (i % 2 === 0 || !rows.length) rows.push([]); rows[rows.length - 1].push({ text: `${s.name.slice(0, 20)} · ${money(sum, lang)}`, callback_data: `ta:${s.id.slice(0, 8)}:${sum}` }); });
+    if (rows.length) return { text: L(lang, { uk: '💳 <b>Від кого оплата?</b>', ru: '💳 <b>От кого оплата?</b>', en: '💳 <b>Who is the payment from?</b>' }), reply_markup: { inline_keyboard: rows } };
+  }
+  return {
+    text: L(lang, {
+      uk: 'Щоб записати оплату, напиши, наприклад:\n«Аня оплатила 1600»\n«Ігор 4 уроки»\n«від Полини прийшло 800 грн»\n\nАбо натисни «💳 Оплатили» внизу.',
+      ru: 'Чтобы записать оплату, напиши, например:\n«Аня оплатила 1600»\n«Игорь 4 урока»\n«от Полины пришло 800 грн»\n\nИли нажми «💳 Оплатили» внизу.',
+      en: 'To record a payment, write for example:\n“Anna paid 1600”\n“Ihor 4 lessons”\n\nOr tap “💳 Payment received” below.',
+    }),
+  };
+}
+
+// ---------- Домашка на перевірку: список кнопками, перегляд відповідей повідомленням ----------
+import type { Section } from './exercise';
+import { grade, normalizeSections } from './exercise';
+import { notifyStudent, SITE } from './telegram';
+
+async function doneHomework(teacherId: string) {
+  return db.query(`homework?teacher_id=eq.${enc(teacherId)}&status=eq.done&select=id,student_id,title,kind,game,score,total,answer,items,answers,overrides,done_at&order=done_at.asc&limit=30`).catch(() => []);
+}
+
+export async function reviewList(lang: Lang, teacherId: string) {
+  const [hw, st] = await Promise.all([doneHomework(teacherId), myStudents(teacherId)]);
+  if (!hw.length) return { text: L(lang, { uk: '📝 Усе перевірено, нових здач немає.', ru: '📝 Всё проверено, новых сдач нет.', en: '📝 All checked, nothing new.' }) };
+  const nm = (id: unknown) => st.find((s) => s.id === id)?.name || '';
+  const rows = hw.slice(0, 20).map((h) => [{ text: `${nm(h.student_id)} · ${String(h.title || '')}${Number(h.total) ? ` · ${h.score}/${h.total}` : ''}`.slice(0, 60), callback_data: `th:${String(h.id).slice(0, 8)}` }]);
+  return { text: L(lang, { uk: `📝 <b>На перевірку: ${hw.length}</b>\nНатисни, щоб подивитися відповіді.`, ru: `📝 <b>На проверку: ${hw.length}</b>\nНажми, чтобы посмотреть ответы.`, en: `📝 <b>To review: ${hw.length}</b>\nTap to see the answers.` }), reply_markup: { inline_keyboard: rows } };
+}
+
+// Текст відповідей учня: пропуски з позначками ✓ / ✗ і правильним варіантом
+function answersText(sections: Section[], answers: Record<string, string>, overrides: Record<string, boolean>) {
+  const { marks } = grade(sections, answers, overrides);
+  const out: string[] = [];
+  sections.forEach((s, si) => {
+    out.push(`\n<b>${esc(s.instruction || '')}</b>`);
+    s.tasks.forEach((t, ti) => {
+      if (s.type === 'translate') {
+        const k = `${si}.${ti}.0`;
+        out.push(`${ti + 1}. ${esc(t.prompt || '')} → ${esc(answers[k] || '…')} ${marks[k] ? '✅' : `❌ (${esc(t.answers?.[0] || '')})`}`);
+      } else if (s.type === 'open' || s.type === 'scale' || s.type === 'voice') {
+        const k = `${si}.${ti}.0`;
+        const a = answers[k] || '';
+        out.push(`${ti + 1}. ${esc(t.prompt || '')}\n   ✍️ ${s.type === 'voice' ? (a ? '🎙 аудіо на сайті' : '…') : esc(a || '…')}`);
+      } else {
+        const line = (t.parts ?? []).map((p, pi) => {
+          if (p.t === 'text') return esc(p.v);
+          const k = `${si}.${ti}.${pi}`;
+          const given = answers[k] || '…';
+          const right = p.t === 'gap' ? p.answers[0] : p.options[0];
+          if (p.t === 'gap' && !p.answers.length) return `[${esc(given)}]`;
+          return marks[k] ? `[<b>${esc(given)}</b> ✅]` : `[<s>${esc(given)}</s> ❌ ${esc(right || '')}]`;
+        }).join('');
+        out.push(`${ti + 1}. ${line}`);
+      }
+    });
+  });
+  return out.join('\n');
+}
+
+export async function hwView(lang: Lang, teacherId: string, id8: string) {
+  const [hw, st] = await Promise.all([doneHomework(teacherId), myStudents(teacherId)]);
+  const h = hw.find((x) => String(x.id).startsWith(id8));
+  if (!h) return { text: L(lang, { uk: 'Цю домашку вже перевірено або не знайдено.', ru: 'Эту домашку уже проверили или не нашли.', en: 'Already checked or not found.' }) };
+  const name = st.find((s) => s.id === h.student_id)?.name || '';
+  let body = '';
+  if (h.kind === 'text') body = `\n✍️ ${esc(String(h.answer || '…'))}`;
+  else if (h.kind === 'exercise' && Array.isArray(h.items)) body = answersText(normalizeSections(h.items as Section[]) ?? [], (h.answers as Record<string, string>) || {}, (h.overrides as Record<string, boolean>) || {});
+  else body = `\n${L(lang, { uk: 'Гра або тест: результат зараховано автоматично.', ru: 'Игра или тест: результат засчитан автоматически.', en: 'Game or test: scored automatically.' })}`;
+  let text = `📝 <b>${esc(name)}</b> · ${esc(String(h.title || ''))}${Number(h.total) ? `\n${L(lang, { uk: 'Результат', ru: 'Результат', en: 'Score' })}: <b>${h.score}/${h.total}</b>` : ''}\n${body}`;
+  if (text.length > 3800) text = `${text.slice(0, 3700)}\n…\n${L(lang, { uk: 'Повністю на сайті', ru: 'Полностью на сайте', en: 'Full version on the site' })}`;
+  return {
+    text,
+    reply_markup: { inline_keyboard: [
+      [{ text: L(lang, { uk: '✅ Перевірено', ru: '✅ Проверено', en: '✅ Checked' }), callback_data: `th:${id8}:c` }, { text: L(lang, { uk: '💬 Написати відгук', ru: '💬 Написать отзыв', en: '💬 Add feedback' }), callback_data: `th:${id8}:f` }],
+      [{ text: L(lang, { uk: '🌐 Відкрити на сайті', ru: '🌐 Открыть на сайте', en: '🌐 Open on the site' }), url: `${SITE}/teacher/review` }],
+    ] },
+  };
+}
+
+// «Перевірено» (з відгуком або без): статус checked і повідомлення учню
+export async function hwCheck(lang: Lang, teacherId: string, id8: string, feedback?: string) {
+  const hw = await doneHomework(teacherId);
+  const h = hw.find((x) => String(x.id).startsWith(id8));
+  if (!h) return L(lang, { uk: 'Цю домашку вже перевірено.', ru: 'Эту домашку уже проверили.', en: 'Already checked.' });
+  await db.update('homework', teacherId, String(h.id), { status: 'checked', ...(feedback ? { feedback } : {}) });
+  await notifyStudent(String(h.student_id), (l) => `${L(l, { uk: 'Учитель перевірив', ru: 'Учитель проверил', en: 'Your teacher checked' })}: <b>${esc(String(h.title))}</b>${Number(h.total) ? ` (${h.score}/${h.total})` : ''}${feedback ? `\n\n${esc(feedback)}` : ''}`,
+    (l) => ({ text: L(l, { uk: 'Мій кабінет', ru: 'Мой кабинет', en: 'My account' }), url: `${SITE}/student` }));
+  return L(lang, { uk: `✅ Перевірено${feedback ? ', відгук надіслано учню' : ''}.`, ru: `✅ Проверено${feedback ? ', отзыв отправлен ученику' : ''}.`, en: `✅ Checked${feedback ? ', feedback sent to the student' : ''}.` });
+}
+export function hwAskFeedback(lang: Lang, id8: string) {
+  return {
+    text: `💬 ${L(lang, { uk: 'Напиши відгук учню у відповідь на це повідомлення.', ru: 'Напиши отзыв ученику в ответ на это сообщение.', en: 'Reply to this message with your feedback.' })}\n#r-${id8}`,
+    reply_markup: { force_reply: true, input_field_placeholder: L(lang, { uk: 'Молодець! Зверни увагу на...', ru: 'Молодец! Обрати внимание на...', en: 'Well done! Pay attention to...' }) },
+  };
+}
+export const feedbackMarker = (replyText: string) => /#r-([0-9a-f]{8})\s*$/i.exec(replyText || '')?.[1] || null;

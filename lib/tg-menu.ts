@@ -65,7 +65,7 @@ export async function menuAnswer(kind: string, lang: Lang, links: Link[]): Promi
       const price = Number(k.s.price) || 0;
       const [pays, done] = await Promise.all([
         db.query(`payments?student_id=eq.${sid}&select=amount,at&order=at.desc`).catch(() => []),
-        db.query(`lessons?student_id=eq.${sid}&status=eq.done&select=id`).catch(() => []),
+        db.query(`lessons?student_id=eq.${sid}&status=in.(done,charged)&select=id`).catch(() => []),
       ]);
       const paid = pays.reduce((n, p) => n + Number(p.amount || 0), 0);
       const start = ((Number(k.s.prepaid_lessons) || 0) - (Number(k.s.owed_lessons) || 0)) * price;
@@ -93,7 +93,7 @@ export async function menuAnswer(kind: string, lang: Lang, links: Link[]): Promi
         db.query(`words?student_id=eq.${sid}&select=id`).catch(() => []),
       ]);
       const held = ls.filter((l) => l.status === 'done').length;
-      const missed = ls.filter((l) => l.status === 'missed').length;
+      const missed = ls.filter((l) => l.status === 'missed' || l.status === 'charged').length;
       const att = held + missed ? Math.round((held / (held + missed)) * 100) : null;
       const done = hw.filter((h) => h.status !== 'assigned');
       const scored = done.filter((h) => Number(h.total) > 0);
@@ -173,7 +173,7 @@ export async function teacherBalances(teacherId: string) {
   const [st, pays, done] = await Promise.all([
     db.query(`students?teacher_id=eq.${T}&select=id,name,price,prepaid_lessons,owed_lessons,pay_mode`).catch(() => []),
     db.query(`payments?teacher_id=eq.${T}&select=student_id,amount`).catch(() => []),
-    db.query(`lessons?teacher_id=eq.${T}&status=eq.done&select=student_id`).catch(() => []),
+    db.query(`lessons?teacher_id=eq.${T}&status=in.(done,charged)&select=student_id`).catch(() => []),
   ]);
   return st.map((s) => {
     const price = Number(s.price) || 0;

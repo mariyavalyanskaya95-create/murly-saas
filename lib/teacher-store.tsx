@@ -18,7 +18,9 @@ export type Student = {
   payMode?: 'pre' | 'post'; // pre: платить наперед пакетом, post: платить після занять
   nick?: string; avatar?: string; image?: string; selfSong?: string; selfSongUrl?: string; selfAbout?: string; // з профілю учня (лише для показу)
 };
-export type LessonStatus = 'planned' | 'done' | 'missed' | 'cancelled'; // missed: учень не прийшов
+export type LessonStatus = 'planned' | 'done' | 'missed' | 'charged' | 'cancelled'; // missed: не прийшов без оплати; charged: не прийшов, оплата списана
+// Заняття, за яке списуються гроші: відбулося або пропуск з оплатою
+export const isBilled = (s: LessonStatus | string) => s === 'done' || s === 'charged';
 export type Lesson = {
   id: string; studentId: string; start: string; duration: number;
   topic?: string; link?: string; status: LessonStatus;
@@ -191,6 +193,19 @@ function useStore(userId: string) {
       update((d) => ({ ...d, lessons: d.lessons.filter((x) => x.id !== id) }));
       sync('removeLesson', { id });
     },
+    // Кілька занять одразу: перенесення серії і видалення серії
+    updateLessons: (items: { id: string; patch: Partial<Lesson> }[]) => {
+      if (!items.length) return;
+      const m = new Map(items.map((x) => [x.id, x.patch]));
+      update((d) => ({ ...d, lessons: d.lessons.map((x) => (m.has(x.id) ? { ...x, ...m.get(x.id) } : x)) }));
+      sync('updateLessons', { items });
+    },
+    removeLessons: (ids: string[]) => {
+      if (!ids.length) return;
+      const set = new Set(ids);
+      update((d) => ({ ...d, lessons: d.lessons.filter((x) => !set.has(x.id)) }));
+      sync('removeLessons', { ids });
+    },
 
     addNote: (studentId: string, text: string, extra?: { images?: string[]; files?: NoteFile[]; at?: string }) => {
       const row: Note = { id: uid(), studentId, text, at: extra?.at || now(), images: extra?.images?.length ? extra.images : undefined, files: extra?.files?.length ? extra.files : undefined };
@@ -302,7 +317,7 @@ export function balanceText(s: Student | undefined, b: number, lang: Lang): { te
 export function balanceOf(d: Data, studentId: string) {
   const st = d.students.find((s) => s.id === studentId);
   const paid = d.payments.filter((p) => p.studentId === studentId).reduce((n, p) => n + p.amount, 0);
-  const spent = d.lessons.filter((l) => l.studentId === studentId && l.status === 'done').length * (st?.price ?? 0);
+  const spent = d.lessons.filter((l) => l.studentId === studentId && isBilled(l.status)).length * (st?.price ?? 0);
   const start = ((st?.prepaidLessons ?? 0) - (st?.owedLessons ?? 0)) * (st?.price ?? 0); // стартовий баланс у уроках
   return paid - spent + start; // < 0 означає борг
 }
@@ -330,3 +345,14 @@ export function plural(n: number, lang: Lang, f: { uk: [string, string, string];
 }
 export const sameDay = (a: Date, b: Date) =>
   a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
+
+// Серія: те саме заняття щотижня (той самий учень або група, день тижня, час), від цього заняття і далі, ще не відмічені
+export function seriesOf(d: { lessons: Lesson[] }, l: Lesson) {
+  const s0 = new Date(l.start);
+  return d.lessons.filter((x) => {
+    if (x.status !== 'planned' && x.id !== l.id) return false;
+    if (l.groupId ? x.groupId !== l.groupId : x.studentId !== l.studentId || x.groupId) return false;
+    const s = new Date(x.start);
+    return s.getTime() >= s0.getTime() && s.getDay() === s0.getDay() && s.getHours() === s0.getHours() && s.getMinutes() === s0.getMinutes();
+  });
+}
