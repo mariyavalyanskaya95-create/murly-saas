@@ -10,6 +10,7 @@ export default function LessonRow({ l, showStudent = true, showDate = true }: { 
   const t = useT();
   const { data, setLessonStatus, addLessons } = useTeacher();
   const [dup, setDup] = useState<string | null>(null); // дата для копії заняття
+  const [more, setMore] = useState(false); // рідкісні дії сховані під «Ще»
   const st = data.students.find((s) => s.id === l.studentId);
   const link = lessonLink(data, l);
   const past = new Date(l.start).getTime() + l.duration * 60000 < Date.now();
@@ -58,16 +59,21 @@ export default function LessonRow({ l, showStudent = true, showDate = true }: { 
         {l.status !== 'planned' && (
           <button className="t-icon-btn" onClick={() => setLessonStatus(l.id, 'planned')} aria-label={t({ uk: 'Змінити статус', ru: 'Изменить статус', en: 'Change status' })} title={t({ uk: 'Змінити статус', ru: 'Изменить статус', en: 'Change status' })}>↺</button>
         )}
-        {dup === null
-          ? <button className="t-icon-btn" onClick={openDup} aria-label={t({ uk: 'Дублювати заняття', ru: 'Дублировать занятие', en: 'Duplicate lesson' })} title={t({ uk: 'Дублювати: той самий час в інший день', ru: 'Дублировать: то же время в другой день', en: 'Duplicate: same time, another day' })}>⧉</button>
-          : (
-            <span className="t-dup">
-              <input type="date" value={dup} onChange={(e) => setDup(e.target.value)} aria-label={t({ uk: 'Дата копії', ru: 'Дата копии', en: 'Copy date' })} />
-              <button className="mu-btn mu-btn--lime t-btn-sm" onClick={makeDup}>{t({ uk: 'Додати', ru: 'Добавить', en: 'Add' })} {fmtTime(l.start, t.lang)}</button>
-              <button className="t-icon-btn" onClick={() => setDup(null)} aria-label={t({ uk: 'Скасувати', ru: 'Отмена', en: 'Cancel' })}>✕</button>
-            </span>
-          )}
-        <SeriesTools ls={[l]} />
+        <button type="button" className={`t-icon-btn t-more-btn ${more ? 'is-on' : ''}`} onClick={() => setMore(!more)} aria-expanded={more} title={t({ uk: 'Ще дії: копія, перенести, видалити', ru: 'Ещё действия: копия, перенести, удалить', en: 'More: copy, move, delete' })}>⋯</button>
+        {more && (
+          <div className="t-lesson__more">
+          {dup === null
+            ? <button className="t-icon-btn" onClick={openDup} aria-label={t({ uk: 'Дублювати заняття', ru: 'Дублировать занятие', en: 'Duplicate lesson' })} title={t({ uk: 'Дублювати: той самий час в інший день', ru: 'Дублировать: то же время в другой день', en: 'Duplicate: same time, another day' })}>⧉</button>
+            : (
+              <span className="t-dup">
+                <input type="date" value={dup} onChange={(e) => setDup(e.target.value)} aria-label={t({ uk: 'Дата копії', ru: 'Дата копии', en: 'Copy date' })} />
+                <button className="mu-btn mu-btn--lime t-btn-sm" onClick={makeDup}>{t({ uk: 'Додати', ru: 'Добавить', en: 'Add' })} {fmtTime(l.start, t.lang)}</button>
+                <button className="t-icon-btn" onClick={() => setDup(null)} aria-label={t({ uk: 'Скасувати', ru: 'Отмена', en: 'Cancel' })}>✕</button>
+              </span>
+            )}
+          <SeriesTools ls={[l]} />
+          </div>
+        )}
       </div>
     </div>
   );

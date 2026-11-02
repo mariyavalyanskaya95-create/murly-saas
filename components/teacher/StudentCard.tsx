@@ -24,9 +24,10 @@ import QuickWords, { splitWordLine } from './QuickWords';
 import { uploadFile } from '@/lib/upload';
 import type { T } from '@/lib/i18n';
 
-type Tab = 'lessons' | 'hw' | 'words' | 'notes' | 'pay' | 'profile';
+type Tab = 'overview' | 'lessons' | 'hw' | 'words' | 'notes' | 'pay' | 'profile';
 const PRIV_TABS: Tab[] = ['pay', 'profile'];
 const TABS: { id: Tab; label: T; icon: string }[] = [
+  { id: 'overview', label: { uk: 'Огляд', ru: 'Обзор', en: 'Overview' }, icon: 'd-smile' },
   { id: 'lessons', label: { uk: 'Заняття', ru: 'Занятия', en: 'Lessons' }, icon: 'e-cal' },
   { id: 'hw', label: { uk: 'Домашка', ru: 'Домашка', en: 'Homework' }, icon: 'e-board' },
   { id: 'words', label: { uk: 'Словник', ru: 'Словарь', en: 'Vocabulary' }, icon: 'e-abc' },
@@ -40,7 +41,7 @@ export default function StudentCard({ id }: { id: string }) {
   const t = useTeacher();
   const { data, ready } = t;
   const router = useRouter();
-  const [tab, setTab] = useState<Tab>('lessons');
+  const [tab, setTab] = useState<Tab>('overview');
   const lesson = useLessonMode();
   useEffect(() => { if (lesson.on && PRIV_TABS.includes(tab)) setTab('words'); }, [lesson.on, tab]);
   useEffect(() => {
@@ -83,38 +84,6 @@ export default function StudentCard({ id }: { id: string }) {
 
       <StudentStats id={s.id} />
 
-      {(s.song || s.about || s.selfSong || s.selfAbout) && (
-        <div className="t-card t-about t-private">
-          {(s.song || s.selfSong) && (
-            <p><b>{tt({ uk: 'Улюблена пісня', ru: 'Любимая песня', en: 'Favourite song' })}:</b> {s.song || s.selfSong}
-              {(s.songUrl || s.selfSongUrl) && /^https?:\/\//.test(s.songUrl || s.selfSongUrl || '') && <> <a className="mu-btn t-btn-sm" href={s.songUrl || s.selfSongUrl} target="_blank" rel="noreferrer">{tt({ uk: 'Слухати', ru: 'Слушать', en: 'Listen' })}</a></>}
-              {s.song && s.selfSong && s.selfSong !== s.song && <span className="t-muted"> · {tt({ uk: 'учень пише', ru: 'ученик пишет', en: 'the student says' })}: {s.selfSong}</span>}
-            </p>
-          )}
-          {s.about && <p><b>{tt({ uk: 'Про учня', ru: 'Об ученике', en: 'About' })}:</b> {s.about}</p>}
-          {s.selfAbout && <p><b>{tt({ uk: 'Учень про себе', ru: 'Ученик о себе', en: 'In their own words' })}:</b> {s.selfAbout}</p>}
-        </div>
-      )}
-      {(() => {
-        const last = data.notes.filter((n) => n.studentId === s.id).sort((a, z) => z.at.localeCompare(a.at))[0];
-        return last ? (
-          <div className="t-card t-last t-private">
-            <div className="t-card__head"><h2>{tt({ uk: 'Останній урок', ru: 'Последний урок', en: 'Last lesson' })}: {fmtDate(last.at, tt.lang)}</h2>
-              <button type="button" className="mu-btn t-btn-sm" onClick={() => { setTab('notes'); setTimeout(() => document.querySelector('.t-tabs')?.scrollIntoView({ behavior: 'smooth' }), 50); }}>{tt({ uk: 'Увесь журнал', ru: 'Весь журнал', en: 'Full log' })}</button></div>
-            {last.text && <p>{last.text.length > 280 ? `${last.text.slice(0, 280)}…` : last.text}</p>}
-            {last.images && last.images.length > 0 && <div className="t-log-thumbs">{last.images.slice(0, 4).map((u) => <a key={u} href={u} target="_blank" rel="noreferrer" className="t-log-thumb"><img src={u} alt="" loading="lazy" /></a>)}</div>}
-          </div>
-        ) : null;
-      })()}
-      {s.joined && (
-        <details className="t-card t-more">
-          <summary>{tt({ uk: 'Код і доступ учня', ru: 'Код и доступ ученика', en: 'Student code and access' })}</summary>
-          <InviteBox id={s.id} />
-        </details>
-      )}
-      {!s.adult && <CoinsBox studentId={s.id} joined={s.joined} />}
-      {s.joined && s.nmt && <MockResults student={s.id} all={MOCKS.map((m) => m.id)} />}
-
       <div className="t-tabs" role="tablist">
         {TABS.map((x) => (
           <button key={x.id} role="tab" aria-selected={tab === x.id} className={`t-tab ${tab === x.id ? 'is-on' : ''} ${PRIV_TABS.includes(x.id) ? 't-private' : ''}`} onClick={() => setTab(x.id)}>
@@ -123,6 +92,42 @@ export default function StudentCard({ id }: { id: string }) {
         ))}
       </div>
 
+      {tab === 'overview' && (
+        <div className="t-overview">
+      {(s.song || s.about || s.selfSong || s.selfAbout) && (
+            <div className="t-card t-about t-private">
+              {(s.song || s.selfSong) && (
+                <p><b>{tt({ uk: 'Улюблена пісня', ru: 'Любимая песня', en: 'Favourite song' })}:</b> {s.song || s.selfSong}
+                  {(s.songUrl || s.selfSongUrl) && /^https?:\/\//.test(s.songUrl || s.selfSongUrl || '') && <> <a className="mu-btn t-btn-sm" href={s.songUrl || s.selfSongUrl} target="_blank" rel="noreferrer">{tt({ uk: 'Слухати', ru: 'Слушать', en: 'Listen' })}</a></>}
+                  {s.song && s.selfSong && s.selfSong !== s.song && <span className="t-muted"> · {tt({ uk: 'учень пише', ru: 'ученик пишет', en: 'the student says' })}: {s.selfSong}</span>}
+                </p>
+              )}
+              {s.about && <p><b>{tt({ uk: 'Про учня', ru: 'Об ученике', en: 'About' })}:</b> {s.about}</p>}
+              {s.selfAbout && <p><b>{tt({ uk: 'Учень про себе', ru: 'Ученик о себе', en: 'In their own words' })}:</b> {s.selfAbout}</p>}
+            </div>
+          )}
+          {(() => {
+            const last = data.notes.filter((n) => n.studentId === s.id).sort((a, z) => z.at.localeCompare(a.at))[0];
+            return last ? (
+              <div className="t-card t-last t-private">
+                <div className="t-card__head"><h2>{tt({ uk: 'Останній урок', ru: 'Последний урок', en: 'Last lesson' })}: {fmtDate(last.at, tt.lang)}</h2>
+                  <button type="button" className="mu-btn t-btn-sm" onClick={() => { setTab('notes'); }}>{tt({ uk: 'Увесь журнал', ru: 'Весь журнал', en: 'Full log' })}</button></div>
+                {last.text && <p>{last.text.length > 280 ? `${last.text.slice(0, 280)}…` : last.text}</p>}
+                {last.images && last.images.length > 0 && <div className="t-log-thumbs">{last.images.slice(0, 4).map((u) => <a key={u} href={u} target="_blank" rel="noreferrer" className="t-log-thumb"><img src={u} alt="" loading="lazy" /></a>)}</div>}
+              </div>
+            ) : null;
+          })()}
+          {s.joined && (
+            <details className="t-card t-more">
+              <summary>{tt({ uk: 'Код і доступ учня', ru: 'Код и доступ ученика', en: 'Student code and access' })}</summary>
+              <InviteBox id={s.id} />
+            </details>
+          )}
+          {!s.adult && <CoinsBox studentId={s.id} joined={s.joined} />}
+          {s.joined && s.nmt && <MockResults student={s.id} all={MOCKS.map((m) => m.id)} />}
+          {!s.song && !s.about && !s.selfSong && !s.selfAbout && !data.notes.some((n) => n.studentId === s.id) && s.adult && !s.joined && <p className="t-muted">{tt({ uk: 'Тут з’являться останній урок і нотатки про учня.', ru: 'Здесь появятся последний урок и заметки об ученике.', en: 'The last lesson and notes about the student will appear here.' })}</p>}
+        </div>
+      )}
       {tab === 'lessons' && <LessonsTab id={s.id} />}
       {tab === 'hw' && <HomeworkTab id={s.id} />}
       {tab === 'words' && <WordsTab id={s.id} />}
