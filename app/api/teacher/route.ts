@@ -136,6 +136,8 @@ export async function POST(req: Request) {
       case 'addLessons': await db.insert('lessons', (p.rows as Row[]).map((l) => toDb.lesson(l, t))); break;
       case 'updateLesson': await db.update('lessons', t, id, toDb.lessonPatch(p.patch as Row)); break;
       case 'removeLesson': await db.remove('lessons', t, id); break;
+      case 'updateLessons': for (const it of ((p.items as Row[]) ?? []).slice(0, 300)) await db.update('lessons', t, String(it.id), toDb.lessonPatch(it.patch as Row)); break;
+      case 'removeLessons': for (const x of ((p.ids as string[]) ?? []).slice(0, 300)) await db.remove('lessons', t, String(x)); break;
       case 'addNote': await db.insert('notes', [toDb.note(p, t)]); break;
       case 'updateNote': await db.update('notes', t, id, pick(p.patch as Row, ['text', 'images', 'files', 'at'])); break;
       case 'removeNote': await db.remove('notes', t, id); break;
