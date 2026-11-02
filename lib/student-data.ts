@@ -1,3 +1,4 @@
+import { aiCheck, aiReady, isOwnerTeacher, type AiNote } from './ai-check';
 // Серверні дані для кабінету учня і запрошень
 import { addCoins } from './coins';
 import { db, dbReady } from './db';
@@ -109,7 +110,7 @@ export async function getEnrollments(userId: string, lang = 'uk'): Promise<Enrol
 // Учень здає домашку: перевіряємо, що завдання належить саме йому
 export async function submitHomework(userId: string, id: string, p: { score?: number; total?: number; answer?: string; answers?: Answers }) {
   if (!dbReady()) return false;
-  const hw = await db.query(`homework?id=eq.${enc(id)}&select=id,student_id,teacher_id,title,status,kind,items,answers,overrides,done_at`);
+  const hw = await db.query(`homework?id=eq.${enc(id)}&select=id,student_id,teacher_id,title,status,kind,items,answers,overrides,ai_notes,done_at`);
   if (!hw[0]) return false;
   const st = await db.query(`students?id=eq.${enc(String(hw[0].student_id))}&user_id=eq.${enc(userId)}&select=id,name`);
   if (!st[0]) return false;
@@ -126,8 +127,19 @@ export async function submitHomework(userId: string, id: string, p: { score?: nu
     // ручні зарахування вчителя зберігаємо лише для відповідей, які не змінились
     const prevA = (hw[0].answers as Answers | null) ?? {};
     const ov: Record<string, boolean> = {};
-    Object.entries((hw[0].overrides as Record<string, boolean> | null) ?? {}).forEach(([k, v]) => { if (v && prevA[k] === clean[k]) ov[k] = true; });
+    Object.entries((hw[0].overrides as Record<string, boolean> | null) ?? {}).forEach(([k, v]) => { if (typeof v === 'boolean' && prevA[k] === clean[k]) ov[k] = v; });
     const secs = hw[0].kind === 'lesson' ? lessonSections((hw[0].items as Block[]) ?? []) : (normalizeSections(hw[0].items as Section[] | null) ?? []);
+    // автоперевірка ІІ відповідей без ключа (лише кабінет власниці)
+    if (aiReady() && await isOwnerTeacher(String(hw[0].teacher_id))) {
+      const notes = await aiCheck(secs, clean, ov);
+      if (notes) {
+        Object.entries(notes).forEach(([k, n]) => { ov[k] = n.ok; });
+        const prevN = (hw[0].ai_notes as Record<string, AiNote> | null) ?? {};
+        const keep: Record<string, AiNote> = {};
+        Object.entries(prevN).forEach(([k, n]) => { if (prevA[k] === clean[k] && k in ov) keep[k] = n; });
+        patch.ai_notes = { ...keep, ...notes };
+      }
+    }
     const g = grade(secs, clean, ov);
     patch.overrides = ov;
     patch.answers = clean; patch.score = g.score; patch.total = g.total;

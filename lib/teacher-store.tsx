@@ -34,14 +34,14 @@ export type Payment = { id: string; studentId: string; amount: number; note?: st
 export type HomeworkStatus = 'assigned' | 'done' | 'checked';
 export type Homework = {
   id: string; studentId: string; title: string; instructions?: string;
-  kind: 'game' | 'text' | 'exercise' | 'lesson' | 'mock'; items?: import('./exercise').Section[] | import('./lesson').Block[]; answers?: import('./exercise').Answers; overrides?: import('./exercise').Overrides; game?: 'quiz' | 'match' | 'anagram' | 'cards' | (string & {}); direction?: 'en' | 'uk';
+  kind: 'game' | 'text' | 'exercise' | 'lesson' | 'mock'; items?: import('./exercise').Section[] | import('./lesson').Block[]; answers?: import('./exercise').Answers; overrides?: import('./exercise').Overrides; aiNotes?: Record<string, { ok: boolean; fix?: string; why?: string }>; game?: 'quiz' | 'match' | 'anagram' | 'cards' | (string & {}); direction?: 'en' | 'uk';
   due?: string; status: HomeworkStatus; score?: number; total?: number; answer?: string; feedback?: string;
   createdAt: string; doneAt?: string;
   groupId?: string;
   toParent?: boolean; // лише сигнал серверу: надіслати батькам у Telegram
   note?: string; // заметки й питання учня
 };
-export type Settings = { name: string; link: string; linkKind: 'zoom' | 'meet' | 'other' };
+export type Settings = { name: string; link: string; linkKind: 'zoom' | 'meet' | 'other'; ai?: boolean };
 
 type Data = {
   students: Student[]; groups: Group[]; lessons: Lesson[]; notes: Note[]; words: Word[]; payments: Payment[]; homework: Homework[]; plans: Plan[]; settings: Settings;
