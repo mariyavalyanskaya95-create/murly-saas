@@ -63,6 +63,7 @@ export default function SiteFooter() {
           <div>
             <h4>{t({ uk: 'Компанія', ru: 'Компания', en: 'Company' })}</h4>
             <ul>
+              <li><Link href="/?tour=site"><Icon id="d-bulb" />{t({ uk: 'Як користуватися сайтом', ru: 'Как пользоваться сайтом', en: 'How to use the site' })}</Link></li>
               <li><Link href="/blog"><Icon id="e-book" />{t({ uk: 'Блог', ru: 'Блог', en: 'Blog' })}</Link></li>
               <li><Link href="/about"><Icon id="c-cat" />{t({ uk: 'Про нас', ru: 'О нас', en: 'About us' })}</Link></li>
               <li><Link href="/contact"><Icon id="d-phone" />{t({ uk: 'Контакти', ru: 'Контакты', en: 'Contact' })}</Link></li>
