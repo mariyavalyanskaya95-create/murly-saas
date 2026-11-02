@@ -1,3 +1,4 @@
+import RelatedPosts from '@/components/blog/RelatedPosts';
 import type { Metadata } from 'next';
 import { alt } from '@/lib/seo';
 import Icon from '@/components/Icon';
@@ -31,6 +32,7 @@ export default function ActivitiesHub() {
       <section className="mu-section" style={{ paddingTop: 8 }}>
         <div className="mu-container"><ActivityList items={ACTIVITIES} /></div>
       </section>
+      <RelatedPosts slugs={['igry-dlya-onlajn-uroku-anglijskoyi']} />
       <SiteFooter />
     </>
   );
