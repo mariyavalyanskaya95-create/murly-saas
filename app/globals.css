@@ -3558,3 +3558,10 @@ details.bb-tip > p:last-child{margin-bottom:22px}
 .s-nav a .mu-ic,.s-nav__help .mu-ic{width:18px;height:18px}
 .s-nav a.is-on{background:var(--mu-ink);color:#fff}
 .s-nav__help{flex:none;display:inline-flex;align-items:center;gap:7px;margin-left:auto;padding:6px 12px;border:0;background:none;font:inherit;font-size:14px;font-weight:600;text-decoration:underline;text-underline-offset:3px;cursor:pointer;white-space:nowrap}
+/* Картка учня: вкладки одразу під шапкою і прилипають при прокрутці */
+.t-tabs{position:sticky;top:70px;z-index:20;background:var(--mu-paper);padding:10px 0;margin:4px 0 0}
+.t-overview{display:grid;gap:20px}
+.t-more-btn{font-size:20px;line-height:1}
+.t-more-btn.is-on{background:var(--mu-ink);color:#fff}
+.t-lesson__more{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding-top:8px}
+.t-lesson__actions{flex-wrap:wrap}
