@@ -126,7 +126,7 @@ export default function ForTeachersPage() {
         </div>
       </section>
 
-      <RelatedPosts slugs={['igry-dlya-onlajn-uroku-anglijskoyi', 'skilky-braty-za-urok-repetytoru-2026']} />
+      <RelatedPosts slugs={['igry-dlya-onlajn-uroku-anglijskoyi', 'temy-dlya-rozmovy-anglijskoyu', 'skilky-braty-za-urok-repetytoru-2026']} />
       <SiteFooter />
       <Stickers />
     </>
