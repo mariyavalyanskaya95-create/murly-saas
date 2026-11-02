@@ -3524,3 +3524,9 @@ details.bb-tip > p:last-child{margin-bottom:22px}
 .ex-sched select{padding:8px 10px;border:2px solid var(--mu-ink);border-radius:12px;font:inherit;background:#fff;min-width:220px}
 .ex-sched__list{margin:0;padding-left:1.2em;display:grid;gap:6px;line-height:1.45}
 .ex-sched__list small{opacity:.6}
+/* Поля для перекладу й відкритих відповідей: компактні, ростуть разом з текстом */
+.ex-grow{resize:none;overflow:hidden;min-height:44px;line-height:1.45;padding:9px 12px;font:inherit;font-size:17px}
+.ex-qa{gap:6px}
+.ex-qa .ex-prompt{line-height:1.45}
+.ex-list > .ex-task + .ex-task{margin-top:4px}
+.ex-ed__warn{display:grid;gap:8px;margin:4px 0 0;padding:12px 14px;border-radius:14px;background:#FFF4DC;border:2px solid var(--mu-mustard);line-height:1.45}
