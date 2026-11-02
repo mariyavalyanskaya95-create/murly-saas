@@ -1,3 +1,4 @@
+import RelatedPosts from '@/components/blog/RelatedPosts';
 import Link from 'next/link';
 import { alt } from '@/lib/seo';
 import type { Metadata } from 'next';
@@ -125,6 +126,7 @@ export default function ForTeachersPage() {
         </div>
       </section>
 
+      <RelatedPosts slugs={['igry-dlya-onlajn-uroku-anglijskoyi', 'skilky-braty-za-urok-repetytoru-2026']} />
       <SiteFooter />
       <Stickers />
     </>
