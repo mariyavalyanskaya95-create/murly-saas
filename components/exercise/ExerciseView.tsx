@@ -5,10 +5,10 @@ import VoiceRecorder from './VoiceRecorder';
 import { useT } from '@/components/LangProvider';
 
 // Показ вправи: учень заповнює (onChange), або вчитель/учень бачать перевірку (marks)
-export default function ExerciseView({ sections: raw, answers, onChange, marks, showCorrect, overrides, onOverride, offset = 0, numbered = true }: {
+export default function ExerciseView({ sections: raw, answers, onChange, marks, showCorrect, overrides, onOverride, aiNotes, offset = 0, numbered = true }: {
   sections: Section[]; answers: Answers; onChange?: (key: string, v: string) => void;
   marks?: Record<string, boolean>; showCorrect?: boolean;
-  overrides?: Record<string, boolean>; onOverride?: (key: string, v?: boolean | null) => void; // вчитель: зарахувати / помилка / зняти позначку
+  overrides?: Record<string, boolean>; onOverride?: (key: string, v?: boolean | null) => void; aiNotes?: Record<string, { ok: boolean; fix?: string; why?: string }>; // вчитель: зарахувати / помилка / зняти позначку
   offset?: number; // зсув номера секції (коли вправ кілька в уроці)
   numbered?: boolean;
 }) {
@@ -36,12 +36,14 @@ export default function ExerciseView({ sections: raw, answers, onChange, marks, 
     // відповідь без ключа: вчитель ставить ✓ або ✗ одним натисканням
     if (manual) {
       const v = overrides?.[k];
-      return (
+      const judge = (
         <span className="ex-judge" role="group" aria-label={tx({ uk: 'Оцінити відповідь', ru: 'Оценить ответ', en: 'Mark the answer' })}>
           <button type="button" className={`ex-judge__ok ${v === true ? 'is-on' : ''}`} onClick={() => onOverride(k, v === true ? null : true)} title={tx({ uk: 'Правильно', ru: 'Правильно', en: 'Correct' })}>✓</button>
           <button type="button" className={`ex-judge__no ${v === false ? 'is-on' : ''}`} onClick={() => onOverride(k, v === false ? null : false)} title={tx({ uk: 'Помилка', ru: 'Ошибка', en: 'Wrong' })}>✕</button>
         </span>
       );
+      const n = aiNotes?.[k];
+      return n && !n.ok && (n.fix || n.why) ? <>{judge}<span className="ex-ai">{n.fix ? <b>{n.fix}</b> : null}{n.fix && n.why ? ' · ' : ''}{n.why}</span></> : judge;
     }
     if (!marks || !(k in marks)) return null;
     if (overrides?.[k]) return <button type="button" className="ex-ov is-on" onClick={() => onOverride(k, null)} title={tx({ uk: 'Скасувати', ru: 'Отменить', en: 'Undo' })}>{tx({ uk: 'зараховано вручну', ru: 'засчитано вручную', en: 'accepted by hand' })} ✕</button>;
