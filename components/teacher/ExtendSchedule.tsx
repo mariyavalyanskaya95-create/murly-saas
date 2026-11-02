@@ -25,11 +25,16 @@ export default function ExtendSchedule({ onDone }: { onDone?: () => void }) {
   const plan = useMemo(() => ids.map((id) => ({ id, ...pattern(data.lessons, id) })).filter((p) => p.rows.length), [ids.join(','), data.lessons]); // eslint-disable-line react-hooks/exhaustive-deps
   const total = plan.reduce((n, p) => n + p.rows.length, 0) * weeks;
 
+  // на скільки тижнів зсунути шаблон: щонайменше на 1, і так, щоб не створювати заняття в минулому
+  const shift = (rows: Lesson[]) => {
+    const first = Math.min(...rows.map((l) => new Date(l.start).getTime()));
+    return Math.max(1, Math.ceil((Date.now() - first) / WEEK));
+  };
   const run = () => {
-    plan.forEach((p) => p.rows.forEach((l) => {
-      const from = new Date(new Date(l.start).getTime() + WEEK); // наступний тиждень після шаблону
+    plan.forEach((p) => { const k = shift(p.rows); p.rows.forEach((l) => {
+      const from = new Date(new Date(l.start).getTime() + WEEK * k);
       addLessons({ studentId: l.studentId, start: from.toISOString(), duration: l.duration, topic: undefined, link: l.link, groupId: l.groupId }, weeks);
-    }));
+    }); });
     setDone(t({ uk: `Додано ${total} занять.`, ru: `Добавлено ${total} занятий.`, en: `${total} lessons added.` }));
     onDone?.();
   };
@@ -52,7 +57,7 @@ export default function ExtendSchedule({ onDone }: { onDone?: () => void }) {
           {plan.map((p) => {
             const st = data.students.find((s) => s.id === p.id);
             const slots = p.rows.slice().sort((a, b) => a.start.localeCompare(b.start)).map((l) => `${new Date(l.start).toLocaleDateString(loc, { weekday: 'short' })} ${fmtTime(l.start, t.lang)}`).join(', ');
-            return <li key={p.id}><b>{st?.name}</b>: {slots} <small>{t({ uk: 'після', ru: 'после', en: 'after' })} {new Date(p.last).toLocaleDateString(loc, { day: 'numeric', month: 'short' })}</small></li>;
+            return <li key={p.id}><b>{st?.name}</b>: {slots} <small>{t({ uk: 'з', ru: 'с', en: 'from' })} {new Date(Math.min(...p.rows.map((l) => new Date(l.start).getTime())) + WEEK * shift(p.rows)).toLocaleDateString(loc, { day: 'numeric', month: 'short' })}</small></li>;
           })}
         </ul>
       ) : <p className="t-muted">{t({ uk: 'Немає занять, які можна повторити.', ru: 'Нет занятий, которые можно повторить.', en: 'No lessons to repeat.' })}</p>}
