@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Icon from '@/components/Icon';
 import LessonRow from '@/components/teacher/LessonRow';
 import { LessonForm, StudentForm } from '@/components/teacher/forms';
-import { balanceOf, balanceText, fmtMoney, localeOf, plural, sameDay, useTeacher } from '@/lib/teacher-store';
+import { balanceOf, balanceText, fmtMoney, localeOf, plural, sameDay, useTeacher , isBilled } from '@/lib/teacher-store';
 import { useT } from '@/components/LangProvider';
 import { InviteCard } from '@/components/teacher/Growth';
 import Onboarding from '@/components/teacher/Onboarding';
@@ -29,7 +29,7 @@ export default function TeacherToday() {
   const prevMon = new Date(monday); prevMon.setDate(monday.getDate() - 7);
   const monthStart = new Date(today.getFullYear(), today.getMonth(), 1);
   const inRange = (iso: string, a: Date, b: Date) => { const d = new Date(iso); return d >= a && d < b; };
-  const earned = (a: Date, b: Date) => data.lessons.filter((l) => l.status === 'done' && inRange(l.start, a, b));
+  const earned = (a: Date, b: Date) => data.lessons.filter((l) => isBilled(l.status) && inRange(l.start, a, b));
   const sum = (ls: typeof data.lessons) => ls.reduce((n, l) => n + price(l.studentId), 0);
   const thisWeek = earned(monday, nextMon);
   const lastWeek = earned(prevMon, monday);
