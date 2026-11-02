@@ -32,7 +32,7 @@ export default function ActivitiesHub() {
       <section className="mu-section" style={{ paddingTop: 8 }}>
         <div className="mu-container"><ActivityList items={ACTIVITIES} /></div>
       </section>
-      <RelatedPosts slugs={['igry-dlya-onlajn-uroku-anglijskoyi']} />
+      <RelatedPosts slugs={['temy-dlya-rozmovy-anglijskoyu', 'igry-dlya-onlajn-uroku-anglijskoyi']} />
       <SiteFooter />
     </>
   );
