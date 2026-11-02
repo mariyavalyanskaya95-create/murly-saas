@@ -3530,3 +3530,31 @@ details.bb-tip > p:last-child{margin-bottom:22px}
 .ex-qa .ex-prompt{line-height:1.45}
 .ex-list > .ex-task + .ex-task{margin-top:4px}
 .ex-ed__warn{display:grid;gap:8px;margin:4px 0 0;padding:12px 14px;border-radius:14px;background:#FFF4DC;border:2px solid var(--mu-mustard);line-height:1.45}
+/* Заметки учня до домашки */
+.s-note__open{display:inline-flex;align-items:center;gap:8px;margin-top:14px;background:none;border:0;padding:0;font:inherit;font-weight:600;color:var(--mu-ink);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.s-note__open .mu-ic{width:18px;height:18px}
+.s-note{display:grid;gap:8px;margin-top:16px;padding:14px 16px;background:var(--mu-paper);border-radius:16px}
+.s-note label{font-weight:700}
+.s-note textarea{width:100%;padding:10px 12px;border:2px solid var(--mu-ink);border-radius:12px;font:inherit;resize:vertical;background:#fff}
+.s-note__bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.t-hw__note{background:#FFF8E1}
+
+/* ===== Навчання (тур) ===== */
+.tour{position:fixed;inset:0;z-index:500}
+.tour__dim{position:fixed;inset:0;background:rgba(26,26,26,.5)}
+.tour__spot{position:fixed;border-radius:16px;box-shadow:0 0 0 4px var(--mu-lime),0 0 0 9999px rgba(26,26,26,.5);transition:all .3s ease;pointer-events:none}
+.tour__card{position:fixed;width:min(340px,calc(100vw - 24px));background:#fff;border:2px solid var(--mu-ink);border-radius:20px;box-shadow:var(--mu-shadow-stamp-lg);padding:20px 22px;display:grid;gap:10px;transition:top .3s,left .3s}
+.tour__card.is-center{left:50%;top:50%;transform:translate(-50%,-50%);width:min(420px,calc(100vw - 24px))}
+.tour__card h3{margin:0;font-size:1.25rem;line-height:1.25}
+.tour__card p{margin:0;line-height:1.5}
+.tour__count{font-size:13px;font-weight:700;opacity:.55}
+.tour__bar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:4px}
+.tour__nav{display:flex;gap:8px}
+.tour__skip{background:none;border:0;font:inherit;font-size:14px;color:var(--mu-ink-muted);text-decoration:underline;cursor:pointer;padding:0}
+@media (prefers-reduced-motion:reduce){.tour__spot,.tour__card{transition:none}}
+/* Меню учня: іконки й поточний розділ */
+.s-nav{align-items:center}
+.s-nav a{display:inline-flex;align-items:center;gap:7px}
+.s-nav a .mu-ic,.s-nav__help .mu-ic{width:18px;height:18px}
+.s-nav a.is-on{background:var(--mu-ink);color:#fff}
+.s-nav__help{flex:none;display:inline-flex;align-items:center;gap:7px;margin-left:auto;padding:6px 12px;border:0;background:none;font:inherit;font-size:14px;font-weight:600;text-decoration:underline;text-underline-offset:3px;cursor:pointer;white-space:nowrap}

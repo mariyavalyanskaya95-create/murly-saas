@@ -10,6 +10,8 @@ import { tr } from '@/lib/i18n-server';
 import type { T } from '@/lib/i18n';
 import Kit from '@/components/Kit';
 import FreeMonthBanner from '@/components/FreeMonthBanner';
+import Tour from '@/components/Tour';
+import { SITE_TOUR } from '@/lib/tours';
 
 export function generateMetadata(): Metadata {
   const t = tr();
@@ -214,6 +216,7 @@ export default function HomePage() {
         </div>
       </section>
 
+      <Tour id="site" steps={SITE_TOUR} />
       <SiteFooter />
       <Stickers />
     </>
