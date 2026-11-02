@@ -1,7 +1,7 @@
 'use client';
 import { useMemo, useState } from 'react';
 import ExerciseView from './ExerciseView';
-import { SECTION_TYPES, Section, SectionType, maxScore, parseSection, sectionToText } from '@/lib/exercise';
+import { SECTION_TYPES, Section, SectionType, maxScore, normalizeSections, parseSection, sectionToText } from '@/lib/exercise';
 import { useT } from '@/components/LangProvider';
 import { pick, type Lang, type T } from '@/lib/i18n';
 
@@ -25,7 +25,7 @@ const POINTS: Forms = { uk: ['бал', 'бали', 'балів'], ru: ['балл
 export default function ExerciseEditor({ onChange, initial, compact }: { onChange: (sections: Section[]) => void; initial?: Section[]; compact?: boolean }) {
   const t = useT();
   const [drafts, setDrafts] = useState<Draft[]>(() => (initial?.length ? initial.map((s) => ({ type: s.type, instruction: s.instruction, text: sectionToText(s) })) : [newDraft(t.lang)]));
-  const [preview, setPreview] = useState(false);
+  const [preview, setPreview] = useState(true);
   const sections = useMemo(() => drafts.map((d) => parseSection(d.type, d.instruction, d.text)).filter((s) => s.tasks.length), [drafts]);
 
   const set = (i: number, patch: Partial<Draft>) => {
@@ -68,6 +68,25 @@ export default function ExerciseEditor({ onChange, initial, compact }: { onChang
               </label>
             </div>
             <p className="t-muted ex-ed__hint">{t(m.hint)}</p>
+            {(() => {
+              const lines = d.text.split('\n').map((x) => x.trim()).filter(Boolean);
+              if (!lines.length) return null;
+              const marked = (l: string) => (d.type === 'gap' ? /\[[^\]]+\]|_{2,}|…|\.{3,}/.test(l) : /\{[^}]+\}/.test(l));
+              if ((d.type === 'gap' || d.type === 'choice') && !lines.some(marked)) return (
+                <div className="ex-ed__warn">
+                  <b>{t({ uk: 'У рядках немає пропусків, тому учню нікуди вписати відповідь.', ru: 'В строках нет пропусков, поэтому ученику некуда вписать ответ.', en: 'There are no gaps in these lines, so the student has nowhere to answer.' })}</b>
+                  <span>{t({ uk: 'Якщо це речення для перекладу або питання, обери потрібний тип:', ru: 'Если это предложения для перевода или вопросы, выбери нужный тип:', en: 'If these are sentences to translate or questions, pick the right type:' })}</span>
+                  <div className="g-chips" style={{ justifyContent: 'flex-start' }}>
+                    <button type="button" className="g-chip" onClick={() => setType(i, 'translate')}>{t({ uk: 'Переклад', ru: 'Перевод', en: 'Translation' })}</button>
+                    <button type="button" className="g-chip" onClick={() => setType(i, 'open')}>{t({ uk: 'Відкрите питання', ru: 'Открытый вопрос', en: 'Open question' })}</button>
+                  </div>
+                </div>
+              );
+              if ((d.type === 'gap' || d.type === 'choice') && lines.some((l) => !marked(l))) return (
+                <p className="ex-ed__warn">{t({ uk: `У ${lines.filter((l) => !marked(l)).length} рядках немає пропуску: там учень впише відповідь на все речення.`, ru: `В ${lines.filter((l) => !marked(l)).length} строках нет пропуска: там ученик впишет ответ на всё предложение.`, en: `${lines.filter((l) => !marked(l)).length} lines have no gap: the student will answer the whole sentence there.` })}</p>
+              );
+              return null;
+            })()}
           </div>
         );
       })}
@@ -76,7 +95,7 @@ export default function ExerciseEditor({ onChange, initial, compact }: { onChang
         <span className="t-muted">{plural(tasks, t.lang, TASKS)} · {plural(maxScore(sections), t.lang, POINTS)} {t({ uk: 'з автоперевіркою', ru: 'с автопроверкой', en: 'auto-checked' })}</span>
         {tasks > 0 && <button type="button" className="t-link-btn" onClick={() => setPreview(!preview)}>{preview ? t({ uk: 'Сховати', ru: 'Скрыть', en: 'Hide' }) : t({ uk: 'Як побачить учень', ru: 'Как увидит ученик', en: 'Student view' })}</button>}
       </div>
-      {preview && tasks > 0 && <div className="ex-ed__preview"><ExerciseView sections={sections} answers={{}} onChange={() => {}} /></div>}
+      {preview && tasks > 0 && <div className="ex-ed__preview"><ExerciseView sections={normalizeSections(sections) ?? sections} answers={{}} onChange={() => {}} /></div>}
     </div>
   );
 }

@@ -1,11 +1,11 @@
 'use client';
 import { useMemo } from 'react';
-import { SCALE, type Answers, type Section } from '@/lib/exercise';
+import { SCALE, normalizeSections, type Answers, type Section } from '@/lib/exercise';
 import VoiceRecorder from './VoiceRecorder';
 import { useT } from '@/components/LangProvider';
 
 // Показ вправи: учень заповнює (onChange), або вчитель/учень бачать перевірку (marks)
-export default function ExerciseView({ sections, answers, onChange, marks, showCorrect, overrides, onOverride, offset = 0, numbered = true }: {
+export default function ExerciseView({ sections: raw, answers, onChange, marks, showCorrect, overrides, onOverride, offset = 0, numbered = true }: {
   sections: Section[]; answers: Answers; onChange?: (key: string, v: string) => void;
   marks?: Record<string, boolean>; showCorrect?: boolean;
   overrides?: Record<string, boolean>; onOverride?: (key: string) => void; // вчитель зараховує вручну
@@ -13,6 +13,8 @@ export default function ExerciseView({ sections, answers, onChange, marks, showC
   numbered?: boolean;
 }) {
   const tx = useT();
+  // старі й «криві» секції (переклад без пропусків, пропуски ____ у питаннях) показуємо правильно скрізь, і в уроках теж
+  const sections = useMemo(() => normalizeSections(raw) ?? raw, [raw]);
   // Варіанти для вибору перемішуємо один раз, щоб правильний не був завжди першим
   const order = useMemo(() => {
     const o: Record<string, string[]> = {};
@@ -27,6 +29,8 @@ export default function ExerciseView({ sections, answers, onChange, marks, showC
     return o;
   }, [sections, offset]);
   const ro = !onChange;
+  // поле відповіді росте разом з текстом, без величезних порожніх рамок
+  const grow = (el: HTMLTextAreaElement | null) => { if (!el) return; el.style.height = 'auto'; el.style.height = `${el.scrollHeight + 2}px`; };
   const ov = (k: string) => {
     if (!onOverride || !marks || !(k in marks) || !answers[k]) return null;
     if (overrides?.[k]) return <button type="button" className="ex-ov is-on" onClick={() => onOverride(k)} title={tx({ uk: 'Скасувати', ru: 'Отменить', en: 'Undo' })}>{tx({ uk: 'зараховано вручну', ru: 'засчитано вручную', en: 'accepted by hand' })} ✕</button>;
@@ -62,11 +66,10 @@ export default function ExerciseView({ sections, answers, onChange, marks, showC
                 ) : s.type === 'translate' || s.type === 'open' || (t.parts?.length && t.parts.every((p) => p.t === 'text')) ? (
                   <div className="ex-qa">
                     <div className="ex-prompt">{t.prompt ?? (t.parts ?? []).map((p) => (p.t === 'text' ? p.v : '')).join('')}</div>
-                    {s.type !== 'translate'
-                      ? <textarea className="ex-input ex-input--wide" rows={2} readOnly={ro} value={answers[`${si}.${ti}.0`] ?? ''}
-                          onChange={(e) => onChange?.(`${si}.${ti}.0`, e.target.value)} placeholder={ro ? '' : tx({ uk: 'Твоя відповідь', ru: 'Твой ответ', en: 'Your answer' })} />
-                      : <input className={`ex-input ex-input--wide ${cls(`${si}.${ti}.0`)}`} readOnly={ro} value={answers[`${si}.${ti}.0`] ?? ''}
-                          onChange={(e) => onChange?.(`${si}.${ti}.0`, e.target.value)} placeholder={ro ? '' : tx({ uk: 'Переклад англійською', ru: 'Перевод на английский', en: 'Translation in English' })} />}
+                    <textarea className={`ex-input ex-input--wide ex-grow ${s.type === 'translate' ? cls(`${si}.${ti}.0`) : ''}`} rows={1} readOnly={ro} value={answers[`${si}.${ti}.0`] ?? ''}
+                      ref={grow} onInput={(e) => grow(e.currentTarget)} onChange={(e) => onChange?.(`${si}.${ti}.0`, e.target.value)}
+                      placeholder={ro ? '' : s.type === 'open' && !/[а-яіїєґё]/i.test(t.prompt ?? '') ? tx({ uk: 'Твоя відповідь', ru: 'Твой ответ', en: 'Your answer' }) : tx({ uk: 'Переклад англійською', ru: 'Перевод на английский', en: 'Translation in English' })}
+                      autoCapitalize="sentences" spellCheck={false} />
                     {showFix(`${si}.${ti}.0`) && t.answers?.length ? <span className="ex-correct">{t.answers[0]}</span> : null}
                     {ov(`${si}.${ti}.0`)}
                   </div>
