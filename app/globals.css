@@ -3565,3 +3565,10 @@ details.bb-tip > p:last-child{margin-bottom:22px}
 .t-more-btn.is-on{background:var(--mu-ink);color:#fff}
 .t-lesson__more{flex-basis:100%;display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding-top:8px}
 .t-lesson__actions{flex-wrap:wrap}
+/* Ручна перевірка вчителем: ✓ / ✕ біля відповіді */
+.ex-judge{display:inline-flex;gap:4px;margin-left:6px;vertical-align:middle}
+.ex-judge button{width:30px;height:30px;border-radius:50%;border:2px solid var(--mu-ink);background:#fff;font-weight:800;cursor:pointer;line-height:1;padding:0}
+.ex-judge__ok.is-on{background:#2E9E5B;border-color:#2E9E5B;color:#fff}
+.ex-judge__no.is-on{background:var(--mu-tomato);border-color:var(--mu-tomato);color:#fff}
+.ex-qa .ex-judge{margin:4px 0 0}
+.t-judge-all{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:10px;padding:12px 14px;background:#FFF4DC;border-radius:14px}
