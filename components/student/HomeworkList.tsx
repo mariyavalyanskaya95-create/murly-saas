@@ -120,9 +120,40 @@ function HomeworkRow({ h, words, open, onToggle, onPatch }: {
               <button className="mu-btn mu-btn--lime" type="submit" disabled={saving}>{saving ? t({ uk: 'Надсилаю…', ru: 'Отправляю…', en: 'Sending…' }) : h.answer ? t({ uk: 'Оновити відповідь', ru: 'Обновить ответ', en: 'Update answer' }) : t({ uk: 'Здати', ru: 'Сдать', en: 'Hand in' })}</button>
             </form>
           )}
+          <HomeworkNote h={h} onPatch={onPatch} />
           {err && <p className="t-neg">{t({ uk: 'Не вдалося зберегти. Перевір інтернет і спробуй ще раз.', ru: 'Не удалось сохранить. Проверь интернет и попробуй ещё раз.', en: 'Could not save. Check your internet and try again.' })}</p>}
         </div>
       )}
+    </div>
+  );
+}
+
+// Заметки й питання до вчителя: можна вписати відповіді, якщо в завданні немає поля, або спитати щось
+function HomeworkNote({ h, onPatch }: { h: StudentHomework; onPatch: (p: Partial<StudentHomework>) => void }) {
+  const t = useT();
+  const [open, setOpen] = useState(!!h.note);
+  const [text, setText] = useState(h.note ?? '');
+  const [state, setState] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
+  const save = async () => {
+    setState('saving');
+    const r = await fetch('/api/student', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ op: 'homeworkNote', id: h.id, note: text }) }).catch(() => null);
+    if (r?.ok) { setState('saved'); onPatch({ note: text.trim() || undefined }); } else setState('error');
+  };
+  if (!open) return (
+    <button type="button" className="s-note__open" onClick={() => setOpen(true)}>
+      <Icon id="e-pencil" />{t({ uk: 'Заметки й питання вчителю', ru: 'Заметки и вопросы учителю', en: 'Notes and questions for the teacher' })}
+    </button>
+  );
+  return (
+    <div className="s-note">
+      <label htmlFor={`note-${h.id}`}>{t({ uk: 'Заметки й питання вчителю', ru: 'Заметки и вопросы учителю', en: 'Notes and questions for the teacher' })}</label>
+      <textarea id={`note-${h.id}`} rows={3} value={text} onChange={(e) => { setText(e.target.value); setState('idle'); }}
+        placeholder={t({ uk: 'Тут можна написати відповіді, якщо для них немає поля, або спитати щось у вчителя', ru: 'Здесь можно написать ответы, если для них нет поля, или спросить что-то у учителя', en: 'Write answers here if there is no field for them, or ask your teacher something' })} />
+      <div className="s-note__bar">
+        <button type="button" className="mu-btn t-btn-sm" onClick={save} disabled={state === 'saving' || text.trim() === (h.note ?? '')}>{state === 'saving' ? t({ uk: 'Зберігаю…', ru: 'Сохраняю…', en: 'Saving…' }) : t({ uk: 'Надіслати вчителю', ru: 'Отправить учителю', en: 'Send to teacher' })}</button>
+        {state === 'saved' && <span className="t-muted">{t({ uk: 'Надіслано, вчитель побачить.', ru: 'Отправлено, учитель увидит.', en: 'Sent, your teacher will see it.' })}</span>}
+        {state === 'error' && <span className="t-neg">{t({ uk: 'Не вдалося надіслати.', ru: 'Не удалось отправить.', en: 'Could not send.' })}</span>}
+      </div>
     </div>
   );
 }
