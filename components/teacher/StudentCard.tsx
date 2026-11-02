@@ -494,7 +494,7 @@ function PayTab({ id }: { id: string }) {
   const [amount, setAmount] = useState(String(post ? (owed0 || s.price || '') : (s.price * 4 || '')));
   const [note, setNote] = useState('');
   const pays = data.payments.filter((p) => p.studentId === id);
-  const done = data.lessons.filter((l) => l.studentId === id && l.status === 'done').length + (s.owedLessons ?? 0);
+  const done = data.lessons.filter((l) => l.studentId === id && (l.status === 'done' || l.status === 'charged')).length + (s.owedLessons ?? 0);
   const paid = pays.reduce((n, p) => n + p.amount, 0) + (s.prepaidLessons ?? 0) * s.price;
   const b = balanceOf(data, id);
   const lessonsLeft = s.price ? Math.floor(b / s.price) : 0;
@@ -930,7 +930,7 @@ function StudentStats({ id }: { id: string }) {
   const { data } = useTeacher();
   const ls = data.lessons.filter((l) => l.studentId === id);
   const held = ls.filter((l) => l.status === 'done').length;
-  const missed = ls.filter((l) => l.status === 'missed').length;
+  const missed = ls.filter((l) => l.status === 'missed' || l.status === 'charged').length;
   const att = held + missed ? Math.round((held / (held + missed)) * 100) : null;
   const hw = data.homework.filter((h) => h.studentId === id);
   const hwDone = hw.filter((h) => h.status !== 'assigned');

@@ -4,10 +4,11 @@ import { useState } from 'react';
 import Icon from '../Icon';
 import { Lesson, fmtDate, fmtTime, lessonLink, useTeacher } from '@/lib/teacher-store';
 import { useT } from '../LangProvider';
+import SeriesTools from './SeriesTools';
 
 export default function LessonRow({ l, showStudent = true, showDate = true }: { l: Lesson; showStudent?: boolean; showDate?: boolean }) {
   const t = useT();
-  const { data, setLessonStatus, removeLesson, addLessons } = useTeacher();
+  const { data, setLessonStatus, addLessons } = useTeacher();
   const [dup, setDup] = useState<string | null>(null); // дата для копії заняття
   const st = data.students.find((s) => s.id === l.studentId);
   const link = lessonLink(data, l);
@@ -38,6 +39,7 @@ export default function LessonRow({ l, showStudent = true, showDate = true }: { 
         {l.topic && <span className="t-lesson__topic">{l.topic}</span>}
         {l.status === 'done' && <span className="t-tag t-tag--done">{t({ uk: 'Відбувся', ru: 'Состоялся', en: 'Took place' })}</span>}
         {l.status === 'missed' && <span className="t-tag t-tag--late">{t({ uk: 'Не прийшов', ru: 'Не пришёл', en: 'No-show' })}</span>}
+        {l.status === 'charged' && <span className="t-tag t-tag--late">{t({ uk: 'Не прийшов, оплата списана', ru: 'Не пришёл, оплата списана', en: 'No-show, charged' })}</span>}
         {l.status === 'cancelled' && <span className="t-tag">{t({ uk: 'Скасовано', ru: 'Отменён', en: 'Cancelled' })}</span>}
         {l.status === 'planned' && past && <span className="t-tag t-tag--warn">{t({ uk: 'Познач, чи був урок', ru: 'Отметь, был ли урок', en: 'Mark what happened' })}</span>}
       </div>
@@ -48,7 +50,8 @@ export default function LessonRow({ l, showStudent = true, showDate = true }: { 
         {l.status === 'planned' && (
           <span className="t-lesson__st">
             {started && <button className="mu-btn t-btn-sm t-st--done" onClick={() => setLessonStatus(l.id, 'done')} title={t({ uk: 'Урок відбувся', ru: 'Урок состоялся', en: 'The lesson took place' })}>{t({ uk: 'Був', ru: 'Был', en: 'Done' })}</button>}
-            {started && <button className="mu-btn t-btn-sm t-st--missed" onClick={() => setLessonStatus(l.id, 'missed')} title={t({ uk: 'Учень не прийшов', ru: 'Ученик не пришёл', en: 'The student did not come' })}>{t({ uk: 'Не прийшов', ru: 'Не пришёл', en: 'No-show' })}</button>}
+            {started && <button className="mu-btn t-btn-sm t-st--missed" onClick={() => setLessonStatus(l.id, 'missed')} title={t({ uk: 'Учень не прийшов, оплату не списуємо', ru: 'Ученик не пришёл, оплату не списываем', en: 'No-show, not charged' })}>{t({ uk: 'Не прийшов', ru: 'Не пришёл', en: 'No-show' })}</button>}
+            {started && <button className="mu-btn t-btn-sm t-st--missed" onClick={() => setLessonStatus(l.id, 'charged')} title={t({ uk: 'Учень забув або не попередив: урок оплачується', ru: 'Ученик забыл или не предупредил: урок оплачивается', en: 'Forgot or did not warn: the lesson is charged' })}>{t({ uk: 'Пропуск з оплатою', ru: 'Пропуск с оплатой', en: 'Charged no-show' })}</button>}
             <button className="mu-btn t-btn-sm" onClick={() => setLessonStatus(l.id, 'cancelled')} title={t({ uk: 'Урок скасовано', ru: 'Урок отменён', en: 'The lesson was cancelled' })}>{t({ uk: 'Скасовано', ru: 'Отменён', en: 'Cancelled' })}</button>
           </span>
         )}
@@ -64,9 +67,7 @@ export default function LessonRow({ l, showStudent = true, showDate = true }: { 
               <button className="t-icon-btn" onClick={() => setDup(null)} aria-label={t({ uk: 'Скасувати', ru: 'Отмена', en: 'Cancel' })}>✕</button>
             </span>
           )}
-        {(l.status === 'cancelled' || l.status === 'missed') && (
-          <button className="t-link-btn" onClick={() => removeLesson(l.id)}>{t({ uk: 'Видалити', ru: 'Удалить', en: 'Delete' })}</button>
-        )}
+        <SeriesTools ls={[l]} />
       </div>
     </div>
   );

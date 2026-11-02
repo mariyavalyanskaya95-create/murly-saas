@@ -5,13 +5,14 @@ import Link from 'next/link';
 import { useRef, useState } from 'react';
 import { type Lesson, type LessonStatus, fmtTime, localeOf, sameDay, useTeacher } from '@/lib/teacher-store';
 import { useT } from '@/components/LangProvider';
+import SeriesTools from './SeriesTools';
 
 const ROW = 52; // висота години в пікселях
 
 export default function WeekGrid({ days }: { days: Date[] }) {
   const t = useT();
   const loc = localeOf(t.lang);
-  const { data, setLessonStatus, removeLesson, addLessons, updateLesson } = useTeacher();
+  const { data, setLessonStatus, addLessons, updateLesson } = useTeacher();
   const grab = useRef(0); // де саме вчитель схопив блок (px від верху), щоб час не стрибав
   const [sel, setSel] = useState<string | null>(null);
   const end = new Date(days[6]); end.setDate(end.getDate() + 1);
@@ -36,6 +37,7 @@ export default function WeekGrid({ days }: { days: Date[] }) {
     planned: t({ uk: 'Заплановано', ru: 'Запланирован', en: 'Planned' }),
     done: t({ uk: 'Був', ru: 'Был', en: 'Done' }),
     missed: t({ uk: 'Не прийшов', ru: 'Не пришёл', en: 'No-show' }),
+    charged: t({ uk: 'Не прийшов, оплата списана', ru: 'Не пришёл, оплата списана', en: 'No-show, charged' }),
     cancelled: t({ uk: 'Скасовано', ru: 'Отменён', en: 'Cancelled' }),
   };
 
@@ -77,6 +79,7 @@ export default function WeekGrid({ days }: { days: Date[] }) {
         <span>{fmtTime(l.start, t.lang)}{l.duration !== 60 ? ` · ${l.duration}′` : ''}</span>
         {l.status === 'done' && <i className="wg-mark">✓</i>}
         {l.status === 'missed' && <i className="wg-mark">✕</i>}
+        {l.status === 'charged' && <i className="wg-mark">₴</i>}
       </button>
     );
   };
@@ -123,6 +126,7 @@ export default function WeekGrid({ days }: { days: Date[] }) {
                     <Link href={`/teacher/students/${l.studentId}`}>{s?.name ?? '?'}</Link>
                     <button type="button" className={`g-chip ${l.status === 'done' ? 'is-on' : ''}`} onClick={() => setLessonStatus(l.id, 'done')}>{label.done}</button>
                     <button type="button" className={`g-chip ${l.status === 'missed' ? 'is-on' : ''}`} onClick={() => setLessonStatus(l.id, 'missed')}>{label.missed}</button>
+                    <button type="button" className={`g-chip ${l.status === 'charged' ? 'is-on' : ''}`} onClick={() => setLessonStatus(l.id, 'charged')}>{t({ uk: 'Пропуск з оплатою', ru: 'Пропуск с оплатой', en: 'Charged no-show' })}</button>
                   </div>
                 ); })}
               </div>
@@ -131,7 +135,7 @@ export default function WeekGrid({ days }: { days: Date[] }) {
             <>
               <p className="t-muted">{t({ uk: 'Статус', ru: 'Статус', en: 'Status' })}: <b>{label[picked.status]}</b></p>
               <div className="t-head__actions" style={{ flexWrap: 'wrap' }}>
-                {(['done', 'missed', 'cancelled', 'planned'] as LessonStatus[]).filter((x) => x !== picked.status).map((x) => (
+                {(['done', 'missed', 'charged', 'cancelled', 'planned'] as LessonStatus[]).filter((x) => x !== picked.status).map((x) => (
                   <button key={x} type="button" className={`mu-btn t-btn-sm ${x === 'done' ? 'mu-btn--lime' : ''}`} onClick={() => setLessonStatus(picked.id, x)}>{label[x]}</button>
                 ))}
                 {pickedSt && <Link href={`/teacher/students/${pickedSt.id}`} className="mu-btn t-btn-sm">{t({ uk: 'Картка учня', ru: 'Карточка ученика', en: 'Student card' })}</Link>}
@@ -145,9 +149,7 @@ export default function WeekGrid({ days }: { days: Date[] }) {
             ))}
             <button type="button" className="g-chip" onClick={() => { const d = new Date(picked.start); d.setDate(d.getDate() + 7); pickedItem?.ls.forEach((x) => copyTo(x, d)); }}>{t({ uk: '+ тиждень', ru: '+ неделя', en: '+ week' })}</button>
           </div>
-          <div className="t-head__actions">
-            <button type="button" className="t-link-btn" onClick={() => { pickedItem?.ls.forEach((x) => removeLesson(x.id)); setSel(null); }}>{t({ uk: 'Видалити заняття', ru: 'Удалить занятие', en: 'Delete lesson' })}</button>
-          </div>
+          {pickedItem && <SeriesTools key={pickedItem.key} ls={pickedItem.ls} onDone={() => setSel(null)} />}
         </div>
       )}
 
