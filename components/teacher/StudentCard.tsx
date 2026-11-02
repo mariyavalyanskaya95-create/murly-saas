@@ -851,6 +851,7 @@ export function HomeworkItem({ hwId, showStudent }: { hwId: string; showStudent?
         );
       })()}
       {h.kind === 'text' && h.answer && <div className="t-hw__answer"><small>{t({ uk: 'Відповідь учня', ru: 'Ответ ученика', en: 'Student answer' })}</small><p>{h.answer}</p></div>}
+      {h.note && <div className="t-hw__answer t-hw__note"><small>{t({ uk: 'Заметки й питання учня', ru: 'Заметки и вопросы ученика', en: 'Student notes and questions' })}</small><p style={{ whiteSpace: 'pre-line' }}>{h.note}</p></div>}
       {h.status !== 'assigned' && (
         <form className="t-note-form" onSubmit={(e) => { e.preventDefault(); updateHomework(h.id, { feedback: fb.trim() || undefined, status: 'checked' }); }}>
           <textarea rows={2} value={fb} onChange={(e) => setFb(e.target.value)} placeholder={t({ uk: 'Коментар для учня: що вийшло, над чим попрацювати', ru: 'Комментарий для ученика: что получилось, над чем поработать', en: 'Comment for the student: what went well, what to work on' })} />

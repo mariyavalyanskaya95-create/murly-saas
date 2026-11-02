@@ -10,6 +10,8 @@ import { LangSwitch, useT } from '../LangProvider';
 import type { T } from '@/lib/i18n';
 import Kit from '@/components/Kit';
 import { FeedbackButton, TrialPill } from './Growth';
+import Tour, { startTour } from '../Tour';
+import { TEACHER_TOUR } from '@/lib/tours';
 
 const NAV: { href: string; icon: string; label: T; short?: T; priv?: boolean }[] = [
   { href: '/teacher', icon: 'e-cal', label: { uk: 'Сьогодні', ru: 'Сегодня', en: 'Today' }, priv: true },
@@ -69,6 +71,7 @@ function Shell({ userId, name, children }: { userId: string; name: string; child
             <Link href="/grammar" className="t-side__link t-side__extra"><Icon id="e-book" />{t({ uk: 'Граматика', ru: 'Грамматика', en: 'Grammar' })}</Link>
             <div className="t-side__sep" />
             <FeedbackButton name={name} />
+            <button type="button" className="t-side__link t-side__extra t-fb-btn" onClick={() => startTour('teacher')}><Icon id="d-bulb" />{t({ uk: 'Як користуватися', ru: 'Как пользоваться', en: 'How to use' })}</button>
           </nav>
           <main className="t-main">
             <SyncBanner />
@@ -76,6 +79,7 @@ function Shell({ userId, name, children }: { userId: string; name: string; child
           </main>
         </div>
       </div>
+      {!lesson.on && <Tour id="teacher" steps={TEACHER_TOUR} />}
     </TeacherProvider>
   );
 }
