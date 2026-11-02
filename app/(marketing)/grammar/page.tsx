@@ -1,3 +1,4 @@
+import RelatedPosts from '@/components/blog/RelatedPosts';
 import Link from 'next/link';
 import { alt } from '@/lib/seo';
 import SectionTabs from '@/components/SectionTabs';
@@ -69,6 +70,7 @@ export default function GrammarIndexPage() {
         </section>
       ))}
 
+      <RelatedPosts slugs={['present-perfect-prostymy-slovamy', 'artykli-a-an-the']} />
       <SiteFooter />
       <Stickers />
     </>
