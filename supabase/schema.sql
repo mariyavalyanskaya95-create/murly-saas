@@ -337,3 +337,6 @@ alter table feedback enable row level security;
 -- Пропуск з оплатою: учень не прийшов, але урок списується
 alter table lessons drop constraint if exists lessons_status_check;
 alter table lessons add constraint lessons_status_check check (status in ('planned', 'done', 'missed', 'charged', 'cancelled'));
+
+-- Заметки й питання учня до домашки
+alter table homework add column if not exists student_note text;
