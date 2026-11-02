@@ -3572,3 +3572,11 @@ details.bb-tip > p:last-child{margin-bottom:22px}
 .ex-judge__no.is-on{background:var(--mu-tomato);border-color:var(--mu-tomato);color:#fff}
 .ex-qa .ex-judge{margin:4px 0 0}
 .t-judge-all{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:10px;padding:12px 14px;background:#FFF4DC;border-radius:14px}
+/* ✓/✕ в одну строку сразу после ответа */
+.ex-slot:has(> .ex-judge){flex-direction:row;align-items:center;gap:6px;flex-wrap:nowrap}
+.ex-slot > .ex-judge{margin-left:0}
+.ex-slot .ex-judge button{width:26px;height:26px;font-size:13px}
+.ex-ai{display:block;font-size:13px;color:#7A5A00;margin-top:2px}
+.ex-ai b{color:var(--mu-ink)}
+.ex-slot:has(> .ex-ai){flex-wrap:wrap}
+.ex-slot > .ex-ai{flex-basis:100%}
