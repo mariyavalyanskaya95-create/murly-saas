@@ -4,7 +4,9 @@ import { auth, clerkClient } from '@clerk/nextjs/server';
 import { db, dbReady } from '@/lib/db';
 import { normPhone, validPhone, validPin } from '@/lib/pin-login';
 import { L, SITE, esc, notifyParent, notifyStudent } from '@/lib/telegram';
-import { normalizeSections, type Section } from '@/lib/exercise';
+import { grade, normalizeSections, type Answers, type Section } from '@/lib/exercise';
+import { aiCheck, aiReady, isOwnerTeacher } from '@/lib/ai-check';
+import { lessonSections, type Block } from '@/lib/lesson';
 
 export const dynamic = 'force-dynamic';
 
@@ -49,7 +51,7 @@ const fromDb = {
   word: (r: Row) => ({ id: r.id, studentId: r.student_id, en: r.en, uk: r.uk, example: und(r.example), at: r.at, box: Number(r.srs_box) || 0, wrong: Number(r.srs_wrong) || 0 }),
   payment: (r: Row) => ({ id: r.id, studentId: r.student_id, amount: r.amount, note: und(r.note), at: r.at }),
   plan: (r: Row) => ({ id: r.id, title: r.title, level: r.level, age: r.age, topic: und(r.topic), color: r.color, blocks: r.blocks ?? [], source: und(r.source), focus: und(r.focus), aims: und(r.aims), createdAt: r.created_at, updatedAt: r.updated_at }),
-  homework: (r: Row) => ({ id: r.id, studentId: r.student_id, title: r.title, instructions: und(r.instructions), kind: r.kind, game: und(r.game), direction: und(r.direction), due: und(r.due), status: r.status, score: und(r.score), total: und(r.total), answer: und(r.answer), items: r.kind === 'exercise' ? normalizeSections(r.items as Section[] | null) : und(r.items), answers: und(r.answers), overrides: und(r.overrides), feedback: und(r.feedback), note: und(r.student_note), createdAt: r.created_at, doneAt: und(r.done_at), groupId: und(r.group_id) }),
+  homework: (r: Row) => ({ id: r.id, studentId: r.student_id, title: r.title, instructions: und(r.instructions), kind: r.kind, game: und(r.game), direction: und(r.direction), due: und(r.due), status: r.status, score: und(r.score), total: und(r.total), answer: und(r.answer), items: r.kind === 'exercise' ? normalizeSections(r.items as Section[] | null) : und(r.items), answers: und(r.answers), overrides: und(r.overrides), aiNotes: und(r.ai_notes), feedback: und(r.feedback), note: und(r.student_note), createdAt: r.created_at, doneAt: und(r.done_at), groupId: und(r.group_id) }),
 };
 
 export async function GET() {
@@ -87,7 +89,7 @@ export async function GET() {
       payments: payments.map(fromDb.payment),
       homework: homework.map(fromDb.homework),
       plans: plans.map(fromDb.plan),
-      settings: s ? { name: s.name, link: s.link, linkKind: s.link_kind } : { name: '', link: '', linkKind: 'zoom' },
+      settings: s ? { name: s.name, link: s.link, linkKind: s.link_kind, ...(s.is_owner === true && aiReady() ? { ai: true } : {}) } : { name: '', link: '', linkKind: 'zoom' },
     });
   } catch (e) {
     console.error(e);
@@ -203,6 +205,23 @@ export async function POST(req: Request) {
         break;
       }
       case 'removeHomework': await db.remove('homework', t, id); break;
+      case 'aiCheckHomework': {
+        // ІІ перевіряє відповіді без ключа; ✓/✕ вчителя не чіпаємо
+        if (!(await isOwnerTeacher(t))) return NextResponse.json({ error: 'forbidden' }, { status: 403 });
+        if (!aiReady()) return NextResponse.json({ error: 'no_key' }, { status: 503 });
+        const r = await db.query(`homework?id=eq.${encodeURIComponent(id)}&teacher_id=eq.${encodeURIComponent(t)}&select=kind,items,answers,overrides,ai_notes`);
+        const h = r[0];
+        if (!h || !h.answers) return NextResponse.json({ error: 'not_found' }, { status: 404 });
+        const secs = h.kind === 'lesson' ? lessonSections((h.items as Block[]) ?? []) : (normalizeSections(h.items as Section[] | null) ?? []);
+        const ov = { ...((h.overrides as Record<string, boolean> | null) ?? {}) };
+        const notes = await aiCheck(secs, h.answers as Answers, ov);
+        if (!notes) return NextResponse.json({ error: 'ai_failed' }, { status: 502 });
+        Object.entries(notes).forEach(([k, n]) => { ov[k] = n.ok; });
+        const aiNotes = { ...((h.ai_notes as Row | null) ?? {}), ...notes };
+        const g = grade(secs, h.answers as Answers, ov);
+        await db.update('homework', t, id, { overrides: ov, ai_notes: aiNotes, score: g.score, total: g.total });
+        return NextResponse.json({ ok: true, overrides: ov, aiNotes, score: g.score, total: g.total, checked: Object.keys(notes).length });
+      }
       case 'addPlan': await db.insert('lesson_plans', [toDb.plan(p, t)]); break;
       case 'updatePlan': await db.update('lesson_plans', t, id, toDb.planPatch(p.patch as Row)); break;
       case 'removePlan': await db.remove('lesson_plans', t, id); break;
