@@ -1,3 +1,4 @@
+import RelatedPosts from '@/components/blog/RelatedPosts';
 import Link from 'next/link';
 import { alt } from '@/lib/seo';
 import type { Metadata } from 'next';
@@ -51,6 +52,7 @@ export default function MockListPage() {
           ))}
         </div>
       </section>
+      <RelatedPosts slugs={['nmt-anglijska-za-3-misyatsi']} />
       <SiteFooter />
       <Stickers />
     </>
