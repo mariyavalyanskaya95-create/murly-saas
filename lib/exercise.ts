@@ -113,26 +113,37 @@ export function maxScore(sections: Section[]) {
 export const norm = (s: string) => s.toLowerCase().replace(/[’‘`ʼ]/g, "'").replace(/\s+/g, ' ').replace(/[.!?,;:\s]+$/g, '').trim();
 export const isRight = (given: string | undefined, answers: string[]) => !!given && answers.some((a) => norm(a) === norm(given));
 
-// Перевірка: повертає бали і позначки по кожному слоту
+// Перевірка: повертає бали і позначки по кожному слоту.
+// Слоти без ключа (пропуск без [відповіді], переклад без «=», відкрита відповідь) перевіряє вчитель:
+// overrides[k] === true зараховано, === false помилка, немає ключа: ще не перевірено (без позначки).
+export const isManual = (s: Section, t: Task, p?: Part) =>
+  s.type === 'open' || (s.type === 'translate' && !(t.answers ?? []).length) || (!!p && p.t === 'gap' && !p.answers.length) || (!p && !!t.parts?.length && t.parts.every((x) => x.t === 'text'));
 export function grade(sections: Section[], answers: Answers, overrides: Record<string, boolean> = {}) {
-  let score = 0;
+  let score = 0; let total = 0;
   const marks: Record<string, boolean> = {};
+  const manual = (k: string, countAlways: boolean) => {
+    if (k in overrides) { marks[k] = overrides[k] === true; total++; if (marks[k]) score++; }
+    else if (countAlways && String(answers[k] ?? '').trim()) total++;
+  };
   sections.forEach((s, si) => s.tasks.forEach((t, ti) => {
+    if (s.type === 'scale' || s.type === 'voice') return;
+    if (s.type === 'open' || (s.type !== 'translate' && t.parts?.length && t.parts.every((x) => x.t === 'text'))) { manual(`${si}.${ti}.0`, false); return; }
     if (s.type === 'translate') {
       const k = `${si}.${ti}.0`;
-      marks[k] = isRight(answers[k], t.answers ?? []) || !!overrides[k];
-      if (marks[k]) score++;
+      if (!(t.answers ?? []).length) { manual(k, true); return; }
+      marks[k] = isRight(answers[k], t.answers ?? []) || overrides[k] === true;
+      total++; if (marks[k]) score++;
     } else if (t.parts) {
       t.parts.forEach((p, pi) => {
         if (p.t === 'text') return;
         const k = `${si}.${ti}.${pi}`;
-        if (p.t === 'gap' && !p.answers.length) return; // без ключа: відповідь перевіряє вчитель
-        marks[k] = (p.t === 'gap' ? isRight(answers[k], p.answers) : answers[k] === p.options[0]) || !!overrides[k];
-        if (marks[k]) score++;
+        if (p.t === 'gap' && !p.answers.length) { manual(k, true); return; }
+        marks[k] = (p.t === 'gap' ? isRight(answers[k], p.answers) : answers[k] === p.options[0]) || overrides[k] === true;
+        total++; if (marks[k]) score++;
       });
     }
   }));
-  return { score, total: maxScore(sections), marks };
+  return { score, total, marks };
 }
 
 // Ключ відповідей для версії вчителя: перша правильна відповідь у кожному пропуску й виборі
@@ -204,4 +215,16 @@ export function normalizeSections<S extends Section>(sections: S[] | undefined |
       return { ...t, parts };
     }) };
   });
+}
+
+// Відповіді без ключа, які учень заповнив: їх перевіряє вчитель
+export function manualKeys(sections: Section[], answers: Answers) {
+  const out: string[] = [];
+  sections.forEach((s, si) => s.tasks.forEach((t, ti) => {
+    if (s.type === 'scale' || s.type === 'voice') return;
+    const has = (k: string) => !!String(answers[k] ?? '').trim();
+    if (s.type === 'open' || (s.type === 'translate' && !(t.answers ?? []).length) || (s.type !== 'translate' && t.parts?.length && t.parts.every((x) => x.t === 'text'))) { const k = `${si}.${ti}.0`; if (has(k)) out.push(k); return; }
+    t.parts?.forEach((p, pi) => { const k = `${si}.${ti}.${pi}`; if (p.t === 'gap' && !p.answers.length && has(k)) out.push(k); });
+  }));
+  return out;
 }
