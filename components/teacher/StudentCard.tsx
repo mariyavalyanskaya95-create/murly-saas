@@ -827,6 +827,8 @@ export function HomeworkItem({ hwId, showStudent }: { hwId: string; showStudent?
   const h = data.homework.find((x) => x.id === hwId)!;
   const [fb, setFb] = useState(h.feedback ?? '');
   const [copy, setCopy] = useState(false);
+  const [aiBusy, setAiBusy] = useState(false);
+  const aiOn = !!data.settings.ai;
   const overdue = h.status === 'assigned' && h.due && new Date(h.due) < new Date();
   const statusTag = h.status === 'checked' ? <span className="t-tag t-tag--done">{t({ uk: 'Перевірено', ru: 'Проверено', en: 'Checked' })}</span>
     : h.status === 'done' ? <span className="t-tag t-tag--warn">{t({ uk: 'Чекає перевірки', ru: 'Ждёт проверки', en: 'Waiting for review' })}</span>
@@ -856,7 +858,7 @@ export function HomeworkItem({ hwId, showStudent }: { hwId: string; showStudent?
                 if (v == null) delete ov[k]; else ov[k] = v;
                 const g = grade(secs, h.answers ?? {}, ov);
                 updateHomework(h.id, { overrides: ov, score: g.score, total: g.total });
-              }} />
+              }} aiNotes={h.aiNotes} />
             {h.answers && (() => {
               const todo = manualKeys(secs, h.answers).filter((k) => !(k in (h.overrides ?? {})));
               return todo.length ? (
@@ -867,6 +869,15 @@ export function HomeworkItem({ hwId, showStudent }: { hwId: string; showStudent?
                     const g = grade(secs, h.answers ?? {}, ov);
                     updateHomework(h.id, { overrides: ov, score: g.score, total: g.total });
                   }}>{t({ uk: 'Решта правильно', ru: 'Остальные верно', en: 'All the rest correct' })}</button>
+                  {aiOn && <button type="button" className="mu-btn t-btn-sm" disabled={aiBusy} onClick={async () => {
+                    setAiBusy(true);
+                    try {
+                      const r = await fetch('/api/teacher', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ op: 'aiCheckHomework', p: { id: h.id } }) });
+                      const j = await r.json();
+                      if (j.ok) updateHomework(h.id, { overrides: j.overrides, aiNotes: j.aiNotes, score: j.score, total: j.total });
+                      else alert(t({ uk: 'Не вдалося перевірити, спробуй ще раз', ru: 'Не получилось проверить, попробуй ещё раз', en: 'Could not check, try again' }));
+                    } finally { setAiBusy(false); }
+                  }}>{aiBusy ? t({ uk: 'Перевіряю…', ru: 'Проверяю…', en: 'Checking…' }) : t({ uk: 'Перевірити ІІ', ru: 'Проверить ИИ', en: 'Check with AI' })}</button>}
                 </div>
               ) : <p className="t-muted" style={{ fontSize: 14 }}>{t({ uk: 'Помилилась перевірка? Натисни «Зарахувати» біля відповіді.', ru: 'Ошиблась проверка? Нажми «Засчитать» у ответа.', en: 'Auto-check wrong? Click “Accept” next to the answer.' })}</p>;
             })()}
