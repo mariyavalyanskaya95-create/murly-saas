@@ -14,6 +14,7 @@ export type StudentHomework = {
   id: string; title: string; instructions?: string; kind: 'game' | 'text' | 'exercise' | 'lesson' | 'mock'; items?: Section[] | Block[]; answers?: Answers; overrides?: Record<string, boolean>;
   game?: 'quiz' | 'match' | 'anagram' | 'cards' | (string & {}); direction?: 'en' | 'uk';
   due?: string; status: 'assigned' | 'done' | 'checked'; score?: number; total?: number; answer?: string; feedback?: string;
+  note?: string; // заметки й питання учня до вчителя
 };
 export type Enrollment = {
   studentId: string; name: string; level: string; teacherName: string;
@@ -98,6 +99,7 @@ export async function getEnrollments(userId: string, lang = 'uk'): Promise<Enrol
         game: (h.game as StudentHomework['game']) ?? undefined, direction: (h.direction as StudentHomework['direction']) ?? undefined,
         due: h.due ? String(h.due) : undefined, status: h.status as StudentHomework['status'],
         score: h.score == null ? undefined : Number(h.score), total: h.total == null ? undefined : Number(h.total),
+        note: h.student_note ? String(h.student_note) : undefined,
         answer: h.answer ? String(h.answer) : undefined, feedback: h.feedback ? String(h.feedback) : undefined,
       })),
     };
@@ -182,4 +184,20 @@ export async function reviewWord(userId: string, wordId: string, ok: boolean) {
     srs_right: (Number(w[0].srs_right) || 0) + (ok ? 1 : 0), srs_wrong: (Number(w[0].srs_wrong) || 0) + (ok ? 0 : 1),
   });
   return { box, days };
+}
+
+// Заметка учня до домашки (відповіді, питання вчителю). Вчитель отримує повідомлення в Telegram
+export async function saveHomeworkNote(userId: string, id: string, note: string) {
+  if (!dbReady()) return false;
+  const hw = await db.query(`homework?id=eq.${enc(id)}&select=id,student_id,teacher_id,title,student_note`);
+  if (!hw[0]) return false;
+  const st = await db.query(`students?id=eq.${enc(String(hw[0].student_id))}&user_id=eq.${enc(userId)}&select=id,name`);
+  if (!st[0]) return false;
+  const text = note.trim().slice(0, 3000);
+  await db.patchWhere(`homework?id=eq.${enc(id)}`, { student_note: text || null });
+  if (text && text !== String(hw[0].student_note || '')) {
+    await notifyTeacher(String(hw[0].teacher_id), (l) => `📝 ${esc(String(st[0].name))} ${L(l, { uk: 'залишив(ла) нотатку до домашки', ru: 'оставил(а) заметку к домашке', en: 'left a note on homework' })} <b>${esc(String(hw[0].title || ''))}</b>:\n\n${esc(text)}`,
+      (l) => ({ text: L(l, { uk: 'Відкрити', ru: 'Открыть', en: 'Open' }), url: `${SITE}/teacher/students/${hw[0].student_id}?tab=hw` }));
+  }
+  return true;
 }

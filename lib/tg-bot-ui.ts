@@ -273,7 +273,7 @@ import { grade, normalizeSections } from './exercise';
 import { notifyStudent, SITE } from './telegram';
 
 async function doneHomework(teacherId: string) {
-  return db.query(`homework?teacher_id=eq.${enc(teacherId)}&status=eq.done&select=id,student_id,title,kind,game,score,total,answer,items,answers,overrides,done_at&order=done_at.asc&limit=30`).catch(() => []);
+  return db.query(`homework?teacher_id=eq.${enc(teacherId)}&status=eq.done&select=id,student_id,title,kind,game,score,total,answer,items,answers,overrides,done_at,student_note&order=done_at.asc&limit=30`).catch(() => []);
 }
 
 export async function reviewList(lang: Lang, teacherId: string) {
@@ -323,6 +323,7 @@ export async function hwView(lang: Lang, teacherId: string, id8: string) {
   if (h.kind === 'text') body = `\n✍️ ${esc(String(h.answer || '…'))}`;
   else if (h.kind === 'exercise' && Array.isArray(h.items)) body = answersText(normalizeSections(h.items as Section[]) ?? [], (h.answers as Record<string, string>) || {}, (h.overrides as Record<string, boolean>) || {});
   else body = `\n${L(lang, { uk: 'Гра або тест: результат зараховано автоматично.', ru: 'Игра или тест: результат засчитан автоматически.', en: 'Game or test: scored automatically.' })}`;
+  if (h.student_note) body += `\n\n🗒 <b>${L(lang, { uk: 'Заметки учня', ru: 'Заметки ученика', en: 'Student notes' })}:</b>\n${esc(String(h.student_note))}`;
   let text = `📝 <b>${esc(name)}</b> · ${esc(String(h.title || ''))}${Number(h.total) ? `\n${L(lang, { uk: 'Результат', ru: 'Результат', en: 'Score' })}: <b>${h.score}/${h.total}</b>` : ''}\n${body}`;
   if (text.length > 3800) text = `${text.slice(0, 3700)}\n…\n${L(lang, { uk: 'Повністю на сайті', ru: 'Полностью на сайте', en: 'Full version on the site' })}`;
   return {

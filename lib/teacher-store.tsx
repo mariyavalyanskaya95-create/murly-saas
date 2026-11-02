@@ -39,6 +39,7 @@ export type Homework = {
   createdAt: string; doneAt?: string;
   groupId?: string;
   toParent?: boolean; // лише сигнал серверу: надіслати батькам у Telegram
+  note?: string; // заметки й питання учня
 };
 export type Settings = { name: string; link: string; linkKind: 'zoom' | 'meet' | 'other' };
 
