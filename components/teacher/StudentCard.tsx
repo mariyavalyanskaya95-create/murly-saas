@@ -13,7 +13,7 @@ import LessonRow from './LessonRow';
 import { LessonForm } from './forms';
 import ExerciseEditor from '../exercise/ExerciseEditor';
 import ExerciseView from '../exercise/ExerciseView';
-import { grade, type Section } from '@/lib/exercise';
+import { grade, manualKeys, type Section } from '@/lib/exercise';
 import { lessonSections, type Block } from '@/lib/lesson';
 import { balanceOf, fmtDate, fmtMoney, plural, useTeacher } from '@/lib/teacher-store';
 import { useT } from '../LangProvider';
@@ -839,19 +839,37 @@ export function HomeworkItem({ hwId, showStudent }: { hwId: string; showStudent?
         <div className="t-hw__meta">{statusTag}{h.due && <span className="t-muted">{t({ uk: 'до', ru: 'до', en: 'due' })} {fmtDate(h.due, t.lang)}</span>}</div>
       </div>
       {h.instructions && <p className="t-hw__text">{h.instructions}</p>}
-      {h.kind !== 'text' && h.score != null && <p><b>{t({ uk: 'Результат', ru: 'Результат', en: 'Score' })}: {h.score} / {h.total}</b></p>}
+      {h.kind !== 'text' && h.score != null && (() => {
+        // для вправ рахуємо наживо: враховує ✓ / ✕ вчителя
+        const live = (h.kind === 'exercise' || h.kind === 'lesson') && h.items && h.answers ? grade(h.kind === 'lesson' ? lessonSections(h.items as Block[]) : (h.items as Section[]), h.answers, h.overrides) : null;
+        const sc = live ? live.score : h.score; const tot = live ? live.total : h.total;
+        return tot ? <p><b>{t({ uk: 'Результат', ru: 'Результат', en: 'Score' })}: {sc} / {tot}</b></p> : null;
+      })()}
       {(h.kind === 'exercise' || h.kind === 'lesson') && h.items && (() => {
         const secs = h.kind === 'lesson' ? lessonSections(h.items as Block[]) : (h.items as Section[]);
         return (
           <details className="t-hw__details" open={h.status === 'done'}>
             <summary>{h.answers ? t({ uk: 'Відповіді учня', ru: 'Ответы ученика', en: 'Student answers' }) : t({ uk: 'Завдання', ru: 'Задание', en: 'Task' })}</summary>
             <ExerciseView sections={secs} answers={h.answers ?? {}} marks={h.answers ? grade(secs, h.answers, h.overrides).marks : undefined}
-              showCorrect={!!h.answers} overrides={h.overrides} onOverride={(k) => {
+              showCorrect={!!h.answers} overrides={h.overrides} onOverride={(k, v) => {
                 const ov = { ...(h.overrides ?? {}) };
-                if (ov[k]) delete ov[k]; else ov[k] = true;
-                updateHomework(h.id, { overrides: ov, score: grade(secs, h.answers ?? {}, ov).score });
+                if (v == null) delete ov[k]; else ov[k] = v;
+                const g = grade(secs, h.answers ?? {}, ov);
+                updateHomework(h.id, { overrides: ov, score: g.score, total: g.total });
               }} />
-            {h.answers && <p className="t-muted" style={{ fontSize: 14 }}>{t({ uk: 'Перевірка не прийняла відповідь, але вона правильна? Натисни «Зарахувати», і бал додасться.', ru: 'Проверка не приняла ответ, но он правильный? Нажми «Засчитать», и балл добавится.', en: 'The check rejected an answer but it is correct? Click “Accept” and the point will be added.' })}</p>}
+            {h.answers && (() => {
+              const todo = manualKeys(secs, h.answers).filter((k) => !(k in (h.overrides ?? {})));
+              return todo.length ? (
+                <div className="t-judge-all">
+                  <span>{t({ uk: `Без автоперевірки: ${todo.length}. Познач ✓ або ✕ біля кожної відповіді.`, ru: `Без автопроверки: ${todo.length}. Отметь ✓ или ✕ у каждого ответа.`, en: `Not auto-checked: ${todo.length}. Mark each answer ✓ or ✕.` })}</span>
+                  <button type="button" className="mu-btn mu-btn--lime t-btn-sm" onClick={() => {
+                    const ov = { ...(h.overrides ?? {}) }; todo.forEach((k) => { ov[k] = true; });
+                    const g = grade(secs, h.answers ?? {}, ov);
+                    updateHomework(h.id, { overrides: ov, score: g.score, total: g.total });
+                  }}>{t({ uk: 'Решта правильно', ru: 'Остальные верно', en: 'All the rest correct' })}</button>
+                </div>
+              ) : <p className="t-muted" style={{ fontSize: 14 }}>{t({ uk: 'Помилилась перевірка? Натисни «Зарахувати» біля відповіді.', ru: 'Ошиблась проверка? Нажми «Засчитать» у ответа.', en: 'Auto-check wrong? Click “Accept” next to the answer.' })}</p>;
+            })()}
           </details>
         );
       })()}
