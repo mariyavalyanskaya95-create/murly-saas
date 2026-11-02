@@ -8,7 +8,7 @@ import { useT } from '@/components/LangProvider';
 export default function ExerciseView({ sections: raw, answers, onChange, marks, showCorrect, overrides, onOverride, offset = 0, numbered = true }: {
   sections: Section[]; answers: Answers; onChange?: (key: string, v: string) => void;
   marks?: Record<string, boolean>; showCorrect?: boolean;
-  overrides?: Record<string, boolean>; onOverride?: (key: string) => void; // вчитель зараховує вручну
+  overrides?: Record<string, boolean>; onOverride?: (key: string, v?: boolean | null) => void; // вчитель: зарахувати / помилка / зняти позначку
   offset?: number; // зсув номера секції (коли вправ кілька в уроці)
   numbered?: boolean;
 }) {
@@ -31,10 +31,21 @@ export default function ExerciseView({ sections: raw, answers, onChange, marks, 
   const ro = !onChange;
   // поле відповіді росте разом з текстом, без величезних порожніх рамок
   const grow = (el: HTMLTextAreaElement | null) => { if (!el) return; el.style.height = 'auto'; el.style.height = `${el.scrollHeight + 2}px`; };
-  const ov = (k: string) => {
-    if (!onOverride || !marks || !(k in marks) || !answers[k]) return null;
-    if (overrides?.[k]) return <button type="button" className="ex-ov is-on" onClick={() => onOverride(k)} title={tx({ uk: 'Скасувати', ru: 'Отменить', en: 'Undo' })}>{tx({ uk: 'зараховано вручну', ru: 'засчитано вручную', en: 'accepted by hand' })} ✕</button>;
-    if (marks[k] === false) return <button type="button" className="ex-ov" onClick={() => onOverride(k)}>{tx({ uk: 'Зарахувати', ru: 'Засчитать', en: 'Accept' })}</button>;
+  const ov = (k: string, manual = false) => {
+    if (!onOverride || !String(answers[k] ?? '').trim()) return null;
+    // відповідь без ключа: вчитель ставить ✓ або ✗ одним натисканням
+    if (manual) {
+      const v = overrides?.[k];
+      return (
+        <span className="ex-judge" role="group" aria-label={tx({ uk: 'Оцінити відповідь', ru: 'Оценить ответ', en: 'Mark the answer' })}>
+          <button type="button" className={`ex-judge__ok ${v === true ? 'is-on' : ''}`} onClick={() => onOverride(k, v === true ? null : true)} title={tx({ uk: 'Правильно', ru: 'Правильно', en: 'Correct' })}>✓</button>
+          <button type="button" className={`ex-judge__no ${v === false ? 'is-on' : ''}`} onClick={() => onOverride(k, v === false ? null : false)} title={tx({ uk: 'Помилка', ru: 'Ошибка', en: 'Wrong' })}>✕</button>
+        </span>
+      );
+    }
+    if (!marks || !(k in marks)) return null;
+    if (overrides?.[k]) return <button type="button" className="ex-ov is-on" onClick={() => onOverride(k, null)} title={tx({ uk: 'Скасувати', ru: 'Отменить', en: 'Undo' })}>{tx({ uk: 'зараховано вручну', ru: 'засчитано вручную', en: 'accepted by hand' })} ✕</button>;
+    if (marks[k] === false) return <button type="button" className="ex-ov" onClick={() => onOverride(k, true)}>{tx({ uk: 'Зарахувати', ru: 'Засчитать', en: 'Accept' })}</button>;
     return null;
   };
   const showFix = (k: string) => showCorrect && marks?.[k] === false;
@@ -66,12 +77,12 @@ export default function ExerciseView({ sections: raw, answers, onChange, marks, 
                 ) : s.type === 'translate' || s.type === 'open' || (t.parts?.length && t.parts.every((p) => p.t === 'text')) ? (
                   <div className="ex-qa">
                     <div className="ex-prompt">{t.prompt ?? (t.parts ?? []).map((p) => (p.t === 'text' ? p.v : '')).join('')}</div>
-                    <textarea className={`ex-input ex-input--wide ex-grow ${s.type === 'translate' ? cls(`${si}.${ti}.0`) : ''}`} rows={1} readOnly={ro} value={answers[`${si}.${ti}.0`] ?? ''}
+                    <textarea className={`ex-input ex-input--wide ex-grow ${cls(`${si}.${ti}.0`)}`} rows={1} readOnly={ro} value={answers[`${si}.${ti}.0`] ?? ''}
                       ref={grow} onInput={(e) => grow(e.currentTarget)} onChange={(e) => onChange?.(`${si}.${ti}.0`, e.target.value)}
                       placeholder={ro ? '' : s.type === 'open' && !/[а-яіїєґё]/i.test(t.prompt ?? '') ? tx({ uk: 'Твоя відповідь', ru: 'Твой ответ', en: 'Your answer' }) : tx({ uk: 'Переклад англійською', ru: 'Перевод на английский', en: 'Translation in English' })}
                       autoCapitalize="sentences" spellCheck={false} />
                     {showFix(`${si}.${ti}.0`) && t.answers?.length ? <span className="ex-correct">{t.answers[0]}</span> : null}
-                    {ov(`${si}.${ti}.0`)}
+                    {ov(`${si}.${ti}.0`, s.type !== 'translate' || !(t.answers ?? []).length)}
                   </div>
                 ) : (
                   <span className="ex-line">
@@ -83,7 +94,7 @@ export default function ExerciseView({ sections: raw, answers, onChange, marks, 
                           <input className={`ex-input ${cls(k)}`} readOnly={ro} value={answers[k] ?? ''} size={12}
                             onChange={(e) => onChange?.(k, e.target.value)} aria-label={tx({ uk: 'Відповідь', ru: 'Ответ', en: 'Answer' })} autoCapitalize="off" autoComplete="off" spellCheck={false} />
                           {showFix(k) && <span className="ex-correct">{p.answers[0]}</span>}
-                          {ov(k)}
+                          {ov(k, !p.answers.length)}
                         </span>
                       );
                       if (p.options.length > 4 || p.options.some((o) => o.length > 18)) return (
