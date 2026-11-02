@@ -1,3 +1,4 @@
+import RelatedPosts from '@/components/blog/RelatedPosts';
 import Link from 'next/link';
 import { alt } from '@/lib/seo';
 import type { Metadata } from 'next';
@@ -112,6 +113,7 @@ export default function ForParentsPage() {
         </div>
       </section>
 
+      <RelatedPosts slugs={['anglijska-dlya-ditej-vdoma']} />
       <SiteFooter />
       <Stickers />
     </>
