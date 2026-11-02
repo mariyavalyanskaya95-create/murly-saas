@@ -178,6 +178,17 @@ export function normalizeSections<S extends Section>(sections: S[] | undefined |
     const s = s0 && (s0.type === 'gap' || s0.type === 'choice') && Array.isArray(s0.tasks) && s0.tasks.length && s0.tasks.every(textOnly)
       ? ({ ...s0, type: 'open', tasks: s0.tasks.map((t) => ({ prompt: (t.parts ?? []).map((p) => (p.t === 'text' ? p.v : '')).join('').trim() })) } as typeof s0)
       : s0;
+    // «Відкриті питання» з пропусками ____ показуємо як речення з полем у пропуску (перевіряє вчитель)
+    if (s && s.type === 'open' && Array.isArray(s.tasks) && s.tasks.length && s.tasks.every((t) => BLANK.test(t.prompt || ''))) {
+      return { ...s, type: 'gap', tasks: s.tasks.map((t) => {
+        const parts: Part[] = [];
+        (t.prompt || '').split(/(_{2,}|…+|\.{3,})/).forEach((chunk) => {
+          if (!chunk) return;
+          if (/^(_{2,}|…+|\.{3,})$/.test(chunk)) parts.push({ t: 'gap', answers: [] }); else parts.push({ t: 'text', v: chunk });
+        });
+        return { parts };
+      }) } as typeof s;
+    }
     if (!s || s.type !== 'gap' || !Array.isArray(s.tasks)) return s;
     return { ...s, tasks: s.tasks.map((t) => {
       if (!t.parts || !t.parts.some((p) => p.t === 'text' && BLANK.test(p.v))) return t;
