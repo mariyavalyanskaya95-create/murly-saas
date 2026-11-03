@@ -53,3 +53,25 @@ ${JSON.stringify(items, null, 1)}`;
     return null;
   }
 }
+
+// Переклад слова або фрази для словника учня: 1-4 варіанти в початковій формі (інфінітив, називний відмінок)
+export async function aiTranslate(w: string, to: 'uk' | 'ru'): Promise<string[] | null> {
+  if (!aiReady()) return null;
+  const lang = to === 'ru' ? 'Russian' : 'Ukrainian';
+  const prompt = `Translate the English word or phrase "${w}" into ${lang} for a learner's vocabulary list.
+Give 1-4 common translations, most frequent first. Use the dictionary form: infinitive for verbs ("to melt" -> one verb), nominative singular for nouns, masculine for adjectives, an idiomatic equivalent for idioms and phrasal verbs. No explanations, no English, no transliteration.
+Return ONLY a JSON array of strings.`;
+  try {
+    const r = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', 'x-api-key': String(process.env.ANTHROPIC_API_KEY), 'anthropic-version': '2023-06-01' },
+      body: JSON.stringify({ model: MODEL, max_tokens: 200, messages: [{ role: 'user', content: prompt }] }),
+      signal: AbortSignal.timeout(6000),
+    });
+    if (!r.ok) return null;
+    const j = await r.json();
+    const text = String(j?.content?.[0]?.text ?? '');
+    const arr = JSON.parse(text.slice(text.indexOf('['), text.lastIndexOf(']') + 1));
+    return Array.isArray(arr) ? arr.map((x) => String(x).trim()).filter((x) => x && x.length <= 60).slice(0, 4) : null;
+  } catch { return null; }
+}
