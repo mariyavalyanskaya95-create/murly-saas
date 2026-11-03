@@ -35,8 +35,7 @@ const LD = {
   '@context': 'https://schema.org',
   '@graph': [
     { '@type': 'Organization', '@id': `${SITE_URL}/#org`, name: 'Murly', url: SITE_URL, logo: `${SITE_URL}/favicon.svg` },
-    { '@type': 'WebSite', '@id': `${SITE_URL}/#site`, name: 'Murly', url: SITE_URL, inLanguage: ['uk', 'ru', 'en'], publisher: { '@id': `${SITE_URL}/#org` },
-      potentialAction: { '@type': 'SearchAction', target: `${SITE_URL}/search?q={q}`, 'query-input': 'required name=q' } },
+    { '@type': 'WebSite', '@id': `${SITE_URL}/#site`, name: 'Murly', url: SITE_URL, inLanguage: ['uk', 'ru', 'en'], publisher: { '@id': `${SITE_URL}/#org` } },
   ],
 };
 const GA = process.env.NEXT_PUBLIC_GA_ID;
