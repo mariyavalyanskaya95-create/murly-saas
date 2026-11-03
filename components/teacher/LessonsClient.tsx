@@ -11,6 +11,7 @@ import { plural } from '@/lib/teacher-store';
 import { toCard, type PlanCardData } from '@/lib/plan-card';
 import MockCards, { mockFits } from '@/components/mock/MockCards';
 import { MOCKS } from '@/lib/mock';
+import { coverOf } from '@/lib/lesson-covers';
 
 // Підписи віку для показу (значення в AGES лишаються як є)
 const AGE_T: Record<string, T> = {
@@ -23,7 +24,8 @@ function PlanCard({ p, lib }: { p: PlanCardData; lib?: boolean }) {
   const t = useT();
   const ageLabel = AGES.find((a) => a.id === p.age)?.label;
   return (
-    <Link href={`/teacher/lessons/${p.id}`} className={`gr-card gr--${p.color} le-card`}>
+    <Link href={`/teacher/lessons/${p.id}`} className={`gr-card gr--${p.color} le-card ${coverOf(p.id) ? 'has-cover' : ''}`}>
+      {coverOf(p.id) && <span className="le-card__cover"><img src={coverOf(p.id, 480)!} alt="" loading="lazy" /></span>}
       <span className="le-card__tags">
         <span className="gr-level">{p.level}</span>
         <span className="le-tag">{AGE_T[p.age] ? t(AGE_T[p.age]) : ageLabel}</span>
