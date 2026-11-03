@@ -6,6 +6,7 @@ import GameHub from '../games/GameHub';
 import AudioPlayer from './AudioPlayer';
 import Kit from '../Kit';
 import { answerKey, grade, type Answers } from '@/lib/exercise';
+import { gainXpMany } from '@/lib/xp-client';
 import { useT } from '@/components/LangProvider';
 import { lessonSections, toSlides, youtubeEmbed, type Block, type Plan } from '@/lib/lesson';
 
@@ -45,7 +46,7 @@ function VocabBlock({ b, onWord }: { b: Extract<Block, { type: 'vocab' }>; onWor
   );
 }
 
-export default function LessonView({ plan, interactive = true, initialAnswers, onSubmit, submitLabel, overrides, teacher = false, slides = false, onExit, onWord, answerKey: showKey = false }: {
+export default function LessonView({ plan, interactive = true, initialAnswers, onSubmit, submitLabel, overrides, teacher = false, slides = false, onExit, onWord, answerKey: showKey = false , xpScope}: {
   plan: Pick<Plan, 'title' | 'blocks'> & Partial<Plan>;
   interactive?: boolean;
   initialAnswers?: Answers;
@@ -57,6 +58,7 @@ export default function LessonView({ plan, interactive = true, initialAnswers, o
   onExit?: () => void;
   onWord?: (w: { en: string; uk: string }) => void; // вчитель: додати слово в словник учня
   answerKey?: boolean; // версія вчителя: усі правильні відповіді вже вписані
+  xpScope?: string; // ключ для XP: за кожну правильну відповідь
 }) {
   const t = useT();
   const sections = useMemo(() => lessonSections(plan.blocks), [plan.blocks]);
@@ -78,6 +80,12 @@ export default function LessonView({ plan, interactive = true, initialAnswers, o
     setErr(false);
     if (onSubmit) { setSaving(true); const ok = await onSubmit(answers); setSaving(false); if (ok === false) { setErr(true); return; } }
     setChecked(true);
+    if (xpScope) {
+      const g = grade(sections, answers, overrides);
+      const ok = Object.entries(g.marks).filter(([, v]) => v).map(([k]) => ({ key: `${xpScope}:${k}`, amount: 5 }));
+      if (g.total && g.score === g.total) ok.push({ key: `${xpScope}:perfect`, amount: 15 });
+      gainXpMany(ok, 'exercise');
+    }
   };
 
   // номер кожної вправи в уроці

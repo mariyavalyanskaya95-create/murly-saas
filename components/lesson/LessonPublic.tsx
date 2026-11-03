@@ -6,7 +6,9 @@ import { useState } from 'react';
 import Icon from '@/components/Icon';
 import LessonView from './LessonView';
 import { useT } from '@/components/LangProvider';
+import XpHud from '../xp/XpHud';
 import { ageLabel, type Plan } from '@/lib/lesson';
+import { coverOf } from '@/lib/lesson-covers';
 
 export default function LessonPublic({ plan, isTeacher, signedIn }: { plan: Plan; isTeacher: boolean; signedIn: boolean }) {
   const t = useT();
@@ -20,6 +22,7 @@ export default function LessonPublic({ plan, isTeacher, signedIn }: { plan: Plan
   return (
     <div className="lp">
       <header className={`lp-card gr--${plan.color}`}>
+        {coverOf(plan.id) && <img className="lp-cover" src={coverOf(plan.id, 1200)!} alt="" />}
         <div className="lp-card__main">
           <div className="lp-tags">
             <span className="gr-level">{plan.level}</span>
@@ -67,9 +70,10 @@ export default function LessonPublic({ plan, isTeacher, signedIn }: { plan: Plan
       ) : (
         <div className={`lp-body ${teacherView ? 'is-teacher' : ''}`}>
           {teacherView && <div className="lp-banner"><Icon id="d-team" />{t({ uk: 'Версія вчителя: нотатки до етапів і правильні відповіді вже вписані.', ru: 'Версия учителя: заметки к этапам и правильные ответы уже вписаны.', en: 'Teacher’s version: stage notes and the correct answers are filled in.' })}</div>}
-          <LessonView key={ver} plan={plan} teacher={teacherView} answerKey={teacherView} />
+          <LessonView key={ver} plan={plan} teacher={teacherView} answerKey={teacherView} xpScope={teacherView ? undefined : `lesson:${plan.id}`} />
         </div>
       )}
+      {!teacherView && <XpHud persist={signedIn} />}
     </div>
   );
 }
