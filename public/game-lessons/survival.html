@@ -157,6 +157,17 @@ body.is-night nav.steps a{background:#24365f;color:#fff}
 section h2{color:var(--ink)}
 section:nth-of-type(odd){background:#fffdf6}
 section:nth-of-type(even){background:#f7fff0}
+
+/* «рецепти» речень */
+.legend{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 16px}
+.bk{display:inline-flex;align-items:center;font-weight:900;font-size:16px;padding:6px 10px;border:3px solid var(--ink);box-shadow:inset -3px -3px 0 rgba(0,0,0,.18),inset 3px 3px 0 rgba(255,255,255,.45);white-space:nowrap}
+.bk.who{background:#8fd3ff}.bk.hp{background:#ffd23f}.bk.vb{background:#7cff4f}.bk.end,.bk .end{background:#ff8fd8}.bk.rest{background:#fff}
+.bk .end{font-style:normal;padding:0 3px;margin-left:1px;border:2px solid var(--ink)}
+.legend .bk{font-size:13px;padding:3px 8px}
+.when{margin:4px 0 12px;font-size:16px}
+.recipe{display:flex;gap:5px;flex-wrap:wrap;align-items:center;margin:8px 0}
+.recipe .sign{width:30px;height:30px;display:grid;place-items:center;font-weight:900;font-size:20px;background:var(--ink);color:#fff;flex:none}
+.tip{margin-top:10px;font-size:15px;background:#fff;border-left:5px solid var(--red);padding:6px 10px}
 </style>
 </head>
 <body>
@@ -200,30 +211,32 @@ section:nth-of-type(even){background:#f7fff0}
 
   <section id="rules">
     <h2>Two game modes <span class="tag">grammar</span></h2>
-    <p class="sub">Every sentence is in one of two modes. Which one?</p>
+    <p class="sub">Build a sentence like you craft an item: put the blocks in the right order!</p>
+    <div class="legend"><span class="bk who">who</span><span class="bk hp">helper</span><span class="bk vb">verb</span><span class="bk end">+s / +ing</span><span class="bk rest">the rest</span></div>
     <div class="modes">
       <div class="mode s">
         <h3>Present Simple</h3>
-        <b>Game rules and habits</b>
-        <div class="f">I / you / we / they <u>build</u> · he / she / it <u>builds</u></div>
-        <ul>
-          <li>Zombies <b>burn</b> in the sun.</li>
-          <li>I always <b>sleep</b> in a bed at night.</li>
-          <li>Wheat <b>grows</b> faster near water.</li>
-          <li>She <b>doesn't go</b> out without a torch.</li>
-        </ul>
-        <div class="chips"><span class="chip">always</span><span class="chip">usually</span><span class="chip">often</span><span class="chip">never</span><span class="chip">every day</span><span class="chip">at night</span></div>
+        <p class="when"><b>When?</b> Rules of the game, habits, things that are always true.</p>
+        <div class="recipe"><span class="sign">+</span><span class="bk who">I / you / we / they</span><span class="bk vb">build</span><span class="bk rest">houses.</span></div>
+        <div class="recipe"><span class="sign">+</span><span class="bk who">he / she / it</span><span class="bk vb">build<i class="end">s</i></span><span class="bk rest">houses.</span></div>
+        <div class="recipe"><span class="sign">&minus;</span><span class="bk who">I / you / we / they</span><span class="bk hp">don't</span><span class="bk vb">build</span><span class="bk rest">at night.</span></div>
+        <div class="recipe"><span class="sign">&minus;</span><span class="bk who">he / she / it</span><span class="bk hp">doesn't</span><span class="bk vb">build</span><span class="bk rest">at night.</span></div>
+        <div class="recipe"><span class="sign">?</span><span class="bk hp">Do</span><span class="bk who">you / we / they</span><span class="bk vb">build</span><span class="bk rest">houses?</span></div>
+        <div class="recipe"><span class="sign">?</span><span class="bk hp">Does</span><span class="bk who">he / she / it</span><span class="bk vb">build</span><span class="bk rest">houses?</span></div>
+        <div class="tip"><b>Trap!</b> After <b>doesn't</b> and <b>does</b> there is NO -s: <s>She doesn't builds</s> &rarr; She doesn't build.</div>
+        <div class="tip"><b>he / she / it + s:</b> mine &rarr; mines · go &rarr; go<b>es</b> · watch &rarr; watch<b>es</b> · fly &rarr; fl<b>ies</b> · have &rarr; <b>has</b></div>
+        <div class="chips"><span class="chip">always</span><span class="chip">usually</span><span class="chip">often</span><span class="chip">sometimes</span><span class="chip">never</span><span class="chip">every day</span><span class="chip">at night</span></div>
       </div>
       <div class="mode c">
         <h3>Present Continuous</h3>
-        <b>Live: what is happening now</b>
-        <div class="f">am / is / are + <u>building</u></div>
-        <ul>
-          <li>I<b>'m building</b> a house right now.</li>
-          <li>Look! A spider <b>is climbing</b> the wall!</li>
-          <li>We<b>'re looking</b> for diamonds.</li>
-          <li>It <b>isn't raining</b> at the moment.</li>
-        </ul>
+        <p class="when"><b>When?</b> Live stream: what is happening right now.</p>
+        <div class="recipe"><span class="sign">+</span><span class="bk who">I</span><span class="bk hp">am</span><span class="bk vb">build<i class="end">ing</i></span><span class="bk rest">a house.</span></div>
+        <div class="recipe"><span class="sign">+</span><span class="bk who">he / she / it</span><span class="bk hp">is</span><span class="bk vb">build<i class="end">ing</i></span><span class="bk rest">a house.</span></div>
+        <div class="recipe"><span class="sign">+</span><span class="bk who">you / we / they</span><span class="bk hp">are</span><span class="bk vb">build<i class="end">ing</i></span><span class="bk rest">a house.</span></div>
+        <div class="recipe"><span class="sign">&minus;</span><span class="bk who">she</span><span class="bk hp">isn't</span><span class="bk vb">build<i class="end">ing</i></span><span class="bk rest">now.</span></div>
+        <div class="recipe"><span class="sign">?</span><span class="bk hp">Are</span><span class="bk who">you</span><span class="bk vb">build<i class="end">ing</i></span><span class="bk rest">now?</span></div>
+        <div class="tip"><b>Trap!</b> Never forget the helper: <s>I building</s> &rarr; I <b>am</b> building.</div>
+        <div class="tip"><b>+ing:</b> mine &rarr; min<b>ing</b> (no e) · dig &rarr; dig<b>g</b>ing · swim &rarr; swim<b>m</b>ing · play &rarr; play<b>ing</b></div>
         <div class="chips"><span class="chip">now</span><span class="chip">right now</span><span class="chip">at the moment</span><span class="chip">Look!</span><span class="chip">Listen!</span><span class="chip">Hurry up!</span></div>
       </div>
     </div>
