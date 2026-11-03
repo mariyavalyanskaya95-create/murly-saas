@@ -1,5 +1,6 @@
 'use client';
-// Картки уроків за іграми в загальних списках уроків (бібліотека вчителя, /lessons)
+// Уроки-ігри в загальних каталогах уроків (бібліотека вчителя, /lessons)
+import Icon from '@/components/Icon';
 import { GAME_LESSONS } from '@/lib/game-lessons';
 import { useT } from '../LangProvider';
 
@@ -8,16 +9,17 @@ export default function GameLessonCards() {
   return (
     <>
       {GAME_LESSONS.filter((l) => l.ready).map((l) => (
-        <a key={l.id} href={`/game-lessons/${l.id}.html`} target="_blank" rel="noreferrer" className="gr-card le-card has-cover gl-in-lib" style={{ background: '#fffdf6' }}>
-          <span className="le-card__cover gl-pixcover" aria-hidden="true"><i /><i /><i /><i /><b>{t({ uk: 'ГРА', ru: 'ИГРА', en: 'GAME' })}</b></span>
-          <span className="le-card__tags">
-            <span className="gr-level">{l.level}</span>
-            <span className="le-tag le-tag--game">{t({ uk: 'Урок-гра', ru: 'Урок-игра', en: 'Game lesson' })}</span>
-            <span className="le-tag">{l.game}</span>
-          </span>
-          <span className="gr-card__title">{l.title}</span>
-          <span className="gr-card__uk">{t(l.grammar)}</span>
-          <span className="gr-card__lead">{l.minutes} {t({ uk: 'хв', ru: 'мин', en: 'min' })} · XP, {t({ uk: 'місії, відео', ru: 'миссии, видео', en: 'missions, videos' })}</span>
+        <a key={l.id} href={`/game-lessons/${l.id}.html`} target="_blank" rel="noreferrer" className="lc lc--game">
+          <div className="lc__top">
+            <span className="lc__levels">{l.level.split('-').map((x) => <span key={x} className="lc__lv">{x}</span>)}</span>
+            <span className="lc__age">{l.age} {t({ uk: 'років', ru: 'лет', en: 'y.o.' })}</span>
+          </div>
+          <div className="lc__pic gl-pixcover" aria-hidden="true"><i /><i /><i /><i /><b>{t({ uk: 'ГРА', ru: 'ИГРА', en: 'GAME' })}</b></div>
+          <span className="lc__kind">{t({ uk: 'Урок-гра', ru: 'Урок-игра', en: 'Game lesson' })} · {l.minutes} {t({ uk: 'хв', ru: 'мин', en: 'min' })} · {l.game}</span>
+          <h3 className="lc__title">{l.title}</h3>
+          <p className="lc__about">{t(l.topic)}. {t({ uk: 'XP за завдання, місії в грі та відео.', ru: 'XP за задания, миссии в игре и видео.', en: 'XP for tasks, in-game missions and videos.' })}</p>
+          <div className="lc__tags"><span className="lc__tag">Grammar</span><span className="lc__tag">Speaking</span><span className="lc__tag lc__tag--topic">#{t(l.grammar)}</span></div>
+          <div className="lc__foot"><span className="lc__has"><span><Icon id="e-trophy" />XP</span><span><Icon id="d-camera" /></span></span><span className="lc__go">{t({ uk: 'Грати', ru: 'Играть', en: 'Play' })}</span></div>
         </a>
       ))}
     </>
