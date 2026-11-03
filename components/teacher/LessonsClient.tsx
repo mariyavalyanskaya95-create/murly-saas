@@ -12,6 +12,7 @@ import { toCard, type PlanCardData } from '@/lib/plan-card';
 import MockCards, { mockFits } from '@/components/mock/MockCards';
 import { MOCKS } from '@/lib/mock';
 import { coverOf } from '@/lib/lesson-covers';
+import GameLessonCards from '@/components/game-lessons/GameLessonCards';
 
 // Підписи віку для показу (значення в AGES лишаються як є)
 const AGE_T: Record<string, T> = {
@@ -108,7 +109,7 @@ export default function LessonsClient({ libCards }: { libCards: Record<Lang, Pla
           )
       )}
       {tab === 'lib' && (
-        lib.length || showMocks ? <div className="gr-grid">{lib.map((p) => <PlanCard key={p.id} p={p} lib />)}{showMocks && <MockCards />}</div> : <p className="t-empty">{t({ uk: 'Під ці фільтри уроків поки немає. Бібліотека поповнюється.', ru: 'Под эти фильтры уроков пока нет. Библиотека пополняется.', en: 'No lessons match these filters yet. The library keeps growing.' })}</p>
+        lib.length || showMocks ? <div className="gr-grid"><GameLessonCards />{lib.map((p) => <PlanCard key={p.id} p={p} lib />)}{showMocks && <MockCards />}</div> : <p className="t-empty">{t({ uk: 'Під ці фільтри уроків поки немає. Бібліотека поповнюється.', ru: 'Под эти фильтры уроков пока нет. Библиотека пополняется.', en: 'No lessons match these filters yet. The library keeps growing.' })}</p>
       )}
     </div>
   );
