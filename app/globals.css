@@ -3622,3 +3622,40 @@ details.bb-tip > p:last-child{margin-bottom:22px}
 .gl-card.is-soon .gl-card__top{filter:saturate(.6)}
 .gl-send{display:inline-flex;gap:8px;flex-wrap:wrap;align-items:center}
 .gl-send select{font:inherit;padding:8px 10px;border:2px solid var(--mu-ink);border-radius:12px;background:#fff}
+/* XP і рівні */
+.xp-hud{position:fixed;left:14px;bottom:14px;z-index:60;display:flex;align-items:center;gap:8px;background:#1d1d2b;color:#fff;border:3px solid #000;box-shadow:4px 4px 0 rgba(0,0,0,.35);padding:6px 10px;border-radius:12px;font-weight:800;font-size:14px}
+.xp-hud__lv{color:#000;border:2px solid #000;padding:1px 7px;border-radius:6px;font-weight:900}
+.xp-hud__rank{opacity:.85;font-size:13px}
+.xp-hud__bar{width:110px;height:12px;background:#333;border:2px solid #000;border-radius:4px;overflow:hidden;position:relative}
+.xp-hud__bar i{position:absolute;inset:0 auto 0 0;background:repeating-linear-gradient(90deg,#7cff4f 0 8px,#55d62f 8px 16px);transition:width .5s}
+.xp-hud__mute{background:none;border:0;color:#fff;font:inherit;cursor:pointer;width:22px;padding:0;opacity:.7}
+.xp-float{position:fixed;z-index:70;transform:translate(-50%,-50%);pointer-events:none;font-weight:900;font-size:18px;color:#1d1d2b;background:#7cff4f;border:3px solid #000;padding:2px 10px;border-radius:8px;white-space:nowrap;animation:xpfloat 1.3s ease-out forwards}
+@keyframes xpfloat{0%{opacity:0;transform:translate(-50%,-30%) scale(.7)}15%{opacity:1;transform:translate(-50%,-80%) scale(1.05)}100%{opacity:0;transform:translate(-50%,-260%)}}
+.xp-pxl{position:fixed;width:10px;height:10px;z-index:69;pointer-events:none;border:2px solid #000;animation:xppxl .85s ease-out forwards}
+@keyframes xppxl{to{transform:translate(var(--dx),var(--dy)) rotate(180deg);opacity:0}}
+.xp-lvlup{position:fixed;left:50%;top:40%;z-index:80;transform:translate(-50%,-50%);background:#7cff4f;border:5px solid #000;box-shadow:8px 8px 0 #000;padding:16px 30px;text-align:center;pointer-events:none;animation:xplvl 2.2s ease-out forwards;border-radius:14px}
+.xp-lvlup b{display:block;font-size:42px;letter-spacing:2px}
+.xp-lvlup span{font-weight:900}
+@keyframes xplvl{0%{transform:translate(-50%,-50%) scale(0)}12%{transform:translate(-50%,-50%) scale(1.15)}22%,80%{transform:translate(-50%,-50%) scale(1)}100%{transform:translate(-50%,-50%) scale(0);opacity:0}}
+.xp-card{display:flex;gap:18px;align-items:center}
+.xp-card__badge{flex:none;width:84px;height:84px;border:3px solid var(--mu-ink);border-radius:18px;display:grid;place-items:center;align-content:center;box-shadow:inset -5px -5px 0 rgba(0,0,0,.18),inset 5px 5px 0 rgba(255,255,255,.4)}
+.xp-card__badge small{font-weight:900;font-size:13px;line-height:1}
+.xp-card__badge b{font-size:34px;line-height:1}
+.xp-card__body{flex:1;min-width:0}
+.xp-card__body h2{margin:0 0 8px}
+.xp-card__bar{height:16px;border:2px solid var(--mu-ink);border-radius:8px;background:#eee;overflow:hidden;position:relative}
+.xp-card__bar i{position:absolute;inset:0 auto 0 0;background:repeating-linear-gradient(90deg,#7cff4f 0 10px,#55d62f 10px 20px);transition:width .5s}
+.xp-card__body p{margin:8px 0 0}
+.xp-card__how{font-size:14px}
+@media (max-width:640px){.xp-hud__rank{display:none}.xp-hud__bar{width:70px}}
+@media (prefers-reduced-motion:reduce){.xp-float,.xp-pxl,.xp-lvlup{animation-duration:.01s}}
+/* Обкладинки уроків */
+.le-card.has-cover{padding-top:0;overflow:hidden}
+.le-card__cover{display:block;margin:0 -22px 12px;aspect-ratio:16/9;overflow:hidden;border-bottom:2px solid var(--mu-ink)}
+.le-card__cover img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
+.le-card:hover .le-card__cover img{transform:scale(1.05)}
+.le-card__has{display:flex;gap:10px;flex-wrap:wrap;margin-top:auto;padding-top:10px;font-weight:800;font-size:13px}
+.le-card__has span{display:inline-flex;align-items:center;gap:4px}
+.le-card__has svg{width:16px;height:16px}
+.lp-card{position:relative}
+.lp-cover{display:block;width:100%;max-height:260px;object-fit:cover;border-radius:16px;border:2px solid var(--mu-ink);margin-bottom:18px;grid-column:1/-1}
