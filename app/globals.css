@@ -3603,3 +3603,22 @@ details.bb-tip > p:last-child{margin-bottom:22px}
   .vl-row.is-edit{grid-template-columns:1fr;gap:6px}
   .vl-row.is-edit .vl-act{grid-column:1;grid-row:auto;justify-content:flex-start}
 }
+/* Уроки за іграми */
+.gl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:22px}
+.gl-card{border:2px solid var(--mu-ink);border-radius:20px;overflow:hidden;background:#fff;display:flex;flex-direction:column}
+.gl-card__top{height:120px;position:relative;display:flex;align-items:flex-start;padding:14px}
+.gl-card__game{background:#fff;border:2px solid var(--mu-ink);border-radius:999px;padding:3px 12px;font-weight:800;font-size:14px}
+.gl-card__px{position:absolute;right:14px;bottom:0;width:96px;height:48px;background:
+ linear-gradient(#5cbf3a 0 0) 0 0/16px 8px no-repeat,linear-gradient(#5cbf3a 0 0) 16px 0/16px 8px no-repeat,linear-gradient(#5cbf3a 0 0) 32px 0/16px 8px no-repeat,
+ repeating-linear-gradient(90deg,rgba(0,0,0,.18) 0 16px,rgba(0,0,0,.08) 16px 32px);border:2px solid var(--mu-ink);border-bottom:0}
+.gl-card__body{padding:18px;display:grid;gap:8px;flex:1;align-content:start}
+.gl-card__body h2{margin:0;font-size:24px}
+.gl-card__gr{margin:0;font-weight:800}
+.gl-card__body .t-muted{margin:0}
+.gl-card__meta{display:flex;gap:8px;flex-wrap:wrap}
+.gl-card__meta span{border:2px solid var(--mu-ink);border-radius:999px;padding:1px 10px;font-size:13px;font-weight:700}
+.gl-card__act{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:6px}
+.gl-card__soon{justify-self:start;margin-top:6px;background:var(--mu-paper-dark);border-radius:999px;padding:4px 14px;font-weight:800;font-size:14px}
+.gl-card.is-soon .gl-card__top{filter:saturate(.6)}
+.gl-send{display:inline-flex;gap:8px;flex-wrap:wrap;align-items:center}
+.gl-send select{font:inherit;padding:8px 10px;border:2px solid var(--mu-ink);border-radius:12px;background:#fff}
