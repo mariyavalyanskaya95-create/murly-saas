@@ -145,6 +145,11 @@ export async function POST(req: Request) {
       case 'removeNote': await db.remove('notes', t, id); break;
       case 'addWord': await db.insert('words', [toDb.word(p, t)]); break;
       case 'removeWord': await db.remove('words', t, id); break;
+      case 'updateWord': {
+        const w = pick((p.patch as Row) ?? {}, ['en', 'uk', 'example']);
+        Object.keys(w).forEach((k) => { w[k] = String(w[k] ?? '').slice(0, 300) || (k === 'example' ? null : w[k]); });
+        await db.update('words', t, id, w); break;
+      }
       case 'addPayment': await db.insert('payments', [toDb.payment(p, t)]); break;
       case 'removePayment': await db.remove('payments', t, id); break;
       case 'invite': {
