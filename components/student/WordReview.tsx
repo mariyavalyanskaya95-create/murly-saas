@@ -4,6 +4,7 @@ import { useMemo, useState } from 'react';
 import Icon from '../Icon';
 import { useT } from '@/components/LangProvider';
 import { speakEn } from '@/lib/speak';
+import { gainXp } from '@/lib/xp-client';
 import type { StudentWord } from '@/lib/student-data';
 
 const shuffle = <T,>(a: T[]) => { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; };
@@ -28,7 +29,7 @@ export default function WordReview({ words, adult }: { words: StudentWord[]; adu
     if (!w || pick) return;
     setPick(o);
     const ok = o === w.uk;
-    if (ok) setRight((r) => r + 1);
+    if (ok) { setRight((r) => r + 1); gainXp(`word:${w.id}:${new Date().toISOString().slice(0, 10)}`, 3, 'words'); }
     fetch('/api/student', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ op: 'review', id: w.id, ok }) }).catch(() => {});
     if (ok && !adult) fetch('/api/coins', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ op: 'earn', amount: 1, source: 'words', reason: 'review' }) }).then(() => window.dispatchEvent(new Event('murly:coins'))).catch(() => {});
   };

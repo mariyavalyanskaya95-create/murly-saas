@@ -13,6 +13,7 @@ import { lessonSections, type Block } from '@/lib/lesson';
 import type { StudentHomework, StudentWord } from '@/lib/student-data';
 import { useT } from '@/components/LangProvider';
 import { isQuest } from '@/lib/quest-list';
+import { gainXp, gainXpMany } from '@/lib/xp-client';
 import type { Lang } from '@/lib/i18n';
 
 const LOCALE: Record<Lang, string> = { uk: 'uk-UA', ru: 'ru-RU', en: 'en-GB' };
@@ -60,6 +61,7 @@ function HomeworkRow({ h, words, open, onToggle, onPatch }: {
   const items = useMemo(() => words.map((w) => (h.direction === 'uk' ? { q: w.uk, a: w.en } : { q: w.en, a: w.uk })), [words, h.direction]);
   const onFinish = async (score: number, total: number) => {
     onPatch({ score, total, status: h.status === 'checked' ? 'checked' : 'done' });
+    gainXp(`hw:${h.id}:game`, Math.max(10, Math.min(50, Math.round(total ? (score / total) * 50 : 20))), 'homework', 'homework');
     if (!(await send(h.id, { score, total }))) setErr(true);
   };
   const submitText = async (e: React.FormEvent) => {
@@ -68,6 +70,7 @@ function HomeworkRow({ h, words, open, onToggle, onPatch }: {
     setSaving(true); setErr(false);
     const ok = await send(h.id, { answer: answer.trim() });
     setSaving(false);
+    if (ok) gainXp(`hw:${h.id}:done`, 20, 'homework', 'homework');
     if (ok) onPatch({ answer: answer.trim(), status: h.status === 'checked' ? 'checked' : 'done' }); else setErr(true);
   };
 
@@ -105,7 +108,7 @@ function HomeworkRow({ h, words, open, onToggle, onPatch }: {
           {h.kind === 'exercise' && h.items && <ExercisePlayer h={h} onPatch={onPatch} />}
           {h.kind === 'lesson' && h.items && (
             <div className="s-lesson">
-              <LessonView plan={{ title: '', blocks: h.items as Block[] }} initialAnswers={h.answers} overrides={h.overrides}
+              <LessonView plan={{ title: '', blocks: h.items as Block[] }} initialAnswers={h.answers} overrides={h.overrides} xpScope={`hw:${h.id}`}
                 submitLabel={t({ uk: 'Перевірити і здати урок', ru: 'Проверить и сдать урок', en: 'Check and hand in the lesson' })}
                 onSubmit={async (answers) => {
                   const ok = await send(h.id, { answers });
@@ -175,6 +178,10 @@ function ExercisePlayer({ h, onPatch }: { h: StudentHomework; onPatch: (p: Parti
     if (!ok) { setErr(true); return; }
     const g = grade(sections, answers, h.overrides);
     setChecked(true);
+    const xp = Object.entries(g.marks).filter(([, v]) => v).map(([k]) => ({ key: `hw:${h.id}:${k}`, amount: 5 }));
+    xp.push({ key: `hw:${h.id}:done`, amount: 20 });
+    if (g.total && g.score === g.total) xp.push({ key: `hw:${h.id}:perfect`, amount: 15 });
+    gainXpMany(xp, 'homework', 'homework');
     onPatch({ answers, score: g.score, total: g.total, status: h.status === 'checked' ? 'checked' : 'done' });
   };
 

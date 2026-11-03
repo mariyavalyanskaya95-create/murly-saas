@@ -11,6 +11,8 @@ import { useT } from '@/components/LangProvider';
 import type { Lang } from '@/lib/i18n';
 import { speakEn } from '@/lib/speak';
 import VocabList from '../VocabList';
+import XpCard from '../xp/XpCard';
+import { gainXp } from '@/lib/xp-client';
 
 const LOCALE: Record<Lang, string> = { uk: 'uk-UA', ru: 'ru-RU', en: 'en-GB' };
 
@@ -27,6 +29,7 @@ export default function StudentHome({ enrollments, name }: { enrollments: Enroll
   const [play, setPlay] = useState(false);
   // гра зі словами: 1 монетка за кожну правильну відповідь (до 10 за гру, до 40 на день)
   const earnWords = (score: number) => {
+    gainXp(`wg:${Date.now()}`, Math.max(5, Math.min(30, Math.round(score) * 2)), 'game', 'game');
     if (e.adult) return;
     const n = Math.min(10, Math.max(0, Math.round(score)));
     if (!n) return;
@@ -88,6 +91,7 @@ export default function StudentHome({ enrollments, name }: { enrollments: Enroll
 
       <WordReview key={`r${e.studentId}`} words={e.words} adult={e.adult} />
 
+      <XpCard />
       <Progress e={e} />
 
       {!e.adult && <CoinsCard />}
