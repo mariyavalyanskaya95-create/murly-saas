@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Runway Star: adjectives and comparatives | Murly</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.svg">
+<style>
+:root{--sky:#7ec8ff;--sky2:#bfe6ff;--grass:#5cbf3a;--grass2:#3e8f25;--dirt:#8a5a35;--ink:#1d1d2b;--paper:#fffdf6;--gold:#ffd23f;--dia:#33e0d6;--red:#ff5a5f;--pink:#ff8fd8;--violet:#8e6cff}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Trebuchet MS",Verdana,system-ui,sans-serif;color:var(--ink);background:linear-gradient(180deg,var(--sky) 0,var(--sky2) 520px,#e9f7ff 100%);min-height:100vh}
+img,canvas{image-rendering:pixelated}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+/* шапка */
+.hero{position:relative;padding:34px 18px 0;text-align:center;overflow:hidden}
+.cloud{position:absolute;background:#fff;height:22px;box-shadow:22px 0 #fff,44px 0 #fff,22px -22px #fff;opacity:.9}
+.hero h1{margin:0;font-size:clamp(34px,6vw,64px);letter-spacing:2px;color:#fff;text-shadow:4px 4px 0 var(--ink),-2px -2px 0 var(--ink),2px -2px 0 var(--ink),-2px 2px 0 var(--ink);text-transform:uppercase}
+.hero p{margin:8px 0 18px;font-size:20px;font-weight:700;color:var(--ink)}
+.ground{height:56px;background:repeating-linear-gradient(90deg,var(--grass) 0 16px,#6fd14a 16px 32px);border-top:6px solid var(--grass2);position:relative}
+.ground::after{content:"";position:absolute;left:0;right:0;top:56px;height:40px;background:repeating-linear-gradient(90deg,var(--dirt) 0 16px,#9c6a42 16px 32px)}
+.hero-row{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:-4px}
+/* XP */
+.hud{position:sticky;top:0;z-index:20;display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;padding:10px;background:rgba(29,29,43,.92);color:#fff;margin-top:40px;border-bottom:4px solid #000}
+.hud b{font-size:18px}
+.bar{width:min(340px,60vw);height:22px;background:#333;border:3px solid #000;position:relative}
+.bar i{position:absolute;inset:0 auto 0 0;width:0;background:repeating-linear-gradient(90deg,#7cff4f 0 10px,#55d62f 10px 20px);transition:width .4s}
+.hud .lvl{background:#7cff4f;color:#000;font-weight:900;padding:2px 10px;border:3px solid #000}
+.dia{display:inline-flex;align-items:center;gap:6px;font-weight:900;font-size:18px}
+nav.steps{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:22px 0 4px}
+nav.steps a{background:#fff;border:3px solid var(--ink);padding:6px 12px;font-weight:800;color:var(--ink);text-decoration:none;box-shadow:3px 3px 0 var(--ink)}
+nav.steps a:hover{background:var(--gold)}
+/* секції */
+section{margin-top:38px;background:var(--paper);border:4px solid var(--ink);box-shadow:8px 8px 0 rgba(29,29,43,.85);padding:24px}
+section h2{margin:0 0 6px;font-size:30px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tag{font-size:14px;font-weight:900;padding:3px 10px;border:3px solid var(--ink);background:var(--gold);text-transform:uppercase;letter-spacing:1px}
+.sub{margin:0 0 18px;font-size:17px;color:#444}
+.btn{font:inherit;font-weight:900;border:3px solid var(--ink);background:#7cff4f;padding:8px 16px;cursor:pointer;box-shadow:3px 3px 0 var(--ink);text-transform:uppercase;letter-spacing:.5px}
+.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.btn.alt{background:#fff}
+/* словник */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
+.card{perspective:900px;height:200px;cursor:pointer}
+.card .in{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+.card.flip .in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;border:3px solid var(--ink);background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:10px;text-align:center}
+.face b{font-size:19px}
+.face.back{transform:rotateY(180deg);background:#fff5c9;font-size:15px;line-height:1.35}
+.face.back b{font-size:16px;color:#7a4a00}
+.face canvas{width:84px;height:84px}
+.face.front b{font-size:17px;line-height:1.2}
+.face.back em{font-size:14px;color:#2b7a0b;font-weight:700}
+.grid{grid-template-columns:repeat(auto-fill,minmax(190px,1fr))}
+.credit{font-size:13px;color:#777;margin-top:12px}
+.cat-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.cat-tabs button{font:inherit;font-weight:800;border:3px solid var(--ink);background:#fff;padding:5px 12px;cursor:pointer}
+.cat-tabs button.on{background:var(--dia)}
+/* правило */
+.modes{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.mode{border:4px solid var(--ink);padding:18px;position:relative}
+.mode.s{background:#e6fff0}.mode.c{background:#fff0fb}
+.mode h3{margin:0 0 4px;font-size:24px}
+.mode .f{font-family:Consolas,monospace;font-weight:900;font-size:17px;background:#fff;border:3px solid var(--ink);padding:6px 10px;display:inline-block;margin:6px 0}
+.mode ul{margin:8px 0 0;padding-left:20px;font-size:17px;line-height:1.55}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.chip{border:2px solid var(--ink);background:#fff;padding:2px 9px;font-weight:800;font-size:14px}
+.note{margin-top:16px;padding:12px 16px;border:3px dashed var(--ink);background:#fff;font-size:16px}
+/* вправи */
+.q{display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:2px dashed #d9d2bf;font-size:18px}
+.q:last-child{border-bottom:0}
+.q .n{width:34px;height:34px;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;font-weight:900}
+.opt{font:inherit;font-size:17px;font-weight:800;border:3px solid var(--ink);background:#fff;padding:4px 12px;cursor:pointer;margin:0 3px}
+.opt.ok{background:#7cff4f}.opt.bad{background:var(--red);color:#fff;animation:shake .3s}
+.slot{display:inline-block;min-width:96px;border-bottom:3px solid var(--ink);text-align:center;font-weight:900;color:#2b7a0b}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.stream{display:grid;grid-template-columns:260px 1fr;gap:22px;align-items:start}
+.screen{border:6px solid var(--ink);background:#222;padding:8px;position:sticky;top:70px}
+.screen canvas{width:100%;display:block;background:var(--sky)}
+.live{display:inline-block;background:var(--red);color:#fff;font-weight:900;padding:2px 8px;margin:6px 0 0;letter-spacing:1px}
+.text{font-size:19px;line-height:2.1}
+.text input{font:inherit;font-weight:800;width:150px;border:0;border-bottom:3px solid var(--ink);background:#fffbe6;padding:0 6px;text-align:center}
+.text input.ok{background:#c9ffb3}.text input.bad{background:#ffd0d0}
+.text small{color:#777;font-weight:700}
+.sort{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:14px}
+.bin{border:4px solid var(--ink);min-height:160px;padding:12px;cursor:pointer}
+.bin h4{margin:0 0 10px;font-size:20px}
+.bin.s{background:#e6fff0}.bin.c{background:#fff0fb}
+.pool{display:flex;flex-wrap:wrap;gap:8px;min-height:44px;padding:10px;border:3px dashed var(--ink);background:#fff}
+.w{font:inherit;font-weight:900;font-size:16px;border:3px solid var(--ink);background:var(--gold);padding:5px 11px;cursor:pointer}
+.w.sel{background:var(--dia);transform:translateY(-3px)}
+.w.ok{background:#7cff4f}.w.bad{background:var(--red);color:#fff}
+.bug{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;padding:12px 0;border-bottom:2px dashed #d9d2bf;font-size:18px}
+.bug .fix{grid-column:1/-1;font-weight:800;color:#2b7a0b;display:none}
+.bug.done .fix{display:block}
+/* місії */
+.missions{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.mis{border:4px solid var(--ink);background:#fff;display:grid;grid-template-columns:72px 1fr;gap:12px;padding:14px;position:relative}
+.mis canvas{width:72px;height:72px}
+.mis h3{margin:0 0 4px;font-size:20px}
+.mis p{margin:0 0 6px;font-size:16px}
+.mis .say{background:#f1ecff;border-left:5px solid var(--violet);padding:6px 10px;font-size:15px;font-style:italic}
+.mis .row{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center}
+.mis .xp{font-weight:900;color:#2b7a0b}
+.mis.done{background:#e9ffe0}
+.mis.done::after{content:"DONE";position:absolute;top:10px;right:-8px;background:#7cff4f;border:3px solid var(--ink);font-weight:900;padding:2px 10px;transform:rotate(8deg)}
+.talk{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.tk{border:4px solid var(--ink);padding:16px;font-size:18px;font-weight:700;min-height:120px;display:flex;flex-direction:column;justify-content:space-between;gap:10px}
+.tk:nth-child(4n+1){background:#e6fff0}.tk:nth-child(4n+2){background:#fff0fb}.tk:nth-child(4n+3){background:#fff7d6}.tk:nth-child(4n+4){background:#e3f4ff}
+.tk small{font-weight:800;color:#555;font-size:14px}
+.timer{font-size:46px;font-weight:900;text-align:center;margin:10px 0}
+.vids{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.vid{border:4px solid var(--ink);background:#fff;display:flex;flex-direction:column}
+.vid .frame{position:relative;aspect-ratio:16/9;background:#1d1d2b}
+.vid.short .frame{aspect-ratio:9/16;max-height:460px}
+.vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;display:grid;place-items:center;color:#fff;font-weight:900;font-size:18px;cursor:pointer;background:repeating-linear-gradient(45deg,#2a2a40 0 14px,#24243a 14px 28px);border:0;font-family:inherit}
+.vid .play span{background:var(--red);border:3px solid #000;padding:10px 18px;box-shadow:4px 4px 0 #000}
+.vid .info{padding:12px 14px;display:grid;gap:6px}
+.vid h3{margin:0;font-size:18px}
+.vid .task{background:#f1ecff;border-left:5px solid var(--violet);padding:6px 10px;font-size:15px}
+.vid .mode{display:inline-block;width:max-content;font-size:12px;font-weight:900;border:2px solid var(--ink);padding:1px 8px;background:var(--gold)}
+details.teacher{margin-top:30px;border:3px dashed #888;background:#fff;padding:12px 16px;font-size:15px}
+details.teacher summary{font-weight:900;cursor:pointer}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(120px);background:var(--ink);color:#fff;font-weight:900;padding:12px 22px;border:4px solid #7cff4f;transition:transform .3s;z-index:50;display:flex;gap:10px;align-items:center}
+.toast.show{transform:translateX(-50%) translateY(0)}
+@media(max-width:760px){.modes,.sort,.stream{grid-template-columns:1fr}.screen{position:static}}
+
+/* яскравість і рух */
+.bob{animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-8px)}}
+.card:hover .in{transform:translateY(-6px) rotate(-1.5deg)}
+.card.flip:hover .in{transform:rotateY(180deg) translateY(-6px)}
+.face.front{background:linear-gradient(180deg,#fff 0,#fff 60%,#f3ffe9 100%)}
+.card:nth-child(4n+1) .face.front{background:linear-gradient(180deg,#fff 55%,#e3f6ff)}
+.card:nth-child(4n+2) .face.front{background:linear-gradient(180deg,#fff 55%,#fff1fb)}
+.card:nth-child(4n+3) .face.front{background:linear-gradient(180deg,#fff 55%,#fff8d9)}
+.pxl{position:fixed;width:10px;height:10px;z-index:60;pointer-events:none;border:2px solid #000;animation:pxl .8s ease-out forwards}
+@keyframes pxl{to{transform:translate(var(--dx),var(--dy)) rotate(180deg);opacity:0}}
+.lvlup{position:fixed;left:50%;top:40%;transform:translate(-50%,-50%) scale(0);z-index:70;background:#7cff4f;border:6px solid #000;box-shadow:8px 8px 0 #000;padding:18px 34px;text-align:center;pointer-events:none}
+.lvlup b{display:block;font-size:46px;letter-spacing:2px}
+.lvlup span{font-weight:900}
+.lvlup.show{animation:lvl 1.8s ease-out forwards}
+@keyframes lvl{0%{transform:translate(-50%,-50%) scale(0)}15%{transform:translate(-50%,-50%) scale(1.15)}25%,80%{transform:translate(-50%,-50%) scale(1)}100%{transform:translate(-50%,-50%) scale(0);opacity:0}}
+.night{position:fixed;right:16px;bottom:16px;z-index:40;font:inherit;font-weight:900;border:3px solid #000;background:#1d1d2b;color:#ffe14a;padding:8px 14px;box-shadow:3px 3px 0 #000;cursor:pointer}
+.stars{position:absolute;inset:0 0 auto 0;height:700px;pointer-events:none;opacity:0;transition:opacity .6s}
+.stars i{position:absolute;width:4px;height:4px;background:#fff;animation:tw 2s infinite}
+@keyframes tw{50%{opacity:.2}}
+body{transition:background .6s}
+body.is-night{background:linear-gradient(180deg,#0b1a3a 0,#1d2f5c 520px,#2a3d6b 100%)}
+body.is-night .stars{opacity:1}
+body.is-night .hero p{color:#fff}
+body.is-night nav.steps a{background:#24365f;color:#fff}
+.bin.s{background:repeating-linear-gradient(0deg,#b5884f 0 14px,#a97c45 14px 16px)}
+.bin.c{background:repeating-linear-gradient(0deg,#9fd6ec 0 14px,#8cc6dd 14px 16px)}
+.bin h4{background:#fff;border:3px solid var(--ink);display:inline-block;padding:2px 10px}
+.mis{transition:transform .2s}.mis:hover{transform:translateY(-4px) rotate(.4deg)}
+section h2{color:var(--ink)}
+section:nth-of-type(odd){background:#fffdf6}
+section:nth-of-type(even){background:#f7fff0}
+
+/* «рецепти» речень */
+.legend{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 16px}
+.bk{display:inline-flex;align-items:center;font-weight:900;font-size:16px;padding:6px 10px;border:3px solid var(--ink);box-shadow:inset -3px -3px 0 rgba(0,0,0,.18),inset 3px 3px 0 rgba(255,255,255,.45);white-space:nowrap}
+.bk.who{background:#8fd3ff}.bk.hp{background:#ffd23f}.bk.vb{background:#7cff4f}.bk.end,.bk .end{background:#ff8fd8}.bk.rest{background:#fff}
+.bk .end{font-style:normal;padding:0 3px;margin-left:1px;border:2px solid var(--ink)}
+.legend .bk{font-size:13px;padding:3px 8px}
+.when{margin:4px 0 12px;font-size:16px}
+.recipe{display:flex;gap:5px;flex-wrap:wrap;align-items:center;margin:8px 0}
+.recipe .sign{width:30px;height:30px;display:grid;place-items:center;font-weight:900;font-size:20px;background:var(--ink);color:#fff;flex:none}
+.tip{margin-top:10px;font-size:15px;background:#fff;border-left:5px solid var(--red);padding:6px 10px}
+/* ===== RUNWAY ===== */
+:root{--sky:#ffd6f2;--sky2:#fff0fa}
+body{background:linear-gradient(180deg,#ffd6f2 0,#fff0fa 520px,#fff7fd 100%)}
+.dt-hero h1{color:#fff;text-shadow:4px 4px 0 #8e2c8e,-2px -2px 0 #262636,2px -2px 0 #262636,-2px 2px 0 #262636,2px 2px 0 #262636}
+.dt-lights{position:absolute;inset:0;pointer-events:none}
+.dt-lights i{position:absolute;top:-40px;width:160px;height:420px;background:linear-gradient(rgba(255,255,255,.65),rgba(255,255,255,0));clip-path:polygon(45% 0,55% 0,100% 100%,0 100%);transform-origin:top center;animation:dtlight 4s ease-in-out infinite}
+.dt-lights i:nth-child(1){left:10%}.dt-lights i:nth-child(2){left:45%;animation-delay:-1.3s}.dt-lights i:nth-child(3){left:78%;animation-delay:-2.6s}
+@keyframes dtlight{0%,100%{transform:rotate(-14deg)}50%{transform:rotate(14deg)}}
+.dt-runway{position:relative;height:240px;max-width:760px;margin:6px auto 0;background:linear-gradient(transparent 70%,#8e6cff 70%);}
+.dt-runway::after{content:"";position:absolute;left:5%;right:5%;bottom:0;height:30%;background:repeating-linear-gradient(90deg,#ff8fd8 0 40px,#ffb3e6 40px 80px);border-top:4px solid #262636}
+.dt-walker{position:absolute;bottom:20px;width:96px;z-index:2;animation:dtwalk 9s ease-in-out infinite}
+@keyframes dtwalk{0%{left:6%}45%{left:80%;transform:scaleX(1)}50%{left:80%;transform:scaleX(-1)}95%{left:6%;transform:scaleX(-1)}100%{left:6%;transform:scaleX(1)}}
+.dt-model{width:100%;display:block}
+.dt-star-ic{color:#ffd23f;font-size:24px;text-shadow:2px 2px 0 #000}
+.dt-theme{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px;font-size:20px}
+.dt-theme b{background:#262636;color:#ffd23f;padding:6px 16px;border:3px solid #000;letter-spacing:1px}
+.dt-studio{display:grid;grid-template-columns:280px 1fr;gap:22px;align-items:start}
+.dt-stage{background:radial-gradient(circle at 50% 30%,#fff 0,#ffe3f6 60%,#ffb3e6 100%);border:4px solid var(--ink);padding:16px;position:sticky;top:70px}
+.dt-stage .dt-model{max-height:440px;margin:0 auto}
+.dt-stage .walk{animation:dtpose 1.2s ease-in-out 2}
+@keyframes dtpose{25%{transform:translateX(-12px) rotate(-3deg)}75%{transform:translateX(12px) rotate(3deg)}}
+.dt-panel{display:grid;gap:10px}
+.dt-row>b{width:120px;font-size:15px}
+.dt-row .ob-sw{min-width:32px;height:32px;font-size:14px}
+.dt-desc{margin-top:18px;background:#fff8d6;border:3px dashed var(--ink);padding:14px 18px}
+.dt-desc p{font-size:20px;line-height:1.5}
+.dt-desc__ops{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.dt-desc__ops .ob-sw{height:32px;font-size:14px}
+.dt-judges{display:flex;gap:14px;flex-wrap:wrap;margin-top:14px}
+.dt-judge{background:#262636;color:#fff;border:3px solid #000;padding:10px 14px;min-width:160px;display:grid;gap:4px;animation:dtjudge .5s ease-out both}
+@keyframes dtjudge{from{transform:translateY(20px) scale(.8);opacity:0}}
+.dt-stars{color:#ffd23f;font-size:24px;letter-spacing:2px}.dt-stars i{color:#555;font-style:normal}
+.dt-train{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 16px}
+.dt-train .w{display:grid;text-align:center;padding:8px 12px;border:3px solid var(--ink);font-weight:900;font-size:16px;border-radius:10px 10px 4px 4px;position:relative}
+.dt-train .w small{font-weight:600;font-size:12px}
+.w1,.bk.w1{background:#ff8fd8}.w2,.bk.w2{background:#ffd23f}.w3,.bk.w3{background:#ffb02e}.w4,.bk.w4{background:#8fd3ff}.w5,.bk.w5{background:#c6b6ff}.w6,.bk.w6{background:#7cff4f}.w7,.bk.w7{background:#262636;color:#fff}
+.dt-ord{border:3px solid var(--ink);background:#fff;padding:12px;margin:10px 0;display:grid;gap:8px}
+.dt-ord.done{background:#e9ffe0}
+.dt-ord__out{min-height:44px;display:flex;flex-wrap:wrap;gap:6px;border-bottom:3px dashed #ddd;padding-bottom:8px}
+.dt-ord__pool{display:flex;flex-wrap:wrap;gap:6px}
+.dt-cw{background:#262636;color:#fff;border:5px solid #000;padding:18px;text-align:center}
+.dt-cw__top{display:flex;justify-content:center;gap:26px;font-weight:800}
+.dt-cw__top b{color:#ffd23f;font-size:22px}
+.dt-cw__word{font-size:56px;font-weight:900;margin:20px 0;letter-spacing:2px;color:#fff;text-shadow:4px 4px 0 #8e6cff}
+.dt-cw__word.pop{animation:dtpop .25s ease-out}
+@keyframes dtpop{from{transform:scale(.4);opacity:0}}
+.dt-cw__btns{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.dt-cwb{font-size:20px !important;padding:10px 22px !important;text-transform:uppercase}
+.dt-cwb--opinion{background:#ff8fd8}.dt-cwb--size{background:#ffd23f}.dt-cwb--colour{background:#8fd3ff}.dt-cwb--material{background:#7cff4f}
+.dt-vs{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:center}
+.dt-vs>div{background:radial-gradient(circle at 50% 30%,#fff,#ffe3f6);border:4px solid var(--ink);padding:12px;text-align:center}
+.dt-vs .dt-model{max-height:320px;margin:0 auto 10px}
+.dt-vs__x{font-size:40px;color:#ff4d5e;text-shadow:3px 3px 0 #000}
+.dt-stems{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:14px}
+.dt-stems span{background:#f3eefc;border:2px solid var(--ink);padding:2px 10px;font-weight:700}
+.dt-mispv{width:72px;height:96px;overflow:hidden;border:3px solid var(--ink);background:#fff0fa}
+.dt-mispv .dt-model{width:72px}
+.face.front .dt-model.mini{width:auto;height:120px}
+.card{height:220px}
+@media(max-width:760px){.dt-studio,.dt-vs{grid-template-columns:1fr}.dt-stage{position:static}}
+</style>
+</head>
+<body>
+<header class="hero dt-hero">
+  <div class="dt-lights" aria-hidden="true"><i></i><i></i><i></i></div>
+  <h1>Runway Star</h1>
+  <p>Describe outfits like a pro: adjectives, word order, comparatives · Level A2-B1</p>
+  <div class="dt-runway" aria-hidden="true"><div class="dt-walker" id="heroModel"></div></div>
+</header>
+
+<div class="hud">
+  <span class="lvl" id="lvl">LEVEL 1</span>
+  <div class="bar"><i id="xpbar"></i></div>
+  <b id="xptext">0 XP</b>
+  <span class="dia"><span class="dt-star-ic">&#9733;</span><span id="dias">0</span></span>
+</div>
+
+<div class="wrap">
+  <nav class="steps">
+    <a href="#studio">1. Style studio</a>
+    <a href="#words">2. Fashion words</a>
+    <a href="#rules">3. Word order</a>
+    <a href="#order">4. Order game</a>
+    <a href="#catwalk">5. Catwalk sorter</a>
+    <a href="#compare">6. Who wore it better?</a>
+    <a href="#bugs">7. Fix the bugs</a>
+    <a href="#missions">8. Missions</a>
+    <a href="#talk">9. Talk show</a>
+    <a href="#watch">10. Watch &amp; talk</a>
+  </nav>
+
+  <section id="studio">
+    <h2>Style studio <span class="tag">main game</span></h2>
+    <p class="sub">Get a theme, dress your model, then read your description out loud. The judges give you stars!</p>
+    <div class="dt-theme"><span>Theme:</span><b id="themeName">...</b><button class="btn alt" id="themeNew" type="button">New theme</button></div>
+    <div class="dt-studio">
+      <div class="dt-stage"><div id="model"></div></div>
+      <div class="dt-panel" id="panel"></div>
+    </div>
+    <div class="dt-desc">
+      <div class="dt-desc__ops"><b>Add your opinion:</b><span id="opinions"></span></div>
+      <p id="desc"></p>
+      <button class="btn" id="judge" type="button">Walk the runway!</button>
+      <div class="dt-judges" id="judges"></div>
+    </div>
+  </section>
+
+  <section id="words">
+    <h2>Fashion words <span class="tag">vocabulary</span></h2>
+    <p class="sub">Click a card: listen and read the example.</p>
+    <div class="cat-tabs" id="catTabs"></div>
+    <div class="grid" id="vocab"></div>
+  </section>
+
+  <section id="rules">
+    <h2>The adjective train <span class="tag">grammar</span></h2>
+    <p class="sub">Adjectives stand in a line before the noun, like wagons of a train. The order never changes!</p>
+    <div class="dt-train">
+      <span class="w w1">opinion<small>cute, stylish</small></span><span class="w w2">size<small>long, tiny</small></span><span class="w w3">age<small>new, old</small></span><span class="w w4">colour<small>red, gold</small></span><span class="w w5">pattern<small>striped</small></span><span class="w w6">material<small>silk, denim</small></span><span class="w w7">NOUN<small>dress</small></span>
+    </div>
+    <div class="dt-ex">
+      <div class="recipe"><span class="bk who">a</span><span class="bk w1">gorgeous</span><span class="bk w2">long</span><span class="bk w4">purple</span><span class="bk w6">silk</span><span class="bk w7">dress</span></div>
+      <div class="recipe"><span class="bk w1">cool</span><span class="bk w3">new</span><span class="bk w4">black</span><span class="bk w6">leather</span><span class="bk w7">boots</span></div>
+      <div class="tip"><b>Trap!</b> <s>a red big hat</s> &rarr; a <b>big red</b> hat. Size comes before colour.</div>
+    </div>
+    <div class="modes" style="margin-top:22px">
+      <div class="mode s">
+        <h3>Comparing two</h3>
+        <div class="recipe"><span class="bk vb">short words</span><span class="bk end">+er than</span></div>
+        <p>long &rarr; long<b>er</b> than · big &rarr; big<b>ger</b> · pretty &rarr; prett<b>ier</b></p>
+        <div class="recipe"><span class="bk vb">long words</span><span class="bk hp">more ... than</span></div>
+        <p>more elegant than · more colourful than</p>
+      </div>
+      <div class="mode c">
+        <h3>The best of all</h3>
+        <div class="recipe"><span class="bk hp">the</span><span class="bk vb">short</span><span class="bk end">+est</span></div>
+        <p>the long<b>est</b> · the big<b>gest</b> · the prett<b>iest</b></p>
+        <div class="recipe"><span class="bk hp">the most</span><span class="bk vb">long words</span></div>
+        <p>the most elegant · the most beautiful</p>
+        <div class="tip"><b>Rebels:</b> good &rarr; better &rarr; the best · bad &rarr; worse &rarr; the worst</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="order">
+    <h2>Order game <span class="tag">+15 XP each</span></h2>
+    <p class="sub">Click the words in the right order to build the outfit.</p>
+    <div id="orderList"></div>
+  </section>
+
+  <section id="catwalk">
+    <h2>Catwalk sorter <span class="tag">speed game</span></h2>
+    <p class="sub">30 seconds! Which wagon of the train is this word? Combos give bonus points.</p>
+    <div class="dt-cw">
+      <div class="dt-cw__top"><span>Time <b id="cwTime">30</b></span><span>Score <b id="cwScore">0</b></span><span>Combo <b id="cwCombo">x1</b></span></div>
+      <div class="dt-cw__word" id="cwWord">Ready?</div>
+      <div class="dt-cw__btns" id="cwBtns"><button class="btn" id="cwStart" type="button">START</button></div>
+    </div>
+  </section>
+
+  <section id="compare">
+    <h2>Who wore it better? <span class="tag">comparatives</span></h2>
+    <p class="sub">Two outfits, one winner. Choose and explain: "Outfit A is brighter than outfit B. It's the most stylish!"</p>
+    <div class="dt-vs"><div class="dt-vs__a"><div id="vsA"></div><button class="btn" data-v="A" type="button">Vote A</button></div><b class="dt-vs__x">VS</b><div class="dt-vs__b"><div id="vsB"></div><button class="btn" data-v="B" type="button">Vote B</button></div></div>
+    <p class="dt-stems">Use: <span>brighter</span><span>darker</span><span>more elegant</span><span>more comfortable</span><span>warmer</span><span>cooler</span><span>funnier</span><span>the most stylish</span></p>
+    <p style="text-align:center"><button class="btn alt" id="vsNew" type="button">New pair</button></p>
+    <h3 style="margin-top:28px">Quick quiz</h3>
+    <div id="cmpList"></div>
+  </section>
+
+  <section id="bugs">
+    <h2>Fix the bugs <span class="tag">+15 XP each</span></h2>
+    <p class="sub">OK or bug? Say the correct sentence out loud.</p>
+    <div id="bugList"></div>
+  </section>
+
+  <section id="missions">
+    <h2>Missions for the game <span class="tag">play + speak</span></h2>
+    <p class="sub">Play a round in the game. After each mission, describe and compare in English.</p>
+    <div class="missions" id="misList"></div>
+  </section>
+
+  <section id="talk">
+    <h2>Talk show <span class="tag">speaking</span></h2>
+    <p class="sub">You are a fashion star on a TV show. Pick a card and talk for 30 seconds.</p>
+    <div class="timer" id="timer30">0:30</div>
+    <p style="text-align:center"><button class="btn" id="timerBtn">Start 30 seconds</button></p>
+    <div class="talk" id="talkList"></div>
+  </section>
+
+  <section id="watch">
+    <h2>Watch &amp; talk <span class="tag">videos</span></h2>
+    <p class="sub">Official videos from the game's YouTube channel. Pause and describe the outfits!</p>
+    <div class="vids" id="vidList"></div>
+  </section>
+
+  <details class="teacher">
+    <summary>Для учителя: план на 50-60 минут</summary>
+    <p>1. Style studio (10 мин): ученик одевает модель под тему, читает описание, добавляет мнение (cute, stylish). Следите за порядком прилагательных. 2. Fashion words (7 мин). 3. Поезд прилагательных и сравнения (7 мин). 4-5. Order game и Catwalk sorter (8 мин). 6. Who wore it better (5 мин): обязательно объяснение со сравнением. 7. Fix the bugs (5 мин). 8. Миссии в игре (10-15 мин). 9-10. Разговор и видео.</p>
+    <p>Безопасность: в чате игры только добрые слова и никакой личной информации.</p>
+    <p>Домашка: собрать образ в игре или нарисовать, записать голосовое: 5 предложений с прилагательными и 3 сравнения.</p>
+  </details>
+</div>
+
+<div class="toast" id="toast"></div>
+<div class="lvlup" id="lvlup"><b>LEVEL 2!</b><span>Keep going!</span></div>
+<script>
+// ---------- піксельні текстури (свої, процедурні) ----------
+let seed = 7;
+const rnd = () => { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; };
+const pick = (a) => a[Math.floor(rnd() * a.length)];
+function tex(fn) { const c = document.createElement('canvas'); c.width = c.height = 16; const x = c.getContext('2d'); fn(x); return c; }
+const px = (x, i, j, col) => { x.fillStyle = col; x.fillRect(i, j, 1, 1); };
+const noise = (cols) => tex((x) => { for (let i = 0; i < 16; i++) for (let j = 0; j < 16; j++) px(x, i, j, pick(cols)); });
+const T = {};
+T.grassTop = noise(['#5cbf3a', '#6fd14a', '#4fae30', '#66c843', '#5cbf3a']);
+T.dirt = noise(['#8a5a35', '#9c6a42', '#7a4d2c', '#93603a']);
+T.grassSide = tex((x) => { x.drawImage(T.dirt, 0, 0); for (let i = 0; i < 16; i++) { const h = 3 + Math.floor(rnd() * 3); for (let j = 0; j < h; j++) px(x, i, j, pick(['#5cbf3a', '#6fd14a', '#4fae30'])); } });
+T.stone = noise(['#8d8d8d', '#7f7f7f', '#9a9a9a', '#868686', '#8d8d8d']);
+T.cobble = tex((x) => { x.drawImage(noise(['#8a8a8a', '#9b9b9b', '#7d7d7d']), 0, 0); x.fillStyle = '#4f4f4f'; [[0, 4, 16, 1], [0, 10, 16, 1], [5, 0, 1, 4], [11, 4, 1, 6], [3, 10, 1, 6], [9, 11, 1, 5], [14, 0, 1, 4]].forEach((r) => x.fillRect(...r)); });
+T.sand = noise(['#e9d898', '#efe1a8', '#dccb88', '#e6d494']);
+T.logSide = tex((x) => { for (let i = 0; i < 16; i++) { const c = pick(['#6b4a2b', '#5c3e22', '#77532f']); for (let j = 0; j < 16; j++) px(x, i, j, rnd() < .2 ? '#4d3319' : c); } });
+T.logTop = tex((x) => { for (let i = 0; i < 16; i++) for (let j = 0; j < 16; j++) { const d = Math.max(Math.abs(i - 7.5), Math.abs(j - 7.5)); px(x, i, j, d > 6.5 ? '#5c3e22' : (Math.floor(d) % 2 ? '#c49a5b' : '#b5894d')); } });
+T.planks = tex((x) => { for (let j = 0; j < 16; j++) for (let i = 0; i < 16; i++) px(x, i, j, j % 4 === 3 ? '#7a5530' : pick(['#b5884f', '#a97c45', '#bd9259'])); x.fillStyle = '#7a5530'; [[5, 0], [12, 4], [3, 8], [10, 12]].forEach(([a, b]) => x.fillRect(a, b, 1, 3)); });
+T.glass = tex((x) => { x.fillStyle = '#d9f4ff'; x.fillRect(0, 0, 16, 16); x.fillStyle = '#ffffff'; [[3, 3], [4, 4], [5, 5], [10, 8], [11, 9]].forEach(([a, b]) => x.fillRect(a, b, 1, 1)); x.strokeStyle = '#9fd6ec'; x.lineWidth = 1; x.strokeRect(.5, .5, 15, 15); });
+T.brick = tex((x) => { x.fillStyle = '#c9c1b5'; x.fillRect(0, 0, 16, 16); for (let r = 0; r < 4; r++) for (let k = -1; k < 2; k++) { const ox = (r % 2) * 4 + k * 8; for (let i = 0; i < 7; i++) for (let j = 0; j < 3; j++) { const xi = ox + i; if (xi >= 0 && xi < 16) px(x, xi, r * 4 + j, pick(['#a8483a', '#b5523f', '#9b4133'])); } } });
+T.water = noise(['#3f76e4', '#4a82ee', '#3a6ad6', '#4f8af2']);
+T.furnaceFront = tex((x) => { x.drawImage(T.cobble, 0, 0); x.fillStyle = '#2a2a2a'; x.fillRect(4, 8, 8, 6); x.fillStyle = '#ff9a2e'; x.fillRect(5, 11, 6, 3); x.fillStyle = '#ffd23f'; x.fillRect(6, 12, 4, 2); x.fillStyle = '#555'; x.fillRect(4, 3, 8, 2); });
+T.tableTop = tex((x) => { x.drawImage(T.planks, 0, 0); x.fillStyle = '#5a3c1e'; x.fillRect(0, 0, 16, 1); x.fillRect(0, 15, 16, 1); x.fillRect(0, 0, 1, 16); x.fillRect(15, 0, 1, 16); x.fillRect(5, 1, 1, 14); x.fillRect(10, 1, 1, 14); x.fillRect(1, 5, 14, 1); x.fillRect(1, 10, 14, 1); });
+T.tableSide = tex((x) => { x.drawImage(T.planks, 0, 0); x.fillStyle = '#8d8d8d'; x.fillRect(3, 4, 3, 5); x.fillStyle = '#6b4a2b'; x.fillRect(4, 8, 1, 6); x.fillStyle = '#b8b8b8'; x.fillRect(9, 5, 4, 2); x.fillStyle = '#6b4a2b'; x.fillRect(10, 7, 1, 6); });
+T.chest = tex((x) => { x.drawImage(T.planks, 0, 0); x.fillStyle = '#5a3c1e'; x.fillRect(0, 5, 16, 1); x.strokeStyle = '#5a3c1e'; x.strokeRect(.5, .5, 15, 15); x.fillStyle = '#d9d9d9'; x.fillRect(7, 4, 2, 4); x.fillStyle = '#555'; x.fillRect(7, 6, 2, 1); });
+T.leaves = noise(['#2f8a22', '#3a9e2a', '#26751b', '#2f8a22', '#1f5f15']);
+T.melonTop = noise(['#9fbf2e', '#86a826', '#a9c93a']);
+T.melonSide = tex((x) => { for (let i = 0; i < 16; i++) for (let j = 0; j < 16; j++) px(x, i, j, Math.floor(i / 2) % 2 ? pick(['#6e9e1a', '#5f8c15']) : pick(['#a9c93a', '#9fbf2e'])); });
+T.bookshelf = tex((x) => { x.drawImage(T.planks, 0, 0); const cols = ['#c0392b', '#2e86de', '#27ae60', '#f1c40f', '#8e44ad', '#e67e22']; [[1, 2], [1, 9]].forEach(([, y]) => { for (let i = 1; i < 15; i += 2) { x.fillStyle = pick(cols); x.fillRect(i, y, 2, 5); } }); });
+T.diamondOre = tex((x) => { x.drawImage(T.stone, 0, 0); [[3, 3], [10, 4], [5, 10], [11, 11]].forEach(([a, b]) => { x.fillStyle = '#33e0d6'; x.fillRect(a, b, 2, 2); x.fillStyle = '#c9fffb'; x.fillRect(a, b, 1, 1); }); });
+
+T.sandstone = tex((x) => { for (let j = 0; j < 16; j++) for (let i = 0; i < 16; i++) px(x, i, j, j % 5 === 4 ? '#c9b178' : pick(['#e6d3a0', '#dcc891', '#ead8a8'])); });
+T.gravel = noise(['#8f8580', '#7a706b', '#a49a94', '#6a615c', '#9c938d']);
+T.obsidian = tex((x) => { x.drawImage(noise(['#1b1029', '#140a20', '#24163a', '#1b1029']), 0, 0); [[3, 4], [9, 2], [12, 9], [5, 12]].forEach(([a, b]) => { x.fillStyle = '#5b3a8c'; x.fillRect(a, b, 2, 1); }); });
+T.lava = tex((x) => { for (let i = 0; i < 16; i++) for (let j = 0; j < 16; j++) px(x, i, j, pick(['#ff6a00', '#ff8c1a', '#ffb02e', '#e85100', '#ffd23f'])); });
+const oreTex = (c1, c2) => tex((x) => { x.drawImage(T.stone, 0, 0); [[2, 3], [9, 2], [4, 9], [11, 10], [7, 6]].forEach(([a, b]) => { x.fillStyle = c1; x.fillRect(a, b, 2, 2); x.fillStyle = c2; x.fillRect(a, b, 1, 1); }); });
+T.coalOre = oreTex('#1c1c1c', '#3a3a3a'); T.ironOre = oreTex('#d8a07a', '#f1c9a8'); T.goldOre = oreTex('#ffd23f', '#fff3a0'); T.emeraldOre = oreTex('#2ecc71', '#b6ffd2');
+T.wool = noise(['#f4f4f4', '#ebebeb', '#ffffff', '#e2e2e2']);
+T.hayTop = tex((x) => { for (let i = 0; i < 16; i++) for (let j = 0; j < 16; j++) px(x, i, j, pick(['#e3c04a', '#d6b13c', '#c9a330'])); x.fillStyle = '#8a6a1f'; x.fillRect(7, 0, 2, 16); });
+T.haySide = tex((x) => { for (let i = 0; i < 16; i++) for (let j = 0; j < 16; j++) px(x, i, j, pick(['#e3c04a', '#d6b13c', '#c9a330'])); x.fillStyle = '#b5362b'; x.fillRect(0, 3, 16, 2); x.fillRect(0, 11, 16, 2); });
+T.roofTiles = tex((x) => { for (let j = 0; j < 16; j++) for (let i = 0; i < 16; i++) px(x, i, j, (j % 4 === 3) ? '#3b2a2a' : pick(['#a8483a', '#9b4133', '#b5523f'])); });
+T.barrelTop = tex((x) => { x.drawImage(T.planks, 0, 0); x.strokeStyle = '#4a4a4a'; x.strokeRect(1.5, 1.5, 13, 13); x.fillStyle = '#3a2618'; x.fillRect(5, 5, 6, 6); });
+T.barrelSide = tex((x) => { for (let i = 0; i < 16; i++) for (let j = 0; j < 16; j++) px(x, i, j, i % 4 === 3 ? '#6b4a2b' : pick(['#8d5a2b', '#9a6532'])); x.fillStyle = '#4a4a4a'; x.fillRect(0, 2, 16, 1); x.fillRect(0, 13, 16, 1); });
+
+// ізометричний куб
+function cube(top, left, right) {
+  const c = document.createElement('canvas'); c.width = c.height = 64; const x = c.getContext('2d'); x.imageSmoothingEnabled = false; const s = 2;
+  const face = (t, m, shade) => { x.setTransform(...m); x.drawImage(t, 0, 0); if (shade) { x.fillStyle = `rgba(0,0,0,${shade})`; x.fillRect(0, 0, 16, 16); } };
+  face(top, [s, s / 2, -s, s / 2, 32, 0], 0);
+  face(left, [s, s / 2, 0, s, 0, 16], .18);
+  face(right || left, [s, -s / 2, 0, s, 32, 32], .34);
+  x.setTransform(1, 0, 0, 1, 0, 0); return c;
+}
+// предмети: піксельні мапи 12×12
+// предмети: наші піксельні малюнки 16×16, контур додається автоматично
+const PAL = {
+  r: '#ff4040', d: '#b71c1c', h: '#ffffff', b: '#8d5a2b', B: '#5a3716', g: '#4cd137', G: '#218c3a',
+  y: '#ffe08a', o: '#e8892f', O: '#a85614', w: '#fff3d6', s: '#cdd6dd', S: '#7b8a95', c: '#5ec8ef', C: '#2779a7',
+  k: '#3a2618', K: '#1c1c1c', f: '#fff35c', F: '#ff9b1f', D: '#11b5ac', H: '#ffd23f', p: '#e0aa5c', P: '#a8722e', W: '#cfefff', m: '#ffffff', q: '#e8d3a8', R: '#c0392b', n: '#d64545', N: '#8e2424', e: '#f7dccf', u: '#a0592c', U: '#5e3015', l: '#f7a8b8', L: '#d06a83', a: '#ff8a5b', A: '#c8552c', v: '#9b2d63', V: '#5e1840', z: '#d9b679', Z: '#8a6a3a', j: '#2ecc71', J: '#167a43', t: '#8a5530', T: '#4e2c12', x: '#9a9a9a', X: '#555555', i: '#f39c12', I: '#b9770e',
+};
+const MAP = {
+
+  ladder: ['...bB.....bB....', '...bbbbbbbbB....', '...bB.....bB....', '...bB.....bB....', '...bbbbbbbbB....', '...bB.....bB....', '...bB.....bB....', '...bbbbbbbbB....', '...bB.....bB....', '...bB.....bB....', '...bbbbbbbbB....', '...bB.....bB....'],
+  fence: ['', '', '..bB...bB...bB..', '..bB...bB...bB..', '..bbbbbbbbbbbB..', '..bB...bB...bB..', '..bB...bB...bB..', '..bbbbbbbbbbbB..', '..bB...bB...bB..', '..bB...bB...bB..'],
+  gate: ['', '.bB..........bB.', '.bBbbbbbbbbbbbB.', '.bB.bB....bB.bB.', '.bB..bB..bB..bB.', '.bB...bBbB...bB.', '.bB...bBbB...bB.', '.bB..bB..bB..bB.', '.bBbbbbbbbbbbbB.', '.bB..........bB.'],
+  stairs: ['', '..........bbbb..', '..........bbbB..', '..........bbbB..', '......bbbbbbbB..', '......bbbbbbbB..', '......bbbbbbbB..', '..bbbbbbbbbbbB..', '..bbbbbbbbbbbB..', '..bbbbbbbbbbbB..', '..BBBBBBBBBBBB..'],
+  scaffolding: ['.yYYYYYYYYYYYYy.', '.y............y.', '.y.y........y.y.', '.y..y......y..y.', '.y...y....y...y.', '.y....y..y....y.', '.y.....yy.....y.', '.y....y..y....y.', '.y...y....y...y.', '.yYYYYYYYYYYYYy.', '.y............y.', '.y............y.'],
+  lantern: ['.......XX.......', '......X..X......', '.......XX.......', '.....XXXXXX.....', '....XffffffX....', '....XfFFFFfX....', '....XfFRFFfX....', '....XfFFFFfX....', '....XffffffX....', '.....XXXXXX.....'],
+  campfire: ['', '.......f........', '......fFf.......', '.....fFRFf......', '....fFRRRFf.....', '.....FRRRF......', '..uuUuuuUuuuU...', '...bBbBbBbBb....', '..uuUuuuUuuuU...', '...xxXxxXxxX....'],
+  cave: ['', '...xxxxxxxxxx...', '..xxxXxxxxXxxx..', '.xxxKKKKKKKxxxx.', '.xxKKKKKKKKKKxx.', '.xKKKKKKKKKKKKx.', '.xKKKKKKKKKKKKx.', '.xKKKKKKKKKKKKx.', '.xKKKKKKKKKKKKx.', 'gggggggggggggggg'],
+  rails: ['', '..X..........X..', '..X..........X..', '.bbbbbbbbbbbbbb.', '..X..........X..', '..X..........X..', '.bbbbbbbbbbbbbb.', '..X..........X..', '..X..........X..', '.bbbbbbbbbbbbbb.', '..X..........X..'],
+  nugget: ['', '', '.....HHH........', '....HfHHH...HH..', '....HHHHF..HfHF.', '.....FFF...HHHF.', '.......HHH..FF..', '......HfHHF.....', '......HHHFF.....', '.......FFF......'],
+  emerald: ['', '.......jj.......', '......jhjJ......', '.....jhjjjJ.....', '....jhjjjjjJ....', '....jjjjjjjJ....', '....jjjjjjjJ....', '.....jjjjjJ.....', '......jjjJ......', '.......jJ.......'],
+  stalactites: ['', 'xxxxxxxxxxxxxxxx', '.xXx..xXx...xXx.', '.xXx..xXx...xX..', '..x...xX....xX..', '..x....X....x...', '.......x....x...', '.......x........'],
+  mushroom: ['', '.....rrrrrr.....', '...rrhrrrrhrr...', '..rrrrrrhrrrrr..', '..rhrrrrrrrrhr..', '...dddddddddd...', '......wwww......', '......wwww......', '......wwqw......', '.....wwwwww.....'],
+  sheep: ['', '', '...wwwwwwwww....', '..wwmwwwwmwwwqq.', '..wwwwwwwwwwqKq.', '..wwwwmwwwwwqqq.', '..wwwwwwwwwwqq..', '...wwwwwwwww....', '...qq.qq.qq.qq..', '...qq.qq.qq.qq..'],
+  cow: ['', '..............KK', '..............hK', '...hhhhhhhhhhhhh', '..hKKhhhhKhhhhKh', '..KKKhhhKKKhhhhl', '..hhhhhhhhhhhhll', '...hhKKhhhhhhh..', '...hh.hh..hh.hh.', '...KK.KK..KK.KK.'],
+  pig: ['', '', '...lllllllllll..', '..llllllllllKll.', '..lllllllllllLL.', '..llllllllllLKL.', '..llllllllllll..', '...llllllllll...', '...LL.LL..LL.LL.'],
+  horse: ['...........uu...', '..........uuuu..', '..........uuKuu.', '..........uuuuu.', '...uuuuuuuuuu...', '..UuuuuuuuuuU...', '..UuuuuuuuuuU...', '...uuuuuuuuu....', '...uU.uU.uU.uU..', '...uU.uU.uU.uU..', '...KK.KK.KK.KK..'],
+  llama: ['...........qq...', '..........qqqq..', '..........qqKq..', '..........qqqq..', '..........qqq...', '..........qqq...', '...qqqqqqqqqq...', '..qqrrrrrrqqq...', '..qqqqqqqqqq....', '...qq.qq.qq.qq..', '...qq.qq.qq.qq..'],
+  bee: ['', '.....WW..WW.....', '.....WWWWWW.....', '...yKKyyKKyKK...', '..yyKKyyKKyKKy..', '..yyKKyyKKyyKy..', '...yKKyyKKyKK...'],
+  coop: ['.......rr.......', '......rrrr......', '.....rrrrrr.....', '....rrrrrrrr....', '...rrrrrrrrrr...', '....bbbbbbbb....', '....bbKKKKbb....', '....bbKKKKbb....', '....bbKKKKbb....', '....bbbbbbbb....', '....B......B....'],
+  saddle: ['', '', '..tt........tt..', '..tttt....tttt..', '...tttttttttt...', '....tTTTTTTt....', '.....tttttt.....', '......s..s......', '......s..s......', '.....ss..ss.....'],
+  lead: ['', '.....zzzzzz.....', '...zzZ....Zzz...', '..zZ........Zz..', '..z..zzzzzz..z..', '..z.zZ....Zz.z..', '..z.z......z.z..', '..z.zZ....Zz.z..', '..zZ.zzzzzz.Zz..', '...zzZ....Zzz...', '.....zzzzzz.....'],
+  shears: ['', '...ss.....ss....', '...sSs...sSs....', '....sSs.sSs.....', '.....sSsSs......', '......sSs.......', '.....rr.rr......', '....r..r..r.....', '....r..r..r.....', '.....rr.rr......'],
+  honeycomb: ['', '...HHH..HHH.....', '..HfffHHfffH....', '..HfffHHfffH....', '...HHHffHHHH....', '....HfffHfffH...', '....HfffHfffH...', '.....HHHHHHH....'],
+  beef: ['', '', '....nnnnnn......', '..nnnenNnnnn....', '.nnNnnnnnenNn...', '.nennnNnnnnnnn..', '.nnnnnnnennnNn..', '..NnnnnnnnnNNe..', '...NNNnnnNNNee..', '......NNNNee....'],
+  steak: ['', '', '....uuuuuu......', '..uuueuUuuuu....', '.uuUuuuuueuUu...', '.ueuuuUuuuuuuu..', '.uuuuuuueuuuUu..', '..UuuuuuuuuUUe..', '...UUUuuuUUUee..', '......UUUUee....'],
+  pork: ['', '', '.......eeee.....', '.....llllllee...', '...llLllllllLe..', '..lllllllLllll..', '..llLlllllllll..', '..lllllllllLll..', '...lllllllll....', '.....eeeeee.....'],
+  mutton: ['', '....eeeeee......', '...ennnnnne.....', '..ennNnnnnne....', '..ennnnnNnne....', '..ennnnnnnne....', '...ennnnnneem...', '....eeeeee..mm..', '.............mm.'],
+  rawchicken: ['', '...llll.........', '..lhhlllL.......', '..lhllllll......', '..llllllll......', '...lllllLL......', '....LLLLLm......', '.........mm.....', '..........mm.mm.', '...........mmm..', '..........mm.mm.'],
+  bakedpotato: ['', '', '', '.....pppppp.....', '...pphpppppPp...', '..phpyyyyyypPP..', '..ppyyyyyyyyPP..', '..ppPppppppPPP..', '...PppppppPPP...', '....PPPPPPPP....'],
+  beetroot: ['.......gG.......', '......gGgG......', '.......gG.......', '.....vvvvvv.....', '....vvhvvvvV....', '....vhvvvvvV....', '....vvvvvvvV....', '.....vvvvvV.....', '......vvVV......', '.......vV.......', '........V.......'],
+  stew: ['', '', '', '', '...uuyuuqyuuu...', '..buuuuuuuuuub..', '..bbbbbbbbbbbB..', '...bbbbbbbbbB...', '....BBBBBBBB....'],
+  rabbitstew: ['', '', '', '', '...uoouuqoouu...', '..buuouuuuouub..', '..bbbbbbbbbbbB..', '...bbbbbbbbbB...', '....BBBBBBBB....'],
+  pie: ['', '', '', '......oooo......', '....ooiiiioo....', '...oiiiiiiiio...', '..oiiiiiiiiiio..', '..OoooooooooOO..', '...OOOOOOOOOO...'],
+  melonslice: ['', '', '..G...........G.', '..gG.........Gg.', '..grr.......rrg.', '...grrrKrrKrrg..', '...grrrrrrrrrg..', '....grrrKrrrg...', '.....grrrrrg....', '......ggggg.....'],
+  berries: ['......g.........', '.....gGg.g......', '....g...gGg.....', '...rr...g.......', '..rhrr.rr..rr...', '..rrrr.rhr.rhr..', '...rr..rrr.rrr..', '........r...r...'],
+  honeybottle: ['', '......bb........', '......WW........', '......WW........', '.....WWWW.......', '....WHHHHW......', '...WHfHHHHW.....', '...WHHHHHHW.....', '...WHHHHHHW.....', '....WWWWWW......'],
+  kelp: ['', '..J...J...J.....', '..jJ..jJ..jJ....', '...jJ..jJ..jJ...', '..jJ..jJ..jJ....', '...jJ..jJ..jJ...', '..jJ..jJ..jJ....', '...j...j...j....'],
+  sugarcane: ['....g.....g.....', '....gG....gG....', '....gG....gG....', '....GG....GG....', '....gG....gG.g..', '....gG....gG.gG.', '....GG....GG.gG.', '....gG....gG.GG.', '....gG....gG.gG.'],
+  cocoa: ['.......b........', '......bb........', '.....uuuu.......', '....uiiiiu......', '....uiuiiU......', '....uiiuiU......', '....uiiiiU......', '.....uiiU.......', '......UU........'],
+  rod: ['.............bb.', '............bBs.', '...........bB.s.', '..........bB..s.', '.........bB...s.', '........bB....s.', '.......bB.....s.', '......bB......s.', '.....bB.......r.', '....bB..........'],
+  compass: ['', '....SSSSSS......', '...SwwwwwwS.....', '..SwwwrwwwwS....', '..SwwwrwwwwS....', '..SwwwKwwwwS....', '..SwwwhwwwwS....', '...SwwwwwwS.....', '....SSSSSS......'],
+  map: ['', '..qqqqqqqqqqqq..', '..qgggqqqccccq..', '..qgGggqccCccq..', '..qggqqqqcccqq..', '..qqqqgggqqqqq..', '..qcccqgGgqrqq..', '..qcCcqqggqqqq..', '..qqqqqqqqqqqq..'],
+  spyglass: ['', '............HH..', '...........HsSH.', '..........HsSH..', '.........HHH....', '........ttT.....', '.......ttT......', '......ttT.......', '.....HHH........', '....HsH.........', '.....H..........'],
+  anvil: ['', '', '..XXXXXXXXXXXX..', '..XxxxxxxxxxxX..', '...XXXXXXXXXX...', '.....XxxxxX.....', '.....XxxxxX.....', '....XxxxxxxX....', '...XXXXXXXXXX...'],
+  cauldron: ['', '..XX........XX..', '..XXXXXXXXXXXX..', '..XccccccccccX..', '..XxxxxxxxxxxX..', '..XxxxxxxxxxxX..', '..XxxxxxxxxxxX..', '...XxxxxxxxxX...', '...XX......XX...'],
+  bottle: ['', '......bb........', '......WW........', '......WW........', '.....WWWW.......', '....WhWWWW......', '...WhWWWWWW.....', '...WWWWWWWW.....', '...WWWWWWWW.....', '....WWWWWW......'],
+  egg: ['', '', '.......ww.......', '......wwww......', '.....whwwww.....', '.....hwwwww.....', '....whwwwwww....', '....wwwwwwww....', '....wwwwwwwq....', '....wwwwwwqq....', '....wwwwwwqq....', '.....wwwwqq.....', '......wqqq......'],
+  apple: ['', '.......b..gg....', '.......bgggG....', '....rrrbrrr.....', '...rhrrrrrrd....', '..rhhrrrrrrrd...', '..rhrrrrrrrrd...', '..rrrrrrrrrrd...', '..rrrrrrrrrdd...', '..rrrrrrrrrdd...', '...rrrrrrrdd....', '...drrrrrddd....', '....dd..ddd.....'],
+  bread: ['', '', '', '', '.....oooooo.....', '...oohoyyoooo...', '..ohyoyyoyyooO..', '..oyyyyyyyyyoO..', '..ooyoyyoyyooO..', '..OoooooooooOO..', '...OOOOOOOOOO...'],
+  carrot: ['', '...........gG...', '.........ggGg...', '..........gG....', '.........oOo....', '........ooOo....', '.......oooO.....', '......oOoo......', '.....oooO.......', '....ooOo........', '...oOoo.........', '..ooo...........', '..o.............'],
+  fish: ['', '', '', '.....CCCC.......', '...CCccccCC..C..', '..Cccccccccc.CC.', '.CKcccccccccccc.', '.CcWWWWWWWccccc.', '..CWWWWWWWW.CC..', '...CCWWWWCC..C..', '.....CCCC.......'],
+  milk: ['.....SSSSSS.....', '...SS......SS...', '...SSSSSSSSSS...', '..SmmmmmmmmmmS..', '..SsmmmmmmmmsS..', '..ShsssssssssS..', '...ShsssssssS...', '...ShsssssssS...', '....ShssssSS....', '....SSSSSSSS....'],
+  bucket: ['.....SSSSSS.....', '...SS......SS...', '...SSSSSSSSSS...', '..SKKKKKKKKKKS..', '..SsKKKKKKKKsS..', '..ShsssssssssS..', '...ShsssssssS...', '...ShsssssssS...', '....ShssssSS....', '....SSSSSSSS....'],
+  torch: ['', '.......ff.......', '......fFFf......', '......FRRF......', '......fFFf......', '.......bB.......', '.......bB.......', '.......bB.......', '.......bB.......', '.......bB.......', '.......bB.......', '.......bB.......', '.......bB.......'],
+  pickaxe: ['', '....hcccccC.....', '...hccCCCCccC...', '..hcC..bB..CcC..', '..cC...bB...Cc..', '..C....bB....C..', '.......bB.......', '.......bB.......', '.......bB.......', '.......bB.......', '.......bB.......', '.......bB.......'],
+  sword: ['.......hc.......', '......hccC......', '......hccC......', '......hccC......', '......hccC......', '......hccC......', '......hccC......', '......hccC......', '....HHHHHHHH....', '.......bB.......', '.......bB.......', '.......HH.......'],
+  axe: ['', '....SSSS........', '...SssssS.bB....', '..ShsssssSbB....', '..ShssssssbB....', '..ShsssssSbB....', '...SssssS.bB....', '....SSSS..bB....', '..........bB....', '..........bB....', '..........bB....', '..........bB....'],
+  shovel: ['', '......SsS.......', '.....SsssS......', '.....ShssS......', '.....ShssS......', '......SsS.......', '.......bB.......', '.......bB.......', '.......bB.......', '.......bB.......', '......bbBB......', '......b..B......'],
+  door: ['..BBBBBBBBBBBB..', '..BbbbbBBbbbbB..', '..BWWWbBBWWWbB..', '..BWWWbBBWWWbB..', '..BbbbbBBbbbbB..', '..BBBBBBBBBBBB..', '..BbbbbbbbbbbB..', '..BbBBBBBBBBbB..', '..BbbbbbbbbKbB..', '..BbBBBBBBBBbB..', '..BbbbbbbbbbbB..', '..BBBBBBBBBBBB..'],
+  bed: ['', '', '', '', '', '..mmmmrrrrrrrr..', '..mmhmrrrrrrrr..', '..mmmmrdrrdrrr..', '..dddddddddddd..', '..bB........bB..', '..bB........bB..'],
+  diamond: ['', '....cccccccc....', '...chhccccCCc...', '..chcccccccCCc..', '..ccccccccCCCc..', '...cccccccCCc...', '....ccccccCc....', '.....ccccCc.....', '......cccc......', '.......cc.......'],
+  wheat: ['.....y..y..y....', '....yo.yo.yo....', '.....y..y..y....', '....yo.yo.yo....', '.....yo.y.oy....', '......g.g.g.....', '......g.g.g.....', '.......ggg......', '........g.......', '.......yoy......', '........g.......', '........g.......'],
+  potato: ['', '', '', '.....pppppp.....', '...pphpppppPp...', '..phppPpppppPP..', '..pppppppPppPP..', '..ppPppppppPPP..', '...PppppppPPP...', '....PPPPPPPP....'],
+  chicken: ['', '...oooo.........', '..oyyoooO.......', '..oyoooooO......', '..oooooooO......', '...oooooOO......', '....OOOOOm......', '.........mm.....', '..........mm.mm.', '...........mmm..', '..........mm.mm.'],
+  cookie: ['', '', '.....pppppp.....', '...pppkppppp....', '..pppppppkppp...', '..pkppppppppp...', '..pppppkpppkp...', '..pppppppppp....', '...ppkpppppp....', '.....pppppp.....'],
+  coal: ['', '', '', '......KKKK......', '....KKSKKKKK....', '...KSKKKKKKKK...', '...KKKKKKKKKK...', '....KKKKKKKK....', '.....KKKKKK.....'],
+  iron: ['', '', '', '', '.....hhhhhhh....', '...hhssssssSS...', '..hsssssssssSS..', '..SSSSSSSSSSSS..'],
+  gold: ['', '', '', '', '.....ffffffff...', '...ffHHHHHHFF...', '..fHHHHHHHHHFF..', '..FFFFFFFFFFFF..'],
+};
+MAP.salmon = MAP.fish.map((r) => r.replace(/c/g, 'a').replace(/C/g, 'A').replace(/W/g, 'e'));
+MAP.cod = MAP.fish.map((r) => r.replace(/c/g, 'x').replace(/C/g, 'X').replace(/W/g, 'q'));
+function item(name) {
+  const c = document.createElement('canvas'); c.width = c.height = 16; const x = c.getContext('2d');
+  const g = MAP[name].map((r) => r.padEnd(16, '.'));
+  while (g.length < 16) g.push('................');
+  const on = (i, j) => j >= 0 && j < 16 && i >= 0 && i < 16 && PAL[g[j][i]];
+  for (let j = 0; j < 16; j++) for (let i = 0; i < 16; i++) {
+    if (on(i, j)) px(x, i, j, PAL[g[j][i]]);
+    else if (on(i + 1, j) || on(i - 1, j) || on(i, j + 1) || on(i, j - 1)) px(x, i, j, '#2a1a10');
+  }
+  return c;
+}
+const B = {
+  grass: () => cube(T.grassTop, T.grassSide), dirt: () => cube(T.dirt, T.dirt), stone: () => cube(T.stone, T.stone), cobblestone: () => cube(T.cobble, T.cobble),
+  sand: () => cube(T.sand, T.sand), log: () => cube(T.logTop, T.logSide), planks: () => cube(T.planks, T.planks), glass: () => cube(T.glass, T.glass),
+  brick: () => cube(T.brick, T.brick), water: () => cube(T.water, T.water), furnace: () => cube(T.cobble, T.furnaceFront, T.cobble), table: () => cube(T.tableTop, T.tableSide, T.tableSide),
+  chest: () => cube(T.planks, T.chest, T.chest), leaves: () => cube(T.leaves, T.leaves), melon: () => cube(T.melonTop, T.melonSide), bookshelf: () => cube(T.planks, T.bookshelf), ore: () => cube(T.stone, T.diamondOre),
+  sandstone: () => cube(T.sandstone, T.sandstone), gravel: () => cube(T.gravel, T.gravel), obsidian: () => cube(T.obsidian, T.obsidian), lava: () => cube(T.lava, T.lava),
+  coalore: () => cube(T.coalOre, T.coalOre), ironore: () => cube(T.ironOre, T.ironOre), goldore: () => cube(T.goldOre, T.goldOre), emeraldore: () => cube(T.emeraldOre, T.emeraldOre),
+  wool: () => cube(T.wool, T.wool), hay: () => cube(T.hayTop, T.haySide), roof: () => cube(T.roofTiles, T.roofTiles), barrel: () => cube(T.barrelTop, T.barrelSide),
+};
+const pic = (k) => (B[k] ? B[k]() : item(k));
+
+// ---------- XP ----------
+// звуки (генеруємо самі), частинки, level up
+let AC; const tone = (f, d, type = 'square', v = .07, when = 0) => { try { AC = AC || new (window.AudioContext || window.webkitAudioContext)(); const o = AC.createOscillator(), g = AC.createGain(); o.type = type; o.frequency.value = f; g.gain.value = v; o.connect(g); g.connect(AC.destination); const t = AC.currentTime + when; o.start(t); g.gain.exponentialRampToValueAtTime(.0001, t + d); o.stop(t + d); } catch (e) { } };
+const pop = () => { tone(660, .08); tone(990, .12, 'square', .06, .07); };
+const buzz = () => { tone(140, .25, 'sawtooth', .06); };
+const fanfare = () => [523, 659, 784, 1046].forEach((f, i) => tone(f, .18, 'square', .07, i * .11));
+let lastX = innerWidth / 2, lastY = innerHeight / 2;
+addEventListener('pointerdown', (e) => { lastX = e.clientX; lastY = e.clientY; }, true);
+function burst(n = 14) {
+  const cols = ['#7cff4f', '#ffd23f', '#33e0d6', '#ff5a5f', '#ff8fd8', '#8e6cff'];
+  for (let i = 0; i < n; i++) { const p = document.createElement('i'); p.className = 'pxl'; p.style.left = lastX + 'px'; p.style.top = lastY + 'px'; p.style.background = cols[i % cols.length];
+    const a = Math.random() * Math.PI * 2, r = 50 + Math.random() * 70; p.style.setProperty('--dx', Math.cos(a) * r + 'px'); p.style.setProperty('--dy', Math.sin(a) * r - 30 + 'px'); document.body.appendChild(p); setTimeout(() => p.remove(), 800); }
+}
+const LESSON_ID = 'runway';
+let xp = 0, dias = 0; const done = new Set();
+function gain(key, n, msg) {
+  if (done.has(key)) return; done.add(key); const before = Math.floor(xp / 100); xp += n; if (n >= 15) dias++;
+  // якщо учень увійшов на Murly, досвід іде і в його загальний рівень
+  try { if (location.hostname.endsWith('murly.com.ua')) fetch('/api/xp', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ items: [{ key: `game:${LESSON_ID}:${key}`, amount: Math.min(60, n) }], source: 'game' }) }).catch(() => {}); } catch (e) { }
+  const lvl = Math.floor(xp / 100) + 1;
+  burst(); if (lvl - 1 > before) { fanfare(); const L = document.getElementById('lvlup'); L.querySelector('b').textContent = 'LEVEL ' + lvl + '!'; L.classList.remove('show'); void L.offsetWidth; L.classList.add('show'); } else pop();
+  document.getElementById('xpbar').style.width = (xp % 100) + '%';
+  document.getElementById('xptext').textContent = xp + ' XP';
+  document.getElementById('lvl').textContent = 'LEVEL ' + lvl;
+  document.getElementById('dias').textContent = dias;
+  toast(msg || ('+' + n + ' XP'));
+}
+let tt; function toast(m) { const t = document.getElementById('toast'); t.textContent = m; t.classList.add('show'); clearTimeout(tt); tt = setTimeout(() => t.classList.remove('show'), 1300); }
+function say(w) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; u.rate = .9; speechSynthesis.speak(u); } catch (e) { } }
+const put = (el, c) => { c.style.width = c.style.width || ''; el.appendChild(c); };
+
+
+// ================= RUNWAY STAR =================
+const $ = (id) => document.getElementById(id);
+const COLS = { red: '#ff4d5e', pink: '#ff8fd8', purple: '#8e6cff', blue: '#3b82f6', turquoise: '#2dd4bf', green: '#3ecf4c', yellow: '#ffd23f', orange: '#ff9f1c', black: '#262636', white: '#ffffff', gold: '#e8b923', brown: '#9c6a42' };
+const PATS = ['plain', 'striped', 'spotted', 'checked', 'floral', 'glittery'];
+const PIECES = {
+  top: { tshirt: ['T-shirt', 'cotton'], hoodie: ['hoodie', 'cotton'], jacket: ['jacket', 'leather'], crop: ['crop top', ''], coat: ['coat', 'woollen'] },
+  bottom: { jeans: ['jeans', 'denim'], wide: ['trousers', ''], shorts: ['shorts', 'denim'], skirt: ['skirt', ''] },
+  dress: { none: ['', ''], short: ['dress', 'cotton'], gown: ['gown', 'silk'] },
+  shoes: { trainers: ['trainers', ''], boots: ['boots', 'leather'], sandals: ['sandals', ''] },
+  hat: { none: ['', ''], cap: ['cap', ''], beanie: ['beanie', 'woollen'], crown: ['crown', ''], sunhat: ['sun hat', ''] },
+  extra: { none: ['', ''], sunglasses: ['sunglasses', ''], bag: ['handbag', ''], scarf: ['scarf', 'woollen'], necklace: ['necklace', ''] },
+};
+const O = { hair: 'brown', hairStyle: 'long', skin: '#f1c49a', top: 'hoodie', topCol: 'pink', topPat: 'plain', bottom: 'jeans', botCol: 'blue', botPat: 'plain', dress: 'none', dressCol: 'purple', dressPat: 'glittery', shoes: 'trainers', shoeCol: 'white', hat: 'none', hatCol: 'red', extra: 'none', extraCol: 'black', opinion: '' };
+
+// ---------- малюнок моделі (свій SVG) ----------
+let patN = 0;
+function fill(col, pat, defs) {
+  const c = COLS[col] || col; if (!pat || pat === 'plain') return c;
+  const id = 'p' + (patN++); const dark = col === 'black' ? '#ffffff' : '#262636';
+  const inner = pat === 'striped' ? `<rect width="12" height="12" fill="${c}"/><rect width="12" height="4" fill="${dark}" opacity=".55"/>`
+    : pat === 'spotted' ? `<rect width="14" height="14" fill="${c}"/><circle cx="4" cy="4" r="2.6" fill="#fff"/><circle cx="11" cy="11" r="2.6" fill="#fff"/>`
+    : pat === 'checked' ? `<rect width="14" height="14" fill="${c}"/><rect width="7" height="7" fill="${dark}" opacity=".35"/><rect x="7" y="7" width="7" height="7" fill="${dark}" opacity=".35"/>`
+    : pat === 'floral' ? `<rect width="18" height="18" fill="${c}"/><g fill="#fff"><circle cx="5" cy="4" r="2"/><circle cx="8" cy="5" r="2"/><circle cx="6" cy="8" r="2"/><circle cx="3" cy="7" r="2"/></g><circle cx="5.5" cy="6" r="1.5" fill="#ffd23f"/><circle cx="14" cy="14" r="1.6" fill="#fff"/>`
+    : `<rect width="10" height="10" fill="${c}"/><circle cx="2" cy="3" r="1" fill="#fff"/><circle cx="7" cy="7" r="1.2" fill="#fff" opacity=".9"/><circle cx="8" cy="2" r=".7" fill="#ffd23f"/>`;
+  const size = pat === 'floral' ? 18 : pat === 'striped' ? 12 : pat === 'glittery' ? 10 : 14;
+  defs.push(`<pattern id="${id}" width="${size}" height="${size}" patternUnits="userSpaceOnUse">${inner}</pattern>`);
+  return `url(#${id})`;
+}
+const S = 'stroke="#262636" stroke-width="3" stroke-linejoin="round"';
+function modelSvg(o, cls = '') {
+  const defs = []; const skin = o.skin; const hair = COLS[o.hair] || o.hair;
+  const hairBack = o.hairStyle === 'long' ? `<path d="M68 52 Q66 20 100 20 Q134 20 132 52 L138 150 L62 150 Z" fill="${hair}" ${S}/>` : o.hairStyle === 'pony' ? `<path d="M128 40 Q160 60 140 130 Q134 90 122 60 Z" fill="${hair}" ${S}/>` : '';
+  const hairTop = o.hairStyle === 'bun' ? `<circle cx="100" cy="24" r="14" fill="${hair}" ${S}/><path d="M70 58 Q70 26 100 26 Q130 26 130 58 Q118 40 100 40 Q82 40 70 58 Z" fill="${hair}" ${S}/>`
+    : `<path d="M70 60 Q68 24 100 24 Q132 24 130 60 Q122 42 100 40 Q80 42 70 60 Z" fill="${hair}" ${S}/>`;
+  let body = `<path d="M84 230 L80 384 L96 384 L100 250 L104 384 L120 384 L116 230 Z" fill="${skin}" ${S}/>`;
+  body += `<path d="M64 104 L42 228 L56 232 L76 130 Z M136 104 L158 228 L144 232 L124 130 Z" fill="${skin}" ${S}/>`;
+  body += `<path d="M66 100 L134 100 L130 230 L70 230 Z" fill="${skin}" ${S}/><rect x="92" y="84" width="16" height="20" fill="${skin}" ${S}/>`;
+  let clothes = '';
+  if (o.dress !== 'none') {
+    const f = fill(o.dressCol, o.dressPat, defs); const end = o.dress === 'gown' ? 388 : 300; const w = o.dress === 'gown' ? 68 : 50;
+    clothes += `<path d="M68 100 L132 100 L138 140 L128 140 L126 200 L${100 + w} ${end} L${100 - w} ${end} L74 200 L72 140 L62 140 Z" fill="${f}" ${S}/>`;
+  } else {
+    const fb = fill(o.botCol, o.botPat, defs);
+    const B = { jeans: 'M72 215 L128 215 L124 384 L104 384 L100 252 L96 384 L76 384 Z', wide: 'M72 215 L128 215 L142 384 L104 384 L100 252 L96 384 L58 384 Z', shorts: 'M72 215 L128 215 L132 282 L104 282 L100 252 L96 282 L68 282 Z', skirt: 'M74 210 L126 210 L148 300 L52 300 Z' };
+    clothes += `<path d="${B[o.bottom]}" fill="${fb}" ${S}/>`;
+    const ft = fill(o.topCol, o.topPat, defs);
+    const T = { tshirt: 'M62 100 L138 100 L158 142 L142 150 L130 132 L128 222 L72 222 L70 132 L58 150 L42 142 Z', hoodie: 'M62 100 L138 100 L162 226 L146 232 L130 142 L130 228 L70 228 L70 142 L54 232 L38 226 Z', jacket: 'M62 100 L138 100 L162 226 L146 232 L130 142 L132 232 L68 232 L70 142 L54 232 L38 226 Z', crop: 'M64 100 L136 100 L152 132 L138 138 L130 126 L128 176 L72 176 L70 126 L62 138 L48 132 Z', coat: 'M60 100 L140 100 L164 228 L148 232 L134 140 L142 316 L58 316 L66 140 L52 232 L36 228 Z' };
+    clothes += `<path d="${T[o.top]}" fill="${ft}" ${S}/>`;
+    if (o.top === 'hoodie') clothes += `<path d="M76 100 Q100 122 124 100" fill="none" ${S}/><path d="M92 112 L92 140 M108 112 L108 140" ${S}/>`;
+    if (o.top === 'jacket' || o.top === 'coat') clothes += `<path d="M86 100 L100 160 L114 100 Z" fill="#fff" ${S}/><path d="M100 160 L100 ${o.top === 'coat' ? 316 : 232}" ${S}/>`;
+  }
+  const sc = COLS[o.shoeCol];
+  const SH = { trainers: `<path d="M74 378 L98 378 L102 396 L68 396 Z M102 378 L126 378 L132 396 L98 396 Z" fill="${sc}" ${S}/><path d="M72 390 L100 390 M100 390 L130 390" stroke="${o.shoeCol === 'white' ? '#ff4d5e' : '#fff'}" stroke-width="3"/>`,
+    boots: `<path d="M76 320 L98 320 L100 396 L66 396 L74 380 Z M102 320 L124 320 L126 380 L134 396 L100 396 Z" fill="${sc}" ${S}/>`,
+    sandals: `<path d="M70 392 L100 392 M100 392 L132 392" stroke="${sc}" stroke-width="7"/><path d="M80 380 L92 392 M108 392 L120 380" stroke="${sc}" stroke-width="4"/>` };
+  const hc = COLS[o.hatCol];
+  const HT = { none: '', cap: `<path d="M70 50 Q70 22 100 22 Q130 22 130 50 Z" fill="${hc}" ${S}/><path d="M118 46 L150 50 L130 54 Z" fill="${hc}" ${S}/>`, beanie: `<path d="M68 54 Q66 18 100 18 Q134 18 132 54 Z" fill="${hc}" ${S}/><rect x="66" y="46" width="68" height="12" rx="5" fill="${hc}" ${S}/><circle cx="100" cy="14" r="8" fill="#fff" ${S}/>`,
+    crown: `<path d="M74 40 L72 12 L86 26 L100 8 L114 26 L128 12 L126 40 Z" fill="#e8b923" ${S}/><circle cx="100" cy="28" r="4" fill="#ff4d5e"/>`, sunhat: `<ellipse cx="100" cy="44" rx="58" ry="12" fill="${hc}" ${S}/><path d="M74 44 Q76 16 100 16 Q124 16 126 44 Z" fill="${hc}" ${S}/>` };
+  const ec = COLS[o.extraCol];
+  const EX = { none: '', sunglasses: `<rect x="76" y="54" width="20" height="12" rx="3" fill="#262636"/><rect x="104" y="54" width="20" height="12" rx="3" fill="#262636"/><path d="M96 58 L104 58" ${S}/>`, bag: `<path d="M138 104 L156 214" stroke="#262636" stroke-width="3"/><rect x="142" y="210" width="34" height="28" rx="6" fill="${ec}" ${S}/>`,
+    scarf: `<path d="M84 92 Q100 108 116 92 L118 104 Q100 118 82 104 Z" fill="${ec}" ${S}/><path d="M106 108 L114 160 L102 162 L98 110 Z" fill="${ec}" ${S}/>`, necklace: `<path d="M84 100 Q100 130 116 100" fill="none" stroke="#e8b923" stroke-width="4"/><circle cx="100" cy="122" r="6" fill="#2dd4bf" ${S}/>` };
+  const face = `<circle cx="100" cy="58" r="30" fill="${skin}" ${S}/><circle cx="89" cy="60" r="3.4" fill="#262636"/><circle cx="111" cy="60" r="3.4" fill="#262636"/><path d="M90 72 Q100 80 110 72" fill="none" ${S}/><circle cx="82" cy="70" r="4" fill="#ff8fd8" opacity=".6"/><circle cx="118" cy="70" r="4" fill="#ff8fd8" opacity=".6"/>`;
+  const inner = hairBack + body + clothes + face + hairTop + (SH[o.shoes] || '') + (HT[o.hat] || '') + (EX[o.extra] || '');
+  return `<svg viewBox="20 0 160 400" class="dt-model ${cls}" aria-hidden="true"><defs>${defs.join('')}</defs>${inner}</svg>`;
+}
+
+// ---------- опис з правильним порядком прикметників ----------
+const W = (...a) => a.filter(Boolean).join(' ');
+const art = (w) => (/^[aeiou]/i.test(w) ? 'an' : 'a');
+function phrases(o) {
+  const out = []; const pat = (p) => (p === 'plain' ? '' : p);
+  if (o.dress !== 'none') { const [n, m] = PIECES.dress[o.dress]; out.push(['single', W(o.dress === 'gown' ? 'long' : 'short', o.dressCol, pat(o.dressPat), m, n)]); }
+  else {
+    const [tn, tm] = PIECES.top[o.top]; out.push(['single', W(o.top === 'coat' ? 'long' : '', o.topCol, pat(o.topPat), tm, tn)]);
+    const [bn, bm] = PIECES.bottom[o.bottom]; out.push([o.bottom === 'skirt' ? 'single' : 'plural', W(o.bottom === 'wide' ? 'wide' : o.bottom === 'skirt' ? 'short' : '', o.botCol, pat(o.botPat), bm, bn)]);
+  }
+  const [sn, sm] = PIECES.shoes[o.shoes]; out.push(['plural', W(o.shoeCol, sm, sn)]);
+  return out;
+}
+function describe(o) {
+  const ph = phrases(o);
+  const items = ph.map(([k, p], i) => { const t = i === 0 && o.opinion ? `${o.opinion} ${p}` : p; return k === 'single' ? `${art(t)} ${t}` : t; });
+  const list = items.length > 1 ? items.slice(0, -1).join(', ') + ' and ' + items[items.length - 1] : items[0];
+  const acc = [];
+  if (o.hat !== 'none') acc.push(o.hat === 'crown' ? 'a golden crown' : W(art(o.hatCol), o.hatCol, PIECES.hat[o.hat][1], PIECES.hat[o.hat][0]));
+  if (o.extra !== 'none') acc.push(o.extra === 'sunglasses' ? 'cool black sunglasses' : o.extra === 'necklace' ? 'a gold necklace' : W(art(o.extraCol), o.extraCol, PIECES.extra[o.extra][1], PIECES.extra[o.extra][0]));
+  return `My model is wearing <b>${list}</b>.` + (acc.length ? ` She has <b>${acc.join(' and ')}</b>.` : '');
+}
+
+// ---------- теми і судді ----------
+const THEMES = [
+  ['Winter in Tokyo', ['coat', 'boots', 'scarf', 'beanie', 'jeans', 'hoodie', 'checked'], ['white', 'red', 'black']],
+  ['Beach party', ['shorts', 'crop', 'sunglasses', 'sunhat', 'sandals', 'tshirt', 'floral'], ['yellow', 'orange', 'turquoise']],
+  ['Royal ball', ['gown', 'crown', 'necklace', 'glittery'], ['purple', 'gold', 'pink']],
+  ['Halloween night', ['coat', 'boots', 'short', 'gown', 'jacket'], ['black', 'orange', 'purple']],
+  ['School disco', ['tshirt', 'jeans', 'trainers', 'glittery', 'crop', 'skirt'], ['pink', 'blue', 'turquoise']],
+  ['Sporty day', ['hoodie', 'shorts', 'trainers', 'cap', 'striped'], ['green', 'blue', 'white']],
+  ['Rock concert', ['jacket', 'jeans', 'boots', 'sunglasses', 'checked'], ['black', 'red']],
+  ['Spring picnic', ['short', 'floral', 'sunhat', 'sandals', 'bag', 'skirt'], ['yellow', 'pink', 'green']],
+];
+let theme = THEMES[0];
+function newTheme() { theme = THEMES[Math.floor(Math.random() * THEMES.length)]; $('themeName').textContent = theme[0]; $('judges').innerHTML = ''; }
+$('themeNew').onclick = newTheme;
+function score(o) {
+  const tags = o.dress !== 'none' ? [o.dress, o.dressPat] : [o.top, o.topPat, o.bottom, o.botPat];
+  tags.push(o.shoes, o.hat, o.extra);
+  const cols = o.dress !== 'none' ? [o.dressCol] : [o.topCol, o.botCol]; cols.push(o.shoeCol);
+  const hit = theme[1].filter((t) => tags.includes(t)).length + cols.filter((c) => theme[2].includes(c)).length * 0.7;
+  return Math.max(1, Math.min(5, Math.round(1 + hit * 1.1)));
+}
+const PRAISE = ['Gorgeous!', 'So stylish!', 'Very elegant!', 'Super cute!', 'Amazing colours!', 'Brilliant idea!', 'Fabulous!'];
+const TIPS = ['Try colours that fit the theme better.', 'Add an accessory!', 'Maybe a different pattern?', 'Think about the weather in this theme.'];
+$('judge').onclick = () => {
+  const st = score(O); const box = $('judges'); box.innerHTML = '';
+  ['Judge Cat', 'Judge Star', 'Judge Pixel'].forEach((j, i) => {
+    const s = Math.max(1, Math.min(5, st + (i === 1 ? 0 : Math.round(Math.random() * 2 - 1))));
+    const d = document.createElement('div'); d.className = 'dt-judge'; d.style.animationDelay = i * .25 + 's';
+    d.innerHTML = `<b>${j}</b><span class="dt-stars">${'&#9733;'.repeat(s)}<i>${'&#9733;'.repeat(5 - s)}</i></span><small>${s >= 4 ? PRAISE[Math.floor(Math.random() * PRAISE.length)] : TIPS[Math.floor(Math.random() * TIPS.length)]}</small>`;
+    box.appendChild(d);
+  });
+  $('model').querySelector('svg').classList.remove('walk'); void $('model').offsetWidth; $('model').querySelector('svg').classList.add('walk');
+  if (st >= 4) { fanfare(); burst(30); }
+  gain(`look:${theme[0]}:${st}`, st * 5, `${st} stars · +${st * 5} XP`);
+  say(describe(O).replace(/<[^>]+>/g, ''));
+};
+
+// ---------- панель вибору ----------
+const ROWS = [
+  ['Outfit', 'dress', Object.keys(PIECES.dress).map((k) => [k === 'none' ? 'top + bottom' : PIECES.dress[k][0], k])],
+  ['Top', 'top', Object.keys(PIECES.top).map((k) => [PIECES.top[k][0], k]), (o) => o.dress === 'none'],
+  ['Top colour', 'topCol', 'col', (o) => o.dress === 'none'],
+  ['Top pattern', 'topPat', 'pat', (o) => o.dress === 'none'],
+  ['Bottom', 'bottom', Object.keys(PIECES.bottom).map((k) => [PIECES.bottom[k][0], k]), (o) => o.dress === 'none'],
+  ['Bottom colour', 'botCol', 'col', (o) => o.dress === 'none'],
+  ['Bottom pattern', 'botPat', 'pat', (o) => o.dress === 'none'],
+  ['Dress colour', 'dressCol', 'col', (o) => o.dress !== 'none'],
+  ['Dress pattern', 'dressPat', 'pat', (o) => o.dress !== 'none'],
+  ['Shoes', 'shoes', Object.keys(PIECES.shoes).map((k) => [PIECES.shoes[k][0], k])],
+  ['Shoe colour', 'shoeCol', 'col'],
+  ['Hat', 'hat', Object.keys(PIECES.hat).map((k) => [k === 'none' ? 'no hat' : PIECES.hat[k][0], k])],
+  ['Hat colour', 'hatCol', 'col', (o) => o.hat !== 'none' && o.hat !== 'crown'],
+  ['Extra', 'extra', Object.keys(PIECES.extra).map((k) => [k === 'none' ? 'nothing' : PIECES.extra[k][0], k])],
+  ['Extra colour', 'extraCol', 'col', (o) => o.extra === 'bag' || o.extra === 'scarf'],
+  ['Hair', 'hairStyle', [['long', 'long'], ['bun', 'bun'], ['ponytail', 'pony'], ['short', 'short']]],
+  ['Hair colour', 'hair', [['brown', '#7a4a2a'], ['black', '#262636'], ['blonde', '#f2c94c'], ['red', '#d9534f'], ['pink', '#ff8fd8'], ['blue', '#3b82f6']]],
+  ['Skin', 'skin', [['', '#f1c49a'], ['', '#e0a878'], ['', '#b97a4f'], ['', '#7a4a2a']]],
+];
+const STAGE_COLS = Object.keys(COLS);
+function drawPanel() {
+  const p = $('panel'); p.innerHTML = '';
+  ROWS.forEach(([label, key, vals, show]) => {
+    if (show && !show(O)) return;
+    const row = document.createElement('div'); row.className = 'ob-av__row dt-row'; row.innerHTML = `<b>${label}</b>`;
+    const list = vals === 'col' ? STAGE_COLS.map((c) => [c, c]) : vals === 'pat' ? PATS.map((x) => [x, x]) : vals;
+    list.forEach(([nm, v]) => {
+      const b = document.createElement('button'); b.type = 'button'; b.className = 'ob-sw' + (O[key] === v ? ' on' : '');
+      if (vals === 'col') { b.style.background = COLS[v]; b.title = nm; b.setAttribute('aria-label', nm); }
+      else if (String(v).startsWith('#')) { b.style.background = v; b.title = nm; b.setAttribute('aria-label', nm || 'colour'); }
+      else b.textContent = nm;
+      b.onclick = () => { O[key] = v; tone(500 + Math.random() * 400, .05); draw(); };
+      row.appendChild(b);
+    });
+    p.appendChild(row);
+  });
+}
+const OPS = ['cute', 'stylish', 'gorgeous', 'cool', 'elegant', 'funny', 'weird'];
+OPS.forEach((w) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'ob-sw'; b.textContent = w; b.onclick = () => { O.opinion = O.opinion === w ? '' : w; draw(); }; $('opinions').appendChild(b); });
+function draw() {
+  $('model').innerHTML = modelSvg(O); $('heroModel').innerHTML = modelSvg(O);
+  $('desc').innerHTML = describe(O);
+  $('opinions').querySelectorAll('button').forEach((b) => b.classList.toggle('on', b.textContent === O.opinion));
+  drawPanel();
+}
+newTheme(); draw();
+
+// ---------- 2. слова ----------
+const icon = (o) => modelSvg(Object.assign({}, O, { opinion: '', hat: 'none', extra: 'none' }, o), 'mini');
+const WORDS = [
+  ['clothes', 'a hoodie', 'A warm top with a hood.', 'My grey hoodie is my favourite.', { top: 'hoodie', topCol: 'purple', topPat: 'plain', dress: 'none' }],
+  ['clothes', 'a jacket', 'A short coat. Often made of leather or denim.', 'She is wearing a black leather jacket.', { top: 'jacket', topCol: 'black', topPat: 'plain', dress: 'none' }],
+  ['clothes', 'a coat', 'A long, warm jacket for winter.', 'It\'s cold, so put on your coat!', { top: 'coat', topCol: 'red', topPat: 'checked', dress: 'none' }],
+  ['clothes', 'a crop top', 'A very short top.', 'Crop tops are popular in summer.', { top: 'crop', topCol: 'yellow', topPat: 'plain', bottom: 'shorts', dress: 'none' }],
+  ['clothes', 'a dress', 'One piece of clothing: top and skirt together.', 'What a pretty floral dress!', { dress: 'short', dressCol: 'pink', dressPat: 'floral' }],
+  ['clothes', 'a gown', 'A long, elegant dress for a special event.', 'The princess wore a golden gown.', { dress: 'gown', dressCol: 'gold', dressPat: 'glittery' }],
+  ['clothes', 'jeans', 'Trousers made of denim. Always plural!', 'These jeans are too long for me.', { bottom: 'jeans', botCol: 'blue', dress: 'none' }],
+  ['clothes', 'a skirt', 'Clothing that hangs from the waist.', 'Her skirt is shorter than mine.', { bottom: 'skirt', botCol: 'turquoise', botPat: 'striped', dress: 'none' }],
+  ['clothes', 'shorts', 'Short trousers for hot days.', 'I always wear shorts on the beach.', { bottom: 'shorts', botCol: 'orange', dress: 'none' }],
+  ['clothes', 'boots', 'Shoes that cover your ankles.', 'These boots are made for walking!', { shoes: 'boots', shoeCol: 'brown' }],
+  ['clothes', 'trainers', 'Sports shoes. (US: sneakers)', 'My new trainers are so comfortable.', { shoes: 'trainers', shoeCol: 'white' }],
+  ['clothes', 'sandals', 'Open summer shoes.', 'You can\'t wear sandals in the snow!', { shoes: 'sandals', shoeCol: 'gold' }],
+  ['accessories', 'a crown', 'Kings and queens wear it.', 'She looks like a queen in that crown.', { hat: 'crown' }],
+  ['accessories', 'a sun hat', 'A hat with a wide brim for the beach.', 'Don\'t forget your sun hat!', { hat: 'sunhat', hatCol: 'yellow' }],
+  ['accessories', 'a beanie', 'A warm knitted hat.', 'A woollen beanie keeps your head warm.', { hat: 'beanie', hatCol: 'blue' }],
+  ['accessories', 'sunglasses', 'Dark glasses for sunny days. Always plural!', 'Cool sunglasses make any outfit better.', { extra: 'sunglasses' }],
+  ['accessories', 'a handbag', 'A small bag for your things.', 'Her pink handbag matches her shoes.', { extra: 'bag', extraCol: 'pink' }],
+  ['accessories', 'a scarf', 'You wear it around your neck.', 'I knitted this scarf myself.', { extra: 'scarf', extraCol: 'red' }],
+  ['accessories', 'a necklace', 'Jewellery you wear around your neck.', 'The necklace is the shiniest thing in the room.', { extra: 'necklace' }],
+  ['patterns', 'striped', 'With lines.', 'A striped T-shirt looks sporty.', { top: 'tshirt', topCol: 'blue', topPat: 'striped', dress: 'none' }],
+  ['patterns', 'spotted', 'With dots. (also: polka dot)', 'I love this spotted skirt!', { bottom: 'skirt', botCol: 'red', botPat: 'spotted', dress: 'none' }],
+  ['patterns', 'checked', 'With squares, like a chessboard.', 'A checked shirt is perfect for a rock concert.', { top: 'jacket', topCol: 'red', topPat: 'checked', dress: 'none' }],
+  ['patterns', 'floral', 'With flowers.', 'Floral dresses are perfect for spring.', { dress: 'short', dressCol: 'green', dressPat: 'floral' }],
+  ['patterns', 'glittery', 'Shiny with tiny sparkles.', 'Her glittery gown was the most beautiful.', { dress: 'gown', dressCol: 'purple', dressPat: 'glittery' }],
+  ['patterns', 'plain', 'One colour, no pattern.', 'A plain white T-shirt goes with everything.', { top: 'tshirt', topCol: 'white', topPat: 'plain', dress: 'none' }],
+];
+const CATS = [['clothes', 'Clothes'], ['accessories', 'Accessories'], ['patterns', 'Patterns'], ['all', 'All']];
+const vocab = $('vocab'), tabs = $('catTabs');
+function drawVocab(cat) {
+  vocab.innerHTML = '';
+  WORDS.filter((w) => cat === 'all' || w[0] === cat).forEach(([, word, def, ex, o]) => {
+    const card = document.createElement('div'); card.className = 'card';
+    card.innerHTML = `<div class="in"><div class="face front">${icon(o)}<b>${word}</b></div><div class="face back"><b>${word}</b><span>${def}</span><em>${ex}</em></div></div>`;
+    card.onclick = () => { card.classList.toggle('flip'); say(word.replace(/^(a|an) /, '')); gain('v-' + word, 2, '+2 XP · ' + word); };
+    vocab.appendChild(card);
+  });
+}
+CATS.forEach(([id, label], i) => { const b = document.createElement('button'); b.textContent = label; if (!i) b.className = 'on'; b.onclick = () => { tabs.querySelectorAll('button').forEach((x) => x.classList.remove('on')); b.classList.add('on'); drawVocab(id); }; tabs.appendChild(b); });
+drawVocab('clothes');
+
+// ---------- 4. порядок слів ----------
+const ORDERS = [
+  'a beautiful long red silk dress', 'a cool small black leather bag', 'an amazing big yellow hat', 'a cute little pink woollen scarf',
+  'a stylish new blue denim jacket', 'a lovely short green floral skirt', 'a funny old striped cotton T-shirt', 'gorgeous long gold glittery gowns',
+];
+const ol = $('orderList');
+ORDERS.forEach((phrase, i) => {
+  const words = phrase.split(' '); const d = document.createElement('div'); d.className = 'dt-ord';
+  d.innerHTML = `<div class="dt-ord__out"></div><div class="dt-ord__pool"></div>`;
+  const out = d.querySelector('.dt-ord__out'), pool = d.querySelector('.dt-ord__pool');
+  const reset = () => { out.innerHTML = ''; pool.innerHTML = ''; [...words].sort(() => Math.random() - .5).forEach((w) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'w'; b.textContent = w; b.onclick = () => {
+    const k = out.children.length; if (w !== words[k]) { b.classList.add('bad'); buzz(); setTimeout(() => b.classList.remove('bad'), 400); return; }
+    const s = document.createElement('span'); s.className = 'w ok'; s.textContent = w; out.appendChild(s); b.remove(); tone(500 + k * 70, .06);
+    if (out.children.length === words.length) { d.classList.add('done'); gain('ord' + i, 15, '+15 XP · perfect order!'); say(phrase); } }; pool.appendChild(b); }); };
+  reset(); ol.appendChild(d);
+});
+
+// ---------- 5. сортування на подіумі ----------
+const CW = { opinion: ['gorgeous', 'ugly', 'cute', 'stylish', 'weird', 'amazing', 'boring', 'lovely'], size: ['long', 'short', 'tiny', 'huge', 'little', 'tall', 'wide', 'big'], colour: ['red', 'purple', 'gold', 'pink', 'black', 'turquoise', 'silver', 'orange'], material: ['silk', 'leather', 'denim', 'woollen', 'cotton', 'velvet', 'plastic', 'golden'] };
+let cw = null;
+function cwNext() { const cats = Object.keys(CW); const c = cats[Math.floor(Math.random() * cats.length)]; const w = CW[c][Math.floor(Math.random() * CW[c].length)]; cw.cur = c; const el = $('cwWord'); el.textContent = w; el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop'); }
+function cwStart() {
+  cw = { t: 30, score: 0, combo: 1, cur: '' };
+  $('cwBtns').innerHTML = ''; Object.keys(CW).forEach((c) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'opt dt-cwb dt-cwb--' + c; b.textContent = c; b.onclick = () => cwAns(c); $('cwBtns').appendChild(b); });
+  cwNext(); clearInterval(cw.iv);
+  cw.iv = setInterval(() => { cw.t--; $('cwTime').textContent = cw.t; if (cw.t <= 0) cwEnd(); }, 1000);
+}
+function cwAns(c) {
+  if (!cw || cw.t <= 0) return;
+  if (c === cw.cur) { cw.score += 10 * cw.combo; cw.combo = Math.min(5, cw.combo + 1); tone(600 + cw.combo * 80, .06); } else { cw.combo = 1; buzz(); }
+  $('cwScore').textContent = cw.score; $('cwCombo').textContent = 'x' + cw.combo; cwNext();
+}
+function cwEnd() {
+  clearInterval(cw.iv); $('cwWord').textContent = `Score: ${cw.score}!`; const n = Math.min(60, Math.round(cw.score / 5));
+  $('cwBtns').innerHTML = '<button class="btn" id="cwAgain" type="button">Play again</button>'; $('cwAgain').onclick = cwStart;
+  if (n > 0) gain('cw' + Date.now(), n, `+${n} XP · catwalk score ${cw.score}`); if (cw.score >= 200) { fanfare(); burst(30); }
+}
+$('cwStart').onclick = cwStart;
+
+// ---------- 6. хто краще ----------
+const rnd2 = (a) => a[Math.floor(Math.random() * a.length)];
+function randOutfit() {
+  const dress = Math.random() < .35 ? rnd2(['short', 'gown']) : 'none';
+  return Object.assign({}, O, { opinion: '', dress, top: rnd2(Object.keys(PIECES.top)), bottom: rnd2(Object.keys(PIECES.bottom)), topCol: rnd2(STAGE_COLS), botCol: rnd2(STAGE_COLS), dressCol: rnd2(STAGE_COLS), topPat: rnd2(PATS), botPat: rnd2(PATS), dressPat: rnd2(PATS), shoes: rnd2(Object.keys(PIECES.shoes)), shoeCol: rnd2(STAGE_COLS), hat: rnd2(Object.keys(PIECES.hat)), hatCol: rnd2(STAGE_COLS), extra: rnd2(Object.keys(PIECES.extra)), extraCol: rnd2(STAGE_COLS), hair: rnd2(['#7a4a2a', '#262636', '#f2c94c', '#d9534f']), hairStyle: rnd2(['long', 'bun', 'pony', 'short']) });
+}
+let vsN = 0;
+function vsNew() { $('vsA').innerHTML = modelSvg(randOutfit()); $('vsB').innerHTML = modelSvg(randOutfit()); document.querySelectorAll('.dt-vs .btn').forEach((b) => { b.disabled = false; b.textContent = 'Vote ' + b.dataset.v; }); }
+document.querySelectorAll('.dt-vs .btn').forEach((b) => b.onclick = () => { document.querySelectorAll('.dt-vs .btn').forEach((x) => x.disabled = true); b.textContent = 'Winner!'; toast('Now explain: "Outfit ' + b.dataset.v + ' is ... than ..."'); gain('vs' + (vsN++), 10, '+10 XP · great vote!'); });
+$('vsNew').onclick = vsNew; vsNew();
+const CMP = [
+  ['This dress is ___ than that one. (long)', 'longer', ['more long', 'longest']],
+  ['Your outfit is ___ than mine! (good)', 'better', ['gooder', 'best']],
+  ['That was the ___ show ever. (bad)', 'worst', ['baddest', 'worse']],
+  ['The red boots are ___ than the black ones. (big)', 'bigger', ['biger', 'more big']],
+  ['She is the ___ model on the runway. (beautiful)', 'most beautiful', ['beautifullest', 'more beautiful']],
+  ['My hat is ___ than your hat. (pretty)', 'prettier', ['prettyer', 'more pretty']],
+  ['Winter outfits are ___ than summer outfits. (warm)', 'warmer', ['more warm', 'warmest']],
+  ['Who has the ___ shoes? (funny)', 'funniest', ['funnyest', 'most funny']],
+  ['Today\'s theme is ___ than yesterday\'s. (difficult)', 'more difficult', ['difficulter', 'most difficult']],
+  ['This is the ___ dress in the shop. (expensive)', 'most expensive', ['expensivest', 'more expensive']],
+];
+const cl = $('cmpList');
+CMP.forEach(([s, ok, bad], i) => {
+  const q = document.createElement('div'); q.className = 'q';
+  const [a, b] = s.split('___');
+  q.innerHTML = `<span class="n">${i + 1}</span><span>${a}<span class="slot">?</span>${b}</span><span></span>`;
+  const box = q.lastElementChild;
+  [ok, ...bad].sort(() => Math.random() - .5).forEach((o) => { const btn = document.createElement('button'); btn.className = 'opt'; btn.textContent = o; btn.onclick = () => {
+    if (o === ok) { btn.classList.add('ok'); q.querySelector('.slot').textContent = o; box.querySelectorAll('button').forEach((x) => x.disabled = true); gain('cmp' + i, 10); }
+    else { btn.classList.remove('bad'); void btn.offsetWidth; btn.classList.add('bad'); buzz(); } }; box.appendChild(btn); });
+  cl.appendChild(q);
+});
+
+// ---------- 7. баги ----------
+const BUGS = [
+  ['She is wearing a red big hat.', false, 'She is wearing a big red hat.'],
+  ['My dress is more prettier than yours.', false, 'My dress is prettier than yours.'],
+  ['This is the most good outfit.', false, 'This is the best outfit.'],
+  ['Your boots are bigger that mine.', false, 'Your boots are bigger than mine.'],
+  ['It\'s the beautifulest dress!', false, 'It\'s the most beautiful dress!'],
+  ['I love this silk blue scarf.', false, 'I love this blue silk scarf.'],
+  ['She is the tallest model in the show.', true, 'Correct!'],
+  ['These jeans are cooler than those.', true, 'Correct!'],
+];
+const bl = $('bugList');
+BUGS.forEach(([s, ok, fix], i) => {
+  const d = document.createElement('div'); d.className = 'bug';
+  d.innerHTML = `<span><b>${i + 1}.</b> ${s}</span><span><button class="opt">OK</button><button class="opt">BUG</button></span><span class="fix">${fix}</span>`;
+  const [bOk, bBug] = d.querySelectorAll('button');
+  const ans = (v, btn) => { if (v === ok) { btn.classList.add('ok'); d.classList.add('done'); bOk.disabled = bBug.disabled = true; gain('b' + i, 15, '+15 XP · bug fixed!'); } else { btn.classList.remove('bad'); void btn.offsetWidth; btn.classList.add('bad'); buzz(); } };
+  bOk.onclick = () => ans(true, bOk); bBug.onclick = () => ans(false, bBug);
+  bl.appendChild(d);
+});
+
+// ---------- 8. місії ----------
+const MIS = [
+  [{ dress: 'gown', dressCol: 'purple', dressPat: 'glittery', hat: 'crown' }, 'Theme master', 'Play one round. Dress for the theme.', '"I\'m wearing a long purple glittery gown and a golden crown."', 20],
+  [{ top: 'tshirt', topCol: 'red', dress: 'none', bottom: 'shorts', botCol: 'red' }, 'Two colours only', 'Use only two colours in your outfit.', '"My outfit is the brightest in the room!"', 20],
+  [{ dress: 'short', dressCol: 'yellow', dressPat: 'spotted' }, 'Fair judge', 'Vote for other players. Explain one vote.', '"Number 3 was more elegant than number 5."', 20],
+  [{ dress: 'gown', dressCol: 'gold', dressPat: 'plain', extra: 'necklace' }, 'Top 3', 'Get into the top 3.', '"I won because my outfit was the most stylish."', 30],
+  [{ top: 'jacket', topCol: 'black', topPat: 'checked', dress: 'none', bottom: 'skirt', botPat: 'striped' }, 'Pattern party', 'Use three different patterns.', '"I chose a checked jacket and a striped skirt."', 20],
+  [{ top: 'hoodie', topCol: 'turquoise', dress: 'none', extra: 'sunglasses' }, 'Copycat', 'Your teacher describes an outfit. Make it in the game!', 'Listen carefully: colour, pattern, material.', 30],
+  [{ top: 'coat', topCol: 'white', dress: 'none', extra: 'scarf', extraCol: 'red' }, 'Fashion critic', 'Compare two players\' outfits.', '"Her coat is warmer, but his jacket is cooler."', 20],
+  [{ dress: 'short', dressCol: 'pink', dressPat: 'floral' }, 'Kind star', 'Write 3 kind messages in the chat.', '"Your outfit is gorgeous!" Never share personal information.', 20],
+];
+const ml = $('misList');
+MIS.forEach(([o, title, task, sayIt, n], i) => {
+  const m = document.createElement('div'); m.className = 'mis';
+  const pv = document.createElement('div'); pv.className = 'dt-mispv'; pv.innerHTML = icon(o); m.appendChild(pv);
+  const body = document.createElement('div'); body.innerHTML = `<h3>${title}</h3><p>${task}</p><div class="say">${sayIt}</div>`; m.appendChild(body);
+  const row = document.createElement('div'); row.className = 'row'; row.innerHTML = `<span class="xp">+${n} XP</span>`;
+  const btn = document.createElement('button'); btn.className = 'btn'; btn.textContent = 'Done'; btn.onclick = () => { m.classList.add('done'); btn.disabled = true; gain('m' + i, n, `Mission complete! +${n} XP`); };
+  row.appendChild(btn); m.appendChild(row); ml.appendChild(m);
+});
+
+// ---------- 9. ток-шоу ----------
+const TALK = [
+  'Describe your favourite outfit. Use 3 adjectives for one thing!',
+  'Compare your school clothes and your weekend clothes.',
+  'What is the most beautiful dress or suit you have ever seen?',
+  'Which is better: comfortable clothes or stylish clothes? Why?',
+  'Describe what your teacher is wearing today.',
+  'Plan an outfit for a party on the Moon!',
+  'What clothes do you wear when it\'s cold? Which are the warmest?',
+  'Who is the most stylish person you know? Describe them.',
+];
+const tl = $('talkList');
+TALK.forEach((q) => { const d = document.createElement('div'); d.className = 'tk'; d.innerHTML = `<span>${q}</span><small>adjectives · comparatives</small>`; d.onclick = () => { tl.querySelectorAll('.tk').forEach((x) => x.style.outline = ''); d.style.outline = '5px solid #8e6cff'; }; tl.appendChild(d); });
+let tmr; $('timerBtn').onclick = () => { clearInterval(tmr); let s = 30; const el = $('timer30'); el.textContent = '0:30';
+  tmr = setInterval(() => { s--; el.textContent = '0:' + String(s).padStart(2, '0'); if (s <= 0) { clearInterval(tmr); el.textContent = 'Bravo!'; gain('talk' + Date.now(), 15, 'Great talk! +15 XP'); } }, 1000); };
+
+// ---------- 10. відео (офіційний канал гри, перевірено) ----------
+const VIDS = [
+  ['_rhdoaU3g_4', 'Halloween trailer', 'Pause 3 times. Describe one outfit: "She is wearing a long black ... dress."', 'adjectives', 0],
+  ['5Zfy9QW4s5A', 'Summer trailer', 'Which outfit is the most colourful? Which is the coolest?', 'superlatives', 0],
+  ['XSJoVVhy73w', 'Trip to Tokyo trailer', 'Compare two outfits: "The ... is brighter than the ..."', 'comparatives', 0],
+  ['Xy4wZFY-mS8', 'Winter teaser', 'What winter clothes can you see? Which outfit looks the warmest?', 'vocabulary', 0],
+  ['33j-JPi357g', 'Valentines trailer', 'Find 3 colours and 2 patterns. Describe the best outfit.', 'adjectives', 0],
+  ['tOgHJD-Brzk', 'Quest trailer', 'What happens in the story? Who is wearing the strangest costume?', 'speaking', 0],
+];
+const vdl = $('vidList');
+VIDS.forEach(([id, title, task, mode, short], i) => {
+  const d = document.createElement('div'); d.className = 'vid' + (short ? ' short' : '');
+  d.innerHTML = `<div class="frame"><button class="play" type="button"><span>PLAY</span></button></div><div class="info"><span class="mode">${mode}</span><h3>${title}</h3><div class="task">${task}</div><button class="btn alt" type="button">I talked about it</button></div>`;
+  d.querySelector('.play').onclick = (e) => { e.currentTarget.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${title}"></iframe>`; };
+  const b = d.querySelector('.info .btn'); b.onclick = () => { b.disabled = true; b.textContent = 'Great!'; gain('vid' + i, 20, '+20 XP · great talk!'); };
+  vdl.appendChild(d);
+});
+
+</script>
+</body>
+</html>
