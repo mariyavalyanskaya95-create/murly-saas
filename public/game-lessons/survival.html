@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Survival Mission: Present Simple vs Present Continuous | Murly</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.svg">
+<style>
+:root{--sky:#7ec8ff;--sky2:#bfe6ff;--grass:#5cbf3a;--grass2:#3e8f25;--dirt:#8a5a35;--ink:#1d1d2b;--paper:#fffdf6;--gold:#ffd23f;--dia:#33e0d6;--red:#ff5a5f;--pink:#ff8fd8;--violet:#8e6cff}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Trebuchet MS",Verdana,system-ui,sans-serif;color:var(--ink);background:linear-gradient(180deg,var(--sky) 0,var(--sky2) 520px,#e9f7ff 100%);min-height:100vh}
+img,canvas{image-rendering:pixelated}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+/* шапка */
+.hero{position:relative;padding:34px 18px 0;text-align:center;overflow:hidden}
+.cloud{position:absolute;background:#fff;height:22px;box-shadow:22px 0 #fff,44px 0 #fff,22px -22px #fff;opacity:.9}
+.hero h1{margin:0;font-size:clamp(34px,6vw,64px);letter-spacing:2px;color:#fff;text-shadow:4px 4px 0 var(--ink),-2px -2px 0 var(--ink),2px -2px 0 var(--ink),-2px 2px 0 var(--ink);text-transform:uppercase}
+.hero p{margin:8px 0 18px;font-size:20px;font-weight:700;color:var(--ink)}
+.ground{height:56px;background:repeating-linear-gradient(90deg,var(--grass) 0 16px,#6fd14a 16px 32px);border-top:6px solid var(--grass2);position:relative}
+.ground::after{content:"";position:absolute;left:0;right:0;top:56px;height:40px;background:repeating-linear-gradient(90deg,var(--dirt) 0 16px,#9c6a42 16px 32px)}
+.hero-row{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:-4px}
+/* XP */
+.hud{position:sticky;top:0;z-index:20;display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;padding:10px;background:rgba(29,29,43,.92);color:#fff;margin-top:40px;border-bottom:4px solid #000}
+.hud b{font-size:18px}
+.bar{width:min(340px,60vw);height:22px;background:#333;border:3px solid #000;position:relative}
+.bar i{position:absolute;inset:0 auto 0 0;width:0;background:repeating-linear-gradient(90deg,#7cff4f 0 10px,#55d62f 10px 20px);transition:width .4s}
+.hud .lvl{background:#7cff4f;color:#000;font-weight:900;padding:2px 10px;border:3px solid #000}
+.dia{display:inline-flex;align-items:center;gap:6px;font-weight:900;font-size:18px}
+nav.steps{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:22px 0 4px}
+nav.steps a{background:#fff;border:3px solid var(--ink);padding:6px 12px;font-weight:800;color:var(--ink);text-decoration:none;box-shadow:3px 3px 0 var(--ink)}
+nav.steps a:hover{background:var(--gold)}
+/* секції */
+section{margin-top:38px;background:var(--paper);border:4px solid var(--ink);box-shadow:8px 8px 0 rgba(29,29,43,.85);padding:24px}
+section h2{margin:0 0 6px;font-size:30px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tag{font-size:14px;font-weight:900;padding:3px 10px;border:3px solid var(--ink);background:var(--gold);text-transform:uppercase;letter-spacing:1px}
+.sub{margin:0 0 18px;font-size:17px;color:#444}
+.btn{font:inherit;font-weight:900;border:3px solid var(--ink);background:#7cff4f;padding:8px 16px;cursor:pointer;box-shadow:3px 3px 0 var(--ink);text-transform:uppercase;letter-spacing:.5px}
+.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.btn.alt{background:#fff}
+/* словник */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
+.card{perspective:800px;height:190px;cursor:pointer}
+.card .in{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+.card.flip .in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;border:3px solid var(--ink);background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:10px;text-align:center}
+.face b{font-size:19px}
+.face.back{transform:rotateY(180deg);background:#fff5c9;font-size:15px;line-height:1.35}
+.face.back b{font-size:16px;color:#7a4a00}
+.face canvas{width:84px;height:84px}
+.cat-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.cat-tabs button{font:inherit;font-weight:800;border:3px solid var(--ink);background:#fff;padding:5px 12px;cursor:pointer}
+.cat-tabs button.on{background:var(--dia)}
+/* правило */
+.modes{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.mode{border:4px solid var(--ink);padding:18px;position:relative}
+.mode.s{background:#e6fff0}.mode.c{background:#fff0fb}
+.mode h3{margin:0 0 4px;font-size:24px}
+.mode .f{font-family:Consolas,monospace;font-weight:900;font-size:17px;background:#fff;border:3px solid var(--ink);padding:6px 10px;display:inline-block;margin:6px 0}
+.mode ul{margin:8px 0 0;padding-left:20px;font-size:17px;line-height:1.55}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.chip{border:2px solid var(--ink);background:#fff;padding:2px 9px;font-weight:800;font-size:14px}
+.note{margin-top:16px;padding:12px 16px;border:3px dashed var(--ink);background:#fff;font-size:16px}
+/* вправи */
+.q{display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:2px dashed #d9d2bf;font-size:18px}
+.q:last-child{border-bottom:0}
+.q .n{width:34px;height:34px;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;font-weight:900}
+.opt{font:inherit;font-size:17px;font-weight:800;border:3px solid var(--ink);background:#fff;padding:4px 12px;cursor:pointer;margin:0 3px}
+.opt.ok{background:#7cff4f}.opt.bad{background:var(--red);color:#fff;animation:shake .3s}
+.slot{display:inline-block;min-width:96px;border-bottom:3px solid var(--ink);text-align:center;font-weight:900;color:#2b7a0b}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.stream{display:grid;grid-template-columns:260px 1fr;gap:22px;align-items:start}
+.screen{border:6px solid var(--ink);background:#222;padding:8px;position:sticky;top:70px}
+.screen canvas{width:100%;display:block;background:var(--sky)}
+.live{display:inline-block;background:var(--red);color:#fff;font-weight:900;padding:2px 8px;margin:6px 0 0;letter-spacing:1px}
+.text{font-size:19px;line-height:2.1}
+.text input{font:inherit;font-weight:800;width:150px;border:0;border-bottom:3px solid var(--ink);background:#fffbe6;padding:0 6px;text-align:center}
+.text input.ok{background:#c9ffb3}.text input.bad{background:#ffd0d0}
+.text small{color:#777;font-weight:700}
+.sort{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:14px}
+.bin{border:4px solid var(--ink);min-height:160px;padding:12px;cursor:pointer}
+.bin h4{margin:0 0 10px;font-size:20px}
+.bin.s{background:#e6fff0}.bin.c{background:#fff0fb}
+.pool{display:flex;flex-wrap:wrap;gap:8px;min-height:44px;padding:10px;border:3px dashed var(--ink);background:#fff}
+.w{font:inherit;font-weight:900;font-size:16px;border:3px solid var(--ink);background:var(--gold);padding:5px 11px;cursor:pointer}
+.w.sel{background:var(--dia);transform:translateY(-3px)}
+.w.ok{background:#7cff4f}.w.bad{background:var(--red);color:#fff}
+.bug{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;padding:12px 0;border-bottom:2px dashed #d9d2bf;font-size:18px}
+.bug .fix{grid-column:1/-1;font-weight:800;color:#2b7a0b;display:none}
+.bug.done .fix{display:block}
+/* місії */
+.missions{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.mis{border:4px solid var(--ink);background:#fff;display:grid;grid-template-columns:72px 1fr;gap:12px;padding:14px;position:relative}
+.mis canvas{width:72px;height:72px}
+.mis h3{margin:0 0 4px;font-size:20px}
+.mis p{margin:0 0 6px;font-size:16px}
+.mis .say{background:#f1ecff;border-left:5px solid var(--violet);padding:6px 10px;font-size:15px;font-style:italic}
+.mis .row{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center}
+.mis .xp{font-weight:900;color:#2b7a0b}
+.mis.done{background:#e9ffe0}
+.mis.done::after{content:"DONE";position:absolute;top:10px;right:-8px;background:#7cff4f;border:3px solid var(--ink);font-weight:900;padding:2px 10px;transform:rotate(8deg)}
+.talk{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.tk{border:4px solid var(--ink);padding:16px;font-size:18px;font-weight:700;min-height:120px;display:flex;flex-direction:column;justify-content:space-between;gap:10px}
+.tk:nth-child(4n+1){background:#e6fff0}.tk:nth-child(4n+2){background:#fff0fb}.tk:nth-child(4n+3){background:#fff7d6}.tk:nth-child(4n+4){background:#e3f4ff}
+.tk small{font-weight:800;color:#555;font-size:14px}
+.timer{font-size:46px;font-weight:900;text-align:center;margin:10px 0}
+.vids{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.vid{border:4px solid var(--ink);background:#fff;display:flex;flex-direction:column}
+.vid .frame{position:relative;aspect-ratio:16/9;background:#1d1d2b}
+.vid.short .frame{aspect-ratio:9/16;max-height:460px}
+.vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;display:grid;place-items:center;color:#fff;font-weight:900;font-size:18px;cursor:pointer;background:repeating-linear-gradient(45deg,#2a2a40 0 14px,#24243a 14px 28px);border:0;font-family:inherit}
+.vid .play span{background:var(--red);border:3px solid #000;padding:10px 18px;box-shadow:4px 4px 0 #000}
+.vid .info{padding:12px 14px;display:grid;gap:6px}
+.vid h3{margin:0;font-size:18px}
+.vid .task{background:#f1ecff;border-left:5px solid var(--violet);padding:6px 10px;font-size:15px}
+.vid .mode{display:inline-block;width:max-content;font-size:12px;font-weight:900;border:2px solid var(--ink);padding:1px 8px;background:var(--gold)}
+details.teacher{margin-top:30px;border:3px dashed #888;background:#fff;padding:12px 16px;font-size:15px}
+details.teacher summary{font-weight:900;cursor:pointer}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(120px);background:var(--ink);color:#fff;font-weight:900;padding:12px 22px;border:4px solid #7cff4f;transition:transform .3s;z-index:50;display:flex;gap:10px;align-items:center}
+.toast.show{transform:translateX(-50%) translateY(0)}
+@media(max-width:760px){.modes,.sort,.stream{grid-template-columns:1fr}.screen{position:static}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="cloud" style="left:8%;top:40px"></div>
+  <div class="cloud" style="left:70%;top:70px"></div>
+  <div class="cloud" style="left:40%;top:18px;opacity:.6"></div>
+  <h1>Survival Mission</h1>
+  <p>Present Simple vs Present Continuous · Level A2-B1</p>
+  <div class="hero-row" id="heroBlocks"></div>
+  <div class="ground"></div>
+</header>
+
+<div class="hud">
+  <span class="lvl" id="lvl">LEVEL 1</span>
+  <div class="bar"><i id="xpbar"></i></div>
+  <b id="xptext">0 XP</b>
+  <span class="dia"><canvas id="diaIcon" width="16" height="16" style="width:26px;height:26px"></canvas><span id="dias">0</span></span>
+</div>
+
+<div class="wrap">
+  <nav class="steps">
+    <a href="#kit">1. Survival kit</a>
+    <a href="#rules">2. Two modes</a>
+    <a href="#choose">3. Choose</a>
+    <a href="#stream">4. Live stream</a>
+    <a href="#sort">5. Sort</a>
+    <a href="#bugs">6. Fix the bugs</a>
+    <a href="#missions">7. Missions</a>
+    <a href="#talk">8. Streamer mode</a>
+    <a href="#watch">9. Watch &amp; talk</a>
+  </nav>
+
+  <section id="kit">
+    <h2>Your survival kit <span class="tag">words</span></h2>
+    <p class="sub">Click a card: hear the word and see what it is in real life.</p>
+    <div class="cat-tabs" id="catTabs"></div>
+    <div class="grid" id="vocab"></div>
+  </section>
+
+  <section id="rules">
+    <h2>Two game modes <span class="tag">grammar</span></h2>
+    <p class="sub">Every sentence is in one of two modes. Which one?</p>
+    <div class="modes">
+      <div class="mode s">
+        <h3>Present Simple</h3>
+        <b>Game rules and habits</b>
+        <div class="f">I / you / we / they <u>build</u> · he / she / it <u>builds</u></div>
+        <ul>
+          <li>Zombies <b>burn</b> in the sun.</li>
+          <li>I always <b>sleep</b> in a bed at night.</li>
+          <li>Wheat <b>grows</b> faster near water.</li>
+          <li>She <b>doesn't go</b> out without a torch.</li>
+        </ul>
+        <div class="chips"><span class="chip">always</span><span class="chip">usually</span><span class="chip">often</span><span class="chip">never</span><span class="chip">every day</span><span class="chip">at night</span></div>
+      </div>
+      <div class="mode c">
+        <h3>Present Continuous</h3>
+        <b>Live: what is happening now</b>
+        <div class="f">am / is / are + <u>building</u></div>
+        <ul>
+          <li>I<b>'m building</b> a house right now.</li>
+          <li>Look! A spider <b>is climbing</b> the wall!</li>
+          <li>We<b>'re looking</b> for diamonds.</li>
+          <li>It <b>isn't raining</b> at the moment.</li>
+        </ul>
+        <div class="chips"><span class="chip">now</span><span class="chip">right now</span><span class="chip">at the moment</span><span class="chip">Look!</span><span class="chip">Listen!</span><span class="chip">Hurry up!</span></div>
+      </div>
+    </div>
+    <div class="note"><b>Secret level:</b> some verbs never go into live mode: <b>know, like, love, want, need, have</b> (= own), <b>understand</b>.<br>
+      I <b>know</b> how to make a pickaxe. Not: <s>I am knowing</s>.</div>
+  </section>
+
+  <section id="choose">
+    <h2>Choose the mode <span class="tag">+10 XP each</span></h2>
+    <p class="sub">Click the correct answer.</p>
+    <div id="chooseList"></div>
+  </section>
+
+  <section id="stream">
+    <h2>Live stream <span class="tag">+10 XP each</span></h2>
+    <p class="sub">A player is streaming. Write the verbs in the correct form and press Enter.</p>
+    <div class="stream">
+      <div class="screen"><canvas id="scene" width="128" height="96"></canvas><span class="live">LIVE</span></div>
+      <div class="text" id="streamText"></div>
+    </div>
+    <p><button class="btn alt" id="streamShow">Show answers</button></p>
+  </section>
+
+  <section id="sort">
+    <h2>Sort the signal words <span class="tag">+5 XP each</span></h2>
+    <p class="sub">Click a word, then click the right chest.</p>
+    <div class="pool" id="pool"></div>
+    <div class="sort">
+      <div class="bin s" data-b="s"><h4>Present Simple</h4><div class="pool" style="border:0;background:none;padding:0"></div></div>
+      <div class="bin c" data-b="c"><h4>Present Continuous</h4><div class="pool" style="border:0;background:none;padding:0"></div></div>
+    </div>
+  </section>
+
+  <section id="bugs">
+    <h2>Fix the bugs <span class="tag">+15 XP each</span></h2>
+    <p class="sub">The game has bugs! Is the sentence OK or is it a bug? Say the correct sentence out loud.</p>
+    <div id="bugList"></div>
+  </section>
+
+  <section id="missions">
+    <h2>Missions for the game <span class="tag">play + speak</span></h2>
+    <p class="sub">Open the game in survival mode. Do the mission and say the sentences while you play. Then click DONE.</p>
+    <div class="missions" id="misList"></div>
+  </section>
+
+  <section id="talk">
+    <h2>Streamer mode <span class="tag">speaking</span></h2>
+    <p class="sub">Pick a card and talk for 30 seconds like a real streamer. Use both modes!</p>
+    <div class="timer" id="timer">0:30</div>
+    <p style="text-align:center"><button class="btn" id="timerBtn">Start 30 seconds</button></p>
+    <div class="talk" id="talkList"></div>
+  </section>
+
+  <section id="watch">
+    <h2>Watch &amp; talk <span class="tag">videos</span></h2>
+    <p class="sub">Official videos from the game's YouTube channel. Watch, pause and talk!</p>
+    <div class="vids" id="vidList"></div>
+  </section>
+
+  <details class="teacher">
+    <summary>Для учителя: план на 50-60 минут</summary>
+    <p>1. Survival kit (8 мин): Ученик называет блоки, переворачивает карточки, говорит, где это в жизни. 2. Two modes (5 мин): пусть сама объяснит разницу на примерах из игры. 3-6. Тест (15-20 мин): Choose, Live stream, Sort, Fix the bugs. Фиксируйте ошибки, особенно -s в he/she/it и глаголы know/like/want. 7. Missions (15-20 мин): играете, ученик комментирует; если ошибается в форме, просто повторяете правильно. 8. Streamer mode (5 мин) в конце или вместо одной миссии.</p>
+    <p>Домашка: записать 1 минуту видео или голосового «My survival day»: 3 предложения Present Simple (что делаю обычно) + 3 Present Continuous (что делаю прямо сейчас в игре).</p>
+  </details>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ---------- піксельні текстури (свої, процедурні) ----------
+let seed = 7;
+const rnd = () => { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; };
+const pick = (a) => a[Math.floor(rnd() * a.length)];
+function tex(fn) { const c = document.createElement('canvas'); c.width = c.height = 16; const x = c.getContext('2d'); fn(x); return c; }
+const px = (x, i, j, col) => { x.fillStyle = col; x.fillRect(i, j, 1, 1); };
+const noise = (cols) => tex((x) => { for (let i = 0; i < 16; i++) for (let j = 0; j < 16; j++) px(x, i, j, pick(cols)); });
+const T = {};
+T.grassTop = noise(['#5cbf3a', '#6fd14a', '#4fae30', '#66c843', '#5cbf3a']);
+T.dirt = noise(['#8a5a35', '#9c6a42', '#7a4d2c', '#93603a']);
+T.grassSide = tex((x) => { x.drawImage(T.dirt, 0, 0); for (let i = 0; i < 16; i++) { const h = 3 + Math.floor(rnd() * 3); for (let j = 0; j < h; j++) px(x, i, j, pick(['#5cbf3a', '#6fd14a', '#4fae30'])); } });
+T.stone = noise(['#8d8d8d', '#7f7f7f', '#9a9a9a', '#868686', '#8d8d8d']);
+T.cobble = tex((x) => { x.drawImage(noise(['#8a8a8a', '#9b9b9b', '#7d7d7d']), 0, 0); x.fillStyle = '#4f4f4f'; [[0, 4, 16, 1], [0, 10, 16, 1], [5, 0, 1, 4], [11, 4, 1, 6], [3, 10, 1, 6], [9, 11, 1, 5], [14, 0, 1, 4]].forEach((r) => x.fillRect(...r)); });
+T.sand = noise(['#e9d898', '#efe1a8', '#dccb88', '#e6d494']);
+T.logSide = tex((x) => { for (let i = 0; i < 16; i++) { const c = pick(['#6b4a2b', '#5c3e22', '#77532f']); for (let j = 0; j < 16; j++) px(x, i, j, rnd() < .2 ? '#4d3319' : c); } });
+T.logTop = tex((x) => { for (let i = 0; i < 16; i++) for (let j = 0; j < 16; j++) { const d = Math.max(Math.abs(i - 7.5), Math.abs(j - 7.5)); px(x, i, j, d > 6.5 ? '#5c3e22' : (Math.floor(d) % 2 ? '#c49a5b' : '#b5894d')); } });
+T.planks = tex((x) => { for (let j = 0; j < 16; j++) for (let i = 0; i < 16; i++) px(x, i, j, j % 4 === 3 ? '#7a5530' : pick(['#b5884f', '#a97c45', '#bd9259'])); x.fillStyle = '#7a5530'; [[5, 0], [12, 4], [3, 8], [10, 12]].forEach(([a, b]) => x.fillRect(a, b, 1, 3)); });
+T.glass = tex((x) => { x.fillStyle = '#d9f4ff'; x.fillRect(0, 0, 16, 16); x.fillStyle = '#ffffff'; [[3, 3], [4, 4], [5, 5], [10, 8], [11, 9]].forEach(([a, b]) => x.fillRect(a, b, 1, 1)); x.strokeStyle = '#9fd6ec'; x.lineWidth = 1; x.strokeRect(.5, .5, 15, 15); });
+T.brick = tex((x) => { x.fillStyle = '#c9c1b5'; x.fillRect(0, 0, 16, 16); for (let r = 0; r < 4; r++) for (let k = -1; k < 2; k++) { const ox = (r % 2) * 4 + k * 8; for (let i = 0; i < 7; i++) for (let j = 0; j < 3; j++) { const xi = ox + i; if (xi >= 0 && xi < 16) px(x, xi, r * 4 + j, pick(['#a8483a', '#b5523f', '#9b4133'])); } } });
+T.water = noise(['#3f76e4', '#4a82ee', '#3a6ad6', '#4f8af2']);
+T.furnaceFront = tex((x) => { x.drawImage(T.cobble, 0, 0); x.fillStyle = '#2a2a2a'; x.fillRect(4, 8, 8, 6); x.fillStyle = '#ff9a2e'; x.fillRect(5, 11, 6, 3); x.fillStyle = '#ffd23f'; x.fillRect(6, 12, 4, 2); x.fillStyle = '#555'; x.fillRect(4, 3, 8, 2); });
+T.tableTop = tex((x) => { x.drawImage(T.planks, 0, 0); x.fillStyle = '#5a3c1e'; x.fillRect(0, 0, 16, 1); x.fillRect(0, 15, 16, 1); x.fillRect(0, 0, 1, 16); x.fillRect(15, 0, 1, 16); x.fillRect(5, 1, 1, 14); x.fillRect(10, 1, 1, 14); x.fillRect(1, 5, 14, 1); x.fillRect(1, 10, 14, 1); });
+T.tableSide = tex((x) => { x.drawImage(T.planks, 0, 0); x.fillStyle = '#8d8d8d'; x.fillRect(3, 4, 3, 5); x.fillStyle = '#6b4a2b'; x.fillRect(4, 8, 1, 6); x.fillStyle = '#b8b8b8'; x.fillRect(9, 5, 4, 2); x.fillStyle = '#6b4a2b'; x.fillRect(10, 7, 1, 6); });
+T.chest = tex((x) => { x.drawImage(T.planks, 0, 0); x.fillStyle = '#5a3c1e'; x.fillRect(0, 5, 16, 1); x.strokeStyle = '#5a3c1e'; x.strokeRect(.5, .5, 15, 15); x.fillStyle = '#d9d9d9'; x.fillRect(7, 4, 2, 4); x.fillStyle = '#555'; x.fillRect(7, 6, 2, 1); });
+T.leaves = noise(['#2f8a22', '#3a9e2a', '#26751b', '#2f8a22', '#1f5f15']);
+T.melonTop = noise(['#9fbf2e', '#86a826', '#a9c93a']);
+T.melonSide = tex((x) => { for (let i = 0; i < 16; i++) for (let j = 0; j < 16; j++) px(x, i, j, Math.floor(i / 2) % 2 ? pick(['#6e9e1a', '#5f8c15']) : pick(['#a9c93a', '#9fbf2e'])); });
+T.bookshelf = tex((x) => { x.drawImage(T.planks, 0, 0); const cols = ['#c0392b', '#2e86de', '#27ae60', '#f1c40f', '#8e44ad', '#e67e22']; [[1, 2], [1, 9]].forEach(([, y]) => { for (let i = 1; i < 15; i += 2) { x.fillStyle = pick(cols); x.fillRect(i, y, 2, 5); } }); });
+T.diamondOre = tex((x) => { x.drawImage(T.stone, 0, 0); [[3, 3], [10, 4], [5, 10], [11, 11]].forEach(([a, b]) => { x.fillStyle = '#33e0d6'; x.fillRect(a, b, 2, 2); x.fillStyle = '#c9fffb'; x.fillRect(a, b, 1, 1); }); });
+
+// ізометричний куб
+function cube(top, left, right) {
+  const c = document.createElement('canvas'); c.width = c.height = 64; const x = c.getContext('2d'); x.imageSmoothingEnabled = false; const s = 2;
+  const face = (t, m, shade) => { x.setTransform(...m); x.drawImage(t, 0, 0); if (shade) { x.fillStyle = `rgba(0,0,0,${shade})`; x.fillRect(0, 0, 16, 16); } };
+  face(top, [s, s / 2, -s, s / 2, 32, 0], 0);
+  face(left, [s, s / 2, 0, s, 0, 16], .18);
+  face(right || left, [s, -s / 2, 0, s, 32, 32], .34);
+  x.setTransform(1, 0, 0, 1, 0, 0); return c;
+}
+// предмети: піксельні мапи 12×12
+const PAL = { r: '#e53935', R: '#9e1c1c', w: '#ffffff', b: '#6b4a2b', B: '#3f2a14', g: '#43a047', G: '#1b5e20', y: '#f6d365', Y: '#c99a2e', o: '#ff8c1a', O: '#b35400', c: '#4fc3f7', C: '#1565c0', k: '#111111', f: '#ffe14a', F: '#ff8a00', d: '#33e0d6', D: '#0f8f87', s: '#cfd8dc', S: '#78909c', p: '#ff8fd8', h: '#5d4037', W: '#bfe9ff' };
+const MAP = {
+  apple: ['.....b.gg...', '.....bgg....', '..rrrbrrr...', '.rwrrrrrrr..', '.rwrrrrrrrR.', '.rrrrrrrrrR.', '.rrrrrrrrrR.', '.rrrrrrrrRR.', '..rrrrrrRR..', '..RrrrrrRR..', '...RR..RR...'],
+  bread: ['', '', '...oooooo...', '..oyoyoyoo..', '.oyyyyyyyyO.', '.oyoyoyoyoO.', '.oyyyyyyyyO.', '.OooooooooO.', '..OOOOOOOO..'],
+  carrot: ['.........gg.', '........ggg.', '.......gOg..', '......oOo...', '.....ooo....', '....oOo.....', '...ooo......', '..oOo.......', '.ooo........', '.o..........'],
+  fish: ['', '', '..CCCC......', '.cccccc...C.', 'cwkccccc.CC.', 'cccccccccCC.', '.cccccc...C.', '..CCCC......'],
+  wheat: ['....y.y.....', '...yYyYy....', '....yYy.....', '...yYyYy....', '....yYy.....', '.....g......', '.....g......', '....g.g.....', '.....g......', '.....g......'],
+  torch: ['.....F......', '....FfF.....', '....fFf.....', '.....b......', '.....b......', '.....b......', '.....b......', '.....b......', '.....b......'],
+  pickaxe: ['...ddddd....', '..dDDDDDd...', '.dD..b..Dd..', '.d..b....d..', '...b........', '..b.........', '.b..........', 'b...........'],
+  sword: ['..........dd', '.........dDd', '........dDd.', '.......dDd..', '......dDd...', '..h..dDd....', '...hdDd.....', '....hd......', '...bhh......', '..bb..h.....', '.bb.........'],
+  axe: ['...sss......', '..sSsss.....', '..sSsssb....', '..sSssb.....', '...ssb......', '....b.......', '...b........', '..b.........', '.b..........'],
+  shovel: ['.........ss.', '........sSSs', '........sSSs', '.........ss.', '........b...', '.......b....', '......b.....', '.....b......', '....b.......', '..BB........', '..BB........'],
+  bucket: ['', '..SSSSSSS...', '.S.......S..', '.SsssssssS..', '..SssWssS...', '..SsssssS...', '...SsssS....', '...SSSSS....'],
+  door: ['..bbbbbbb...', '..bWWbWWb...', '..bWWbWWb...', '..bbbbbbb...', '..bhhhhhb...', '..bhhhhhb...', '..bhhhhkb...', '..bhhhhhb...', '..bhhhhhb...', '..bbbbbbb...'],
+  bed: ['', '', '', '', '.wwwrrrrrrr.', '.wwwrrrrrrr.', '.wwwrrrrrrr.', '.RRRRRRRRRR.', '.bb......bb.', '.bb......bb.'],
+  diamond: ['', '...dddddd...', '..dwwddddd..', '.dwddddddDd.', '..dddddDDd..', '...ddddDd...', '....dddd....', '.....dd.....'],
+  egg: ['', '', '.....ww.....', '....wwww....', '...wwwwww...', '...wwwwws...', '...wwwwws...', '....wwss....'],
+  milk: ['', '...SSSSS....', '..SwwwwwS...', '.SswwwwwsS..', '.SswwwwwsS..', '..SwwwwwS...', '...SSSSS....'],
+};
+function item(name) { const c = document.createElement('canvas'); c.width = c.height = 12; const x = c.getContext('2d'); MAP[name].forEach((row, j) => [...row].forEach((ch, i) => { if (PAL[ch]) px(x, i, j, PAL[ch]); })); return c; }
+const B = {
+  grass: () => cube(T.grassTop, T.grassSide), dirt: () => cube(T.dirt, T.dirt), stone: () => cube(T.stone, T.stone), cobblestone: () => cube(T.cobble, T.cobble),
+  sand: () => cube(T.sand, T.sand), log: () => cube(T.logTop, T.logSide), planks: () => cube(T.planks, T.planks), glass: () => cube(T.glass, T.glass),
+  brick: () => cube(T.brick, T.brick), water: () => cube(T.water, T.water), furnace: () => cube(T.cobble, T.furnaceFront, T.cobble), table: () => cube(T.tableTop, T.tableSide, T.tableSide),
+  chest: () => cube(T.planks, T.chest, T.chest), leaves: () => cube(T.leaves, T.leaves), melon: () => cube(T.melonTop, T.melonSide), bookshelf: () => cube(T.planks, T.bookshelf), ore: () => cube(T.stone, T.diamondOre),
+};
+const pic = (k) => (B[k] ? B[k]() : item(k));
+
+// ---------- XP ----------
+let xp = 0, dias = 0; const done = new Set();
+function gain(key, n, msg) {
+  if (done.has(key)) return; done.add(key); xp += n; if (n >= 15) dias++;
+  const lvl = Math.floor(xp / 100) + 1;
+  document.getElementById('xpbar').style.width = (xp % 100) + '%';
+  document.getElementById('xptext').textContent = xp + ' XP';
+  document.getElementById('lvl').textContent = 'LEVEL ' + lvl;
+  document.getElementById('dias').textContent = dias;
+  toast(msg || ('+' + n + ' XP'));
+}
+let tt; function toast(m) { const t = document.getElementById('toast'); t.textContent = m; t.classList.add('show'); clearTimeout(tt); tt = setTimeout(() => t.classList.remove('show'), 1300); }
+function say(w) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; u.rate = .9; speechSynthesis.speak(u); } catch (e) { } }
+const put = (el, c) => { c.style.width = c.style.width || ''; el.appendChild(c); };
+
+// шапка
+['grass', 'log', 'planks', 'glass', 'furnace', 'table', 'chest', 'ore', 'brick'].forEach((k) => { const c = pic(k); c.style.width = '58px'; document.getElementById('heroBlocks').appendChild(c); });
+const di = document.getElementById('diaIcon').getContext('2d'); di.drawImage(item('diamond'), 2, 2);
+
+// ---------- 1. словник ----------
+const WORDS = [
+  ['build', 'log', 'log', 'A piece of a tree.', 'In real life: firewood, a tree trunk.'],
+  ['build', 'planks', 'planks', 'Flat pieces of wood.', 'In real life: floors and furniture are made of planks.'],
+  ['build', 'stone', 'stone', 'Hard grey rock.', 'In real life: old castles and bridges.'],
+  ['build', 'cobblestone', 'cobblestone', 'Small round stones together.', 'In real life: old streets in Lviv and Kyiv!'],
+  ['build', 'brick', 'bricks', 'Red blocks for walls.', 'In real life: many houses are made of bricks.'],
+  ['build', 'glass', 'glass', 'You can see through it.', 'In real life: windows. Made from sand!'],
+  ['build', 'sand', 'sand', 'Yellow and soft.', 'In real life: the beach.'],
+  ['build', 'dirt', 'dirt', 'Brown ground.', 'In real life: soil for plants.'],
+  ['nature', 'grass', 'grass', 'Green and soft.', 'In real life: in the park.'],
+  ['nature', 'leaves', 'leaves', 'Green parts of a tree.', 'One leaf, two leaves.'],
+  ['nature', 'water', 'water', 'You need it to farm.', 'In real life: drink 6 glasses a day.'],
+  ['nature', 'ore', 'diamond ore', 'Stone with diamonds inside.', 'In real life: diamonds are very rare.'],
+  ['home', 'table', 'crafting table', 'You make tools on it.', 'In real life: a workbench.'],
+  ['home', 'furnace', 'furnace', 'It cooks food and melts things.', 'In real life: an oven or a stove.'],
+  ['home', 'chest', 'chest', 'A big box for your things.', 'In real life: a toy box or a trunk.'],
+  ['home', 'bed', 'bed', 'You sleep in it and skip the night.', 'Go to bed = go to sleep.'],
+  ['home', 'door', 'door', 'Open it, close it, lock it.', 'Knock on the door!'],
+  ['home', 'torch', 'torch', 'Fire on a stick. It gives light.', 'In real life: a flashlight is also called a torch in the UK.'],
+  ['home', 'bookshelf', 'bookshelf', 'Shelves with books.', 'In real life: in your room or a library.'],
+  ['food', 'bread', 'bread', 'You craft it from 3 wheat.', 'In real life: a loaf of bread.'],
+  ['food', 'apple', 'apple', 'Red fruit. Sometimes it falls from leaves.', 'An apple a day keeps the doctor away.'],
+  ['food', 'carrot', 'carrot', 'Orange vegetable.', 'Rabbits love carrots.'],
+  ['food', 'fish', 'fish', 'Catch it with a fishing rod.', 'One fish, two fish (no -es!).'],
+  ['food', 'wheat', 'wheat', 'A plant. Farmers grow it.', 'Flour and bread come from wheat.'],
+  ['food', 'melon', 'melon', 'Big and juicy.', 'In real life: a watermelon in summer.'],
+  ['food', 'egg', 'egg', 'Chickens lay eggs.', 'Fried eggs for breakfast.'],
+  ['food', 'milk', 'milk', 'You get it from a cow with a bucket.', 'A glass of milk.'],
+  ['tools', 'pickaxe', 'pickaxe', 'You mine stone with it.', 'In real life: miners use it.'],
+  ['tools', 'axe', 'axe', 'You chop trees with it.', 'In real life: to cut firewood.'],
+  ['tools', 'shovel', 'shovel', 'You dig dirt and sand with it.', 'In real life: in the garden or for snow.'],
+  ['tools', 'sword', 'sword', 'You fight with it.', 'Knights had swords.'],
+  ['tools', 'bucket', 'bucket', 'You carry water or milk in it.', 'A bucket of water.'],
+];
+const CATS = [['all', 'All'], ['build', 'Building'], ['home', 'Home'], ['food', 'Food'], ['tools', 'Tools'], ['nature', 'Nature']];
+const vocab = document.getElementById('vocab'), tabs = document.getElementById('catTabs');
+function drawVocab(cat) {
+  vocab.innerHTML = '';
+  WORDS.filter((w) => cat === 'all' || w[0] === cat).forEach(([, k, word, def, life]) => {
+    const card = document.createElement('div'); card.className = 'card';
+    card.innerHTML = `<div class="in"><div class="face front"></div><div class="face back"><b>${word}</b><span>${def}</span><span>${life}</span></div></div>`;
+    const f = card.querySelector('.front'); f.appendChild(pic(k)); const nm = document.createElement('b'); nm.textContent = word; f.appendChild(nm);
+    card.onclick = () => { card.classList.toggle('flip'); say(word); gain('v-' + word, 2, '+2 XP · ' + word); };
+    vocab.appendChild(card);
+  });
+}
+CATS.forEach(([id, label], i) => { const b = document.createElement('button'); b.textContent = label; if (!i) b.className = 'on'; b.onclick = () => { tabs.querySelectorAll('button').forEach((x) => x.classList.remove('on')); b.classList.add('on'); drawVocab(id); }; tabs.appendChild(b); });
+drawVocab('all');
+
+// ---------- 3. вибір ----------
+const CHOOSE = [
+  ['Zombies ___ in the sun.', 'burn', 'are burning'],
+  ['Look! A spider ___ up the wall!', 'is climbing', 'climbs'],
+  ['I usually ___ my house from wood and stone.', 'build', 'am building'],
+  ['Shh! I ___ for diamonds right now.', "'m looking", 'look'],
+  ['Wheat ___ faster near water.', 'grows', 'is growing'],
+  ['My cat ___ on my bed at the moment.', 'is sleeping', 'sleeps'],
+  ['We never ___ out at night without torches.', 'go', 'are going'],
+  ['Hurry up! The sun ___ down!', 'is going', 'goes'],
+  ['A furnace ___ sand into glass.', 'turns', 'is turning'],
+  ['What ___ now? I\'m crafting a door.', 'are you doing', 'do you do'],
+  ['My sister ___ survival mode. It\'s her favourite!', 'likes', 'is liking'],
+  ['Listen! Somebody ___ on the door.', 'is knocking', 'knocks'],
+];
+const cl = document.getElementById('chooseList');
+CHOOSE.forEach(([s, ok, bad], i) => {
+  const q = document.createElement('div'); q.className = 'q';
+  const opts = (i % 3 === 1 ? [bad, ok] : [ok, bad]).sort(() => (i % 2 ? 1 : -1));
+  const [a, b] = s.split('___');
+  q.innerHTML = `<span class="n">${i + 1}</span><span>${a}<span class="slot">?</span>${b}</span><span></span>`;
+  const box = q.lastElementChild;
+  opts.forEach((o) => { const btn = document.createElement('button'); btn.className = 'opt'; btn.textContent = o; btn.onclick = () => {
+    if (o === ok) { btn.classList.add('ok'); q.querySelector('.slot').textContent = o; box.querySelectorAll('button').forEach((x) => x.disabled = true); gain('c' + i, 10); }
+    else { btn.classList.remove('bad'); void btn.offsetWidth; btn.classList.add('bad'); }
+  }; box.appendChild(btn); });
+  cl.appendChild(q);
+});
+
+// ---------- 4. стрім ----------
+const STREAM = [
+  ['Hi everyone! Today I ', 'play', ["am playing", "'m playing"], ' survival mode. '],
+  ['Right now I ', 'stand', ["am standing", "'m standing"], ' next to my new house. '],
+  ['Every morning I ', 'collect', ['collect'], ' wood with my axe. '],
+  ['Look! The sheep ', 'eat', ['are eating'], ' grass near the river. '],
+  ['My furnace ', 'cook', ['is cooking'], ' fish at the moment. '],
+  ['I usually ', 'put', ['put'], ' my diamonds in a chest. '],
+  ['Night ', 'come', ['comes'], ' fast in this game, '],
+  ['so I always ', 'carry', ['carry'], ' torches with me. '],
+  ['My brother ', 'not / play', ["isn't playing", 'is not playing'], ' with me today, '],
+  ['because he ', 'not / like', ["doesn't like", 'does not like'], ' zombies. '],
+  ['Oh no! A zombie ', 'knock', ['is knocking'], ' on my door!'],
+];
+const st = document.getElementById('streamText');
+STREAM.forEach(([a, v, ans, b], i) => {
+  const s = document.createElement('span'); s.append(a);
+  const inp = document.createElement('input'); inp.setAttribute('aria-label', v); inp.autocomplete = 'off'; inp.spellcheck = false;
+  const check = () => { const val = inp.value.trim().toLowerCase().replace(/’/g, "'").replace(/\s+/g, ' '); if (!val) return; const ok = ans.some((x) => x === val || ('i ' + val) === x); inp.classList.toggle('ok', ok); inp.classList.toggle('bad', !ok); if (ok) gain('s' + i, 10); };
+  inp.onkeydown = (e) => { if (e.key === 'Enter') check(); }; inp.onblur = check;
+  s.appendChild(inp); const sm = document.createElement('small'); sm.textContent = ` (${v})`; s.appendChild(sm); s.append(b); st.appendChild(s);
+});
+document.getElementById('streamShow').onclick = () => st.querySelectorAll('input').forEach((inp, i) => { if (!inp.classList.contains('ok')) { inp.value = STREAM[i][2][0]; inp.classList.add('ok'); inp.classList.remove('bad'); } });
+
+// сцена стріму (своя піксельна картинка)
+(function scene() {
+  const x = document.getElementById('scene').getContext('2d'); x.imageSmoothingEnabled = false;
+  x.fillStyle = '#7ec8ff'; x.fillRect(0, 0, 128, 96); x.fillStyle = '#fff'; x.fillRect(10, 12, 18, 5); x.fillRect(14, 8, 10, 4); x.fillRect(84, 18, 22, 5);
+  x.fillStyle = '#ffe14a'; x.fillRect(104, 6, 10, 10);
+  for (let i = 0; i < 8; i++) { x.drawImage(T.grassSide, i * 16, 72); }
+  for (let i = 0; i < 8; i++) x.drawImage(T.dirt, i * 16, 88);
+  // будиночок
+  for (let r = 0; r < 3; r++) for (let c = 0; c < 4; c++) x.drawImage(T.planks, 40 + c * 16, 24 + r * 16);
+  x.drawImage(T.glass, 48, 32, 12, 12); x.drawImage(T.glass, 76, 32, 12, 12);
+  x.fillStyle = '#6b4a2b'; x.fillRect(62, 52, 10, 20); x.fillStyle = '#111'; x.fillRect(69, 62, 1, 2);
+  for (let c = -1; c < 5; c++) x.drawImage(T.logSide, 40 + c * 16, 12, 16, 12);
+  // дерево
+  x.drawImage(T.logSide, 12, 56, 8, 16); x.drawImage(T.leaves, 4, 36, 24, 22);
+  // вівці (прості)
+  [[100, 62], [114, 64]].forEach(([a, b]) => { x.fillStyle = '#f2f2f2'; x.fillRect(a, b, 12, 7); x.fillStyle = '#d6b89a'; x.fillRect(a + 9, b + 1, 4, 4); x.fillStyle = '#444'; x.fillRect(a + 1, b + 7, 2, 3); x.fillRect(a + 8, b + 7, 2, 3); });
+  // піч і факел
+  x.drawImage(T.furnaceFront, 24, 60, 12, 12); x.fillStyle = '#6b4a2b'; x.fillRect(90, 60, 2, 12); x.fillStyle = '#ff8a00'; x.fillRect(89, 57, 4, 4);
+})();
+
+// ---------- 5. сортування ----------
+const SORT = [['every day', 's'], ['now', 'c'], ['always', 's'], ['at the moment', 'c'], ['usually', 's'], ['Look!', 'c'], ['never', 's'], ['right now', 'c'], ['on Sundays', 's'], ['Listen!', 'c'], ['often', 's'], ['Hurry up!', 'c'], ['at night', 's'], ['these days', 'c']].sort(() => rnd() - .5);
+let sel = null; const pool = document.getElementById('pool');
+SORT.forEach(([w, b], i) => { const el = document.createElement('button'); el.className = 'w'; el.textContent = w; el.dataset.b = b; el.dataset.i = i; el.onclick = (e) => { e.stopPropagation(); if (el.parentElement !== pool) return; pool.querySelectorAll('.w').forEach((x) => x.classList.remove('sel')); el.classList.add('sel'); sel = el; }; pool.appendChild(el); });
+document.querySelectorAll('.bin').forEach((bin) => bin.onclick = () => {
+  if (!sel) return; const el = sel; sel = null; el.classList.remove('sel');
+  if (el.dataset.b === bin.dataset.b) { el.classList.add('ok'); bin.querySelector('.pool').appendChild(el); gain('w' + el.dataset.i, 5); }
+  else { el.classList.add('bad'); setTimeout(() => el.classList.remove('bad'), 500); toast('Try the other chest!'); }
+});
+
+// ---------- 6. баги ----------
+const BUGS = [
+  ['I am usually sleeping in my bed at night.', false, 'I usually sleep in my bed at night.'],
+  ['Look! It is raining.', true, 'Correct!'],
+  ['Chickens lay eggs.', true, 'Correct! A game rule.'],
+  ['She builds a tower right now.', false, 'She is building a tower right now.'],
+  ['I am knowing how to make a pickaxe.', false, 'I know how to make a pickaxe. (know = no live mode)'],
+  ['He don\'t have any iron.', false, 'He doesn\'t have any iron.'],
+  ['Do you like playing survival?', true, 'Correct!'],
+  ['My friend is wanting a diamond sword.', false, 'My friend wants a diamond sword.'],
+];
+const bl = document.getElementById('bugList');
+BUGS.forEach(([s, ok, fix], i) => {
+  const d = document.createElement('div'); d.className = 'bug';
+  d.innerHTML = `<span><b>${i + 1}.</b> ${s}</span><span><button class="opt">OK</button><button class="opt">BUG</button></span><span class="fix">${fix}</span>`;
+  const [bOk, bBug] = d.querySelectorAll('button');
+  const ans = (v, btn) => { if (v === ok) { btn.classList.add('ok'); d.classList.add('done'); bOk.disabled = bBug.disabled = true; gain('b' + i, 15, '+15 XP · +1 diamond'); } else { btn.classList.remove('bad'); void btn.offsetWidth; btn.classList.add('bad'); } };
+  bOk.onclick = () => ans(true, bOk); bBug.onclick = () => ans(false, bBug);
+  bl.appendChild(d);
+});
+
+// ---------- 7. місії ----------
+const MIS = [
+  ['log', 'Wood hunter', 'Collect 10 logs.', 'Every time you hit a tree, say: "I\'m chopping an oak tree!"', 20],
+  ['planks', 'Home sweet home', 'Build a small house: walls, a roof, a door and 2 glass windows.', 'Give a house tour: "This is my kitchen. I cook here every day."', 40],
+  ['bed', 'Good night', 'Craft a bed and put it in your house.', '"I always sleep in my bed. Now I\'m going to bed."', 20],
+  ['furnace', 'Chef', 'Cook 3 fish or potatoes in the furnace. Craft bread from 3 wheat.', 'Explain the recipe: "First, I put the fish in the furnace. Then I wait..."', 30],
+  ['glass', 'Glass maker', 'Put sand in the furnace and make glass.', '"Look! The furnace is turning sand into glass!"', 20],
+  ['torch', 'Light it up', 'Place 8 torches around your house.', 'The teacher asks "What are you doing?" Answer in 2 sentences.', 20],
+  ['wheat', 'Farmer', 'Plant wheat near water.', '"Wheat grows faster near water. I\'m planting it now."', 30],
+  ['chest', 'Storage boss', 'Craft a chest and sort your things.', '"I usually keep food here. Right now I\'m putting my tools in."', 20],
+  ['pickaxe', 'Miner', 'Make a stone pickaxe and dig down 10 blocks.', 'Talk like a streamer for 30 seconds: what are you doing?', 30],
+  ['sword', 'Night survivor', 'Survive one night outside the house.', 'Live commentary: 5 sentences in Present Continuous.', 50],
+];
+const ml = document.getElementById('misList');
+MIS.forEach(([k, title, task, sayIt, n], i) => {
+  const m = document.createElement('div'); m.className = 'mis';
+  const c = pic(k); m.appendChild(c);
+  const body = document.createElement('div'); body.innerHTML = `<h3>${title}</h3><p>${task}</p><div class="say">${sayIt}</div>`; m.appendChild(body);
+  const row = document.createElement('div'); row.className = 'row'; row.innerHTML = `<span class="xp">+${n} XP</span>`;
+  const btn = document.createElement('button'); btn.className = 'btn'; btn.textContent = 'Done'; btn.onclick = () => { m.classList.add('done'); btn.disabled = true; gain('m' + i, n, `Mission complete! +${n} XP`); };
+  row.appendChild(btn); m.appendChild(row); ml.appendChild(m);
+});
+
+// ---------- 8. стрімер ----------
+const TALK = [
+  ['Show your house. What do you usually do in each room?', 'Present Simple'],
+  ['You are exploring a cave. What are you doing? What can you see?', 'Present Continuous'],
+  ['Teach a new player: how do you survive the first night?', 'Present Simple: First you... Then you...'],
+  ['You are cooking dinner in the game. Talk about it.', 'Present Continuous'],
+  ['Your perfect day in real life: what do you do on Saturdays?', 'Present Simple'],
+  ['Look out of the window. What is happening outside right now?', 'Present Continuous'],
+  ['Compare: what do you usually do after school, and what are you doing now?', 'Both modes!'],
+  ['Describe your teacher\'s screen. What is she doing?', 'Present Continuous'],
+];
+const tl = document.getElementById('talkList');
+TALK.forEach(([q, h]) => { const d = document.createElement('div'); d.className = 'tk'; d.innerHTML = `<span>${q}</span><small>${h}</small>`; d.onclick = () => { tl.querySelectorAll('.tk').forEach((x) => x.style.outline = ''); d.style.outline = '5px solid #8e6cff'; }; tl.appendChild(d); });
+let tmr; document.getElementById('timerBtn').onclick = () => { clearInterval(tmr); let s = 30; const el = document.getElementById('timer'); el.textContent = '0:30';
+  tmr = setInterval(() => { s--; el.textContent = '0:' + String(s).padStart(2, '0'); if (s <= 0) { clearInterval(tmr); el.textContent = 'GG!'; gain('talk' + Date.now(), 15, 'Great stream! +15 XP'); } }, 1000); };
+// ---------- 9. відео (офіційний канал гри, перевірено) ----------
+const VIDS = [
+  ['xLo-BrCh7JQ', 'Relaxing farm morning', 'Turn the sound off. Be the narrator: "The farmer is feeding the chickens..." One sentence every 10 seconds.', 'Present Continuous', 0],
+  ['K9Pdd2BBaoc', "Don't make these mistakes!", 'Watch and write 3 rules for new players: "You never... You always..."', 'Present Simple', 1],
+  ['I1Qc2vH55P0', 'Best way to find diamonds', 'Pause at the end. How do you usually look for diamonds? Is it the same?', 'Present Simple', 1],
+  ['YhfSwlClTow', 'First time in hardcore mode', 'What is the player doing? How is he feeling? Pause 3 times and describe.', 'Present Continuous', 1],
+  ['mU2UIBAU9zA', 'Breathtaking medieval town', 'Choose your favourite building. What is it made of? Who lives there? What do they do every day?', 'Both modes', 0],
+  ['QSyLhUJ95G8', 'A massive 15th anniversary build', 'Count the blocks you know. Describe the build to a friend who cannot see it.', 'Both modes', 0],
+  ['XLFnjDWtn_I', 'Cyberpunk metro station', 'Imagine you are there. What are the people doing? What do you see?', 'Present Continuous', 0],
+  ['OoBSKyoLui8', 'What mistakes have you made?', 'Your turn: tell your teacher about your biggest mistake in the game.', 'Past Simple bonus', 1],
+];
+const vl = document.getElementById('vidList');
+VIDS.forEach(([id, title, task, mode, short], i) => {
+  const d = document.createElement('div'); d.className = 'vid' + (short ? ' short' : '');
+  d.innerHTML = `<div class="frame"><button class="play" type="button"><span>PLAY</span></button></div><div class="info"><span class="mode">${mode}</span><h3>${title}</h3><div class="task">${task}</div><button class="btn alt" type="button">I talked about it</button></div>`;
+  d.querySelector('.play').onclick = (e) => { e.currentTarget.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${title}"></iframe>`; };
+  const b = d.querySelector('.info .btn'); b.onclick = () => { b.disabled = true; b.textContent = 'Great!'; gain('vid' + i, 20, '+20 XP · great talk!'); };
+  vl.appendChild(d);
+});
+</script>
+</body>
+</html>
