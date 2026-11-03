@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Obby Champions: Past Simple | Murly</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.svg">
+<style>
+:root{--sky:#7ec8ff;--sky2:#bfe6ff;--grass:#5cbf3a;--grass2:#3e8f25;--dirt:#8a5a35;--ink:#1d1d2b;--paper:#fffdf6;--gold:#ffd23f;--dia:#33e0d6;--red:#ff5a5f;--pink:#ff8fd8;--violet:#8e6cff}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Trebuchet MS",Verdana,system-ui,sans-serif;color:var(--ink);background:linear-gradient(180deg,var(--sky) 0,var(--sky2) 520px,#e9f7ff 100%);min-height:100vh}
+img,canvas{image-rendering:pixelated}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+/* шапка */
+.hero{position:relative;padding:34px 18px 0;text-align:center;overflow:hidden}
+.cloud{position:absolute;background:#fff;height:22px;box-shadow:22px 0 #fff,44px 0 #fff,22px -22px #fff;opacity:.9}
+.hero h1{margin:0;font-size:clamp(34px,6vw,64px);letter-spacing:2px;color:#fff;text-shadow:4px 4px 0 var(--ink),-2px -2px 0 var(--ink),2px -2px 0 var(--ink),-2px 2px 0 var(--ink);text-transform:uppercase}
+.hero p{margin:8px 0 18px;font-size:20px;font-weight:700;color:var(--ink)}
+.ground{height:56px;background:repeating-linear-gradient(90deg,var(--grass) 0 16px,#6fd14a 16px 32px);border-top:6px solid var(--grass2);position:relative}
+.ground::after{content:"";position:absolute;left:0;right:0;top:56px;height:40px;background:repeating-linear-gradient(90deg,var(--dirt) 0 16px,#9c6a42 16px 32px)}
+.hero-row{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:-4px}
+/* XP */
+.hud{position:sticky;top:0;z-index:20;display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;padding:10px;background:rgba(29,29,43,.92);color:#fff;margin-top:40px;border-bottom:4px solid #000}
+.hud b{font-size:18px}
+.bar{width:min(340px,60vw);height:22px;background:#333;border:3px solid #000;position:relative}
+.bar i{position:absolute;inset:0 auto 0 0;width:0;background:repeating-linear-gradient(90deg,#7cff4f 0 10px,#55d62f 10px 20px);transition:width .4s}
+.hud .lvl{background:#7cff4f;color:#000;font-weight:900;padding:2px 10px;border:3px solid #000}
+.dia{display:inline-flex;align-items:center;gap:6px;font-weight:900;font-size:18px}
+nav.steps{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:22px 0 4px}
+nav.steps a{background:#fff;border:3px solid var(--ink);padding:6px 12px;font-weight:800;color:var(--ink);text-decoration:none;box-shadow:3px 3px 0 var(--ink)}
+nav.steps a:hover{background:var(--gold)}
+/* секції */
+section{margin-top:38px;background:var(--paper);border:4px solid var(--ink);box-shadow:8px 8px 0 rgba(29,29,43,.85);padding:24px}
+section h2{margin:0 0 6px;font-size:30px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tag{font-size:14px;font-weight:900;padding:3px 10px;border:3px solid var(--ink);background:var(--gold);text-transform:uppercase;letter-spacing:1px}
+.sub{margin:0 0 18px;font-size:17px;color:#444}
+.btn{font:inherit;font-weight:900;border:3px solid var(--ink);background:#7cff4f;padding:8px 16px;cursor:pointer;box-shadow:3px 3px 0 var(--ink);text-transform:uppercase;letter-spacing:.5px}
+.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.btn.alt{background:#fff}
+/* словник */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
+.card{perspective:900px;height:200px;cursor:pointer}
+.card .in{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+.card.flip .in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;border:3px solid var(--ink);background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:10px;text-align:center}
+.face b{font-size:19px}
+.face.back{transform:rotateY(180deg);background:#fff5c9;font-size:15px;line-height:1.35}
+.face.back b{font-size:16px;color:#7a4a00}
+.face canvas{width:84px;height:84px}
+.face.front b{font-size:17px;line-height:1.2}
+.face.back em{font-size:14px;color:#2b7a0b;font-weight:700}
+.grid{grid-template-columns:repeat(auto-fill,minmax(190px,1fr))}
+.credit{font-size:13px;color:#777;margin-top:12px}
+.cat-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.cat-tabs button{font:inherit;font-weight:800;border:3px solid var(--ink);background:#fff;padding:5px 12px;cursor:pointer}
+.cat-tabs button.on{background:var(--dia)}
+/* правило */
+.modes{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.mode{border:4px solid var(--ink);padding:18px;position:relative}
+.mode.s{background:#e6fff0}.mode.c{background:#fff0fb}
+.mode h3{margin:0 0 4px;font-size:24px}
+.mode .f{font-family:Consolas,monospace;font-weight:900;font-size:17px;background:#fff;border:3px solid var(--ink);padding:6px 10px;display:inline-block;margin:6px 0}
+.mode ul{margin:8px 0 0;padding-left:20px;font-size:17px;line-height:1.55}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.chip{border:2px solid var(--ink);background:#fff;padding:2px 9px;font-weight:800;font-size:14px}
+.note{margin-top:16px;padding:12px 16px;border:3px dashed var(--ink);background:#fff;font-size:16px}
+/* вправи */
+.q{display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:2px dashed #d9d2bf;font-size:18px}
+.q:last-child{border-bottom:0}
+.q .n{width:34px;height:34px;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;font-weight:900}
+.opt{font:inherit;font-size:17px;font-weight:800;border:3px solid var(--ink);background:#fff;padding:4px 12px;cursor:pointer;margin:0 3px}
+.opt.ok{background:#7cff4f}.opt.bad{background:var(--red);color:#fff;animation:shake .3s}
+.slot{display:inline-block;min-width:96px;border-bottom:3px solid var(--ink);text-align:center;font-weight:900;color:#2b7a0b}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.stream{display:grid;grid-template-columns:260px 1fr;gap:22px;align-items:start}
+.screen{border:6px solid var(--ink);background:#222;padding:8px;position:sticky;top:70px}
+.screen canvas{width:100%;display:block;background:var(--sky)}
+.live{display:inline-block;background:var(--red);color:#fff;font-weight:900;padding:2px 8px;margin:6px 0 0;letter-spacing:1px}
+.text{font-size:19px;line-height:2.1}
+.text input{font:inherit;font-weight:800;width:150px;border:0;border-bottom:3px solid var(--ink);background:#fffbe6;padding:0 6px;text-align:center}
+.text input.ok{background:#c9ffb3}.text input.bad{background:#ffd0d0}
+.text small{color:#777;font-weight:700}
+.sort{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:14px}
+.bin{border:4px solid var(--ink);min-height:160px;padding:12px;cursor:pointer}
+.bin h4{margin:0 0 10px;font-size:20px}
+.bin.s{background:#e6fff0}.bin.c{background:#fff0fb}
+.pool{display:flex;flex-wrap:wrap;gap:8px;min-height:44px;padding:10px;border:3px dashed var(--ink);background:#fff}
+.w{font:inherit;font-weight:900;font-size:16px;border:3px solid var(--ink);background:var(--gold);padding:5px 11px;cursor:pointer}
+.w.sel{background:var(--dia);transform:translateY(-3px)}
+.w.ok{background:#7cff4f}.w.bad{background:var(--red);color:#fff}
+.bug{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;padding:12px 0;border-bottom:2px dashed #d9d2bf;font-size:18px}
+.bug .fix{grid-column:1/-1;font-weight:800;color:#2b7a0b;display:none}
+.bug.done .fix{display:block}
+/* місії */
+.missions{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.mis{border:4px solid var(--ink);background:#fff;display:grid;grid-template-columns:72px 1fr;gap:12px;padding:14px;position:relative}
+.mis canvas{width:72px;height:72px}
+.mis h3{margin:0 0 4px;font-size:20px}
+.mis p{margin:0 0 6px;font-size:16px}
+.mis .say{background:#f1ecff;border-left:5px solid var(--violet);padding:6px 10px;font-size:15px;font-style:italic}
+.mis .row{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center}
+.mis .xp{font-weight:900;color:#2b7a0b}
+.mis.done{background:#e9ffe0}
+.mis.done::after{content:"DONE";position:absolute;top:10px;right:-8px;background:#7cff4f;border:3px solid var(--ink);font-weight:900;padding:2px 10px;transform:rotate(8deg)}
+.talk{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.tk{border:4px solid var(--ink);padding:16px;font-size:18px;font-weight:700;min-height:120px;display:flex;flex-direction:column;justify-content:space-between;gap:10px}
+.tk:nth-child(4n+1){background:#e6fff0}.tk:nth-child(4n+2){background:#fff0fb}.tk:nth-child(4n+3){background:#fff7d6}.tk:nth-child(4n+4){background:#e3f4ff}
+.tk small{font-weight:800;color:#555;font-size:14px}
+.timer{font-size:46px;font-weight:900;text-align:center;margin:10px 0}
+.vids{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.vid{border:4px solid var(--ink);background:#fff;display:flex;flex-direction:column}
+.vid .frame{position:relative;aspect-ratio:16/9;background:#1d1d2b}
+.vid.short .frame{aspect-ratio:9/16;max-height:460px}
+.vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;display:grid;place-items:center;color:#fff;font-weight:900;font-size:18px;cursor:pointer;background:repeating-linear-gradient(45deg,#2a2a40 0 14px,#24243a 14px 28px);border:0;font-family:inherit}
+.vid .play span{background:var(--red);border:3px solid #000;padding:10px 18px;box-shadow:4px 4px 0 #000}
+.vid .info{padding:12px 14px;display:grid;gap:6px}
+.vid h3{margin:0;font-size:18px}
+.vid .task{background:#f1ecff;border-left:5px solid var(--violet);padding:6px 10px;font-size:15px}
+.vid .mode{display:inline-block;width:max-content;font-size:12px;font-weight:900;border:2px solid var(--ink);padding:1px 8px;background:var(--gold)}
+details.teacher{margin-top:30px;border:3px dashed #888;background:#fff;padding:12px 16px;font-size:15px}
+details.teacher summary{font-weight:900;cursor:pointer}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(120px);background:var(--ink);color:#fff;font-weight:900;padding:12px 22px;border:4px solid #7cff4f;transition:transform .3s;z-index:50;display:flex;gap:10px;align-items:center}
+.toast.show{transform:translateX(-50%) translateY(0)}
+@media(max-width:760px){.modes,.sort,.stream{grid-template-columns:1fr}.screen{position:static}}
+
+/* яскравість і рух */
+.bob{animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-8px)}}
+.card:hover .in{transform:translateY(-6px) rotate(-1.5deg)}
+.card.flip:hover .in{transform:rotateY(180deg) translateY(-6px)}
+.face.front{background:linear-gradient(180deg,#fff 0,#fff 60%,#f3ffe9 100%)}
+.card:nth-child(4n+1) .face.front{background:linear-gradient(180deg,#fff 55%,#e3f6ff)}
+.card:nth-child(4n+2) .face.front{background:linear-gradient(180deg,#fff 55%,#fff1fb)}
+.card:nth-child(4n+3) .face.front{background:linear-gradient(180deg,#fff 55%,#fff8d9)}
+.pxl{position:fixed;width:10px;height:10px;z-index:60;pointer-events:none;border:2px solid #000;animation:pxl .8s ease-out forwards}
+@keyframes pxl{to{transform:translate(var(--dx),var(--dy)) rotate(180deg);opacity:0}}
+.lvlup{position:fixed;left:50%;top:40%;transform:translate(-50%,-50%) scale(0);z-index:70;background:#7cff4f;border:6px solid #000;box-shadow:8px 8px 0 #000;padding:18px 34px;text-align:center;pointer-events:none}
+.lvlup b{display:block;font-size:46px;letter-spacing:2px}
+.lvlup span{font-weight:900}
+.lvlup.show{animation:lvl 1.8s ease-out forwards}
+@keyframes lvl{0%{transform:translate(-50%,-50%) scale(0)}15%{transform:translate(-50%,-50%) scale(1.15)}25%,80%{transform:translate(-50%,-50%) scale(1)}100%{transform:translate(-50%,-50%) scale(0);opacity:0}}
+.night{position:fixed;right:16px;bottom:16px;z-index:40;font:inherit;font-weight:900;border:3px solid #000;background:#1d1d2b;color:#ffe14a;padding:8px 14px;box-shadow:3px 3px 0 #000;cursor:pointer}
+.stars{position:absolute;inset:0 0 auto 0;height:700px;pointer-events:none;opacity:0;transition:opacity .6s}
+.stars i{position:absolute;width:4px;height:4px;background:#fff;animation:tw 2s infinite}
+@keyframes tw{50%{opacity:.2}}
+body{transition:background .6s}
+body.is-night{background:linear-gradient(180deg,#0b1a3a 0,#1d2f5c 520px,#2a3d6b 100%)}
+body.is-night .stars{opacity:1}
+body.is-night .hero p{color:#fff}
+body.is-night nav.steps a{background:#24365f;color:#fff}
+.bin.s{background:repeating-linear-gradient(0deg,#b5884f 0 14px,#a97c45 14px 16px)}
+.bin.c{background:repeating-linear-gradient(0deg,#9fd6ec 0 14px,#8cc6dd 14px 16px)}
+.bin h4{background:#fff;border:3px solid var(--ink);display:inline-block;padding:2px 10px}
+.mis{transition:transform .2s}.mis:hover{transform:translateY(-4px) rotate(.4deg)}
+section h2{color:var(--ink)}
+section:nth-of-type(odd){background:#fffdf6}
+section:nth-of-type(even){background:#f7fff0}
+
+/* «рецепти» речень */
+.legend{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 16px}
+.bk{display:inline-flex;align-items:center;font-weight:900;font-size:16px;padding:6px 10px;border:3px solid var(--ink);box-shadow:inset -3px -3px 0 rgba(0,0,0,.18),inset 3px 3px 0 rgba(255,255,255,.45);white-space:nowrap}
+.bk.who{background:#8fd3ff}.bk.hp{background:#ffd23f}.bk.vb{background:#7cff4f}.bk.end,.bk .end{background:#ff8fd8}.bk.rest{background:#fff}
+.bk .end{font-style:normal;padding:0 3px;margin-left:1px;border:2px solid var(--ink)}
+.legend .bk{font-size:13px;padding:3px 8px}
+.when{margin:4px 0 12px;font-size:16px}
+.recipe{display:flex;gap:5px;flex-wrap:wrap;align-items:center;margin:8px 0}
+.recipe .sign{width:30px;height:30px;display:grid;place-items:center;font-weight:900;font-size:20px;background:var(--ink);color:#fff;flex:none}
+.tip{margin-top:10px;font-size:15px;background:#fff;border-left:5px solid var(--red);padding:6px 10px}
+/* ===== OBBY ===== */
+:root{--sky:#9fd8ff;--sky2:#d6efff}
+.ob-hero h1{color:#fff;text-shadow:4px 4px 0 #1d1d2b,-2px -2px 0 #1d1d2b,2px -2px 0 #1d1d2b,-2px 2px 0 #1d1d2b}
+.ob-course{position:relative;height:190px;max-width:900px;margin:10px auto 0}
+.ob-plat{position:absolute;bottom:42px;width:12%;height:22px;background:#3ecf4c;border:3px solid #1d1d2b;box-shadow:inset 0 -6px 0 rgba(0,0,0,.18)}
+.ob-plat--red{background:#ff5a5f;animation:obfloat 2s ease-in-out infinite}
+.ob-plat--blue{background:#2f80ed;animation:obfloat 2.4s ease-in-out infinite reverse}
+@keyframes obfloat{50%{transform:translateY(-14px)}}
+.ob-flag{position:absolute;bottom:64px;width:44px;height:70px;border-left:5px solid #1d1d2b}
+.ob-flag::after{content:"";position:absolute;left:0;top:0;width:38px;height:26px;background:#ffd23f;border:3px solid #1d1d2b}
+.ob-lava{position:absolute;left:0;right:0;bottom:0;height:42px;background:repeating-linear-gradient(90deg,#ff6a00 0 18px,#ffb02e 18px 36px);border-top:4px solid #1d1d2b;animation:oblava 1.2s linear infinite}
+@keyframes oblava{to{background-position:36px 0}}
+.ob-runner{position:absolute;bottom:62px;width:58px;animation:obrun 6s ease-in-out infinite}
+.ob-runner .ob-svg{width:100%;display:block}
+@keyframes obrun{0%{left:3%;transform:translateY(0)}10%{transform:translateY(-60px)}20%{left:21%;transform:translateY(0)}30%{transform:translateY(-70px)}40%{left:39%;transform:translateY(0)}50%{transform:translateY(-60px)}60%{left:57%;transform:translateY(0)}70%{transform:translateY(-70px)}80%{left:75%;transform:translateY(0)}90%{left:84%;transform:translateY(-40px)}100%{left:3%;transform:translateY(0)}}
+.ob-coin-ic{display:inline-block;width:22px;height:22px;border-radius:50%;background:#ffd23f;border:3px solid #000;box-shadow:inset -3px -3px 0 #c99a2e}
+.ob-av{display:grid;grid-template-columns:240px 1fr;gap:24px;align-items:start}
+.ob-av__stage{background:linear-gradient(#9fd8ff 70%,#3ecf4c 70%);border:4px solid var(--ink);padding:16px;text-align:center}
+.ob-av__stage .ob-svg{width:150px;animation:obfloat 2.5s ease-in-out infinite}
+.ob-av__name{font-weight:900;background:#fff;border:3px solid var(--ink);display:inline-block;padding:2px 12px;margin-top:6px}
+.ob-av__opts{display:grid;gap:12px}
+.ob-av__row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ob-av__row>b{width:100px}
+.ob-sw{min-width:38px;height:38px;border:3px solid var(--ink);background:#fff;font:inherit;font-weight:800;cursor:pointer;padding:0 10px}
+.ob-sw.on{outline:4px solid #8e6cff;outline-offset:2px}
+.ob-av__say{margin-top:16px;font-size:20px;background:#fff8d6;border:3px dashed var(--ink);padding:12px 16px}
+.ob-verbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px}
+.ob-verb{position:relative;height:90px;border:4px solid var(--ink);background:#fff;font:inherit;cursor:pointer;box-shadow:4px 4px 0 var(--ink)}
+.ob-verb span{position:absolute;inset:0;display:grid;place-items:center;font-size:22px;font-weight:900;transition:transform .35s,opacity .35s}
+.ob-verb__b{background:#7cff4f;transform:scale(0);opacity:0}
+.ob-verb.open .ob-verb__b{transform:scale(1);opacity:1}
+.ob-verb::before{content:"";position:absolute;right:6px;top:6px;width:10px;height:16px;border-left:3px solid #1d1d2b;z-index:2}
+.ob-verb::after{content:"";position:absolute;right:-3px;top:6px;width:10px;height:8px;background:#ff5a5f;border:2px solid #1d1d2b;z-index:2}
+.ob-game{border:5px solid var(--ink);background:#1d1d2b;color:#fff;padding:14px;box-shadow:8px 8px 0 rgba(0,0,0,.3)}
+.ob-game__top{display:flex;gap:18px;flex-wrap:wrap;font-weight:800;margin-bottom:10px}
+.ob-game__top b{color:#ffd23f}
+.ob-track{position:relative;height:230px;overflow:hidden;border:3px solid #000}
+.ob-sky{position:absolute;inset:0;background:linear-gradient(#9fd8ff,#d6efff)}
+.ob-stagebar{position:absolute;left:10px;right:10px;top:10px;display:flex;gap:4px}
+.ob-stagebar i{flex:1;height:14px;background:rgba(255,255,255,.6);border:2px solid #1d1d2b}
+.ob-stagebar i.done{background:#3ecf4c}.ob-stagebar i.now{background:#ffd23f;animation:obblink .8s infinite}
+.ob-stagebar i.cp{border-color:#ff5a5f;border-width:3px}
+@keyframes obblink{50%{opacity:.4}}
+.ob-ground{position:absolute;left:0;width:30%;bottom:40px;height:30px;background:#3ecf4c;border:3px solid #1d1d2b}
+.ob-ground::after{content:"";position:absolute;left:230%;width:120%;bottom:-3px;height:30px;background:#3ecf4c;border:3px solid #1d1d2b}
+.ob-lavapit{position:absolute;left:0;right:0;bottom:0;height:40px;background:repeating-linear-gradient(90deg,#ff6a00 0 18px,#ffb02e 18px 36px);animation:oblava 1.2s linear infinite}
+.ob-me{position:absolute;left:12%;bottom:70px;width:48px;z-index:3}
+.ob-me .ob-svg{width:100%;display:block}
+.ob-me.jump{animation:objump 1.1s ease-in-out forwards}
+@keyframes objump{0%{left:12%;bottom:70px}50%{left:42%;bottom:170px}100%{left:72%;bottom:70px}}
+.ob-me.fall{animation:obfall 1.5s ease-in forwards}
+@keyframes obfall{0%{left:12%;bottom:70px}35%{left:32%;bottom:120px}100%{left:42%;bottom:-80px;transform:rotate(200deg)}}
+.ob-me.win{animation:obwin .6s ease-in-out infinite alternate;left:45%}
+@keyframes obwin{to{bottom:110px}}
+.ob-obst{position:absolute;left:40%;bottom:40px;width:20%;height:0}
+.ob-obst--spin::before{content:"";position:absolute;left:0;right:0;bottom:90px;height:14px;background:#ff5a5f;border:3px solid #1d1d2b;animation:obspin 1.2s linear infinite}
+@keyframes obspin{to{transform:rotate(360deg)}}
+.ob-obst--wall::before{content:"";position:absolute;left:35%;width:30%;bottom:0;height:80px;background:repeating-linear-gradient(0deg,#9b4133 0 12px,#b5523f 12px 24px);border:3px solid #1d1d2b}
+.ob-obst--pad::before{content:"";position:absolute;left:25%;width:50%;bottom:20px;height:18px;background:#2f80ed;border:3px solid #1d1d2b;animation:obfloat 1s ease-in-out infinite}
+.ob-timer{height:12px;background:#333;border:2px solid #000;margin-top:10px}
+.ob-timer i{display:block;height:100%;width:100%;background:linear-gradient(90deg,#ff5a5f,#ffd23f,#7cff4f)}
+.ob-q{font-size:22px;font-weight:800;text-align:center;margin:14px 0 10px;min-height:56px}
+.ob-q small{display:block;font-size:13px;color:#ffd23f;letter-spacing:1px}
+.ob-q .slot{color:#7cff4f;border-color:#7cff4f}
+.ob-opts{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.ob-opts .opt{font-size:20px;padding:8px 18px;color:#1d1d2b}
+.ob-win{font-size:34px;color:#ffd23f;text-shadow:3px 3px 0 #000;margin-bottom:6px}
+.ob-story{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.ob-story h4{margin:0 0 8px;font-size:18px}
+.ob-story__list{display:grid;gap:8px;margin:0;padding:0 0 0 0;min-height:100px;border:3px dashed #c9c2ad;padding:10px}
+ol.ob-story__list{padding-left:34px;background:#f4ffe9}
+ol.ob-story__list li{font-size:16px;padding:6px 0;border-bottom:1px dashed #c9c2ad}
+.ob-sent{font:inherit;font-size:16px;text-align:left;background:#fff;border:3px solid var(--ink);padding:8px 12px;cursor:pointer}
+.ob-sent:hover{background:#fff8d6}
+.ob-sent.bad{background:var(--red);color:#fff;animation:shake .3s}
+.mis canvas{width:72px;height:72px}
+@media(max-width:760px){.ob-av,.ob-story{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="hero ob-hero">
+  <div class="cloud" style="left:8%;top:40px"></div>
+  <div class="cloud" style="left:72%;top:64px"></div>
+  <h1>Obby Champions</h1>
+  <p>Past Simple: what happened in the game? · Level A2-B1</p>
+  <div class="ob-course" aria-hidden="true">
+    <span class="ob-plat" style="left:2%"></span><span class="ob-plat ob-plat--red" style="left:20%"></span><span class="ob-plat" style="left:38%"></span><span class="ob-plat ob-plat--blue" style="left:56%"></span><span class="ob-plat" style="left:74%"></span><span class="ob-flag" style="left:88%"></span>
+    <div class="ob-runner" id="heroRunner"></div>
+    <div class="ob-lava"></div>
+  </div>
+</header>
+
+<div class="hud">
+  <span class="lvl" id="lvl">LEVEL 1</span>
+  <div class="bar"><i id="xpbar"></i></div>
+  <b id="xptext">0 XP</b>
+  <span class="dia"><span class="ob-coin-ic"></span><span id="dias">0</span></span>
+</div>
+
+<div class="wrap">
+  <nav class="steps">
+    <a href="#avatar">1. Avatar</a>
+    <a href="#words">2. Obby words</a>
+    <a href="#rules">3. Past Simple</a>
+    <a href="#verbs">4. Verb checkpoints</a>
+    <a href="#run">5. OBBY RUN</a>
+    <a href="#story">6. Story time</a>
+    <a href="#bugs">7. Fix the bugs</a>
+    <a href="#missions">8. Missions</a>
+    <a href="#talk">9. Interview</a>
+    <a href="#watch">10. Watch &amp; talk</a>
+  </nav>
+
+  <section id="avatar">
+    <h2>Build your avatar <span class="tag">warm-up</span></h2>
+    <p class="sub">Choose colours. Then say: "Yesterday my avatar <b>wore</b> a red cap and blue trousers."</p>
+    <div class="ob-av">
+      <div class="ob-av__stage"><div id="avatarBox"></div><div class="ob-av__name" id="avName">Player</div></div>
+      <div class="ob-av__opts" id="avOpts"></div>
+    </div>
+    <div class="ob-av__say" id="avSay"></div>
+    <p><button class="btn" id="avDone">I described my avatar</button></p>
+  </section>
+
+  <section id="words">
+    <h2>Obby words <span class="tag">vocabulary</span></h2>
+    <p class="sub">Click a card: listen and read the example.</p>
+    <div class="grid" id="vocab"></div>
+  </section>
+
+  <section id="rules">
+    <h2>Past Simple <span class="tag">grammar</span></h2>
+    <p class="sub">Tell the story of your game: what happened yesterday, last night, two days ago.</p>
+    <div class="legend"><span class="bk who">who</span><span class="bk hp">helper</span><span class="bk vb">verb</span><span class="bk end">+ed / form 2</span><span class="bk rest">the rest</span></div>
+    <div class="modes">
+      <div class="mode s">
+        <h3>Regular verbs: +ed</h3>
+        <div class="recipe"><span class="sign">+</span><span class="bk who">I / she / we</span><span class="bk vb">jump<i class="end">ed</i></span><span class="bk rest">over the lava.</span></div>
+        <div class="recipe"><span class="sign">&minus;</span><span class="bk who">I / she / we</span><span class="bk hp">didn't</span><span class="bk vb">jump</span><span class="bk rest">over it.</span></div>
+        <div class="recipe"><span class="sign">?</span><span class="bk hp">Did</span><span class="bk who">you</span><span class="bk vb">jump</span><span class="bk rest">over it?</span></div>
+        <div class="tip"><b>Spelling:</b> play &rarr; play<b>ed</b> · like &rarr; like<b>d</b> · stop &rarr; stop<b>ped</b> · try &rarr; tr<b>ied</b></div>
+      </div>
+      <div class="mode c">
+        <h3>Irregular verbs: form 2</h3>
+        <div class="recipe"><span class="sign">+</span><span class="bk who">I / he / they</span><span class="bk vb end">fell</span><span class="bk rest">into the lava.</span></div>
+        <div class="recipe"><span class="sign">&minus;</span><span class="bk who">I / he / they</span><span class="bk hp">didn't</span><span class="bk vb">fall</span><span class="bk rest">this time.</span></div>
+        <div class="recipe"><span class="sign">?</span><span class="bk hp">Did</span><span class="bk who">he</span><span class="bk vb">fall</span><span class="bk rest">again?</span></div>
+        <div class="tip"><b>Trap!</b> After <b>didn't</b> and <b>Did</b> use form 1: <s>I didn't fell</s> &rarr; I didn't fall.</div>
+      </div>
+    </div>
+    <div class="note"><b>Time words:</b> yesterday · last night · last week · two days ago · in 2025 · this morning</div>
+  </section>
+
+  <section id="verbs">
+    <h2>Verb checkpoints <span class="tag">+3 XP each</span></h2>
+    <p class="sub">Say form 2 out loud, then click to check.</p>
+    <div class="ob-verbs" id="verbList"></div>
+  </section>
+
+  <section id="run">
+    <h2>OBBY RUN <span class="tag">main game</span></h2>
+    <p class="sub">20 stages. Choose the right verb before the timer ends and your avatar jumps. A mistake = lava, back to the last checkpoint!</p>
+    <div class="ob-game" id="game">
+      <div class="ob-game__top"><span>Stage <b id="gStage">1</b>/20</span><span>Checkpoint <b id="gCp">0</b></span><span>Coins <b id="gCoins">0</b></span><span>Falls <b id="gFalls">0</b></span></div>
+      <div class="ob-track" id="track">
+        <div class="ob-sky"></div>
+        <div class="ob-stagebar" id="stagebar"></div>
+        <div class="ob-me" id="me"></div>
+        <div class="ob-obst" id="obst"></div>
+        <div class="ob-ground"></div>
+        <div class="ob-lavapit"></div>
+      </div>
+      <div class="ob-timer"><i id="timer"></i></div>
+      <div class="ob-q" id="gq">Press START to play!</div>
+      <div class="ob-opts" id="gopts"><button class="btn" id="gStart">START</button></div>
+    </div>
+  </section>
+
+  <section id="story">
+    <h2>Story time <span class="tag">+20 XP</span></h2>
+    <p class="sub">Put the story in the right order. Click the sentences one by one.</p>
+    <div class="ob-story">
+      <div><h4>Mixed up</h4><div id="storyPool" class="ob-story__list"></div></div>
+      <div><h4>Your story</h4><ol id="storyOut" class="ob-story__list"></ol></div>
+    </div>
+    <p><button class="btn alt" id="storyReset">Start again</button></p>
+  </section>
+
+  <section id="bugs">
+    <h2>Fix the bugs <span class="tag">+15 XP each</span></h2>
+    <p class="sub">OK or bug? Say the correct sentence out loud.</p>
+    <div id="bugList"></div>
+  </section>
+
+  <section id="missions">
+    <h2>Missions for the game <span class="tag">play + speak</span></h2>
+    <p class="sub">Play any obby. After each mission, tell your teacher what happened in Past Simple.</p>
+    <div class="missions" id="misList"></div>
+  </section>
+
+  <section id="talk">
+    <h2>Interview <span class="tag">speaking</span></h2>
+    <p class="sub">Ask your teacher, then answer yourself. Short answers: Yes, I did. / No, I didn't.</p>
+    <div class="timer" id="timer30">0:30</div>
+    <p style="text-align:center"><button class="btn" id="timerBtn">Start 30 seconds</button></p>
+    <div class="talk" id="talkList"></div>
+  </section>
+
+  <section id="watch">
+    <h2>Watch &amp; talk <span class="tag">videos</span></h2>
+    <p class="sub">Official videos from the game's YouTube channel. Watch, pause and talk!</p>
+    <div class="vids" id="vidList"></div>
+  </section>
+
+  <details class="teacher">
+    <summary>Для учителя: план на 50-60 минут</summary>
+    <p>1. Avatar (5 мин): ученик собирает аватар и описывает его в Past Simple (wore, had). 2. Obby words (7 мин). 3. Правило (5 мин): пусть сам скажет, где +ed, а где вторая форма. 4. Verb checkpoints (5 мин). 5. OBBY RUN (10 мин): главная игра, можно пройти 2 раза на скорость. 6-7. Story time и Fix the bugs (8 мин). 8. Миссии в игре (10-15 мин): ученик играет и рассказывает, что случилось. 9-10. Интервью и видео в конце.</p>
+    <p>Безопасность: напомните, что в чатах игр нельзя писать имя, школу, адрес и номер телефона.</p>
+    <p>Домашка: голосовое на 1 минуту «My best obby run»: что было, сколько раз упал, что получилось.</p>
+  </details>
+</div>
+
+<div class="toast" id="toast"></div>
+<div class="lvlup" id="lvlup"><b>LEVEL 2!</b><span>Keep going!</span></div>
+<script>
+// ---------- піксельні текстури (свої, процедурні) ----------
+let seed = 7;
+const rnd = () => { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; };
+const pick = (a) => a[Math.floor(rnd() * a.length)];
+function tex(fn) { const c = document.createElement('canvas'); c.width = c.height = 16; const x = c.getContext('2d'); fn(x); return c; }
+const px = (x, i, j, col) => { x.fillStyle = col; x.fillRect(i, j, 1, 1); };
+const noise = (cols) => tex((x) => { for (let i = 0; i < 16; i++) for (let j = 0; j < 16; j++) px(x, i, j, pick(cols)); });
+const T = {};
+T.grassTop = noise(['#5cbf3a', '#6fd14a', '#4fae30', '#66c843', '#5cbf3a']);
+T.dirt = noise(['#8a5a35', '#9c6a42', '#7a4d2c', '#93603a']);
+T.grassSide = tex((x) => { x.drawImage(T.dirt, 0, 0); for (let i = 0; i < 16; i++) { const h = 3 + Math.floor(rnd() * 3); for (let j = 0; j < h; j++) px(x, i, j, pick(['#5cbf3a', '#6fd14a', '#4fae30'])); } });
+T.stone = noise(['#8d8d8d', '#7f7f7f', '#9a9a9a', '#868686', '#8d8d8d']);
+T.cobble = tex((x) => { x.drawImage(noise(['#8a8a8a', '#9b9b9b', '#7d7d7d']), 0, 0); x.fillStyle = '#4f4f4f'; [[0, 4, 16, 1], [0, 10, 16, 1], [5, 0, 1, 4], [11, 4, 1, 6], [3, 10, 1, 6], [9, 11, 1, 5], [14, 0, 1, 4]].forEach((r) => x.fillRect(...r)); });
+T.sand = noise(['#e9d898', '#efe1a8', '#dccb88', '#e6d494']);
+T.logSide = tex((x) => { for (let i = 0; i < 16; i++) { const c = pick(['#6b4a2b', '#5c3e22', '#77532f']); for (let j = 0; j < 16; j++) px(x, i, j, rnd() < .2 ? '#4d3319' : c); } });
+T.logTop = tex((x) => { for (let i = 0; i < 16; i++) for (let j = 0; j < 16; j++) { const d = Math.max(Math.abs(i - 7.5), Math.abs(j - 7.5)); px(x, i, j, d > 6.5 ? '#5c3e22' : (Math.floor(d) % 2 ? '#c49a5b' : '#b5894d')); } });
+T.planks = tex((x) => { for (let j = 0; j < 16; j++) for (let i = 0; i < 16; i++) px(x, i, j, j % 4 === 3 ? '#7a5530' : pick(['#b5884f', '#a97c45', '#bd9259'])); x.fillStyle = '#7a5530'; [[5, 0], [12, 4], [3, 8], [10, 12]].forEach(([a, b]) => x.fillRect(a, b, 1, 3)); });
+T.glass = tex((x) => { x.fillStyle = '#d9f4ff'; x.fillRect(0, 0, 16, 16); x.fillStyle = '#ffffff'; [[3, 3], [4, 4], [5, 5], [10, 8], [11, 9]].forEach(([a, b]) => x.fillRect(a, b, 1, 1)); x.strokeStyle = '#9fd6ec'; x.lineWidth = 1; x.strokeRect(.5, .5, 15, 15); });
+T.brick = tex((x) => { x.fillStyle = '#c9c1b5'; x.fillRect(0, 0, 16, 16); for (let r = 0; r < 4; r++) for (let k = -1; k < 2; k++) { const ox = (r % 2) * 4 + k * 8; for (let i = 0; i < 7; i++) for (let j = 0; j < 3; j++) { const xi = ox + i; if (xi >= 0 && xi < 16) px(x, xi, r * 4 + j, pick(['#a8483a', '#b5523f', '#9b4133'])); } } });
+T.water = noise(['#3f76e4', '#4a82ee', '#3a6ad6', '#4f8af2']);
+T.furnaceFront = tex((x) => { x.drawImage(T.cobble, 0, 0); x.fillStyle = '#2a2a2a'; x.fillRect(4, 8, 8, 6); x.fillStyle = '#ff9a2e'; x.fillRect(5, 11, 6, 3); x.fillStyle = '#ffd23f'; x.fillRect(6, 12, 4, 2); x.fillStyle = '#555'; x.fillRect(4, 3, 8, 2); });
+T.tableTop = tex((x) => { x.drawImage(T.planks, 0, 0); x.fillStyle = '#5a3c1e'; x.fillRect(0, 0, 16, 1); x.fillRect(0, 15, 16, 1); x.fillRect(0, 0, 1, 16); x.fillRect(15, 0, 1, 16); x.fillRect(5, 1, 1, 14); x.fillRect(10, 1, 1, 14); x.fillRect(1, 5, 14, 1); x.fillRect(1, 10, 14, 1); });
+T.tableSide = tex((x) => { x.drawImage(T.planks, 0, 0); x.fillStyle = '#8d8d8d'; x.fillRect(3, 4, 3, 5); x.fillStyle = '#6b4a2b'; x.fillRect(4, 8, 1, 6); x.fillStyle = '#b8b8b8'; x.fillRect(9, 5, 4, 2); x.fillStyle = '#6b4a2b'; x.fillRect(10, 7, 1, 6); });
+T.chest = tex((x) => { x.drawImage(T.planks, 0, 0); x.fillStyle = '#5a3c1e'; x.fillRect(0, 5, 16, 1); x.strokeStyle = '#5a3c1e'; x.strokeRect(.5, .5, 15, 15); x.fillStyle = '#d9d9d9'; x.fillRect(7, 4, 2, 4); x.fillStyle = '#555'; x.fillRect(7, 6, 2, 1); });
+T.leaves = noise(['#2f8a22', '#3a9e2a', '#26751b', '#2f8a22', '#1f5f15']);
+T.melonTop = noise(['#9fbf2e', '#86a826', '#a9c93a']);
+T.melonSide = tex((x) => { for (let i = 0; i < 16; i++) for (let j = 0; j < 16; j++) px(x, i, j, Math.floor(i / 2) % 2 ? pick(['#6e9e1a', '#5f8c15']) : pick(['#a9c93a', '#9fbf2e'])); });
+T.bookshelf = tex((x) => { x.drawImage(T.planks, 0, 0); const cols = ['#c0392b', '#2e86de', '#27ae60', '#f1c40f', '#8e44ad', '#e67e22']; [[1, 2], [1, 9]].forEach(([, y]) => { for (let i = 1; i < 15; i += 2) { x.fillStyle = pick(cols); x.fillRect(i, y, 2, 5); } }); });
+T.diamondOre = tex((x) => { x.drawImage(T.stone, 0, 0); [[3, 3], [10, 4], [5, 10], [11, 11]].forEach(([a, b]) => { x.fillStyle = '#33e0d6'; x.fillRect(a, b, 2, 2); x.fillStyle = '#c9fffb'; x.fillRect(a, b, 1, 1); }); });
+
+T.sandstone = tex((x) => { for (let j = 0; j < 16; j++) for (let i = 0; i < 16; i++) px(x, i, j, j % 5 === 4 ? '#c9b178' : pick(['#e6d3a0', '#dcc891', '#ead8a8'])); });
+T.gravel = noise(['#8f8580', '#7a706b', '#a49a94', '#6a615c', '#9c938d']);
+T.obsidian = tex((x) => { x.drawImage(noise(['#1b1029', '#140a20', '#24163a', '#1b1029']), 0, 0); [[3, 4], [9, 2], [12, 9], [5, 12]].forEach(([a, b]) => { x.fillStyle = '#5b3a8c'; x.fillRect(a, b, 2, 1); }); });
+T.lava = tex((x) => { for (let i = 0; i < 16; i++) for (let j = 0; j < 16; j++) px(x, i, j, pick(['#ff6a00', '#ff8c1a', '#ffb02e', '#e85100', '#ffd23f'])); });
+const oreTex = (c1, c2) => tex((x) => { x.drawImage(T.stone, 0, 0); [[2, 3], [9, 2], [4, 9], [11, 10], [7, 6]].forEach(([a, b]) => { x.fillStyle = c1; x.fillRect(a, b, 2, 2); x.fillStyle = c2; x.fillRect(a, b, 1, 1); }); });
+T.coalOre = oreTex('#1c1c1c', '#3a3a3a'); T.ironOre = oreTex('#d8a07a', '#f1c9a8'); T.goldOre = oreTex('#ffd23f', '#fff3a0'); T.emeraldOre = oreTex('#2ecc71', '#b6ffd2');
+T.wool = noise(['#f4f4f4', '#ebebeb', '#ffffff', '#e2e2e2']);
+T.hayTop = tex((x) => { for (let i = 0; i < 16; i++) for (let j = 0; j < 16; j++) px(x, i, j, pick(['#e3c04a', '#d6b13c', '#c9a330'])); x.fillStyle = '#8a6a1f'; x.fillRect(7, 0, 2, 16); });
+T.haySide = tex((x) => { for (let i = 0; i < 16; i++) for (let j = 0; j < 16; j++) px(x, i, j, pick(['#e3c04a', '#d6b13c', '#c9a330'])); x.fillStyle = '#b5362b'; x.fillRect(0, 3, 16, 2); x.fillRect(0, 11, 16, 2); });
+T.roofTiles = tex((x) => { for (let j = 0; j < 16; j++) for (let i = 0; i < 16; i++) px(x, i, j, (j % 4 === 3) ? '#3b2a2a' : pick(['#a8483a', '#9b4133', '#b5523f'])); });
+T.barrelTop = tex((x) => { x.drawImage(T.planks, 0, 0); x.strokeStyle = '#4a4a4a'; x.strokeRect(1.5, 1.5, 13, 13); x.fillStyle = '#3a2618'; x.fillRect(5, 5, 6, 6); });
+T.barrelSide = tex((x) => { for (let i = 0; i < 16; i++) for (let j = 0; j < 16; j++) px(x, i, j, i % 4 === 3 ? '#6b4a2b' : pick(['#8d5a2b', '#9a6532'])); x.fillStyle = '#4a4a4a'; x.fillRect(0, 2, 16, 1); x.fillRect(0, 13, 16, 1); });
+
+// ізометричний куб
+function cube(top, left, right) {
+  const c = document.createElement('canvas'); c.width = c.height = 64; const x = c.getContext('2d'); x.imageSmoothingEnabled = false; const s = 2;
+  const face = (t, m, shade) => { x.setTransform(...m); x.drawImage(t, 0, 0); if (shade) { x.fillStyle = `rgba(0,0,0,${shade})`; x.fillRect(0, 0, 16, 16); } };
+  face(top, [s, s / 2, -s, s / 2, 32, 0], 0);
+  face(left, [s, s / 2, 0, s, 0, 16], .18);
+  face(right || left, [s, -s / 2, 0, s, 32, 32], .34);
+  x.setTransform(1, 0, 0, 1, 0, 0); return c;
+}
+// предмети: піксельні мапи 12×12
+// предмети: наші піксельні малюнки 16×16, контур додається автоматично
+const PAL = {
+  r: '#ff4040', d: '#b71c1c', h: '#ffffff', b: '#8d5a2b', B: '#5a3716', g: '#4cd137', G: '#218c3a',
+  y: '#ffe08a', o: '#e8892f', O: '#a85614', w: '#fff3d6', s: '#cdd6dd', S: '#7b8a95', c: '#5ec8ef', C: '#2779a7',
+  k: '#3a2618', K: '#1c1c1c', f: '#fff35c', F: '#ff9b1f', D: '#11b5ac', H: '#ffd23f', p: '#e0aa5c', P: '#a8722e', W: '#cfefff', m: '#ffffff', q: '#e8d3a8', R: '#c0392b', n: '#d64545', N: '#8e2424', e: '#f7dccf', u: '#a0592c', U: '#5e3015', l: '#f7a8b8', L: '#d06a83', a: '#ff8a5b', A: '#c8552c', v: '#9b2d63', V: '#5e1840', z: '#d9b679', Z: '#8a6a3a', j: '#2ecc71', J: '#167a43', t: '#8a5530', T: '#4e2c12', x: '#9a9a9a', X: '#555555', i: '#f39c12', I: '#b9770e',
+};
+const MAP = {
+
+  ladder: ['...bB.....bB....', '...bbbbbbbbB....', '...bB.....bB....', '...bB.....bB....', '...bbbbbbbbB....', '...bB.....bB....', '...bB.....bB....', '...bbbbbbbbB....', '...bB.....bB....', '...bB.....bB....', '...bbbbbbbbB....', '...bB.....bB....'],
+  fence: ['', '', '..bB...bB...bB..', '..bB...bB...bB..', '..bbbbbbbbbbbB..', '..bB...bB...bB..', '..bB...bB...bB..', '..bbbbbbbbbbbB..', '..bB...bB...bB..', '..bB...bB...bB..'],
+  gate: ['', '.bB..........bB.', '.bBbbbbbbbbbbbB.', '.bB.bB....bB.bB.', '.bB..bB..bB..bB.', '.bB...bBbB...bB.', '.bB...bBbB...bB.', '.bB..bB..bB..bB.', '.bBbbbbbbbbbbbB.', '.bB..........bB.'],
+  stairs: ['', '..........bbbb..', '..........bbbB..', '..........bbbB..', '......bbbbbbbB..', '......bbbbbbbB..', '......bbbbbbbB..', '..bbbbbbbbbbbB..', '..bbbbbbbbbbbB..', '..bbbbbbbbbbbB..', '..BBBBBBBBBBBB..'],
+  scaffolding: ['.yYYYYYYYYYYYYy.', '.y............y.', '.y.y........y.y.', '.y..y......y..y.', '.y...y....y...y.', '.y....y..y....y.', '.y.....yy.....y.', '.y....y..y....y.', '.y...y....y...y.', '.yYYYYYYYYYYYYy.', '.y............y.', '.y............y.'],
+  lantern: ['.......XX.......', '......X..X......', '.......XX.......', '.....XXXXXX.....', '....XffffffX....', '....XfFFFFfX....', '....XfFRFFfX....', '....XfFFFFfX....', '....XffffffX....', '.....XXXXXX.....'],
+  campfire: ['', '.......f........', '......fFf.......', '.....fFRFf......', '....fFRRRFf.....', '.....FRRRF......', '..uuUuuuUuuuU...', '...bBbBbBbBb....', '..uuUuuuUuuuU...', '...xxXxxXxxX....'],
+  cave: ['', '...xxxxxxxxxx...', '..xxxXxxxxXxxx..', '.xxxKKKKKKKxxxx.', '.xxKKKKKKKKKKxx.', '.xKKKKKKKKKKKKx.', '.xKKKKKKKKKKKKx.', '.xKKKKKKKKKKKKx.', '.xKKKKKKKKKKKKx.', 'gggggggggggggggg'],
+  rails: ['', '..X..........X..', '..X..........X..', '.bbbbbbbbbbbbbb.', '..X..........X..', '..X..........X..', '.bbbbbbbbbbbbbb.', '..X..........X..', '..X..........X..', '.bbbbbbbbbbbbbb.', '..X..........X..'],
+  nugget: ['', '', '.....HHH........', '....HfHHH...HH..', '....HHHHF..HfHF.', '.....FFF...HHHF.', '.......HHH..FF..', '......HfHHF.....', '......HHHFF.....', '.......FFF......'],
+  emerald: ['', '.......jj.......', '......jhjJ......', '.....jhjjjJ.....', '....jhjjjjjJ....', '....jjjjjjjJ....', '....jjjjjjjJ....', '.....jjjjjJ.....', '......jjjJ......', '.......jJ.......'],
+  stalactites: ['', 'xxxxxxxxxxxxxxxx', '.xXx..xXx...xXx.', '.xXx..xXx...xX..', '..x...xX....xX..', '..x....X....x...', '.......x....x...', '.......x........'],
+  mushroom: ['', '.....rrrrrr.....', '...rrhrrrrhrr...', '..rrrrrrhrrrrr..', '..rhrrrrrrrrhr..', '...dddddddddd...', '......wwww......', '......wwww......', '......wwqw......', '.....wwwwww.....'],
+  sheep: ['', '', '...wwwwwwwww....', '..wwmwwwwmwwwqq.', '..wwwwwwwwwwqKq.', '..wwwwmwwwwwqqq.', '..wwwwwwwwwwqq..', '...wwwwwwwww....', '...qq.qq.qq.qq..', '...qq.qq.qq.qq..'],
+  cow: ['', '..............KK', '..............hK', '...hhhhhhhhhhhhh', '..hKKhhhhKhhhhKh', '..KKKhhhKKKhhhhl', '..hhhhhhhhhhhhll', '...hhKKhhhhhhh..', '...hh.hh..hh.hh.', '...KK.KK..KK.KK.'],
+  pig: ['', '', '...lllllllllll..', '..llllllllllKll.', '..lllllllllllLL.', '..llllllllllLKL.', '..llllllllllll..', '...llllllllll...', '...LL.LL..LL.LL.'],
+  horse: ['...........uu...', '..........uuuu..', '..........uuKuu.', '..........uuuuu.', '...uuuuuuuuuu...', '..UuuuuuuuuuU...', '..UuuuuuuuuuU...', '...uuuuuuuuu....', '...uU.uU.uU.uU..', '...uU.uU.uU.uU..', '...KK.KK.KK.KK..'],
+  llama: ['...........qq...', '..........qqqq..', '..........qqKq..', '..........qqqq..', '..........qqq...', '..........qqq...', '...qqqqqqqqqq...', '..qqrrrrrrqqq...', '..qqqqqqqqqq....', '...qq.qq.qq.qq..', '...qq.qq.qq.qq..'],
+  bee: ['', '.....WW..WW.....', '.....WWWWWW.....', '...yKKyyKKyKK...', '..yyKKyyKKyKKy..', '..yyKKyyKKyyKy..', '...yKKyyKKyKK...'],
+  coop: ['.......rr.......', '......rrrr......', '.....rrrrrr.....', '....rrrrrrrr....', '...rrrrrrrrrr...', '....bbbbbbbb....', '....bbKKKKbb....', '....bbKKKKbb....', '....bbKKKKbb....', '....bbbbbbbb....', '....B......B....'],
+  saddle: ['', '', '..tt........tt..', '..tttt....tttt..', '...tttttttttt...', '....tTTTTTTt....', '.....tttttt.....', '......s..s......', '......s..s......', '.....ss..ss.....'],
+  lead: ['', '.....zzzzzz.....', '...zzZ....Zzz...', '..zZ........Zz..', '..z..zzzzzz..z..', '..z.zZ....Zz.z..', '..z.z......z.z..', '..z.zZ....Zz.z..', '..zZ.zzzzzz.Zz..', '...zzZ....Zzz...', '.....zzzzzz.....'],
+  shears: ['', '...ss.....ss....', '...sSs...sSs....', '....sSs.sSs.....', '.....sSsSs......', '......sSs.......', '.....rr.rr......', '....r..r..r.....', '....r..r..r.....', '.....rr.rr......'],
+  honeycomb: ['', '...HHH..HHH.....', '..HfffHHfffH....', '..HfffHHfffH....', '...HHHffHHHH....', '....HfffHfffH...', '....HfffHfffH...', '.....HHHHHHH....'],
+  beef: ['', '', '....nnnnnn......', '..nnnenNnnnn....', '.nnNnnnnnenNn...', '.nennnNnnnnnnn..', '.nnnnnnnennnNn..', '..NnnnnnnnnNNe..', '...NNNnnnNNNee..', '......NNNNee....'],
+  steak: ['', '', '....uuuuuu......', '..uuueuUuuuu....', '.uuUuuuuueuUu...', '.ueuuuUuuuuuuu..', '.uuuuuuueuuuUu..', '..UuuuuuuuuUUe..', '...UUUuuuUUUee..', '......UUUUee....'],
+  pork: ['', '', '.......eeee.....', '.....llllllee...', '...llLllllllLe..', '..lllllllLllll..', '..llLlllllllll..', '..lllllllllLll..', '...lllllllll....', '.....eeeeee.....'],
+  mutton: ['', '....eeeeee......', '...ennnnnne.....', '..ennNnnnnne....', '..ennnnnNnne....', '..ennnnnnnne....', '...ennnnnneem...', '....eeeeee..mm..', '.............mm.'],
+  rawchicken: ['', '...llll.........', '..lhhlllL.......', '..lhllllll......', '..llllllll......', '...lllllLL......', '....LLLLLm......', '.........mm.....', '..........mm.mm.', '...........mmm..', '..........mm.mm.'],
+  bakedpotato: ['', '', '', '.....pppppp.....', '...pphpppppPp...', '..phpyyyyyypPP..', '..ppyyyyyyyyPP..', '..ppPppppppPPP..', '...PppppppPPP...', '....PPPPPPPP....'],
+  beetroot: ['.......gG.......', '......gGgG......', '.......gG.......', '.....vvvvvv.....', '....vvhvvvvV....', '....vhvvvvvV....', '....vvvvvvvV....', '.....vvvvvV.....', '......vvVV......', '.......vV.......', '........V.......'],
+  stew: ['', '', '', '', '...uuyuuqyuuu...', '..buuuuuuuuuub..', '..bbbbbbbbbbbB..', '...bbbbbbbbbB...', '....BBBBBBBB....'],
+  rabbitstew: ['', '', '', '', '...uoouuqoouu...', '..buuouuuuouub..', '..bbbbbbbbbbbB..', '...bbbbbbbbbB...', '....BBBBBBBB....'],
+  pie: ['', '', '', '......oooo......', '....ooiiiioo....', '...oiiiiiiiio...', '..oiiiiiiiiiio..', '..OoooooooooOO..', '...OOOOOOOOOO...'],
+  melonslice: ['', '', '..G...........G.', '..gG.........Gg.', '..grr.......rrg.', '...grrrKrrKrrg..', '...grrrrrrrrrg..', '....grrrKrrrg...', '.....grrrrrg....', '......ggggg.....'],
+  berries: ['......g.........', '.....gGg.g......', '....g...gGg.....', '...rr...g.......', '..rhrr.rr..rr...', '..rrrr.rhr.rhr..', '...rr..rrr.rrr..', '........r...r...'],
+  honeybottle: ['', '......bb........', '......WW........', '......WW........', '.....WWWW.......', '....WHHHHW......', '...WHfHHHHW.....', '...WHHHHHHW.....', '...WHHHHHHW.....', '....WWWWWW......'],
+  kelp: ['', '..J...J...J.....', '..jJ..jJ..jJ....', '...jJ..jJ..jJ...', '..jJ..jJ..jJ....', '...jJ..jJ..jJ...', '..jJ..jJ..jJ....', '...j...j...j....'],
+  sugarcane: ['....g.....g.....', '....gG....gG....', '....gG....gG....', '....GG....GG....', '....gG....gG.g..', '....gG....gG.gG.', '....GG....GG.gG.', '....gG....gG.GG.', '....gG....gG.gG.'],
+  cocoa: ['.......b........', '......bb........', '.....uuuu.......', '....uiiiiu......', '....uiuiiU......', '....uiiuiU......', '....uiiiiU......', '.....uiiU.......', '......UU........'],
+  rod: ['.............bb.', '............bBs.', '...........bB.s.', '..........bB..s.', '.........bB...s.', '........bB....s.', '.......bB.....s.', '......bB......s.', '.....bB.......r.', '....bB..........'],
+  compass: ['', '....SSSSSS......', '...SwwwwwwS.....', '..SwwwrwwwwS....', '..SwwwrwwwwS....', '..SwwwKwwwwS....', '..SwwwhwwwwS....', '...SwwwwwwS.....', '....SSSSSS......'],
+  map: ['', '..qqqqqqqqqqqq..', '..qgggqqqccccq..', '..qgGggqccCccq..', '..qggqqqqcccqq..', '..qqqqgggqqqqq..', '..qcccqgGgqrqq..', '..qcCcqqggqqqq..', '..qqqqqqqqqqqq..'],
+  spyglass: ['', '............HH..', '...........HsSH.', '..........HsSH..', '.........HHH....', '........ttT.....', '.......ttT......', '......ttT.......', '.....HHH........', '....HsH.........', '.....H..........'],
+  anvil: ['', '', '..XXXXXXXXXXXX..', '..XxxxxxxxxxxX..', '...XXXXXXXXXX...', '.....XxxxxX.....', '.....XxxxxX.....', '....XxxxxxxX....', '...XXXXXXXXXX...'],
+  cauldron: ['', '..XX........XX..', '..XXXXXXXXXXXX..', '..XccccccccccX..', '..XxxxxxxxxxxX..', '..XxxxxxxxxxxX..', '..XxxxxxxxxxxX..', '...XxxxxxxxxX...', '...XX......XX...'],
+  bottle: ['', '......bb........', '......WW........', '......WW........', '.....WWWW.......', '....WhWWWW......', '...WhWWWWWW.....', '...WWWWWWWW.....', '...WWWWWWWW.....', '....WWWWWW......'],
+  egg: ['', '', '.......ww.......', '......wwww......', '.....whwwww.....', '.....hwwwww.....', '....whwwwwww....', '....wwwwwwww....', '....wwwwwwwq....', '....wwwwwwqq....', '....wwwwwwqq....', '.....wwwwqq.....', '......wqqq......'],
+  apple: ['', '.......b..gg....', '.......bgggG....', '....rrrbrrr.....', '...rhrrrrrrd....', '..rhhrrrrrrrd...', '..rhrrrrrrrrd...', '..rrrrrrrrrrd...', '..rrrrrrrrrdd...', '..rrrrrrrrrdd...', '...rrrrrrrdd....', '...drrrrrddd....', '....dd..ddd.....'],
+  bread: ['', '', '', '', '.....oooooo.....', '...oohoyyoooo...', '..ohyoyyoyyooO..', '..oyyyyyyyyyoO..', '..ooyoyyoyyooO..', '..OoooooooooOO..', '...OOOOOOOOOO...'],
+  carrot: ['', '...........gG...', '.........ggGg...', '..........gG....', '.........oOo....', '........ooOo....', '.......oooO.....', '......oOoo......', '.....oooO.......', '....ooOo........', '...oOoo.........', '..ooo...........', '..o.............'],
+  fish: ['', '', '', '.....CCCC.......', '...CCccccCC..C..', '..Cccccccccc.CC.', '.CKcccccccccccc.', '.CcWWWWWWWccccc.', '..CWWWWWWWW.CC..', '...CCWWWWCC..C..', '.....CCCC.......'],
+  milk: ['.....SSSSSS.....', '...SS......SS...', '...SSSSSSSSSS...', '..SmmmmmmmmmmS..', '..SsmmmmmmmmsS..', '..ShsssssssssS..', '...ShsssssssS...', '...ShsssssssS...', '....ShssssSS....', '....SSSSSSSS....'],
+  bucket: ['.....SSSSSS.....', '...SS......SS...', '...SSSSSSSSSS...', '..SKKKKKKKKKKS..', '..SsKKKKKKKKsS..', '..ShsssssssssS..', '...ShsssssssS...', '...ShsssssssS...', '....ShssssSS....', '....SSSSSSSS....'],
+  torch: ['', '.......ff.......', '......fFFf......', '......FRRF......', '......fFFf......', '.......bB.......', '.......bB.......', '.......bB.......', '.......bB.......', '.......bB.......', '.......bB.......', '.......bB.......', '.......bB.......'],
+  pickaxe: ['', '....hcccccC.....', '...hccCCCCccC...', '..hcC..bB..CcC..', '..cC...bB...Cc..', '..C....bB....C..', '.......bB.......', '.......bB.......', '.......bB.......', '.......bB.......', '.......bB.......', '.......bB.......'],
+  sword: ['.......hc.......', '......hccC......', '......hccC......', '......hccC......', '......hccC......', '......hccC......', '......hccC......', '......hccC......', '....HHHHHHHH....', '.......bB.......', '.......bB.......', '.......HH.......'],
+  axe: ['', '....SSSS........', '...SssssS.bB....', '..ShsssssSbB....', '..ShssssssbB....', '..ShsssssSbB....', '...SssssS.bB....', '....SSSS..bB....', '..........bB....', '..........bB....', '..........bB....', '..........bB....'],
+  shovel: ['', '......SsS.......', '.....SsssS......', '.....ShssS......', '.....ShssS......', '......SsS.......', '.......bB.......', '.......bB.......', '.......bB.......', '.......bB.......', '......bbBB......', '......b..B......'],
+  door: ['..BBBBBBBBBBBB..', '..BbbbbBBbbbbB..', '..BWWWbBBWWWbB..', '..BWWWbBBWWWbB..', '..BbbbbBBbbbbB..', '..BBBBBBBBBBBB..', '..BbbbbbbbbbbB..', '..BbBBBBBBBBbB..', '..BbbbbbbbbKbB..', '..BbBBBBBBBBbB..', '..BbbbbbbbbbbB..', '..BBBBBBBBBBBB..'],
+  bed: ['', '', '', '', '', '..mmmmrrrrrrrr..', '..mmhmrrrrrrrr..', '..mmmmrdrrdrrr..', '..dddddddddddd..', '..bB........bB..', '..bB........bB..'],
+  diamond: ['', '....cccccccc....', '...chhccccCCc...', '..chcccccccCCc..', '..ccccccccCCCc..', '...cccccccCCc...', '....ccccccCc....', '.....ccccCc.....', '......cccc......', '.......cc.......'],
+  wheat: ['.....y..y..y....', '....yo.yo.yo....', '.....y..y..y....', '....yo.yo.yo....', '.....yo.y.oy....', '......g.g.g.....', '......g.g.g.....', '.......ggg......', '........g.......', '.......yoy......', '........g.......', '........g.......'],
+  potato: ['', '', '', '.....pppppp.....', '...pphpppppPp...', '..phppPpppppPP..', '..pppppppPppPP..', '..ppPppppppPPP..', '...PppppppPPP...', '....PPPPPPPP....'],
+  chicken: ['', '...oooo.........', '..oyyoooO.......', '..oyoooooO......', '..oooooooO......', '...oooooOO......', '....OOOOOm......', '.........mm.....', '..........mm.mm.', '...........mmm..', '..........mm.mm.'],
+  cookie: ['', '', '.....pppppp.....', '...pppkppppp....', '..pppppppkppp...', '..pkppppppppp...', '..pppppkpppkp...', '..pppppppppp....', '...ppkpppppp....', '.....pppppp.....'],
+  coal: ['', '', '', '......KKKK......', '....KKSKKKKK....', '...KSKKKKKKKK...', '...KKKKKKKKKK...', '....KKKKKKKK....', '.....KKKKKK.....'],
+  iron: ['', '', '', '', '.....hhhhhhh....', '...hhssssssSS...', '..hsssssssssSS..', '..SSSSSSSSSSSS..'],
+  gold: ['', '', '', '', '.....ffffffff...', '...ffHHHHHHFF...', '..fHHHHHHHHHFF..', '..FFFFFFFFFFFF..'],
+};
+MAP.salmon = MAP.fish.map((r) => r.replace(/c/g, 'a').replace(/C/g, 'A').replace(/W/g, 'e'));
+MAP.cod = MAP.fish.map((r) => r.replace(/c/g, 'x').replace(/C/g, 'X').replace(/W/g, 'q'));
+function item(name) {
+  const c = document.createElement('canvas'); c.width = c.height = 16; const x = c.getContext('2d');
+  const g = MAP[name].map((r) => r.padEnd(16, '.'));
+  while (g.length < 16) g.push('................');
+  const on = (i, j) => j >= 0 && j < 16 && i >= 0 && i < 16 && PAL[g[j][i]];
+  for (let j = 0; j < 16; j++) for (let i = 0; i < 16; i++) {
+    if (on(i, j)) px(x, i, j, PAL[g[j][i]]);
+    else if (on(i + 1, j) || on(i - 1, j) || on(i, j + 1) || on(i, j - 1)) px(x, i, j, '#2a1a10');
+  }
+  return c;
+}
+const B = {
+  grass: () => cube(T.grassTop, T.grassSide), dirt: () => cube(T.dirt, T.dirt), stone: () => cube(T.stone, T.stone), cobblestone: () => cube(T.cobble, T.cobble),
+  sand: () => cube(T.sand, T.sand), log: () => cube(T.logTop, T.logSide), planks: () => cube(T.planks, T.planks), glass: () => cube(T.glass, T.glass),
+  brick: () => cube(T.brick, T.brick), water: () => cube(T.water, T.water), furnace: () => cube(T.cobble, T.furnaceFront, T.cobble), table: () => cube(T.tableTop, T.tableSide, T.tableSide),
+  chest: () => cube(T.planks, T.chest, T.chest), leaves: () => cube(T.leaves, T.leaves), melon: () => cube(T.melonTop, T.melonSide), bookshelf: () => cube(T.planks, T.bookshelf), ore: () => cube(T.stone, T.diamondOre),
+  sandstone: () => cube(T.sandstone, T.sandstone), gravel: () => cube(T.gravel, T.gravel), obsidian: () => cube(T.obsidian, T.obsidian), lava: () => cube(T.lava, T.lava),
+  coalore: () => cube(T.coalOre, T.coalOre), ironore: () => cube(T.ironOre, T.ironOre), goldore: () => cube(T.goldOre, T.goldOre), emeraldore: () => cube(T.emeraldOre, T.emeraldOre),
+  wool: () => cube(T.wool, T.wool), hay: () => cube(T.hayTop, T.haySide), roof: () => cube(T.roofTiles, T.roofTiles), barrel: () => cube(T.barrelTop, T.barrelSide),
+};
+const pic = (k) => (B[k] ? B[k]() : item(k));
+
+// ---------- XP ----------
+// звуки (генеруємо самі), частинки, level up
+let AC; const tone = (f, d, type = 'square', v = .07, when = 0) => { try { AC = AC || new (window.AudioContext || window.webkitAudioContext)(); const o = AC.createOscillator(), g = AC.createGain(); o.type = type; o.frequency.value = f; g.gain.value = v; o.connect(g); g.connect(AC.destination); const t = AC.currentTime + when; o.start(t); g.gain.exponentialRampToValueAtTime(.0001, t + d); o.stop(t + d); } catch (e) { } };
+const pop = () => { tone(660, .08); tone(990, .12, 'square', .06, .07); };
+const buzz = () => { tone(140, .25, 'sawtooth', .06); };
+const fanfare = () => [523, 659, 784, 1046].forEach((f, i) => tone(f, .18, 'square', .07, i * .11));
+let lastX = innerWidth / 2, lastY = innerHeight / 2;
+addEventListener('pointerdown', (e) => { lastX = e.clientX; lastY = e.clientY; }, true);
+function burst(n = 14) {
+  const cols = ['#7cff4f', '#ffd23f', '#33e0d6', '#ff5a5f', '#ff8fd8', '#8e6cff'];
+  for (let i = 0; i < n; i++) { const p = document.createElement('i'); p.className = 'pxl'; p.style.left = lastX + 'px'; p.style.top = lastY + 'px'; p.style.background = cols[i % cols.length];
+    const a = Math.random() * Math.PI * 2, r = 50 + Math.random() * 70; p.style.setProperty('--dx', Math.cos(a) * r + 'px'); p.style.setProperty('--dy', Math.sin(a) * r - 30 + 'px'); document.body.appendChild(p); setTimeout(() => p.remove(), 800); }
+}
+const LESSON_ID = 'obby';
+let xp = 0, dias = 0; const done = new Set();
+function gain(key, n, msg) {
+  if (done.has(key)) return; done.add(key); const before = Math.floor(xp / 100); xp += n; if (n >= 15) dias++;
+  // якщо учень увійшов на Murly, досвід іде і в його загальний рівень
+  try { if (location.hostname.endsWith('murly.com.ua')) fetch('/api/xp', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ items: [{ key: `game:${LESSON_ID}:${key}`, amount: Math.min(60, n) }], source: 'game' }) }).catch(() => {}); } catch (e) { }
+  const lvl = Math.floor(xp / 100) + 1;
+  burst(); if (lvl - 1 > before) { fanfare(); const L = document.getElementById('lvlup'); L.querySelector('b').textContent = 'LEVEL ' + lvl + '!'; L.classList.remove('show'); void L.offsetWidth; L.classList.add('show'); } else pop();
+  document.getElementById('xpbar').style.width = (xp % 100) + '%';
+  document.getElementById('xptext').textContent = xp + ' XP';
+  document.getElementById('lvl').textContent = 'LEVEL ' + lvl;
+  document.getElementById('dias').textContent = dias;
+  toast(msg || ('+' + n + ' XP'));
+}
+let tt; function toast(m) { const t = document.getElementById('toast'); t.textContent = m; t.classList.add('show'); clearTimeout(tt); tt = setTimeout(() => t.classList.remove('show'), 1300); }
+function say(w) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; u.rate = .9; speechSynthesis.speak(u); } catch (e) { } }
+const put = (el, c) => { c.style.width = c.style.width || ''; el.appendChild(c); };
+
+
+// ================= OBBY CHAMPIONS =================
+Object.assign(MAP, {
+  flag: ['....X...........', '....Xrrrrrrr....', '....Xrrrrrrrr...', '....Xrrrrrrr....', '....Xrrrrr......', '....X...........', '....X...........', '....X...........', '....X...........', '...XXX..........', '..XXXXX.........'],
+  coin: ['', '', '.....HHHHH......', '....HffffHH.....', '...HffHHffHF....', '...HfHffHfHF....', '...HfHffHfHF....', '...HffHHffHF....', '....HffffHF.....', '.....FFFFF......'],
+  trophy: ['..HHHHHHHHHHHH..', '..HfHHHHHHHHHH..', '.HHfHHHHHHHHHHH.', '.H.HHHHHHHHHH.H.', '..H.HHHHHHHH.H..', '.....HHHHHH.....', '.......HH.......', '.......HH.......', '.....FFFFFF.....', '....FFFFFFFF....'],
+  badge: ['.....cccccc.....', '...cccccccccc...', '..cccchhcccccc..', '..ccchhhhccccc..', '..ccHHHHHHHccc..', '..cccHHHHHcccc..', '..ccHHcccHHccc..', '...cccccccccc...', '.....cccccc.....', '.....rr..rr.....', '....rr....rr....'],
+  trampoline: ['', '', '', '..cccccccccccc..', '.XcccccccccccccX', '.XXXXXXXXXXXXXXX', '..X..........X..', '..X..........X..', '.XX..........XX.'],
+  spinner: ['', '', 'rrrrrrrrrrrrrrrr', 'rddddddddddddddr', '.......XX.......', '.......XX.......', '.......XX.......', '.......XX.......', '......XXXX......', '.....XXXXXX.....'],
+  conveyor: ['', '', '', '..XXXXXXXXXXXX..', '.XyXyXyXyXyXyXX.', '.XXXXXXXXXXXXXXX', '.X.X.X.X.X.X.X..', '..XXXXXXXXXXXX..'],
+  stopwatch: ['......XXX.......', '.......X........', '.....XXXXX......', '....XwwwwwX.....', '...XwwwKwwwX....', '...XwwwKwwwX....', '...XwwwKKKwX....', '...XwwwwwwwX....', '....XwwwwwX.....', '.....XXXXX......'],
+  avatar: ['......yyyy......', '......yKyK......', '......yyyy......', '....cccccccc....', '...ycccccccy....', '...ycccccccy....', '...ycccccccy....', '.....CCCCCC.....', '.....CC..CC.....', '.....CC..CC.....', '.....KK..KK.....'],
+  heart: ['', '..rrr....rrr....', '.rrhrr..rrrrr...', '.rhrrrrrrrrrr...', '.rrrrrrrrrrrr...', '..rrrrrrrrrr....', '...rrrrrrrr.....', '....rrrrrr......', '.....rrrr.......', '......rr........'],
+  server: ['', '..XXXXXXXXXXXX..', '..XxxxxxxxxjxX..', '..XXXXXXXXXXXX..', '..XxxxxxxxxjxX..', '..XXXXXXXXXXXX..', '..XxxxxxxxxrxX..', '..XXXXXXXXXXXX..'],
+  levelup: ['.......jj.......', '......jjjj......', '.....jjjjjj.....', '....jjjjjjjj....', '...jjjjjjjjjj...', '......jjjj......', '......jjjj......', '......jjjj......', '......jjjj......'],
+  friend: ['', '.....yyyy.......', '.....yyyy.......', '.....yyyy.......', '...cccccccc.....', '...cccccccc..jj.', '...cccccccc.jjjj', '...cccccccc..jj.'],
+  respawn: ['', '....jjjjjj......', '...jj....jj.....', '..jj......jj....', '..j........j....', '..j......jjjjj..', '..j.......jjj...', '..jj.......j....', '...jj....jj.....', '....jjjjjj......'],
+});
+
+// ---------- шапка: бігун ----------
+const runnerSvg = (c = {}) => {
+  const skin = c.skin || '#ffcc66', shirt = c.shirt || '#2f80ed', pants = c.pants || '#1d1d2b', hat = c.hat || '#ff5a5f', hatT = c.hatType || 'cap', acc = c.acc || 'none';
+  const hatEl = hatT === 'cap' ? `<rect x="30" y="8" width="40" height="12" fill="${hat}" stroke="#1d1d2b" stroke-width="3"/><rect x="62" y="16" width="16" height="6" fill="${hat}" stroke="#1d1d2b" stroke-width="3"/>`
+    : hatT === 'beanie' ? `<rect x="30" y="4" width="40" height="18" rx="6" fill="${hat}" stroke="#1d1d2b" stroke-width="3"/><circle cx="50" cy="4" r="5" fill="${hat}" stroke="#1d1d2b" stroke-width="3"/>`
+    : hatT === 'crown' ? `<path d="M30 20 L32 4 L41 13 L50 2 L59 13 L68 4 L70 20 Z" fill="#ffd23f" stroke="#1d1d2b" stroke-width="3"/>`
+    : hatT === 'horns' ? `<path d="M32 18 L26 2 L40 14 Z M68 18 L74 2 L60 14 Z" fill="${hat}" stroke="#1d1d2b" stroke-width="3"/>` : '';
+  const accEl = acc === 'glasses' ? `<rect x="36" y="28" width="11" height="8" fill="#1d1d2b"/><rect x="53" y="28" width="11" height="8" fill="#1d1d2b"/><rect x="47" y="30" width="6" height="2" fill="#1d1d2b"/>`
+    : acc === 'headphones' ? `<path d="M28 34 Q28 10 50 10 Q72 10 72 34" fill="none" stroke="#1d1d2b" stroke-width="5"/><rect x="24" y="30" width="9" height="13" rx="3" fill="#ff8fd8" stroke="#1d1d2b" stroke-width="3"/><rect x="67" y="30" width="9" height="13" rx="3" fill="#ff8fd8" stroke="#1d1d2b" stroke-width="3"/>`
+    : acc === 'backpack' ? `<rect x="16" y="54" width="12" height="30" rx="3" fill="#7cff4f" stroke="#1d1d2b" stroke-width="3"/>` : '';
+  return `<svg viewBox="0 0 100 150" class="ob-svg" aria-hidden="true">${acc === 'backpack' ? accEl : ''}
+    <rect x="30" y="18" width="40" height="34" rx="6" fill="${skin}" stroke="#1d1d2b" stroke-width="3"/>
+    <rect x="40" y="30" width="5" height="6" fill="#1d1d2b"/><rect x="55" y="30" width="5" height="6" fill="#1d1d2b"/><path d="M42 42 Q50 47 58 42" fill="none" stroke="#1d1d2b" stroke-width="3"/>
+    ${hatEl}${acc !== 'backpack' ? accEl : ''}
+    <rect x="28" y="52" width="44" height="42" fill="${shirt}" stroke="#1d1d2b" stroke-width="3"/>
+    <rect x="12" y="52" width="16" height="40" fill="${shirt}" stroke="#1d1d2b" stroke-width="3"/><rect x="72" y="52" width="16" height="40" fill="${shirt}" stroke="#1d1d2b" stroke-width="3"/>
+    <rect x="12" y="88" width="16" height="10" fill="${skin}" stroke="#1d1d2b" stroke-width="3"/><rect x="72" y="88" width="16" height="10" fill="${skin}" stroke="#1d1d2b" stroke-width="3"/>
+    <rect x="28" y="94" width="21" height="44" fill="${pants}" stroke="#1d1d2b" stroke-width="3"/><rect x="51" y="94" width="21" height="44" fill="${pants}" stroke="#1d1d2b" stroke-width="3"/>
+    <rect x="26" y="136" width="24" height="10" fill="#fff" stroke="#1d1d2b" stroke-width="3"/><rect x="50" y="136" width="24" height="10" fill="#fff" stroke="#1d1d2b" stroke-width="3"/></svg>`;
+};
+const AV = { skin: '#ffcc66', hatType: 'cap', hat: '#ff5a5f', shirt: '#2f80ed', pants: '#1d1d2b', acc: 'none' };
+document.getElementById('heroRunner').innerHTML = runnerSvg(AV);
+
+// ---------- 1. аватар ----------
+const COLORS = [['red', '#ff5a5f'], ['blue', '#2f80ed'], ['green', '#3ecf4c'], ['yellow', '#ffd23f'], ['purple', '#8e6cff'], ['pink', '#ff8fd8'], ['black', '#1d1d2b'], ['white', '#ffffff'], ['orange', '#ff9f1c'], ['grey', '#9a9a9a']];
+const cname = (hex) => (COLORS.find((c) => c[1] === hex) || ['', ''])[0];
+const OPTS = [
+  ['Skin', 'skin', [['', '#ffcc66'], ['', '#f1b98a'], ['', '#c98b5b'], ['', '#7a4a2a'], ['', '#7cff4f'], ['', '#8fd3ff']]],
+  ['Hat', 'hatType', [['cap', 'cap'], ['beanie', 'beanie'], ['crown', 'crown'], ['horns', 'horns'], ['no hat', 'none']]],
+  ['Hat colour', 'hat', COLORS],
+  ['T-shirt', 'shirt', COLORS],
+  ['Trousers', 'pants', COLORS],
+  ['Extra', 'acc', [['nothing', 'none'], ['glasses', 'glasses'], ['headphones', 'headphones'], ['backpack', 'backpack']]],
+];
+const avOpts = document.getElementById('avOpts');
+function drawAvatar() {
+  document.getElementById('avatarBox').innerHTML = runnerSvg(AV);
+  document.getElementById('heroRunner').innerHTML = runnerSvg(AV);
+  document.getElementById('me').innerHTML = runnerSvg(AV);
+  const hat = AV.hatType === 'none' ? '' : AV.hatType === 'crown' ? 'a golden crown, ' : AV.hatType === 'horns' ? `${cname(AV.hat)} horns, ` : `a ${cname(AV.hat)} ${AV.hatType}, `;
+  const acc = AV.acc === 'none' ? '' : AV.acc === 'glasses' ? ' He/She had cool glasses.' : AV.acc === 'headphones' ? ' He/She had pink headphones.' : ' He/She had a green backpack.';
+  document.getElementById('avSay').innerHTML = `<b>Yesterday my avatar wore</b> ${hat}a ${cname(AV.shirt)} T-shirt and ${cname(AV.pants)} trousers.${acc}`;
+}
+OPTS.forEach(([label, key, vals]) => {
+  const row = document.createElement('div'); row.className = 'ob-av__row';
+  row.innerHTML = `<b>${label}</b>`;
+  vals.forEach(([nm, v]) => {
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'ob-sw' + (AV[key] === v ? ' on' : '');
+    if (v.startsWith('#')) { b.style.background = v; b.title = nm || v; b.setAttribute('aria-label', nm || 'colour'); } else b.textContent = nm;
+    b.onclick = () => { AV[key] = v; row.querySelectorAll('.ob-sw').forEach((x) => x.classList.remove('on')); b.classList.add('on'); tone(520 + Math.random() * 300, .06); drawAvatar(); };
+    row.appendChild(b);
+  });
+  avOpts.appendChild(row);
+});
+document.getElementById('avDone').onclick = () => gain('avatar', 15, '+15 XP · nice avatar!');
+drawAvatar();
+
+// ---------- 2. слова ----------
+const WORDS = [
+  ['grass', 'an obby', 'A game where you jump over obstacles to reach the end.', 'I finished a really hard obby yesterday.'],
+  ['planks', 'a stage', 'One part of the obby. Many obbies have 50 or 100 stages.', 'I reached stage 47 last night.'],
+  ['flag', 'a checkpoint', 'A safe point. If you fall, you start here again.', 'Luckily, I touched the checkpoint before I fell.'],
+  ['spinner', 'an obstacle', 'Something in your way that makes the game hard.', 'A spinning bar knocked me off the platform.'],
+  ['lava', 'lava', 'Hot red blocks. Touch them and you lose.', 'I fell into the lava three times.'],
+  ['trampoline', 'a jump pad', 'It throws you up high.', 'The jump pad sent me flying!'],
+  ['conveyor', 'a conveyor belt', 'A moving floor.', 'The conveyor belt pushed me back.'],
+  ['ladder', 'a ladder', 'You climb up it.', 'I climbed the ladder to the next stage.'],
+  ['respawn', 'to respawn', 'To come back into the game after you lose.', 'I respawned at the last checkpoint.'],
+  ['stopwatch', 'a speedrun', 'Finishing a game as fast as you can.', 'My speedrun took four minutes.'],
+  ['coin', 'a coin', 'Money in the game.', 'I collected twenty coins.'],
+  ['badge', 'a badge', 'A prize for doing something special.', 'I got a badge for finishing the tower.'],
+  ['trophy', 'to win / won', 'To be the first or the best.', 'We won the race!'],
+  ['avatar', 'an avatar', 'Your character in the game.', 'My avatar wore a red hoodie.'],
+  ['server', 'a server', 'A copy of the game where you play with other people.', 'We joined the same server.'],
+  ['friend', 'a friend request', 'When someone asks to be your friend in the game.', 'Only accept requests from people you know!'],
+  ['levelup', 'to level up', 'To get to a higher level.', 'I levelled up twice yesterday.'],
+  ['heart', 'to like a game', 'To show that a game is good.', 'I liked the game and gave it a thumbs up.'],
+];
+const vocab = document.getElementById('vocab');
+WORDS.forEach(([k, word, def, ex]) => {
+  const card = document.createElement('div'); card.className = 'card';
+  card.innerHTML = `<div class="in"><div class="face front"></div><div class="face back"><b>${word}</b><span>${def}</span><em>${ex}</em></div></div>`;
+  const f = card.querySelector('.front'); f.appendChild(pic(k)); const nm = document.createElement('b'); nm.textContent = word; f.appendChild(nm);
+  card.onclick = () => { card.classList.toggle('flip'); say(word.replace(/^(a|an|to) /, '').split(' / ')[0]); gain('v-' + word, 2, '+2 XP · ' + word); };
+  vocab.appendChild(card);
+});
+
+// ---------- 4. контрольні точки дієслів ----------
+const VERBS = [['fall', 'fell'], ['win', 'won'], ['lose', 'lost'], ['run', 'ran'], ['get', 'got'], ['go', 'went'], ['see', 'saw'], ['find', 'found'], ['make', 'made'], ['buy', 'bought'], ['take', 'took'], ['build', 'built'], ['fly', 'flew'], ['begin', 'began'], ['hit', 'hit'], ['jump', 'jumped'], ['climb', 'climbed'], ['try', 'tried']];
+const vl = document.getElementById('verbList');
+VERBS.forEach(([a, b], i) => {
+  const d = document.createElement('button'); d.type = 'button'; d.className = 'ob-verb';
+  d.innerHTML = `<span class="ob-verb__f">${a}</span><span class="ob-verb__b">${b}</span>`;
+  d.onclick = () => { d.classList.add('open'); say(b); gain('verb' + i, 3, `${a} → ${b}`); };
+  vl.appendChild(d);
+});
+
+// ---------- 5. OBBY RUN ----------
+const QS = [
+  ['Yesterday I ___ into the lava.', 'fell', ['falled', 'fall']],
+  ['We ___ the race last night!', 'won', ['winned', 'win']],
+  ['She ___ to stage 30 in ten minutes.', 'got', ['getted', 'gets']],
+  ['I ___ over the spinning bar.', 'jumped', ['jump', 'jumpt']],
+  ['They ___ a secret door.', 'found', ['finded', 'find']],
+  ['Did you ___ the obby?', 'finish', ['finished', 'finishing']],
+  ['He didn\'t ___ the checkpoint.', 'touch', ['touched', 'touches']],
+  ['My friend ___ me a friend request.', 'sent', ['sended', 'send']],
+  ['I ___ two badges yesterday.', 'got', ['get', 'gotten']],
+  ['We ___ the ladder to the tower.', 'climbed', ['climb', 'clumb']],
+  ['The jump pad ___ me into the sky.', 'threw', ['throwed', 'throw']],
+  ['I ___ 50 coins last week.', 'collected', ['collect', 'collectted']],
+  ['My avatar ___ a red cap.', 'wore', ['weared', 'wear']],
+  ['___ you play with your brother?', 'Did', ['Do you did', 'Were']],
+  ['I ___ the game. It was too hard!', 'didn\'t finish', ['didn\'t finished', 'not finished']],
+  ['We ___ a house on the last stage.', 'built', ['builded', 'build']],
+  ['He ___ the obby in 4 minutes.', 'ran', ['runned', 'run']],
+  ['I ___ the game and gave it a like.', 'enjoyed', ['enjoied', 'enjoy']],
+  ['They ___ the server at 8 pm.', 'left', ['leaved', 'leave']],
+  ['She ___ the speedrun record!', 'broke', ['breaked', 'break']],
+  ['I ___ a new skin with my coins.', 'bought', ['buyed', 'buy']],
+  ['We ___ a funny video of our game.', 'made', ['maked', 'make']],
+  ['The conveyor belt ___ me back.', 'pushed', ['push', 'pusht']],
+  ['I ___ the lava just in time!', 'saw', ['seed', 'see']],
+  ['___ you lose your coins?', 'Did', ['Do', 'Was']],
+];
+const OBST = ['gap', 'spin', 'wall', 'pad'];
+let G = { on: false, stage: 1, cp: 0, coins: 0, falls: 0, t: 0, timer: null, order: [], qi: 0, start: 0 };
+const $ = (id) => document.getElementById(id);
+function bar() {
+  const sb = $('stagebar'); sb.innerHTML = '';
+  for (let i = 1; i <= 20; i++) { const s = document.createElement('i'); s.className = (i < G.stage ? 'done' : i === G.stage ? 'now' : '') + (i % 5 === 0 ? ' cp' : ''); sb.appendChild(s); }
+  $('gStage').textContent = G.stage; $('gCp').textContent = G.cp; $('gCoins').textContent = G.coins; $('gFalls').textContent = G.falls;
+}
+function newQ() {
+  const me = $('me'); me.className = 'ob-me';
+  const o = $('obst'); o.className = 'ob-obst ob-obst--' + OBST[(G.stage - 1) % OBST.length];
+  const q = QS[G.order[G.qi % G.order.length]]; G.cur = q; G.curI = G.order[G.qi % G.order.length]; G.qi++;
+  $('gq').innerHTML = `<small>Stage ${G.stage}${G.stage % 5 === 0 ? ' · CHECKPOINT' : ''}</small>${q[0].replace('___', '<span class="slot">?</span>')}`;
+  const opts = [q[1], ...q[2]].sort(() => Math.random() - .5);
+  const box = $('gopts'); box.innerHTML = '';
+  opts.forEach((x) => { const b = document.createElement('button'); b.className = 'opt'; b.textContent = x; b.onclick = () => answer(x, b); box.appendChild(b); });
+  const secs = G.stage > 12 ? 6 : 8; G.t = secs * 10;
+  const tb = $('timer'); tb.style.transition = 'none'; tb.style.width = '100%'; void tb.offsetWidth; tb.style.transition = `width ${secs}s linear`; tb.style.width = '0%';
+  clearTimeout(G.timer); G.timer = setTimeout(() => answer(null, null), secs * 1000);
+}
+function answer(x, btn) {
+  if (!G.on) return; clearTimeout(G.timer);
+  const ok = x === G.cur[1];
+  $('gopts').querySelectorAll('button').forEach((b) => { b.disabled = true; if (b.textContent === G.cur[1]) b.classList.add('ok'); });
+  $('gq').querySelector('.slot').textContent = G.cur[1];
+  $('timer').style.transition = 'none';
+  if (ok) {
+    $('me').className = 'ob-me jump'; G.coins++; tone(700, .08); tone(1050, .12, .08);
+    gain('run:q' + G.curI, 10, '+10 XP · jump!');
+    setTimeout(() => { if (G.stage % 5 === 0) { G.cp = G.stage; gain('run:cp' + G.stage, 10, 'CHECKPOINT!'); } G.stage++; bar(); if (G.stage > 20) return finish(); newQ(); }, 1100);
+  } else {
+    if (btn) btn.classList.add('bad');
+    $('me').className = 'ob-me fall'; G.falls++; buzz(); toast(x ? 'Oops! Into the lava...' : 'Too slow! Into the lava...');
+    setTimeout(() => { G.stage = G.cp + 1; bar(); newQ(); }, 1700);
+  }
+}
+function finish() {
+  G.on = false; const secs = Math.round((Date.now() - G.start) / 1000);
+  $('gq').innerHTML = `<div class="ob-win">YOU WON THE OBBY!</div>Time: <b>${Math.floor(secs / 60)}:${String(secs % 60).padStart(2, '0')}</b> · Coins: <b>${G.coins}</b> · Falls: <b>${G.falls}</b><br><small>Now tell your teacher: "I finished the obby in ... I fell ... times."</small>`;
+  $('gopts').innerHTML = '<button class="btn" id="gAgain">Play again (speedrun!)</button>'; $('gAgain').onclick = start;
+  $('obst').className = 'ob-obst'; $('me').className = 'ob-me win';
+  gain('run:finish', 50, '+50 XP · OBBY CHAMPION!'); fanfare(); burst(40);
+}
+function start() {
+  G = { on: true, stage: 1, cp: 0, coins: 0, falls: 0, t: 0, timer: null, order: QS.map((_, i) => i).sort(() => Math.random() - .5), qi: 0, start: Date.now() };
+  bar(); newQ(); $('game').scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+$('gStart').onclick = start; bar();
+$('me').innerHTML = runnerSvg(AV);
+
+// ---------- 6. історія ----------
+const STORY = [
+  'Last Saturday I joined a new obby with my best friend.',
+  'First, we chose our avatars and jumped onto the first stage.',
+  'Then my friend fell into the lava, but he respawned at the checkpoint.',
+  'After that, we found a secret door behind a waterfall.',
+  'Inside, there was a huge jump pad, and it threw us into the sky!',
+  'We landed on a spinning platform and almost fell again.',
+  'Finally, we reached the last stage and got a golden badge.',
+  'It took us two hours, but it was the best game ever!',
+];
+function storyInit() {
+  const pool = $('storyPool'), out = $('storyOut'); pool.innerHTML = ''; out.innerHTML = '';
+  STORY.map((s, i) => [s, i]).sort(() => Math.random() - .5).forEach(([s, i]) => {
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'ob-sent'; b.textContent = s;
+    b.onclick = () => {
+      const pos = out.children.length;
+      if (i !== pos) { b.classList.add('bad'); buzz(); setTimeout(() => b.classList.remove('bad'), 500); toast('Not this one yet. What happened next?'); return; }
+      const li = document.createElement('li'); li.textContent = s; out.appendChild(li); b.remove(); tone(600 + pos * 60, .08);
+      if (out.children.length === STORY.length) { gain('story', 20, '+20 XP · great story!'); say(STORY.join(' ')); }
+    };
+    pool.appendChild(b);
+  });
+}
+$('storyReset').onclick = storyInit; storyInit();
+
+// ---------- 7. баги ----------
+const BUGS = [
+  ['Yesterday I falled into the lava.', false, 'Yesterday I fell into the lava.'],
+  ['Did you finished the obby?', false, 'Did you finish the obby?'],
+  ['We didn\'t won the race.', false, 'We didn\'t win the race.'],
+  ['She played the game last night.', true, 'Correct!'],
+  ['I goed to stage 30.', false, 'I went to stage 30.'],
+  ['They got a badge two days ago.', true, 'Correct!'],
+  ['He didn\'t jumped high enough.', false, 'He didn\'t jump high enough.'],
+  ['I stoped at the checkpoint.', false, 'I stopped at the checkpoint.'],
+];
+const bl = $('bugList');
+BUGS.forEach(([s, ok, fix], i) => {
+  const d = document.createElement('div'); d.className = 'bug';
+  d.innerHTML = `<span><b>${i + 1}.</b> ${s}</span><span><button class="opt">OK</button><button class="opt">BUG</button></span><span class="fix">${fix}</span>`;
+  const [bOk, bBug] = d.querySelectorAll('button');
+  const ans = (v, btn) => { if (v === ok) { btn.classList.add('ok'); d.classList.add('done'); bOk.disabled = bBug.disabled = true; gain('b' + i, 15, '+15 XP · bug fixed!'); } else { btn.classList.remove('bad'); void btn.offsetWidth; btn.classList.add('bad'); buzz(); } };
+  bOk.onclick = () => ans(true, bOk); bBug.onclick = () => ans(false, bBug);
+  bl.appendChild(d);
+});
+
+// ---------- 8. місії ----------
+const MIS = [
+  ['flag', 'First 10 stages', 'Finish 10 stages of any obby.', '"I finished ten stages. I fell ... times."', 20],
+  ['lava', 'Lava survivor', 'Pass a lava stage without falling.', '"I jumped over the lava. I didn\'t fall!"', 20],
+  ['stopwatch', 'Speedrun', 'Your teacher times you on 5 stages.', '"It took me ... minutes. Last time it took me ..."', 30],
+  ['avatar', 'New look', 'Change one thing on your avatar.', '"Before, my avatar wore ... Now it wears ..."', 20],
+  ['coin', 'Secret hunter', 'Find a hidden coin, room or shortcut.', '"I found a secret ... behind the ..."', 30],
+  ['server', 'Team up', 'Play on one server with your teacher.', '"We helped each other. You fell, and I waited for you."', 30],
+  ['badge', 'Badge hunter', 'Get any new badge.', '"I got the ... badge because I ..."', 30],
+  ['friend', 'Safe player', 'Explain 3 safety rules in English.', '"I never share my address. I didn\'t accept requests from strangers."', 20],
+];
+const ml = $('misList');
+MIS.forEach(([k, title, task, sayIt, n], i) => {
+  const m = document.createElement('div'); m.className = 'mis';
+  m.appendChild(pic(k));
+  const body = document.createElement('div'); body.innerHTML = `<h3>${title}</h3><p>${task}</p><div class="say">${sayIt}</div>`; m.appendChild(body);
+  const row = document.createElement('div'); row.className = 'row'; row.innerHTML = `<span class="xp">+${n} XP</span>`;
+  const btn = document.createElement('button'); btn.className = 'btn'; btn.textContent = 'Done'; btn.onclick = () => { m.classList.add('done'); btn.disabled = true; gain('m' + i, n, `Mission complete! +${n} XP`); };
+  row.appendChild(btn); m.appendChild(row); ml.appendChild(m);
+});
+
+// ---------- 9. інтерв'ю ----------
+const TALK = [
+  'Did you play any games yesterday? What did you play?',
+  'What was the hardest obby you ever played? Why?',
+  'Did you ever get angry at a game? What happened?',
+  'What did you buy in a game last time?',
+  'Did you ever play with someone from another country?',
+  'What was your best win? Tell the story.',
+  'What did you do last weekend?',
+  'Did you learn any English words from games? Which ones?',
+];
+const tl = $('talkList');
+TALK.forEach((q, i) => { const d = document.createElement('div'); d.className = 'tk'; d.innerHTML = `<span>${q}</span><small>Past Simple</small>`; d.onclick = () => { tl.querySelectorAll('.tk').forEach((x) => x.style.outline = ''); d.style.outline = '5px solid #8e6cff'; }; tl.appendChild(d); });
+let tmr; $('timerBtn').onclick = () => { clearInterval(tmr); let s = 30; const el = $('timer30'); el.textContent = '0:30';
+  tmr = setInterval(() => { s--; el.textContent = '0:' + String(s).padStart(2, '0'); if (s <= 0) { clearInterval(tmr); el.textContent = 'GG!'; gain('talk' + Date.now(), 15, 'Great answer! +15 XP'); } }, 1000); };
+
+// ---------- 10. відео (офіційний канал гри, перевірено) ----------
+const VIDS = [
+  ['eAvXhNlO-rA', 'Official trailer', 'Pause 5 times. What did the players do? "They drove a car. They flew..."', 'Past Simple', 0],
+  ['97dyt7MXWpo', 'The very first trailer', 'This video is very old! What did the game look like then? What was different?', 'Past Simple', 0],
+  ['7i7nq6i-YxM', 'Relive the last obby', 'Watch and retell: what happened first, then, finally?', 'Story', 0],
+  ['sme76WoJ_-U', 'Trailer 2019', 'Which world did you like most? Why? "I liked the ... because ..."', 'Speaking', 0],
+  ['B15dhxmrAZ8', 'Which obby will win?', 'Which obby looked the hardest? Did you play any of them?', 'Did you...?', 1],
+];
+const vdl = $('vidList');
+VIDS.forEach(([id, title, task, mode, short], i) => {
+  const d = document.createElement('div'); d.className = 'vid' + (short ? ' short' : '');
+  d.innerHTML = `<div class="frame"><button class="play" type="button"><span>PLAY</span></button></div><div class="info"><span class="mode">${mode}</span><h3>${title}</h3><div class="task">${task}</div><button class="btn alt" type="button">I talked about it</button></div>`;
+  d.querySelector('.play').onclick = (e) => { e.currentTarget.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${title}"></iframe>`; };
+  const b = d.querySelector('.info .btn'); b.onclick = () => { b.disabled = true; b.textContent = 'Great!'; gain('vid' + i, 20, '+20 XP · great talk!'); };
+  vdl.appendChild(d);
+});
+
+</script>
+</body>
+</html>
