@@ -40,7 +40,7 @@ section h2{margin:0 0 6px;font-size:30px;display:flex;align-items:center;gap:12p
 .btn.alt{background:#fff}
 /* словник */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
-.card{perspective:800px;height:190px;cursor:pointer}
+.card{perspective:900px;height:240px;cursor:pointer}
 .card .in{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
 .card.flip .in{transform:rotateY(180deg)}
 .face{position:absolute;inset:0;backface-visibility:hidden;border:3px solid var(--ink);background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:10px;text-align:center}
@@ -48,6 +48,12 @@ section h2{margin:0 0 6px;font-size:30px;display:flex;align-items:center;gap:12p
 .face.back{transform:rotateY(180deg);background:#fff5c9;font-size:15px;line-height:1.35}
 .face.back b{font-size:16px;color:#7a4a00}
 .face canvas{width:84px;height:84px}
+.face.front{padding:0;justify-content:flex-start;gap:0;overflow:hidden}
+.face.front img{width:100%;height:170px;object-fit:cover;display:block;border-bottom:3px solid var(--ink)}
+.face.front b{padding:12px 8px;font-size:18px}
+.face.back em{font-size:14px;color:#2b7a0b;font-weight:700}
+.grid{grid-template-columns:repeat(auto-fill,minmax(190px,1fr))}
+.credit{font-size:13px;color:#777;margin-top:12px}
 .cat-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
 .cat-tabs button{font:inherit;font-weight:800;border:3px solid var(--ink);background:#fff;padding:5px 12px;cursor:pointer}
 .cat-tabs button.on{background:var(--dia)}
@@ -189,9 +195,10 @@ section:nth-of-type(even){background:#f7fff0}
 
   <section id="kit">
     <h2>Your survival kit <span class="tag">words</span></h2>
-    <p class="sub">Click a card: hear the word and see what it is in real life.</p>
+    <p class="sub">Things you use when you build, mine, farm and cook. Click a card: listen, then read the example.</p>
     <div class="cat-tabs" id="catTabs"></div>
     <div class="grid" id="vocab"></div>
+    <p class="credit">Photos: Unsplash.</p>
   </section>
 
   <section id="rules">
@@ -417,60 +424,115 @@ document.getElementById('nightBtn').onclick = (e) => { const n = document.body.c
 const di = document.getElementById('diaIcon').getContext('2d'); di.drawImage(item('diamond'), 2, 2);
 
 // ---------- 1. словник ----------
+// Фото: Unsplash (безкоштовна ліцензія). Слова: те, що треба, коли будуєш, копаєш, ідеш у шахту, доглядаєш тварин і готуєш.
+const PH = {"ladder":"1635082627989-dcd12a107364","fence":"1601042860368-debed90085e0","gate":"1656483461011-a20df474deae","roof":"1518736346281-76873166a64a","lantern":"1555488205-d5e67846cf40","scaffolding":"1603239564387-c5b5ea6f635e","beam":"1563874093519-ca5eda5cd776","stairs":"1601629736795-3da639aa9f23","cave":"1560403442-d141ff60800d","tunnel":"1766934697091-9c2c803b05d6","rails":"1584786379647-c10852954d2b","lava":"1619266465172-02a857c3556d","ore":"1792299316127-850ea48ab956","gold":"1737815914093-becb6c9ac064","diamond":"1515526764876-0f3b298ee4ac","gravel":"1778235296112-a9ea74fff37a","stalactites":"1637047868520-b0081dd1c11a","coal":"1767633411248-e8ca80a8fbd4","sheep":"1554755209-85e44182e019","cow":"1580570598977-4b2412d01bbc","saddle":"1658192390807-1566e152e06c","lead":"1708062270853-ee7c66b69f07","shearing":"1508112304775-4f32d35ccdba","wool":"1668072587819-7b393944b426","hay":"1592462358304-ee5521386d8a","honeycomb":"1623018697148-8350cf18e64e","coop":"1441122456239-401e92b73c65","rod":"1529230117010-b6c436154f25","compass":"1518065896235-a4c93e088e7a","map":"1520299607509-dcd935f9a839","cauldron":"1644762247881-c428e45d0fbc","barrel":"1608232385022-8ba61bec6c59","anvil":"1537557209696-c595cc42018d","workbench":"1745845289797-913815100704","wheat":"1529511582893-2d7e684dd128","beef":"1723893905879-0e309c2a8e06","steak":"1588168333986-5078d3ae3976","pork":"1611059263765-f57653f3bba3","mutton":"1692106914421-e04e1066bd62","salmon":"1499125562588-29fb8a56b5d5","cod":"1760560749128-47c7c1f3a57d","bakedpotato":"1777229987546-52ee6be1c4ca","beetroot":"1593105544559-ecb03bf76f82","pie":"1637769712646-4dcd5b30092a","melon":"1622208489373-1fe93e2c6720","berries":"1669299824216-fdd5f4e22f7c","stew":"1659603851579-17755833517e","honey":"1587049352851-8d4e89133924","rabbitstew":"1708782344071-35ed44b849a9","kelp":"1702315631724-cb0d0f91d987","chicken":"1606728035253-49e8a23146de","rawchicken":"1587593810167-a84920ea0781","sugarcane":"1585155113372-6c1808141bf3","cocoa":"1573710661345-610f790e1218","bread":"1767065885733-425dae4bd62b","carrot":"1639427444459-85a1b6ac2d68","apple":"1619546813926-a78fa6372cd2","bottle":"1591704951890-0862b2e98acb","pickaxe":"1620216533243-755244d986df","axe":"1595872207031-daff7d021d89","shovel":"1596277922657-f80257171aec","torch":"1518137020124-5b133ed2a118","chest":"1607437817193-3b3b029b5b75","bucket":"1593338499402-50a8aafd4740","spyglass":"1764605357421-6bd96a1f9991","campfire":"1788270083262-55c5df22ed45","furnace":"1772758632439-bf8e77124b6f","pig":"1580682777666-24a7b3024e24","eggs":"1593462430565-94f606c65e71","horse":"1550785148-ace594ff7b61","llama":"1589182337358-2cb63099350c","bee":"1497322313607-9fa0c2c4c4f8","mushroom":"1570976481082-4b019b19a750","sandstone":"1768591189220-5d6df21da38a","obsidian":"1544044479-4ff512bd5ebe","emerald":"1625479610681-f789345a8157","smelt":"1613970351372-9804e380bd09","bed":"1688384452844-8364c3e2fc28","door":"1503898362-59e068e7f9d8"};
+const photo = (k, w = 480) => `https://images.unsplash.com/photo-${PH[k]}?auto=format&fit=crop&w=${w}&h=${Math.round(w * .72)}&q=70`;
+// [розділ, фото, слово, пояснення, у грі / приклад]
 const WORDS = [
-  ['build', 'log', 'log', 'A piece of a tree.', 'In real life: firewood, a tree trunk.'],
-  ['build', 'planks', 'planks', 'Flat pieces of wood.', 'In real life: floors and furniture are made of planks.'],
-  ['build', 'stone', 'stone', 'Hard grey rock.', 'In real life: old castles and bridges.'],
-  ['build', 'cobblestone', 'cobblestone', 'Small round stones together.', 'In real life: old streets in Lviv and Kyiv!'],
-  ['build', 'brick', 'bricks', 'Red blocks for walls.', 'In real life: many houses are made of bricks.'],
-  ['build', 'glass', 'glass', 'You can see through it.', 'In real life: windows. Made from sand!'],
-  ['build', 'sand', 'sand', 'Yellow and soft.', 'In real life: the beach.'],
-  ['build', 'dirt', 'dirt', 'Brown ground.', 'In real life: soil for plants.'],
-  ['nature', 'grass', 'grass', 'Green and soft.', 'In real life: in the park.'],
-  ['nature', 'leaves', 'leaves', 'Green parts of a tree.', 'One leaf, two leaves.'],
-  ['nature', 'water', 'water', 'You need it to farm.', 'In real life: drink 6 glasses a day.'],
-  ['nature', 'ore', 'diamond ore', 'Stone with diamonds inside.', 'In real life: diamonds are very rare.'],
-  ['home', 'table', 'crafting table', 'You make tools on it.', 'In real life: a workbench.'],
-  ['home', 'furnace', 'furnace', 'It cooks food and melts things.', 'In real life: an oven or a stove.'],
-  ['home', 'chest', 'chest', 'A big box for your things.', 'In real life: a toy box or a trunk.'],
-  ['home', 'bed', 'bed', 'You sleep in it and skip the night.', 'Go to bed = go to sleep.'],
-  ['home', 'door', 'door', 'Open it, close it, lock it.', 'Knock on the door!'],
-  ['home', 'torch', 'torch', 'Fire on a stick. It gives light.', 'In real life: a flashlight is also called a torch in the UK.'],
-  ['home', 'bookshelf', 'bookshelf', 'Shelves with books.', 'In real life: in your room or a library.'],
-  ['food', 'bread', 'bread', 'You craft it from 3 wheat.', 'In real life: a loaf of bread.'],
-  ['food', 'apple', 'apple', 'Red fruit. Sometimes it falls from leaves.', 'An apple a day keeps the doctor away.'],
-  ['food', 'carrot', 'carrot', 'Orange vegetable.', 'Rabbits love carrots.'],
-  ['food', 'fish', 'fish', 'Catch it with a fishing rod.', 'One fish, two fish (no -es!).'],
-  ['food', 'wheat', 'wheat', 'A plant. Farmers grow it.', 'Flour and bread come from wheat.'],
-  ['food', 'melon', 'melon', 'Big and juicy.', 'In real life: a watermelon in summer.'],
-  ['food', 'egg', 'egg', 'Chickens lay eggs.', 'Fried eggs for breakfast.'],
-  ['food', 'milk', 'milk', 'You get it from a cow with a bucket.', 'A glass of milk.'],
-  ['food', 'potato', 'potato', 'Bake it in a furnace. Yum!', 'In real life: chips and mashed potatoes.'],
-  ['food', 'chicken', 'cooked chicken', 'Cook raw chicken in a furnace.', 'In real life: chicken for dinner.'],
-  ['food', 'cookie', 'cookie', 'Sweet! You need wheat and cocoa.', 'Cookies and milk!'],
-  ['nature', 'coal', 'coal', 'Black stone. You need it for torches.', 'In real life: old trains used coal.'],
-  ['nature', 'iron', 'iron ingot', 'A bar of metal. Make better tools!', 'In real life: bridges and cars have iron.'],
-  ['nature', 'gold', 'gold ingot', 'Shiny yellow metal.', 'In real life: rings and medals.'],
-  ['tools', 'pickaxe', 'pickaxe', 'You mine stone with it.', 'In real life: miners use it.'],
-  ['tools', 'axe', 'axe', 'You chop trees with it.', 'In real life: to cut firewood.'],
-  ['tools', 'shovel', 'shovel', 'You dig dirt and sand with it.', 'In real life: in the garden or for snow.'],
-  ['tools', 'sword', 'sword', 'You fight with it.', 'Knights had swords.'],
-  ['tools', 'bucket', 'bucket', 'You carry water or milk in it.', 'A bucket of water.'],
+  ['build', 'beam', 'a beam', 'A long, heavy piece of wood that holds a roof.', 'I usually use dark oak logs as beams.'],
+  ['build', 'roof', 'a roof / roof tiles', 'The top part of a house. It keeps the rain out.', 'I\'m building a roof with stairs blocks.'],
+  ['build', 'ladder', 'a ladder', 'You climb up and down it.', 'Place a ladder on the wall to climb out of a hole.'],
+  ['build', 'stairs', 'stairs / a staircase', 'Steps that go to another floor.', 'My house has a spiral staircase.'],
+  ['build', 'fence', 'a fence', 'A low wooden wall around a garden or a field.', 'A fence keeps animals inside.'],
+  ['build', 'gate', 'a gate', 'A door in a fence.', 'Close the gate, or the sheep run away!'],
+  ['build', 'door', 'a door', 'Zombies can break wooden doors on hard mode!', 'I always close the door at night.'],
+  ['build', 'scaffolding', 'scaffolding', 'A frame you stand on to build something tall.', 'Builders stand on scaffolding.'],
+  ['build', 'lantern', 'a lantern', 'A lamp in a metal case. It hangs from a chain.', 'Lanterns look cosy in a house.'],
+  ['build', 'sandstone', 'sandstone', 'Stone made of sand. Desert houses use it.', 'Desert villages are made of sandstone.'],
+  ['build', 'bed', 'a bed', 'Sleep in it to skip the night and set your spawn point.', 'I\'m sleeping now, so the night is ending.'],
+  ['build', 'campfire', 'a campfire', 'A fire outside. You can cook on it.', 'Smoke from a campfire goes up high.'],
+  ['mine', 'cave', 'a cave', 'A big natural hole under the ground or in a mountain.', 'It\'s dark in the cave. Bring torches!'],
+  ['mine', 'tunnel', 'a tunnel / a mine', 'A long passage that people dig under the ground.', 'We\'re digging a tunnel to find iron.'],
+  ['mine', 'rails', 'rails / a minecart', 'Metal tracks. A minecart rolls on them.', 'I ride a minecart along the rails.'],
+  ['mine', 'ore', 'ore', 'Rock with metal inside: iron ore, gold ore.', 'You smelt iron ore in a furnace.'],
+  ['mine', 'coal', 'coal', 'Black rock that burns. Fuel for furnaces and torches.', 'Coal ore is easy to find near the surface.'],
+  ['mine', 'gold', 'a gold nugget', 'A small piece of gold.', 'Nine nuggets make one gold ingot.'],
+  ['mine', 'diamond', 'a raw diamond', 'The hardest stone. Very rare.', 'Diamonds are deep under the ground.'],
+  ['mine', 'emerald', 'an emerald', 'A green gem. Villagers trade with it.', 'I trade emeralds for books.'],
+  ['mine', 'obsidian', 'obsidian', 'Black volcanic glass. Very hard to break.', 'You need a diamond pickaxe to mine obsidian.'],
+  ['mine', 'lava', 'lava', 'Hot liquid rock. Never swim in it!', 'Lava + water = obsidian.'],
+  ['mine', 'gravel', 'gravel', 'Small grey stones. It falls down like sand.', 'Gravel sometimes drops flint.'],
+  ['mine', 'stalactites', 'stalactites', 'Stone "icicles" on a cave ceiling.', 'Look out! A stalactite is falling!'],
+  ['mine', 'mushroom', 'a mushroom', 'It grows in dark, wet places.', 'Mushroom stew = 2 mushrooms + a bowl.'],
+  ['farm', 'sheep', 'a sheep / a flock', 'One sheep, two sheep. A group is a flock.', 'A flock of sheep is eating grass.'],
+  ['farm', 'cow', 'a cow / a herd', 'A group of cows is a herd. Cows give milk and leather.', 'I milk the cow with a bucket.'],
+  ['farm', 'pig', 'a pig', 'A pink farm animal. It loves carrots.', 'The pig is following my carrot.'],
+  ['farm', 'coop', 'a chicken coop', 'A small house for chickens.', 'Chickens lay eggs in the coop.'],
+  ['farm', 'eggs', 'eggs', 'Throw one: maybe a baby chick appears!', 'I collect eggs every morning.'],
+  ['farm', 'horse', 'a horse', 'You can tame and ride it.', 'I\'m riding my horse across the plains.'],
+  ['farm', 'saddle', 'a saddle', 'A leather seat for riding a horse.', 'You can\'t ride a horse without a saddle.'],
+  ['farm', 'lead', 'a lead', 'A rope to walk an animal. (US: a leash)', 'I\'m taking my horse home on a lead.'],
+  ['farm', 'llama', 'a llama', 'It carries chests. Careful, it spits!', 'Llamas walk in a caravan.'],
+  ['farm', 'shearing', 'to shear', 'To cut the wool off a sheep.', 'I shear sheep with shears.'],
+  ['farm', 'wool', 'wool', 'Soft hair from a sheep. You make beds and carpets from it.', 'You need 3 wool to make a bed.'],
+  ['farm', 'hay', 'a hay bale', 'Dry grass pressed into a big block.', 'Horses eat hay bales.'],
+  ['farm', 'bee', 'a bee / a beehive', 'Bees make honey in a hive.', 'Bees are flying from flower to flower.'],
+  ['farm', 'honeycomb', 'honeycomb', 'Wax with little holes full of honey.', 'You get honeycomb with shears.'],
+  ['farm', 'wheat', 'wheat / to harvest', 'To harvest = to collect crops when they are ready.', 'We harvest wheat when it is yellow.'],
+  ['food', 'beef', 'raw beef', 'Meat from a cow. Raw = not cooked.', 'Raw meat is not good for you.'],
+  ['food', 'steak', 'steak', 'Cooked beef. One of the best foods.', 'I\'m cooking steak in the furnace.'],
+  ['food', 'pork', 'a pork chop', 'Meat from a pig.', 'Cooked pork chops are very filling.'],
+  ['food', 'mutton', 'mutton', 'Meat from a sheep.', 'Mutton is meat from an adult sheep; lamb is from a young one.'],
+  ['food', 'rawchicken', 'raw chicken', 'Never eat it raw: you can get sick!', 'Raw chicken can poison you.'],
+  ['food', 'chicken', 'roast chicken', 'Chicken cooked in an oven.', 'We have roast chicken on Sundays.'],
+  ['food', 'salmon', 'salmon', 'A pink fish. You catch it in rivers.', 'Cooked salmon is better than cod.'],
+  ['food', 'cod', 'cod', 'A white sea fish.', 'I catch cod with a fishing rod.'],
+  ['food', 'bakedpotato', 'a baked potato', 'A potato cooked in an oven or furnace.', 'Baked potatoes are easy food for survival.'],
+  ['food', 'carrot', 'carrots', 'Orange vegetables. Plant them on farmland.', 'Pigs follow you if you hold a carrot.'],
+  ['food', 'beetroot', 'beetroot', 'A dark red vegetable. Borscht!', 'Beetroot soup = 6 beetroots + a bowl.'],
+  ['food', 'stew', 'stew / soup', 'Hot food in a bowl.', 'Mushroom stew is easy to make.'],
+  ['food', 'rabbitstew', 'rabbit stew', 'A big, filling meal with meat and vegetables.', 'Rabbit stew needs 5 ingredients!'],
+  ['food', 'bread', 'a loaf of bread', 'Made from wheat.', 'Craft bread from 3 wheat.'],
+  ['food', 'pie', 'pumpkin pie', 'A sweet pie made with pumpkin, sugar and an egg.', 'Pumpkin pie = pumpkin + sugar + egg.'],
+  ['food', 'melon', 'a melon slice', 'A piece of watermelon.', 'One melon block gives several slices.'],
+  ['food', 'berries', 'berries', 'Small fruit on bushes. Careful, the bush is prickly!', 'Sweet berries grow in the taiga.'],
+  ['food', 'apple', 'an apple', 'Sometimes it drops from oak leaves.', 'A golden apple is a rare treat.'],
+  ['food', 'honey', 'honey', 'Sweet and sticky. Collect it with a bottle.', 'A bottle of honey heals poison.'],
+  ['food', 'kelp', 'dried kelp', 'Seaweed you dry in a furnace. A quick snack.', 'Dried kelp is fast to eat.'],
+  ['food', 'sugarcane', 'sugar cane', 'A tall plant near water. Sugar and paper come from it.', 'Sugar cane grows next to water.'],
+  ['food', 'cocoa', 'cocoa beans', 'They grow in the jungle. Chocolate comes from them.', 'Cookies need cocoa beans and wheat.'],
+  ['tools', 'pickaxe', 'a pickaxe', 'A tool for mining stone and ore.', 'I\'m mining iron with a stone pickaxe.'],
+  ['tools', 'axe', 'an axe', 'A tool for chopping wood.', 'I chop trees with an axe.'],
+  ['tools', 'shovel', 'a shovel', 'A tool for digging dirt, sand and gravel.', 'Dig sand with a shovel. It\'s faster!'],
+  ['tools', 'torch', 'a torch', 'Fire on a stick. Mobs don\'t spawn in light.', 'Put torches everywhere in a mine.'],
+  ['tools', 'chest', 'a chest', 'A big wooden box for storage.', 'Two chests make a double chest.'],
+  ['tools', 'barrel', 'a barrel', 'A round wooden container.', 'A barrel opens even with a block on top.'],
+  ['tools', 'bucket', 'a bucket', 'Carry water, lava or milk in it.', 'Always take a water bucket into a cave.'],
+  ['tools', 'rod', 'a fishing rod', 'A long stick with a string for fishing.', 'I\'m fishing with my rod at the lake.'],
+  ['tools', 'compass', 'a compass', 'It shows you the way home.', 'A compass points to your spawn.'],
+  ['tools', 'map', 'a map', 'A picture of the land.', 'I\'m drawing a map of my world.'],
+  ['tools', 'spyglass', 'a spyglass', 'You look far away through it.', 'Use a spyglass to see far.'],
+  ['tools', 'anvil', 'an anvil', 'A heavy iron block. You repair and rename tools on it.', 'I repair my sword on an anvil.'],
+  ['tools', 'cauldron', 'a cauldron', 'A big iron pot for water or lava.', 'A witch has a cauldron.'],
+  ['tools', 'workbench', 'a workbench / crafting table', 'A table for making things.', 'Craft tools on a crafting table.'],
+  ['tools', 'furnace', 'a furnace / an oven', 'A hot box for cooking and melting.', 'The furnace is cooking my food.'],
+  ['tools', 'bottle', 'a glass bottle', 'Fill it with water to make potions.', 'You make bottles from glass.'],
+  ['verbs', 'pickaxe', 'to mine', 'To dig out stone or metal.', 'I mine every day. Now I\'m mining coal.'],
+  ['verbs', 'shovel', 'to dig', 'To make a hole in the ground.', 'Don\'t dig straight down!'],
+  ['verbs', 'axe', 'to chop', 'To cut wood with an axe.', 'She\'s chopping a birch tree.'],
+  ['verbs', 'workbench', 'to craft', 'To make something from materials.', 'I craft a pickaxe from sticks and stone.'],
+  ['verbs', 'smelt', 'to smelt', 'To melt ore in a furnace to get metal.', 'The furnace is smelting iron ore.'],
+  ['verbs', 'horse', 'to tame', 'To make a wild animal friendly.', 'You tame a wolf with bones.'],
+  ['verbs', 'sheep', 'to breed', 'To make animals have babies.', 'Feed two cows wheat to breed them.'],
+  ['verbs', 'wheat', 'to plant / to grow', 'Put seeds in the ground / get bigger.', 'Wheat grows faster near water.'],
+  ['verbs', 'scaffolding', 'to place / to break', 'Put a block / destroy a block.', 'Place a block, break a block!'],
+  ['verbs', 'chest', 'to store', 'To keep things somewhere safe.', 'I store my diamonds in a chest.'],
+  ['verbs', 'map', 'to explore', 'To travel to new places.', 'We\'re exploring a jungle temple.'],
+  ['verbs', 'bed', 'to respawn', 'To come back to life after you die.', 'You respawn next to your bed.'],
 ];
-const CATS = [['all', 'All'], ['build', 'Building'], ['home', 'Home'], ['food', 'Food'], ['tools', 'Tools'], ['nature', 'Nature']];
+const CATS = [['build', 'Building'], ['mine', 'Mining'], ['farm', 'Farm & animals'], ['food', 'Food & meat'], ['tools', 'Tools & crafting'], ['verbs', 'Action verbs'], ['all', 'All']];
 const vocab = document.getElementById('vocab'), tabs = document.getElementById('catTabs');
 function drawVocab(cat) {
   vocab.innerHTML = '';
-  WORDS.filter((w) => cat === 'all' || w[0] === cat).forEach(([, k, word, def, life]) => {
+  WORDS.filter((w) => cat === 'all' || w[0] === cat).forEach(([, k, word, def, ex]) => {
     const card = document.createElement('div'); card.className = 'card';
-    card.innerHTML = `<div class="in"><div class="face front"></div><div class="face back"><b>${word}</b><span>${def}</span><span>${life}</span></div></div>`;
-    const f = card.querySelector('.front'); f.appendChild(pic(k)); const nm = document.createElement('b'); nm.textContent = word; f.appendChild(nm);
-    card.onclick = () => { card.classList.toggle('flip'); say(word); gain('v-' + word, 2, '+2 XP · ' + word); };
+    card.innerHTML = `<div class="in"><div class="face front"><img loading="lazy" alt="" src="${photo(k)}"><b>${word}</b></div><div class="face back"><b>${word}</b><span>${def}</span><em>${ex}</em></div></div>`;
+    card.onclick = () => { card.classList.toggle('flip'); say(word.replace(/^(a|an) /, '').split(' / ')[0]); gain('v-' + word, 2, '+2 XP · ' + word); };
     vocab.appendChild(card);
   });
 }
 CATS.forEach(([id, label], i) => { const b = document.createElement('button'); b.textContent = label; if (!i) b.className = 'on'; b.onclick = () => { tabs.querySelectorAll('button').forEach((x) => x.classList.remove('on')); b.classList.add('on'); drawVocab(id); }; tabs.appendChild(b); });
-drawVocab('all');
+drawVocab('build');
 
 // ---------- 3. вибір ----------
 const CHOOSE = [
