@@ -8,6 +8,7 @@ import Kit from '@/components/Kit';
 import { LangSwitch } from '@/components/LangProvider';
 import { studentFlags } from '@/lib/student-data';
 import StudentNav from '@/components/student/StudentNav';
+import XpHud from '@/components/xp/XpHud';
 
 export function generateMetadata(): Metadata {
   const t = tr();
@@ -31,6 +32,7 @@ export default async function StudentLayout({ children }: { children: React.Reac
       </header>
       <StudentNav any={f.any} nmt={nmt} games={!f.adult && track !== 'adult'} />
       <main className="s-main">{children}</main>
+      <XpHud persist />
     </div>
   );
 }
