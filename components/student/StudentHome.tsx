@@ -10,6 +10,7 @@ import type { Enrollment } from '@/lib/student-data';
 import { useT } from '@/components/LangProvider';
 import type { Lang } from '@/lib/i18n';
 import { speakEn } from '@/lib/speak';
+import VocabList from '../VocabList';
 
 const LOCALE: Record<Lang, string> = { uk: 'uk-UA', ru: 'ru-RU', en: 'en-GB' };
 
@@ -100,14 +101,7 @@ export default function StudentHome({ enrollments, name }: { enrollments: Enroll
         </div>
         {play && <div className="t-game"><GameFinishContext.Provider value={earnWords}><GameHub sets={sets} /></GameFinishContext.Provider></div>}
         {e.words.length ? (
-          <div className="t-words">
-            {e.words.map((w) => (
-              <div key={w.id} className="t-word">
-                <b>{w.en}</b><span>{w.uk}</span>{w.example && <i>{w.example}</i>}
-                <button type="button" className="t-icon-btn" onClick={() => speakEn(w.en, 0.9)} aria-label={`${t({ uk: 'Послухати', ru: 'Послушать', en: 'Listen' })}: ${w.en}`} title={t({ uk: 'Послухати', ru: 'Послушать', en: 'Listen' })}><Icon id="e-head" /></button>
-              </div>
-            ))}
-          </div>
+          <VocabList words={e.words} onSpeak={(en) => speakEn(en, 0.9)} />
         ) : <p className="t-empty">{t({ uk: 'Тут з’являться слова, які додасть учитель.', ru: 'Здесь появятся слова, которые добавит учитель.', en: 'Words from your teacher will appear here.' })}</p>}
       </section>
 
