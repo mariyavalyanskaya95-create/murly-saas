@@ -37,7 +37,7 @@ export default function NavSearch({ open, onOpen, onClose }: { open: boolean; on
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
     if (hi >= 0 && res[hi]) return go(res[hi].href);
-    if (q.trim()) go(`/search?q=${encodeURIComponent(q.trim())}`);
+    if (res[0]) go(res[0].href);
   };
 
   if (!open) {
@@ -67,8 +67,8 @@ export default function NavSearch({ open, onOpen, onClose }: { open: boolean; on
               <b>{t(it.title)}</b><small>{t(it.kind)}{it.level !== 'all' ? ` · ${it.level}` : ''}</small>
             </Link>
           )) : <p className="nsr__none">{t({ uk: 'Нічого не знайшли. Спробуй інше слово.', ru: 'Ничего не нашли. Попробуй другое слово.', en: 'Nothing found. Try another word.' })}</p>}
-          <Link href={`/search?q=${encodeURIComponent(q.trim())}`} className="nsr__all" onClick={(e) => { e.preventDefault(); go(`/search?q=${encodeURIComponent(q.trim())}`); }}>
-            {t({ uk: 'Усі результати', ru: 'Все результаты', en: 'All results' })} →
+          <Link href="/lessons" className="nsr__all" onClick={(e) => { e.preventDefault(); go('/lessons'); }}>
+            {t({ uk: 'Усі уроки', ru: 'Все уроки', en: 'All lessons' })} →
           </Link>
         </div>
       )}

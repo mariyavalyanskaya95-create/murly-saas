@@ -56,7 +56,6 @@ export default function SiteFooter() {
             <ul>
               <li><Link href="/activities">{t({ uk: 'Розмовні activities', ru: 'Разговорные activities', en: 'Speaking activities' })}</Link></li>
               <li><Link href="/lessons">{t({ uk: 'Готові уроки', ru: 'Готовые уроки', en: 'Ready lessons' })}</Link></li>
-              <li><Link href="/search">{t({ uk: 'Пошук матеріалів', ru: 'Поиск материалов', en: 'Find materials' })}</Link></li>
               <li><Link href="/tongue-twisters">{t({ uk: 'Скоромовки', ru: 'Скороговорки', en: 'Tongue twisters' })}</Link></li>
             </ul>
           </div>
