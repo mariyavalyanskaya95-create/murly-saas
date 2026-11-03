@@ -6,10 +6,20 @@ import Icon from '../Icon';
 import { useTeacher } from '@/lib/teacher-store';
 import { useT } from '../LangProvider';
 
-export const splitWordLine = (l: string): { en: string; uk: string } => {
-  const m = l.split(/\t+|\s*=\s*|\s+[-–—]\s+|\s*\|\s*/).map((x) => x.trim()).filter(Boolean);
-  if (m.length >= 2 && /[а-яіїєґё]/i.test(m.slice(1).join(' '))) return { en: m[0], uk: m.slice(1).join(', ') };
-  return { en: l.trim(), uk: '' };
+const CYR = /[а-яіїєґё]/i;
+// Рядок словника: слово або фраза + переклад у будь-якому порядку і з будь-яким роздільником
+// («=», « - », «—», «:», табуляція з таблиці, «|», «фраза (переклад)»). Третя англійська частина стає прикладом.
+export const splitWordLine = (raw: string): { en: string; uk: string; example?: string } => {
+  const l = raw.replace(/^\s*(?:\d+\s*[.)]|[-•*–—·])\s*/, '').trim();
+  const paren = l.match(/^([^()]*[a-z][^()]*?)\s*\(([^()]*[а-яіїєґё][^()]*)\)\s*$/i);
+  if (paren) return { en: paren[1].trim(), uk: paren[2].trim() };
+  const m = l.split(/\t+|\s*=\s*|\s+[-–—]\s+|\s*[–—]\s*|\s*\|\s*|\s*:\s+/).map((x) => x.trim()).filter(Boolean);
+  if (m.length >= 2) {
+    const en = m.filter((x) => !CYR.test(x));
+    const uk = m.filter((x) => CYR.test(x));
+    if (en.length && uk.length) return { en: en[0], uk: uk.join(', '), example: en[1] };
+  }
+  return { en: l, uk: '' };
 };
 
 export default function QuickWords({ studentId, name }: { studentId: string; name: string }) {
@@ -30,13 +40,13 @@ export default function QuickWords({ studentId, name }: { studentId: string; nam
 
   const add = async () => {
     const at = new Date().toISOString();
-    const lines = text.split('\n').map((l) => l.trim().replace(/^\d+[.)]\s*/, '')).filter(Boolean)
+    const lines = text.split('\n').map((l) => l.trim()).filter(Boolean)
       .filter((l) => !/^(english|англ\S*)\s*([\t|=-]|$)/i.test(l)).slice(0, 120);
     const parsed = lines.map(splitWordLine);
     setBusy(true); setMsg('');
     let n = 0; const missed: string[] = [];
     for (const r of parsed) {
-      if (r.uk) { addWord(studentId, { en: r.en, uk: r.uk, at }); n++; continue; }
+      if (r.uk) { addWord(studentId, { en: r.en, uk: r.uk, example: r.example, at }); n++; continue; }
       try {
         const to = t.lang === 'ru' ? 'ru' : 'uk';
         const d = await fetch(`/api/dict?w=${encodeURIComponent(r.en)}&to=${to}`).then((x) => x.json());

@@ -21,6 +21,8 @@ import { fmtPhone, randomPin } from '@/lib/pin-login';
 import { useLessonMode } from '@/lib/lesson-mode';
 import { AudienceToggles } from './forms';
 import QuickWords, { splitWordLine } from './QuickWords';
+import VocabList from '../VocabList';
+import { speakEn } from '@/lib/speak';
 import { uploadFile } from '@/lib/upload';
 import type { T } from '@/lib/i18n';
 
@@ -174,7 +176,7 @@ const dayAt = (d: string) => (d && d !== todayIso() ? new Date(`${d}T12:00:00`).
 
 function WordsTab({ id }: { id: string }) {
   const t = useT();
-  const { data, addWord, removeWord } = useTeacher();
+  const { data, addWord, removeWord, updateWord } = useTeacher();
   const [f, setF] = useState({ en: '', uk: '', example: '' });
   const [wDay, setWDay] = useState(todayIso());
   const [play, setPlay] = useState(false);
@@ -197,17 +199,17 @@ function WordsTab({ id }: { id: string }) {
 
   // Додати списком: учитель вставляє слова (по одному в рядку), Murly підбирає переклад і приклад
   type Row = { en: string; uk: string; example: string; options: string[]; examples: string[]; loading: boolean };
-  const [bulkOpen, setBulkOpen] = useState(false);
+  const [bulkOpen, setBulkOpen] = useState(true);
   const [bulkText, setBulkText] = useState('');
   const [rows, setRows] = useState<Row[]>([]);
   const [bulkMsg, setBulkMsg] = useState('');
   const fetchBulk = async () => {
-    const lines = bulkText.split('\n').map((l) => l.trim().replace(/^\d+[.)]\s*/, '')).filter(Boolean)
+    const lines = bulkText.split('\n').map((l) => l.trim()).filter(Boolean)
       .filter((l) => !/^(english|англ\S*)\s*([\t|=-]|$)/i.test(l)).slice(0, 120);
     const parsed = lines.map(splitWordLine);
     // слова з готовим перекладом додаємо одразу, без підбору
     const ready = parsed.filter((r) => r.uk);
-    ready.forEach((r) => addWord(id, { en: r.en, uk: r.uk, at: dayAt(wDay) }));
+    ready.forEach((r) => addWord(id, { en: r.en, uk: r.uk, example: r.example, at: dayAt(wDay) }));
     const todo = parsed.filter((r) => !r.uk).slice(0, 40);
     setBulkMsg(ready.length ? t({ uk: `Додано ${ready.length} сл.`, ru: `Добавлено ${ready.length} сл.`, en: `Added ${ready.length} words` }) : '');
     if (!todo.length) { setBulkText(''); setRows([]); return; }
@@ -252,15 +254,16 @@ function WordsTab({ id }: { id: string }) {
     <>
       <div className="t-card">
         <div className="t-card__head">
-          <h2>{t({ uk: 'Додати слово', ru: 'Добавить слово', en: 'Add a word' })}</h2>
-          <button type="button" className="mu-btn t-btn-sm" onClick={() => setBulkOpen(!bulkOpen)}>{bulkOpen ? t({ uk: 'По одному', ru: 'По одному', en: 'One by one' }) : t({ uk: 'Додати списком', ru: 'Добавить списком', en: 'Add a list' })}</button>
+          <h2>{t({ uk: 'Додати слова і фрази', ru: 'Добавить слова и фразы', en: 'Add words and phrases' })}</h2>
+          <button type="button" className="mu-btn t-btn-sm" onClick={() => setBulkOpen(!bulkOpen)}>{bulkOpen ? t({ uk: 'Одне слово з підказками', ru: 'Одно слово с подсказками', en: 'One word with hints' }) : t({ uk: 'Списком', ru: 'Списком', en: 'As a list' })}</button>
         </div>
         {bulkOpen && (
           <div className="t-bulk">
-            <p className="t-muted">{t({ uk: 'Встав слова, по одному в рядку. Слова з готовим перекладом (word = переклад, word - переклад або рядки таблиці з Word) додаються одразу. Для слів без перекладу Murly підбере варіанти.', ru: 'Вставь слова, по одному в строке. Слова с готовым переводом (word = перевод, word - перевод или строки таблицы из Word) добавляются сразу. Для слов без перевода Murly подберёт варианты.', en: 'Paste words, one per line. Words with a ready translation (word = translation, word - translation or rows of a Word table) are added right away. For words without one, Murly suggests options.' })}</p>
-            <textarea rows={6} value={bulkText} onChange={(e) => setBulkText(e.target.value)} placeholder={'honest = чесний\nboredom - нудьга\nweird'} />
+            <p className="t-muted">{t({ uk: 'Кожен рядок: слово або фраза і переклад. Роздільник будь-який: =, тире, двокрапка або таблиця з Word. Без перекладу Murly підбере сам.', ru: 'Каждая строка: слово или фраза и перевод. Разделитель любой: =, тире, двоеточие или таблица из Word. Без перевода Murly подберёт сам.', en: 'Each line: a word or phrase and its translation. Any separator works: =, a dash, a colon or a Word table. Without one, Murly suggests a translation.' })}</p>
+            <textarea rows={8} value={bulkText} onChange={(e) => setBulkText(e.target.value)} onKeyDown={(e) => { if ((e.metaKey || e.ctrlKey) && e.key === 'Enter' && bulkText.trim()) fetchBulk(); }}
+              placeholder={t({ uk: 'break the ice = розтопити кригу\nin the long run - зрештою\nto look forward to: з нетерпінням чекати\nweird', ru: 'break the ice = растопить лёд\nin the long run - в итоге\nto look forward to: с нетерпением ждать\nweird', en: 'break the ice = розтопити кригу\nin the long run - зрештою\nweird' })} />
             <label className="t-log-form__day">{t({ uk: 'Дата уроку', ru: 'Дата урока', en: 'Lesson date' })}<input type="date" value={wDay} max={todayIso()} onChange={(e) => setWDay(e.target.value)} /></label>
-            <div className="t-head__actions"><button type="button" className="mu-btn mu-btn--lime t-btn-sm" disabled={!bulkText.trim()} onClick={fetchBulk}>{t({ uk: 'Додати', ru: 'Добавить', en: 'Add' })}</button>{bulkMsg && <span className="t-pos">{bulkMsg}</span>}</div>
+            <div className="t-head__actions"><button type="button" className="mu-btn mu-btn--lime t-btn-sm" disabled={!bulkText.trim()} onClick={fetchBulk}>{(() => { const n = bulkText.split('\n').filter((l) => l.trim()).length; return n > 1 ? t({ uk: `Додати (${n})`, ru: `Добавить (${n})`, en: `Add (${n})` }) : t({ uk: 'Додати', ru: 'Добавить', en: 'Add' }); })()}</button><small className="t-muted">Ctrl + Enter</small>{bulkMsg && <span className="t-pos" role="status">{bulkMsg}</span>}</div>
             {rows.length > 0 && (
               <div className="t-bulk__rows">
                 {rows.map((r, i) => (
@@ -288,14 +291,14 @@ function WordsTab({ id }: { id: string }) {
             )}
           </div>
         )}
-        <form className="t-form t-form--words" onSubmit={submit}>
+        {!bulkOpen && <form className="t-form t-form--words" onSubmit={submit}>
           <label>English<input id="word-en" value={f.en} onChange={(e) => setF({ ...f, en: e.target.value })} placeholder="to look forward to" /></label>
           <label>{t({ uk: 'Переклад', ru: 'Перевод', en: 'Translation' })}<input value={f.uk} onChange={(e) => setF({ ...f, uk: e.target.value })} placeholder={t({ uk: 'з нетерпінням чекати', ru: 'с нетерпением ждать', en: 'з нетерпінням чекати' })} /></label>
           <label>{t({ uk: 'Дата уроку', ru: 'Дата урока', en: 'Lesson date' })}<input type="date" value={wDay} max={todayIso()} onChange={(e) => setWDay(e.target.value)} /></label>
           <label>{t({ uk: 'Приклад', ru: 'Пример', en: 'Example' })}<input value={f.example} onChange={(e) => setF({ ...f, example: e.target.value })} placeholder="I look forward to the trip." /></label>
           <div className="t-form__actions"><button className="mu-btn mu-btn--lime" type="submit">{t({ uk: 'Додати', ru: 'Добавить', en: 'Add' })}</button></div>
-        </form>
-        {f.en.trim().length >= 2 && (loadingSug || sug) && (
+        </form>}
+        {!bulkOpen && f.en.trim().length >= 2 && (loadingSug || sug) && (
           <div className="t-sug">
             {loadingSug && !sug && <p className="t-muted">{t({ uk: 'Шукаю переклад і приклади…', ru: 'Ищу перевод и примеры…', en: 'Looking for translations and examples…' })}</p>}
             {sug && sug.translations.length > 0 && (
@@ -328,25 +331,7 @@ function WordsTab({ id }: { id: string }) {
         {words.length > 0 && words.length < 4 && <p className="t-muted">{t({ uk: `Додай ще ${4 - words.length}, і з цих слів можна буде грати.`, ru: `Добавь ещё ${4 - words.length}, и этими словами можно будет играть.`, en: `Add ${4 - words.length} more and you can play with these words.` })}</p>}
         {play && <div className="t-game"><GameHub sets={sets} /></div>}
         {words.length ? (
-          <div className="t-words-days">
-            {Array.from(words.reduce((m, w) => { const k = (w.at || '').slice(0, 10); m.set(k, [...(m.get(k) ?? []), w]); return m; }, new Map<string, typeof words>()))
-              .sort((a, b) => b[0].localeCompare(a[0]))
-              .map(([day, ws]) => (
-                <div key={day}>
-                  <h3 className="t-words-day">{day ? fmtDate(`${day}T12:00:00`, t.lang) : t({ uk: 'Без дати', ru: 'Без даты', en: 'No date' })} <span className="t-muted">· {ws.length}</span></h3>
-                  <div className="t-words">
-                    {ws.map((w) => (
-                      <div key={w.id} className="t-word">
-                        <b>{w.en}</b><span>{w.uk}</span>
-                        {w.example && <i>{w.example}</i>}
-                        {(w.wrong ?? 0) >= 2 && (w.box ?? 0) < 3 ? <small className="t-word__tag is-hard">{t({ uk: 'важке', ru: 'трудное', en: 'hard' })}</small> : (w.box ?? 0) >= 4 ? <small className="t-word__tag">{t({ uk: 'вивчене', ru: 'выучено', en: 'learned' })}</small> : null}
-                        <button className="t-icon-btn" onClick={() => removeWord(w.id)} aria-label={`${t({ uk: 'Видалити', ru: 'Удалить', en: 'Delete' })} ${w.en}`}>✕</button>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ))}
-          </div>
+          <VocabList words={words} onEdit={updateWord} onRemove={removeWord} onSpeak={(en) => speakEn(en, 0.9)} showTags />
         ) : <p className="t-empty">{t({ uk: 'Слова, які ти додаси, з’являться тут. Скоро учень бачитиме їх у своєму кабінеті і гратиме ними.', ru: 'Слова, которые ты добавишь, появятся здесь. Скоро ученик будет видеть их в своём кабинете и играть ими.', en: 'Words you add will show up here. Soon your student will see them in their account and play with them.' })}</p>}
       </div>
     </>
