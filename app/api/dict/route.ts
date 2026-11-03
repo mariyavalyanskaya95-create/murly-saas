@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { auth } from '@clerk/nextjs/server';
 import { LIBRARY } from '@/lib/library';
+import { aiTranslate } from '@/lib/ai-check';
 import ru1 from '@/lib/content/ru/lessons1.json';
 import ru2 from '@/lib/content/ru/lessons2.json';
 import ru3 from '@/lib/content/ru/lessons3.json';
@@ -43,7 +44,9 @@ export async function GET(req: Request) {
 
   const fromLocal = (localDict().get(w.toLowerCase()) ?? []).map((x) => (to === 'ru' ? ruDict[x] ?? '' : x));
 
-  const [mm, tat] = await Promise.all([
+  // Переклад: 1) наш словник, 2) ІІ (якщо в Vercel є ключ), 3) MyMemory лише як запасний варіант
+  const [ai, mm, tat] = await Promise.all([
+    aiTranslate(w, to),
     fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(w)}&langpair=en|${to}`, { next: { revalidate: 86400 } })
       .then((r) => r.json()).catch(() => null),
     fetch(`https://api.tatoeba.org/unstable/sentences?lang=eng&q=${encodeURIComponent(w)}&trans:lang=${to === 'ru' ? 'rus' : 'ukr'}&sort=relevance&limit=8`, { next: { revalidate: 86400 } })
@@ -51,10 +54,12 @@ export async function GET(req: Request) {
   ]);
 
   const lower = w === w.toLowerCase();
-  const mmList: string[] = [];
+  const mmList: string[] = ai?.length ? [...ai] : [];
+  if (!ai?.length) {
   if (mm?.responseData?.translatedText) mmList.push(mm.responseData.translatedText);
   for (const m of (mm?.matches ?? []) as { translation?: string; match?: number; segment?: string }[]) {
     if (m.translation && (m.match ?? 0) >= 0.6 && (m.segment ?? '').length <= w.length + 12) mmList.push(m.translation);
+  }
   }
   const translations = uniq([...fromLocal, ...mmList.map(clean)].map((x) => (lower && x ? x[0].toLowerCase() + x.slice(1) : x)))
     .filter((x) => x.length <= 60 && !/[a-z]{4,}/i.test(x)).slice(0, 6);
