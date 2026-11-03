@@ -8,6 +8,7 @@ import LessonView from '@/components/lesson/LessonView';
 import { PRACTICE } from '@/lib/practice';
 import { localizeLesson } from '@/lib/content/lessons';
 import { getLang } from '@/lib/i18n-server';
+import XpHud from '@/components/xp/XpHud';
 import { tr } from '@/lib/i18n-server';
 
 export const dynamicParams = false;
@@ -41,10 +42,11 @@ export default function PracticeItemPage({ params }: { params: { id: string } })
         <div className="mu-container">
           <Link href="/practice" className="t-back">← {t({ uk: 'Уся практика', ru: 'Вся практика', en: 'All practice' })}</Link>
           <div className="t-card le-view" style={{ marginTop: 14 }}>
-            <LessonView plan={p} submitLabel={t({ uk: 'Перевірити', ru: 'Проверить', en: 'Check' })} />
+            <LessonView plan={p} xpScope={`practice:${p.id}`} submitLabel={t({ uk: 'Перевірити', ru: 'Проверить', en: 'Check' })} />
           </div>
         </div>
       </section>
+      <XpHud persist />
       <SiteFooter />
     </>
   );
