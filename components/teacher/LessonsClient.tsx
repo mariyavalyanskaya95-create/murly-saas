@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Icon from '@/components/Icon';
 import { useTeacher } from '@/lib/teacher-store';
 import { AGES, FOCUS, LEVELS, emptyBlock, type Age, type Plan } from '@/lib/lesson';
@@ -13,6 +13,7 @@ import MockCards, { mockFits } from '@/components/mock/MockCards';
 import { MOCKS } from '@/lib/mock';
 import { coverOf } from '@/lib/lesson-covers';
 import GameLessonCards from '@/components/game-lessons/GameLessonCards';
+import LessonCard, { readFavs } from '@/components/lesson/LessonCard';
 
 // Підписи віку для показу (значення в AGES лишаються як є)
 const AGE_T: Record<string, T> = {
@@ -20,25 +21,6 @@ const AGE_T: Record<string, T> = {
   teens: { uk: 'Підлітки 12-17', ru: 'Подростки 12-17', en: 'Teens 12-17' },
   adults: { uk: 'Дорослі', ru: 'Взрослые', en: 'Adults' },
 };
-
-function PlanCard({ p, lib }: { p: PlanCardData; lib?: boolean }) {
-  const t = useT();
-  const ageLabel = AGES.find((a) => a.id === p.age)?.label;
-  return (
-    <Link href={`/teacher/lessons/${p.id}`} className={`gr-card gr--${p.color} le-card ${coverOf(p.id) ? 'has-cover' : ''}`}>
-      {coverOf(p.id) && <span className="le-card__cover"><img src={coverOf(p.id, 480)!} alt="" loading="lazy" /></span>}
-      <span className="le-card__tags">
-        <span className="gr-level">{p.level}</span>
-        <span className="le-tag">{AGE_T[p.age] ? t(AGE_T[p.age]) : ageLabel}</span>
-        {lib && <span className="le-tag le-tag--murly">Murly</span>}
-        {(p.focus ?? []).slice(0, 2).map((f) => <span key={f} className="le-tag">{f}</span>)}
-      </span>
-      <span className="gr-card__title">{p.title || t({ uk: 'Без назви', ru: 'Без названия', en: 'Untitled' })}</span>
-      {p.topic && <span className="gr-card__uk">{p.topic}</span>}
-      <span className="gr-card__lead">{p.duration ? `${p.duration} ${t({ uk: 'хв', ru: 'мин', en: 'min' })} · ` : ""}{p.n} {plural(p.n, t.lang, { uk: ['блок', 'блоки', 'блоків'], ru: ['блок', 'блока', 'блоков'], en: ['block', 'blocks'] })}</span>
-    </Link>
-  );
-}
 
 export default function LessonsClient({ libCards }: { libCards: Record<Lang, PlanCardData[]> }) {
   const t = useT();
@@ -50,10 +32,14 @@ export default function LessonsClient({ libCards }: { libCards: Record<Lang, Pla
   const [level, setLevel] = useState('');
   const [q, setQ] = useState('');
   const [focus, setFocus] = useState('');
+  const [onlyFav, setOnlyFav] = useState(false);
+  const [favs, setFavs] = useState<string[]>([]);
+  useEffect(() => { const f = () => setFavs(readFavs()); f(); window.addEventListener('murly:fav', f); return () => window.removeEventListener('murly:fav', f); }, []);
 
   const filter = (list: PlanCardData[]) => list.filter((p) => (!age || p.age === age) && (!level || p.level === level) && (!focus || (p.focus ?? []).includes(focus))
-    && (!q.trim() || `${p.title} ${p.topic ?? ''}`.toLowerCase().includes(q.trim().toLowerCase())));
-  const lib = useMemo(() => filter(LIBRARY), [age, level, q, focus, LIBRARY]); // eslint-disable-line react-hooks/exhaustive-deps
+    && (!onlyFav || favs.includes(p.id))
+    && (!q.trim() || `${p.title} ${p.topic ?? ''} ${p.about ?? ''}`.toLowerCase().includes(q.trim().toLowerCase())));
+  const lib = useMemo(() => filter(LIBRARY), [age, level, q, focus, LIBRARY, onlyFav, favs]); // eslint-disable-line react-hooks/exhaustive-deps
   if (!ready) return null;
   const mine = filter(data.plans.map(toCard));
   const showMocks = mockFits({ focus, age, level, q });
@@ -88,12 +74,13 @@ export default function LessonsClient({ libCards }: { libCards: Record<Lang, Pla
         <div className="g-chips" style={{ justifyContent: 'flex-start' }}>
           <button className={`g-chip ${!focus ? 'is-on' : ''}`} onClick={() => setFocus('')}>{t({ uk: 'Будь-який фокус', ru: 'Любой фокус', en: 'Any focus' })}</button>
           {FOCUS.map((f) => <button key={f} className={`g-chip ${focus === f ? 'is-on' : ''}`} onClick={() => setFocus(f)}>{f}</button>)}
+          <button className={`g-chip ${onlyFav ? 'is-on' : ''}`} onClick={() => setOnlyFav(!onlyFav)}>&#9829; {t({ uk: 'Обране', ru: 'Избранное', en: 'Favourites' })}{favs.length ? ` (${favs.length})` : ''}</button>
         </div>
       </div>
 
       {tab === 'mine' && (
         mine.length
-          ? <div className="gr-grid">{mine.map((p) => <PlanCard key={p.id} p={p} />)}</div>
+          ? <div className="lc-grid">{mine.map((p) => <LessonCard key={p.id} p={p} href={`/teacher/lessons/${p.id}`} />)}</div>
           : (
             <div className="t-card t-welcome">
               <Icon id="e-board" className="mu-ic t-welcome__ic" />
@@ -109,7 +96,7 @@ export default function LessonsClient({ libCards }: { libCards: Record<Lang, Pla
           )
       )}
       {tab === 'lib' && (
-        lib.length || showMocks ? <div className="gr-grid"><GameLessonCards />{lib.map((p) => <PlanCard key={p.id} p={p} lib />)}{showMocks && <MockCards />}</div> : <p className="t-empty">{t({ uk: 'Під ці фільтри уроків поки немає. Бібліотека поповнюється.', ru: 'Под эти фильтры уроков пока нет. Библиотека пополняется.', en: 'No lessons match these filters yet. The library keeps growing.' })}</p>
+        lib.length || showMocks ? <div className="lc-grid">{!onlyFav && <GameLessonCards />}{lib.map((p) => <LessonCard key={p.id} p={p} href={`/teacher/lessons/${p.id}`} lib />)}{showMocks && !onlyFav && <MockCards />}</div> : <p className="t-empty">{t({ uk: 'Під ці фільтри уроків поки немає. Бібліотека поповнюється.', ru: 'Под эти фильтры уроков пока нет. Библиотека пополняется.', en: 'No lessons match these filters yet. The library keeps growing.' })}</p>
       )}
     </div>
   );
