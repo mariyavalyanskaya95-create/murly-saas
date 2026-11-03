@@ -40,7 +40,7 @@ section h2{margin:0 0 6px;font-size:30px;display:flex;align-items:center;gap:12p
 .btn.alt{background:#fff}
 /* словник */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
-.card{perspective:900px;height:240px;cursor:pointer}
+.card{perspective:900px;height:200px;cursor:pointer}
 .card .in{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
 .card.flip .in{transform:rotateY(180deg)}
 .face{position:absolute;inset:0;backface-visibility:hidden;border:3px solid var(--ink);background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:10px;text-align:center}
@@ -48,9 +48,7 @@ section h2{margin:0 0 6px;font-size:30px;display:flex;align-items:center;gap:12p
 .face.back{transform:rotateY(180deg);background:#fff5c9;font-size:15px;line-height:1.35}
 .face.back b{font-size:16px;color:#7a4a00}
 .face canvas{width:84px;height:84px}
-.face.front{padding:0;justify-content:flex-start;gap:0;overflow:hidden}
-.face.front img{width:100%;height:170px;object-fit:cover;display:block;border-bottom:3px solid var(--ink)}
-.face.front b{padding:12px 8px;font-size:18px}
+.face.front b{font-size:17px;line-height:1.2}
 .face.back em{font-size:14px;color:#2b7a0b;font-weight:700}
 .grid{grid-template-columns:repeat(auto-fill,minmax(190px,1fr))}
 .credit{font-size:13px;color:#777;margin-top:12px}
@@ -195,10 +193,9 @@ section:nth-of-type(even){background:#f7fff0}
 
   <section id="kit">
     <h2>Your survival kit <span class="tag">words</span></h2>
-    <p class="sub">Things you use when you build, mine, farm and cook. Click a card: listen, then read the example.</p>
+    <p class="sub">Things you use when you build, mine, farm and cook. Click a card: listen and read the example.</p>
     <div class="cat-tabs" id="catTabs"></div>
     <div class="grid" id="vocab"></div>
-    <p class="credit">Photos: Unsplash.</p>
   </section>
 
   <section id="rules">
@@ -329,6 +326,19 @@ T.melonSide = tex((x) => { for (let i = 0; i < 16; i++) for (let j = 0; j < 16; 
 T.bookshelf = tex((x) => { x.drawImage(T.planks, 0, 0); const cols = ['#c0392b', '#2e86de', '#27ae60', '#f1c40f', '#8e44ad', '#e67e22']; [[1, 2], [1, 9]].forEach(([, y]) => { for (let i = 1; i < 15; i += 2) { x.fillStyle = pick(cols); x.fillRect(i, y, 2, 5); } }); });
 T.diamondOre = tex((x) => { x.drawImage(T.stone, 0, 0); [[3, 3], [10, 4], [5, 10], [11, 11]].forEach(([a, b]) => { x.fillStyle = '#33e0d6'; x.fillRect(a, b, 2, 2); x.fillStyle = '#c9fffb'; x.fillRect(a, b, 1, 1); }); });
 
+T.sandstone = tex((x) => { for (let j = 0; j < 16; j++) for (let i = 0; i < 16; i++) px(x, i, j, j % 5 === 4 ? '#c9b178' : pick(['#e6d3a0', '#dcc891', '#ead8a8'])); });
+T.gravel = noise(['#8f8580', '#7a706b', '#a49a94', '#6a615c', '#9c938d']);
+T.obsidian = tex((x) => { x.drawImage(noise(['#1b1029', '#140a20', '#24163a', '#1b1029']), 0, 0); [[3, 4], [9, 2], [12, 9], [5, 12]].forEach(([a, b]) => { x.fillStyle = '#5b3a8c'; x.fillRect(a, b, 2, 1); }); });
+T.lava = tex((x) => { for (let i = 0; i < 16; i++) for (let j = 0; j < 16; j++) px(x, i, j, pick(['#ff6a00', '#ff8c1a', '#ffb02e', '#e85100', '#ffd23f'])); });
+const oreTex = (c1, c2) => tex((x) => { x.drawImage(T.stone, 0, 0); [[2, 3], [9, 2], [4, 9], [11, 10], [7, 6]].forEach(([a, b]) => { x.fillStyle = c1; x.fillRect(a, b, 2, 2); x.fillStyle = c2; x.fillRect(a, b, 1, 1); }); });
+T.coalOre = oreTex('#1c1c1c', '#3a3a3a'); T.ironOre = oreTex('#d8a07a', '#f1c9a8'); T.goldOre = oreTex('#ffd23f', '#fff3a0'); T.emeraldOre = oreTex('#2ecc71', '#b6ffd2');
+T.wool = noise(['#f4f4f4', '#ebebeb', '#ffffff', '#e2e2e2']);
+T.hayTop = tex((x) => { for (let i = 0; i < 16; i++) for (let j = 0; j < 16; j++) px(x, i, j, pick(['#e3c04a', '#d6b13c', '#c9a330'])); x.fillStyle = '#8a6a1f'; x.fillRect(7, 0, 2, 16); });
+T.haySide = tex((x) => { for (let i = 0; i < 16; i++) for (let j = 0; j < 16; j++) px(x, i, j, pick(['#e3c04a', '#d6b13c', '#c9a330'])); x.fillStyle = '#b5362b'; x.fillRect(0, 3, 16, 2); x.fillRect(0, 11, 16, 2); });
+T.roofTiles = tex((x) => { for (let j = 0; j < 16; j++) for (let i = 0; i < 16; i++) px(x, i, j, (j % 4 === 3) ? '#3b2a2a' : pick(['#a8483a', '#9b4133', '#b5523f'])); });
+T.barrelTop = tex((x) => { x.drawImage(T.planks, 0, 0); x.strokeStyle = '#4a4a4a'; x.strokeRect(1.5, 1.5, 13, 13); x.fillStyle = '#3a2618'; x.fillRect(5, 5, 6, 6); });
+T.barrelSide = tex((x) => { for (let i = 0; i < 16; i++) for (let j = 0; j < 16; j++) px(x, i, j, i % 4 === 3 ? '#6b4a2b' : pick(['#8d5a2b', '#9a6532'])); x.fillStyle = '#4a4a4a'; x.fillRect(0, 2, 16, 1); x.fillRect(0, 13, 16, 1); });
+
 // ізометричний куб
 function cube(top, left, right) {
   const c = document.createElement('canvas'); c.width = c.height = 64; const x = c.getContext('2d'); x.imageSmoothingEnabled = false; const s = 2;
@@ -343,9 +353,57 @@ function cube(top, left, right) {
 const PAL = {
   r: '#ff4040', d: '#b71c1c', h: '#ffffff', b: '#8d5a2b', B: '#5a3716', g: '#4cd137', G: '#218c3a',
   y: '#ffe08a', o: '#e8892f', O: '#a85614', w: '#fff3d6', s: '#cdd6dd', S: '#7b8a95', c: '#5ec8ef', C: '#2779a7',
-  k: '#3a2618', K: '#1c1c1c', f: '#fff35c', F: '#ff9b1f', D: '#11b5ac', H: '#ffd23f', p: '#e0aa5c', P: '#a8722e', W: '#cfefff', m: '#ffffff', q: '#e8d3a8', R: '#c0392b',
+  k: '#3a2618', K: '#1c1c1c', f: '#fff35c', F: '#ff9b1f', D: '#11b5ac', H: '#ffd23f', p: '#e0aa5c', P: '#a8722e', W: '#cfefff', m: '#ffffff', q: '#e8d3a8', R: '#c0392b', n: '#d64545', N: '#8e2424', e: '#f7dccf', u: '#a0592c', U: '#5e3015', l: '#f7a8b8', L: '#d06a83', a: '#ff8a5b', A: '#c8552c', v: '#9b2d63', V: '#5e1840', z: '#d9b679', Z: '#8a6a3a', j: '#2ecc71', J: '#167a43', t: '#8a5530', T: '#4e2c12', x: '#9a9a9a', X: '#555555', i: '#f39c12', I: '#b9770e',
 };
 const MAP = {
+
+  ladder: ['...bB.....bB....', '...bbbbbbbbB....', '...bB.....bB....', '...bB.....bB....', '...bbbbbbbbB....', '...bB.....bB....', '...bB.....bB....', '...bbbbbbbbB....', '...bB.....bB....', '...bB.....bB....', '...bbbbbbbbB....', '...bB.....bB....'],
+  fence: ['', '', '..bB...bB...bB..', '..bB...bB...bB..', '..bbbbbbbbbbbB..', '..bB...bB...bB..', '..bB...bB...bB..', '..bbbbbbbbbbbB..', '..bB...bB...bB..', '..bB...bB...bB..'],
+  gate: ['', '.bB..........bB.', '.bBbbbbbbbbbbbB.', '.bB.bB....bB.bB.', '.bB..bB..bB..bB.', '.bB...bBbB...bB.', '.bB...bBbB...bB.', '.bB..bB..bB..bB.', '.bBbbbbbbbbbbbB.', '.bB..........bB.'],
+  stairs: ['', '..........bbbb..', '..........bbbB..', '..........bbbB..', '......bbbbbbbB..', '......bbbbbbbB..', '......bbbbbbbB..', '..bbbbbbbbbbbB..', '..bbbbbbbbbbbB..', '..bbbbbbbbbbbB..', '..BBBBBBBBBBBB..'],
+  scaffolding: ['.yYYYYYYYYYYYYy.', '.y............y.', '.y.y........y.y.', '.y..y......y..y.', '.y...y....y...y.', '.y....y..y....y.', '.y.....yy.....y.', '.y....y..y....y.', '.y...y....y...y.', '.yYYYYYYYYYYYYy.', '.y............y.', '.y............y.'],
+  lantern: ['.......XX.......', '......X..X......', '.......XX.......', '.....XXXXXX.....', '....XffffffX....', '....XfFFFFfX....', '....XfFRFFfX....', '....XfFFFFfX....', '....XffffffX....', '.....XXXXXX.....'],
+  campfire: ['', '.......f........', '......fFf.......', '.....fFRFf......', '....fFRRRFf.....', '.....FRRRF......', '..uuUuuuUuuuU...', '...bBbBbBbBb....', '..uuUuuuUuuuU...', '...xxXxxXxxX....'],
+  cave: ['', '...xxxxxxxxxx...', '..xxxXxxxxXxxx..', '.xxxKKKKKKKxxxx.', '.xxKKKKKKKKKKxx.', '.xKKKKKKKKKKKKx.', '.xKKKKKKKKKKKKx.', '.xKKKKKKKKKKKKx.', '.xKKKKKKKKKKKKx.', 'gggggggggggggggg'],
+  rails: ['', '..X..........X..', '..X..........X..', '.bbbbbbbbbbbbbb.', '..X..........X..', '..X..........X..', '.bbbbbbbbbbbbbb.', '..X..........X..', '..X..........X..', '.bbbbbbbbbbbbbb.', '..X..........X..'],
+  nugget: ['', '', '.....HHH........', '....HfHHH...HH..', '....HHHHF..HfHF.', '.....FFF...HHHF.', '.......HHH..FF..', '......HfHHF.....', '......HHHFF.....', '.......FFF......'],
+  emerald: ['', '.......jj.......', '......jhjJ......', '.....jhjjjJ.....', '....jhjjjjjJ....', '....jjjjjjjJ....', '....jjjjjjjJ....', '.....jjjjjJ.....', '......jjjJ......', '.......jJ.......'],
+  stalactites: ['', 'xxxxxxxxxxxxxxxx', '.xXx..xXx...xXx.', '.xXx..xXx...xX..', '..x...xX....xX..', '..x....X....x...', '.......x....x...', '.......x........'],
+  mushroom: ['', '.....rrrrrr.....', '...rrhrrrrhrr...', '..rrrrrrhrrrrr..', '..rhrrrrrrrrhr..', '...dddddddddd...', '......wwww......', '......wwww......', '......wwqw......', '.....wwwwww.....'],
+  sheep: ['', '', '...wwwwwwwww....', '..wwmwwwwmwwwqq.', '..wwwwwwwwwwqKq.', '..wwwwmwwwwwqqq.', '..wwwwwwwwwwqq..', '...wwwwwwwww....', '...qq.qq.qq.qq..', '...qq.qq.qq.qq..'],
+  cow: ['', '..............KK', '..............hK', '...hhhhhhhhhhhhh', '..hKKhhhhKhhhhKh', '..KKKhhhKKKhhhhl', '..hhhhhhhhhhhhll', '...hhKKhhhhhhh..', '...hh.hh..hh.hh.', '...KK.KK..KK.KK.'],
+  pig: ['', '', '...lllllllllll..', '..llllllllllKll.', '..lllllllllllLL.', '..llllllllllLKL.', '..llllllllllll..', '...llllllllll...', '...LL.LL..LL.LL.'],
+  horse: ['...........uu...', '..........uuuu..', '..........uuKuu.', '..........uuuuu.', '...uuuuuuuuuu...', '..UuuuuuuuuuU...', '..UuuuuuuuuuU...', '...uuuuuuuuu....', '...uU.uU.uU.uU..', '...uU.uU.uU.uU..', '...KK.KK.KK.KK..'],
+  llama: ['...........qq...', '..........qqqq..', '..........qqKq..', '..........qqqq..', '..........qqq...', '..........qqq...', '...qqqqqqqqqq...', '..qqrrrrrrqqq...', '..qqqqqqqqqq....', '...qq.qq.qq.qq..', '...qq.qq.qq.qq..'],
+  bee: ['', '.....WW..WW.....', '.....WWWWWW.....', '...yKKyyKKyKK...', '..yyKKyyKKyKKy..', '..yyKKyyKKyyKy..', '...yKKyyKKyKK...'],
+  coop: ['.......rr.......', '......rrrr......', '.....rrrrrr.....', '....rrrrrrrr....', '...rrrrrrrrrr...', '....bbbbbbbb....', '....bbKKKKbb....', '....bbKKKKbb....', '....bbKKKKbb....', '....bbbbbbbb....', '....B......B....'],
+  saddle: ['', '', '..tt........tt..', '..tttt....tttt..', '...tttttttttt...', '....tTTTTTTt....', '.....tttttt.....', '......s..s......', '......s..s......', '.....ss..ss.....'],
+  lead: ['', '.....zzzzzz.....', '...zzZ....Zzz...', '..zZ........Zz..', '..z..zzzzzz..z..', '..z.zZ....Zz.z..', '..z.z......z.z..', '..z.zZ....Zz.z..', '..zZ.zzzzzz.Zz..', '...zzZ....Zzz...', '.....zzzzzz.....'],
+  shears: ['', '...ss.....ss....', '...sSs...sSs....', '....sSs.sSs.....', '.....sSsSs......', '......sSs.......', '.....rr.rr......', '....r..r..r.....', '....r..r..r.....', '.....rr.rr......'],
+  honeycomb: ['', '...HHH..HHH.....', '..HfffHHfffH....', '..HfffHHfffH....', '...HHHffHHHH....', '....HfffHfffH...', '....HfffHfffH...', '.....HHHHHHH....'],
+  beef: ['', '', '....nnnnnn......', '..nnnenNnnnn....', '.nnNnnnnnenNn...', '.nennnNnnnnnnn..', '.nnnnnnnennnNn..', '..NnnnnnnnnNNe..', '...NNNnnnNNNee..', '......NNNNee....'],
+  steak: ['', '', '....uuuuuu......', '..uuueuUuuuu....', '.uuUuuuuueuUu...', '.ueuuuUuuuuuuu..', '.uuuuuuueuuuUu..', '..UuuuuuuuuUUe..', '...UUUuuuUUUee..', '......UUUUee....'],
+  pork: ['', '', '.......eeee.....', '.....llllllee...', '...llLllllllLe..', '..lllllllLllll..', '..llLlllllllll..', '..lllllllllLll..', '...lllllllll....', '.....eeeeee.....'],
+  mutton: ['', '....eeeeee......', '...ennnnnne.....', '..ennNnnnnne....', '..ennnnnNnne....', '..ennnnnnnne....', '...ennnnnneem...', '....eeeeee..mm..', '.............mm.'],
+  rawchicken: ['', '...llll.........', '..lhhlllL.......', '..lhllllll......', '..llllllll......', '...lllllLL......', '....LLLLLm......', '.........mm.....', '..........mm.mm.', '...........mmm..', '..........mm.mm.'],
+  bakedpotato: ['', '', '', '.....pppppp.....', '...pphpppppPp...', '..phpyyyyyypPP..', '..ppyyyyyyyyPP..', '..ppPppppppPPP..', '...PppppppPPP...', '....PPPPPPPP....'],
+  beetroot: ['.......gG.......', '......gGgG......', '.......gG.......', '.....vvvvvv.....', '....vvhvvvvV....', '....vhvvvvvV....', '....vvvvvvvV....', '.....vvvvvV.....', '......vvVV......', '.......vV.......', '........V.......'],
+  stew: ['', '', '', '', '...uuyuuqyuuu...', '..buuuuuuuuuub..', '..bbbbbbbbbbbB..', '...bbbbbbbbbB...', '....BBBBBBBB....'],
+  rabbitstew: ['', '', '', '', '...uoouuqoouu...', '..buuouuuuouub..', '..bbbbbbbbbbbB..', '...bbbbbbbbbB...', '....BBBBBBBB....'],
+  pie: ['', '', '', '......oooo......', '....ooiiiioo....', '...oiiiiiiiio...', '..oiiiiiiiiiio..', '..OoooooooooOO..', '...OOOOOOOOOO...'],
+  melonslice: ['', '', '..G...........G.', '..gG.........Gg.', '..grr.......rrg.', '...grrrKrrKrrg..', '...grrrrrrrrrg..', '....grrrKrrrg...', '.....grrrrrg....', '......ggggg.....'],
+  berries: ['......g.........', '.....gGg.g......', '....g...gGg.....', '...rr...g.......', '..rhrr.rr..rr...', '..rrrr.rhr.rhr..', '...rr..rrr.rrr..', '........r...r...'],
+  honeybottle: ['', '......bb........', '......WW........', '......WW........', '.....WWWW.......', '....WHHHHW......', '...WHfHHHHW.....', '...WHHHHHHW.....', '...WHHHHHHW.....', '....WWWWWW......'],
+  kelp: ['', '..J...J...J.....', '..jJ..jJ..jJ....', '...jJ..jJ..jJ...', '..jJ..jJ..jJ....', '...jJ..jJ..jJ...', '..jJ..jJ..jJ....', '...j...j...j....'],
+  sugarcane: ['....g.....g.....', '....gG....gG....', '....gG....gG....', '....GG....GG....', '....gG....gG.g..', '....gG....gG.gG.', '....GG....GG.gG.', '....gG....gG.GG.', '....gG....gG.gG.'],
+  cocoa: ['.......b........', '......bb........', '.....uuuu.......', '....uiiiiu......', '....uiuiiU......', '....uiiuiU......', '....uiiiiU......', '.....uiiU.......', '......UU........'],
+  rod: ['.............bb.', '............bBs.', '...........bB.s.', '..........bB..s.', '.........bB...s.', '........bB....s.', '.......bB.....s.', '......bB......s.', '.....bB.......r.', '....bB..........'],
+  compass: ['', '....SSSSSS......', '...SwwwwwwS.....', '..SwwwrwwwwS....', '..SwwwrwwwwS....', '..SwwwKwwwwS....', '..SwwwhwwwwS....', '...SwwwwwwS.....', '....SSSSSS......'],
+  map: ['', '..qqqqqqqqqqqq..', '..qgggqqqccccq..', '..qgGggqccCccq..', '..qggqqqqcccqq..', '..qqqqgggqqqqq..', '..qcccqgGgqrqq..', '..qcCcqqggqqqq..', '..qqqqqqqqqqqq..'],
+  spyglass: ['', '............HH..', '...........HsSH.', '..........HsSH..', '.........HHH....', '........ttT.....', '.......ttT......', '......ttT.......', '.....HHH........', '....HsH.........', '.....H..........'],
+  anvil: ['', '', '..XXXXXXXXXXXX..', '..XxxxxxxxxxxX..', '...XXXXXXXXXX...', '.....XxxxxX.....', '.....XxxxxX.....', '....XxxxxxxX....', '...XXXXXXXXXX...'],
+  cauldron: ['', '..XX........XX..', '..XXXXXXXXXXXX..', '..XccccccccccX..', '..XxxxxxxxxxxX..', '..XxxxxxxxxxxX..', '..XxxxxxxxxxxX..', '...XxxxxxxxxX...', '...XX......XX...'],
+  bottle: ['', '......bb........', '......WW........', '......WW........', '.....WWWW.......', '....WhWWWW......', '...WhWWWWWW.....', '...WWWWWWWW.....', '...WWWWWWWW.....', '....WWWWWW......'],
   egg: ['', '', '.......ww.......', '......wwww......', '.....whwwww.....', '.....hwwwww.....', '....whwwwwww....', '....wwwwwwww....', '....wwwwwwwq....', '....wwwwwwqq....', '....wwwwwwqq....', '.....wwwwqq.....', '......wqqq......'],
   apple: ['', '.......b..gg....', '.......bgggG....', '....rrrbrrr.....', '...rhrrrrrrd....', '..rhhrrrrrrrd...', '..rhrrrrrrrrd...', '..rrrrrrrrrrd...', '..rrrrrrrrrdd...', '..rrrrrrrrrdd...', '...rrrrrrrdd....', '...drrrrrddd....', '....dd..ddd.....'],
   bread: ['', '', '', '', '.....oooooo.....', '...oohoyyoooo...', '..ohyoyyoyyooO..', '..oyyyyyyyyyoO..', '..ooyoyyoyyooO..', '..OoooooooooOO..', '...OOOOOOOOOO...'],
@@ -369,6 +427,8 @@ const MAP = {
   iron: ['', '', '', '', '.....hhhhhhh....', '...hhssssssSS...', '..hsssssssssSS..', '..SSSSSSSSSSSS..'],
   gold: ['', '', '', '', '.....ffffffff...', '...ffHHHHHHFF...', '..fHHHHHHHHHFF..', '..FFFFFFFFFFFF..'],
 };
+MAP.salmon = MAP.fish.map((r) => r.replace(/c/g, 'a').replace(/C/g, 'A').replace(/W/g, 'e'));
+MAP.cod = MAP.fish.map((r) => r.replace(/c/g, 'x').replace(/C/g, 'X').replace(/W/g, 'q'));
 function item(name) {
   const c = document.createElement('canvas'); c.width = c.height = 16; const x = c.getContext('2d');
   const g = MAP[name].map((r) => r.padEnd(16, '.'));
@@ -385,6 +445,9 @@ const B = {
   sand: () => cube(T.sand, T.sand), log: () => cube(T.logTop, T.logSide), planks: () => cube(T.planks, T.planks), glass: () => cube(T.glass, T.glass),
   brick: () => cube(T.brick, T.brick), water: () => cube(T.water, T.water), furnace: () => cube(T.cobble, T.furnaceFront, T.cobble), table: () => cube(T.tableTop, T.tableSide, T.tableSide),
   chest: () => cube(T.planks, T.chest, T.chest), leaves: () => cube(T.leaves, T.leaves), melon: () => cube(T.melonTop, T.melonSide), bookshelf: () => cube(T.planks, T.bookshelf), ore: () => cube(T.stone, T.diamondOre),
+  sandstone: () => cube(T.sandstone, T.sandstone), gravel: () => cube(T.gravel, T.gravel), obsidian: () => cube(T.obsidian, T.obsidian), lava: () => cube(T.lava, T.lava),
+  coalore: () => cube(T.coalOre, T.coalOre), ironore: () => cube(T.ironOre, T.ironOre), goldore: () => cube(T.goldOre, T.goldOre), emeraldore: () => cube(T.emeraldOre, T.emeraldOre),
+  wool: () => cube(T.wool, T.wool), hay: () => cube(T.hayTop, T.haySide), roof: () => cube(T.roofTiles, T.roofTiles), barrel: () => cube(T.barrelTop, T.barrelSide),
 };
 const pic = (k) => (B[k] ? B[k]() : item(k));
 
@@ -424,10 +487,9 @@ document.getElementById('nightBtn').onclick = (e) => { const n = document.body.c
 const di = document.getElementById('diaIcon').getContext('2d'); di.drawImage(item('diamond'), 2, 2);
 
 // ---------- 1. словник ----------
-// Фото: Unsplash (безкоштовна ліцензія). Слова: те, що треба, коли будуєш, копаєш, ідеш у шахту, доглядаєш тварин і готуєш.
-const PH = {"ladder":"1635082627989-dcd12a107364","fence":"1601042860368-debed90085e0","gate":"1656483461011-a20df474deae","roof":"1518736346281-76873166a64a","lantern":"1555488205-d5e67846cf40","scaffolding":"1603239564387-c5b5ea6f635e","beam":"1563874093519-ca5eda5cd776","stairs":"1601629736795-3da639aa9f23","cave":"1560403442-d141ff60800d","tunnel":"1766934697091-9c2c803b05d6","rails":"1584786379647-c10852954d2b","lava":"1619266465172-02a857c3556d","ore":"1792299316127-850ea48ab956","gold":"1737815914093-becb6c9ac064","diamond":"1515526764876-0f3b298ee4ac","gravel":"1778235296112-a9ea74fff37a","stalactites":"1637047868520-b0081dd1c11a","coal":"1767633411248-e8ca80a8fbd4","sheep":"1554755209-85e44182e019","cow":"1580570598977-4b2412d01bbc","saddle":"1658192390807-1566e152e06c","lead":"1708062270853-ee7c66b69f07","shearing":"1508112304775-4f32d35ccdba","wool":"1668072587819-7b393944b426","hay":"1592462358304-ee5521386d8a","honeycomb":"1623018697148-8350cf18e64e","coop":"1441122456239-401e92b73c65","rod":"1529230117010-b6c436154f25","compass":"1518065896235-a4c93e088e7a","map":"1520299607509-dcd935f9a839","cauldron":"1644762247881-c428e45d0fbc","barrel":"1608232385022-8ba61bec6c59","anvil":"1537557209696-c595cc42018d","workbench":"1745845289797-913815100704","wheat":"1529511582893-2d7e684dd128","beef":"1723893905879-0e309c2a8e06","steak":"1588168333986-5078d3ae3976","pork":"1611059263765-f57653f3bba3","mutton":"1692106914421-e04e1066bd62","salmon":"1499125562588-29fb8a56b5d5","cod":"1760560749128-47c7c1f3a57d","bakedpotato":"1777229987546-52ee6be1c4ca","beetroot":"1593105544559-ecb03bf76f82","pie":"1637769712646-4dcd5b30092a","melon":"1622208489373-1fe93e2c6720","berries":"1669299824216-fdd5f4e22f7c","stew":"1659603851579-17755833517e","honey":"1587049352851-8d4e89133924","rabbitstew":"1708782344071-35ed44b849a9","kelp":"1702315631724-cb0d0f91d987","chicken":"1606728035253-49e8a23146de","rawchicken":"1587593810167-a84920ea0781","sugarcane":"1585155113372-6c1808141bf3","cocoa":"1573710661345-610f790e1218","bread":"1767065885733-425dae4bd62b","carrot":"1639427444459-85a1b6ac2d68","apple":"1619546813926-a78fa6372cd2","bottle":"1591704951890-0862b2e98acb","pickaxe":"1620216533243-755244d986df","axe":"1595872207031-daff7d021d89","shovel":"1596277922657-f80257171aec","torch":"1518137020124-5b133ed2a118","chest":"1607437817193-3b3b029b5b75","bucket":"1593338499402-50a8aafd4740","spyglass":"1764605357421-6bd96a1f9991","campfire":"1788270083262-55c5df22ed45","furnace":"1772758632439-bf8e77124b6f","pig":"1580682777666-24a7b3024e24","eggs":"1593462430565-94f606c65e71","horse":"1550785148-ace594ff7b61","llama":"1589182337358-2cb63099350c","bee":"1497322313607-9fa0c2c4c4f8","mushroom":"1570976481082-4b019b19a750","sandstone":"1768591189220-5d6df21da38a","obsidian":"1544044479-4ff512bd5ebe","emerald":"1625479610681-f789345a8157","smelt":"1613970351372-9804e380bd09","bed":"1688384452844-8364c3e2fc28","door":"1503898362-59e068e7f9d8"};
-const photo = (k, w = 480) => `https://images.unsplash.com/photo-${PH[k]}?auto=format&fit=crop&w=${w}&h=${Math.round(w * .72)}&q=70`;
-// [розділ, фото, слово, пояснення, у грі / приклад]
+// Слова: те, що треба, коли будуєш, копаєш, ідеш у шахту, доглядаєш тварин і готуєш. Картинки наші, піксельні.
+const PIX = { beam: 'log', workbench: 'table', tunnel: 'rails', ore: 'ironore', coal: 'coalore', gold: 'nugget', eggs: 'egg', shearing: 'shears', melon: 'melonslice', honey: 'honeybottle', smelt: 'furnace' };
+// [розділ, картинка, слово, пояснення, у грі / приклад]
 const WORDS = [
   ['build', 'beam', 'a beam', 'A long, heavy piece of wood that holds a roof.', 'I usually use dark oak logs as beams.'],
   ['build', 'roof', 'a roof / roof tiles', 'The top part of a house. It keeps the rain out.', 'I\'m building a roof with stairs blocks.'],
@@ -526,8 +588,9 @@ function drawVocab(cat) {
   vocab.innerHTML = '';
   WORDS.filter((w) => cat === 'all' || w[0] === cat).forEach(([, k, word, def, ex]) => {
     const card = document.createElement('div'); card.className = 'card';
-    card.innerHTML = `<div class="in"><div class="face front"><img loading="lazy" alt="" src="${photo(k)}"><b>${word}</b></div><div class="face back"><b>${word}</b><span>${def}</span><em>${ex}</em></div></div>`;
+    card.innerHTML = `<div class="in"><div class="face front"></div><div class="face back"><b>${word}</b><span>${def}</span><em>${ex}</em></div></div>`;
     card.onclick = () => { card.classList.toggle('flip'); say(word.replace(/^(a|an) /, '').split(' / ')[0]); gain('v-' + word, 2, '+2 XP · ' + word); };
+    const f = card.querySelector('.front'); f.appendChild(pic(PIX[k] || k)); const nm = document.createElement('b'); nm.textContent = word; f.appendChild(nm);
     vocab.appendChild(card);
   });
 }
