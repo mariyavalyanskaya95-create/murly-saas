@@ -3668,3 +3668,33 @@ details.bb-tip > p:last-child{margin-bottom:22px}
 .gl-pixcover i:nth-child(4){right:14%;background:#8d8d8d}
 .gl-pixcover b{position:absolute;right:10px;top:10px;background:#7cff4f;border:3px solid #1d1d2b;padding:2px 10px;font-weight:900;letter-spacing:1px;box-shadow:3px 3px 0 #1d1d2b}
 .le-tag--game{background:#7cff4f}
+/* Картка уроку в каталозі */
+.lc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:22px}
+.lc{display:flex;flex-direction:column;gap:10px;padding:18px;background:#fff;border:2px solid var(--mu-ink);border-radius:22px;color:var(--mu-ink);text-decoration:none;transition:transform .15s,box-shadow .15s;min-width:0}
+.lc:hover{transform:translateY(-4px);box-shadow:6px 6px 0 var(--mu-ink)}
+.lc__top{display:flex;align-items:center;gap:6px}
+.lc__levels{display:flex;gap:4px}
+.lc__lv{width:40px;height:40px;border-radius:50%;background:var(--mu-lime);border:2px solid var(--mu-ink);display:grid;place-items:center;font-weight:900;font-size:14px}
+.lc__age{font-size:13px;font-weight:700;border:2px solid var(--mu-ink);border-radius:999px;padding:2px 10px}
+.lc__fav{margin-left:auto;width:40px;height:40px;border-radius:12px;border:2px solid transparent;background:#f3eefc;display:grid;place-items:center;cursor:pointer;padding:0}
+.lc__fav svg{width:22px;height:22px;fill:none;stroke:var(--mu-ink);stroke-width:2.2}
+.lc__fav.is-on svg{fill:#ff5a7a;stroke:#c2183f}
+.lc__fav:hover{border-color:var(--mu-ink)}
+.lc__pic{aspect-ratio:16/10;border-radius:16px;overflow:hidden;display:grid;place-items:center;border:2px solid var(--mu-ink)}
+.lc__pic img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
+.lc:hover .lc__pic img{transform:scale(1.05)}
+.lc__pic .mu-ic,.lc__pic svg{width:48px;height:48px}
+.lc__kind{font-size:14px;color:var(--mu-ink-muted);margin-top:4px}
+.lc__title{margin:0;font-size:21px;line-height:1.2;font-weight:800}
+.lc__about{margin:0;font-size:15px;line-height:1.5;color:#333;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.lc__tags{display:flex;flex-wrap:wrap;gap:6px}
+.lc__tag{background:#f3eefc;border-radius:999px;padding:4px 12px;font-size:13px;font-weight:600}
+.lc__tag--topic{background:#eaf6df}
+.lc__foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:auto;padding-top:8px}
+.lc__has{display:flex;gap:10px;font-weight:800;font-size:13px;flex-wrap:wrap}
+.lc__has span{display:inline-flex;align-items:center;gap:4px}
+.lc__has svg{width:16px;height:16px}
+.lc__go{background:var(--mu-lime);border:2px solid var(--mu-ink);border-radius:12px;padding:8px 18px;font-weight:900;text-transform:uppercase;font-size:14px;box-shadow:3px 3px 0 var(--mu-ink)}
+.lc:hover .lc__go{transform:translate(-1px,-1px)}
+.lc--game{background:#f4ffe9}
+.lc__pic.gl-pixcover{border-radius:16px}
