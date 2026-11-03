@@ -19,7 +19,7 @@ export const GAME_LESSONS: GameLesson[] = [
   { id: 'survival', game: 'Minecraft', title: 'Survival Mission', level: 'A2-B1', age: '9-14', minutes: 60, color: '#7ec8ff', ready: true,
     grammar: { uk: 'Present Simple vs Present Continuous', ru: 'Present Simple vs Present Continuous', en: 'Present Simple vs Present Continuous' },
     topic: { uk: 'Блоки, їжа, інструменти, будуємо дім і виживаємо першу ніч', ru: 'Блоки, еда, инструменты, строим дом и выживаем первую ночь', en: 'Blocks, food, tools, building a house and surviving the first night' } },
-  { id: 'obby', game: 'Roblox', title: 'Obby Champions', level: 'A2-B1', age: '8-13', minutes: 60, color: '#ff8f8f', ready: false,
+  { id: 'obby', game: 'Roblox', title: 'Obby Champions', level: 'A2-B1', age: '8-13', minutes: 60, color: '#ff8f8f', ready: true,
     grammar: { uk: 'Past Simple: що сталося в грі', ru: 'Past Simple: что случилось в игре', en: 'Past Simple: what happened in the game' },
     topic: { uk: 'Перешкоди, рухи, правила, розповідь про проходження', ru: 'Препятствия, движения, правила, рассказ о прохождении', en: 'Obstacles, moves, rules, retelling a run' } },
   { id: 'runway', game: 'Dress to Impress', title: 'Runway Star', level: 'A2-B1', age: '9-14', minutes: 60, color: '#ff9fe0', ready: false,
