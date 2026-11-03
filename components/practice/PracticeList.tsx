@@ -4,20 +4,10 @@ import { useState } from 'react';
 import { AGES, LEVELS, ageLabel, type Age, type Plan } from '@/lib/lesson';
 import { useT } from '@/components/LangProvider';
 import MockCards, { mockFits } from '@/components/mock/MockCards';
-import Icon from '@/components/Icon';
-import { coverOf } from '@/lib/lesson-covers';
+import LessonCard from '@/components/lesson/LessonCard';
+import { toCard } from '@/lib/plan-card';
 import GameLessonCards from '@/components/game-lessons/GameLessonCards';
 
-// Що є в уроці: короткі значки для вчителя
-function contents(p: Plan) {
-  let words = 0, tasks = 0; const has = new Set<string>();
-  p.blocks.forEach((b) => {
-    if (b.type === 'vocab') words += b.words.length;
-    if (b.type === 'exercise') tasks += b.sections.reduce((a, s) => a + s.tasks.length, 0);
-    if (b.type === 'video' || b.type === 'audio' || b.type === 'game' || b.type === 'speaking') has.add(b.type);
-  });
-  return { words, tasks, has };
-}
 
 // Каталог уроків або практики з фільтрами (base: куди веде картка, skills: фільтр навичок)
 export default function PracticeList({ items, base = '/practice', skills = ['Listening', 'Reading'], mocks = false }: { items: Plan[]; base?: string; skills?: string[]; mocks?: boolean }) {
@@ -43,29 +33,9 @@ export default function PracticeList({ items, base = '/practice', skills = ['Lis
           {LEVELS.map((l) => <button key={l} className={`g-chip ${level === l ? 'is-on' : ''}`} onClick={() => setLevel(l)}>{l}</button>)}
         </div>
       </div>
-      <div className="gr-grid" style={{ marginTop: 20 }}>
+      <div className="lc-grid" style={{ marginTop: 20 }}>
         {mocks && <GameLessonCards />}
-        {list.map((p) => (
-          <Link key={p.id} href={`${base}/${p.id.replace(/^lib-/, '')}`} className={`gr-card gr--${p.color} le-card ${coverOf(p.id) ? 'has-cover' : ''}`}>
-            {coverOf(p.id) && <span className="le-card__cover"><img src={coverOf(p.id, 480)!} alt="" loading="lazy" /></span>}
-            <span className="le-card__tags">
-              <span className="gr-level">{p.level}</span>
-              <span className="le-tag">{ageLabel(p.age, t.lang)}</span>
-              {(p.focus ?? []).map((f) => <span key={f} className="le-tag">{f}</span>)}
-            </span>
-            <span className="gr-card__title">{p.title}</span>
-            {p.topic && <span className="gr-card__uk">{p.topic}</span>}
-            {(() => { const c = contents(p); return (
-              <span className="le-card__has">
-                {c.words > 0 && <span title={t({ uk: 'Слова', ru: 'Слова', en: 'Words' })}><Icon id="e-abc" />{c.words}</span>}
-                {c.tasks > 0 && <span title={t({ uk: 'Завдання', ru: 'Задания', en: 'Tasks' })}><Icon id="e-pencil" />{c.tasks}</span>}
-                {c.has.has('video') && <span title={t({ uk: 'Відео', ru: 'Видео', en: 'Video' })}><Icon id="d-camera" /></span>}
-                {c.has.has('audio') && <span title={t({ uk: 'Аудіювання', ru: 'Аудирование', en: 'Listening' })}><Icon id="e-head" /></span>}
-                {c.has.has('speaking') && <span title={t({ uk: 'Говоріння', ru: 'Говорение', en: 'Speaking' })}><Icon id="e-speak" /></span>}
-                {c.has.has('game') && <span title={t({ uk: 'Гра', ru: 'Игра', en: 'Game' })}><Icon id="e-trophy" /></span>}
-              </span>); })()}
-          </Link>
-        ))}
+        {list.map((p) => <LessonCard key={p.id} p={toCard(p)} href={`${base}/${p.id.replace(/^lib-/, '')}`} />)}
         {showMocks && <MockCards />}
       </div>
       {!list.length && !showMocks && <p className="t-empty" style={{ textAlign: 'center' }}>{t({ uk: 'Під ці фільтри поки нічого немає. Розділ поповнюється.', ru: 'Под эти фильтры пока ничего нет. Раздел пополняется.', en: 'Nothing matches these filters yet. New items are added regularly.' })}</p>}
