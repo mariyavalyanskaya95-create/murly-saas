@@ -120,6 +120,39 @@ details.teacher summary{font-weight:900;cursor:pointer}
 .toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(120px);background:var(--ink);color:#fff;font-weight:900;padding:12px 22px;border:4px solid #7cff4f;transition:transform .3s;z-index:50;display:flex;gap:10px;align-items:center}
 .toast.show{transform:translateX(-50%) translateY(0)}
 @media(max-width:760px){.modes,.sort,.stream{grid-template-columns:1fr}.screen{position:static}}
+
+/* яскравість і рух */
+.bob{animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-8px)}}
+.card:hover .in{transform:translateY(-6px) rotate(-1.5deg)}
+.card.flip:hover .in{transform:rotateY(180deg) translateY(-6px)}
+.face.front{background:linear-gradient(180deg,#fff 0,#fff 60%,#f3ffe9 100%)}
+.card:nth-child(4n+1) .face.front{background:linear-gradient(180deg,#fff 55%,#e3f6ff)}
+.card:nth-child(4n+2) .face.front{background:linear-gradient(180deg,#fff 55%,#fff1fb)}
+.card:nth-child(4n+3) .face.front{background:linear-gradient(180deg,#fff 55%,#fff8d9)}
+.pxl{position:fixed;width:10px;height:10px;z-index:60;pointer-events:none;border:2px solid #000;animation:pxl .8s ease-out forwards}
+@keyframes pxl{to{transform:translate(var(--dx),var(--dy)) rotate(180deg);opacity:0}}
+.lvlup{position:fixed;left:50%;top:40%;transform:translate(-50%,-50%) scale(0);z-index:70;background:#7cff4f;border:6px solid #000;box-shadow:8px 8px 0 #000;padding:18px 34px;text-align:center;pointer-events:none}
+.lvlup b{display:block;font-size:46px;letter-spacing:2px}
+.lvlup span{font-weight:900}
+.lvlup.show{animation:lvl 1.8s ease-out forwards}
+@keyframes lvl{0%{transform:translate(-50%,-50%) scale(0)}15%{transform:translate(-50%,-50%) scale(1.15)}25%,80%{transform:translate(-50%,-50%) scale(1)}100%{transform:translate(-50%,-50%) scale(0);opacity:0}}
+.night{position:fixed;right:16px;bottom:16px;z-index:40;font:inherit;font-weight:900;border:3px solid #000;background:#1d1d2b;color:#ffe14a;padding:8px 14px;box-shadow:3px 3px 0 #000;cursor:pointer}
+.stars{position:absolute;inset:0 0 auto 0;height:700px;pointer-events:none;opacity:0;transition:opacity .6s}
+.stars i{position:absolute;width:4px;height:4px;background:#fff;animation:tw 2s infinite}
+@keyframes tw{50%{opacity:.2}}
+body{transition:background .6s}
+body.is-night{background:linear-gradient(180deg,#0b1a3a 0,#1d2f5c 520px,#2a3d6b 100%)}
+body.is-night .stars{opacity:1}
+body.is-night .hero p{color:#fff}
+body.is-night nav.steps a{background:#24365f;color:#fff}
+.bin.s{background:repeating-linear-gradient(0deg,#b5884f 0 14px,#a97c45 14px 16px)}
+.bin.c{background:repeating-linear-gradient(0deg,#9fd6ec 0 14px,#8cc6dd 14px 16px)}
+.bin h4{background:#fff;border:3px solid var(--ink);display:inline-block;padding:2px 10px}
+.mis{transition:transform .2s}.mis:hover{transform:translateY(-4px) rotate(.4deg)}
+section h2{color:var(--ink)}
+section:nth-of-type(odd){background:#fffdf6}
+section:nth-of-type(even){background:#f7fff0}
 </style>
 </head>
 <body>
@@ -254,6 +287,9 @@ details.teacher summary{font-weight:900;cursor:pointer}
 </div>
 
 <div class="toast" id="toast"></div>
+<div class="lvlup" id="lvlup"><b>LEVEL 2!</b><span>Keep going!</span></div>
+<button class="night" id="nightBtn" type="button">Night mode</button>
+<div class="stars" aria-hidden="true"></div>
 
 <script>
 // ---------- піксельні текстури (свої, процедурні) ----------
@@ -296,26 +332,47 @@ function cube(top, left, right) {
   x.setTransform(1, 0, 0, 1, 0, 0); return c;
 }
 // предмети: піксельні мапи 12×12
-const PAL = { r: '#e53935', R: '#9e1c1c', w: '#ffffff', b: '#6b4a2b', B: '#3f2a14', g: '#43a047', G: '#1b5e20', y: '#f6d365', Y: '#c99a2e', o: '#ff8c1a', O: '#b35400', c: '#4fc3f7', C: '#1565c0', k: '#111111', f: '#ffe14a', F: '#ff8a00', d: '#33e0d6', D: '#0f8f87', s: '#cfd8dc', S: '#78909c', p: '#ff8fd8', h: '#5d4037', W: '#bfe9ff' };
-const MAP = {
-  apple: ['.....b.gg...', '.....bgg....', '..rrrbrrr...', '.rwrrrrrrr..', '.rwrrrrrrrR.', '.rrrrrrrrrR.', '.rrrrrrrrrR.', '.rrrrrrrrRR.', '..rrrrrrRR..', '..RrrrrrRR..', '...RR..RR...'],
-  bread: ['', '', '...oooooo...', '..oyoyoyoo..', '.oyyyyyyyyO.', '.oyoyoyoyoO.', '.oyyyyyyyyO.', '.OooooooooO.', '..OOOOOOOO..'],
-  carrot: ['.........gg.', '........ggg.', '.......gOg..', '......oOo...', '.....ooo....', '....oOo.....', '...ooo......', '..oOo.......', '.ooo........', '.o..........'],
-  fish: ['', '', '..CCCC......', '.cccccc...C.', 'cwkccccc.CC.', 'cccccccccCC.', '.cccccc...C.', '..CCCC......'],
-  wheat: ['....y.y.....', '...yYyYy....', '....yYy.....', '...yYyYy....', '....yYy.....', '.....g......', '.....g......', '....g.g.....', '.....g......', '.....g......'],
-  torch: ['.....F......', '....FfF.....', '....fFf.....', '.....b......', '.....b......', '.....b......', '.....b......', '.....b......', '.....b......'],
-  pickaxe: ['...ddddd....', '..dDDDDDd...', '.dD..b..Dd..', '.d..b....d..', '...b........', '..b.........', '.b..........', 'b...........'],
-  sword: ['..........dd', '.........dDd', '........dDd.', '.......dDd..', '......dDd...', '..h..dDd....', '...hdDd.....', '....hd......', '...bhh......', '..bb..h.....', '.bb.........'],
-  axe: ['...sss......', '..sSsss.....', '..sSsssb....', '..sSssb.....', '...ssb......', '....b.......', '...b........', '..b.........', '.b..........'],
-  shovel: ['.........ss.', '........sSSs', '........sSSs', '.........ss.', '........b...', '.......b....', '......b.....', '.....b......', '....b.......', '..BB........', '..BB........'],
-  bucket: ['', '..SSSSSSS...', '.S.......S..', '.SsssssssS..', '..SssWssS...', '..SsssssS...', '...SsssS....', '...SSSSS....'],
-  door: ['..bbbbbbb...', '..bWWbWWb...', '..bWWbWWb...', '..bbbbbbb...', '..bhhhhhb...', '..bhhhhhb...', '..bhhhhkb...', '..bhhhhhb...', '..bhhhhhb...', '..bbbbbbb...'],
-  bed: ['', '', '', '', '.wwwrrrrrrr.', '.wwwrrrrrrr.', '.wwwrrrrrrr.', '.RRRRRRRRRR.', '.bb......bb.', '.bb......bb.'],
-  diamond: ['', '...dddddd...', '..dwwddddd..', '.dwddddddDd.', '..dddddDDd..', '...ddddDd...', '....dddd....', '.....dd.....'],
-  egg: ['', '', '.....ww.....', '....wwww....', '...wwwwww...', '...wwwwws...', '...wwwwws...', '....wwss....'],
-  milk: ['', '...SSSSS....', '..SwwwwwS...', '.SswwwwwsS..', '.SswwwwwsS..', '..SwwwwwS...', '...SSSSS....'],
+// предмети: наші піксельні малюнки 16×16, контур додається автоматично
+const PAL = {
+  r: '#ff4040', d: '#b71c1c', h: '#ffffff', b: '#8d5a2b', B: '#5a3716', g: '#4cd137', G: '#218c3a',
+  y: '#ffe08a', o: '#e8892f', O: '#a85614', w: '#fff3d6', s: '#cdd6dd', S: '#7b8a95', c: '#5ec8ef', C: '#2779a7',
+  k: '#3a2618', K: '#1c1c1c', f: '#fff35c', F: '#ff9b1f', D: '#11b5ac', H: '#ffd23f', p: '#e0aa5c', P: '#a8722e', W: '#cfefff', m: '#ffffff', q: '#e8d3a8', R: '#c0392b',
 };
-function item(name) { const c = document.createElement('canvas'); c.width = c.height = 12; const x = c.getContext('2d'); MAP[name].forEach((row, j) => [...row].forEach((ch, i) => { if (PAL[ch]) px(x, i, j, PAL[ch]); })); return c; }
+const MAP = {
+  egg: ['', '', '.......ww.......', '......wwww......', '.....whwwww.....', '.....hwwwww.....', '....whwwwwww....', '....wwwwwwww....', '....wwwwwwwq....', '....wwwwwwqq....', '....wwwwwwqq....', '.....wwwwqq.....', '......wqqq......'],
+  apple: ['', '.......b..gg....', '.......bgggG....', '....rrrbrrr.....', '...rhrrrrrrd....', '..rhhrrrrrrrd...', '..rhrrrrrrrrd...', '..rrrrrrrrrrd...', '..rrrrrrrrrdd...', '..rrrrrrrrrdd...', '...rrrrrrrdd....', '...drrrrrddd....', '....dd..ddd.....'],
+  bread: ['', '', '', '', '.....oooooo.....', '...oohoyyoooo...', '..ohyoyyoyyooO..', '..oyyyyyyyyyoO..', '..ooyoyyoyyooO..', '..OoooooooooOO..', '...OOOOOOOOOO...'],
+  carrot: ['', '...........gG...', '.........ggGg...', '..........gG....', '.........oOo....', '........ooOo....', '.......oooO.....', '......oOoo......', '.....oooO.......', '....ooOo........', '...oOoo.........', '..ooo...........', '..o.............'],
+  fish: ['', '', '', '.....CCCC.......', '...CCccccCC..C..', '..Cccccccccc.CC.', '.CKcccccccccccc.', '.CcWWWWWWWccccc.', '..CWWWWWWWW.CC..', '...CCWWWWCC..C..', '.....CCCC.......'],
+  milk: ['.....SSSSSS.....', '...SS......SS...', '...SSSSSSSSSS...', '..SmmmmmmmmmmS..', '..SsmmmmmmmmsS..', '..ShsssssssssS..', '...ShsssssssS...', '...ShsssssssS...', '....ShssssSS....', '....SSSSSSSS....'],
+  bucket: ['.....SSSSSS.....', '...SS......SS...', '...SSSSSSSSSS...', '..SKKKKKKKKKKS..', '..SsKKKKKKKKsS..', '..ShsssssssssS..', '...ShsssssssS...', '...ShsssssssS...', '....ShssssSS....', '....SSSSSSSS....'],
+  torch: ['', '.......ff.......', '......fFFf......', '......FRRF......', '......fFFf......', '.......bB.......', '.......bB.......', '.......bB.......', '.......bB.......', '.......bB.......', '.......bB.......', '.......bB.......', '.......bB.......'],
+  pickaxe: ['', '....hcccccC.....', '...hccCCCCccC...', '..hcC..bB..CcC..', '..cC...bB...Cc..', '..C....bB....C..', '.......bB.......', '.......bB.......', '.......bB.......', '.......bB.......', '.......bB.......', '.......bB.......'],
+  sword: ['.......hc.......', '......hccC......', '......hccC......', '......hccC......', '......hccC......', '......hccC......', '......hccC......', '......hccC......', '....HHHHHHHH....', '.......bB.......', '.......bB.......', '.......HH.......'],
+  axe: ['', '....SSSS........', '...SssssS.bB....', '..ShsssssSbB....', '..ShssssssbB....', '..ShsssssSbB....', '...SssssS.bB....', '....SSSS..bB....', '..........bB....', '..........bB....', '..........bB....', '..........bB....'],
+  shovel: ['', '......SsS.......', '.....SsssS......', '.....ShssS......', '.....ShssS......', '......SsS.......', '.......bB.......', '.......bB.......', '.......bB.......', '.......bB.......', '......bbBB......', '......b..B......'],
+  door: ['..BBBBBBBBBBBB..', '..BbbbbBBbbbbB..', '..BWWWbBBWWWbB..', '..BWWWbBBWWWbB..', '..BbbbbBBbbbbB..', '..BBBBBBBBBBBB..', '..BbbbbbbbbbbB..', '..BbBBBBBBBBbB..', '..BbbbbbbbbKbB..', '..BbBBBBBBBBbB..', '..BbbbbbbbbbbB..', '..BBBBBBBBBBBB..'],
+  bed: ['', '', '', '', '', '..mmmmrrrrrrrr..', '..mmhmrrrrrrrr..', '..mmmmrdrrdrrr..', '..dddddddddddd..', '..bB........bB..', '..bB........bB..'],
+  diamond: ['', '....cccccccc....', '...chhccccCCc...', '..chcccccccCCc..', '..ccccccccCCCc..', '...cccccccCCc...', '....ccccccCc....', '.....ccccCc.....', '......cccc......', '.......cc.......'],
+  wheat: ['.....y..y..y....', '....yo.yo.yo....', '.....y..y..y....', '....yo.yo.yo....', '.....yo.y.oy....', '......g.g.g.....', '......g.g.g.....', '.......ggg......', '........g.......', '.......yoy......', '........g.......', '........g.......'],
+  potato: ['', '', '', '.....pppppp.....', '...pphpppppPp...', '..phppPpppppPP..', '..pppppppPppPP..', '..ppPppppppPPP..', '...PppppppPPP...', '....PPPPPPPP....'],
+  chicken: ['', '...oooo.........', '..oyyoooO.......', '..oyoooooO......', '..oooooooO......', '...oooooOO......', '....OOOOOm......', '.........mm.....', '..........mm.mm.', '...........mmm..', '..........mm.mm.'],
+  cookie: ['', '', '.....pppppp.....', '...pppkppppp....', '..pppppppkppp...', '..pkppppppppp...', '..pppppkpppkp...', '..pppppppppp....', '...ppkpppppp....', '.....pppppp.....'],
+  coal: ['', '', '', '......KKKK......', '....KKSKKKKK....', '...KSKKKKKKKK...', '...KKKKKKKKKK...', '....KKKKKKKK....', '.....KKKKKK.....'],
+  iron: ['', '', '', '', '.....hhhhhhh....', '...hhssssssSS...', '..hsssssssssSS..', '..SSSSSSSSSSSS..'],
+  gold: ['', '', '', '', '.....ffffffff...', '...ffHHHHHHFF...', '..fHHHHHHHHHFF..', '..FFFFFFFFFFFF..'],
+};
+function item(name) {
+  const c = document.createElement('canvas'); c.width = c.height = 16; const x = c.getContext('2d');
+  const g = MAP[name].map((r) => r.padEnd(16, '.'));
+  while (g.length < 16) g.push('................');
+  const on = (i, j) => j >= 0 && j < 16 && i >= 0 && i < 16 && PAL[g[j][i]];
+  for (let j = 0; j < 16; j++) for (let i = 0; i < 16; i++) {
+    if (on(i, j)) px(x, i, j, PAL[g[j][i]]);
+    else if (on(i + 1, j) || on(i - 1, j) || on(i, j + 1) || on(i, j - 1)) px(x, i, j, '#2a1a10');
+  }
+  return c;
+}
 const B = {
   grass: () => cube(T.grassTop, T.grassSide), dirt: () => cube(T.dirt, T.dirt), stone: () => cube(T.stone, T.stone), cobblestone: () => cube(T.cobble, T.cobble),
   sand: () => cube(T.sand, T.sand), log: () => cube(T.logTop, T.logSide), planks: () => cube(T.planks, T.planks), glass: () => cube(T.glass, T.glass),
@@ -325,10 +382,23 @@ const B = {
 const pic = (k) => (B[k] ? B[k]() : item(k));
 
 // ---------- XP ----------
+// звуки (генеруємо самі), частинки, level up
+let AC; const tone = (f, d, type = 'square', v = .07, when = 0) => { try { AC = AC || new (window.AudioContext || window.webkitAudioContext)(); const o = AC.createOscillator(), g = AC.createGain(); o.type = type; o.frequency.value = f; g.gain.value = v; o.connect(g); g.connect(AC.destination); const t = AC.currentTime + when; o.start(t); g.gain.exponentialRampToValueAtTime(.0001, t + d); o.stop(t + d); } catch (e) { } };
+const pop = () => { tone(660, .08); tone(990, .12, 'square', .06, .07); };
+const buzz = () => { tone(140, .25, 'sawtooth', .06); };
+const fanfare = () => [523, 659, 784, 1046].forEach((f, i) => tone(f, .18, 'square', .07, i * .11));
+let lastX = innerWidth / 2, lastY = innerHeight / 2;
+addEventListener('pointerdown', (e) => { lastX = e.clientX; lastY = e.clientY; }, true);
+function burst(n = 14) {
+  const cols = ['#7cff4f', '#ffd23f', '#33e0d6', '#ff5a5f', '#ff8fd8', '#8e6cff'];
+  for (let i = 0; i < n; i++) { const p = document.createElement('i'); p.className = 'pxl'; p.style.left = lastX + 'px'; p.style.top = lastY + 'px'; p.style.background = cols[i % cols.length];
+    const a = Math.random() * Math.PI * 2, r = 50 + Math.random() * 70; p.style.setProperty('--dx', Math.cos(a) * r + 'px'); p.style.setProperty('--dy', Math.sin(a) * r - 30 + 'px'); document.body.appendChild(p); setTimeout(() => p.remove(), 800); }
+}
 let xp = 0, dias = 0; const done = new Set();
 function gain(key, n, msg) {
-  if (done.has(key)) return; done.add(key); xp += n; if (n >= 15) dias++;
+  if (done.has(key)) return; done.add(key); const before = Math.floor(xp / 100); xp += n; if (n >= 15) dias++;
   const lvl = Math.floor(xp / 100) + 1;
+  burst(); if (lvl - 1 > before) { fanfare(); const L = document.getElementById('lvlup'); L.querySelector('b').textContent = 'LEVEL ' + lvl + '!'; L.classList.remove('show'); void L.offsetWidth; L.classList.add('show'); } else pop();
   document.getElementById('xpbar').style.width = (xp % 100) + '%';
   document.getElementById('xptext').textContent = xp + ' XP';
   document.getElementById('lvl').textContent = 'LEVEL ' + lvl;
@@ -339,8 +409,11 @@ let tt; function toast(m) { const t = document.getElementById('toast'); t.textCo
 function say(w) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; u.rate = .9; speechSynthesis.speak(u); } catch (e) { } }
 const put = (el, c) => { c.style.width = c.style.width || ''; el.appendChild(c); };
 
+// день / ніч
+document.getElementById('nightBtn').onclick = (e) => { const n = document.body.classList.toggle('is-night'); e.currentTarget.textContent = n ? 'Day mode' : 'Night mode'; tone(n ? 220 : 440, .3, 'triangle', .08); };
+(function stars() { const box = document.querySelector('.stars'); for (let i = 0; i < 60; i++) { const st = document.createElement('i'); st.style.left = Math.random() * 100 + '%'; st.style.top = Math.random() * 45 + '%'; st.style.animationDelay = Math.random() * 2 + 's'; box.appendChild(st); } })();
 // шапка
-['grass', 'log', 'planks', 'glass', 'furnace', 'table', 'chest', 'ore', 'brick'].forEach((k) => { const c = pic(k); c.style.width = '58px'; document.getElementById('heroBlocks').appendChild(c); });
+['grass', 'log', 'planks', 'glass', 'furnace', 'table', 'chest', 'ore', 'brick'].forEach((k) => { const c = pic(k); c.style.width = '64px'; c.className = 'bob'; c.style.animationDelay = (Math.random() * 1.5) + 's'; document.getElementById('heroBlocks').appendChild(c); });
 const di = document.getElementById('diaIcon').getContext('2d'); di.drawImage(item('diamond'), 2, 2);
 
 // ---------- 1. словник ----------
@@ -372,6 +445,12 @@ const WORDS = [
   ['food', 'melon', 'melon', 'Big and juicy.', 'In real life: a watermelon in summer.'],
   ['food', 'egg', 'egg', 'Chickens lay eggs.', 'Fried eggs for breakfast.'],
   ['food', 'milk', 'milk', 'You get it from a cow with a bucket.', 'A glass of milk.'],
+  ['food', 'potato', 'potato', 'Bake it in a furnace. Yum!', 'In real life: chips and mashed potatoes.'],
+  ['food', 'chicken', 'cooked chicken', 'Cook raw chicken in a furnace.', 'In real life: chicken for dinner.'],
+  ['food', 'cookie', 'cookie', 'Sweet! You need wheat and cocoa.', 'Cookies and milk!'],
+  ['nature', 'coal', 'coal', 'Black stone. You need it for torches.', 'In real life: old trains used coal.'],
+  ['nature', 'iron', 'iron ingot', 'A bar of metal. Make better tools!', 'In real life: bridges and cars have iron.'],
+  ['nature', 'gold', 'gold ingot', 'Shiny yellow metal.', 'In real life: rings and medals.'],
   ['tools', 'pickaxe', 'pickaxe', 'You mine stone with it.', 'In real life: miners use it.'],
   ['tools', 'axe', 'axe', 'You chop trees with it.', 'In real life: to cut firewood.'],
   ['tools', 'shovel', 'shovel', 'You dig dirt and sand with it.', 'In real life: in the garden or for snow.'],
@@ -417,7 +496,7 @@ CHOOSE.forEach(([s, ok, bad], i) => {
   const box = q.lastElementChild;
   opts.forEach((o) => { const btn = document.createElement('button'); btn.className = 'opt'; btn.textContent = o; btn.onclick = () => {
     if (o === ok) { btn.classList.add('ok'); q.querySelector('.slot').textContent = o; box.querySelectorAll('button').forEach((x) => x.disabled = true); gain('c' + i, 10); }
-    else { btn.classList.remove('bad'); void btn.offsetWidth; btn.classList.add('bad'); }
+    else { btn.classList.remove('bad'); void btn.offsetWidth; btn.classList.add('bad'); buzz(); }
   }; box.appendChild(btn); });
   cl.appendChild(q);
 });
@@ -440,7 +519,7 @@ const st = document.getElementById('streamText');
 STREAM.forEach(([a, v, ans, b], i) => {
   const s = document.createElement('span'); s.append(a);
   const inp = document.createElement('input'); inp.setAttribute('aria-label', v); inp.autocomplete = 'off'; inp.spellcheck = false;
-  const check = () => { const val = inp.value.trim().toLowerCase().replace(/’/g, "'").replace(/\s+/g, ' '); if (!val) return; const ok = ans.some((x) => x === val || ('i ' + val) === x); inp.classList.toggle('ok', ok); inp.classList.toggle('bad', !ok); if (ok) gain('s' + i, 10); };
+  const check = () => { const val = inp.value.trim().toLowerCase().replace(/’/g, "'").replace(/\s+/g, ' '); if (!val) return; const ok = ans.some((x) => x === val || ('i ' + val) === x); inp.classList.toggle('ok', ok); inp.classList.toggle('bad', !ok); if (ok) gain('s' + i, 10); else buzz(); };
   inp.onkeydown = (e) => { if (e.key === 'Enter') check(); }; inp.onblur = check;
   s.appendChild(inp); const sm = document.createElement('small'); sm.textContent = ` (${v})`; s.appendChild(sm); s.append(b); st.appendChild(s);
 });
@@ -473,7 +552,7 @@ SORT.forEach(([w, b], i) => { const el = document.createElement('button'); el.cl
 document.querySelectorAll('.bin').forEach((bin) => bin.onclick = () => {
   if (!sel) return; const el = sel; sel = null; el.classList.remove('sel');
   if (el.dataset.b === bin.dataset.b) { el.classList.add('ok'); bin.querySelector('.pool').appendChild(el); gain('w' + el.dataset.i, 5); }
-  else { el.classList.add('bad'); setTimeout(() => el.classList.remove('bad'), 500); toast('Try the other chest!'); }
+  else { el.classList.add('bad'); buzz(); setTimeout(() => el.classList.remove('bad'), 500); toast('Try the other chest!'); }
 });
 
 // ---------- 6. баги ----------
@@ -492,7 +571,7 @@ BUGS.forEach(([s, ok, fix], i) => {
   const d = document.createElement('div'); d.className = 'bug';
   d.innerHTML = `<span><b>${i + 1}.</b> ${s}</span><span><button class="opt">OK</button><button class="opt">BUG</button></span><span class="fix">${fix}</span>`;
   const [bOk, bBug] = d.querySelectorAll('button');
-  const ans = (v, btn) => { if (v === ok) { btn.classList.add('ok'); d.classList.add('done'); bOk.disabled = bBug.disabled = true; gain('b' + i, 15, '+15 XP · +1 diamond'); } else { btn.classList.remove('bad'); void btn.offsetWidth; btn.classList.add('bad'); } };
+  const ans = (v, btn) => { if (v === ok) { btn.classList.add('ok'); d.classList.add('done'); bOk.disabled = bBug.disabled = true; gain('b' + i, 15, '+15 XP · +1 diamond'); } else { btn.classList.remove('bad'); void btn.offsetWidth; btn.classList.add('bad'); buzz(); } };
   bOk.onclick = () => ans(true, bOk); bBug.onclick = () => ans(false, bBug);
   bl.appendChild(d);
 });
