@@ -10,7 +10,7 @@ const enc = encodeURIComponent;
 type Row = Record<string, unknown>;
 
 export type StudentLesson = { id: string; start: string; duration: number; topic?: string; link: string; status: string };
-export type StudentWord = { id: string; en: string; uk: string; example?: string; box?: number; due?: string };
+export type StudentWord = { id: string; en: string; uk: string; example?: string; box?: number; due?: string; at?: string };
 export type StudentHomework = {
   id: string; title: string; instructions?: string; kind: 'game' | 'text' | 'exercise' | 'lesson' | 'mock'; items?: Section[] | Block[]; answers?: Answers; overrides?: Record<string, boolean>;
   game?: 'quiz' | 'match' | 'anagram' | 'cards' | (string & {}); direction?: 'en' | 'uk';
@@ -70,7 +70,7 @@ export async function getEnrollments(userId: string, lang = 'uk'): Promise<Enrol
     const sid = enc(String(s.id));
     const [lessons, words, settings, homework, notes] = await Promise.all([
       db.query(`lessons?student_id=eq.${sid}&status=eq.planned&start=gte.${enc(since)}&order=start.asc&limit=20&select=*`),
-      db.query(`words?student_id=eq.${sid}&order=at.desc&select=id,en,uk,example,srs_box,srs_due`).catch(() => db.query(`words?student_id=eq.${sid}&order=at.desc&select=id,en,uk,example`)),
+      db.query(`words?student_id=eq.${sid}&order=at.desc&select=id,en,uk,example,at,srs_box,srs_due`).catch(() => db.query(`words?student_id=eq.${sid}&order=at.desc&select=id,en,uk,example,at`)),
       db.query(`teacher_settings?teacher_id=eq.${enc(String(s.teacher_id))}&select=name,link`),
       db.query(`homework?student_id=eq.${sid}&order=created_at.desc&limit=30&select=*`).catch(() => []),
       db.query(`notes?student_id=eq.${sid}&files=not.is.null&order=at.desc&limit=30&select=at,files`).catch(() => []),
@@ -92,7 +92,7 @@ export async function getEnrollments(userId: string, lang = 'uk'): Promise<Enrol
         topic: l.topic ? String(l.topic) : undefined,
         link: String(l.link || s.link || tLink || ''),
       })),
-      words: words.map((w) => ({ id: String(w.id), en: String(w.en), uk: String(w.uk), example: w.example ? String(w.example) : undefined, box: Number(w.srs_box) || 0, due: w.srs_due ? String(w.srs_due) : undefined })),
+      words: words.map((w) => ({ id: String(w.id), en: String(w.en), uk: String(w.uk), example: w.example ? String(w.example) : undefined, box: Number(w.srs_box) || 0, due: w.srs_due ? String(w.srs_due) : undefined, at: w.at ? String(w.at) : undefined })),
       homework: homework.map((h) => ({
         id: String(h.id), title: String(h.title), kind: h.kind === 'text' ? 'text' : h.kind === 'exercise' ? 'exercise' : h.kind === 'lesson' ? 'lesson' : h.kind === 'mock' ? 'mock' : 'game',
         items: h.kind === 'exercise' ? normalizeSections(h.items as Section[] | null) : (h.items as Section[] | Block[] | null) ?? undefined, answers: (h.answers as Answers | null) ?? undefined, overrides: (h.overrides as Record<string, boolean> | null) ?? undefined,

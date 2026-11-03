@@ -225,6 +225,10 @@ function useStore(userId: string) {
       sync('addWord', row);
     },
     removeWord: (id: string) => { update((d) => ({ ...d, words: d.words.filter((x) => x.id !== id) })); sync('removeWord', { id }); },
+    updateWord: (id: string, patch: { en?: string; uk?: string; example?: string }) => {
+      update((d) => ({ ...d, words: d.words.map((x) => (x.id === id ? { ...x, ...patch } : x)) }));
+      sync('updateWord', { id, patch });
+    },
 
     addPayment: (studentId: string, amount: number, note?: string) => {
       const row: Payment = { id: uid(), studentId, amount, note, at: now() };
