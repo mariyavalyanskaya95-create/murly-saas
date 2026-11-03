@@ -6,6 +6,7 @@ import { useT } from '@/components/LangProvider';
 import MockCards, { mockFits } from '@/components/mock/MockCards';
 import Icon from '@/components/Icon';
 import { coverOf } from '@/lib/lesson-covers';
+import GameLessonCards from '@/components/game-lessons/GameLessonCards';
 
 // Що є в уроці: короткі значки для вчителя
 function contents(p: Plan) {
@@ -43,6 +44,7 @@ export default function PracticeList({ items, base = '/practice', skills = ['Lis
         </div>
       </div>
       <div className="gr-grid" style={{ marginTop: 20 }}>
+        {mocks && <GameLessonCards />}
         {list.map((p) => (
           <Link key={p.id} href={`${base}/${p.id.replace(/^lib-/, '')}`} className={`gr-card gr--${p.color} le-card ${coverOf(p.id) ? 'has-cover' : ''}`}>
             {coverOf(p.id) && <span className="le-card__cover"><img src={coverOf(p.id, 480)!} alt="" loading="lazy" /></span>}
