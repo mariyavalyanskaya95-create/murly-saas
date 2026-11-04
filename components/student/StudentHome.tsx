@@ -196,7 +196,7 @@ function MyLogin({ phone: phone0, pin: pin0 }: { phone?: string; pin?: string })
         </>
       ) : (
         <>
-          <p className="t-muted">{t({ uk: 'Щоб заходити з будь-якого пристрою без пароля, придумай простий PIN (наприклад 4 цифри). Його бачиш ти і твій учитель.', ru: 'Чтобы входить с любого устройства без пароля, придумай простой PIN (например 4 цифры). Его видишь ты и твой учитель.', en: 'To log in from any device without a password, make up a simple PIN (for example 4 digits). You and your teacher can see it.' })}</p>
+          <p className="t-muted">{t({ uk: 'Придумай PIN, щоб входити з будь-якого пристрою.', ru: 'Придумай PIN, чтобы входить с любого устройства.', en: 'Make up a PIN to log in from any device.' })}</p>
           <form className="t-login__form" onSubmit={save}>
             <label>{t({ uk: 'Номер телефону', ru: 'Номер телефона', en: 'Phone number' })}<input type="tel" value={phone} onChange={(ev) => setPhone(ev.target.value)} placeholder="+380 67 123 45 67" required /></label>
             <label>PIN<input value={pin} onChange={(ev) => setPin(ev.target.value.trim())} maxLength={8} required className="t-login__pin" /></label>
