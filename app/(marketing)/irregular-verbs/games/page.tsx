@@ -13,6 +13,7 @@ import { localizeVerbs } from '@/lib/content/verbs';
 import { tr } from '@/lib/i18n-server';
 import Kit from '@/components/Kit';
 
+import HeroTip from '@/components/HeroTip';
 export function generateMetadata(): Metadata {
   const t = tr();
   return {
@@ -43,7 +44,7 @@ export default function IrregularVerbsGamesPage() {
           <Kit id="st-cat-blep" className="kit-hero" />
           <span className="mu-section__eyebrow"><Icon id="e-trophy" />{t({ uk: 'Ігри', ru: 'Игры', en: 'Games' })}</span>
           <h1>{t({ uk: 'Неправильні дієслова', ru: 'Неправильные глаголы', en: 'Irregular verbs' })} <em>{t({ uk: 'в іграх.', ru: 'в играх.', en: 'in games.' })}</em></h1>
-          <p>{t({ uk: 'Обери, що тренуєш, і гру. Слова щоразу перемішуються.', ru: 'Выбери, что тренируешь, и игру. Слова каждый раз перемешиваются.', en: 'Choose what to practise and a game. The words are shuffled every time.' })}</p>
+          <HeroTip>{t({ uk: 'Обери, що тренуєш, і гру. Слова щоразу перемішуються.', ru: 'Выбери, что тренируешь, и игру. Слова каждый раз перемешиваются.', en: 'Choose what to practise and a game. The words are shuffled every time.' })}</HeroTip>
           <Link href="/irregular-verbs" className="mu-btn mu-btn--lg">{t({ uk: 'До таблиці', ru: 'К таблице', en: 'To the table' })}</Link>
         </div>
       </section>
