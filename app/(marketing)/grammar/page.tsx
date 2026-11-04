@@ -13,6 +13,7 @@ import { GRAMMAR_GROUPS } from '@/lib/grammar-groups';
 import { tr } from '@/lib/i18n-server';
 import Kit from '@/components/Kit';
 
+import HeroTip from '@/components/HeroTip';
 export function generateMetadata(): Metadata {
   const t = tr();
   return {
@@ -39,7 +40,7 @@ export default function GrammarIndexPage() {
           <Kit id="il-cat-read" className="kit-hero" />
           <span className="mu-section__eyebrow"><Icon id="e-book" />{t({ uk: 'Граматика', ru: 'Грамматика', en: 'Grammar' })}</span>
           <h1>{t({ uk: 'Граматика', ru: 'Грамматика', en: 'Grammar' })} <em>{t({ uk: 'без нудьги.', ru: 'без скуки.', en: 'without the boredom.' })}</em></h1>
-          <p>{t({ uk: '52 теми простими словами: коли вживати, формула, головні пастки, смішна сценка і 100 завдань з поясненнями.', ru: '52 темы простыми словами: когда использовать, формула, главные ловушки, смешная сценка и 100 заданий с объяснениями.', en: '52 topics in plain words: when to use them, the formula, the main traps, a funny scene and 100 tasks with explanations.' })}</p>
+          <HeroTip>{t({ uk: '52 теми простими словами: коли вживати, формула, головні пастки, смішна сценка і 100 завдань з поясненнями.', ru: '52 темы простыми словами: когда использовать, формула, главные ловушки, смешная сценка и 100 заданий с объяснениями.', en: '52 topics in plain words: when to use them, the formula, the main traps, a funny scene and 100 tasks with explanations.' })}</HeroTip>
           <Link href="/grammar/trainer" className="mu-btn mu-btn--lime mu-btn--lg">{t({ uk: 'Тренажери на 100 завдань', ru: 'Тренажёры на 100 заданий', en: '100-task trainers' })}</Link>{' '}
           <Link href="/irregular-verbs" className="mu-btn mu-btn--lg">{t({ uk: 'Неправильні дієслова', ru: 'Неправильные глаголы', en: 'Irregular verbs' })}</Link>
         </div>
