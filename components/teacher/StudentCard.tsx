@@ -262,7 +262,7 @@ function WordsTab({ id }: { id: string }) {
         </div>
         {bulkOpen && (
           <div className="t-bulk">
-            <p className="t-muted">{t({ uk: 'Кожен рядок: слово або фраза і переклад. Роздільник будь-який: =, тире, двокрапка або таблиця з Word. Без перекладу Murly підбере сам.', ru: 'Каждая строка: слово или фраза и перевод. Разделитель любой: =, тире, двоеточие или таблица из Word. Без перевода Murly подберёт сам.', en: 'Each line: a word or phrase and its translation. Any separator works: =, a dash, a colon or a Word table. Without one, Murly suggests a translation.' })}</p>
+            <p className="t-muted">{t({ uk: 'Слово = переклад, кожне з нового рядка. Без перекладу Murly підбере сам.', ru: 'Слово = перевод, каждое с новой строки. Без перевода Murly подберёт сам.', en: 'Word = translation, one per line. Leave out the translation and Murly will suggest one.' })}</p>
             <textarea rows={8} value={bulkText} onChange={(e) => setBulkText(e.target.value)} onKeyDown={(e) => { if ((e.metaKey || e.ctrlKey) && e.key === 'Enter' && bulkText.trim()) fetchBulk(); }}
               placeholder={t({ uk: 'break the ice = розтопити кригу\nin the long run - зрештою\nto look forward to: з нетерпінням чекати\nweird', ru: 'break the ice = растопить лёд\nin the long run - в итоге\nto look forward to: с нетерпением ждать\nweird', en: 'break the ice = розтопити кригу\nin the long run - зрештою\nweird' })} />
             <label className="t-log-form__day">{t({ uk: 'Дата уроку', ru: 'Дата урока', en: 'Lesson date' })}<input type="date" value={wDay} max={todayIso()} onChange={(e) => setWDay(e.target.value)} /></label>
@@ -515,7 +515,7 @@ function PayTab({ id }: { id: string }) {
             <button className="mu-btn mu-btn--lime" type="submit">{t({ uk: 'Записати', ru: 'Записать', en: 'Record' })}</button>
           </div>
         </form>
-        <p className="t-muted">{t({ uk: 'Баланс рахується так: усі оплати мінус проведені заняття за ціною учня. Прийом оплат онлайн додамо пізніше.', ru: 'Баланс считается так: все оплаты минус проведённые занятия по цене ученика. Приём оплат онлайн добавим позже.', en: 'How the balance works: all payments minus lessons taught at the student’s price. Online payments are coming later.' })}</p>
+        <p className="t-muted">{t({ uk: 'Оплати мінус проведені заняття.', ru: 'Оплаты минус проведённые занятия.', en: 'Payments minus lessons held.' })}</p>
       </div>
       {pays.length > 0 && (
         <div className="t-card"><h2>{t({ uk: 'Історія оплат', ru: 'История оплат', en: 'Payment history' })}</h2>
@@ -564,7 +564,6 @@ function ProfileTab({ id, onDelete }: { id: string; onDelete: () => void }) {
           <legend>{t({ uk: 'Стартовий баланс (уроки до Murly)', ru: 'Стартовый баланс (уроки до Murly)', en: 'Opening balance (lessons before Murly)' })}</legend>
           <label>{t({ uk: 'Проведено, але ще не оплачено, уроків', ru: 'Проведено, но ещё не оплачено, уроков', en: 'Taught but not paid yet, lessons' })}<input type="number" min="0" value={f.owed} onChange={set('owed')} /></label>
           <label>{t({ uk: 'Оплачено наперед, уроків', ru: 'Оплачено наперёд, уроков', en: 'Paid in advance, lessons' })}<input type="number" min="0" value={f.prepaid} onChange={set('prepaid')} /></label>
-          <small className="t-muted">{t({ uk: 'Додається до балансу за ціною заняття. Нові уроки й оплати рахуються як завжди.', ru: 'Добавляется к балансу по цене занятия. Новые уроки и оплаты считаются как обычно.', en: 'Added to the balance at the lesson price. New lessons and payments count as usual.' })}</small>
         </fieldset>
         <label>{t({ uk: 'Контакт учня', ru: 'Контакт ученика', en: 'Student contact' })}<input value={f.contact} onChange={set('contact')} /></label>
         <label>{t({ uk: 'Контакт батьків', ru: 'Контакт родителей', en: 'Parent contact' })}<input value={f.parent} onChange={set('parent')} /></label>
@@ -607,7 +606,6 @@ function InviteBox({ id }: { id: string }) {
     <div className="t-card t-invite t-private">
       <div>
         <h2><Icon id="d-send" />{t({ uk: `Запроси ${s.name} в Murly`, ru: `Пригласи ${s.name} в Murly`, en: `Invite ${s.name} to Murly` })}</h2>
-        <p className="t-muted">{t({ uk: 'Учень побачить свій розклад з кнопкою дзвінка, словник від тебе та ігри з цими словами.', ru: 'Ученик увидит своё расписание с кнопкой звонка, словарь от тебя и игры с этими словами.', en: 'Your student will see their schedule with a call button, the vocabulary from you and games with those words.' })}</p>
       </div>
       {link ? (
         <div className="t-invite__link">
@@ -665,7 +663,7 @@ function LoginBox({ id }: { id: string }) {
         </>
       ) : (
         <>
-          {!s.loginPin && <p className="t-muted">{t({ uk: 'Для дітей без пошти: учень входить за номером телефону і простим PIN. PIN бачиш ти і сам учень у кабінеті.', ru: 'Для детей без почты: ученик входит по номеру телефона и простому PIN. PIN видишь ты и сам ученик в кабинете.', en: 'For kids without email: the student logs in with a phone number and a simple PIN. You and the student can both see the PIN.' })}</p>}
+          {!s.loginPin && <p className="t-muted">{t({ uk: 'Вхід за номером телефону і PIN.', ru: 'Вход по номеру телефона и PIN.', en: 'Log in with a phone number and PIN.' })}</p>}
           <form className="t-login__form" onSubmit={save}>
             <label>{t({ uk: 'Номер телефону', ru: 'Номер телефона', en: 'Phone number' })}<input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="+380 67 123 45 67" required /></label>
             <label>PIN<input value={pin} onChange={(e) => setPin(e.target.value.trim())} maxLength={8} required className="t-login__pin" /></label>
