@@ -26,7 +26,6 @@ export default function GameLessonsPage() {
       <SiteNav />
       <section className="mu-page-hero">
         <div className="mu-container">
-          <span className="mu-section__eyebrow"><Icon id="e-trophy" />{t({ uk: 'Для вчителів', ru: 'Для учителей', en: 'For teachers' })}</span>
           <h1>{t({ uk: 'Уроки за іграми', ru: 'Уроки по играм', en: 'Game-based lessons' })}</h1>
         </div>
       </section>
