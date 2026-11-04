@@ -104,7 +104,7 @@ export default function HomePage() {
             <h1 className="mu-hero__title">Англійська,<br />яку <em>хочеться</em><br />вчити.</h1>
           )}
           <div className="mu-hero__cta">
-            <Link href="/#who" className="mu-btn mu-btn--ink mu-btn--lg">{t({ uk: 'Почати безкоштовно', ru: 'Начать бесплатно', en: 'Start for free' })}<span className="mu-btn__arrow"><Icon id="e-arrow" /></span></Link>
+            <Link href="/#who" className="mu-btn mu-btn--lime mu-btn--lg">{t({ uk: 'Почати безкоштовно', ru: 'Начать бесплатно', en: 'Start for free' })}<span className="mu-btn__arrow"><Icon id="e-arrow" /></span></Link>
             <Link href="/#code" className="mu-btn mu-btn--blue mu-btn--lg">{t({ uk: 'У мене є код від учителя', ru: 'У меня есть код от учителя', en: 'I have a teacher code' })}</Link>
           </div>
         </div>

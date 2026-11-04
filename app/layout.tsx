@@ -52,8 +52,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       localization={lang === 'ru' ? ruRU : lang === 'en' ? undefined : ukUA}
       appearance={{
         variables: {
-          colorPrimary: '#1A1A1A',
-          colorBackground: '#F4EFE3',
+          colorPrimary: '#1B2140',
+          colorBackground: '#EEF0FA',
           borderRadius: '1rem',
           fontFamily: 'General Sans, system-ui, sans-serif',
         },

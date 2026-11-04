@@ -3760,3 +3760,52 @@ details.bb-tip > p:last-child{margin-bottom:22px}
 .mu-chips span { font-size: 13px; font-weight: 700; padding: 3px 10px; border-radius: 999px; background: var(--mu-blue-soft); border: 1.5px solid var(--mu-ink); }
 .mu-hero__note { margin-top: 18px; font-weight: 700; font-size: 15px; }
 .mu-hero__note a { text-decoration: underline; text-underline-offset: 3px; }
+
+/* ===========================================================
+   ПАЛІТРА «ЛАВАНДА І БЛАКИТЬ» (листопад 2026)
+   Фон ніжно-лавандовий, чорнило темно-синє, головні кнопки барвінкові,
+   другі кнопки ніжно-рожеві. Правильні відповіді лишаються зеленими.
+   =========================================================== */
+:root {
+  --mu-paper: #EEF0FA;
+  --mu-paper-dark: #DDE2F4;
+  --mu-ink: #1B2140;
+  --mu-ink-soft: #3A4166;
+  --mu-ink-muted: #6A7091;
+  --mu-card: #FFFFFF;
+  --mu-lime: #AFC3F0;          /* був фісташковий: тепер барвінковий, головний акцент */
+  --mu-lime-ink: #1B2A55;
+  --mu-sky: #E2E8FA;
+  --mu-mustard: #FBE3EC;       /* ніжно-рожевий для карток-варіацій */
+  --mu-blue: #AFC3F0;
+  --mu-blue-soft: #E2E8FA;
+  --mu-blue-ink: #1B2A55;
+  --mu-pink: #F4C0D1;
+  --mu-pink-ink: #4B1528;
+  --mu-violet: #534AB7;
+  --mu-ok: #CDEBC0;            /* правильна відповідь */
+}
+/* виділене слово в заголовках: фіолетове замість томатного */
+.mu-hero__title em, .mu-section__title em, .mu-cta-box h2 em, .mu-page-hero h1 em, .auth-page h1 em, .auth-split__brand h1 em, .mk-result h2 em { color: var(--mu-violet); }
+.mu-section--tomato .mu-section__title em { color: var(--mu-lime); }
+/* мітки над розділами: темні, як у варіанті */
+.mu-section__eyebrow { background: var(--mu-ink); color: #FFFFFF; }
+.mu-section--tomato .mu-section__eyebrow, .mu-section__eyebrow--lime { background: var(--mu-lime); color: var(--mu-lime-ink); }
+/* друга кнопка: ніжно-рожева */
+.mu-btn--blue { background: var(--mu-pink); color: var(--mu-pink-ink); }
+.mu-btn--blue:hover { background: #EFB0C4; }
+.mu-btn--lime { color: var(--mu-lime-ink); }
+.mu-btn--lime:hover { background: #9FB6EA; }
+.mu-btn--tomato { background: var(--mu-violet); color: #FFFFFF; }
+/* бігучий рядок: барвінкова смужка */
+.mu-mq { background: var(--mu-lime); color: var(--mu-lime-ink); border-color: var(--mu-ink); }
+.mu-ticks li::before { background: var(--mu-lime); }
+.mu-chips span { background: var(--mu-sky); }
+.mu-role:nth-child(even) .mu-role__ic { color: var(--mu-pink); }
+/* правильні відповіді: зелені, щоб не плутати з кнопками */
+.q-option.right, .g-option.is-right, .g-tile.is-done, .g-slots.is-right .g-slot, .gr-right, .t-tag--done,
+.ex-input.is-right, .ex-choice.is-on.is-right, .hm-earn__steps .is-done, .mk-opt.is-right { background: var(--mu-ok); }
+.ex-choice.is-correct { box-shadow: 0 0 0 3px var(--mu-ok); }
+.u-bg--lime { background: var(--mu-lime); }
+.u-bg--stripes { background: repeating-linear-gradient(135deg, var(--mu-lime) 0 18px, var(--mu-paper) 18px 36px); }
+.act--lime, .sl--lime { --act: #C9D6F5; }
