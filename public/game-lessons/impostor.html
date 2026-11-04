@@ -189,7 +189,8 @@ body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff4dc;border-l
 .lk-overview{background:#fff}
 .lk-overview ul{font-size:17px;line-height:1.7;margin:6px 0 16px}
 .lk-stages{display:flex;flex-wrap:wrap;gap:8px}
-.lk-stages a{display:grid;border:3px solid var(--ink);padding:6px 12px;text-decoration:none;color:var(--ink);background:#f3eefc;font-weight:800;text-transform:capitalize;min-width:96px}
+.lk-stages a{display:grid;border:3px solid var(--ink);padding:6px 12px;text-decoration:none;color:var(--ink);background:#f3eefc;font-weight:800;min-width:96px}
+.lk-stages a span{text-transform:capitalize}
 .lk-stages a b{font-size:20px}.lk-stages a small{font-weight:600;color:#666}
 .lk-n{display:inline-grid;place-items:center;width:42px;height:42px;background:var(--ink);color:#fff;border-radius:50%;font-size:22px;flex:none}
 .lk-mode{font-size:13px;font-weight:800;border:2px dashed var(--ink);padding:2px 10px;border-radius:999px}
@@ -276,6 +277,9 @@ body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff4dc;border-l
 .sm-end h2{justify-content:center}
 section h2{align-items:center}
 @media(max-width:760px){.lk-split,.sm-logs,.sm-sums,.sm-halves,.sm-case{grid-template-columns:1fr}.lk-tbtn{top:auto;bottom:70px}}
+
+.sm-card th{text-align:left;font-size:14px;padding:6px 8px;border-bottom:3px solid var(--ink)}
+.sm-card td:nth-child(2){width:42%}
 </style>
 </head>
 <body>
@@ -643,7 +647,7 @@ const crewHtml = (k) => `<div class="sm-mem">${catSvg(CREW[k][1])}<b>${CREW[k][0
 
 // етапи уроку
 const STAGES = [...document.querySelectorAll('section[data-stage]')].filter((s) => +s.dataset.min > 0);
-$('stages').innerHTML = STAGES.map((s) => `<a href="#${s.id}"><b>${s.querySelector('.lk-n').textContent}</b>${s.dataset.stage}<small>${s.dataset.min} min</small></a>`).join('');
+$('stages').innerHTML = STAGES.map((s) => `<a href="#${s.id}"><b>${s.querySelector('.lk-n').textContent}</b><span>${s.dataset.stage}</span><small>${s.dataset.min} min</small></a>`).join('');
 $('teacherBtn').onclick = (e) => { const on = document.body.classList.toggle('teacher'); e.currentTarget.textContent = on ? 'Student version' : 'Teacher version'; };
 
 // ---------- 1. can you relate ----------
@@ -721,20 +725,24 @@ RULES.forEach(([a, ok, bad, b], i) => {
   $('rules').appendChild(d);
 });
 const HALVES = [
-  ['I was fixing the wires', 'when the lights went out.'], ['While Mango was watering the plants,', 'he spilled the water.'], ['Luna was sitting alone', 'when the screens went black.'],
-  ['When the alarm rang,', 'we were eating dinner.'], ['Pixel was lying on the scanner bed', 'when the power went off.'], ['What were you doing', 'when the cake disappeared?'],
+  ['I was fixing the wires', 'when I got a small electric shock.', 'main'], ['While Mango was watering the plants,', 'he spilled the water.', 'sub'], ['Luna was sitting alone in Navigation', 'when the screens went black.', 'main'],
+  ['When the alarm rang,', 'we were eating dinner.', 'sub'], ['Pixel was lying on the scanner bed', 'when Biscuit started laughing.', 'main'], ['What were you doing', 'when the cake disappeared?', 'q'],
 ];
+// правильна будь-яка граматично можлива пара: головне речення + when ..., While/When ... + головне, питання + ...?
+const fits = (l, r) => (l === 'main' && r === 'main') || (l === 'sub' && r === 'sub') || (l === 'q' && r === 'q');
 (function halves() {
   const left = document.createElement('div'), right = document.createElement('div'); left.className = right.className = 'sm-col';
   let pick = null; let done = 0;
-  HALVES.forEach(([a], i) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'w'; b.textContent = a; b.dataset.i = i; b.onclick = () => { if (b.classList.contains('ok')) return; left.querySelectorAll('.w').forEach((x) => x.classList.remove('sel')); b.classList.add('sel'); pick = b; }; left.appendChild(b); });
-  HALVES.map(([, b], i) => [b, i]).sort(() => Math.random() - .5).forEach(([t, i]) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'w'; b.textContent = t; b.onclick = () => {
+  HALVES.forEach(([a, , k], i) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'w'; b.textContent = a; b.dataset.k = k; b.dataset.i = i; b.onclick = () => { if (b.classList.contains('ok')) return; left.querySelectorAll('.w').forEach((x) => x.classList.remove('sel')); b.classList.add('sel'); pick = b; }; left.appendChild(b); });
+  HALVES.map(([, t, k], i) => [t, k, i]).sort(() => Math.random() - .5).forEach(([t, k, i]) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'w'; b.textContent = t; b.onclick = () => {
     if (!pick || b.classList.contains('ok')) return;
-    if (+pick.dataset.i === i) { pick.classList.add('ok'); b.classList.add('ok'); pick.classList.remove('sel'); gain('half' + i, 5); say(pick.textContent + ' ' + t); if (++done === HALVES.length) fanfare(); }
-    else { b.classList.add('bad'); buzz(); setTimeout(() => b.classList.remove('bad'), 400); }
+    if (fits(pick.dataset.k, k)) { pick.classList.add('ok'); b.classList.add('ok'); pick.classList.remove('sel'); pick.textContent += ' ' + t; gain('half' + pick.dataset.i, 5); say(pick.textContent); if (++done === HALVES.length) fanfare(); }
+    else { b.classList.add('bad'); buzz(); setTimeout(() => b.classList.remove('bad'), 400); toast(k === 'q' ? 'A question needs a question mark!' : 'Check the grammar: which part has when / while?'); }
     pick = null; left.querySelectorAll('.w').forEach((x) => x.classList.remove('sel')); }; right.appendChild(b); });
   $('halves').append(left, right);
+  $('halves').insertAdjacentHTML('afterend', '<p class="lk-ans">Any grammatical match is accepted. Model answers: ' + HALVES.map(([a, b]) => a + ' ' + b).join(' / ') + '</p>');
 })();
+$('rules').insertAdjacentHTML('beforeend', '<p class="lk-ans">Answers: 1 in progress · 2 -ing · 3 Past Simple · 4 while</p>');
 
 // ---------- 5. діалог ----------
 const DLG = [
@@ -799,10 +807,10 @@ function checkAccuse() {
 
 // ---------- 7. алібі A/B ----------
 const AB = {
-  A: { title: 'Student A', rows: [['8:00', 'I was having breakfast in the Cafeteria.'], ['10:00', 'I was cleaning the Engine room.'], ['13:00', '?'], ['16:00', 'I was playing chess with B in the Lab.'], ['19:00', '?'], ['22:00', 'I was reading in my cabin.']] },
-  B: { title: 'Student B', rows: [['8:00', '?'], ['10:00', 'I was watering the plants.'], ['13:00', 'I was eating lunch with A.'], ['16:00', 'I was playing chess with A in the Lab.'], ['19:00', 'I was sleeping. Nobody saw me!'], ['22:00', '?']] },
+  A: { title: 'Student A', me: [['8:00', 'I was having breakfast with Chef Mango.'], ['10:00', 'I was cleaning the Engine room with Pixel.'], ['13:00', 'I was having lunch with B in the Cafeteria.'], ['16:00', 'I was playing chess with B in the Lab.'], ['19:00', 'I was watching a film with Luna.'], ['22:00', 'I was reading in the library with Biscuit.']] },
+  B: { title: 'Student B', me: [['8:00', 'I was doing exercises in the gym with Luna.'], ['10:00', 'I was watering the plants with Mango.'], ['13:00', 'I was having lunch with A in the Cafeteria.'], ['16:00', 'I was playing chess with A in the Lab.'], ['19:00', 'I was sleeping in my cabin. Alone!'], ['22:00', 'I was talking to the captain on the bridge.']] },
 };
-const abShow = (who) => { const c = AB[who]; $('abCard').innerHTML = `<h3>${c.title}</h3><table>${c.rows.map(([t, s]) => `<tr><td>${t}</td><td>${s === '?' ? '<input placeholder="Ask your partner: What were you doing at ' + t + '?">' : s}</td></tr>`).join('')}</table><p class="lk-tnote">Відповідь: о 19:00 у B немає алібі.</p>`; document.querySelectorAll('[data-ab]').forEach((b) => b.className = 'btn' + (b.dataset.ab === who ? '' : ' alt')); };
+const abShow = (who) => { const c = AB[who]; $('abCard').innerHTML = `<h3>${c.title}: read your alibi, then ask about your partner</h3><table><tr><th>Time</th><th>Me</th><th>My partner (ask: What were you doing at ...? Who were you with?)</th></tr>${c.me.map(([t, s]) => `<tr><td>${t}</td><td>${s}</td><td><input placeholder="..."></td></tr>`).join('')}</table><p class="lk-tnote">Відповідь: о 19:00 у B немає свідків, тільки це алібі не можна підтвердити.</p>`; document.querySelectorAll('[data-ab]').forEach((b) => b.className = 'btn' + (b.dataset.ab === who ? '' : ' alt')); };
 document.querySelectorAll('[data-ab]').forEach((b) => b.onclick = () => { abShow(b.dataset.ab); gain('ab' + b.dataset.ab, 5); });
 abShow('A');
 const FSW = ['was sleeping at 11 pm last night', 'was playing a game at 9 pm yesterday', 'was having breakfast at 7:30 this morning', 'was walking home at 5 pm yesterday', 'was watching a video when someone called', 'was doing homework at 8 pm on Sunday'];
@@ -841,7 +849,7 @@ $('comp').innerHTML = COMP.map(([q, w]) => `<div class="sm-comp"><b>A:</b> ${q}<
 const MIS = [
   ['mittens', 'Meeting reporter', 'In every meeting, say what you were doing.', '"I was fixing the wires in Electrical when the alarm rang."', 20],
   ['luna', 'Alibi partner', 'Stay with a friend for one round. Confirm their alibi.', '"She was with me. We were doing tasks in Navigation."', 20],
-  ['biscuit', 'Task master', 'Finish all your tasks. Name each task in English.', '"I was emptying the rubbish. Then I was scanning..."', 20],
+  ['biscuit', 'Task master', 'Finish all your tasks. Name each task in English.', '"While I was emptying the rubbish, someone called a meeting."', 20],
   ['pixel', 'Detective', 'Watch other players carefully for one round.', '"While I was walking to the Lab, I saw Blue near the vents."', 30],
   ['mango', 'Time keeper', 'After the round, make a timeline of what happened.', '"At first we were... Then... When the meeting started, ..."', 30],
   ['nova', 'Kind crewmate', 'Be fair and friendly in the chat.', '"Good game! I wasn\'t sure, so I skipped." Never share personal information.', 20],
