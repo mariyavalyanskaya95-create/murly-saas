@@ -22,6 +22,7 @@ import { useLessonMode } from '@/lib/lesson-mode';
 import { AudienceToggles } from './forms';
 import QuickWords, { splitWordLine } from './QuickWords';
 import VocabList from '../VocabList';
+import StudentDossier from './StudentDossier';
 import { speakEn } from '@/lib/speak';
 import { uploadFile } from '@/lib/upload';
 import type { T } from '@/lib/i18n';
@@ -96,6 +97,7 @@ export default function StudentCard({ id }: { id: string }) {
 
       {tab === 'overview' && (
         <div className="t-overview">
+          <StudentDossier s={s} />
       {(s.song || s.about || s.selfSong || s.selfAbout) && (
             <div className="t-card t-about t-private">
               {(s.song || s.selfSong) && (
@@ -119,10 +121,11 @@ export default function StudentCard({ id }: { id: string }) {
               </div>
             ) : null;
           })()}
-          {s.joined && (
+          {(s.joined || s.loginPin) && (
             <details className="t-card t-more">
               <summary>{tt({ uk: 'Код і доступ учня', ru: 'Код и доступ ученика', en: 'Student code and access' })}</summary>
-              <InviteBox id={s.id} />
+              {s.joined && <p className="t-pos">{tt({ uk: 'Учень уже підключений до Murly.', ru: 'Ученик уже подключён к Murly.', en: 'The student is already connected to Murly.' })}</p>}
+              <LoginBox id={s.id} />
             </details>
           )}
           {!s.adult && <CoinsBox studentId={s.id} joined={s.joined} />}
