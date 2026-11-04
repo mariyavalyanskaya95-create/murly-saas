@@ -91,7 +91,7 @@ export default function StudentHome({ enrollments, name }: { enrollments: Enroll
 
       <WordReview key={`r${e.studentId}`} words={e.words} adult={e.adult} />
 
-      <XpCard />
+      {!e.adult && <XpCard />}
       <Progress e={e} />
 
       {!e.adult && <CoinsCard />}
