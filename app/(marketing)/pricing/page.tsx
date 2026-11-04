@@ -52,7 +52,6 @@ export default function PricingPage() {
       <section className="mu-page-hero" data-stickers="6">
         <div className="mu-container">
           <h1>{t({ uk: 'Тарифи', ru: 'Тарифы', en: 'Pricing' })}</h1>
-          <p>{t({ uk: 'Почни безкоштовно, перший місяць Pro без оплати. Далі для учня від 99 ₴, для вчителя 249 ₴ на місяць.', ru: 'Начни бесплатно, первый месяц Pro без оплаты. Дальше для ученика от 99 ₴, для учителя 249 ₴ в месяц.', en: 'Start for free, your first month of Pro costs nothing. Then from 99 ₴ for students and 249 ₴ a month for teachers.' })}</p>
         </div>
       </section>
 
