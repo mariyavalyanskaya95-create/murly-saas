@@ -28,7 +28,6 @@ export default function LearnPage() {
       <SectionTabs group="read" active="/learn" />
       <section className="mu-page-hero" data-stickers="6">
         <div className="mu-container">
-          <span className="mu-section__eyebrow"><Icon id="e-book" />{t({ uk: 'Вчитися самому', ru: 'Учиться самому', en: 'Learn on your own' })}</span>
           <h1>{t({ uk: 'Обери навичку', ru: 'Выбери навык', en: 'Pick a skill' })} <em>{t({ uk: 'і свій рівень.', ru: 'и свой уровень.', en: 'and your level.' })}</em></h1>
         </div>
       </section>
