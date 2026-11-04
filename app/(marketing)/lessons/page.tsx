@@ -43,7 +43,6 @@ export default function LessonsPage() {
       <section className="mu-page-hero" data-stickers="5" style={{ paddingBottom: 16 }}>
         <div className="mu-container">
           <Kit id="il-cat-laptop" className="kit-hero" />
-          <span className="mu-section__eyebrow"><Icon id="e-board" />{t({ uk: 'Готові уроки', ru: 'Готовые уроки', en: 'Ready-made lessons' })}</span>
           <h1>{t({ uk: 'Урок на 60 хвилин', ru: 'Урок на 60 минут', en: 'A 60-minute lesson' })} <em>{t({ uk: 'за хвилину.', ru: 'за минуту.', en: 'in a minute.' })}</em></h1>
           <HeroTip>{t({
             uk: 'Обери урок: учень працює інтерактивно прямо на сторінці, а вчитель бачить нотатки до етапів і всі відповіді.',
