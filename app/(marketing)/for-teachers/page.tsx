@@ -68,13 +68,11 @@ export default function ForTeachersPage() {
       <section className="mu-page-hero" data-stickers="6">
         <div className="mu-container">
           <Kit id="il-cat-teacher" className="kit-hero" />
-          <span className="mu-section__eyebrow"><Icon id="d-team" />{t({ uk: 'Для вчителів', ru: 'Для учителей', en: 'For teachers' })}</span>
           <h1>{t({ uk: 'Усе для уроків англійської', ru: 'Всё для уроков английского', en: 'Everything for English lessons' })} <em>{t({ uk: 'в одному кабінеті.', ru: 'в одном кабинете.', en: 'in one dashboard.' })}</em></h1>
           <div className="mu-hero__cta">
             <Link href="/sign-up?role=teacher" className="mu-btn mu-btn--lime mu-btn--lg">
               {t({ uk: 'Створити кабінет', ru: 'Создать кабинет', en: 'Create a dashboard' })}<span className="mu-btn__arrow"><Icon id="e-arrow" /></span>
             </Link>
-            <a href="#how" className="mu-textlink">{t({ uk: 'Як це працює', ru: 'Как это работает', en: 'How it works' })}</a>
           </div>
         </div>
       </section>
