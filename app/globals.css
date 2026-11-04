@@ -3858,42 +3858,55 @@ details.bb-tip > p:last-child{margin-bottom:22px}
 .lc__fav.is-on svg { animation: mu-pop .35s ease-out; }
 @keyframes mu-pop { 0% { transform: scale(.6); } 60% { transform: scale(1.25); } 100% { transform: scale(1); } }
 .lc__fav { background: var(--mu-sky); }
-/* живий котик Murly */
-.mcat { position: relative; display: inline-block; width: clamp(140px, 16vw, 220px); }
-.mcat__btn { all: unset; cursor: pointer; display: block; width: 100%; border-radius: 24px; }
+/* живий котик Murly: м'які плавні рухи */
+.mcat { --lx: 0; --ly: 0; --spring: cubic-bezier(.34, 1.56, .64, 1); position: relative; display: inline-block; width: clamp(150px, 17vw, 230px); }
+.mcat__btn { all: unset; cursor: pointer; display: block; width: 100%; border-radius: 28px; -webkit-tap-highlight-color: transparent; }
 .mcat__btn:focus-visible { outline: 3px solid var(--mu-violet); outline-offset: 4px; }
 .mcat svg { width: 100%; height: auto; overflow: visible; display: block; }
 .mcat svg * { transform-box: view-box; }
-.mcat__tail { transform-origin: 140px 196px; animation: mcat-tail 3s ease-in-out infinite; }
-.mcat__eyes { transform-origin: 100px 88px; animation: mcat-blink 4.8s infinite; }
-.mcat__head { transform-origin: 100px 130px; transition: transform .3s; }
-.mcat__btn:hover .mcat__head { transform: rotate(-4deg); }
-.mcat__btn:hover .mcat__ear--l { transform: rotate(-8deg); }
-.mcat__ear { transform-origin: 70px 50px; transition: transform .2s; }
-.mcat__ear--r { transform-origin: 130px 50px; }
-.mcat__arm { transform-origin: 142px 166px; }
-.mcat__pencil, .mcat__fx { opacity: 0; transition: opacity .2s; }
-.mcat__fx--heart { transform-origin: 100px 40px; }
-.mcat--wave .mcat__arm { animation: mcat-wave .5s ease-in-out 4 alternate; }
+.mcat__all { transform-origin: 110px 228px; transition: transform .45s var(--spring); }
+.mcat__btn:hover .mcat__all { transform: scale(1.03, .98); }
+.mcat__btn:active .mcat__all { transform: scale(1.06, .93); transition-duration: .12s; }
+.mcat__body { transform-origin: 110px 226px; animation: mcat-breathe 3.6s ease-in-out infinite; }
+.mcat__head { transform-origin: 110px 140px; transform: translate(calc(var(--lx) * 6px), calc(var(--ly) * 4px)) rotate(calc(var(--lx) * 6deg)); animation: mcat-headbob 3.6s ease-in-out infinite; }
+.mcat__face { transform: translate(calc(var(--lx) * 5px), calc(var(--ly) * 4px)); }
+.mcat__eyes { transform-origin: 110px 96px; animation: mcat-blink 5.2s infinite; }
+.mcat__glint { transform: translate(calc(var(--lx) * -1.5px), calc(var(--ly) * -1px)); }
+.mcat__tail { transform-origin: 150px 200px; animation: mcat-tail 3.2s cubic-bezier(.45, 0, .55, 1) infinite; }
+.mcat__ear--l { transform-origin: 70px 66px; animation: mcat-ear 6.5s ease-in-out infinite; }
+.mcat__ear--r { transform-origin: 150px 66px; animation: mcat-ear 7.3s ease-in-out infinite reverse; }
+.mcat__arm { transform-origin: 146px 172px; transition: transform .4s var(--spring); }
+.mcat__shadow { transform-origin: 110px 230px; animation: mcat-shadow 3.6s ease-in-out infinite; }
+.mcat__pencil, .mcat__fx { opacity: 0; transition: opacity .3s ease; }
+.mcat__fx--heart, .mcat__fx--z { transform-origin: 110px 40px; }
+.mcat--wave .mcat__arm { animation: mcat-wave .45s ease-in-out 5 alternate; }
 .mcat--pencil .mcat__pencil { opacity: 1; }
-.mcat--pencil .mcat__arm { animation: mcat-write .35s ease-in-out infinite alternate; }
-.mcat--jump .mcat__all { animation: mcat-jump .6s ease-out 3; transform-origin: 100px 220px; }
-.mcat--jump .mcat__fx--stars { opacity: 1; animation: mcat-twinkle .6s ease-in-out infinite alternate; transform-origin: 100px 50px; }
-.mcat--love .mcat__fx--heart { opacity: 1; animation: mcat-float 1.3s ease-out infinite; }
-.mcat--sleep .mcat__fx--z { opacity: 1; animation: mcat-float 1.6s ease-out infinite; }
-.mcat--sleep .mcat__tail { animation-duration: 6s; }
-.mcat--sleep .mcat__head { transform: rotate(6deg) translateY(4px); }
-.mcat__say { position: absolute; left: 50%; bottom: 100%; transform: translate(-50%, -6px); background: #FFFFFF; border: 2px solid var(--mu-ink); border-radius: 16px; padding: 6px 12px; font-weight: 700; font-size: 14px; white-space: nowrap; color: var(--mu-ink); animation: mcat-say .25s ease-out; z-index: 2; }
-.mcat__say::after { content: ""; position: absolute; left: 50%; top: 100%; width: 12px; height: 12px; background: #FFFFFF; border-right: 2px solid var(--mu-ink); border-bottom: 2px solid var(--mu-ink); transform: translate(-50%, -6px) rotate(45deg); }
-@keyframes mcat-tail { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(-12deg); } }
-@keyframes mcat-blink { 0%, 92%, 100% { transform: scaleY(1); } 95% { transform: scaleY(.1); } }
-@keyframes mcat-wave { from { transform: rotate(0); } to { transform: rotate(-38deg); } }
-@keyframes mcat-write { from { transform: rotate(-6deg); } to { transform: rotate(4deg) translateY(2px); } }
-@keyframes mcat-jump { 0%, 100% { transform: translateY(0); } 40% { transform: translateY(-22px); } 70% { transform: translateY(0) scaleY(.95); } }
-@keyframes mcat-twinkle { from { transform: scale(.85); } to { transform: scale(1.1); } }
-@keyframes mcat-float { from { transform: translateY(6px); opacity: 0; } 30% { opacity: 1; } to { transform: translateY(-14px); opacity: 0; } }
-@keyframes mcat-say { from { transform: translate(-50%, 4px); opacity: 0; } }
-@media (prefers-reduced-motion: reduce) { .mcat *, .mcat__say { animation: none !important; transition: none !important; } .mcat--love .mcat__fx--heart, .mcat--sleep .mcat__fx--z { opacity: 1; } }
+.mcat--pencil .mcat__arm { transform: rotate(-24deg); animation: mcat-write .3s ease-in-out infinite alternate; }
+.mcat--jump .mcat__all { animation: mcat-jump .7s var(--spring) 3; }
+.mcat--jump .mcat__shadow { animation: mcat-shadowjump .7s var(--spring) 3; }
+.mcat--jump .mcat__fx--stars { opacity: 1; animation: mcat-twinkle .5s ease-in-out infinite alternate; transform-origin: 110px 50px; }
+.mcat--love .mcat__fx--heart { opacity: 1; animation: mcat-float 1.4s ease-out infinite; }
+.mcat--love .mcat__head { animation: mcat-sway 1.4s ease-in-out infinite; }
+.mcat--sleep .mcat__fx--z { opacity: 1; animation: mcat-float 1.8s ease-out infinite; }
+.mcat--sleep .mcat__head { transform: rotate(8deg) translateY(5px); animation: none; transition: transform .6s ease; }
+.mcat--sleep .mcat__body { animation-duration: 5s; }
+.mcat__say { position: absolute; left: 50%; bottom: 96%; transform: translateX(-50%); background: #FFFFFF; border-radius: 18px; padding: 7px 14px; font-weight: 700; font-size: 14px; white-space: nowrap; color: var(--mu-ink); box-shadow: 0 6px 18px rgba(27, 33, 64, .14); animation: mcat-say .4s var(--spring) both; z-index: 2; }
+.mcat__say::after { content: ""; position: absolute; left: 50%; top: 100%; border: 8px solid transparent; border-top-color: #FFFFFF; transform: translateX(-50%); }
+@keyframes mcat-breathe { 0%, 100% { transform: scale(1, 1); } 50% { transform: scale(1.015, 1.03); } }
+@keyframes mcat-headbob { 0%, 100% { translate: 0 0; } 50% { translate: 0 -2px; } }
+@keyframes mcat-shadow { 0%, 100% { transform: scaleX(1); } 50% { transform: scaleX(1.03); } }
+@keyframes mcat-blink { 0%, 93%, 100% { transform: scaleY(1); } 95.5% { transform: scaleY(.08); } }
+@keyframes mcat-tail { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(-14deg); } }
+@keyframes mcat-ear { 0%, 88%, 100% { transform: rotate(0); } 91% { transform: rotate(-9deg); } 94% { transform: rotate(3deg); } }
+@keyframes mcat-wave { from { transform: rotate(0); } to { transform: rotate(-48deg); } }
+@keyframes mcat-write { from { transform: rotate(-28deg); } to { transform: rotate(-18deg) translateY(2px); } }
+@keyframes mcat-jump { 0%, 100% { transform: translateY(0) scale(1, 1); } 15% { transform: translateY(0) scale(1.06, .92); } 45% { transform: translateY(-26px) scale(.96, 1.05); } 75% { transform: translateY(0) scale(1.04, .96); } }
+@keyframes mcat-shadowjump { 0%, 100% { transform: scaleX(1); opacity: .12; } 45% { transform: scaleX(.7); opacity: .06; } }
+@keyframes mcat-twinkle { from { transform: scale(.85) rotate(-6deg); } to { transform: scale(1.1) rotate(6deg); } }
+@keyframes mcat-float { from { transform: translateY(8px) scale(.8); opacity: 0; } 30% { opacity: 1; } to { transform: translateY(-18px) scale(1.05); opacity: 0; } }
+@keyframes mcat-sway { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
+@keyframes mcat-say { from { transform: translate(-50%, 8px) scale(.85); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .mcat *, .mcat__say { animation: none !important; transition: none !important; } .mcat--love .mcat__fx--heart, .mcat--sleep .mcat__fx--z, .mcat--jump .mcat__fx--stars { opacity: 1; } }
 /* на головній живий котик праворуч замість наліпки */
 .kit-home.mcat { position: absolute; right: 0; bottom: -10px; transform: none; pointer-events: auto; animation: none; }
 @media (max-width: 1180px) { .kit-home.mcat { width: 150px; } }
