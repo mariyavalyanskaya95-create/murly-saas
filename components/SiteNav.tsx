@@ -46,6 +46,7 @@ const MENU: { title: T; items: { href: string; icon: string; label: T; text: T; 
       { href: '/#code', icon: 'd-lock', label: { uk: 'Є код від учителя?', ru: 'Есть код от учителя?', en: 'Have a teacher code?' }, text: { uk: 'Приєднатися і бачити домашку', ru: 'Присоединиться и видеть домашку', en: 'Join and see your homework' } },
       { href: '/for-teachers', icon: 'd-team', label: { uk: 'Для вчителів', ru: 'Для учителей', en: 'For teachers' }, text: { uk: 'Учні, розклад, домашка, дошка', ru: 'Ученики, расписание, домашка, доска', en: 'Students, schedule, homework, board' } },
       { href: '/lessons', icon: 'e-board', label: { uk: 'Готові уроки', ru: 'Готовые уроки', en: 'Ready-made lessons' }, text: { uk: 'Версія учня і версія вчителя', ru: 'Версия ученика и версия учителя', en: 'Student’s and teacher’s versions' } },
+      { href: '/game-lessons', icon: 'e-trophy', label: { uk: 'Уроки за іграми', ru: 'Уроки по играм', en: 'Game-based lessons' }, text: { uk: 'Minecraft, Roblox, мода, будівництво', ru: 'Minecraft, Roblox, мода, стройка', en: 'Minecraft, Roblox, fashion, building' } },
       { href: '/activities', icon: 'e-speak', label: { uk: 'Розмовні activities', ru: 'Разговорные activities', en: 'Speaking activities' }, text: { uk: 'Картки, слайди і PDF для уроку', ru: 'Карточки, слайды и PDF для урока', en: 'Cards, slides and PDF for class' } },
     ],
   },
