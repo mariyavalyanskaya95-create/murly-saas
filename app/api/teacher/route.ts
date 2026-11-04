@@ -198,6 +198,15 @@ export async function POST(req: Request) {
         }
         break;
       }
+      case 'resendHomework': {
+        // прострочена домашка: новий термін і повторне повідомлення учню
+        const due = p.due ? new Date(String(p.due)).toISOString() : null;
+        await db.update('homework', t, id, { due, status: 'assigned' });
+        const r = await db.query(`homework?id=eq.${encodeURIComponent(id)}&teacher_id=eq.${encodeURIComponent(t)}&select=student_id,title`).catch(() => []);
+        if (r[0]) await notifyStudent(String(r[0].student_id), (l) => `${L(l, { uk: 'Учитель дав ще один шанс', ru: 'Учитель дал ещё один шанс', en: 'Your teacher gave you another chance' })}: <b>${esc(String(r[0].title || ''))}</b>${due ? `\n${L(l, { uk: 'Здати до', ru: 'Сдать до', en: 'Due' })} ${new Date(due).toLocaleString(l === 'en' ? 'en-GB' : l === 'ru' ? 'ru-RU' : 'uk-UA', { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Kyiv' })}` : ''}`,
+          (l) => ({ text: L(l, { uk: 'Відкрити домашку', ru: 'Открыть домашку', en: 'Open homework' }), url: `${SITE}/student#homework` }));
+        break;
+      }
       case 'updateHomework': {
         const patch = p.patch as Row;
         await db.update('homework', t, id, toDb.homeworkPatch(patch));
