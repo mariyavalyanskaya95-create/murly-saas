@@ -91,7 +91,7 @@ export default function HomePage() {
       {/* HERO */}
       <section className="mu-hero mu-hero--home" data-stickers="8">
         <div className="mu-container mu-hero__inner">
-          <Kit id="st-girl-bow" className="kit-home kit-home--l" />
+          <MurlyCat className="kit-home mcat--left" skin="peach" />
           <MurlyCat className="kit-home" />
           {t.lang === 'ru' ? (
             <h1 className="mu-hero__title">Английский,<br />который <em>хочется</em><br />учить.</h1>

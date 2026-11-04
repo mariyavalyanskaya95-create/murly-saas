@@ -3911,3 +3911,11 @@ details.bb-tip > p:last-child{margin-bottom:22px}
 .kit-home.mcat { position: absolute; right: 0; bottom: -10px; transform: none; pointer-events: auto; animation: none; }
 @media (max-width: 1180px) { .kit-home.mcat { width: 150px; } }
 @media (max-width: 900px) { .kit-home.mcat { position: static; margin: 0 auto 8px; } }
+/* два котики в героях: не заходять на заголовок */
+.kit-home.mcat { right: -70px; bottom: -34px; width: clamp(140px, 14vw, 200px); }
+.kit-home.mcat.mcat--left, .kit-home.mcat--left { left: -70px; right: auto; }
+.mcat--left .mcat__all { animation-delay: -1.3s; }
+.mcat--left .mcat__body, .mcat--left .mcat__shadow { animation-delay: -1.8s; }
+@media (max-width: 1360px) { .kit-home.mcat { right: -20px; } .kit-home.mcat--left { left: -20px; } }
+@media (max-width: 1180px) { .kit-home.mcat { width: 130px; right: 0; bottom: -20px; } .kit-home.mcat--left { left: 0; } }
+@media (max-width: 900px) { .kit-home.mcat--left { display: none; } }
