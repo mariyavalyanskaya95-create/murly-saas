@@ -47,7 +47,7 @@ export default function CoinsBox({ studentId, joined }: { studentId: string; joi
       <div className="t-coins__head">
         <span className="rw-coin" />
         <div><small>{t({ uk: 'Монетки', ru: 'Монетки', en: 'Coins' })}</small><b>{joined ? (bal ?? '…') : '-'}</b></div>
-        <p className="t-muted">{t({ uk: 'Учень витрачає їх в іграх на сайті. Нараховуй після уроку за роботу, домашку, поведінку.', ru: 'Ученик тратит их в играх на сайте. Начисляй после урока за работу, домашку, поведение.', en: 'Students spend them in games on the site. Award them after a lesson for work, homework, behaviour.' })}</p>
+        <p className="t-muted">{t({ uk: 'Учень витрачає їх в іграх на сайті.', ru: 'Ученик тратит их в играх на сайте.', en: 'Students spend them in games on the site.' })}</p>
       </div>
       {joined ? (
         <>

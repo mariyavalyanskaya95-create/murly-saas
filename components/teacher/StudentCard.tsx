@@ -412,7 +412,7 @@ function NotesTab({ id }: { id: string }) {
   return (
     <div className="t-card">
       <h2>{t({ uk: 'Що було на уроці', ru: 'Что было на уроке', en: 'Lesson log' })}</h2>
-      <p className="t-muted t-private">{t({ uk: 'Бачиш тільки ти. Що робили на уроці, скріни дошки чи вправ, на чому спотикається, що задати наступного разу. Скрін можна вставити Ctrl+V, а будь-який файл (до 50 МБ) просто перетягнути сюди з папки чи завантажень. Документи (PDF, Word, PowerPoint) учень теж бачить у своєму кабінеті в «Матеріалах з уроків».', ru: 'Видишь только ты. Что делали на уроке, скрины доски или упражнений, на чём спотыкается, что задать в следующий раз. Скрин можно вставить Ctrl+V, а любой файл (до 50 МБ) просто перетащить сюда из папки или загрузок. Документы (PDF, Word, PowerPoint) ученик тоже видит у себя в кабинете в «Материалах с уроков».', en: 'Only you can see this. What you did in the lesson, screenshots, where they struggle, what to set next. Paste a screenshot with Ctrl+V or drag any file (up to 50 MB) here from a folder. Documents (PDF, Word, PowerPoint) are also shown to the student under Lesson materials.' })}</p>
+      <p className="t-muted t-private">{t({ uk: 'Бачиш тільки ти.', ru: 'Видишь только ты.', en: 'Only you can see this.' })}</p>
       <form className={`t-note-form t-log-form ${drop ? 'is-drop' : ''}`} onSubmit={save}
         onDragOver={(e) => { if (e.dataTransfer.types.includes('Files')) { e.preventDefault(); setDrop(true); } }}
         onDragLeave={(e) => { if (!e.currentTarget.contains(e.relatedTarget as Node)) setDrop(false); }}
@@ -771,7 +771,7 @@ export function HomeworkForm({ studentIds, groupId, onDone }: { studentIds: stri
       {kind === 'mock' && (
         <div className="t-form">
           <label>{t({ uk: 'Варіант', ru: 'Вариант', en: 'Variant' })}<select value={mock} onChange={(e) => setMock(e.target.value)}>{MOCKS.map((m) => <option key={m.id} value={m.id}>{t({ uk: `Пробний НМТ №${m.id}`, ru: `Пробный НМТ №${m.id}`, en: `NMT mock test #${m.id}` })}</option>)}</select></label>
-          <p className="t-muted t-form__wide">{t({ uk: 'Учень пройде тест на сайті, бал збережеться в домашці автоматично. Результати всіх спроб видно нижче в «Пробні НМТ».', ru: 'Ученик пройдёт тест на сайте, балл сохранится в домашке автоматически. Результаты всех попыток видно ниже в «Пробные НМТ».', en: 'The student takes the test on the site and the score is saved to the homework automatically. All attempts are shown below under mock tests.' })}</p>
+          <p className="t-muted t-form__wide">{t({ uk: 'Бал збережеться в домашці сам.', ru: 'Балл сохранится в домашке сам.', en: 'The score is saved to the homework automatically.' })}</p>
         </div>
       )}
       {kind === 'game' && words < 4 && <p className="t-neg">{group

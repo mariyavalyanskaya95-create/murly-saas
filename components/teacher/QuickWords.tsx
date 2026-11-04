@@ -71,7 +71,7 @@ export default function QuickWords({ studentId, name }: { studentId: string; nam
               <h2 id="qw-title">{t({ uk: `Додати лексику: ${name}`, ru: `Добавить лексику: ${name}`, en: `Add words: ${name}` })}</h2>
               <button type="button" className="t-icon-btn" onClick={() => setOpen(false)} aria-label={t({ uk: 'Закрити', ru: 'Закрыть', en: 'Close' })}>✕</button>
             </div>
-            <p className="t-muted">{t({ uk: 'По слову в рядку: «word = переклад», «word - переклад» або рядки таблиці з Word. Слова без перекладу Murly перекладе сам.', ru: 'По слову в строке: «word = перевод», «word - перевод» или строки таблицы из Word. Слова без перевода Murly переведёт сам.', en: 'One word per line: “word = translation”, “word - translation” or Word table rows. Murly translates words without one.' })}</p>
+            <p className="t-muted">{t({ uk: 'word = переклад, по слову в рядку.', ru: 'word = перевод, по слову в строке.', en: 'word = translation, one per line.' })}</p>
             <textarea ref={area} rows={8} value={text} onChange={(e) => setText(e.target.value)} placeholder={'boredom = нудьга\npatience - терпіння\nto thrive'}
               onKeyDown={(e) => { if ((e.metaKey || e.ctrlKey) && e.key === 'Enter' && text.trim()) add(); }} />
             <div className="t-head__actions">

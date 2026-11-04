@@ -65,7 +65,7 @@ export default function ExtendSchedule({ onDone }: { onDone?: () => void }) {
         <button type="button" className="mu-btn mu-btn--lime" disabled={!total} onClick={run}>{t({ uk: `Додати ${total} занять`, ru: `Добавить ${total} занятий`, en: `Add ${total} lessons` })}</button>
         {done && <span className="t-muted">{done}</span>}
       </div>
-      <p className="t-muted">{t({ uk: 'Беремо останній тиждень занять кожного учня і повторюємо його далі в ті самі дні й години.', ru: 'Берём последнюю неделю занятий каждого ученика и повторяем её дальше в те же дни и часы.', en: 'We take each student’s last week of lessons and repeat it on the same days and times.' })}</p>
+      <p className="t-muted">{t({ uk: 'Повторимо останній тиждень кожного учня.', ru: 'Повторим последнюю неделю каждого ученика.', en: 'We repeat each student’s last week.' })}</p>
     </div>
   );
 }

@@ -68,7 +68,7 @@ export default function StudentDossier({ s }: { s: Student }) {
         </p>
       )}
       {filled.length ? <dl className="t-dossier__list">{filled.map((x) => <div key={x.k}><dt>{t(x.label)}</dt><dd>{p[x.k]}</dd></div>)}</dl>
-        : !p.birthday && <p className="t-muted">{t({ uk: 'Запиши день народження, що учень любить, його цілі. Учень цього не бачить.', ru: 'Запиши день рождения, что ученик любит, его цели. Ученик этого не видит.', en: 'Note the birthday, what the student likes, their goals. The student cannot see this.' })}</p>}
+        : !p.birthday && <p className="t-muted">{t({ uk: 'Учень цього не бачить.', ru: 'Ученик этого не видит.', en: 'The student can’t see this.' })}</p>}
     </div>
   );
 }

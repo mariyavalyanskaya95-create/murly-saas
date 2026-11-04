@@ -86,7 +86,6 @@ export default function LessonsClient({ libCards }: { libCards: Record<Lang, Pla
               <Icon id="e-board" className="mu-ic t-welcome__ic" />
               <div>
                 <h2>{data.plans.length ? t({ uk: 'Нічого не знайдено', ru: 'Ничего не найдено', en: 'Nothing found' }) : t({ uk: 'Створи перший урок', ru: 'Создай первый урок', en: 'Create your first lesson' })}</h2>
-                <p className="t-muted">{t({ uk: 'Збирай урок з блоків: текст, слова, правило, вправи з автоперевіркою, відео, питання для розмови. Або візьми готовий з бібліотеки і підлаштуй під себе.', ru: 'Собирай урок из блоков: текст, слова, правило, упражнения с автопроверкой, видео, вопросы для разговора. Или возьми готовый из библиотеки и подстрой под себя.', en: 'Build a lesson from blocks: text, words, a rule, auto-checked exercises, video, speaking questions. Or take a ready one from the library and adapt it.' })}</p>
                 <div className="t-head__actions" style={{ marginTop: 10 }}>
                   <button className="mu-btn mu-btn--lime" onClick={create}>{t({ uk: '+ Новий урок', ru: '+ Новый урок', en: '+ New lesson' })}</button>
                   <button className="mu-btn" onClick={() => setTab('lib')}>{t({ uk: 'Відкрити бібліотеку', ru: 'Открыть библиотеку', en: 'Open the library' })}</button>
