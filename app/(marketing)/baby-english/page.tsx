@@ -47,7 +47,6 @@ export default function BabyEnglishPage() {
           <Kit id="st-cat-blep" className="kit-hero" />
           <span className="mu-section__eyebrow"><Icon id="d-heart" />{t({ uk: 'Для батьків малюків 0-7', ru: 'Для родителей малышей 0-7', en: 'For parents of kids 0-7' })}</span>
           <h1>{t({ uk: 'Англійська', ru: 'Английский', en: 'English' })} <em>{t({ uk: 'з малюком.', ru: 'с малышом.', en: 'with your little one.' })}</em></h1>
-          <p>{t({ uk: 'Поради за віком, казки, віршики й ігри для друку.', ru: 'Советы по возрасту, сказки, стишки и игры для печати.', en: 'Tips by age, stories, rhymes and printable games.' })}</p>
           <nav className="bb-jump" aria-label={t({ uk: 'Розділи', ru: 'Разделы', en: 'Sections' })}>
             {NAV.map((n) => <a key={n.id} href={`#${n.id}`}>{t(n)}</a>)}
           </nav>
