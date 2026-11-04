@@ -46,7 +46,6 @@ export default function TeacherGamesPage() {
 
       <form className="t-card" onSubmit={save}>
         <h2><Icon id="e-trophy" className="mu-ic" />{t({ uk: 'Нова гра', ru: 'Новая игра', en: 'New game' })}</h2>
-        <p className="t-muted">{t({ uk: 'Вводиш слова один раз, а учні грають у квіз, пари, анаграму чи картки. Посилання відкривається без входу.', ru: 'Вводишь слова один раз, а ученики играют в квиз, пары, анаграмму или карточки. Ссылка открывается без входа.', en: 'Enter the words once and students play a quiz, pairs, anagrams or flashcards. The link works without signing in.' })}</p>
         <div className="t-form">
           <label>{t({ uk: 'Назва', ru: 'Название', en: 'Title' })}<input value={title} onChange={(e) => setTitle(e.target.value)} placeholder={t({ uk: 'Напр. Їжа, Unit 5', ru: 'Напр. Еда, Unit 5', en: 'e.g. Food, Unit 5' })} required /></label>
           <label>{t({ uk: 'Підказка над грою (необов’язково)', ru: 'Подсказка над игрой (необязательно)', en: 'Prompt above the game (optional)' })}<input value={prompt} onChange={(e) => setPrompt(e.target.value)} placeholder={t({ uk: 'Напр. Переклади слово', ru: 'Напр. Переведи слово', en: 'e.g. Translate the word' })} /></label>
