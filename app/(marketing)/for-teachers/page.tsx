@@ -74,7 +74,7 @@ export default function ForTeachersPage() {
             <Link href="/sign-up?role=teacher" className="mu-btn mu-btn--lime mu-btn--lg">
               {t({ uk: 'Створити кабінет', ru: 'Создать кабинет', en: 'Create a dashboard' })}<span className="mu-btn__arrow"><Icon id="e-arrow" /></span>
             </Link>
-            <a href="#how" className="mu-btn mu-btn--lg">{t({ uk: 'Як це працює', ru: 'Как это работает', en: 'How it works' })}</a>
+            <a href="#how" className="mu-textlink">{t({ uk: 'Як це працює', ru: 'Как это работает', en: 'How it works' })}</a>
           </div>
         </div>
       </section>
