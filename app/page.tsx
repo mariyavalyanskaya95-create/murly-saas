@@ -93,11 +93,6 @@ export default function HomePage() {
         <div className="mu-container mu-hero__inner">
           <Kit id="st-girl-bow" className="kit-home kit-home--l" />
           <MurlyCat className="kit-home" />
-          <div className="mu-hero__badge">
-            <Icon id="c-paw" className="mu-ic mu-ic--badge" />
-            {t({ uk: 'Для дітей, підлітків і дорослих', ru: 'Для детей, подростков и взрослых', en: 'For kids, teens and adults' })}
-          </div>
-          <span className="mu-scribble" aria-hidden="true">{t({ uk: 'без зубріння!', ru: 'без зубрёжки!', en: 'no cramming!' })}</span>
           {t.lang === 'ru' ? (
             <h1 className="mu-hero__title">Английский,<br />который <em>хочется</em><br />учить.</h1>
           ) : t.lang === 'en' ? (
@@ -105,13 +100,11 @@ export default function HomePage() {
           ) : (
             <h1 className="mu-hero__title">Англійська,<br />яку <em>хочеться</em><br />вчити.</h1>
           )}
-          <div className="mu-hero__cta">
+          <div className="mu-hero__cta" style={{ justifyContent: 'center' }}>
             <Link href="/#who" className="mu-btn mu-btn--lime mu-btn--lg">{t({ uk: 'Почати безкоштовно', ru: 'Начать бесплатно', en: 'Start for free' })}<span className="mu-btn__arrow"><Icon id="e-arrow" /></span></Link>
-            <Link href="/#code" className="mu-textlink">{t({ uk: 'У мене є код від учителя', ru: 'У меня есть код от учителя', en: 'I have a teacher code' })}</Link>
           </div>
         </div>
       </section>
-      <p className="mu-container mu-hero__note" style={{ textAlign: 'center' }}><Link href="/pricing">{t({ uk: 'Перший місяць Pro безкоштовно, без картки', ru: 'Первый месяц Pro бесплатно, без карты', en: 'First month of Pro free, no card needed' })}</Link></p>
       <Marquee items={MQ.map((x) => t(x))} />
 
       {/* ХТО ТИ */}
