@@ -66,7 +66,7 @@ export default function ForParentsPage() {
             <Link href="/sign-up?role=student" className="mu-btn mu-btn--lime mu-btn--lg">
               {t({ uk: 'Створити кабінет для дитини', ru: 'Создать кабинет для ребёнка', en: 'Create your child’s account' })}<span className="mu-btn__arrow"><Icon id="e-arrow" /></span>
             </Link>
-            <Link href="/baby-english" className="mu-btn mu-btn--lg">{t({ uk: 'Малюкам до 7 років', ru: 'Малышам до 7 лет', en: 'Kids under 7' })}</Link>
+            <Link href="/baby-english" className="mu-textlink">{t({ uk: 'Малюкам до 7 років', ru: 'Малышам до 7 лет', en: 'Kids under 7' })}</Link>
           </div>
         </div>
       </section>
