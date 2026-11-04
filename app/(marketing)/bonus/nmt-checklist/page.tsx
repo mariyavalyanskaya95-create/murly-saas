@@ -37,7 +37,6 @@ export default function NmtChecklistBonusPage() {
       <section className="mu-page-hero" style={{ paddingBottom: 16 }} data-stickers="6">
         <div className="mu-container">
           <Kit id="il-cat-exam" className="kit-hero" />
-          <span className="mu-section__eyebrow"><Icon id="e-trophy" />{t({ uk: 'Бонус до PDF', ru: 'Бонус к PDF', en: 'PDF bonus' })}</span>
           <h1>{t({ uk: 'Тренування', ru: 'Тренировка', en: 'NMT' })} <em>{t({ uk: 'до НМТ.', ru: 'к НМТ.', en: 'practice.' })}</em></h1>
           <HeroTip>{t({ uk: 'НМТ-батл з 24 питань у форматі пропусків, сталі вирази, слова-звʼязки і хибні друзі перекладача.', ru: 'НМТ-батл из 24 вопросов в формате пропусков, устойчивые выражения, слова-связки и ложные друзья переводчика.', en: 'A 24-question NMT battle in the gap format, collocations, linking words and false friends.' })}</HeroTip>
           <Link href="/nmt" className="mu-btn mu-btn--lg">{t({ uk: 'Квізи у форматі НМТ', ru: 'Квизы в формате НМТ', en: 'NMT-style quizzes' })}</Link>
