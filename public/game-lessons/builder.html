@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Creative Builder: going to and will | Murly</title>
+<link rel="icon" href="/favicon.svg">
+<meta name="description" content="Free interactive English lesson based on building in Fortnite: island planner, storm tower game, going to vs will. XP, missions and videos.">
+<link rel="canonical" href="https://murly.com.ua/game-lessons/builder.html">
+<style>
+:root{--sky:#7ec8ff;--sky2:#bfe6ff;--grass:#5cbf3a;--grass2:#3e8f25;--dirt:#8a5a35;--ink:#1d1d2b;--paper:#fffdf6;--gold:#ffd23f;--dia:#33e0d6;--red:#ff5a5f;--pink:#ff8fd8;--violet:#8e6cff}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Trebuchet MS",Verdana,system-ui,sans-serif;color:var(--ink);background:linear-gradient(180deg,var(--sky) 0,var(--sky2) 520px,#e9f7ff 100%);min-height:100vh}
+img,canvas{image-rendering:pixelated}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+/* шапка */
+.hero{position:relative;padding:34px 18px 0;text-align:center;overflow:hidden}
+.cloud{position:absolute;background:#fff;height:22px;box-shadow:22px 0 #fff,44px 0 #fff,22px -22px #fff;opacity:.9}
+.hero h1{margin:0;font-size:clamp(34px,6vw,64px);letter-spacing:2px;color:#fff;text-shadow:4px 4px 0 var(--ink),-2px -2px 0 var(--ink),2px -2px 0 var(--ink),-2px 2px 0 var(--ink);text-transform:uppercase}
+.hero p{margin:8px 0 18px;font-size:20px;font-weight:700;color:var(--ink)}
+.ground{height:56px;background:repeating-linear-gradient(90deg,var(--grass) 0 16px,#6fd14a 16px 32px);border-top:6px solid var(--grass2);position:relative}
+.ground::after{content:"";position:absolute;left:0;right:0;top:56px;height:40px;background:repeating-linear-gradient(90deg,var(--dirt) 0 16px,#9c6a42 16px 32px)}
+.hero-row{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:-4px}
+/* XP */
+.hud{position:sticky;top:0;z-index:20;display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;padding:10px;background:rgba(29,29,43,.92);color:#fff;margin-top:40px;border-bottom:4px solid #000}
+.hud b{font-size:18px}
+.bar{width:min(340px,60vw);height:22px;background:#333;border:3px solid #000;position:relative}
+.bar i{position:absolute;inset:0 auto 0 0;width:0;background:repeating-linear-gradient(90deg,#7cff4f 0 10px,#55d62f 10px 20px);transition:width .4s}
+.hud .lvl{background:#7cff4f;color:#000;font-weight:900;padding:2px 10px;border:3px solid #000}
+.dia{display:inline-flex;align-items:center;gap:6px;font-weight:900;font-size:18px}
+nav.steps{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:22px 0 4px}
+nav.steps a{background:#fff;border:3px solid var(--ink);padding:6px 12px;font-weight:800;color:var(--ink);text-decoration:none;box-shadow:3px 3px 0 var(--ink)}
+nav.steps a:hover{background:var(--gold)}
+/* секції */
+section{margin-top:38px;background:var(--paper);border:4px solid var(--ink);box-shadow:8px 8px 0 rgba(29,29,43,.85);padding:24px}
+section h2{margin:0 0 6px;font-size:30px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tag{font-size:14px;font-weight:900;padding:3px 10px;border:3px solid var(--ink);background:var(--gold);text-transform:uppercase;letter-spacing:1px}
+.sub{margin:0 0 18px;font-size:17px;color:#444}
+.btn{font:inherit;font-weight:900;border:3px solid var(--ink);background:#7cff4f;padding:8px 16px;cursor:pointer;box-shadow:3px 3px 0 var(--ink);text-transform:uppercase;letter-spacing:.5px}
+.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.btn.alt{background:#fff}
+/* словник */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
+.card{perspective:900px;height:200px;cursor:pointer}
+.card .in{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+.card.flip .in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;border:3px solid var(--ink);background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:10px;text-align:center}
+.face b{font-size:19px}
+.face.back{transform:rotateY(180deg);background:#fff5c9;font-size:15px;line-height:1.35}
+.face.back b{font-size:16px;color:#7a4a00}
+.face canvas{width:84px;height:84px}
+.face.front b{font-size:17px;line-height:1.2}
+.face.back em{font-size:14px;color:#2b7a0b;font-weight:700}
+.grid{grid-template-columns:repeat(auto-fill,minmax(190px,1fr))}
+.credit{font-size:13px;color:#777;margin-top:12px}
+.cat-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.cat-tabs button{font:inherit;font-weight:800;border:3px solid var(--ink);background:#fff;padding:5px 12px;cursor:pointer}
+.cat-tabs button.on{background:var(--dia)}
+/* правило */
+.modes{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.mode{border:4px solid var(--ink);padding:18px;position:relative}
+.mode.s{background:#e6fff0}.mode.c{background:#fff0fb}
+.mode h3{margin:0 0 4px;font-size:24px}
+.mode .f{font-family:Consolas,monospace;font-weight:900;font-size:17px;background:#fff;border:3px solid var(--ink);padding:6px 10px;display:inline-block;margin:6px 0}
+.mode ul{margin:8px 0 0;padding-left:20px;font-size:17px;line-height:1.55}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.chip{border:2px solid var(--ink);background:#fff;padding:2px 9px;font-weight:800;font-size:14px}
+.note{margin-top:16px;padding:12px 16px;border:3px dashed var(--ink);background:#fff;font-size:16px}
+/* вправи */
+.q{display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:2px dashed #d9d2bf;font-size:18px}
+.q:last-child{border-bottom:0}
+.q .n{width:34px;height:34px;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;font-weight:900}
+.opt{font:inherit;font-size:17px;font-weight:800;border:3px solid var(--ink);background:#fff;padding:4px 12px;cursor:pointer;margin:0 3px}
+.opt.ok{background:#7cff4f}.opt.bad{background:var(--red);color:#fff;animation:shake .3s}
+.slot{display:inline-block;min-width:96px;border-bottom:3px solid var(--ink);text-align:center;font-weight:900;color:#2b7a0b}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.stream{display:grid;grid-template-columns:260px 1fr;gap:22px;align-items:start}
+.screen{border:6px solid var(--ink);background:#222;padding:8px;position:sticky;top:70px}
+.screen canvas{width:100%;display:block;background:var(--sky)}
+.live{display:inline-block;background:var(--red);color:#fff;font-weight:900;padding:2px 8px;margin:6px 0 0;letter-spacing:1px}
+.text{font-size:19px;line-height:2.1}
+.text input{font:inherit;font-weight:800;width:150px;border:0;border-bottom:3px solid var(--ink);background:#fffbe6;padding:0 6px;text-align:center}
+.text input.ok{background:#c9ffb3}.text input.bad{background:#ffd0d0}
+.text small{color:#777;font-weight:700}
+.sort{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:14px}
+.bin{border:4px solid var(--ink);min-height:160px;padding:12px;cursor:pointer}
+.bin h4{margin:0 0 10px;font-size:20px}
+.bin.s{background:#e6fff0}.bin.c{background:#fff0fb}
+.pool{display:flex;flex-wrap:wrap;gap:8px;min-height:44px;padding:10px;border:3px dashed var(--ink);background:#fff}
+.w{font:inherit;font-weight:900;font-size:16px;border:3px solid var(--ink);background:var(--gold);padding:5px 11px;cursor:pointer}
+.w.sel{background:var(--dia);transform:translateY(-3px)}
+.w.ok{background:#7cff4f}.w.bad{background:var(--red);color:#fff}
+.bug{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;padding:12px 0;border-bottom:2px dashed #d9d2bf;font-size:18px}
+.bug .fix{grid-column:1/-1;font-weight:800;color:#2b7a0b;display:none}
+.bug.done .fix{display:block}
+/* місії */
+.missions{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.mis{border:4px solid var(--ink);background:#fff;display:grid;grid-template-columns:72px 1fr;gap:12px;padding:14px;position:relative}
+.mis canvas{width:72px;height:72px}
+.mis h3{margin:0 0 4px;font-size:20px}
+.mis p{margin:0 0 6px;font-size:16px}
+.mis .say{background:#f1ecff;border-left:5px solid var(--violet);padding:6px 10px;font-size:15px;font-style:italic}
+.mis .row{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center}
+.mis .xp{font-weight:900;color:#2b7a0b}
+.mis.done{background:#e9ffe0}
+.mis.done::after{content:"DONE";position:absolute;top:10px;right:-8px;background:#7cff4f;border:3px solid var(--ink);font-weight:900;padding:2px 10px;transform:rotate(8deg)}
+.talk{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.tk{border:4px solid var(--ink);padding:16px;font-size:18px;font-weight:700;min-height:120px;display:flex;flex-direction:column;justify-content:space-between;gap:10px}
+.tk:nth-child(4n+1){background:#e6fff0}.tk:nth-child(4n+2){background:#fff0fb}.tk:nth-child(4n+3){background:#fff7d6}.tk:nth-child(4n+4){background:#e3f4ff}
+.tk small{font-weight:800;color:#555;font-size:14px}
+.timer{font-size:46px;font-weight:900;text-align:center;margin:10px 0}
+.vids{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.vid{border:4px solid var(--ink);background:#fff;display:flex;flex-direction:column}
+.vid .frame{position:relative;aspect-ratio:16/9;background:#1d1d2b}
+.vid.short .frame{aspect-ratio:9/16;max-height:460px}
+.vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;display:grid;place-items:center;color:#fff;font-weight:900;font-size:18px;cursor:pointer;background:repeating-linear-gradient(45deg,#2a2a40 0 14px,#24243a 14px 28px);border:0;font-family:inherit}
+.vid .play span{background:var(--red);border:3px solid #000;padding:10px 18px;box-shadow:4px 4px 0 #000}
+.vid .info{padding:12px 14px;display:grid;gap:6px}
+.vid h3{margin:0;font-size:18px}
+.vid .task{background:#f1ecff;border-left:5px solid var(--violet);padding:6px 10px;font-size:15px}
+.vid .mode{display:inline-block;width:max-content;font-size:12px;font-weight:900;border:2px solid var(--ink);padding:1px 8px;background:var(--gold)}
+details.teacher{margin-top:30px;border:3px dashed #888;background:#fff;padding:12px 16px;font-size:15px}
+details.teacher summary{font-weight:900;cursor:pointer}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(120px);background:var(--ink);color:#fff;font-weight:900;padding:12px 22px;border:4px solid #7cff4f;transition:transform .3s;z-index:50;display:flex;gap:10px;align-items:center}
+.toast.show{transform:translateX(-50%) translateY(0)}
+@media(max-width:760px){.modes,.sort,.stream{grid-template-columns:1fr}.screen{position:static}}
+
+/* яскравість і рух */
+.bob{animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-8px)}}
+.card:hover .in{transform:translateY(-6px) rotate(-1.5deg)}
+.card.flip:hover .in{transform:rotateY(180deg) translateY(-6px)}
+.face.front{background:linear-gradient(180deg,#fff 0,#fff 60%,#f3ffe9 100%)}
+.card:nth-child(4n+1) .face.front{background:linear-gradient(180deg,#fff 55%,#e3f6ff)}
+.card:nth-child(4n+2) .face.front{background:linear-gradient(180deg,#fff 55%,#fff1fb)}
+.card:nth-child(4n+3) .face.front{background:linear-gradient(180deg,#fff 55%,#fff8d9)}
+.pxl{position:fixed;width:10px;height:10px;z-index:60;pointer-events:none;border:2px solid #000;animation:pxl .8s ease-out forwards}
+@keyframes pxl{to{transform:translate(var(--dx),var(--dy)) rotate(180deg);opacity:0}}
+.lvlup{position:fixed;left:50%;top:40%;transform:translate(-50%,-50%) scale(0);z-index:70;background:#7cff4f;border:6px solid #000;box-shadow:8px 8px 0 #000;padding:18px 34px;text-align:center;pointer-events:none}
+.lvlup b{display:block;font-size:46px;letter-spacing:2px}
+.lvlup span{font-weight:900}
+.lvlup.show{animation:lvl 1.8s ease-out forwards}
+@keyframes lvl{0%{transform:translate(-50%,-50%) scale(0)}15%{transform:translate(-50%,-50%) scale(1.15)}25%,80%{transform:translate(-50%,-50%) scale(1)}100%{transform:translate(-50%,-50%) scale(0);opacity:0}}
+.night{position:fixed;right:16px;bottom:16px;z-index:40;font:inherit;font-weight:900;border:3px solid #000;background:#1d1d2b;color:#ffe14a;padding:8px 14px;box-shadow:3px 3px 0 #000;cursor:pointer}
+.stars{position:absolute;inset:0 0 auto 0;height:700px;pointer-events:none;opacity:0;transition:opacity .6s}
+.stars i{position:absolute;width:4px;height:4px;background:#fff;animation:tw 2s infinite}
+@keyframes tw{50%{opacity:.2}}
+body{transition:background .6s}
+body.is-night{background:linear-gradient(180deg,#0b1a3a 0,#1d2f5c 520px,#2a3d6b 100%)}
+body.is-night .stars{opacity:1}
+body.is-night .hero p{color:#fff}
+body.is-night nav.steps a{background:#24365f;color:#fff}
+.bin.s{background:repeating-linear-gradient(0deg,#b5884f 0 14px,#a97c45 14px 16px)}
+.bin.c{background:repeating-linear-gradient(0deg,#9fd6ec 0 14px,#8cc6dd 14px 16px)}
+.bin h4{background:#fff;border:3px solid var(--ink);display:inline-block;padding:2px 10px}
+.mis{transition:transform .2s}.mis:hover{transform:translateY(-4px) rotate(.4deg)}
+section h2{color:var(--ink)}
+section:nth-of-type(odd){background:#fffdf6}
+section:nth-of-type(even){background:#f7fff0}
+
+/* «рецепти» речень */
+.legend{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 16px}
+.bk{display:inline-flex;align-items:center;font-weight:900;font-size:16px;padding:6px 10px;border:3px solid var(--ink);box-shadow:inset -3px -3px 0 rgba(0,0,0,.18),inset 3px 3px 0 rgba(255,255,255,.45);white-space:nowrap}
+.bk.who{background:#8fd3ff}.bk.hp{background:#ffd23f}.bk.vb{background:#7cff4f}.bk.end,.bk .end{background:#ff8fd8}.bk.rest{background:#fff}
+.bk .end{font-style:normal;padding:0 3px;margin-left:1px;border:2px solid var(--ink)}
+.legend .bk{font-size:13px;padding:3px 8px}
+.when{margin:4px 0 12px;font-size:16px}
+.recipe{display:flex;gap:5px;flex-wrap:wrap;align-items:center;margin:8px 0}
+.recipe .sign{width:30px;height:30px;display:grid;place-items:center;font-weight:900;font-size:20px;background:var(--ink);color:#fff;flex:none}
+.tip{margin-top:10px;font-size:15px;background:#fff;border-left:5px solid var(--red);padding:6px 10px}
+/* ===== BUILDER ===== */
+:root{--sky:#8fd3ff;--sky2:#d6efff}
+.fn-hero h1{color:#fff;text-shadow:4px 4px 0 #1d1d2b,-2px -2px 0 #1d1d2b,2px -2px 0 #1d1d2b,-2px 2px 0 #1d1d2b}
+.fn-island{position:relative;height:190px;max-width:760px;margin:10px auto 0}
+.fn-isl{position:absolute;left:50%;bottom:20px;transform:translateX(-50%);display:flex;gap:6px;align-items:flex-end}
+.fn-isl canvas{width:92px;height:92px}
+.fn-storm{position:absolute;right:-40px;top:0;width:220px;height:190px;border-radius:50%;background:radial-gradient(circle,rgba(142,108,255,.0) 40%,rgba(142,108,255,.55) 70%);animation:fnstorm 4s ease-in-out infinite}
+@keyframes fnstorm{50%{transform:translateX(-30px) scale(1.08)}}
+.ob-coin-ic{display:inline-block;width:22px;height:22px;border-radius:50%;background:#ffd23f;border:3px solid #000;box-shadow:inset -3px -3px 0 #c99a2e}
+.fn-plan{display:grid;grid-template-columns:minmax(260px,420px) 1fr;gap:22px;align-items:start}
+.fn-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:3px;background:#3a8fd6;border:4px solid var(--ink);padding:10px;border-radius:18px;box-shadow:inset 0 0 0 6px #ffe08a}
+.fn-cell{aspect-ratio:1;background:#5cbf3a;border:2px solid #3e8f25;cursor:pointer;padding:0;display:grid;place-items:center}
+.fn-cell:hover{background:#7cd85a}
+.fn-cell canvas{width:100%;height:100%}
+.fn-cell.drop canvas{animation:fndrop .35s ease-out}
+@keyframes fndrop{from{transform:translateY(-30px) scale(.6);opacity:0}}
+.fn-pal{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:8px;margin-bottom:14px}
+.fn-pc{border:3px solid var(--ink);background:#fff;padding:4px;cursor:pointer;display:grid;justify-items:center;font:inherit;font-size:12px;font-weight:800}
+.fn-pc canvas{width:48px;height:48px}
+.fn-pc.on{background:#ffd23f;outline:3px solid #8e6cff;outline-offset:2px}
+.fn-sent{background:#fff8d6;border:3px dashed var(--ink);padding:10px 10px 10px 32px;min-height:80px;font-size:17px;line-height:1.6;max-height:260px;overflow:auto}
+.fn-game{border:5px solid var(--ink);background:#1d1d2b;color:#fff;padding:14px}
+.fn-arena{position:relative;height:300px;background:linear-gradient(#8fd3ff,#d6efff);border:3px solid #000;overflow:hidden}
+.fn-arena.shake{animation:shake .4s}
+.fn-gnd{position:absolute;left:0;right:0;bottom:0;height:24px;background:#5cbf3a;border-top:3px solid #1d1d2b}
+.fn-tower{position:absolute;left:30%;bottom:24px;display:flex;flex-direction:column-reverse;align-items:center}
+.fn-blk{width:40px;height:40px;margin-top:-18px}
+.fn-blk.new{animation:fndrop .4s ease-out}
+.fn-stormwall{position:absolute;right:0;top:0;bottom:0;width:8%;background:linear-gradient(90deg,rgba(142,108,255,0),rgba(142,108,255,.85) 30%);transition:width .6s;box-shadow:inset 6px 0 0 rgba(255,255,255,.2)}
+.ob-game__top{display:flex;gap:18px;flex-wrap:wrap;font-weight:800;margin-bottom:10px}
+.ob-game__top b{color:#ffd23f}
+.ob-timer{height:12px;background:#333;border:2px solid #000;margin-top:10px}
+.ob-timer i{display:block;height:100%;width:100%;background:linear-gradient(90deg,#ff5a5f,#ffd23f,#7cff4f)}
+.ob-q{font-size:22px;font-weight:800;text-align:center;margin:14px 0 10px;min-height:56px}
+.ob-q .slot{color:#7cff4f;border-color:#7cff4f}
+.ob-opts{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.ob-opts .opt{font-size:20px;padding:8px 18px;color:#1d1d2b}
+.ob-win{font-size:30px;color:#ffd23f;text-shadow:3px 3px 0 #000;margin-bottom:6px}
+#sort .w{text-align:left}
+.mis canvas{width:72px;height:72px}
+@media(max-width:760px){.fn-plan{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="hero fn-hero">
+  <div class="cloud" style="left:8%;top:40px"></div>
+  <div class="cloud" style="left:72%;top:64px"></div>
+  <h1>Creative Builder</h1>
+  <p>Plans, predictions and promises: going to vs will · Level B1</p>
+  <div class="fn-island" aria-hidden="true"><div class="fn-isl" id="heroIsland"></div><div class="fn-storm"></div></div>
+</header>
+
+<div class="hud">
+  <span class="lvl" id="lvl">LEVEL 1</span>
+  <div class="bar"><i id="xpbar"></i></div>
+  <b id="xptext">0 XP</b>
+  <span class="dia"><span class="ob-coin-ic"></span><span id="dias">0</span></span>
+</div>
+
+<div class="wrap">
+  <nav class="steps">
+    <a href="#plan">1. Island planner</a>
+    <a href="#words">2. Builder words</a>
+    <a href="#rules">3. Going to or will?</a>
+    <a href="#sort">4. Plan or instant?</a>
+    <a href="#storm">5. STORM TOWER</a>
+    <a href="#bugs">6. Fix the bugs</a>
+    <a href="#missions">7. Missions</a>
+    <a href="#talk">8. Future talk</a>
+    <a href="#watch">9. Watch &amp; talk</a>
+  </nav>
+
+  <section id="plan">
+    <h2>Island planner <span class="tag">main game</span></h2>
+    <p class="sub">Choose a piece, click a square. Every piece becomes a plan sentence. Place 6 different pieces, then present your plan!</p>
+    <div class="fn-plan">
+      <div><div class="fn-grid" id="grid"></div><p style="margin-top:10px"><button class="btn alt" id="gridClear" type="button">Clear island</button></p></div>
+      <div>
+        <div class="fn-pal" id="palette"></div>
+        <ol class="fn-sent" id="planList"></ol>
+        <button class="btn" id="present" type="button" disabled>Present my plan</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="words">
+    <h2>Builder words <span class="tag">vocabulary</span></h2>
+    <p class="sub">Click a card: listen and read the example.</p>
+    <div class="grid" id="vocab"></div>
+  </section>
+
+  <section id="rules">
+    <h2>Going to or will? <span class="tag">grammar</span></h2>
+    <p class="sub">Two tools for the future. A good builder knows which one to use!</p>
+    <div class="legend"><span class="bk who">who</span><span class="bk hp">helper</span><span class="bk vb">verb</span><span class="bk rest">the rest</span></div>
+    <div class="modes">
+      <div class="mode s">
+        <h3>be going to</h3>
+        <b>Plans you made before · what you can see is coming</b>
+        <div class="recipe"><span class="sign">+</span><span class="bk who">I</span><span class="bk hp">am going to</span><span class="bk vb">build</span><span class="bk rest">a castle.</span></div>
+        <div class="recipe"><span class="sign">+</span><span class="bk who">she</span><span class="bk hp">is going to</span><span class="bk vb">build</span><span class="bk rest">a bridge.</span></div>
+        <div class="recipe"><span class="sign">&minus;</span><span class="bk who">we</span><span class="bk hp">aren't going to</span><span class="bk vb">stop</span><span class="bk rest">now.</span></div>
+        <div class="recipe"><span class="sign">?</span><span class="bk hp">Are</span><span class="bk who">you</span><span class="bk hp">going to</span><span class="bk vb">play</span><span class="bk rest">tonight?</span></div>
+        <div class="tip"><b>Look!</b> Dark clouds &rarr; It<b>'s going to</b> rain. (you can see it)</div>
+      </div>
+      <div class="mode c">
+        <h3>will</h3>
+        <b>Decisions right now · promises · offers · I think...</b>
+        <div class="recipe"><span class="sign">+</span><span class="bk who">I</span><span class="bk hp">'ll</span><span class="bk vb">help</span><span class="bk rest">you!</span></div>
+        <div class="recipe"><span class="sign">&minus;</span><span class="bk who">I</span><span class="bk hp">won't</span><span class="bk vb">forget</span><span class="bk rest">, I promise.</span></div>
+        <div class="recipe"><span class="sign">?</span><span class="bk hp">Will</span><span class="bk who">you</span><span class="bk vb">help</span><span class="bk rest">me?</span></div>
+        <div class="recipe"><span class="sign">+</span><span class="bk who">I think we</span><span class="bk hp">will</span><span class="bk vb">win</span><span class="bk rest">.</span></div>
+        <div class="tip"><b>Trap!</b> No "to" after will: <s>I will to build</s> &rarr; I will build.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sort">
+    <h2>Plan or instant? <span class="tag">+5 XP each</span></h2>
+    <p class="sub">Click a sentence, then click the right chest.</p>
+    <div class="pool" id="pool"></div>
+    <div class="sort">
+      <div class="bin s" data-b="s"><h4>going to: plan or I can see it</h4><div class="pool" style="border:0;background:none;padding:0"></div></div>
+      <div class="bin c" data-b="c"><h4>will: right now, promise, I think</h4><div class="pool" style="border:0;background:none;padding:0"></div></div>
+    </div>
+  </section>
+
+  <section id="storm">
+    <h2>STORM TOWER <span class="tag">main game</span></h2>
+    <p class="sub">The storm is coming! Every right answer adds a block to your tower. Build 12 blocks before the storm reaches you. Every mistake moves the storm closer.</p>
+    <div class="fn-game">
+      <div class="ob-game__top"><span>Tower <b id="sHeight">0</b>/12</span><span>Storm <b id="sStorm">0</b>/4</span><span>Question <b id="sQ">0</b></span></div>
+      <div class="fn-arena" id="arena"><div class="fn-stormwall" id="stormwall"></div><div class="fn-tower" id="tower"></div><div class="fn-gnd"></div></div>
+      <div class="ob-timer"><i id="timer"></i></div>
+      <div class="ob-q" id="sq">Press START. Quick: plan or instant?</div>
+      <div class="ob-opts" id="sopts"><button class="btn" id="sStart" type="button">START</button></div>
+    </div>
+  </section>
+
+  <section id="bugs">
+    <h2>Fix the bugs <span class="tag">+15 XP each</span></h2>
+    <p class="sub">OK or bug? Say the correct sentence out loud.</p>
+    <div id="bugList"></div>
+  </section>
+
+  <section id="missions">
+    <h2>Missions for the game <span class="tag">play + speak</span></h2>
+    <p class="sub">Build mode only: build, explore, help. Before each mission say your plan, after it say what happened.</p>
+    <div class="missions" id="misList"></div>
+  </section>
+
+  <section id="talk">
+    <h2>Future talk <span class="tag">speaking</span></h2>
+    <p class="sub">Pick a card and talk for 30 seconds. Use going to and will.</p>
+    <div class="timer" id="timer30">0:30</div>
+    <p style="text-align:center"><button class="btn" id="timerBtn">Start 30 seconds</button></p>
+    <div class="talk" id="talkList"></div>
+  </section>
+
+  <section id="watch">
+    <h2>Watch &amp; talk <span class="tag">videos</span></h2>
+    <p class="sub">Official building trailers from the game's YouTube channel. Pause and predict!</p>
+    <div class="vids" id="vidList"></div>
+  </section>
+
+  <details class="teacher">
+    <summary>Для учителя: план на 50-60 минут</summary>
+    <p>1. Island planner (10 мин): ученик строит остров и озвучивает план с going to. 2. Слова (7 мин). 3. Правило (7 мин): going to = план или видно, will = решение сейчас, обещание, мнение. 4. Сортировка (5 мин). 5. STORM TOWER (8 мин). 6. Ошибки (5 мин). 7. Миссии в режиме строительства (10-15 мин). 8-9. Разговор и видео.</p>
+    <p>Важно: только режим строительства и выживания с кубиками, без боёвки. Безопасность в чате: никакой личной информации.</p>
+    <p>Домашка: голосовое «My plans for the weekend» (5 предложений с going to) и «My predictions for 2050» (5 предложений с will).</p>
+  </details>
+</div>
+
+<div class="toast" id="toast"></div>
+<div class="lvlup" id="lvlup"><b>LEVEL 2!</b><span>Keep going!</span></div>
+<script>
+// ---------- піксельні текстури (свої, процедурні) ----------
+let seed = 7;
+const rnd = () => { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; };
+const pick = (a) => a[Math.floor(rnd() * a.length)];
+function tex(fn) { const c = document.createElement('canvas'); c.width = c.height = 16; const x = c.getContext('2d'); fn(x); return c; }
+const px = (x, i, j, col) => { x.fillStyle = col; x.fillRect(i, j, 1, 1); };
+const noise = (cols) => tex((x) => { for (let i = 0; i < 16; i++) for (let j = 0; j < 16; j++) px(x, i, j, pick(cols)); });
+const T = {};
+T.grassTop = noise(['#5cbf3a', '#6fd14a', '#4fae30', '#66c843', '#5cbf3a']);
+T.dirt = noise(['#8a5a35', '#9c6a42', '#7a4d2c', '#93603a']);
+T.grassSide = tex((x) => { x.drawImage(T.dirt, 0, 0); for (let i = 0; i < 16; i++) { const h = 3 + Math.floor(rnd() * 3); for (let j = 0; j < h; j++) px(x, i, j, pick(['#5cbf3a', '#6fd14a', '#4fae30'])); } });
+T.stone = noise(['#8d8d8d', '#7f7f7f', '#9a9a9a', '#868686', '#8d8d8d']);
+T.cobble = tex((x) => { x.drawImage(noise(['#8a8a8a', '#9b9b9b', '#7d7d7d']), 0, 0); x.fillStyle = '#4f4f4f'; [[0, 4, 16, 1], [0, 10, 16, 1], [5, 0, 1, 4], [11, 4, 1, 6], [3, 10, 1, 6], [9, 11, 1, 5], [14, 0, 1, 4]].forEach((r) => x.fillRect(...r)); });
+T.sand = noise(['#e9d898', '#efe1a8', '#dccb88', '#e6d494']);
+T.logSide = tex((x) => { for (let i = 0; i < 16; i++) { const c = pick(['#6b4a2b', '#5c3e22', '#77532f']); for (let j = 0; j < 16; j++) px(x, i, j, rnd() < .2 ? '#4d3319' : c); } });
+T.logTop = tex((x) => { for (let i = 0; i < 16; i++) for (let j = 0; j < 16; j++) { const d = Math.max(Math.abs(i - 7.5), Math.abs(j - 7.5)); px(x, i, j, d > 6.5 ? '#5c3e22' : (Math.floor(d) % 2 ? '#c49a5b' : '#b5894d')); } });
+T.planks = tex((x) => { for (let j = 0; j < 16; j++) for (let i = 0; i < 16; i++) px(x, i, j, j % 4 === 3 ? '#7a5530' : pick(['#b5884f', '#a97c45', '#bd9259'])); x.fillStyle = '#7a5530'; [[5, 0], [12, 4], [3, 8], [10, 12]].forEach(([a, b]) => x.fillRect(a, b, 1, 3)); });
+T.glass = tex((x) => { x.fillStyle = '#d9f4ff'; x.fillRect(0, 0, 16, 16); x.fillStyle = '#ffffff'; [[3, 3], [4, 4], [5, 5], [10, 8], [11, 9]].forEach(([a, b]) => x.fillRect(a, b, 1, 1)); x.strokeStyle = '#9fd6ec'; x.lineWidth = 1; x.strokeRect(.5, .5, 15, 15); });
+T.brick = tex((x) => { x.fillStyle = '#c9c1b5'; x.fillRect(0, 0, 16, 16); for (let r = 0; r < 4; r++) for (let k = -1; k < 2; k++) { const ox = (r % 2) * 4 + k * 8; for (let i = 0; i < 7; i++) for (let j = 0; j < 3; j++) { const xi = ox + i; if (xi >= 0 && xi < 16) px(x, xi, r * 4 + j, pick(['#a8483a', '#b5523f', '#9b4133'])); } } });
+T.water = noise(['#3f76e4', '#4a82ee', '#3a6ad6', '#4f8af2']);
+T.furnaceFront = tex((x) => { x.drawImage(T.cobble, 0, 0); x.fillStyle = '#2a2a2a'; x.fillRect(4, 8, 8, 6); x.fillStyle = '#ff9a2e'; x.fillRect(5, 11, 6, 3); x.fillStyle = '#ffd23f'; x.fillRect(6, 12, 4, 2); x.fillStyle = '#555'; x.fillRect(4, 3, 8, 2); });
+T.tableTop = tex((x) => { x.drawImage(T.planks, 0, 0); x.fillStyle = '#5a3c1e'; x.fillRect(0, 0, 16, 1); x.fillRect(0, 15, 16, 1); x.fillRect(0, 0, 1, 16); x.fillRect(15, 0, 1, 16); x.fillRect(5, 1, 1, 14); x.fillRect(10, 1, 1, 14); x.fillRect(1, 5, 14, 1); x.fillRect(1, 10, 14, 1); });
+T.tableSide = tex((x) => { x.drawImage(T.planks, 0, 0); x.fillStyle = '#8d8d8d'; x.fillRect(3, 4, 3, 5); x.fillStyle = '#6b4a2b'; x.fillRect(4, 8, 1, 6); x.fillStyle = '#b8b8b8'; x.fillRect(9, 5, 4, 2); x.fillStyle = '#6b4a2b'; x.fillRect(10, 7, 1, 6); });
+T.chest = tex((x) => { x.drawImage(T.planks, 0, 0); x.fillStyle = '#5a3c1e'; x.fillRect(0, 5, 16, 1); x.strokeStyle = '#5a3c1e'; x.strokeRect(.5, .5, 15, 15); x.fillStyle = '#d9d9d9'; x.fillRect(7, 4, 2, 4); x.fillStyle = '#555'; x.fillRect(7, 6, 2, 1); });
+T.leaves = noise(['#2f8a22', '#3a9e2a', '#26751b', '#2f8a22', '#1f5f15']);
+T.melonTop = noise(['#9fbf2e', '#86a826', '#a9c93a']);
+T.melonSide = tex((x) => { for (let i = 0; i < 16; i++) for (let j = 0; j < 16; j++) px(x, i, j, Math.floor(i / 2) % 2 ? pick(['#6e9e1a', '#5f8c15']) : pick(['#a9c93a', '#9fbf2e'])); });
+T.bookshelf = tex((x) => { x.drawImage(T.planks, 0, 0); const cols = ['#c0392b', '#2e86de', '#27ae60', '#f1c40f', '#8e44ad', '#e67e22']; [[1, 2], [1, 9]].forEach(([, y]) => { for (let i = 1; i < 15; i += 2) { x.fillStyle = pick(cols); x.fillRect(i, y, 2, 5); } }); });
+T.diamondOre = tex((x) => { x.drawImage(T.stone, 0, 0); [[3, 3], [10, 4], [5, 10], [11, 11]].forEach(([a, b]) => { x.fillStyle = '#33e0d6'; x.fillRect(a, b, 2, 2); x.fillStyle = '#c9fffb'; x.fillRect(a, b, 1, 1); }); });
+
+T.sandstone = tex((x) => { for (let j = 0; j < 16; j++) for (let i = 0; i < 16; i++) px(x, i, j, j % 5 === 4 ? '#c9b178' : pick(['#e6d3a0', '#dcc891', '#ead8a8'])); });
+T.gravel = noise(['#8f8580', '#7a706b', '#a49a94', '#6a615c', '#9c938d']);
+T.obsidian = tex((x) => { x.drawImage(noise(['#1b1029', '#140a20', '#24163a', '#1b1029']), 0, 0); [[3, 4], [9, 2], [12, 9], [5, 12]].forEach(([a, b]) => { x.fillStyle = '#5b3a8c'; x.fillRect(a, b, 2, 1); }); });
+T.lava = tex((x) => { for (let i = 0; i < 16; i++) for (let j = 0; j < 16; j++) px(x, i, j, pick(['#ff6a00', '#ff8c1a', '#ffb02e', '#e85100', '#ffd23f'])); });
+const oreTex = (c1, c2) => tex((x) => { x.drawImage(T.stone, 0, 0); [[2, 3], [9, 2], [4, 9], [11, 10], [7, 6]].forEach(([a, b]) => { x.fillStyle = c1; x.fillRect(a, b, 2, 2); x.fillStyle = c2; x.fillRect(a, b, 1, 1); }); });
+T.coalOre = oreTex('#1c1c1c', '#3a3a3a'); T.ironOre = oreTex('#d8a07a', '#f1c9a8'); T.goldOre = oreTex('#ffd23f', '#fff3a0'); T.emeraldOre = oreTex('#2ecc71', '#b6ffd2');
+T.wool = noise(['#f4f4f4', '#ebebeb', '#ffffff', '#e2e2e2']);
+T.hayTop = tex((x) => { for (let i = 0; i < 16; i++) for (let j = 0; j < 16; j++) px(x, i, j, pick(['#e3c04a', '#d6b13c', '#c9a330'])); x.fillStyle = '#8a6a1f'; x.fillRect(7, 0, 2, 16); });
+T.haySide = tex((x) => { for (let i = 0; i < 16; i++) for (let j = 0; j < 16; j++) px(x, i, j, pick(['#e3c04a', '#d6b13c', '#c9a330'])); x.fillStyle = '#b5362b'; x.fillRect(0, 3, 16, 2); x.fillRect(0, 11, 16, 2); });
+T.roofTiles = tex((x) => { for (let j = 0; j < 16; j++) for (let i = 0; i < 16; i++) px(x, i, j, (j % 4 === 3) ? '#3b2a2a' : pick(['#a8483a', '#9b4133', '#b5523f'])); });
+T.barrelTop = tex((x) => { x.drawImage(T.planks, 0, 0); x.strokeStyle = '#4a4a4a'; x.strokeRect(1.5, 1.5, 13, 13); x.fillStyle = '#3a2618'; x.fillRect(5, 5, 6, 6); });
+T.barrelSide = tex((x) => { for (let i = 0; i < 16; i++) for (let j = 0; j < 16; j++) px(x, i, j, i % 4 === 3 ? '#6b4a2b' : pick(['#8d5a2b', '#9a6532'])); x.fillStyle = '#4a4a4a'; x.fillRect(0, 2, 16, 1); x.fillRect(0, 13, 16, 1); });
+
+// ізометричний куб
+function cube(top, left, right) {
+  const c = document.createElement('canvas'); c.width = c.height = 64; const x = c.getContext('2d'); x.imageSmoothingEnabled = false; const s = 2;
+  const face = (t, m, shade) => { x.setTransform(...m); x.drawImage(t, 0, 0); if (shade) { x.fillStyle = `rgba(0,0,0,${shade})`; x.fillRect(0, 0, 16, 16); } };
+  face(top, [s, s / 2, -s, s / 2, 32, 0], 0);
+  face(left, [s, s / 2, 0, s, 0, 16], .18);
+  face(right || left, [s, -s / 2, 0, s, 32, 32], .34);
+  x.setTransform(1, 0, 0, 1, 0, 0); return c;
+}
+// предмети: піксельні мапи 12×12
+// предмети: наші піксельні малюнки 16×16, контур додається автоматично
+const PAL = {
+  r: '#ff4040', d: '#b71c1c', h: '#ffffff', b: '#8d5a2b', B: '#5a3716', g: '#4cd137', G: '#218c3a',
+  y: '#ffe08a', o: '#e8892f', O: '#a85614', w: '#fff3d6', s: '#cdd6dd', S: '#7b8a95', c: '#5ec8ef', C: '#2779a7',
+  k: '#3a2618', K: '#1c1c1c', f: '#fff35c', F: '#ff9b1f', D: '#11b5ac', H: '#ffd23f', p: '#e0aa5c', P: '#a8722e', W: '#cfefff', m: '#ffffff', q: '#e8d3a8', R: '#c0392b', n: '#d64545', N: '#8e2424', e: '#f7dccf', u: '#a0592c', U: '#5e3015', l: '#f7a8b8', L: '#d06a83', a: '#ff8a5b', A: '#c8552c', v: '#9b2d63', V: '#5e1840', z: '#d9b679', Z: '#8a6a3a', j: '#2ecc71', J: '#167a43', t: '#8a5530', T: '#4e2c12', x: '#9a9a9a', X: '#555555', i: '#f39c12', I: '#b9770e',
+};
+const MAP = {
+
+  ladder: ['...bB.....bB....', '...bbbbbbbbB....', '...bB.....bB....', '...bB.....bB....', '...bbbbbbbbB....', '...bB.....bB....', '...bB.....bB....', '...bbbbbbbbB....', '...bB.....bB....', '...bB.....bB....', '...bbbbbbbbB....', '...bB.....bB....'],
+  fence: ['', '', '..bB...bB...bB..', '..bB...bB...bB..', '..bbbbbbbbbbbB..', '..bB...bB...bB..', '..bB...bB...bB..', '..bbbbbbbbbbbB..', '..bB...bB...bB..', '..bB...bB...bB..'],
+  gate: ['', '.bB..........bB.', '.bBbbbbbbbbbbbB.', '.bB.bB....bB.bB.', '.bB..bB..bB..bB.', '.bB...bBbB...bB.', '.bB...bBbB...bB.', '.bB..bB..bB..bB.', '.bBbbbbbbbbbbbB.', '.bB..........bB.'],
+  stairs: ['', '..........bbbb..', '..........bbbB..', '..........bbbB..', '......bbbbbbbB..', '......bbbbbbbB..', '......bbbbbbbB..', '..bbbbbbbbbbbB..', '..bbbbbbbbbbbB..', '..bbbbbbbbbbbB..', '..BBBBBBBBBBBB..'],
+  scaffolding: ['.yYYYYYYYYYYYYy.', '.y............y.', '.y.y........y.y.', '.y..y......y..y.', '.y...y....y...y.', '.y....y..y....y.', '.y.....yy.....y.', '.y....y..y....y.', '.y...y....y...y.', '.yYYYYYYYYYYYYy.', '.y............y.', '.y............y.'],
+  lantern: ['.......XX.......', '......X..X......', '.......XX.......', '.....XXXXXX.....', '....XffffffX....', '....XfFFFFfX....', '....XfFRFFfX....', '....XfFFFFfX....', '....XffffffX....', '.....XXXXXX.....'],
+  campfire: ['', '.......f........', '......fFf.......', '.....fFRFf......', '....fFRRRFf.....', '.....FRRRF......', '..uuUuuuUuuuU...', '...bBbBbBbBb....', '..uuUuuuUuuuU...', '...xxXxxXxxX....'],
+  cave: ['', '...xxxxxxxxxx...', '..xxxXxxxxXxxx..', '.xxxKKKKKKKxxxx.', '.xxKKKKKKKKKKxx.', '.xKKKKKKKKKKKKx.', '.xKKKKKKKKKKKKx.', '.xKKKKKKKKKKKKx.', '.xKKKKKKKKKKKKx.', 'gggggggggggggggg'],
+  rails: ['', '..X..........X..', '..X..........X..', '.bbbbbbbbbbbbbb.', '..X..........X..', '..X..........X..', '.bbbbbbbbbbbbbb.', '..X..........X..', '..X..........X..', '.bbbbbbbbbbbbbb.', '..X..........X..'],
+  nugget: ['', '', '.....HHH........', '....HfHHH...HH..', '....HHHHF..HfHF.', '.....FFF...HHHF.', '.......HHH..FF..', '......HfHHF.....', '......HHHFF.....', '.......FFF......'],
+  emerald: ['', '.......jj.......', '......jhjJ......', '.....jhjjjJ.....', '....jhjjjjjJ....', '....jjjjjjjJ....', '....jjjjjjjJ....', '.....jjjjjJ.....', '......jjjJ......', '.......jJ.......'],
+  stalactites: ['', 'xxxxxxxxxxxxxxxx', '.xXx..xXx...xXx.', '.xXx..xXx...xX..', '..x...xX....xX..', '..x....X....x...', '.......x....x...', '.......x........'],
+  mushroom: ['', '.....rrrrrr.....', '...rrhrrrrhrr...', '..rrrrrrhrrrrr..', '..rhrrrrrrrrhr..', '...dddddddddd...', '......wwww......', '......wwww......', '......wwqw......', '.....wwwwww.....'],
+  sheep: ['', '', '...wwwwwwwww....', '..wwmwwwwmwwwqq.', '..wwwwwwwwwwqKq.', '..wwwwmwwwwwqqq.', '..wwwwwwwwwwqq..', '...wwwwwwwww....', '...qq.qq.qq.qq..', '...qq.qq.qq.qq..'],
+  cow: ['', '..............KK', '..............hK', '...hhhhhhhhhhhhh', '..hKKhhhhKhhhhKh', '..KKKhhhKKKhhhhl', '..hhhhhhhhhhhhll', '...hhKKhhhhhhh..', '...hh.hh..hh.hh.', '...KK.KK..KK.KK.'],
+  pig: ['', '', '...lllllllllll..', '..llllllllllKll.', '..lllllllllllLL.', '..llllllllllLKL.', '..llllllllllll..', '...llllllllll...', '...LL.LL..LL.LL.'],
+  horse: ['...........uu...', '..........uuuu..', '..........uuKuu.', '..........uuuuu.', '...uuuuuuuuuu...', '..UuuuuuuuuuU...', '..UuuuuuuuuuU...', '...uuuuuuuuu....', '...uU.uU.uU.uU..', '...uU.uU.uU.uU..', '...KK.KK.KK.KK..'],
+  llama: ['...........qq...', '..........qqqq..', '..........qqKq..', '..........qqqq..', '..........qqq...', '..........qqq...', '...qqqqqqqqqq...', '..qqrrrrrrqqq...', '..qqqqqqqqqq....', '...qq.qq.qq.qq..', '...qq.qq.qq.qq..'],
+  bee: ['', '.....WW..WW.....', '.....WWWWWW.....', '...yKKyyKKyKK...', '..yyKKyyKKyKKy..', '..yyKKyyKKyyKy..', '...yKKyyKKyKK...'],
+  coop: ['.......rr.......', '......rrrr......', '.....rrrrrr.....', '....rrrrrrrr....', '...rrrrrrrrrr...', '....bbbbbbbb....', '....bbKKKKbb....', '....bbKKKKbb....', '....bbKKKKbb....', '....bbbbbbbb....', '....B......B....'],
+  saddle: ['', '', '..tt........tt..', '..tttt....tttt..', '...tttttttttt...', '....tTTTTTTt....', '.....tttttt.....', '......s..s......', '......s..s......', '.....ss..ss.....'],
+  lead: ['', '.....zzzzzz.....', '...zzZ....Zzz...', '..zZ........Zz..', '..z..zzzzzz..z..', '..z.zZ....Zz.z..', '..z.z......z.z..', '..z.zZ....Zz.z..', '..zZ.zzzzzz.Zz..', '...zzZ....Zzz...', '.....zzzzzz.....'],
+  shears: ['', '...ss.....ss....', '...sSs...sSs....', '....sSs.sSs.....', '.....sSsSs......', '......sSs.......', '.....rr.rr......', '....r..r..r.....', '....r..r..r.....', '.....rr.rr......'],
+  honeycomb: ['', '...HHH..HHH.....', '..HfffHHfffH....', '..HfffHHfffH....', '...HHHffHHHH....', '....HfffHfffH...', '....HfffHfffH...', '.....HHHHHHH....'],
+  beef: ['', '', '....nnnnnn......', '..nnnenNnnnn....', '.nnNnnnnnenNn...', '.nennnNnnnnnnn..', '.nnnnnnnennnNn..', '..NnnnnnnnnNNe..', '...NNNnnnNNNee..', '......NNNNee....'],
+  steak: ['', '', '....uuuuuu......', '..uuueuUuuuu....', '.uuUuuuuueuUu...', '.ueuuuUuuuuuuu..', '.uuuuuuueuuuUu..', '..UuuuuuuuuUUe..', '...UUUuuuUUUee..', '......UUUUee....'],
+  pork: ['', '', '.......eeee.....', '.....llllllee...', '...llLllllllLe..', '..lllllllLllll..', '..llLlllllllll..', '..lllllllllLll..', '...lllllllll....', '.....eeeeee.....'],
+  mutton: ['', '....eeeeee......', '...ennnnnne.....', '..ennNnnnnne....', '..ennnnnNnne....', '..ennnnnnnne....', '...ennnnnneem...', '....eeeeee..mm..', '.............mm.'],
+  rawchicken: ['', '...llll.........', '..lhhlllL.......', '..lhllllll......', '..llllllll......', '...lllllLL......', '....LLLLLm......', '.........mm.....', '..........mm.mm.', '...........mmm..', '..........mm.mm.'],
+  bakedpotato: ['', '', '', '.....pppppp.....', '...pphpppppPp...', '..phpyyyyyypPP..', '..ppyyyyyyyyPP..', '..ppPppppppPPP..', '...PppppppPPP...', '....PPPPPPPP....'],
+  beetroot: ['.......gG.......', '......gGgG......', '.......gG.......', '.....vvvvvv.....', '....vvhvvvvV....', '....vhvvvvvV....', '....vvvvvvvV....', '.....vvvvvV.....', '......vvVV......', '.......vV.......', '........V.......'],
+  stew: ['', '', '', '', '...uuyuuqyuuu...', '..buuuuuuuuuub..', '..bbbbbbbbbbbB..', '...bbbbbbbbbB...', '....BBBBBBBB....'],
+  rabbitstew: ['', '', '', '', '...uoouuqoouu...', '..buuouuuuouub..', '..bbbbbbbbbbbB..', '...bbbbbbbbbB...', '....BBBBBBBB....'],
+  pie: ['', '', '', '......oooo......', '....ooiiiioo....', '...oiiiiiiiio...', '..oiiiiiiiiiio..', '..OoooooooooOO..', '...OOOOOOOOOO...'],
+  melonslice: ['', '', '..G...........G.', '..gG.........Gg.', '..grr.......rrg.', '...grrrKrrKrrg..', '...grrrrrrrrrg..', '....grrrKrrrg...', '.....grrrrrg....', '......ggggg.....'],
+  berries: ['......g.........', '.....gGg.g......', '....g...gGg.....', '...rr...g.......', '..rhrr.rr..rr...', '..rrrr.rhr.rhr..', '...rr..rrr.rrr..', '........r...r...'],
+  honeybottle: ['', '......bb........', '......WW........', '......WW........', '.....WWWW.......', '....WHHHHW......', '...WHfHHHHW.....', '...WHHHHHHW.....', '...WHHHHHHW.....', '....WWWWWW......'],
+  kelp: ['', '..J...J...J.....', '..jJ..jJ..jJ....', '...jJ..jJ..jJ...', '..jJ..jJ..jJ....', '...jJ..jJ..jJ...', '..jJ..jJ..jJ....', '...j...j...j....'],
+  sugarcane: ['....g.....g.....', '....gG....gG....', '....gG....gG....', '....GG....GG....', '....gG....gG.g..', '....gG....gG.gG.', '....GG....GG.gG.', '....gG....gG.GG.', '....gG....gG.gG.'],
+  cocoa: ['.......b........', '......bb........', '.....uuuu.......', '....uiiiiu......', '....uiuiiU......', '....uiiuiU......', '....uiiiiU......', '.....uiiU.......', '......UU........'],
+  rod: ['.............bb.', '............bBs.', '...........bB.s.', '..........bB..s.', '.........bB...s.', '........bB....s.', '.......bB.....s.', '......bB......s.', '.....bB.......r.', '....bB..........'],
+  compass: ['', '....SSSSSS......', '...SwwwwwwS.....', '..SwwwrwwwwS....', '..SwwwrwwwwS....', '..SwwwKwwwwS....', '..SwwwhwwwwS....', '...SwwwwwwS.....', '....SSSSSS......'],
+  map: ['', '..qqqqqqqqqqqq..', '..qgggqqqccccq..', '..qgGggqccCccq..', '..qggqqqqcccqq..', '..qqqqgggqqqqq..', '..qcccqgGgqrqq..', '..qcCcqqggqqqq..', '..qqqqqqqqqqqq..'],
+  spyglass: ['', '............HH..', '...........HsSH.', '..........HsSH..', '.........HHH....', '........ttT.....', '.......ttT......', '......ttT.......', '.....HHH........', '....HsH.........', '.....H..........'],
+  anvil: ['', '', '..XXXXXXXXXXXX..', '..XxxxxxxxxxxX..', '...XXXXXXXXXX...', '.....XxxxxX.....', '.....XxxxxX.....', '....XxxxxxxX....', '...XXXXXXXXXX...'],
+  cauldron: ['', '..XX........XX..', '..XXXXXXXXXXXX..', '..XccccccccccX..', '..XxxxxxxxxxxX..', '..XxxxxxxxxxxX..', '..XxxxxxxxxxxX..', '...XxxxxxxxxX...', '...XX......XX...'],
+  bottle: ['', '......bb........', '......WW........', '......WW........', '.....WWWW.......', '....WhWWWW......', '...WhWWWWWW.....', '...WWWWWWWW.....', '...WWWWWWWW.....', '....WWWWWW......'],
+  egg: ['', '', '.......ww.......', '......wwww......', '.....whwwww.....', '.....hwwwww.....', '....whwwwwww....', '....wwwwwwww....', '....wwwwwwwq....', '....wwwwwwqq....', '....wwwwwwqq....', '.....wwwwqq.....', '......wqqq......'],
+  apple: ['', '.......b..gg....', '.......bgggG....', '....rrrbrrr.....', '...rhrrrrrrd....', '..rhhrrrrrrrd...', '..rhrrrrrrrrd...', '..rrrrrrrrrrd...', '..rrrrrrrrrdd...', '..rrrrrrrrrdd...', '...rrrrrrrdd....', '...drrrrrddd....', '....dd..ddd.....'],
+  bread: ['', '', '', '', '.....oooooo.....', '...oohoyyoooo...', '..ohyoyyoyyooO..', '..oyyyyyyyyyoO..', '..ooyoyyoyyooO..', '..OoooooooooOO..', '...OOOOOOOOOO...'],
+  carrot: ['', '...........gG...', '.........ggGg...', '..........gG....', '.........oOo....', '........ooOo....', '.......oooO.....', '......oOoo......', '.....oooO.......', '....ooOo........', '...oOoo.........', '..ooo...........', '..o.............'],
+  fish: ['', '', '', '.....CCCC.......', '...CCccccCC..C..', '..Cccccccccc.CC.', '.CKcccccccccccc.', '.CcWWWWWWWccccc.', '..CWWWWWWWW.CC..', '...CCWWWWCC..C..', '.....CCCC.......'],
+  milk: ['.....SSSSSS.....', '...SS......SS...', '...SSSSSSSSSS...', '..SmmmmmmmmmmS..', '..SsmmmmmmmmsS..', '..ShsssssssssS..', '...ShsssssssS...', '...ShsssssssS...', '....ShssssSS....', '....SSSSSSSS....'],
+  bucket: ['.....SSSSSS.....', '...SS......SS...', '...SSSSSSSSSS...', '..SKKKKKKKKKKS..', '..SsKKKKKKKKsS..', '..ShsssssssssS..', '...ShsssssssS...', '...ShsssssssS...', '....ShssssSS....', '....SSSSSSSS....'],
+  torch: ['', '.......ff.......', '......fFFf......', '......FRRF......', '......fFFf......', '.......bB.......', '.......bB.......', '.......bB.......', '.......bB.......', '.......bB.......', '.......bB.......', '.......bB.......', '.......bB.......'],
+  pickaxe: ['', '....hcccccC.....', '...hccCCCCccC...', '..hcC..bB..CcC..', '..cC...bB...Cc..', '..C....bB....C..', '.......bB.......', '.......bB.......', '.......bB.......', '.......bB.......', '.......bB.......', '.......bB.......'],
+  sword: ['.......hc.......', '......hccC......', '......hccC......', '......hccC......', '......hccC......', '......hccC......', '......hccC......', '......hccC......', '....HHHHHHHH....', '.......bB.......', '.......bB.......', '.......HH.......'],
+  axe: ['', '....SSSS........', '...SssssS.bB....', '..ShsssssSbB....', '..ShssssssbB....', '..ShsssssSbB....', '...SssssS.bB....', '....SSSS..bB....', '..........bB....', '..........bB....', '..........bB....', '..........bB....'],
+  shovel: ['', '......SsS.......', '.....SsssS......', '.....ShssS......', '.....ShssS......', '......SsS.......', '.......bB.......', '.......bB.......', '.......bB.......', '.......bB.......', '......bbBB......', '......b..B......'],
+  door: ['..BBBBBBBBBBBB..', '..BbbbbBBbbbbB..', '..BWWWbBBWWWbB..', '..BWWWbBBWWWbB..', '..BbbbbBBbbbbB..', '..BBBBBBBBBBBB..', '..BbbbbbbbbbbB..', '..BbBBBBBBBBbB..', '..BbbbbbbbbKbB..', '..BbBBBBBBBBbB..', '..BbbbbbbbbbbB..', '..BBBBBBBBBBBB..'],
+  bed: ['', '', '', '', '', '..mmmmrrrrrrrr..', '..mmhmrrrrrrrr..', '..mmmmrdrrdrrr..', '..dddddddddddd..', '..bB........bB..', '..bB........bB..'],
+  diamond: ['', '....cccccccc....', '...chhccccCCc...', '..chcccccccCCc..', '..ccccccccCCCc..', '...cccccccCCc...', '....ccccccCc....', '.....ccccCc.....', '......cccc......', '.......cc.......'],
+  wheat: ['.....y..y..y....', '....yo.yo.yo....', '.....y..y..y....', '....yo.yo.yo....', '.....yo.y.oy....', '......g.g.g.....', '......g.g.g.....', '.......ggg......', '........g.......', '.......yoy......', '........g.......', '........g.......'],
+  potato: ['', '', '', '.....pppppp.....', '...pphpppppPp...', '..phppPpppppPP..', '..pppppppPppPP..', '..ppPppppppPPP..', '...PppppppPPP...', '....PPPPPPPP....'],
+  chicken: ['', '...oooo.........', '..oyyoooO.......', '..oyoooooO......', '..oooooooO......', '...oooooOO......', '....OOOOOm......', '.........mm.....', '..........mm.mm.', '...........mmm..', '..........mm.mm.'],
+  cookie: ['', '', '.....pppppp.....', '...pppkppppp....', '..pppppppkppp...', '..pkppppppppp...', '..pppppkpppkp...', '..pppppppppp....', '...ppkpppppp....', '.....pppppp.....'],
+  coal: ['', '', '', '......KKKK......', '....KKSKKKKK....', '...KSKKKKKKKK...', '...KKKKKKKKKK...', '....KKKKKKKK....', '.....KKKKKK.....'],
+  iron: ['', '', '', '', '.....hhhhhhh....', '...hhssssssSS...', '..hsssssssssSS..', '..SSSSSSSSSSSS..'],
+  gold: ['', '', '', '', '.....ffffffff...', '...ffHHHHHHFF...', '..fHHHHHHHHHFF..', '..FFFFFFFFFFFF..'],
+};
+MAP.salmon = MAP.fish.map((r) => r.replace(/c/g, 'a').replace(/C/g, 'A').replace(/W/g, 'e'));
+MAP.cod = MAP.fish.map((r) => r.replace(/c/g, 'x').replace(/C/g, 'X').replace(/W/g, 'q'));
+function item(name) {
+  const c = document.createElement('canvas'); c.width = c.height = 16; const x = c.getContext('2d');
+  const g = MAP[name].map((r) => r.padEnd(16, '.'));
+  while (g.length < 16) g.push('................');
+  const on = (i, j) => j >= 0 && j < 16 && i >= 0 && i < 16 && PAL[g[j][i]];
+  for (let j = 0; j < 16; j++) for (let i = 0; i < 16; i++) {
+    if (on(i, j)) px(x, i, j, PAL[g[j][i]]);
+    else if (on(i + 1, j) || on(i - 1, j) || on(i, j + 1) || on(i, j - 1)) px(x, i, j, '#2a1a10');
+  }
+  return c;
+}
+const B = {
+  grass: () => cube(T.grassTop, T.grassSide), dirt: () => cube(T.dirt, T.dirt), stone: () => cube(T.stone, T.stone), cobblestone: () => cube(T.cobble, T.cobble),
+  sand: () => cube(T.sand, T.sand), log: () => cube(T.logTop, T.logSide), planks: () => cube(T.planks, T.planks), glass: () => cube(T.glass, T.glass),
+  brick: () => cube(T.brick, T.brick), water: () => cube(T.water, T.water), furnace: () => cube(T.cobble, T.furnaceFront, T.cobble), table: () => cube(T.tableTop, T.tableSide, T.tableSide),
+  chest: () => cube(T.planks, T.chest, T.chest), leaves: () => cube(T.leaves, T.leaves), melon: () => cube(T.melonTop, T.melonSide), bookshelf: () => cube(T.planks, T.bookshelf), ore: () => cube(T.stone, T.diamondOre),
+  sandstone: () => cube(T.sandstone, T.sandstone), gravel: () => cube(T.gravel, T.gravel), obsidian: () => cube(T.obsidian, T.obsidian), lava: () => cube(T.lava, T.lava),
+  coalore: () => cube(T.coalOre, T.coalOre), ironore: () => cube(T.ironOre, T.ironOre), goldore: () => cube(T.goldOre, T.goldOre), emeraldore: () => cube(T.emeraldOre, T.emeraldOre),
+  wool: () => cube(T.wool, T.wool), hay: () => cube(T.hayTop, T.haySide), roof: () => cube(T.roofTiles, T.roofTiles), barrel: () => cube(T.barrelTop, T.barrelSide),
+};
+const pic = (k) => (B[k] ? B[k]() : item(k));
+
+// ---------- XP ----------
+// звуки (генеруємо самі), частинки, level up
+let AC; const tone = (f, d, type = 'square', v = .07, when = 0) => { try { AC = AC || new (window.AudioContext || window.webkitAudioContext)(); const o = AC.createOscillator(), g = AC.createGain(); o.type = type; o.frequency.value = f; g.gain.value = v; o.connect(g); g.connect(AC.destination); const t = AC.currentTime + when; o.start(t); g.gain.exponentialRampToValueAtTime(.0001, t + d); o.stop(t + d); } catch (e) { } };
+const pop = () => { tone(660, .08); tone(990, .12, 'square', .06, .07); };
+const buzz = () => { tone(140, .25, 'sawtooth', .06); };
+const fanfare = () => [523, 659, 784, 1046].forEach((f, i) => tone(f, .18, 'square', .07, i * .11));
+let lastX = innerWidth / 2, lastY = innerHeight / 2;
+addEventListener('pointerdown', (e) => { lastX = e.clientX; lastY = e.clientY; }, true);
+function burst(n = 14) {
+  const cols = ['#7cff4f', '#ffd23f', '#33e0d6', '#ff5a5f', '#ff8fd8', '#8e6cff'];
+  for (let i = 0; i < n; i++) { const p = document.createElement('i'); p.className = 'pxl'; p.style.left = lastX + 'px'; p.style.top = lastY + 'px'; p.style.background = cols[i % cols.length];
+    const a = Math.random() * Math.PI * 2, r = 50 + Math.random() * 70; p.style.setProperty('--dx', Math.cos(a) * r + 'px'); p.style.setProperty('--dy', Math.sin(a) * r - 30 + 'px'); document.body.appendChild(p); setTimeout(() => p.remove(), 800); }
+}
+const LESSON_ID = 'builder';
+let xp = 0, dias = 0; const done = new Set();
+function gain(key, n, msg) {
+  if (done.has(key)) return; done.add(key); const before = Math.floor(xp / 100); xp += n; if (n >= 15) dias++;
+  // якщо учень увійшов на Murly, досвід іде і в його загальний рівень
+  try { if (location.hostname.endsWith('murly.com.ua')) fetch('/api/xp', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ items: [{ key: `game:${LESSON_ID}:${key}`, amount: Math.min(60, n) }], source: 'game' }) }).catch(() => {}); } catch (e) { }
+  const lvl = Math.floor(xp / 100) + 1;
+  burst(); if (lvl - 1 > before) { fanfare(); const L = document.getElementById('lvlup'); L.querySelector('b').textContent = 'LEVEL ' + lvl + '!'; L.classList.remove('show'); void L.offsetWidth; L.classList.add('show'); } else pop();
+  document.getElementById('xpbar').style.width = (xp % 100) + '%';
+  document.getElementById('xptext').textContent = xp + ' XP';
+  document.getElementById('lvl').textContent = 'LEVEL ' + lvl;
+  document.getElementById('dias').textContent = dias;
+  toast(msg || ('+' + n + ' XP'));
+}
+let tt; function toast(m) { const t = document.getElementById('toast'); t.textContent = m; t.classList.add('show'); clearTimeout(tt); tt = setTimeout(() => t.classList.remove('show'), 1300); }
+function say(w) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; u.rate = .9; speechSynthesis.speak(u); } catch (e) { } }
+const put = (el, c) => { c.style.width = c.style.width || ''; el.appendChild(c); };
+
+
+// ================= CREATIVE BUILDER =================
+const $ = (id) => document.getElementById(id);
+Object.assign(MAP, {
+  ramp: ['', '..............bb', '............bbbB', '..........bbbbbB', '........bbbbbbbB', '......bbbbbbbbbB', '....bbbbbbbbbbbB', '..bbbbbbbbbbbbbB', 'bbbbbbbbbbbbbbbB', 'BBBBBBBBBBBBBBBB'],
+  floor: ['', '', '', '', '', '', 'bbbbbbbbbbbbbbbb', 'bBbbbbbBbbbbbbBb', 'BBBBBBBBBBBBBBBB'],
+  roof: ['', '.......rr.......', '......rrrr......', '.....rrrrrr.....', '....rrdrrdrr....', '...rrrrrrrrrr...', '..rrdrrdrrdrrr..', '.rrrrrrrrrrrrrr.', 'dddddddddddddddd'],
+  pillar: ['.....xxxxxx.....', '......xXxx......', '......xXxx......', '......xXxx......', '......xXxx......', '......xXxx......', '......xXxx......', '......xXxx......', '......xXxx......', '.....xxxxxx.....'],
+  bridge: ['', '', '', 'b.b.b.b.b.b.b.b.', 'bbbbbbbbbbbbbbbb', 'BBBBBBBBBBBBBBBB', '.B............B.', '.B............B.', 'cccccccccccccccc', 'cCcccCcccCcccCcc'],
+  tower: ['...x.x.x.x.x....', '...xxxxxxxxx....', '...xXxxxxxXx....', '...xxxxKxxxx....', '...xxxxKxxxx....', '...xXxxxxxXx....', '...xxxxxxxxx....', '...xxxKKKxxx....', '...xxxKKKxxx....', '...xxxxxxxxx....'],
+  blueprint: ['CCCCCCCCCCCCCC..', 'CccCccCccCccCC..', 'CchhhhhhhhhccC..', 'CchccCccChhccC..', 'CchccCccChhccC..', 'CchhhhhhhhhccC..', 'CccCccCccCccCC..', 'CCCCCCCCCCCCCC..'],
+  storm: ['....XXXX........', '..XXvvvvXX......', '.XvvvvvvvvXXX...', 'XvvvvvvvvvvvvX..', 'XvvvvvvvvvvvvvX.', '.XXXXXXXXXXXXX..', '......ff........', '.....ff.........', '....ffff........', '......ff........', '.....f..........'],
+  island: ['', '', '.......gg.......', '.....ggGggg.....', '...ggggggGggg...', 'ccyyyyyyyyyyyycc', 'cccyyyyyyyyyyccc', 'cccccccccccccccc'],
+  base: ['.......rr.......', '.....rrrrrr.....', '...rrrrrrrrrr...', '..rrrrrrrrrrrr..', '...bbbbbbbbbb...', '...bWWbbbbWWb...', '...bWWbBBbWWb...', '...bbbbBBbbbb...', '...bbbbBBbbbb...'],
+  pool: ['', '', '', '.xxxxxxxxxxxxxx.', '.xccccccccccccx.', '.xcWcccccWccccx.', '.xccccccccccccx.', '.xxxxxxxxxxxxxx.'],
+  tree: ['.....GGGG.......', '...GGgggGGG.....', '..GgggggggGG....', '..GgggggggggG...', '...GgggggggG....', '.....GGGGG......', '......bB........', '......bB........', '......bB........', '.....bbBB.......'],
+  levelup: ['.......jj.......', '......jjjj......', '.....jjjjjj.....', '....jjjjjjjj....', '...jjjjjjjjjj...', '......jjjj......', '......jjjj......', '......jjjj......', '......jjjj......'],
+});
+B.wall = () => cube(T.planks, T.planks); B.window = () => cube(T.glass, T.glass); B.stonewall = () => cube(T.cobble, T.cobble);
+
+// ---------- шапка ----------
+['island', 'base', 'tree', 'tower'].forEach((k, i) => { const c = pic(k); c.className = 'bob'; c.style.animationDelay = i * .4 + 's'; $('heroIsland').appendChild(c); });
+
+// ---------- 1. планувальник острова ----------
+const PIECES = [
+  ['wall', 'a wooden wall'], ['stonewall', 'a stone wall'], ['floor', 'a floor'], ['ramp', 'a ramp'], ['roof', 'a roof'], ['door', 'a door'], ['window', 'a window'],
+  ['tower', 'a tower'], ['bridge', 'a bridge'], ['pool', 'a pool'], ['tree', 'a tree'], ['campfire', 'a campfire'], ['base', 'a little house'], ['pillar', 'a pillar'],
+];
+let sel = 'wall'; const cells = {}; const plan = [];
+const pal = $('palette');
+PIECES.forEach(([k, nm]) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'fn-pc' + (k === sel ? ' on' : ''); b.title = nm; b.appendChild(pic(k)); const s = document.createElement('span'); s.textContent = nm.replace(/^an? /, ''); b.appendChild(s);
+  b.onclick = () => { sel = k; pal.querySelectorAll('.fn-pc').forEach((x) => x.classList.remove('on')); b.classList.add('on'); tone(500, .05); }; pal.appendChild(b); });
+const where = (r, c) => { const v = r < 3 ? 'top' : r > 4 ? 'bottom' : ''; const h = c < 3 ? 'left' : c > 4 ? 'right' : ''; if (!v && !h) return 'in the middle'; if (v && h) return `in the ${v} ${h} corner`; return `on the ${v || h}`; };
+const START = ['I\'m going to build', 'Then I\'m going to put', 'After that, I\'m going to add', 'I\'m also going to make', 'Next, I\'m going to build', 'Finally, I\'m going to put'];
+function renderPlan() {
+  const list = $('planList'); list.innerHTML = '';
+  plan.forEach((p, i) => { const li = document.createElement('li'); li.innerHTML = `${i === 0 ? START[0] : START[1 + ((i - 1) % (START.length - 1))]} <b>${p.nm}</b> ${p.where}.`; list.appendChild(li); });
+  const kinds = new Set(plan.map((p) => p.k)).size;
+  const b = $('present'); b.disabled = kinds < 6; b.textContent = kinds < 6 ? `Present my plan (${kinds}/6 pieces)` : 'Present my plan';
+}
+const grid = $('grid');
+for (let r = 0; r < 8; r++) for (let c = 0; c < 8; c++) {
+  const d = document.createElement('button'); d.type = 'button'; d.className = 'fn-cell'; d.setAttribute('aria-label', `square ${r + 1}-${c + 1}`);
+  d.onclick = () => {
+    const key = r + ':' + c;
+    if (cells[key]) { d.innerHTML = ''; const idx = plan.findIndex((p) => p.key === key); if (idx >= 0) plan.splice(idx, 1); delete cells[key]; renderPlan(); return; }
+    cells[key] = sel; d.innerHTML = ''; const cv = pic(sel); d.appendChild(cv); d.classList.remove('drop'); void d.offsetWidth; d.classList.add('drop');
+    const nm = PIECES.find((p) => p[0] === sel)[1]; plan.push({ key, k: sel, nm, where: where(r, c) }); tone(300 + plan.length * 30, .06); renderPlan();
+  };
+  grid.appendChild(d);
+}
+$('gridClear').onclick = () => { Object.keys(cells).forEach((k) => delete cells[k]); plan.length = 0; grid.querySelectorAll('.fn-cell').forEach((x) => x.innerHTML = ''); renderPlan(); };
+$('present').onclick = () => { say([...$('planList').children].map((li) => li.textContent).join(' ')); gain('present' + plan.length, 30, '+30 XP · great plan!'); fanfare(); burst(30); };
+renderPlan();
+
+// ---------- 2. слова ----------
+const WORDS = [
+  ['wall', 'a wall', 'It stands up and keeps the storm out.', 'I\'m going to build four walls first.'],
+  ['floor', 'a floor', 'The flat part you walk on.', 'Put a floor under the ramp.'],
+  ['ramp', 'a ramp', 'A slope to go up or down.', 'We\'ll need a ramp to reach the roof.'],
+  ['roof', 'a roof', 'The top of a building.', 'It\'s going to rain. Let\'s finish the roof!'],
+  ['stairs', 'stairs', 'Steps to the next floor.', 'I\'ll put stairs here.'],
+  ['pillar', 'a pillar', 'A tall post that holds something up.', 'The bridge needs two pillars.'],
+  ['bridge', 'a bridge', 'It goes over water.', 'We\'re going to build a bridge to the next island.'],
+  ['tower', 'a tower', 'A tall, narrow building.', 'From the tower you\'ll see everything.'],
+  ['base', 'a base', 'Your home in the game.', 'Our base is going to be next to the river.'],
+  ['island', 'an island', 'Land with water all around it.', 'I think this island will be perfect.'],
+  ['blueprint', 'a blueprint', 'A plan of a building on paper.', 'First, look at the blueprint.'],
+  ['storm', 'a storm', 'Strong wind, rain and lightning.', 'Look at the sky! A storm is coming.'],
+  ['log', 'wood', 'Material from trees.', 'I\'ll gather some wood.'],
+  ['stone', 'stone', 'Hard material from rocks.', 'Stone walls are stronger than wooden walls.'],
+  ['iron', 'metal', 'The strongest material.', 'We\'re going to need more metal.'],
+  ['axe', 'to gather', 'To collect materials.', 'Let\'s gather wood before it gets dark.'],
+  ['table', 'to craft', 'To make something from materials.', 'I\'ll craft a new door.'],
+  ['levelup', 'to upgrade', 'To make something better or stronger.', 'We\'re going to upgrade the walls to stone.'],
+  ['campfire', 'a campfire', 'A fire outside. You can cook on it.', 'I\'ll light a campfire. It\'s cold!'],
+  ['window', 'a window', 'Glass in a wall.', 'Our house will have big windows.'],
+];
+const vocab = $('vocab');
+WORDS.forEach(([k, word, def, ex]) => {
+  const card = document.createElement('div'); card.className = 'card';
+  card.innerHTML = `<div class="in"><div class="face front"></div><div class="face back"><b>${word}</b><span>${def}</span><em>${ex}</em></div></div>`;
+  const f = card.querySelector('.front'); f.appendChild(pic(k)); const nm = document.createElement('b'); nm.textContent = word; f.appendChild(nm);
+  card.onclick = () => { card.classList.toggle('flip'); say(word.replace(/^(a|an|to) /, '')); gain('v-' + word, 2, '+2 XP · ' + word); };
+  vocab.appendChild(card);
+});
+
+// ---------- 4. сортування ----------
+const SORT = [
+  ['We\'re going to build a castle this weekend.', 's'], ['Look at those clouds! It\'s going to rain.', 's'], ['She\'s going to visit the new island tomorrow.', 's'], ['Careful! You\'re going to fall!', 's'], ['I\'m going to paint my house blue. I decided yesterday.', 's'],
+  ['The phone is ringing. I\'ll answer it.', 'c'], ['I promise I\'ll help you.', 'c'], ['I think the update will be great.', 'c'], ['"I\'m hungry." "I\'ll make a sandwich."', 'c'], ['Maybe it will snow tomorrow.', 'c'],
+].sort(() => rnd() - .5);
+let pick1 = null; const pool = $('pool');
+SORT.forEach(([w, b], i) => { const el = document.createElement('button'); el.className = 'w'; el.textContent = w; el.dataset.b = b; el.dataset.i = i; el.onclick = (e) => { e.stopPropagation(); if (el.parentElement !== pool) return; pool.querySelectorAll('.w').forEach((x) => x.classList.remove('sel')); el.classList.add('sel'); pick1 = el; }; pool.appendChild(el); });
+document.querySelectorAll('.bin').forEach((bin) => bin.onclick = () => {
+  if (!pick1) return; const el = pick1; pick1 = null; el.classList.remove('sel');
+  if (el.dataset.b === bin.dataset.b) { el.classList.add('ok'); bin.querySelector('.pool').appendChild(el); gain('w' + el.dataset.i, 5); }
+  else { el.classList.add('bad'); buzz(); setTimeout(() => el.classList.remove('bad'), 500); toast('Think: is it a plan, or a decision right now?'); }
+});
+
+// ---------- 5. STORM TOWER ----------
+const SQ = [
+  ['Look at those dark clouds! The storm ___ hit our base.', 'is going to', ['will to', 'goes to']],
+  ['"My ramp is broken!" "Don\'t worry, I ___ fix it."', '\'ll', ['am going to', 'going to']],
+  ['We have a plan: tomorrow we ___ build a castle.', 'are going to', ['will to', 'go to']],
+  ['I think our team ___ win today.', 'will', ['is going', 'wins to']],
+  ['"It\'s dark in here." "I ___ make a campfire."', '\'ll', ['am going', 'will to']],
+  ['She has got all the wood. She ___ build a bridge.', 'is going to', ['will to', 'going']],
+  ['I promise I ___ forget your birthday.', 'won\'t', ['don\'t going to', 'will not to']],
+  ['Be careful! You ___ fall off the roof!', 'are going to', ['will to', 'go to']],
+  ['In 2050, people ___ play games in virtual worlds.', 'will', ['are going', 'will to']],
+  ['"I can\'t find any stone." "I ___ help you!"', '\'ll', ['am going to', 'helps']],
+  ['My plan for the weekend: I ___ finish my island.', 'am going to', ['will to', 'going to']],
+  ['___ you help me with the roof, please?', 'Will', ['Are', 'Going']],
+  ['We\'ve got no metal left. We ___ need more.', 'are going to', ['will to', 'going']],
+  ['Maybe the update ___ come out next week.', 'will', ['is going', 'will to']],
+  ['"Which door do you want?" "I ___ take the red one."', '\'ll', ['am going', 'will to']],
+  ['He\'s bought paint. He ___ paint his house.', 'is going to', ['will to', 'paints to']],
+];
+let S = null;
+function sNew() {
+  if (S.qi >= S.order.length) return sEnd(S.h >= 12);
+  const i = S.order[S.qi++]; const q = SQ[i]; S.cur = q; S.curI = i; $('sQ').textContent = S.qi;
+  $('sq').innerHTML = q[0].replace('___', '<span class="slot">?</span>');
+  const box = $('sopts'); box.innerHTML = '';
+  [q[1], ...q[2]].sort(() => Math.random() - .5).forEach((x) => { const b = document.createElement('button'); b.className = 'opt'; b.textContent = x; b.onclick = () => sAns(x, b); box.appendChild(b); });
+  const tb = $('timer'); tb.style.transition = 'none'; tb.style.width = '100%'; void tb.offsetWidth; tb.style.transition = 'width 9s linear'; tb.style.width = '0%';
+  clearTimeout(S.t); S.t = setTimeout(() => sAns(null, null), 9000);
+}
+function drawTower() {
+  const t = $('tower'); t.innerHTML = '';
+  for (let i = 0; i < S.h; i++) { const c = pic(i % 3 === 2 ? 'window' : i % 2 ? 'stonewall' : 'wall'); c.className = 'fn-blk' + (i === S.h - 1 ? ' new' : ''); t.appendChild(c); }
+  $('sHeight').textContent = S.h; $('sStorm').textContent = S.storm;
+  $('stormwall').style.width = (8 + S.storm * 18) + '%';
+}
+function sAns(x, btn) {
+  if (!S || !S.on) return; clearTimeout(S.t); $('timer').style.transition = 'none';
+  const ok = x === S.cur[1];
+  $('sopts').querySelectorAll('button').forEach((b) => { b.disabled = true; if (b.textContent === S.cur[1]) b.classList.add('ok'); });
+  $('sq').querySelector('.slot').textContent = S.cur[1];
+  if (ok) { S.h++; tone(400 + S.h * 40, .08); gain('st:q' + S.curI, 10, '+10 XP · block!'); }
+  else { if (btn) btn.classList.add('bad'); S.storm++; buzz(); toast(x ? 'The storm is coming closer!' : 'Too slow! The storm moves!'); $('arena').classList.remove('shake'); void $('arena').offsetWidth; $('arena').classList.add('shake'); }
+  drawTower();
+  if (S.h >= 12) return setTimeout(() => sEnd(true), 900);
+  if (S.storm >= 4) return setTimeout(() => sEnd(false), 900);
+  setTimeout(sNew, 1300);
+}
+function sEnd(win) {
+  S.on = false;
+  $('sq').innerHTML = win ? '<div class="ob-win">YOUR TOWER IS SAFE!</div>Now say: "I built a tower. I\'m going to build ... next time."' : '<div class="ob-win" style="color:#c084fc">THE STORM GOT YOU!</div>Try again. Remember: plan = going to, decision now = will.';
+  $('sopts').innerHTML = '<button class="btn" id="sAgain" type="button">Play again</button>'; $('sAgain').onclick = sStart;
+  if (win) { gain('st:win', 50, '+50 XP · MASTER BUILDER!'); fanfare(); burst(40); }
+}
+function sStart() { S = { on: true, h: 0, storm: 0, qi: 0, order: SQ.map((_, i) => i).sort(() => Math.random() - .5), t: null }; drawTower(); sNew(); }
+$('sStart').onclick = sStart;
+
+// ---------- 6. баги ----------
+const BUGS = [
+  ['I will to build a house.', false, 'I will build a house.'],
+  ['Look at the sky! It will rain.', false, 'Look at the sky! It\'s going to rain.'],
+  ['I\'m going build a tower.', false, 'I\'m going to build a tower.'],
+  ['"The phone is ringing." "I\'m going to answer it."', false, '"The phone is ringing." "I\'ll answer it."'],
+  ['I think she will finish her island tomorrow.', true, 'Correct!'],
+  ['We\'re going to build a bridge this weekend.', true, 'Correct!'],
+  ['He won\'t to come.', false, 'He won\'t come.'],
+  ['Will you to help me?', false, 'Will you help me?'],
+];
+const bl = $('bugList');
+BUGS.forEach(([s, ok, fix], i) => {
+  const d = document.createElement('div'); d.className = 'bug';
+  d.innerHTML = `<span><b>${i + 1}.</b> ${s}</span><span><button class="opt">OK</button><button class="opt">BUG</button></span><span class="fix">${fix}</span>`;
+  const [bOk, bBug] = d.querySelectorAll('button');
+  const ans = (v, btn) => { if (v === ok) { btn.classList.add('ok'); d.classList.add('done'); bOk.disabled = bBug.disabled = true; gain('b' + i, 15, '+15 XP · bug fixed!'); } else { btn.classList.remove('bad'); void btn.offsetWidth; btn.classList.add('bad'); buzz(); } };
+  bOk.onclick = () => ans(true, bOk); bBug.onclick = () => ans(false, bBug);
+  bl.appendChild(d);
+});
+
+// ---------- 7. місії ----------
+const MIS = [
+  ['blueprint', 'Plan first', 'Say 5 sentences with going to. Then build it.', '"I\'m going to build a red house with a big window." Did your plan work?', 30],
+  ['wall', 'Instant helper', 'Your teacher shouts problems while you build. Answer fast!', '"My wall is broken!" "I\'ll fix it!"', 20],
+  ['storm', 'Weather reporter', 'Look at the sky in the game.', '"It\'s going to rain. I think the storm will come soon."', 20],
+  ['base', 'Village builder', 'Build a house for a game character.', '"This is going to be the kitchen. I\'ll put a campfire here."', 30],
+  ['bridge', 'Bridge challenge', 'Build a bridge across water. Predict the time first!', '"I think it will take 5 minutes." Were you right?', 30],
+  ['island', 'Tour guide', 'Give your teacher a tour of your island.', '"Here we\'re going to have a pool. Over there, I\'ll build a tower."', 20],
+  ['axe', 'Team base', 'Build together with your teacher. Share jobs.', '"I\'ll gather wood. You\'ll build the walls. OK?"', 30],
+  ['tree', 'Kind player', 'Be friendly in the game chat.', '"Nice build! I\'ll help you." Never share personal information.', 20],
+];
+const ml = $('misList');
+MIS.forEach(([k, title, task, sayIt, n], i) => {
+  const m = document.createElement('div'); m.className = 'mis';
+  m.appendChild(pic(k));
+  const body = document.createElement('div'); body.innerHTML = `<h3>${title}</h3><p>${task}</p><div class="say">${sayIt}</div>`; m.appendChild(body);
+  const row = document.createElement('div'); row.className = 'row'; row.innerHTML = `<span class="xp">+${n} XP</span>`;
+  const btn = document.createElement('button'); btn.className = 'btn'; btn.textContent = 'Done'; btn.onclick = () => { m.classList.add('done'); btn.disabled = true; gain('m' + i, n, `Mission complete! +${n} XP`); };
+  row.appendChild(btn); m.appendChild(row); ml.appendChild(m);
+});
+
+// ---------- 8. розмова ----------
+const TALK = [
+  'What will games look like in 2050?', 'What are you going to build next time you play?', 'What are you going to do this weekend?', 'Make 3 promises to your team: "I\'ll..."',
+  'What do you think you will do in 15 years?', 'Your friend says "I\'m bored." Make 3 offers with I\'ll.', 'Predict the weather for tomorrow. Use going to or will.', 'Describe your dream island: what are you going to put there?',
+];
+const tl = $('talkList');
+TALK.forEach((q) => { const d = document.createElement('div'); d.className = 'tk'; d.innerHTML = `<span>${q}</span><small>going to · will</small>`; d.onclick = () => { tl.querySelectorAll('.tk').forEach((x) => x.style.outline = ''); d.style.outline = '5px solid #8e6cff'; }; tl.appendChild(d); });
+let tmr; $('timerBtn').onclick = () => { clearInterval(tmr); let s = 30; const el = $('timer30'); el.textContent = '0:30';
+  tmr = setInterval(() => { s--; el.textContent = '0:' + String(s).padStart(2, '0'); if (s <= 0) { clearInterval(tmr); el.textContent = 'GG!'; gain('talk' + Date.now(), 15, 'Great talk! +15 XP'); } }, 1000); };
+
+// ---------- 9. відео (офіційний канал гри, перевірено) ----------
+const VIDS = [
+  ['MEI63vFCGd0', 'Building world trailer', 'Pause in the middle. What are they going to build? Predict, then watch!', 'going to', 0],
+  ['0YMImrNtd0g', 'Your world is endless', 'What will you build in a world with no limits? Make 5 sentences.', 'will', 0],
+  ['ZOXvkjAtT5U', 'Brick Life trailer', 'Which job will you choose in this town? "I think I\'ll be a ..."', 'will', 0],
+  ['J-GxvlEemZw', 'Storm Chasers update', 'Look at the sky! What\'s going to happen? Predict before the end.', 'going to', 0],
+  ['5CNsjnegGr8', 'Brick islands: obby fun', 'Which island are you going to try first? Why?', 'speaking', 0],
+];
+const vdl = $('vidList');
+VIDS.forEach(([id, title, task, mode, short], i) => {
+  const d = document.createElement('div'); d.className = 'vid' + (short ? ' short' : '');
+  d.innerHTML = `<div class="frame"><button class="play" type="button"><span>PLAY</span></button></div><div class="info"><span class="mode">${mode}</span><h3>${title}</h3><div class="task">${task}</div><button class="btn alt" type="button">I talked about it</button></div>`;
+  d.querySelector('.play').onclick = (e) => { e.currentTarget.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${title}"></iframe>`; };
+  const b = d.querySelector('.info .btn'); b.onclick = () => { b.disabled = true; b.textContent = 'Great!'; gain('vid' + i, 20, '+20 XP · great talk!'); };
+  vdl.appendChild(d);
+});
+
+</script>
+</body>
+</html>
