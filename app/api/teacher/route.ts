@@ -4,7 +4,7 @@ import { auth, clerkClient } from '@clerk/nextjs/server';
 import { db, dbReady } from '@/lib/db';
 import { normPhone, validPhone, validPin } from '@/lib/pin-login';
 import { L, SITE, esc, notifyParent, notifyStudent } from '@/lib/telegram';
-import { grade, normalizeSections, type Answers, type Section } from '@/lib/exercise';
+import { grade, normalizeSections, parseSection, SECTION_TYPES, type Answers, type Section, type SectionType } from '@/lib/exercise';
 import { aiCheck, aiReady, isOwnerTeacher } from '@/lib/ai-check';
 import { lessonSections, type Block } from '@/lib/lesson';
 
@@ -185,6 +185,15 @@ export async function POST(req: Request) {
         return NextResponse.json({ ok: true, phone, pin, joined: true });
       }
       case 'addHomework': {
+        // завдання з ігрового уроку приходять текстом у форматі редактора вправ: розбираємо тут
+        if (Array.isArray(p.itemsText)) {
+          const ok = new Set(SECTION_TYPES.map((x) => x.id));
+          p.items = (p.itemsText as Row[]).slice(0, 20).filter((x) => ok.has(String(x.type) as SectionType))
+            .map((x) => parseSection(String(x.type) as SectionType, String(x.instruction ?? '').slice(0, 300), String(x.text ?? '').slice(0, 6000)))
+            .filter((x) => x.tasks.length);
+          p.kind = 'exercise';
+          delete p.itemsText;
+        }
         await db.insert('homework', [toDb.homework(p, t)]);
         const title = String(p.title || ''); const due = p.due ? String(p.due) : '';
         await notifyStudent(String(p.studentId), (l) => `${L(l, { uk: 'Нова домашка', ru: 'Новая домашка', en: 'New homework' })}: <b>${esc(title)}</b>${due ? `\n${L(l, { uk: 'Здати до', ru: 'Сдать до', en: 'Due' })} ${new Date(due).toLocaleString(l === 'en' ? 'en-GB' : l === 'ru' ? 'ru-RU' : 'uk-UA', { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Kyiv' })}` : ''}`,
