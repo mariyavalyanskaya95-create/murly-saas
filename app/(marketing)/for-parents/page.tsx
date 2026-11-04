@@ -51,7 +51,6 @@ export default function ForParentsPage() {
       <section className="mu-page-hero" data-stickers="6">
         <div className="mu-container">
           <Kit id="st-cat-heart" className="kit-hero" />
-          <span className="mu-section__eyebrow"><Icon id="d-heart" />{t({ uk: 'Для батьків', ru: 'Для родителей', en: 'For parents' })}</span>
           <h1>
             {t.lang === 'en' ? (
               <>English without <em>fights</em> over homework.</>
@@ -61,12 +60,10 @@ export default function ForParentsPage() {
               <>Англійська без <em>сварок</em> через уроки.</>
             )}
           </h1>
-          <p>{t({ uk: 'Домашка-гра, слова від учителя і своє 3D-містечко за монетки. Дитина вчиться сама, бо їй цікаво.', ru: 'Домашка-игра, слова от учителя и свой 3D-городок за монетки. Ребёнок учится сам, потому что ему интересно.', en: 'Homework as a game, words from the teacher and their own 3D town for coins. Your child learns on their own because it’s fun.' })}</p>
           <div className="mu-hero__cta">
             <Link href="/sign-up?role=student" className="mu-btn mu-btn--lime mu-btn--lg">
               {t({ uk: 'Створити кабінет для дитини', ru: 'Создать кабинет для ребёнка', en: 'Create your child’s account' })}<span className="mu-btn__arrow"><Icon id="e-arrow" /></span>
             </Link>
-            <Link href="/baby-english" className="mu-textlink">{t({ uk: 'Малюкам до 7 років', ru: 'Малышам до 7 лет', en: 'Kids under 7' })}</Link>
           </div>
         </div>
       </section>
