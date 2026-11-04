@@ -9,6 +9,7 @@ import Kit from '@/components/Kit';
 import TwisterBoard from '@/components/reading/TwisterBoard';
 import { tr } from '@/lib/i18n-server';
 
+import HeroTip from '@/components/HeroTip';
 export function generateMetadata(): Metadata {
   const t = tr();
   return {
@@ -29,7 +30,7 @@ export default function TongueTwistersPage() {
           <Kit id="st-cat-blep" className="kit-hero" />
           <span className="mu-section__eyebrow"><Icon id="e-speak" />{t({ uk: 'Вимова', ru: 'Произношение', en: 'Pronunciation' })}</span>
           <h1>{t({ uk: 'Скоромовки', ru: 'Скороговорки', en: 'Tongue twisters' })} <em>{t({ uk: 'для язика.', ru: 'для языка.', en: 'for your tongue.' })}</em></h1>
-          <p>{t({ uk: 'Послухай, повтори повільно, а потім скажи три рази швидко на час. Кожна скоромовка тренує звук, який українцям дається найважче.', ru: 'Послушай, повтори медленно, а потом скажи три раза быстро на время. Каждая скороговорка тренирует звук, который сложнее всего даётся.', en: 'Listen, repeat slowly, then say it three times fast against the clock. Each twister trains a sound that is hard for Ukrainian speakers.' })}</p>
+          <HeroTip>{t({ uk: 'Послухай, повтори повільно, а потім скажи три рази швидко на час. Кожна скоромовка тренує звук, який українцям дається найважче.', ru: 'Послушай, повтори медленно, а потом скажи три раза быстро на время. Каждая скороговорка тренирует звук, который сложнее всего даётся.', en: 'Listen, repeat slowly, then say it three times fast against the clock. Each twister trains a sound that is hard for Ukrainian speakers.' })}</HeroTip>
         </div>
       </section>
       <section className="mu-section" style={{ paddingTop: 8 }}>
