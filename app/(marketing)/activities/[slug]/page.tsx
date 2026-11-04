@@ -30,7 +30,6 @@ export default function ActivityPage({ params }: { params: { slug: string } }) {
       <section className="mu-page-hero act-hero act-hero--one no-print">
         <div className="mu-container">
           <Link href="/activities" className="t-back">← {t({ uk: 'Усі активності', ru: 'Все активности', en: 'All activities' })}</Link>
-          <span className="mu-section__eyebrow"><Icon id="e-speak" />{t(WHO[a.audience])} · {a.levels.join(' · ')} · {a.type === 'grammar' ? 'Grammar' : 'Speaking'} · {a.minutes} {t({ uk: 'хв', ru: 'мин', en: 'min' })}</span>
           <h1>{a.title}</h1>
           <p>{t(a.about)}</p>
           <p className="act-focus"><b>{t({ uk: 'Що тренуємо', ru: 'Что тренируем', en: 'Focus' })}:</b> {t(a.focus)}</p>
