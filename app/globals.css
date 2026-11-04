@@ -3919,3 +3919,7 @@ details.bb-tip > p:last-child{margin-bottom:22px}
 @media (max-width: 1360px) { .kit-home.mcat { right: -20px; } .kit-home.mcat--left { left: -20px; } }
 @media (max-width: 1180px) { .kit-home.mcat { width: 130px; right: 0; bottom: -20px; } .kit-home.mcat--left { left: 0; } }
 @media (max-width: 900px) { .kit-home.mcat--left { display: none; } }
+/* наліпка в шапках сторінок: правіше, щоб не заходила на заголовок */
+.kit-hero { right: -110px; top: 0; width: clamp(110px, 10vw, 160px); }
+@media (max-width: 1400px) { .kit-hero { right: -40px; top: -10px; width: 120px; } }
+@media (max-width: 1240px) { .kit-hero { display: none; } }
