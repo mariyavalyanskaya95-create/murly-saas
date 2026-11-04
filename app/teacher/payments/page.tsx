@@ -50,7 +50,6 @@ export default function PaymentsPage() {
             <button type="submit" className="mu-btn mu-btn--ink">{t({ uk: 'Записати', ru: 'Записать', en: 'Save' })}</button>
           </div>
           {saved && <p className="t-muted">{t({ uk: 'Записано', ru: 'Записано', en: 'Saved' })}: {saved}</p>}
-          <p className="t-muted">{t({ uk: 'Порада: оплату можна записати і з телефона в Telegram-боті, кнопкою «Оплата».', ru: 'Совет: оплату можно записать и с телефона в Telegram-боте, кнопкой «Оплата».', en: 'Tip: you can also record payments from your phone with the Payment button in the Telegram bot.' })}</p>
         </form>
       )}
 
