@@ -19,7 +19,6 @@ export default function LegalPage({ id }: { id: LegalDocId }) {
       <SiteNav />
       <section className="mu-page-hero mu-page-hero--legal">
         <div className="mu-container">
-          <span className="mu-section__eyebrow"><Icon id="c-paw" />{t({ uk: 'Документи', ru: 'Документы', en: 'Legal' })}</span>
           <h1>{t(doc.title)}</h1>
           <p className="legal__updated">
             {t({ uk: 'Оновлено', ru: 'Обновлено', en: 'Updated' })}: {fmtDate(LEGAL.updated)}

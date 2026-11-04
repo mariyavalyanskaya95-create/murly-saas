@@ -37,7 +37,6 @@ export default function GrammarTopicPage({ slug }: { slug: string }) {
       <SiteNav />
       <section className="mu-page-hero" style={{ paddingBottom: 24 }} data-stickers="4">
         <div className="mu-container">
-          <span className="mu-section__eyebrow"><Icon id={t.icon} />{t.uk} · {t.level}</span>
           <h1>{t.title}<em>.</em></h1>
           <p>{t.lead}</p>
           <a href="#quiz" className="mu-btn mu-btn--lime mu-btn--lg">

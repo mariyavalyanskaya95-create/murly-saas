@@ -1,7 +1,7 @@
 'use client';
-// Живий котик Murly: очі стежать за мишкою, кліпає, махає хвостом.
-// Клік по котику міняє позу: махає лапкою, пише олівцем, стрибає із зірочками, сердечко, спить.
-// Малюнок наш, без сторонніх персонажів. Ідея інтерактивного персонажа з Rive, зроблено на SVG + CSS.
+// Живий котик Murly (м'який стиль, як персонажі Rive): без жорстких контурів, з об'ємом і плавними рухами.
+// Голова й очі плавно повертаються за мишкою, котик дихає, кліпає, ворушить вухами й хвостом.
+// Клік міняє позу: махає лапкою, пише олівцем, стрибає із зірочками, сердечко, спить. Малюнок наш.
 import { useEffect, useRef, useState } from 'react';
 import { useT } from './LangProvider';
 
@@ -11,88 +11,91 @@ const SAY: Record<Pose, string> = { idle: '', wave: 'Hi! I’m Murly!', pencil: 
 
 export default function MurlyCat({ className = '' }: { className?: string }) {
   const t = useT();
-  const ref = useRef<SVGSVGElement>(null);
-  const [eye, setEye] = useState({ x: 0, y: 0 });
+  const box = useRef<HTMLDivElement>(null);
   const [pose, setPose] = useState<Pose>('idle');
   const [n, setN] = useState(0);
+  // плавне стеження: ціль з мишки, поточне значення наближається до неї в кожному кадрі
   useEffect(() => {
-    let raf = 0; let last: MouseEvent | null = null;
-    const upd = () => {
-      raf = 0; const el = ref.current; if (!el || !last) return;
+    const el = box.current; if (!el) return;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let tx = 0, ty = 0, x = 0, y = 0, raf = 0, alive = true;
+    const on = (e: MouseEvent) => {
       const r = el.getBoundingClientRect();
-      const cx = r.left + r.width / 2; const cy = r.top + r.height * 0.42;
-      const dx = last.clientX - cx; const dy = last.clientY - cy; const d = Math.hypot(dx, dy) || 1;
-      const k = Math.min(1, d / 260) * 4.5;
-      setEye({ x: (dx / d) * k, y: (dy / d) * k });
+      const dx = e.clientX - (r.left + r.width / 2); const dy = e.clientY - (r.top + r.height * 0.38);
+      const d = Math.hypot(dx, dy) || 1; const k = Math.min(1, d / 320);
+      tx = (dx / d) * k; ty = (dy / d) * k;
     };
-    const on = (e: MouseEvent) => { last = e; if (!raf) raf = requestAnimationFrame(upd); };
+    const loop = () => {
+      if (!alive) return;
+      x += (tx - x) * 0.08; y += (ty - y) * 0.08;
+      el.style.setProperty('--lx', x.toFixed(3)); el.style.setProperty('--ly', y.toFixed(3));
+      raf = requestAnimationFrame(loop);
+    };
     window.addEventListener('mousemove', on, { passive: true });
-    return () => { window.removeEventListener('mousemove', on); if (raf) cancelAnimationFrame(raf); };
+    if (!reduce) raf = requestAnimationFrame(loop);
+    return () => { alive = false; window.removeEventListener('mousemove', on); cancelAnimationFrame(raf); };
   }, []);
   useEffect(() => {
     if (pose === 'idle') return;
-    const id = setTimeout(() => setPose('idle'), pose === 'sleep' ? 4200 : 2600);
+    const id = setTimeout(() => setPose('idle'), pose === 'sleep' ? 4200 : 2800);
     return () => clearTimeout(id);
   }, [pose, n]);
-  const next = () => { const p = POSES[n % POSES.length]; setPose(p); setN(n + 1); };
+  const next = () => { setPose(POSES[n % POSES.length]); setN(n + 1); };
   const closed = pose === 'love' || pose === 'sleep';
   return (
-    <div className={`mcat mcat--${pose} ${className}`}>
-      {pose !== 'idle' && <span className="mcat__say" role="status">{SAY[pose]}</span>}
+    <div ref={box} className={`mcat mcat--${pose} ${className}`}>
+      {pose !== 'idle' && <span key={n} className="mcat__say" role="status">{SAY[pose]}</span>}
       <button type="button" className="mcat__btn" onClick={next} aria-label={t({ uk: 'Погладити котика Murly', ru: 'Погладить котика Murly', en: 'Pet Murly the cat' })}>
-        <svg ref={ref} viewBox="0 0 200 230" aria-hidden="true">
+        <svg viewBox="0 0 220 240" aria-hidden="true">
+          <defs>
+            <radialGradient id="mcFur" cx="40%" cy="30%" r="75%"><stop offset="0" stopColor="#FFFFFF" /><stop offset=".7" stopColor="#F6F7FD" /><stop offset="1" stopColor="#DCE1F5" /></radialGradient>
+            <radialGradient id="mcBody" cx="45%" cy="25%" r="80%"><stop offset="0" stopColor="#FFFFFF" /><stop offset=".75" stopColor="#F1F3FC" /><stop offset="1" stopColor="#D5DBF2" /></radialGradient>
+            <radialGradient id="mcEye" cx="40%" cy="35%" r="70%"><stop offset="0" stopColor="#3A4378" /><stop offset="1" stopColor="#141935" /></radialGradient>
+          </defs>
+          <ellipse className="mcat__shadow" cx="110" cy="230" rx="58" ry="8" fill="#1B2140" opacity=".12" />
           <g className="mcat__all">
-            <path className="mcat__tail" d="M140 196c26 4 44-10 42-34-1-12-10-20-18-16" fill="none" stroke="#1B2140" strokeWidth="12" strokeLinecap="round" />
-            <path className="mcat__tail" d="M140 196c26 4 44-10 42-34-1-12-10-20-18-16" fill="none" stroke="#FFFFFF" strokeWidth="6" strokeLinecap="round" />
-            <ellipse cx="100" cy="176" rx="50" ry="42" fill="#FFFFFF" stroke="#1B2140" strokeWidth="4" />
-            <ellipse cx="100" cy="186" rx="26" ry="22" fill="#E2E8FA" />
-            <ellipse cx="78" cy="216" rx="15" ry="9" fill="#FFFFFF" stroke="#1B2140" strokeWidth="4" />
-            <ellipse cx="122" cy="216" rx="15" ry="9" fill="#FFFFFF" stroke="#1B2140" strokeWidth="4" />
-            <path d="M60 160c-14-4-22 4-20 14 2 9 12 12 20 8" fill="#FFFFFF" stroke="#1B2140" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+            <g className="mcat__tail"><path d="M150 200c34 6 52-12 46-38-3-13-14-18-21-12" fill="none" stroke="#AEB8E2" strokeWidth="16" strokeLinecap="round" /><path d="M150 200c34 6 52-12 46-38-3-13-14-18-21-12" fill="none" stroke="#FFFFFF" strokeWidth="11" strokeLinecap="round" /><circle cx="175" cy="150" r="7" fill="#C9D3F3" /></g>
+            <g className="mcat__body">
+              <path d="M62 196c0-34 20-58 48-58s48 24 48 58c0 18-14 28-48 28s-48-10-48-28z" fill="url(#mcBody)" stroke="#AEB8E2" strokeWidth="2.5" />
+              <ellipse cx="110" cy="194" rx="24" ry="22" fill="#E6EAFA" />
+              <ellipse cx="88" cy="224" rx="16" ry="9" fill="#FFFFFF" stroke="#AEB8E2" strokeWidth="2.5" /><ellipse cx="132" cy="224" rx="16" ry="9" fill="#FFFFFF" stroke="#AEB8E2" strokeWidth="2.5" />
+              <path d="M82 226h12M126 226h12" stroke="#C9D3F3" strokeWidth="2.5" strokeLinecap="round" />
+              <ellipse cx="72" cy="184" rx="11" ry="14" fill="#FFFFFF" stroke="#AEB8E2" strokeWidth="2.5" transform="rotate(18 72 184)" />
+            </g>
             <g className="mcat__arm">
-              <path d="M140 160c14-4 22 4 20 14-2 9-12 12-20 8" fill="#FFFFFF" stroke="#1B2140" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
-              <g className="mcat__pencil">
-                <rect x="150" y="128" width="9" height="40" rx="2" transform="rotate(20 154 148)" fill="#F4C0D1" stroke="#1B2140" strokeWidth="3" />
-                <path d="M161 170l-3 10-5-8z" transform="rotate(20 154 148)" fill="#1B2140" />
-              </g>
+              <ellipse cx="150" cy="182" rx="11" ry="15" fill="#FFFFFF" stroke="#AEB8E2" strokeWidth="2.5" transform="rotate(-20 150 182)" />
+              <ellipse cx="153" cy="192" rx="7" ry="4" fill="#F4C0D1" opacity=".7" />
+              <g className="mcat__pencil"><rect x="156" y="150" width="9" height="40" rx="3" fill="#F4C0D1" transform="rotate(22 160 170)" /><path d="M160 192l4 10 4-10z" fill="#3A4378" transform="rotate(22 160 170)" /></g>
             </g>
-            <path d="M78 138q22 12 44 0" fill="none" stroke="#AFC3F0" strokeWidth="9" strokeLinecap="round" />
-            <circle cx="100" cy="146" r="6" fill="#F2C94C" stroke="#1B2140" strokeWidth="2.5" />
+            <path d="M84 146q26 13 52 0" fill="none" stroke="#AFC3F0" strokeWidth="10" strokeLinecap="round" />
+            <circle cx="110" cy="154" r="6.5" fill="#F7D46B" />
             <g className="mcat__head">
-              <path d="M52 64L46 18l38 24z" fill="#FFFFFF" stroke="#1B2140" strokeWidth="4" strokeLinejoin="round" className="mcat__ear mcat__ear--l" />
-              <path d="M56 54l-2-24 20 14z" fill="#F4C0D1" />
-              <path d="M148 64l6-46-38 24z" fill="#FFFFFF" stroke="#1B2140" strokeWidth="4" strokeLinejoin="round" className="mcat__ear mcat__ear--r" />
-              <path d="M144 54l2-24-20 14z" fill="#F4C0D1" />
-              <ellipse cx="100" cy="88" rx="60" ry="50" fill="#FFFFFF" stroke="#1B2140" strokeWidth="4" />
-              {closed ? (
-                <g fill="none" stroke="#1B2140" strokeWidth="4" strokeLinecap="round">
-                  <path d={pose === 'love' ? 'M70 90q8-10 16 0' : 'M70 92q8 6 16 0'} />
-                  <path d={pose === 'love' ? 'M114 90q8-10 16 0' : 'M114 92q8 6 16 0'} />
-                </g>
-              ) : (
-                <g className="mcat__eyes">
-                  <g transform={`translate(${eye.x} ${eye.y})`}>
-                    <ellipse cx="78" cy="88" rx="8" ry="10" fill="#1B2140" />
-                    <ellipse cx="122" cy="88" rx="8" ry="10" fill="#1B2140" />
-                    <circle cx="80.5" cy="84" r="3" fill="#FFFFFF" />
-                    <circle cx="124.5" cy="84" r="3" fill="#FFFFFF" />
+              <g className="mcat__ear mcat__ear--l"><path d="M52 74c-8-26-6-48 4-56 12 6 30 22 40 38z" fill="url(#mcFur)" stroke="#AEB8E2" strokeWidth="2.5" /><path d="M60 62c-4-16-3-28 2-34 7 5 17 14 23 24z" fill="#F7C9D8" /></g>
+              <g className="mcat__ear mcat__ear--r"><path d="M168 74c8-26 6-48-4-56-12 6-30 22-40 38z" fill="url(#mcFur)" stroke="#AEB8E2" strokeWidth="2.5" /><path d="M160 62c4-16 3-28-2-34-7 5-17 14-23 24z" fill="#F7C9D8" /></g>
+              <ellipse cx="110" cy="94" rx="66" ry="56" fill="url(#mcFur)" stroke="#AEB8E2" strokeWidth="2.5" />
+              <g className="mcat__face">
+                {closed ? (
+                  <g fill="none" stroke="#1B2140" strokeWidth="4" strokeLinecap="round">
+                    <path d={pose === 'love' ? 'M76 96q10-11 20 0' : 'M76 98q10 7 20 0'} />
+                    <path d={pose === 'love' ? 'M124 96q10-11 20 0' : 'M124 98q10 7 20 0'} />
                   </g>
-                </g>
-              )}
-              <ellipse cx="62" cy="106" rx="9" ry="6" fill="#F4C0D1" opacity=".8" />
-              <ellipse cx="138" cy="106" rx="9" ry="6" fill="#F4C0D1" opacity=".8" />
-              <path d="M95 102h10l-5 6z" fill="#E58FB0" stroke="#1B2140" strokeWidth="2" strokeLinejoin="round" />
-              <path d="M90 112q5 6 10 0q5 6 10 0" fill="none" stroke="#1B2140" strokeWidth="3" strokeLinecap="round" />
-              <g stroke="#1B2140" strokeWidth="2.5" strokeLinecap="round">
-                <path d="M40 100l18 2M42 112l17-3" /><path d="M160 100l-18 2M158 112l-17-3" />
+                ) : (
+                  <g className="mcat__eyes">
+                    <ellipse cx="86" cy="96" rx="11" ry="13.5" fill="url(#mcEye)" />
+                    <ellipse cx="134" cy="96" rx="11" ry="13.5" fill="url(#mcEye)" />
+                    <g className="mcat__glint"><circle cx="90" cy="90" r="4.2" fill="#FFFFFF" /><circle cx="138" cy="90" r="4.2" fill="#FFFFFF" /><circle cx="83" cy="102" r="1.8" fill="#FFFFFF" opacity=".8" /><circle cx="131" cy="102" r="1.8" fill="#FFFFFF" opacity=".8" /></g>
+                  </g>
+                )}
+                <ellipse cx="66" cy="114" rx="11" ry="7" fill="#F7B8CE" opacity=".55" />
+                <ellipse cx="154" cy="114" rx="11" ry="7" fill="#F7B8CE" opacity=".55" />
+                <path d="M105 110q5-3 10 0q-2 5-5 6q-3-1-5-6z" fill="#E98DAF" />
+                <path d="M101 120q4.5 4 9 0q4.5 4 9 0" fill="none" stroke="#3A4378" strokeWidth="2.6" strokeLinecap="round" />
+                <g stroke="#C3CBEA" strokeWidth="2" strokeLinecap="round"><path d="M44 106l18 3M46 118l17-2" /><path d="M176 106l-18 3M174 118l-17-2" /></g>
               </g>
             </g>
-            <g className="mcat__fx mcat__fx--stars" fill="#F2C94C" stroke="#1B2140" strokeWidth="2">
-              <path d="M30 40l4 9 9 1-7 6 2 9-8-5-8 5 2-9-7-6 9-1z" />
-              <path d="M170 30l3 7 7 1-5 4 1 7-6-4-6 4 1-7-5-4 7-1z" />
-            </g>
-            <path className="mcat__fx mcat__fx--heart" d="M100 30c-6-12-24-8-22 6 2 10 22 22 22 22s20-12 22-22c2-14-16-18-22-6z" fill="#F4C0D1" stroke="#1B2140" strokeWidth="3" />
-            <text className="mcat__fx mcat__fx--z" x="150" y="40" fill="#534AB7" fontSize="22" fontWeight="800">z z</text>
+            <g className="mcat__fx mcat__fx--stars" fill="#F7D46B"><path d="M34 44l4 9 9 1-7 6 2 9-8-5-8 5 2-9-7-6 9-1z" /><path d="M186 32l3 7 7 1-5 4 1 7-6-4-6 4 1-7-5-4 7-1z" /></g>
+            <path className="mcat__fx mcat__fx--heart" d="M110 28c-6-12-24-8-22 6 2 10 22 22 22 22s20-12 22-22c2-14-16-18-22-6z" fill="#F4A6C1" />
+            <text className="mcat__fx mcat__fx--z" x="160" y="40" fill="#7B73D9" fontSize="22" fontWeight="800">z z</text>
           </g>
         </svg>
       </button>
