@@ -18,6 +18,7 @@ import { localizeLesson } from '@/lib/content/lessons';
 import { tr } from '@/lib/i18n-server';
 import Kit from '@/components/Kit';
 
+import HeroTip from '@/components/HeroTip';
 // Готові уроки на 60 хвилин (без розділу «Практика»)
 const LESSONS = [...BATCH_1, ...BATCH_2, ...BATCH_3, ...BATCH_4, ...BATCH_5, ...BATCH_6, ...BATCH_7, ...BATCH_8, ...BATCH_9];
 
@@ -44,11 +45,11 @@ export default function LessonsPage() {
           <Kit id="il-cat-laptop" className="kit-hero" />
           <span className="mu-section__eyebrow"><Icon id="e-board" />{t({ uk: 'Готові уроки', ru: 'Готовые уроки', en: 'Ready-made lessons' })}</span>
           <h1>{t({ uk: 'Урок на 60 хвилин', ru: 'Урок на 60 минут', en: 'A 60-minute lesson' })} <em>{t({ uk: 'за хвилину.', ru: 'за минуту.', en: 'in a minute.' })}</em></h1>
-          <p>{t({
+          <HeroTip>{t({
             uk: 'Обери урок: учень працює інтерактивно прямо на сторінці, а вчитель бачить нотатки до етапів і всі відповіді.',
             ru: 'Выбери урок: ученик работает интерактивно прямо на странице, а учитель видит заметки к этапам и все ответы.',
             en: 'Pick a lesson: the student works interactively right on the page, and the teacher sees stage notes and all the answers.',
-          })}</p>
+          })}</HeroTip>
         </div>
       </section>
       <section className="mu-section" style={{ paddingTop: 0 }}>
