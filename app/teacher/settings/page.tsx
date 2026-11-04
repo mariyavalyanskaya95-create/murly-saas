@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { Settings, useTeacher } from '@/lib/teacher-store';
 import { useT } from '@/components/LangProvider';
 import ProfileCard from '@/components/ProfileCard';
+import { InviteCard } from '@/components/teacher/Growth';
 import type { T } from '@/lib/i18n';
 
 const KINDS: { id: Settings['linkKind']; label: T; hint: T }[] = [
@@ -61,8 +62,8 @@ export default function SettingsPage() {
             <button className="mu-btn mu-btn--lime" type="submit">{t({ uk: 'Зберегти', ru: 'Сохранить', en: 'Save' })}</button>
           </div>
         </div>
-        <p className="t-muted">{t({ uk: 'Пізніше додамо автоматичне створення зустрічей у Zoom і Google Meet для кожного заняття.', ru: 'Позже добавим автоматическое создание встреч в Zoom и Google Meet для каждого занятия.', en: 'Later we will add automatic Zoom and Google Meet meetings for every lesson.' })}</p>
       </form>
+      <InviteCard />
     </div>
   );
 }
