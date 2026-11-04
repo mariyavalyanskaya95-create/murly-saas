@@ -2,13 +2,14 @@
 // Форма входу учня: номер телефону + PIN від учителя
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useSignIn } from '@clerk/nextjs';
+import { useClerk, useSignIn } from '@clerk/nextjs';
 import { useT } from './LangProvider';
 
 export default function PinLogin() {
   const t = useT();
   const router = useRouter();
   const { signIn, setActive, isLoaded } = useSignIn();
+  const clerk = useClerk();
   const [phone, setPhone] = useState('');
   const [pin, setPin] = useState('');
   const [busy, setBusy] = useState(false);
@@ -27,11 +28,33 @@ export default function PinLogin() {
           : t({ uk: 'Номер або PIN не підходять. Перевір і спробуй ще раз.', ru: 'Номер или PIN не подходят. Проверь и попробуй ещё раз.', en: 'The number or PIN is wrong. Check and try again.' }));
         setBusy(false); return;
       }
-      const res = await signIn.create({ strategy: 'ticket', ticket: d.ticket });
-      if (res.status === 'complete' && res.createdSessionId) { await setActive({ session: res.createdSessionId }); router.push('/student'); return; }
+      // у браузері вже може бути інший вхід (вчитель, старий акаунт): виходимо і пробуємо ще раз
+      const tryTicket = async (ticket: string) => {
+        const res = await signIn.create({ strategy: 'ticket', ticket });
+        if (res.status === 'complete' && res.createdSessionId) { await setActive({ session: res.createdSessionId }); window.location.href = '/student'; return true; }
+        return false;
+      };
+      try {
+        if (await tryTicket(d.ticket)) return;
+      } catch (e1) {
+        const code = (e1 as { errors?: { code?: string }[] })?.errors?.[0]?.code || '';
+        if (code === 'session_exists' || code === 'identifier_already_signed_in') {
+          await clerk.signOut().catch(() => null);
+          const r2 = await fetch('/api/pin-login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ phone, pin }) });
+          const d2 = await r2.json().catch(() => ({}));
+          if (d2.ticket && await tryTicket(d2.ticket).catch(() => false)) return;
+        }
+        throw e1;
+      }
       setErr(t({ uk: 'Не вдалося увійти. Спробуй ще раз.', ru: 'Не удалось войти. Попробуй ещё раз.', en: 'Could not log in. Please try again.' }));
-    } catch {
-      setErr(t({ uk: 'Не вдалося увійти. Спробуй ще раз.', ru: 'Не удалось войти. Попробуй ещё раз.', en: 'Could not log in. Please try again.' }));
+    } catch (e) {
+      const code = (e as { errors?: { code?: string }[] })?.errors?.[0]?.code || (e instanceof Error ? e.message.slice(0, 60) : '');
+      const inApp = /Telegram|Instagram|FBAN|FBAV|Line\//i.test(navigator.userAgent);
+      setErr(t({
+        uk: `Не вдалося увійти.${inApp ? ' Відкрий сайт у Safari або Chrome (меню «...» → «Відкрити в браузері»).' : ' Спробуй ще раз.'}${code ? ` Код: ${code}` : ''}`,
+        ru: `Не удалось войти.${inApp ? ' Открой сайт в Safari или Chrome (меню «...» → «Открыть в браузере»).' : ' Попробуй ещё раз.'}${code ? ` Код: ${code}` : ''}`,
+        en: `Could not log in.${inApp ? ' Open the site in Safari or Chrome (menu “...” → “Open in browser”).' : ' Please try again.'}${code ? ` Code: ${code}` : ''}`,
+      }));
     }
     setBusy(false);
   };
