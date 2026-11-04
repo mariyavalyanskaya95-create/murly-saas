@@ -3923,3 +3923,27 @@ details.bb-tip > p:last-child{margin-bottom:22px}
 .kit-hero { right: -110px; top: 0; width: clamp(110px, 10vw, 160px); }
 @media (max-width: 1400px) { .kit-hero { right: -40px; top: -10px; width: 120px; } }
 @media (max-width: 1240px) { .kit-hero { display: none; } }
+/* телефон: нічого не вилазить за край */
+@media (max-width: 480px) {
+  .mu-hero__title { font-size: clamp(26px, 8.6vw, 40px); }
+  .mu-page-hero h1 { font-size: clamp(24px, 7.6vw, 34px); overflow-wrap: break-word; }
+  .mu-btn--lg { padding: 13px 20px; font-size: 15px; max-width: 100%; }
+  .mu-section__title { overflow-wrap: break-word; font-size: clamp(26px, 8.4vw, 38px); }
+  .pr-switches > * { max-width: 100%; }
+  .pr-switches button, .pr-switches a { font-size: 13px; padding-left: 10px; padding-right: 10px; }
+  .g-chip { font-size: 13px; }
+  .g-templates { grid-template-columns: 1fr; }
+  .bb-story__list { grid-template-columns: 1fr; }
+  .bb-story, .bb-story__pick, .bb-story__page { min-width: 0; max-width: 100%; }
+  .bb-story__art, .bb-story__art svg { max-width: 100%; height: auto; }
+  .t-tabs { max-width: 100%; }
+  main img, main svg { max-width: 100%; }
+}
+@media (max-width: 480px) { .gl-grid, .lc-grid, .mu-cards, .gr-grid { grid-template-columns: minmax(0, 1fr) !important; } }
+/* кабінет на телефоні */
+@media (max-width: 480px) {
+  .t-top__user { gap: 6px; min-width: 0; }
+  .t-top__user .mu-lang, .t-top__user [class*="lang"] { transform: scale(.85); transform-origin: right center; }
+  .t-head__actions { flex-wrap: wrap; }
+  .t-head__actions .mu-btn, .t-page .t-head .mu-btn { font-size: 12px; padding: 10px 14px; white-space: normal; max-width: 100%; }
+}
