@@ -31,7 +31,7 @@ export const GAME_LESSONS: GameLesson[] = [
   { id: 'brawl', game: 'Brawl Stars', title: 'Team Up', level: 'A2-B1', age: '9-14', minutes: 60, color: '#ffd23f', ready: false,
     grammar: { uk: 'Модальні: can, must, should', ru: 'Модальные: can, must, should', en: 'Modals: can, must, should' },
     topic: { uk: 'Командна гра, ролі, поради новачкам', ru: 'Командная игра, роли, советы новичкам', en: 'Teamwork, roles, tips for beginners' } },
-  { id: 'impostor', game: 'Among Us', title: 'Spaceship Mystery', level: 'B1', age: '10-15', minutes: 60, color: '#7be0c3', ready: false,
+  { id: 'impostor', game: 'Among Us', title: 'Spaceship Mystery', level: 'B1', age: '10-15', minutes: 60, color: '#7be0c3', ready: true,
     grammar: { uk: 'Past Continuous: що ти робив, коли...', ru: 'Past Continuous: что ты делал, когда...', en: 'Past Continuous: what were you doing when...' },
     topic: { uk: 'Кімнати корабля, завдання, алібі, дебати', ru: 'Комнаты корабля, задания, алиби, дебаты', en: 'Ship rooms, tasks, alibis, debates' } },
   { id: 'farm', game: 'Stardew Valley', title: 'Farm Life', level: 'A2-B1', age: '10-16', minutes: 60, color: '#9be07b', ready: false,
