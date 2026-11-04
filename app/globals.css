@@ -3858,3 +3858,43 @@ details.bb-tip > p:last-child{margin-bottom:22px}
 .lc__fav.is-on svg { animation: mu-pop .35s ease-out; }
 @keyframes mu-pop { 0% { transform: scale(.6); } 60% { transform: scale(1.25); } 100% { transform: scale(1); } }
 .lc__fav { background: var(--mu-sky); }
+/* живий котик Murly */
+.mcat { position: relative; display: inline-block; width: clamp(140px, 16vw, 220px); }
+.mcat__btn { all: unset; cursor: pointer; display: block; width: 100%; border-radius: 24px; }
+.mcat__btn:focus-visible { outline: 3px solid var(--mu-violet); outline-offset: 4px; }
+.mcat svg { width: 100%; height: auto; overflow: visible; display: block; }
+.mcat svg * { transform-box: view-box; }
+.mcat__tail { transform-origin: 140px 196px; animation: mcat-tail 3s ease-in-out infinite; }
+.mcat__eyes { transform-origin: 100px 88px; animation: mcat-blink 4.8s infinite; }
+.mcat__head { transform-origin: 100px 130px; transition: transform .3s; }
+.mcat__btn:hover .mcat__head { transform: rotate(-4deg); }
+.mcat__btn:hover .mcat__ear--l { transform: rotate(-8deg); }
+.mcat__ear { transform-origin: 70px 50px; transition: transform .2s; }
+.mcat__ear--r { transform-origin: 130px 50px; }
+.mcat__arm { transform-origin: 142px 166px; }
+.mcat__pencil, .mcat__fx { opacity: 0; transition: opacity .2s; }
+.mcat__fx--heart { transform-origin: 100px 40px; }
+.mcat--wave .mcat__arm { animation: mcat-wave .5s ease-in-out 4 alternate; }
+.mcat--pencil .mcat__pencil { opacity: 1; }
+.mcat--pencil .mcat__arm { animation: mcat-write .35s ease-in-out infinite alternate; }
+.mcat--jump .mcat__all { animation: mcat-jump .6s ease-out 3; transform-origin: 100px 220px; }
+.mcat--jump .mcat__fx--stars { opacity: 1; animation: mcat-twinkle .6s ease-in-out infinite alternate; transform-origin: 100px 50px; }
+.mcat--love .mcat__fx--heart { opacity: 1; animation: mcat-float 1.3s ease-out infinite; }
+.mcat--sleep .mcat__fx--z { opacity: 1; animation: mcat-float 1.6s ease-out infinite; }
+.mcat--sleep .mcat__tail { animation-duration: 6s; }
+.mcat--sleep .mcat__head { transform: rotate(6deg) translateY(4px); }
+.mcat__say { position: absolute; left: 50%; bottom: 100%; transform: translate(-50%, -6px); background: #FFFFFF; border: 2px solid var(--mu-ink); border-radius: 16px; padding: 6px 12px; font-weight: 700; font-size: 14px; white-space: nowrap; color: var(--mu-ink); animation: mcat-say .25s ease-out; z-index: 2; }
+.mcat__say::after { content: ""; position: absolute; left: 50%; top: 100%; width: 12px; height: 12px; background: #FFFFFF; border-right: 2px solid var(--mu-ink); border-bottom: 2px solid var(--mu-ink); transform: translate(-50%, -6px) rotate(45deg); }
+@keyframes mcat-tail { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(-12deg); } }
+@keyframes mcat-blink { 0%, 92%, 100% { transform: scaleY(1); } 95% { transform: scaleY(.1); } }
+@keyframes mcat-wave { from { transform: rotate(0); } to { transform: rotate(-38deg); } }
+@keyframes mcat-write { from { transform: rotate(-6deg); } to { transform: rotate(4deg) translateY(2px); } }
+@keyframes mcat-jump { 0%, 100% { transform: translateY(0); } 40% { transform: translateY(-22px); } 70% { transform: translateY(0) scaleY(.95); } }
+@keyframes mcat-twinkle { from { transform: scale(.85); } to { transform: scale(1.1); } }
+@keyframes mcat-float { from { transform: translateY(6px); opacity: 0; } 30% { opacity: 1; } to { transform: translateY(-14px); opacity: 0; } }
+@keyframes mcat-say { from { transform: translate(-50%, 4px); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .mcat *, .mcat__say { animation: none !important; transition: none !important; } .mcat--love .mcat__fx--heart, .mcat--sleep .mcat__fx--z { opacity: 1; } }
+/* на головній живий котик праворуч замість наліпки */
+.kit-home.mcat { position: absolute; right: 0; bottom: -10px; transform: none; pointer-events: auto; animation: none; }
+@media (max-width: 1180px) { .kit-home.mcat { width: 150px; } }
+@media (max-width: 900px) { .kit-home.mcat { position: static; margin: 0 auto 8px; } }

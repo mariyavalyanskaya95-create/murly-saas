@@ -10,6 +10,7 @@ import { tr } from '@/lib/i18n-server';
 import type { T } from '@/lib/i18n';
 import Kit from '@/components/Kit';
 import Marquee from '@/components/Marquee';
+import MurlyCat from '@/components/MurlyCat';
 import Tour from '@/components/Tour';
 import { SITE_TOUR } from '@/lib/tours';
 
@@ -91,7 +92,7 @@ export default function HomePage() {
       <section className="mu-hero mu-hero--home" data-stickers="8">
         <div className="mu-container mu-hero__inner">
           <Kit id="st-girl-bow" className="kit-home kit-home--l" />
-          <Kit id="st-boy-cap" className="kit-home kit-home--r" />
+          <MurlyCat className="kit-home" />
           <div className="mu-hero__badge">
             <Icon id="c-paw" className="mu-ic mu-ic--badge" />
             {t({ uk: 'Для дітей, підлітків і дорослих', ru: 'Для детей, подростков и взрослых', en: 'For kids, teens and adults' })}
