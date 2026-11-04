@@ -46,7 +46,6 @@ export default function SkillPage({ params, searchParams }: { params: { skill: s
       </nav>
       <section className="mu-page-hero" style={{ paddingBottom: 12 }} data-stickers="4">
         <div className="mu-container">
-          <span className="mu-section__eyebrow"><Icon id={s.icon} />{t({ uk: 'Вчитися самому', ru: 'Учиться самому', en: 'Learn on your own' })}</span>
           <h1>{t(s.label)}{level && <em> {level}.</em>}</h1>
           <p>{t(s.text)}</p>
         </div>
