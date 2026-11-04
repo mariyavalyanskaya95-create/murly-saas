@@ -8,6 +8,7 @@ import ActivityList from '@/components/activities/ActivityList';
 import { ACTIVITIES } from '@/lib/activities';
 import { tr } from '@/lib/i18n-server';
 
+import HeroTip from '@/components/HeroTip';
 export function generateMetadata(): Metadata {
   const t = tr();
   return {
@@ -26,7 +27,7 @@ export default function ActivitiesHub() {
         <div className="mu-container">
           <span className="mu-section__eyebrow"><Icon id="e-speak" />{t({ uk: 'Розмовні активності', ru: 'Разговорные активности', en: 'Speaking activities' })}</span>
           <h1>{t({ uk: 'Activities', ru: 'Activities', en: 'Activities' })} <em>{t({ uk: 'для уроків англійської.', ru: 'для уроков английского.', en: 'for English lessons.' })}</em></h1>
-          <p>{t({ uk: 'Готові активності на 20-40 хвилин: картки з малюнками, корисні фрази і питання для обговорення. Показуй слайди на уроці або завантаж PDF для друку.', ru: 'Готовые активности на 20-40 минут: карточки с рисунками, полезные фразы и вопросы для обсуждения. Показывай слайды на уроке или скачай PDF для печати.', en: 'Ready-made 20-40 minute activities: illustrated cards, useful phrases and discussion questions. Present the slides in class or download a PDF to print.' })}</p>
+          <HeroTip>{t({ uk: 'Готові активності на 20-40 хвилин: картки з малюнками, корисні фрази і питання для обговорення. Показуй слайди на уроці або завантаж PDF для друку.', ru: 'Готовые активности на 20-40 минут: карточки с рисунками, полезные фразы и вопросы для обсуждения. Показывай слайды на уроке или скачай PDF для печати.', en: 'Ready-made 20-40 minute activities: illustrated cards, useful phrases and discussion questions. Present the slides in class or download a PDF to print.' })}</HeroTip>
         </div>
       </section>
       <section className="mu-section" style={{ paddingTop: 8 }}>
