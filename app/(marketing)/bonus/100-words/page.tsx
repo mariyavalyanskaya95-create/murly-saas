@@ -11,6 +11,7 @@ import type { GameSet } from '@/components/games/engine';
 import { NMT_WORDS, NMT_TOPICS_T, NMT_WORDS_RU } from '@/lib/content/nmt-bonus';
 import { tr } from '@/lib/i18n-server';
 
+import HeroTip from '@/components/HeroTip';
 // Бонус до PDF «100 важливих слів для НМТ»: ігри по темах (сюди веде QR-код)
 export function generateMetadata(): Metadata {
   const t = tr();
@@ -40,7 +41,7 @@ export default function Words100Page() {
           <Kit id="il-cat-read" className="kit-hero" />
           <span className="mu-section__eyebrow"><Icon id="e-book" />{t({ uk: 'Бонус до PDF', ru: 'Бонус к PDF', en: 'PDF bonus' })}</span>
           <h1>{t({ uk: '100 слів для НМТ', ru: '100 слов для НМТ', en: '100 words for the NMT' })} <em>{t({ uk: 'в іграх.', ru: 'в играх.', en: 'in games.' })}</em></h1>
-          <p>{t({ uk: 'Обери тему і гру. Слова щоразу перемішуються, а підказка показує приклад з файлу.', ru: 'Выбери тему и игру. Слова каждый раз перемешиваются, а подсказка показывает пример из файла.', en: 'Pick a topic and a game. Words are shuffled every time, and the hint shows the example from the PDF.' })}</p>
+          <HeroTip>{t({ uk: 'Обери тему і гру. Слова щоразу перемішуються, а підказка показує приклад з файлу.', ru: 'Выбери тему и игру. Слова каждый раз перемешиваются, а подсказка показывает пример из файла.', en: 'Pick a topic and a game. Words are shuffled every time, and the hint shows the example from the PDF.' })}</HeroTip>
         </div>
       </section>
       <section className="mu-section" style={{ paddingTop: 8 }}>
