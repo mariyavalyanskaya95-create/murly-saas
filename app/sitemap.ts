@@ -20,6 +20,7 @@ import { BATCH_8 } from '@/lib/lessons/batch-8';
 import { BATCH_9 } from '@/lib/lessons/batch-9';
 import { SITE_URL } from '@/lib/seo';
 import { BLOG } from '@/lib/blog';
+import { GAME_LESSONS } from '@/lib/game-lessons';
 
 const STATIC: [string, number][] = [
   ['/', 1], ['/nmt', 0.9], ['/nmt/mock', 0.9], ['/irregular-verbs', 0.9], ['/irregular-verbs/games', 0.7],
@@ -48,7 +49,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // статті блогу: тільки uk і ru
   const blog = BLOG.map((b) => ({ url: u(`/blog/${b.slug}`), lastModified: new Date(b.date), changeFrequency: 'monthly' as const, priority: 0.8,
     alternates: { languages: { 'uk-UA': u(`/blog/${b.slug}`), 'ru-UA': u(`/blog/${b.slug}`, 'ru') } } }));
-  return [...blog, ...[...STATIC, ...dyn].map(([path, priority]) => ({
+  // уроки за іграми: окремі англомовні сторінки
+  const games = GAME_LESSONS.filter((g) => g.ready).map((g) => ({ url: `${SITE_URL}/game-lessons/${g.id}.html`, lastModified: now, changeFrequency: 'monthly' as const, priority: 0.7 }));
+  return [...blog, ...games, ...[...STATIC, ...dyn].map(([path, priority]) => ({
     url: u(path),
     lastModified: now,
     changeFrequency: 'weekly' as const,
