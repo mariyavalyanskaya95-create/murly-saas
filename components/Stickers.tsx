@@ -57,8 +57,11 @@ function place() {
   });
 }
 
+// Листопад 2026: наліпки вимкнені, щоб сторінки були чистіші (як на референсах). Увімкнути: STICKERS_ON = true.
+const STICKERS_ON = false;
 export default function Stickers() {
   useEffect(() => {
+    if (!STICKERS_ON) return;
     place();
     let t: ReturnType<typeof setTimeout>;
     const onResize = () => { clearTimeout(t); t = setTimeout(place, 250); };
