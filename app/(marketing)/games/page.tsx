@@ -48,7 +48,6 @@ export default function GamesPage() {
           <Kit id="st-boy-cap" className="kit-hero" />
           <span className="mu-section__eyebrow"><Icon id="d-kid" />{t({ uk: 'Ігри', ru: 'Игры', en: 'Games' })}</span>
           <h1>{t({ uk: 'Грай і', ru: 'Играй и', en: 'Play and' })} <em>{t({ uk: 'говори.', ru: 'говори.', en: 'speak.' })}</em></h1>
-          <p>{t({ uk: 'Ігри, де англійська звучить на кожному кроці. Будуй, читай, змагайся, і слова запам’ятовуються самі. Свої слова від учителя можна грати в кабінеті.', ru: 'Игры, где английский звучит на каждом шагу. Строй, читай, соревнуйся, и слова запоминаются сами. Свои слова от учителя можно играть в кабинете.', en: 'Games where English is everywhere. Build, read, compete, and the words stick by themselves. Play with your teacher’s words in your account.' })}</p>
         </div>
       </section>
       <section className="mu-section" style={{ paddingTop: 8, paddingBottom: 48 }}>
