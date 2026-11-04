@@ -8,7 +8,6 @@ import Faq from '@/components/Faq';
 import { tr } from '@/lib/i18n-server';
 import type { T } from '@/lib/i18n';
 import Kit from '@/components/Kit';
-import FreeMonthBanner from '@/components/FreeMonthBanner';
 
 export function generateMetadata(): Metadata {
   const t = tr();
@@ -59,7 +58,6 @@ export default function PricingPage() {
 
       <section className="mu-section" style={{ paddingTop: 24 }}>
         <div className="mu-container">
-          <FreeMonthBanner href="/sign-up" />
           <PricingSection />
         </div>
       </section>
