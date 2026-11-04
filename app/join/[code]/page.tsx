@@ -21,7 +21,6 @@ function Box({ title, text, children }: { title: string; text: string; children?
       <section className="mu-page-hero">
         <div className="mu-container">
           <Kit id="st-girl-bow" className="kit-hero" />
-          <span className="mu-section__eyebrow"><Icon id="d-send" />{tr()({ uk: 'Запрошення', ru: 'Приглашение', en: 'Invitation' })}</span>
           <h1>{title}</h1>
           <p>{text}</p>
           <div className="mu-hero__cta">{children}</div>
