@@ -60,10 +60,6 @@ export default function NmtPage() {
       <section className="mu-hero" data-stickers="8">
         <div className="mu-container mu-hero__inner">
           <Kit id="il-cat-exam" className="kit-home kit-home--r" />
-          <div className="mu-hero__badge">
-            <Icon id="c-paw" className="mu-ic mu-ic--badge" />
-            {t({ uk: 'Перша платформа НМТ на вайбі', ru: 'Первая платформа НМТ на вайбе', en: 'The first NMT platform with a vibe' })}
-          </div>
           <h1 className="mu-hero__title">
             {t.lang === 'en' ? (
               <>
@@ -93,7 +89,6 @@ export default function NmtPage() {
               {t({ uk: 'Почати квіз', ru: 'Начать квиз', en: 'Start a quiz' })}
               <span className="mu-btn__arrow"><Icon id="e-arrow" /></span>
             </Link>
-            <Link href="/nmt/mock" className="mu-textlink">{t({ uk: 'Пробний НМТ', ru: 'Пробный НМТ', en: 'NMT mock test' })}</Link>
           </div>
         </div>
 
