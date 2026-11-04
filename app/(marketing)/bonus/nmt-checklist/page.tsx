@@ -11,6 +11,7 @@ import type { GameSet } from '@/components/games/engine';
 import { NMT_BATTLE, NMT_COLLOC, COLLOC_VERBS, NMT_FALSE, NMT_WORDS } from '@/lib/content/nmt-bonus';
 import { tr } from '@/lib/i18n-server';
 
+import HeroTip from '@/components/HeroTip';
 // Бонус до PDF «Чек-лист підготовки до НМТ»: НМТ-батл, сталі вирази, слова-звʼязки, хибні друзі
 export function generateMetadata(): Metadata {
   const t = tr();
@@ -38,7 +39,7 @@ export default function NmtChecklistBonusPage() {
           <Kit id="il-cat-exam" className="kit-hero" />
           <span className="mu-section__eyebrow"><Icon id="e-trophy" />{t({ uk: 'Бонус до PDF', ru: 'Бонус к PDF', en: 'PDF bonus' })}</span>
           <h1>{t({ uk: 'Тренування', ru: 'Тренировка', en: 'NMT' })} <em>{t({ uk: 'до НМТ.', ru: 'к НМТ.', en: 'practice.' })}</em></h1>
-          <p>{t({ uk: 'НМТ-батл з 24 питань у форматі пропусків, сталі вирази, слова-звʼязки і хибні друзі перекладача.', ru: 'НМТ-батл из 24 вопросов в формате пропусков, устойчивые выражения, слова-связки и ложные друзья переводчика.', en: 'A 24-question NMT battle in the gap format, collocations, linking words and false friends.' })}</p>
+          <HeroTip>{t({ uk: 'НМТ-батл з 24 питань у форматі пропусків, сталі вирази, слова-звʼязки і хибні друзі перекладача.', ru: 'НМТ-батл из 24 вопросов в формате пропусков, устойчивые выражения, слова-связки и ложные друзья переводчика.', en: 'A 24-question NMT battle in the gap format, collocations, linking words and false friends.' })}</HeroTip>
           <Link href="/nmt" className="mu-btn mu-btn--lg">{t({ uk: 'Квізи у форматі НМТ', ru: 'Квизы в формате НМТ', en: 'NMT-style quizzes' })}</Link>
         </div>
       </section>
