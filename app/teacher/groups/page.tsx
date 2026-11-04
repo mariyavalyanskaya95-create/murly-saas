@@ -19,7 +19,7 @@ export default function GroupsPage() {
     <div className="t-page">
       <div className="t-head">
         <div><h1>{t({ uk: 'Групи', ru: 'Группы', en: 'Groups' })}</h1>
-          <p className="t-muted">{t({ uk: 'Заняття й домашка для кількох учнів одразу. Оплата, оцінки й словник у кожного залишаються свої.', ru: 'Занятия и домашка сразу для нескольких учеников. Оплата, оценки и словарь у каждого остаются свои.', en: 'Lessons and homework for several students at once. Payments, scores and vocabulary stay individual.' })}</p></div>
+          </div>
         <div className="t-head__actions"><button type="button" className="mu-btn mu-btn--lime" onClick={() => setAdding(!adding)}>{adding ? t({ uk: 'Закрити', ru: 'Закрыть', en: 'Close' }) : t({ uk: '+ Нова група', ru: '+ Новая группа', en: '+ New group' })}</button></div>
       </div>
       {adding && <GroupForm onDone={() => setAdding(false)} />}
