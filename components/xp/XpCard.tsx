@@ -8,7 +8,7 @@ export default function XpCard() {
   const t = useT();
   const [xp, setXp] = useState<number | null>(null);
   useEffect(() => {
-    fetch('/api/xp').then((r) => r.json()).then((d) => setXp(Number(d.xp) || 0)).catch(() => setXp(0));
+    fetch('/api/xp').then((r) => r.json()).then((d) => setXp(d.adult ? null : Number(d.xp) || 0)).catch(() => setXp(null));
     const on = (e: Event) => { const d = (e as CustomEvent<{ items: { amount: number }[] }>).detail; setXp((x) => (x ?? 0) + d.items.reduce((a, i) => a + i.amount, 0)); };
     window.addEventListener('murly:xp', on);
     return () => window.removeEventListener('murly:xp', on);

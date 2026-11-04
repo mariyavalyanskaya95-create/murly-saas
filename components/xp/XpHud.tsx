@@ -30,6 +30,7 @@ export default function XpHud({ persist = false }: { persist?: boolean }) {
   const seen = useRef<Set<string>>(new Set());
   const pos = useRef({ x: 0, y: 0 });
   const xpRef = useRef(0);
+  const off = useRef(false); // дорослий учень: без XP
 
   useEffect(() => {
     setMute(read(LS_MUTE) === '1');
@@ -42,13 +43,14 @@ export default function XpHud({ persist = false }: { persist?: boolean }) {
       setReady(true);
     };
     if (persist) {
-      fetch('/api/xp').then((r) => (r.ok ? r.json() : Promise.reject())).then((d) => { server.current = true; xpRef.current = Number(d.xp) || 0; setXp(xpRef.current); setReady(true); }).catch(local);
+      fetch('/api/xp').then((r) => (r.ok ? r.json() : Promise.reject())).then((d) => { if (d.adult) { off.current = true; return; } server.current = true; xpRef.current = Number(d.xp) || 0; setXp(xpRef.current); setReady(true); }).catch(local);
     } else local();
     return () => window.removeEventListener('pointerdown', onDown, true);
   }, [persist]);
 
   useEffect(() => {
     const on = (ev: Event) => {
+      if (off.current) return;
       const { items, source, label } = (ev as CustomEvent<XpEvent>).detail;
       const fresh = items.filter((it) => !seen.current.has(it.key));
       if (!fresh.length) return;
