@@ -3837,3 +3837,24 @@ details.bb-tip > p:last-child{margin-bottom:22px}
 .mu-btn__arrow { transition: transform .2s ease; }
 .mu-btn:hover .mu-btn__arrow { transform: translateX(3px); }
 @media (prefers-reduced-motion: reduce) { .kit-home, .kit-hero { animation: none; } .mu-btn:hover .mu-btn__arrow { transform: none; } }
+/* Акцент замість томатного: фіолетовий. Помилки лишаються червоними. */
+:root { --mu-tomato: #534AB7; --mu-tomato-dark: #B42318; --mu-bad: #E0533A; }
+.q-option.wrong, .g-option.is-wrong, .g-tile.is-wrong, .g-slots.is-wrong .g-slot { background: var(--mu-bad); color: #FFFFFF; }
+.q-feedback.wrong, .gr-wrong, .mu-join__err { color: var(--mu-tomato-dark); }
+.t-demo--err, .ex-input.is-wrong, .ex-choice.is-on.is-wrong, .t-imp__row.is-bad { border-color: var(--mu-bad); }
+/* описи в картках ігор: не довше трьох рядків */
+.gr-grid .gr-card__lead { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.mu-price--featured .mu-price__name { color: var(--mu-violet); }
+.mu-price--featured .mu-price__list li::before { background: var(--mu-violet); }
+/* завантаження Murly */
+.mu-loader { min-height: 50vh; display: grid; place-items: center; place-content: center; gap: 10px; position: relative; }
+.mu-loader__ring { width: 96px; height: 96px; grid-area: 1 / 1; transform: rotate(-90deg); }
+.mu-loader__ring circle { fill: none; stroke: var(--mu-lime); stroke-width: 7; stroke-linecap: round; stroke-dasharray: 70 100; animation: mu-draw 1.4s ease-in-out infinite; }
+.mu-loader__paw { grid-area: 1 / 1; width: 38px; height: 38px; color: var(--mu-ink); animation: mu-bob 1.4s ease-in-out infinite; }
+.mu-loader__txt { font-family: 'Unbounded', 'Arial Black', sans-serif; font-weight: 700; letter-spacing: .3em; font-size: 12px; text-transform: uppercase; color: var(--mu-ink-muted); }
+@keyframes mu-draw { 0% { stroke-dashoffset: 100; } 50% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: -100; } }
+@media (prefers-reduced-motion: reduce) { .mu-loader__ring circle, .mu-loader__paw { animation: none; } }
+/* серце «в обране» підстрибує */
+.lc__fav.is-on svg { animation: mu-pop .35s ease-out; }
+@keyframes mu-pop { 0% { transform: scale(.6); } 60% { transform: scale(1.25); } 100% { transform: scale(1); } }
+.lc__fav { background: var(--mu-sky); }
