@@ -4,7 +4,7 @@ import Icon from '@/components/Icon';
 import SiteNav from '@/components/SiteNav';
 import SiteFooter from '@/components/SiteFooter';
 import SendToStudent from '@/components/game-lessons/SendToStudent';
-import { GAME_LESSONS } from '@/lib/game-lessons';
+import { GAME_LESSONS, gamePhoto } from '@/lib/game-lessons';
 import { tr } from '@/lib/i18n-server';
 import Faq from '@/components/Faq';
 import RelatedPosts from '@/components/blog/RelatedPosts';
@@ -28,7 +28,6 @@ export default function GameLessonsPage() {
         <div className="mu-container">
           <span className="mu-section__eyebrow"><Icon id="e-trophy" />{t({ uk: 'Для вчителів', ru: 'Для учителей', en: 'For teachers' })}</span>
           <h1>{t({ uk: 'Уроки за іграми', ru: 'Уроки по играм', en: 'Game-based lessons' })}</h1>
-          <p>{t({ uk: 'Граматика й слова на матеріалі ігор, у які учні грають самі. Місії в грі, відео й рахунок XP.', ru: 'Грамматика и слова на материале игр, в которые ученики играют сами. Миссии в игре, видео и счёт XP.', en: 'Grammar and vocabulary through the games students already play. In-game missions, videos and an XP score.' })}</p>
         </div>
       </section>
       <section className="mu-section" style={{ paddingTop: 8 }}>
@@ -36,8 +35,9 @@ export default function GameLessonsPage() {
           {GAME_LESSONS.map((l) => (
             <article key={l.id} className={`gl-card ${l.ready ? '' : 'is-soon'}`}>
               <div className="gl-card__top" style={{ background: l.color }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img className="gl-card__img" src={gamePhoto(l)} alt="" loading="lazy" />
                 <span className="gl-card__game">{l.game}</span>
-                <span className="gl-card__px" aria-hidden="true" />
               </div>
               <div className="gl-card__body">
                 <h2>{l.title}</h2>
