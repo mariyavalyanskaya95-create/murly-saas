@@ -1,10 +1,14 @@
 {
   "git": {
     "deploymentEnabled": {
-      "work": false
+      "work": false,
+      "main": false
     }
   },
   "crons": [
-    { "path": "/api/cron/remind", "schedule": "0 6 * * *" }
+    {
+      "path": "/api/cron/remind",
+      "schedule": "0 6 * * *"
+    }
   ]
 }
