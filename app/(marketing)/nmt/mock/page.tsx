@@ -11,6 +11,7 @@ import { MOCKS, SOON, FREE } from '@/lib/mock';
 import { PAID_ENABLED } from '@/lib/plans';
 import { tr } from '@/lib/i18n-server';
 
+import HeroTip from '@/components/HeroTip';
 export function generateMetadata(): Metadata {
   const t = tr();
   return {
@@ -30,7 +31,7 @@ export default function MockListPage() {
           <Kit id="il-cat-exam" className="kit-hero" />
           <span className="mu-section__eyebrow"><Icon id="e-trophy" />{t({ uk: 'Пробний НМТ', ru: 'Пробный НМТ', en: 'Mock NMT' })}</span>
           <h1>{t({ uk: 'Як справжній НМТ,', ru: 'Как настоящий НМТ,', en: 'Like the real NMT,' })} <em>{t({ uk: 'але з поясненнями.', ru: 'но с объяснениями.', en: 'but with explanations.' })}</em></h1>
-          <p>{t({ uk: '32 завдання, 6 частин, як на іспиті. Біля кожної відповіді кнопка «Чому так?»: розбираємо, чому правильний саме цей варіант і де пастки.', ru: '32 задания, 6 частей, как на экзамене. Возле каждого ответа кнопка «Почему так?»: разбираем, почему правильный именно этот вариант и где ловушки.', en: '32 questions in 6 parts, like the real exam. Every answer has a «Why?» button that explains the right choice and the traps.' })}</p>
+          <HeroTip>{t({ uk: '32 завдання, 6 частин, як на іспиті. Біля кожної відповіді кнопка «Чому так?»: розбираємо, чому правильний саме цей варіант і де пастки.', ru: '32 задания, 6 частей, как на экзамене. Возле каждого ответа кнопка «Почему так?»: разбираем, почему правильный именно этот вариант и где ловушки.', en: '32 questions in 6 parts, like the real exam. Every answer has a «Why?» button that explains the right choice and the traps.' })}</HeroTip>
         </div>
       </section>
       <section className="mu-section" style={{ paddingTop: 8 }}>
