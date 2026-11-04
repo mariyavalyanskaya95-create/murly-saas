@@ -37,7 +37,7 @@ export default function TeamGamePage() {
   return (
     <div className="t-page">
       <div className="t-head"><div><h1>{t({ uk: 'Командна гра', ru: 'Командная игра', en: 'Team game' })}</h1>
-        <p className="t-muted">{t({ uk: 'Сітка закритих карток. Команди по черзі відкривають картку й відповідають. За карткою бали або сюрприз: вкрасти бали, віддати, бомба, ×2. Покажи екран учням або виведи на велику дошку.', ru: 'Сетка закрытых карточек. Команды по очереди открывают карточку и отвечают. За карточкой баллы или сюрприз: украсть баллы, отдать, бомба, ×2. Покажи экран ученикам или выведи на большую доску.', en: 'A grid of hidden cards. Teams take turns opening a card and answering. Behind each card: points or a surprise (steal, give away, bomb, ×2). Share your screen or put it on a big display.' })}</p></div></div>
+        <p className="t-muted">{t({ uk: 'Команди по черзі відкривають картки й відповідають.', ru: 'Команды по очереди открывают карточки и отвечают.', en: 'Teams take turns opening cards and answering.' })}</p></div></div>
       <div className="t-card t-form">
         <label className="t-form__wide">{t({ uk: 'Звідки питання', ru: 'Откуда вопросы', en: 'Questions from' })}
           <select value={src} onChange={(e) => setSrc(e.target.value)}>
