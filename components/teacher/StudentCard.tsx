@@ -815,6 +815,17 @@ export function HomeworkItem({ hwId, showStudent }: { hwId: string; showStudent?
   const [aiBusy, setAiBusy] = useState(false);
   const aiOn = !!data.settings.ai;
   const overdue = h.status === 'assigned' && h.due && new Date(h.due) < new Date();
+  // задати ще раз: новий термін (за замовчуванням +3 дні, 20:00) і повідомлення учню
+  const plus3 = () => { const d = new Date(Date.now() + 3 * 86400000); d.setHours(20, 0, 0, 0); const z = (n: number) => String(n).padStart(2, '0'); return `${d.getFullYear()}-${z(d.getMonth() + 1)}-${z(d.getDate())}T20:00`; };
+  const [again, setAgain] = useState<string | null>(null);
+  const [sent, setSent] = useState(false);
+  const resend = async () => {
+    if (!again) return;
+    const due = new Date(again).toISOString();
+    updateHomework(h.id, { due, status: 'assigned' });
+    await fetch('/api/teacher', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ op: 'resendHomework', p: { id: h.id, due } }) }).catch(() => {});
+    setAgain(null); setSent(true); setTimeout(() => setSent(false), 4000);
+  };
   const statusTag = h.status === 'checked' ? <span className="t-tag t-tag--done">{t({ uk: 'Перевірено', ru: 'Проверено', en: 'Checked' })}</span>
     : h.status === 'done' ? <span className="t-tag t-tag--warn">{t({ uk: 'Чекає перевірки', ru: 'Ждёт проверки', en: 'Waiting for review' })}</span>
     : overdue ? <span className="t-tag t-tag--late">{t({ uk: 'Прострочено', ru: 'Просрочено', en: 'Overdue' })}</span> : <span className="t-tag">{t({ uk: 'Задано', ru: 'Задано', en: 'Assigned' })}</span>;
@@ -825,6 +836,18 @@ export function HomeworkItem({ hwId, showStudent }: { hwId: string; showStudent?
         <h2 style={{ fontSize: 19 }}>{showStudent && (() => { const st = data.students.find((x) => x.id === h.studentId); return st ? <Link href={`/teacher/students/${st.id}?tab=hw`} className="t-hw__who">{st.name}</Link> : null; })()}{h.title}</h2>
         <div className="t-hw__meta">{statusTag}{h.due && <span className="t-muted">{t({ uk: 'до', ru: 'до', en: 'due' })} {fmtDate(h.due, t.lang)}</span>}</div>
       </div>
+      {(overdue || again !== null || sent) && (
+        <div className="t-hw__again">
+          {again === null
+            ? (sent ? <span className="t-pos" role="status">{t({ uk: 'Надіслано ще раз, учень отримав повідомлення.', ru: 'Отправлено ещё раз, ученик получил уведомление.', en: 'Sent again, the student was notified.' })}</span>
+              : <button type="button" className="mu-btn mu-btn--lime t-btn-sm" onClick={() => setAgain(plus3())}>{t({ uk: 'Задати ще раз', ru: 'Задать ещё раз', en: 'Assign again' })}</button>)
+            : <>
+              <label>{t({ uk: 'Новий термін', ru: 'Новый срок', en: 'New due date' })} <input type="datetime-local" value={again} onChange={(e) => setAgain(e.target.value)} /></label>
+              <button type="button" className="mu-btn mu-btn--lime t-btn-sm" onClick={resend}>{t({ uk: 'Надіслати учню', ru: 'Отправить ученику', en: 'Send to the student' })}</button>
+              <button type="button" className="mu-btn t-btn-sm" onClick={() => setAgain(null)}>{t({ uk: 'Скасувати', ru: 'Отмена', en: 'Cancel' })}</button>
+            </>}
+        </div>
+      )}
       {h.instructions && <p className="t-hw__text">{h.instructions}</p>}
       {h.kind !== 'text' && h.score != null && (() => {
         // для вправ рахуємо наживо: враховує ✓ / ✕ вчителя
