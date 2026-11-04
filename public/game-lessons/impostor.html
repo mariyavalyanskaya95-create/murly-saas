@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spaceship Mystery: Past Continuous | Murly</title>
+<link rel="icon" href="/favicon.svg">
+<meta name="description" content="Free interactive English lesson based on Among Us: spaceship rooms, crew logs, detective game and Past Continuous with when and while.">
+<link rel="canonical" href="https://murly.com.ua/game-lessons/impostor.html">
+<style>
+:root{--sky:#7ec8ff;--sky2:#bfe6ff;--grass:#5cbf3a;--grass2:#3e8f25;--dirt:#8a5a35;--ink:#1d1d2b;--paper:#fffdf6;--gold:#ffd23f;--dia:#33e0d6;--red:#ff5a5f;--pink:#ff8fd8;--violet:#8e6cff}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Trebuchet MS",Verdana,system-ui,sans-serif;color:var(--ink);background:linear-gradient(180deg,var(--sky) 0,var(--sky2) 520px,#e9f7ff 100%);min-height:100vh}
+img,canvas{image-rendering:pixelated}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+/* шапка */
+.hero{position:relative;padding:34px 18px 0;text-align:center;overflow:hidden}
+.cloud{position:absolute;background:#fff;height:22px;box-shadow:22px 0 #fff,44px 0 #fff,22px -22px #fff;opacity:.9}
+.hero h1{margin:0;font-size:clamp(34px,6vw,64px);letter-spacing:2px;color:#fff;text-shadow:4px 4px 0 var(--ink),-2px -2px 0 var(--ink),2px -2px 0 var(--ink),-2px 2px 0 var(--ink);text-transform:uppercase}
+.hero p{margin:8px 0 18px;font-size:20px;font-weight:700;color:var(--ink)}
+.ground{height:56px;background:repeating-linear-gradient(90deg,var(--grass) 0 16px,#6fd14a 16px 32px);border-top:6px solid var(--grass2);position:relative}
+.ground::after{content:"";position:absolute;left:0;right:0;top:56px;height:40px;background:repeating-linear-gradient(90deg,var(--dirt) 0 16px,#9c6a42 16px 32px)}
+.hero-row{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:-4px}
+/* XP */
+.hud{position:sticky;top:0;z-index:20;display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;padding:10px;background:rgba(29,29,43,.92);color:#fff;margin-top:40px;border-bottom:4px solid #000}
+.hud b{font-size:18px}
+.bar{width:min(340px,60vw);height:22px;background:#333;border:3px solid #000;position:relative}
+.bar i{position:absolute;inset:0 auto 0 0;width:0;background:repeating-linear-gradient(90deg,#7cff4f 0 10px,#55d62f 10px 20px);transition:width .4s}
+.hud .lvl{background:#7cff4f;color:#000;font-weight:900;padding:2px 10px;border:3px solid #000}
+.dia{display:inline-flex;align-items:center;gap:6px;font-weight:900;font-size:18px}
+nav.steps{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:22px 0 4px}
+nav.steps a{background:#fff;border:3px solid var(--ink);padding:6px 12px;font-weight:800;color:var(--ink);text-decoration:none;box-shadow:3px 3px 0 var(--ink)}
+nav.steps a:hover{background:var(--gold)}
+/* секції */
+section{margin-top:38px;background:var(--paper);border:4px solid var(--ink);box-shadow:8px 8px 0 rgba(29,29,43,.85);padding:24px}
+section h2{margin:0 0 6px;font-size:30px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tag{font-size:14px;font-weight:900;padding:3px 10px;border:3px solid var(--ink);background:var(--gold);text-transform:uppercase;letter-spacing:1px}
+.sub{margin:0 0 18px;font-size:17px;color:#444}
+.btn{font:inherit;font-weight:900;border:3px solid var(--ink);background:#7cff4f;padding:8px 16px;cursor:pointer;box-shadow:3px 3px 0 var(--ink);text-transform:uppercase;letter-spacing:.5px}
+.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.btn.alt{background:#fff}
+/* словник */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
+.card{perspective:900px;height:200px;cursor:pointer}
+.card .in{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+.card.flip .in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;border:3px solid var(--ink);background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:10px;text-align:center}
+.face b{font-size:19px}
+.face.back{transform:rotateY(180deg);background:#fff5c9;font-size:15px;line-height:1.35}
+.face.back b{font-size:16px;color:#7a4a00}
+.face canvas{width:84px;height:84px}
+.face.front b{font-size:17px;line-height:1.2}
+.face.back em{font-size:14px;color:#2b7a0b;font-weight:700}
+.grid{grid-template-columns:repeat(auto-fill,minmax(190px,1fr))}
+.credit{font-size:13px;color:#777;margin-top:12px}
+.cat-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.cat-tabs button{font:inherit;font-weight:800;border:3px solid var(--ink);background:#fff;padding:5px 12px;cursor:pointer}
+.cat-tabs button.on{background:var(--dia)}
+/* правило */
+.modes{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.mode{border:4px solid var(--ink);padding:18px;position:relative}
+.mode.s{background:#e6fff0}.mode.c{background:#fff0fb}
+.mode h3{margin:0 0 4px;font-size:24px}
+.mode .f{font-family:Consolas,monospace;font-weight:900;font-size:17px;background:#fff;border:3px solid var(--ink);padding:6px 10px;display:inline-block;margin:6px 0}
+.mode ul{margin:8px 0 0;padding-left:20px;font-size:17px;line-height:1.55}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.chip{border:2px solid var(--ink);background:#fff;padding:2px 9px;font-weight:800;font-size:14px}
+.note{margin-top:16px;padding:12px 16px;border:3px dashed var(--ink);background:#fff;font-size:16px}
+/* вправи */
+.q{display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:2px dashed #d9d2bf;font-size:18px}
+.q:last-child{border-bottom:0}
+.q .n{width:34px;height:34px;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;font-weight:900}
+.opt{font:inherit;font-size:17px;font-weight:800;border:3px solid var(--ink);background:#fff;padding:4px 12px;cursor:pointer;margin:0 3px}
+.opt.ok{background:#7cff4f}.opt.bad{background:var(--red);color:#fff;animation:shake .3s}
+.slot{display:inline-block;min-width:96px;border-bottom:3px solid var(--ink);text-align:center;font-weight:900;color:#2b7a0b}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.stream{display:grid;grid-template-columns:260px 1fr;gap:22px;align-items:start}
+.screen{border:6px solid var(--ink);background:#222;padding:8px;position:sticky;top:70px}
+.screen canvas{width:100%;display:block;background:var(--sky)}
+.live{display:inline-block;background:var(--red);color:#fff;font-weight:900;padding:2px 8px;margin:6px 0 0;letter-spacing:1px}
+.text{font-size:19px;line-height:2.1}
+.text input{font:inherit;font-weight:800;width:150px;border:0;border-bottom:3px solid var(--ink);background:#fffbe6;padding:0 6px;text-align:center}
+.text input.ok{background:#c9ffb3}.text input.bad{background:#ffd0d0}
+.text small{color:#777;font-weight:700}
+.sort{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:14px}
+.bin{border:4px solid var(--ink);min-height:160px;padding:12px;cursor:pointer}
+.bin h4{margin:0 0 10px;font-size:20px}
+.bin.s{background:#e6fff0}.bin.c{background:#fff0fb}
+.pool{display:flex;flex-wrap:wrap;gap:8px;min-height:44px;padding:10px;border:3px dashed var(--ink);background:#fff}
+.w{font:inherit;font-weight:900;font-size:16px;border:3px solid var(--ink);background:var(--gold);padding:5px 11px;cursor:pointer}
+.w.sel{background:var(--dia);transform:translateY(-3px)}
+.w.ok{background:#7cff4f}.w.bad{background:var(--red);color:#fff}
+.bug{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;padding:12px 0;border-bottom:2px dashed #d9d2bf;font-size:18px}
+.bug .fix{grid-column:1/-1;font-weight:800;color:#2b7a0b;display:none}
+.bug.done .fix{display:block}
+/* місії */
+.missions{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.mis{border:4px solid var(--ink);background:#fff;display:grid;grid-template-columns:72px 1fr;gap:12px;padding:14px;position:relative}
+.mis canvas{width:72px;height:72px}
+.mis h3{margin:0 0 4px;font-size:20px}
+.mis p{margin:0 0 6px;font-size:16px}
+.mis .say{background:#f1ecff;border-left:5px solid var(--violet);padding:6px 10px;font-size:15px;font-style:italic}
+.mis .row{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center}
+.mis .xp{font-weight:900;color:#2b7a0b}
+.mis.done{background:#e9ffe0}
+.mis.done::after{content:"DONE";position:absolute;top:10px;right:-8px;background:#7cff4f;border:3px solid var(--ink);font-weight:900;padding:2px 10px;transform:rotate(8deg)}
+.talk{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.tk{border:4px solid var(--ink);padding:16px;font-size:18px;font-weight:700;min-height:120px;display:flex;flex-direction:column;justify-content:space-between;gap:10px}
+.tk:nth-child(4n+1){background:#e6fff0}.tk:nth-child(4n+2){background:#fff0fb}.tk:nth-child(4n+3){background:#fff7d6}.tk:nth-child(4n+4){background:#e3f4ff}
+.tk small{font-weight:800;color:#555;font-size:14px}
+.timer{font-size:46px;font-weight:900;text-align:center;margin:10px 0}
+.vids{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.vid{border:4px solid var(--ink);background:#fff;display:flex;flex-direction:column}
+.vid .frame{position:relative;aspect-ratio:16/9;background:#1d1d2b}
+.vid.short .frame{aspect-ratio:9/16;max-height:460px}
+.vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;display:grid;place-items:center;color:#fff;font-weight:900;font-size:18px;cursor:pointer;background:repeating-linear-gradient(45deg,#2a2a40 0 14px,#24243a 14px 28px);border:0;font-family:inherit}
+.vid .play span{background:var(--red);border:3px solid #000;padding:10px 18px;box-shadow:4px 4px 0 #000}
+.vid .info{padding:12px 14px;display:grid;gap:6px}
+.vid h3{margin:0;font-size:18px}
+.vid .task{background:#f1ecff;border-left:5px solid var(--violet);padding:6px 10px;font-size:15px}
+.vid .mode{display:inline-block;width:max-content;font-size:12px;font-weight:900;border:2px solid var(--ink);padding:1px 8px;background:var(--gold)}
+details.teacher{margin-top:30px;border:3px dashed #888;background:#fff;padding:12px 16px;font-size:15px}
+details.teacher summary{font-weight:900;cursor:pointer}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(120px);background:var(--ink);color:#fff;font-weight:900;padding:12px 22px;border:4px solid #7cff4f;transition:transform .3s;z-index:50;display:flex;gap:10px;align-items:center}
+.toast.show{transform:translateX(-50%) translateY(0)}
+@media(max-width:760px){.modes,.sort,.stream{grid-template-columns:1fr}.screen{position:static}}
+
+/* яскравість і рух */
+.bob{animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-8px)}}
+.card:hover .in{transform:translateY(-6px) rotate(-1.5deg)}
+.card.flip:hover .in{transform:rotateY(180deg) translateY(-6px)}
+.face.front{background:linear-gradient(180deg,#fff 0,#fff 60%,#f3ffe9 100%)}
+.card:nth-child(4n+1) .face.front{background:linear-gradient(180deg,#fff 55%,#e3f6ff)}
+.card:nth-child(4n+2) .face.front{background:linear-gradient(180deg,#fff 55%,#fff1fb)}
+.card:nth-child(4n+3) .face.front{background:linear-gradient(180deg,#fff 55%,#fff8d9)}
+.pxl{position:fixed;width:10px;height:10px;z-index:60;pointer-events:none;border:2px solid #000;animation:pxl .8s ease-out forwards}
+@keyframes pxl{to{transform:translate(var(--dx),var(--dy)) rotate(180deg);opacity:0}}
+.lvlup{position:fixed;left:50%;top:40%;transform:translate(-50%,-50%) scale(0);z-index:70;background:#7cff4f;border:6px solid #000;box-shadow:8px 8px 0 #000;padding:18px 34px;text-align:center;pointer-events:none}
+.lvlup b{display:block;font-size:46px;letter-spacing:2px}
+.lvlup span{font-weight:900}
+.lvlup.show{animation:lvl 1.8s ease-out forwards}
+@keyframes lvl{0%{transform:translate(-50%,-50%) scale(0)}15%{transform:translate(-50%,-50%) scale(1.15)}25%,80%{transform:translate(-50%,-50%) scale(1)}100%{transform:translate(-50%,-50%) scale(0);opacity:0}}
+.night{position:fixed;right:16px;bottom:16px;z-index:40;font:inherit;font-weight:900;border:3px solid #000;background:#1d1d2b;color:#ffe14a;padding:8px 14px;box-shadow:3px 3px 0 #000;cursor:pointer}
+.stars{position:absolute;inset:0 0 auto 0;height:700px;pointer-events:none;opacity:0;transition:opacity .6s}
+.stars i{position:absolute;width:4px;height:4px;background:#fff;animation:tw 2s infinite}
+@keyframes tw{50%{opacity:.2}}
+body{transition:background .6s}
+body.is-night{background:linear-gradient(180deg,#0b1a3a 0,#1d2f5c 520px,#2a3d6b 100%)}
+body.is-night .stars{opacity:1}
+body.is-night .hero p{color:#fff}
+body.is-night nav.steps a{background:#24365f;color:#fff}
+.bin.s{background:repeating-linear-gradient(0deg,#b5884f 0 14px,#a97c45 14px 16px)}
+.bin.c{background:repeating-linear-gradient(0deg,#9fd6ec 0 14px,#8cc6dd 14px 16px)}
+.bin h4{background:#fff;border:3px solid var(--ink);display:inline-block;padding:2px 10px}
+.mis{transition:transform .2s}.mis:hover{transform:translateY(-4px) rotate(.4deg)}
+section h2{color:var(--ink)}
+section:nth-of-type(odd){background:#fffdf6}
+section:nth-of-type(even){background:#f7fff0}
+
+/* «рецепти» речень */
+.legend{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 16px}
+.bk{display:inline-flex;align-items:center;font-weight:900;font-size:16px;padding:6px 10px;border:3px solid var(--ink);box-shadow:inset -3px -3px 0 rgba(0,0,0,.18),inset 3px 3px 0 rgba(255,255,255,.45);white-space:nowrap}
+.bk.who{background:#8fd3ff}.bk.hp{background:#ffd23f}.bk.vb{background:#7cff4f}.bk.end,.bk .end{background:#ff8fd8}.bk.rest{background:#fff}
+.bk .end{font-style:normal;padding:0 3px;margin-left:1px;border:2px solid var(--ink)}
+.legend .bk{font-size:13px;padding:3px 8px}
+.when{margin:4px 0 12px;font-size:16px}
+.recipe{display:flex;gap:5px;flex-wrap:wrap;align-items:center;margin:8px 0}
+.recipe .sign{width:30px;height:30px;display:grid;place-items:center;font-weight:900;font-size:20px;background:var(--ink);color:#fff;flex:none}
+.tip{margin-top:10px;font-size:15px;background:#fff;border-left:5px solid var(--red);padding:6px 10px}
+/* ===== SPACESHIP MYSTERY + lesson kit ===== */
+:root{--sky:#c9d8ff;--sky2:#eef2ff}
+.sm-hero{background:linear-gradient(180deg,#0b1a3a,#1d2f5c 70%,#2a3d6b);overflow:hidden;padding-bottom:30px}
+.sm-hero h1{color:#fff;text-shadow:4px 4px 0 #8e6cff,-2px -2px 0 #000,2px -2px 0 #000,-2px 2px 0 #000}
+.sm-hero p{color:#dfe6ff}
+.sm-stars{position:absolute;inset:0;pointer-events:none}.sm-stars i{position:absolute;width:3px;height:3px;background:#fff;animation:tw 2s infinite}
+@keyframes tw{50%{opacity:.2}}
+.sm-crew{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:14px;position:relative}
+.sm-mem{display:grid;justify-items:center;gap:2px;color:#fff;font-weight:800;font-size:13px;animation:bob 3s ease-in-out infinite}
+.sm-mem:nth-child(2n){animation-delay:-1.2s}
+.sm-cat{width:78px;height:auto;display:block}
+.ob-coin-ic{display:inline-block;width:22px;height:22px;border-radius:50%;background:#ffd23f;border:3px solid #000}
+.lk-tbtn{position:fixed;right:16px;top:70px;z-index:45;font:inherit;font-weight:900;border:3px solid #000;background:#ffd23f;padding:8px 14px;box-shadow:3px 3px 0 #000;cursor:pointer}
+body.teacher .lk-tbtn{background:#7cff4f}
+.lk-ans,.lk-tnote{display:none}
+body.teacher .lk-ans{display:block;margin-top:8px;font-weight:800;color:#0b7a3b;background:#e9ffe0;border-left:5px solid #3ecf4c;padding:6px 10px;font-size:15px}
+body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff4dc;border-left:5px solid #ff9f1c;padding:8px 12px;font-size:15px}
+.lk-overview{background:#fff}
+.lk-overview ul{font-size:17px;line-height:1.7;margin:6px 0 16px}
+.lk-stages{display:flex;flex-wrap:wrap;gap:8px}
+.lk-stages a{display:grid;border:3px solid var(--ink);padding:6px 12px;text-decoration:none;color:var(--ink);background:#f3eefc;font-weight:800;text-transform:capitalize;min-width:96px}
+.lk-stages a b{font-size:20px}.lk-stages a small{font-weight:600;color:#666}
+.lk-n{display:inline-grid;place-items:center;width:42px;height:42px;background:var(--ink);color:#fff;border-radius:50%;font-size:22px;flex:none}
+.lk-mode{font-size:13px;font-weight:800;border:2px dashed var(--ink);padding:2px 10px;border-radius:999px}
+.lk-ins{font-size:17px;background:#eef2ff;border-radius:10px;padding:10px 14px;margin:6px 0 16px}
+.lk-sub{margin:22px 0 10px;font-size:19px}
+.lk-split{display:grid;grid-template-columns:1fr 280px;gap:20px;align-items:start}
+.lk-phrases{background:#fff8d6;border:3px solid var(--ink);padding:12px 14px;font-size:15px}
+.lk-phrases ul{margin:6px 0 0;padding-left:18px;line-height:1.6}
+.lk-rate{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 12px;background:#f4f7ff;border-radius:10px;margin-bottom:8px;font-size:17px}
+.lk-rate__n{display:flex;gap:6px}
+.lk-rate__n button{width:38px;height:38px;border-radius:50%;border:3px solid var(--ink);background:#fff;font:inherit;font-weight:900;cursor:pointer}
+.lk-rate__n button.on{background:#8e6cff;color:#fff}
+.lk-qs{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.lk-qs span{background:#e6fff0;border:2px solid var(--ink);border-radius:999px;padding:6px 14px;font-weight:700}
+.sm-map{background:#0b1a3a;border:4px solid var(--ink);border-radius:20px;padding:10px}
+.sm-svg{width:100%;display:block}
+.sm-room rect{fill:#2f4a8a;stroke:#9fd8ff;stroke-width:.8;cursor:pointer;transition:fill .2s}
+.sm-room:hover rect{fill:#3e64b8}
+.sm-room text{fill:#fff;font-size:3.6px;font-weight:800;pointer-events:none;font-family:inherit}
+.sm-room.flash rect{animation:smflash .6s}
+@keyframes smflash{50%{fill:#7cff4f}}
+.sm-tasks{display:flex;flex-wrap:wrap;gap:8px}
+.sm-tasks .w{text-align:left}
+.sm-logs{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.sm-log{background:#fff;border:3px solid var(--ink);border-radius:16px;padding:12px 14px;box-shadow:4px 4px 0 #c9d8ff}
+.sm-log__head{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.sm-log__head .sm-cat{width:48px}
+.sm-log__head select{margin-left:auto;font:inherit;padding:5px 8px;border:2px solid var(--ink);border-radius:8px}
+.sm-log__head select.ok{background:#c9ffb3}.sm-log__head select.bad{background:#ffd0d0}
+.sm-log p{font-size:16px;line-height:1.55;margin:8px 0 4px}
+.sm-log small{color:#8e6cff;font-weight:800}
+.sm-sums{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.sm-sum{background:#f4f7ff;border:2px solid var(--ink);border-radius:12px;padding:10px 12px;line-height:2}
+.sm-word{font:inherit;font-size:16px;background:none;border:0;padding:1px 2px;cursor:pointer;border-radius:4px}
+.sm-word:hover{background:#ffe08a}
+.sm-word.wrong{background:#ff5a5f;color:#fff;text-decoration:line-through}
+.sm-word.nope{background:#ddd}
+.sm-fix{font-weight:900;color:#0b7a3b;margin-left:6px}
+.sm-tl{position:relative;height:60px;margin:6px 0 12px}
+.sm-tl__long{position:absolute;left:0;right:10%;top:16px;height:26px;background:repeating-linear-gradient(90deg,#8fd3ff 0 14px,#bfe6ff 14px 28px);border:3px solid var(--ink);font-weight:800;font-size:14px;padding:2px 8px}
+.sm-tl__flash{position:absolute;left:55%;top:0;background:#ffd23f;border:3px solid var(--ink);font-weight:900;font-size:13px;padding:2px 8px;transform:rotate(-4deg)}
+.sm-halves{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.sm-col{display:grid;gap:8px;align-content:start}
+.sm-col .w{text-align:left}
+.sm-dlg{background:#fff;border:3px solid var(--ink);border-radius:16px;padding:14px 18px;font-size:18px;line-height:2.2}
+.sm-dlg p{margin:0}
+.sm-dlg input{font:inherit;font-weight:800;border:0;border-bottom:3px solid var(--ink);background:#fffbe6;padding:0 6px;text-align:center}
+.sm-dlg input.ok{background:#c9ffb3}.sm-dlg input.bad{background:#ffd0d0}
+.sm-dlg small{color:#777;font-weight:700;margin-left:2px}
+.sm-case{display:grid;grid-template-columns:1.4fr 1fr;gap:16px}
+.sm-case__col{background:#0b1a3a;border:4px solid var(--ink);border-radius:16px;padding:12px;color:#fff}
+.sm-case__col h3{margin:0 0 8px}
+#suspects{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px}
+.sm-sus{background:#1d2f5c;border:3px solid #9fd8ff;border-radius:12px;padding:6px;cursor:pointer;color:#fff;font:inherit;font-weight:800;font-size:13px;display:grid;justify-items:center}
+.sm-sus .sm-cat{width:60px}
+.sm-sus.done{border-color:#7cff4f}
+#evidence{display:grid;gap:8px}
+.sm-evi{background:#ffd23f;border:3px solid #000;padding:10px;font:inherit;font-weight:900;cursor:pointer;text-align:left}
+.sm-evi.done{background:#7cff4f}
+.sm-q{font-size:21px;font-weight:800;text-align:center;margin:16px 0 10px}
+.sm-q small{display:block;font-size:13px;color:#8e6cff;letter-spacing:1px;text-transform:uppercase}
+.sm-board{margin-top:14px;background:#fff8d6;border:3px dashed var(--ink);padding:10px 14px;font-size:16px}
+.sm-board p{margin:4px 0}
+.sm-accuse{margin-top:14px;text-align:center}
+.sm-acc{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:8px}
+.sm-accuse .ob-win{font-size:34px;color:#8e6cff;text-shadow:3px 3px 0 #000}
+.sm-ab{display:flex;gap:10px;margin-bottom:12px}
+.sm-card{background:#fff;border:3px solid var(--ink);border-radius:16px;padding:12px 16px}
+.sm-card table{width:100%;border-collapse:collapse;font-size:17px}
+.sm-card td{border-bottom:2px dashed #ddd;padding:8px}
+.sm-card td:first-child{font-weight:900;width:80px}
+.sm-card input,.sm-fsw input,.sm-tl__item input,.sm-comp input{font:inherit;width:100%;padding:6px 10px;border:2px solid var(--ink);border-radius:8px}
+.sm-fsw{display:grid;gap:8px}
+.sm-fsw__row{display:grid;grid-template-columns:1fr 160px;gap:10px;align-items:center}
+.sm-tline{display:grid;gap:8px;border-left:6px solid #8e6cff;padding-left:14px}
+.sm-tl__item{display:grid;grid-template-columns:70px 1fr;gap:10px;align-items:center}
+.sm-rec{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:16px}
+.sm-comp{margin:10px 0;font-size:17px;line-height:1.8}
+.sm-comp input{width:70%}
+.sm-mispv{width:72px}.sm-mispv .sm-cat{width:72px}
+#flash .card{height:150px}
+#flash .face.front b{font-size:20px}
+.sm-end{text-align:center;background:linear-gradient(#0b1a3a,#1d2f5c);color:#fff}
+.sm-end h2{justify-content:center}
+section h2{align-items:center}
+@media(max-width:760px){.lk-split,.sm-logs,.sm-sums,.sm-halves,.sm-case{grid-template-columns:1fr}.lk-tbtn{top:auto;bottom:70px}}
+</style>
+</head>
+<body>
+<header class="hero sm-hero">
+  <div class="sm-stars" aria-hidden="true"></div>
+  <h1>Spaceship Mystery</h1>
+  <p>What were you doing when the lights went out? · Past Continuous · Level B1 · 60 min</p>
+  <div class="sm-crew" id="heroCrew"></div>
+</header>
+
+<div class="hud">
+  <span class="lvl" id="lvl">LEVEL 1</span>
+  <div class="bar"><i id="xpbar"></i></div>
+  <b id="xptext">0 XP</b>
+  <span class="dia"><span class="ob-coin-ic"></span><span id="dias">0</span></span>
+</div>
+
+<button class="lk-tbtn" id="teacherBtn" type="button">Teacher version</button>
+
+<div class="wrap">
+  <section class="lk-overview">
+    <h2>In this lesson you will:</h2>
+    <ul>
+      <li>Rate yourself as a detective and talk about your memory.</li>
+      <li>Learn the rooms and tasks on a spaceship.</li>
+      <li>Read four crew logs and find out who was where.</li>
+      <li>Learn the Past Continuous: <b>was / were + -ing</b>, and <b>when / while</b>.</li>
+      <li>Practise in an emergency meeting dialogue.</li>
+      <li>Solve the mystery: who ate the captain's birthday cake?</li>
+      <li>Check alibis in pairs and record your own case report.</li>
+      <li>Revise the key phrases with flashcards.</li>
+    </ul>
+    <div class="lk-stages" id="stages"></div>
+  </section>
+
+  <section id="s1" data-stage="warm-up" data-min="5">
+    <h2><span class="lk-n">1</span>Can you relate? <span class="tag">warm-up</span><span class="lk-mode">pairs</span></h2>
+    <p class="lk-ins">Read the statements. Choose a number from 1 to 5. <b>1 = Not me at all. 5 = That's totally me.</b> Then compare with your partner and explain your choices.</p>
+    <div class="lk-split">
+      <div id="relate"></div>
+      <aside class="lk-phrases"><b>Useful phrases</b><ul><li>I'd give myself a ... because ...</li><li>I'm (not) very good at ...</li><li>I usually notice / forget ...</li><li>Me too! / Really? I'm the opposite.</li></ul></aside>
+    </div>
+    <div class="lk-qs"><span>What were you doing yesterday at 7 pm?</span><span>What were you doing at this time last Saturday?</span><span>Do you remember what you were wearing yesterday?</span></div>
+    <p class="lk-tnote">Нотатка: швидкий старт. Питання внизу вже з Past Continuous: не пояснюйте правило, просто моделюйте відповідь «I was having dinner».</p>
+  </section>
+
+  <section id="s2" data-stage="vocabulary" data-min="8">
+    <h2><span class="lk-n">2</span>On board <span class="tag">vocabulary</span><span class="lk-mode">teacher + student</span></h2>
+    <p class="lk-ins">1. Click a room on the map to hear its name. 2. Match each task to the right room: click a task, then click a room.</p>
+    <div class="lk-split">
+      <div class="sm-map" id="map"></div>
+      <div><div class="sm-tasks" id="tasks"></div><p class="lk-ans" id="mapAns"></p></div>
+    </div>
+    <p class="lk-tnote">Нотатка: після мапи попросіть учня описати один день на кораблі: «First I fix the wires, then I water the plants...»</p>
+  </section>
+
+  <section id="s3" data-stage="reading" data-min="10">
+    <h2><span class="lk-n">3</span>Crew logs <span class="tag">reading</span><span class="lk-mode">individual</span></h2>
+    <p class="lk-ins">It's 21:15 on the spaceship <i>Murly One</i>. Suddenly, the lights go out. When they come back on, the captain's birthday cake is gone! Read the four logs quickly. <b>Match each crew member with the room where they were.</b></p>
+    <div class="sm-logs" id="logs"></div>
+    <h3 class="lk-sub">2. Read again. Each summary has <b>one wrong detail</b>. Click it.</h3>
+    <div class="sm-sums" id="sums"></div>
+    <p class="lk-tnote">Нотатка: перше читання на 2 хвилини (тільки кімнати), друге уважне. Зверніть увагу на виділені форми was / were + -ing.</p>
+  </section>
+
+  <section id="s4" data-stage="grammar" data-min="8">
+    <h2><span class="lk-n">4</span>Past Continuous <span class="tag">grammar</span><span class="lk-mode">teacher + student</span></h2>
+    <p class="lk-ins">Look at the sentences from the logs. Then complete the rules.</p>
+    <div class="legend"><span class="bk who">who</span><span class="bk hp">was / were</span><span class="bk vb">verb + ing</span><span class="bk rest">the rest</span></div>
+    <div class="modes">
+      <div class="mode s">
+        <h3>Action in progress</h3>
+        <div class="recipe"><span class="sign">+</span><span class="bk who">I / he / she</span><span class="bk hp">was</span><span class="bk vb">fix<i class="end">ing</i></span><span class="bk rest">the wires.</span></div>
+        <div class="recipe"><span class="sign">+</span><span class="bk who">we / you / they</span><span class="bk hp">were</span><span class="bk vb">talk<i class="end">ing</i></span><span class="bk rest">in the cafeteria.</span></div>
+        <div class="recipe"><span class="sign">&minus;</span><span class="bk who">she</span><span class="bk hp">wasn't</span><span class="bk vb">sleep<i class="end">ing</i></span><span class="bk rest">.</span></div>
+        <div class="recipe"><span class="sign">?</span><span class="bk hp">What were</span><span class="bk who">you</span><span class="bk vb">do<i class="end">ing</i></span><span class="bk rest">at 21:15?</span></div>
+      </div>
+      <div class="mode c">
+        <h3>Interrupted action</h3>
+        <div class="sm-tl"><div class="sm-tl__long">I was fixing the wires</div><div class="sm-tl__flash">the lights went out</div></div>
+        <div class="recipe"><span class="bk rest">I</span><span class="bk hp">was</span><span class="bk vb">fixing</span><span class="bk rest">the wires</span><span class="bk who">when</span><span class="bk rest">the lights</span><span class="bk end">went</span><span class="bk rest">out.</span></div>
+        <div class="recipe"><span class="bk who">While</span><span class="bk rest">we</span><span class="bk hp">were</span><span class="bk vb">eating</span><span class="bk rest">, the alarm</span><span class="bk end">rang</span><span class="bk rest">.</span></div>
+      </div>
+    </div>
+    <div class="sm-rules" id="rules"></div>
+    <h3 class="lk-sub">Match the halves.</h3>
+    <div class="sm-halves" id="halves"></div>
+  </section>
+
+  <section id="s5" data-stage="practice" data-min="6">
+    <h2><span class="lk-n">5</span>Emergency meeting <span class="tag">practice</span><span class="lk-mode">read in roles</span></h2>
+    <p class="lk-ins">The crew are talking about the missing cake. Complete the dialogue with the Past Continuous or Past Simple of the verbs in brackets. Press Enter to check. Then read it in roles.</p>
+    <div class="sm-dlg" id="dialogue"></div>
+    <p><button class="btn alt" id="dlgShow" type="button">Show answers</button></p>
+  </section>
+
+  <section id="s6" data-stage="game" data-min="10">
+    <h2><span class="lk-n">6</span>WHO ATE THE CAKE? <span class="tag">main game</span><span class="lk-mode">teacher + student</span></h2>
+    <p class="lk-ins">Interview the suspects and open the evidence. Each right answer unlocks a clue. When you know who is lying, accuse them!</p>
+    <div class="sm-case">
+      <div class="sm-case__col"><h3>Suspects</h3><div id="suspects"></div></div>
+      <div class="sm-case__col"><h3>Evidence</h3><div id="evidence"></div></div>
+    </div>
+    <div class="sm-q" id="caseQ">Click a suspect or a piece of evidence.</div>
+    <div class="ob-opts" id="caseOpts"></div>
+    <div class="sm-board" id="board"><b>Notebook:</b> <span class="t-muted">Your clues will appear here.</span></div>
+    <div class="sm-accuse" id="accuse"></div>
+  </section>
+
+  <section id="s7" data-stage="speaking" data-min="8">
+    <h2><span class="lk-n">7</span>Alibi check <span class="tag">speaking</span><span class="lk-mode">pairs A / B</span></h2>
+    <p class="lk-ins">Student A and Student B were both on the ship yesterday. Look only at your card. Ask your partner <b>"What were you doing at ...?"</b> and write their answers. Find the one time when nobody can confirm the other person's alibi.</p>
+    <div class="sm-ab"><button class="btn" data-ab="A" type="button">Student A card</button><button class="btn alt" data-ab="B" type="button">Student B card</button></div>
+    <div class="sm-card" id="abCard"></div>
+    <h3 class="lk-sub">Find someone who... <span class="t-muted">(optional, for groups)</span></h3>
+    <div class="sm-fsw" id="fsw"></div>
+  </section>
+
+  <section id="s8" data-stage="writing" data-min="5">
+    <h2><span class="lk-n">8</span>Case report <span class="tag">production</span><span class="lk-mode">individual</span></h2>
+    <p class="lk-ins">You are the ship's detective. Complete the timeline of the evening, then record a 30-second voice report. Use at least 4 sentences with <b>was / were + -ing</b> and one with <b>when</b> or <b>while</b>.</p>
+    <div class="sm-tline" id="tline"></div>
+    <div class="sm-rec"><button class="btn" id="recBtn" type="button">Record</button><span id="recState" class="t-muted">Press Record and speak.</span><audio id="recAudio" controls hidden></audio></div>
+  </section>
+
+  <section id="s9" data-stage="extra" data-min="0">
+    <h2><span class="lk-n">9</span>Extra tasks <span class="tag">homework</span></h2>
+    <h3 class="lk-sub">A. Choose when or while.</h3>
+    <div id="ww"></div>
+    <h3 class="lk-sub">B. Complete each answer using the word in brackets. More than one answer is possible.</h3>
+    <div id="comp"></div>
+  </section>
+
+  <section id="missions" data-stage="game" data-min="0">
+    <h2><span class="lk-n">10</span>Missions for the game <span class="tag">play + speak</span></h2>
+    <p class="lk-ins">Play a round with friends or your teacher. After each meeting, explain in English what you were doing.</p>
+    <div class="missions" id="misList"></div>
+  </section>
+
+  <section id="watch" data-stage="video" data-min="0">
+    <h2><span class="lk-n">11</span>Watch &amp; talk <span class="tag">videos</span></h2>
+    <p class="lk-ins">Official trailers from the game's YouTube channel. Pause and describe what was happening.</p>
+    <p class="lk-tnote">Перегляньте відео самі перед уроком і оберіть те, що підходить за віком учня.</p>
+    <div class="vids" id="vidList"></div>
+  </section>
+
+  <section id="revise" data-stage="revision" data-min="0">
+    <h2><span class="lk-n">12</span>Revision cards <span class="tag">revision</span></h2>
+    <p class="lk-ins">Click a card to flip it. Say the phrase in a sentence about last night.</p>
+    <div class="grid" id="flash"></div>
+  </section>
+
+  <section class="sm-end"><h2>Case closed. Thank you, detective!</h2><div class="sm-crew" id="endCrew"></div></section>
+</div>
+
+<div class="toast" id="toast"></div>
+<div class="lvlup" id="lvlup"><b>LEVEL 2!</b><span>Keep going!</span></div>
+<script>
+// ---------- піксельні текстури (свої, процедурні) ----------
+let seed = 7;
+const rnd = () => { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; };
+const pick = (a) => a[Math.floor(rnd() * a.length)];
+function tex(fn) { const c = document.createElement('canvas'); c.width = c.height = 16; const x = c.getContext('2d'); fn(x); return c; }
+const px = (x, i, j, col) => { x.fillStyle = col; x.fillRect(i, j, 1, 1); };
+const noise = (cols) => tex((x) => { for (let i = 0; i < 16; i++) for (let j = 0; j < 16; j++) px(x, i, j, pick(cols)); });
+const T = {};
+T.grassTop = noise(['#5cbf3a', '#6fd14a', '#4fae30', '#66c843', '#5cbf3a']);
+T.dirt = noise(['#8a5a35', '#9c6a42', '#7a4d2c', '#93603a']);
+T.grassSide = tex((x) => { x.drawImage(T.dirt, 0, 0); for (let i = 0; i < 16; i++) { const h = 3 + Math.floor(rnd() * 3); for (let j = 0; j < h; j++) px(x, i, j, pick(['#5cbf3a', '#6fd14a', '#4fae30'])); } });
+T.stone = noise(['#8d8d8d', '#7f7f7f', '#9a9a9a', '#868686', '#8d8d8d']);
+T.cobble = tex((x) => { x.drawImage(noise(['#8a8a8a', '#9b9b9b', '#7d7d7d']), 0, 0); x.fillStyle = '#4f4f4f'; [[0, 4, 16, 1], [0, 10, 16, 1], [5, 0, 1, 4], [11, 4, 1, 6], [3, 10, 1, 6], [9, 11, 1, 5], [14, 0, 1, 4]].forEach((r) => x.fillRect(...r)); });
+T.sand = noise(['#e9d898', '#efe1a8', '#dccb88', '#e6d494']);
+T.logSide = tex((x) => { for (let i = 0; i < 16; i++) { const c = pick(['#6b4a2b', '#5c3e22', '#77532f']); for (let j = 0; j < 16; j++) px(x, i, j, rnd() < .2 ? '#4d3319' : c); } });
+T.logTop = tex((x) => { for (let i = 0; i < 16; i++) for (let j = 0; j < 16; j++) { const d = Math.max(Math.abs(i - 7.5), Math.abs(j - 7.5)); px(x, i, j, d > 6.5 ? '#5c3e22' : (Math.floor(d) % 2 ? '#c49a5b' : '#b5894d')); } });
+T.planks = tex((x) => { for (let j = 0; j < 16; j++) for (let i = 0; i < 16; i++) px(x, i, j, j % 4 === 3 ? '#7a5530' : pick(['#b5884f', '#a97c45', '#bd9259'])); x.fillStyle = '#7a5530'; [[5, 0], [12, 4], [3, 8], [10, 12]].forEach(([a, b]) => x.fillRect(a, b, 1, 3)); });
+T.glass = tex((x) => { x.fillStyle = '#d9f4ff'; x.fillRect(0, 0, 16, 16); x.fillStyle = '#ffffff'; [[3, 3], [4, 4], [5, 5], [10, 8], [11, 9]].forEach(([a, b]) => x.fillRect(a, b, 1, 1)); x.strokeStyle = '#9fd6ec'; x.lineWidth = 1; x.strokeRect(.5, .5, 15, 15); });
+T.brick = tex((x) => { x.fillStyle = '#c9c1b5'; x.fillRect(0, 0, 16, 16); for (let r = 0; r < 4; r++) for (let k = -1; k < 2; k++) { const ox = (r % 2) * 4 + k * 8; for (let i = 0; i < 7; i++) for (let j = 0; j < 3; j++) { const xi = ox + i; if (xi >= 0 && xi < 16) px(x, xi, r * 4 + j, pick(['#a8483a', '#b5523f', '#9b4133'])); } } });
+T.water = noise(['#3f76e4', '#4a82ee', '#3a6ad6', '#4f8af2']);
+T.furnaceFront = tex((x) => { x.drawImage(T.cobble, 0, 0); x.fillStyle = '#2a2a2a'; x.fillRect(4, 8, 8, 6); x.fillStyle = '#ff9a2e'; x.fillRect(5, 11, 6, 3); x.fillStyle = '#ffd23f'; x.fillRect(6, 12, 4, 2); x.fillStyle = '#555'; x.fillRect(4, 3, 8, 2); });
+T.tableTop = tex((x) => { x.drawImage(T.planks, 0, 0); x.fillStyle = '#5a3c1e'; x.fillRect(0, 0, 16, 1); x.fillRect(0, 15, 16, 1); x.fillRect(0, 0, 1, 16); x.fillRect(15, 0, 1, 16); x.fillRect(5, 1, 1, 14); x.fillRect(10, 1, 1, 14); x.fillRect(1, 5, 14, 1); x.fillRect(1, 10, 14, 1); });
+T.tableSide = tex((x) => { x.drawImage(T.planks, 0, 0); x.fillStyle = '#8d8d8d'; x.fillRect(3, 4, 3, 5); x.fillStyle = '#6b4a2b'; x.fillRect(4, 8, 1, 6); x.fillStyle = '#b8b8b8'; x.fillRect(9, 5, 4, 2); x.fillStyle = '#6b4a2b'; x.fillRect(10, 7, 1, 6); });
+T.chest = tex((x) => { x.drawImage(T.planks, 0, 0); x.fillStyle = '#5a3c1e'; x.fillRect(0, 5, 16, 1); x.strokeStyle = '#5a3c1e'; x.strokeRect(.5, .5, 15, 15); x.fillStyle = '#d9d9d9'; x.fillRect(7, 4, 2, 4); x.fillStyle = '#555'; x.fillRect(7, 6, 2, 1); });
+T.leaves = noise(['#2f8a22', '#3a9e2a', '#26751b', '#2f8a22', '#1f5f15']);
+T.melonTop = noise(['#9fbf2e', '#86a826', '#a9c93a']);
+T.melonSide = tex((x) => { for (let i = 0; i < 16; i++) for (let j = 0; j < 16; j++) px(x, i, j, Math.floor(i / 2) % 2 ? pick(['#6e9e1a', '#5f8c15']) : pick(['#a9c93a', '#9fbf2e'])); });
+T.bookshelf = tex((x) => { x.drawImage(T.planks, 0, 0); const cols = ['#c0392b', '#2e86de', '#27ae60', '#f1c40f', '#8e44ad', '#e67e22']; [[1, 2], [1, 9]].forEach(([, y]) => { for (let i = 1; i < 15; i += 2) { x.fillStyle = pick(cols); x.fillRect(i, y, 2, 5); } }); });
+T.diamondOre = tex((x) => { x.drawImage(T.stone, 0, 0); [[3, 3], [10, 4], [5, 10], [11, 11]].forEach(([a, b]) => { x.fillStyle = '#33e0d6'; x.fillRect(a, b, 2, 2); x.fillStyle = '#c9fffb'; x.fillRect(a, b, 1, 1); }); });
+
+T.sandstone = tex((x) => { for (let j = 0; j < 16; j++) for (let i = 0; i < 16; i++) px(x, i, j, j % 5 === 4 ? '#c9b178' : pick(['#e6d3a0', '#dcc891', '#ead8a8'])); });
+T.gravel = noise(['#8f8580', '#7a706b', '#a49a94', '#6a615c', '#9c938d']);
+T.obsidian = tex((x) => { x.drawImage(noise(['#1b1029', '#140a20', '#24163a', '#1b1029']), 0, 0); [[3, 4], [9, 2], [12, 9], [5, 12]].forEach(([a, b]) => { x.fillStyle = '#5b3a8c'; x.fillRect(a, b, 2, 1); }); });
+T.lava = tex((x) => { for (let i = 0; i < 16; i++) for (let j = 0; j < 16; j++) px(x, i, j, pick(['#ff6a00', '#ff8c1a', '#ffb02e', '#e85100', '#ffd23f'])); });
+const oreTex = (c1, c2) => tex((x) => { x.drawImage(T.stone, 0, 0); [[2, 3], [9, 2], [4, 9], [11, 10], [7, 6]].forEach(([a, b]) => { x.fillStyle = c1; x.fillRect(a, b, 2, 2); x.fillStyle = c2; x.fillRect(a, b, 1, 1); }); });
+T.coalOre = oreTex('#1c1c1c', '#3a3a3a'); T.ironOre = oreTex('#d8a07a', '#f1c9a8'); T.goldOre = oreTex('#ffd23f', '#fff3a0'); T.emeraldOre = oreTex('#2ecc71', '#b6ffd2');
+T.wool = noise(['#f4f4f4', '#ebebeb', '#ffffff', '#e2e2e2']);
+T.hayTop = tex((x) => { for (let i = 0; i < 16; i++) for (let j = 0; j < 16; j++) px(x, i, j, pick(['#e3c04a', '#d6b13c', '#c9a330'])); x.fillStyle = '#8a6a1f'; x.fillRect(7, 0, 2, 16); });
+T.haySide = tex((x) => { for (let i = 0; i < 16; i++) for (let j = 0; j < 16; j++) px(x, i, j, pick(['#e3c04a', '#d6b13c', '#c9a330'])); x.fillStyle = '#b5362b'; x.fillRect(0, 3, 16, 2); x.fillRect(0, 11, 16, 2); });
+T.roofTiles = tex((x) => { for (let j = 0; j < 16; j++) for (let i = 0; i < 16; i++) px(x, i, j, (j % 4 === 3) ? '#3b2a2a' : pick(['#a8483a', '#9b4133', '#b5523f'])); });
+T.barrelTop = tex((x) => { x.drawImage(T.planks, 0, 0); x.strokeStyle = '#4a4a4a'; x.strokeRect(1.5, 1.5, 13, 13); x.fillStyle = '#3a2618'; x.fillRect(5, 5, 6, 6); });
+T.barrelSide = tex((x) => { for (let i = 0; i < 16; i++) for (let j = 0; j < 16; j++) px(x, i, j, i % 4 === 3 ? '#6b4a2b' : pick(['#8d5a2b', '#9a6532'])); x.fillStyle = '#4a4a4a'; x.fillRect(0, 2, 16, 1); x.fillRect(0, 13, 16, 1); });
+
+// ізометричний куб
+function cube(top, left, right) {
+  const c = document.createElement('canvas'); c.width = c.height = 64; const x = c.getContext('2d'); x.imageSmoothingEnabled = false; const s = 2;
+  const face = (t, m, shade) => { x.setTransform(...m); x.drawImage(t, 0, 0); if (shade) { x.fillStyle = `rgba(0,0,0,${shade})`; x.fillRect(0, 0, 16, 16); } };
+  face(top, [s, s / 2, -s, s / 2, 32, 0], 0);
+  face(left, [s, s / 2, 0, s, 0, 16], .18);
+  face(right || left, [s, -s / 2, 0, s, 32, 32], .34);
+  x.setTransform(1, 0, 0, 1, 0, 0); return c;
+}
+// предмети: піксельні мапи 12×12
+// предмети: наші піксельні малюнки 16×16, контур додається автоматично
+const PAL = {
+  r: '#ff4040', d: '#b71c1c', h: '#ffffff', b: '#8d5a2b', B: '#5a3716', g: '#4cd137', G: '#218c3a',
+  y: '#ffe08a', o: '#e8892f', O: '#a85614', w: '#fff3d6', s: '#cdd6dd', S: '#7b8a95', c: '#5ec8ef', C: '#2779a7',
+  k: '#3a2618', K: '#1c1c1c', f: '#fff35c', F: '#ff9b1f', D: '#11b5ac', H: '#ffd23f', p: '#e0aa5c', P: '#a8722e', W: '#cfefff', m: '#ffffff', q: '#e8d3a8', R: '#c0392b', n: '#d64545', N: '#8e2424', e: '#f7dccf', u: '#a0592c', U: '#5e3015', l: '#f7a8b8', L: '#d06a83', a: '#ff8a5b', A: '#c8552c', v: '#9b2d63', V: '#5e1840', z: '#d9b679', Z: '#8a6a3a', j: '#2ecc71', J: '#167a43', t: '#8a5530', T: '#4e2c12', x: '#9a9a9a', X: '#555555', i: '#f39c12', I: '#b9770e',
+};
+const MAP = {
+
+  ladder: ['...bB.....bB....', '...bbbbbbbbB....', '...bB.....bB....', '...bB.....bB....', '...bbbbbbbbB....', '...bB.....bB....', '...bB.....bB....', '...bbbbbbbbB....', '...bB.....bB....', '...bB.....bB....', '...bbbbbbbbB....', '...bB.....bB....'],
+  fence: ['', '', '..bB...bB...bB..', '..bB...bB...bB..', '..bbbbbbbbbbbB..', '..bB...bB...bB..', '..bB...bB...bB..', '..bbbbbbbbbbbB..', '..bB...bB...bB..', '..bB...bB...bB..'],
+  gate: ['', '.bB..........bB.', '.bBbbbbbbbbbbbB.', '.bB.bB....bB.bB.', '.bB..bB..bB..bB.', '.bB...bBbB...bB.', '.bB...bBbB...bB.', '.bB..bB..bB..bB.', '.bBbbbbbbbbbbbB.', '.bB..........bB.'],
+  stairs: ['', '..........bbbb..', '..........bbbB..', '..........bbbB..', '......bbbbbbbB..', '......bbbbbbbB..', '......bbbbbbbB..', '..bbbbbbbbbbbB..', '..bbbbbbbbbbbB..', '..bbbbbbbbbbbB..', '..BBBBBBBBBBBB..'],
+  scaffolding: ['.yYYYYYYYYYYYYy.', '.y............y.', '.y.y........y.y.', '.y..y......y..y.', '.y...y....y...y.', '.y....y..y....y.', '.y.....yy.....y.', '.y....y..y....y.', '.y...y....y...y.', '.yYYYYYYYYYYYYy.', '.y............y.', '.y............y.'],
+  lantern: ['.......XX.......', '......X..X......', '.......XX.......', '.....XXXXXX.....', '....XffffffX....', '....XfFFFFfX....', '....XfFRFFfX....', '....XfFFFFfX....', '....XffffffX....', '.....XXXXXX.....'],
+  campfire: ['', '.......f........', '......fFf.......', '.....fFRFf......', '....fFRRRFf.....', '.....FRRRF......', '..uuUuuuUuuuU...', '...bBbBbBbBb....', '..uuUuuuUuuuU...', '...xxXxxXxxX....'],
+  cave: ['', '...xxxxxxxxxx...', '..xxxXxxxxXxxx..', '.xxxKKKKKKKxxxx.', '.xxKKKKKKKKKKxx.', '.xKKKKKKKKKKKKx.', '.xKKKKKKKKKKKKx.', '.xKKKKKKKKKKKKx.', '.xKKKKKKKKKKKKx.', 'gggggggggggggggg'],
+  rails: ['', '..X..........X..', '..X..........X..', '.bbbbbbbbbbbbbb.', '..X..........X..', '..X..........X..', '.bbbbbbbbbbbbbb.', '..X..........X..', '..X..........X..', '.bbbbbbbbbbbbbb.', '..X..........X..'],
+  nugget: ['', '', '.....HHH........', '....HfHHH...HH..', '....HHHHF..HfHF.', '.....FFF...HHHF.', '.......HHH..FF..', '......HfHHF.....', '......HHHFF.....', '.......FFF......'],
+  emerald: ['', '.......jj.......', '......jhjJ......', '.....jhjjjJ.....', '....jhjjjjjJ....', '....jjjjjjjJ....', '....jjjjjjjJ....', '.....jjjjjJ.....', '......jjjJ......', '.......jJ.......'],
+  stalactites: ['', 'xxxxxxxxxxxxxxxx', '.xXx..xXx...xXx.', '.xXx..xXx...xX..', '..x...xX....xX..', '..x....X....x...', '.......x....x...', '.......x........'],
+  mushroom: ['', '.....rrrrrr.....', '...rrhrrrrhrr...', '..rrrrrrhrrrrr..', '..rhrrrrrrrrhr..', '...dddddddddd...', '......wwww......', '......wwww......', '......wwqw......', '.....wwwwww.....'],
+  sheep: ['', '', '...wwwwwwwww....', '..wwmwwwwmwwwqq.', '..wwwwwwwwwwqKq.', '..wwwwmwwwwwqqq.', '..wwwwwwwwwwqq..', '...wwwwwwwww....', '...qq.qq.qq.qq..', '...qq.qq.qq.qq..'],
+  cow: ['', '..............KK', '..............hK', '...hhhhhhhhhhhhh', '..hKKhhhhKhhhhKh', '..KKKhhhKKKhhhhl', '..hhhhhhhhhhhhll', '...hhKKhhhhhhh..', '...hh.hh..hh.hh.', '...KK.KK..KK.KK.'],
+  pig: ['', '', '...lllllllllll..', '..llllllllllKll.', '..lllllllllllLL.', '..llllllllllLKL.', '..llllllllllll..', '...llllllllll...', '...LL.LL..LL.LL.'],
+  horse: ['...........uu...', '..........uuuu..', '..........uuKuu.', '..........uuuuu.', '...uuuuuuuuuu...', '..UuuuuuuuuuU...', '..UuuuuuuuuuU...', '...uuuuuuuuu....', '...uU.uU.uU.uU..', '...uU.uU.uU.uU..', '...KK.KK.KK.KK..'],
+  llama: ['...........qq...', '..........qqqq..', '..........qqKq..', '..........qqqq..', '..........qqq...', '..........qqq...', '...qqqqqqqqqq...', '..qqrrrrrrqqq...', '..qqqqqqqqqq....', '...qq.qq.qq.qq..', '...qq.qq.qq.qq..'],
+  bee: ['', '.....WW..WW.....', '.....WWWWWW.....', '...yKKyyKKyKK...', '..yyKKyyKKyKKy..', '..yyKKyyKKyyKy..', '...yKKyyKKyKK...'],
+  coop: ['.......rr.......', '......rrrr......', '.....rrrrrr.....', '....rrrrrrrr....', '...rrrrrrrrrr...', '....bbbbbbbb....', '....bbKKKKbb....', '....bbKKKKbb....', '....bbKKKKbb....', '....bbbbbbbb....', '....B......B....'],
+  saddle: ['', '', '..tt........tt..', '..tttt....tttt..', '...tttttttttt...', '....tTTTTTTt....', '.....tttttt.....', '......s..s......', '......s..s......', '.....ss..ss.....'],
+  lead: ['', '.....zzzzzz.....', '...zzZ....Zzz...', '..zZ........Zz..', '..z..zzzzzz..z..', '..z.zZ....Zz.z..', '..z.z......z.z..', '..z.zZ....Zz.z..', '..zZ.zzzzzz.Zz..', '...zzZ....Zzz...', '.....zzzzzz.....'],
+  shears: ['', '...ss.....ss....', '...sSs...sSs....', '....sSs.sSs.....', '.....sSsSs......', '......sSs.......', '.....rr.rr......', '....r..r..r.....', '....r..r..r.....', '.....rr.rr......'],
+  honeycomb: ['', '...HHH..HHH.....', '..HfffHHfffH....', '..HfffHHfffH....', '...HHHffHHHH....', '....HfffHfffH...', '....HfffHfffH...', '.....HHHHHHH....'],
+  beef: ['', '', '....nnnnnn......', '..nnnenNnnnn....', '.nnNnnnnnenNn...', '.nennnNnnnnnnn..', '.nnnnnnnennnNn..', '..NnnnnnnnnNNe..', '...NNNnnnNNNee..', '......NNNNee....'],
+  steak: ['', '', '....uuuuuu......', '..uuueuUuuuu....', '.uuUuuuuueuUu...', '.ueuuuUuuuuuuu..', '.uuuuuuueuuuUu..', '..UuuuuuuuuUUe..', '...UUUuuuUUUee..', '......UUUUee....'],
+  pork: ['', '', '.......eeee.....', '.....llllllee...', '...llLllllllLe..', '..lllllllLllll..', '..llLlllllllll..', '..lllllllllLll..', '...lllllllll....', '.....eeeeee.....'],
+  mutton: ['', '....eeeeee......', '...ennnnnne.....', '..ennNnnnnne....', '..ennnnnNnne....', '..ennnnnnnne....', '...ennnnnneem...', '....eeeeee..mm..', '.............mm.'],
+  rawchicken: ['', '...llll.........', '..lhhlllL.......', '..lhllllll......', '..llllllll......', '...lllllLL......', '....LLLLLm......', '.........mm.....', '..........mm.mm.', '...........mmm..', '..........mm.mm.'],
+  bakedpotato: ['', '', '', '.....pppppp.....', '...pphpppppPp...', '..phpyyyyyypPP..', '..ppyyyyyyyyPP..', '..ppPppppppPPP..', '...PppppppPPP...', '....PPPPPPPP....'],
+  beetroot: ['.......gG.......', '......gGgG......', '.......gG.......', '.....vvvvvv.....', '....vvhvvvvV....', '....vhvvvvvV....', '....vvvvvvvV....', '.....vvvvvV.....', '......vvVV......', '.......vV.......', '........V.......'],
+  stew: ['', '', '', '', '...uuyuuqyuuu...', '..buuuuuuuuuub..', '..bbbbbbbbbbbB..', '...bbbbbbbbbB...', '....BBBBBBBB....'],
+  rabbitstew: ['', '', '', '', '...uoouuqoouu...', '..buuouuuuouub..', '..bbbbbbbbbbbB..', '...bbbbbbbbbB...', '....BBBBBBBB....'],
+  pie: ['', '', '', '......oooo......', '....ooiiiioo....', '...oiiiiiiiio...', '..oiiiiiiiiiio..', '..OoooooooooOO..', '...OOOOOOOOOO...'],
+  melonslice: ['', '', '..G...........G.', '..gG.........Gg.', '..grr.......rrg.', '...grrrKrrKrrg..', '...grrrrrrrrrg..', '....grrrKrrrg...', '.....grrrrrg....', '......ggggg.....'],
+  berries: ['......g.........', '.....gGg.g......', '....g...gGg.....', '...rr...g.......', '..rhrr.rr..rr...', '..rrrr.rhr.rhr..', '...rr..rrr.rrr..', '........r...r...'],
+  honeybottle: ['', '......bb........', '......WW........', '......WW........', '.....WWWW.......', '....WHHHHW......', '...WHfHHHHW.....', '...WHHHHHHW.....', '...WHHHHHHW.....', '....WWWWWW......'],
+  kelp: ['', '..J...J...J.....', '..jJ..jJ..jJ....', '...jJ..jJ..jJ...', '..jJ..jJ..jJ....', '...jJ..jJ..jJ...', '..jJ..jJ..jJ....', '...j...j...j....'],
+  sugarcane: ['....g.....g.....', '....gG....gG....', '....gG....gG....', '....GG....GG....', '....gG....gG.g..', '....gG....gG.gG.', '....GG....GG.gG.', '....gG....gG.GG.', '....gG....gG.gG.'],
+  cocoa: ['.......b........', '......bb........', '.....uuuu.......', '....uiiiiu......', '....uiuiiU......', '....uiiuiU......', '....uiiiiU......', '.....uiiU.......', '......UU........'],
+  rod: ['.............bb.', '............bBs.', '...........bB.s.', '..........bB..s.', '.........bB...s.', '........bB....s.', '.......bB.....s.', '......bB......s.', '.....bB.......r.', '....bB..........'],
+  compass: ['', '....SSSSSS......', '...SwwwwwwS.....', '..SwwwrwwwwS....', '..SwwwrwwwwS....', '..SwwwKwwwwS....', '..SwwwhwwwwS....', '...SwwwwwwS.....', '....SSSSSS......'],
+  map: ['', '..qqqqqqqqqqqq..', '..qgggqqqccccq..', '..qgGggqccCccq..', '..qggqqqqcccqq..', '..qqqqgggqqqqq..', '..qcccqgGgqrqq..', '..qcCcqqggqqqq..', '..qqqqqqqqqqqq..'],
+  spyglass: ['', '............HH..', '...........HsSH.', '..........HsSH..', '.........HHH....', '........ttT.....', '.......ttT......', '......ttT.......', '.....HHH........', '....HsH.........', '.....H..........'],
+  anvil: ['', '', '..XXXXXXXXXXXX..', '..XxxxxxxxxxxX..', '...XXXXXXXXXX...', '.....XxxxxX.....', '.....XxxxxX.....', '....XxxxxxxX....', '...XXXXXXXXXX...'],
+  cauldron: ['', '..XX........XX..', '..XXXXXXXXXXXX..', '..XccccccccccX..', '..XxxxxxxxxxxX..', '..XxxxxxxxxxxX..', '..XxxxxxxxxxxX..', '...XxxxxxxxxX...', '...XX......XX...'],
+  bottle: ['', '......bb........', '......WW........', '......WW........', '.....WWWW.......', '....WhWWWW......', '...WhWWWWWW.....', '...WWWWWWWW.....', '...WWWWWWWW.....', '....WWWWWW......'],
+  egg: ['', '', '.......ww.......', '......wwww......', '.....whwwww.....', '.....hwwwww.....', '....whwwwwww....', '....wwwwwwww....', '....wwwwwwwq....', '....wwwwwwqq....', '....wwwwwwqq....', '.....wwwwqq.....', '......wqqq......'],
+  apple: ['', '.......b..gg....', '.......bgggG....', '....rrrbrrr.....', '...rhrrrrrrd....', '..rhhrrrrrrrd...', '..rhrrrrrrrrd...', '..rrrrrrrrrrd...', '..rrrrrrrrrdd...', '..rrrrrrrrrdd...', '...rrrrrrrdd....', '...drrrrrddd....', '....dd..ddd.....'],
+  bread: ['', '', '', '', '.....oooooo.....', '...oohoyyoooo...', '..ohyoyyoyyooO..', '..oyyyyyyyyyoO..', '..ooyoyyoyyooO..', '..OoooooooooOO..', '...OOOOOOOOOO...'],
+  carrot: ['', '...........gG...', '.........ggGg...', '..........gG....', '.........oOo....', '........ooOo....', '.......oooO.....', '......oOoo......', '.....oooO.......', '....ooOo........', '...oOoo.........', '..ooo...........', '..o.............'],
+  fish: ['', '', '', '.....CCCC.......', '...CCccccCC..C..', '..Cccccccccc.CC.', '.CKcccccccccccc.', '.CcWWWWWWWccccc.', '..CWWWWWWWW.CC..', '...CCWWWWCC..C..', '.....CCCC.......'],
+  milk: ['.....SSSSSS.....', '...SS......SS...', '...SSSSSSSSSS...', '..SmmmmmmmmmmS..', '..SsmmmmmmmmsS..', '..ShsssssssssS..', '...ShsssssssS...', '...ShsssssssS...', '....ShssssSS....', '....SSSSSSSS....'],
+  bucket: ['.....SSSSSS.....', '...SS......SS...', '...SSSSSSSSSS...', '..SKKKKKKKKKKS..', '..SsKKKKKKKKsS..', '..ShsssssssssS..', '...ShsssssssS...', '...ShsssssssS...', '....ShssssSS....', '....SSSSSSSS....'],
+  torch: ['', '.......ff.......', '......fFFf......', '......FRRF......', '......fFFf......', '.......bB.......', '.......bB.......', '.......bB.......', '.......bB.......', '.......bB.......', '.......bB.......', '.......bB.......', '.......bB.......'],
+  pickaxe: ['', '....hcccccC.....', '...hccCCCCccC...', '..hcC..bB..CcC..', '..cC...bB...Cc..', '..C....bB....C..', '.......bB.......', '.......bB.......', '.......bB.......', '.......bB.......', '.......bB.......', '.......bB.......'],
+  sword: ['.......hc.......', '......hccC......', '......hccC......', '......hccC......', '......hccC......', '......hccC......', '......hccC......', '......hccC......', '....HHHHHHHH....', '.......bB.......', '.......bB.......', '.......HH.......'],
+  axe: ['', '....SSSS........', '...SssssS.bB....', '..ShsssssSbB....', '..ShssssssbB....', '..ShsssssSbB....', '...SssssS.bB....', '....SSSS..bB....', '..........bB....', '..........bB....', '..........bB....', '..........bB....'],
+  shovel: ['', '......SsS.......', '.....SsssS......', '.....ShssS......', '.....ShssS......', '......SsS.......', '.......bB.......', '.......bB.......', '.......bB.......', '.......bB.......', '......bbBB......', '......b..B......'],
+  door: ['..BBBBBBBBBBBB..', '..BbbbbBBbbbbB..', '..BWWWbBBWWWbB..', '..BWWWbBBWWWbB..', '..BbbbbBBbbbbB..', '..BBBBBBBBBBBB..', '..BbbbbbbbbbbB..', '..BbBBBBBBBBbB..', '..BbbbbbbbbKbB..', '..BbBBBBBBBBbB..', '..BbbbbbbbbbbB..', '..BBBBBBBBBBBB..'],
+  bed: ['', '', '', '', '', '..mmmmrrrrrrrr..', '..mmhmrrrrrrrr..', '..mmmmrdrrdrrr..', '..dddddddddddd..', '..bB........bB..', '..bB........bB..'],
+  diamond: ['', '....cccccccc....', '...chhccccCCc...', '..chcccccccCCc..', '..ccccccccCCCc..', '...cccccccCCc...', '....ccccccCc....', '.....ccccCc.....', '......cccc......', '.......cc.......'],
+  wheat: ['.....y..y..y....', '....yo.yo.yo....', '.....y..y..y....', '....yo.yo.yo....', '.....yo.y.oy....', '......g.g.g.....', '......g.g.g.....', '.......ggg......', '........g.......', '.......yoy......', '........g.......', '........g.......'],
+  potato: ['', '', '', '.....pppppp.....', '...pphpppppPp...', '..phppPpppppPP..', '..pppppppPppPP..', '..ppPppppppPPP..', '...PppppppPPP...', '....PPPPPPPP....'],
+  chicken: ['', '...oooo.........', '..oyyoooO.......', '..oyoooooO......', '..oooooooO......', '...oooooOO......', '....OOOOOm......', '.........mm.....', '..........mm.mm.', '...........mmm..', '..........mm.mm.'],
+  cookie: ['', '', '.....pppppp.....', '...pppkppppp....', '..pppppppkppp...', '..pkppppppppp...', '..pppppkpppkp...', '..pppppppppp....', '...ppkpppppp....', '.....pppppp.....'],
+  coal: ['', '', '', '......KKKK......', '....KKSKKKKK....', '...KSKKKKKKKK...', '...KKKKKKKKKK...', '....KKKKKKKK....', '.....KKKKKK.....'],
+  iron: ['', '', '', '', '.....hhhhhhh....', '...hhssssssSS...', '..hsssssssssSS..', '..SSSSSSSSSSSS..'],
+  gold: ['', '', '', '', '.....ffffffff...', '...ffHHHHHHFF...', '..fHHHHHHHHHFF..', '..FFFFFFFFFFFF..'],
+};
+MAP.salmon = MAP.fish.map((r) => r.replace(/c/g, 'a').replace(/C/g, 'A').replace(/W/g, 'e'));
+MAP.cod = MAP.fish.map((r) => r.replace(/c/g, 'x').replace(/C/g, 'X').replace(/W/g, 'q'));
+function item(name) {
+  const c = document.createElement('canvas'); c.width = c.height = 16; const x = c.getContext('2d');
+  const g = MAP[name].map((r) => r.padEnd(16, '.'));
+  while (g.length < 16) g.push('................');
+  const on = (i, j) => j >= 0 && j < 16 && i >= 0 && i < 16 && PAL[g[j][i]];
+  for (let j = 0; j < 16; j++) for (let i = 0; i < 16; i++) {
+    if (on(i, j)) px(x, i, j, PAL[g[j][i]]);
+    else if (on(i + 1, j) || on(i - 1, j) || on(i, j + 1) || on(i, j - 1)) px(x, i, j, '#2a1a10');
+  }
+  return c;
+}
+const B = {
+  grass: () => cube(T.grassTop, T.grassSide), dirt: () => cube(T.dirt, T.dirt), stone: () => cube(T.stone, T.stone), cobblestone: () => cube(T.cobble, T.cobble),
+  sand: () => cube(T.sand, T.sand), log: () => cube(T.logTop, T.logSide), planks: () => cube(T.planks, T.planks), glass: () => cube(T.glass, T.glass),
+  brick: () => cube(T.brick, T.brick), water: () => cube(T.water, T.water), furnace: () => cube(T.cobble, T.furnaceFront, T.cobble), table: () => cube(T.tableTop, T.tableSide, T.tableSide),
+  chest: () => cube(T.planks, T.chest, T.chest), leaves: () => cube(T.leaves, T.leaves), melon: () => cube(T.melonTop, T.melonSide), bookshelf: () => cube(T.planks, T.bookshelf), ore: () => cube(T.stone, T.diamondOre),
+  sandstone: () => cube(T.sandstone, T.sandstone), gravel: () => cube(T.gravel, T.gravel), obsidian: () => cube(T.obsidian, T.obsidian), lava: () => cube(T.lava, T.lava),
+  coalore: () => cube(T.coalOre, T.coalOre), ironore: () => cube(T.ironOre, T.ironOre), goldore: () => cube(T.goldOre, T.goldOre), emeraldore: () => cube(T.emeraldOre, T.emeraldOre),
+  wool: () => cube(T.wool, T.wool), hay: () => cube(T.hayTop, T.haySide), roof: () => cube(T.roofTiles, T.roofTiles), barrel: () => cube(T.barrelTop, T.barrelSide),
+};
+const pic = (k) => (B[k] ? B[k]() : item(k));
+
+// ---------- XP ----------
+// звуки (генеруємо самі), частинки, level up
+let AC; const tone = (f, d, type = 'square', v = .07, when = 0) => { try { AC = AC || new (window.AudioContext || window.webkitAudioContext)(); const o = AC.createOscillator(), g = AC.createGain(); o.type = type; o.frequency.value = f; g.gain.value = v; o.connect(g); g.connect(AC.destination); const t = AC.currentTime + when; o.start(t); g.gain.exponentialRampToValueAtTime(.0001, t + d); o.stop(t + d); } catch (e) { } };
+const pop = () => { tone(660, .08); tone(990, .12, 'square', .06, .07); };
+const buzz = () => { tone(140, .25, 'sawtooth', .06); };
+const fanfare = () => [523, 659, 784, 1046].forEach((f, i) => tone(f, .18, 'square', .07, i * .11));
+let lastX = innerWidth / 2, lastY = innerHeight / 2;
+addEventListener('pointerdown', (e) => { lastX = e.clientX; lastY = e.clientY; }, true);
+function burst(n = 14) {
+  const cols = ['#7cff4f', '#ffd23f', '#33e0d6', '#ff5a5f', '#ff8fd8', '#8e6cff'];
+  for (let i = 0; i < n; i++) { const p = document.createElement('i'); p.className = 'pxl'; p.style.left = lastX + 'px'; p.style.top = lastY + 'px'; p.style.background = cols[i % cols.length];
+    const a = Math.random() * Math.PI * 2, r = 50 + Math.random() * 70; p.style.setProperty('--dx', Math.cos(a) * r + 'px'); p.style.setProperty('--dy', Math.sin(a) * r - 30 + 'px'); document.body.appendChild(p); setTimeout(() => p.remove(), 800); }
+}
+const LESSON_ID = 'impostor';
+let xp = 0, dias = 0; const done = new Set();
+function gain(key, n, msg) {
+  if (done.has(key)) return; done.add(key); const before = Math.floor(xp / 100); xp += n; if (n >= 15) dias++;
+  // якщо учень увійшов на Murly, досвід іде і в його загальний рівень
+  try { if (location.hostname.endsWith('murly.com.ua')) fetch('/api/xp', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ items: [{ key: `game:${LESSON_ID}:${key}`, amount: Math.min(60, n) }], source: 'game' }) }).catch(() => {}); } catch (e) { }
+  const lvl = Math.floor(xp / 100) + 1;
+  burst(); if (lvl - 1 > before) { fanfare(); const L = document.getElementById('lvlup'); L.querySelector('b').textContent = 'LEVEL ' + lvl + '!'; L.classList.remove('show'); void L.offsetWidth; L.classList.add('show'); } else pop();
+  document.getElementById('xpbar').style.width = (xp % 100) + '%';
+  document.getElementById('xptext').textContent = xp + ' XP';
+  document.getElementById('lvl').textContent = 'LEVEL ' + lvl;
+  document.getElementById('dias').textContent = dias;
+  toast(msg || ('+' + n + ' XP'));
+}
+let tt; function toast(m) { const t = document.getElementById('toast'); t.textContent = m; t.classList.add('show'); clearTimeout(tt); tt = setTimeout(() => t.classList.remove('show'), 1300); }
+function say(w) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; u.rate = .9; speechSynthesis.speak(u); } catch (e) { } }
+const put = (el, c) => { c.style.width = c.style.width || ''; el.appendChild(c); };
+
+
+// ================= SPACESHIP MYSTERY =================
+const $ = (id) => document.getElementById(id);
+// команда: котики в скафандрах (наш малюнок)
+const CREW = {
+  mittens: ['Captain Mittens', '#ff9f1c'], luna: ['Pilot Luna', '#3b82f6'], biscuit: ['Doctor Biscuit', '#f4f4f4'],
+  pixel: ['Engineer Pixel', '#3ecf4c'], mango: ['Chef Mango', '#ffd23f'], nova: ['Scientist Nova', '#8e6cff'],
+};
+const catSvg = (col, extra = '') => `<svg viewBox="0 0 100 110" class="sm-cat" aria-hidden="true">
+  <path d="M18 108 Q18 70 50 70 Q82 70 82 108 Z" fill="${col}" stroke="#1d1d2b" stroke-width="4"/>
+  <rect x="38" y="80" width="24" height="14" rx="4" fill="#fff" stroke="#1d1d2b" stroke-width="3"/>
+  <path d="M26 30 L22 6 L42 20 Z M74 30 L78 6 L58 20 Z" fill="${col}" stroke="#1d1d2b" stroke-width="4" stroke-linejoin="round"/>
+  <circle cx="50" cy="42" r="32" fill="${col}" stroke="#1d1d2b" stroke-width="4"/>
+  <circle cx="50" cy="44" r="22" fill="#cdeeff" stroke="#1d1d2b" stroke-width="3"/>
+  <circle cx="42" cy="42" r="3.5" fill="#1d1d2b"/><circle cx="58" cy="42" r="3.5" fill="#1d1d2b"/>
+  <path d="M46 50 Q50 54 54 50" fill="none" stroke="#1d1d2b" stroke-width="2.5"/>
+  <path d="M36 36 Q40 32 44 34" fill="none" stroke="#fff" stroke-width="3" opacity=".8"/>${extra}</svg>`;
+const crewHtml = (k) => `<div class="sm-mem">${catSvg(CREW[k][1])}<b>${CREW[k][0]}</b></div>`;
+['luna', 'biscuit', 'pixel', 'mittens', 'mango', 'nova'].forEach((k, i) => { $('heroCrew').insertAdjacentHTML('beforeend', crewHtml(k)); $('endCrew').insertAdjacentHTML('beforeend', crewHtml(k)); });
+(function stars() { const box = document.querySelector('.sm-stars'); for (let i = 0; i < 70; i++) { const st = document.createElement('i'); st.style.left = Math.random() * 100 + '%'; st.style.top = Math.random() * 100 + '%'; st.style.animationDelay = Math.random() * 2 + 's'; box.appendChild(st); } })();
+
+// етапи уроку
+const STAGES = [...document.querySelectorAll('section[data-stage]')].filter((s) => +s.dataset.min > 0);
+$('stages').innerHTML = STAGES.map((s) => `<a href="#${s.id}"><b>${s.querySelector('.lk-n').textContent}</b>${s.dataset.stage}<small>${s.dataset.min} min</small></a>`).join('');
+$('teacherBtn').onclick = (e) => { const on = document.body.classList.toggle('teacher'); e.currentTarget.textContent = on ? 'Student version' : 'Teacher version'; };
+
+// ---------- 1. can you relate ----------
+const REL = ['I notice small details that other people miss.', 'I can usually tell when someone is lying.', 'I remember what I was doing last weekend.', 'I love detective stories and mystery games.', 'I stay calm when something goes wrong.'];
+REL.forEach((s, i) => {
+  const r = document.createElement('div'); r.className = 'lk-rate'; r.innerHTML = `<span>${s}</span><span class="lk-rate__n"></span>`;
+  for (let n = 1; n <= 5; n++) { const b = document.createElement('button'); b.type = 'button'; b.textContent = n; b.onclick = () => { r.querySelectorAll('button').forEach((x) => x.classList.toggle('on', x === b)); gain('rel' + i, 2, '+2 XP'); }; r.querySelector('.lk-rate__n').appendChild(b); }
+  $('relate').appendChild(r);
+});
+
+// ---------- 2. мапа корабля ----------
+const ROOMS = [
+  ['nav', 'Navigation', 10, 10, 26, 22], ['lab', 'Lab', 40, 10, 22, 22], ['med', 'Medbay', 66, 10, 24, 22],
+  ['caf', 'Cafeteria', 30, 38, 40, 24], ['elec', 'Electrical', 4, 38, 22, 24], ['green', 'Greenhouse', 74, 38, 22, 24],
+  ['eng', 'Engine room', 10, 68, 30, 22], ['store', 'Storage', 60, 68, 30, 22],
+];
+const TASKS = [['fix the wires', 'elec'], ['refuel the engine', 'eng'], ['do a health scan', 'med'], ['set the course', 'nav'], ['empty the rubbish', 'store'], ['water the plants', 'green'], ['analyse samples', 'lab'], ['clean the tables', 'caf']];
+$('map').innerHTML = `<svg viewBox="0 0 100 94" class="sm-svg"><rect x="1" y="4" width="98" height="88" rx="18" fill="#1b2a52" stroke="#1d1d2b" stroke-width="1.5"/>
+  <path d="M23 21 H40 M62 21 H66 M50 32 V38 M26 50 H30 M70 50 H74 M40 62 L30 68 M60 62 L70 68" stroke="#4b6bb5" stroke-width="3"/>
+  ${ROOMS.map(([k, n, x, y, w, h]) => `<g class="sm-room" data-r="${k}"><rect x="${x}" y="${y}" width="${w}" height="${h}" rx="3"/><text x="${x + w / 2}" y="${y + h / 2 + 1.5}" text-anchor="middle">${n}</text></g>`).join('')}</svg>`;
+let pickT = null; let matched = 0;
+const tb = $('tasks');
+TASKS.forEach(([t, r], i) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'w'; b.textContent = t; b.onclick = () => { if (b.classList.contains('ok')) return; tb.querySelectorAll('.w').forEach((x) => x.classList.remove('sel')); b.classList.add('sel'); pickT = [b, r, i]; say(t); }; tb.appendChild(b); });
+$('map').querySelectorAll('.sm-room').forEach((g) => g.onclick = () => {
+  const r = g.dataset.r; say(ROOMS.find((x) => x[0] === r)[1]); g.classList.remove('flash'); void g.getBBox(); g.classList.add('flash');
+  if (!pickT) return; const [b, want, i] = pickT; pickT = null; b.classList.remove('sel');
+  if (r === want) { b.classList.add('ok'); b.textContent += ' · ' + ROOMS.find((x) => x[0] === r)[1]; matched++; gain('map' + i, 5); if (matched === TASKS.length) { fanfare(); toast('All tasks in the right rooms!'); } }
+  else { b.classList.add('bad'); buzz(); setTimeout(() => b.classList.remove('bad'), 500); }
+});
+$('mapAns').textContent = 'Answers: ' + TASKS.map(([t, r]) => `${t} → ${ROOMS.find((x) => x[0] === r)[1]}`).join('; ');
+
+// ---------- 3. логи екіпажу ----------
+const LOGS = [
+  ['luna', 'nav', 'I <b>was setting</b> the course for the Moon base. At 21:15 the screens went black. I <b>was sitting</b> alone in the dark, so I switched on my helmet light and checked the map again.', '#stayoncourse'],
+  ['biscuit', 'med', 'Pixel came in for a health scan at 21:10. While I <b>was scanning</b> him, the lights went out. The scanner stopped, so we <b>were waiting</b> for the power to come back. We never left the room.', '#doctorsorders'],
+  ['pixel', 'med', 'I <b>was refuelling</b> the engine until 21:05. Then I went for my scan. When the lights went out, I <b>was lying</b> on the scanner bed and Biscuit <b>was laughing</b> at my funny heart rate.', '#tiredengineer'],
+  ['mango', 'green', 'I <b>was watering</b> the tomato plants for tomorrow\'s pizza. When the power went off, I <b>was carrying</b> a heavy bucket and I spilled water everywhere. The water sensor recorded it.', '#chefsgarden'],
+];
+const ROOMOPTS = [['nav', 'Navigation'], ['med', 'Medbay'], ['green', 'Greenhouse'], ['lab', 'Lab'], ['caf', 'Cafeteria']];
+LOGS.forEach(([k, room, text, tag], i) => {
+  const d = document.createElement('div'); d.className = 'sm-log';
+  d.innerHTML = `<div class="sm-log__head">${catSvg(CREW[k][1])}<b>${CREW[k][0]}</b><select aria-label="Room"><option value="">Where was ${CREW[k][0].split(' ')[1]}?</option>${ROOMOPTS.map(([v, n]) => `<option value="${v}">${n}</option>`).join('')}</select></div><p>${text}</p><small>${tag}</small><span class="lk-ans">${ROOMOPTS.find((x) => x[0] === room)[1]}</span>`;
+  const sel = d.querySelector('select'); sel.onchange = () => { const ok = sel.value === room; sel.className = ok ? 'ok' : 'bad'; if (ok) gain('log' + i, 5); else buzz(); };
+  $('logs').appendChild(d);
+});
+const SUMS = [
+  ['Luna was setting the course for Mars when the screens went black.', 'Mars', 'the Moon base'],
+  ['Biscuit was scanning Pixel when the lights went out, and they left the room.', 'left', 'never left'],
+  ['Pixel was refuelling the engine until 21:15.', '21:15', '21:05'],
+  ['Mango was watering the potato plants when the power went off.', 'potato', 'tomato'],
+];
+SUMS.forEach(([s, wrong, right], i) => {
+  const d = document.createElement('div'); d.className = 'sm-sum';
+  d.innerHTML = s.split(' ').map((w) => `<button type="button" class="sm-word">${w}</button>`).join(' ') + `<span class="lk-ans">Wrong: ${wrong} → ${right}</span><span class="sm-fix"></span>`;
+  d.querySelectorAll('.sm-word').forEach((b) => b.onclick = () => {
+    if (d.classList.contains('done')) return;
+    if (b.textContent.replace(/[.,]/g, '') === wrong) { b.classList.add('wrong'); d.classList.add('done'); d.querySelector('.sm-fix').textContent = `✓ ${right}`; gain('sum' + i, 10); }
+    else { b.classList.add('nope'); buzz(); setTimeout(() => b.classList.remove('nope'), 400); }
+  });
+  $('sums').appendChild(d);
+});
+
+// ---------- 4. правила і половинки ----------
+const RULES = [
+  ['We use the Past Continuous for an action that was', 'in progress', ['finished', 'repeated'], 'at a moment in the past.'],
+  ['It is made with was / were + verb', '-ing', ['-ed', 'infinitive'], '.'],
+  ['For a short action that interrupts a longer one, we use the', 'Past Simple', ['Past Continuous', 'Present Simple'], '.'],
+  ['We usually use', 'while', ['when', 'because'], 'before the longer action: ... I was eating, ...'],
+];
+RULES.forEach(([a, ok, bad, b], i) => {
+  const d = document.createElement('div'); d.className = 'q';
+  d.innerHTML = `<span class="n">${i + 1}</span><span>${a} <span class="slot">?</span> ${b}</span><span></span>`;
+  const box = d.lastElementChild;
+  [ok, ...bad].sort(() => Math.random() - .5).forEach((o) => { const bt = document.createElement('button'); bt.className = 'opt'; bt.textContent = o; bt.onclick = () => { if (o === ok) { bt.classList.add('ok'); d.querySelector('.slot').textContent = o; box.querySelectorAll('button').forEach((x) => x.disabled = true); gain('rule' + i, 5); } else { bt.classList.remove('bad'); void bt.offsetWidth; bt.classList.add('bad'); buzz(); } }; box.appendChild(bt); });
+  $('rules').appendChild(d);
+});
+const HALVES = [
+  ['I was fixing the wires', 'when the lights went out.'], ['While Mango was watering the plants,', 'he spilled the water.'], ['Luna was sitting alone', 'when the screens went black.'],
+  ['When the alarm rang,', 'we were eating dinner.'], ['Pixel was lying on the scanner bed', 'when the power went off.'], ['What were you doing', 'when the cake disappeared?'],
+];
+(function halves() {
+  const left = document.createElement('div'), right = document.createElement('div'); left.className = right.className = 'sm-col';
+  let pick = null; let done = 0;
+  HALVES.forEach(([a], i) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'w'; b.textContent = a; b.dataset.i = i; b.onclick = () => { if (b.classList.contains('ok')) return; left.querySelectorAll('.w').forEach((x) => x.classList.remove('sel')); b.classList.add('sel'); pick = b; }; left.appendChild(b); });
+  HALVES.map(([, b], i) => [b, i]).sort(() => Math.random() - .5).forEach(([t, i]) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'w'; b.textContent = t; b.onclick = () => {
+    if (!pick || b.classList.contains('ok')) return;
+    if (+pick.dataset.i === i) { pick.classList.add('ok'); b.classList.add('ok'); pick.classList.remove('sel'); gain('half' + i, 5); say(pick.textContent + ' ' + t); if (++done === HALVES.length) fanfare(); }
+    else { b.classList.add('bad'); buzz(); setTimeout(() => b.classList.remove('bad'), 400); }
+    pick = null; left.querySelectorAll('.w').forEach((x) => x.classList.remove('sel')); }; right.appendChild(b); });
+  $('halves').append(left, right);
+})();
+
+// ---------- 5. діалог ----------
+const DLG = [
+  ['Captain Mittens', 'Somebody ate my birthday cake! Luna, what [[were you doing|you / do]] at 21:15?'],
+  ['Pilot Luna', 'I [[was setting|set]] the course. I was alone, but the screens [[went|go]] black, so I couldn\'t see anything.'],
+  ['Doctor Biscuit', 'Pixel and I were in Medbay. I [[was scanning|scan]] him when the lights went out.'],
+  ['Engineer Pixel', 'That\'s true. We [[were waiting|wait]] for the power for ten minutes!'],
+  ['Chef Mango', 'I was in the Greenhouse. While I [[was carrying|carry]] a bucket, I [[spilled|spill]] water all over my shoes.'],
+  ['Captain Mittens', 'And you, Nova? [[Were you working|you / work]] in the Lab?'],
+  ['Scientist Nova', 'Yes! I [[was analysing|analyse]] samples. I definitely [[wasn\'t eating|not / eat]] cake...'],
+];
+const norm = (x) => x.toLowerCase().replace(/[’‘]/g, "'").replace(/\s+/g, ' ').trim();
+let gapN = 0;
+DLG.forEach(([who, line]) => {
+  const p = document.createElement('p'); p.innerHTML = `<b>${who}:</b> ` + line.replace(/\[\[([^|]+)\|([^\]]+)\]\]/g, (_, ans, hint) => `<input data-a="${ans}" data-i="${gapN++}" aria-label="${hint}" autocomplete="off" spellcheck="false"><small>(${hint})</small>`);
+  $('dialogue').appendChild(p);
+});
+$('dialogue').querySelectorAll('input').forEach((inp) => { const chk = () => { if (!inp.value.trim()) return; const ok = norm(inp.value) === norm(inp.dataset.a) || norm(inp.value) === norm(inp.dataset.a.replace("n't", ' not')); inp.className = ok ? 'ok' : 'bad'; if (ok) gain('dlg' + inp.dataset.i, 5); else buzz(); };
+  inp.onkeydown = (e) => { if (e.key === 'Enter') chk(); }; inp.onblur = chk; inp.style.width = Math.max(110, inp.dataset.a.length * 11) + 'px'; });
+$('dlgShow').onclick = () => $('dialogue').querySelectorAll('input').forEach((inp) => { if (inp.className !== 'ok') { inp.value = inp.dataset.a; inp.className = 'ok'; } });
+
+// ---------- 6. гра-детектив ----------
+const SUS = {
+  luna: { q: ['What ___ you doing at 21:15, Luna?', 'were', ['was', 'did']], a: 'I was setting the course in Navigation. I was alone.' },
+  biscuit: { q: ['___ anyone with you, Doctor?', 'Was', ['Were', 'Did']], a: 'Yes, Pixel was lying on the scanner bed. We were waiting for the power.' },
+  pixel: { q: ['Where ___ you when the lights went out?', 'were', ['was', 'are']], a: 'I was in Medbay. Biscuit was scanning me.' },
+  mango: { q: ['What were you ___ in the Greenhouse?', 'doing', ['do', 'did']], a: 'I was watering the plants. I spilled water when the lights went out.' },
+  nova: { q: ['What ___ you analysing, Nova?', 'were', ['was', 'did']], a: 'I was analysing space samples in the Lab. Nobody was with me.' },
+};
+const EVI = [
+  ['cam', 'Lab camera', ['The camera ___ (record) the Lab all evening.', 'was recording', ['recorded', 'were recording']], 'The Lab camera shows an EMPTY Lab from 21:00 to 21:25.'],
+  ['door', 'Door log', ['While the lights ___ (be) off, a badge opened the Cafeteria door.', 'were', ['was', 'are']], 'Cafeteria door opened at 21:14 with badge N.'],
+  ['water', 'Water sensor', ['The sensor showed water on the floor ___ Mango was working.', 'while', ['when', 'because']], 'Greenhouse water sensor: spill at 21:15. Mango\'s alibi is true.'],
+  ['crumbs', 'Purple crumbs', ['Somebody ___ (eat) cake when the lights came back.', 'was eating', ['ate', 'were eating']], 'Cake crumbs on a purple glove in the corridor near the Lab.'],
+];
+let clues = 0; const found = new Set();
+function caseAsk(title, q, onOk) {
+  $('caseQ').innerHTML = `<small>${title}</small>${q[0].replace('___', '<span class="slot">?</span>')}`;
+  const box = $('caseOpts'); box.innerHTML = '';
+  [q[1], ...q[2]].sort(() => Math.random() - .5).forEach((o) => { const b = document.createElement('button'); b.className = 'opt'; b.textContent = o; b.onclick = () => {
+    if (o === q[1]) { b.classList.add('ok'); $('caseQ').querySelector('.slot').textContent = o; box.querySelectorAll('button').forEach((x) => x.disabled = true); onOk(); }
+    else { b.classList.remove('bad'); void b.offsetWidth; b.classList.add('bad'); buzz(); } }; box.appendChild(b); });
+}
+function note(t) { const bd = $('board'); if (!found.size) bd.innerHTML = '<b>Notebook:</b>'; const p = document.createElement('p'); p.textContent = t; bd.appendChild(p); }
+Object.entries(SUS).forEach(([k, s]) => {
+  const b = document.createElement('button'); b.type = 'button'; b.className = 'sm-sus'; b.innerHTML = catSvg(CREW[k][1]) + `<span>${CREW[k][0]}</span>`;
+  b.onclick = () => caseAsk(CREW[k][0], s.q, () => { if (!found.has(k)) { note(`${CREW[k][0]}: "${s.a}"`); found.add(k); clues++; gain('case:' + k, 10, '+10 XP · clue!'); } b.classList.add('done'); say(s.a); checkAccuse(); });
+  $('suspects').appendChild(b);
+});
+EVI.forEach(([k, name, q, txt]) => {
+  const b = document.createElement('button'); b.type = 'button'; b.className = 'sm-evi'; b.textContent = name;
+  b.onclick = () => caseAsk(name, q, () => { if (!found.has(k)) { note(`${name}: ${txt}`); found.add(k); clues++; gain('case:' + k, 10, '+10 XP · evidence!'); } b.classList.add('done'); checkAccuse(); });
+  $('evidence').appendChild(b);
+});
+function checkAccuse() {
+  if (clues < 5 || $('accuse').dataset.on) return; $('accuse').dataset.on = '1';
+  $('accuse').innerHTML = '<b>Ready? Who ate the cake?</b><div class="sm-acc"></div>';
+  Object.keys(SUS).forEach((k) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'btn alt'; b.textContent = CREW[k][0]; b.onclick = () => {
+    if (k === 'nova') { $('accuse').innerHTML = `<div class="ob-win">CASE CLOSED!</div><p>Nova said she <b>was analysing</b> samples in the Lab, but the camera shows an empty Lab. Her badge opened the Cafeteria door at 21:14, and there were crumbs on a purple glove. While everyone <b>was waiting</b> in the dark, Nova <b>was eating</b> the cake!</p><p class="t-muted">Now explain it in your own words with when and while.</p>`; fanfare(); burst(40); gain('case:solved', 50, '+50 XP · CASE CLOSED!'); }
+    else { buzz(); toast(`${CREW[k][0]} has a good alibi. Look at the evidence again!`); b.disabled = true; } }; $('accuse').querySelector('.sm-acc').appendChild(b); });
+}
+
+// ---------- 7. алібі A/B ----------
+const AB = {
+  A: { title: 'Student A', rows: [['8:00', 'I was having breakfast in the Cafeteria.'], ['10:00', 'I was cleaning the Engine room.'], ['13:00', '?'], ['16:00', 'I was playing chess with B in the Lab.'], ['19:00', '?'], ['22:00', 'I was reading in my cabin.']] },
+  B: { title: 'Student B', rows: [['8:00', '?'], ['10:00', 'I was watering the plants.'], ['13:00', 'I was eating lunch with A.'], ['16:00', 'I was playing chess with A in the Lab.'], ['19:00', 'I was sleeping. Nobody saw me!'], ['22:00', '?']] },
+};
+const abShow = (who) => { const c = AB[who]; $('abCard').innerHTML = `<h3>${c.title}</h3><table>${c.rows.map(([t, s]) => `<tr><td>${t}</td><td>${s === '?' ? '<input placeholder="Ask your partner: What were you doing at ' + t + '?">' : s}</td></tr>`).join('')}</table><p class="lk-tnote">Відповідь: о 19:00 у B немає алібі.</p>`; document.querySelectorAll('[data-ab]').forEach((b) => b.className = 'btn' + (b.dataset.ab === who ? '' : ' alt')); };
+document.querySelectorAll('[data-ab]').forEach((b) => b.onclick = () => { abShow(b.dataset.ab); gain('ab' + b.dataset.ab, 5); });
+abShow('A');
+const FSW = ['was sleeping at 11 pm last night', 'was playing a game at 9 pm yesterday', 'was having breakfast at 7:30 this morning', 'was walking home at 5 pm yesterday', 'was watching a video when someone called', 'was doing homework at 8 pm on Sunday'];
+$('fsw').innerHTML = FSW.map((f) => `<div class="sm-fsw__row"><span>Find someone who ${f}.</span><input placeholder="name"></div>`).join('') + '<p class="t-muted">Ask: "Were you sleeping at 11 pm last night?"</p>';
+
+// ---------- 8. звіт і запис ----------
+const TL = ['21:00', '21:10', '21:14', '21:15', '21:25'];
+$('tline').innerHTML = TL.map((t) => `<div class="sm-tl__item"><b>${t}</b><input placeholder="At ${t} ... was / were ...ing"></div>`).join('');
+let rec = null, chunks = [];
+$('recBtn').onclick = async () => {
+  if (rec && rec.state === 'recording') { rec.stop(); return; }
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true }); chunks = []; rec = new MediaRecorder(stream);
+    rec.ondataavailable = (e) => chunks.push(e.data);
+    rec.onstop = () => { stream.getTracks().forEach((t) => t.stop()); const a = $('recAudio'); a.src = URL.createObjectURL(new Blob(chunks)); a.hidden = false; $('recBtn').textContent = 'Record again'; $('recState').textContent = 'Listen to your report. Did you use when or while?'; gain('report', 25, '+25 XP · great report!'); };
+    rec.start(); $('recBtn').textContent = 'Stop'; $('recState').textContent = 'Recording... speak now!';
+  } catch (e) { $('recState').textContent = 'Microphone is not available. Say it to your teacher instead!'; }
+};
+
+// ---------- 9. додаткові ----------
+const WW = [
+  ['I was cooking ___ the alarm rang.', 'when'], ['___ we were talking, the ship shook.', 'While'], ['She fell asleep ___ she was reading.', 'while'],
+  ['___ the lights went out, I was in the Lab.', 'When'], ['They were laughing ___ the captain came in.', 'when'], ['___ Pixel was refuelling, Luna was flying the ship.', 'While'],
+];
+WW.forEach(([s, ok], i) => {
+  const d = document.createElement('div'); d.className = 'q'; const [a, b] = s.split('___');
+  d.innerHTML = `<span class="n">${i + 1}</span><span>${a}<span class="slot">?</span>${b}</span><span></span>`; const box = d.lastElementChild;
+  const opts = ok[0] === ok[0].toUpperCase() ? ['When', 'While'] : ['when', 'while'];
+  opts.forEach((o) => { const bt = document.createElement('button'); bt.className = 'opt'; bt.textContent = o; bt.onclick = () => { if (o === ok) { bt.classList.add('ok'); d.querySelector('.slot').textContent = o; box.querySelectorAll('button').forEach((x) => x.disabled = true); gain('ww' + i, 5); } else { bt.classList.remove('bad'); void bt.offsetWidth; bt.classList.add('bad'); buzz(); } }; box.appendChild(bt); });
+  $('ww').appendChild(d);
+});
+const COMP = [['What were you doing at 8 pm yesterday?', 'homework'], ['What was your family doing when you got home?', 'dinner'], ['Were you sleeping at midnight on Saturday?', 'film'], ['What were you doing when your phone rang last time?', 'bus'], ['What was happening in the street this morning?', 'rain']];
+$('comp').innerHTML = COMP.map(([q, w]) => `<div class="sm-comp"><b>A:</b> ${q}<br><b>B:</b> <input placeholder="Write your answer"> <small>(${w})</small></div>`).join('') + '<p class="lk-ans">Sample answers: I was doing my homework. / They were having dinner. / No, I was watching a film. / I was sitting on the bus. / It was raining.</p>';
+
+// ---------- 10. місії ----------
+const MIS = [
+  ['mittens', 'Meeting reporter', 'In every meeting, say what you were doing.', '"I was fixing the wires in Electrical when the alarm rang."', 20],
+  ['luna', 'Alibi partner', 'Stay with a friend for one round. Confirm their alibi.', '"She was with me. We were doing tasks in Navigation."', 20],
+  ['biscuit', 'Task master', 'Finish all your tasks. Name each task in English.', '"I was emptying the rubbish. Then I was scanning..."', 20],
+  ['pixel', 'Detective', 'Watch other players carefully for one round.', '"While I was walking to the Lab, I saw Blue near the vents."', 30],
+  ['mango', 'Time keeper', 'After the round, make a timeline of what happened.', '"At first we were... Then... When the meeting started, ..."', 30],
+  ['nova', 'Kind crewmate', 'Be fair and friendly in the chat.', '"Good game! I wasn\'t sure, so I skipped." Never share personal information.', 20],
+];
+MIS.forEach(([k, title, task, sayIt, n], i) => {
+  const m = document.createElement('div'); m.className = 'mis';
+  m.insertAdjacentHTML('beforeend', `<div class="sm-mispv">${catSvg(CREW[k][1])}</div>`);
+  const body = document.createElement('div'); body.innerHTML = `<h3>${title}</h3><p>${task}</p><div class="say">${sayIt}</div>`; m.appendChild(body);
+  const row = document.createElement('div'); row.className = 'row'; row.innerHTML = `<span class="xp">+${n} XP</span>`;
+  const btn = document.createElement('button'); btn.className = 'btn'; btn.textContent = 'Done'; btn.onclick = () => { m.classList.add('done'); btn.disabled = true; gain('m' + i, n, `Mission complete! +${n} XP`); };
+  row.appendChild(btn); m.appendChild(row); $('misList').appendChild(m);
+});
+
+// ---------- 11. відео (офіційний канал гри, перевірено) ----------
+const VIDS = [
+  ['RMFjx8k2woY', 'Detective role trailer', 'What was the detective doing? What clues was she looking at?', 'Past Continuous', 0],
+  ['QkQrwf8sfaY', 'On Guard: reveal trailer', 'Pause twice. What were the characters doing at that moment?', 'Past Continuous', 0],
+  ['pqX21F0c_w0', 'Judge role trailer', 'Retell the story: First... While ... was ..., ...', 'when / while', 0],
+  ['V7Pxcujhr94', '3D trailer', 'Which rooms did you see? What were the crewmates doing in them?', 'vocabulary', 0],
+];
+VIDS.forEach(([id, title, task, mode, short], i) => {
+  const d = document.createElement('div'); d.className = 'vid' + (short ? ' short' : '');
+  d.innerHTML = `<div class="frame"><button class="play" type="button"><span>PLAY</span></button></div><div class="info"><span class="mode">${mode}</span><h3>${title}</h3><div class="task">${task}</div><button class="btn alt" type="button">I talked about it</button></div>`;
+  d.querySelector('.play').onclick = (e) => { e.currentTarget.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${title}"></iframe>`; };
+  const b = d.querySelector('.info .btn'); b.onclick = () => { b.disabled = true; b.textContent = 'Great!'; gain('vid' + i, 20, '+20 XP · great talk!'); };
+  $('vidList').appendChild(d);
+});
+
+// ---------- 12. картки ----------
+const FL = [['fix the wires', 'repair the electric cables'], ['set the course', 'choose where the ship flies'], ['an alibi', 'proof that you were somewhere else'], ['a suspect', 'a person who maybe did it'], ['evidence', 'facts that show what happened'], ['to accuse', 'to say someone did something wrong'],
+  ['was / were + -ing', 'action in progress in the past'], ['when + Past Simple', 'the short action that interrupts'], ['while + Past Continuous', 'the long background action'], ['an emergency meeting', 'a fast meeting when something bad happens'], ['to lie / a liar', 'to say things that are not true'], ['the lights went out', 'suddenly there was no power']];
+FL.forEach(([a, b], i) => {
+  const card = document.createElement('div'); card.className = 'card';
+  card.innerHTML = `<div class="in"><div class="face front"><b>${a}</b></div><div class="face back"><span>${b}</span></div></div>`;
+  card.onclick = () => { card.classList.toggle('flip'); say(a.replace(/\/.*|\+.*/g, '')); gain('fl' + i, 2); };
+  $('flash').appendChild(card);
+});
+
+</script>
+</body>
+</html>
