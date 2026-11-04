@@ -39,7 +39,6 @@ export default function Words100Page() {
       <section className="mu-page-hero" style={{ paddingBottom: 16 }} data-stickers="6">
         <div className="mu-container">
           <Kit id="il-cat-read" className="kit-hero" />
-          <span className="mu-section__eyebrow"><Icon id="e-book" />{t({ uk: 'Бонус до PDF', ru: 'Бонус к PDF', en: 'PDF bonus' })}</span>
           <h1>{t({ uk: '100 слів для НМТ', ru: '100 слов для НМТ', en: '100 words for the NMT' })} <em>{t({ uk: 'в іграх.', ru: 'в играх.', en: 'in games.' })}</em></h1>
           <HeroTip>{t({ uk: 'Обери тему і гру. Слова щоразу перемішуються, а підказка показує приклад з файлу.', ru: 'Выбери тему и игру. Слова каждый раз перемешиваются, а подсказка показывает пример из файла.', en: 'Pick a topic and a game. Words are shuffled every time, and the hint shows the example from the PDF.' })}</HeroTip>
         </div>
