@@ -42,7 +42,6 @@ export default function IrregularVerbsPage() {
       <section className="mu-page-hero" style={{ paddingBottom: 24 }} data-stickers="4">
         <div className="mu-container">
           <Kit id="st-cat-cool" className="kit-hero" />
-          <span className="mu-section__eyebrow"><Icon id="e-book" />{t({ uk: 'Таблиця', ru: 'Таблица', en: 'Table' })}</span>
           <h1>{t({ uk: 'Неправильні дієслова', ru: 'Неправильные глаголы', en: 'Irregular verbs' })} <em>{t({ uk: 'за алфавітом.', ru: 'по алфавиту.', en: 'from A to Z.' })}</em></h1>
           <HeroTip>{t({ uk: 'Натисни на будь-яку форму, щоб послухати вимову. Навушники праворуч озвучать усі три форми підряд.', ru: 'Нажми на любую форму, чтобы послушать произношение. Наушники справа озвучат все три формы подряд.', en: 'Tap any form to hear how it sounds. The headphones on the right play all three forms in a row.' })}</HeroTip>
           <Link href="/irregular-verbs/games" className="mu-btn mu-btn--lime mu-btn--lg">
