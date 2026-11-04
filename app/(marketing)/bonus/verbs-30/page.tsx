@@ -12,6 +12,7 @@ import { localizeVerbs } from '@/lib/content/verbs';
 import { verbPlan } from '@/lib/verb-plan';
 import { tr } from '@/lib/i18n-server';
 
+import HeroTip from '@/components/HeroTip';
 // Бонус до PDF «Неправильні дієслова за 30 днів»: ігри по днях плану (сюди веде QR-код)
 export function generateMetadata(): Metadata {
   const t = tr();
@@ -33,7 +34,7 @@ export default function Verbs30Page() {
           <Kit id="st-cat-cool" className="kit-hero" />
           <span className="mu-section__eyebrow"><Icon id="e-book" />{t({ uk: 'Бонус до PDF', ru: 'Бонус к PDF', en: 'PDF bonus' })}</span>
           <h1>{t({ uk: 'Дієслова', ru: 'Глаголы', en: 'Irregular verbs' })} <em>{t({ uk: 'за 30 днів.', ru: 'за 30 дней.', en: 'in 30 days.' })}</em></h1>
-          <p>{t({ uk: 'Обери день з плану і грай саме з його дієсловами. Лаймові дні це повторення. Прогрес зберігається в цьому браузері.', ru: 'Выбери день из плана и играй именно с его глаголами. Лаймовые дни это повторение. Прогресс сохраняется в этом браузере.', en: 'Pick a day from the plan and play with its verbs. Lime days are review days. Progress is saved in this browser.' })}</p>
+          <HeroTip>{t({ uk: 'Обери день з плану і грай саме з його дієсловами. Лаймові дні це повторення. Прогрес зберігається в цьому браузері.', ru: 'Выбери день из плана и играй именно с его глаголами. Лаймовые дни это повторение. Прогресс сохраняется в этом браузере.', en: 'Pick a day from the plan and play with its verbs. Lime days are review days. Progress is saved in this browser.' })}</HeroTip>
         </div>
       </section>
       <section className="mu-section" style={{ paddingTop: 8 }}>
