@@ -7,19 +7,30 @@ import { useT } from './LangProvider';
 
 const POSES = ['wave', 'pencil', 'jump', 'love', 'sleep'] as const;
 type Pose = (typeof POSES)[number] | 'idle';
-const SAY: Record<Pose, string> = { idle: '', wave: 'Hi! I’m Murly!', pencil: 'Let’s learn!', jump: 'Great job!', love: 'I love English!', sleep: 'Zzz… five more minutes' };
+// Фрази англійською: прості, щоб діти розуміли й вчилися
+const SAY: Record<Pose, string[]> = {
+  idle: [''],
+  wave: ['Hi! I’m Murly!', 'Hello, friend!', 'Nice to see you!', 'Hey there!', 'Welcome back!'],
+  pencil: ['Let’s learn!', 'New words today!', 'Ready for homework?', 'Practice makes perfect!', 'I’m writing a story!'],
+  jump: ['Great job!', 'You can do it!', 'Level up!', 'Yay, English!', 'Super star!'],
+  love: ['I love English!', 'You’re awesome!', 'Hugs!', 'Best friends!', 'Purr-fect!'],
+  sleep: ['Zzz… five more minutes', 'So sleepy…', 'Wake me up for a game!', 'Dreaming in English…'],
+};
+const pick = (a: string[]) => a[Math.floor(Math.random() * a.length)];
+const hello = () => { const h = new Date().getHours(); return h < 12 ? 'Good morning!' : h < 18 ? 'Good afternoon!' : 'Good evening!'; };
 
 // Два котики: білий Мурлі і персикова подружка з бантиком
 const SKINS = {
   white: { hi: '#FFFFFF', mid: '#F6F7FD', lo: '#DCE1F5', bodyMid: '#F1F3FC', bodyLo: '#D5DBF2', line: '#AEB8E2', belly: '#E6EAFA', paw: '#FFFFFF', collar: '#AFC3F0' },
   peach: { hi: '#FFF8F2', mid: '#FDEDE2', lo: '#F5D3BE', bodyMid: '#FCE8DA', bodyLo: '#F1CDB6', line: '#E2AE90', belly: '#FFF3EA', paw: '#FFF6EF', collar: '#F4C0D1' },
 };
-export default function MurlyCat({ className = '', skin = 'white' }: { className?: string; skin?: keyof typeof SKINS }) {
+export default function MurlyCat({ className = '', skin = 'white', greet = 0, hi }: { className?: string; skin?: keyof typeof SKINS; greet?: number; hi?: string }) {
   const t = useT();
   const uid = useId().replace(/:/g, '');
   const k = SKINS[skin];
   const box = useRef<HTMLDivElement>(null);
   const [pose, setPose] = useState<Pose>('idle');
+  const [line, setLine] = useState('');
   const [n, setN] = useState(0);
   // плавне стеження: ціль з мишки, поточне значення наближається до неї в кожному кадрі
   useEffect(() => {
@@ -47,11 +58,27 @@ export default function MurlyCat({ className = '', skin = 'white' }: { className
     const id = setTimeout(() => setPose('idle'), pose === 'sleep' ? 4200 : 2800);
     return () => clearTimeout(id);
   }, [pose, n]);
-  const next = () => { setPose(POSES[n % POSES.length]); setN(n + 1); };
+  const show = (p: Pose, text?: string) => { setPose(p); setLine(text ?? pick(SAY[p])); setN((x) => x + 1); };
+  const next = () => show(POSES[n % POSES.length]);
+  // вітається сам, коли заходиш на сайт, і зрідка щось каже (не більше трьох разів)
+  useEffect(() => {
+    if (!greet) return;
+    const ids: ReturnType<typeof setTimeout>[] = [];
+    ids.push(setTimeout(() => show('wave', hi ?? hello()), greet));
+    let left = 3;
+    const chat = () => {
+      ids.push(setTimeout(() => {
+        if (document.visibilityState === 'visible' && left-- > 0) { show((['wave', 'pencil', 'love', 'jump'] as Pose[])[Math.floor(Math.random() * 4)]); chat(); }
+      }, 22000 + Math.random() * 20000));
+    };
+    chat();
+    return () => ids.forEach(clearTimeout);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [greet]);
   const closed = pose === 'love' || pose === 'sleep';
   return (
     <div ref={box} className={`mcat mcat--${pose} ${className}`}>
-      {pose !== 'idle' && <span key={n} className="mcat__say" role="status">{SAY[pose]}</span>}
+      {pose !== 'idle' && line && <span key={n} className="mcat__say" role="status">{line}</span>}
       <button type="button" className="mcat__btn" onClick={next} aria-label={t({ uk: 'Погладити котика Murly', ru: 'Погладить котика Murly', en: 'Pet Murly the cat' })}>
         <svg viewBox="0 0 220 240" aria-hidden="true">
           <defs>
