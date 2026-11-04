@@ -59,7 +59,6 @@ export default function DrillPage({ params }: { params: { slug: string } }) {
       <SiteNav />
       <section className="mu-page-hero" style={{ paddingBottom: 24 }} data-stickers="4">
         <div className="mu-container">
-          <span className="mu-section__eyebrow"><Icon id={d.icon} />{L({ uk: 'Тренажер', ru: 'Тренажёр', en: 'Trainer' })} · {d.level} · 100 {L({ uk: 'завдань', ru: 'заданий', en: 'tasks' })}</span>
           <h1>{d.title}<em>.</em></h1>
           <p>{d.uk}. {d.lead}</p>
           <a href="#practice" className="mu-btn mu-btn--lime mu-btn--lg">{L({ uk: 'Одразу до завдань', ru: 'Сразу к заданиям', en: 'Skip to the tasks' })}<span className="mu-btn__arrow"><Icon id="e-arrow" /></span></a>
