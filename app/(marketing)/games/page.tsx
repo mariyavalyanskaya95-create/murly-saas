@@ -46,7 +46,6 @@ export default function GamesPage() {
       <section className="mu-page-hero" data-stickers="4">
         <div className="mu-container">
           <Kit id="st-boy-cap" className="kit-hero" />
-          <span className="mu-section__eyebrow"><Icon id="d-kid" />{t({ uk: 'Ігри', ru: 'Игры', en: 'Games' })}</span>
           <h1>{t({ uk: 'Грай і', ru: 'Играй и', en: 'Play and' })} <em>{t({ uk: 'говори.', ru: 'говори.', en: 'speak.' })}</em></h1>
         </div>
       </section>
