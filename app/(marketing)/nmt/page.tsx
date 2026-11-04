@@ -21,15 +21,14 @@ const POLAROIDS = [
   { label: 'Writing', icon: 'e-pencil', bg: 'var(--mu-mustard)', ink: 'var(--mu-ink)' },
 ];
 
-const FEATURES: { icon: string; mod: string; title: T; text: T }[] = [
-  { icon: 'd-spark', mod: 'mu-card--lime', title: { uk: 'AI розбирає помилки', ru: 'AI разбирает ошибки', en: 'AI explains mistakes' }, text: { uk: 'Не просто показує правильну відповідь, а пояснює ЧОМУ ти помилився і що повторити.', ru: 'Не просто показывает правильный ответ, а объясняет, ПОЧЕМУ ты ошибся и что повторить.', en: 'It doesn’t just show the right answer. It explains WHY you got it wrong and what to review.' } },
-  { icon: 'd-clock', mod: 'mu-card--mustard', title: { uk: '5 хв на день', ru: '5 минут в день', en: '5 minutes a day' }, text: { uk: "Коротка сесія з ранку. Застосунок пам'ятає, де ти зупинився, і пропонує наступний крок.", ru: 'Короткая сессия с утра. Приложение помнит, где ты остановился, и предлагает следующий шаг.', en: 'A short session in the morning. The app remembers where you stopped and suggests the next step.' } },
-  { icon: 'e-trophy', mod: 'mu-card--sky', title: { uk: 'Mock-test як на НМТ', ru: 'Mock-test как на НМТ', en: 'Mock test just like the NMT' }, text: { uk: 'Повний пробник із таймером і офіційним форматом. Побачиш свій бал ще до іспиту.', ru: 'Полный пробный тест с таймером в официальном формате. Увидишь свой балл ещё до экзамена.', en: 'A full practice test with a timer in the official format. See your score before the real exam.' } },
-  { icon: 'e-board', mod: '', title: { uk: 'Банк завдань', ru: 'Банк заданий', en: 'Task bank' }, text: { uk: 'Усі формати НМТ: reading, use of English, writing. Тренуй саме слабке місце.', ru: 'Все форматы НМТ: reading, use of English, writing. Тренируй именно слабое место.', en: 'Every NMT format: reading, use of English, writing. Train exactly where you are weak.' } },
-  { icon: 'e-flame', mod: 'mu-card--ink', title: { uk: 'Streak і челенджі', ru: 'Streak и челленджи', en: 'Streaks and challenges' }, text: { uk: 'Щодня нові завдання. Streak мотивує, челенджі з друзями додають азарту.', ru: 'Каждый день новые задания. Streak мотивирует, челленджи с друзьями добавляют азарта.', en: 'New tasks every day. Streaks keep you going, challenges with friends add some fun competition.' } },
-  { icon: 'd-team', mod: 'mu-card--lime', title: { uk: 'Для репетиторів', ru: 'Для репетиторов', en: 'For tutors' }, text: { uk: 'Веди учнів, бачи прогрес кожного, одним кліком задавай домашку. Батькам автозвіт раз на тиждень.', ru: 'Веди учеников, смотри прогресс каждого, задавай домашку в один клик. Родителям автоотчёт раз в неделю.', en: 'Manage students, see everyone’s progress, set homework in one click. Parents get an automatic weekly report.' } },
+const FEATURES: { icon: string; mod: string; title: T; chips: T[] }[] = [
+  { icon: 'd-spark', mod: '', title: { uk: 'Розбір кожної помилки', ru: 'Разбор каждой ошибки', en: 'Every mistake explained' }, chips: [{ uk: '«Чому так?»', ru: '«Почему так?»', en: '“Why?”' }, { uk: 'що повторити', ru: 'что повторить', en: 'what to review' }] },
+  { icon: 'd-clock', mod: '', title: { uk: '5 хвилин на день', ru: '5 минут в день', en: '5 minutes a day' }, chips: [{ uk: 'короткі квізи', ru: 'короткие квизы', en: 'short quizzes' }, { uk: 'у своєму темпі', ru: 'в своём темпе', en: 'at your pace' }] },
+  { icon: 'e-trophy', mod: '', title: { uk: 'Пробні НМТ', ru: 'Пробные НМТ', en: 'NMT mock tests' }, chips: [{ uk: '20 варіантів', ru: '20 вариантов', en: '20 tests' }, { uk: 'таймер і бал', ru: 'таймер и балл', en: 'timer and score' }] },
+  { icon: 'e-board', mod: '', title: { uk: 'Банк завдань', ru: 'Банк заданий', en: 'Task bank' }, chips: [{ uk: 'reading' }, { uk: 'use of English' }] },
+  { icon: 'e-flame', mod: 'mu-card--ink', title: { uk: 'XP і рівні', ru: 'XP и уровни', en: 'XP and levels' }, chips: [{ uk: 'бали за завдання', ru: 'очки за задания', en: 'points for tasks' }, { uk: 'видно прогрес', ru: 'виден прогресс', en: 'see your progress' }] },
+  { icon: 'd-team', mod: '', title: { uk: 'Для репетиторів', ru: 'Для репетиторов', en: 'For tutors' }, chips: [{ uk: 'домашка в один клік', ru: 'домашка в один клик', en: 'one-click homework' }, { uk: 'прогрес учнів', ru: 'прогресс учеников', en: 'student progress' }] },
 ];
-
 const STEPS: { n: string; icon: string; title: string; text: T; href?: string }[] = [
   { n: '01', icon: 'e-speak', title: 'Teen Life', text: { uk: 'Розмовна тема № 1. Друзі, школа, соцмережі. Часи та базові конструкції.', ru: 'Разговорная тема № 1. Друзья, школа, соцсети. Времена и базовые конструкции.', en: 'Speaking topic no. 1. Friends, school, social media. Tenses and basic structures.' }, href: '/quiz/teen-life' },
   { n: '02', icon: 'd-camera', title: 'Films & Netflix', text: { uk: 'Reading-блок на знайомих темах. Вчишся розуміти контекст, а не зубрити.', ru: 'Reading-блок на знакомых темах. Учишься понимать контекст, а не зубрить.', en: 'A reading block on familiar topics. You learn to understand context instead of cramming.' }, href: '/quiz/films-netflix' },
@@ -95,7 +94,6 @@ export default function NmtPage() {
               <span className="mu-btn__arrow"><Icon id="e-arrow" /></span>
             </Link>
             <Link href="/nmt/mock" className="mu-btn mu-btn--tomato mu-btn--lg">{t({ uk: 'Пробний НМТ', ru: 'Пробный НМТ', en: 'NMT mock test' })}</Link>
-            <a href="#how" className="mu-btn mu-btn--lg">{t({ uk: 'Як це працює', ru: 'Как это работает', en: 'How it works' })}</a>
           </div>
         </div>
 
@@ -140,14 +138,13 @@ export default function NmtPage() {
           <div className="mu-section__head">
             <span className="mu-section__eyebrow mu-section__eyebrow--lime"><Icon id="d-spark" />Core features</span>
             <h2 className="mu-section__title">{t({ uk: 'Все для 200+ в\u00a0одному', ru: 'Всё для 200+ в\u00a0одном', en: 'Everything for 200+ in\u00a0one' })} <em>{t({ uk: 'місці.', ru: 'месте.', en: 'place.' })}</em></h2>
-            <p className="mu-section__lead">{t({ uk: 'Не ще один підручник. Жива платформа, що підлаштовується під тебе.', ru: 'Не очередной учебник. Живая платформа, которая подстраивается под тебя.', en: 'Not just another textbook. A living platform that adapts to you.' })}</p>
           </div>
           <div className="mu-cards">
             {FEATURES.map((f) => (
               <div key={f.title.uk} className={`mu-card ${f.mod}`}>
                 <div className="mu-card__icon"><Icon id={f.icon} /></div>
                 <h3 className="mu-card__title">{t(f.title)}</h3>
-                <p className="mu-card__text">{t(f.text)}</p>
+                <div className="mu-chips">{f.chips.map((c) => <span key={c.uk}>{t(c)}</span>)}</div>
               </div>
             ))}
           </div>
@@ -162,7 +159,6 @@ export default function NmtPage() {
           <div className="mu-section__head">
             <span className="mu-section__eyebrow"><Icon id="e-cap" />Your road to 200</span>
             <h2 className="mu-section__title">{t({ uk: 'Твій шлях до', ru: 'Твой путь к', en: 'Your road to the' })} <em>{t({ uk: 'НМТ.', ru: 'НМТ.', en: 'NMT.' })}</em></h2>
-            <p className="mu-section__lead">{t({ uk: 'Чотири етапи. Проходь у своєму темпі. Відкривай нові рівні, як у грі.', ru: 'Четыре этапа. Проходи в своём темпе. Открывай новые уровни, как в игре.', en: 'Four stages. Go at your own pace. Unlock new levels, like in a game.' })}</p>
           </div>
           <div className="mu-steps">
             {STEPS.map((s) => {
@@ -190,7 +186,6 @@ export default function NmtPage() {
           <div className="mu-section__head">
             <span className="mu-section__eyebrow"><Icon id="d-money" />Pricing</span>
             <h2 className="mu-section__title">{t({ uk: 'Чесні', ru: 'Честные', en: 'Honest' })} <em>{t({ uk: 'тарифи.', ru: 'тарифы.', en: 'pricing.' })}</em></h2>
-            <p className="mu-section__lead">{t({ uk: 'Почни безкоштовно. Якщо зайде, підписка дешевша за один урок із репетитором.', ru: 'Начни бесплатно. Если понравится, подписка дешевле одного урока с репетитором.', en: 'Start for free. If you like it, the subscription costs less than one lesson with a tutor.' })}</p>
           </div>
           <PricingSection firstQuiz={firstQuiz} start="student" />
         </div>
@@ -202,7 +197,6 @@ export default function NmtPage() {
           <div className="mu-cta-box">
             <Icon id="c-cat-speak" className="mu-ic mu-ic--cta" />
             <h2>{t({ uk: 'Готовий', ru: 'Готов', en: 'Ready to' })} <em>{t({ uk: 'крекнути', ru: 'взломать', en: 'crack' })}</em> {t({ uk: 'НМТ?', ru: 'НМТ?', en: 'the NMT?' })}</h2>
-            <p>{t({ uk: 'Пройди перший квіз за 5 хв і побачиш, як це круто. Жодної кредитки.', ru: 'Пройди первый квиз за 5 минут и увидишь, как это круто. Никакой кредитки.', en: 'Take your first quiz in 5 minutes and see how cool it is. No credit card.' })}</p>
             <Link href={firstQuiz} className="mu-btn mu-btn--tomato mu-btn--lg">
               {t({ uk: 'Почати перший квіз', ru: 'Начать первый квиз', en: 'Start your first quiz' })}
               <span className="mu-btn__arrow mu-btn__arrow--lime"><Icon id="e-arrow" /></span>
