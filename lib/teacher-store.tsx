@@ -6,6 +6,7 @@ import type { Plan } from './lesson';
 import type { Lang } from './i18n';
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 
+export type StudentProfile = { birthday?: string; job?: string; likes?: string; dislikes?: string; goals?: string; family?: string; works?: string; avoid?: string; extra?: string };
 export type Student = {
   id: string; name: string; level: string; price: number;
   contact?: string; parent?: string; link?: string; color: string; createdAt: string;
@@ -15,6 +16,7 @@ export type Student = {
   adult?: boolean; nmt?: boolean; // дорослий: без монеток; nmt: показувати НМТ
   owedLessons?: number; prepaidLessons?: number; // стартовий баланс: уроки до Murly (борг / оплачено наперед)
   song?: string; songUrl?: string; about?: string; // заповнює вчитель
+  profile?: StudentProfile; // нотатки вчителя: ДР, що любить, цілі
   payMode?: 'pre' | 'post'; // pre: платить наперед пакетом, post: платить після занять
   nick?: string; avatar?: string; image?: string; selfSong?: string; selfSongUrl?: string; selfAbout?: string; // з профілю учня (лише для показу)
 };
