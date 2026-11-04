@@ -96,6 +96,7 @@ export default function HomePage() {
             <Icon id="c-paw" className="mu-ic mu-ic--badge" />
             {t({ uk: 'Для дітей, підлітків і дорослих', ru: 'Для детей, подростков и взрослых', en: 'For kids, teens and adults' })}
           </div>
+          <span className="mu-scribble" aria-hidden="true">{t({ uk: 'без зубріння!', ru: 'без зубрёжки!', en: 'no cramming!' })}</span>
           {t.lang === 'ru' ? (
             <h1 className="mu-hero__title">Английский,<br />который <em>хочется</em><br />учить.</h1>
           ) : t.lang === 'en' ? (
@@ -105,7 +106,7 @@ export default function HomePage() {
           )}
           <div className="mu-hero__cta">
             <Link href="/#who" className="mu-btn mu-btn--lime mu-btn--lg">{t({ uk: 'Почати безкоштовно', ru: 'Начать бесплатно', en: 'Start for free' })}<span className="mu-btn__arrow"><Icon id="e-arrow" /></span></Link>
-            <Link href="/#code" className="mu-btn mu-btn--blue mu-btn--lg">{t({ uk: 'У мене є код від учителя', ru: 'У меня есть код от учителя', en: 'I have a teacher code' })}</Link>
+            <Link href="/#code" className="mu-textlink">{t({ uk: 'У мене є код від учителя', ru: 'У меня есть код от учителя', en: 'I have a teacher code' })}</Link>
           </div>
         </div>
       </section>
@@ -194,7 +195,7 @@ export default function HomePage() {
                 {t({ uk: 'Створити акаунт', ru: 'Создать аккаунт', en: 'Create an account' })}
                 <span className="mu-btn__arrow mu-btn__arrow--lime"><Icon id="e-arrow" /></span>
               </Link>
-              <Link href="/grammar" className="mu-btn mu-btn--lg">{t({ uk: 'Спробувати без реєстрації', ru: 'Попробовать без регистрации', en: 'Try without signing up' })}</Link>
+              <Link href="/grammar" className="mu-textlink">{t({ uk: 'Спробувати без реєстрації', ru: 'Попробовать без регистрации', en: 'Try without signing up' })}</Link>
             </div>
           </div>
         </div>

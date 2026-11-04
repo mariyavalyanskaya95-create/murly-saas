@@ -1,3 +1,4 @@
+import CookieBar from '@/components/CookieBar';
 import type { Metadata } from 'next';
 import WordPick from '@/components/WordPick';
 import { ClerkProvider } from '@clerk/nextjs';
@@ -79,7 +80,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {GA && <script dangerouslySetInnerHTML={{ __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','${GA}');` }} />}
           <script dangerouslySetInnerHTML={{ __html: "try{if(window.self!==window.top)document.documentElement.classList.add('is-embed')}catch(e){document.documentElement.classList.add('is-embed')}" }} />
         </head>
-        <body><noscript><iframe src={`https://www.googletagmanager.com/ns.html?id=${GTM}`} height="0" width="0" style={{ display: 'none', visibility: 'hidden' }} /></noscript><LangProvider lang={lang}>{children}<WordPick /></LangProvider></body>
+        <body><noscript><iframe src={`https://www.googletagmanager.com/ns.html?id=${GTM}`} height="0" width="0" style={{ display: 'none', visibility: 'hidden' }} /></noscript><LangProvider lang={lang}>{children}<WordPick /><CookieBar /></LangProvider></body>
       </html>
     </ClerkProvider>
   );
