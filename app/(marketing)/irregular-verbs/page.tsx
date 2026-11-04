@@ -12,6 +12,7 @@ import { tr } from '@/lib/i18n-server';
 import type { T } from '@/lib/i18n';
 import Kit from '@/components/Kit';
 
+import HeroTip from '@/components/HeroTip';
 export function generateMetadata(): Metadata {
   const t = tr();
   return {
@@ -43,7 +44,7 @@ export default function IrregularVerbsPage() {
           <Kit id="st-cat-cool" className="kit-hero" />
           <span className="mu-section__eyebrow"><Icon id="e-book" />{t({ uk: 'Таблиця', ru: 'Таблица', en: 'Table' })}</span>
           <h1>{t({ uk: 'Неправильні дієслова', ru: 'Неправильные глаголы', en: 'Irregular verbs' })} <em>{t({ uk: 'за алфавітом.', ru: 'по алфавиту.', en: 'from A to Z.' })}</em></h1>
-          <p>{t({ uk: 'Натисни на будь-яку форму, щоб послухати вимову. Навушники праворуч озвучать усі три форми підряд.', ru: 'Нажми на любую форму, чтобы послушать произношение. Наушники справа озвучат все три формы подряд.', en: 'Tap any form to hear how it sounds. The headphones on the right play all three forms in a row.' })}</p>
+          <HeroTip>{t({ uk: 'Натисни на будь-яку форму, щоб послухати вимову. Навушники праворуч озвучать усі три форми підряд.', ru: 'Нажми на любую форму, чтобы послушать произношение. Наушники справа озвучат все три формы подряд.', en: 'Tap any form to hear how it sounds. The headphones on the right play all three forms in a row.' })}</HeroTip>
           <Link href="/irregular-verbs/games" className="mu-btn mu-btn--lime mu-btn--lg">
             {t({ uk: 'Тренуватися в іграх', ru: 'Тренироваться в играх', en: 'Practise with games' })}<span className="mu-btn__arrow"><Icon id="e-arrow" /></span>
           </Link>
