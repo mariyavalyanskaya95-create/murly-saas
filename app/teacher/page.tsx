@@ -6,7 +6,6 @@ import LessonRow from '@/components/teacher/LessonRow';
 import { LessonForm, StudentForm } from '@/components/teacher/forms';
 import { balanceOf, balanceText, fmtMoney, localeOf, plural, sameDay, useTeacher , isBilled } from '@/lib/teacher-store';
 import { useT } from '@/components/LangProvider';
-import { InviteCard } from '@/components/teacher/Growth';
 import Onboarding from '@/components/teacher/Onboarding';
 import { birthdayInfo } from '@/components/teacher/StudentDossier';
 
@@ -78,7 +77,6 @@ export default function TeacherToday() {
           <div><small>{t({ uk: 'Цей місяць', ru: 'Этот месяц', en: 'This month' })}</small><b>{fmtMoney(sum(thisMonth), t.lang)}</b><span>{thisMonth.length} {lessonsWord(thisMonth.length)}</span></div>
           <div><small>{t({ uk: 'Отримано оплат за тиждень', ru: 'Получено оплат за неделю', en: 'Payments received this week' })}</small><b>{fmtMoney(paidWeek, t.lang)}</b></div>
         </div>
-        <p className="t-muted">{t({ uk: 'Рахуємо уроки зі статусом «Був» за ціною учня. «Не прийшов» і «Скасовано» не враховуються.', ru: 'Считаем уроки со статусом «Был» по цене ученика. «Не пришёл» и «Отменён» не учитываются.', en: 'We count lessons marked “Done” at each student’s price. No-shows and cancellations are not counted.' })}</p>
       </div>
 
       <section className="t-card">
@@ -89,7 +87,6 @@ export default function TeacherToday() {
       {overdue.filter((l) => !sameDay(new Date(l.start), today)).length > 0 && (
         <section className="t-card t-card--warn">
           <h2><Icon id="d-bolt" />{t({ uk: 'Не позначені', ru: 'Не отмечены', en: 'Not marked' })}</h2>
-          <p className="t-muted">{t({ uk: 'Ці заняття вже минули. Познач, чи вони відбулися, щоб баланс учнів був точним.', ru: 'Эти занятия уже прошли. Отметь, состоялись ли они, чтобы баланс учеников был точным.', en: 'These lessons are in the past. Mark whether they happened so student balances stay accurate.' })}</p>
           {overdue.filter((l) => !sameDay(new Date(l.start), today)).map((l) => <LessonRow key={l.id} l={l} />)}
         </section>
       )}
@@ -135,7 +132,6 @@ export default function TeacherToday() {
           ))}
         </section>
       )}
-      <InviteCard />
     </div>
   );
 }
