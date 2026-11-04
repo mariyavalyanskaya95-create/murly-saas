@@ -3729,3 +3729,34 @@ details.bb-tip > p:last-child{margin-bottom:22px}
 .gl-photocover{position:relative;overflow:hidden}
 .gl-photocover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .gl-photocover b{position:absolute;right:10px;top:10px;background:#7cff4f;border:3px solid #1d1d2b;padding:2px 10px;font-weight:900;letter-spacing:1px;box-shadow:3px 3px 0 #1d1d2b;z-index:1}
+
+/* ===========================================================
+   Блакитний акцент (як на saturday.com.ua) і бігучий рядок Murly
+   =========================================================== */
+:root {
+  --mu-blue: #7FB4D2;
+  --mu-blue-soft: #DCEBF3;
+  --mu-blue-ink: #0A1A22;
+}
+.mu-section__eyebrow { background: var(--mu-blue); color: var(--mu-blue-ink); }
+.mu-btn--blue { background: var(--mu-blue); color: var(--mu-blue-ink); }
+.mu-btn--blue:hover { background: #6FA8C9; }
+.mu-role__ic { color: var(--mu-blue); }
+.mu-role:nth-child(odd) .mu-role__ic { color: var(--mu-lime); }
+.mu-mq { overflow: hidden; border-block: 1px solid rgba(255,255,255,.12); background: var(--mu-ink); color: var(--mu-blue); padding: 14px 0; margin: 0; }
+.mu-mq--blue { background: var(--mu-blue); color: var(--mu-blue-ink); border-color: var(--mu-ink); }
+.mu-mq__track { display: flex; width: max-content; animation: mu-mq 38s linear infinite; }
+.mu-mq:hover .mu-mq__track { animation-play-state: paused; }
+.mu-mq__row { display: flex; flex: none; }
+.mu-mq__it { display: inline-flex; align-items: center; gap: 28px; padding-right: 28px; font-family: 'Unbounded', 'Arial Black', sans-serif; font-weight: 500; font-size: clamp(13px, 1.4vw, 16px); letter-spacing: .5em; text-transform: uppercase; white-space: nowrap; }
+.mu-mq__ic { width: 16px; height: 16px; opacity: .8; }
+@keyframes mu-mq { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .mu-mq__track { animation: none; } }
+/* короткі пункти замість абзаців */
+.mu-ticks { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; flex: 1; }
+.mu-ticks li { display: flex; gap: 8px; align-items: baseline; line-height: 1.35; }
+.mu-ticks li::before { content: ""; flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--mu-blue); border: 1.5px solid var(--mu-ink); transform: translateY(-1px); }
+.mu-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+.mu-chips span { font-size: 13px; font-weight: 700; padding: 3px 10px; border-radius: 999px; background: var(--mu-blue-soft); border: 1.5px solid var(--mu-ink); }
+.mu-hero__note { margin-top: 18px; font-weight: 700; font-size: 15px; }
+.mu-hero__note a { text-decoration: underline; text-underline-offset: 3px; }

@@ -9,7 +9,7 @@ import JoinCode from '@/components/JoinCode';
 import { tr } from '@/lib/i18n-server';
 import type { T } from '@/lib/i18n';
 import Kit from '@/components/Kit';
-import FreeMonthBanner from '@/components/FreeMonthBanner';
+import Marquee from '@/components/Marquee';
 import Tour from '@/components/Tour';
 import { SITE_TOUR } from '@/lib/tours';
 
@@ -27,46 +27,51 @@ export function generateMetadata(): Metadata {
 }
 
 // Хто ти: три дороги з головної
-const ROLES: { id: string; kit: string; icon: string; mod: string; who: T; text: T; main: { href: string; label: T }; alt: { href: string; label: T } }[] = [
+const ROLES: { id: string; kit: string; icon: string; mod: string; who: T; pts: T[]; main: { href: string; label: T }; alt: { href: string; label: T } }[] = [
   {
     id: 'students', kit: 'st-boy-backpack', icon: 'd-kid', mod: 'mu-role--lime',
     who: { uk: 'Я учень', ru: 'Я ученик', en: 'I’m a student' },
-    text: { uk: 'Граматика, ігри зі словами і своє 3D-містечко. Учитель дав код? Введи його нижче.', ru: 'Грамматика, игры со словами и свой 3D-городок. Учитель дал код? Введи его ниже.', en: 'Grammar, word games and your own 3D town. Got a code from your teacher? Enter it below.' },
+    pts: [{ uk: 'Граматика й ігри зі словами', ru: 'Грамматика и игры со словами', en: 'Grammar and word games' }, { uk: 'Домашка з автоперевіркою', ru: 'Домашка с автопроверкой', en: 'Auto-checked homework' }, { uk: 'Своє 3D-містечко за монетки', ru: 'Свой 3D-городок за монетки', en: 'Your own 3D town for coins' }],
     main: { href: '/sign-up?role=student', label: { uk: 'Почати вчитися', ru: 'Начать учиться', en: 'Start learning' } },
     alt: { href: '/grammar', label: { uk: 'Спробувати без реєстрації', ru: 'Попробовать без регистрации', en: 'Try without signing up' } },
   },
   {
     id: 'teachers', kit: 'st-cat-coffee', icon: 'd-team', mod: 'mu-role--mustard',
     who: { uk: 'Я вчитель', ru: 'Я учитель', en: 'I’m a teacher' },
-    text: { uk: 'Учні, розклад, 24 готові уроки по 60 хвилин, домашка з автоперевіркою і словник кожного учня.', ru: 'Ученики, расписание, 24 готовых урока по 60 минут, домашка с автопроверкой и словарь каждого ученика.', en: 'Students, schedule, 24 ready-made 60-minute lessons, auto-checked homework and a word list for every student.' },
+    pts: [{ uk: 'Учні, розклад, оплати', ru: 'Ученики, расписание, оплаты', en: 'Students, schedule, payments' }, { uk: 'Готові уроки на 60 хвилин', ru: 'Готовые уроки на 60 минут', en: 'Ready 60-minute lessons' }, { uk: 'Домашка з автоперевіркою', ru: 'Домашка с автопроверкой', en: 'Auto-checked homework' }, { uk: 'Словник кожного учня', ru: 'Словарь каждого ученика', en: 'A word list for every student' }],
     main: { href: '/sign-up?role=teacher', label: { uk: 'Створити кабінет', ru: 'Создать кабинет', en: 'Create a dashboard' } },
     alt: { href: '/for-teachers', label: { uk: 'Що вміє кабінет', ru: 'Что умеет кабинет', en: 'What it can do' } },
   },
   {
     id: 'parents', kit: 'st-cat-heart', icon: 'd-heart', mod: 'mu-role--sky',
     who: { uk: 'Я з батьків', ru: 'Я родитель', en: 'I’m a parent' },
-    text: { uk: 'Як Murly допомагає дитині вчитися регулярно і з задоволенням, без сварок через уроки.', ru: 'Как Murly помогает ребёнку учиться регулярно и с удовольствием, без ссор из-за уроков.', en: 'How Murly helps your child learn regularly and happily, without fights over homework.' },
+    pts: [{ uk: 'Дитина вчиться регулярно', ru: 'Ребёнок учится регулярно', en: 'Your child learns regularly' }, { uk: 'Домашка й успіхи в Telegram', ru: 'Домашка и успехи в Telegram', en: 'Homework and progress in Telegram' }, { uk: 'Без сварок через уроки', ru: 'Без ссор из-за уроков', en: 'No fights over homework' }],
     main: { href: '/for-parents', label: { uk: 'Для батьків', ru: 'Для родителей', en: 'For parents' } },
     alt: { href: '/baby-english', label: { uk: 'Малюкам до 7 років', ru: 'Малышам до 7 лет', en: 'Kids under 7' } },
   },
   {
     id: 'adults', kit: 'st-cat-coffee', icon: 'e-book', mod: 'mu-role--lilac',
     who: { uk: 'Я дорослий або до НМТ', ru: 'Я взрослый или к НМТ', en: 'Adult or NMT prep' },
-    text: { uk: 'Вчишся сам: тексти, аудіо, граматика простими словами і 20 пробних НМТ з поясненнями.', ru: 'Учишься сам: тексты, аудио, грамматика простыми словами и 20 пробных НМТ с объяснениями.', en: 'Learning on your own: texts, audio, simple grammar and 20 NMT mock tests with explanations.' },
+    pts: [{ uk: 'Тексти й аудіо', ru: 'Тексты и аудио', en: 'Texts and audio' }, { uk: 'Граматика простими словами', ru: 'Грамматика простыми словами', en: 'Grammar made simple' }, { uk: '20 пробних НМТ з поясненнями', ru: '20 пробных НМТ с объяснениями', en: '20 NMT mock tests with explanations' }],
     main: { href: '/sign-up?role=student&track=adult', label: { uk: 'Почати', ru: 'Начать', en: 'Start' } },
     alt: { href: '/nmt/mock', label: { uk: 'Пробні НМТ', ru: 'Пробные НМТ', en: 'NMT mock tests' } },
   },
 ];
 
-const FEATURES: { icon: string; mod: string; title: T; text: T; href: string }[] = [
-  { icon: 'e-board', mod: 'mu-card--lime', href: '/lessons', title: { uk: 'Уроки на 60 хвилин', ru: 'Уроки на 60 минут', en: '60-minute lessons' }, text: { uk: 'Готові уроки за рівнями й темами: розминка, нові слова, вправи, домашка.', ru: 'Готовые уроки по уровням и темам: разминка, новые слова, упражнения, домашка.', en: 'Ready lessons by level and topic: warm-up, new words, exercises, homework.' } },
-  { icon: 'e-pencil', mod: 'mu-card--mustard', href: '/for-teachers#homework', title: { uk: 'Домашка-гра', ru: 'Домашка-игра', en: 'Homework as a game' }, text: { uk: 'Вправи з автоперевіркою та ігри з учнівськими словами. Учитель бачить результат.', ru: 'Упражнения с автопроверкой и игры со словами ученика. Учитель видит результат.', en: 'Auto-checked exercises and games with the student’s own words. The teacher sees the results.' } },
-  { icon: 'e-abc', mod: 'mu-card--sky', href: '/grammar', title: { uk: 'Граматика простими словами', ru: 'Грамматика простыми словами', en: 'Grammar made simple' }, text: { uk: 'Коротко, з прикладами і вправами. Можна без реєстрації.', ru: 'Коротко, с примерами и упражнениями. Можно без регистрации.', en: 'Short, with examples and exercises. No sign-up needed.' } },
-  { icon: 'e-book', mod: '', href: '/irregular-verbs', title: { uk: 'Неправильні дієслова', ru: 'Неправильные глаголы', en: 'Irregular verbs' }, text: { uk: 'Таблиця з озвучкою та ігри, щоб запам’ятати їх раз і назавжди.', ru: 'Таблица с озвучкой и игры, чтобы запомнить их раз и навсегда.', en: 'A table with audio and games to remember them once and for all.' } },
-  { icon: 'e-head', mod: 'mu-card--lime', href: '/practice', title: { uk: 'Діалоги й тексти з вправами', ru: 'Диалоги и тексты с упражнениями', en: 'Dialogues and texts with tasks' }, text: { uk: 'Аудіо й тексти з питаннями. Тренує розуміння, а не зубріння.', ru: 'Аудио и тексты с вопросами. Тренирует понимание, а не зубрёжку.', en: 'Audio and texts with questions. Builds understanding, not cramming.' } },
-  { icon: 'd-rocket', mod: 'mu-card--ink', href: '/games', title: { uk: 'Ігри', ru: 'Игры', en: 'Games' }, text: { uk: '3D-містечко Murly Town, ігри з дієсловами, квізи і скоромовки.', ru: '3D-городок Murly Town, игры с глаголами, квизы и скороговорки.', en: 'Murly Town in 3D, verb games, quizzes and tongue twisters.' } },
-  { icon: 'c-fish', mod: 'mu-card--mustard', href: '/play/town', title: { uk: 'Монетки за навчання', ru: 'Монетки за учёбу', en: 'Coins for learning' }, text: { uk: 'За домашку, слова і тести учень отримує монетки для своєї гри.', ru: 'За домашку, слова и тесты ученик получает монетки для своей игры.', en: 'Homework, words and tests earn coins to spend in the game.' } },
-  { icon: 'e-trophy', mod: 'mu-card--sky', href: '/nmt', title: { uk: 'Підготовка до НМТ', ru: 'Подготовка к НМТ', en: 'NMT exam prep' }, text: { uk: 'Квізи у форматі іспиту для старшокласників.', ru: 'Квизы в формате экзамена для старшеклассников.', en: 'Quizzes in the format of the Ukrainian school exam.' } },
+const FEATURES: { icon: string; mod: string; title: T; chips: T[]; href: string }[] = [
+  { icon: 'e-board', mod: 'mu-card--lime', href: '/lessons', title: { uk: 'Уроки на 60 хвилин', ru: 'Уроки на 60 минут', en: '60-minute lessons' }, chips: [{ uk: 'A1–C1' }, { uk: 'за темами', ru: 'по темам', en: 'by topic' }] },
+  { icon: 'e-pencil', mod: 'mu-card--mustard', href: '/for-teachers#homework', title: { uk: 'Домашка-гра', ru: 'Домашка-игра', en: 'Homework as a game' }, chips: [{ uk: 'автоперевірка', ru: 'автопроверка', en: 'auto-check' }, { uk: 'ігри зі словами', ru: 'игры со словами', en: 'word games' }] },
+  { icon: 'e-abc', mod: 'mu-card--sky', href: '/grammar', title: { uk: 'Граматика простими словами', ru: 'Грамматика простыми словами', en: 'Grammar made simple' }, chips: [{ uk: '52 теми', ru: '52 темы', en: '52 topics' }, { uk: 'без реєстрації', ru: 'без регистрации', en: 'no sign-up' }] },
+  { icon: 'e-book', mod: '', href: '/irregular-verbs', title: { uk: 'Неправильні дієслова', ru: 'Неправильные глаголы', en: 'Irregular verbs' }, chips: [{ uk: 'з озвучкою', ru: 'с озвучкой', en: 'with audio' }, { uk: 'ігри', ru: 'игры', en: 'games' }] },
+  { icon: 'e-head', mod: 'mu-card--lime', href: '/practice', title: { uk: 'Діалоги й тексти з вправами', ru: 'Диалоги и тексты с упражнениями', en: 'Dialogues and texts with tasks' }, chips: [{ uk: 'аудіо', ru: 'аудио', en: 'audio' }, { uk: 'питання', ru: 'вопросы', en: 'questions' }] },
+  { icon: 'd-rocket', mod: 'mu-card--ink', href: '/games', title: { uk: 'Ігри', ru: 'Игры', en: 'Games' }, chips: [{ uk: '3D-містечко', ru: '3D-городок', en: '3D town' }, { uk: 'квізи', ru: 'квизы', en: 'quizzes' }] },
+  { icon: 'e-trophy', mod: 'mu-card--mustard', href: '/game-lessons', title: { uk: 'Уроки за іграми', ru: 'Уроки по играм', en: 'Game-based lessons' }, chips: [{ uk: 'Minecraft' }, { uk: 'Roblox' }, { uk: 'Among Us' }] },
+  { icon: 'e-trophy', mod: 'mu-card--sky', href: '/nmt', title: { uk: 'Підготовка до НМТ', ru: 'Подготовка к НМТ', en: 'NMT exam prep' }, chips: [{ uk: '20 пробних', ru: '20 пробных', en: '20 mocks' }, { uk: 'з розбором', ru: 'с разбором', en: 'with explanations' }] },
+];
+
+const MQ: T[] = [
+  { uk: 'Murly' }, { uk: 'Уроки', ru: 'Уроки', en: 'Lessons' }, { uk: 'Домашка-гра', ru: 'Домашка-игра', en: 'Homework game' }, { uk: 'Граматика', ru: 'Грамматика', en: 'Grammar' },
+  { uk: 'Ігри', ru: 'Игры', en: 'Games' }, { uk: 'Слова', ru: 'Слова', en: 'Words' }, { uk: 'НМТ', ru: 'НМТ', en: 'NMT' },
 ];
 
 const HOW: { n: string; icon: string; title: T; text: T }[] = [
@@ -98,18 +103,14 @@ export default function HomePage() {
           ) : (
             <h1 className="mu-hero__title">Англійська,<br />яку <em>хочеться</em><br />вчити.</h1>
           )}
-          <p className="mu-hero__lead">{t({
-            uk: 'Уроки з учителем, домашка-гра, граматика простими словами і своє 3D-містечко, де все англійською.',
-            ru: 'Уроки с учителем, домашка-игра, грамматика простыми словами и свой 3D-городок, где всё на английском.',
-            en: 'Lessons with a teacher, homework as a game, simple grammar and your own 3D town where everything is in English.',
-          })}</p>
           <div className="mu-hero__cta">
             <Link href="/#who" className="mu-btn mu-btn--ink mu-btn--lg">{t({ uk: 'Почати безкоштовно', ru: 'Начать бесплатно', en: 'Start for free' })}<span className="mu-btn__arrow"><Icon id="e-arrow" /></span></Link>
-            <Link href="/#code" className="mu-btn mu-btn--lg">{t({ uk: 'У мене є код від учителя', ru: 'У меня есть код от учителя', en: 'I have a teacher code' })}</Link>
+            <Link href="/#code" className="mu-btn mu-btn--blue mu-btn--lg">{t({ uk: 'У мене є код від учителя', ru: 'У меня есть код от учителя', en: 'I have a teacher code' })}</Link>
           </div>
         </div>
       </section>
-      <div className="mu-container mu-hero__free"><FreeMonthBanner href="/pricing" /></div>
+      <p className="mu-container mu-hero__note" style={{ textAlign: 'center' }}><Link href="/pricing">{t({ uk: 'Перший місяць Pro безкоштовно, без картки', ru: 'Первый месяц Pro бесплатно, без карты', en: 'First month of Pro free, no card needed' })}</Link></p>
+      <Marquee items={MQ.map((x) => t(x))} />
 
       {/* ХТО ТИ */}
       <section className="mu-section" id="who" style={{ paddingTop: 8 }}>
@@ -117,7 +118,6 @@ export default function HomePage() {
           <div className="mu-section__head">
             <span className="mu-section__eyebrow"><Icon id="e-arrow" />{t({ uk: 'Почни тут', ru: 'Начни здесь', en: 'Start here' })}</span>
             <h2 className="mu-section__title">{t({ uk: 'Хто', ru: 'Кто', en: 'Who are' })} <em>{t({ uk: 'ти?', ru: 'ты?', en: 'you?' })}</em></h2>
-            <p className="mu-section__lead">{t({ uk: 'Обери свою дорогу. Усе інше Murly покаже сам.', ru: 'Выбери свою дорогу. Всё остальное Murly покажет сам.', en: 'Pick your path. Murly will show you the rest.' })}</p>
           </div>
           <div className="mu-roles">
             {ROLES.map((r) => (
@@ -125,7 +125,7 @@ export default function HomePage() {
                 <span className="mu-role__ic"><Icon id={r.icon} /></span>
                 <Kit id={r.kit} className="mu-role__kit" />
                 <h3>{t(r.who)}</h3>
-                <p>{t(r.text)}</p>
+                <ul className="mu-ticks">{r.pts.map((x) => <li key={x.uk}>{t(x)}</li>)}</ul>
                 <div className="mu-role__cta">
                   <Link href={r.main.href} className="mu-btn mu-btn--ink">{t(r.main.label)}<span className="mu-btn__arrow"><Icon id="e-arrow" /></span></Link>
                   <Link href={r.alt.href} className="mu-role__alt">{t(r.alt.label)}</Link>
@@ -147,14 +147,13 @@ export default function HomePage() {
           <div className="mu-section__head">
             <span className="mu-section__eyebrow mu-section__eyebrow--lime"><Icon id="d-spark" />{t({ uk: 'Що є в Murly', ru: 'Что есть в Murly', en: 'What’s inside Murly' })}</span>
             <h2 className="mu-section__title">{t({ uk: 'Усе для англійської в одному', ru: 'Всё для английского в одном', en: 'Everything for English in one' })} <em>{t({ uk: 'місці.', ru: 'месте.', en: 'place.' })}</em></h2>
-            <p className="mu-section__lead">{t({ uk: 'Для уроків з учителем і для того, щоб вчитися самому.', ru: 'Для уроков с учителем и для того, чтобы учиться самому.', en: 'For lessons with a teacher and for learning on your own.' })}</p>
           </div>
           <div className="mu-cards mu-cards--4">
             {FEATURES.map((f) => (
               <Link key={f.title.uk} href={f.href} className={`mu-card mu-card--link ${f.mod}`}>
                 <div className="mu-card__icon"><Icon id={f.icon} /></div>
                 <h3 className="mu-card__title">{t(f.title)}</h3>
-                <p className="mu-card__text">{t(f.text)}</p>
+                <div className="mu-chips">{f.chips.map((c) => <span key={c.uk}>{t(c)}</span>)}</div>
               </Link>
             ))}
           </div>
@@ -169,7 +168,6 @@ export default function HomePage() {
           <div className="mu-section__head">
             <span className="mu-section__eyebrow"><Icon id="e-cap" />{t({ uk: 'Як це працює', ru: 'Как это работает', en: 'How it works' })}</span>
             <h2 className="mu-section__title">{t({ uk: 'Чотири кроки, і', ru: 'Четыре шага, и', en: 'Four steps and' })} <em>{t({ uk: 'поїхали.', ru: 'поехали.', en: 'off you go.' })}</em></h2>
-            <p className="mu-section__lead">{t({ uk: 'Учитель веде, учень вчиться і грає, батьки спокійні.', ru: 'Учитель ведёт, ученик учится и играет, родители спокойны.', en: 'The teacher leads, the student learns and plays, parents relax.' })}</p>
           </div>
           <div className="mu-steps">
             {HOW.map((s) => (
@@ -184,19 +182,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* НМТ */}
-      <section className="mu-section" style={{ paddingTop: 0 }}>
-        <div className="mu-container">
-          <Link href="/nmt" className="mu-band">
-            <span className="mu-band__ic"><Icon id="e-trophy" /></span>
-            <span className="mu-band__txt">
-              <b>{t({ uk: 'Готуєшся до НМТ?', ru: 'Готовишься к НМТ?', en: 'Preparing for the NMT?' })}</b>
-              <small>{t({ uk: 'Квізи у форматі іспиту, граматика і читання для старшокласників.', ru: 'Квизы в формате экзамена, грамматика и чтение для старшеклассников.', en: 'Exam-style quizzes, grammar and reading for high-school students.' })}</small>
-            </span>
-            <span className="mu-btn mu-btn--lime">{t({ uk: 'До НМТ', ru: 'К НМТ', en: 'NMT prep' })}<span className="mu-btn__arrow"><Icon id="e-arrow" /></span></span>
-          </Link>
-        </div>
-      </section>
 
       {/* CTA */}
       <section className="mu-section" data-stickers="3" style={{ paddingTop: 24 }}>
@@ -204,7 +189,6 @@ export default function HomePage() {
           <div className="mu-cta-box">
             <Icon id="c-cat-speak" className="mu-ic mu-ic--cta" />
             <h2>{t({ uk: 'Почни', ru: 'Начни', en: 'Start' })} <em>{t({ uk: 'безкоштовно', ru: 'бесплатно', en: 'for free' })}</em></h2>
-            <p>{t({ uk: 'Граматика, дієслова і ігри відкриті без реєстрації. Кабінет створюється за хвилину.', ru: 'Грамматика, глаголы и игры открыты без регистрации. Кабинет создаётся за минуту.', en: 'Grammar, verbs and games are open without signing up. A dashboard takes a minute to create.' })}</p>
             <div className="mu-hero__cta" style={{ justifyContent: 'center' }}>
               <Link href="/sign-up" className="mu-btn mu-btn--tomato mu-btn--lg">
                 {t({ uk: 'Створити акаунт', ru: 'Создать аккаунт', en: 'Create an account' })}
