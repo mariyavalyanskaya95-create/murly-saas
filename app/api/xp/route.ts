@@ -7,6 +7,11 @@ export const dynamic = 'force-dynamic';
 const enc = encodeURIComponent;
 const SOURCES = ['exercise', 'homework', 'lesson', 'words', 'game'];
 
+// дорослим учням досвід і рівні не показуємо
+async function isAdult(userId: string) {
+  const r = await db.query(`students?user_id=eq.${enc(userId)}&select=is_adult`).catch(() => []);
+  return r.length > 0 && r.every((x) => x.is_adult);
+}
 async function total(userId: string) {
   const r = await db.query(`xp_totals?user_id=eq.${enc(userId)}&select=xp`).catch(() => []);
   return Number(r[0]?.xp ?? 0);
@@ -24,7 +29,8 @@ export async function GET(req: Request) {
     if (!st[0]?.user_id) return NextResponse.json({ xp: 0, joined: false });
     who = String(st[0].user_id);
   }
-  return NextResponse.json({ xp: await total(who) });
+  const adult = await isAdult(who);
+  return NextResponse.json({ xp: await total(who), adult });
 }
 
 export async function POST(req: Request) {
@@ -33,6 +39,7 @@ export async function POST(req: Request) {
   if (!dbReady()) return NextResponse.json({ error: 'db_not_configured' }, { status: 503 });
   let b: { items?: { key?: string; amount?: number }[]; source?: string };
   try { b = await req.json(); } catch { return NextResponse.json({ error: 'bad_json' }, { status: 400 }); }
+  if (await isAdult(userId)) return NextResponse.json({ adult: true });
   const source = SOURCES.includes(String(b.source)) ? String(b.source) : 'exercise';
   const items = (Array.isArray(b.items) ? b.items : []).slice(0, 80)
     .map((x) => ({ key: String(x.key ?? '').slice(0, 160), amount: Math.round(Number(x.amount ?? 0)) }))
