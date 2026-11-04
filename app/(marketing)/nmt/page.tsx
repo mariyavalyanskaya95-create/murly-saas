@@ -93,7 +93,7 @@ export default function NmtPage() {
               {t({ uk: 'Почати квіз', ru: 'Начать квиз', en: 'Start a quiz' })}
               <span className="mu-btn__arrow"><Icon id="e-arrow" /></span>
             </Link>
-            <Link href="/nmt/mock" className="mu-btn mu-btn--tomato mu-btn--lg">{t({ uk: 'Пробний НМТ', ru: 'Пробный НМТ', en: 'NMT mock test' })}</Link>
+            <Link href="/nmt/mock" className="mu-textlink">{t({ uk: 'Пробний НМТ', ru: 'Пробный НМТ', en: 'NMT mock test' })}</Link>
           </div>
         </div>
 
