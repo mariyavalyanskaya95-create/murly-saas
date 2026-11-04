@@ -41,9 +41,7 @@ export default function AboutPage() {
       <section className="mu-page-hero" data-stickers="6">
         <div className="mu-container">
           <Kit id="st-cat-box" className="kit-hero" />
-          <span className="mu-section__eyebrow"><Icon id="c-paw" />{t({ uk: 'Про Murly', ru: 'О Murly', en: 'About Murly' })}</span>
           <h1>{t({ uk: 'Англійська, яку', ru: 'Английский, который', en: 'English you' })} <em>{t({ uk: 'хочеться', ru: 'хочется', en: 'want' })}</em> {t({ uk: 'вчити.', ru: 'учить.', en: 'to learn.' })}</h1>
-          <p>{t({ uk: 'Онлайн-платформа англійської для дітей, підлітків і дорослих. Створено в Україні.', ru: 'Онлайн-платформа английского для детей, подростков и взрослых. Создано в Украине.', en: 'An online English platform for kids, teens and adults. Made in Ukraine.' })}</p>
           <Link href="/sign-up" className="mu-btn mu-btn--lime mu-btn--lg">
             {t({ uk: 'Почати безкоштовно', ru: 'Начать бесплатно', en: 'Start for free' })}<span className="mu-btn__arrow"><Icon id="e-arrow" /></span>
           </Link>
