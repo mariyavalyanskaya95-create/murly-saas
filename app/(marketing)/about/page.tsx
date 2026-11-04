@@ -77,7 +77,7 @@ export default function AboutPage() {
             <h2>{t({ uk: 'Почни', ru: 'Начни', en: 'Start' })} <em>{t({ uk: 'безкоштовно.', ru: 'бесплатно.', en: 'for free.' })}</em></h2>
             <div className="mu-hero__cta" style={{ justifyContent: 'center' }}>
               <Link href="/sign-up" className="mu-btn mu-btn--lime mu-btn--lg">{t({ uk: 'Створити акаунт', ru: 'Создать аккаунт', en: 'Create an account' })}<span className="mu-btn__arrow"><Icon id="e-arrow" /></span></Link>
-              <Link href="/contact" className="mu-btn mu-btn--lg">{t({ uk: 'Написати нам', ru: 'Написать нам', en: 'Contact us' })}</Link>
+              <Link href="/contact" className="mu-textlink">{t({ uk: 'Написати нам', ru: 'Написать нам', en: 'Contact us' })}</Link>
             </div>
           </div>
         </div>
