@@ -3809,3 +3809,4 @@ details.bb-tip > p:last-child{margin-bottom:22px}
 .u-bg--lime { background: var(--mu-lime); }
 .u-bg--stripes { background: repeating-linear-gradient(135deg, var(--mu-lime) 0 18px, var(--mu-paper) 18px 36px); }
 .act--lime, .sl--lime { --act: #C9D6F5; }
+.mu-section--tomato .mu-card--ink { background: #262C52; border-color: #3A4166; }
