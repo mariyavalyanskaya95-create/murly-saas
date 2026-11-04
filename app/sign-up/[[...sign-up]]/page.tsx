@@ -26,7 +26,7 @@ export default function SignUpPage({ searchParams }: { searchParams: { role?: st
   ];
   const teacher = [
     { icon: 'd-team', text: t({ uk: 'Учні, розклад і оплати в одному місці', ru: 'Ученики, расписание и оплаты в одном месте', en: 'Students, schedule and payments in one place' }) },
-    { icon: 'e-board', text: t({ uk: '24 готові уроки по 60 хвилин', ru: '24 готовых урока по 60 минут', en: '24 ready-made 60-minute lessons' }) },
+    { icon: 'e-board', text: t({ uk: '100+ готових уроків по 60 хвилин', ru: '100+ готовых уроков по 60 минут', en: '100+ ready-made 60-minute lessons' }) },
     { icon: 'e-pencil', text: t({ uk: 'Домашка з автоперевіркою і словник учня', ru: 'Домашка с автопроверкой и словарь ученика', en: 'Auto-checked homework and student word lists' }) },
   ];
 
