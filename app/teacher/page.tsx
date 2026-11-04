@@ -8,6 +8,7 @@ import { balanceOf, balanceText, fmtMoney, localeOf, plural, sameDay, useTeacher
 import { useT } from '@/components/LangProvider';
 import { InviteCard } from '@/components/teacher/Growth';
 import Onboarding from '@/components/teacher/Onboarding';
+import { birthdayInfo } from '@/components/teacher/StudentDossier';
 
 export default function TeacherToday() {
   const t = useT();
@@ -107,6 +108,21 @@ export default function TeacherToday() {
           })}
         </section>
       )}
+
+      {(() => {
+        const bd = data.students.map((s) => ({ s, b: birthdayInfo(s.profile?.birthday) })).filter((x) => x.b && x.b.days <= 7).sort((a, b) => a.b!.days - b.b!.days);
+        return bd.length ? (
+          <section className="t-card t-private">
+            <h2><Icon id="d-heart" />{t({ uk: 'Дні народження цього тижня', ru: 'Дни рождения на этой неделе', en: 'Birthdays this week' })}</h2>
+            {bd.map(({ s, b }) => (
+              <Link key={s.id} href={`/teacher/students/${s.id}`} className="t-row-link">
+                <span><span className={`t-dot t-dot--${s.color}`} />{s.name}{b!.turns ? ` · ${b!.turns} ${t({ uk: 'р.', ru: 'г.', en: 'y.o.' })}` : ''}</span>
+                <b>{b!.days === 0 ? t({ uk: 'сьогодні!', ru: 'сегодня!', en: 'today!' }) : b!.days === 1 ? t({ uk: 'завтра', ru: 'завтра', en: 'tomorrow' }) : t({ uk: `через ${b!.days} дн.`, ru: `через ${b!.days} дн.`, en: `in ${b!.days} days` })}</b>
+              </Link>
+            ))}
+          </section>
+        ) : null;
+      })()}
 
       {debtors.length > 0 && (
         <section className="t-card">
