@@ -87,7 +87,7 @@ function HomeworkRow({ h, words, open, onToggle, onPatch }: {
       </button>
       {open && (
         <div className="s-hw__body">
-          {h.instructions && <p className="t-hw__text">{h.instructions}</p>}
+          {h.instructions && <p className="t-hw__text">{h.instructions.split(/(https:\/\/murly\.com\.ua\/[^\s]+)/).map((x, i) => (i % 2 ? <a key={i} href={x} target="_blank" rel="noopener">{x.replace('https://murly.com.ua', 'murly.com.ua')}</a> : x))}</p>}
           {h.feedback && <div className="s-hw__fb"><small>{t({ uk: 'Коментар учителя', ru: 'Комментарий учителя', en: 'Teacher’s comment' })}</small><p>{h.feedback}</p></div>}
           {h.kind === 'game' && isQuest(h.game) && (
             <p><a className="mu-btn mu-btn--lime" href={`/play/quest/${h.game}?hw=${encodeURIComponent(h.id)}`}>{h.status === 'assigned' ? t({ uk: 'Грати квест', ru: 'Играть квест', en: 'Play the quest' }) : t({ uk: 'Зіграти ще раз', ru: 'Сыграть ещё раз', en: 'Play again' })}</a></p>
