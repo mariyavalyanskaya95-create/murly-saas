@@ -33,7 +33,6 @@ export default function BlogPage() {
         <div className="mu-container">
           <span className="mu-section__eyebrow"><Icon id="e-book" />{l === 'ru' ? 'Блог' : 'Блог'}</span>
           <h1>{l === 'ru' ? 'Статьи' : 'Статті'} <em>{l === 'ru' ? 'без воды.' : 'без води.'}</em></h1>
-          <p>{l === 'ru' ? 'Практичные советы для учителей, учеников и родителей: что делать, по шагам и с примерами.' : 'Практичні поради для вчителів, учнів і батьків: що робити, по кроках і з прикладами.'}</p>
         </div>
       </section>
       <section className="mu-section" style={{ paddingTop: 24 }}>
