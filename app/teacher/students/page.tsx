@@ -40,7 +40,7 @@ export default function StudentsPage() {
       {!data.students.length && !open && (
         <div className="t-card t-welcome">
           <Icon id="d-team" className="mu-ic t-welcome__ic" />
-          <div><h2>{t({ uk: 'Тут поки порожньо', ru: 'Здесь пока пусто', en: 'Nothing here yet' })}</h2><p className="t-muted">{t({ uk: 'Додай першого учня: ім’я, рівень і ціну заняття. Решту можна заповнити пізніше.', ru: 'Добавь первого ученика: имя, уровень и цену занятия. Остальное можно заполнить позже.', en: 'Add your first student: name, level and lesson price. You can fill in the rest later.' })}</p>
+          <div><h2>{t({ uk: 'Тут поки порожньо', ru: 'Здесь пока пусто', en: 'Nothing here yet' })}</h2><p className="t-muted">{t({ uk: 'Додай першого учня.', ru: 'Добавь первого ученика.', en: 'Add your first student.' })}</p>
             <button className="mu-btn mu-btn--lime" onClick={() => setOpen(true)}>{t({ uk: '+ Додати учня', ru: '+ Добавить ученика', en: '+ Add student' })}</button></div>
         </div>
       )}
