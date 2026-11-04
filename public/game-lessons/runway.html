@@ -234,6 +234,7 @@ body{background:linear-gradient(180deg,#ffd6f2 0,#fff0fa 520px,#fff7fd 100%)}
 .card{height:220px}
 @media(max-width:760px){.dt-studio,.dt-vs{grid-template-columns:1fr}.dt-stage{position:static}}
 </style>
+<link rel="stylesheet" href="kit.css">
 </head>
 <body>
 <header class="hero dt-hero">
@@ -370,10 +371,10 @@ body{background:linear-gradient(180deg,#ffd6f2 0,#fff0fa 520px,#fff7fd 100%)}
   </section>
 
   <details class="teacher">
-    <summary>Для учителя: план на 50-60 минут</summary>
-    <p>1. Style studio (10 мин): ученик одевает модель под тему, читает описание, добавляет мнение (cute, stylish). Следите за порядком прилагательных. 2. Fashion words (7 мин). 3. Поезд прилагательных и сравнения (7 мин). 4-5. Order game и Catwalk sorter (8 мин). 6. Who wore it better (5 мин): обязательно объяснение со сравнением. 7. Fix the bugs (5 мин). 8. Миссии в игре (10-15 мин). 9-10. Разговор и видео.</p>
-    <p>Безопасность: в чате игры только добрые слова и никакой личной информации.</p>
-    <p>Домашка: собрать образ в игре или нарисовать, записать голосовое: 5 предложений с прилагательными и 3 сравнения.</p>
+    <summary data-ru="Для учителя: план на 50-60 минут">Для вчителя: план на 50-60 хвилин</summary>
+    <p data-ru="1. Style studio (10 мин): ученик одевает модель под тему, читает описание, добавляет мнение (cute, stylish). Следите за порядком прилагательных. 2. Fashion words (7 мин). 3. Поезд прилагательных и сравнения (7 мин). 4-5. Order game и Catwalk sorter (8 мин). 6. Who wore it better (5 мин): обязательно объяснение со сравнением. 7. Fix the bugs (5 мин). 8. Миссии в игре (10-15 мин). 9-10. Разговор и видео.">1. Style studio (10 хв): учень вдягає модель під тему, читає опис, додає думку (cute, stylish). Стежте за порядком прикметників. 2. Fashion words (7 хв). 3. Потяг прикметників і порівняння (7 хв). 4-5. Order game і Catwalk sorter (8 хв). 6. Who wore it better (5 хв): обов’язково пояснення з порівнянням. 7. Fix the bugs (5 хв). 8. Місії в грі (10-15 хв). 9-10. Розмова і відео.</p>
+    <p data-ru="Безопасность: в чате игры только добрые слова и никакой личной информации.">Безпека: у чаті гри тільки добрі слова й жодної особистої інформації.</p>
+    <p data-ru="Домашка: собрать образ в игре или нарисовать, записать голосовое: 5 предложений с прилагательными и 3 сравнения.">Домашка: зібрати образ у грі або намалювати, записати голосове: 5 речень із прикметниками і 3 порівняння.</p>
   </details>
 </div>
 
@@ -935,5 +936,7 @@ VIDS.forEach(([id, title, task, mode, short], i) => {
 });
 
 </script>
+<script>window.MURLY_LESSON={"id": "runway", "title": "Runway Star", "homework": ["order", "compare", "bugs", "talk"], "hw": {"order": [{"type": "gap", "instruction": "Put the words in the right order (opinion, size, age, colour, material, noun).", "text": "(dress / silk / red / beautiful / long) → [a beautiful long red silk dress/beautiful long red silk dress]\n(bag / leather / black / cool / small) → [a cool small black leather bag/cool small black leather bag]\n(big / hat / yellow / amazing) → [an amazing big yellow hat/amazing big yellow hat]\n(scarf / woollen / pink / cute / little) → [a cute little pink woollen scarf/cute little pink woollen scarf]\n(jacket / denim / blue / stylish / new) → [a stylish new blue denim jacket/stylish new blue denim jacket]\n(skirt / floral / green / lovely / short) → [a lovely short green floral skirt/lovely short green floral skirt]\n(T-shirt / cotton / striped / funny / old) → [a funny old striped cotton T-shirt/funny old striped cotton T-shirt]\n(gowns / glittery / gold / gorgeous / long) → [gorgeous long gold glittery gowns]"}], "compare": [{"type": "choice", "instruction": "Choose the correct comparative or superlative.", "text": "This dress is {longer|more long|longest} than that one. (long)\nYour outfit is {better|gooder|best} than mine! (good)\nThat was the {worst|baddest|worse} show ever. (bad)\nThe red boots are {bigger|biger|more big} than the black ones. (big)\nShe is the {most beautiful|beautifullest|more beautiful} model on the runway. (beautiful)\nMy hat is {prettier|prettyer|more pretty} than your hat. (pretty)\nWinter outfits are {warmer|more warm|warmest} than summer outfits. (warm)\nWho has the {funniest|funnyest|most funny} shoes? (funny)\nToday's theme is {more difficult|difficulter|most difficult} than yesterday's. (difficult)\nThis is the {most expensive|expensivest|more expensive} dress in the shop. (expensive)"}], "bugs": [{"type": "truefalse", "instruction": "Is the sentence correct? True = correct, False = there is a mistake.", "text": "She is wearing a red big hat. = False\nMy dress is more prettier than yours. = False\nThis is the most good outfit. = False\nYour boots are bigger that mine. = False\nIt's the beautifulest dress! = False\nI love this silk blue scarf. = False\nShe is the tallest model in the show. = True\nThese jeans are cooler than those. = True"}], "talk": [{"type": "voice", "instruction": "Record your answers. Use adjectives and comparatives.", "text": "Describe your favourite look: 5 sentences with adjectives and 3 comparisons.\nDescribe your favourite outfit. Use 3 adjectives for one thing!\nCompare your school clothes and your weekend clothes.\nWhat is the most beautiful dress or suit you have ever seen?\nWhich is better: comfortable clothes or stylish clothes? Why?"}]}};</script>
+<script src="kit.js" defer></script>
 </body>
 </html>

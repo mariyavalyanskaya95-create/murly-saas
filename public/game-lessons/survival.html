@@ -170,6 +170,7 @@ section:nth-of-type(even){background:#f7fff0}
 .recipe .sign{width:30px;height:30px;display:grid;place-items:center;font-weight:900;font-size:20px;background:var(--ink);color:#fff;flex:none}
 .tip{margin-top:10px;font-size:15px;background:#fff;border-left:5px solid var(--red);padding:6px 10px}
 </style>
+<link rel="stylesheet" href="kit.css">
 </head>
 <body>
 
@@ -298,9 +299,9 @@ section:nth-of-type(even){background:#f7fff0}
   </section>
 
   <details class="teacher">
-    <summary>Для учителя: план на 50-60 минут</summary>
-    <p>1. Survival kit (8 мин): Ученик называет блоки, переворачивает карточки, говорит, где это в жизни. 2. Two modes (5 мин): пусть сама объяснит разницу на примерах из игры. 3-6. Тест (15-20 мин): Choose, Live stream, Sort, Fix the bugs. Фиксируйте ошибки, особенно -s в he/she/it и глаголы know/like/want. 7. Missions (15-20 мин): играете, ученик комментирует; если ошибается в форме, просто повторяете правильно. 8. Streamer mode (5 мин) в конце или вместо одной миссии.</p>
-    <p>Домашка: записать 1 минуту видео или голосового «My survival day»: 3 предложения Present Simple (что делаю обычно) + 3 Present Continuous (что делаю прямо сейчас в игре).</p>
+    <summary data-ru="Для учителя: план на 50-60 минут">Для вчителя: план на 50-60 хвилин</summary>
+    <p data-ru="1. Survival kit (8 мин): Ученик называет блоки, переворачивает карточки, говорит, где это в жизни. 2. Two modes (5 мин): пусть сама объяснит разницу на примерах из игры. 3-6. Тест (15-20 мин): Choose, Live stream, Sort, Fix the bugs. Фиксируйте ошибки, особенно -s в he/she/it и глаголы know/like/want. 7. Missions (15-20 мин): играете, ученик комментирует; если ошибается в форме, просто повторяете правильно. 8. Streamer mode (5 мин) в конце или вместо одной миссии.">1. Survival kit (8 хв): учень називає блоки, перевертає картки, каже, де це в житті. 2. Two modes (5 хв): хай сам пояснить різницю на прикладах із гри. 3-6. Тест (15-20 хв): Choose, Live stream, Sort, Fix the bugs. Фіксуйте помилки, особливо -s у he/she/it і дієслова know/like/want. 7. Missions (15-20 хв): граєте, учень коментує; якщо помиляється у формі, просто повторюйте правильно. 8. Streamer mode (5 хв) наприкінці або замість однієї місії.</p>
+    <p data-ru="Домашка: записать 1 минуту видео или голосового «My survival day»: 3 предложения Present Simple (что делаю обычно) + 3 Present Continuous (что делаю прямо сейчас в игре).">Домашка: записати 1 хвилину відео або голосового «My survival day»: 3 речення Present Simple (що роблю зазвичай) + 3 Present Continuous (що роблю просто зараз у грі).</p>
   </details>
 </div>
 
@@ -776,5 +777,7 @@ VIDS.forEach(([id, title, task, mode, short], i) => {
   vl.appendChild(d);
 });
 </script>
+<script>window.MURLY_LESSON={"id": "survival", "title": "Survival Mission", "homework": ["choose", "stream", "bugs", "talk"], "hw": {"choose": [{"type": "choice", "instruction": "Choose the correct form: Present Simple or Present Continuous.", "text": "Zombies {burn|are burning} in the sun.\nLook! A spider {is climbing|climbs} up the wall!\nI usually {build|am building} my house from wood and stone.\nShh! I {'m looking|look} for diamonds right now.\nWheat {grows|is growing} faster near water.\nMy cat {is sleeping|sleeps} on my bed at the moment.\nWe never {go|are going} out at night without torches.\nHurry up! The sun {is going|goes} down!\nA furnace {turns|is turning} sand into glass.\nWhat {are you doing|do you do} now? I'm crafting a door.\nMy sister {likes|is liking} survival mode. It's her favourite!\nListen! Somebody {is knocking|knocks} on the door."}], "stream": [{"type": "gap", "instruction": "Live stream: put the verbs in brackets into the correct form.", "text": "Hi everyone! Today I [am playing/'m playing] (play) survival mode.\nRight now I [am standing/'m standing] (stand) next to my new house.\nEvery morning I [collect] (collect) wood with my axe.\nLook! The sheep [are eating] (eat) grass near the river.\nMy furnace [is cooking] (cook) fish at the moment.\nI usually [put] (put) my diamonds in a chest.\nNight [comes] (come) fast in this game,\nso I always [carry] (carry) torches with me.\nMy brother [isn't playing/is not playing] (not / play) with me today,\nbecause he [doesn't like/does not like] (not / like) zombies.\nOh no! A zombie [is knocking] (knock) on my door!"}], "sort": [{"type": "sort", "instruction": "Sort the time words: Present Simple or Present Continuous?", "text": "Present Simple: every day, always, usually, never, on Sundays, often, at night\nPresent Continuous: now, at the moment, Look!, right now, Listen!, Hurry up!, these days"}], "bugs": [{"type": "truefalse", "instruction": "Is the sentence correct? True = correct, False = there is a mistake.", "text": "I am usually sleeping in my bed at night. = False\nLook! It is raining. = True\nChickens lay eggs. = True\nShe builds a tower right now. = False\nI am knowing how to make a pickaxe. = False\nHe don't have any iron. = False\nDo you like playing survival? = True\nMy friend is wanting a diamond sword. = False"}], "talk": [{"type": "voice", "instruction": "Record your answers. Talk for about 30 seconds each.", "text": "My survival day: say 3 things you usually do in the game (Present Simple) and 3 things you are doing right now (Present Continuous).\nShow your house. What do you usually do in each room?\nYou are exploring a cave. What are you doing? What can you see?\nTeach a new player: how do you survive the first night?\nYou are cooking dinner in the game. Talk about it."}]}};</script>
+<script src="kit.js" defer></script>
 </body>
 </html>

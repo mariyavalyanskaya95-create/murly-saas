@@ -247,6 +247,7 @@ ol.ob-story__list li{font-size:16px;padding:6px 0;border-bottom:1px dashed #c9c2
 .mis canvas{width:72px;height:72px}
 @media(max-width:760px){.ob-av,.ob-story{grid-template-columns:1fr}}
 </style>
+<link rel="stylesheet" href="kit.css">
 </head>
 <body>
 <header class="hero ob-hero">
@@ -384,10 +385,10 @@ ol.ob-story__list li{font-size:16px;padding:6px 0;border-bottom:1px dashed #c9c2
   </section>
 
   <details class="teacher">
-    <summary>Для учителя: план на 50-60 минут</summary>
-    <p>1. Avatar (5 мин): ученик собирает аватар и описывает его в Past Simple (wore, had). 2. Obby words (7 мин). 3. Правило (5 мин): пусть сам скажет, где +ed, а где вторая форма. 4. Verb checkpoints (5 мин). 5. OBBY RUN (10 мин): главная игра, можно пройти 2 раза на скорость. 6-7. Story time и Fix the bugs (8 мин). 8. Миссии в игре (10-15 мин): ученик играет и рассказывает, что случилось. 9-10. Интервью и видео в конце.</p>
-    <p>Безопасность: напомните, что в чатах игр нельзя писать имя, школу, адрес и номер телефона.</p>
-    <p>Домашка: голосовое на 1 минуту «My best obby run»: что было, сколько раз упал, что получилось.</p>
+    <summary data-ru="Для учителя: план на 50-60 минут">Для вчителя: план на 50-60 хвилин</summary>
+    <p data-ru="1. Avatar (5 мин): ученик собирает аватар и описывает его в Past Simple (wore, had). 2. Obby words (7 мин). 3. Правило (5 мин): пусть сам скажет, где +ed, а где вторая форма. 4. Verb checkpoints (5 мин). 5. OBBY RUN (10 мин): главная игра, можно пройти 2 раза на скорость. 6-7. Story time и Fix the bugs (8 мин). 8. Миссии в игре (10-15 мин): ученик играет и рассказывает, что случилось. 9-10. Интервью и видео в конце.">1. Avatar (5 хв): учень збирає аватар і описує його в Past Simple (wore, had). 2. Obby words (7 хв). 3. Правило (5 хв): хай сам скаже, де +ed, а де друга форма. 4. Verb checkpoints (5 хв). 5. OBBY RUN (10 хв): головна гра, можна пройти 2 рази на швидкість. 6-7. Story time і Fix the bugs (8 хв). 8. Місії в грі (10-15 хв): учень грає й розповідає, що сталося. 9-10. Інтерв’ю і відео наприкінці.</p>
+    <p data-ru="Безопасность: напомните, что в чатах игр нельзя писать имя, школу, адрес и номер телефона.">Безпека: нагадайте, що в чатах ігор не можна писати ім’я, школу, адресу й номер телефону.</p>
+    <p data-ru="Домашка: голосовое на 1 минуту «My best obby run»: что было, сколько раз упал, что получилось.">Домашка: голосове на 1 хвилину «My best obby run»: що було, скільки разів упав, що вдалося.</p>
   </details>
 </div>
 
@@ -876,5 +877,7 @@ VIDS.forEach(([id, title, task, mode, short], i) => {
 });
 
 </script>
+<script>window.MURLY_LESSON={"id": "obby", "title": "Obby Champions", "homework": ["verbs", "run", "bugs", "talk"], "hw": {"verbs": [{"type": "gap", "instruction": "Write the Past Simple form.", "text": "fall → [fell]\nwin → [won]\nlose → [lost]\nrun → [ran]\nget → [got]\ngo → [went]\nsee → [saw]\nfind → [found]\nmake → [made]\nbuy → [bought]\ntake → [took]\nbuild → [built]\nfly → [flew]\nbegin → [began]\nhit → [hit]\njump → [jumped]\nclimb → [climbed]\ntry → [tried]"}], "run": [{"type": "choice", "instruction": "Choose the correct Past Simple form.", "text": "Yesterday I {fell|falled|fall} into the lava.\nWe {won|winned|win} the race last night!\nShe {got|getted|gets} to stage 30 in ten minutes.\nI {jumped|jump|jumpt} over the spinning bar.\nThey {found|finded|find} a secret door.\nDid you {finish|finished|finishing} the obby?\nHe didn't {touch|touched|touches} the checkpoint.\nMy friend {sent|sended|send} me a friend request.\nI {got|get|gotten} two badges yesterday.\nWe {climbed|climb|clumb} the ladder to the tower.\nThe jump pad {threw|throwed|throw} me into the sky.\nI {collected|collect|collectted} 50 coins last week.\nMy avatar {wore|weared|wear} a red cap.\n{Did|Do you did|Were} you play with your brother?\nI {didn't finish|didn't finished|not finished} the game. It was too hard!\nWe {built|builded|build} a house on the last stage.\nHe {ran|runned|run} the obby in 4 minutes.\nI {enjoyed|enjoied|enjoy} the game and gave it a like.\nThey {left|leaved|leave} the server at 8 pm.\nShe {broke|breaked|break} the speedrun record!\nI {bought|buyed|buy} a new skin with my coins.\nWe {made|maked|make} a funny video of our game.\nThe conveyor belt {pushed|push|pusht} me back.\nI {saw|seed|see} the lava just in time!\n{Did|Do|Was} you lose your coins?"}], "bugs": [{"type": "truefalse", "instruction": "Is the sentence correct? True = correct, False = there is a mistake.", "text": "Yesterday I falled into the lava. = False\nDid you finished the obby? = False\nWe didn't won the race. = False\nShe played the game last night. = True\nI goed to stage 30. = False\nThey got a badge two days ago. = True\nHe didn't jumped high enough. = False\nI stoped at the checkpoint. = False"}], "talk": [{"type": "voice", "instruction": "Record your answers in the Past Simple.", "text": "My best obby run: what happened, how many times did you fall, what did you do well?\nDid you play any games yesterday? What did you play?\nWhat was the hardest obby you ever played? Why?\nDid you ever get angry at a game? What happened?\nWhat did you buy in a game last time?"}]}};</script>
+<script src="kit.js" defer></script>
 </body>
 </html>

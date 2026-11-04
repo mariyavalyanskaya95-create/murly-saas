@@ -1,0 +1,84 @@
+/* Murly lesson kit: плашки Murly, режим учителя, пульт для демонстрації екрана, закладки, домашка з уроку */
+.mk-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 16px;background:#fff;border-bottom:3px solid #1d1d2b;font:800 15px/1.2 system-ui,-apple-system,"Segoe UI",sans-serif;color:#1d1d2b}
+.mk-bar a{color:inherit;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.mk-bar small{font-weight:600;opacity:.65}
+.mk-logo{width:26px;height:26px;flex:none}
+.wrap > section{position:relative}
+.wrap > section::after{content:"Murly";position:absolute;right:10px;bottom:6px;padding-left:18px;font:800 11px/16px system-ui,sans-serif;color:#1d1d2b;opacity:.45;background:url(/favicon.svg) left center/15px no-repeat;pointer-events:none}
+.mk-foot{margin:40px auto 90px;text-align:center;font:700 14px/1.4 system-ui,sans-serif;color:#1d1d2b}
+.mk-foot a{color:inherit;display:inline-flex;align-items:center;gap:8px;background:#fff;border:3px solid #1d1d2b;padding:8px 14px;box-shadow:3px 3px 0 #1d1d2b;text-decoration:none}
+
+/* учням і гостям: ніяких відповідей і нотаток */
+body.mk-student .lk-ans,body.mk-student .lk-tnote,body.mk-student details.teacher,body.mk-student .lk-tbtn{display:none!important}
+#teacherBtn{display:none!important}
+
+/* панель учителя */
+.mk-dock{position:fixed;left:14px;bottom:14px;z-index:80;display:flex;align-items:center;gap:6px;background:#fff;border:3px solid #1d1d2b;box-shadow:3px 3px 0 #1d1d2b;padding:5px;font:700 14px/1 system-ui,sans-serif;color:#1d1d2b}
+.mk-dock button,.mk-tools button,.mk-p button,.mk-modal button{font:inherit;cursor:pointer}
+.mk-dock .mk-b{border:2px solid #1d1d2b;background:#fff;padding:7px 10px;border-radius:0;color:#1d1d2b}
+.mk-dock .mk-b.on{background:#7cff4f}
+.mk-dock .mk-home{border:0;background:none;padding:2px;display:flex}
+.mk-lang{display:inline-flex;border:2px solid #1d1d2b}
+.mk-lang button{border:0;background:#fff;padding:6px 8px;font-weight:800;color:#1d1d2b}
+.mk-lang button.on{background:#1d1d2b;color:#fff}
+.mk-dock.min > :not(.mk-home){display:none}
+.mk-tools{position:absolute;right:12px;top:12px;display:flex;gap:6px}
+.mk-tools button{display:inline-flex;align-items:center;gap:5px;border:2px solid #1d1d2b;background:#fff;padding:5px 9px;font:700 13px/1 system-ui,sans-serif;color:#1d1d2b;box-shadow:2px 2px 0 #1d1d2b}
+.mk-tools button:hover{background:#ffd23f}
+.mk-tools svg,.mk-p svg{width:15px;height:15px;flex:none}
+.mk-mark{display:none;position:absolute;left:-4px;top:-16px;background:#ff5d8f;color:#fff;border:3px solid #1d1d2b;font:800 12px/1 system-ui,sans-serif;padding:5px 9px}
+section.mk-here .mk-mark{display:block}
+.mk-banner{max-width:1100px;margin:18px auto 0;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;background:#fff4dc;border:3px solid #1d1d2b;padding:10px 14px;font:700 15px/1.4 system-ui,sans-serif}
+.mk-banner button{border:2px solid #1d1d2b;background:#7cff4f;padding:7px 12px;font:800 14px system-ui,sans-serif;cursor:pointer}
+body:not(.mk-teacher) .mk-tools,body:not(.mk-teacher) .mk-banner,body:not(.mk-teacher) .mk-mark{display:none!important}
+
+/* демонстрація екрана: на вкладці уроку нічого вчительського */
+body.mk-share .mk-tools,body.mk-share .mk-banner,body.mk-share .mk-mark,body.mk-share details.teacher,body.mk-share .lk-tnote{display:none!important}
+body.mk-share .lk-ans{display:none!important}
+body.mk-share section.mk-reveal .lk-ans{display:block!important;margin-top:8px;font-weight:800;color:#0b7a3b;background:#e9ffe0;border-left:5px solid #3ecf4c;padding:6px 10px;font-size:15px}
+body.mk-teacher:not(.mk-share).teacher details.teacher{display:block}
+section.mk-flash{animation:mkflash 1.2s ease-out}
+@keyframes mkflash{0%{box-shadow:0 0 0 8px #ffd23f}100%{box-shadow:8px 8px 0 rgba(29,29,43,.85)}}
+
+/* модальне вікно */
+.mk-modal{position:fixed;inset:0;z-index:200;background:rgba(29,29,43,.55);display:flex;align-items:center;justify-content:center;padding:16px;font:500 15px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif;color:#1d1d2b}
+.mk-modal__box{background:#fff;border:4px solid #1d1d2b;box-shadow:8px 8px 0 #1d1d2b;max-width:520px;width:100%;max-height:92vh;overflow:auto;padding:20px}
+.mk-modal h3{margin:0 0 12px;font-size:20px;display:flex;align-items:center;gap:8px}
+.mk-modal label{display:block;margin:10px 0 4px;font-weight:700}
+.mk-modal select,.mk-modal input[type=datetime-local]{width:100%;font:inherit;padding:8px;border:2px solid #1d1d2b;background:#fff}
+.mk-modal .mk-ch{display:flex;gap:8px;align-items:flex-start;font-weight:500;margin:6px 0}
+.mk-modal .mk-ch input{margin-top:4px}
+.mk-modal .mk-row{display:flex;gap:8px;justify-content:flex-end;margin-top:16px;flex-wrap:wrap}
+.mk-modal .mk-row button{border:3px solid #1d1d2b;background:#fff;padding:9px 16px;font-weight:800}
+.mk-modal .mk-row .go{background:#7cff4f}
+.mk-modal .mk-msg{margin-top:10px;font-weight:700}
+.mk-modal .mk-msg.ok{color:#0b7a3b}.mk-modal .mk-msg.bad{color:#c62828}
+.mk-modal small{color:#555}
+
+/* пульт учителя (окреме вікно) */
+body.mk-pult{background:#f4f1ea!important;margin:0}
+body.mk-pult > :not(#mk-pult):not(.mk-modal){display:none!important}
+.mk-p{font:500 15px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif;color:#1d1d2b;padding:12px;max-width:640px;margin:0 auto}
+.mk-p header{display:flex;align-items:center;gap:8px;justify-content:space-between;background:#fff;border:3px solid #1d1d2b;padding:8px 10px}
+.mk-p header b{font-size:16px}
+.mk-p .tip{margin:10px 0;background:#e8f4ff;border-left:5px solid #3a8dde;padding:8px 10px;font-size:14px}
+.mk-p .box{background:#fff;border:3px solid #1d1d2b;padding:10px 12px;margin-top:10px}
+.mk-p .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.mk-p select{font:inherit;padding:6px;border:2px solid #1d1d2b;background:#fff;flex:1;min-width:140px}
+.mk-p .btn2{display:inline-flex;align-items:center;gap:6px;border:2px solid #1d1d2b;background:#fff;padding:7px 11px;font-weight:700;color:#1d1d2b}
+.mk-p .btn2.go{background:#7cff4f}.mk-p .btn2.on{background:#ffd23f}
+.mk-p ol{list-style:none;margin:0;padding:0}
+.mk-p li button{width:100%;text-align:left;display:flex;gap:8px;align-items:center;border:0;border-bottom:1px dashed #bbb;background:none;padding:7px 4px;color:#1d1d2b}
+.mk-p li button i{font-style:normal;font-weight:800;min-width:24px}
+.mk-p li button span{flex:1}
+.mk-p li button small{color:#666}
+.mk-p li.cur button{background:#ffd23f;font-weight:800}
+.mk-p li.mark button span::after{content:" · " attr(data-mk);color:#c2185b;font-weight:800}
+.mk-p .note{background:#fff4dc;border-left:5px solid #ff9f1c;padding:8px 10px;margin-top:8px}
+.mk-p .ans{background:#e9ffe0;border-left:5px solid #3ecf4c;padding:8px 10px;margin-top:8px;font-weight:600}
+.mk-p .muted{color:#666;font-size:14px}
+.mk-p .timer{font:800 22px/1 ui-monospace,monospace}
+.mk-p details{margin-top:8px}
+.mk-p summary{cursor:pointer;font-weight:800}
+@media(max-width:700px){.mk-tools{position:static;margin:-6px 0 10px;justify-content:flex-end}.mk-dock{left:8px;bottom:8px}}
+@media print{.mk-dock,.mk-tools,.mk-banner{display:none!important}}

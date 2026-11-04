@@ -211,6 +211,7 @@ section:nth-of-type(even){background:#f7fff0}
 .mis canvas{width:72px;height:72px}
 @media(max-width:760px){.fn-plan{grid-template-columns:1fr}}
 </style>
+<link rel="stylesheet" href="kit.css">
 </head>
 <body>
 <header class="hero fn-hero">
@@ -335,10 +336,10 @@ section:nth-of-type(even){background:#f7fff0}
   </section>
 
   <details class="teacher">
-    <summary>Для учителя: план на 50-60 минут</summary>
-    <p>1. Island planner (10 мин): ученик строит остров и озвучивает план с going to. 2. Слова (7 мин). 3. Правило (7 мин): going to = план или видно, will = решение сейчас, обещание, мнение. 4. Сортировка (5 мин). 5. STORM TOWER (8 мин). 6. Ошибки (5 мин). 7. Миссии в режиме строительства (10-15 мин). 8-9. Разговор и видео.</p>
-    <p>Важно: только режим строительства и выживания с кубиками, без боёвки. Безопасность в чате: никакой личной информации.</p>
-    <p>Домашка: голосовое «My plans for the weekend» (5 предложений с going to) и «My predictions for 2050» (5 предложений с will).</p>
+    <summary data-ru="Для учителя: план на 50-60 минут">Для вчителя: план на 50-60 хвилин</summary>
+    <p data-ru="1. Island planner (10 мин): ученик строит остров и озвучивает план с going to. 2. Слова (7 мин). 3. Правило (7 мин): going to = план или видно, will = решение сейчас, обещание, мнение. 4. Сортировка (5 мин). 5. STORM TOWER (8 мин). 6. Ошибки (5 мин). 7. Миссии в режиме строительства (10-15 мин). 8-9. Разговор и видео.">1. Island planner (10 хв): учень будує острів і озвучує план із going to. 2. Слова (7 хв). 3. Правило (7 хв): going to = план або видно, will = рішення зараз, обіцянка, думка. 4. Сортування (5 хв). 5. STORM TOWER (8 хв). 6. Помилки (5 хв). 7. Місії в режимі будівництва (10-15 хв). 8-9. Розмова і відео.</p>
+    <p data-ru="Важно: только режим строительства и выживания с кубиками, без боёвки. Безопасность в чате: никакой личной информации.">Важливо: тільки режим будівництва й виживання з кубиками, без бойових режимів. Безпека в чаті: жодної особистої інформації.</p>
+    <p data-ru="Домашка: голосовое «My plans for the weekend» (5 предложений с going to) и «My predictions for 2050» (5 предложений с will).">Домашка: голосове «My plans for the weekend» (5 речень із going to) і «My predictions for 2050» (5 речень із will).</p>
   </details>
 </div>
 
@@ -757,5 +758,7 @@ VIDS.forEach(([id, title, task, mode, short], i) => {
 });
 
 </script>
+<script>window.MURLY_LESSON={"id": "builder", "title": "Creative Builder", "homework": ["sort", "storm", "bugs", "talk"], "hw": {"sort": [{"type": "sort", "instruction": "Plan or instant? Put the sentences into the right group.", "text": "going to (plan or I can see it): We're going to build a castle this weekend.; Look at those clouds! It's going to rain.; She's going to visit the new island tomorrow.; Careful! You're going to fall!; I'm going to paint my house blue. I decided yesterday.\nwill (decision now, promise, I think): The phone is ringing. I'll answer it.; I promise I'll help you.; I think the update will be great.; \"I'm hungry.\" \"I'll make a sandwich.\"; Maybe it will snow tomorrow."}], "storm": [{"type": "choice", "instruction": "Choose going to or will.", "text": "Look at those dark clouds! The storm {is going to|will to|goes to} hit our base.\n\"My ramp is broken!\" \"Don't worry, I {'ll|am going to|going to} fix it.\"\nWe have a plan: tomorrow we {are going to|will to|go to} build a castle.\nI think our team {will|is going|wins to} win today.\n\"It's dark in here.\" \"I {'ll|am going|will to} make a campfire.\"\nShe has got all the wood. She {is going to|will to|going} build a bridge.\nI promise I {won't|don't going to|will not to} forget your birthday.\nBe careful! You {are going to|will to|go to} fall off the roof!\nIn 2050, people {will|are going|will to} play games in virtual worlds.\n\"I can't find any stone.\" \"I {'ll|am going to|helps} help you!\"\nMy plan for the weekend: I {am going to|will to|going to} finish my island.\n{Will|Are|Going} you help me with the roof, please?\nWe've got no metal left. We {are going to|will to|going} need more.\nMaybe the update {will|is going|will to} come out next week.\n\"Which door do you want?\" \"I {'ll|am going|will to} take the red one.\"\nHe's bought paint. He {is going to|will to|paints to} paint his house."}], "bugs": [{"type": "truefalse", "instruction": "Is the sentence correct? True = correct, False = there is a mistake.", "text": "I will to build a house. = False\nLook at the sky! It will rain. = False\nI'm going build a tower. = False\n\"The phone is ringing.\" \"I'm going to answer it.\" = False\nI think she will finish her island tomorrow. = True\nWe're going to build a bridge this weekend. = True\nHe won't to come. = False\nWill you to help me? = False"}], "talk": [{"type": "voice", "instruction": "Record your answers.", "text": "My plans for the weekend: 5 sentences with going to.\nMy predictions for 2050: 5 sentences with will.\nWhat will games look like in 2050?\nWhat are you going to build next time you play?\nWhat are you going to do this weekend?\nMake 3 promises to your team: \"I'll...\""}]}};</script>
+<script src="kit.js" defer></script>
 </body>
 </html>
