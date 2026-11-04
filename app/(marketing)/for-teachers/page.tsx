@@ -10,34 +10,40 @@ import Faq from '@/components/Faq';
 import { tr } from '@/lib/i18n-server';
 import type { T } from '@/lib/i18n';
 import Kit from '@/components/Kit';
-import FreeMonthBanner from '@/components/FreeMonthBanner';
 
 export function generateMetadata(): Metadata {
   const t = tr();
   return {
     title: t({ uk: 'Murly для вчителів англійської: кабінет, уроки, домашка', ru: 'Murly для учителей английского: кабинет, уроки, домашка', en: 'Murly for English teachers: dashboard, lessons, homework' }),
     description: t({
-      uk: 'Учні, розклад, 24 готові уроки по 60 хвилин, домашка з автоперевіркою, словник кожного учня, оплати і монетки для мотивації.',
-      ru: 'Ученики, расписание, 24 готовых урока по 60 минут, домашка с автопроверкой, словарь каждого ученика, оплаты и монетки для мотивации.',
-      en: 'Students, schedule, 24 ready-made 60-minute lessons, auto-checked homework, a word list for every student, payments and coins for motivation.',
+      uk: 'Учні, розклад, 100+ готових уроків по 60 хвилин, домашка з автоперевіркою, словник кожного учня, оплати і монетки для мотивації.',
+      ru: 'Ученики, расписание, 100+ готовых уроков по 60 минут, домашка с автопроверкой, словарь каждого ученика, оплаты и монетки для мотивации.',
+      en: 'Students, schedule, 100+ ready-made 60-minute lessons, auto-checked homework, a word list for every student, payments and coins for motivation.',
     }),
     alternates: alt('/for-teachers'),
   };
 }
 
-const TOOLS: { id: string; icon: string; mod: string; title: T; text: T }[] = [
-  { id: 'students', icon: 'd-team', mod: 'mu-card--lime', title: { uk: 'Учні', ru: 'Ученики', en: 'Students' }, text: { uk: 'Рівень, ціна заняття, контакти учня й батьків. Кожному свій код-запрошення.', ru: 'Уровень, цена занятия, контакты ученика и родителей. У каждого свой код-приглашение.', en: 'Level, lesson price, student and parent contacts. Each student gets their own invite code.' } },
-  { id: 'schedule', icon: 'e-cal', mod: 'mu-card--mustard', title: { uk: 'Розклад', ru: 'Расписание', en: 'Schedule' }, text: { uk: 'Заняття на тиждень, посилання на Zoom чи Meet, нотатки до уроку.', ru: 'Занятия на неделю, ссылки на Zoom или Meet, заметки к уроку.', en: 'Lessons for the week, Zoom or Meet links, lesson notes.' } },
-  { id: 'lessons', icon: 'e-board', mod: 'mu-card--sky', title: { uk: 'Готові уроки', ru: 'Готовые уроки', en: 'Ready-made lessons' }, text: { uk: '24 уроки по 60 хвилин за рівнями й віком. Можна змінити під себе або зібрати свій.', ru: '24 урока по 60 минут по уровням и возрасту. Можно изменить под себя или собрать свой.', en: '24 lessons of 60 minutes by level and age. Adapt them or build your own.' } },
-  { id: 'homework', icon: 'e-pencil', mod: '', title: { uk: 'Домашка', ru: 'Домашка', en: 'Homework' }, text: { uk: 'Вправи з автоперевіркою, ігри зі словами учня і письмові завдання, які ти перевіряєш сам.', ru: 'Упражнения с автопроверкой, игры со словами ученика и письменные задания, которые ты проверяешь сам.', en: 'Auto-checked exercises, games with the student’s words and writing tasks you check yourself.' } },
-  { id: 'words', icon: 'e-book', mod: 'mu-card--lime', title: { uk: 'Словник учня', ru: 'Словарь ученика', en: 'Student word list' }, text: { uk: 'Слова з уроку одним кліком потрапляють у словник учня. Він повторює їх в іграх.', ru: 'Слова с урока одним кликом попадают в словарь ученика. Он повторяет их в играх.', en: 'Words from the lesson go into the student’s word list in one click. They practise them in games.' } },
-  { id: 'coins', icon: 'c-fish', mod: 'mu-card--ink', title: { uk: 'Монетки', ru: 'Монетки', en: 'Coins' }, text: { uk: 'Нараховуй монетки за урок, домашку, поведінку. Учень витрачає їх у Murly Town.', ru: 'Начисляй монетки за урок, домашку, поведение. Ученик тратит их в Murly Town.', en: 'Give coins for lessons, homework, behaviour. Students spend them in Murly Town.' } },
-  { id: 'payments', icon: 'd-money', mod: 'mu-card--mustard', title: { uk: 'Оплати', ru: 'Оплаты', en: 'Payments' }, text: { uk: 'Хто заплатив і за скільки уроків. Без таблиць і нотаток у телефоні.', ru: 'Кто заплатил и за сколько уроков. Без таблиц и заметок в телефоне.', en: 'Who paid and for how many lessons. No spreadsheets or notes on your phone.' } },
-  { id: 'practice', icon: 'e-head', mod: 'mu-card--sky', title: { uk: 'Граматика і практика', ru: 'Грамматика и практика', en: 'Grammar and practice' }, text: { uk: 'Правила, неправильні дієслова, listening і reading, щоб давати учням між уроками.', ru: 'Правила, неправильные глаголы, listening и reading, чтобы давать ученикам между уроками.', en: 'Rules, irregular verbs, listening and reading to give students between lessons.' } },
-  { id: 'bot', icon: 'd-send', mod: 'mu-card--ink', title: { uk: 'Telegram-бот', ru: 'Telegram-бот', en: 'Telegram bot' }, text: { uk: 'Оплати, відмітки уроків і ранкове зведення з телефона. Учням і батькам нагадування про домашку.', ru: 'Оплаты, отметки уроков и утренняя сводка с телефона. Ученикам и родителям напоминания о домашке.', en: 'Payments, lesson marks and a morning summary from your phone. Homework reminders for students and parents.' } },
-  { id: 'activities', icon: 'e-speak', mod: 'mu-card--lime', title: { uk: 'Розмовні activities', ru: 'Разговорные activities', en: 'Speaking activities' }, text: { uk: 'Готові слайди з фото, таймером і випадковим вибором учня. Показуй на весь екран або друкуй PDF.', ru: 'Готовые слайды с фото, таймером и случайным выбором ученика. Показывай на весь экран или печатай PDF.', en: 'Ready slides with photos, a timer and random pick. Present full screen or print a PDF.' } },
-  { id: 'room', icon: 'e-board', mod: 'mu-card--mustard', title: { uk: 'Кімната уроку і дошка', ru: 'Комната урока и доска', en: 'Lesson room and whiteboard' }, text: { uk: 'Відео й дошка в одному вікні. У кожного учня своя дошка, вона зберігається.', ru: 'Видео и доска в одном окне. У каждого ученика своя доска, она сохраняется.', en: 'Video and whiteboard in one window. Each student has their own saved board.' } },
-  { id: 'parents', icon: 'd-heart', mod: 'mu-card--sky', title: { uk: 'Батьки і групи', ru: 'Родители и группы', en: 'Parents and groups' }, text: { uk: 'Сторінка успіхів для батьків за посиланням, групи і командна гра-вікторина.', ru: 'Страница успехов для родителей по ссылке, группы и командная игра-викторина.', en: 'A progress page for parents via a link, groups and a team quiz game.' } },
+// Три групи замість 12 карток: що є в кабінеті вчителя
+const GROUPS: { id: string; icon: string; title: T; pts: T[] }[] = [
+  { id: 'students', icon: 'd-team', title: { uk: 'Учні й розклад', ru: 'Ученики и расписание', en: 'Students and schedule' }, pts: [
+    { uk: 'Картка учня, нотатки, дні народження', ru: 'Карточка ученика, заметки, дни рождения', en: 'Student card, notes, birthdays' },
+    { uk: 'Розклад і посилання на Zoom або Meet', ru: 'Расписание и ссылки на Zoom или Meet', en: 'Schedule with Zoom or Meet links' },
+    { uk: 'Оплати без таблиць', ru: 'Оплаты без таблиц', en: 'Payments without spreadsheets' },
+    { uk: 'Telegram-бот для вас, учнів і батьків', ru: 'Telegram-бот для вас, учеников и родителей', en: 'Telegram bot for you, students and parents' },
+  ] },
+  { id: 'lessons', icon: 'e-board', title: { uk: 'Уроки', ru: 'Уроки', en: 'Lessons' }, pts: [
+    { uk: '100+ готових уроків на 60 хвилин', ru: '100+ готовых уроков на 60 минут', en: '100+ ready 60-minute lessons' },
+    { uk: 'Уроки за іграми: Minecraft, Roblox та інші', ru: 'Уроки по играм: Minecraft, Roblox и другие', en: 'Game lessons: Minecraft, Roblox and more' },
+    { uk: 'Конструктор своїх уроків', ru: 'Конструктор своих уроков', en: 'Your own lesson builder' },
+    { uk: 'Розмовні activities і дошка', ru: 'Разговорные activities и доска', en: 'Speaking activities and a whiteboard' },
+  ] },
+  { id: 'homework', icon: 'e-pencil', title: { uk: 'Домашка й мотивація', ru: 'Домашка и мотивация', en: 'Homework and motivation' }, pts: [
+    { uk: 'Вправи з автоперевіркою', ru: 'Упражнения с автопроверкой', en: 'Auto-checked exercises' },
+    { uk: 'Словник учня та ігри з його словами', ru: 'Словарь ученика и игры с его словами', en: 'Student word list and games with it' },
+    { uk: 'XP і монетки для дітей', ru: 'XP и монетки для детей', en: 'XP and coins for kids' },
+    { uk: 'Сторінка успіхів для батьків', ru: 'Страница успехов для родителей', en: 'A progress page for parents' },
+  ] },
 ];
 
 const STEPS: { n: string; icon: string; title: T; text: T }[] = [
@@ -64,7 +70,6 @@ export default function ForTeachersPage() {
           <Kit id="il-cat-teacher" className="kit-hero" />
           <span className="mu-section__eyebrow"><Icon id="d-team" />{t({ uk: 'Для вчителів', ru: 'Для учителей', en: 'For teachers' })}</span>
           <h1>{t({ uk: 'Усе для уроків англійської', ru: 'Всё для уроков английского', en: 'Everything for English lessons' })} <em>{t({ uk: 'в одному кабінеті.', ru: 'в одном кабинете.', en: 'in one dashboard.' })}</em></h1>
-          <p>{t({ uk: 'Учні, розклад, готові уроки, домашка з автоперевіркою і словник кожного учня. Менше рутини, більше часу на саме навчання.', ru: 'Ученики, расписание, готовые уроки, домашка с автопроверкой и словарь каждого ученика. Меньше рутины, больше времени на само обучение.', en: 'Students, schedule, ready-made lessons, auto-checked homework and a word list for every student. Less routine, more time for actual teaching.' })}</p>
           <div className="mu-hero__cta">
             <Link href="/sign-up?role=teacher" className="mu-btn mu-btn--lime mu-btn--lg">
               {t({ uk: 'Створити кабінет', ru: 'Создать кабинет', en: 'Create a dashboard' })}<span className="mu-btn__arrow"><Icon id="e-arrow" /></span>
@@ -76,19 +81,16 @@ export default function ForTeachersPage() {
 
       <section className="mu-section" style={{ paddingTop: 24 }}>
         <div className="mu-container">
-          <div className="mu-cards mu-cards--4">
-            {TOOLS.map((tool) => (
-              <div key={tool.id} id={tool.id} className={`mu-card ${tool.mod}`} style={{ scrollMarginTop: 110 }}>
-                <div className="mu-card__icon"><Icon id={tool.icon} /></div>
-                <h3 className="mu-card__title">{t(tool.title)}</h3>
-                <p className="mu-card__text">{t(tool.text)}</p>
+          <div className="mu-cards">
+            {GROUPS.map((g) => (
+              <div key={g.id} id={g.id} className="mu-card" style={{ scrollMarginTop: 110 }}>
+                <div className="mu-card__icon"><Icon id={g.icon} /></div>
+                <h3 className="mu-card__title">{t(g.title)}</h3>
+                <ul className="mu-ticks">{g.pts.map((x) => <li key={x.uk}>{t(x)}</li>)}</ul>
               </div>
             ))}
           </div>
-          <div className="ft-more">
-            <FreeMonthBanner href="/sign-up?role=teacher" />
-            <p><Link href="/pricing/pro">{t({ uk: 'Що входить в Учитель Pro і скільки коштує', ru: 'Что входит в Учитель Pro и сколько стоит', en: 'What Teacher Pro includes and what it costs' })}</Link> · <Link href="/activities">{t({ uk: 'Подивитися activities', ru: 'Посмотреть activities', en: 'Browse activities' })}</Link> · <Link href="/lessons">{t({ uk: 'Готові уроки', ru: 'Готовые уроки', en: 'Ready lessons' })}</Link></p>
-          </div>
+          <p className="mu-hero__note" style={{ textAlign: 'center', marginTop: 28 }}><Link href="/pricing/pro">{t({ uk: 'Перший місяць Pro безкоштовно. Що входить і скільки коштує', ru: 'Первый месяц Pro бесплатно. Что входит и сколько стоит', en: 'First month of Pro free. What’s included and the price' })}</Link></p>
         </div>
       </section>
 
