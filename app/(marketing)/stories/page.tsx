@@ -30,7 +30,6 @@ export default function StoriesPage({ searchParams }: { searchParams: { g?: stri
       <section className="mu-page-hero" style={{ paddingBottom: 16 }} data-stickers="4">
         <div className="mu-container">
           <Kit id="il-cat-read" className="kit-hero" />
-          <span className="mu-section__eyebrow"><Icon id="e-book" />Reading</span>
           <h1>{t({ uk: 'Історії', ru: 'Истории', en: 'Stories' })} <em>{t({ uk: 'англійською.', ru: 'на английском.', en: 'in English.' })}</em></h1>
           <HeroTip>{t({ uk: 'Страшні, романтичні й смішні. Читай або слухай, підглядай у словничок і перевір, чи все зрозумів.', ru: 'Страшные, романтические и смешные. Читай или слушай, подглядывай в словарик и проверь, всё ли понял.', en: 'Scary, romantic and funny. Read or listen, peek at the glossary and check you understood everything.' })}</HeroTip>
         </div>
