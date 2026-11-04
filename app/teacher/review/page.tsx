@@ -29,7 +29,7 @@ export default function ReviewPage() {
   return (
     <div className="t-page">
       <div className="t-head"><div><h1>{t({ uk: 'Перевірка домашок', ru: 'Проверка домашек', en: 'Homework review' })}</h1>
-        <p className="t-muted">{t({ uk: 'Усі здані роботи всіх учнів. Подивись відповіді, зарахуй правильні й залиш коментар.', ru: 'Все сданные работы всех учеников. Посмотри ответы, засчитай правильные и оставь комментарий.', en: 'Everything your students handed in. Check the answers, accept correct ones and leave a comment.' })}</p></div></div>
+        </div></div>
       <div className="g-chips" style={{ justifyContent: 'flex-start', marginBottom: 16 }}>
         {tabs.map((x) => <button key={x.id} type="button" className={`g-chip ${view === x.id ? 'is-on' : ''}`} onClick={() => setView(x.id)}>{x.label} ({x.n})</button>)}
       </div>
