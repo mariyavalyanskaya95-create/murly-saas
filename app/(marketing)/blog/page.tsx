@@ -31,7 +31,6 @@ export default function BlogPage() {
       <SiteNav />
       <section className="mu-page-hero" data-stickers="6">
         <div className="mu-container">
-          <span className="mu-section__eyebrow"><Icon id="e-book" />{l === 'ru' ? 'Блог' : 'Блог'}</span>
           <h1>{l === 'ru' ? 'Статьи' : 'Статті'} <em>{l === 'ru' ? 'без воды.' : 'без води.'}</em></h1>
         </div>
       </section>
