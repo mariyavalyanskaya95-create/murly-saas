@@ -33,6 +33,7 @@ export default function SiteFooter() {
           <div>
             <h4>{t({ uk: 'НМТ', ru: 'НМТ', en: 'NMT' })}</h4>
             <ul>
+              <li><Link href="/level-test">{t({ uk: 'Тест на рівень', ru: 'Тест на уровень', en: 'Level test' })}</Link></li>
               <li><Link href="/nmt">{t({ uk: 'НМТ з англійської', ru: 'НМТ по английскому', en: 'NMT English exam' })}</Link></li>
               <li><Link href="/nmt/mock">{t({ uk: '20 пробних НМТ', ru: '20 пробных НМТ', en: '20 NMT mock tests' })}</Link></li>
               <li><Link href="/bonus/nmt-checklist">{t({ uk: 'Чек-лист НМТ', ru: 'Чек-лист НМТ', en: 'NMT checklist' })}</Link></li>
