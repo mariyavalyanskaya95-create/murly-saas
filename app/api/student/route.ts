@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { auth } from '@clerk/nextjs/server';
-import { reviewWord, saveHomeworkNote, setOwnPin, submitHomework } from '@/lib/student-data';
+import { reviewWord, saveHomeworkNote, setOwnPin, submitHomework, useHomeworkPass } from '@/lib/student-data';
 import { normPhone, validPhone, validPin } from '@/lib/pin-login';
 
 export const dynamic = 'force-dynamic';
@@ -26,6 +26,10 @@ export async function POST(req: Request) {
   if (body.op === 'homeworkNote' && body.id) {
     const ok = await saveHomeworkNote(userId, body.id, String(body.note ?? '')).catch(() => false);
     return ok ? NextResponse.json({ ok: true }) : NextResponse.json({ error: 'not_found' }, { status: 404 });
+  }
+  if (body.op === 'usePass' && body.id) {
+    const r = await useHomeworkPass(userId, body.id).catch(() => ({ error: 'db' }));
+    return 'ok' in r ? NextResponse.json(r) : NextResponse.json(r, { status: 400 });
   }
   if (body.op !== 'submitHomework' || !body.id) return NextResponse.json({ error: 'unknown_op' }, { status: 400 });
   try {
