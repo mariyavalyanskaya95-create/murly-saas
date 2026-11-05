@@ -1,5 +1,5 @@
 // Живі голоси (Google Cloud Text-to-Speech, Neural2). Ключ GOOGLE_TTS_API_KEY вводить власниця сайту у Vercel.
-export type VoicePreset = 'narrator' | 'woman' | 'man' | 'woman2' | 'man2' | 'girl' | 'boy' | 'old' | 'us_woman' | 'us_man';
+export type VoicePreset = 'narrator' | 'woman' | 'man' | 'woman2' | 'man2' | 'girl' | 'boy' | 'old' | 'us_woman' | 'us_man' | 'kid';
 // Chirp 3 HD: найприродніші голоси Google (без «скляного» звуку). Швидкість міняємо в плеєрі, не в синтезі.
 export const VOICES: Record<VoicePreset, { lang: string; name: string; pitch?: number; rate?: number }> = {
   narrator: { lang: 'en-GB', name: 'en-GB-Chirp3-HD-Aoede' },
@@ -12,6 +12,8 @@ export const VOICES: Record<VoicePreset, { lang: string; name: string; pitch?: n
   old: { lang: 'en-GB', name: 'en-GB-Chirp3-HD-Algenib' },
   us_woman: { lang: 'en-US', name: 'en-US-Chirp3-HD-Kore' },
   us_man: { lang: 'en-US', name: 'en-US-Chirp3-HD-Charon' },
+  // дитячий голос (Бульбашка, дитячий тест): Neural2 вміє підвищувати тон, Chirp ні
+  kid: { lang: 'en-GB', name: 'en-GB-Neural2-C', pitch: 7, rate: 1.05 },
 };
 export const isPreset = (v: string): v is VoicePreset => v in VOICES;
 // для діалогів без явних голосів: диктор, потім чергуємо жіночі й чоловічі

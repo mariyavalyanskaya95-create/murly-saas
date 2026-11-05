@@ -38,14 +38,13 @@ export function stopSpeak() {
 }
 
 // Сказати фразу живим голосом (preset) або голосом браузера. onEnd викликається в кінці.
-// kid: дитячий голос (вищий тон: швидше програвання без збереження висоти)
+// kid: дитячий голос (окремий пресет kid з підвищеним тоном)
 export async function say(text: string, opts: { voice?: VoicePreset; slow?: boolean; onEnd?: () => void; pitch?: number; kid?: boolean } = {}) {
   stopSpeak();
   const rate = opts.slow ? 0.75 : 0.95;
   if (await liveVoices()) {
-    const a = new Audio(ttsUrl(text, opts.voice ?? 'narrator'));
-    a.playbackRate = (opts.slow ? 0.8 : 1) * (opts.kid ? 1.2 : 1);
-    if (opts.kid) { (a as HTMLAudioElement & { preservesPitch?: boolean; webkitPreservesPitch?: boolean }).preservesPitch = false; (a as HTMLAudioElement & { webkitPreservesPitch?: boolean }).webkitPreservesPitch = false; }
+    const a = new Audio(ttsUrl(text, opts.kid ? 'kid' : opts.voice ?? 'narrator'));
+    a.playbackRate = opts.slow ? 0.85 : 1;
     current = a;
     let fell = false;
     const fallback = () => { if (fell || current !== a) return; fell = true; current = null; browserSay(text, rate, opts.onEnd, opts.kid ? 1.6 : opts.pitch); };
