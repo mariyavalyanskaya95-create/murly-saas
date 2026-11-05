@@ -2,7 +2,7 @@
   "git": {
     "deploymentEnabled": {
       "work": false,
-      "main": false
+      "main": true
     }
   },
   "crons": [
