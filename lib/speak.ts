@@ -38,22 +38,22 @@ export function stopSpeak() {
 }
 
 // Сказати фразу живим голосом (preset) або голосом браузера. onEnd викликається в кінці.
-// kid: дитячий голос (окремий пресет kid з підвищеним тоном)
+// kid: залишено для сумісності, голос звичайний (дитячий тон звучав нерозбірливо)
 export async function say(text: string, opts: { voice?: VoicePreset; slow?: boolean; onEnd?: () => void; pitch?: number; kid?: boolean } = {}) {
   stopSpeak();
   const rate = opts.slow ? 0.75 : 0.95;
   if (await liveVoices()) {
-    const a = new Audio(ttsUrl(text, opts.kid ? 'kid' : opts.voice ?? 'narrator'));
-    a.playbackRate = opts.slow ? 0.85 : 1;
+    const a = new Audio(ttsUrl(text, opts.voice ?? 'narrator'));
+    a.playbackRate = opts.slow ? 0.8 : 1;
     current = a;
     let fell = false;
-    const fallback = () => { if (fell || current !== a) return; fell = true; current = null; browserSay(text, rate, opts.onEnd, opts.kid ? 1.6 : opts.pitch); };
+    const fallback = () => { if (fell || current !== a) return; fell = true; current = null; browserSay(text, rate, opts.onEnd, opts.pitch); };
     a.onended = () => { if (current === a) { current = null; opts.onEnd?.(); } };
     a.onerror = fallback;
     try { await a.play(); } catch { fallback(); }
     return true;
   }
-  return browserSay(text, rate, opts.onEnd, opts.kid ? 1.6 : opts.pitch);
+  return browserSay(text, rate, opts.onEnd, opts.pitch);
 }
 
 // Сумісність зі старим кодом: speakEn(text, rate, onEnd)
