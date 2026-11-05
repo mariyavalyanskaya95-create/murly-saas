@@ -8,6 +8,7 @@ import { grade, normalizeSections, parseSection, SECTION_TYPES, type Answers, ty
 import { aiCheck, aiReady, isOwnerTeacher } from '@/lib/ai-check';
 import { lessonSections, type Block } from '@/lib/lesson';
 
+import { uniqLessons } from '@/lib/lesson-dedupe';
 export const dynamic = 'force-dynamic';
 
 type Row = Record<string, unknown>;
@@ -84,7 +85,7 @@ export async function GET() {
     return NextResponse.json({
       students: students.map((r) => ({ ...fromDb.student(r), ...(r.user_id ? prof[String(r.user_id)] ?? {} : {}) })),
       groups: groups.map(fromDb.group),
-      lessons: lessons.map(fromDb.lesson),
+      lessons: uniqLessons(lessons).map(fromDb.lesson),
       notes: notes.map(fromDb.note),
       words: words.map(fromDb.word),
       payments: payments.map(fromDb.payment),
