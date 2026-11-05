@@ -24,6 +24,8 @@ const toDb = {
     if ('profile' in p) o.profile = p.profile ?? null;
     if ('adult' in p) o.is_adult = Boolean(p.adult);
     if ('nmt' in p) o.nmt = Boolean(p.nmt);
+    if ('payRemind' in p) o.pay_remind = Boolean(p.payRemind);
+    if ('passOff' in p) o.pass_off = Boolean(p.passOff);
     if ('owedLessons' in p) o.owed_lessons = Math.max(0, Math.round(Number(p.owedLessons) || 0));
     if ('prepaidLessons' in p) o.prepaid_lessons = Math.max(0, Math.round(Number(p.prepaidLessons) || 0));
     for (const k of ['contact', 'parent', 'link', 'song', 'about']) if (k in p && p[k] === undefined) o[k] = null;
@@ -46,14 +48,14 @@ const toDb = {
 };
 const und = (v: unknown) => (v === null ? undefined : v);
 const fromDb = {
-  student: (r: Row) => ({ id: r.id, name: r.name, level: r.level, price: r.price, contact: und(r.contact), parent: und(r.parent), link: und(r.link), color: r.color, createdAt: r.created_at, inviteCode: und(r.invite_code), joined: Boolean(r.user_id), song: und(r.song), songUrl: und(r.song_url), about: und(r.about), profile: und(r.profile), payMode: r.pay_mode === 'post' ? 'post' : 'pre', loginPhone: und(r.login_phone), loginPin: und(r.login_pin), adult: Boolean(r.is_adult), nmt: Boolean(r.nmt), owedLessons: Number(r.owed_lessons) || 0, prepaidLessons: Number(r.prepaid_lessons) || 0, tg: Boolean(r.tg_chat_id), parentTg: Boolean(r.parent_tg_chat_id) }),
+  student: (r: Row) => ({ payRemind: Boolean(r.pay_remind), passOff: Boolean(r.pass_off), id: r.id, name: r.name, level: r.level, price: r.price, contact: und(r.contact), parent: und(r.parent), link: und(r.link), color: r.color, createdAt: r.created_at, inviteCode: und(r.invite_code), joined: Boolean(r.user_id), song: und(r.song), songUrl: und(r.song_url), about: und(r.about), profile: und(r.profile), payMode: r.pay_mode === 'post' ? 'post' : 'pre', loginPhone: und(r.login_phone), loginPin: und(r.login_pin), adult: Boolean(r.is_adult), nmt: Boolean(r.nmt), owedLessons: Number(r.owed_lessons) || 0, prepaidLessons: Number(r.prepaid_lessons) || 0, tg: Boolean(r.tg_chat_id), parentTg: Boolean(r.parent_tg_chat_id) }),
   lesson: (r: Row) => ({ id: r.id, studentId: r.student_id, start: r.start, duration: r.duration, topic: und(r.topic), link: und(r.link), status: r.status, groupId: und(r.group_id) }),
   group: (r: Row) => ({ id: r.id, name: r.name, color: r.color, studentIds: (r.student_ids as string[] | null) ?? [], link: und(r.link), createdAt: r.created_at }),
   note: (r: Row) => ({ id: r.id, studentId: r.student_id, text: r.text, at: r.at, images: und(r.images), files: und(r.files) }),
   word: (r: Row) => ({ id: r.id, studentId: r.student_id, en: r.en, uk: r.uk, example: und(r.example), at: r.at, box: Number(r.srs_box) || 0, wrong: Number(r.srs_wrong) || 0 }),
   payment: (r: Row) => ({ id: r.id, studentId: r.student_id, amount: r.amount, note: und(r.note), at: r.at }),
   plan: (r: Row) => ({ id: r.id, title: r.title, level: r.level, age: r.age, topic: und(r.topic), color: r.color, blocks: r.blocks ?? [], source: und(r.source), focus: und(r.focus), aims: und(r.aims), createdAt: r.created_at, updatedAt: r.updated_at }),
-  homework: (r: Row) => ({ id: r.id, studentId: r.student_id, title: r.title, instructions: und(r.instructions), kind: r.kind, game: und(r.game), direction: und(r.direction), due: und(r.due), status: r.status, score: und(r.score), total: und(r.total), answer: und(r.answer), items: r.kind === 'exercise' ? normalizeSections(r.items as Section[] | null) : und(r.items), answers: und(r.answers), overrides: und(r.overrides), aiNotes: und(r.ai_notes), feedback: und(r.feedback), note: und(r.student_note), createdAt: r.created_at, doneAt: und(r.done_at), groupId: und(r.group_id) }),
+  homework: (r: Row) => ({ passUsed: Boolean(r.pass_used_at), id: r.id, studentId: r.student_id, title: r.title, instructions: und(r.instructions), kind: r.kind, game: und(r.game), direction: und(r.direction), due: und(r.due), status: r.status, score: und(r.score), total: und(r.total), answer: und(r.answer), items: r.kind === 'exercise' ? normalizeSections(r.items as Section[] | null) : und(r.items), answers: und(r.answers), overrides: und(r.overrides), aiNotes: und(r.ai_notes), feedback: und(r.feedback), note: und(r.student_note), createdAt: r.created_at, doneAt: und(r.done_at), groupId: und(r.group_id) }),
 };
 
 export async function GET() {
