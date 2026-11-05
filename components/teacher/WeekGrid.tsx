@@ -57,12 +57,15 @@ export default function WeekGrid({ days }: { days: Date[] }) {
     const mins = Math.max(0, Math.round((((e.clientY - rect.top - grab.current) / ROW) * 60) / 15) * 15) + from * 60;
     const h = Math.min(23, Math.floor(mins / 60)); const m = mins % 60;
     // Alt (або Ctrl) під час перетягування: копія, інакше перенесення
-    if (e.altKey || e.ctrlKey) it.ls.forEach((x) => copyTo(x, day, h, m));
-    else it.ls.forEach((x) => updateLesson(x.id, { start: new Date(day.getFullYear(), day.getMonth(), day.getDate(), h, m).toISOString() }));
+    it.ls.forEach((x) => updateLesson(x.id, { start: new Date(day.getFullYear(), day.getMonth(), day.getDate(), h, m).toISOString() }));
     if (it.key.startsWith('g:')) setSel(null);
   };
 
-  const block = ({ key, ls, l: l0 }: { key: string; ls: Lesson[]; l: Lesson }) => {
+  const block = ({ key, ls, l: l0 }: { key: string; ls: Lesson[]; l: Lesson }, i: number, arr: { l: Lesson }[]) => {
+    // кілька занять на один час: ставимо поруч, а не одне на одне
+    const same = arr.filter((x) => new Date(x.l.start).getTime() === new Date(l0.start).getTime());
+    const pos = same.findIndex((x) => x.l === l0);
+    const side = same.length > 1 ? { left: `calc(${(100 / same.length) * pos}% + 2px)`, right: 'auto', width: `calc(${100 / same.length}% - 4px)` } : {};
     const grp = l0.groupId ? (data.groups ?? []).find((g) => g.id === l0.groupId) : undefined;
     const l = { ...l0, status: groupStatus(ls) };
     const st = grp ? { name: `${grp.name} (${ls.length})`, color: grp.color } : data.students.find((s) => s.id === l.studentId);
@@ -71,10 +74,10 @@ export default function WeekGrid({ days }: { days: Date[] }) {
     const h = Math.max(26, (l.duration / 60) * ROW - 3);
     const past = d.getTime() + l.duration * 60000 < Date.now();
     return (
-      <button key={key} type="button" onClick={(e) => { if (e.altKey) { const d = new Date(l.start); d.setDate(d.getDate() + 7); ls.forEach((x) => copyTo(x, d)); return; } setSel(sel === key ? null : key); }}
-        draggable onDragStart={(e) => { e.dataTransfer.setData('text/plain', key); e.dataTransfer.effectAllowed = 'copyMove'; grab.current = e.clientY - (e.currentTarget as HTMLElement).getBoundingClientRect().top; }}
+      <button key={key} type="button" onClick={() => setSel(sel === key ? null : key)}
+        draggable onDragStart={(e) => { e.dataTransfer.setData('text/plain', key); e.dataTransfer.effectAllowed = 'move'; grab.current = e.clientY - (e.currentTarget as HTMLElement).getBoundingClientRect().top; }}
         className={`wg-l t-student--${st?.color ?? 'lime'} is-${l.status} ${l.status === 'planned' && past ? 'is-unmarked' : ''} ${sel === key ? 'is-sel' : ''} ${grp ? 'is-group' : ''}`}
-        style={{ top, height: h }} title={`${fmtTime(l.start, t.lang)} ${st?.name ?? ''}`}>
+        style={{ top, height: h, ...side }} title={`${fmtTime(l.start, t.lang)} ${st?.name ?? ''}`}>
         <b>{st?.name ?? '?'}</b>
         <span>{fmtTime(l.start, t.lang)}{l.duration !== 60 ? ` · ${l.duration}′` : ''}</span>
         {l.status === 'done' && <i className="wg-mark">✓</i>}
@@ -99,7 +102,7 @@ export default function WeekGrid({ days }: { days: Date[] }) {
           </div>
           {days.map((d) => (
             <div key={d.toISOString()} className={`wg-col ${sameDay(d, today) ? 'is-today' : ''}`} style={{ height: H.length * ROW, backgroundSize: `100% ${ROW}px` }}
-              onDragOver={(e) => { e.preventDefault(); e.dataTransfer.dropEffect = e.altKey || e.ctrlKey ? 'copy' : 'move'; }} onDrop={(e) => onDrop(e, d)}>
+              onDragOver={(e) => { e.preventDefault(); e.dataTransfer.dropEffect = 'move'; }} onDrop={(e) => onDrop(e, d)}>
               {items.filter((x) => sameDay(new Date(x.l.start), d)).map(block)}
             </div>
           ))}
@@ -159,7 +162,7 @@ export default function WeekGrid({ days }: { days: Date[] }) {
         <span><i className="wg-sw is-missed" /> {label.missed}</span>
         <span><i className="wg-sw is-cancelled" /> {label.cancelled}</span>
         <span><i className="wg-sw is-unmarked" /> {t({ uk: 'Минув, не позначено', ru: 'Прошёл, не отмечен', en: 'Past, not marked' })}</span>
-        <span className="wg-tip">{t({ uk: 'Перетягни заняття, щоб перенести. З Alt: копія. Alt + клік: копія на наступний тиждень.', ru: 'Перетащи занятие, чтобы перенести. С Alt: копия. Alt + клик: копия на следующую неделю.', en: 'Drag a lesson to move it. Hold Alt to copy. Alt + click copies it to next week.' })}</span>
+        <span className="wg-tip">{t({ uk: 'Перетягни заняття, щоб перенести.', ru: 'Перетащи занятие, чтобы перенести.', en: 'Drag a lesson to move it.' })}</span>
       </div>
     </div>
   );
