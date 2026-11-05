@@ -30,11 +30,11 @@ export default function QuestGame({ loc, hw, adult, next }: { loc: QuestLocation
   const task = TASKS[step];
   const done = step >= TASKS.length;
 
-  useEffect(() => { if (task) { setHint(false); setMiss(0); setFound([]); say(task.en, { voice: 'girl', slow: true }); } }, [step]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => { if (task) { setHint(false); setMiss(0); setFound([]); say(task.en, { voice: 'girl', kid: true, slow: true }); } }, [step]); // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (!done || sent.current) return;
     sent.current = true;
-    say(loc.finale, { voice: 'girl' });
+    say(loc.finale, { voice: 'girl', kid: true });
     if (!adult) fetch('/api/coins', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ op: 'earn', amount: 10, source: 'game', reason: `quest ${loc.id}` }) }).catch(() => {});
     if (hw) fetch('/api/student', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ op: 'submitHomework', id: hw, score: clean, total: TASKS.length }) }).catch(() => {});
   }, [done]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -53,7 +53,7 @@ export default function QuestGame({ loc, hw, adult, next }: { loc: QuestLocation
       const f = found.includes(id) ? found : [...found, id];
       setFound(f);
       setMsg(`${f.length} / ${task.target.length}`);
-      say(['one', 'two', 'three', 'four', 'five'][f.length - 1] ?? '', { voice: 'girl' });
+      say(['one', 'two', 'three', 'four', 'five'][f.length - 1] ?? '', { voice: 'girl', kid: true });
       if (task.take) takeAway(id);
       if (f.length < task.target.length) return;
     }
@@ -61,7 +61,7 @@ export default function QuestGame({ loc, hw, adult, next }: { loc: QuestLocation
     if (task.take) { if (!task.all) task.target.forEach(takeAway); setBag((b) => [...b, task.take!]); }
     if (!miss) setClean((c) => c + 1);
     setMsg(t({ uk: 'Так! Молодець!', ru: 'Да! Молодец!', en: 'Yes! Well done!' }));
-    say(['Yes!', 'Great!', 'Well done!', 'Super!'][step % 4], { voice: 'girl' });
+    say(['Yes!', 'Great!', 'Well done!', 'Super!'][step % 4], { voice: 'girl', kid: true });
     busy.current = true;
     setTimeout(() => { busy.current = false; setMsg(''); setStep((s) => s + 1); }, 1000);
   };
@@ -79,7 +79,7 @@ export default function QuestGame({ loc, hw, adult, next }: { loc: QuestLocation
     <div className="sq">
       <div className="sq-bar">
         {task ? <>
-          <button type="button" className="mu-btn mu-btn--lime t-btn-sm" onClick={() => say(task.en, { voice: 'girl', slow: true })} aria-label={t({ uk: 'Послухати ще раз', ru: 'Послушать ещё раз', en: 'Listen again' })}>♪ {t({ uk: 'Ще раз', ru: 'Ещё раз', en: 'Again' })}</button>
+          <button type="button" className="mu-btn mu-btn--lime t-btn-sm" onClick={() => say(task.en, { voice: 'girl', kid: true, slow: true })} aria-label={t({ uk: 'Послухати ще раз', ru: 'Послушать ещё раз', en: 'Listen again' })}>♪ {t({ uk: 'Ще раз', ru: 'Ещё раз', en: 'Again' })}</button>
           <p className="sq-say"><b>{task.en}</b>{hint && t.lang !== 'en' && <small>{t.lang === 'ru' ? task.ru : task.uk}</small>}</p>
           {t.lang !== 'en' && !hint && <button type="button" className="t-link-btn" onClick={() => setHint(true)}>{t({ uk: 'Підказка', ru: 'Подсказка', en: 'Hint' })}</button>}
           <span className="sq-step">{step + 1} / {TASKS.length}</span>
