@@ -480,7 +480,7 @@ function NotesTab({ id }: { id: string }) {
 
 function PayTab({ id }: { id: string }) {
   const t = useT();
-  const { data, addPayment, removePayment } = useTeacher();
+  const { data, addPayment, removePayment, updateStudent } = useTeacher();
   const s = data.students.find((x) => x.id === id)!;
   const post = s.payMode === 'post';
   const owed0 = Math.max(0, -balanceOf(data, id));
@@ -517,6 +517,16 @@ function PayTab({ id }: { id: string }) {
         </form>
         <p className="t-muted">{t({ uk: 'Оплати мінус проведені заняття.', ru: 'Оплаты минус проведённые занятия.', en: 'Payments minus lessons held.' })}</p>
       </div>
+      <label className="t-card t-remind">
+        <input type="checkbox" checked={!!s.payRemind} onChange={(e) => updateStudent(id, { payRemind: e.target.checked })} />
+        <span>
+          <b>{t({ uk: 'Нагадувати про оплату в Telegram', ru: 'Напоминать об оплате в Telegram', en: 'Send payment reminders in Telegram' })}</b>
+          <small className="t-muted">{s.adult
+            ? t({ uk: 'Учню, коли є борг. Не частіше разу на тиждень.', ru: 'Ученику, когда есть долг. Не чаще раза в неделю.', en: 'To the student when there is a balance due. At most once a week.' })
+            : t({ uk: 'Батькам, коли є борг. Не частіше разу на тиждень.', ru: 'Родителям, когда есть долг. Не чаще раза в неделю.', en: 'To the parents when there is a balance due. At most once a week.' })}
+            {s.adult ? (!s.tg ? t({ uk: ' Учень ще не підключив Telegram.', ru: ' Ученик ещё не подключил Telegram.', en: ' The student hasn’t connected Telegram yet.' }) : '') : (!s.parentTg ? t({ uk: ' Батьки ще не підключили Telegram.', ru: ' Родители ещё не подключили Telegram.', en: ' The parents haven’t connected Telegram yet.' }) : '')}</small>
+        </span>
+      </label>
       {pays.length > 0 && (
         <div className="t-card"><h2>{t({ uk: 'Історія оплат', ru: 'История оплат', en: 'Payment history' })}</h2>
           {pays.map((p) => (
@@ -690,7 +700,8 @@ function defaultDue() {
 
 function HomeworkTab({ id }: { id: string }) {
   const t = useT();
-  const { data } = useTeacher();
+  const { data, updateStudent } = useTeacher();
+  const stu = data.students.find((x) => x.id === id);
   const list = data.homework.filter((h) => h.studentId === id);
   const [open, setOpen] = useState(false);
   return (
@@ -699,6 +710,12 @@ function HomeworkTab({ id }: { id: string }) {
         <div className="t-card__head"><h2>{t({ uk: 'Домашні завдання', ru: 'Домашние задания', en: 'Homework' })}</h2>
           <button className="mu-btn mu-btn--lime t-btn-sm" onClick={() => setOpen(!open)}>{open ? t({ uk: 'Закрити', ru: 'Закрыть', en: 'Close' }) : t({ uk: '+ Задати', ru: '+ Задать', en: '+ Assign' })}</button></div>
         {open && <HomeworkForm studentIds={[id]} onDone={() => setOpen(false)} />}
+        {stu && !stu.adult && (
+          <label className="t-remind t-remind--inline">
+            <input type="checkbox" checked={!stu.passOff} onChange={(e) => updateStudent(id, { passOff: !e.target.checked })} />
+            <span><b>{t({ uk: 'Пропуск за монетки', ru: 'Пропуск за монетки', en: 'Coin pass' })}</b><small className="t-muted">{t({ uk: 'Учень може раз на тиждень віддати 30 монеток і отримати +1 день до терміну.', ru: 'Ученик может раз в неделю отдать 30 монеток и получить +1 день к сроку.', en: 'Once a week the student can spend 30 coins for 1 extra day.' })}</small></span>
+          </label>
+        )}
         {!list.length && !open && <p className="t-empty">{t({ uk: 'Ще немає завдань. Задай гру зі словника або письмове завдання, і учень побачить його у своєму кабінеті.', ru: 'Заданий пока нет. Задай игру со словами из словаря или письменное задание, и ученик увидит его в своём кабинете.', en: 'No homework yet. Assign a vocabulary game or a written task and your student will see it in their account.' })}</p>}
       </div>
       {list.map((h) => <HomeworkItem key={h.id} hwId={h.id} />)}
@@ -849,6 +866,7 @@ export function HomeworkItem({ hwId, showStudent }: { hwId: string; showStudent?
             </>}
         </div>
       )}
+      {h.passUsed && <p className="t-muted" style={{ fontSize: 13 }}>{t({ uk: 'Учень узяв пропуск за монетки: +1 день.', ru: 'Ученик взял пропуск за монетки: +1 день.', en: 'The student used a coin pass: +1 day.' })}</p>}
       {h.instructions && <p className="t-hw__text">{h.instructions}</p>}
       {h.kind !== 'text' && h.score != null && (() => {
         // для вправ рахуємо наживо: враховує ✓ / ✕ вчителя

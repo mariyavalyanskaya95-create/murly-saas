@@ -81,6 +81,7 @@ export function FeedbackButton({ name }: { name: string }) {
             ) : (
               <>
                 <p className="t-muted">{t({ uk: 'Що б зробило Murly зручнішим для твоїх уроків? Пиши як є, навіть дрібниці.', ru: 'Что сделало бы Murly удобнее для твоих уроков? Пиши как есть, даже мелочи.', en: 'What would make Murly better for your lessons? Tell us anything, even small things.' })}</p>
+                <p className="t-muted" style={{ fontSize: 13 }}>{t({ uk: 'Ми бачимо твоє ім’я і пошту, щоб відповісти.', ru: 'Мы видим твоё имя и почту, чтобы ответить.', en: 'We see your name and email so we can reply.' })}</p>
                 <textarea autoFocus rows={5} value={text} onChange={(e) => setText(e.target.value)} maxLength={2000}
                   placeholder={t({ uk: 'Наприклад: хочу вправи на Present Perfect для дорослих', ru: 'Например: хочу упражнения на Present Perfect для взрослых', en: 'For example: I want Present Perfect exercises for adults' })} />
                 {state === 'error' && <p className="t-fb__err">{t({ uk: 'Не вдалося надіслати. Спробуй ще раз.', ru: 'Не удалось отправить. Попробуй ещё раз.', en: 'Could not send. Please try again.' })}</p>}
