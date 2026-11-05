@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { db, dbReady } from '@/lib/db';
-import { L, SITE, esc, tgApi, tgReady, tgSend } from '@/lib/telegram';
+import { L, SITE, esc, notifyParent, tgApi, tgReady, tgSend } from '@/lib/telegram';
 import { teacherBalances, teacherKeyboard } from '@/lib/tg-menu';
 import { PAID_ENABLED } from '@/lib/plans';
 
@@ -18,6 +18,7 @@ export async function GET(req: Request) {
   if (!tgReady() || !dbReady()) return NextResponse.json({ skipped: true });
 
   const tsent = await teacherMorning().catch(() => 0);
+  await payReminders().catch((e) => console.error(e));
   await trialTips().catch((e) => console.error(e));
   const students = await db.query('students?tg_chat_id=not.is.null&select=id,name,tg_chat_id,tg_lang').catch(() => []);
   if (!students.length) return NextResponse.json({ sent: 0, teachers: tsent });
@@ -106,5 +107,40 @@ async function trialTips() {
     if (!text) continue;
     const ok = await tgSend(String(r.tg_chat_id), text, { text: L(lang, { uk: 'Відкрити Murly', ru: 'Открыть Murly', en: 'Open Murly' }), url: next === 2 ? `${SITE}/pricing` : `${SITE}/activities` });
     if (ok) await db.patchWhere(`teacher_settings?teacher_id=eq.${encodeURIComponent(String(r.teacher_id))}`, { tips_sent: next });
+  }
+}
+
+// Нагадування про оплату: вчитель вмикає для конкретного учня. Не частіше разу на 7 днів.
+// Дорослому пишемо йому, за дитину пишемо батькам (дитині про гроші не пишемо).
+async function payReminders() {
+  const rows = await db.query('students?pay_remind=is.true&select=id,name,teacher_id,is_adult,tg_chat_id,tg_lang,pay_reminded_at').catch(() => []);
+  if (!rows.length) return;
+  const week = Date.now() - 7 * 864e5;
+  const byT = new Map<string, typeof rows>();
+  rows.forEach((r) => { const k = String(r.teacher_id); byT.set(k, [...(byT.get(k) ?? []), r]); });
+  for (const [tid, list] of Array.from(byT.entries())) {
+    const due = list.filter((r) => !r.pay_reminded_at || new Date(String(r.pay_reminded_at)).getTime() < week);
+    if (!due.length) continue;
+    const [bal, ts] = await Promise.all([
+      teacherBalances(tid).catch(() => []),
+      db.query(`teacher_settings?teacher_id=eq.${encodeURIComponent(tid)}&select=name`).catch(() => []),
+    ]);
+    const tname = String(ts[0]?.name || '').trim();
+    for (const r of due) {
+      const b = bal.find((x) => x.id === String(r.id));
+      if (!b || b.b >= 0) continue;
+      const sum = Math.round(-b.b); const n = b.price ? Math.ceil(-b.b / b.price) : 0;
+      const from = (lang: string) => tname ? L(lang, { uk: `Нагадування від ${esc(tname)}`, ru: `Напоминание от ${esc(tname)}`, en: `A reminder from ${esc(tname)}` }) : L(lang, { uk: 'Нагадування від вчителя', ru: 'Напоминание от учителя', en: 'A reminder from your teacher' });
+      const lessons = (lang: string) => n ? ` (${n} ${L(lang, { uk: 'зан.', ru: 'зан.', en: n === 1 ? 'lesson' : 'lessons' })})` : '';
+      const tail = (lang: string) => L(lang, { uk: 'Якщо ви вже оплатили, просто не зважайте на це повідомлення. Дякуємо!', ru: 'Если вы уже оплатили, просто не обращайте внимания на это сообщение. Спасибо!', en: 'If you have already paid, please ignore this message. Thank you!' });
+      let ok = false;
+      if (r.is_adult) {
+        if (r.tg_chat_id) { const lang = String(r.tg_lang || 'uk'); ok = await tgSend(String(r.tg_chat_id), `💳 ${from(lang)}\n\n${L(lang, { uk: 'За заняття англійською є заборгованість', ru: 'За занятия английским есть задолженность', en: 'There is an outstanding balance for your English lessons' })}: <b>${sum} ₴</b>${lessons(lang)}.\n\n${tail(lang)}`); }
+      } else {
+        const nm = esc(String(r.name || ''));
+        ok = await notifyParent(String(r.id), (lang) => `💳 ${from(lang)}\n\n${L(lang, { uk: `За заняття ${nm} є заборгованість`, ru: `За занятия ${nm} есть задолженность`, en: `There is an outstanding balance for ${nm}'s lessons` })}: <b>${sum} ₴</b>${lessons(lang)}.\n\n${tail(lang)}`);
+      }
+      if (ok) await db.patchWhere(`students?id=eq.${encodeURIComponent(String(r.id))}`, { pay_reminded_at: new Date().toISOString() }).catch(() => null);
+    }
   }
 }
