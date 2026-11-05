@@ -17,11 +17,13 @@ export type StudentHomework = {
   game?: 'quiz' | 'match' | 'anagram' | 'cards' | (string & {}); direction?: 'en' | 'uk';
   due?: string; status: 'assigned' | 'done' | 'checked'; score?: number; total?: number; answer?: string; feedback?: string;
   note?: string; // заметки й питання учня до вчителя
+  passUsed?: boolean; // учень уже взяв +1 день за монетки
 };
 export type Enrollment = {
   studentId: string; name: string; level: string; teacherName: string;
   loginPhone?: string; loginPin?: string;
   adult: boolean; nmt: boolean;
+  passOk: boolean; // можна взяти «пропуск» за монетки
   tgLinked: boolean; tgLink: string; // Telegram-сповіщення
   materials: { at: string; files: { url: string; name: string }[] }[];
   lessons: StudentLesson[]; words: StudentWord[]; homework: StudentHomework[];
@@ -84,6 +86,7 @@ export async function getEnrollments(userId: string, lang = 'uk'): Promise<Enrol
       teacherName: String(settings[0]?.name || ''),
       loginPhone: s.login_phone ? String(s.login_phone) : undefined,
       adult: Boolean(s.is_adult), nmt: Boolean(s.nmt),
+      passOk: !s.is_adult && !s.pass_off,
       tgLinked: Boolean(s.tg_chat_id), tgLink: studentLink(String(s.id), lang),
       loginPin: s.login_pin ? String(s.login_pin) : undefined,
       // документи, з якими працювали на уроках (текст нотаток учню не показуємо)
@@ -101,7 +104,7 @@ export async function getEnrollments(userId: string, lang = 'uk'): Promise<Enrol
         game: (h.game as StudentHomework['game']) ?? undefined, direction: (h.direction as StudentHomework['direction']) ?? undefined,
         due: h.due ? String(h.due) : undefined, status: h.status as StudentHomework['status'],
         score: h.score == null ? undefined : Number(h.score), total: h.total == null ? undefined : Number(h.total),
-        note: h.student_note ? String(h.student_note) : undefined,
+        note: h.student_note ? String(h.student_note) : undefined, passUsed: Boolean(h.pass_used_at),
         answer: h.answer ? String(h.answer) : undefined, feedback: h.feedback ? String(h.feedback) : undefined,
       })),
     };
@@ -213,4 +216,26 @@ export async function saveHomeworkNote(userId: string, id: string, note: string)
       (l) => ({ text: L(l, { uk: 'Відкрити', ru: 'Открыть', en: 'Open' }), url: `${SITE}/teacher/students/${hw[0].student_id}?tab=hw` }));
   }
   return true;
+}
+
+// «Пропуск» за монетки: +1 день до терміну домашки. 30 монеток, не частіше разу на 7 днів, учитель може вимкнути.
+export const PASS_PRICE = 30;
+export async function useHomeworkPass(userId: string, id: string): Promise<{ ok: true; due: string; coins: number } | { error: string }> {
+  if (!dbReady()) return { error: 'db' };
+  const hw = await db.query(`homework?id=eq.${enc(id)}&select=id,student_id,teacher_id,title,status,due,pass_used_at`);
+  const h = hw[0]; if (!h) return { error: 'not_found' };
+  const st = await db.query(`students?id=eq.${enc(String(h.student_id))}&user_id=eq.${enc(userId)}&select=id,name,is_adult,pass_off`);
+  const s = st[0]; if (!s) return { error: 'not_found' };
+  if (s.is_adult || s.pass_off) return { error: 'off' };
+  if (h.status !== 'assigned' || h.pass_used_at) return { error: 'used' };
+  const week = new Date(Date.now() - 7 * 864e5).toISOString();
+  const recent = await db.query(`homework?student_id=eq.${enc(String(s.id))}&pass_used_at=gte.${enc(week)}&select=id`).catch(() => []);
+  if (recent.length) return { error: 'week' };
+  const left = await addCoins(userId, -PASS_PRICE, `Пропуск: +1 день до «${String(h.title || '').slice(0, 60)}»`, 'shop');
+  if (left < 0) return { error: 'coins' };
+  const base = Math.max(h.due ? new Date(String(h.due)).getTime() : Date.now(), Date.now());
+  const due = new Date(base + 864e5).toISOString();
+  await db.patchWhere(`homework?id=eq.${enc(id)}`, { due, pass_used_at: new Date().toISOString() });
+  notifyTeacher(String(h.teacher_id), (l) => `${esc(String(s.name))} ${L(l, { uk: 'взяв(ла) пропуск за монетки: +1 день до', ru: 'взял(а) пропуск за монетки: +1 день к', en: 'used a coin pass: +1 day for' })} <b>${esc(String(h.title || ''))}</b>`).catch(() => null);
+  return { ok: true, due, coins: left };
 }

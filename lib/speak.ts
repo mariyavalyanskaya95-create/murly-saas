@@ -38,21 +38,23 @@ export function stopSpeak() {
 }
 
 // Сказати фразу живим голосом (preset) або голосом браузера. onEnd викликається в кінці.
-export async function say(text: string, opts: { voice?: VoicePreset; slow?: boolean; onEnd?: () => void; pitch?: number } = {}) {
+// kid: дитячий голос (вищий тон: швидше програвання без збереження висоти)
+export async function say(text: string, opts: { voice?: VoicePreset; slow?: boolean; onEnd?: () => void; pitch?: number; kid?: boolean } = {}) {
   stopSpeak();
   const rate = opts.slow ? 0.75 : 0.95;
   if (await liveVoices()) {
     const a = new Audio(ttsUrl(text, opts.voice ?? 'narrator'));
-    a.playbackRate = opts.slow ? 0.8 : 1;
+    a.playbackRate = (opts.slow ? 0.8 : 1) * (opts.kid ? 1.2 : 1);
+    if (opts.kid) { (a as HTMLAudioElement & { preservesPitch?: boolean; webkitPreservesPitch?: boolean }).preservesPitch = false; (a as HTMLAudioElement & { webkitPreservesPitch?: boolean }).webkitPreservesPitch = false; }
     current = a;
     let fell = false;
-    const fallback = () => { if (fell || current !== a) return; fell = true; current = null; browserSay(text, rate, opts.onEnd, opts.pitch); };
+    const fallback = () => { if (fell || current !== a) return; fell = true; current = null; browserSay(text, rate, opts.onEnd, opts.kid ? 1.6 : opts.pitch); };
     a.onended = () => { if (current === a) { current = null; opts.onEnd?.(); } };
     a.onerror = fallback;
     try { await a.play(); } catch { fallback(); }
     return true;
   }
-  return browserSay(text, rate, opts.onEnd, opts.pitch);
+  return browserSay(text, rate, opts.onEnd, opts.kid ? 1.6 : opts.pitch);
 }
 
 // Сумісність зі старим кодом: speakEn(text, rate, onEnd)

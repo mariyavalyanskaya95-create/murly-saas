@@ -181,7 +181,7 @@ export async function teacherBalances(teacherId: string) {
     const paid = pays.filter((p) => p.student_id === s.id).reduce((n, p) => n + Number(p.amount || 0), 0);
     const held = done.filter((l) => l.student_id === s.id).length;
     const start = ((Number(s.prepaid_lessons) || 0) - (Number(s.owed_lessons) || 0)) * price;
-    return { name: String(s.name || ''), price, post: s.pay_mode === 'post', b: paid - held * price + start };
+    return { id: String(s.id), name: String(s.name || ''), price, post: s.pay_mode === 'post', b: paid - held * price + start };
   });
 }
 
