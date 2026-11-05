@@ -4,6 +4,7 @@ import { L, SITE, esc, tgApi, tgReady, tgSend } from '@/lib/telegram';
 import { teacherBalances, teacherKeyboard } from '@/lib/tg-menu';
 import { PAID_ENABLED } from '@/lib/plans';
 
+import { uniqLessons } from '@/lib/lesson-dedupe';
 export const dynamic = 'force-dynamic';
 
 const TZ = 'Europe/Kyiv';
@@ -28,10 +29,11 @@ export async function GET(req: Request) {
     db.query(`homework?student_id=in.(${ids})&status=eq.assigned&due=gte.${encodeURIComponent(new Date(now).toISOString())}&due=lt.${encodeURIComponent(in24)}&select=student_id,title,due`).catch(() => []),
     db.query(`words?student_id=in.(${ids})&or=(srs_due.is.null,srs_due.lte.${encodeURIComponent(new Date(now).toISOString())})&select=student_id`).catch(() => []),
   ]);
+  const lessonsU = uniqLessons(lessons);
   let sent = 0;
   for (const s of students) {
     const lang = String(s.tg_lang || 'uk');
-    const ls = lessons.filter((l) => l.student_id === s.id);
+    const ls = lessonsU.filter((l) => l.student_id === s.id);
     const hs = hw.filter((h) => h.student_id === s.id);
     const wn = Math.min(15, dueWords.filter((w) => w.student_id === s.id).length);
     if (!ls.length && !hs.length && wn < 4) continue;
@@ -59,13 +61,14 @@ async function teacherMorning() {
       db.query(`homework?teacher_id=eq.${T}&status=eq.done&select=id`).catch(() => []),
       teacherBalances(String(tr.teacher_id)).catch(() => []),
     ]);
+    const lsU = uniqLessons(ls);
     const owe = bal.filter((x) => x.b < 0);
-    if (!ls.length && !rev.length && !owe.length) continue;
+    if (!lsU.length && !rev.length && !owe.length) continue;
     const nm = (id: unknown) => esc(String(st.find((x) => x.id === id)?.name || ''));
     const lines: string[] = [];
-    if (ls.length) {
+    if (lsU.length) {
       lines.push(`<b>${L(lang, { uk: 'Заняття', ru: 'Занятия', en: 'Lessons' })}</b>`);
-      ls.forEach((l) => lines.push(`${time(String(l.start), lang)} ${nm(l.student_id)}${l.topic ? `: ${esc(String(l.topic))}` : ''}`));
+      lsU.forEach((l) => lines.push(`${time(String(l.start), lang)} ${nm(l.student_id)}${l.topic ? `: ${esc(String(l.topic))}` : ''}`));
     }
     if (rev.length) lines.push('', L(lang, { uk: `На перевірку: <b>${rev.length}</b>`, ru: `На проверку: <b>${rev.length}</b>`, en: `To review: <b>${rev.length}</b>` }));
     if (owe.length) lines.push(L(lang, { uk: `Чекають оплати: <b>${owe.length}</b> (${owe.map((x) => esc(x.name)).join(', ')})`, ru: `Ждут оплаты: <b>${owe.length}</b> (${owe.map((x) => esc(x.name)).join(', ')})`, en: `Awaiting payment: <b>${owe.length}</b> (${owe.map((x) => esc(x.name)).join(', ')})` }));
