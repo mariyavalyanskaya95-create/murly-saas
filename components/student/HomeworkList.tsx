@@ -26,7 +26,7 @@ async function send(id: string, p: { score?: number; total?: number; answer?: st
   return r.ok;
 }
 
-export default function HomeworkList({ homework, words }: { homework: StudentHomework[]; words: StudentWord[] }) {
+export default function HomeworkList({ homework, words, passOk = false }: { homework: StudentHomework[]; words: StudentWord[]; passOk?: boolean }) {
   const t = useT();
   const [list, setList] = useState(homework);
   const [openId, setOpenId] = useState<string | null>(null);
@@ -42,15 +42,15 @@ export default function HomeworkList({ homework, words }: { homework: StudentHom
       <h2><Icon id="e-board" />{t({ uk: 'Домашка', ru: 'Домашка', en: 'Homework' })}{todo.length ? ` (${todo.length})` : ''}</h2>
       {!todo.length && <p className="t-muted">{t({ uk: 'Усе здано. Молодець!', ru: 'Всё сдано. Молодец!', en: 'All done. Well done!' })}</p>}
       {[...todo, ...done].map((h) => (
-        <HomeworkRow key={h.id} h={h} words={words} open={openId === h.id}
+        <HomeworkRow key={h.id} h={h} words={words} open={openId === h.id} passOk={passOk}
           onToggle={() => setOpenId(openId === h.id ? null : h.id)} onPatch={(p) => patch(h.id, p)} />
       ))}
     </section>
   );
 }
 
-function HomeworkRow({ h, words, open, onToggle, onPatch }: {
-  h: StudentHomework; words: StudentWord[]; open: boolean; onToggle: () => void; onPatch: (p: Partial<StudentHomework>) => void;
+function HomeworkRow({ h, words, open, onToggle, onPatch, passOk = false }: {
+  h: StudentHomework; words: StudentWord[]; open: boolean; onToggle: () => void; onPatch: (p: Partial<StudentHomework>) => void; passOk?: boolean;
 }) {
   const t = useT();
   const [answer, setAnswer] = useState(h.answer ?? '');
@@ -88,6 +88,7 @@ function HomeworkRow({ h, words, open, onToggle, onPatch }: {
       {open && (
         <div className="s-hw__body">
           {h.instructions && <p className="t-hw__text">{h.instructions.split(/(https:\/\/murly\.com\.ua\/[^\s]+)/).map((x, i) => (i % 2 ? <a key={i} href={x} target="_blank" rel="noopener">{x.replace('https://murly.com.ua', 'murly.com.ua')}</a> : x))}</p>}
+          {passOk && h.status === 'assigned' && !h.passUsed && <PassButton h={h} onPatch={onPatch} />}
           {h.feedback && <div className="s-hw__fb"><small>{t({ uk: 'Коментар учителя', ru: 'Комментарий учителя', en: 'Teacher’s comment' })}</small><p>{h.feedback}</p></div>}
           {h.kind === 'game' && isQuest(h.game) && (
             <p><a className="mu-btn mu-btn--lime" href={`/play/quest/${h.game}?hw=${encodeURIComponent(h.id)}`}>{h.status === 'assigned' ? t({ uk: 'Грати квест', ru: 'Играть квест', en: 'Play the quest' }) : t({ uk: 'Зіграти ще раз', ru: 'Сыграть ещё раз', en: 'Play again' })}</a></p>
@@ -202,6 +203,34 @@ function ExercisePlayer({ h, onPatch }: { h: StudentHomework; onPatch: (p: Parti
           : <button className="mu-btn" onClick={() => setChecked(false)}>{t({ uk: 'Виправити і здати ще раз', ru: 'Исправить и сдать ещё раз', en: 'Fix and hand in again' })}</button>}
       </div>
       {err && <p className="t-neg">{t({ uk: 'Не вдалося зберегти. Перевір інтернет і спробуй ще раз.', ru: 'Не удалось сохранить. Проверь интернет и попробуй ещё раз.', en: 'Could not save. Check your internet and try again.' })}</p>}
+    </div>
+  );
+}
+
+// «Пропуск» за монетки: +1 день до терміну, раз на тиждень
+function PassButton({ h, onPatch }: { h: StudentHomework; onPatch: (p: Partial<StudentHomework>) => void }) {
+  const t = useT();
+  const [state, setState] = useState<'idle' | 'ask' | 'busy' | string>('idle');
+  const go = async () => {
+    setState('busy');
+    const r = await fetch('/api/student', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ op: 'usePass', id: h.id }) }).catch(() => null);
+    const j = r ? await r.json().catch(() => ({})) : {};
+    if (r?.ok && j.due) { onPatch({ due: j.due, passUsed: true }); window.dispatchEvent(new Event('murly:coins')); setState('idle'); return; }
+    setState(j.error === 'coins' ? t({ uk: 'Не вистачає монеток. Заробляй їх за домашку і слова!', ru: 'Не хватает монеток. Зарабатывай их за домашку и слова!', en: 'Not enough coins. Earn them with homework and words!' })
+      : j.error === 'week' ? t({ uk: 'Пропуск можна брати раз на тиждень.', ru: 'Пропуск можно брать раз в неделю.', en: 'You can use a pass once a week.' })
+      : t({ uk: 'Зараз не вийшло. Спробуй пізніше.', ru: 'Сейчас не получилось. Попробуй позже.', en: 'That didn’t work. Try later.' }));
+  };
+  if (state === 'ask') return (
+    <div className="s-pass">
+      <span>{t({ uk: 'Віддати 30 монеток і отримати ще 1 день? Учитель це побачить.', ru: 'Отдать 30 монеток и получить ещё 1 день? Учитель это увидит.', en: 'Spend 30 coins for 1 more day? Your teacher will see it.' })}</span>
+      <button type="button" className="mu-btn mu-btn--lime t-btn-sm" onClick={go}>{t({ uk: 'Так', ru: 'Да', en: 'Yes' })}</button>
+      <button type="button" className="mu-btn t-btn-sm" onClick={() => setState('idle')}>{t({ uk: 'Ні', ru: 'Нет', en: 'No' })}</button>
+    </div>
+  );
+  return (
+    <div className="s-pass">
+      <button type="button" className="mu-textlink" disabled={state === 'busy'} onClick={() => setState('ask')}>{t({ uk: 'Не встигаю: +1 день за 30 монеток', ru: 'Не успеваю: +1 день за 30 монеток', en: 'Need more time: +1 day for 30 coins' })}</button>
+      {state !== 'idle' && state !== 'busy' && <small className="t-muted">{state}</small>}
     </div>
   );
 }

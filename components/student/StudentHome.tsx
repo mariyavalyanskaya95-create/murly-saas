@@ -87,7 +87,7 @@ export default function StudentHome({ enrollments, name }: { enrollments: Enroll
       </section>
 
       {/* спершу те, що треба зробити сьогодні: домашка і слова на повторення */}
-      <HomeworkList key={e.studentId} homework={e.homework} words={e.words} />
+      <HomeworkList key={e.studentId} homework={e.homework} words={e.words} passOk={e.passOk} />
 
       <WordReview key={`r${e.studentId}`} words={e.words} adult={e.adult} />
 
