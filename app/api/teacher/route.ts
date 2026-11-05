@@ -35,7 +35,7 @@ const toDb = {
   word: (w: Row, t: string) => ({ id: w.id, teacher_id: t, student_id: w.studentId, en: w.en, uk: w.uk, example: w.example ?? null, at: w.at }),
   payment: (p: Row, t: string) => ({ id: p.id, teacher_id: t, student_id: p.studentId, amount: p.amount, note: p.note ?? null, at: p.at }),
   homework: (h: Row, t: string) => ({ id: h.id, teacher_id: t, student_id: h.studentId, title: h.title, instructions: h.instructions ?? null, kind: h.kind, game: h.game ?? null, direction: h.direction ?? null, items: h.items ?? null, due: h.due ?? null, group_id: h.groupId ?? null, status: h.status ?? 'assigned', created_at: h.createdAt }),
-  homeworkPatch: (p: Row) => pick(p, ['title', 'instructions', 'due', 'status', 'feedback', 'overrides', 'score']),
+  homeworkPatch: (p: Row) => pick(p, ['title', 'instructions', 'due', 'status', 'feedback', 'overrides', 'score', 'total']),
   plan: (p: Row, t: string) => ({ id: p.id, teacher_id: t, title: p.title, level: p.level, age: p.age, topic: p.topic ?? null, color: p.color ?? 'lime', blocks: p.blocks ?? [], source: p.source ?? null, focus: p.focus ?? null, aims: p.aims ?? null, created_at: p.createdAt, updated_at: p.updatedAt }),
   planPatch: (p: Row) => {
     const o = pick(p, ['title', 'level', 'age', 'topic', 'color', 'blocks', 'focus', 'aims']);
@@ -230,7 +230,18 @@ export async function POST(req: Request) {
       }
       case 'updateHomework': {
         const patch = p.patch as Row;
-        await db.update('homework', t, id, toDb.homeworkPatch(patch));
+        const hp = toDb.homeworkPatch(patch);
+        // бал і максимум рахуємо на сервері, щоб не було «30 / 15»
+        if ('overrides' in patch) {
+          const r0 = await db.query(`homework?id=eq.${encodeURIComponent(id)}&teacher_id=eq.${encodeURIComponent(t)}&select=kind,items,answers`).catch(() => []);
+          const h0 = r0[0];
+          if (h0 && h0.answers && (h0.kind === 'exercise' || h0.kind === 'lesson')) {
+            const secs0 = h0.kind === 'lesson' ? lessonSections((h0.items as Block[]) ?? []) : (normalizeSections(h0.items as Section[] | null) ?? []);
+            const g0 = grade(secs0, h0.answers as Answers, (patch.overrides as Record<string, boolean>) ?? {});
+            hp.score = g0.score; hp.total = g0.total;
+          }
+        }
+        await db.update('homework', t, id, hp);
         if (patch?.status === 'checked') {
           const r = await db.query(`homework?id=eq.${encodeURIComponent(id)}&teacher_id=eq.${encodeURIComponent(t)}&select=student_id,title,feedback,score,total`).catch(() => []);
           const h = r[0];
