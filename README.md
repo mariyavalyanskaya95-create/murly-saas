@@ -71,3 +71,5 @@ Push to `main` → Vercel auto-deploys.
 - [ ] Reference pages (grammar)
 - [ ] Domain: `murlyschool.com`
 - [ ] SEO + Analytics
+
+<!-- redeploy 2026-11-05 -->
