@@ -4,6 +4,7 @@ import { db } from './db';
 import { balanceOf as coinsOf } from './coins';
 import { L, esc } from './telegram';
 
+import { uniqLessons } from './lesson-dedupe';
 const enc = encodeURIComponent;
 type Lang = 'uk' | 'ru' | 'en';
 type Role = 'self' | 'parent';
@@ -65,7 +66,7 @@ export async function menuAnswer(kind: string, lang: Lang, links: Link[]): Promi
       const price = Number(k.s.price) || 0;
       const [pays, done] = await Promise.all([
         db.query(`payments?student_id=eq.${sid}&select=amount,at&order=at.desc`).catch(() => []),
-        db.query(`lessons?student_id=eq.${sid}&status=in.(done,charged)&select=id`).catch(() => []),
+        db.query(`lessons?student_id=eq.${sid}&status=in.(done,charged)&select=id,student_id,start,status`).then(uniqLessons).catch(() => []),
       ]);
       const paid = pays.reduce((n, p) => n + Number(p.amount || 0), 0);
       const start = ((Number(k.s.prepaid_lessons) || 0) - (Number(k.s.owed_lessons) || 0)) * price;
@@ -88,7 +89,7 @@ export async function menuAnswer(kind: string, lang: Lang, links: Link[]): Promi
 
     if (kind === 'stats') {
       const [ls, hw, words] = await Promise.all([
-        db.query(`lessons?student_id=eq.${sid}&select=status&limit=500`).catch(() => []),
+        db.query(`lessons?student_id=eq.${sid}&select=status,student_id,start&limit=500`).then(uniqLessons).catch(() => []),
         db.query(`homework?student_id=eq.${sid}&select=status,score,total,due&limit=200`).catch(() => []),
         db.query(`words?student_id=eq.${sid}&select=id`).catch(() => []),
       ]);
@@ -118,7 +119,7 @@ export async function menuAnswer(kind: string, lang: Lang, links: Link[]): Promi
     }
 
     if (kind === 'next') {
-      const up = await db.query(`lessons?student_id=eq.${sid}&status=eq.planned&start=gte.${enc(new Date().toISOString())}&select=start,topic&order=start.asc&limit=4`).catch(() => []);
+      const up = await db.query(`lessons?student_id=eq.${sid}&status=eq.planned&start=gte.${enc(new Date().toISOString())}&select=student_id,start,topic&order=start.asc&limit=8`).then((r) => uniqLessons(r).slice(0, 4)).catch(() => []);
       parts.push(head(k) + (up.length
         ? up.map((l) => `${when(l.start, lang)}${l.topic ? `: ${esc(String(l.topic))}` : ''}`).join('\n')
         : t({ uk: 'Найближчих занять поки не заплановано.', ru: 'Ближайших занятий пока не запланировано.', en: 'No upcoming lessons yet.' })));
@@ -173,7 +174,7 @@ export async function teacherBalances(teacherId: string) {
   const [st, pays, done] = await Promise.all([
     db.query(`students?teacher_id=eq.${T}&select=id,name,price,prepaid_lessons,owed_lessons,pay_mode`).catch(() => []),
     db.query(`payments?teacher_id=eq.${T}&select=student_id,amount`).catch(() => []),
-    db.query(`lessons?teacher_id=eq.${T}&status=in.(done,charged)&select=student_id`).catch(() => []),
+    db.query(`lessons?teacher_id=eq.${T}&status=in.(done,charged)&select=student_id,start,status`).then(uniqLessons).catch(() => []),
   ]);
   return st.map((s) => {
     const price = Number(s.price) || 0;
@@ -214,7 +215,7 @@ export async function teacherAnswer(kind: string, lang: Lang, teacherId: string)
   }
   if (kind === 'today') {
     const [ls, st] = await Promise.all([
-      db.query(`lessons?teacher_id=eq.${T}&status=eq.planned&start=gte.${enc(kyivDayStart(0).toISOString())}&start=lt.${enc(kyivDayStart(2).toISOString())}&select=student_id,start,topic&order=start.asc`).catch(() => []),
+      db.query(`lessons?teacher_id=eq.${T}&status=eq.planned&start=gte.${enc(kyivDayStart(0).toISOString())}&start=lt.${enc(kyivDayStart(2).toISOString())}&select=student_id,start,topic&order=start.asc`).then(uniqLessons).catch(() => []),
       db.query(`students?teacher_id=eq.${T}&select=id,name`).catch(() => []),
     ]);
     const nm = (id: unknown) => esc(String(st.find((s) => s.id === id)?.name || ''));

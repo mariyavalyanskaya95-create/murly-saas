@@ -114,7 +114,7 @@ const when = (iso: unknown, lang: Lang) => new Date(String(iso)).toLocaleString(
 async function recentLessons(teacherId: string) {
   const from = new Date(Date.now() - 4 * 86400000).toISOString();
   const to = new Date(Date.now() + 4 * 3600000).toISOString();
-  return db.query(`lessons?teacher_id=eq.${enc(teacherId)}&status=eq.planned&start=gte.${enc(from)}&start=lt.${enc(to)}&select=id,student_id,start,topic&order=start.desc&limit=14`).catch(() => []);
+  return db.query(`lessons?teacher_id=eq.${enc(teacherId)}&status=eq.planned&start=gte.${enc(from)}&start=lt.${enc(to)}&select=id,student_id,start,topic&order=start.desc&limit=20`).then((r) => uniqLessons(r).slice(0, 14)).catch(() => []);
 }
 
 // Крок 1: найближчі незакриті заняття (за останні 4 дні і на найближчі години) + «урок не з розкладу»
@@ -272,6 +272,7 @@ import type { Section } from './exercise';
 import { grade, normalizeSections } from './exercise';
 import { notifyStudent, SITE } from './telegram';
 
+import { uniqLessons } from './lesson-dedupe';
 async function doneHomework(teacherId: string) {
   return db.query(`homework?teacher_id=eq.${enc(teacherId)}&status=eq.done&select=id,student_id,title,kind,game,score,total,answer,items,answers,overrides,done_at,student_note&order=done_at.asc&limit=30`).catch(() => []);
 }

@@ -6,6 +6,7 @@ import { grade, normalizeSections, type Answers, type Section } from './exercise
 import { lessonSections, type Block } from './lesson';
 import { L, SITE, esc, notifyTeacher, studentLink } from './telegram';
 
+import { uniqLessons } from './lesson-dedupe';
 const enc = encodeURIComponent;
 type Row = Record<string, unknown>;
 
@@ -69,7 +70,7 @@ export async function getEnrollments(userId: string, lang = 'uk'): Promise<Enrol
   return Promise.all(students.map(async (s: Row) => {
     const sid = enc(String(s.id));
     const [lessons, words, settings, homework, notes] = await Promise.all([
-      db.query(`lessons?student_id=eq.${sid}&status=eq.planned&start=gte.${enc(since)}&order=start.asc&limit=20&select=*`),
+      db.query(`lessons?student_id=eq.${sid}&status=eq.planned&start=gte.${enc(since)}&order=start.asc&limit=20&select=*`).then(uniqLessons),
       db.query(`words?student_id=eq.${sid}&order=at.desc&select=id,en,uk,example,at,srs_box,srs_due`).catch(() => db.query(`words?student_id=eq.${sid}&order=at.desc&select=id,en,uk,example,at`)),
       db.query(`teacher_settings?teacher_id=eq.${enc(String(s.teacher_id))}&select=name,link`),
       db.query(`homework?student_id=eq.${sid}&order=created_at.desc&limit=30&select=*`).catch(() => []),
