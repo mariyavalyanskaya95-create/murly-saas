@@ -1,7 +1,7 @@
 // Пробний місяць, «Запроси колегу» і відгуки вчителя
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
-import { auth } from '@clerk/nextjs/server';
+import { auth, clerkClient } from '@clerk/nextjs/server';
 import { db, dbReady } from '@/lib/db';
 import { esc, tgSend, tgReady } from '@/lib/telegram';
 import { OWNER_TEACHER_ID, PAID_ENABLED, trialLeft } from '@/lib/plans';
@@ -59,13 +59,16 @@ export async function POST(req: Request) {
   if (text.length < 2) return NextResponse.json({ error: 'empty' }, { status: 400 });
   const page = String(b.page || '').slice(0, 200);
   const name = String(b.name || '').slice(0, 80);
+  // хто написав: пошта з акаунта (учителю чесно кажемо, що ми її бачимо)
+  let email = '';
+  try { const u = await (await clerkClient()).users.getUser(userId); email = u.primaryEmailAddress?.emailAddress || u.emailAddresses?.[0]?.emailAddress || ''; } catch { /* */ }
   if (dbReady()) await db.insert('feedback', [{ teacher_id: userId, name, page, text }]).catch((e) => console.error(e));
   if (tgReady() && dbReady()) {
     const owner = OWNER_TEACHER_ID
       ? await db.query(`teacher_settings?teacher_id=eq.${enc(OWNER_TEACHER_ID)}&select=tg_chat_id`).catch(() => [])
       : await db.query('teacher_settings?is_owner=is.true&select=tg_chat_id').catch(() => []);
     const chat = owner[0]?.tg_chat_id;
-    if (chat) await tgSend(String(chat), `🐾 <b>Мур! Учитель поделился идеей</b>\n\n💬 «${esc(text)}»\n\n👩‍🏫 ${esc(name || 'Учитель')}${page ? `\n📍 страница ${esc(page)}` : ''}\n\nСпасибо, что слушаешь своих учителей 💛`);
+    if (chat) await tgSend(String(chat), `🐾 <b>Мур! Учитель поделился идеей</b>\n\n💬 «${esc(text)}»\n\n👩‍🏫 ${esc(name || 'Учитель')}${email ? ` · ${esc(email)}` : ''}${page ? `\n📍 страница ${esc(page)}` : ''}\n\nСпасибо, что слушаешь своих учителей 💛`);
   }
   return NextResponse.json({ ok: true });
 }
