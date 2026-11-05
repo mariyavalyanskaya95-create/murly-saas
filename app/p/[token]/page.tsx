@@ -7,6 +7,7 @@ import { db, dbReady } from '@/lib/db';
 import { parseParentToken } from '@/lib/parent-link';
 import { tr } from '@/lib/i18n-server';
 
+import { uniqLessons } from '@/lib/lesson-dedupe';
 export const dynamic = 'force-dynamic';
 export const metadata: Metadata = { title: 'Murly', robots: { index: false, follow: false } };
 const enc = encodeURIComponent;
@@ -21,7 +22,7 @@ export default async function ParentPage({ params }: { params: { token: string }
   const s = st[0];
   if (!s) notFound();
   const [lessons, hw, words, teacher] = await Promise.all([
-    db.query(`lessons?student_id=eq.${enc(sid)}&select=start,status,topic&order=start.desc&limit=200`).catch(() => []),
+    db.query(`lessons?student_id=eq.${enc(sid)}&select=student_id,start,status,topic&order=start.desc&limit=200`).then(uniqLessons).catch(() => []),
     db.query(`homework?student_id=eq.${enc(sid)}&select=title,status,score,total,feedback,due,done_at,created_at&order=created_at.desc&limit=30`).catch(() => []),
     db.query(`words?student_id=eq.${enc(sid)}&select=id`).catch(() => []),
     db.query(`teacher_settings?teacher_id=eq.${enc(String(s.teacher_id))}&select=name`).catch(() => []),
