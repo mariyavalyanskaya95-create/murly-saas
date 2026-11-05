@@ -136,7 +136,17 @@ export async function POST(req: Request) {
         break;
       }
       case 'removeGroup': await db.remove('groups', t, id); break;
-      case 'addLessons': await db.insert('lessons', (p.rows as Row[]).map((l) => toDb.lesson(l, t))); break;
+      case 'addLessons': {
+        // захист від дублів: якщо в учня вже є незаскасоване заняття на цей самий час, нове не пишемо
+        const rows = (p.rows as Row[]).map((l) => toDb.lesson(l, t));
+        const ids = Array.from(new Set(rows.map((r) => String(r.student_id)))).filter(Boolean);
+        const have = ids.length ? await db.query(`lessons?teacher_id=eq.${encodeURIComponent(t)}&student_id=in.(${ids.map(encodeURIComponent).join(',')})&status=neq.cancelled&select=student_id,start`).catch(() => []) : [];
+        const key = (sid: unknown, st: unknown) => `${sid}|${new Date(String(st)).getTime()}`;
+        const seen = new Set(have.map((r) => key(r.student_id, r.start)));
+        const fresh = rows.filter((r) => { const k = key(r.student_id, r.start); if (seen.has(k)) return false; seen.add(k); return true; });
+        if (fresh.length) await db.insert('lessons', fresh);
+        break;
+      }
       case 'updateLesson': await db.update('lessons', t, id, toDb.lessonPatch(p.patch as Row)); break;
       case 'removeLesson': await db.remove('lessons', t, id); break;
       case 'updateLessons': for (const it of ((p.items as Row[]) ?? []).slice(0, 300)) await db.update('lessons', t, String(it.id), toDb.lessonPatch(it.patch as Row)); break;
