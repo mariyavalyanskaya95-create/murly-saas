@@ -152,7 +152,10 @@ function useStore(userId: string) {
       const rows: Lesson[] = Array.from({ length: Math.max(1, repeatWeeks) }, (_, k) => {
         const dt = new Date(base); dt.setDate(dt.getDate() + 7 * k);
         return { ...l, id: uid(), start: dt.toISOString(), status: (l.status ?? 'planned') as LessonStatus };
-      });
+      }).filter((r) => !dataRef.current.lessons.some((x) => x.studentId === r.studentId && x.status !== 'cancelled' && new Date(x.start).getTime() === new Date(r.start).getTime()));
+      // без дублів: якщо в учня вже є заняття на цей самий час, нове не створюємо
+      if (!rows.length) return;
+      dataRef.current = { ...dataRef.current, lessons: [...dataRef.current.lessons, ...rows] };
       update((d) => ({ ...d, lessons: [...d.lessons, ...rows] }));
       sync('addLessons', { rows });
     },
