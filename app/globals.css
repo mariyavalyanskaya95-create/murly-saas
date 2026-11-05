@@ -3947,3 +3947,31 @@ details.bb-tip > p:last-child{margin-bottom:22px}
   .t-head__actions { flex-wrap: wrap; }
   .t-head__actions .mu-btn, .t-page .t-head .mu-btn { font-size: 12px; padding: 10px 14px; white-space: normal; max-width: 100%; }
 }
+
+/* ===== Більше повітря (листопад 2026) ===== */
+/* перший екран головної на всю висоту, бігучий рядок унизу екрана */
+.mu-hero--home { min-height: calc(100svh - 110px - 80px); display: flex; flex-direction: column; padding: 40px 0 0; }
+.mu-hero--home .mu-hero__inner { flex: 1; display: flex; flex-direction: column; justify-content: center; padding-bottom: 40px; }
+.mu-hero--home .kit-home.mcat { bottom: 0; }
+/* мітки над розділами прибрали: заголовок говорить сам за себе */
+.mu-section__eyebrow { display: none !important; }
+/* розділи й картки дихають */
+.mu-section { padding: 128px 0; }
+.mu-section__head { margin-bottom: 72px; }
+.mu-section__title { margin-bottom: 0; }
+.mu-cards { gap: 32px; }
+.mu-roles { gap: 32px; }
+.mu-steps { gap: 32px; }
+.mu-card, .mu-role, .mu-step { padding: 32px; }
+.mu-page-hero { padding-top: 88px; padding-bottom: 56px; }
+.mu-page-hero h1 { margin-bottom: 28px; }
+.mu-hero__cta { gap: 20px; }
+.mu-join-wrap { margin-top: 56px; }
+@media (max-width: 760px) {
+  .mu-section { padding: 80px 0; }
+  .mu-section__head { margin-bottom: 44px; }
+  .mu-cards, .mu-roles, .mu-steps { gap: 20px; }
+  .mu-card, .mu-role, .mu-step { padding: 24px; }
+  .mu-page-hero { padding-top: 56px; padding-bottom: 36px; }
+  .mu-hero--home { min-height: calc(100svh - 90px - 56px); }
+}
