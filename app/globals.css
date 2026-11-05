@@ -3950,7 +3950,7 @@ details.bb-tip > p:last-child{margin-bottom:22px}
 
 /* ===== Більше повітря (листопад 2026) ===== */
 /* перший екран головної на всю висоту, бігучий рядок унизу екрана */
-.mu-hero--home { min-height: calc(100svh - 110px - 80px); display: flex; flex-direction: column; padding: 40px 0 0; }
+.mu-hero--home { min-height: calc(100svh - 148px); display: flex; flex-direction: column; padding: 40px 0 0; }
 .mu-hero--home .mu-hero__inner { flex: 1; display: flex; flex-direction: column; justify-content: center; padding-bottom: 40px; }
 .mu-hero--home .kit-home.mcat { bottom: 0; }
 /* мітки над розділами прибрали: заголовок говорить сам за себе */
@@ -3973,5 +3973,5 @@ details.bb-tip > p:last-child{margin-bottom:22px}
   .mu-cards, .mu-roles, .mu-steps { gap: 20px; }
   .mu-card, .mu-role, .mu-step { padding: 24px; }
   .mu-page-hero { padding-top: 56px; padding-bottom: 36px; }
-  .mu-hero--home { min-height: calc(100svh - 90px - 56px); }
+  .mu-hero--home { min-height: calc(100svh - 52px); }
 }
