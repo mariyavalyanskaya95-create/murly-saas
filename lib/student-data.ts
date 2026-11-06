@@ -239,3 +239,16 @@ export async function useHomeworkPass(userId: string, id: string): Promise<{ ok:
   notifyTeacher(String(h.teacher_id), (l) => `${esc(String(s.name))} ${L(l, { uk: 'взяв(ла) пропуск за монетки: +1 день до', ru: 'взял(а) пропуск за монетки: +1 день к', en: 'used a coin pass: +1 day for' })} <b>${esc(String(h.title || ''))}</b>`).catch(() => null);
   return { ok: true, due, coins: left };
 }
+
+// Учень сам додає слово чи фразу у свій словник (з пісень, текстів). Повтор слова не дублюємо.
+export async function addOwnWord(userId: string, w: { en: string; uk: string; example?: string }) {
+  if (!dbReady()) return { error: 'db' } as const;
+  const en = w.en.trim().slice(0, 120); const uk = w.uk.trim().slice(0, 200);
+  if (!en || !uk) return { error: 'empty' } as const;
+  const st = await db.query(`students?user_id=eq.${enc(userId)}&select=id,teacher_id&order=created_at.asc&limit=1`).catch(() => db.query(`students?user_id=eq.${enc(userId)}&select=id,teacher_id&limit=1`));
+  if (!st[0]) return { error: 'no_student' } as const;
+  const dup = await db.query(`words?student_id=eq.${enc(String(st[0].id))}&en=ilike.${enc(en)}&select=id&limit=1`);
+  if (dup[0]) return { ok: true, dup: true } as const;
+  await db.insert('words', [{ teacher_id: String(st[0].teacher_id), student_id: String(st[0].id), en, uk, example: (w.example || '').slice(0, 300) || null, srs_due: new Date().toISOString() }]);
+  return { ok: true } as const;
+}
