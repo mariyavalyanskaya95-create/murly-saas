@@ -4107,3 +4107,4 @@ details.bb-tip > p:last-child{margin-bottom:22px}
 .sg-add:hover{background:var(--mu-paper)}
 .sg-add.is-ok{background:var(--mu-ok);border-color:transparent;cursor:default}
 .sg-word .sg-add{margin-left:0;align-self:flex-start;margin-top:4px}
+.mu-cta-box .mcat.mu-cta-cat{position:relative;inset:auto;display:block;width:120px;height:auto;margin:0 auto 8px;transform:none}

@@ -183,7 +183,7 @@ export default function HomePage() {
       <section className="mu-section" data-stickers="3" style={{ paddingTop: 24 }}>
         <div className="mu-container">
           <div className="mu-cta-box">
-            <Icon id="c-cat-speak" className="mu-ic mu-ic--cta" />
+            <MurlyCat className="mu-cta-cat" skin="peach" />
             <h2>{t({ uk: 'Почни', ru: 'Начни', en: 'Start' })} <em>{t({ uk: 'безкоштовно', ru: 'бесплатно', en: 'for free' })}</em></h2>
             <div className="mu-hero__cta" style={{ justifyContent: 'center' }}>
               <Link href="/sign-up" className="mu-btn mu-btn--tomato mu-btn--lg">
