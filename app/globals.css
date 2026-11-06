@@ -4011,3 +4011,35 @@ details.bb-tip > p:last-child{margin-bottom:22px}
 .lt-res .lt-cat{margin:0 auto 8px}
 .lt-res__lvl{font-size:64px;font-weight:800;color:var(--mu-violet);line-height:1.1;margin:4px 0 12px}
 @media (max-width:640px){.lt-pick,.lt-opts{grid-template-columns:1fr}.lt-box{padding:18px}.lt-pics{gap:8px}.lt-cat{width:72px;flex-basis:72px}}
+
+/* ===== Гра з наліпками «Make a room» ===== */
+.sr-page{max-width:1240px;margin:0 auto;padding:20px 18px 48px}
+.sr-page h1{margin:0 0 12px;font-size:clamp(28px,4vw,40px)}
+.sr-rooms{margin-bottom:14px}
+.sr-main{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:22px;align-items:start}
+.sr-stage{position:relative;aspect-ratio:400/340;background:#fff;border:2px solid var(--mu-ink);border-radius:22px;overflow:hidden;touch-action:none;user-select:none}
+.sr-bg{position:absolute;inset:0;width:100%;height:100%}
+.sr-item{position:absolute;transform:translate(-50%,-100%);aspect-ratio:1;padding:0;border:0;background:none;cursor:grab;touch-action:none}
+.sr-item:active{cursor:grabbing}
+.sr-item svg,.sr-pick svg{width:100%;height:100%;display:block;filter:drop-shadow(1.6px 0 0 #fff) drop-shadow(-1.6px 0 0 #fff) drop-shadow(0 1.6px 0 #fff) drop-shadow(0 -1.6px 0 #fff) drop-shadow(0 3px 3px rgba(27,33,64,.18))}
+.sr-item.is-sel{outline:2px dashed var(--mu-violet);outline-offset:2px;border-radius:12px}
+.sr-empty{position:absolute;left:50%;top:72%;transform:translate(-50%,-50%);margin:0;padding:8px 14px;border-radius:12px;background:rgba(255,255,255,.85);font-weight:600;text-align:center;pointer-events:none}
+.sr-tools{display:flex;flex-wrap:wrap;align-items:center;gap:10px;min-height:52px;padding:10px 4px}
+.sr-say{border:0;background:var(--mu-paper);border-radius:10px;padding:6px 12px;font:inherit;font-weight:700;cursor:pointer;color:var(--mu-ink)}
+.sr-tools__btns{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap}
+.sr-tray{border:2px solid var(--mu-ink);border-radius:18px;background:#fff;padding:12px}
+.sr-tray__list{display:flex;gap:10px;overflow-x:auto;padding:10px 2px 4px}
+.sr-pick{flex:0 0 86px;display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 6px;border:2px solid transparent;border-radius:14px;background:var(--mu-paper);cursor:grab;touch-action:none;font:inherit;color:var(--mu-ink)}
+.sr-pick:hover,.sr-pick:focus-visible{border-color:var(--mu-ink)}
+.sr-pick svg{width:62px;height:62px}
+.sr-pick small{font-size:12px;line-height:1.2;text-align:center}
+.sr-desc{border:2px solid var(--mu-ink);border-radius:22px;background:#fff;padding:20px;position:sticky;top:16px}
+.sr-desc h2{margin:0 0 6px;font-size:22px}
+.sr-chips{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.sr-chip{border:1.5px solid var(--mu-ink);background:#fff;border-radius:999px;padding:4px 10px;font:inherit;font-size:14px;cursor:pointer;color:var(--mu-ink)}
+.sr-chip:hover{background:var(--mu-paper)}
+.sr-chip--word{background:#F9E3EB;border-color:transparent}
+.sr-text{width:100%;box-sizing:border-box;border:2px solid var(--mu-ink);border-radius:14px;padding:12px;font:inherit;font-size:16px;resize:vertical;margin:6px 0 12px}
+.sr-check{margin:12px 0 0;padding:10px 12px;border-radius:12px;background:var(--mu-paper)}
+.sr-foot{display:flex;gap:18px;margin-top:16px;flex-wrap:wrap}
+@media (max-width:900px){.sr-main{grid-template-columns:1fr}.sr-desc{position:static}.sr-tools__btns{margin-left:0}}
