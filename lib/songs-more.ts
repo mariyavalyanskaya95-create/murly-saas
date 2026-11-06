@@ -17,4 +17,6 @@ import { MORE_A } from './songs-more-a';
 import { MORE_B } from './songs-more-b';
 import { MORE_C } from './songs-extra';
 import { MORE_D } from './songs-extra2';
-export const SONG_LESSONS: Record<string, SongLesson> = { ...MORE_A, ...MORE_B, ...MORE_C, ...MORE_D };
+import { MORE_E } from './songs-extra3';
+import { MORE_F } from './songs-extra4';
+export const SONG_LESSONS: Record<string, SongLesson> = { ...MORE_A, ...MORE_B, ...MORE_C, ...MORE_D, ...MORE_E, ...MORE_F };
