@@ -10,6 +10,8 @@ import { SONGS_EXTRA } from './songs-extra';
 import { SONGS_EXTRA2 } from './songs-extra2';
 import { SONGS_EXTRA3 } from './songs-extra3';
 import { SONGS_EXTRA4 } from './songs-extra4';
+import { SONGS_EXTRA5 } from './songs-extra5';
+import { SONGS_EXTRA6 } from './songs-extra6';
 const BASE: Song[] = [
   {
     id: 'shake-it-off', artist: 'Taylor Swift', title: 'Shake It Off', yt: 'nfWlot6h_JM', year: 2014, level: 'A2', age: 'all',
@@ -143,5 +145,5 @@ const BASE: Song[] = [
   },
 ];
 
-export const SONGS: Song[] = [...BASE, ...SONGS_EXTRA2, ...SONGS_EXTRA3, ...SONGS_EXTRA4, ...SONGS_EXTRA];
+export const SONGS: Song[] = [...BASE, ...SONGS_EXTRA2, ...SONGS_EXTRA3, ...SONGS_EXTRA4, ...SONGS_EXTRA6.filter((x) => x.id !== 'perfect-night'), ...SONGS_EXTRA5, ...SONGS_EXTRA];
 export const songById = (id: string) => SONGS.find((s) => s.id === id);
