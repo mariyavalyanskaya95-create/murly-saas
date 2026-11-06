@@ -27,7 +27,7 @@ function example(items: Item[]): string {
       const host = big.find((b) => { const half = (STICKERS[b.id].w * b.s) / 8; const h = (STICKERS[b.id].w * b.s) / 3.4; return Math.abs(b.x - i.x) < half && i.y < b.y - h * 0.25 && i.y > b.y - h * 0.95; });
       if (host) return `There is ${st.en} on the ${nameOf(host.id)}.`;
     }
-    const near = items.filter((o) => o !== i && !STICKERS[o.id].wall).map((o) => ({ o, d: Math.hypot(o.x - i.x, (o.y - i.y) * 1.2) })).sort((a, b) => a.d - b.d)[0];
+    const near = st.w >= 75 ? undefined : items.filter((o) => o !== i && !STICKERS[o.id].wall).map((o) => ({ o, d: Math.hypot(o.x - i.x, (o.y - i.y) * 1.2) })).sort((a, b) => a.d - b.d)[0];
     if (near && near.d < 22) return `There is ${st.en} next to the ${nameOf(near.o.id)}.`;
     const side = i.x < 36 ? 'on the left' : i.x > 64 ? 'on the right' : 'in the middle';
     return `There is ${st.en} ${side}.`;
@@ -61,7 +61,18 @@ export default function StickerRoom() {
 
   const add = (id: string, x?: number, y?: number) => {
     const st = STICKERS[id];
-    const it: Item = { u: uid.current++, id, x: x ?? 40 + Math.random() * 20, y: y ?? (st.wall ? 30 + Math.random() * 8 : 70 + Math.random() * 12), s: 1, f: false };
+    let px = x, py = y;
+    if (px === undefined || py === undefined) {
+      // вільне місце: з кількох випадкових точок беремо найдальшу від інших наліпок
+      let best = { x: 50, y: st.wall ? 32 : 78, d: -1 };
+      for (let k = 0; k < 16; k++) {
+        const cx = 22 + Math.random() * 56, cy = st.wall ? 26 + Math.random() * 14 : 64 + Math.random() * 28;
+        const d = Math.min(99, ...items.map((o) => Math.hypot(o.x - cx, o.y - cy)));
+        if (d > best.d) best = { x: cx, y: cy, d };
+      }
+      px = best.x; py = best.y;
+    }
+    const it: Item = { u: uid.current++, id, x: px, y: py, s: 1, f: false };
     setItems((l) => [...l, it]); setSel(it.u); setCheck(null);
     return it;
   };
