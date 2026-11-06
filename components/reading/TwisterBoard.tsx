@@ -1,5 +1,5 @@
 'use client';
-// Скоромовки: фільтр за рівнем і звуком, озвучка (звичайно і повільно), виклик «3 рази швидко» з секундоміром.
+// Скоромовки: фільтр за рівнем і звуком, озвучка (звичайно і повільно), кнопка «Засікти час» (3 рази поспіль на час).
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { TWISTERS, type Twister } from '@/lib/tongue-twisters';
 import { speakEn, stopSpeak } from '@/lib/speak';
@@ -25,9 +25,10 @@ function Card({ w }: { w: Twister }) {
         <button type="button" className="mu-btn mu-btn--lime t-btn-sm" onClick={() => speakEn(w.text, 1)}>{t({ uk: 'Слухати', ru: 'Слушать', en: 'Listen' })}</button>
         <button type="button" className="mu-btn t-btn-sm" onClick={() => speakEn(w.text, 0.6)}>{t({ uk: 'Повільно', ru: 'Медленно', en: 'Slowly' })}</button>
         {run === null
-          ? <button type="button" className="mu-btn t-btn-sm" onClick={start}>{t({ uk: '3 рази швидко', ru: '3 раза быстро', en: '3 times fast' })}</button>
+          ? <button type="button" className="mu-btn t-btn-sm" onClick={start}>{t({ uk: 'Засікти час', ru: 'Засечь время', en: 'Time yourself' })}</button>
           : <button type="button" className="mu-btn mu-btn--tomato t-btn-sm" onClick={finish}>{t({ uk: 'Готово', ru: 'Готово', en: 'Done' })} {time.toFixed(1)} s</button>}
       </div>
+      {run !== null && <p className="t-muted">{t({ uk: 'Скажи скоромовку 3 рази поспіль і натисни «Готово».', ru: 'Скажи скороговорку 3 раза подряд и нажми «Готово».', en: 'Say it 3 times in a row, then press Done.' })}</p>}
       {run === null && time > 0 && <p className="tw-card__res">{t({ uk: 'Твій час', ru: 'Твоё время', en: 'Your time' })}: <b>{time.toFixed(1)} s</b>{best !== null && <> · {t({ uk: 'рекорд', ru: 'рекорд', en: 'best' })}: <b>{best.toFixed(1)} s</b></>}</p>}
       <details className="tw-card__tip"><summary>{t({ uk: 'Як вимовляти', ru: 'Как произносить', en: 'How to say it' })}</summary><p>{t(w.tip)}</p></details>
     </div>
