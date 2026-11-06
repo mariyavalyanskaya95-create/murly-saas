@@ -6,7 +6,8 @@ import SiteNav from '@/components/SiteNav';
 import SiteFooter from '@/components/SiteFooter';
 import { tr } from '@/lib/i18n-server';
 import { SONGS, songById } from '@/lib/songs';
-import { SongChoice, SongGap, SongPhrases, SongQuiz, SongVideo, SongVocab } from '@/components/songs/SongParts';
+import { SongChoice, SongDeepList, SongGap, SongPhrases, SongQuiz, SongVideo, SongVocab } from '@/components/songs/SongParts';
+import { SONG_DEEP } from '@/lib/songs-deep';
 import { SONG_LESSONS } from '@/lib/songs-more';
 
 export function generateStaticParams() { return SONGS.map((s) => ({ id: s.id })); }
@@ -28,6 +29,7 @@ export default function SongPage({ params }: { params: { id: string } }) {
   const i = SONGS.indexOf(s);
   const next = SONGS[(i + 1) % SONGS.length];
   const L = SONG_LESSONS[s.id];
+  const D = SONG_DEEP[s.id];
   return (
     <>
       <SiteNav />
@@ -53,6 +55,8 @@ export default function SongPage({ params }: { params: { id: string } }) {
             <ol className="sg-talk">{L.warmup.map((q) => <li key={q}>{q}</li>)}</ol>
           </>)}
 
+          {D && <p className="sg-about sg-intro">{t(D.intro)}</p>}
+
           <h2>{t({ uk: 'Головні вирази пісні', ru: 'Главные выражения песни', en: 'Key phrases' })}</h2>
           <SongPhrases song={s} />
 
@@ -60,6 +64,14 @@ export default function SongPage({ params }: { params: { id: string } }) {
             <h2>{t({ uk: 'Словник уроку', ru: 'Словарь урока', en: 'Lesson vocabulary' })}</h2>
             <p className="t-muted">{t({ uk: 'Натискай на слово або приклад, щоб послухати.', ru: 'Нажимай на слово или пример, чтобы послушать.', en: 'Tap a word or example to listen.' })}</p>
             <SongVocab groups={L.vocab} />
+          </>)}
+
+          {D && (<>
+            <h2>{t({ uk: 'Розбір виразів', ru: 'Разбор выражений', en: 'Phrase deep-dive' })}</h2>
+            <p className="t-muted">{t({ uk: '10 виразів на тему пісні: що означають, коли їх кажуть носії, приклади й типові помилки. Додавай потрібні у свій словник.', ru: '10 выражений на тему песни: что значат, когда их говорят носители, примеры и типичные ошибки. Добавляй нужные в свой словарь.', en: '10 expressions on the song’s theme: meaning, when natives use them, examples and common mistakes. Save the ones you need.' })}</p>
+            <SongDeepList phrases={D.phrases} />
+            <h2>{t({ uk: 'Цікаво знати', ru: 'Интересно знать', en: 'Good to know' })}</h2>
+            <ul className="sg-facts">{D.culture.map((c, k) => <li key={k}>{t(c)}</li>)}</ul>
           </>)}
 
           <h2>{t({ uk: 'Міні-квіз: що означає вираз', ru: 'Мини-квиз: что значит выражение', en: 'Mini quiz: what does it mean' })}</h2>
