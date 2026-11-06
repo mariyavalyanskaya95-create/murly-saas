@@ -1,0 +1,302 @@
+/* Гра «Stop & Go with Murly»: усі стилі тут, палітра Murly */
+.root {
+  --ink: #1B2140;
+  --paper: #EEF0FA;
+  --lav: #AFC3F0;
+  --pink: #F4C0D1;
+  --violet: #534AB7;
+  --ok: #CDEBC0;
+  max-width: 760px;
+  margin: 0 auto;
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* ---------- кнопки ---------- */
+.btn {
+  appearance: none;
+  border: 2px solid var(--ink);
+  background: var(--violet);
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  font-size: 17px;
+  padding: 12px 22px;
+  min-height: 48px;
+  border-radius: 16px;
+  box-shadow: 0 3px 0 var(--ink);
+  cursor: pointer;
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--ink); }
+.btnSoft { background: var(--pink); color: var(--ink); }
+.btn:focus-visible, .card:focus-visible, .levelBtn:focus-visible, .hear:focus-visible, .linkBtn:focus-visible {
+  outline: 3px solid var(--violet);
+  outline-offset: 3px;
+}
+.row { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+.sub { display: block; font-size: 13px; font-weight: 500; opacity: .75; margin-top: 2px; }
+
+/* ---------- старт ---------- */
+.intro {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 24px;
+  align-items: center;
+  background: #fff;
+  border: 2px solid var(--ink);
+  border-radius: 24px;
+  padding: 24px;
+}
+.introCat { width: 100%; height: auto; }
+.introText { display: flex; flex-direction: column; gap: 12px; }
+.lead { margin: 0; font-size: 20px; font-weight: 700; }
+.rules { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.rules li { display: flex; gap: 10px; align-items: flex-start; line-height: 1.4; }
+.dot { flex: 0 0 18px; height: 18px; border-radius: 50%; border: 2px solid var(--ink); margin-top: 2px; }
+.dotGreen { background: #62B872; }
+.dotRed { background: #E8606A; }
+.pickTitle { margin: 6px 0 0; font-weight: 700; }
+.levels { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.levelBtn {
+  appearance: none;
+  font: inherit;
+  color: var(--ink);
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  border-radius: 18px;
+  padding: 12px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  text-align: center;
+  box-shadow: 0 3px 0 var(--ink);
+  transition: transform .12s ease, background .12s ease;
+}
+.levelBtn:hover { background: var(--lav); transform: translateY(-2px); }
+.levelNum {
+  width: 36px; height: 36px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--violet); color: #fff; font-weight: 800; font-size: 18px;
+}
+.levelName { font-weight: 700; font-size: 15px; line-height: 1.2; }
+.hint { margin: 0; font-size: 13px; opacity: .7; }
+
+/* ---------- верхня панель ---------- */
+.hud { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.badge {
+  background: #fff;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-size: 14px;
+  font-weight: 700;
+}
+.linkBtn {
+  margin-left: auto;
+  appearance: none; background: none; border: 0;
+  font: inherit; font-size: 14px; font-weight: 700;
+  color: var(--violet);
+  text-decoration: underline; text-underline-offset: 3px;
+  cursor: pointer; padding: 8px 4px;
+}
+
+/* ---------- світло ---------- */
+.light {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border: 2px solid var(--ink);
+  border-radius: 20px;
+  padding: 10px 16px;
+  min-height: 64px;
+  transition: background-color .3s ease;
+}
+.lightText b { display: block; font-size: clamp(19px, 4.6vw, 26px); line-height: 1.15; }
+.lamp {
+  flex: 0 0 auto;
+  display: flex; gap: 6px;
+  background: var(--ink);
+  border-radius: 999px;
+  padding: 5px;
+}
+.lamp i { width: 22px; height: 22px; border-radius: 50%; background: #3A4378; transition: background-color .3s ease, box-shadow .3s ease; }
+.lReady { background: #fff; }
+.lGreen { background: var(--ok); }
+.lGreen .lamp i:last-child { background: #62B872; box-shadow: 0 0 10px #8FE09B; }
+.lTurn { background: #FBEFC4; }
+.lTurn .lamp i:first-child { background: #F7D46B; }
+.lTurn .lamp i:last-child { background: #62B872; }
+.lRed { background: var(--pink); }
+.lRed .lamp i:first-child { background: #E8606A; box-shadow: 0 0 10px #F59AA2; }
+
+/* ---------- сцена ---------- */
+.stage {
+  position: relative;
+  border: 2px solid var(--ink);
+  border-radius: 24px;
+  overflow: hidden;
+  background: linear-gradient(#F6F7FD, var(--paper));
+}
+.scene { display: block; width: 100%; height: auto; }
+.isRed .stage { background: linear-gradient(#FCEFF4, #F8E3EB); }
+
+.murly { transform-box: fill-box; transform-origin: 50% 100%; animation: turn .32s ease-out; }
+@keyframes turn {
+  0% { transform: scaleX(.15); }
+  70% { transform: scaleX(1.06); }
+  100% { transform: scaleX(1); }
+}
+.twitch { animation: twitch .25s ease-in-out infinite alternate; }
+@keyframes twitch { from { transform: rotate(-2deg); } to { transform: rotate(2deg); } }
+.tail { transform-box: fill-box; transform-origin: 0% 100%; animation: tail 1.6s ease-in-out infinite alternate; }
+@keyframes tail { from { transform: rotate(-4deg); } to { transform: rotate(5deg); } }
+.notes { animation: notes 1.8s ease-in-out infinite; }
+@keyframes notes { 0%, 100% { transform: translateY(0); opacity: 1; } 50% { transform: translateY(-6px); opacity: .6; } }
+.sparkle { transform-box: fill-box; transform-origin: center; animation: sparkle 1.1s ease-in-out infinite alternate; }
+@keyframes sparkle { from { transform: scale(.92); } to { transform: scale(1.06); } }
+.arms { transform-box: fill-box; transform-origin: 50% 100%; animation: cheer .5s ease-in-out infinite alternate; }
+@keyframes cheer { from { transform: translateY(0); } to { transform: translateY(-3px); } }
+
+/* гравець іде доріжкою */
+.me { transition: transform .5s cubic-bezier(.3, .8, .4, 1); }
+.meIn { transform-box: fill-box; transform-origin: 50% 100%; }
+.a_walk { animation: walk .5s ease-in-out; }
+@keyframes walk { 0%, 100% { transform: rotate(0); } 30% { transform: rotate(-8deg) translateY(-3px); } 65% { transform: rotate(8deg) translateY(-3px); } }
+.a_run { animation: run .45s ease-in-out; }
+@keyframes run { 0%, 100% { transform: skewX(0); } 40% { transform: skewX(-14deg) translateY(-4px); } }
+.a_hop { animation: hop .55s ease-out; }
+@keyframes hop { 0%, 100% { transform: translateY(0) rotate(0); } 25% { transform: translateY(-12px) rotate(-6deg); } 55% { transform: translateY(0) rotate(0); } 75% { transform: translateY(-7px) rotate(-4deg); } }
+.a_jump { animation: jump .6s cubic-bezier(.3, .6, .4, 1); }
+@keyframes jump { 0%, 100% { transform: translateY(0) scale(1, 1); } 15% { transform: scale(1.1, .85); } 50% { transform: translateY(-26px) scale(.95, 1.08); } 85% { transform: scale(1.08, .9); } }
+.a_tiptoe { animation: tiptoe .6s ease-in-out; }
+@keyframes tiptoe { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-5px) scale(.94, 1.06); } }
+.a_slow { animation: slow 1s ease-in-out; }
+@keyframes slow { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(-4deg) translateY(-1px); } }
+.a_crawl { animation: crawl .7s ease-in-out; }
+@keyframes crawl { 0%, 100% { transform: scale(1, 1); } 40% { transform: scale(1.12, .72); } 70% { transform: scale(1.06, .8); } }
+.a_spin { animation: spin .6s ease-in-out; transform-origin: 50% 60%; }
+@keyframes spin { from { transform: rotate(0); } to { transform: rotate(360deg); } }
+.a_oops { animation: oops .6s ease-in-out; }
+@keyframes oops { 0%, 100% { transform: rotate(0); } 20% { transform: rotate(-12deg); } 45% { transform: rotate(10deg); } 70% { transform: rotate(-6deg); } }
+
+.over {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 10px; padding: 16px; text-align: center;
+  background: rgba(238, 240, 250, .9);
+}
+.over p { margin: 0; font-weight: 700; }
+.overTitle { font-size: 22px; }
+.overNote { font-size: 15px; }
+
+/* ---------- завдання ---------- */
+.askRow { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; }
+.hear {
+  appearance: none;
+  display: inline-flex; align-items: center; gap: 8px;
+  font: inherit; font-weight: 700; font-size: 15px;
+  color: var(--ink);
+  background: #fff;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  padding: 8px 16px 8px 12px;
+  min-height: 44px;
+  cursor: pointer;
+}
+.hear svg { width: 22px; height: 22px; color: var(--violet); }
+.hear:disabled { opacity: .45; cursor: default; }
+.fbBox { min-height: 44px; display: flex; align-items: center; flex: 1 1 160px; }
+.fb {
+  display: inline-block;
+  font-weight: 800;
+  font-size: 18px;
+  padding: 6px 14px;
+  border-radius: 14px;
+  border: 2px solid var(--ink);
+  animation: pop .3s ease-out;
+}
+.fb .sub { font-size: 12px; }
+.fbGood { background: var(--ok); }
+.fbOops { background: var(--pink); }
+.fbTry { background: #fff; }
+@keyframes pop { from { transform: scale(.85); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.cards4 { grid-template-columns: repeat(4, 1fr); }
+.card {
+  position: relative;
+  appearance: none;
+  font: inherit;
+  color: var(--ink);
+  background: #fff;
+  border: 2px solid var(--ink);
+  border-radius: 20px;
+  padding: 10px 8px 12px;
+  min-height: 120px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+  cursor: pointer;
+  box-shadow: 0 4px 0 var(--ink);
+  transition: transform .12s ease, background-color .2s ease, box-shadow .12s ease;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+.card:hover { transform: translateY(-2px); background: #F8F9FE; }
+.card:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--ink); }
+.card:disabled { cursor: default; }
+.isRed .card { background: #FCEFF4; }
+.cardNo { opacity: .45; animation: shake .35s ease-in-out; }
+@keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+.key {
+  position: absolute; top: 6px; left: 8px;
+  font-size: 12px; font-weight: 700; opacity: .5;
+}
+.pic { width: 84px; height: 84px; display: block; }
+.pic svg { width: 100%; height: 100%; display: block; }
+.word { font-weight: 800; font-size: 16px; line-height: 1.1; text-align: center; }
+.word small { display: block; font-size: 12px; font-weight: 500; opacity: .7; margin-top: 2px; }
+
+/* ---------- зірочки й фінал ---------- */
+.stars { display: inline-flex; gap: 4px; }
+.stars svg { width: 34px; height: 34px; }
+.starsSm svg { width: 18px; height: 18px; }
+.win {
+  background: #fff;
+  border: 2px solid var(--ink);
+  border-radius: 24px;
+  padding: 24px 18px 28px;
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+  text-align: center;
+}
+.winCat { width: 220px; max-width: 70%; height: auto; animation: bounce 1s ease-in-out infinite alternate; }
+@keyframes bounce { from { transform: translateY(0); } to { transform: translateY(-8px); } }
+.winTitle { margin: 0; font-size: clamp(22px, 5vw, 30px); }
+.winCount { margin: 0; font-weight: 700; }
+
+/* ---------- телефон ---------- */
+@media (max-width: 560px) {
+  .intro { grid-template-columns: 1fr; padding: 18px 16px; gap: 12px; }
+  .introCat { width: 130px; margin: 0 auto; }
+  .levels { grid-template-columns: 1fr; }
+  .levelBtn { flex-direction: row; justify-content: flex-start; text-align: left; }
+  .cards, .cards4 { gap: 8px; }
+  .cards4 { grid-template-columns: repeat(2, 1fr); }
+  .card { min-height: 104px; border-radius: 16px; }
+  .pic { width: 64px; height: 64px; }
+  .light { padding: 8px 12px; gap: 10px; }
+  .lamp i { width: 16px; height: 16px; }
+  .stage { border-radius: 18px; }
+}
+
+/* ---------- менше руху ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .root *, .root *::before, .root *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
