@@ -4093,3 +4093,17 @@ details.bb-tip > p:last-child{margin-bottom:22px}
 .sg-gap__in.is-ok{border-color:#3d9a4f;background:var(--mu-ok)}
 .sg-gap__in.is-bad{border-color:var(--mu-bad);background:#FADBD4}
 .sg-gap__a{color:#3d9a4f;font-weight:700}
+.sg-intro{margin-top:18px;padding:16px 18px;border-radius:16px;background:#fff;border:2px dashed var(--mu-lime)}
+.sg-deep{display:grid;gap:16px}
+.sg-deep__item{border:2px solid var(--mu-ink);border-radius:18px;background:#fff;padding:16px 18px}
+.sg-deep__head{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.sg-deep__n{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--mu-violet);color:#fff;font-weight:700;font-size:14px}
+.sg-deep__story{font-size:16px;line-height:1.65;margin:8px 0}
+.sg-deep__ex{margin:6px 0;padding-left:20px}
+.sg-deep__ex li{margin:3px 0}
+.sg-deep__sim{margin:8px 0 0;font-size:15px}
+.sg-deep__tip{margin:8px 0 0;padding:8px 12px;border-radius:10px;background:#FFF4D6;font-size:15px}
+.sg-add{margin-left:auto;border:1.5px solid var(--mu-ink);background:#fff;border-radius:999px;padding:3px 12px;font:inherit;font-size:13px;font-weight:600;color:var(--mu-ink);cursor:pointer;text-decoration:none;white-space:nowrap}
+.sg-add:hover{background:var(--mu-paper)}
+.sg-add.is-ok{background:var(--mu-ok);border-color:transparent;cursor:default}
+.sg-word .sg-add{margin-left:0;align-self:flex-start;margin-top:4px}
