@@ -10,7 +10,7 @@ export const DEEP_B: Record<string, SongDeep> = {
     },
     phrases: [
       {
-        en: 'take the plunge',
+        en: 'to take the plunge',
         m: { uk: 'наважитися на рішучий крок', ru: 'решиться на важный шаг', en: 'finally decide to do something big or risky' },
         story: {
           uk: 'Буквально plunge означає стрибок у воду, різке занурення. Переносно take the plunge кажуть, коли людина довго вагалася, а потім нарешті зважилася: переїхати, змінити школу, почати власну справу. Вираз нейтральний, його можна почути і в розмові друзів, і в новинах. Він ідеально пасує до настрою пісні, де головна ідея полягає в тому, щоб залишити безпечну мілину і пірнути в невідоме.',
@@ -21,7 +21,7 @@ export const DEEP_B: Record<string, SongDeep> = {
           'After months of thinking about it, she finally took the plunge and moved to Lviv.',
           'If you love music so much, why not take the plunge and join a band?',
         ],
-        similar: ['go for it', 'take a leap of faith'],
+        similar: ['to go for it', 'to take a leap of faith'],
         tip: {
           uk: 'Кажуть саме take the plunge, а не make the plunge чи do the plunge. Артикль the обов’язковий.',
           ru: 'Говорят именно take the plunge, а не make the plunge или do the plunge. Артикль the обязателен.',
@@ -29,7 +29,7 @@ export const DEEP_B: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'play it safe',
+        en: 'to play it safe',
         m: { uk: 'не ризикувати, діяти обережно', ru: 'не рисковать, действовать осторожно', en: 'avoid risks and choose the safe option' },
         story: {
           uk: 'Play it safe означає обрати найбезпечніший варіант, навіть якщо він нудний. Часто вираз звучить із легким докором, ніби людина боїться спробувати щось нове. Його вживають про гроші, навчання, кар’єру, стосунки і навіть про вибір страви в ресторані. Пісня якраз протиставляє спокійне життя без ризику і сміливий крок назустріч змінам.',
@@ -41,7 +41,7 @@ export const DEEP_B: Record<string, SongDeep> = {
           'You can’t play it safe forever if you want to be an artist.',
           'The team played it safe in the second half and kept the score at 1:0.',
         ],
-        similar: ['better safe than sorry', 'err on the side of caution'],
+        similar: ['better safe than sorry', 'to err on the side of caution'],
         tip: {
           uk: 'Не забувайте it: play it safe. Варіант без it трапляється в британській англійській, але форма з it значно поширеніша.',
           ru: 'Не забывайте it: play it safe. Вариант без it встречается в британском английском, но форма с it гораздо распространённее.',
@@ -60,7 +60,7 @@ export const DEEP_B: Record<string, SongDeep> = {
           'On my first day at the café, nobody trained me. It was sink or swim.',
           'Moving abroad alone at eighteen was a sink-or-swim experience.',
         ],
-        similar: ['learn the hard way', 'trial by fire'],
+        similar: ['to learn the hard way', 'trial by fire'],
         tip: {
           uk: 'Порядок слів фіксований: sink or swim, а не swim or sink. Перед іменником пишемо через дефіс: a sink-or-swim situation.',
           ru: 'Порядок слов фиксированный: sink or swim, а не swim or sink. Перед существительным пишем через дефис: a sink-or-swim situation.',
@@ -68,7 +68,7 @@ export const DEEP_B: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'get cold feet',
+        en: 'to get cold feet',
         m: { uk: 'злякатися в останній момент', ru: 'испугаться в последний момент', en: 'suddenly become too nervous to do something' },
         story: {
           uk: 'Get cold feet кажуть, коли людина вже майже зробила щось важливе, а потім раптом злякалася: перед виступом, співбесідою чи важливою розмовою. Вираз розмовний і дуже поширений. Холодні ноги тут символ страху, який зупиняє тебе за крок до мети. Пісня про протилежне: про момент, коли страх є, але ти все одно робиш крок уперед.',
@@ -79,7 +79,7 @@ export const DEEP_B: Record<string, SongDeep> = {
           'He was going to sing at the school concert, but he got cold feet at the last minute.',
           'Don’t get cold feet now, you have practised for weeks!',
         ],
-        similar: ['chicken out', 'lose your nerve'],
+        similar: ['to chicken out', 'to lose your nerve'],
         tip: {
           uk: 'Не перекладайте дослівно «замерзли ноги»: це не про холод, а про страх. Кажуть get cold feet, а не have cold legs.',
           ru: 'Не переводите дословно «замёрзли ноги»: это не о холоде, а о страхе. Говорят get cold feet, а не have cold legs.',
@@ -87,7 +87,7 @@ export const DEEP_B: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'open up (to someone)',
+        en: 'to open up (to someone)',
         m: { uk: 'відкритися, розповісти про свої почуття', ru: 'открыться, рассказать о своих чувствах', en: 'start talking honestly about your feelings' },
         story: {
           uk: 'Open up означає перестати ховати емоції й чесно поговорити з кимось про те, що в тебе на душі. Його вживають про друзів, родину, психологів і стосунки. Носії часто кажуть It took him a long time to open up, тобто людині знадобився час, щоб довіритися. Пісня побудована як щира розмова двох людей, які наважуються бути чесними, тому це фразове дієслово тут дуже до речі.',
@@ -98,7 +98,7 @@ export const DEEP_B: Record<string, SongDeep> = {
           'It’s hard for me to open up to new people.',
           'She finally opened up about why she was so quiet at school.',
         ],
-        similar: ['let someone in', 'pour your heart out'],
+        similar: ['to let someone in', 'to pour your heart out'],
         tip: {
           uk: 'Після open up вживаємо to (кому) і about (про що): open up to my mum about school. Open to something без up має інше значення: бути відкритим до чогось.',
           ru: 'После open up употребляем to (кому) и about (о чём): open up to my mum about school. Open to something без up имеет другое значение: быть открытым к чему-то.',
@@ -106,7 +106,7 @@ export const DEEP_B: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'wear your heart on your sleeve',
+        en: 'to wear your heart on your sleeve',
         m: { uk: 'не ховати почуттів, усе показувати відкрито', ru: 'не скрывать чувств, всё показывать открыто', en: 'show your feelings openly' },
         story: {
           uk: 'Так кажуть про людину, чиї емоції одразу видно: якщо вона сумна чи щаслива, це знають усі навколо. Схожий образ використав Шекспір у п’єсі «Отелло», і відтоді вираз став звичним в англійській мові. Він може звучати і як комплімент щирості, і як попередження, що людину легко поранити. Пісня теж про сміливість показати справжні почуття, навіть коли це страшно.',
@@ -117,7 +117,7 @@ export const DEEP_B: Record<string, SongDeep> = {
           'My little brother wears his heart on his sleeve, you always know how he feels.',
           'As a teacher, you sometimes can’t wear your heart on your sleeve.',
         ],
-        similar: ['be an open book', 'speak from the heart'],
+        similar: ['to be an open book', 'to speak from the heart'],
         tip: {
           uk: 'Займенник змінюється разом із людиною: wear my/his/her heart on my/his/her sleeve. Не кажіть the heart on the sleeve.',
           ru: 'Местоимение меняется вместе с человеком: wear my/his/her heart on my/his/her sleeve. Не говорите the heart on the sleeve.',
@@ -144,7 +144,7 @@ export const DEEP_B: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'get your big break',
+        en: 'to get your big break',
         m: { uk: 'отримати свій великий шанс', ru: 'получить свой большой шанс', en: 'get the opportunity that starts your success' },
         story: {
           uk: 'Big break означає перший серйозний успіх, після якого кар’єра злітає: роль у фільмі, контракт зі студією, вірусне відео. Вираз дуже популярний у світі кіно, музики та спорту. Часто кажуть waiting for my big break, тобто чекати свого шансу. «Народження зірки» по суті є історією про великий шанс, який змінює все життя.',
@@ -155,7 +155,7 @@ export const DEEP_B: Record<string, SongDeep> = {
           'She got her big break when a famous director saw her video online.',
           'Every young actor in this city is waiting for their big break.',
         ],
-        similar: ['a lucky break', 'make it big'],
+        similar: ['a lucky break', 'to make it big'],
         tip: {
           uk: 'Break тут іменник «шанс», а не «перерва». Не плутайте з take a break, тобто відпочити.',
           ru: 'Break здесь существительное «шанс», а не «перерыв». Не путайте с take a break, то есть отдохнуть.',
@@ -163,7 +163,7 @@ export const DEEP_B: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'go all in',
+        en: 'to go all in',
         m: { uk: 'викластися повністю, ризикнути всім', ru: 'выложиться полностью, рискнуть всем', en: 'commit completely to something' },
         story: {
           uk: 'Вираз прийшов із карткової гри покер, де all in означає поставити все, що маєш. Зараз go all in вживають набагато ширше: про проєкт, хобі, навчання чи стосунки, коли людина віддає справі всю енергію без запасного плану. Звучить розмовно і енергійно. Він передає головну думку пісні: якщо вже пірнати, то на повну.',
@@ -174,7 +174,7 @@ export const DEEP_B: Record<string, SongDeep> = {
           'If you want to pass the exam, you have to go all in for the next month.',
           'They went all in on their idea and opened a small bakery.',
         ],
-        similar: ['give it your all', 'put your heart into it'],
+        similar: ['to give it your all', 'to put your heart into it'],
         tip: {
           uk: 'Не плутайте з all in all, що означає «загалом, підсумовуючи». Go all in про повну віддачу.',
           ru: 'Не путайте с all in all, что значит «в целом, подводя итог». Go all in о полной отдаче.',
@@ -182,7 +182,7 @@ export const DEEP_B: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'be in over your head',
+        en: 'to be in over your head',
         m: { uk: 'взятися за надто складне і не впоратися', ru: 'взяться за слишком сложное и не справиться', en: 'be in a situation that is too difficult for you' },
         story: {
           uk: 'Буквально це коли вода вище твоєї голови, тобто ти вже не дістаєш дна. Переносно так кажуть, коли ситуація стала складнішою, ніж ти очікував, і ти не справляєшся. Вираз нейтрально-розмовний, часто звучить у формі I think I’m in over my head. Він продовжує водну тему пісні і нагадує, що глибина буває не лише захопливою, а й страшною.',
@@ -193,7 +193,7 @@ export const DEEP_B: Record<string, SongDeep> = {
           'I agreed to organise the whole party, but now I’m in over my head.',
           'He signed up for three extra courses and was soon in over his head.',
         ],
-        similar: ['out of your depth', 'bite off more than you can chew'],
+        similar: ['out of your depth', 'to bite off more than you can chew'],
         tip: {
           uk: 'Займенник змінюється: in over my/your/her head. Слово over обов’язкове, без нього значення губиться.',
           ru: 'Местоимение меняется: in over my/your/her head. Слово over обязательно, без него смысл теряется.',
@@ -247,7 +247,7 @@ export const DEEP_B: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'turn the page',
+        en: 'to turn the page',
         m: { uk: 'перегорнути сторінку, почати новий етап', ru: 'перевернуть страницу, начать новый этап', en: 'leave the past behind and start again' },
         story: {
           uk: 'Як і в українській мові, цей образ означає залишити минуле позаду і почати новий розділ життя. Вираз трохи поетичний, але цілком вживаний у розмові й у медіа. Часто кажуть It’s time to turn the page. Пісня якраз про те, як людина закриває старі розділи з подякою і йде далі.',
@@ -258,7 +258,7 @@ export const DEEP_B: Record<string, SongDeep> = {
           'After a difficult year, our family decided to turn the page.',
           'The club lost the final, but now it’s time to turn the page and prepare for next season.',
         ],
-        similar: ['start a new chapter', 'turn over a new leaf'],
+        similar: ['to start a new chapter', 'to turn over a new leaf'],
         tip: {
           uk: 'Тут page в однині й з артиклем the. Схожий вираз turn over a new leaf означає саме змінити себе на краще.',
           ru: 'Здесь page в единственном числе и с артиклем the. Похожее выражение turn over a new leaf означает именно измениться к лучшему.',
@@ -285,7 +285,7 @@ export const DEEP_B: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'part ways',
+        en: 'to part ways',
         m: { uk: 'розійтися, припинити спільний шлях', ru: 'разойтись, прекратить общий путь', en: 'stop being together or working together' },
         story: {
           uk: 'Part ways означає, що двоє людей, гурт чи компанія вирішили більше не бути разом або не працювати разом. Вираз звучить спокійно й по-дорослому, без драми, тому його часто використовують у новинах про музичні гурти та футбольні клуби. Іноді кажуть part ways on good terms, тобто розійтися мирно. Саме такий мирний, вдячний підхід до розставань відчувається в пісні.',
@@ -296,7 +296,7 @@ export const DEEP_B: Record<string, SongDeep> = {
           'The singer and the band parted ways after ten years.',
           'We parted ways on good terms and still say hi at school.',
         ],
-        similar: ['go your separate ways', 'split up'],
+        similar: ['to go your separate ways', 'to split up'],
         tip: {
           uk: 'Кажуть part ways, без артикля, а не part the ways чи divide ways. Також можна part company.',
           ru: 'Говорят part ways, без артикля, а не part the ways или divide ways. Также можно part company.',
@@ -304,7 +304,7 @@ export const DEEP_B: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'bounce back',
+        en: 'to bounce back',
         m: { uk: 'швидко оговтатися, відновитися', ru: 'быстро оправиться, восстановиться', en: 'recover quickly after a problem' },
         story: {
           uk: 'Bounce означає відскочити, як м’яч від підлоги. Bounce back кажуть, коли людина після невдачі, хвороби чи розчарування швидко повертається у форму. Вираз розмовний, позитивний і часто звучить як підбадьорення. Пісня показує саме таку здатність: не застрягати у смутку, а ставати сильнішою.',
@@ -315,7 +315,7 @@ export const DEEP_B: Record<string, SongDeep> = {
           'She failed her first test but bounced back and got top marks in the next one.',
           'Don’t worry, you’ll bounce back from this.',
         ],
-        similar: ['pick yourself up', 'get back on your feet'],
+        similar: ['to pick yourself up', 'to get back on your feet'],
         tip: {
           uk: 'Від чого саме відновилися, вводимо прийменником from: bounce back from a loss.',
           ru: 'От чего именно восстановились, вводим предлогом from: bounce back from a loss.',
@@ -334,7 +334,7 @@ export const DEEP_B: Record<string, SongDeep> = {
           'We argued a lot last year, but that’s all water under the bridge now.',
           'Forget about the broken phone, it’s water under the bridge.',
         ],
-        similar: ['let bygones be bygones', 'that’s in the past'],
+        similar: ['to let bygones be bygones', 'that’s in the past'],
         tip: {
           uk: 'Перед water немає артикля: it’s water under the bridge, а не it’s a water.',
           ru: 'Перед water нет артикля: it’s water under the bridge, а не it’s a water.',
@@ -342,7 +342,7 @@ export const DEEP_B: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'take the high road',
+        en: 'to take the high road',
         m: { uk: 'поводитися гідно, не опускатися до образ', ru: 'вести себя достойно, не опускаться до обид', en: 'behave well even when others don’t' },
         story: {
           uk: 'Take the high road означає обрати благородну поведінку, навіть коли інші поводяться погано: не пліткувати, не мститися, не відповідати грубістю. Вираз особливо поширений в американській англійській. Його протилежність take the low road, тобто вчинити дріб’язково. Пісня є гарним прикладом такого підходу: замість звинувачень вона обирає вдячність.',
@@ -353,7 +353,7 @@ export const DEEP_B: Record<string, SongDeep> = {
           'He was rude to me, but I decided to take the high road and stay polite.',
           'Taking the high road isn’t easy, but you won’t regret it.',
         ],
-        similar: ['rise above it', 'be the bigger person'],
+        similar: ['to rise above it', 'to be the bigger person'],
         tip: {
           uk: 'Не перекладайте як «їхати високою дорогою». Це ідіома про поведінку, а не про маршрут.',
           ru: 'Не переводите как «ехать по высокой дороге». Это идиома о поведении, а не о маршруте.',
@@ -361,7 +361,7 @@ export const DEEP_B: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'get closure',
+        en: 'to get closure',
         m: { uk: 'поставити крапку, емоційно відпустити', ru: 'поставить точку, эмоционально отпустить', en: 'feel that something is finished so you can move forward' },
         story: {
           uk: 'Closure це відчуття завершеності, коли ти зрозумів, що сталося, і можеш спокійно жити далі. Слово дуже популярне в сучасній розмовній англійській, особливо коли говорять про розставання або незавершені конфлікти. Часто кажуть I just need closure, тобто мені потрібна остання розмова чи пояснення. Пісня звучить як спосіб отримати таку завершеність і щиро подякувати минулому.',
@@ -372,7 +372,7 @@ export const DEEP_B: Record<string, SongDeep> = {
           'Talking to her one last time helped me get closure.',
           'Writing a letter you never send can help you find closure.',
         ],
-        similar: ['put something behind you', 'make peace with something'],
+        similar: ['to put something behind you', 'to make peace with something'],
         tip: {
           uk: 'Closure тут незлічуване: get closure, need closure, без артикля a.',
           ru: 'Closure здесь неисчисляемое: get closure, need closure, без артикля a.',
@@ -380,7 +380,7 @@ export const DEEP_B: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'look on the bright side',
+        en: 'to look on the bright side',
         m: { uk: 'бачити позитив у ситуації', ru: 'видеть позитив в ситуации', en: 'focus on the good part of a bad situation' },
         story: {
           uk: 'Цим виразом підбадьорюють людину в складній ситуації: спробуй помітити хороше. Наприклад, дощ зіпсував пікнік, зате можна подивитися кіно вдома. Часто він стоїть на початку речення: Look on the bright side, ... Пісня дуже в цьому дусі: замість жалю вона шукає, що хорошого дав кожен досвід.',
@@ -391,7 +391,7 @@ export const DEEP_B: Record<string, SongDeep> = {
           'Look on the bright side: at least you don’t have homework this weekend.',
           'My grandma always looks on the bright side of things.',
         ],
-        similar: ['every cloud has a silver lining', 'count your blessings'],
+        similar: ['every cloud has a silver lining', 'to count your blessings'],
         tip: {
           uk: 'Найчастіше вживаємо прийменник on: look on the bright side. Варіант look at the bright side трапляється, але рідше.',
           ru: 'Чаще всего употребляем предлог on: look on the bright side. Вариант look at the bright side встречается, но реже.',
@@ -399,7 +399,7 @@ export const DEEP_B: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'treat yourself',
+        en: 'to treat yourself',
         m: { uk: 'потішити себе, зробити собі приємне', ru: 'побаловать себя', en: 'do or buy something nice for yourself' },
         story: {
           uk: 'Treat yourself означає дозволити собі щось приємне: смачний десерт, нову книжку, вільний вечір. Вираз дуже поширений у соцмережах і рекламі, але й у звичайних розмовах друзів. Він пов’язаний із ширшою ідеєю турботи про себе. Пісня теж про те, щоб поставити себе й свій спокій на перше місце.',
@@ -410,7 +410,7 @@ export const DEEP_B: Record<string, SongDeep> = {
           'You worked hard all week, so treat yourself to a movie.',
           'I treated myself to a new pair of trainers after the exams.',
         ],
-        similar: ['spoil yourself', 'self-care'],
+        similar: ['to spoil yourself', 'self-care'],
         tip: {
           uk: 'Те, чим себе потішили, вводиться прийменником to: treat yourself to ice cream. Не кажіть treat yourself with ice cream.',
           ru: 'То, чем себя побаловали, вводится предлогом to: treat yourself to ice cream. Не говорите treat yourself with ice cream.',
@@ -459,7 +459,7 @@ export const DEEP_B: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'toss and turn',
+        en: 'to toss and turn',
         m: { uk: 'крутитися в ліжку, не могти заснути', ru: 'ворочаться в постели, не мочь уснуть', en: 'move around in bed because you can’t sleep' },
         story: {
           uk: 'Так описують неспокійну ніч, коли лежиш у ліжку й постійно перевертаєшся з боку на бік, бо думки не дають заснути. Вираз розмовний і дуже наочний. Обидва дієслова завжди йдуть парою. Безсоння і внутрішній неспокій, які передає пісня, добре пасують до цього образу.',
@@ -470,7 +470,7 @@ export const DEEP_B: Record<string, SongDeep> = {
           'I tossed and turned all night before my exam.',
           'If you drink coffee in the evening, you’ll toss and turn for hours.',
         ],
-        similar: ['not sleep a wink', 'have a restless night'],
+        similar: ['to not sleep a wink', 'to have a restless night'],
         tip: {
           uk: 'Змінюються обидва дієслова: I tossed and turned. Не кажіть toss and turned.',
           ru: 'Меняются оба глагола: I tossed and turned. Не говорите toss and turned.',
@@ -478,7 +478,7 @@ export const DEEP_B: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'burn the midnight oil',
+        en: 'to burn the midnight oil',
         m: { uk: 'працювати або вчитися до пізньої ночі', ru: 'работать или учиться до поздней ночи', en: 'work or study very late at night' },
         story: {
           uk: 'Вираз з’явився тоді, коли люди читали й працювали при олійних лампах. «Палити опівнічну олію» означало сидіти над роботою, коли всі сплять. Сьогодні так кажуть про студентів перед іспитами чи людей із дедлайном. Нічний ритм міста, який створює пісня, нагадує, що для багатьох ніч це час не лише для сну.',
@@ -489,7 +489,7 @@ export const DEEP_B: Record<string, SongDeep> = {
           'I’ll have to burn the midnight oil to finish this project.',
           'She burned the midnight oil every night before the NMT.',
         ],
-        similar: ['pull an all-nighter', 'work late'],
+        similar: ['to pull an all-nighter', 'to work late'],
         tip: {
           uk: 'Це не про пожежу, а про пізню працю. Вираз трохи книжний, у розмові підлітки частіше кажуть pull an all-nighter.',
           ru: 'Это не о пожаре, а о поздней работе. Выражение немного книжное, в разговоре подростки чаще говорят pull an all-nighter.',
@@ -497,7 +497,7 @@ export const DEEP_B: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'lose track of time',
+        en: 'to lose track of time',
         m: { uk: 'втратити лік часу', ru: 'потерять счёт времени', en: 'not notice how much time has passed' },
         story: {
           uk: 'Так кажуть, коли ти так захопився чимось, що не помітив, як минули години. Це може бути цікава розмова, гра, музика чи прогулянка. Вираз нейтральний і дуже поширений, особливо як вибачення: Sorry I’m late, I lost track of time. Пісня з її нічною поїздкою та пульсуючим ритмом створює саме таке відчуття, коли година ночі непомітно стає ранком.',
@@ -508,7 +508,7 @@ export const DEEP_B: Record<string, SongDeep> = {
           'Sorry I’m late, I lost track of time.',
           'We were talking so much that we completely lost track of time.',
         ],
-        similar: ['time flies', 'lose count'],
+        similar: ['time flies', 'to lose count'],
         tip: {
           uk: 'Перед time немає артикля: lose track of time. Не кажіть lose the time, це звучить як «загубити час» буквально.',
           ru: 'Перед time нет артикля: lose track of time. Не говорите lose the time, это звучит как «потерять время» буквально.',
@@ -516,7 +516,7 @@ export const DEEP_B: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'go for a spin',
+        en: 'to go for a spin',
         m: { uk: 'проїхатися для задоволення', ru: 'прокатиться для удовольствия', en: 'take a short ride just for fun' },
         story: {
           uk: 'Spin буквально означає обертання, а go for a spin у розмовній англійській означає коротку поїздку машиною, велосипедом чи скутером просто для задоволення. Також так кажуть, коли пробують щось нове: take the new phone for a spin. Вираз легкий і неформальний. Дорога, швидкість і нічне місто є важливою частиною атмосфери пісні та її кліпу.',
@@ -527,7 +527,7 @@ export const DEEP_B: Record<string, SongDeep> = {
           'Dad let us go for a spin in his new car around the village.',
           'Let’s take your new bike for a spin in the park.',
         ],
-        similar: ['go for a ride', 'take something for a test drive'],
+        similar: ['to go for a ride', 'to take something for a test drive'],
         tip: {
           uk: 'Після go for потрібен артикль a: go for a spin, go for a walk, go for a ride.',
           ru: 'После go for нужен артикль a: go for a spin, go for a walk, go for a ride.',
@@ -592,7 +592,7 @@ export const DEEP_B: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'lose yourself in something',
+        en: 'to lose yourself in something',
         m: { uk: 'повністю поринути в щось', ru: 'полностью погрузиться во что-то', en: 'become completely absorbed in something' },
         story: {
           uk: 'Коли ти lose yourself in music, a book або a game, ти так захоплюєшся, що забуваєш про все навколо. Вираз позитивний і трохи поетичний. Його часто вживають, говорячи про музику, танці чи мистецтво. Енергійний ритм пісні якраз із тих, у яких легко розчинитися під час танцю чи довгої поїздки.',
@@ -603,7 +603,7 @@ export const DEEP_B: Record<string, SongDeep> = {
           'When I dance, I lose myself in the music.',
           'She lost herself in the book and missed her stop.',
         ],
-        similar: ['get carried away', 'be absorbed in'],
+        similar: ['to get carried away', 'to be absorbed in'],
         tip: {
           uk: 'Зворотний займенник обов’язковий: lose myself, lose herself. Без нього lose означає просто «загубити».',
           ru: 'Возвратное местоимение обязательно: lose myself, lose herself. Без него lose значит просто «потерять».',
@@ -611,7 +611,7 @@ export const DEEP_B: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'feel blue',
+        en: 'to feel blue',
         m: { uk: 'сумувати', ru: 'грустить', en: 'feel sad' },
         story: {
           uk: 'В англійській синій колір пов’язаний зі смутком, звідси й назва музичного жанру блюз. Feel blue означає легкий сум чи меланхолію, без великої драми. Вираз розмовний і м’який. Пісня, попри танцювальний ритм, має сумну нотку, і така суміш веселої музики та смутку дуже типова для поп-музики.',
@@ -622,7 +622,7 @@ export const DEEP_B: Record<string, SongDeep> = {
           'I’ve been feeling a bit blue since my best friend moved away.',
           'When I feel blue, I go for a long walk with my dog.',
         ],
-        similar: ['feel down', 'be in low spirits'],
+        similar: ['to feel down', 'to be in low spirits'],
         tip: {
           uk: 'Blue тут саме сум, а не щось радісне. А вираз until you are blue in the face означає інше: довго й марно щось повторювати.',
           ru: 'Blue здесь именно грусть, а не что-то радостное. А until you are blue in the face значит другое: долго и бесполезно что-то повторять.',
@@ -652,7 +652,7 @@ export const DEEP_B: Record<string, SongDeep> = {
     },
     phrases: [
       {
-        en: 'cry your eyes out',
+        en: 'to cry your eyes out',
         m: { uk: 'гірко плакати', ru: 'горько плакать', en: 'cry a lot and for a long time' },
         story: {
           uk: 'Це перебільшення, як і багато ідіом: ніхто, звісно, не виплакує очі. Вираз означає дуже довго й сильно плакати. Він розмовний і часто звучить у розповідях: I cried my eyes out at the end of the film. Сльози і те, чи варто їх витрачати, є центральним образом цієї пісні, що видно вже з її назви.',
@@ -663,7 +663,7 @@ export const DEEP_B: Record<string, SongDeep> = {
           'I cried my eyes out at the end of that cartoon about the old dog.',
           'She cried her eyes out when her best friend moved to another city.',
         ],
-        similar: ['burst into tears', 'sob'],
+        similar: ['to burst into tears', 'to sob'],
         tip: {
           uk: 'Займенник змінюється: cry my/her/his eyes out. Out у кінці обов’язкове.',
           ru: 'Местоимение меняется: cry my/her/his eyes out. Out в конце обязательно.',
@@ -671,7 +671,7 @@ export const DEEP_B: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'hold back tears',
+        en: 'to hold back tears',
         m: { uk: 'стримувати сльози', ru: 'сдерживать слёзы', en: 'try hard not to cry' },
         story: {
           uk: 'Hold back означає стримати, не випустити. Hold back tears кажуть, коли людина дуже хоче заплакати, але не дозволяє собі цього, наприклад на випускному чи в незручній ситуації. Вираз нейтральний, його вживають і в розмові, і в книжках. Пісня крутиться навколо емоцій, які одні люди показують, а інші ховають.',
@@ -682,7 +682,7 @@ export const DEEP_B: Record<string, SongDeep> = {
           'I could hardly hold back my tears during the graduation speech.',
           'He tried to hold back tears when he said goodbye to his grandparents.',
         ],
-        similar: ['fight back tears', 'keep it together'],
+        similar: ['to fight back tears', 'to keep it together'],
         tip: {
           uk: 'Не плутайте з hold on, що означає «зачекай» або «тримайся».',
           ru: 'Не путайте с hold on, что значит «подожди» или «держись».',
@@ -701,7 +701,7 @@ export const DEEP_B: Record<string, SongDeep> = {
           'I had a lump in my throat when I read my grandma’s old letter.',
           'Watching the final scene gave me a lump in my throat.',
         ],
-        similar: ['be choked up', 'be moved'],
+        similar: ['to be choked up', 'to be moved'],
         tip: {
           uk: 'Англійською саме lump, а не ball. А a knot in your stomach означає інше: тривогу.',
           ru: 'По-английски именно lump, а не ball. А a knot in your stomach значит другое: тревогу.',
@@ -709,7 +709,7 @@ export const DEEP_B: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'put on a brave face',
+        en: 'to put on a brave face',
         m: { uk: 'робити вигляд, що все добре', ru: 'делать вид, что всё хорошо', en: 'hide sadness or fear and look calm' },
         story: {
           uk: 'Put on a brave face означає приховати сум чи страх і показати іншим спокійне обличчя. Вираз часто звучить зі співчуттям: She put on a brave face, but I knew she was upset. Ми ніби «одягаємо» вираз обличчя, як маску. Пісня теж про розрив між тим, що людина показує, і тим, що вона відчуває насправді.',
@@ -720,7 +720,7 @@ export const DEEP_B: Record<string, SongDeep> = {
           'He lost the final, but he put on a brave face for the cameras.',
           'You don’t always have to put on a brave face, it’s okay to be sad.',
         ],
-        similar: ['grin and bear it', 'keep a stiff upper lip'],
+        similar: ['to grin and bear it', 'to keep a stiff upper lip'],
         tip: {
           uk: 'Кажуть put on a brave face, а не make a brave face. Існує також варіант put a brave face on it.',
           ru: 'Говорят put on a brave face, а не make a brave face. Есть также вариант put a brave face on it.',
@@ -728,7 +728,7 @@ export const DEEP_B: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'have second thoughts',
+        en: 'to have second thoughts',
         m: { uk: 'засумніватися в рішенні', ru: 'засомневаться в решении', en: 'start to doubt a decision' },
         story: {
           uk: 'Second thoughts це думки, які приходять після рішення і змушують засумніватися. Have second thoughts about something означає почати вагатися: а чи правильно я вчинив? Вираз нейтральний і дуже поширений. Він пасує до теми пісні, де мова про жаль і бажання все змінити.',
@@ -739,7 +739,7 @@ export const DEEP_B: Record<string, SongDeep> = {
           'I’m having second thoughts about cutting my hair so short.',
           'She agreed to go, but then she had second thoughts.',
         ],
-        similar: ['think twice', 'be in two minds'],
+        similar: ['to think twice', 'to be in two minds'],
         tip: {
           uk: 'Thoughts тут у множині: have second thoughts. А on second thought (у британській частіше on second thoughts) означає «хоча ні, передумав».',
           ru: 'Thoughts здесь во множественном числе: have second thoughts. А on second thought (в британском чаще on second thoughts) значит «хотя нет, передумал».',
@@ -758,7 +758,7 @@ export const DEEP_B: Record<string, SongDeep> = {
           'Mum had a change of heart and let us get a puppy.',
           'He was going to quit the team, but he had a change of heart.',
         ],
-        similar: ['change your mind', 'think better of it'],
+        similar: ['to change your mind', 'to think better of it'],
         tip: {
           uk: 'Heart в однині, і потрібен артикль a: have a change of heart.',
           ru: 'Heart в единственном числе, и нужен артикль a: have a change of heart.',
@@ -785,7 +785,7 @@ export const DEEP_B: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'burn bridges',
+        en: 'to burn bridges',
         m: { uk: 'спалити мости', ru: 'сжечь мосты', en: 'damage a relationship so badly that you can’t go back' },
         story: {
           uk: 'Як і українською, burn bridges означає зробити щось таке, після чого повернутися назад уже неможливо: посваритися, наговорити зайвого, піти з грюкотом дверей. Часто звучить як порада: Don’t burn your bridges. Вираз вживають про роботу, дружбу і стосунки. Пісня показує, що буває, коли мости вже спалені, а людина розуміє, що хотіла б їх відбудувати.',
@@ -796,7 +796,7 @@ export const DEEP_B: Record<string, SongDeep> = {
           'Even if you leave the club, try not to burn bridges with the coach.',
           'She burned her bridges with her old friends and now feels lonely.',
         ],
-        similar: ['cut ties', 'there’s no going back'],
+        similar: ['to cut ties', 'there’s no going back'],
         tip: {
           uk: 'Зазвичай у множині: burn bridges або burn your bridges.',
           ru: 'Обычно во множественном числе: burn bridges или burn your bridges.',
@@ -804,7 +804,7 @@ export const DEEP_B: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'own up (to something)',
+        en: 'to own up (to something)',
         m: { uk: 'визнати свою провину', ru: 'признать свою вину', en: 'admit that you did something wrong' },
         story: {
           uk: 'Own up означає чесно зізнатися, що це зробив саме ти, особливо коли щось пішло не так. Вираз розмовний, і його часто чують діти та підлітки: Who broke the window? Come on, own up! Він підкреслює відповідальність за свої вчинки. Тема визнання власних помилок близька до настрою пісні.',
@@ -815,7 +815,7 @@ export const DEEP_B: Record<string, SongDeep> = {
           'Nobody owned up to eating the last piece of cake.',
           'He owned up to breaking the vase before his parents asked.',
         ],
-        similar: ['come clean', 'take responsibility'],
+        similar: ['to come clean', 'to take responsibility'],
         tip: {
           uk: 'Після own up to вживаємо іменник або -ing: own up to breaking the vase. Не кажіть own up to break.',
           ru: 'После own up to употребляем существительное или -ing: own up to breaking the vase. Не говорите own up to break.',
@@ -823,7 +823,7 @@ export const DEEP_B: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'bite your tongue',
+        en: 'to bite your tongue',
         m: { uk: 'прикусити язика, промовчати', ru: 'прикусить язык, промолчать', en: 'stop yourself from saying something' },
         story: {
           uk: 'Bite your tongue означає стриматися і не сказати те, що хочеться, щоб не образити когось чи не зробити гірше. Часто кажуть I had to bite my tongue, тобто довелося промовчати. Вираз розмовний і дуже поширений. Він добре доповнює тему жалю: багатьох помилок можна уникнути, якщо просто зупинитися на мить і подумати.',
@@ -834,7 +834,7 @@ export const DEEP_B: Record<string, SongDeep> = {
           'I wanted to argue with the referee, but I bit my tongue.',
           'Sometimes it’s better to bite your tongue than to say something you’ll regret.',
         ],
-        similar: ['hold your tongue', 'keep quiet'],
+        similar: ['to hold your tongue', 'to keep quiet'],
         tip: {
           uk: 'Займенник змінюється: bite my/your tongue. Схожий вираз hold your tongue часто звучить як різкий наказ «замовкни».',
           ru: 'Местоимение меняется: bite my/your tongue. Похожее выражение hold your tongue часто звучит как резкий приказ «замолчи».',
@@ -875,7 +875,7 @@ export const DEEP_B: Record<string, SongDeep> = {
           'After a lot of soul-searching, he decided to study art instead of law.',
           'The summer camp was a time of soul-searching for me.',
         ],
-        similar: ['self-reflection', 'look inside yourself'],
+        similar: ['self-reflection', 'to look inside yourself'],
         tip: {
           uk: 'Пишеться через дефіс: soul-searching. Кажуть do some soul-searching, а не make soul-searching.',
           ru: 'Пишется через дефис: soul-searching. Говорят do some soul-searching, а не make soul-searching.',
@@ -883,7 +883,7 @@ export const DEEP_B: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'find your feet',
+        en: 'to find your feet',
         m: { uk: 'освоїтися на новому місці', ru: 'освоиться на новом месте', en: 'become confident in a new situation' },
         story: {
           uk: 'Find your feet кажуть, коли людина звикає до нової ситуації: нової школи, міста, роботи. Спочатку все незнайоме, а потім поступово з’являється впевненість. Вираз більш британський, нейтрально-розмовний. Він пов’язаний із сюжетом фільму «Барбі», де героїня потрапляє в незнайомий реальний світ і мусить у ньому розібратися.',
@@ -894,7 +894,7 @@ export const DEEP_B: Record<string, SongDeep> = {
           'It took me a few weeks to find my feet at the new school.',
           'Give her time, she’s still finding her feet in the team.',
         ],
-        similar: ['settle in', 'get the hang of it'],
+        similar: ['to settle in', 'to get the hang of it'],
         tip: {
           uk: 'Feet у множині і з присвійним займенником: find my/your feet. Не кажіть find the legs.',
           ru: 'Feet во множественном числе и с притяжательным местоимением: find my/your feet. Не говорите find the legs.',
@@ -902,7 +902,7 @@ export const DEEP_B: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'be true to yourself',
+        en: 'to be true to yourself',
         m: { uk: 'бути вірним собі', ru: 'быть верным себе', en: 'act according to who you really are' },
         story: {
           uk: 'Цей вираз означає жити відповідно до своїх справжніх цінностей і не прикидатися кимось іншим заради інших. Джерелом цієї ідеї часто називають рядок Шекспіра з «Гамлета», To thine own self be true. Вираз звучить трохи серйозно й надихаюче, його люблять у промовах і порадах. Пісня якраз про те, як важко зрозуміти, яке ж воно, твоє справжнє «я».',
@@ -913,7 +913,7 @@ export const DEEP_B: Record<string, SongDeep> = {
           'Don’t change your style just to fit in, be true to yourself.',
           'My coach always tells us to stay true to ourselves.',
         ],
-        similar: ['stay true to yourself', 'be yourself'],
+        similar: ['to stay true to yourself', 'to be yourself'],
         tip: {
           uk: 'Прийменник to: true to yourself. Не кажіть true for yourself чи true with yourself.',
           ru: 'Предлог to: true to yourself. Не говорите true for yourself или true with yourself.',
@@ -940,7 +940,7 @@ export const DEEP_B: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'make sense of something',
+        en: 'to make sense of something',
         m: { uk: 'розібратися, зрозуміти щось складне', ru: 'разобраться, понять что-то сложное', en: 'understand something confusing' },
         story: {
           uk: 'Make sense of означає спробувати знайти логіку в чомусь заплутаному: у почуттях, подіях, складному тексті. Часто кажуть I’m still trying to make sense of it all. Вираз нейтральний і поширений. Пісня передає саме цей стан, коли людина намагається зрозуміти власні емоції.',
@@ -951,7 +951,7 @@ export const DEEP_B: Record<string, SongDeep> = {
           'I read the poem three times but couldn’t make sense of it.',
           'Writing a diary helps me make sense of my feelings.',
         ],
-        similar: ['get your head around something', 'work something out'],
+        similar: ['to get your head around something', 'to work something out'],
         tip: {
           uk: 'Не плутайте make sense of (зрозуміти щось) і make sense (мати сенс): It makes sense. Перше потребує додатка: make sense of the situation.',
           ru: 'Не путайте make sense of (понять что-то) и make sense (иметь смысл): It makes sense. Первое требует дополнения: make sense of the situation.',
@@ -959,7 +959,7 @@ export const DEEP_B: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'keep up appearances',
+        en: 'to keep up appearances',
         m: { uk: 'підтримувати видимість, що все добре', ru: 'поддерживать видимость, что всё хорошо', en: 'pretend everything is fine so others think well of you' },
         story: {
           uk: 'Keep up appearances означає поводитися так, щоб інші думали, що все гаразд, хоча насправді це не так. Наприклад, усміхатися на фото, коли на душі сумно. Вираз може звучати з легкою критикою. Лялька Барбі давно символізує ідеальну зовнішність, і фільм разом із піснею ставлять питання, що ховається за такою картинкою.',
@@ -970,7 +970,7 @@ export const DEEP_B: Record<string, SongDeep> = {
           'They kept up appearances on social media, but they were arguing all the time.',
           'I’m tired of keeping up appearances, I just want to be honest.',
         ],
-        similar: ['put on a show', 'save face'],
+        similar: ['to put on a show', 'to save face'],
         tip: {
           uk: 'Appearances тут у множині. Appearance в однині означає зовнішність: She cares about her appearance.',
           ru: 'Appearances здесь во множественном числе. Appearance в единственном числе значит внешность: She cares about her appearance.',
@@ -978,7 +978,7 @@ export const DEEP_B: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'come of age',
+        en: 'to come of age',
         m: { uk: 'подорослішати, досягти зрілості', ru: 'повзрослеть, достичь зрелости', en: 'become an adult or become mature' },
         story: {
           uk: 'Come of age буквально означає досягти повноліття, але переносно так кажуть про момент, коли людина чи навіть ціле явище стає зрілим. Звідси жанр coming-of-age story, тобто історія дорослішання, дуже популярний у кіно та книжках. Фільм «Барбі» теж можна сприймати як незвичну історію дорослішання. Пісня передає цей тонкий момент переходу.',
@@ -989,7 +989,7 @@ export const DEEP_B: Record<string, SongDeep> = {
           'In many countries you come of age at eighteen.',
           'My favourite book is a coming-of-age story about a girl in a small town.',
         ],
-        similar: ['grow up', 'mature'],
+        similar: ['to grow up', 'to mature'],
         tip: {
           uk: 'Без артикля: come of age, а не come of an age. Прикметник пишеться через дефіс: a coming-of-age film.',
           ru: 'Без артикля: come of age, а не come of an age. Прилагательное пишется через дефис: a coming-of-age film.',
@@ -997,7 +997,7 @@ export const DEEP_B: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'take a step back',
+        en: 'to take a step back',
         m: { uk: 'зробити паузу і подивитися збоку', ru: 'сделать паузу и посмотреть со стороны', en: 'pause and look at a situation calmly' },
         story: {
           uk: 'Take a step back означає ненадовго зупинитися і подивитися на ситуацію спокійніше, без поспіху й зайвих емоцій. Його часто радять, коли людина втомилася або заплуталася. Вираз нейтральний, підходить і для розмови, і для роботи. Тиха, повільна пісня сама звучить як такий момент паузи.',
@@ -1008,7 +1008,7 @@ export const DEEP_B: Record<string, SongDeep> = {
           'Let’s take a step back and think about what really matters.',
           'I decided to take a step back from social media for a month.',
         ],
-        similar: ['see the bigger picture', 'take a breather'],
+        similar: ['to see the bigger picture', 'to take a breather'],
         tip: {
           uk: 'Від чого саме відпочити, вводимо прийменником from: take a step back from social media.',
           ru: 'От чего именно отдохнуть, вводим предлогом from: take a step back from social media.',
@@ -1016,7 +1016,7 @@ export const DEEP_B: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'feel like yourself (again)',
+        en: 'to feel like yourself (again)',
         m: { uk: 'знову почуватися собою', ru: 'снова чувствовать себя собой', en: 'feel normal and like the person you usually are' },
         story: {
           uk: 'Так кажуть після важкого періоду, хвороби чи стресу, коли сили й настрій нарешті повертаються. Часто звучить у формі I’m starting to feel like myself again. Протилежна ситуація I don’t feel like myself, тобто зі мною щось не те. Пісня описує саме стан, коли людина ніби втратила зв’язок із собою і шукає дорогу назад.',
@@ -1027,7 +1027,7 @@ export const DEEP_B: Record<string, SongDeep> = {
           'After a week of rest, I finally feel like myself again.',
           'Sorry I was so quiet yesterday, I didn’t feel like myself.',
         ],
-        similar: ['be back to your old self', 'get back on track'],
+        similar: ['to be back to your old self', 'to get back on track'],
         tip: {
           uk: 'Не плутайте з feel like + -ing, що означає «хотіти»: I feel like dancing. Тут feel like myself означає «почуватися собою».',
           ru: 'Не путайте с feel like + -ing, что значит «хотеть»: I feel like dancing. Здесь feel like myself значит «чувствовать себя собой».',
@@ -1035,7 +1035,7 @@ export const DEEP_B: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'go through a phase',
+        en: 'to go through a phase',
         m: { uk: 'переживати певний (часто тимчасовий) етап', ru: 'переживать определённый (часто временный) этап', en: 'have a temporary period of certain feelings or interests' },
         story: {
           uk: 'Phase означає етап. Go through a phase кажуть, коли людина тимчасово має якісь інтереси, настрої чи стиль, а потім це минає. Батьки часто кажуть про підлітків: It’s just a phase. Інколи це звучить зневажливо, ніби почуття несерйозні, тож вживати вираз варто обережно. Пісня нагадує, що навіть «просто етап» може бути дуже глибоким переживанням.',
@@ -1046,7 +1046,7 @@ export const DEEP_B: Record<string, SongDeep> = {
           'I went through a phase of wearing only black clothes.',
           'Everyone goes through a phase of not knowing what they want.',
         ],
-        similar: ['a stage', 'grow out of something'],
+        similar: ['a stage', 'to grow out of something'],
         tip: {
           uk: 'Кажуть go through a phase, а не pass a phase.',
           ru: 'Говорят go through a phase, а не pass a phase.',

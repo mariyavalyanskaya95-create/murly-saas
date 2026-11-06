@@ -10,7 +10,7 @@ export const DEEP_A: Record<string, SongDeep> = {
     },
     phrases: [
       {
-        en: 'let it go',
+        en: 'to let it go',
         m: { uk: 'відпустити, перестати думати про щось', ru: 'отпустить, перестать думать о чём-то', en: 'stop worrying about something' },
         story: {
           uk: 'Let it go буквально означає «відпусти це», як відпускають повітряну кульку. Носії кажуть так, коли хтось занадто довго переживає через дрібницю або образу. Це дружня порада, звучить м’яко і підходить і для дітей, і для дорослих. Уся пісня про те, як не тримати в собі чужі неприємні слова, і цей вираз чудово передає цю ідею.',
@@ -18,7 +18,7 @@ export const DEEP_A: Record<string, SongDeep> = {
           en: 'Let it go literally means to open your hand and let something fly away, like a balloon. Native speakers say it when someone worries about a small problem or an insult for too long. It is friendly advice, sounds gentle and works for kids and adults. The whole song is about not holding on to unkind words, and this phrase fits that idea perfectly.',
         },
         ex: ['He forgot to say thank you. It’s not a big deal, just let it go.', 'I was angry all morning, but then I decided to let it go.'],
-        similar: ['forget about it', 'move on', 'don’t worry about it'],
+        similar: ['to forget about it', 'to move on', 'don’t worry about it'],
         tip: {
           uk: 'Не кажіть let go it. З займенником it порядок такий: let it go.',
           ru: 'Не говорите let go it. С местоимением it порядок такой: let it go.',
@@ -58,7 +58,7 @@ export const DEEP_A: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'cheer up',
+        en: 'to cheer up',
         m: { uk: 'не сумуй! / підбадьорити когось', ru: 'не грусти! / подбодрить кого-то', en: 'become happier / make someone happier' },
         story: {
           uk: 'Cheer up працює двома способами. Сам по собі це заклик: Cheer up! тобто «Не сумуй!». А з об’єктом це «підбадьорити когось»: cheer someone up. Вираз теплий і дуже поширений. Пісня звучить так бадьоро, що сама може cheer you up у похмурий день.',
@@ -66,7 +66,7 @@ export const DEEP_A: Record<string, SongDeep> = {
           en: 'Cheer up works in two ways. On its own it is an order or wish: Cheer up! means don’t be sad. With an object it means to make someone happier: cheer someone up. It is warm and very common. The song is so upbeat that it can cheer you up on a grey day.',
         },
         ex: ['Cheer up! It’s Friday tomorrow.', 'My little brother was sad, so I told him a joke to cheer him up.', 'This song always cheers me up.'],
-        similar: ['lift someone’s spirits', 'make someone smile'],
+        similar: ['to lift someone’s spirits', 'to make someone smile'],
         tip: {
           uk: 'Пам’ятайте про порядок слів із займенником: cheer him up, а не cheer up him.',
           ru: 'Помните о порядке слов с местоимением: cheer him up, а не cheer up him.',
@@ -74,7 +74,7 @@ export const DEEP_A: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'let off steam',
+        en: 'to let off steam',
         m: { uk: 'випустити пару, розрядитися', ru: 'выпустить пар, разрядиться', en: 'get rid of stress or energy' },
         story: {
           uk: 'Вираз прийшов від парових машин і чайників: щоб тиск не став небезпечним, пару випускають назовні. Так само людина може «випустити пару»: побігати, потанцювати, покричати на стадіоні. Вираз розмовний, але не грубий. Танцювати під гучну музику, коли щось засмутило, це класичний спосіб let off steam, і ця пісня створена саме для такого.',
@@ -82,7 +82,7 @@ export const DEEP_A: Record<string, SongDeep> = {
           en: 'The phrase comes from steam engines and kettles: to keep the pressure safe, you let some steam out. People can do the same: run, dance or shout at a football match. It is informal but not rude. Dancing to loud music after a bad day is a classic way to let off steam, and this song is made for exactly that.',
         },
         ex: ['After the exam we went to the park to let off steam.', 'The kids let off steam by jumping on the trampoline.'],
-        similar: ['blow off steam (American English)', 'unwind', 'chill out'],
+        similar: ['to blow off steam (American English)', 'to unwind', 'to chill out'],
         tip: {
           uk: 'Російською є схожий вираз «выпустить пар», тож запам’ятати легко. Але англійською кажуть let off steam без артикля: не let off the steam.',
           ru: 'В русском есть похожее «выпустить пар», так что запомнить легко. Но по-английски говорят let off steam без артикля: не let off the steam.',
@@ -98,7 +98,7 @@ export const DEEP_A: Record<string, SongDeep> = {
           en: 'This is a popular motivational saying, often printed on posters and T-shirts. It means do what you love and don’t be afraid of looking silly. It sounds inspiring, a bit like advice on a greeting card. The song is about the freedom to be clumsy and happy at the same time, so the idea matches perfectly.',
         },
         ex: ['At my cousin’s party I danced like nobody was watching.', 'Put on your favourite song and dance like nobody’s watching!'],
-        similar: ['let loose', 'let your hair down'],
+        similar: ['to let loose', 'to let your hair down'],
         tip: {
           uk: 'Nobody’s тут означає nobody is. Не плутайте з присвійним: тут немає значення «нічий».',
           ru: 'Nobody’s здесь значит nobody is. Не путайте с притяжательным: здесь нет значения «ничей».',
@@ -106,7 +106,7 @@ export const DEEP_A: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'make fun of someone',
+        en: 'to make fun of someone',
         m: { uk: 'насміхатися з когось', ru: 'смеяться над кем-то, высмеивать', en: 'laugh at someone in an unkind way' },
         story: {
           uk: 'Make fun of означає жартувати з людини так, що їй неприємно. Це не те саме, що have fun (веселитися), і цю різницю важливо відчути. Вираз нейтральний, його вживають і діти, і вчителі. Тема пісні в тому, як реагувати, коли з тебе сміються, тому цей вираз тут ключовий.',
@@ -114,7 +114,7 @@ export const DEEP_A: Record<string, SongDeep> = {
           en: 'Make fun of means to joke about a person in a way that hurts them. It is not the same as have fun, and that difference is important. The phrase is neutral, used by kids and teachers alike. The song is about how to react when people laugh at you, so this phrase is central.',
         },
         ex: ['Please don’t make fun of his accent. He’s still learning.', 'Some kids made fun of my glasses, but now everyone wears them.'],
-        similar: ['tease', 'laugh at', 'pick on'],
+        similar: ['to tease', 'to laugh at', 'to pick on'],
         tip: {
           uk: 'Не забувайте прийменник of: make fun of me, а не make fun me. І не плутайте з have fun.',
           ru: 'Не забывайте предлог of: make fun of me, а не make fun me. И не путайте с have fun.',
@@ -122,7 +122,7 @@ export const DEEP_A: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'have thick skin',
+        en: 'to have thick skin',
         m: { uk: 'бути стійким до критики, «товстошкірим»', ru: 'быть устойчивым к критике, «толстокожим»', en: 'not get upset easily by criticism' },
         story: {
           uk: 'Людина з «товстою шкірою» не ображається від кожного слова. В англійській це скоріше комплімент: так кажуть про акторів, спортсменів, блогерів. Протилежне значення має thin-skinned, тобто дуже вразливий. Знаменитостям, як героїні цієї пісні, справді потрібна thick skin, бо про них постійно хтось говорить.',
@@ -130,7 +130,7 @@ export const DEEP_A: Record<string, SongDeep> = {
           en: 'A person with thick skin is not hurt by every comment. In English this is usually a compliment, used about actors, athletes or bloggers. The opposite is thin-skinned, which means very sensitive. Famous people like the singer of this song really need thick skin, because someone is always talking about them.',
         },
         ex: ['If you want to be a YouTuber, you need thick skin.', 'My sister has really thick skin. Nothing upsets her.'],
-        similar: ['be thick-skinned', 'opposite: be thin-skinned'],
+        similar: ['to be thick-skinned', 'opposite: to be thin-skinned'],
         tip: {
           uk: 'Російське «толстокожий» часто звучить як докір (нечутливий). Англійське have thick skin зазвичай звучить позитивно.',
           ru: 'Русское «толстокожий» часто звучит как упрёк (нечуткий). Английское have thick skin обычно звучит положительно.',
@@ -138,7 +138,7 @@ export const DEEP_A: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'move on',
+        en: 'to move on',
         m: { uk: 'рухатися далі, залишити минуле позаду', ru: 'двигаться дальше, оставить прошлое позади', en: 'stop thinking about the past and continue' },
         story: {
           uk: 'Move on буквально «рухатися далі», а в переносному значенні це забути неприємну подію і зосередитися на новому. Його кажуть після сварки, поразки чи розставання. Вираз нейтральний і дуже частий у фільмах. Уся енергія пісні про те, щоб не застрягати в поганому, а йти вперед із посмішкою.',
@@ -146,7 +146,7 @@ export const DEEP_A: Record<string, SongDeep> = {
           en: 'Move on literally means to go forward, and figuratively it means to forget a bad event and focus on something new. People say it after an argument, a lost game or a breakup. It is neutral and very common in films. The song’s energy is all about not getting stuck in the bad stuff and going forward with a smile.',
         },
         ex: ['We lost the match, but it’s time to move on and train for the next one.', 'OK, that’s enough about the test. Let’s move on to the next topic.'],
-        similar: ['get over something', 'put something behind you'],
+        similar: ['to get over something', 'to put something behind you'],
         tip: {
           uk: 'На уроках move on також означає «перейти до наступного»: Let’s move on to exercise 3. Не кажіть go further для цього значення.',
           ru: 'На уроках move on также значит «перейти к следующему»: Let’s move on to exercise 3. Не говорите go further в этом значении.',
@@ -154,7 +154,7 @@ export const DEEP_A: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'talk behind someone’s back',
+        en: 'to talk behind someone’s back',
         m: { uk: 'обговорювати когось за спиною', ru: 'обсуждать кого-то за спиной', en: 'say things about someone when they are not there' },
         story: {
           uk: 'Цей вираз майже однаковий в українській, російській та англійській, тому його легко запам’ятати. Він завжди має негативне значення: так поводяться не дуже чесні люди. Звучить нейтрально, підходить для будь-якої розмови. Плітки та чужі розмови за спиною і є тим «шумом», від якого пісня радить просто відмахнутися.',
@@ -162,7 +162,7 @@ export const DEEP_A: Record<string, SongDeep> = {
           en: 'This expression is almost the same in Ukrainian, Russian and English, so it is easy to remember. It is always negative: honest people don’t do it. It sounds neutral and works in any conversation. Gossip and talk behind your back is exactly the kind of noise the song tells you to ignore.',
         },
         ex: ['A real friend never talks behind your back.', 'I found out they were talking behind my back, and it hurt.'],
-        similar: ['gossip about someone', 'opposite: say it to someone’s face'],
+        similar: ['to gossip about someone', 'opposite: to say it to someone’s face'],
         tip: {
           uk: 'Не забудьте присвійне слово: behind my back, behind her back. Без нього (behind the back) фраза звучить неправильно.',
           ru: 'Не забудьте притяжательное слово: behind my back, behind her back. Без него (behind the back) фраза звучит неправильно.',
@@ -197,7 +197,7 @@ export const DEEP_A: Record<string, SongDeep> = {
     },
     phrases: [
       {
-        en: 'find your voice',
+        en: 'to find your voice',
         m: { uk: 'знайти свій голос, почати говорити впевнено', ru: 'найти свой голос, начать говорить уверенно', en: 'become confident enough to say what you think' },
         story: {
           uk: 'Find your voice не про спів, а про сміливість висловлювати власну думку. Так кажуть про людину, яка довго була сором’язливою, а потім почала говорити. Вираз трохи книжний, його часто чують у промовах і інтерв’ю. Пісня якраз про перехід від мовчання до сили, тож цей вираз описує її головну ідею.',
@@ -205,7 +205,7 @@ export const DEEP_A: Record<string, SongDeep> = {
           en: 'Find your voice is not about singing, it is about having the courage to share your opinion. People say it about someone who was shy for a long time and then started to speak up. It is slightly bookish and common in speeches and interviews. The song is about going from silence to strength, so this phrase describes its main idea.',
         },
         ex: ['In the drama club she finally found her voice.', 'Writing a blog helped me find my voice.'],
-        similar: ['speak your mind', 'come out of your shell'],
+        similar: ['to speak your mind', 'to come out of your shell'],
         tip: {
           uk: 'Не кажіть find the voice. Потрібне присвійне слово: find your / her / my voice.',
           ru: 'Не говорите find the voice. Нужно притяжательное слово: find your / her / my voice.',
@@ -213,7 +213,7 @@ export const DEEP_A: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'believe in yourself',
+        en: 'to believe in yourself',
         m: { uk: 'вірити в себе', ru: 'верить в себя', en: 'trust that you can do it' },
         story: {
           uk: 'Це одна з найпоширеніших фраз підтримки англійською. Її кажуть учителі, тренери й батьки перед важливою подією. Звучить тепло, іноді трохи пафосно, але дуже природно. Пісня про те, як людина починає вірити у свою силу, тож ця фраза могла б бути її підзаголовком.',
@@ -221,7 +221,7 @@ export const DEEP_A: Record<string, SongDeep> = {
           en: 'This is one of the most common phrases of support in English. Teachers, coaches and parents say it before an important event. It sounds warm, sometimes a little dramatic, but very natural. The song is about someone starting to believe in their own strength, so this phrase could be its subtitle.',
         },
         ex: ['You studied hard. Believe in yourself!', 'My coach believed in me before I believed in myself.'],
-        similar: ['trust yourself', 'have faith in yourself'],
+        similar: ['to trust yourself', 'to have faith in yourself'],
         tip: {
           uk: 'Believe in someone означає «вірити в когось», а believe someone означає «вірити словам людини». I believe you = я тобі вірю (що ти кажеш правду).',
           ru: 'Believe in someone значит «верить в кого-то», а believe someone значит «верить словам человека». I believe you = я тебе верю (что ты говоришь правду).',
@@ -229,7 +229,7 @@ export const DEEP_A: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'come out of your shell',
+        en: 'to come out of your shell',
         m: { uk: 'перестати соромитися, «вилізти зі шкаралупи»', ru: 'перестать стесняться, «вылезти из раковины»', en: 'become less shy' },
         story: {
           uk: 'Образ прийшов від черепахи чи равлика, які ховаються в мушлі. Людина, яка come out of her shell, стає відкритішою, більше говорить і посміхається. Вираз теплий і розмовний, його часто кажуть батьки й учителі про дітей. Це саме та зміна, яку описує пісня: від тихої до сміливої.',
@@ -237,7 +237,7 @@ export const DEEP_A: Record<string, SongDeep> = {
           en: 'The picture comes from a turtle or a snail hiding in its shell. A person who comes out of their shell becomes more open, talks more and smiles more. The phrase is warm and informal, often used by parents and teachers about children. It is exactly the change the song describes: from quiet to brave.',
         },
         ex: ['Tom was very quiet at first, but he came out of his shell after a month.', 'Summer camp really helped my daughter come out of her shell.'],
-        similar: ['open up', 'opposite: go into your shell'],
+        similar: ['to open up', 'opposite: to go into your shell'],
         tip: {
           uk: 'Shell тут це мушля або панцир, а не «оболонка». Кажуть out of, а не from: come out of your shell.',
           ru: 'Shell здесь это раковина или панцирь, а не «оболочка». Говорят out of, а не from: come out of your shell.',
@@ -245,7 +245,7 @@ export const DEEP_A: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'step out of your comfort zone',
+        en: 'to step out of your comfort zone',
         m: { uk: 'вийти із зони комфорту', ru: 'выйти из зоны комфорта', en: 'try something new and a bit scary' },
         story: {
           uk: 'Comfort zone це все звичне й безпечне. Вийти з неї означає спробувати те, що лякає: виступити на сцені, піти в новий гурток, заговорити англійською з іноземцем. Вираз популярний у психології, бізнесі й спорті. Пісня про людину, яка наважилася на зміни, тож вона ідеально ілюструє цей вираз.',
@@ -253,7 +253,7 @@ export const DEEP_A: Record<string, SongDeep> = {
           en: 'Your comfort zone is everything familiar and safe. Stepping out of it means trying something scary: performing on stage, joining a new club or speaking English with a foreigner. The phrase is popular in psychology, business and sport. The song is about someone who dared to change, so it illustrates this phrase perfectly.',
         },
         ex: ['Singing at the school concert was a big step out of my comfort zone.', 'Travelling alone pushed me out of my comfort zone.'],
-        similar: ['push yourself', 'take a risk'],
+        similar: ['to push yourself', 'to take a risk'],
         tip: {
           uk: 'Українською «зона комфорту» без присвійного, а англійською зазвичай your / my comfort zone.',
           ru: 'По-русски «зона комфорта» без притяжательного, а по-английски обычно your / my comfort zone.',
@@ -261,7 +261,7 @@ export const DEEP_A: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'stand your ground',
+        en: 'to stand your ground',
         m: { uk: 'не відступати, стояти на своєму', ru: 'не отступать, стоять на своём', en: 'not change your opinion under pressure' },
         story: {
           uk: 'Stand your ground означає твердо триматися своєї позиції, навіть коли на тебе тиснуть. Це не про бійку, а про спокійну впевненість: «Я так вважаю, і крапка». Вираз нейтральний, трохи серйозний. Героїня пісні вчиться саме цього: більше не поступатися, коли їй не подобається.',
@@ -269,7 +269,7 @@ export const DEEP_A: Record<string, SongDeep> = {
           en: 'Stand your ground means to keep your position firmly, even when people push you. It is not about fighting, it is about calm confidence: this is what I think, full stop. The phrase is neutral and a little serious. The singer learns exactly this: not to give in any more when she doesn’t like something.',
         },
         ex: ['Everyone wanted pizza, but I stood my ground and we got sushi.', 'When they tried to change the rules, our captain stood her ground.'],
-        similar: ['stick to your guns', 'hold firm'],
+        similar: ['to stick to your guns', 'to hold firm'],
         tip: {
           uk: 'Не кажіть stand on your ground. Правильно без прийменника: stand your ground.',
           ru: 'Не говорите stand on your ground. Правильно без предлога: stand your ground.',
@@ -277,7 +277,7 @@ export const DEEP_A: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'push someone around',
+        en: 'to push someone around',
         m: { uk: 'командувати кимось, помикати', ru: 'командовать кем-то, помыкать', en: 'tell someone what to do in an unkind way' },
         story: {
           uk: 'Push someone around це не буквально штовхати, а постійно командувати людиною, не поважаючи її. Найчастіше чують у фразі Don’t let anyone push you around. Вираз розмовний, але не грубий. Пісня про момент, коли людина вирішує, що її більше не будуть push around.',
@@ -285,7 +285,7 @@ export const DEEP_A: Record<string, SongDeep> = {
           en: 'Push someone around doesn’t mean physically pushing. It means always bossing someone about and not respecting them. You often hear it as Don’t let anyone push you around. It is informal but not rude. The song is about the moment someone decides nobody will push them around any more.',
         },
         ex: ['My older brother used to push me around, but not any more.', 'Don’t let anyone push you around. You have a choice.'],
-        similar: ['boss someone around', 'walk all over someone'],
+        similar: ['to boss someone around', 'to walk all over someone'],
         tip: {
           uk: 'Займенник стоїть посередині: push me around, а не push around me.',
           ru: 'Местоимение стоит посередине: push me around, а не push around me.',
@@ -309,7 +309,7 @@ export const DEEP_A: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'hold your head high',
+        en: 'to hold your head high',
         m: { uk: 'триматися гордо, з високо піднятою головою', ru: 'держаться гордо, с высоко поднятой головой', en: 'feel proud and not ashamed' },
         story: {
           uk: 'Цей вираз схожий в українській і російській, і означає не соромитися, а триматися з гідністю. Його кажуть після поразки, коли людина все одно зробила все, що могла. Звучить трохи урочисто. Пісня наповнена саме такою гордістю за себе, і її приємно слухати з високо піднятою головою.',
@@ -317,7 +317,7 @@ export const DEEP_A: Record<string, SongDeep> = {
           en: 'This expression is similar in Ukrainian and Russian. It means don’t be ashamed, keep your dignity. People say it after a loss when someone still did their best. It sounds a little formal and proud. The song is full of this kind of self-respect.',
         },
         ex: ['We lost the final, but we can hold our heads high.', 'She walked into the room with her head held high.'],
-        similar: ['be proud of yourself', 'keep your chin up'],
+        similar: ['to be proud of yourself', 'to keep your chin up'],
         tip: {
           uk: 'Кажуть high, а не up: hold your head high. Для кількох людей: hold our heads high (множина heads).',
           ru: 'Говорят high, а не up: hold your head high. Для нескольких людей: hold our heads high (множественное heads).',
@@ -349,7 +349,7 @@ export const DEEP_A: Record<string, SongDeep> = {
           en: 'A fresh start is a chance to begin again: a new year, a new school, a new town. Fresh here doesn’t mean fresh bread, it means new and clean. The phrase is neutral and very hopeful. The song feels like the moment someone decides to begin a new life, stronger than before.',
         },
         ex: ['September is a fresh start for every student.', 'After moving to Lviv, our family had a fresh start.'],
-        similar: ['a new beginning', 'a clean slate', 'turn over a new leaf'],
+        similar: ['a new beginning', 'a clean slate', 'to turn over a new leaf'],
         tip: {
           uk: 'Не забувайте артикль a: make a fresh start, have a fresh start.',
           ru: 'Не забывайте артикль a: make a fresh start, have a fresh start.',
@@ -384,7 +384,7 @@ export const DEEP_A: Record<string, SongDeep> = {
     },
     phrases: [
       {
-        en: 'stand out',
+        en: 'to stand out',
         m: { uk: 'вирізнятися, бути помітним', ru: 'выделяться, быть заметным', en: 'be easy to notice, be different' },
         story: {
           uk: 'Stand out означає вирізнятися з-поміж інших, і зазвичай це добре. Часто кажуть stand out from the crowd, тобто «вирізнятися з натовпу». Вираз нейтральний, підходить і для школи, і для резюме. Пісня про те, що кожен може засяяти й бути помітним, як вогонь у нічному небі.',
@@ -392,7 +392,7 @@ export const DEEP_A: Record<string, SongDeep> = {
           en: 'Stand out means to be different from others, and usually that is a good thing. People often say stand out from the crowd. It is neutral and works at school and in a CV. The song is about how anyone can shine and be noticed, like a light in the night sky.',
         },
         ex: ['Her bright yellow coat really stands out.', 'Your project stood out because it was so creative.'],
-        similar: ['stand out from the crowd', 'catch someone’s eye'],
+        similar: ['to stand out from the crowd', 'to catch someone’s eye'],
         tip: {
           uk: 'Не плутайте stand out (вирізнятися) і stand up (встати). Також не кажіть stand out of the crowd: правильно from the crowd.',
           ru: 'Не путайте stand out (выделяться) и stand up (встать). Также не говорите stand out of the crowd: правильно from the crowd.',
@@ -416,7 +416,7 @@ export const DEEP_A: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'go off',
+        en: 'to go off',
         m: { uk: 'вибухнути, спрацювати (про феєрверк, будильник)', ru: 'взорваться, сработать (о фейерверке, будильнике)', en: 'explode or start making a noise' },
         story: {
           uk: 'Go off це фразове дієслово з кількома значеннями. Про феєрверк воно означає «вибухнути в небі», а про будильник чи сигналізацію «задзвонити». Звучить нейтрально і дуже часто. Феєрверк, що спалахує в небі, головний образ пісні, тож це дієслово вам точно знадобиться.',
@@ -424,7 +424,7 @@ export const DEEP_A: Record<string, SongDeep> = {
           en: 'Go off is a phrasal verb with several meanings. For fireworks it means to explode in the sky, for an alarm clock or a car alarm it means to start ringing. It is neutral and very common. A firework bursting in the sky is the main image of the song, so you will need this verb.',
         },
         ex: ['At midnight the fireworks went off over the river.', 'My alarm didn’t go off, so I was late for school.'],
-        similar: ['set off fireworks (make them start)', 'explode', 'ring'],
+        similar: ['to set off fireworks (make them start)', 'to explode', 'to ring'],
         tip: {
           uk: 'Хто запускає феєрверк, той set off fireworks. Самі феєрверки go off. Не кажіть I went off the fireworks.',
           ru: 'Кто запускает фейерверк, тот set off fireworks. Сами фейерверки go off. Не говорите I went off the fireworks.',
@@ -448,7 +448,7 @@ export const DEEP_A: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'make someone’s day',
+        en: 'to make someone’s day',
         m: { uk: 'зробити комусь день, дуже потішити', ru: 'сделать кому-то день, очень порадовать', en: 'make someone very happy' },
         story: {
           uk: 'Якщо щось made your day, це настільки вас порадувало, що весь день став кращим. Дрібниця, як-от посмішка чи лист від друга, може make someone’s day. Вираз розмовний і дуже позитивний. Пісня про внутрішнє світло, яким людина може освітити не лише себе, а й інших.',
@@ -456,7 +456,7 @@ export const DEEP_A: Record<string, SongDeep> = {
           en: 'If something made your day, it made you so happy that the whole day felt better. A small thing, like a smile or a note from a friend, can make someone’s day. It is informal and very positive. The song is about an inner light that can brighten not only you but other people too.',
         },
         ex: ['Your message really made my day. Thank you!', 'The puppy at the door made everyone’s day.'],
-        similar: ['brighten someone’s day', 'put a smile on someone’s face'],
+        similar: ['to brighten someone’s day', 'to put a smile on someone’s face'],
         tip: {
           uk: 'Не перекладайте як do someone’s day. Правильне дієслово make.',
           ru: 'Не переводите как do someone’s day. Правильный глагол make.',
@@ -464,7 +464,7 @@ export const DEEP_A: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'look on the bright side',
+        en: 'to look on the bright side',
         m: { uk: 'дивитися на все з оптимізмом, бачити хороше', ru: 'смотреть на всё с оптимизмом, видеть хорошее', en: 'notice the good part of a bad situation' },
         story: {
           uk: 'Look on the bright side означає шукати хороше навіть у неприємній ситуації. Дощ скасував пікнік? Зате можна подивитися фільм удома. Вираз дружній і трохи жартівливий. Пісня якраз про оптимізм і про те, що яскраве обов’язково настане, тому цей вираз тут на своєму місці.',
@@ -472,7 +472,7 @@ export const DEEP_A: Record<string, SongDeep> = {
           en: 'Look on the bright side means to find something good even in a bad situation. Rain cancelled the picnic? Well, now we can watch a film at home. The phrase is friendly and a little playful. The song is about optimism and the promise that bright moments will come, so it fits here.',
         },
         ex: ['I missed the bus, but look on the bright side: I got some exercise walking.', 'Try to look on the bright side. You learned a lot from this mistake.'],
-        similar: ['every cloud has a silver lining', 'stay positive'],
+        similar: ['every cloud has a silver lining', 'to stay positive'],
         tip: {
           uk: 'Прийменник on, а не at: look on the bright side.',
           ru: 'Предлог on, а не at: look on the bright side.',
@@ -480,7 +480,7 @@ export const DEEP_A: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'feel left out',
+        en: 'to feel left out',
         m: { uk: 'почуватися зайвим, покинутим', ru: 'чувствовать себя лишним, брошенным', en: 'feel that people don’t include you' },
         story: {
           uk: 'Feel left out означає відчувати, що тебе не взяли в гру, компанію чи розмову. Це дуже поширене почуття в школі та на новій роботі. Вираз нейтральний і м’який, ним легко поділитися з дорослим. Пісня звертається саме до тих, хто так почувається, і каже їм, що вони важливі.',
@@ -488,7 +488,7 @@ export const DEEP_A: Record<string, SongDeep> = {
           en: 'Feel left out means you feel people didn’t include you in a game, a group or a conversation. It is a very common feeling at school or in a new job. The phrase is neutral and gentle, easy to share with an adult. The song speaks to people who feel this way and tells them they matter.',
         },
         ex: ['Everyone went to the party without me and I felt left out.', 'Let’s ask the new girl to play so she doesn’t feel left out.'],
-        similar: ['feel lonely', 'feel invisible', 'opposite: feel included'],
+        similar: ['to feel lonely', 'to feel invisible', 'opposite: to feel included'],
         tip: {
           uk: 'Left тут не «лівий», а форма дієслова leave (залишати). Leave someone out = не включити когось.',
           ru: 'Left здесь не «левый», а форма глагола leave (оставлять). Leave someone out = не включить кого-то.',
@@ -496,7 +496,7 @@ export const DEEP_A: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'fit in',
+        en: 'to fit in',
         m: { uk: 'вписатися, стати своїм', ru: 'вписаться, стать своим', en: 'feel accepted by a group' },
         story: {
           uk: 'Fit in означає відчувати, що ти «свій» у групі, класі чи новому місті. Багато людей намагаються fit in і через це ховають свої особливості. Вираз нейтральний, його часто чують у фільмах про школу. Пісня ж каже протилежне: не обов’язково вписуватися, краще сяяти по-своєму.',
@@ -504,7 +504,7 @@ export const DEEP_A: Record<string, SongDeep> = {
           en: 'Fit in means to feel accepted in a group, a class or a new town. Many people try hard to fit in and hide what makes them different. It is neutral and very common in school films. The song says the opposite: you don’t have to fit in, it is better to shine in your own way.',
         },
         ex: ['It took me a few weeks to fit in at my new school.', 'You don’t have to change to fit in.'],
-        similar: ['belong', 'be part of the group', 'opposite: stand out'],
+        similar: ['to belong', 'to be part of the group', 'opposite: to stand out'],
         tip: {
           uk: 'Fit in у минулому часі зазвичай fitted in (британський варіант) або fit in (американський). Обидва правильні.',
           ru: 'Fit in в прошедшем времени обычно fitted in (британский вариант) или fit in (американский). Оба правильные.',
@@ -512,7 +512,7 @@ export const DEEP_A: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'make a difference',
+        en: 'to make a difference',
         m: { uk: 'мати значення, змінити щось на краще', ru: 'иметь значение, изменить что-то к лучшему', en: 'have a good effect' },
         story: {
           uk: 'Make a difference означає своїми діями змінити щось на краще, навіть зовсім трохи. Це улюблений вираз волонтерів, учителів і лікарів. Звучить нейтрально, підходить для есе й промов. Пісня нагадує, що кожна людина важлива і може зробити світ трохи яскравішим.',
@@ -520,7 +520,7 @@ export const DEEP_A: Record<string, SongDeep> = {
           en: 'Make a difference means to change something for the better through your actions, even a little. It is a favourite phrase of volunteers, teachers and doctors. It is neutral and great for essays and speeches. The song reminds us that every person matters and can make the world a bit brighter.',
         },
         ex: ['Even a small smile can make a difference.', 'Volunteers at the animal shelter really make a difference.'],
-        similar: ['change things for the better', 'have an impact'],
+        similar: ['to change things for the better', 'to have an impact'],
         tip: {
           uk: 'Не кажіть do a difference. Правильно make a difference. А It makes no difference означає «Немає різниці».',
           ru: 'Не говорите do a difference. Правильно make a difference. А It makes no difference значит «Нет разницы».',
@@ -536,7 +536,7 @@ export const DEEP_A: Record<string, SongDeep> = {
           en: 'When the sun is behind a cloud, the edges of the cloud shine like silver. This is an old English proverb, often shortened to a silver lining. The song promises that light comes after darkness, so this proverb is very close to its spirit.',
         },
         ex: ['I broke my leg, but the silver lining is that I read ten books.', 'Every cloud has a silver lining: the cancelled trip means more time with family.'],
-        similar: ['look on the bright side', 'it’s a blessing in disguise'],
+        similar: ['to look on the bright side', 'it’s a blessing in disguise'],
         tip: {
           uk: 'Прислів’я не перекладають дослівно. Українською краще передати як «немає лиха без добра».',
           ru: 'Пословицы не переводят дословно. По-русски лучше передать как «нет худа без добра».',
@@ -579,7 +579,7 @@ export const DEEP_A: Record<string, SongDeep> = {
           en: 'This phrase matches the Ukrainian and Russian almost word for word. Sight here means seeing. People use it seriously and as a joke: about a person, a favourite city or even a puppy at a shelter. The song is about a feeling that seems perfect from the start, so this phrase comes to mind easily.',
         },
         ex: ['My grandparents say it was love at first sight.', 'When I saw this little kitten, it was love at first sight!'],
-        similar: ['fall in love', 'fall for someone'],
+        similar: ['to fall in love', 'to fall for someone'],
         tip: {
           uk: 'Не кажіть love from first look. Правильно at first sight, і без артикля перед first.',
           ru: 'Не говорите love from first look. Правильно at first sight, и без артикля перед first.',
@@ -603,7 +603,7 @@ export const DEEP_A: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'be made for each other',
+        en: 'to be made for each other',
         m: { uk: 'бути створеними одне для одного', ru: 'быть созданными друг для друга', en: 'be a perfect match' },
         story: {
           uk: 'Так кажуть про двох людей, які чудово підходять одне одному: мають схожі мрії, гумор і звички. Вираз теплий, часто звучить у весільних тостах. Можна вживати і жартома, наприклад про чай і печиво. Пісня про пару, де все здається на своєму місці, тож вираз їй дуже личить.',
@@ -619,7 +619,7 @@ export const DEEP_A: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'mean the world to someone',
+        en: 'to mean the world to someone',
         m: { uk: 'означати для когось цілий світ, бути найдорожчим', ru: 'значить для кого-то весь мир, быть самым дорогим', en: 'be extremely important to someone' },
         story: {
           uk: 'Якщо хтось means the world to you, ця людина для вас найважливіша. Вираз підходить не лише для коханих, а й для батьків, дітей, друзів і навіть улюблених тварин. Також кажуть It would mean the world to me, коли щиро про щось просять. Пісня сповнена саме такого почуття до однієї людини.',
@@ -627,7 +627,7 @@ export const DEEP_A: Record<string, SongDeep> = {
           en: 'If someone means the world to you, they are the most important person in your life. It works for partners, parents, children, friends and even pets. People also say It would mean the world to me when they sincerely ask for something. The song is full of this feeling for one special person.',
         },
         ex: ['My little sister means the world to me.', 'Thank you for coming. It means the world to us.'],
-        similar: ['mean a lot to someone', 'be everything to someone'],
+        similar: ['to mean a lot to someone', 'to be everything to someone'],
         tip: {
           uk: 'Не кажіть mean all the world for me. Правильно mean the world to me, з прийменником to.',
           ru: 'Не говорите mean all the world for me. Правильно mean the world to me, с предлогом to.',
@@ -635,7 +635,7 @@ export const DEEP_A: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'take someone’s breath away',
+        en: 'to take someone’s breath away',
         m: { uk: 'аж подих перехопило, вразити красою', ru: 'дух захватывает, поразить красотой', en: 'be so beautiful that it surprises you' },
         story: {
           uk: 'Коли щось take your breath away, воно настільки красиве, що ви на мить завмираєте. Так кажуть про краєвиди, сукні, музику або людей. Від цього виразу походить прикметник breathtaking, тобто «захопливий». Пісня описує момент, коли людина здається найкрасивішою у світі, тому вираз тут дуже доречний.',
@@ -643,7 +643,7 @@ export const DEEP_A: Record<string, SongDeep> = {
           en: 'When something takes your breath away, it is so beautiful that you freeze for a moment. People say it about views, dresses, music or people. The adjective breathtaking comes from this phrase. The song describes a moment when someone looks like the most beautiful person in the world, so this phrase fits well.',
         },
         ex: ['The view from the mountain took my breath away.', 'When the bride walked in, she took everyone’s breath away.'],
-        similar: ['breathtaking', 'stunning', 'blow someone away'],
+        similar: ['breathtaking', 'stunning', 'to blow someone away'],
         tip: {
           uk: 'Breath (подих, іменник) вимовляється [breθ], а breathe (дихати, дієслово) [briːð]. У цьому виразі потрібен іменник breath.',
           ru: 'Breath (дыхание, существительное) произносится [breθ], а breathe (дышать, глагол) [briːð]. В этом выражении нужно существительное breath.',
@@ -651,7 +651,7 @@ export const DEEP_A: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'tie the knot',
+        en: 'to tie the knot',
         m: { uk: 'одружитися, «зав’язати вузол»', ru: 'пожениться, «завязать узел»', en: 'get married' },
         story: {
           uk: 'Tie the knot це розмовний і трохи жартівливий спосіб сказати get married. Образ вузла означає міцний зв’язок двох людей. Вираз часто зустрічається в новинах про знаменитостей. Оскільки пісню так часто вмикають на весіллях, цей вираз якраз до теми.',
@@ -659,7 +659,7 @@ export const DEEP_A: Record<string, SongDeep> = {
           en: 'Tie the knot is an informal, slightly playful way to say get married. The knot is a picture of a strong bond between two people. The phrase is common in celebrity news. Since this song is played at so many weddings, the expression fits right in.',
         },
         ex: ['My aunt and her fiancé are tying the knot in June.', 'They tied the knot on a beach in Greece.'],
-        similar: ['get married', 'get hitched (very informal)'],
+        similar: ['to get married', 'to get hitched (very informal)'],
         tip: {
           uk: 'Літера k у knot не вимовляється: [nɒt], як not.',
           ru: 'Буква k в knot не произносится: [nɒt], как not.',
@@ -667,7 +667,7 @@ export const DEEP_A: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'pop the question',
+        en: 'to pop the question',
         m: { uk: 'зробити пропозицію руки й серця', ru: 'сделать предложение руки и сердца', en: 'ask someone to marry you' },
         story: {
           uk: 'Pop тут означає «раптово, швидко сказати». The question це, звісно, «Will you marry me?». Вираз неформальний і веселий, його часто чують у фільмах. Офіційно це propose to someone. Пісня про кохання, яке веде до весілля, тому цей вираз природно продовжує тему.',
@@ -675,7 +675,7 @@ export const DEEP_A: Record<string, SongDeep> = {
           en: 'Pop here means to say something suddenly. The question is, of course, Will you marry me? The phrase is informal and fun, and you hear it a lot in films. The neutral version is propose to someone. The song is about a love that leads to a wedding, so this phrase continues the theme naturally.',
         },
         ex: ['He popped the question at the top of the Eiffel Tower.', 'When are you going to pop the question?'],
-        similar: ['propose (to someone)', 'get engaged'],
+        similar: ['to propose (to someone)', 'to get engaged'],
         tip: {
           uk: 'Кажуть propose to someone, а не propose someone. І пропозиція руки це a proposal.',
           ru: 'Говорят propose to someone, а не propose someone. А предложение руки это a proposal.',
@@ -683,7 +683,7 @@ export const DEEP_A: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'walk down the aisle',
+        en: 'to walk down the aisle',
         m: { uk: 'іти до вівтаря, одружуватися', ru: 'идти к алтарю, жениться', en: 'walk to the front at your wedding' },
         story: {
           uk: 'Aisle це прохід між рядами (у церкві, літаку, супермаркеті). На традиційному західному весіллі наречена йде цим проходом до нареченого. Тому walk down the aisle часто означає просто «вийти заміж, одружитися». Вираз трохи урочистий і пасує до романтичного настрою пісні.',
@@ -691,7 +691,7 @@ export const DEEP_A: Record<string, SongDeep> = {
           en: 'An aisle is the path between rows of seats in a church, a plane or a supermarket. At a traditional Western wedding the bride walks down this path to the groom. So walk down the aisle often simply means to get married. The phrase is a little formal and suits the romantic mood of the song.',
         },
         ex: ['Her dad walked her down the aisle.', 'Excuse me, where’s the pasta? It’s in aisle 5.'],
-        similar: ['get married', 'tie the knot'],
+        similar: ['to get married', 'to tie the knot'],
         tip: {
           uk: 'У слові aisle літера s не вимовляється: [aɪl], як I’ll. Не плутайте з isle (острів), яке звучить так само.',
           ru: 'В слове aisle буква s не произносится: [aɪl], как I’ll. Не путайте с isle (остров), которое звучит так же.',
@@ -774,7 +774,7 @@ export const DEEP_A: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'walk on air',
+        en: 'to walk on air',
         m: { uk: 'не відчувати землі під ногами від радості', ru: 'не чувствовать земли под ногами от радости', en: 'feel very happy and light' },
         story: {
           uk: 'Walk on air означає бути таким щасливим, що ніби не торкаєшся землі. Зазвичай вживають у Continuous: I’m walking on air. Вираз розмовний і трохи поетичний. Образ людини, яка від щастя відривається від землі, це серцевина пісні, тому вираз ніби створений для неї.',
@@ -782,7 +782,7 @@ export const DEEP_A: Record<string, SongDeep> = {
           en: 'Walk on air means being so happy that you don’t seem to touch the ground. It is usually used in the continuous: I’m walking on air. The phrase is informal and a little poetic. The image of someone lifting off the ground with joy is at the heart of the song, so this phrase feels made for it.',
         },
         ex: ['After the good news I was walking on air all day.', 'He’s been walking on air since his band played its first gig.'],
-        similar: ['on cloud nine', 'over the moon', 'feel light'],
+        similar: ['on cloud nine', 'over the moon', 'to feel light'],
         tip: {
           uk: 'Без артикля: walk on air, а не walk on the air.',
           ru: 'Без артикля: walk on air, а не walk on the air.',
@@ -790,7 +790,7 @@ export const DEEP_A: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'hit the dance floor',
+        en: 'to hit the dance floor',
         m: { uk: 'вийти на танцпол, піти танцювати', ru: 'выйти на танцпол, пойти танцевать', en: 'start dancing at a party' },
         story: {
           uk: 'Hit тут не означає «бити». У розмовній англійській hit + місце означає «піти кудись із ентузіазмом»: hit the road, hit the beach, hit the dance floor. Вираз неформальний і веселий. Пісня створена для танцполу, тож почувши її, хочеться саме hit the dance floor.',
@@ -798,7 +798,7 @@ export const DEEP_A: Record<string, SongDeep> = {
           en: 'Hit doesn’t mean to strike here. In spoken English, hit + a place means to go there with energy: hit the road, hit the beach, hit the dance floor. It is informal and fun. The song is made for dancing, so when it starts, you want to hit the dance floor.',
         },
         ex: ['When the DJ played our favourite track, we all hit the dance floor.', 'Come on, let’s hit the dance floor!'],
-        similar: ['bust a move (very informal)', 'get up and dance'],
+        similar: ['to bust a move (very informal)', 'to get up and dance'],
         tip: {
           uk: 'Dance floor пишуть окремо двома словами. Артикль the обов’язковий: hit the dance floor.',
           ru: 'Dance floor пишут раздельно двумя словами. Артикль the обязателен: hit the dance floor.',
@@ -806,7 +806,7 @@ export const DEEP_A: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'have a blast',
+        en: 'to have a blast',
         m: { uk: 'чудово провести час, відірватися', ru: 'отлично провести время, оторваться', en: 'have a lot of fun' },
         story: {
           uk: 'Blast буквально означає «вибух», але в розмові have a blast це «дуже весело провести час». Це сильніше, ніж have fun, і звучить молодіжно та неформально. Його часто кажуть після вечірки, концерту чи подорожі. Енергійна диско-пісня якраз про такий вечір, коли ви have a blast.',
@@ -814,7 +814,7 @@ export const DEEP_A: Record<string, SongDeep> = {
           en: 'Blast literally means an explosion, but in conversation have a blast means to have a great time. It is stronger than have fun and sounds young and informal. People often say it after a party, a concert or a trip. This energetic disco song is all about the kind of night when you have a blast.',
         },
         ex: ['We had a blast at the school disco!', 'Have a blast at the concert tonight!'],
-        similar: ['have the time of your life', 'have a great time'],
+        similar: ['to have the time of your life', 'to have a great time'],
         tip: {
           uk: 'Артикль a обов’язковий: We had a blast, а не We had blast.',
           ru: 'Порядок обычный: We had a blast. Артикль a обязателен, не говорите had blast.',
@@ -854,7 +854,7 @@ export const DEEP_A: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'click with someone',
+        en: 'to click with someone',
         m: { uk: 'одразу знайти спільну мову, «зійтися»', ru: 'сразу найти общий язык, «сойтись»', en: 'like and understand someone immediately' },
         story: {
           uk: 'Click це звук, коли щось стає на своє місце. Так і з людьми: we just clicked означає, що ми одразу порозумілися. Вираз розмовний і підходить і для дружби, і для романтики. Пісня про двох людей, які ніби створені танцювати разом, а це і є момент, коли вони clicked.',
@@ -862,7 +862,7 @@ export const DEEP_A: Record<string, SongDeep> = {
           en: 'A click is the sound of something falling into place. It is the same with people: we just clicked means we understood each other straight away. The phrase is informal and works for friendship and romance. The song is about two people who seem made to dance together, which is exactly when people click.',
         },
         ex: ['I met Sara at camp and we clicked immediately.', 'We didn’t really click at first, but now we’re best friends.'],
-        similar: ['get on well', 'hit it off', 'be on the same wavelength'],
+        similar: ['to get on well', 'to hit it off', 'to be on the same wavelength'],
         tip: {
           uk: 'Найчастіше кажуть просто we clicked без додатків. Якщо з об’єктом, то з with: I clicked with her.',
           ru: 'Чаще всего говорят просто we clicked без дополнений. Если с объектом, то с with: I clicked with her.',
@@ -870,7 +870,7 @@ export const DEEP_A: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'lose track of time',
+        en: 'to lose track of time',
         m: { uk: 'втратити лік часу', ru: 'потерять счёт времени', en: 'forget what time it is because you are busy or having fun' },
         story: {
           uk: 'Track тут означає «слід» або «відлік». Коли ви lose track of time, ви настільки захоплені, що не помічаєте, скільки минуло часу. Так буває на вечірці, за грою чи з цікавою книжкою. Пісня передає саме такий вечір, коли танці й музика змушують забути про годинник.',
@@ -878,7 +878,7 @@ export const DEEP_A: Record<string, SongDeep> = {
           en: 'Track here means keeping count. When you lose track of time, you are so busy or happy that you don’t notice how much time has passed. It happens at a party, during a game or with a great book. The song captures a night when the dancing and music make you forget the clock.',
         },
         ex: ['Sorry I’m late, I lost track of time playing the guitar.', 'We were dancing so much that we lost track of time.'],
-        similar: ['time flies', 'forget the time'],
+        similar: ['time flies', 'to forget the time'],
         tip: {
           uk: 'Не кажіть lose the time. Правильно lose track of time, без артиклів.',
           ru: 'Не говорите lose the time. Правильно lose track of time, без артиклей.',
@@ -894,7 +894,7 @@ export const DEEP_A: Record<string, SongDeep> = {
           en: 'Starstruck literally means hit by a star. It is how you feel when you suddenly meet your favourite singer or actor and can’t say a word. The word is informal and often used jokingly. The song is full of images of stars and the night sky, so this starry word fits it well.',
         },
         ex: ['I was so starstruck when I met the band that I forgot my own name!', 'Don’t be starstruck, they’re normal people too.'],
-        similar: ['be in awe', 'be dazzled', 'fangirl / fanboy (slang)'],
+        similar: ['to be in awe', 'to be dazzled', 'fangirl / fanboy (slang)'],
         tip: {
           uk: 'Пишеться одним словом: starstruck. Це прикметник, тому be starstruck, а не starstruck someone.',
           ru: 'Пишется одним словом: starstruck. Это прилагательное, поэтому be starstruck, а не starstruck someone.',
@@ -910,7 +910,7 @@ export const DEEP_A: Record<string, SongDeep> = {
           en: 'Besides the school subject, chemistry means a special connection between people who feel easy and excited together. People say it about a couple, actors in a film or even a football team. It is neutral and common in film reviews. The song is about this kind of chemistry between two people on the dance floor.',
         },
         ex: ['The two actors have great chemistry on screen.', 'Our team has amazing chemistry this season.'],
-        similar: ['a connection', 'a spark', 'click with someone'],
+        similar: ['a connection', 'a spark', 'to click with someone'],
         tip: {
           uk: 'Chemistry незлічуване: there is chemistry between them, а не a chemistry.',
           ru: 'Chemistry неисчисляемое: there is chemistry between them, а не a chemistry.',

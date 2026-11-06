@@ -16,4 +16,5 @@ export type SongLesson = {
 import { MORE_A } from './songs-more-a';
 import { MORE_B } from './songs-more-b';
 import { MORE_C } from './songs-extra';
-export const SONG_LESSONS: Record<string, SongLesson> = { ...MORE_A, ...MORE_B, ...MORE_C };
+import { MORE_D } from './songs-extra2';
+export const SONG_LESSONS: Record<string, SongLesson> = { ...MORE_A, ...MORE_B, ...MORE_C, ...MORE_D };

@@ -10,9 +10,9 @@ export const SONGS_EXTRA: Song[] = [
     grammar: { uk: 'Пасив із born: I was born in Kyiv. Where were you born? Ми завжди кажемо was/were born, а не I born.', ru: 'Пассив с born: I was born in Kyiv. Where were you born? Мы всегда говорим was/were born, а не I born.', en: 'Passive with born: I was born in Kyiv. Where were you born? Always say was/were born, never I born.' },
     phrases: [
       { en: 'born this way', m: { uk: 'таким(ою) народився(лася), це частина мене', ru: 'таким(ой) родился(ась), это часть меня', en: 'this is how I have always been' }, ex: 'I’ve always been left-handed. I was born this way.' },
-      { en: 'be proud of', m: { uk: 'пишатися', ru: 'гордиться', en: 'feel good about who you are or what you did' }, ex: 'I’m proud of my little sister, she learned to swim.' },
-      { en: 'fit in', m: { uk: 'вписатися, бути «своїм»', ru: 'вписаться, быть «своим»', en: 'feel accepted in a group' }, ex: 'At first I didn’t fit in at the new club, but now I have friends there.' },
-      { en: 'stand out', m: { uk: 'вирізнятися, бути помітним', ru: 'выделяться, быть заметным', en: 'be easy to notice because you are different' }, ex: 'Her yellow coat really stands out in the crowd.' },
+      { en: 'to be proud of', m: { uk: 'пишатися', ru: 'гордиться', en: 'feel good about who you are or what you did' }, ex: 'I’m proud of my little sister, she learned to swim.' },
+      { en: 'to fit in', m: { uk: 'вписатися, бути «своїм»', ru: 'вписаться, быть «своим»', en: 'feel accepted in a group' }, ex: 'At first I didn’t fit in at the new club, but now I have friends there.' },
+      { en: 'to stand out', m: { uk: 'вирізнятися, бути помітним', ru: 'выделяться, быть заметным', en: 'be easy to notice because you are different' }, ex: 'Her yellow coat really stands out in the crowd.' },
       { en: 'one of a kind', m: { uk: 'єдиний у своєму роді, неповторний', ru: 'единственный в своём роде, неповторимый', en: 'unique, there is nobody like them' }, ex: 'My grandpa is one of a kind, he tells the best stories.' },
     ],
     talk: ['What makes you different from your friends?', 'Is it better to fit in or to stand out? Why?', 'What are you proud of this year?'],
@@ -23,10 +23,10 @@ export const SONGS_EXTRA: Song[] = [
     grammar: { uk: 'Reason to + дієслово, reason for + іменник, the reason why... Великі числа: a hundred, a thousand, millions of.', ru: 'Reason to + глагол, reason for + существительное, the reason why... Большие числа: a hundred, a thousand, millions of.', en: 'Reason to + verb, reason for + noun, the reason why... Big numbers: a hundred, a thousand, millions of.' },
     phrases: [
       { en: 'a million reasons', m: { uk: 'мільйон причин, дуже багато причин', ru: 'миллион причин, очень много причин', en: 'very many reasons' }, ex: 'There are a million reasons to visit Lviv in winter.' },
-      { en: 'make up your mind', m: { uk: 'вирішити, визначитися', ru: 'решить, определиться', en: 'decide' }, ex: 'Pizza or pasta? Make up your mind, the waiter is coming!' },
-      { en: 'think twice', m: { uk: 'добре подумати, перш ніж щось зробити', ru: 'хорошо подумать, прежде чем что-то сделать', en: 'think carefully before you act' }, ex: 'Think twice before you post a photo of your friend.' },
-      { en: 'have second thoughts', m: { uk: 'засумніватися в рішенні', ru: 'засомневаться в решении', en: 'start to doubt a decision' }, ex: 'I bought the ticket, but now I’m having second thoughts.' },
-      { en: 'give it a try', m: { uk: 'спробувати', ru: 'попробовать', en: 'try something' }, ex: 'I’ve never played chess, but I’ll give it a try.' },
+      { en: 'to make up your mind', m: { uk: 'вирішити, визначитися', ru: 'решить, определиться', en: 'decide' }, ex: 'Pizza or pasta? Make up your mind, the waiter is coming!' },
+      { en: 'to think twice', m: { uk: 'добре подумати, перш ніж щось зробити', ru: 'хорошо подумать, прежде чем что-то сделать', en: 'think carefully before you act' }, ex: 'Think twice before you post a photo of your friend.' },
+      { en: 'to have second thoughts', m: { uk: 'засумніватися в рішенні', ru: 'засомневаться в решении', en: 'start to doubt a decision' }, ex: 'I bought the ticket, but now I’m having second thoughts.' },
+      { en: 'to give it a try', m: { uk: 'спробувати', ru: 'попробовать', en: 'try something' }, ex: 'I’ve never played chess, but I’ll give it a try.' },
     ],
     talk: ['How do you make up your mind when a decision is hard?', 'Have you ever had second thoughts after a decision?', 'What is one good reason to learn English?'],
   },
@@ -36,9 +36,9 @@ export const SONGS_EXTRA: Song[] = [
     grammar: { uk: 'Remember + -ing (пам’ятаю, як щось було) і remember + to (не забути щось зробити). I remember meeting her. Remember to call me.', ru: 'Remember + -ing (помню, как что-то было) и remember + to (не забыть что-то сделать). I remember meeting her. Remember to call me.', en: 'Remember + -ing (a memory of the past) and remember + to (don’t forget a task). I remember meeting her. Remember to call me.' },
     phrases: [
       { en: 'always remember', m: { uk: 'завжди пам’ятати', ru: 'всегда помнить', en: 'keep something in your memory' }, ex: 'I will always remember my first day at school.' },
-      { en: 'bring back memories', m: { uk: 'навівати спогади', ru: 'навевать воспоминания', en: 'make you remember the past' }, ex: 'This old song brings back memories of our summer camp.' },
+      { en: 'to bring back memories', m: { uk: 'навівати спогади', ru: 'навевать воспоминания', en: 'make you remember the past' }, ex: 'This old song brings back memories of our summer camp.' },
       { en: 'never forget', m: { uk: 'ніколи не забути', ru: 'никогда не забыть', en: 'always remember' }, ex: 'I’ll never forget the day we got our puppy.' },
-      { en: 'look back on', m: { uk: 'озиратися назад, згадувати', ru: 'оглядываться назад, вспоминать', en: 'think about a time in the past' }, ex: 'When I look back on primary school, I smile.' },
+      { en: 'to look back on', m: { uk: 'озиратися назад, згадувати', ru: 'оглядываться назад, вспоминать', en: 'think about a time in the past' }, ex: 'When I look back on primary school, I smile.' },
       { en: 'the good old days', m: { uk: 'старі добрі часи', ru: 'старые добрые времена', en: 'a happy time in the past' }, ex: 'My dad often talks about the good old days with his band.' },
     ],
     talk: ['Which day of your life will you always remember?', 'What song brings back memories for you?', 'Do you like looking at old photos? Why?'],
@@ -49,9 +49,9 @@ export const SONGS_EXTRA: Song[] = [
     grammar: { uk: 'Другий умовний: If + Past Simple, would + дієслово. Уявні ситуації: If I had a free day, I would sleep till noon.', ru: 'Второе условное: If + Past Simple, would + глагол. Воображаемые ситуации: If I had a free day, I would sleep till noon.', en: 'Second conditional: If + Past Simple, would + verb. Imaginary situations: If I had a free day, I would sleep till noon.' },
     phrases: [
       { en: 'with a smile', m: { uk: 'з усмішкою', ru: 'с улыбкой', en: 'smiling, happily' }, ex: 'She answered all the hard questions with a smile.' },
-      { en: 'make the most of', m: { uk: 'використати щось якнайкраще', ru: 'использовать что-то по максимуму', en: 'use something as well as you can' }, ex: 'It’s sunny today, let’s make the most of it and go to the park.' },
-      { en: 'live in the moment', m: { uk: 'жити теперішнім моментом', ru: 'жить настоящим моментом', en: 'enjoy now, don’t worry about later' }, ex: 'On holiday I put my phone away and live in the moment.' },
-      { en: 'spend time with', m: { uk: 'проводити час з', ru: 'проводить время с', en: 'be together with someone' }, ex: 'At weekends I spend time with my grandparents.' },
+      { en: 'to make the most of', m: { uk: 'використати щось якнайкраще', ru: 'использовать что-то по максимуму', en: 'use something as well as you can' }, ex: 'It’s sunny today, let’s make the most of it and go to the park.' },
+      { en: 'to live in the moment', m: { uk: 'жити теперішнім моментом', ru: 'жить настоящим моментом', en: 'enjoy now, don’t worry about later' }, ex: 'On holiday I put my phone away and live in the moment.' },
+      { en: 'to spend time with', m: { uk: 'проводити час з', ru: 'проводить время с', en: 'be together with someone' }, ex: 'At weekends I spend time with my grandparents.' },
       { en: 'every moment counts', m: { uk: 'кожна мить важлива', ru: 'каждое мгновение важно', en: 'every little bit of time matters' }, ex: 'The exam is in a week, so every moment counts.' },
     ],
     talk: ['If you had one perfect day, who would you spend it with?', 'How do you make the most of your weekends?', 'Is it easy for you to live in the moment?'],
@@ -62,9 +62,9 @@ export const SONGS_EXTRA: Song[] = [
     grammar: { uk: 'Як сказати про схожість: both, the same as, similar to, so do I, neither do I.', ru: 'Как сказать о сходстве: both, the same as, similar to, so do I, neither do I.', en: 'Talking about similarity: both, the same as, similar to, so do I, neither do I.' },
     phrases: [
       { en: 'birds of a feather', m: { uk: 'одного поля ягоди, схожі люди', ru: 'одного поля ягоды, похожие люди', en: 'people who are very similar' }, ex: 'Max and Leo both love robots. They’re birds of a feather.' },
-      { en: 'have a lot in common', m: { uk: 'мати багато спільного', ru: 'иметь много общего', en: 'share many interests or qualities' }, ex: 'My cousin and I have a lot in common, we both draw comics.' },
-      { en: 'get along', m: { uk: 'ладнати, мати добрі стосунки', ru: 'ладить, хорошо общаться', en: 'have a friendly relationship' }, ex: 'Our cat and dog get along really well.' },
-      { en: 'hit it off', m: { uk: 'одразу знайти спільну мову', ru: 'сразу найти общий язык', en: 'like each other from the first meeting' }, ex: 'We met at the summer camp and hit it off immediately.' },
+      { en: 'to have a lot in common', m: { uk: 'мати багато спільного', ru: 'иметь много общего', en: 'share many interests or qualities' }, ex: 'My cousin and I have a lot in common, we both draw comics.' },
+      { en: 'to get along', m: { uk: 'ладнати, мати добрі стосунки', ru: 'ладить, хорошо общаться', en: 'have a friendly relationship' }, ex: 'Our cat and dog get along really well.' },
+      { en: 'to hit it off', m: { uk: 'одразу знайти спільну мову', ru: 'сразу найти общий язык', en: 'like each other from the first meeting' }, ex: 'We met at the summer camp and hit it off immediately.' },
       { en: 'a soulmate', m: { uk: 'споріднена душа, «друга половинка»', ru: 'родственная душа, «вторая половинка»', en: 'a person who understands you perfectly' }, ex: 'My grandparents say they are soulmates.' },
     ],
     talk: ['Who do you have a lot in common with?', 'Do you think opposite people can be good friends?', 'Have you ever hit it off with someone at once? Where?'],
@@ -75,10 +75,10 @@ export const SONGS_EXTRA: Song[] = [
     grammar: { uk: 'Look + прикметник і look like + іменник: She looks calm. He looks like his dad. What does she look like?', ru: 'Look + прилагательное и look like + существительное: She looks calm. He looks like his dad. What does she look like?', en: 'Look + adjective and look like + noun: She looks calm. He looks like his dad. What does she look like?' },
     phrases: [
       { en: 'ocean eyes', m: { uk: 'очі кольору океану, глибокі очі', ru: 'глаза цвета океана, глубокие глаза', en: 'eyes that are blue-green and deep like the sea' }, ex: 'The girl in the painting has ocean eyes.' },
-      { en: 'have a crush on someone', m: { uk: 'бути закоханим, мати симпатію', ru: 'быть влюблённым, испытывать симпатию', en: 'secretly like someone romantically' }, ex: 'In year 5 I had a crush on a boy from the chess club.' },
+      { en: 'to have a crush on someone', m: { uk: 'бути закоханим, мати симпатію', ru: 'быть влюблённым, испытывать симпатию', en: 'secretly like someone romantically' }, ex: 'In year 5 I had a crush on a boy from the chess club.' },
       { en: 'butterflies in your stomach', m: { uk: 'метелики в животі, хвилювання', ru: 'бабочки в животе, волнение', en: 'a nervous, excited feeling' }, ex: 'I always get butterflies in my stomach before a concert.' },
-      { en: 'catch someone’s eye', m: { uk: 'привернути чиюсь увагу', ru: 'привлечь чьё-то внимание', en: 'make someone notice you' }, ex: 'A red bike in the shop window caught my eye.' },
-      { en: 'look into someone’s eyes', m: { uk: 'дивитися комусь в очі', ru: 'смотреть кому-то в глаза', en: 'look straight at someone’s eyes' }, ex: 'Look into my eyes and tell me the truth.' },
+      { en: 'to catch someone’s eye', m: { uk: 'привернути чиюсь увагу', ru: 'привлечь чьё-то внимание', en: 'make someone notice you' }, ex: 'A red bike in the shop window caught my eye.' },
+      { en: 'to look into someone’s eyes', m: { uk: 'дивитися комусь в очі', ru: 'смотреть кому-то в глаза', en: 'look straight at someone’s eyes' }, ex: 'Look into my eyes and tell me the truth.' },
     ],
     talk: ['What colour are your eyes? Who has the same eyes in your family?', 'What usually catches your eye in a shop?', 'When do you get butterflies in your stomach?'],
   },
@@ -87,11 +87,11 @@ export const SONGS_EXTRA: Song[] = [
     about: { uk: 'Спокійна і світла пісня про дорослішання. Людина зараз сама, але не самотня: вона з нетерпінням чекає, якою стане в майбутньому. Пісня починається повільно, а посередині стає бадьорішою. Кліп анімаційний.', ru: 'Спокойная и светлая песня о взрослении. Человек сейчас один, но не одинок: он с нетерпением ждёт, каким станет в будущем. Песня начинается медленно, а в середине становится бодрее. Клип анимационный.', en: 'A calm, hopeful song about growing up. The person is on their own now but not lonely, and they are excited about who they will become. It starts slowly and gets more upbeat in the middle. The video is animated.' },
     grammar: { uk: 'Майбутнє: will (рішення, прогноз), be going to (план), Present Continuous (домовленість). I’m going to study design. I’m meeting Ann at five.', ru: 'Будущее: will (решение, прогноз), be going to (план), Present Continuous (договорённость). I’m going to study design. I’m meeting Ann at five.', en: 'The future: will (decisions, predictions), be going to (plans), Present Continuous (arrangements). I’m going to study design. I’m meeting Ann at five.' },
     phrases: [
-      { en: 'look forward to', m: { uk: 'з нетерпінням чекати', ru: 'с нетерпением ждать', en: 'feel happy about something that will happen' }, ex: 'I’m looking forward to the summer holidays.' },
+      { en: 'to look forward to', m: { uk: 'з нетерпінням чекати', ru: 'с нетерпением ждать', en: 'feel happy about something that will happen' }, ex: 'I’m looking forward to the summer holidays.' },
       { en: 'a fresh start', m: { uk: 'новий початок', ru: 'новое начало', en: 'a chance to begin again' }, ex: 'A new school year is a fresh start for everyone.' },
-      { en: 'set a goal', m: { uk: 'поставити мету', ru: 'поставить цель', en: 'decide what you want to achieve' }, ex: 'This month I set a goal to read three books.' },
+      { en: 'to set a goal', m: { uk: 'поставити мету', ru: 'поставить цель', en: 'decide what you want to achieve' }, ex: 'This month I set a goal to read three books.' },
       { en: 'future self', m: { uk: 'ти в майбутньому', ru: 'ты в будущем', en: 'the person you will be later' }, ex: 'Save some money now, your future self will thank you.' },
-      { en: 'dream big', m: { uk: 'мріяти по-великому', ru: 'мечтать по-крупному', en: 'have big hopes and plans' }, ex: 'My coach always tells us to dream big.' },
+      { en: 'to dream big', m: { uk: 'мріяти по-великому', ru: 'мечтать по-крупному', en: 'have big hopes and plans' }, ex: 'My coach always tells us to dream big.' },
     ],
     talk: ['What are you looking forward to this year?', 'What would you like to tell your future self?', 'Is it OK to spend time on your own? Why?'],
   },
@@ -100,11 +100,11 @@ export const SONGS_EXTRA: Song[] = [
     about: { uk: 'Весела дружня пісня під укулеле про справжню дружбу: друзі завжди допомагають одне одному, хай що трапиться. Чудово підходить для дітей. Офіційного кліпу немає, тому тут офіційне лірик-відео.', ru: 'Весёлая дружеская песня под укулеле о настоящей дружбе: друзья всегда помогают друг другу, что бы ни случилось. Отлично подходит для детей. Официального клипа нет, поэтому здесь официальное лирик-видео.', en: 'A happy ukulele song about true friendship: friends always help each other, whatever happens. Great for kids. There is no official music video, so this is the official lyric video.' },
     grammar: { uk: 'Перший умовний: If + Present Simple, will + дієслово. If you are sad, I will call you.', ru: 'Первое условное: If + Present Simple, will + глагол. If you are sad, I will call you.', en: 'First conditional: If + Present Simple, will + verb. If you are sad, I will call you.' },
     phrases: [
-      { en: 'count on someone', m: { uk: 'розраховувати на когось', ru: 'рассчитывать на кого-то', en: 'trust someone to help you' }, ex: 'You can count on me, I’ll bring the ball.' },
+      { en: 'to count on someone', m: { uk: 'розраховувати на когось', ru: 'рассчитывать на кого-то', en: 'trust someone to help you' }, ex: 'You can count on me, I’ll bring the ball.' },
       { en: 'a best friend', m: { uk: 'найкращий друг, найкраща подруга', ru: 'лучший друг, лучшая подруга', en: 'your closest friend' }, ex: 'My best friend lives next door.' },
-      { en: 'lend a hand', m: { uk: 'допомогти', ru: 'помочь', en: 'help someone' }, ex: 'Can you lend a hand with these bags?' },
-      { en: 'keep in touch', m: { uk: 'підтримувати зв’язок', ru: 'поддерживать связь', en: 'talk or write to someone regularly' }, ex: 'My friend moved to Odesa, but we keep in touch.' },
-      { en: 'have someone’s back', m: { uk: 'підтримувати когось, бути на чиємусь боці', ru: 'поддерживать кого-то, быть на чьей-то стороне', en: 'be ready to support someone' }, ex: 'Don’t worry about the test, I’ve got your back.' },
+      { en: 'to lend a hand', m: { uk: 'допомогти', ru: 'помочь', en: 'help someone' }, ex: 'Can you lend a hand with these bags?' },
+      { en: 'to keep in touch', m: { uk: 'підтримувати зв’язок', ru: 'поддерживать связь', en: 'talk or write to someone regularly' }, ex: 'My friend moved to Odesa, but we keep in touch.' },
+      { en: 'to have someone’s back', m: { uk: 'підтримувати когось, бути на чиємусь боці', ru: 'поддерживать кого-то, быть на чьей-то стороне', en: 'be ready to support someone' }, ex: 'Don’t worry about the test, I’ve got your back.' },
     ],
     talk: ['Who can you always count on?', 'How do you help your best friend?', 'How do you keep in touch with friends who live far away?'],
   },
@@ -130,7 +130,7 @@ export const MORE_C: Record<string, SongLesson> = {
         items: [
           { en: 'unique', uk: 'унікальний, неповторний', ru: 'уникальный, неповторимый', ex: 'Every snowflake is unique.' },
           { en: 'self-confidence', uk: 'впевненість у собі', ru: 'уверенность в себе', ex: 'Drama club gave me a lot of self-confidence.' },
-          { en: 'accept', uk: 'приймати', ru: 'принимать', ex: 'My friends accept me with all my strange hobbies.' },
+          { en: 'to accept', uk: 'приймати', ru: 'принимать', ex: 'My friends accept me with all my strange hobbies.' },
           { en: 'an identity', uk: 'ідентичність, хто ти є', ru: 'идентичность, кто ты есть', ex: 'Language is an important part of our identity.' },
           { en: 'a difference', uk: 'відмінність, різниця', ru: 'отличие, разница', ex: 'Can you see the difference between these two photos?' },
         ],
@@ -139,9 +139,9 @@ export const MORE_C: Record<string, SongLesson> = {
         group: { uk: 'Повага і доброта', ru: 'Уважение и доброта', en: 'Respect and kindness' },
         items: [
           { en: 'respect', uk: 'повага; поважати', ru: 'уважение; уважать', ex: 'We respect our teacher because she is fair.' },
-          { en: 'include', uk: 'включати, приймати до компанії', ru: 'включать, принимать в компанию', ex: 'Let’s include the new girl in our game.' },
+          { en: 'to include', uk: 'включати, приймати до компанії', ru: 'включать, принимать в компанию', ex: 'Let’s include the new girl in our game.' },
           { en: 'equal', uk: 'рівний', ru: 'равный', ex: 'All players are equal in this game.' },
-          { en: 'support', uk: 'підтримувати; підтримка', ru: 'поддерживать; поддержка', ex: 'My family supports me before every match.' },
+          { en: 'to support', uk: 'підтримувати; підтримка', ru: 'поддерживать; поддержка', ex: 'My family supports me before every match.' },
           { en: 'a community', uk: 'спільнота', ru: 'сообщество', ex: 'Our town has a big community of volunteers.' },
         ],
       },
@@ -224,11 +224,11 @@ export const MORE_C: Record<string, SongLesson> = {
       {
         group: { uk: 'Рішення', ru: 'Решения', en: 'Decisions' },
         items: [
-          { en: 'decide', uk: 'вирішувати', ru: 'решать', ex: 'I can’t decide which film to watch.' },
+          { en: 'to decide', uk: 'вирішувати', ru: 'решать', ex: 'I can’t decide which film to watch.' },
           { en: 'a choice', uk: 'вибір', ru: 'выбор', ex: 'You have a choice: tea or juice.' },
           { en: 'doubt', uk: 'сумнів; сумніватися', ru: 'сомнение; сомневаться', ex: 'I have no doubt that you will pass.' },
-          { en: 'hesitate', uk: 'вагатися', ru: 'колебаться', ex: 'Don’t hesitate to ask me for help.' },
-          { en: 'regret', uk: 'шкодувати; жаль', ru: 'жалеть; сожаление', ex: 'I don’t regret moving to a new school.' },
+          { en: 'to hesitate', uk: 'вагатися', ru: 'колебаться', ex: 'Don’t hesitate to ask me for help.' },
+          { en: 'to regret', uk: 'шкодувати; жаль', ru: 'жалеть; сожаление', ex: 'I don’t regret moving to a new school.' },
         ],
       },
       {
@@ -320,8 +320,8 @@ export const MORE_C: Record<string, SongLesson> = {
       {
         group: { uk: 'Пам’ять', ru: 'Память', en: 'Memory' },
         items: [
-          { en: 'remind', uk: 'нагадувати', ru: 'напоминать', ex: 'Please remind me to buy bread.' },
-          { en: 'recall', uk: 'пригадувати', ru: 'вспоминать, припоминать', ex: 'I can’t recall his name, but I know his face.' },
+          { en: 'to remind', uk: 'нагадувати', ru: 'напоминать', ex: 'Please remind me to buy bread.' },
+          { en: 'to recall', uk: 'пригадувати', ru: 'вспоминать, припоминать', ex: 'I can’t recall his name, but I know his face.' },
           { en: 'a souvenir', uk: 'сувенір', ru: 'сувенир', ex: 'I bought a small boat as a souvenir from the trip.' },
           { en: 'a photo album', uk: 'фотоальбом', ru: 'фотоальбом', ex: 'Grandma showed us her old photo album.' },
           { en: 'unforgettable', uk: 'незабутній', ru: 'незабываемый', ex: 'Our trip to the mountains was unforgettable.' },
@@ -418,8 +418,8 @@ export const MORE_C: Record<string, SongLesson> = {
           { en: 'devoted', uk: 'відданий', ru: 'преданный', ex: 'Our dog is devoted to my little brother.' },
           { en: 'a partner', uk: 'партнер, пара', ru: 'партнёр, пара', ex: 'You need a partner for this dance.' },
           { en: 'together', uk: 'разом', ru: 'вместе', ex: 'Let’s do the project together.' },
-          { en: 'hug', uk: 'обіймати; обійми', ru: 'обнимать; объятия', ex: 'I gave my mum a big hug at the airport.' },
-          { en: 'care about', uk: 'піклуватися, переживати за', ru: 'заботиться, переживать за', ex: 'I really care about my friends.' },
+          { en: 'to hug', uk: 'обіймати; обійми', ru: 'обнимать; объятия', ex: 'I gave my mum a big hug at the airport.' },
+          { en: 'to care about', uk: 'піклуватися, переживати за', ru: 'заботиться, переживать за', ex: 'I really care about my friends.' },
         ],
       },
       {
@@ -526,7 +526,7 @@ export const MORE_C: Record<string, SongLesson> = {
           { en: 'a flock', uk: 'зграя (птахів), отара', ru: 'стая (птиц), стадо', ex: 'A flock of geese flew over our house.' },
           { en: 'a nest', uk: 'гніздо', ru: 'гнездо', ex: 'There is a nest with three eggs in that tree.' },
           { en: 'a wing', uk: 'крило', ru: 'крыло', ex: 'The little bird hurt its wing.' },
-          { en: 'migrate', uk: 'мігрувати, відлітати у вирій', ru: 'мигрировать, улетать на юг', ex: 'Storks migrate to Africa in autumn.' },
+          { en: 'to migrate', uk: 'мігрувати, відлітати у вирій', ru: 'мигрировать, улетать на юг', ex: 'Storks migrate to Africa in autumn.' },
         ],
       },
       {
@@ -628,10 +628,10 @@ export const MORE_C: Record<string, SongLesson> = {
         group: { uk: 'Почуття', ru: 'Чувства', en: 'Feelings' },
         items: [
           { en: 'shy', uk: 'сором’язливий', ru: 'застенчивый', ex: 'He is shy, so he doesn’t talk much in class.' },
-          { en: 'blush', uk: 'червоніти', ru: 'краснеть', ex: 'I always blush when people say nice things to me.' },
+          { en: 'to blush', uk: 'червоніти', ru: 'краснеть', ex: 'I always blush when people say nice things to me.' },
           { en: 'nervous', uk: 'знервований, схвильований', ru: 'нервный, взволнованный', ex: 'I was nervous before my first piano exam.' },
           { en: 'dreamy', uk: 'мрійливий', ru: 'мечтательный', ex: 'This music is soft and dreamy.' },
-          { en: 'admire', uk: 'захоплюватися', ru: 'восхищаться', ex: 'I admire people who can speak five languages.' },
+          { en: 'to admire', uk: 'захоплюватися', ru: 'восхищаться', ex: 'I admire people who can speak five languages.' },
         ],
       },
     ],
@@ -704,11 +704,11 @@ export const MORE_C: Record<string, SongLesson> = {
       {
         group: { uk: 'Дорослішання', ru: 'Взросление', en: 'Growing up' },
         items: [
-          { en: 'grow up', uk: 'дорослішати, виростати', ru: 'взрослеть, вырастать', ex: 'I grew up in a small village.' },
+          { en: 'to grow up', uk: 'дорослішати, виростати', ru: 'взрослеть, вырастать', ex: 'I grew up in a small village.' },
           { en: 'mature', uk: 'дорослий, зрілий', ru: 'взрослый, зрелый', ex: 'She is very mature for her age.' },
           { en: 'independent', uk: 'самостійний, незалежний', ru: 'самостоятельный, независимый', ex: 'I want to be independent and have my own flat.' },
           { en: 'a teenager', uk: 'підліток', ru: 'подросток', ex: 'As a teenager, my mum loved rock music.' },
-          { en: 'change', uk: 'змінюватися; зміна', ru: 'меняться; перемена', ex: 'People change a lot between 12 and 18.' },
+          { en: 'to change', uk: 'змінюватися; зміна', ru: 'меняться; перемена', ex: 'People change a lot between 12 and 18.' },
         ],
       },
       {
@@ -717,7 +717,7 @@ export const MORE_C: Record<string, SongLesson> = {
           { en: 'an ambition', uk: 'амбіція, заповітна мета', ru: 'амбиция, заветная цель', ex: 'My ambition is to work for a big game studio.' },
           { en: 'a career', uk: 'кар’єра, професія', ru: 'карьера, профессия', ex: 'She wants a career in medicine.' },
           { en: 'a degree', uk: 'диплом, ступінь (університетський)', ru: 'диплом, степень (университетская)', ex: 'My brother has a degree in physics.' },
-          { en: 'achieve', uk: 'досягати', ru: 'достигать', ex: 'If you practise every day, you will achieve a lot.' },
+          { en: 'to achieve', uk: 'досягати', ru: 'достигать', ex: 'If you practise every day, you will achieve a lot.' },
           { en: 'a schedule', uk: 'розклад, графік', ru: 'расписание, график', ex: 'My schedule is very busy this week.' },
         ],
       },
@@ -727,7 +727,7 @@ export const MORE_C: Record<string, SongLesson> = {
           { en: 'a forest', uk: 'ліс', ru: 'лес', ex: 'We walked in the forest and found mushrooms.' },
           { en: 'rain', uk: 'дощ; йти (про дощ)', ru: 'дождь; идти (о дожде)', ex: 'It started to rain, so we went inside.' },
           { en: 'a puddle', uk: 'калюжа', ru: 'лужа', ex: 'My little brother loves jumping in puddles.' },
-          { en: 'bloom', uk: 'цвісти', ru: 'цвести', ex: 'The cherry trees bloom in April.' },
+          { en: 'to bloom', uk: 'цвісти', ru: 'цвести', ex: 'The cherry trees bloom in April.' },
           { en: 'sunshine', uk: 'сонячне світло', ru: 'солнечный свет', ex: 'The cat is sleeping in the sunshine.' },
         ],
       },
@@ -799,18 +799,18 @@ export const MORE_C: Record<string, SongLesson> = {
       {
         group: { uk: 'Дружба', ru: 'Дружба', en: 'Friendship' },
         items: [
-          { en: 'trust', uk: 'довіряти; довіра', ru: 'доверять; доверие', ex: 'I trust my friend, she never lies.' },
-          { en: 'share', uk: 'ділитися', ru: 'делиться', ex: 'Let’s share the cake, there is enough for everyone.' },
+          { en: 'to trust', uk: 'довіряти; довіра', ru: 'доверять; доверие', ex: 'I trust my friend, she never lies.' },
+          { en: 'to share', uk: 'ділитися', ru: 'делиться', ex: 'Let’s share the cake, there is enough for everyone.' },
           { en: 'a secret', uk: 'таємниця, секрет', ru: 'тайна, секрет', ex: 'Can you keep a secret?' },
-          { en: 'help', uk: 'допомагати; допомога', ru: 'помогать; помощь', ex: 'Can you help me with my maths?' },
+          { en: 'to help', uk: 'допомагати; допомога', ru: 'помогать; помощь', ex: 'Can you help me with my maths?' },
           { en: 'kind', uk: 'добрий', ru: 'добрый', ex: 'Our new neighbour is very kind.' },
         ],
       },
       {
         group: { uk: 'Числа й рахунок', ru: 'Числа и счёт', en: 'Numbers and counting' },
         items: [
-          { en: 'count', uk: 'рахувати', ru: 'считать', ex: 'Count the apples in the basket.' },
-          { en: 'add', uk: 'додавати', ru: 'прибавлять, добавлять', ex: 'Add two and three, and you get five.' },
+          { en: 'to count', uk: 'рахувати', ru: 'считать', ex: 'Count the apples in the basket.' },
+          { en: 'to add', uk: 'додавати', ru: 'прибавлять, добавлять', ex: 'Add two and three, and you get five.' },
           { en: 'plus', uk: 'плюс', ru: 'плюс', ex: 'Four plus four is eight.' },
           { en: 'minus', uk: 'мінус', ru: 'минус', ex: 'Ten minus three is seven.' },
           { en: 'backwards', uk: 'назад, у зворотному порядку', ru: 'назад, в обратном порядке', ex: 'Can you count backwards from ten?' },
@@ -820,10 +820,10 @@ export const MORE_C: Record<string, SongLesson> = {
         group: { uk: 'Музика', ru: 'Музыка', en: 'Music' },
         items: [
           { en: 'a ukulele', uk: 'укулеле', ru: 'укулеле', ex: 'A ukulele looks like a small guitar.' },
-          { en: 'whistle', uk: 'свистіти; свисток', ru: 'свистеть; свисток', ex: 'My dad can whistle any song.' },
-          { en: 'clap', uk: 'плескати в долоні', ru: 'хлопать в ладоши', ex: 'Clap your hands if you know the answer.' },
+          { en: 'to whistle', uk: 'свистіти; свисток', ru: 'свистеть; свисток', ex: 'My dad can whistle any song.' },
+          { en: 'to clap', uk: 'плескати в долоні', ru: 'хлопать в ладоши', ex: 'Clap your hands if you know the answer.' },
           { en: 'a drum', uk: 'барабан', ru: 'барабан', ex: 'The boy is playing a big drum in the parade.' },
-          { en: 'strum', uk: 'бренькати по струнах', ru: 'бренчать по струнам', ex: 'She strums her guitar every evening.' },
+          { en: 'to strum', uk: 'бренькати по струнах', ru: 'бренчать по струнам', ex: 'She strums her guitar every evening.' },
         ],
       },
     ],
@@ -888,7 +888,7 @@ export const DEEP_C: Record<string, SongDeep> = {
     },
     phrases: [
       {
-        en: 'be comfortable in your own skin',
+        en: 'to be comfortable in your own skin',
         m: { uk: 'почуватися комфортно у своєму тілі, приймати себе', ru: 'чувствовать себя комфортно в своём теле, принимать себя', en: 'feel relaxed and happy with who you are' },
         story: {
           uk: 'Буквально «зручно у власній шкірі». Так кажуть про людину, яка не соромиться своєї зовнішності чи характеру і не намагається бути кимось іншим. Вираз нейтральний і дуже позитивний, його часто чути в інтерв’ю та статтях про підлітків. Ідея пісні саме в цьому: прийняти себе повністю.',
@@ -896,7 +896,7 @@ export const DEEP_C: Record<string, SongDeep> = {
           en: 'Literally comfortable in your own skin. People say it about someone who is not ashamed of their looks or personality and does not try to be someone else. It is neutral and very positive, and you often hear it in interviews and articles about teens. That is exactly the idea of the song: accept yourself completely.',
         },
         ex: ['After a year of dance classes, Mia feels comfortable in her own skin.', 'It takes time to be comfortable in your own skin, so be patient with yourself.'],
-        similar: ['be at ease with yourself', 'feel good about yourself'],
+        similar: ['to be at ease with yourself', 'to feel good about yourself'],
         tip: {
           uk: 'Кажіть your own skin, his own skin, her own skin. Слово own тут обов’язкове.',
           ru: 'Говорите your own skin, his own skin, her own skin. Слово own здесь обязательно.',
@@ -904,7 +904,7 @@ export const DEEP_C: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'show your true colours',
+        en: 'to show your true colours',
         m: { uk: 'показати своє справжнє обличчя', ru: 'показать своё истинное лицо', en: 'show what you are really like' },
         story: {
           uk: 'Вираз прийшов із мореплавства: кораблі піднімали прапор (colours), щоб показати, чиї вони. Сьогодні так кажуть, коли людина нарешті показує свій справжній характер. Може звучати і позитивно, і негативно, залежно від ситуації. У контексті пісні це заклик не ховати себе справжнього.',
@@ -912,7 +912,7 @@ export const DEEP_C: Record<string, SongDeep> = {
           en: 'The phrase comes from sailing: ships raised their flag, called colours, to show who they belonged to. Today we say it when a person finally shows their real character. It can be positive or negative, depending on the situation. In the context of this song it is a call not to hide the real you.',
         },
         ex: ['At the school show, quiet Tom showed his true colours as a brilliant comedian.', 'He was nice at first, but then he showed his true colours and started shouting.'],
-        similar: ['be yourself', 'show who you really are'],
+        similar: ['to be yourself', 'to show who you really are'],
         tip: {
           uk: 'У британській англійській пишуть colours, в американській colors. Обидва варіанти правильні.',
           ru: 'В британском английском пишут colours, в американском colors. Оба варианта правильные.',
@@ -920,7 +920,7 @@ export const DEEP_C: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'embrace who you are',
+        en: 'to embrace who you are',
         m: { uk: 'прийняти себе таким, яким ти є', ru: 'принять себя таким, какой ты есть', en: 'fully accept yourself' },
         story: {
           uk: 'Embrace буквально означає «обійняти». Коли ти «обіймаєш» себе, ти не просто терпиш свої особливості, а радієш їм. Вираз трохи урочистий, його люблять мотиваційні блогери та психологи. Він ідеально передає настрій пісні про гордість за себе.',
@@ -928,7 +928,7 @@ export const DEEP_C: Record<string, SongDeep> = {
           en: 'Embrace literally means to hug. When you embrace who you are, you don’t just put up with your special features, you celebrate them. The phrase sounds a little formal and is popular with motivational bloggers and psychologists. It matches the song’s mood of being proud of yourself perfectly.',
         },
         ex: ['I used to hide my curly hair, but now I embrace who I am.', 'The coach told us to embrace who we are and play our own style.'],
-        similar: ['accept yourself', 'celebrate yourself'],
+        similar: ['to accept yourself', 'to celebrate yourself'],
         tip: {
           uk: 'Після embrace не потрібен прийменник: embrace a change, а не embrace to a change.',
           ru: 'После embrace не нужен предлог: embrace a change, а не embrace to a change.',
@@ -936,7 +936,7 @@ export const DEEP_C: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'march to the beat of your own drum',
+        en: 'to march to the beat of your own drum',
         m: { uk: 'жити по-своєму, не як усі', ru: 'жить по-своему, не как все', en: 'do things your own way' },
         story: {
           uk: 'Уявіть парад, де всі крокують під один барабан, а одна людина йде під свій ритм. Так носії мови описують тих, хто має власний стиль і не повторює за натовпом. Вираз розмовний і зазвичай звучить як комплімент. Пісні про унікальність він пасує ідеально.',
@@ -944,7 +944,7 @@ export const DEEP_C: Record<string, SongDeep> = {
           en: 'Imagine a parade where everyone walks to one drum, but one person walks to their own rhythm. That is how native speakers describe people with their own style who don’t copy the crowd. It is informal and usually sounds like a compliment. It suits a song about being unique perfectly.',
         },
         ex: ['My aunt marches to the beat of her own drum, she travels alone and paints all night.', 'Our art teacher encourages us to march to the beat of our own drum.'],
-        similar: ['do your own thing', 'go your own way'],
+        similar: ['to do your own thing', 'to go your own way'],
         tip: {
           uk: 'Часто кажуть коротше: dance to your own beat. Значення те саме.',
           ru: 'Часто говорят короче: dance to your own beat. Значение то же.',
@@ -968,7 +968,7 @@ export const DEEP_C: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'own it',
+        en: 'to own it',
         m: { uk: 'приймай це впевнено, «володій» цим', ru: 'принимай это уверенно, «владей» этим', en: 'accept something about yourself with confidence' },
         story: {
           uk: 'Own означає «володіти». Розмовне own it кажуть, коли радять не соромитися чогось, а впевнено це показувати: нову зачіску, акцент, помилку. Дуже сучасний, молодіжний вираз. Сміливий стиль Леді Гаги, її костюми й грим, це класичний приклад того, як own it.',
@@ -976,7 +976,7 @@ export const DEEP_C: Record<string, SongDeep> = {
           en: 'Own means to possess. Informal own it is advice not to be shy about something but to show it with confidence: a new haircut, an accent, even a mistake. It is a modern, young expression. Lady Gaga’s bold style, costumes and make-up are a classic example of how to own it.',
         },
         ex: ['You chose a pink suit for the party? Great, just own it!', 'I made a mistake in my speech, but I owned it and kept going.'],
-        similar: ['rock it', 'wear it with pride'],
+        similar: ['to rock it', 'to wear it with pride'],
         tip: {
           uk: 'Також кажуть own your mistakes, тобто чесно визнавати свої помилки.',
           ru: 'Также говорят own your mistakes, то есть честно признавать свои ошибки.',
@@ -984,7 +984,7 @@ export const DEEP_C: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'stay true to yourself',
+        en: 'to stay true to yourself',
         m: { uk: 'залишатися вірним собі', ru: 'оставаться верным себе', en: 'keep your values and personality' },
         story: {
           uk: 'Так радять людині, яка змінюється заради інших або під тиском компанії. Вираз нейтральний, його часто пишуть у листівках випускникам. Він означає: що б не казали інші, не зраджуй своїм цінностям. Пісня про те саме: не змінюй себе, щоб комусь сподобатися.',
@@ -992,7 +992,7 @@ export const DEEP_C: Record<string, SongDeep> = {
           en: 'People give this advice to someone who is changing to please others or because of pressure from friends. It is neutral and often written in cards for graduates. It means: whatever others say, keep your values. The song says the same thing: don’t change yourself just to be liked.',
         },
         ex: ['Good luck at your new school, and stay true to yourself.', 'Even when she became famous, she stayed true to herself.'],
-        similar: ['be true to yourself', 'keep it real'],
+        similar: ['to be true to yourself', 'to keep it real'],
         tip: {
           uk: 'Прийменник to: true to yourself. Не кажіть true for yourself.',
           ru: 'Предлог to: true to yourself. Не говорите true for yourself.',
@@ -1016,7 +1016,7 @@ export const DEEP_C: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'think outside the box',
+        en: 'to think outside the box',
         m: { uk: 'мислити нестандартно', ru: 'мыслить нестандартно', en: 'think in a new, creative way' },
         story: {
           uk: 'Box тут означає рамки, звичні правила. Думати «поза коробкою» означає шукати нові, незвичайні рішення. Вираз дуже поширений у школі та на роботі, звучить нейтрально. Леді Гага відома тим, що завжди мислить нестандартно у своїх кліпах і виступах.',
@@ -1024,7 +1024,7 @@ export const DEEP_C: Record<string, SongDeep> = {
           en: 'The box here means limits and usual rules. To think outside the box is to look for new, unusual solutions. The phrase is very common at school and at work and sounds neutral. Lady Gaga is famous for always thinking outside the box in her videos and shows.',
         },
         ex: ['We had no glue, so we thought outside the box and used honey.', 'Our teacher wants us to think outside the box for this project.'],
-        similar: ['be creative', 'get creative'],
+        similar: ['to be creative', 'to get creative'],
         tip: {
           uk: 'Кажіть outside the box з артиклем the. Без нього фраза звучить неприродно.',
           ru: 'Говорите outside the box с артиклем the. Без него фраза звучит неестественно.',
@@ -1091,7 +1091,7 @@ export const DEEP_C: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'weigh up the pros and cons',
+        en: 'to weigh up the pros and cons',
         m: { uk: 'зважити всі «за» і «проти»', ru: 'взвесить все «за» и «против»', en: 'think about the good and bad sides' },
         story: {
           uk: 'Pros походить від латинського «за», cons від «проти». Weigh up буквально «зважити на терезах». Так кажуть, коли спокійно аналізують рішення. Вираз нейтральний, підходить і для школи, і для роботи. Пісня показує, як важко зважувати, коли замішані почуття.',
@@ -1099,7 +1099,7 @@ export const DEEP_C: Record<string, SongDeep> = {
           en: 'Pros comes from the Latin for for, and cons from against. Weigh up literally means to put on scales. We say it when we calmly analyse a decision. It is neutral and works at school and at work. The song shows how hard it is to weigh things up when feelings are involved.',
         },
         ex: ['Before buying a new phone, I weighed up the pros and cons.', 'Let’s write down the pros and cons of moving to a bigger flat.'],
-        similar: ['think it through', 'consider both sides'],
+        similar: ['to think it through', 'to consider both sides'],
         tip: {
           uk: 'Можна сказати коротше: weigh up your options. А pros and cons часто вживають окремо: What are the pros and cons?',
           ru: 'Можно сказать короче: weigh up your options. А pros and cons часто используют отдельно: What are the pros and cons?',
@@ -1155,7 +1155,7 @@ export const DEEP_C: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'give someone the benefit of the doubt',
+        en: 'to give someone the benefit of the doubt',
         m: { uk: 'повірити комусь, хоч є сумніви', ru: 'поверить кому-то, хотя есть сомнения', en: 'choose to believe someone even if you are not sure' },
         story: {
           uk: 'Вираз прийшов із суду: якщо немає доказів, рішення на користь обвинуваченого. У житті так кажуть, коли вирішуєш довіритися людині, хоча можна й засумніватися. Звучить нейтрально, трохи по-дорослому. Пісня про бажання знайти бодай одну причину вірити далі.',
@@ -1163,7 +1163,7 @@ export const DEEP_C: Record<string, SongDeep> = {
           en: 'The phrase comes from law courts: if there is no proof, the decision goes in favour of the person. In life we say it when we choose to trust someone, although we could doubt them. It sounds neutral and a bit grown-up. The song is about wanting one reason to keep believing.',
         },
         ex: ['She says she missed the bus. Let’s give her the benefit of the doubt.', 'I gave him the benefit of the doubt, and he really was ill.'],
-        similar: ['trust someone', 'believe someone'],
+        similar: ['to trust someone', 'to believe someone'],
         tip: {
           uk: 'Doubt вимовляється без b: [даут]. Буква b тут німа.',
           ru: 'Doubt произносится без b: [даут]. Буква b здесь немая.',
@@ -1171,7 +1171,7 @@ export const DEEP_C: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'sleep on it',
+        en: 'to sleep on it',
         m: { uk: 'відкласти рішення до ранку, «переспати з думкою»', ru: 'отложить решение до утра, «переспать с мыслью»', en: 'wait until tomorrow to decide' },
         story: {
           uk: 'Мудра порада: не вирішуй щось важливе ввечері, коли ти втомлений, а подумай уранці. У російській є схоже «утро вечера мудренее». Вираз розмовний і дружній. Він доречний, коли героїня пісні не може визначитися просто зараз.',
@@ -1179,7 +1179,7 @@ export const DEEP_C: Record<string, SongDeep> = {
           en: 'Wise advice: don’t decide something important in the evening when you are tired, think again in the morning. Russian has a similar saying, the morning is wiser than the evening. It is informal and friendly. It makes sense when someone, like the singer here, can’t decide right now.',
         },
         ex: ['I don’t know if I want the job. I’ll sleep on it.', 'Don’t buy the jacket now, sleep on it and come back tomorrow.'],
-        similar: ['take some time to think', 'think it over'],
+        similar: ['to take some time to think', 'to think it over'],
         tip: {
           uk: 'Кажемо sleep on it, а не sleep with it. Прийменник on тут ключовий.',
           ru: 'Говорим sleep on it, а не sleep with it. Предлог on здесь ключевой.',
@@ -1187,7 +1187,7 @@ export const DEEP_C: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'trust your gut',
+        en: 'to trust your gut',
         m: { uk: 'довіряти своїй інтуїції', ru: 'доверять своей интуиции', en: 'follow your feeling, not only logic' },
         story: {
           uk: 'Gut це «нутро», живіт. Англійською інтуїцію часто описують як відчуття в животі: a gut feeling. Trust your gut радять, коли логіка не допомагає. Вираз розмовний, дуже поширений. Пісня показує, як важко, коли розум і почуття кажуть різне.',
@@ -1195,7 +1195,7 @@ export const DEEP_C: Record<string, SongDeep> = {
           en: 'Gut means your stomach, your insides. In English intuition is often described as a feeling in your stomach: a gut feeling. People say trust your gut when logic doesn’t help. It is informal and very common. The song shows how hard it is when your mind and feelings say different things.',
         },
         ex: ['I had a bad feeling about that website, so I trusted my gut and didn’t buy anything.', 'When you can’t decide, trust your gut.'],
-        similar: ['follow your instinct', 'go with your gut', 'follow your heart'],
+        similar: ['to follow your instinct', 'to go with your gut', 'to follow your heart'],
         tip: {
           uk: 'Корисний вираз: I have a gut feeling that..., тобто «у мене передчуття, що...».',
           ru: 'Полезное выражение: I have a gut feeling that..., то есть «у меня предчувствие, что...».',
@@ -1211,7 +1211,7 @@ export const DEEP_C: Record<string, SongDeep> = {
           en: 'Leap means jump. A leap of faith is a decision you make without guarantees, believing it will work out. It sounds a little formal, but you hear it in everyday talk too: about moving, a new job, a new friendship. The song is about faith, so this phrase fits well.',
         },
         ex: ['Moving to another city was a leap of faith, but we love it here.', 'Starting her own bakery was a real leap of faith.'],
-        similar: ['take a chance', 'take a risk'],
+        similar: ['to take a chance', 'to take a risk'],
         tip: {
           uk: 'Найчастіше кажуть take a leap of faith: We decided to take a leap of faith.',
           ru: 'Чаще всего говорят take a leap of faith: We decided to take a leap of faith.',
@@ -1219,7 +1219,7 @@ export const DEEP_C: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'stand by someone',
+        en: 'to stand by someone',
         m: { uk: 'бути поруч, підтримувати когось у складний час', ru: 'быть рядом, поддерживать кого-то в трудное время', en: 'support someone when things are hard' },
         story: {
           uk: 'Stand by буквально «стояти поруч». Так кажуть про вірність: друг, який не йде, коли в тебе проблеми. Вираз нейтральний, трохи емоційний. У пісні йдеться про пошук причини лишитися поруч, тож він дуже доречний.',
@@ -1227,7 +1227,7 @@ export const DEEP_C: Record<string, SongDeep> = {
           en: 'Stand by literally means stand next to. We use it about loyalty: a friend who doesn’t leave when you have problems. It is neutral and a little emotional. The song is about looking for a reason to stay by someone, so it fits very well.',
         },
         ex: ['My friends stood by me when I broke my leg.', 'A good team stands by its captain, even after a bad game.'],
-        similar: ['support someone', 'stick with someone'],
+        similar: ['to support someone', 'to stick with someone'],
         tip: {
           uk: 'Не плутайте stand by someone (підтримувати) зі stand by (бути напоготові): Please stand by, the show starts in a minute.',
           ru: 'Не путайте stand by someone (поддерживать) со stand by (быть наготове): Please stand by, the show starts in a minute.',
@@ -1270,7 +1270,7 @@ export const DEEP_C: Record<string, SongDeep> = {
           en: 'Memory lane is an imaginary street of memories. When a family looks at old photos or friends talk about their school days, that is a trip down memory lane. The phrase is warm, informal and a little nostalgic. The song itself is a trip like this to a special moment.',
         },
         ex: ['Looking at my baby photos was a fun trip down memory lane.', 'At the reunion, Dad and his friends took a trip down memory lane.'],
-        similar: ['reminisce', 'look back'],
+        similar: ['to reminisce', 'to look back'],
         tip: {
           uk: 'Найчастіші дієслова: take a trip down memory lane або go down memory lane.',
           ru: 'Самые частые глаголы: take a trip down memory lane или go down memory lane.',
@@ -1278,7 +1278,7 @@ export const DEEP_C: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'make memories',
+        en: 'to make memories',
         m: { uk: 'створювати спогади, проводити незабутній час', ru: 'создавать воспоминания, проводить незабываемое время', en: 'do things together that you will remember' },
         story: {
           uk: 'Сучасний і дуже популярний вираз: ми не просто відпочиваємо, а «створюємо спогади». Його часто пишуть під фото з відпустки. Звучить тепло й по-родинному. Пісня про цінність таких моментів, які потім хочеться пам’ятати.',
@@ -1286,7 +1286,7 @@ export const DEEP_C: Record<string, SongDeep> = {
           en: 'A modern and very popular phrase: we are not just on holiday, we are making memories. People often write it under holiday photos. It sounds warm and family-like. The song is about how valuable these moments are, the ones you want to remember later.',
         },
         ex: ['This summer we want to make memories, not just stay at home.', 'Grandma says the best thing about holidays is making memories together.'],
-        similar: ['create memories', 'have a great time'],
+        similar: ['to create memories', 'to have a great time'],
         tip: {
           uk: 'Не кажіть do memories. Правильне дієслово make.',
           ru: 'Не говорите do memories. Правильный глагол make.',
@@ -1294,7 +1294,7 @@ export const DEEP_C: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'treasure a moment',
+        en: 'to treasure a moment',
         m: { uk: 'дорожити моментом', ru: 'дорожить моментом', en: 'value a moment very much' },
         story: {
           uk: 'Treasure як іменник означає «скарб», а як дієслово «дорожити, берегти як скарб». Вираз трохи поетичний, підходить для листівок і щирих розмов. Ним описують мить, яку хочеш назавжди зберегти. Саме про таку мить ця балада.',
@@ -1302,7 +1302,7 @@ export const DEEP_C: Record<string, SongDeep> = {
           en: 'As a noun, treasure means valuable things like gold. As a verb, it means to value something very much. The phrase is a bit poetic and fits cards and heartfelt talks. It describes a moment you want to keep forever. This ballad is about exactly that kind of moment.',
         },
         ex: ['I treasure every moment with my little cousin before she moves away.', 'We should treasure these quiet evenings together.'],
-        similar: ['cherish a moment', 'hold on to a moment'],
+        similar: ['to cherish a moment', 'to hold on to a moment'],
         tip: {
           uk: 'Можна treasure будь-що цінне: treasure a gift, treasure a friendship.',
           ru: 'Можно treasure что угодно ценное: treasure a gift, treasure a friendship.',
@@ -1310,7 +1310,7 @@ export const DEEP_C: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'know something by heart',
+        en: 'to know something by heart',
         m: { uk: 'знати напам’ять', ru: 'знать наизусть', en: 'remember every word without looking' },
         story: {
           uk: 'Англійською знання «напам’ять» живе в серці, а не в пам’яті. Так кажуть про вірші, пісні, номери телефонів. Вираз нейтральний, його вживають і вчителі, і друзі. Багато фанатів знають цю пісню by heart і співають її на концертах.',
@@ -1318,7 +1318,7 @@ export const DEEP_C: Record<string, SongDeep> = {
           en: 'In English, knowing something perfectly lives in your heart, not your head. We say it about poems, songs and phone numbers. It is neutral, used by teachers and friends. Many fans know this song by heart and sing it at concerts.',
         },
         ex: ['I know my mum’s phone number by heart.', 'We have to learn this poem by heart for Friday.'],
-        similar: ['learn something off by heart (British)', 'memorise'],
+        similar: ['to learn something off by heart (British)', 'to memorise'],
         tip: {
           uk: 'Не кажіть know by memory. Правильно by heart.',
           ru: 'Не говорите know by memory. Правильно by heart.',
@@ -1326,7 +1326,7 @@ export const DEEP_C: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'ring a bell',
+        en: 'to ring a bell',
         m: { uk: 'щось нагадувати, здаватися знайомим', ru: 'что-то напоминать, казаться знакомым', en: 'sound familiar' },
         story: {
           uk: 'Коли ім’я чи назва «дзвонять у дзвіночок», ти ніби щось пригадуєш, але не до кінця. Вираз розмовний і дуже поширений. Часто вживають у запереченні: It doesn’t ring a bell. Для теми пам’яті й спогадів це корисний щоденний вираз.',
@@ -1334,7 +1334,7 @@ export const DEEP_C: Record<string, SongDeep> = {
           en: 'When a name rings a bell, you half remember it. The phrase is informal and very common. It is often negative: It doesn’t ring a bell. For the topic of memory, it is a really useful everyday phrase.',
         },
         ex: ['The name Jackson Maine rings a bell. Is she from a film?', 'Sorry, that street name doesn’t ring a bell.'],
-        similar: ['sound familiar', 'seem familiar'],
+        similar: ['to sound familiar', 'to seem familiar'],
         tip: {
           uk: 'Підмет тут сама річ, а не людина: The name rings a bell. Не кажіть I ring a bell.',
           ru: 'Подлежащее здесь сама вещь, а не человек: The name rings a bell. Не говорите I ring a bell.',
@@ -1358,7 +1358,7 @@ export const DEEP_C: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'feel nostalgic',
+        en: 'to feel nostalgic',
         m: { uk: 'відчувати ностальгію', ru: 'испытывать ностальгию', en: 'feel happy and a little sad about the past' },
         story: {
           uk: 'Ностальгія це суміш радості й легкого суму, коли згадуєш минуле. Слово нейтральне, трохи книжне, але його часто чути в розмовах. Носії кажуть feel nostalgic, коли слухають стару пісню чи переглядають дитячі мультфільми. Повільна мелодія балади викликає саме такий настрій.',
@@ -1366,7 +1366,7 @@ export const DEEP_C: Record<string, SongDeep> = {
           en: 'Nostalgia is a mix of happiness and a little sadness when you remember the past. The word is neutral and a bit bookish, but common in conversation. People say feel nostalgic when they hear an old song or rewatch childhood cartoons. The slow melody of this ballad creates exactly that mood.',
         },
         ex: ['Whenever I smell pine trees, I feel nostalgic about our New Year holidays.', 'Old cartoons make my dad feel nostalgic.'],
-        similar: ['get nostalgic', 'miss the old days'],
+        similar: ['to get nostalgic', 'to miss the old days'],
         tip: {
           uk: 'Наголос на другий склад: nos-TAL-gic. Іменник nostalgia.',
           ru: 'Ударение на второй слог: nos-TAL-gic. Существительное nostalgia.',
@@ -1390,7 +1390,7 @@ export const DEEP_C: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'take a picture',
+        en: 'to take a picture',
         m: { uk: 'сфотографувати', ru: 'сфотографировать', en: 'make a photo' },
         story: {
           uk: 'Найпростіший спосіб зберегти мить. Носії кажуть take a picture або take a photo. Звучить нейтрально, підходить у будь-якій ситуації. Корисно знати й прохання: Could you take a picture of us, please?',
@@ -1398,7 +1398,7 @@ export const DEEP_C: Record<string, SongDeep> = {
           en: 'The easiest way to keep a moment. Native speakers say take a picture or take a photo. It is neutral and works anywhere. It is useful to know the request too: Could you take a picture of us, please?',
         },
         ex: ['Could you take a picture of us in front of the castle?', 'I took a picture of the sunset to send to Grandma.'],
-        similar: ['take a photo', 'snap a picture'],
+        similar: ['to take a photo', 'to snap a picture'],
         tip: {
           uk: 'Не кажіть make a photo. Природно звучить take a photo.',
           ru: 'Не говорите make a photo. Естественно звучит take a photo.',
@@ -1449,7 +1449,7 @@ export const DEEP_C: Record<string, SongDeep> = {
     },
     phrases: [
       {
-        en: 'seize the day',
+        en: 'to seize the day',
         m: { uk: 'лови момент, не відкладай', ru: 'лови момент, не откладывай', en: 'use today well, don’t wait' },
         story: {
           uk: 'Це переклад латинського carpe diem. Фраза радить не відкладати важливе на потім, а діяти сьогодні. Звучить надихаюче, її люблять на постерах і в промовах. Пісня про те саме: цінуй час, поки він є.',
@@ -1457,7 +1457,7 @@ export const DEEP_C: Record<string, SongDeep> = {
           en: 'This is the English version of the Latin carpe diem. It tells you not to put important things off but to act today. It sounds inspiring and is popular on posters and in speeches. The song says the same: value your time while you have it.',
         },
         ex: ['It’s the last day of the holidays. Let’s seize the day and go to the lake!', 'My coach always says: seize the day, train hard today.'],
-        similar: ['carpe diem', 'make every day count'],
+        similar: ['carpe diem', 'to make every day count'],
         tip: {
           uk: 'Seize вимовляється [сі:з]. Не плутайте з size [сайз].',
           ru: 'Seize произносится [си:з]. Не путайте с size [сайз].',
@@ -1481,7 +1481,7 @@ export const DEEP_C: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'cherish',
+        en: 'to cherish',
         m: { uk: 'дорожити, плекати', ru: 'дорожить, лелеять', en: 'love and protect something precious' },
         story: {
           uk: 'Cherish означає дуже дорожити людиною, річчю чи спогадом. Слово тепле й трохи поетичне, його часто чути на весіллях і в листівках. Воно сильніше, ніж просто like або love. Ідея пісні саме така: цінувати кожну мить із близькою людиною.',
@@ -1489,7 +1489,7 @@ export const DEEP_C: Record<string, SongDeep> = {
           en: 'Cherish means to value a person, a thing or a memory very much. It is warm and a bit poetic, often heard at weddings and in cards. It is stronger than just like or love. That is the idea of the song: value every moment with someone close.',
         },
         ex: ['I cherish the letters my grandpa wrote me.', 'Cherish your friends, they are a gift.'],
-        similar: ['treasure', 'value', 'hold dear'],
+        similar: ['to treasure', 'to value', 'to hold dear'],
         tip: {
           uk: 'Вимова: [ЧЕ-ріш], наголос на перший склад.',
           ru: 'Произношение: [ЧЕ-риш], ударение на первый слог.',
@@ -1497,7 +1497,7 @@ export const DEEP_C: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'grin from ear to ear',
+        en: 'to grin from ear to ear',
         m: { uk: 'усміхатися на всі 32, від вуха до вуха', ru: 'улыбаться до ушей', en: 'smile very widely' },
         story: {
           uk: 'Grin означає широку усмішку. Усмішка «від вуха до вуха» означає, що людина дуже щаслива. Вираз розмовний і веселий. Він добре пасує до назви пісні: бути настільки щасливим, що усмішка не сходить з обличчя.',
@@ -1505,7 +1505,7 @@ export const DEEP_C: Record<string, SongDeep> = {
           en: 'A grin is a wide smile. Smiling from ear to ear means you are very happy. The phrase is informal and cheerful. It fits the song’s title: being so happy that the smile never leaves your face.',
         },
         ex: ['When she saw the puppy, she was grinning from ear to ear.', 'He got the best mark and came home grinning from ear to ear.'],
-        similar: ['beam', 'smile widely'],
+        similar: ['to beam', 'to smile widely'],
         tip: {
           uk: 'Найчастіше вживають у Continuous: He was grinning from ear to ear.',
           ru: 'Чаще всего используют в Continuous: He was grinning from ear to ear.',
@@ -1545,7 +1545,7 @@ export const DEEP_C: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'count your blessings',
+        en: 'to count your blessings',
         m: { uk: 'цінувати те, що маєш', ru: 'ценить то, что имеешь', en: 'think about the good things in your life' },
         story: {
           uk: 'Blessings це «благословення», тобто добрі речі в житті. «Порахувати» їх означає згадати, за що ти вдячний(а). Так кажуть, коли хтось скаржиться на дрібниці. Пісня теж про вдячність за людину поруч.',
@@ -1553,7 +1553,7 @@ export const DEEP_C: Record<string, SongDeep> = {
           en: 'Blessings are the good things in your life. To count them means to remember what you are grateful for. People say it when someone complains about small things. The song is also about being grateful for the person next to you.',
         },
         ex: ['The bus was late, but we’re all healthy and together. Let’s count our blessings.', 'When I feel down, I count my blessings: my family, my dog, my friends.'],
-        similar: ['be grateful', 'be thankful for what you have'],
+        similar: ['to be grateful', 'to be thankful for what you have'],
         tip: {
           uk: 'Займенник змінюється: count your blessings, count our blessings, count my blessings.',
           ru: 'Местоимение меняется: count your blessings, count our blessings, count my blessings.',
@@ -1601,7 +1601,7 @@ export const DEEP_C: Record<string, SongDeep> = {
           en: 'Odds are chances. Against all odds means something happened although the chances were very small. It sounds a little formal and is popular with sports commentators and journalists. The song is about love that stays strong even in the hardest situations.',
         },
         ex: ['Against all odds, our small team won the cup.', 'The kitten was very weak, but against all odds it survived.'],
-        similar: ['despite everything', 'beat the odds'],
+        similar: ['despite everything', 'to beat the odds'],
         tip: {
           uk: 'Odds завжди в множині в цьому значенні: the odds are low.',
           ru: 'Odds всегда во множественном числе в этом значении: the odds are low.',
@@ -1655,7 +1655,7 @@ export const DEEP_C: Record<string, SongDeep> = {
           en: 'The phrase comes from radio: to hear each other, you need the same wavelength. We say it about people who understand each other easily. It is informal and very common. It captures the closeness Billie sings about.',
         },
         ex: ['My best friend and I are on the same wavelength, we laugh at the same jokes.', 'The new teacher and our class are finally on the same wavelength.'],
-        similar: ['on the same page', 'think alike'],
+        similar: ['on the same page', 'to think alike'],
         tip: {
           uk: 'Українське «на одній хвилі» дуже схоже, але англійською потрібне same: on the same wavelength.',
           ru: 'Русское «на одной волне» очень похоже, но по-английски нужно same: on the same wavelength.',
@@ -1663,7 +1663,7 @@ export const DEEP_C: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'see eye to eye',
+        en: 'to see eye to eye',
         m: { uk: 'погоджуватися, мати однакову думку', ru: 'соглашаться, иметь одинаковое мнение', en: 'agree with someone' },
         story: {
           uk: 'Буквально «дивитися очі в очі». Так кажуть, коли двоє людей мають однаковий погляд на щось. Найчастіше вживають у запереченні: we don’t always see eye to eye. Вираз нейтральний. Навіть дуже близькі люди не завжди бачать усе однаково, і це нормально.',
@@ -1671,7 +1671,7 @@ export const DEEP_C: Record<string, SongDeep> = {
           en: 'Literally to look eye to eye. We say it when two people have the same view about something. It is most often negative: we don’t always see eye to eye. It is neutral. Even very close people don’t always agree, and that is OK.',
         },
         ex: ['My sister and I don’t always see eye to eye about music.', 'Finally, the two teams saw eye to eye on the rules.'],
-        similar: ['agree', 'be on the same page'],
+        similar: ['to agree', 'to be on the same page'],
         tip: {
           uk: 'Часто додають on або about: see eye to eye on something.',
           ru: 'Часто добавляют on или about: see eye to eye on something.',
@@ -1695,7 +1695,7 @@ export const DEEP_C: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'click with someone',
+        en: 'to click with someone',
         m: { uk: 'одразу порозумітися з кимось', ru: 'сразу найти общий язык с кем-то', en: 'feel a quick connection' },
         story: {
           uk: 'Click це звук, коли щось легко стає на своє місце. Так кажуть, коли з людиною одразу виникає легкість у спілкуванні. Вираз молодіжний, розмовний. Добре описує початок близьких стосунків, про які співає Біллі.',
@@ -1703,7 +1703,7 @@ export const DEEP_C: Record<string, SongDeep> = {
           en: 'A click is the sound of something fitting into place. We say it when talking to someone feels easy from the start. It is young and informal. It describes the beginning of the close relationship Billie sings about.',
         },
         ex: ['I clicked with my roommate on the first day.', 'We just clicked, we talked for three hours.'],
-        similar: ['get on like a house on fire', 'connect with someone'],
+        similar: ['to get on like a house on fire', 'to connect with someone'],
         tip: {
           uk: 'Можна і без with: We just clicked.',
           ru: 'Можно и без with: We just clicked.',
@@ -1834,7 +1834,7 @@ export const DEEP_C: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'keep an eye on',
+        en: 'to keep an eye on',
         m: { uk: 'наглядати, стежити за', ru: 'присматривать, следить за', en: 'watch something carefully' },
         story: {
           uk: 'Буквально «тримати око на чомусь». Так просять наглянути за речами, дитиною, супом на плиті. Вираз розмовний і дуже практичний. Корисно знати його для подорожей: Can you keep an eye on my bag?',
@@ -1842,7 +1842,7 @@ export const DEEP_C: Record<string, SongDeep> = {
           en: 'Literally keep one eye on something. People ask you to keep an eye on their things, a child or soup on the cooker. It is informal and very practical. It is useful when travelling: Can you keep an eye on my bag?',
         },
         ex: ['Can you keep an eye on my little brother for five minutes?', 'Keep an eye on the pasta, it’s almost ready.'],
-        similar: ['watch', 'look after'],
+        similar: ['to watch', 'to look after'],
         tip: {
           uk: 'Не кажіть keep the eye. Правильно keep an eye on.',
           ru: 'Не говорите keep the eye. Правильно keep an eye on.',
@@ -1866,7 +1866,7 @@ export const DEEP_C: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'make eye contact',
+        en: 'to make eye contact',
         m: { uk: 'дивитися в очі під час розмови', ru: 'смотреть в глаза во время разговора', en: 'look at someone’s eyes while talking' },
         story: {
           uk: 'У багатьох англомовних країнах вважають, що дивитися в очі під час розмови означає бути чесним і впевненим. Вираз нейтральний, його часто чути на співбесідах і уроках публічних виступів. Для сором’язливих людей, які червоніють від чужого погляду, це справжній виклик.',
@@ -1874,7 +1874,7 @@ export const DEEP_C: Record<string, SongDeep> = {
           en: 'In many English-speaking countries, looking someone in the eye while talking shows you are honest and confident. The phrase is neutral and common in job interviews and public speaking classes. For shy people who blush when someone looks at them, it can be a real challenge.',
         },
         ex: ['Make eye contact with the audience when you give your presentation.', 'He was so shy he couldn’t make eye contact.'],
-        similar: ['look someone in the eye'],
+        similar: ['to look someone in the eye'],
         tip: {
           uk: 'Дієслово make, а не do: make eye contact. Протилежне: avoid eye contact.',
           ru: 'Глагол make, а не do: make eye contact. Противоположное: avoid eye contact.',
@@ -1898,7 +1898,7 @@ export const DEEP_C: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'lose track of time',
+        en: 'to lose track of time',
         m: { uk: 'втратити відчуття часу', ru: 'потерять счёт времени', en: 'not notice how much time has passed' },
         story: {
           uk: 'Track тут означає «слід». Коли ти чимось захоплений, ти «губиш слід» часу і не помічаєш, як минають години. Вираз нейтральний і дуже частий. Мрійлива пісня створює саме такий настрій: слухаєш і забуваєш про час.',
@@ -1906,7 +1906,7 @@ export const DEEP_C: Record<string, SongDeep> = {
           en: 'Track here means trail. When you are really into something, you lose the trail of time and don’t notice the hours go by. It is neutral and very common. This dreamy song creates exactly that mood: you listen and forget about time.',
         },
         ex: ['I was drawing and lost track of time. It’s midnight!', 'Sorry I’m late, I lost track of time.'],
-        similar: ['forget the time', 'time flew by'],
+        similar: ['to forget the time', 'time flew by'],
         tip: {
           uk: 'Також кажуть keep track of time, тобто стежити за часом.',
           ru: 'Также говорят keep track of time, то есть следить за временем.',
@@ -1914,7 +1914,7 @@ export const DEEP_C: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'daydream',
+        en: 'to daydream',
         m: { uk: 'мріяти наяву, витати в хмарах', ru: 'мечтать наяву, витать в облаках', en: 'think pleasant thoughts instead of paying attention' },
         story: {
           uk: 'Day + dream: «денний сон», тобто мрії з відкритими очима. Слово може бути дієсловом і іменником. Звучить нейтрально, часто з легким докором від учителя. Сама пісня дуже daydreamy, її легко слухати, задивившись у вікно.',
@@ -1922,7 +1922,7 @@ export const DEEP_C: Record<string, SongDeep> = {
           en: 'Day plus dream: dreaming with your eyes open. It can be a verb or a noun. It is neutral, often with a small complaint from a teacher. The song itself is very daydreamy, easy to listen to while staring out of the window.',
         },
         ex: ['Stop daydreaming and finish your homework!', 'I often daydream about living by the sea.'],
-        similar: ['have your head in the clouds', 'be miles away'],
+        similar: ['to have your head in the clouds', 'to be miles away'],
         tip: {
           uk: 'Пишеться одним словом: daydream, daydreaming.',
           ru: 'Пишется одним словом: daydream, daydreaming.',
@@ -1946,7 +1946,7 @@ export const DEEP_C: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'be lost in thought',
+        en: 'to be lost in thought',
         m: { uk: 'глибоко замислитися', ru: 'глубоко задуматься', en: 'think so deeply that you don’t notice things around you' },
         story: {
           uk: 'Людина ніби «загубилася» у своїх думках і не чує, що їй кажуть. Вираз нейтральний, трохи літературний. Його часто можна прочитати в книжках і почути в розмові. Мрійлива атмосфера пісні добре передає цей стан.',
@@ -1954,7 +1954,7 @@ export const DEEP_C: Record<string, SongDeep> = {
           en: 'The person seems lost inside their thoughts and doesn’t hear what people say. It is neutral and a little literary. You read it in books and hear it in conversation. The dreamy atmosphere of the song shows this state well.',
         },
         ex: ['Sorry, what did you say? I was lost in thought.', 'Grandpa sat by the window, lost in thought.'],
-        similar: ['be miles away', 'be deep in thought'],
+        similar: ['to be miles away', 'to be deep in thought'],
         tip: {
           uk: 'Thought тут в однині: lost in thought, не lost in thoughts.',
           ru: 'Thought здесь в единственном числе: lost in thought, не lost in thoughts.',
@@ -2048,7 +2048,7 @@ export const DEEP_C: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'turn over a new leaf',
+        en: 'to turn over a new leaf',
         m: { uk: 'почати з чистого аркуша', ru: 'начать с чистого листа', en: 'start behaving in a better way' },
         story: {
           uk: 'Leaf тут означає сторінку книжки. Перегорнути нову сторінку означає змінити звички на кращі. Вираз розмовний, часто звучить на Новий рік або 1 вересня. Ідея пісні про те, що можна змінитися і рости.',
@@ -2056,7 +2056,7 @@ export const DEEP_C: Record<string, SongDeep> = {
           en: 'Leaf here means a page of a book. Turning to a new page means changing your habits for the better. It is informal and often heard at New Year or the start of school. The song’s idea is that you can change and grow.',
         },
         ex: ['This year I’m turning over a new leaf: no phone before bed.', 'He used to be late every day, but he turned over a new leaf.'],
-        similar: ['make a fresh start', 'change for the better'],
+        similar: ['to make a fresh start', 'to change for the better'],
         tip: {
           uk: 'Українське «з чистого аркуша» англійською краще перекладати саме так, а не from a clean page.',
           ru: 'Русское «с чистого листа» по-английски лучше передавать именно так, а не from a clean page.',
@@ -2064,7 +2064,7 @@ export const DEEP_C: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'be on your own',
+        en: 'to be on your own',
         m: { uk: 'бути на самоті, самостійно', ru: 'быть одному, самостоятельно', en: 'be alone or do something without help' },
         story: {
           uk: 'On your own має два значення: «наодинці» і «без допомоги». Звучить нейтрально, не обов’язково сумно. Багато людей люблять час на самоті, щоб відпочити. Пісня якраз показує, що бути наодинці не те саме, що бути самотнім.',
@@ -2080,7 +2080,7 @@ export const DEEP_C: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'work on yourself',
+        en: 'to work on yourself',
         m: { uk: 'працювати над собою', ru: 'работать над собой', en: 'try to improve your skills or character' },
         story: {
           uk: 'Сучасний вираз про особистий ріст: читати, займатися спортом, вчитися керувати емоціями. Його часто чути в подкастах і блогах. Звучить нейтрально і позитивно. Пісня про людину, яка зосередилася на собі і своєму розвитку.',
@@ -2088,7 +2088,7 @@ export const DEEP_C: Record<string, SongDeep> = {
           en: 'A modern phrase about personal growth: reading, doing sport, learning to manage your feelings. You often hear it in podcasts and blogs. It is neutral and positive. The song is about someone who is focusing on themselves and their growth.',
         },
         ex: ['This summer I want to work on myself and get fit.', 'He’s working on his confidence by speaking more in class.'],
-        similar: ['improve yourself', 'self-improvement'],
+        similar: ['to improve yourself', 'self-improvement'],
         tip: {
           uk: 'Прийменник on: work on something. Наприклад, work on your English.',
           ru: 'Предлог on: work on something. Например, work on your English.',
@@ -2096,7 +2096,7 @@ export const DEEP_C: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'take your time',
+        en: 'to take your time',
         m: { uk: 'не поспішай', ru: 'не спеши', en: 'do it slowly, there is no hurry' },
         story: {
           uk: 'Дружня фраза: у тебе є стільки часу, скільки потрібно. Її кажуть учителі на іспиті, продавці в магазині, друзі. Звучить ввічливо і спокійно. Пісня теж не поспішає: вона починається повільно і дає собі час.',
@@ -2112,7 +2112,7 @@ export const DEEP_C: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'have your whole life ahead of you',
+        en: 'to have your whole life ahead of you',
         m: { uk: 'усе життя попереду', ru: 'вся жизнь впереди', en: 'be young with lots of time for future plans' },
         story: {
           uk: 'Так кажуть молодим людям, щоб нагадати: ще багато часу на мрії й помилки. Вираз теплий, часто звучить від батьків чи бабусь. Його можна сказати, щоб підбадьорити після невдачі. Пісня дивиться в майбутнє з таким самим оптимізмом.',
@@ -2120,7 +2120,7 @@ export const DEEP_C: Record<string, SongDeep> = {
           en: 'People say this to young people to remind them there is plenty of time for dreams and mistakes. It is warm and often comes from parents or grandparents. You can say it to cheer someone up after a failure. The song looks at the future with the same hope.',
         },
         ex: ['Don’t worry about one bad mark, you have your whole life ahead of you.', 'At sixteen, she had her whole life ahead of her.'],
-        similar: ['be young', 'have plenty of time'],
+        similar: ['to be young', 'to have plenty of time'],
         tip: {
           uk: 'Займенники змінюються двічі: you have your whole life ahead of you, he has his whole life ahead of him.',
           ru: 'Местоимения меняются дважды: you have your whole life ahead of you, he has his whole life ahead of him.',
@@ -2136,7 +2136,7 @@ export const DEEP_C: Record<string, SongDeep> = {
           en: 'Advice for hard times: don’t think about the whole year at once, focus on today. It is calm and supportive. People often say it when preparing for exams or after moving. The song mixes dreams about the future with living for today.',
         },
         ex: ['The new school is hard, but I’m taking it one day at a time.', 'Don’t panic about the exams. One day at a time.'],
-        similar: ['step by step', 'take things slowly'],
+        similar: ['step by step', 'to take things slowly'],
         tip: {
           uk: 'Часто з дієсловом take: take it one day at a time.',
           ru: 'Часто с глаголом take: take it one day at a time.',
@@ -2182,7 +2182,7 @@ export const DEEP_C: Record<string, SongDeep> = {
     },
     phrases: [
       {
-        en: 'rely on',
+        en: 'to rely on',
         m: { uk: 'покладатися на', ru: 'полагаться на', en: 'trust someone or something to help' },
         story: {
           uk: 'Rely on дуже близьке до count on, але трохи формальніше. Так кажуть про людей, техніку, автобуси, усе, що не підведе. Вираз нейтральний, підходить і для школи, і для роботи. Це гарний синонім до назви пісні.',
@@ -2190,7 +2190,7 @@ export const DEEP_C: Record<string, SongDeep> = {
           en: 'Rely on is very close to count on, but a little more formal. We use it for people, machines, buses, anything that won’t let you down. It is neutral and fine at school and at work. It is a good synonym for the song’s title.',
         },
         ex: ['You can rely on Anna, she always does her part.', 'I can’t rely on this old phone, it switches off all the time.'],
-        similar: ['count on', 'depend on'],
+        similar: ['to count on', 'to depend on'],
         tip: {
           uk: 'Тільки прийменник on: rely on, а не rely to або rely at.',
           ru: 'Только предлог on: rely on, а не rely to или rely at.',
@@ -2198,7 +2198,7 @@ export const DEEP_C: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'stick together',
+        en: 'to stick together',
         m: { uk: 'триматися разом', ru: 'держаться вместе', en: 'stay together and help each other' },
         story: {
           uk: 'Stick означає «липнути». Друзі, які stick together, ніби склеєні: вони не кидають одне одного. Вираз розмовний і дуже дружній. Його часто кажуть у таборі, на екскурсії чи в команді.',
@@ -2206,7 +2206,7 @@ export const DEEP_C: Record<string, SongDeep> = {
           en: 'Stick means to glue. Friends who stick together seem glued: they don’t leave each other. It is informal and very friendly. People often say it at camp, on a school trip or in a team.',
         },
         ex: ['The museum is big, so let’s stick together.', 'Our class always sticks together.'],
-        similar: ['stay together', 'support each other'],
+        similar: ['to stay together', 'to support each other'],
         tip: {
           uk: 'Минулий час неправильний: stick, stuck, stuck. We stuck together.',
           ru: 'Прошедшее время неправильное: stick, stuck, stuck. We stuck together.',
@@ -2230,7 +2230,7 @@ export const DEEP_C: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'go the extra mile',
+        en: 'to go the extra mile',
         m: { uk: 'зробити більше, ніж треба', ru: 'сделать больше, чем нужно', en: 'make a special effort to help' },
         story: {
           uk: 'Пройти «зайву милю» означає докласти більше зусиль, ніж від тебе чекають. Так хвалять друзів, учителів, працівників. Вираз нейтральний, його часто чути і на роботі. Хороший друг, як у пісні, завжди готовий go the extra mile.',
@@ -2238,7 +2238,7 @@ export const DEEP_C: Record<string, SongDeep> = {
           en: 'Going an extra mile means doing more than people expect. We use it to praise friends, teachers and workers. It is neutral and common at work too. A good friend, like in the song, is always ready to go the extra mile.',
         },
         ex: ['My friend went the extra mile and made me a birthday video with all our classmates.', 'Our teacher always goes the extra mile for us.'],
-        similar: ['make an extra effort', 'do more than expected'],
+        similar: ['to make an extra effort', 'to do more than expected'],
         tip: {
           uk: 'Миля приблизно 1,6 км. Вираз завжди з the: go the extra mile.',
           ru: 'Миля примерно 1,6 км. Выражение всегда с the: go the extra mile.',
@@ -2246,7 +2246,7 @@ export const DEEP_C: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'cheer someone on',
+        en: 'to cheer someone on',
         m: { uk: 'вболівати за когось, підбадьорювати', ru: 'болеть за кого-то, подбадривать', en: 'shout to support someone in a race or game' },
         story: {
           uk: 'Так кажуть, коли кричать і плескають, щоб підтримати когось на змаганнях чи виступі. Вираз розмовний і енергійний. Справжні друзі приходять на твій матч і cheer you on. Це ще одна форма дружньої підтримки.',
@@ -2254,7 +2254,7 @@ export const DEEP_C: Record<string, SongDeep> = {
           en: 'We say this when people shout and clap to support someone in a competition or show. It is informal and full of energy. Real friends come to your match and cheer you on. It is another way of supporting a friend.',
         },
         ex: ['All my friends came to cheer me on at the race.', 'We cheered our team on until the last minute.'],
-        similar: ['support', 'root for someone (American English)'],
+        similar: ['to support', 'to root for someone (American English)'],
         tip: {
           uk: 'Займенник посередині: cheer me on, cheer them on.',
           ru: 'Местоимение посередине: cheer me on, cheer them on.',
@@ -2262,7 +2262,7 @@ export const DEEP_C: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'make friends',
+        en: 'to make friends',
         m: { uk: 'заводити друзів, подружитися', ru: 'заводить друзей, подружиться', en: 'start a friendship' },
         story: {
           uk: 'Базовий, але дуже важливий вираз. Українською ми «заводимо» друзів, а англійською їх «робимо»: make friends. Звучить нейтрально. Корисно для розповідей про новий клас, табір чи переїзд.',
@@ -2270,7 +2270,7 @@ export const DEEP_C: Record<string, SongDeep> = {
           en: 'A basic but very important phrase. In English you make friends. It is neutral. It is useful for talking about a new class, a camp or moving house.',
         },
         ex: ['I made friends with a girl from Poland at the camp.', 'It’s easy to make friends when you join a club.'],
-        similar: ['become friends', 'get to know someone'],
+        similar: ['to become friends', 'to get to know someone'],
         tip: {
           uk: 'Friends завжди у множині: make friends with someone, навіть якщо друг один.',
           ru: 'Friends всегда во множественном числе: make friends with someone, даже если друг один.',
@@ -2294,7 +2294,7 @@ export const DEEP_C: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'get on well with someone',
+        en: 'to get on well with someone',
         m: { uk: 'добре ладнати з кимось', ru: 'хорошо ладить с кем-то', en: 'have a good, friendly relationship' },
         story: {
           uk: 'Британський варіант виразу get along. Так кажуть про друзів, сусідів, братів і сестер, які не сваряться. Вираз нейтральний і дуже частий на уроках. Його легко вживати, коли розповідаєш про свою сім’ю чи клас.',
@@ -2302,7 +2302,7 @@ export const DEEP_C: Record<string, SongDeep> = {
           en: 'This is the British version of get along. We use it for friends, neighbours, brothers and sisters who don’t argue. It is neutral and very common in lessons. It is easy to use when talking about your family or class.',
         },
         ex: ['I get on well with my cousin, we like the same games.', 'Do you get on well with your neighbours?'],
-        similar: ['get along with someone', 'be on good terms'],
+        similar: ['to get along with someone', 'to be on good terms'],
         tip: {
           uk: 'Протилежне: not get on with someone. Наприклад, I don’t get on with my brother.',
           ru: 'Противоположное: not get on with someone. Например, I don’t get on with my brother.',
@@ -2310,7 +2310,7 @@ export const DEEP_C: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'keep a promise',
+        en: 'to keep a promise',
         m: { uk: 'дотримати обіцянки', ru: 'сдержать обещание', en: 'do what you said you would do' },
         story: {
           uk: 'Promise це обіцянка. Keep a promise означає її виконати, а break a promise порушити. Вираз нейтральний, його знають з дитинства. Друг, на якого можна розраховувати, завжди тримає слово.',
@@ -2318,7 +2318,7 @@ export const DEEP_C: Record<string, SongDeep> = {
           en: 'A promise is when you say you will definitely do something. Keep a promise means do it, and break a promise means don’t. It is neutral and known from childhood. A friend you can count on always keeps their word.',
         },
         ex: ['I promised to help you, and I always keep my promises.', 'He broke his promise and didn’t come.'],
-        similar: ['keep your word', 'opposite: break a promise'],
+        similar: ['to keep your word', 'opposite: to break a promise'],
         tip: {
           uk: 'Не кажіть hold a promise або do a promise. Правильно keep a promise.',
           ru: 'Не говорите hold a promise или do a promise. Правильно keep a promise.',
@@ -2326,7 +2326,7 @@ export const DEEP_C: Record<string, SongDeep> = {
         },
       },
       {
-        en: 'drop everything',
+        en: 'to drop everything',
         m: { uk: 'кинути все (щоб допомогти)', ru: 'бросить всё (чтобы помочь)', en: 'stop what you are doing at once to help' },
         story: {
           uk: 'Буквально «впустити все з рук». Так кажуть, коли людина негайно залишає свої справи, бо комусь потрібна допомога. Вираз розмовний і показує велику відданість. Саме так поводиться справжній друг, про якого ця пісня.',
@@ -2334,7 +2334,7 @@ export const DEEP_C: Record<string, SongDeep> = {
           en: 'Literally let everything fall from your hands. We say it when someone stops what they are doing at once because a friend needs help. It is informal and shows great loyalty. That is how a real friend, like the one in this song, behaves.',
         },
         ex: ['When my bike broke, my dad dropped everything and came to get me.', 'She’s the kind of friend who drops everything when you call.'],
-        similar: ['come straight away', 'be there in a flash'],
+        similar: ['to come straight away', 'to be there in a flash'],
         tip: {
           uk: 'Ще один корисний вираз: Drop me a line, тобто «Напиши мені».',
           ru: 'Ещё одно полезное выражение: Drop me a line, то есть «Напиши мне».',

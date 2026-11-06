@@ -21,8 +21,8 @@ export const MORE_B: Record<string, SongLesson> = {
         items: [
           { en: 'a wave', uk: 'хвиля', ru: 'волна', ex: 'A big wave knocked over my sandcastle.' },
           { en: 'the surface', uk: 'поверхня', ru: 'поверхность', ex: 'The fish swam up to the surface to eat the bread.' },
-          { en: 'sink', uk: 'тонути, іти на дно', ru: 'тонуть, идти ко дну', ex: 'Stones sink, but wood stays on top of the water.' },
-          { en: 'float', uk: 'триматися на воді, плавати на поверхні', ru: 'держаться на воде, плавать на поверхности', ex: 'It’s easy to float in very salty water.' },
+          { en: 'to sink', uk: 'тонути, іти на дно', ru: 'тонуть, идти ко дну', ex: 'Stones sink, but wood stays on top of the water.' },
+          { en: 'to float', uk: 'триматися на воді, плавати на поверхні', ru: 'держаться на воде, плавать на поверхности', ex: 'It’s easy to float in very salty water.' },
           { en: 'the bottom', uk: 'дно', ru: 'дно', ex: 'I dropped my ring and it fell to the bottom of the pool.' },
         ],
       },
@@ -30,10 +30,10 @@ export const MORE_B: Record<string, SongLesson> = {
         group: { uk: 'Зміни й сміливість', ru: 'Перемены и смелость', en: 'Change and courage' },
         items: [
           { en: 'a comfort zone', uk: 'зона комфорту', ru: 'зона комфорта', ex: 'Speaking English on the phone is outside my comfort zone.' },
-          { en: 'take a risk', uk: 'ризикнути', ru: 'рискнуть', ex: 'She took a risk and sent her story to a magazine.' },
-          { en: 'be tired of', uk: 'втомитися від, набриднути', ru: 'устать от, надоесть', ex: 'I’m tired of eating the same breakfast every day.' },
-          { en: 'feel empty', uk: 'відчувати порожнечу', ru: 'чувствовать пустоту', ex: 'After the long holiday ended, I felt a bit empty.' },
-          { en: 'change your life', uk: 'змінити своє життя', ru: 'изменить свою жизнь', ex: 'Learning to cook really changed his life.' },
+          { en: 'to take a risk', uk: 'ризикнути', ru: 'рискнуть', ex: 'She took a risk and sent her story to a magazine.' },
+          { en: 'to be tired of', uk: 'втомитися від, набриднути', ru: 'устать от, надоесть', ex: 'I’m tired of eating the same breakfast every day.' },
+          { en: 'to feel empty', uk: 'відчувати порожнечу', ru: 'чувствовать пустоту', ex: 'After the long holiday ended, I felt a bit empty.' },
+          { en: 'to change your life', uk: 'змінити своє життя', ru: 'изменить свою жизнь', ex: 'Learning to cook really changed his life.' },
         ],
       },
       {
@@ -41,7 +41,7 @@ export const MORE_B: Record<string, SongLesson> = {
         items: [
           { en: 'a duet', uk: 'дует (пісня для двох)', ru: 'дуэт (песня для двоих)', ex: 'My sister and I sang a duet at the school concert.' },
           { en: 'a soundtrack', uk: 'саундтрек, музика до фільму', ru: 'саундтрек, музыка к фильму', ex: 'I listen to film soundtracks when I study.' },
-          { en: 'perform live', uk: 'виступати наживо', ru: 'выступать вживую', ex: 'Our band will perform live at the town festival.' },
+          { en: 'to perform live', uk: 'виступати наживо', ru: 'выступать вживую', ex: 'Our band will perform live at the town festival.' },
           { en: 'an award', uk: 'нагорода, премія', ru: 'награда, премия', ex: 'Her short film won an award at a student festival.' },
           { en: 'the audience', uk: 'глядачі, публіка', ru: 'зрители, публика', ex: 'The audience clapped for five minutes after the show.' },
         ],
@@ -115,8 +115,8 @@ export const MORE_B: Record<string, SongLesson> = {
       {
         group: { uk: 'Вдячність і зростання', ru: 'Благодарность и рост', en: 'Gratitude and growth' },
         items: [
-          { en: 'appreciate', uk: 'цінувати, бути вдячним за', ru: 'ценить, быть благодарным за', ex: 'I really appreciate your help with my project.' },
-          { en: 'grow as a person', uk: 'зростати як особистість', ru: 'расти как личность', ex: 'Volunteering helped me grow as a person.' },
+          { en: 'to appreciate', uk: 'цінувати, бути вдячним за', ru: 'ценить, быть благодарным за', ex: 'I really appreciate your help with my project.' },
+          { en: 'to grow as a person', uk: 'зростати як особистість', ru: 'расти как личность', ex: 'Volunteering helped me grow as a person.' },
           { en: 'patience', uk: 'терпіння', ru: 'терпение', ex: 'Learning the piano takes a lot of patience.' },
           { en: 'self-confidence', uk: 'впевненість у собі', ru: 'уверенность в себе', ex: 'Drama classes gave him more self-confidence.' },
           { en: 'a thank-you note', uk: 'листівка чи записка з подякою', ru: 'открытка или записка с благодарностью', ex: 'I wrote a thank-you note to my teacher.' },
@@ -125,18 +125,18 @@ export const MORE_B: Record<string, SongLesson> = {
       {
         group: { uk: 'Стосунки й друзі', ru: 'Отношения и друзья', en: 'Relationships and friends' },
         items: [
-          { en: 'break up', uk: 'розійтися, розлучитися (про пару)', ru: 'расстаться (о паре)', ex: 'They broke up, but they still say hello at school.' },
-          { en: 'get along (with)', uk: 'ладнати (з кимось)', ru: 'ладить (с кем-то)', ex: 'I get along well with my cousins.' },
-          { en: 'stay friends', uk: 'залишатися друзями', ru: 'оставаться друзьями', ex: 'We moved to different cities, but we stayed friends.' },
+          { en: 'to break up', uk: 'розійтися, розлучитися (про пару)', ru: 'расстаться (о паре)', ex: 'They broke up, but they still say hello at school.' },
+          { en: 'to get along (with)', uk: 'ладнати (з кимось)', ru: 'ладить (с кем-то)', ex: 'I get along well with my cousins.' },
+          { en: 'to stay friends', uk: 'залишатися друзями', ru: 'оставаться друзьями', ex: 'We moved to different cities, but we stayed friends.' },
           { en: 'a fresh start', uk: 'новий початок', ru: 'новое начало', ex: 'The new school year is a fresh start for everyone.' },
-          { en: 'let go', uk: 'відпустити', ru: 'отпустить', ex: 'It’s hard to let go of old toys, but I gave them to my little cousin.' },
+          { en: 'to let go', uk: 'відпустити', ru: 'отпустить', ex: 'It’s hard to let go of old toys, but I gave them to my little cousin.' },
         ],
       },
       {
         group: { uk: 'Кіно й відео', ru: 'Кино и видео', en: 'Films and videos' },
         items: [
           { en: 'a scene', uk: 'сцена', ru: 'сцена', ex: 'The last scene of the film was very funny.' },
-          { en: 'recreate', uk: 'відтворити', ru: 'воссоздать', ex: 'We recreated a famous painting with our own bodies for a photo.' },
+          { en: 'to recreate', uk: 'відтворити', ru: 'воссоздать', ex: 'We recreated a famous painting with our own bodies for a photo.' },
           { en: 'a cameo', uk: 'камео, коротка поява відомої людини', ru: 'камео, короткое появление известного человека', ex: 'The writer of the book has a cameo in the film.' },
           { en: 'a premiere', uk: 'прем’єра', ru: 'премьера', ex: 'The premiere of the new series is on Friday.' },
           { en: 'a classic', uk: 'класика', ru: 'классика', ex: 'This cartoon is a classic, my parents watched it too.' },
@@ -213,7 +213,7 @@ export const MORE_B: Record<string, SongLesson> = {
         group: { uk: 'Ніч і світло', ru: 'Ночь и свет', en: 'Night and light' },
         items: [
           { en: 'neon', uk: 'неоновий', ru: 'неоновый', ex: 'The café has a pink neon sign in the window.' },
-          { en: 'glow', uk: 'світитися, м’яке світло', ru: 'светиться, мягкий свет', ex: 'My new stickers glow in the dark.' },
+          { en: 'to glow', uk: 'світитися, м’яке світло', ru: 'светиться, мягкий свет', ex: 'My new stickers glow in the dark.' },
           { en: 'dim', uk: 'тьмяний, неяскравий', ru: 'тусклый, неяркий', ex: 'The light in the hall is too dim to read.' },
           { en: 'a streetlight', uk: 'вуличний ліхтар', ru: 'уличный фонарь', ex: 'We waited for the bus under a streetlight.' },
           { en: 'the middle of the night', uk: 'посеред ночі', ru: 'посреди ночи', ex: 'My little brother woke up in the middle of the night.' },
@@ -222,8 +222,8 @@ export const MORE_B: Record<string, SongLesson> = {
       {
         group: { uk: 'Сон і втома', ru: 'Сон и усталость', en: 'Sleep and tiredness' },
         items: [
-          { en: 'stay up late', uk: 'не лягати допізна', ru: 'не ложиться допоздна', ex: 'I stay up late on Fridays and watch films.' },
-          { en: 'fall asleep', uk: 'заснути', ru: 'уснуть', ex: 'I fell asleep on the sofa during the film.' },
+          { en: 'to stay up late', uk: 'не лягати допізна', ru: 'не ложиться допоздна', ex: 'I stay up late on Fridays and watch films.' },
+          { en: 'to fall asleep', uk: 'заснути', ru: 'уснуть', ex: 'I fell asleep on the sofa during the film.' },
           { en: 'wide awake', uk: 'зовсім не сонний', ru: 'совсем не сонный', ex: 'It was midnight, but I was wide awake.' },
           { en: 'a sleepless night', uk: 'безсонна ніч', ru: 'бессонная ночь', ex: 'Before the exam I had a sleepless night.' },
           { en: 'exhausted', uk: 'дуже втомлений, виснажений', ru: 'очень уставший, измотанный', ex: 'After the long hike we were exhausted.' },
@@ -308,17 +308,17 @@ export const MORE_B: Record<string, SongLesson> = {
       {
         group: { uk: 'Вибачення', ru: 'Извинения', en: 'Saying sorry' },
         items: [
-          { en: 'apologise', uk: 'вибачатися', ru: 'извиняться', ex: 'He apologised for being late to practice.' },
-          { en: 'forgive', uk: 'пробачати', ru: 'прощать', ex: 'I forgave my brother for eating my chocolate.' },
-          { en: 'make up', uk: 'помиритися', ru: 'помириться', ex: 'We argued in the morning but made up at lunch.' },
+          { en: 'to apologise', uk: 'вибачатися', ru: 'извиняться', ex: 'He apologised for being late to practice.' },
+          { en: 'to forgive', uk: 'пробачати', ru: 'прощать', ex: 'I forgave my brother for eating my chocolate.' },
+          { en: 'to make up', uk: 'помиритися', ru: 'помириться', ex: 'We argued in the morning but made up at lunch.' },
           { en: 'it was my fault', uk: 'це моя провина', ru: 'это моя вина', ex: 'We lost the game, and I know it was my fault.' },
-          { en: 'make it up to someone', uk: 'загладити провину перед кимось', ru: 'загладить вину перед кем-то', ex: 'Sorry I missed your party, I’ll make it up to you.' },
+          { en: 'to make it up to someone', uk: 'загладити провину перед кимось', ru: 'загладить вину перед кем-то', ex: 'Sorry I missed your party, I’ll make it up to you.' },
         ],
       },
       {
         group: { uk: 'Почуття', ru: 'Чувства', en: 'Feelings' },
         items: [
-          { en: 'hurt someone’s feelings', uk: 'образити когось', ru: 'обидеть кого-то', ex: 'I didn’t want to hurt her feelings, so I said it kindly.' },
+          { en: 'to hurt someone’s feelings', uk: 'образити когось', ru: 'обидеть кого-то', ex: 'I didn’t want to hurt her feelings, so I said it kindly.' },
           { en: 'guilty', uk: 'винний (почуття провини)', ru: 'виноватый (чувство вины)', ex: 'I felt guilty after I forgot to feed the cat.' },
           { en: 'upset', uk: 'засмучений', ru: 'расстроенный', ex: 'She was upset because nobody called her.' },
           { en: 'ashamed', uk: 'присоромлений', ru: 'пристыженный, стыдно', ex: 'He was ashamed of his rude words.' },
@@ -328,11 +328,11 @@ export const MORE_B: Record<string, SongLesson> = {
       {
         group: { uk: 'Виправити ситуацію', ru: 'Исправить ситуацию', en: 'Putting things right' },
         items: [
-          { en: 'admit a mistake', uk: 'визнати помилку', ru: 'признать ошибку', ex: 'It takes courage to admit a mistake.' },
-          { en: 'trust', uk: 'довіряти; довіра', ru: 'доверять; доверие', ex: 'I trust my best friend with all my secrets.' },
-          { en: 'start over', uk: 'почати спочатку', ru: 'начать сначала', ex: 'My drawing went wrong, so I started over.' },
+          { en: 'to admit a mistake', uk: 'визнати помилку', ru: 'признать ошибку', ex: 'It takes courage to admit a mistake.' },
+          { en: 'to trust', uk: 'довіряти; довіра', ru: 'доверять; доверие', ex: 'I trust my best friend with all my secrets.' },
+          { en: 'to start over', uk: 'почати спочатку', ru: 'начать сначала', ex: 'My drawing went wrong, so I started over.' },
           { en: 'too late', uk: 'занадто пізно', ru: 'слишком поздно', ex: 'We arrived too late and the shop was closed.' },
-          { en: 'learn from your mistakes', uk: 'вчитися на своїх помилках', ru: 'учиться на своих ошибках', ex: 'Everyone makes mistakes, the important thing is to learn from them.' },
+          { en: 'to learn from your mistakes', uk: 'вчитися на своїх помилках', ru: 'учиться на своих ошибках', ex: 'Everyone makes mistakes, the important thing is to learn from them.' },
         ],
       },
     ],
@@ -406,8 +406,8 @@ export const MORE_B: Record<string, SongLesson> = {
         items: [
           { en: 'identity', uk: 'ідентичність, хто ти є', ru: 'идентичность, кто ты есть', ex: 'Your language is an important part of your identity.' },
           { en: 'confused', uk: 'збентежений, спантеличений', ru: 'сбитый с толку, растерянный', ex: 'I was confused by the long instructions.' },
-          { en: 'fit in', uk: 'вписуватися, бути своїм', ru: 'вписываться, быть своим', ex: 'At first I didn’t fit in at the chess club.' },
-          { en: 'belong', uk: 'належати, бути на своєму місці', ru: 'принадлежать, быть на своём месте', ex: 'In my dance group I feel that I belong.' },
+          { en: 'to fit in', uk: 'вписуватися, бути своїм', ru: 'вписываться, быть своим', ex: 'At first I didn’t fit in at the chess club.' },
+          { en: 'to belong', uk: 'належати, бути на своєму місці', ru: 'принадлежать, быть на своём месте', ex: 'In my dance group I feel that I belong.' },
           { en: 'the real me', uk: 'справжній я', ru: 'настоящий я', ex: 'Only my close friends know the real me.' },
         ],
       },
@@ -417,7 +417,7 @@ export const MORE_B: Record<string, SongLesson> = {
           { en: 'a doll', uk: 'лялька', ru: 'кукла', ex: 'My grandma still has the doll she had as a child.' },
           { en: 'plastic', uk: 'пластик; пластиковий', ru: 'пластик; пластиковый', ex: 'We try to use less plastic at home.' },
           { en: 'a factory', uk: 'фабрика, завод', ru: 'фабрика, завод', ex: 'Our class visited a chocolate factory.' },
-          { en: 'design', uk: 'розробляти, створювати дизайн', ru: 'разрабатывать, создавать дизайн', ex: 'She designs her own T-shirts.' },
+          { en: 'to design', uk: 'розробляти, створювати дизайн', ru: 'разрабатывать, создавать дизайн', ex: 'She designs her own T-shirts.' },
           { en: 'handmade', uk: 'зроблений вручну', ru: 'сделанный вручную', ex: 'I gave my mum a handmade card.' },
         ],
       },
