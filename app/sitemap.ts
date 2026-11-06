@@ -21,10 +21,11 @@ import { BATCH_9 } from '@/lib/lessons/batch-9';
 import { SITE_URL } from '@/lib/seo';
 import { BLOG } from '@/lib/blog';
 import { GAME_LESSONS } from '@/lib/game-lessons';
+import { SONGS } from '@/lib/songs';
 
 const STATIC: [string, number][] = [
   ['/', 1], ['/nmt', 0.9], ['/nmt/mock', 0.9], ['/irregular-verbs', 0.9], ['/irregular-verbs/games', 0.7],
-  ['/grammar', 0.9], ['/level-test', 0.9], ['/play/stickers', 0.7], ['/grammar/trainer', 0.8], ['/activities', 0.9], ['/game-lessons', 0.8], ['/for-teachers', 0.9], ['/for-parents', 0.8], ['/baby-english', 0.8],
+  ['/grammar', 0.9], ['/level-test', 0.9], ['/play/stickers', 0.7], ['/songs', 0.8], ['/grammar/trainer', 0.8], ['/activities', 0.9], ['/game-lessons', 0.8], ['/for-teachers', 0.9], ['/for-parents', 0.8], ['/baby-english', 0.8],
   ['/pricing', 0.8], ['/lessons', 0.8], ['/learn', 0.7], ['/practice', 0.7], ['/stories', 0.7], ['/series', 0.7], ['/games', 0.7],
   ['/tongue-twisters', 0.6], ['/worlds', 0.5], ['/about', 0.5], ['/blog', 0.8], ['/contact', 0.4],
   ['/bonus/nmt-checklist', 0.6], ['/bonus/100-words', 0.6], ['/bonus/verbs-30', 0.6],
@@ -40,6 +41,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...PLAN_PAGES.map((p) => [`/pricing/${p.slug}`, 0.6] as [string, number]),
     ...ALL_STORIES.map((s) => [`/stories/${s.id}`, 0.5] as [string, number]),
     ...MOCKS.map((m) => [`/nmt/mock/${m.id}`, 0.8] as [string, number]),
+    ...SONGS.map((x) => [`/songs/${x.id}`, 0.6] as [string, number]),
     ...SERIES.flatMap((s) => [[`/series/${s.slug}`, 0.6] as [string, number], ...s.episodes.map((e) => [`/series/${s.slug}/${e.n}`, 0.5] as [string, number])]),
     ...SKILLS.map((s) => [`/learn/${s.id}`, 0.6] as [string, number]),
     ...lessons.map((l) => [`/lessons/${l.id.replace(/^lib-/, '')}`, 0.6] as [string, number]),
