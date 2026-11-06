@@ -6,7 +6,8 @@ export type Song = {
   level: string; age: 'all' | 'teens'; about: L; grammar: L; phrases: Phrase[]; talk: string[];
 };
 
-export const SONGS: Song[] = [
+import { SONGS_EXTRA } from './songs-extra';
+const BASE: Song[] = [
   {
     id: 'shake-it-off', artist: 'Taylor Swift', title: 'Shake It Off', yt: 'nfWlot6h_JM', year: 2014, level: 'A2', age: 'all',
     about: { uk: 'Весела пісня про те, як не зважати на чужі плітки й критику і просто бути собою. Люди щось говорять, а ти танцюєш далі.', ru: 'Весёлая песня о том, как не обращать внимания на чужие сплетни и критику и просто быть собой. Люди что-то говорят, а ты танцуешь дальше.', en: 'A happy song about ignoring gossip and criticism and simply being yourself. People talk, you keep dancing.' },
@@ -139,4 +140,5 @@ export const SONGS: Song[] = [
   },
 ];
 
+export const SONGS: Song[] = [...BASE, ...SONGS_EXTRA];
 export const songById = (id: string) => SONGS.find((s) => s.id === id);
