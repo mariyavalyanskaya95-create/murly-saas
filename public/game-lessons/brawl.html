@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Team Up: can, must, should | Murly</title>
+<link rel="icon" href="/favicon.svg">
+<meta name="description" content="Free interactive English lesson for kids based on Brawl Stars: team roles, a Gem Grab grammar game and the modals can, must and should. XP, missions and official videos.">
+<link rel="canonical" href="https://murly.com.ua/game-lessons/brawl.html">
+<style>
+:root{--sky:#7ec8ff;--sky2:#bfe6ff;--grass:#5cbf3a;--grass2:#3e8f25;--dirt:#8a5a35;--ink:#1d1d2b;--paper:#fffdf6;--gold:#ffd23f;--dia:#33e0d6;--red:#ff5a5f;--pink:#ff8fd8;--violet:#8e6cff}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Trebuchet MS",Verdana,system-ui,sans-serif;color:var(--ink);background:linear-gradient(180deg,var(--sky) 0,var(--sky2) 520px,#e9f7ff 100%);min-height:100vh}
+img,canvas{image-rendering:pixelated}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+/* шапка */
+.hero{position:relative;padding:34px 18px 0;text-align:center;overflow:hidden}
+.cloud{position:absolute;background:#fff;height:22px;box-shadow:22px 0 #fff,44px 0 #fff,22px -22px #fff;opacity:.9}
+.hero h1{margin:0;font-size:clamp(34px,6vw,64px);letter-spacing:2px;color:#fff;text-shadow:4px 4px 0 var(--ink),-2px -2px 0 var(--ink),2px -2px 0 var(--ink),-2px 2px 0 var(--ink);text-transform:uppercase}
+.hero p{margin:8px 0 18px;font-size:20px;font-weight:700;color:var(--ink)}
+.ground{height:56px;background:repeating-linear-gradient(90deg,var(--grass) 0 16px,#6fd14a 16px 32px);border-top:6px solid var(--grass2);position:relative}
+.ground::after{content:"";position:absolute;left:0;right:0;top:56px;height:40px;background:repeating-linear-gradient(90deg,var(--dirt) 0 16px,#9c6a42 16px 32px)}
+.hero-row{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:-4px}
+/* XP */
+.hud{position:sticky;top:0;z-index:20;display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;padding:10px;background:rgba(29,29,43,.92);color:#fff;margin-top:40px;border-bottom:4px solid #000}
+.hud b{font-size:18px}
+.bar{width:min(340px,60vw);height:22px;background:#333;border:3px solid #000;position:relative}
+.bar i{position:absolute;inset:0 auto 0 0;width:0;background:repeating-linear-gradient(90deg,#7cff4f 0 10px,#55d62f 10px 20px);transition:width .4s}
+.hud .lvl{background:#7cff4f;color:#000;font-weight:900;padding:2px 10px;border:3px solid #000}
+.dia{display:inline-flex;align-items:center;gap:6px;font-weight:900;font-size:18px}
+nav.steps{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:22px 0 4px}
+nav.steps a{background:#fff;border:3px solid var(--ink);padding:6px 12px;font-weight:800;color:var(--ink);text-decoration:none;box-shadow:3px 3px 0 var(--ink)}
+nav.steps a:hover{background:var(--gold)}
+/* секції */
+section{margin-top:38px;background:var(--paper);border:4px solid var(--ink);box-shadow:8px 8px 0 rgba(29,29,43,.85);padding:24px}
+section h2{margin:0 0 6px;font-size:30px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tag{font-size:14px;font-weight:900;padding:3px 10px;border:3px solid var(--ink);background:var(--gold);text-transform:uppercase;letter-spacing:1px}
+.sub{margin:0 0 18px;font-size:17px;color:#444}
+.btn{font:inherit;font-weight:900;border:3px solid var(--ink);background:#7cff4f;padding:8px 16px;cursor:pointer;box-shadow:3px 3px 0 var(--ink);text-transform:uppercase;letter-spacing:.5px}
+.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.btn.alt{background:#fff}
+/* словник */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
+.card{perspective:900px;height:200px;cursor:pointer}
+.card .in{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+.card.flip .in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;border:3px solid var(--ink);background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:10px;text-align:center}
+.face b{font-size:19px}
+.face.back{transform:rotateY(180deg);background:#fff5c9;font-size:15px;line-height:1.35}
+.face.back b{font-size:16px;color:#7a4a00}
+.face canvas{width:84px;height:84px}
+.face.front b{font-size:17px;line-height:1.2}
+.face.back em{font-size:14px;color:#2b7a0b;font-weight:700}
+.grid{grid-template-columns:repeat(auto-fill,minmax(190px,1fr))}
+.credit{font-size:13px;color:#777;margin-top:12px}
+.cat-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.cat-tabs button{font:inherit;font-weight:800;border:3px solid var(--ink);background:#fff;padding:5px 12px;cursor:pointer}
+.cat-tabs button.on{background:var(--dia)}
+/* правило */
+.modes{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.mode{border:4px solid var(--ink);padding:18px;position:relative}
+.mode.s{background:#e6fff0}.mode.c{background:#fff0fb}
+.mode h3{margin:0 0 4px;font-size:24px}
+.mode .f{font-family:Consolas,monospace;font-weight:900;font-size:17px;background:#fff;border:3px solid var(--ink);padding:6px 10px;display:inline-block;margin:6px 0}
+.mode ul{margin:8px 0 0;padding-left:20px;font-size:17px;line-height:1.55}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.chip{border:2px solid var(--ink);background:#fff;padding:2px 9px;font-weight:800;font-size:14px}
+.note{margin-top:16px;padding:12px 16px;border:3px dashed var(--ink);background:#fff;font-size:16px}
+/* вправи */
+.q{display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:2px dashed #d9d2bf;font-size:18px}
+.q:last-child{border-bottom:0}
+.q .n{width:34px;height:34px;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;font-weight:900}
+.opt{font:inherit;font-size:17px;font-weight:800;border:3px solid var(--ink);background:#fff;padding:4px 12px;cursor:pointer;margin:0 3px}
+.opt.ok{background:#7cff4f}.opt.bad{background:var(--red);color:#fff;animation:shake .3s}
+.slot{display:inline-block;min-width:96px;border-bottom:3px solid var(--ink);text-align:center;font-weight:900;color:#2b7a0b}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.stream{display:grid;grid-template-columns:260px 1fr;gap:22px;align-items:start}
+.screen{border:6px solid var(--ink);background:#222;padding:8px;position:sticky;top:70px}
+.screen canvas{width:100%;display:block;background:var(--sky)}
+.live{display:inline-block;background:var(--red);color:#fff;font-weight:900;padding:2px 8px;margin:6px 0 0;letter-spacing:1px}
+.text{font-size:19px;line-height:2.1}
+.text input{font:inherit;font-weight:800;width:150px;border:0;border-bottom:3px solid var(--ink);background:#fffbe6;padding:0 6px;text-align:center}
+.text input.ok{background:#c9ffb3}.text input.bad{background:#ffd0d0}
+.text small{color:#777;font-weight:700}
+.sort{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:14px}
+.bin{border:4px solid var(--ink);min-height:160px;padding:12px;cursor:pointer}
+.bin h4{margin:0 0 10px;font-size:20px}
+.bin.s{background:#e6fff0}.bin.c{background:#fff0fb}
+.pool{display:flex;flex-wrap:wrap;gap:8px;min-height:44px;padding:10px;border:3px dashed var(--ink);background:#fff}
+.w{font:inherit;font-weight:900;font-size:16px;border:3px solid var(--ink);background:var(--gold);padding:5px 11px;cursor:pointer}
+.w.sel{background:var(--dia);transform:translateY(-3px)}
+.w.ok{background:#7cff4f}.w.bad{background:var(--red);color:#fff}
+.bug{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;padding:12px 0;border-bottom:2px dashed #d9d2bf;font-size:18px}
+.bug .fix{grid-column:1/-1;font-weight:800;color:#2b7a0b;display:none}
+.bug.done .fix{display:block}
+/* місії */
+.missions{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.mis{border:4px solid var(--ink);background:#fff;display:grid;grid-template-columns:72px 1fr;gap:12px;padding:14px;position:relative}
+.mis canvas{width:72px;height:72px}
+.mis h3{margin:0 0 4px;font-size:20px}
+.mis p{margin:0 0 6px;font-size:16px}
+.mis .say{background:#f1ecff;border-left:5px solid var(--violet);padding:6px 10px;font-size:15px;font-style:italic}
+.mis .row{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center}
+.mis .xp{font-weight:900;color:#2b7a0b}
+.mis.done{background:#e9ffe0}
+.mis.done::after{content:"DONE";position:absolute;top:10px;right:-8px;background:#7cff4f;border:3px solid var(--ink);font-weight:900;padding:2px 10px;transform:rotate(8deg)}
+.talk{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.tk{border:4px solid var(--ink);padding:16px;font-size:18px;font-weight:700;min-height:120px;display:flex;flex-direction:column;justify-content:space-between;gap:10px}
+.tk:nth-child(4n+1){background:#e6fff0}.tk:nth-child(4n+2){background:#fff0fb}.tk:nth-child(4n+3){background:#fff7d6}.tk:nth-child(4n+4){background:#e3f4ff}
+.tk small{font-weight:800;color:#555;font-size:14px}
+.timer{font-size:46px;font-weight:900;text-align:center;margin:10px 0}
+.vids{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.vid{border:4px solid var(--ink);background:#fff;display:flex;flex-direction:column}
+.vid .frame{position:relative;aspect-ratio:16/9;background:#1d1d2b}
+.vid.short .frame{aspect-ratio:9/16;max-height:460px}
+.vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;display:grid;place-items:center;color:#fff;font-weight:900;font-size:18px;cursor:pointer;background:repeating-linear-gradient(45deg,#2a2a40 0 14px,#24243a 14px 28px);border:0;font-family:inherit}
+.vid .play span{background:var(--red);border:3px solid #000;padding:10px 18px;box-shadow:4px 4px 0 #000}
+.vid .info{padding:12px 14px;display:grid;gap:6px}
+.vid h3{margin:0;font-size:18px}
+.vid .task{background:#f1ecff;border-left:5px solid var(--violet);padding:6px 10px;font-size:15px}
+.vid .mode{display:inline-block;width:max-content;font-size:12px;font-weight:900;border:2px solid var(--ink);padding:1px 8px;background:var(--gold)}
+details.teacher{margin-top:30px;border:3px dashed #888;background:#fff;padding:12px 16px;font-size:15px}
+details.teacher summary{font-weight:900;cursor:pointer}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(120px);background:var(--ink);color:#fff;font-weight:900;padding:12px 22px;border:4px solid #7cff4f;transition:transform .3s;z-index:50;display:flex;gap:10px;align-items:center}
+.toast.show{transform:translateX(-50%) translateY(0)}
+@media(max-width:760px){.modes,.sort,.stream{grid-template-columns:1fr}.screen{position:static}}
+
+/* яскравість і рух */
+.bob{animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-8px)}}
+.card:hover .in{transform:translateY(-6px) rotate(-1.5deg)}
+.card.flip:hover .in{transform:rotateY(180deg) translateY(-6px)}
+.face.front{background:linear-gradient(180deg,#fff 0,#fff 60%,#f3ffe9 100%)}
+.card:nth-child(4n+1) .face.front{background:linear-gradient(180deg,#fff 55%,#e3f6ff)}
+.card:nth-child(4n+2) .face.front{background:linear-gradient(180deg,#fff 55%,#fff1fb)}
+.card:nth-child(4n+3) .face.front{background:linear-gradient(180deg,#fff 55%,#fff8d9)}
+.pxl{position:fixed;width:10px;height:10px;z-index:60;pointer-events:none;border:2px solid #000;animation:pxl .8s ease-out forwards}
+@keyframes pxl{to{transform:translate(var(--dx),var(--dy)) rotate(180deg);opacity:0}}
+.lvlup{position:fixed;left:50%;top:40%;transform:translate(-50%,-50%) scale(0);z-index:70;background:#7cff4f;border:6px solid #000;box-shadow:8px 8px 0 #000;padding:18px 34px;text-align:center;pointer-events:none}
+.lvlup b{display:block;font-size:46px;letter-spacing:2px}
+.lvlup span{font-weight:900}
+.lvlup.show{animation:lvl 1.8s ease-out forwards}
+@keyframes lvl{0%{transform:translate(-50%,-50%) scale(0)}15%{transform:translate(-50%,-50%) scale(1.15)}25%,80%{transform:translate(-50%,-50%) scale(1)}100%{transform:translate(-50%,-50%) scale(0);opacity:0}}
+.night{position:fixed;right:16px;bottom:16px;z-index:40;font:inherit;font-weight:900;border:3px solid #000;background:#1d1d2b;color:#ffe14a;padding:8px 14px;box-shadow:3px 3px 0 #000;cursor:pointer}
+.stars{position:absolute;inset:0 0 auto 0;height:700px;pointer-events:none;opacity:0;transition:opacity .6s}
+.stars i{position:absolute;width:4px;height:4px;background:#fff;animation:tw 2s infinite}
+@keyframes tw{50%{opacity:.2}}
+body{transition:background .6s}
+body.is-night{background:linear-gradient(180deg,#0b1a3a 0,#1d2f5c 520px,#2a3d6b 100%)}
+body.is-night .stars{opacity:1}
+body.is-night .hero p{color:#fff}
+body.is-night nav.steps a{background:#24365f;color:#fff}
+.bin.s{background:repeating-linear-gradient(0deg,#b5884f 0 14px,#a97c45 14px 16px)}
+.bin.c{background:repeating-linear-gradient(0deg,#9fd6ec 0 14px,#8cc6dd 14px 16px)}
+.bin h4{background:#fff;border:3px solid var(--ink);display:inline-block;padding:2px 10px}
+.mis{transition:transform .2s}.mis:hover{transform:translateY(-4px) rotate(.4deg)}
+section h2{color:var(--ink)}
+section:nth-of-type(odd){background:#fffdf6}
+section:nth-of-type(even){background:#f7fff0}
+
+/* «рецепти» речень */
+.legend{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 16px}
+.bk{display:inline-flex;align-items:center;font-weight:900;font-size:16px;padding:6px 10px;border:3px solid var(--ink);box-shadow:inset -3px -3px 0 rgba(0,0,0,.18),inset 3px 3px 0 rgba(255,255,255,.45);white-space:nowrap}
+.bk.who{background:#8fd3ff}.bk.hp{background:#ffd23f}.bk.vb{background:#7cff4f}.bk.end,.bk .end{background:#ff8fd8}.bk.rest{background:#fff}
+.bk .end{font-style:normal;padding:0 3px;margin-left:1px;border:2px solid var(--ink)}
+.legend .bk{font-size:13px;padding:3px 8px}
+.when{margin:4px 0 12px;font-size:16px}
+.recipe{display:flex;gap:5px;flex-wrap:wrap;align-items:center;margin:8px 0}
+.recipe .sign{width:30px;height:30px;display:grid;place-items:center;font-weight:900;font-size:20px;background:var(--ink);color:#fff;flex:none}
+.tip{margin-top:10px;font-size:15px;background:#fff;border-left:5px solid var(--red);padding:6px 10px}
+/* ===== TEAM UP (Brawl) ===== */
+:root{--sky:#ffd23f;--sky2:#ffe9a0;--blue:#2f80ed;--rival:#ff5a5f;--gem:#b06cff;--gem2:#5e2bb0}
+body{background:linear-gradient(180deg,#ffd23f 0,#ffe9a0 520px,#fff8e1 100%)}
+.lk-tbtn{position:fixed;right:16px;top:70px;z-index:45;font:inherit;font-weight:900;border:3px solid #000;background:#ffd23f;padding:8px 14px;box-shadow:3px 3px 0 #000;cursor:pointer}
+body.teacher .lk-tbtn{background:#7cff4f}
+.lk-ans,.lk-tnote{display:none}
+body.teacher .lk-ans{display:block;margin-top:8px;font-weight:800;color:#0b7a3b;background:#e9ffe0;border-left:5px solid #3ecf4c;padding:6px 10px;font-size:15px}
+body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff4dc;border-left:5px solid #ff9f1c;padding:8px 12px;font-size:15px}
+.lk-overview{background:#fff}
+.lk-overview ul{font-size:17px;line-height:1.7;margin:6px 0 16px}
+.lk-stages{display:flex;flex-wrap:wrap;gap:8px}
+.lk-stages a{display:grid;border:3px solid var(--ink);padding:6px 12px;text-decoration:none;color:var(--ink);background:#fff4c2;font-weight:800;min-width:96px}
+.lk-stages a span{text-transform:capitalize}
+.lk-stages a b{font-size:20px}.lk-stages a small{font-weight:600;color:#666}
+.lk-n{display:inline-grid;place-items:center;width:42px;height:42px;background:var(--ink);color:#fff;border-radius:50%;font-size:22px;flex:none}
+.lk-mode{font-size:13px;font-weight:800;border:2px dashed var(--ink);padding:2px 10px;border-radius:999px}
+.lk-ins{font-size:17px;background:#fff4c2;border-radius:10px;padding:10px 14px;margin:6px 0 16px}
+.lk-sub{margin:22px 0 10px;font-size:19px}
+.lk-split{display:grid;grid-template-columns:1fr 280px;gap:20px;align-items:start}
+.lk-phrases{background:#fff8d6;border:3px solid var(--ink);padding:12px 14px;font-size:15px}
+.lk-phrases ul{margin:6px 0 0;padding-left:18px;line-height:1.6}
+.lk-qs{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.lk-qs span{background:#e3f4ff;border:2px solid var(--ink);border-radius:999px;padding:6px 14px;font-weight:700}
+section:nth-of-type(even){background:#fffbea}
+/* шапка */
+.bs-hero{background:linear-gradient(180deg,#8e6cff 0,#b06cff 45%,#ff9f1c 100%);padding-bottom:0}
+.bs-hero h1{color:#ffd23f;text-shadow:4px 4px 0 #1d1d2b,-2px -2px 0 #1d1d2b,2px -2px 0 #1d1d2b,-2px 2px 0 #1d1d2b}
+.bs-hero p{color:#fff;text-shadow:2px 2px 0 rgba(0,0,0,.35)}
+.bs-heroteam{display:flex;justify-content:center;align-items:flex-end;gap:18px;flex-wrap:wrap;padding:6px 0 0;position:relative}
+.bs-mem{display:grid;justify-items:center;gap:2px;color:#fff;font-weight:900;font-size:14px;text-shadow:2px 2px 0 #1d1d2b;animation:bob 2.6s ease-in-out infinite}
+.bs-mem:nth-child(2n){animation-delay:-1.1s}
+.bs-mem svg{width:92px;height:auto;display:block}
+.bs-hgem{width:38px;animation:bsspin 3s ease-in-out infinite}
+@keyframes bsspin{50%{transform:translateY(-12px) rotate(10deg)}}
+.bs-floor{height:46px;background:repeating-linear-gradient(90deg,#3ecf4c 0 22px,#35b843 22px 44px);border-top:6px solid #1d1d2b;margin-top:-6px}
+.bs-svg{display:block;width:100%;height:auto}
+/* картка бравлера */
+.bs-av{display:grid;grid-template-columns:250px 1fr;gap:24px;align-items:start}
+.bs-av__stage{background:radial-gradient(circle at 50% 40%,#fff 0,#ffe9a0 60%,#ffd23f 100%);border:4px solid var(--ink);padding:16px;text-align:center;box-shadow:6px 6px 0 var(--ink)}
+.bs-av__stage svg{width:160px;margin:0 auto;animation:obfloat 2.5s ease-in-out infinite}
+@keyframes obfloat{50%{transform:translateY(-10px)}}
+.bs-av__name{font-weight:900;background:#fff;border:3px solid var(--ink);display:inline-block;padding:2px 12px;margin-top:6px;font-size:18px}
+.bs-av__role{display:block;font-weight:900;text-transform:uppercase;letter-spacing:1px;margin-top:6px;font-size:14px}
+.bs-av__opts{display:grid;gap:12px}
+.bs-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.bs-row>b{width:90px}
+.bs-sw{min-width:38px;height:38px;border:3px solid var(--ink);background:#fff;font:inherit;font-weight:800;cursor:pointer;padding:0 10px}
+.bs-sw.on{outline:4px solid #8e6cff;outline-offset:2px}
+.bs-row input{font:inherit;font-weight:800;border:3px solid var(--ink);padding:6px 10px;width:180px}
+.bs-say{margin-top:16px;font-size:20px;background:#fff8d6;border:3px dashed var(--ink);padding:12px 16px;line-height:1.6}
+.bs-say b{color:#5e2bb0}
+/* словник */
+.face svg{width:84px;height:84px}
+/* правило */
+.bs-modes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.bs-mode{border:4px solid var(--ink);padding:16px;position:relative}
+.bs-mode h3{margin:0 0 2px;font-size:24px}
+.bs-mode p{margin:0 0 8px;font-weight:700}
+.bs-mode.can{background:#e3f4ff}.bs-mode.must{background:#ffe3e3}.bs-mode.should{background:#e6fff0}
+.bs-mode .recipe{font-size:15px}
+.bs-mode .bk{font-size:14px;padding:4px 8px}
+.bs-quick .q{font-size:17px}
+/* сортування */
+.bs-sort{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}
+.bs-bin{border:4px solid var(--ink);min-height:180px;padding:12px;cursor:pointer;transition:transform .15s}
+.bs-bin:hover{transform:translateY(-3px)}
+.bs-bin h4{margin:0 0 10px;font-size:18px;background:#fff;border:3px solid var(--ink);display:inline-block;padding:2px 10px}
+.bs-bin.can{background:#cfe9ff}.bs-bin.must{background:#ffd0d0}.bs-bin.should{background:#c9f7d6}
+.bs-bin ul{margin:0;padding-left:18px;font-size:15px;line-height:1.5;font-weight:700}
+/* гра GEM GRAB */
+.bs-game{border:5px solid var(--ink);background:#1d1d2b;color:#fff;padding:14px;box-shadow:8px 8px 0 rgba(0,0,0,.3)}
+.bs-top{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center;margin-bottom:10px;font-weight:900}
+.bs-team{display:flex;align-items:center;gap:8px}
+.bs-team.red{justify-content:flex-end}
+.bs-team b{font-size:30px;min-width:40px;text-align:center}
+.bs-team.blue b{color:#8fd3ff}.bs-team.red b{color:#ff9a9d}
+.bs-pips{display:flex;gap:3px}
+.bs-pips i{width:14px;height:18px;background:#3a3a55;clip-path:polygon(50% 0,100% 35%,50% 100%,0 35%)}
+.bs-team.blue .bs-pips i.on{background:#8fd3ff}.bs-team.red .bs-pips i.on{background:#ff9a9d}
+.bs-cd{font-size:15px;text-align:center;color:#ffd23f;min-width:150px}
+.bs-cd b{display:block;font-size:34px;line-height:1}
+.bs-field{position:relative;height:300px;overflow:hidden;border:3px solid #000;background:repeating-conic-gradient(#79c95b 0 25%,#6dbb50 0 50%) 0 0/40px 40px}
+.bs-field .bush{position:absolute;width:70px;height:44px;background:radial-gradient(circle at 25% 60%,#2e8b2e 0 18px,transparent 19px),radial-gradient(circle at 55% 40%,#36a336 0 20px,transparent 21px),radial-gradient(circle at 80% 65%,#2e8b2e 0 17px,transparent 18px)}
+.bs-field .wall{position:absolute;height:22px;background:repeating-linear-gradient(90deg,#c98b5b 0 20px,#b5784a 20px 22px);border:3px solid #1d1d2b}
+.bs-mine{position:absolute;left:50%;top:50%;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;background:radial-gradient(circle,#d9b8ff 0,#8e6cff 55%,#5e2bb0 100%);border:4px solid #1d1d2b;animation:bsmine 1.4s ease-in-out infinite}
+@keyframes bsmine{50%{box-shadow:0 0 0 12px rgba(176,108,255,.35)}}
+.bs-unit{position:absolute;width:58px;transition:transform .3s}
+.bs-unit.hop{animation:bshop .5s}
+@keyframes bshop{50%{transform:translateY(-16px)}}
+.bs-unit.sad{animation:shake .4s}
+.bs-flygem{position:absolute;width:30px;z-index:5;transition:left .7s ease-in,top .7s ease-in,opacity .7s}
+.bs-q{font-size:22px;font-weight:800;text-align:center;margin:14px 0 10px;min-height:56px}
+.bs-q small{display:block;font-size:13px;color:#ffd23f;letter-spacing:1px}
+.bs-q .slot{color:#7cff4f;border-color:#7cff4f}
+.bs-opts{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.bs-opts .opt{font-size:20px;padding:8px 18px;color:#1d1d2b}
+.bs-timer{height:12px;background:#333;border:2px solid #000;margin-top:10px}
+.bs-timer i{display:block;height:100%;width:100%;background:linear-gradient(90deg,#ff5a5f,#ffd23f,#7cff4f)}
+.bs-win{font-size:34px;color:#ffd23f;text-shadow:3px 3px 0 #000;margin-bottom:6px}
+.bs-rules{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px;font-size:15px}
+.bs-rules span{background:#fff;border:2px solid var(--ink);padding:4px 10px;font-weight:700}
+/* читання */
+.bs-msg{display:grid;grid-template-columns:110px 1fr;gap:16px;align-items:start}
+.bs-msg__av{text-align:center;font-weight:900}
+.bs-msg__av svg{width:100px}
+.bs-bubble{background:#fff;border:4px solid var(--ink);border-radius:18px;padding:16px 20px;font-size:18px;line-height:1.65;position:relative;box-shadow:5px 5px 0 var(--ink)}
+.bs-bubble::before{content:"";position:absolute;left:-18px;top:26px;border:10px solid transparent;border-right:14px solid var(--ink)}
+.bs-bubble p{margin:0 0 10px}
+.bs-bubble .md{background:#ffe9a0;padding:0 4px;border-radius:4px}
+body.bs-hl .bs-bubble .md{background:#b06cff;color:#fff}
+.bs-tf .q{font-size:17px}
+/* гайд */
+.bs-guide{display:grid;gap:10px}
+.bs-guide label{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:18px;font-weight:800}
+.bs-guide label span{min-width:170px}
+.bs-guide input{font:inherit;font-size:17px;flex:1;min-width:220px;border:0;border-bottom:3px solid var(--ink);background:#fffbe6;padding:4px 8px}
+.bs-guide__out{margin-top:14px;background:#fff;border:4px solid var(--ink);padding:14px 18px;font-size:18px;line-height:1.6;box-shadow:5px 5px 0 var(--ink)}
+.bs-guide__out h4{margin:0 0 6px;font-size:22px}
+.mis .ic{width:72px;height:72px}
+.mis .ic svg{width:100%;height:100%}
+.bs-end{text-align:center;background:linear-gradient(180deg,#8e6cff,#b06cff)!important;color:#fff}
+.bs-end h2{color:#ffd23f!important;justify-content:center;text-shadow:3px 3px 0 #1d1d2b}
+@media(max-width:860px){.bs-modes,.bs-sort{grid-template-columns:1fr}.bs-av,.lk-split,.bs-msg{grid-template-columns:1fr}.bs-bubble::before{display:none}}
+</style>
+<link rel="stylesheet" href="kit.css">
+</head>
+<body>
+<header class="hero bs-hero">
+  <h1>Team Up</h1>
+  <p>Can, must, should: tips for a winning team · Level A2-B1 · 60 min</p>
+  <div class="bs-heroteam" id="heroTeam"></div>
+  <div class="bs-floor"></div>
+</header>
+
+<div class="hud">
+  <span class="lvl" id="lvl">LEVEL 1</span>
+  <div class="bar"><i id="xpbar"></i></div>
+  <b id="xptext">0 XP</b>
+  <span class="dia" id="gemHud"><span id="dias">0</span></span>
+</div>
+
+<button class="lk-tbtn" id="teacherBtn" type="button">Teacher version</button>
+
+<div class="wrap">
+  <section class="lk-overview">
+    <h2>In this lesson you will:</h2>
+    <ul>
+      <li>Create your own brawler card and say what it can and can't do.</li>
+      <li>Learn team words: roles, the map and the objective.</li>
+      <li>Learn <b>can / can't</b>, <b>must / mustn't</b> and <b>should / shouldn't</b>.</li>
+      <li>Sort game rules, tips and abilities.</li>
+      <li>Play GEM GRAB: choose the right modal and collect ten gems for your team.</li>
+      <li>Read a message from a team captain and fix grammar bugs.</li>
+      <li>Talk about games and write a beginner's guide.</li>
+    </ul>
+    <div class="lk-stages" id="stages"></div>
+  </section>
+
+  <section id="s1" data-stage="warm-up" data-min="5">
+    <h2><span class="lk-n">1</span>Build your brawler <span class="tag">warm-up</span><span class="lk-mode">individual</span></h2>
+    <p class="lk-ins">Create a brawler for your team. Choose a role, a colour and a hat. Then read your card out loud and add one more idea: <b>"My brawler can ... She can't ..."</b></p>
+    <div class="bs-av">
+      <div class="bs-av__stage"><div id="avBox"></div><div class="bs-av__name" id="avName">Sparky</div><span class="bs-av__role" id="avRole">tank</span></div>
+      <div class="bs-av__opts" id="avOpts"></div>
+    </div>
+    <div class="bs-say" id="avSay"></div>
+    <p><button class="btn" id="avDone" type="button">I described my brawler</button></p>
+    <div class="lk-qs"><span>Which role do you usually play?</span><span>Can you play in a team or only solo?</span><span>What can your favourite brawler do?</span></div>
+    <p class="lk-tnote" data-ru="Заметка: ученик выбирает роль и описывает своего бравлера предложениями с can / can't / should. Правило пока не объясняйте, просто моделируйте: «My brawler can run fast, but she can't take many hits.»">Нотатка: учень обирає роль і описує свого бравлера реченнями з can / can't / should. Правило поки не пояснюйте, просто моделюйте: «My brawler can run fast, but she can't take many hits.»</p>
+  </section>
+
+  <section id="s2" data-stage="vocabulary" data-min="8">
+    <h2><span class="lk-n">2</span>Team words <span class="tag">vocabulary</span><span class="lk-mode">teacher + student</span></h2>
+    <p class="lk-ins">Click a card: listen, read the meaning and the example. Say the example out loud.</p>
+    <div class="grid" id="vocab"></div>
+    <p class="lk-tnote" data-ru="Заметка: после карточек спросите: «Which role do you usually play? Why?» Слова tank, healer, sniper дети часто знают из игры, пусть сами объяснят их по-английски.">Нотатка: після карток спитайте: «Which role do you usually play? Why?» Слова tank, healer, sniper діти часто знають із гри, хай самі пояснять їх англійською.</p>
+  </section>
+
+  <section id="s3" data-stage="grammar" data-min="8">
+    <h2><span class="lk-n">3</span>Can, must, should <span class="tag">grammar</span><span class="lk-mode">teacher + student</span></h2>
+    <p class="lk-ins">Three small words help a team win. Read the examples. Then choose the right word in the quick check.</p>
+    <div class="legend"><span class="bk who">who</span><span class="bk hp">can / must / should</span><span class="bk vb">verb</span><span class="bk rest">the rest</span></div>
+    <div class="bs-modes">
+      <div class="bs-mode can">
+        <h3>can / can't</h3>
+        <p>Ability: what you are able to do.</p>
+        <div class="recipe"><span class="sign">+</span><span class="bk who">A healer</span><span class="bk hp">can</span><span class="bk vb">heal</span><span class="bk rest">the team.</span></div>
+        <div class="recipe"><span class="sign">&minus;</span><span class="bk who">A tank</span><span class="bk hp">can't</span><span class="bk vb">hit</span><span class="bk rest">from far away.</span></div>
+        <div class="recipe"><span class="sign">?</span><span class="bk hp">Can</span><span class="bk who">you</span><span class="bk vb">cover</span><span class="bk rest">me?</span></div>
+      </div>
+      <div class="bs-mode must">
+        <h3>must / mustn't</h3>
+        <p>Rules: very important, no choice.</p>
+        <div class="recipe"><span class="sign">+</span><span class="bk who">We</span><span class="bk hp">must</span><span class="bk vb">collect</span><span class="bk rest">ten gems.</span></div>
+        <div class="recipe"><span class="sign">&minus;</span><span class="bk who">You</span><span class="bk hp">mustn't</span><span class="bk vb">share</span><span class="bk rest">your password.</span></div>
+        <div class="tip"><b>mustn't</b> = it is not allowed. Don't do it!</div>
+      </div>
+      <div class="bs-mode should">
+        <h3>should / shouldn't</h3>
+        <p>Tips and advice: a good idea.</p>
+        <div class="recipe"><span class="sign">+</span><span class="bk who">Beginners</span><span class="bk hp">should</span><span class="bk vb">stay</span><span class="bk rest">with the team.</span></div>
+        <div class="recipe"><span class="sign">&minus;</span><span class="bk who">You</span><span class="bk hp">shouldn't</span><span class="bk vb">go</span><span class="bk rest">to the middle alone.</span></div>
+        <div class="recipe"><span class="sign">?</span><span class="bk hp">Should</span><span class="bk who">I</span><span class="bk vb">go</span><span class="bk rest">back?</span></div>
+      </div>
+    </div>
+    <div class="note"><b>Trap!</b> After can, must and should: verb without <b>to</b> and without <b>-s</b>. <s>She cans hide.</s> &rarr; She can hide. · <s>You must to win.</s> &rarr; You must win. · <s>Do you can heal?</s> &rarr; Can you heal?</div>
+    <h3 class="lk-sub">Quick check</h3>
+    <div class="bs-quick" id="quick"></div>
+    <p class="lk-ans">Answers: 1 can · 2 mustn't · 3 should · 4 can't · 5 must · 6 shouldn't</p>
+    <p class="lk-tnote" data-ru="Заметка: can = умение или разрешение, must = правило или сильная обязанность, should = совет. Главные ошибки: «must to», «she cans», «Do you can?». После модальных глаголов всегда первая форма глагола без to.">Нотатка: can = вміння або дозвіл, must = правило чи сильний обов’язок, should = порада. Головні помилки: «must to», «she cans», «Do you can?». Після модальних дієслів завжди перша форма дієслова без to.</p>
+  </section>
+
+  <section id="s4" data-stage="practice" data-min="5">
+    <h2><span class="lk-n">4</span>Rule, tip or ability? <span class="tag">+4 XP each</span><span class="lk-mode">individual</span></h2>
+    <p class="lk-ins">Click an idea, then click the right box. The full sentence appears. Read it out loud!</p>
+    <div class="pool" id="sortPool"></div>
+    <div class="bs-sort">
+      <div class="bs-bin must" data-bin="must"><h4>Rule: must / mustn't</h4><ul></ul></div>
+      <div class="bs-bin should" data-bin="should"><h4>Tip: should / shouldn't</h4><ul></ul></div>
+      <div class="bs-bin can" data-bin="can"><h4>Ability: can / can't</h4><ul></ul></div>
+    </div>
+    <p class="lk-ans" id="sortAns"></p>
+    <p class="lk-tnote" data-ru="Заметка: ученик сначала выбирает категорию, потом читает полное предложение вслух. Попросите добавить свой пример в каждую колонку.">Нотатка: учень спершу обирає категорію, потім читає повне речення вголос. Попросіть додати власний приклад у кожну колонку.</p>
+  </section>
+
+  <section id="s5" data-stage="game" data-min="12">
+    <h2><span class="lk-n">5</span>GEM GRAB <span class="tag">main game</span><span class="lk-mode">teacher + student</span></h2>
+    <p class="lk-ins">Right answer: your team grabs a gem. Wrong answer or too slow: the rival team grabs one. Get <b>10 gems</b> and more than the rivals, and the countdown starts. Then answer <b>3 more</b> right to win!</p>
+    <div class="bs-rules"><span>10 gems = countdown</span><span>Mistake in the countdown = you drop 2 gems</span><span>Rivals have 10? Answer right to take gems back!</span></div>
+    <div class="bs-game" id="game">
+      <div class="bs-top">
+        <div class="bs-team blue"><span>YOUR TEAM</span><b id="gBlue">0</b><span class="bs-pips" id="pBlue"></span></div>
+        <div class="bs-cd" id="gCd">Gem Grab<b>10</b>to win</div>
+        <div class="bs-team red"><span class="bs-pips" id="pRed"></span><b id="gRed">0</b><span>RIVALS</span></div>
+      </div>
+      <div class="bs-field" id="field"><div class="bs-mine" id="mine"></div></div>
+      <div class="bs-timer"><i id="timer"></i></div>
+      <div class="bs-q" id="gq">Press START to play!</div>
+      <div class="bs-opts" id="gopts"><button class="btn" id="gStart" type="button">START</button></div>
+    </div>
+    <p class="lk-tnote" data-ru="Заметка: как в настоящем Gem Grab: 10 кристаллов и больше, чем у соперников, запускают отсчёт. Три правильных ответа подряд, и команда побеждает. Ошибка во время отсчёта: минус 2 кристалла. После игры пусть ученик объяснит правила по-английски: «You must... You can't...»">Нотатка: як у справжньому Gem Grab: 10 кристалів і більше, ніж у суперників, запускають відлік. Три правильні відповіді, і команда перемагає. Помилка під час відліку: мінус 2 кристали. Після гри хай учень пояснить правила англійською: «You must... You can't...»</p>
+  </section>
+
+  <section id="s6" data-stage="reading" data-min="7">
+    <h2><span class="lk-n">6</span>A message from the captain <span class="tag">reading</span><span class="lk-mode">individual</span></h2>
+    <p class="lk-ins">Leo is new in the team. The captain, Zip, sends him a message. Read it. Then decide: <b>True or False?</b></p>
+    <div class="bs-msg">
+      <div class="bs-msg__av" id="zipAv"></div>
+      <div class="bs-bubble" id="zipMsg">
+        <p>Hi Leo! Welcome to the Yellow Stars, our team. Here are my tips for your first Gem Grab matches.</p>
+        <p>First, the rules. In Gem Grab, gems appear in the middle of the map. Your team <span class="md">must</span> collect ten gems. Then a countdown starts, and you <span class="md">must</span> keep the gems until it ends. If the gem carrier's health goes to zero, the gems fall on the floor, and the other team <span class="md">can</span> take them.</p>
+        <p>Now the roles. Mo is our tank. He <span class="md">can</span> take a lot of hits, so he <span class="md">should</span> go first. Ana is our healer. She <span class="md">can't</span> hit very hard, but she <span class="md">can</span> heal us. I am the sniper. I <span class="md">can</span> hit from far away, but I <span class="md">shouldn't</span> stand too close to the other team.</p>
+        <p>And you? You <span class="md">can</span> be our gem carrier! You <span class="md">should</span> stay behind Mo and pick up the gems. You <span class="md">shouldn't</span> run into the middle alone. When you have a lot of gems, you <span class="md">should</span> go back and hide in a bush.</p>
+        <p>Last thing: we <span class="md">mustn't</span> be rude in the chat. We win together and we lose together. Good luck and have fun!<br><b>Zip</b></p>
+      </div>
+    </div>
+    <p><button class="btn alt" id="readBtn" type="button">Listen</button> <button class="btn alt" id="hlBtn" type="button">Show the modals</button></p>
+    <div class="bs-tf" id="tfList"></div>
+    <p class="lk-ans">Answers: 1 True · 2 False (ten gems) · 3 True · 4 False (she can't hit very hard) · 5 False (he shouldn't) · 6 True · 7 False (Zip is the sniper)</p>
+    <p class="lk-tnote" data-ru="Заметка: первое чтение на 2 минуты: кто какую роль играет. Второе: найти все can, must, should и объяснить, это правило, совет или умение. Кнопка «Show the modals» подсвечивает их.">Нотатка: перше читання на 2 хвилини: хто яку роль грає. Друге: знайти всі can, must, should і пояснити, це правило, порада чи вміння. Кнопка «Show the modals» підсвічує їх.</p>
+  </section>
+
+  <section id="s7" data-stage="grammar check" data-min="5">
+    <h2><span class="lk-n">7</span>Fix the bugs <span class="tag">+15 XP each</span><span class="lk-mode">individual</span></h2>
+    <p class="lk-ins">OK or bug? If it is a bug, say the correct sentence out loud.</p>
+    <div id="bugList"></div>
+    <p class="lk-tnote" data-ru="Заметка: после каждого BUG ученик произносит правильное предложение. Самая частая ошибка у русско- и украиноязычных учеников: «must to», по аналогии с «должен сделать».">Нотатка: після кожного BUG учень вимовляє правильне речення. Найчастіша помилка в українсько- і російськомовних учнів: «must to», за аналогією з «мушу зробити».</p>
+  </section>
+
+  <section id="s8" data-stage="speaking" data-min="6">
+    <h2><span class="lk-n">8</span>Team talk <span class="tag">speaking</span><span class="lk-mode">teacher + student</span></h2>
+    <p class="lk-ins">Choose a card. Ask your teacher, then answer yourself. Speak for 30 seconds. Use <b>can, must, should</b>.</p>
+    <div class="timer" id="timer30">0:30</div>
+    <p style="text-align:center"><button class="btn" id="timerBtn" type="button">Start 30 seconds</button></p>
+    <div class="talk" id="talkList"></div>
+    <p class="lk-tnote" data-ru="Заметка: ученик сначала задаёт вопрос вам, потом отвечает сам. Слушайте, нет ли to после модальных и -s после can.">Нотатка: учень спершу ставить питання вам, потім відповідає сам. Слухайте, чи немає to після модальних і -s після can.</p>
+  </section>
+
+  <section id="s9" data-stage="writing" data-min="4">
+    <h2><span class="lk-n">9</span>Beginner's guide <span class="tag">production</span><span class="lk-mode">individual</span></h2>
+    <p class="lk-ins">A new player joins your team. Write a short guide for them. Finish every sentence, then press <b>Make my guide</b> and read it out loud.</p>
+    <div class="bs-guide" id="guide"></div>
+    <p><button class="btn" id="guideBtn" type="button">Make my guide</button></p>
+    <div class="bs-guide__out" id="guideOut" hidden></div>
+    <p class="lk-ans">Model answers: To win, you must collect ten gems. · You mustn't be rude in the chat. · You should stay with your team. · You shouldn't run into the middle alone. · A good teammate can cover the gem carrier.</p>
+    <p class="lk-tnote" data-ru="Заметка: гайд можно задать домой голосовым. Хороший результат: 5 предложений с разными модальными глаголами и без ошибок в форме глагола.">Нотатка: гайд можна задати додому голосовим. Хороший результат: 5 речень з різними модальними дієсловами і без помилок у формі дієслова.</p>
+  </section>
+
+  <section id="missions" data-stage="game" data-min="0">
+    <h2><span class="lk-n">10</span>Missions for the game <span class="tag">play + speak</span></h2>
+    <p class="lk-ins">Play a few matches with your teacher or a friend. After each mission, tell your teacher about it with can, must or should.</p>
+    <div class="missions" id="misList"></div>
+    <p class="lk-tnote" data-ru="Безопасность: напомните, что в чате игры нельзя писать имя, школу, адрес и пароль. Играть лучше с теми, кого знаешь в жизни.">Безпека: нагадайте, що в чаті гри не можна писати ім’я, школу, адресу й пароль. Грати краще з тими, кого знаєш у житті.</p>
+  </section>
+
+  <section id="watch" data-stage="video" data-min="0">
+    <h2><span class="lk-n">11</span>Watch &amp; talk <span class="tag">videos</span></h2>
+    <p class="lk-ins">Official animations from the game's YouTube channel. Watch, pause and talk!</p>
+    <p class="lk-tnote" data-ru="Посмотрите видео сами перед уроком и выберите то, что подходит по возрасту ученика. Это мультфильмы с официального канала игры.">Перегляньте відео самі перед уроком і оберіть те, що підходить за віком учня. Це мультфільми з офіційного каналу гри.</p>
+    <div class="vids" id="vidList"></div>
+  </section>
+
+  <section class="sm-end bs-end"><h2>GG, team! See you in the next match.</h2><div class="bs-heroteam" id="endTeam"></div></section>
+
+  <details class="teacher">
+    <summary data-ru="Для учителя: план на 60 минут">Для вчителя: план на 60 хвилин</summary>
+    <p data-ru="1. Build your brawler (5 мин): ученик создаёт бравлера и описывает его с can / can't. 2. Team words (8 мин). 3. Правило (8 мин): can = умение, must = правило, should = совет, плюс quick check. 4. Rule, tip or ability (5 мин). 5. GEM GRAB (12 мин): главная игра, можно сыграть 2 раза. 6. Сообщение капитана (7 мин). 7. Fix the bugs (5 мин). 8. Team talk (6 мин). 9. Beginner's guide (4 мин). Миссии и видео: в конце или в следующий раз.">1. Build your brawler (5 хв): учень створює бравлера й описує його з can / can't. 2. Team words (8 хв). 3. Правило (8 хв): can = вміння, must = правило, should = порада, плюс quick check. 4. Rule, tip or ability (5 хв). 5. GEM GRAB (12 хв): головна гра, можна зіграти 2 рази. 6. Повідомлення капітана (7 хв). 7. Fix the bugs (5 хв). 8. Team talk (6 хв). 9. Beginner's guide (4 хв). Місії й відео: наприкінці або наступного разу.</p>
+    <p data-ru="Безопасность: напомните, что в чатах игр нельзя писать имя, школу, адрес, номер телефона и пароль.">Безпека: нагадайте, що в чатах ігор не можна писати ім’я, школу, адресу, номер телефону й пароль.</p>
+    <p data-ru="Домашка: голосовое на 1 минуту «My tips for a new player»: 2 правила с must / mustn't, 2 совета с should / shouldn't и что умеет любимый бравлер.">Домашка: голосове на 1 хвилину «My tips for a new player»: 2 правила з must / mustn't, 2 поради з should / shouldn't і що вміє улюблений бравлер.</p>
+  </details>
+</div>
+
+<div class="toast" id="toast"></div>
+<div class="lvlup" id="lvlup"><b>LEVEL 2!</b><span>Keep going!</span></div>
+<script>
+// ---------- звуки (генеруємо самі), частинки, XP ----------
+let AC; const tone = (f, d, type = 'square', v = .07, when = 0) => { try { AC = AC || new (window.AudioContext || window.webkitAudioContext)(); const o = AC.createOscillator(), g = AC.createGain(); o.type = type; o.frequency.value = f; g.gain.value = v; o.connect(g); g.connect(AC.destination); const t = AC.currentTime + when; o.start(t); g.gain.exponentialRampToValueAtTime(.0001, t + d); o.stop(t + d); } catch (e) { } };
+const pop = () => { tone(660, .08); tone(990, .12, 'square', .06, .07); };
+const buzz = () => { tone(140, .25, 'sawtooth', .06); };
+const fanfare = () => [523, 659, 784, 1046].forEach((f, i) => tone(f, .18, 'square', .07, i * .11));
+let lastX = innerWidth / 2, lastY = innerHeight / 2;
+addEventListener('pointerdown', (e) => { lastX = e.clientX; lastY = e.clientY; }, true);
+function burst(n = 14) {
+  const cols = ['#b06cff', '#ffd23f', '#2f80ed', '#ff5a5f', '#7cff4f', '#ff8fd8'];
+  for (let i = 0; i < n; i++) { const p = document.createElement('i'); p.className = 'pxl'; p.style.left = lastX + 'px'; p.style.top = lastY + 'px'; p.style.background = cols[i % cols.length];
+    const a = Math.random() * Math.PI * 2, r = 50 + Math.random() * 70; p.style.setProperty('--dx', Math.cos(a) * r + 'px'); p.style.setProperty('--dy', Math.sin(a) * r - 30 + 'px'); document.body.appendChild(p); setTimeout(() => p.remove(), 800); }
+}
+const LESSON_ID = 'brawl';
+let xp = 0, dias = 0; const done = new Set();
+function gain(key, n, msg) {
+  if (done.has(key)) return; done.add(key); const before = Math.floor(xp / 100); xp += n; if (n >= 15) dias++;
+  // якщо учень увійшов на Murly, досвід іде і в його загальний рівень
+  try { if (location.hostname.endsWith('murly.com.ua')) fetch('/api/xp', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ items: [{ key: `game:${LESSON_ID}:${key}`, amount: Math.min(60, n) }], source: 'game' }) }).catch(() => {}); } catch (e) { }
+  const lvl = Math.floor(xp / 100) + 1;
+  burst(); if (lvl - 1 > before) { fanfare(); const L = document.getElementById('lvlup'); L.querySelector('b').textContent = 'LEVEL ' + lvl + '!'; L.classList.remove('show'); void L.offsetWidth; L.classList.add('show'); } else pop();
+  document.getElementById('xpbar').style.width = (xp % 100) + '%';
+  document.getElementById('xptext').textContent = xp + ' XP';
+  document.getElementById('lvl').textContent = 'LEVEL ' + lvl;
+  document.getElementById('dias').textContent = dias;
+  toast(msg || ('+' + n + ' XP'));
+}
+let tt; function toast(m) { const t = document.getElementById('toast'); t.textContent = m; t.classList.add('show'); clearTimeout(tt); tt = setTimeout(() => t.classList.remove('show'), 1300); }
+function say(w) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; u.rate = .9; speechSynthesis.speak(u); } catch (e) { } }
+const $ = (id) => document.getElementById(id);
+
+// ---------- наші персонажі й значки (власні SVG, не з гри) ----------
+const INK = '#1d1d2b';
+const starPath = (R, r) => { let d = ''; for (let i = 0; i < 10; i++) { const a = -Math.PI / 2 + i * Math.PI / 5, rr = i % 2 ? r : R; d += (i ? 'L' : 'M') + (Math.cos(a) * rr).toFixed(1) + ' ' + (Math.sin(a) * rr).toFixed(1); } return d + 'Z'; };
+const SYM = {
+  tank: `<path d="M0 -9 L8 -6 L7 3 Q4 8 0 10 Q-4 8 -7 3 L-8 -6 Z" fill="#2f80ed" stroke="${INK}" stroke-width="2"/><path d="M0 -6 V7" stroke="#fff" stroke-width="2"/>`,
+  healer: `<path d="M-3 -9h6v6h6v6h-6v6h-6v-6h-6v-6h6z" fill="#3ecf4c" stroke="${INK}" stroke-width="2"/>`,
+  sniper: `<circle r="8" fill="#fff" stroke="#ff5a5f" stroke-width="2.5"/><circle r="2.5" fill="#ff5a5f"/><path d="M0 -11v5M0 6v5M-11 0h5M6 0h5" stroke="${INK}" stroke-width="2"/>`,
+  support: `<path d="${starPath(10, 4.5)}" fill="#ff8fd8" stroke="${INK}" stroke-width="2" stroke-linejoin="round"/>`,
+  speedy: `<path d="M2 -10 L-6 2 L0 2 L-2 10 L6 -2 L0 -2 Z" fill="#ffd23f" stroke="${INK}" stroke-width="2" stroke-linejoin="round"/>`,
+};
+const GEM = `<path d="M-8 -4 L-4 -10 L4 -10 L8 -4 L0 10 Z" fill="#b06cff" stroke="${INK}" stroke-width="2" stroke-linejoin="round"/><path d="M-4 -10 L-2 -4 L0 10 M4 -10 L2 -4 L0 10 M-8 -4 H8" fill="none" stroke="#5e2bb0" stroke-width="1.2"/><path d="M-5 -6 L-3 -9" stroke="#fff" stroke-width="1.6"/>`;
+const gemSvg = (cls = '') => `<svg viewBox="-11 -12 22 24" class="${cls}" aria-hidden="true">${GEM}</svg>`;
+function blob(col, role = 'tank', hat = 'cap', hatCol = '#ffd23f', mood = 'happy') {
+  const hats = {
+    cap: `<path d="M24 34 Q24 12 50 12 Q76 12 76 34 Z" fill="${hatCol}" stroke="${INK}" stroke-width="4"/><path d="M60 30 H90 Q90 38 76 38 H60 Z" fill="${hatCol}" stroke="${INK}" stroke-width="4"/>`,
+    band: `<rect x="15" y="30" width="70" height="11" fill="${hatCol}" stroke="${INK}" stroke-width="4"/><path d="M84 33 L96 26 L95 42 Z" fill="${hatCol}" stroke="${INK}" stroke-width="3"/>`,
+    ears: `<path d="M22 32 L20 6 L40 22 Z M78 32 L80 6 L60 22 Z" fill="${hatCol}" stroke="${INK}" stroke-width="4" stroke-linejoin="round"/>`,
+    crown: `<path d="M30 26 L32 6 L41 16 L50 4 L59 16 L68 6 L70 26 Z" fill="#ffd23f" stroke="${INK}" stroke-width="4" stroke-linejoin="round"/>`,
+    none: '',
+  };
+  const mouth = mood === 'sad' ? `<path d="M42 70 Q50 64 58 70" fill="none" stroke="${INK}" stroke-width="3.5" stroke-linecap="round"/>` : `<path d="M40 64 Q50 74 60 64" fill="#fff" stroke="${INK}" stroke-width="3.5" stroke-linejoin="round"/>`;
+  return `<svg viewBox="0 0 100 120" aria-hidden="true">
+    <ellipse cx="35" cy="112" rx="13" ry="7" fill="${INK}"/><ellipse cx="65" cy="112" rx="13" ry="7" fill="${INK}"/>
+    <rect x="14" y="24" width="72" height="84" rx="30" fill="${col}" stroke="${INK}" stroke-width="4"/>
+    <path d="M26 44 Q28 32 38 30" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity=".6"/>
+    <circle cx="38" cy="52" r="10" fill="#fff" stroke="${INK}" stroke-width="3"/><circle cx="62" cy="52" r="10" fill="#fff" stroke="${INK}" stroke-width="3"/>
+    <circle cx="40" cy="53" r="4.5" fill="${INK}"/><circle cx="64" cy="53" r="4.5" fill="${INK}"/>
+    ${mouth}${hats[hat] || ''}
+    <circle cx="50" cy="90" r="12" fill="#fff" stroke="${INK}" stroke-width="3"/>
+    <g transform="translate(50 90) scale(.85)">${SYM[role] || ''}</g></svg>`;
+}
+// маленькі значки для карток (власні)
+const mini = (x, y, c, s = 1) => `<g transform="translate(${x} ${y}) scale(${s})"><rect x="-8" y="-8" width="16" height="17" rx="7" fill="${c}" stroke="${INK}" stroke-width="1.8"/><circle cx="-3" cy="-2" r="2" fill="#fff"/><circle cx="3" cy="-2" r="2" fill="#fff"/><circle cx="-2.6" cy="-1.8" r="1" fill="${INK}"/><circle cx="3.4" cy="-1.8" r="1" fill="${INK}"/><path d="M-3 3 Q0 6 3 3" fill="none" stroke="${INK}" stroke-width="1.3"/></g>`;
+const ICON = {
+  team: mini(-10, 4, '#2f80ed') + mini(10, 4, '#3ecf4c') + mini(0, -8, '#ffd23f'),
+  teammate: mini(-8, 2, '#2f80ed', 1.2) + mini(9, 2, '#ff8fd8', 1.2) + `<path d="M-1 -14 h2 v-2 h2 v2 h2 v2 h-2 v2 h-2 v-2 h-2 z" fill="#ff5a5f"/>`,
+  tank: `<circle r="17" fill="#e3f4ff" stroke="${INK}" stroke-width="2"/><g transform="scale(1.4)">${SYM.tank}</g>`,
+  healer: `<circle r="17" fill="#e6fff0" stroke="${INK}" stroke-width="2"/><g transform="scale(1.4)">${SYM.healer}</g>`,
+  sniper: `<circle r="17" fill="#fff0f0" stroke="${INK}" stroke-width="2"/><g transform="scale(1.4)">${SYM.sniper}</g>`,
+  support: `<circle r="17" fill="#fff0fb" stroke="${INK}" stroke-width="2"/><g transform="scale(1.4)">${SYM.support}</g>`,
+  gem: `<g transform="scale(1.6)">${GEM}</g>`,
+  carrier: mini(0, 6, '#2f80ed', 1.5) + `<g transform="translate(0 -12) scale(.75)">${GEM}</g>`,
+  objective: `<circle r="16" fill="#fff" stroke="${INK}" stroke-width="2"/><circle r="10" fill="#ff5a5f" stroke="${INK}" stroke-width="2"/><circle r="4" fill="#fff" stroke="${INK}" stroke-width="2"/>`,
+  mid: `<rect x="-17" y="-14" width="34" height="28" fill="#79c95b" stroke="${INK}" stroke-width="2"/><circle r="6" fill="#b06cff" stroke="${INK}" stroke-width="2"/><rect x="-14" y="-11" width="8" height="5" fill="#2e8b2e"/><rect x="6" y="6" width="8" height="5" fill="#2e8b2e"/>`,
+  bush: `<circle cx="-8" cy="4" r="9" fill="#2e8b2e" stroke="${INK}" stroke-width="2"/><circle cx="8" cy="4" r="9" fill="#2e8b2e" stroke="${INK}" stroke-width="2"/><circle cx="0" cy="-4" r="10" fill="#36a336" stroke="${INK}" stroke-width="2"/><circle cx="-3" cy="-4" r="1.6" fill="#fff"/><circle cx="3" cy="-4" r="1.6" fill="#fff"/>`,
+  wall: `<rect x="-17" y="-10" width="34" height="20" fill="#c98b5b" stroke="${INK}" stroke-width="2"/><path d="M-17 0 H17 M-6 -10 V0 M8 -10 V0 M-12 0 V10 M2 0 V10 M12 0 V10" stroke="${INK}" stroke-width="1.6"/>`,
+  health: `<rect x="-17" y="-5" width="34" height="10" fill="#333" stroke="${INK}" stroke-width="2"/><rect x="-15" y="-3" width="20" height="6" fill="#3ecf4c"/><path d="M0 -8 C-6 -16 -14 -10 -8 -4 L0 3 L8 -4 C14 -10 6 -16 0 -8 Z" transform="translate(0 -6) scale(.6)" fill="#ff5a5f" stroke="${INK}" stroke-width="2"/>`,
+  respawn: `<path d="M10 -9 A13 13 0 1 0 13 4" fill="none" stroke="#3ecf4c" stroke-width="5"/><path d="M6 -15 L15 -8 L5 -3 Z" fill="#3ecf4c" stroke="${INK}" stroke-width="1.5"/>` + mini(0, 1, '#2f80ed', .8),
+  super: `<path d="${starPath(17, 8)}" fill="#ffd23f" stroke="${INK}" stroke-width="2" stroke-linejoin="round"/><path d="${starPath(8, 4)}" fill="#fff"/>`,
+  aim: `<circle r="13" fill="none" stroke="${INK}" stroke-width="2.5"/><circle r="5" fill="none" stroke="#ff5a5f" stroke-width="2.5"/><path d="M0 -18v8M0 10v8M-18 0h8M10 0h8" stroke="${INK}" stroke-width="2.5"/>`,
+  dodge: mini(6, 0, '#ff8fd8', 1.4) + `<path d="M-18 -6 h10 M-16 0 h8 M-18 6 h10" stroke="${INK}" stroke-width="2.5" stroke-linecap="round"/>`,
+  cover: mini(8, 2, '#ffd23f', 1.1) + `<g transform="translate(-7 0) scale(1.3)">${SYM.tank}</g>`,
+  retreat: `<path d="M14 -6 H-4 V-13 L-17 0 L-4 13 V6 H14 Z" fill="#8fd3ff" stroke="${INK}" stroke-width="2" stroke-linejoin="round"/>`,
+  countdown: `<circle r="16" fill="#fff" stroke="${INK}" stroke-width="2.5"/><text y="7" text-anchor="middle" font-size="19" font-weight="900" fill="#ff5a5f" font-family="Trebuchet MS,Verdana,sans-serif">10</text>`,
+  match: `<rect x="-18" y="-11" width="36" height="22" rx="4" fill="#ffd23f" stroke="${INK}" stroke-width="2"/><text y="5" text-anchor="middle" font-size="12" font-weight="900" fill="${INK}" font-family="Trebuchet MS,Verdana,sans-serif">3 v 3</text>`,
+  trophy: `<path d="M-10 -14 H10 V-2 Q10 8 0 8 Q-10 8 -10 -2 Z" fill="#ffd23f" stroke="${INK}" stroke-width="2"/><path d="M-10 -10 H-16 Q-16 0 -9 1 M10 -10 H16 Q16 0 9 1" fill="none" stroke="${INK}" stroke-width="2"/><rect x="-3" y="8" width="6" height="5" fill="#c99a2e"/><rect x="-9" y="13" width="18" height="4" fill="#c99a2e" stroke="${INK}" stroke-width="1.5"/>`,
+  chat: `<path d="M-16 -12 H16 V8 H-4 L-10 15 V8 H-16 Z" fill="#fff" stroke="${INK}" stroke-width="2" stroke-linejoin="round"/><path d="M-8 -6 L8 4 M8 -6 L-8 4" stroke="#ff5a5f" stroke-width="3"/>`,
+};
+const ic = (k) => `<svg viewBox="-20 -20 40 40" aria-hidden="true">${ICON[k] || ''}</svg>`;
+
+// етапи уроку
+const STAGES = [...document.querySelectorAll('section[data-stage]')].filter((s) => +s.dataset.min > 0);
+$('stages').innerHTML = STAGES.map((s) => `<a href="#${s.id}"><b>${s.querySelector('.lk-n').textContent}</b><span>${s.dataset.stage}</span><small>${s.dataset.min} min</small></a>`).join('');
+$('teacherBtn').onclick = (e) => { const on = document.body.classList.toggle('teacher'); e.currentTarget.textContent = on ? 'Student version' : 'Teacher version'; };
+$('gemHud').insertAdjacentHTML('afterbegin', gemSvg('bs-hgem').replace('class="bs-hgem"', 'style="width:22px;height:24px"'));
+const TEAM = [['Mo', '#2f80ed', 'tank', 'band', '#ff5a5f'], ['Ana', '#3ecf4c', 'healer', 'ears', '#ff8fd8'], ['Zip', '#ff9f1c', 'sniper', 'cap', '#2f80ed'], ['Leo', '#ff8fd8', 'speedy', 'none', '#ffd23f']];
+const teamHtml = () => TEAM.map(([n, c, r, h, hc], i) => (i === 2 ? `<span class="bs-mem">${gemSvg('bs-hgem')}</span>` : '') + `<div class="bs-mem">${blob(c, r, h, hc)}<b>${n}</b></div>`).join('');
+$('heroTeam').innerHTML = teamHtml(); $('endTeam').innerHTML = teamHtml();
+
+// ---------- 1. бравлер ----------
+const COLORS = [['red', '#ff5a5f'], ['blue', '#2f80ed'], ['green', '#3ecf4c'], ['yellow', '#ffd23f'], ['purple', '#8e6cff'], ['pink', '#ff8fd8'], ['orange', '#ff9f1c'], ['white', '#ffffff']];
+const ROLES = {
+  tank: ['can take a lot of hits', "can't hit from far away", 'should go first and protect the team'],
+  healer: ['can heal teammates', "can't hit very hard", 'should stay behind the tank'],
+  sniper: ['can hit from far away', "can't take many hits", 'should stay at the back and aim carefully'],
+  support: ['can make teammates faster', "can't win the match alone", 'should help the gem carrier'],
+  speedy: ['can run very fast', "can't take many hits", 'should collect the gems and hide in bushes'],
+};
+const AV = { role: 'tank', col: '#2f80ed', hat: 'cap', hatCol: '#ffd23f', name: 'Sparky', he: 'She' };
+const OPTS = [
+  ['Role', 'role', Object.keys(ROLES).map((r) => [r, r])],
+  ['Colour', 'col', COLORS],
+  ['Hat', 'hat', [['cap', 'cap'], ['headband', 'band'], ['ears', 'ears'], ['crown', 'crown'], ['no hat', 'none']]],
+  ['Hat colour', 'hatCol', COLORS],
+  ['He / she', 'he', [['he', 'He'], ['she', 'She'], ['it', 'It']]],
+];
+function drawAv() {
+  $('avBox').innerHTML = blob(AV.col, AV.role, AV.hat, AV.hatCol);
+  $('avName').textContent = AV.name || 'My brawler'; $('avRole').textContent = AV.role;
+  const [a, b, c] = ROLES[AV.role]; const p = AV.he;
+  $('avSay').innerHTML = `This is <b>${AV.name || 'my brawler'}</b>. ${p} is a ${AV.role}. ${p} <b>${a.split(' ')[0]}</b> ${a.split(' ').slice(1).join(' ')}, but ${p.toLowerCase()} <b>${b.split(' ')[0]}</b> ${b.split(' ').slice(1).join(' ')}. In a team, ${p.toLowerCase()} <b>should</b> ${c.replace('should ', '')}.`;
+}
+OPTS.forEach(([label, key, vals]) => {
+  const row = document.createElement('div'); row.className = 'bs-row'; row.innerHTML = `<b>${label}</b>`;
+  vals.forEach(([nm, v]) => {
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'bs-sw' + (AV[key] === v ? ' on' : '');
+    if (v.startsWith('#')) { b.style.background = v; b.title = nm; b.setAttribute('aria-label', nm); } else b.textContent = nm;
+    b.onclick = () => { AV[key] = v; row.querySelectorAll('.bs-sw').forEach((x) => x.classList.remove('on')); b.classList.add('on'); tone(520 + Math.random() * 300, .06); drawAv(); };
+    row.appendChild(b);
+  });
+  $('avOpts').appendChild(row);
+});
+(() => { const row = document.createElement('div'); row.className = 'bs-row'; row.innerHTML = '<b>Name</b><input id="avIn" maxlength="14" value="Sparky" aria-label="Brawler name">'; $('avOpts').appendChild(row); $('avIn').oninput = (e) => { AV.name = e.target.value.trim(); drawAv(); }; })();
+$('avDone').onclick = () => { say($('avSay').textContent); gain('avatar', 15, '+15 XP · great brawler!'); };
+drawAv();
+
+// ---------- 2. слова ----------
+const WORDS = [
+  ['team', 'a team', 'A group of players who play together.', 'Our team has three players.'],
+  ['teammate', 'a teammate', 'A player in your team.', 'My teammate can heal me.'],
+  ['match', 'a match', 'One game from the start to the end.', 'A match takes about two minutes.'],
+  ['tank', 'a tank', 'A strong player with lots of health. A tank goes first.', 'The tank should protect the team.'],
+  ['healer', 'a healer', 'A player who makes teammates healthy again.', "A healer can't hit very hard."],
+  ['sniper', 'a sniper', 'A player who hits from far away.', 'A sniper should stay at the back.'],
+  ['support', 'a support', 'A player who helps the team, for example makes them faster.', "A support can't win alone."],
+  ['gem', 'a gem', 'A purple crystal. Collect gems to win.', 'We must collect ten gems.'],
+  ['carrier', 'the gem carrier', 'The player who picks up and keeps the gems.', "The gem carrier shouldn't go in alone."],
+  ['objective', 'the objective', 'The main goal of the match.', 'In Gem Grab, the objective is to keep ten gems.'],
+  ['mid', 'the middle', 'The centre of the map. The gems appear here.', 'Never go to the middle alone!'],
+  ['bush', 'a bush', 'Tall grass. You can hide in it.', 'You can hide in a bush.'],
+  ['wall', 'a wall', "You can't walk through it.", 'Stand behind a wall to stay safe.'],
+  ['health', 'health', 'How strong you are now. At zero, you respawn.', 'When your health is low, you should go back.'],
+  ['respawn', 'to respawn', 'To come back into the match after a few seconds.', 'You can respawn after five seconds.'],
+  ['super', 'a super', 'A special power. It gets ready during the match.', "I can't use my super yet."],
+  ['aim', 'to aim', 'To point carefully at something.', 'You should aim carefully.'],
+  ['dodge', 'to dodge', "To move quickly so something doesn't hit you.", 'You can dodge if you move left and right.'],
+  ['cover', 'to cover a teammate', 'To stay near a teammate and protect them.', 'Can you cover me? I have the gems!'],
+  ['retreat', 'to go back / retreat', 'To move back to a safe place.', 'We should retreat and wait for our healer.'],
+  ['countdown', 'a countdown', 'Time counting down: 10, 9, 8...', 'The countdown started. We must keep the gems!'],
+  ['trophy', 'to win / to lose', 'To be the best team / not the best team.', 'We lost, but we can win next time.'],
+];
+WORDS.forEach(([k, word, def, ex]) => {
+  const card = document.createElement('div'); card.className = 'card';
+  card.innerHTML = `<div class="in"><div class="face front">${ic(k)}<b>${word}</b></div><div class="face back"><b>${word}</b><span>${def}</span><em>${ex}</em></div></div>`;
+  card.onclick = () => { card.classList.toggle('flip'); say(card.classList.contains('flip') ? word.split(' / ')[0] + '. ' + ex : word.split(' / ')[0]); gain('v-' + k, 2, '+2 XP · ' + word); };
+  $('vocab').appendChild(card);
+});
+
+// ---------- 3. quick check ----------
+const QUICK = [
+  ['A sniper ___ hit players from far away.', 'can', 'must'],
+  ['You ___ share your password with anyone!', "mustn't", "can't"],
+  ['Beginners ___ stay close to the tank. It is a good idea.', 'should', 'must'],
+  ["I ___ use my super yet. It isn't ready.", "can't", "shouldn't"],
+  ['To start the countdown, your team ___ have ten gems. That is the rule.', 'must', 'should'],
+  ["You ___ run into the middle alone. It's a bad idea.", "shouldn't", "can't"],
+];
+QUICK.forEach(([s, ok, bad], i) => {
+  const d = document.createElement('div'); d.className = 'q';
+  d.innerHTML = `<span class="n">${i + 1}</span><span>${s.replace('___', '<span class="slot">?</span>')}</span><span class="o"></span>`;
+  [ok, bad].sort(() => Math.random() - .5).forEach((w) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'opt'; b.textContent = w;
+    b.onclick = () => { if (d.dataset.done) return; if (w === ok) { b.classList.add('ok'); d.dataset.done = 1; d.querySelector('.slot').textContent = ok; say(s.replace('___', ok)); gain('qc' + i, 4, '+4 XP'); } else { b.classList.remove('bad'); void b.offsetWidth; b.classList.add('bad'); buzz(); } };
+    d.querySelector('.o').appendChild(b); });
+  $('quick').appendChild(d);
+});
+
+// ---------- 4. правило, порада чи вміння ----------
+const SORT = [
+  ['hide in a bush', 'can', 'You can hide in a bush.'],
+  ['walk through walls', 'can', "You can't walk through walls."],
+  ['respawn after a few seconds', 'can', 'You can respawn after a few seconds.'],
+  ['heal your teammates (healer)', 'can', 'A healer can heal teammates.'],
+  ['collect ten gems to start the countdown', 'must', 'You must collect ten gems to start the countdown.'],
+  ['share your password', 'must', "You mustn't share your password."],
+  ['be rude in the chat', 'must', "You mustn't be rude in the chat."],
+  ['keep the gems until the countdown ends', 'must', 'You must keep the gems until the countdown ends.'],
+  ['stay with your team', 'should', 'You should stay with your team.'],
+  ['run into the middle alone', 'should', "You shouldn't run into the middle alone."],
+  ['try different brawlers', 'should', 'You should try different brawlers.'],
+  ['go back when your health is low', 'should', 'You should go back when your health is low.'],
+];
+$('sortAns').textContent = 'Answers: ' + SORT.map((x) => x[2]).join(' · ');
+let sel = null;
+SORT.slice().sort(() => Math.random() - .5).forEach(([t, bin, full]) => {
+  const b = document.createElement('button'); b.type = 'button'; b.className = 'w'; b.textContent = t;
+  b.onclick = () => { document.querySelectorAll('#sortPool .w').forEach((x) => x.classList.remove('sel')); b.classList.add('sel'); sel = { b, bin, full, t }; };
+  $('sortPool').appendChild(b);
+});
+document.querySelectorAll('.bs-bin').forEach((box) => box.onclick = () => {
+  if (!sel) { toast('First click an idea!'); return; }
+  if (sel.bin === box.dataset.bin) {
+    const li = document.createElement('li'); li.textContent = sel.full; box.querySelector('ul').appendChild(li); sel.b.remove(); say(sel.full); gain('sort-' + sel.t, 4, '+4 XP · ' + sel.full); sel = null;
+    if (!$('sortPool').children.length) gain('sort-all', 15, '+15 XP · all sorted!');
+  } else { sel.b.classList.add('bad'); buzz(); const b = sel.b; setTimeout(() => b.classList.remove('bad'), 500); toast('Hmm. Is it a rule, a tip or an ability?'); }
+});
+
+// ---------- 5. GEM GRAB ----------
+const QS = [
+  ['In Gem Grab, your team ___ collect ten gems to start the countdown.', 'must', ['can', "shouldn't"]],
+  ['A tank ___ take a lot of hits. It has lots of health.', 'can', ["mustn't", "can't"]],
+  ["You ___ hide in a bush. Then the other team can't see you.", 'can', ["mustn't", "can't"]],
+  ["Beginners ___ stay with their team. It's safer.", 'should', ["mustn't", "can't"]],
+  ['You ___ leave your gem carrier alone. Help them!', "shouldn't", ['can', 'should']],
+  ['A sniper ___ hit players from far away.', 'can', ["can't", "mustn't"]],
+  ["You ___ be rude to other players in the chat. That's the rule.", "mustn't", ['should', 'can']],
+  ['A healer ___ heal her teammates.', 'can', ["can't", "mustn't"]],
+  ["I ___ use my super yet. It isn't ready.", "can't", ['must', 'should']],
+  ['You ___ be kind to your team, even when you lose.', 'should', ["shouldn't", "can't"]],
+  ['You ___ share your password with anyone!', "mustn't", ['should', 'can']],
+  ['If you have lots of gems, you ___ go back and hide.', 'should', ["shouldn't", "mustn't"]],
+  ["A tank ___ hit from far away. It has to get close.", "can't", ['can', 'must']],
+  ['You ___ walk through walls.', "can't", ['can', 'should']],
+  ['All players ___ follow the game rules.', 'must', ["can't", "shouldn't"]],
+  ['Before the match, you ___ choose a brawler for your role.', 'should', ["mustn't", "can't"]],
+  ["You ___ play games in class. The teacher says no!", "mustn't", ['can', 'should']],
+  ['When your health is low, you ___ go back to your healer.', 'should', ["mustn't", "can't"]],
+  ['My friend ___ aim really well. He always hits!', 'can', ["mustn't", "shouldn't"]],
+  ['The team ___ protect the gem carrier.', 'should', ["shouldn't", "can't"]],
+  ['___ you cover me? I have six gems!', 'Can', ['Must', 'Do']],
+  ['New players ___ try different brawlers to find a favourite.', 'should', ["mustn't", "can't"]],
+  ['You ___ respawn after a few seconds.', 'can', ["mustn't", "shouldn't"]],
+  ['To win, your team ___ keep the gems until the countdown ends.', 'must', ["mustn't", "can't"]],
+  ["You ___ give up when you are losing. You can still win!", "shouldn't", ['should', 'must']],
+  ['___ I go left or right? Tell me!', 'Should', ['Must I to', 'Do I should']],
+  ['She ___ run very fast. She is the speedy one.', 'can', ['cans', 'can to']],
+  ['We ___ collect two more gems. Quick!', 'must', ['must to', 'musts']],
+];
+const field = $('field');
+// карта: кущі, стіни, команди
+[[8, 40], [80, 40], [30, 12], [58, 72], [14, 78], [74, 8]].forEach(([l, t]) => field.insertAdjacentHTML('beforeend', `<span class="bush" style="left:${l}%;top:${t}%"></span>`));
+[[22, 30, 16], [62, 30, 16], [22, 64, 16], [62, 64, 16]].forEach(([l, t, w]) => field.insertAdjacentHTML('beforeend', `<span class="wall" style="left:${l}%;top:${t}%;width:${w}%"></span>`));
+const BLUE = [['#2f80ed', 'tank', 'band', '#ff5a5f'], ['#3ecf4c', 'healer', 'ears', '#ff8fd8'], ['#ff9f1c', 'sniper', 'cap', '#2f80ed']];
+const RED = [['#ff5a5f', 'tank', 'crown', '#ffd23f'], ['#8e6cff', 'support', 'cap', '#ff5a5f'], ['#c98b5b', 'speedy', 'ears', '#ff5a5f']];
+const units = { blue: [], red: [] };
+BLUE.forEach(([c, r, h, hc], i) => { const u = document.createElement('div'); u.className = 'bs-unit'; u.style.left = (28 + i * 18) + '%'; u.style.bottom = '6px'; u.innerHTML = blob(c, r, h, hc); field.appendChild(u); units.blue.push(u); });
+RED.forEach(([c, r, h, hc], i) => { const u = document.createElement('div'); u.className = 'bs-unit'; u.style.left = (28 + i * 18) + '%'; u.style.top = '6px'; u.innerHTML = blob(c, r, h, hc); field.appendChild(u); units.red.push(u); });
+let G = { on: false };
+function pips(id, n) { const box = $(id); box.innerHTML = ''; for (let i = 0; i < 10; i++) { const p = document.createElement('i'); if (i < n) p.className = 'on'; box.appendChild(p); } }
+function hud() {
+  $('gBlue').textContent = G.blue || 0; $('gRed').textContent = G.red || 0; pips('pBlue', G.blue || 0); pips('pRed', G.red || 0);
+  const cd = $('gCd');
+  if (G.cdBlue) cd.innerHTML = `Countdown<b>${G.cdBlue}</b>answers to win`;
+  else if (G.cdRed) cd.innerHTML = `Rivals win in<b>${G.cdRed}</b>answer right!`;
+  else cd.innerHTML = 'Gem Grab<b>10</b>to win';
+}
+function flyGem(to) {
+  const g = document.createElement('div'); g.className = 'bs-flygem'; g.innerHTML = gemSvg();
+  g.style.left = 'calc(50% - 15px)'; g.style.top = 'calc(50% - 16px)'; field.appendChild(g);
+  const u = units[to][Math.floor(Math.random() * 3)];
+  requestAnimationFrame(() => requestAnimationFrame(() => { g.style.left = `calc(${u.style.left} + 14px)`; g.style.top = to === 'blue' ? 'calc(100% - 90px)' : '40px'; g.style.opacity = '.2'; }));
+  setTimeout(() => g.remove(), 760);
+  u.classList.remove('hop'); void u.offsetWidth; u.classList.add('hop');
+}
+function checkCd() {
+  if (!G.cdBlue && G.blue >= 10 && G.blue > G.red) { G.cdBlue = 3; G.cdRed = 0; toast('COUNTDOWN! 3 more right answers!'); fanfare(); }
+  if (G.cdBlue && (G.blue < 10 || G.blue <= G.red)) { G.cdBlue = 0; toast('Countdown stopped!'); }
+  if (!G.cdRed && G.red >= 10 && G.red > G.blue) { G.cdRed = 3; G.cdBlue = 0; toast('The rivals have 10 gems! Take them back!'); }
+  if (G.cdRed && (G.red < 10 || G.red <= G.blue)) { G.cdRed = 0; toast('Rival countdown stopped!'); }
+}
+function newQ() {
+  const i = G.order[G.qi % G.order.length]; G.qi++; const q = QS[i]; G.cur = q; G.curI = i;
+  $('gq').innerHTML = `<small>${G.cdBlue ? 'COUNTDOWN · HOLD THE GEMS!' : G.cdRed ? 'DANGER · TAKE THE GEMS BACK!' : 'Question ' + G.qi}</small>${q[0].replace('___', '<span class="slot">?</span>')}`;
+  const box = $('gopts'); box.innerHTML = '';
+  [q[1], ...q[2]].sort(() => Math.random() - .5).forEach((x) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'opt'; b.textContent = x; b.onclick = () => answer(x, b); box.appendChild(b); });
+  const secs = G.qi > 15 ? 7 : 9;
+  const tb = $('timer'); tb.style.transition = 'none'; tb.style.width = '100%'; void tb.offsetWidth; tb.style.transition = `width ${secs}s linear`; tb.style.width = '0%';
+  clearTimeout(G.timer); G.timer = setTimeout(() => answer(null, null), secs * 1000);
+}
+function answer(x, btn) {
+  if (!G.on || G.lock) return; G.lock = true; clearTimeout(G.timer);
+  const ok = x === G.cur[1];
+  $('gopts').querySelectorAll('button').forEach((b) => { b.disabled = true; if (b.textContent === G.cur[1]) b.classList.add('ok'); });
+  $('gq').querySelector('.slot').textContent = G.cur[1];
+  $('timer').style.transition = 'none';
+  let blueWin = false, redWin = false;
+  if (ok) {
+    G.right++; tone(700, .08); tone(1050, .12, 'square', .08);
+    if (G.cdBlue) { G.cdBlue--; if (!G.cdBlue) blueWin = true; else toast(`Hold on! ${G.cdBlue} more!`); }
+    else if (G.cdRed) { G.red--; G.blue++; flyGem('blue'); G.cdRed--; toast('You took a gem back!'); if (!G.cdRed) redWin = G.red >= 10 && G.red > G.blue; }
+    else { G.blue++; flyGem('blue'); }
+    gain('gg:q' + G.curI, 5, '+5 XP · gem!');
+  } else {
+    if (btn) btn.classList.add('bad'); buzz(); units.blue.forEach((u) => { u.classList.remove('sad'); void u.offsetWidth; u.classList.add('sad'); });
+    if (G.cdBlue) { const drop = Math.min(2, G.blue); G.blue -= drop; G.red += drop; G.cdBlue = 0; flyGem('red'); toast('Oops! You dropped 2 gems!'); }
+    else { G.red++; flyGem('red'); toast(x ? 'Oops! The rivals grabbed a gem.' : 'Too slow! The rivals grabbed a gem.'); if (G.cdRed) { G.cdRed--; if (!G.cdRed) redWin = true; } }
+  }
+  if (blueWin) return setTimeout(() => finish(true), 900);
+  if (redWin) return setTimeout(() => finish(false), 900);
+  checkCd(); hud();
+  setTimeout(() => { G.lock = false; newQ(); }, 1300);
+}
+function finish(win) {
+  G.on = false; hud();
+  const secs = Math.round((Date.now() - G.start) / 1000);
+  $('gq').innerHTML = win
+    ? `<div class="bs-win">VICTORY! YOUR TEAM WON!</div>Right answers: <b>${G.right}</b> · Time: <b>${Math.floor(secs / 60)}:${String(secs % 60).padStart(2, '0')}</b><br><small>Now explain the rules: "In Gem Grab, you must ... You can ... You shouldn't ..."</small>`
+    : `<div class="bs-win">The rivals won this time.</div>Right answers: <b>${G.right}</b>. Good try!<br><small>Say what you should do next time: "Next time we should ..."</small>`;
+  $('gopts').innerHTML = '<button class="btn" id="gAgain" type="button">Play again</button>'; $('gAgain').onclick = start;
+  $('timer').style.width = '0%';
+  if (win) { gain('gg:win', 50, '+50 XP · GEM GRAB CHAMPIONS!'); fanfare(); burst(40); units.blue.forEach((u) => u.classList.add('hop')); }
+  else { gain('gg:try', 15, '+15 XP · good try!'); }
+}
+function start() {
+  G = { on: true, blue: 0, red: 0, cdBlue: 0, cdRed: 0, right: 0, lock: false, timer: null, order: QS.map((_, i) => i).sort(() => Math.random() - .5), qi: 0, start: Date.now() };
+  hud(); newQ(); $('game').scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+$('gStart').onclick = start; pips('pBlue', 0); pips('pRed', 0);
+
+// ---------- 6. читання ----------
+$('zipAv').innerHTML = blob('#ff9f1c', 'sniper', 'cap', '#2f80ed') + '<b>Zip, captain</b>';
+$('readBtn').onclick = () => say($('zipMsg').textContent.replace(/\s+/g, ' '));
+$('hlBtn').onclick = (e) => { const on = document.body.classList.toggle('bs-hl'); e.currentTarget.textContent = on ? 'Hide the modals' : 'Show the modals'; if (on) gain('hl', 3, '+3 XP · find them all!'); };
+const TF = [
+  ['Gems appear in the middle of the map.', true],
+  ['The team must collect five gems.', false],
+  ['Mo can take a lot of hits.', true],
+  ['Ana can hit very hard.', false],
+  ['Leo should run into the middle alone.', false],
+  ['The team mustn\'t be rude in the chat.', true],
+  ['Zip is the healer.', false],
+];
+TF.forEach(([s, v], i) => {
+  const d = document.createElement('div'); d.className = 'q';
+  d.innerHTML = `<span class="n">${i + 1}</span><span style="flex:1">${s}</span>`;
+  [['True', true], ['False', false]].forEach(([t, val]) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'opt'; b.textContent = t;
+    b.onclick = () => { if (d.dataset.done) return; if (val === v) { b.classList.add('ok'); d.dataset.done = 1; gain('tf' + i, 4, '+4 XP'); } else { b.classList.remove('bad'); void b.offsetWidth; b.classList.add('bad'); buzz(); } };
+    d.appendChild(b); });
+  $('tfList').appendChild(d);
+});
+
+// ---------- 7. баги ----------
+const BUGS = [
+  ['You must to collect ten gems.', false, 'You must collect ten gems.'],
+  ['She cans hide in the bush.', false, 'She can hide in the bush.'],
+  ['You should stay with your team.', true, 'Correct!'],
+  ["He can't to use his super yet.", false, "He can't use his super yet."],
+  ['Do you can heal your teammates?', false, 'Can you heal your teammates?'],
+  ["You mustn't share your password.", true, 'Correct!'],
+  ['Beginners should to try different brawlers.', false, 'Beginners should try different brawlers.'],
+  ['The tank musts protect the team.', false, 'The tank must protect the team.'],
+  ["You shouldn't runs into the middle alone.", false, "You shouldn't run into the middle alone."],
+  ['Can I play with you?', true, 'Correct!'],
+];
+BUGS.forEach(([s, ok, fix], i) => {
+  const d = document.createElement('div'); d.className = 'bug';
+  d.innerHTML = `<span><b>${i + 1}.</b> ${s}</span><span><button class="opt" type="button">OK</button><button class="opt" type="button">BUG</button></span><span class="fix">${fix}</span>`;
+  const [bOk, bBug] = d.querySelectorAll('button');
+  const ans = (v, btn) => { if (v === ok) { btn.classList.add('ok'); d.classList.add('done'); bOk.disabled = bBug.disabled = true; if (!ok) say(fix); gain('b' + i, 15, '+15 XP · bug fixed!'); } else { btn.classList.remove('bad'); void btn.offsetWidth; btn.classList.add('bad'); buzz(); } };
+  bOk.onclick = () => ans(true, bOk); bBug.onclick = () => ans(false, bBug);
+  $('bugList').appendChild(d);
+});
+
+// ---------- 8. розмова ----------
+const TALK = [
+  ['What can your favourite brawler do? What can\'t it do?', 'can / can\'t'],
+  ['What should a beginner do in the first match?', 'should'],
+  ['What must you never do in an online game?', 'mustn\'t'],
+  ['Which role should I play: tank, healer or sniper? Why?', 'should'],
+  ['What should a good teammate do when the team is losing?', 'should'],
+  ['What rules must you follow at home when you play games?', 'must'],
+  ['What can you do better than your friends in games?', 'can'],
+  ['Can you play any games with your family? Which ones?', 'Can you...?'],
+];
+TALK.forEach(([q, tag]) => { const d = document.createElement('div'); d.className = 'tk'; d.innerHTML = `<span>${q}</span><small>${tag}</small>`; d.onclick = () => { $('talkList').querySelectorAll('.tk').forEach((x) => x.style.outline = ''); d.style.outline = '5px solid #8e6cff'; say(q); }; $('talkList').appendChild(d); });
+let tmr; $('timerBtn').onclick = () => { clearInterval(tmr); let s = 30; const el = $('timer30'); el.textContent = '0:30';
+  tmr = setInterval(() => { s--; el.textContent = '0:' + String(s).padStart(2, '0'); if (s <= 0) { clearInterval(tmr); el.textContent = 'GG!'; gain('talk' + Date.now(), 15, 'Great answer! +15 XP'); } }, 1000); };
+
+// ---------- 9. гайд ----------
+const GUIDE = [['To win, you must', 'collect ten gems'], ['You mustn\'t', 'be rude in the chat'], ['You should', 'stay with your team'], ['You shouldn\'t', 'go to the middle alone'], ['A good teammate can', 'cover the gem carrier']];
+$('guide').innerHTML = GUIDE.map(([a, ph], i) => `<label><span>${a}</span><input data-g="${i}" placeholder="${ph}" maxlength="80"></label>`).join('');
+$('guideBtn').onclick = () => {
+  const ins = [...document.querySelectorAll('#guide input')];
+  if (ins.some((x) => !x.value.trim())) { toast('Finish every sentence first!'); return; }
+  const lines = GUIDE.map(([a], i) => `${a} ${ins[i].value.trim().replace(/^to\s+/i, '').replace(/[.!]+$/, '')}.`);
+  const out = $('guideOut'); out.hidden = false; out.innerHTML = `<h4>${AV.name || 'My'}'s guide for new players</h4>` + lines.map((l) => `<div>${l}</div>`).join('');
+  say(lines.join(' ')); gain('guide', 30, '+30 XP · great guide!');
+};
+
+// ---------- 10. місії ----------
+const MIS = [
+  ['gem', 'First gems', 'Play one Gem Grab match.', '"We must collect ten gems. I collected ... gems."', 20],
+  ['tank', 'Role swap', 'Play one match as a tank and one as a sniper.', '"As a tank, I can ... As a sniper, I can\'t ..."', 30],
+  ['bush', 'Bush master', 'Hide in a bush and surprise the other team.', '"You can hide in the bush near the ..."', 20],
+  ['team', 'Team player', 'Play with your teacher. Give 3 tips during the match in English.', '"You should go left! Can you cover me? We must get the gems!"', 30],
+  ['respawn', 'Never give up', 'After a lost match, say what you should do next time.', '"Next time we should ... We shouldn\'t ..."', 20],
+  ['trophy', 'Winning team', 'Win 2 matches.', '"We won because we ... Our tank could ..."', 30],
+  ['super', 'Super moment', 'Use your super at the right moment.', '"I can use my super when ... You should save it for ..."', 20],
+  ['chat', 'Safe player', 'Explain 3 safety rules in English.', '"I mustn\'t share my name, school or password. I should play with people I know."', 20],
+];
+MIS.forEach(([k, title, task, sayIt, n], i) => {
+  const m = document.createElement('div'); m.className = 'mis';
+  m.insertAdjacentHTML('beforeend', `<div class="ic">${ic(k)}</div>`);
+  const body = document.createElement('div'); body.innerHTML = `<h3>${title}</h3><p>${task}</p><div class="say">${sayIt}</div>`; m.appendChild(body);
+  const row = document.createElement('div'); row.className = 'row'; row.innerHTML = `<span class="xp">+${n} XP</span>`;
+  const btn = document.createElement('button'); btn.type = 'button'; btn.className = 'btn'; btn.textContent = 'Done'; btn.onclick = () => { m.classList.add('done'); btn.disabled = true; gain('m' + i, n, `Mission complete! +${n} XP`); };
+  row.appendChild(btn); m.appendChild(row); $('misList').appendChild(m);
+});
+
+// ---------- 11. відео (офіційний канал гри @BrawlStars, перевірено через oEmbed) ----------
+const VIDS = [
+  ['vC56HGloYSk', 'Season 3: Welcome to Starr Park!', 'Pause 3 times. Who can you see? What can they do? "He can ... She can\'t ..."', 'can / can\'t', 0],
+  ['km_FNBwG0ek', 'Welcome to Starr Park!', 'Starr Park is a theme park. What can you do in a theme park? What mustn\'t you do there?', 'must / mustn\'t', 0],
+  ['d7H7Z0SDCC0', 'Starr Cup: The Rules Have Changed!', 'The rules have changed! Invent 3 new rules for your match: "You must ... You mustn\'t ... You can ..."', 'rules', 0],
+  ['WuwxkkSSeug', 'Sirius: No more Brawl Stars!', 'Sirius has a plan. What should the brawlers do? Give 3 tips: "They should ... They shouldn\'t ..."', 'should', 0],
+];
+VIDS.forEach(([id, title, task, mode, short], i) => {
+  const d = document.createElement('div'); d.className = 'vid' + (short ? ' short' : '');
+  d.innerHTML = `<div class="frame"><button class="play" type="button"><span>PLAY</span></button></div><div class="info"><span class="mode">${mode}</span><h3>${title}</h3><div class="task">${task}</div><button class="btn alt" type="button">I talked about it</button></div>`;
+  d.querySelector('.play').onclick = (e) => { e.currentTarget.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${title}"></iframe>`; };
+  const b = d.querySelector('.info .btn'); b.onclick = () => { b.disabled = true; b.textContent = 'Great!'; gain('vid' + i, 20, '+20 XP · great talk!'); };
+  $('vidList').appendChild(d);
+});
+</script>
+<script>window.MURLY_LESSON={"id": "brawl", "title": "Team Up", "homework": ["s3", "s5", "s7", "s9"], "hw": {"s1": [{"type": "voice", "instruction": "Describe your brawler. Record your voice.", "text": "What is your brawler's name and role?\nWhat can your brawler do? What can't it do?\nWhat should your brawler do in a team?"}], "s2": [{"type": "match", "instruction": "Match the words with their meanings.", "text": "a tank = a strong player with lots of health\na healer = a player who makes teammates healthy again\na sniper = a player who hits from far away\na gem = a purple crystal you collect to win\na bush = tall grass where you can hide\nto respawn = to come back into the match after a few seconds\nthe objective = the main goal of the match\na countdown = time counting down: 10, 9, 8...\nto cover a teammate = to stay near a teammate and protect them\nto retreat = to move back to a safe place"}], "s3": [{"type": "choice", "instruction": "Complete the rules.", "text": "We use {must|should|can} for rules: very important, no choice.\nWe use {should|must|can} for tips and advice.\nWe use {can|must|should} for ability: what you are able to do.\nAfter can, must and should we use the verb {without to|with to|with -s}.\nmustn't means {it is not allowed|it is not a good idea|you are not able}."}, {"type": "gap", "instruction": "Write can, can't, must, mustn't, should or shouldn't.", "text": "A sniper [can] hit players from far away. (ability)\nYou [mustn't] share your password with anyone! (rule)\nBeginners [should] stay close to the tank. (tip)\nI [can't] use my super yet. It isn't ready. (ability)\nTo start the countdown, your team [must] have ten gems. (rule)\nYou [shouldn't] run into the middle alone. (tip)"}], "s4": [{"type": "choice", "instruction": "Is it a rule, a tip or an ability?", "text": "You can hide in a bush. = {ability|rule|tip}\nYou mustn't share your password. = {rule|tip|ability}\nYou should stay with your team. = {tip|rule|ability}\nYou can't walk through walls. = {ability|rule|tip}\nYou must collect ten gems to start the countdown. = {rule|tip|ability}\nYou shouldn't run into the middle alone. = {tip|ability|rule}\nA healer can heal teammates. = {ability|tip|rule}\nYou mustn't be rude in the chat. = {rule|ability|tip}"}], "s5": [{"type": "choice", "instruction": "Gem Grab: choose the right word.", "text": "In Gem Grab, your team {must|can|shouldn't} collect ten gems to start the countdown.\nA tank {can|mustn't|can't} take a lot of hits. It has lots of health.\nYou {can|mustn't|can't} hide in a bush. Then the other team can't see you.\nBeginners {should|mustn't|can't} stay with their team. It's safer.\nYou {shouldn't|can|should} leave your gem carrier alone. Help them!\nA sniper {can|can't|mustn't} hit players from far away.\nYou {mustn't|should|can} be rude to other players in the chat. That's the rule.\nA healer {can|can't|mustn't} heal her teammates.\nI {can't|must|should} use my super yet. It isn't ready.\nYou {should|shouldn't|can't} be kind to your team, even when you lose.\nYou {mustn't|should|can} share your password with anyone!\nIf you have lots of gems, you {should|shouldn't|mustn't} go back and hide.\nA tank {can't|can|must} hit from far away. It has to get close.\nYou {can't|can|should} walk through walls.\nAll players {must|can't|shouldn't} follow the game rules.\nBefore the match, you {should|mustn't|can't} choose a brawler for your role.\nYou {mustn't|can|should} play games in class. The teacher says no!\nWhen your health is low, you {should|mustn't|can't} go back to your healer.\nMy friend {can|mustn't|shouldn't} aim really well. He always hits!\nThe team {should|shouldn't|can't} protect the gem carrier.\n{Can|Must|Do} you cover me? I have six gems!\nNew players {should|mustn't|can't} try different brawlers to find a favourite.\nYou {can|mustn't|shouldn't} respawn after a few seconds.\nTo win, your team {must|mustn't|can't} keep the gems until the countdown ends.\nYou {shouldn't|should|must} give up when you are losing. You can still win!\n{Should|Must I to|Do I should} I go left or right? Tell me!\nShe {can|cans|can to} run very fast. She is the speedy one.\nWe {must|must to|musts} collect two more gems. Quick!"}], "s6": [{"type": "truefalse", "instruction": "Read Zip's message in the lesson again. True or False?", "text": "Gems appear in the middle of the map. = True\nThe team must collect five gems. = False\nMo can take a lot of hits. = True\nAna can hit very hard. = False\nLeo should run into the middle alone. = False\nThe team mustn't be rude in the chat. = True\nZip is the healer. = False"}], "s7": [{"type": "truefalse", "instruction": "Is the sentence correct? True = correct, False = there is a mistake.", "text": "You must to collect ten gems. = False\nShe cans hide in the bush. = False\nYou should stay with your team. = True\nHe can't to use his super yet. = False\nDo you can heal your teammates? = False\nYou mustn't share your password. = True\nBeginners should to try different brawlers. = False\nThe tank musts protect the team. = False\nYou shouldn't runs into the middle alone. = False\nCan I play with you? = True"}], "s8": [{"type": "voice", "instruction": "Record your answers. Use can, must and should.", "text": "My tips for a new player: 2 rules with must / mustn't and 2 tips with should / shouldn't.\nWhat can your favourite brawler do? What can't it do?\nWhat should a beginner do in the first match?\nWhat must you never do in an online game?\nWhat should a good teammate do when the team is losing?"}], "s9": [{"type": "open", "instruction": "Write a beginner's guide for a new player. Write 5 sentences.", "text": "To win, you must ...\nYou mustn't ...\nYou should ...\nYou shouldn't ...\nA good teammate can ..."}]}};</script>
+<script src="kit.js" defer></script>
+</body>
+</html>

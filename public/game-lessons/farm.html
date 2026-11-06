@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Farm Life: some, any, how much, how many | Murly</title>
+<link rel="icon" href="/favicon.svg">
+<meta name="description" content="Free interactive English lesson for kids based on farming games: plan your farm, run a market stall, cook a recipe. Countable and uncountable nouns, some / any, how much / how many. XP, missions and official videos.">
+<link rel="canonical" href="https://murly.com.ua/game-lessons/farm.html">
+<style>
+:root{--sky:#9fe0ff;--sky2:#dff5ff;--grass:#7cc95a;--grass2:#4e9a32;--dirt:#a06a3d;--dirt2:#8a5a35;--ink:#1d1d2b;--paper:#fffdf6;--gold:#ffd23f;--dia:#33e0d6;--red:#ff5a5f;--pink:#ff8fd8;--violet:#8e6cff;--orange:#ff9f1c}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Trebuchet MS",Verdana,system-ui,sans-serif;color:var(--ink);background:linear-gradient(180deg,var(--sky) 0,var(--sky2) 520px,#f3fbe9 100%);min-height:100vh}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+.ic{display:block;width:64px;height:64px}
+/* шапка */
+.hero{position:relative;padding:34px 18px 0;text-align:center;overflow:hidden}
+.cloud{position:absolute;background:#fff;height:22px;width:22px;box-shadow:22px 0 #fff,44px 0 #fff,22px -22px #fff;opacity:.9;animation:drift 30s linear infinite}
+@keyframes drift{from{transform:translateX(-40px)}to{transform:translateX(60px)}}
+.hero h1{margin:0;font-size:clamp(34px,6vw,64px);letter-spacing:2px;color:#fff;text-shadow:4px 4px 0 var(--ink),-2px -2px 0 var(--ink),2px -2px 0 var(--ink),-2px 2px 0 var(--ink);text-transform:uppercase}
+.hero p{margin:8px 0 10px;font-size:20px;font-weight:700;color:var(--ink)}
+.fm-scene{display:block;width:100%;max-width:980px;height:auto;margin:0 auto -4px}
+.fm-sun{transform-origin:860px 60px;animation:spin 24s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.fm-sprout{transform-box:fill-box;transform-origin:50% 100%;animation:grow 3.6s ease-in-out infinite}
+@keyframes grow{0%,100%{transform:scale(.55)}50%{transform:scale(1)}}
+.fm-hen{animation:peck 1.6s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 100%}
+@keyframes peck{0%,60%,100%{transform:rotate(0)}70%{transform:rotate(14deg)}80%{transform:rotate(0)}}
+.ground{height:26px;background:repeating-linear-gradient(90deg,var(--grass) 0 16px,#8bd468 16px 32px);border-top:6px solid var(--grass2);position:relative}
+.ground::after{content:"";position:absolute;left:0;right:0;top:26px;height:30px;background:repeating-linear-gradient(90deg,var(--dirt) 0 16px,#b07a4a 16px 32px)}
+/* XP */
+.hud{position:sticky;top:0;z-index:20;display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;padding:10px;background:rgba(29,29,43,.92);color:#fff;margin-top:30px;border-bottom:4px solid #000}
+.hud b{font-size:18px}
+.bar{width:min(340px,60vw);height:22px;background:#333;border:3px solid #000;position:relative}
+.bar i{position:absolute;inset:0 auto 0 0;width:0;background:repeating-linear-gradient(90deg,#7cff4f 0 10px,#55d62f 10px 20px);transition:width .4s}
+.hud .lvl{background:#7cff4f;color:#000;font-weight:900;padding:2px 10px;border:3px solid #000}
+.dia{display:inline-flex;align-items:center;gap:6px;font-weight:900;font-size:18px}
+.coin-ic{display:inline-block;width:22px;height:22px;border-radius:50%;background:#ffd23f;border:3px solid #000;box-shadow:inset -3px -3px 0 #c99a2e}
+nav.steps{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:22px 0 4px}
+nav.steps a{background:#fff;border:3px solid var(--ink);padding:6px 12px;font-weight:800;color:var(--ink);text-decoration:none;box-shadow:3px 3px 0 var(--ink)}
+nav.steps a:hover{background:var(--gold)}
+/* секції */
+section{margin-top:38px;background:var(--paper);border:4px solid var(--ink);box-shadow:8px 8px 0 rgba(29,29,43,.85);padding:24px}
+section h2{margin:0 0 6px;font-size:30px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;color:var(--ink)}
+section:nth-of-type(odd){background:#fffdf6}
+section:nth-of-type(even){background:#f4ffea}
+.tag{font-size:14px;font-weight:900;padding:3px 10px;border:3px solid var(--ink);background:var(--gold);text-transform:uppercase;letter-spacing:1px}
+.sub{margin:0 0 18px;font-size:17px;color:#444}
+.btn{font:inherit;font-weight:900;border:3px solid var(--ink);background:#7cff4f;padding:8px 16px;cursor:pointer;box-shadow:3px 3px 0 var(--ink);text-transform:uppercase;letter-spacing:.5px;color:var(--ink)}
+.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.btn.alt{background:#fff}
+.btn:disabled{opacity:.6;cursor:default}
+/* вчительське */
+.lk-ans,.lk-tnote{display:none}
+body.teacher .lk-ans{display:block;margin-top:8px;font-weight:800;color:#0b7a3b;background:#e9ffe0;border-left:5px solid #3ecf4c;padding:6px 10px;font-size:15px}
+body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff4dc;border-left:5px solid #ff9f1c;padding:8px 12px;font-size:15px}
+/* словник */
+.cat-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.cat-tabs button{font:inherit;font-weight:800;border:3px solid var(--ink);background:#fff;padding:5px 12px;cursor:pointer}
+.cat-tabs button.on{background:var(--dia)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px}
+.card{perspective:900px;height:210px;cursor:pointer}
+.card .in{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+.card.flip .in{transform:rotateY(180deg)}
+.card:hover .in{transform:translateY(-6px) rotate(-1.5deg)}
+.card.flip:hover .in{transform:rotateY(180deg) translateY(-6px)}
+.face{position:absolute;inset:0;backface-visibility:hidden;border:3px solid var(--ink);background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:10px;text-align:center}
+.face.front{background:linear-gradient(180deg,#fff 55%,#f1ffe6)}
+.card:nth-child(4n+1) .face.front{background:linear-gradient(180deg,#fff 55%,#e3f6ff)}
+.card:nth-child(4n+2) .face.front{background:linear-gradient(180deg,#fff 55%,#fff1fb)}
+.card:nth-child(4n+3) .face.front{background:linear-gradient(180deg,#fff 55%,#fff8d9)}
+.face.front b{font-size:18px;line-height:1.2}
+.face .ic{width:78px;height:78px}
+.face.back{transform:rotateY(180deg);background:#fff5c9;font-size:15px;line-height:1.35}
+.face.back b{font-size:16px;color:#7a4a00}
+.face.back em{font-size:14px;color:#2b7a0b;font-weight:700}
+.cu{position:absolute;top:8px;right:8px;font-size:12px;font-weight:900;border:2px solid var(--ink);padding:1px 6px}
+.cu.c{background:#c9ffb3}.cu.u{background:#bfe6ff}
+.face.back .cu{position:static}
+/* правило */
+.modes{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.mode{border:4px solid var(--ink);padding:18px;position:relative}
+.mode.s{background:#e6fff0}.mode.c{background:#e8f5ff}.mode.y{background:#fff7d6}.mode.p{background:#fff0fb}
+.mode h3{margin:0 0 8px;font-size:23px}
+.mode ul{margin:8px 0 0;padding-left:20px;font-size:17px;line-height:1.55}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.chip{border:2px solid var(--ink);background:#fff;padding:2px 9px;font-weight:800;font-size:14px}
+.note{margin-top:16px;padding:12px 16px;border:3px dashed var(--ink);background:#fff;font-size:16px}
+.legend{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 16px}
+.bk{display:inline-flex;align-items:center;font-weight:900;font-size:16px;padding:6px 10px;border:3px solid var(--ink);box-shadow:inset -3px -3px 0 rgba(0,0,0,.18),inset 3px 3px 0 rgba(255,255,255,.45);white-space:nowrap}
+.bk.q{background:#8fd3ff}.bk.qt{background:#ffd23f}.bk.n{background:#7cff4f}.bk.n2{background:#9fe0ff}.bk.rest{background:#fff}
+.legend .bk{font-size:13px;padding:3px 8px}
+.recipe{display:flex;gap:5px;flex-wrap:wrap;align-items:center;margin:8px 0}
+.recipe .sign{width:30px;height:30px;display:grid;place-items:center;font-weight:900;font-size:20px;background:var(--ink);color:#fff;flex:none}
+.tip{margin-top:10px;font-size:15px;background:#fff;border-left:5px solid var(--red);padding:6px 10px}
+.fm-meter{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px}
+.fm-meter div{border:3px solid var(--ink);background:#fff;padding:10px;text-align:center;font-size:15px}
+.fm-meter b{display:block;font-size:18px;margin-bottom:4px}
+.fm-meter .dots{display:flex;justify-content:center;gap:3px;margin:6px 0;min-height:22px;flex-wrap:wrap}
+.fm-meter .dots i{width:14px;height:18px;border:2px solid var(--ink);border-radius:50% 50% 45% 45%;background:#fff8e6}
+.fm-meter .jar{width:34px;height:40px;border:3px solid var(--ink);margin:0 auto 6px;background:linear-gradient(0deg,#ffb627 var(--h),#fff var(--h));border-radius:4px 4px 8px 8px}
+/* вправи */
+.q{display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:2px dashed #d9d2bf;font-size:18px}
+.q:last-child{border-bottom:0}
+.q .n{width:34px;height:34px;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;font-weight:900}
+.opt{font:inherit;font-size:17px;font-weight:800;border:3px solid var(--ink);background:#fff;padding:4px 12px;cursor:pointer;margin:0 3px;color:var(--ink)}
+.opt.ok{background:#7cff4f}.opt.bad{background:var(--red);color:#fff;animation:shake .3s}
+.slot{display:inline-block;min-width:80px;border-bottom:3px solid var(--ink);text-align:center;font-weight:900;color:#2b7a0b}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.sort{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:14px}
+.bin{border:4px solid var(--ink);min-height:170px;padding:12px;cursor:pointer;display:flex;flex-wrap:wrap;gap:8px;align-content:flex-start}
+.bin h4{margin:0 0 6px;font-size:19px;background:#fff;border:3px solid var(--ink);display:inline-block;padding:2px 10px;width:100%}
+.bin h4 small{display:block;font-size:13px;color:#555}
+.bin.s{background:repeating-linear-gradient(0deg,#d9a86a 0 14px,#c9965a 14px 16px)}
+.bin.c{background:repeating-linear-gradient(0deg,#bfe6ff 0 14px,#a9d8f2 14px 16px)}
+.pool{display:flex;flex-wrap:wrap;gap:8px;min-height:44px;padding:10px;border:3px dashed var(--ink);background:#fff}
+.w{font:inherit;font-weight:900;font-size:16px;border:3px solid var(--ink);background:var(--gold);padding:4px 10px 4px 4px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;color:var(--ink)}
+.w .ic{width:30px;height:30px}
+.w.sel{background:var(--dia);transform:translateY(-3px)}
+.w.ok{background:#7cff4f;cursor:default}.w.bad{background:var(--red);color:#fff;animation:shake .3s}
+.bug{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;padding:12px 0;border-bottom:2px dashed #d9d2bf;font-size:18px}
+.bug .fix{grid-column:1/-1;font-weight:800;color:#2b7a0b;display:none}
+.bug.done .fix{display:block}
+/* план ферми */
+.fm-plan{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
+.fm-seasons{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.fm-season{font:inherit;font-weight:900;border:3px solid var(--ink);background:#fff;padding:4px 12px 4px 4px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;box-shadow:3px 3px 0 var(--ink);color:var(--ink)}
+.fm-season .ic{width:34px;height:34px}
+.fm-season.on{background:var(--gold)}
+.fm-crops{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:8px}
+.fm-crop{font:inherit;font-weight:800;font-size:14px;border:3px solid var(--ink);background:#fff;padding:6px;cursor:pointer;display:grid;justify-items:center;gap:2px;color:var(--ink)}
+.fm-crop .ic{width:46px;height:46px}
+.fm-crop:hover{background:#f1ffe6}
+.fm-crop.bad{background:var(--red);color:#fff;animation:shake .3s}
+.fm-field{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:12px;border:4px solid var(--ink);background:var(--grass);transition:background .4s}
+.fm-field.winter{background:#e9f6ff}
+.fm-plot{aspect-ratio:1;background:repeating-linear-gradient(0deg,#8a5a35 0 10px,#7a4d2c 10px 14px);border:3px solid var(--ink);display:grid;place-items:center;cursor:pointer}
+.fm-field.winter .fm-plot{background:repeating-linear-gradient(0deg,#fff 0 10px,#dbeefa 10px 14px)}
+.fm-plot .ic{width:70%;height:70%;animation:pop .4s ease-out}
+@keyframes pop{0%{transform:scale(0)}70%{transform:scale(1.15)}100%{transform:scale(1)}}
+.fm-say{margin-top:16px;font-size:20px;background:#fff8d6;border:3px dashed var(--ink);padding:12px 16px;min-height:56px}
+.fm-say .hl{background:#7cff4f;padding:0 4px;border:2px solid var(--ink)}
+/* MARKET DAY */
+.fm-game{border:5px solid var(--ink);background:#2d4a22;color:#fff;padding:14px;box-shadow:8px 8px 0 rgba(0,0,0,.3)}
+.fm-game__top{display:flex;gap:18px;flex-wrap:wrap;font-weight:800;margin-bottom:10px;align-items:center}
+.fm-game__top b{color:#ffd23f}
+.fm-day{flex:1;min-width:160px;height:18px;border:3px solid #000;background:linear-gradient(90deg,#ffe9a8,#9fe0ff 40%,#9fe0ff 60%,#ffb56b);position:relative}
+.fm-day i{position:absolute;top:50%;width:24px;height:24px;border-radius:50%;background:#ffd23f;border:3px solid #000;transform:translate(-50%,-50%);transition:left .6s;left:0}
+.fm-stall{display:grid;grid-template-columns:1fr 280px;gap:14px}
+.fm-front{position:relative;min-height:290px;border:3px solid #000;background:linear-gradient(#bfe9ff 0,#e6f7ff 58%,#7cc95a 58%);overflow:hidden}
+.fm-awning{position:absolute;left:0;right:0;top:0;height:34px;background:repeating-linear-gradient(90deg,#ff5a5f 0 34px,#fff 34px 68px);border-bottom:4px solid #000}
+.fm-awning::after{content:"";position:absolute;left:0;right:0;bottom:-14px;height:14px;background:radial-gradient(circle at 17px 0,#ff5a5f 0 16px,transparent 17px) 0 0/68px 14px,radial-gradient(circle at 51px 0,#fff 0 16px,transparent 17px) 0 0/68px 14px}
+.fm-cust{position:absolute;left:18px;bottom:44px;width:120px;transition:transform .5s,opacity .5s}
+.fm-cust.out{transform:translateX(-160px);opacity:0}
+.fm-cust svg{width:100%;display:block}
+.fm-counter{position:absolute;left:0;right:0;bottom:0;height:52px;background:repeating-linear-gradient(90deg,#b5884f 0 40px,#a97c45 40px 44px);border-top:4px solid #000}
+.fm-bubble{position:absolute;left:150px;right:14px;top:52px;background:#fff;color:var(--ink);border:3px solid #000;padding:12px 14px;font-size:19px;font-weight:700;line-height:1.45;box-shadow:4px 4px 0 #000}
+.fm-bubble::before{content:"";position:absolute;left:-16px;top:30px;border:8px solid transparent;border-right:8px solid #000}
+.fm-bubble small{display:block;font-size:13px;color:#7a4a00;letter-spacing:1px;text-transform:uppercase;margin-bottom:2px}
+.fm-bubble .bad{color:#c62828}
+.fm-basket{border:3px solid #000;background:#fff8e6;color:var(--ink);padding:10px;display:flex;flex-direction:column;gap:8px}
+.fm-basket h4{margin:0;font-size:17px;display:flex;align-items:center;gap:6px}
+.fm-basket h4 .ic{width:34px;height:34px}
+.fm-bitems{flex:1;min-height:120px;display:flex;flex-direction:column;gap:6px;border:3px dashed #c9a330;padding:8px;background:repeating-linear-gradient(45deg,#f6e3b4 0 10px,#f1d9a0 10px 20px)}
+.fm-bi{font:inherit;font-weight:800;font-size:15px;text-align:left;display:flex;align-items:center;gap:6px;border:2px solid var(--ink);background:#fff;padding:2px 6px;cursor:pointer;color:var(--ink)}
+.fm-bi .ic{width:28px;height:28px}
+.fm-bi:hover{background:#ffd0d0}
+.fm-empty{font-size:14px;color:#7a6a4a;font-weight:700}
+.fm-q{text-align:center;margin:12px 0 8px;font-size:15px;color:#ffd23f;font-weight:800;letter-spacing:.5px;min-height:20px}
+.fm-opts{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;min-height:46px}
+.fm-opts .opt{font-size:19px;padding:6px 16px}
+.fm-shelf{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:8px;margin-top:12px;padding:10px;background:repeating-linear-gradient(0deg,#8a5a35 0 6px,#6b4a2b 6px 8px);border:3px solid #000}
+.fm-shelf button{font:inherit;font-weight:800;font-size:13px;border:3px solid #000;background:#fffdf6;padding:4px;cursor:pointer;display:grid;justify-items:center;gap:2px;color:var(--ink);line-height:1.15}
+.fm-shelf button .ic{width:42px;height:42px}
+.fm-shelf button:hover:not(:disabled){background:#ffd23f;transform:translateY(-2px)}
+.fm-shelf button:disabled{opacity:.45;cursor:default}
+.fm-shelf.live button{animation:wig .5s}
+@keyframes wig{50%{transform:translateY(-4px)}}
+.fm-act{display:flex;gap:10px;justify-content:center;margin-top:12px;flex-wrap:wrap}
+.fm-win{font-size:30px;color:#ffd23f;text-shadow:3px 3px 0 #000;margin-bottom:6px}
+.fm-sold{font-size:17px;color:var(--ink);background:#fff;border:3px solid #000;padding:10px 14px;margin-top:8px;text-align:left}
+/* рецепт */
+.fm-rec{display:grid;grid-template-columns:270px 1fr;gap:22px;align-items:start}
+.fm-card{border:4px solid var(--ink);background:#fffaf0;padding:14px;position:sticky;top:70px;box-shadow:5px 5px 0 var(--ink);background-image:repeating-linear-gradient(0deg,transparent 0 27px,#f0e2c4 27px 28px)}
+.fm-card h3{margin:0 0 4px;font-size:22px;color:#a0592c}
+.fm-card ul{list-style:none;padding:0;margin:8px 0 0;font-size:16px;line-height:1.5}
+.fm-card li{display:flex;align-items:center;gap:6px}
+.fm-card li .ic{width:28px;height:28px;flex:none}
+.fm-card .pan .ic{width:110px;height:110px;margin:6px auto 0}
+.fm-card .pan.done .ic{animation:bobk 1.6s ease-in-out infinite}
+@keyframes bobk{50%{transform:translateY(-6px)}}
+.fm-bank{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.text{font-size:19px;line-height:2.1}
+.text input{font:inherit;font-weight:800;width:110px;border:0;border-bottom:3px solid var(--ink);background:#fffbe6;padding:0 6px;text-align:center}
+.text input.ok{background:#c9ffb3}.text input.bad{background:#ffd0d0}
+.tf{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:8px 0;border-bottom:2px dashed #d9d2bf;font-size:17px}
+.tf span{flex:1;min-width:200px}
+/* місії, інтерв’ю, відео */
+.missions{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.mis{border:4px solid var(--ink);background:#fff;display:grid;grid-template-columns:72px 1fr;gap:12px;padding:14px;position:relative;transition:transform .2s}
+.mis:hover{transform:translateY(-4px) rotate(.4deg)}
+.mis .ic{width:72px;height:72px}
+.mis h3{margin:0 0 4px;font-size:20px}
+.mis p{margin:0 0 6px;font-size:16px}
+.mis .say{background:#f1ecff;border-left:5px solid var(--violet);padding:6px 10px;font-size:15px;font-style:italic}
+.mis .row{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center}
+.mis .xp{font-weight:900;color:#2b7a0b}
+.mis.done{background:#e9ffe0}
+.mis.done::after{content:"DONE";position:absolute;top:10px;right:-8px;background:#7cff4f;border:3px solid var(--ink);font-weight:900;padding:2px 10px;transform:rotate(8deg)}
+.talk{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.tk{border:4px solid var(--ink);padding:16px;font-size:18px;font-weight:700;min-height:120px;display:flex;flex-direction:column;justify-content:space-between;gap:10px;cursor:pointer}
+.tk:nth-child(4n+1){background:#e6fff0}.tk:nth-child(4n+2){background:#fff0fb}.tk:nth-child(4n+3){background:#fff7d6}.tk:nth-child(4n+4){background:#e3f4ff}
+.tk small{font-weight:800;color:#555;font-size:14px}
+.timer{font-size:46px;font-weight:900;text-align:center;margin:10px 0}
+.vids{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.vid{border:4px solid var(--ink);background:#fff;display:flex;flex-direction:column}
+.vid .frame{position:relative;aspect-ratio:16/9;background:#1d1d2b}
+.vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;display:grid;place-items:center;color:#fff;font-weight:900;font-size:18px;cursor:pointer;background:repeating-linear-gradient(45deg,#2f4a24 0 14px,#29421f 14px 28px);border:0;font-family:inherit}
+.vid .play span{background:var(--red);border:3px solid #000;padding:10px 18px;box-shadow:4px 4px 0 #000}
+.vid .info{padding:12px 14px;display:grid;gap:6px}
+.vid h3{margin:0;font-size:18px}
+.vid .task{background:#f1ecff;border-left:5px solid var(--violet);padding:6px 10px;font-size:15px}
+.vid .mode{display:inline-block;width:max-content;font-size:12px;font-weight:900;border:2px solid var(--ink);padding:1px 8px;background:var(--gold)}
+.vid small{color:#666;font-size:13px}
+details.teacher{margin-top:30px;border:3px dashed #888;background:#fff;padding:12px 16px;font-size:15px}
+details.teacher summary{font-weight:900;cursor:pointer}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(120px);background:var(--ink);color:#fff;font-weight:900;padding:12px 22px;border:4px solid #7cff4f;transition:transform .3s;z-index:50;display:flex;gap:10px;align-items:center}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.pxl{position:fixed;width:10px;height:10px;z-index:60;pointer-events:none;border:2px solid #000;animation:pxl .8s ease-out forwards}
+@keyframes pxl{to{transform:translate(var(--dx),var(--dy)) rotate(180deg);opacity:0}}
+.lvlup{position:fixed;left:50%;top:40%;transform:translate(-50%,-50%) scale(0);z-index:70;background:#7cff4f;border:6px solid #000;box-shadow:8px 8px 0 #000;padding:18px 34px;text-align:center;pointer-events:none}
+.lvlup b{display:block;font-size:46px;letter-spacing:2px}
+.lvlup span{font-weight:900}
+.lvlup.show{animation:lvl 1.8s ease-out forwards}
+@keyframes lvl{0%{transform:translate(-50%,-50%) scale(0)}15%{transform:translate(-50%,-50%) scale(1.15)}25%,80%{transform:translate(-50%,-50%) scale(1)}100%{transform:translate(-50%,-50%) scale(0);opacity:0}}
+@media(max-width:760px){.modes,.sort,.fm-plan,.fm-stall,.fm-rec{grid-template-columns:1fr}.fm-card{position:static}.fm-meter{grid-template-columns:1fr 1fr}.fm-bubble{left:120px;font-size:17px}.fm-cust{width:96px;left:10px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+<link rel="stylesheet" href="kit.css">
+</head>
+<body>
+<header class="hero">
+  <div class="cloud" style="left:8%;top:40px"></div>
+  <div class="cloud" style="left:70%;top:70px;animation-duration:40s"></div>
+  <h1>Farm Life</h1>
+  <p>Some, any, how much, how many: plan, grow, sell and cook · Level A2-B1</p>
+  <svg class="fm-scene" viewBox="0 0 980 230" aria-hidden="true">
+    <g stroke="#1d1d2b" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+      <g class="fm-sun"><circle cx="860" cy="60" r="28" fill="#ffd23f"/><path d="M860 14v12M860 94v12M814 60h12M894 60h12M828 28l8 8M884 84l8 8M892 28l-8 8M836 84l-8 8" fill="none" stroke="#ff9f1c" stroke-width="5"/></g>
+      <path d="M0 150 Q160 90 330 140 Q500 100 660 140 Q820 95 980 135 V230 H0Z" fill="#9fdc7a"/>
+      <path d="M60 176 L60 96 L120 60 L180 96 L180 176Z" fill="#e8504a"/>
+      <path d="M50 100 L120 54 L190 100" fill="none" stroke="#fff" stroke-width="6"/>
+      <path d="M50 100 L120 54 L190 100" fill="none"/>
+      <rect x="96" y="120" width="48" height="56" fill="#fff"/><path d="M96 120 L144 176 M144 120 L96 176" fill="none"/>
+      <rect x="108" y="80" width="24" height="20" fill="#ffd23f"/>
+      <path d="M200 176 V146 M240 176 V146 M280 176 V146 M320 176 V146 M196 154 H324 M196 168 H324" fill="none" stroke="#fff" stroke-width="6"/>
+      <path d="M200 176 V146 M240 176 V146 M280 176 V146 M320 176 V146" fill="none"/>
+      <path d="M360 176 L470 150 L700 150 L800 176Z" fill="#a06a3d"/>
+      <path d="M392 168 L780 168 M420 160 L740 160" fill="none" stroke="#8a5a35" stroke-width="5"/>
+      <g fill="#3ecf4c">
+        <path class="fm-sprout" d="M440 166 q-12 -14 0 -26 q12 12 0 26Z" style="animation-delay:-.2s"/>
+        <path class="fm-sprout" d="M500 166 q-12 -14 0 -26 q12 12 0 26Z" style="animation-delay:-1s"/>
+        <path class="fm-sprout" d="M560 166 q-12 -14 0 -26 q12 12 0 26Z" style="animation-delay:-1.8s"/>
+        <path class="fm-sprout" d="M620 166 q-12 -14 0 -26 q12 12 0 26Z" style="animation-delay:-2.6s"/>
+        <path class="fm-sprout" d="M680 166 q-12 -14 0 -26 q12 12 0 26Z" style="animation-delay:-.6s"/>
+        <path class="fm-sprout" d="M740 166 q-12 -14 0 -26 q12 12 0 26Z" style="animation-delay:-1.4s"/>
+      </g>
+      <circle cx="470" cy="150" r="9" fill="#ff9f1c"/><circle cx="590" cy="150" r="9" fill="#ff5a5f"/><circle cx="710" cy="150" r="9" fill="#ffd23f"/>
+      <g class="fm-hen"><path d="M846 180 Q846 156 868 156 Q874 146 882 152 Q888 160 882 166 Q892 172 886 182 Q878 192 862 190 Q846 190 846 180Z" fill="#fff"/><path d="M876 148 Q878 140 882 146 Q886 140 886 150Z" fill="#ff5a5f" stroke-width="3"/><path d="M886 158 L896 161 L886 164Z" fill="#ffb627" stroke-width="3"/><circle cx="879" cy="158" r="2" fill="#1d1d2b"/></g>
+      <ellipse cx="930" cy="186" rx="10" ry="13" fill="#fff8e6" stroke-width="3"/>
+    </g>
+  </svg>
+  <div class="ground"></div>
+</header>
+
+<div class="hud">
+  <span class="lvl" id="lvl">LEVEL 1</span>
+  <div class="bar"><i id="xpbar"></i></div>
+  <b id="xptext">0 XP</b>
+  <span class="dia"><span class="coin-ic"></span><span id="dias">0</span></span>
+</div>
+
+<div class="wrap">
+  <nav class="steps">
+    <a href="#plan">1. Plan your farm</a>
+    <a href="#words">2. Farm words</a>
+    <a href="#rules">3. Grammar</a>
+    <a href="#sort">4. Sort the basket</a>
+    <a href="#market">5. MARKET DAY</a>
+    <a href="#recipe">6. Recipe</a>
+    <a href="#bugs">7. Fix the bugs</a>
+    <a href="#missions">8. Missions</a>
+    <a href="#talk">9. Interview</a>
+    <a href="#watch">10. Watch &amp; talk</a>
+  </nav>
+
+  <section id="plan" data-min="5">
+    <h2>Plan your farm <span class="tag">warm-up</span></h2>
+    <p class="sub">Choose a season. Plant crops in your 6 fields. One field = <b>a few</b>, two fields = <b>some</b>, three or more = <b>a lot of</b>. Then read your plan out loud!</p>
+    <div class="fm-plan">
+      <div>
+        <div class="fm-seasons" id="seasons"></div>
+        <div class="fm-crops" id="crops"></div>
+        <p><button class="btn alt" id="planClear" type="button">Clear the fields</button></p>
+      </div>
+      <div class="fm-field" id="field"></div>
+    </div>
+    <div class="fm-say" id="planSay"></div>
+    <p><button class="btn" id="planDone" type="button">I read my plan</button></p>
+    <p class="lk-tnote" data-ru="Заметка: ученик выбирает сезон и сажает культуры. Следите за количеством: 1 грядка = a few (или a little для corn и wheat), 2 = some, 3 и больше = a lot of. Попросите прочитать предложение вслух и добавить своё: «I don't want any pumpkins.»">Нотатка: учень обирає сезон і садить культури. Слідкуйте за кількістю: 1 грядка = a few (або a little для corn і wheat), 2 = some, 3 і більше = a lot of. Попросіть прочитати речення вголос і додати своє: «I don't want any pumpkins.»</p>
+  </section>
+
+  <section id="words" data-min="8">
+    <h2>Farm words <span class="tag">vocabulary</span></h2>
+    <p class="sub">Click a card: listen, read the example and look at the label. <b>C</b> = countable (you can count it: one egg, two eggs). <b>U</b> = uncountable (some milk, a bottle of milk).</p>
+    <div class="cat-tabs" id="cats"></div>
+    <div class="grid" id="vocab"></div>
+    <p class="lk-tnote" data-ru="Заметка: на обороте каждой карточки есть пометка countable или uncountable. Спросите: «Can you count it? One milk, two milks?» Пусть ученик сам догадается, почему так нельзя.">Нотатка: на звороті кожної картки є позначка countable або uncountable. Спитайте: «Can you count it? One milk, two milks?» Хай учень сам здогадається, чому так не можна.</p>
+  </section>
+
+  <section id="rules" data-min="8">
+    <h2>Countable or uncountable? <span class="tag">grammar</span></h2>
+    <p class="sub">Some things you can count: <b>one carrot, two carrots</b>. Some things you can't: <b>milk, flour, honey</b>. The words we use with them are different!</p>
+    <div class="legend"><span class="bk q">question word</span><span class="bk qt">how much?</span><span class="bk n">countable noun</span><span class="bk n2">uncountable noun</span><span class="bk rest">the rest</span></div>
+    <div class="modes">
+      <div class="mode s">
+        <h3>Countable: you can count</h3>
+        <div class="recipe"><span class="bk qt">a / an</span><span class="bk n">egg</span><span class="bk qt">three</span><span class="bk n">eggs</span></div>
+        <div class="recipe"><span class="sign">?</span><span class="bk q">How</span><span class="bk qt">many</span><span class="bk n">eggs</span><span class="bk rest">have you got?</span></div>
+        <div class="recipe"><span class="bk qt">a few</span><span class="bk n">apples</span><span class="bk rest">= 2, 3 or 4</span></div>
+        <div class="chips"><span class="chip">carrots</span><span class="chip">potatoes</span><span class="chip">cows</span><span class="chip">coins</span><span class="chip">seeds</span></div>
+        <div class="tip"><b>Spelling:</b> potato &rarr; potato<b>es</b> · strawberry &rarr; strawberr<b>ies</b> · sheep &rarr; sheep · loaf &rarr; loa<b>ves</b></div>
+      </div>
+      <div class="mode c">
+        <h3>Uncountable: you can't count</h3>
+        <div class="recipe"><span class="bk n2">milk</span><span class="bk rest">not</span><s class="bk rest">a milk</s><s class="bk rest">two milks</s></div>
+        <div class="recipe"><span class="sign">?</span><span class="bk q">How</span><span class="bk qt">much</span><span class="bk n2">milk</span><span class="bk rest">do you need?</span></div>
+        <div class="recipe"><span class="bk qt">a little</span><span class="bk n2">honey</span><span class="bk rest">= not much</span></div>
+        <div class="chips"><span class="chip">water</span><span class="chip">flour</span><span class="chip">cheese</span><span class="chip">bread</span><span class="chip">money</span></div>
+        <div class="tip"><b>Trick!</b> Count the box, not the food: <b>a bottle of</b> milk · <b>a jar of</b> honey · <b>a bag of</b> flour · <b>a piece of</b> cheese · <b>a loaf of</b> bread</div>
+      </div>
+      <div class="mode y">
+        <h3>some or any?</h3>
+        <div class="recipe"><span class="sign">+</span><span class="bk rest">There are</span><span class="bk qt">some</span><span class="bk n">eggs.</span></div>
+        <div class="recipe"><span class="sign">&minus;</span><span class="bk rest">There isn't</span><span class="bk qt">any</span><span class="bk n2">milk.</span></div>
+        <div class="recipe"><span class="sign">?</span><span class="bk rest">Have you got</span><span class="bk qt">any</span><span class="bk n">seeds?</span></div>
+        <div class="tip"><b>But:</b> when you ask for something or offer something, use <b>some</b>: Can I have <b>some</b> water? Would you like <b>some</b> cheese?</div>
+      </div>
+      <div class="mode p">
+        <h3>How much is it?</h3>
+        <ul>
+          <li><b>a lot of</b>: with both! a lot of eggs, a lot of milk</li>
+          <li><b>many</b> / <b>a few</b>: only countable</li>
+          <li><b>much</b> / <b>a little</b>: only uncountable</li>
+          <li>In the shop: <b>How much is</b> the honey? <b>How much are</b> the pumpkins? (= the price)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="fm-meter" id="meter"></div>
+    <h3 style="margin:22px 0 6px">Quick check <span class="tag">+5 XP each</span></h3>
+    <div id="ruleQs"></div>
+    <p class="lk-ans">Answers: 1 many · 2 much · 3 some · 4 any · 5 a few · 6 a little · 7 a lot of · 8 any</p>
+    <p class="lk-tnote" data-ru="Заметка: в русском «хлеб», «деньги», «мёд» тоже без множественного числа, но «яблоко» или «морковка» считаются так же, как в английском. Ловушки: bread, money, fruit, advice, information не имеют множественного числа. Some в утвердительных предложениях и в просьбах (Can I have some...?), any в отрицаниях и вопросах.">Нотатка: в українській «хліб», «гроші», «мед» теж без множини, а «яблуко» чи «морквина» рахуються так само, як в англійській. Пастки: bread, money, fruit, advice, information не мають множини. Some у стверджувальних реченнях і в проханнях (Can I have some...?), any в запереченнях і питаннях.</p>
+  </section>
+
+  <section id="sort" data-min="4">
+    <h2>Sort the basket <span class="tag">+3 XP each</span></h2>
+    <p class="sub">Click a word, then click the right crate. Can you count it?</p>
+    <div class="pool" id="sortPool"></div>
+    <div class="sort">
+      <div class="bin s" id="binC"><h4>Countable <small>a / an · many · a few</small></h4></div>
+      <div class="bin c" id="binU"><h4>Uncountable <small>much · a little</small></h4></div>
+    </div>
+    <p class="lk-ans">Countable: egg, carrot, apple, potato, coin, sheep, seed, tomato, cow. Uncountable: milk, flour, honey, cheese, water, money, bread, wool, sugar.</p>
+    <p class="lk-tnote" data-ru="Заметка: если ученик ошибается с bread или money, вернитесь к правилу и покажите «a loaf of bread», «three coins». Sheep: одна овца и много овец, слово не меняется, но оно исчисляемое.">Нотатка: якщо учень помиляється з bread чи money, поверніться до правила й покажіть «a loaf of bread», «three coins». Sheep: одна вівця і багато овець, слово не змінюється, але воно злічуване.</p>
+  </section>
+
+  <section id="market" data-min="12">
+    <h2>MARKET DAY <span class="tag">main game</span></h2>
+    <p class="sub">You run the farm shop! 10 customers. First choose the right word, then put exactly what they want in the basket and press SERVE. Count carefully!</p>
+    <div class="fm-game" id="game">
+      <div class="fm-game__top"><span>Customer <b id="mNum">0</b>/10</span><span>Gold <b id="mGold">0</b></span><span>Happy customers <b id="mHappy">0</b></span><div class="fm-day" title="Market day"><i id="mSun"></i></div></div>
+      <div class="fm-stall">
+        <div class="fm-front">
+          <div class="fm-awning"></div>
+          <div class="fm-cust out" id="mCust"></div>
+          <div class="fm-bubble" id="mBubble"><small>Farm shop</small>The market opens at 9 o'clock. Are you ready?</div>
+          <div class="fm-counter"></div>
+        </div>
+        <div class="fm-basket">
+          <h4><span id="bIc"></span>Your basket</h4>
+          <div class="fm-bitems" id="mBasket"><span class="fm-empty">Empty. Click the shelf to add things. Click a thing here to take it out.</span></div>
+          <button class="btn" id="mServe" type="button" disabled>SERVE</button>
+        </div>
+      </div>
+      <div class="fm-q" id="mHint"></div>
+      <div class="fm-opts" id="mOpts"><button class="btn" id="mStart" type="button">Open the shop!</button></div>
+      <div class="fm-shelf" id="mShelf"></div>
+    </div>
+    <p class="lk-ans">Answers: many · any · some · much · any · a few · some · a little · many · a lot of</p>
+    <p class="lk-tnote" data-ru="Заметка: сначала ученик выбирает слово, потом собирает корзину. Считайте вместе вслух: «one egg, two eggs, three eggs». Если покупатель недоволен, пусть ученик прочитает его фразу (too many, too much, not enough). В конце попросите рассказать, что он продал: «I sold nine eggs and three bottles of milk.» Можно сыграть второй раз на скорость.">Нотатка: спершу учень обирає слово, потім збирає кошик. Рахуйте разом уголос: «one egg, two eggs, three eggs». Якщо покупець незадоволений, хай учень прочитає його фразу (too many, too much, not enough). Наприкінці попросіть розповісти, що він продав: «I sold nine eggs and three bottles of milk.» Можна зіграти вдруге на швидкість.</p>
+  </section>
+
+  <section id="recipe" data-min="7">
+    <h2>Saturday pancakes <span class="tag">reading</span></h2>
+    <p class="sub">Read the recipe card. Then read the story and write the missing words. Use the words in the box.</p>
+    <div class="fm-rec">
+      <div class="fm-card">
+        <h3>Farm Pancakes</h3>
+        <small>for 4 people · 20 minutes</small>
+        <ul id="ingr"></ul>
+        <div class="pan" id="pan"></div>
+      </div>
+      <div>
+        <div class="fm-bank" id="bank"></div>
+        <div class="text" id="story"></div>
+        <h3 style="margin:18px 0 4px">True or false?</h3>
+        <div id="tfList"></div>
+      </div>
+    </div>
+    <p class="lk-ans">Gaps: some · any · a lot of · much · many · a few · a little · some · any · a little (gaps 1, 3, 8, 10 also accept other logical answers). True / False: F · T · F · T · F · F</p>
+    <p class="lk-tnote" data-ru="Заметка: первое чтение без вписывания, только найти все продукты из карточки. Второе: вписать слова. Некоторые пропуски имеют два правильных ответа, игра их принимает. После текста спросите: «How many eggs do you need? How much sugar?»">Нотатка: перше читання без вписування, тільки знайти всі продукти з картки. Друге: вписати слова. Деякі пропуски мають дві правильні відповіді, гра їх приймає. Після тексту спитайте: «How many eggs do you need? How much sugar?»</p>
+  </section>
+
+  <section id="bugs" data-min="5">
+    <h2>Fix the bugs <span class="tag">+15 XP each</span></h2>
+    <p class="sub">OK or bug? Say the correct sentence out loud.</p>
+    <div id="bugList"></div>
+    <p class="lk-tnote" data-ru="Заметка: пусть ученик не просто нажмёт BUG, а скажет правильное предложение вслух и объяснит: «milk is uncountable, so much».">Нотатка: хай учень не просто натисне BUG, а скаже правильне речення вголос і пояснить: «milk is uncountable, so much».</p>
+  </section>
+
+  <section id="missions" data-min="8">
+    <h2>Missions for the game <span class="tag">play + speak</span></h2>
+    <p class="sub">Play any farming game. After each mission, tell your teacher about it with some, any, how much, how many.</p>
+    <div class="missions" id="misList"></div>
+    <p class="lk-tnote" data-ru="Заметка: если игры нет под рукой, ученик описывает свою придуманную ферму или смотрит видео из раздела 10 и отвечает на те же вопросы. Напомните: в чатах игр нельзя писать имя, школу и адрес.">Нотатка: якщо гри немає під рукою, учень описує свою вигадану ферму або дивиться відео з розділу 10 і відповідає на ті самі питання. Нагадайте: у чатах ігор не можна писати ім’я, школу й адресу.</p>
+  </section>
+
+  <section id="talk" data-min="4">
+    <h2>Interview <span class="tag">speaking</span></h2>
+    <p class="sub">Ask your teacher, then answer yourself. Speak for 30 seconds!</p>
+    <div class="timer" id="timer30">0:30</div>
+    <p style="text-align:center"><button class="btn" id="timerBtn" type="button">Start 30 seconds</button></p>
+    <div class="talk" id="talkList"></div>
+    <p class="lk-tnote" data-ru="Заметка: моделируйте полный ответ: «I've got two cats and a few fish. How many pets have you got?» Хвалите за вопросы в ответ.">Нотатка: моделюйте повну відповідь: «I've got two cats and a few fish. How many pets have you got?» Хваліть за зустрічні питання.</p>
+  </section>
+
+  <section id="watch" data-min="0">
+    <h2>Watch &amp; talk <span class="tag">videos</span></h2>
+    <p class="sub">Official trailers from the game's YouTube channel and Nintendo. Watch, pause and talk!</p>
+    <div class="vids" id="vidList"></div>
+    <p class="lk-tnote" data-ru="Посмотрите видео сами перед уроком и выберите то, что подходит по возрасту ученика. Видео на английском, без субтитров: останавливайте часто.">Перегляньте відео самі перед уроком і оберіть те, що підходить за віком учня. Відео англійською, без субтитрів: зупиняйте часто.</p>
+  </section>
+
+  <details class="teacher">
+    <summary data-ru="Для учителя: план на 55-60 минут">Для вчителя: план на 55-60 хвилин</summary>
+    <p data-ru="1. Plan your farm (5 мин): ученик выбирает сезон, сажает культуры и читает план с a few / some / a lot of. 2. Farm words (8 мин): карточки, слушаем и смотрим на C / U. 3. Грамматика (8 мин): пусть ученик сам скажет, какие слова можно посчитать, потом Quick check. 4. Sort the basket (4 мин). 5. MARKET DAY (12 мин): главная игра, в конце рассказ «I sold...». 6. Рецепт (7 мин). 7. Fix the bugs (5 мин). 8. Миссии в игре (8 мин). 9. Интервью (4 мин). 10. Видео в конце или дома.">1. Plan your farm (5 хв): учень обирає сезон, садить культури й читає план з a few / some / a lot of. 2. Farm words (8 хв): картки, слухаємо й дивимось на C / U. 3. Граматика (8 хв): хай учень сам скаже, які слова можна порахувати, потім Quick check. 4. Sort the basket (4 хв). 5. MARKET DAY (12 хв): головна гра, наприкінці розповідь «I sold...». 6. Рецепт (7 хв). 7. Fix the bugs (5 хв). 8. Місії в грі (8 хв). 9. Інтерв’ю (4 хв). 10. Відео наприкінці або вдома.</p>
+    <p data-ru="Если ученик путается, держите в голове одну проверку: можно ли сказать «two ...»? Можно: many, a few. Нельзя: much, a little.">Якщо учень плутається, тримайте в голові одну перевірку: чи можна сказати «two ...»? Можна: many, a few. Не можна: much, a little.</p>
+    <p data-ru="Домашка: голосовое на 1 минуту «My farm shop»: что ты продаёшь, сколько у тебя продуктов, чего нет.">Домашка: голосове на 1 хвилину «My farm shop»: що ти продаєш, скільки в тебе продуктів, чого немає.</p>
+  </details>
+</div>
+
+<div class="toast" id="toast"></div>
+<div class="lvlup" id="lvlup"><b>LEVEL 2!</b><span>Keep going!</span></div>
+<script>
+// ---------- наші іконки (SVG, малюємо самі) ----------
+const sv = (b) => `<svg viewBox="0 0 64 64" class="ic" aria-hidden="true"><g stroke="#1d1d2b" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">${b}</g></svg>`;
+const ICON = {
+  carrot: '<path d="M24 22 Q36 16 44 26 L22 58 Q14 40 24 22Z" fill="#ff9f1c"/><path d="M28 30 l6 2 M24 40 l6 2 M22 49 l5 1" fill="none"/><path d="M34 20 Q30 10 24 6 M36 21 Q40 10 38 3 M38 23 Q48 16 54 14" fill="none" stroke="#2f9e2f" stroke-width="5"/>',
+  potato: '<path d="M10 36 Q10 20 30 20 Q52 18 54 34 Q56 50 34 50 Q10 52 10 36Z" fill="#d6a565"/><g fill="#1d1d2b" stroke="none"><circle cx="24" cy="32" r="1.8"/><circle cx="38" cy="28" r="1.8"/><circle cx="42" cy="42" r="1.8"/><circle cx="28" cy="43" r="1.8"/></g>',
+  tomato: '<circle cx="32" cy="37" r="20" fill="#ff5a5f"/><path d="M20 20 L28 22 L32 13 L36 22 L44 20 L39 27 L25 27Z" fill="#3ecf4c"/><path d="M21 32 Q23 26 28 25" fill="none" stroke="#fff" stroke-width="3"/>',
+  corn: '<path d="M32 6 Q44 18 42 40 Q40 54 32 58 Q24 54 22 40 Q20 18 32 6Z" fill="#ffd23f"/><path d="M27 18 h10 M24 26 h16 M23 34 h18 M24 42 h16 M32 10 v38" fill="none" stroke-width="2"/><path d="M22 36 Q10 44 14 60 Q24 56 32 58Z M42 36 Q54 44 50 60 Q40 56 32 58Z" fill="#3ecf4c"/>',
+  pumpkin: '<ellipse cx="20" cy="38" rx="12" ry="16" fill="#ff8a1c"/><ellipse cx="44" cy="38" rx="12" ry="16" fill="#ff8a1c"/><ellipse cx="32" cy="38" rx="12" ry="18" fill="#ffa53c"/><path d="M32 20 Q32 12 38 8" fill="none" stroke="#3e8f25" stroke-width="5"/>',
+  strawberry: '<path d="M14 24 Q32 14 50 24 Q50 44 32 58 Q14 44 14 24Z" fill="#ff4d5e"/><path d="M18 22 L24 12 L30 20 L32 10 L36 20 L42 12 L46 22 Q32 28 18 22Z" fill="#3ecf4c"/><g fill="#ffe08a" stroke="none"><circle cx="24" cy="32" r="1.8"/><circle cx="32" cy="36" r="1.8"/><circle cx="40" cy="31" r="1.8"/><circle cx="28" cy="44" r="1.8"/><circle cx="37" cy="44" r="1.8"/></g>',
+  apple: '<path d="M32 22 Q44 12 52 26 Q58 44 42 56 Q32 60 22 56 Q6 44 12 26 Q20 12 32 22Z" fill="#ff5a5f"/><path d="M32 22 Q32 12 36 6" fill="none"/><path d="M36 12 Q46 4 50 12 Q42 18 36 12Z" fill="#3ecf4c"/><path d="M19 32 Q21 25 26 23" fill="none" stroke="#fff" stroke-width="3"/>',
+  wheat: '<path d="M32 60 V14" fill="none" stroke="#a87c2a" stroke-width="4"/><g fill="#f0c94a"><ellipse cx="26" cy="20" rx="5" ry="8" transform="rotate(-30 26 20)"/><ellipse cx="38" cy="20" rx="5" ry="8" transform="rotate(30 38 20)"/><ellipse cx="26" cy="32" rx="5" ry="8" transform="rotate(-30 26 32)"/><ellipse cx="38" cy="32" rx="5" ry="8" transform="rotate(30 38 32)"/><ellipse cx="26" cy="44" rx="5" ry="8" transform="rotate(-30 26 44)"/><ellipse cx="38" cy="44" rx="5" ry="8" transform="rotate(30 38 44)"/><ellipse cx="32" cy="10" rx="4" ry="7"/></g>',
+  seeds: '<rect x="14" y="8" width="36" height="48" rx="3" fill="#fff4c9"/><path d="M14 18 h36" fill="none"/><path d="M32 50 V32" fill="none"/><path d="M32 36 Q22 34 22 24 Q32 26 32 36Z M32 34 Q42 32 42 22 Q32 24 32 34Z" fill="#3ecf4c"/>',
+  egg: '<path d="M32 8 Q50 8 52 36 Q52 56 32 56 Q12 56 12 36 Q14 8 32 8Z" fill="#fff8e6"/><path d="M22 28 Q24 20 30 17" fill="none" stroke="#e3d3ad" stroke-width="3"/>',
+  milk: '<path d="M26 8 h12 v6 l6 8 v34 a4 4 0 0 1 -4 4 h-16 a4 4 0 0 1 -4 -4 v-34 l6 -8Z" fill="#fff"/><rect x="25" y="4" width="14" height="6" fill="#2f80ed"/><rect x="20" y="32" width="24" height="14" fill="#8fd3ff"/>',
+  honey: '<rect x="18" y="10" width="28" height="10" rx="2" fill="#a0592c"/><rect x="14" y="20" width="36" height="36" rx="8" fill="#ffb627"/><rect x="22" y="32" width="20" height="14" fill="#fff8e6"/><path d="M27 39 h10" fill="none" stroke="#ffb627"/>',
+  flour: '<path d="M20 16 Q24 6 32 10 Q40 6 44 16" fill="#f4ecdc"/><path d="M16 16 Q32 10 48 16 L52 54 Q32 60 12 54Z" fill="#f4ecdc"/><path d="M32 28 V48 M32 34 l-5 -4 M32 34 l5 -4 M32 41 l-5 -4 M32 41 l5 -4" fill="none" stroke="#c9a330"/>',
+  cheese: '<path d="M8 40 L52 22 L56 42 V54 H8Z" fill="#ffd23f"/><path d="M8 40 L56 42" fill="none"/><g fill="#e8b92e"><circle cx="22" cy="48" r="3"/><circle cx="40" cy="48" r="3.5"/><circle cx="44" cy="34" r="2.5"/></g>',
+  bread: '<path d="M8 40 Q8 22 32 22 Q56 22 56 40 V52 H8Z" fill="#d99a4e"/><path d="M20 30 l6 6 M30 28 l6 6 M40 30 l6 6" fill="none"/>',
+  butter: '<ellipse cx="32" cy="48" rx="26" ry="8" fill="#e3f4ff"/><path d="M16 30 L40 24 L50 30 V42 L26 48 L16 42Z" fill="#ffe680"/><path d="M16 30 L26 36 L50 30 M26 36 V48" fill="none"/>',
+  sugar: '<rect x="10" y="32" width="20" height="20" fill="#fff"/><rect x="34" y="32" width="20" height="20" fill="#fff"/><rect x="22" y="12" width="20" height="20" fill="#fff"/>',
+  water: '<path d="M32 6 Q50 30 50 40 A18 18 0 0 1 14 40 Q14 30 32 6Z" fill="#5ec8ef"/><path d="M22 41 Q22 35 26 31" fill="none" stroke="#fff" stroke-width="3"/>',
+  soup: '<path d="M8 30 H56 Q56 54 32 54 Q8 54 8 30Z" fill="#ff9f1c"/><ellipse cx="32" cy="30" rx="24" ry="5" fill="#ffb84d"/><path d="M24 22 Q20 16 24 10 M36 22 Q32 16 36 10" fill="none" stroke="#9a9a9a"/>',
+  pancakes: '<ellipse cx="32" cy="52" rx="27" ry="7" fill="#e3f4ff"/><g fill="#f2b45a"><ellipse cx="32" cy="46" rx="20" ry="6"/><ellipse cx="32" cy="38" rx="20" ry="6"/><ellipse cx="32" cy="30" rx="20" ry="6"/></g><path d="M22 28 Q32 22 42 28 L40 34 Q38 30 35 36 Q32 30 29 35 Q26 30 24 33Z" fill="#ffb627"/><path d="M30 22 Q32 16 36 18 Q38 22 32 24Z" fill="#ff4d5e"/>',
+  chicken: '<path d="M14 38 Q14 20 32 22 Q36 12 44 14 Q52 18 48 28 Q56 34 52 46 Q46 56 30 56 Q14 54 14 38Z" fill="#fff"/><path d="M40 14 Q40 6 45 10 Q50 6 50 15Z" fill="#ff5a5f"/><path d="M50 20 L58 23 L50 26Z" fill="#ffb627"/><circle cx="45" cy="20" r="2" fill="#1d1d2b"/><path d="M20 38 Q28 46 38 38" fill="none"/><path d="M28 56 v5 M36 56 v5" fill="none" stroke="#ff9f1c"/>',
+  cow: '<path d="M20 12 Q16 4 22 4 M44 12 Q48 4 42 4" fill="none" stroke="#c9b48a" stroke-width="4"/><path d="M13 20 Q4 16 6 25 Q10 27 17 25Z M51 20 Q60 16 58 25 Q54 27 47 25Z" fill="#fff"/><path d="M16 14 Q32 6 48 14 L46 42 H18Z" fill="#fff"/><path d="M19 15 Q24 24 31 13Z M39 17 Q47 15 47 24 Q40 26 39 17Z" fill="#1d1d2b"/><circle cx="25" cy="29" r="2.5" fill="#1d1d2b"/><circle cx="39" cy="29" r="2.5" fill="#1d1d2b"/><rect x="16" y="36" width="32" height="20" rx="10" fill="#ffb0c8"/><circle cx="26" cy="46" r="2.5" fill="#1d1d2b"/><circle cx="38" cy="46" r="2.5" fill="#1d1d2b"/>',
+  sheep: '<g fill="#fff"><circle cx="20" cy="26" r="10"/><circle cx="34" cy="19" r="11"/><circle cx="46" cy="28" r="10"/><circle cx="18" cy="40" r="10"/><circle cx="46" cy="42" r="10"/><circle cx="32" cy="47" r="11"/></g><ellipse cx="32" cy="34" rx="10" ry="12" fill="#4a3a3a"/><circle cx="28" cy="31" r="2" fill="#fff" stroke="none"/><circle cx="36" cy="31" r="2" fill="#fff" stroke="none"/>',
+  wool: '<circle cx="32" cy="32" r="20" fill="#ff8fd8"/><path d="M16 24 Q32 32 46 16 M13 34 Q34 42 50 24 M17 45 Q36 50 52 34" fill="none"/><path d="M48 46 Q56 56 60 50" fill="none"/>',
+  wateringcan: '<path d="M14 26 H40 V54 H14Z" fill="#8fd3ff"/><path d="M40 36 L54 20 L60 25 L44 44Z" fill="#8fd3ff"/><path d="M14 30 Q4 30 6 42 Q8 50 14 48" fill="none"/><path d="M20 26 Q27 14 34 26" fill="none"/><path d="M58 14 v-4 M62 18 h3" fill="none" stroke="#2f80ed"/>',
+  hoe: '<path d="M14 58 L46 14" fill="none" stroke="#a0592c" stroke-width="6"/><path d="M40 8 L58 14 L54 22 L42 18Z" fill="#cdd6dd"/>',
+  basket: '<path d="M16 26 Q32 2 48 26" fill="none" stroke="#a0592c" stroke-width="5"/><path d="M8 26 H56 L50 56 H14Z" fill="#d99a4e"/><path d="M12 36 H52 M14 46 H50 M24 26 L26 56 M40 26 L38 56" fill="none" stroke="#a0592c"/>',
+  barn: '<path d="M8 28 L32 10 L56 28 V58 H8Z" fill="#e8504a"/><path d="M5 30 L32 9 L59 30" fill="none" stroke="#fff" stroke-width="3"/><rect x="22" y="36" width="20" height="22" fill="#fff"/><path d="M22 36 L42 58 M42 36 L22 58" fill="none"/>',
+  coin: '<circle cx="32" cy="32" r="22" fill="#ffd23f"/><circle cx="32" cy="32" r="15" fill="none" stroke="#c99a2e"/><path d="M32 22 V42" fill="none" stroke="#c99a2e" stroke-width="4"/>',
+  money: '<g fill="#ffd23f"><ellipse cx="32" cy="50" rx="20" ry="7"/><ellipse cx="32" cy="42" rx="20" ry="7"/><ellipse cx="32" cy="34" rx="20" ry="7"/><ellipse cx="32" cy="26" rx="20" ry="7"/></g><path d="M26 26 h12" fill="none" stroke="#c99a2e"/>',
+  shop: '<rect x="10" y="28" width="44" height="28" fill="#fff4c9"/><path d="M6 14 H58 L56 28 H8Z" fill="#ff5a5f"/><path d="M17 14 L15 28 M27 14 L26 28 M37 14 L38 28 M47 14 L49 28" fill="none"/><rect x="16" y="38" width="12" height="18" fill="#a0592c"/><rect x="34" y="36" width="14" height="10" fill="#8fd3ff"/>',
+  sun: '<circle cx="32" cy="32" r="12" fill="#ffd23f"/><path d="M32 6 V14 M32 50 V58 M6 32 H14 M50 32 H58 M14 14 L19 19 M45 45 L50 50 M50 14 L45 19 M14 50 L19 45" fill="none" stroke="#ff9f1c" stroke-width="4"/>',
+  flower: '<path d="M32 60 V36" fill="none" stroke="#3e8f25" stroke-width="4"/><path d="M32 52 Q22 44 16 50 Q24 58 32 52Z" fill="#3ecf4c"/><g fill="#ff8fd8"><circle cx="32" cy="13" r="8"/><circle cx="44" cy="23" r="8"/><circle cx="20" cy="23" r="8"/><circle cx="25" cy="36" r="8"/><circle cx="39" cy="36" r="8"/></g><circle cx="32" cy="26" r="6" fill="#ffd23f"/>',
+  leaf: '<path d="M10 54 Q8 18 50 10 Q58 48 22 54Z" fill="#ff8a1c"/><path d="M10 54 L42 20 M24 40 l-2 -10 M32 32 l8 2" fill="none"/>',
+  snow: '<path d="M32 6 V58 M9 19 L55 45 M55 19 L9 45" fill="none" stroke="#2f80ed" stroke-width="4"/><path d="M26 10 L32 16 L38 10 M26 54 L32 48 L38 54" fill="none" stroke="#2f80ed" stroke-width="3"/>',
+  rain: '<path d="M14 34 Q6 34 8 26 Q10 18 20 20 Q22 8 34 10 Q46 10 46 20 Q58 18 56 28 Q54 34 48 34Z" fill="#e3f4ff"/><path d="M20 42 l-3 8 M32 42 l-3 8 M44 42 l-3 8" fill="none" stroke="#2f80ed" stroke-width="4"/>',
+  fish: '<path d="M8 32 Q24 14 44 26 L56 16 V48 L44 38 Q24 50 8 32Z" fill="#5ec8ef"/><circle cx="18" cy="30" r="2.5" fill="#1d1d2b"/><path d="M30 26 Q34 32 30 38" fill="none"/>',
+  heart: '<path d="M32 54 Q6 36 10 22 Q14 10 26 12 Q30 13 32 18 Q34 13 38 12 Q50 10 54 22 Q58 36 32 54Z" fill="#ff5a5f"/><path d="M18 22 Q20 17 25 17" fill="none" stroke="#fff" stroke-width="3"/>',
+  calendar: '<rect x="10" y="12" width="44" height="44" fill="#fff"/><rect x="10" y="12" width="44" height="12" fill="#3ecf4c"/><path d="M20 7 V16 M44 7 V16" fill="none"/><g fill="#1d1d2b" stroke="none"><rect x="17" y="30" width="6" height="6"/><rect x="29" y="30" width="6" height="6"/><rect x="41" y="30" width="6" height="6"/><rect x="17" y="42" width="6" height="6"/><rect x="29" y="42" width="6" height="6"/></g>',
+  box: '<path d="M4 16 H60 V24 H4Z" fill="#a0592c"/><path d="M8 24 H56 V56 H8Z" fill="#c98b5b"/><path d="M8 40 H56 M32 24 V56" fill="none"/>',
+};
+const ic = (k) => sv(ICON[k] || '');
+
+// ---------- звуки, частинки, XP (як в інших уроках) ----------
+let AC; const tone = (f, d, type = 'square', v = .07, when = 0) => { try { AC = AC || new (window.AudioContext || window.webkitAudioContext)(); const o = AC.createOscillator(), g = AC.createGain(); o.type = type; o.frequency.value = f; g.gain.value = v; o.connect(g); g.connect(AC.destination); const t = AC.currentTime + when; o.start(t); g.gain.exponentialRampToValueAtTime(.0001, t + d); o.stop(t + d); } catch (e) { } };
+const pop = () => { tone(660, .08); tone(990, .12, 'square', .06, .07); };
+const buzz = () => { tone(140, .25, 'sawtooth', .06); };
+const fanfare = () => [523, 659, 784, 1046].forEach((f, i) => tone(f, .18, 'square', .07, i * .11));
+const ching = () => { tone(1320, .08, 'triangle', .08); tone(1760, .16, 'triangle', .07, .08); };
+let lastX = innerWidth / 2, lastY = innerHeight / 2;
+addEventListener('pointerdown', (e) => { lastX = e.clientX; lastY = e.clientY; }, true);
+function burst(n = 14) {
+  const cols = ['#7cff4f', '#ffd23f', '#ff9f1c', '#ff5a5f', '#ff8fd8', '#8fd3ff'];
+  for (let i = 0; i < n; i++) { const p = document.createElement('i'); p.className = 'pxl'; p.style.left = lastX + 'px'; p.style.top = lastY + 'px'; p.style.background = cols[i % cols.length];
+    const a = Math.random() * Math.PI * 2, r = 50 + Math.random() * 70; p.style.setProperty('--dx', Math.cos(a) * r + 'px'); p.style.setProperty('--dy', Math.sin(a) * r - 30 + 'px'); document.body.appendChild(p); setTimeout(() => p.remove(), 800); }
+}
+const LESSON_ID = 'farm';
+let xp = 0, dias = 0; const done = new Set();
+function gain(key, n, msg) {
+  if (done.has(key)) return; done.add(key); const before = Math.floor(xp / 100); xp += n; if (n >= 15) dias++;
+  // якщо учень увійшов на Murly, досвід іде і в його загальний рівень
+  try { if (location.hostname.endsWith('murly.com.ua')) fetch('/api/xp', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ items: [{ key: `game:${LESSON_ID}:${key}`, amount: Math.min(60, n) }], source: 'game' }) }).catch(() => {}); } catch (e) { }
+  const lvl = Math.floor(xp / 100) + 1;
+  burst(); if (lvl - 1 > before) { fanfare(); const L = document.getElementById('lvlup'); L.querySelector('b').textContent = 'LEVEL ' + lvl + '!'; L.classList.remove('show'); void L.offsetWidth; L.classList.add('show'); } else pop();
+  document.getElementById('xpbar').style.width = (xp % 100) + '%';
+  document.getElementById('xptext').textContent = xp + ' XP';
+  document.getElementById('lvl').textContent = 'LEVEL ' + lvl;
+  document.getElementById('dias').textContent = dias;
+  toast(msg || ('+' + n + ' XP'));
+}
+let tt; function toast(m) { const t = document.getElementById('toast'); t.textContent = m; t.classList.add('show'); clearTimeout(tt); tt = setTimeout(() => t.classList.remove('show'), 1400); }
+function say(w) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; u.rate = .9; speechSynthesis.speak(u); } catch (e) { } }
+const $ = (id) => document.getElementById(id);
+const shuffle = (a) => a.map((x) => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map((p) => p[1]);
+const NUM = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve'];
+const listJoin = (a) => a.length < 2 ? (a[0] || '') : a.slice(0, -1).join(', ') + ' and ' + a[a.length - 1];
+
+// ---------- 1. план ферми ----------
+const CROP = { potato: ['potato', 'potatoes'], strawberry: ['strawberry', 'strawberries'], carrot: ['carrot', 'carrots'], tomato: ['tomato', 'tomatoes'], corn: ['corn', null], wheat: ['wheat', null], pumpkin: ['pumpkin', 'pumpkins'] };
+const SEASONS = {
+  spring: { name: 'spring', ic: 'flower', crops: ['potato', 'strawberry', 'carrot'] },
+  summer: { name: 'summer', ic: 'sun', crops: ['tomato', 'corn', 'wheat'] },
+  autumn: { name: 'autumn (fall)', ic: 'leaf', crops: ['pumpkin', 'corn', 'wheat'] },
+  winter: { name: 'winter', ic: 'snow', crops: [] },
+};
+let season = 'spring'; let plots = [null, null, null, null, null, null];
+function planRender() {
+  $('seasons').querySelectorAll('.fm-season').forEach((b) => b.classList.toggle('on', b.dataset.s === season));
+  const f = $('field'); f.classList.toggle('winter', season === 'winter'); f.innerHTML = '';
+  plots.forEach((k, i) => { const p = document.createElement('button'); p.type = 'button'; p.className = 'fm-plot'; p.setAttribute('aria-label', k ? 'Remove ' + k : 'Empty field'); p.innerHTML = k ? ic(k) : ''; p.onclick = () => { if (plots[i]) { plots[i] = null; tone(300, .06); planRender(); } }; f.appendChild(p); });
+  const cnt = {}; plots.forEach((k) => { if (k) cnt[k] = (cnt[k] || 0) + 1; });
+  const S = SEASONS[season]; const nm = season === 'autumn' ? 'autumn' : season;
+  if (season === 'winter') { $('planSay').innerHTML = `<b>In winter</b> there aren't <span class="hl">any</span> crops on my farm. It's too cold! I look after my animals: I have <span class="hl">some</span> chickens and <span class="hl">a few</span> cows.`; return; }
+  const parts = Object.keys(cnt).map((k) => { const n = cnt[k]; const U = !CROP[k][1]; const q = n >= 3 ? 'a lot of' : n === 2 ? 'some' : (U ? 'a little' : 'a few'); return `<span class="hl">${q}</span> ${U ? CROP[k][0] : CROP[k][1]}`; });
+  const no = S.crops.filter((k) => !cnt[k]).map((k) => CROP[k][1] || CROP[k][0]);
+  $('planSay').innerHTML = parts.length ? `<b>In ${nm}</b> I'm going to plant ${listJoin(parts)}.${no.length ? ` I don't want <span class="hl">any</span> ${no[0]}.` : ''}` : `It's ${nm}! What do you want to plant? Click the crops.`;
+}
+Object.entries(SEASONS).forEach(([k, s]) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'fm-season'; b.dataset.s = k; b.innerHTML = ic(s.ic) + s.name; b.onclick = () => { season = k; plots = plots.map(() => null); tone(500, .06); say(s.name.split(' ')[0]); planRender(); }; $('seasons').appendChild(b); });
+Object.keys(CROP).forEach((k) => {
+  const b = document.createElement('button'); b.type = 'button'; b.className = 'fm-crop'; b.innerHTML = ic(k) + (CROP[k][1] || CROP[k][0]);
+  b.onclick = () => {
+    if (!SEASONS[season].crops.includes(k)) { b.classList.remove('bad'); void b.offsetWidth; b.classList.add('bad'); buzz(); toast(season === 'winter' ? 'Too cold! Nothing grows in winter.' : `Oh no! ${(CROP[k][1] || CROP[k][0]).replace(/^./, (c) => c.toUpperCase())} ${CROP[k][1] ? "don't" : "doesn't"} grow in ${season}.`); return; }
+    const i = plots.indexOf(null); if (i < 0) { toast('All 6 fields are full!'); return; }
+    plots[i] = k; tone(600 + i * 70, .07); planRender();
+  };
+  $('crops').appendChild(b);
+});
+$('planClear').onclick = () => { plots = plots.map(() => null); planRender(); };
+$('planDone').onclick = () => { say($('planSay').textContent); gain('plan', 15, '+15 XP · great farm plan!'); };
+planRender();
+
+// ---------- 2. слова ----------
+const CATS = [['crops', 'Crops'], ['animals', 'Animals'], ['seasons', 'Seasons & weather'], ['tools', 'Farm & tools'], ['kitchen', 'Shop & kitchen']];
+const WORDS = [
+  ['crops', 'carrot', 'a carrot', 'c', 'An orange vegetable. Rabbits love it!', 'I planted ten carrots.'],
+  ['crops', 'potato', 'a potato', 'c', 'A brown vegetable. You can make chips from it.', 'How many potatoes have you got?'],
+  ['crops', 'tomato', 'a tomato', 'c', 'A red, round vegetable. It grows in summer.', 'There are some tomatoes in the basket.'],
+  ['crops', 'pumpkin', 'a pumpkin', 'c', 'A big orange vegetable. It grows in autumn.', 'This pumpkin is huge!'],
+  ['crops', 'strawberry', 'a strawberry', 'c', 'A small, sweet, red fruit.', 'Can I have a few strawberries?'],
+  ['crops', 'apple', 'an apple', 'c', 'A round fruit. It grows on a tree.', 'We picked a lot of apples.'],
+  ['crops', 'corn', 'corn', 'u', 'Tall yellow plants with sweet seeds.', 'We grow a lot of corn in summer.'],
+  ['crops', 'wheat', 'wheat', 'u', 'A plant. We make flour from it.', 'How much wheat do you need?'],
+  ['crops', 'seeds', 'a seed', 'c', 'A tiny thing. You put it in the ground and a plant grows.', 'I bought some seeds at the shop.'],
+  ['animals', 'chicken', 'a chicken', 'c', 'A farm bird. It gives us eggs.', 'I have three chickens.'],
+  ['animals', 'egg', 'an egg', 'c', 'Chickens lay them. You can cook them.', 'There aren\'t any eggs today.'],
+  ['animals', 'cow', 'a cow', 'c', 'A big farm animal. It gives us milk.', 'How many cows are in the barn?'],
+  ['animals', 'milk', 'milk', 'u', 'A white drink from cows.', 'How much milk is there?'],
+  ['animals', 'sheep', 'a sheep / two sheep', 'c', 'A farm animal with soft white hair.', 'We have a few sheep.'],
+  ['animals', 'wool', 'wool', 'u', 'Soft hair from sheep. We make jumpers from it.', 'My sheep give a lot of wool.'],
+  ['animals', 'honey', 'honey', 'u', 'Sweet yellow food. Bees make it.', 'I put a little honey in my tea.'],
+  ['animals', 'cheese', 'cheese', 'u', 'Yellow or white food made from milk.', 'Would you like some cheese?'],
+  ['seasons', 'flower', 'spring', 'u', 'The season after winter. Flowers open.', 'In spring I plant potatoes.'],
+  ['seasons', 'sun', 'summer', 'u', 'The hottest season.', 'Tomatoes grow in summer.'],
+  ['seasons', 'leaf', 'autumn / fall', 'u', 'The season when leaves fall from trees.', 'We pick pumpkins in autumn.'],
+  ['seasons', 'snow', 'winter', 'u', 'The coldest season. Sometimes it snows.', 'Nothing grows in winter.'],
+  ['seasons', 'rain', 'rain', 'u', 'Water that falls from the sky.', 'We had a lot of rain this week.'],
+  ['tools', 'wateringcan', 'a watering can', 'c', 'You put water in it and water your plants.', 'Is there any water in the watering can?'],
+  ['tools', 'water', 'water', 'u', 'Plants need it every day.', 'How much water does a tomato need?'],
+  ['tools', 'hoe', 'a hoe', 'c', 'A tool. You dig the ground with it.', 'I need a hoe to make a new field.'],
+  ['tools', 'basket', 'a basket', 'c', 'You carry fruit and vegetables in it.', 'My basket is full of apples.'],
+  ['tools', 'barn', 'a barn', 'c', 'A big building for animals.', 'There are four cows in the barn.'],
+  ['tools', 'calendar', 'a harvest', 'c', 'The time when you pick your crops.', 'We had a great harvest this year.'],
+  ['kitchen', 'shop', 'a shop', 'c', 'A place where you buy things.', 'The shop opens at nine.'],
+  ['kitchen', 'coin', 'a coin', 'c', 'A small round piece of money.', 'I have only a few coins.'],
+  ['kitchen', 'money', 'money', 'u', 'You pay with it. Coins are money.', 'How much money have you got?'],
+  ['kitchen', 'flour', 'flour', 'u', 'White powder. We make bread and cakes from it.', 'I need two bags of flour.'],
+  ['kitchen', 'sugar', 'sugar', 'u', 'It makes food sweet.', 'Just a little sugar, please.'],
+  ['kitchen', 'bread', 'bread', 'u', 'Food made from flour. One piece is a loaf.', 'Can I have a loaf of bread?'],
+  ['kitchen', 'butter', 'butter', 'u', 'Soft yellow food made from milk.', 'Is there any butter in the fridge?'],
+  ['kitchen', 'soup', 'soup', 'u', 'Hot food you eat with a spoon.', 'I made some pumpkin soup.'],
+];
+let cat = 'crops';
+function vocabRender() {
+  $('cats').querySelectorAll('button').forEach((b) => b.classList.toggle('on', b.dataset.c === cat));
+  const v = $('vocab'); v.innerHTML = '';
+  WORDS.filter((w) => w[0] === cat).forEach(([, k, word, cu, def, ex]) => {
+    const card = document.createElement('div'); card.className = 'card'; card.tabIndex = 0;
+    const lab = cu === 'c' ? 'C' : 'U';
+    const hint = cat === 'seasons' ? '' : (cu === 'c' ? 'countable: many, a few' : 'uncountable: much, a little');
+    card.innerHTML = `<div class="in"><div class="face front">${cat === 'seasons' ? '' : `<span class="cu ${cu}">${lab}</span>`}${ic(k)}<b>${word}</b></div><div class="face back"><b>${word}</b>${hint ? `<span class="cu ${cu}">${hint}</span>` : ''}<span>${def}</span><em>${ex}</em></div></div>`;
+    const go = () => { card.classList.toggle('flip'); say(word.replace(/^(a|an) /, '').split(' / ')[0]); gain('v-' + word, 2, '+2 XP · ' + word); };
+    card.onclick = go; card.onkeydown = (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } };
+    v.appendChild(card);
+  });
+}
+CATS.forEach(([k, n]) => { const b = document.createElement('button'); b.type = 'button'; b.dataset.c = k; b.textContent = n; b.onclick = () => { cat = k; vocabRender(); }; $('cats').appendChild(b); });
+vocabRender();
+
+// ---------- 3. правило: шкала кількості ----------
+$('meter').innerHTML = [['none', 'not any', 0, 0], ['a few / a little', 'a small amount', 3, 20], ['some', 'not big, not small', 6, 50], ['a lot of', 'a big amount', 12, 92]].map(([b, s, n, h]) => `<div><b>${b}</b><div class="dots">${'<i></i>'.repeat(n)}</div><div class="jar" style="--h:${h}%"></div><small>${s}</small></div>`).join('');
+const RQ = [
+  ['How ___ eggs do you need?', 'many', ['much']],
+  ['How ___ water does a tomato need?', 'much', ['many']],
+  ['There is ___ milk in the fridge.', 'some', ['any']],
+  ['Are there ___ pumpkins in the shop?', 'any', ['some']],
+  ['I have ___ apples, only three.', 'a few', ['a little']],
+  ['Put ___ sugar in my tea, please. Not much!', 'a little', ['a few']],
+  ['We have ___ cows on our farm: twenty!', 'a lot of', ['a little']],
+  ['There isn\'t ___ flour. Let\'s buy some!', 'any', ['some']],
+];
+RQ.forEach(([s, a, w], i) => {
+  const d = document.createElement('div'); d.className = 'q';
+  d.innerHTML = `<span class="n">${i + 1}</span><span>${s.replace('___', '<span class="slot">?</span>')}</span><span></span>`;
+  const box = d.lastElementChild;
+  shuffle([a, ...w]).forEach((x) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'opt'; b.textContent = x; b.onclick = () => {
+    if (x === a) { b.classList.add('ok'); d.querySelector('.slot').textContent = a; box.querySelectorAll('button').forEach((y) => (y.disabled = true)); say(s.replace('___', a)); gain('rq' + i, 5, '+5 XP'); }
+    else { b.classList.remove('bad'); void b.offsetWidth; b.classList.add('bad'); buzz(); }
+  }; box.appendChild(b); });
+  $('ruleQs').appendChild(d);
+});
+
+// ---------- 4. сортування ----------
+const SORT = [['egg', 'egg', 'c'], ['milk', 'milk', 'u'], ['carrot', 'carrot', 'c'], ['flour', 'flour', 'u'], ['apple', 'apple', 'c'], ['honey', 'honey', 'u'], ['cheese', 'cheese', 'u'], ['potato', 'potato', 'c'], ['water', 'water', 'u'], ['coin', 'coin', 'c'], ['money', 'money', 'u'], ['bread', 'bread', 'u'], ['sheep', 'sheep', 'c'], ['wool', 'wool', 'u'], ['sugar', 'sugar', 'u'], ['seeds', 'seed', 'c'], ['tomato', 'tomato', 'c'], ['cow', 'cow', 'c']];
+let selW = null;
+shuffle(SORT).forEach(([k, w, t]) => {
+  const b = document.createElement('button'); b.type = 'button'; b.className = 'w'; b.innerHTML = ic(k) + w; b.dataset.t = t; b.dataset.w = w;
+  b.onclick = (e) => { e.stopPropagation(); if (b.classList.contains('ok')) return; $('sortPool').querySelectorAll('.w').forEach((x) => x.classList.remove('sel')); b.classList.add('sel'); selW = b; say(w); };
+  $('sortPool').appendChild(b);
+});
+[['binC', 'c'], ['binU', 'u']].forEach(([id, t]) => {
+  $(id).onclick = () => {
+    if (!selW) { toast('First click a word!'); return; }
+    const b = selW;
+    if (b.dataset.t === t) { b.classList.remove('sel'); b.classList.add('ok'); $(id).appendChild(b); selW = null; gain('s-' + b.dataset.w, 3, '+3 XP · ' + b.dataset.w); if (!$('sortPool').querySelector('.w')) gain('sort-all', 15, '+15 XP · basket sorted!'); }
+    else { b.classList.remove('bad'); void b.offsetWidth; b.classList.add('bad'); buzz(); toast(t === 'c' ? `Can you say "two ${b.dataset.w}s"? Hmm...` : `You can count it: one ${b.dataset.w}, two...`); setTimeout(() => b.classList.remove('bad'), 400); }
+  };
+});
+
+// ---------- 5. MARKET DAY ----------
+const custSvg = (c, mood = 'ok') => {
+  const mouth = mood === 'happy' ? '<path d="M48 64 Q60 76 72 64" fill="#fff"/>' : mood === 'sad' ? '<path d="M50 70 Q60 62 70 70" fill="none"/>' : '<path d="M50 66 Q60 72 70 66" fill="none"/>';
+  const hat = c.hat === 'straw' ? `<ellipse cx="60" cy="30" rx="44" ry="9" fill="#f0c94a"/><path d="M36 30 Q38 8 60 8 Q82 8 84 30Z" fill="#f0c94a"/><path d="M37 24 H83" fill="none" stroke="${c.band}" stroke-width="5"/>`
+    : c.hat === 'cap' ? `<path d="M30 36 Q30 10 60 10 Q90 10 90 36Z" fill="${c.band}"/><path d="M84 32 L108 36 L86 40Z" fill="${c.band}"/>`
+    : c.hat === 'bun' ? `<circle cx="60" cy="10" r="12" fill="${c.hair}"/><path d="M28 46 Q26 14 60 14 Q94 14 92 46 Q86 28 60 26 Q34 28 28 46Z" fill="${c.hair}"/>`
+    : `<path d="M28 44 Q26 14 60 14 Q94 14 92 44 Q80 24 60 26 Q40 24 28 44Z" fill="${c.hair}"/><path d="M30 28 Q60 8 90 28" fill="none" stroke="${c.band}" stroke-width="6"/>`;
+  return `<svg viewBox="0 0 120 170" aria-hidden="true"><g stroke="#1d1d2b" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M20 170 Q20 104 60 104 Q100 104 100 170Z" fill="${c.shirt}"/>
+    ${c.apron ? '<path d="M40 112 H80 V170 H40Z" fill="#fff"/><path d="M52 132 H68" fill="none"/>' : ''}
+    <rect x="50" y="88" width="20" height="20" fill="${c.skin}"/>
+    <circle cx="60" cy="56" r="34" fill="${c.skin}"/>
+    <circle cx="48" cy="54" r="4" fill="#1d1d2b"/><circle cx="72" cy="54" r="4" fill="#1d1d2b"/>
+    <circle cx="40" cy="66" r="5" fill="#ff9fb0" stroke="none"/><circle cx="80" cy="66" r="5" fill="#ff9fb0" stroke="none"/>
+    ${mouth}${hat}</g></svg>`;
+};
+const IT = {
+  egg: ['egg', 'eggs', '', '', 5], carrot: ['carrot', 'carrots', '', '', 3], potato: ['potato', 'potatoes', '', '', 2], tomato: ['tomato', 'tomatoes', '', '', 4], apple: ['apple', 'apples', '', '', 3], pumpkin: ['pumpkin', 'pumpkins', '', '', 20], strawberry: ['strawberry', 'strawberries', '', '', 2],
+  milk: ['milk', '', 'bottle', 'bottles', 8], honey: ['honey', '', 'jar', 'jars', 15], flour: ['flour', '', 'bag', 'bags', 6], cheese: ['cheese', '', 'piece', 'pieces', 10], bread: ['bread', '', 'loaf', 'loaves', 7],
+};
+const isU = (k) => !IT[k][1];
+const amount = (k, n) => { const [s, p, u, us] = IT[k]; if (!isU(k)) return n === 1 ? (/^[aeiou]/.test(s) ? 'an ' : 'a ') + s : (NUM[n] || n) + ' ' + p; return (n === 1 ? 'a ' + u : (NUM[n] || n) + ' ' + us) + ' of ' + s; };
+const shelfLabel = (k) => (isU(k) ? `a ${IT[k][2]} of ${IT[k][0]}` : IT[k][0]);
+const CUST = [
+  { name: 'Mia', look: { skin: '#ffd6b0', hair: '#5a3716', band: '#ff5a5f', shirt: '#8fd3ff', hat: 'hair' }, q: ['How ___ eggs have you got today?', 'many', ['much']], order: "I'd like three eggs and a bottle of milk, please.", want: { egg: 3, milk: 1 } },
+  { name: 'Tom', look: { skin: '#c98b5b', hair: '#1d1d2b', band: '#2f80ed', shirt: '#7cff4f', hat: 'cap' }, q: ['Have you got ___ carrots?', 'any', ['some', 'a']], order: 'Great! I need four carrots, please.', want: { carrot: 4 } },
+  { name: 'Granny Rose', look: { skin: '#ffe0c4', hair: '#dcdcdc', band: '#ff8fd8', shirt: '#ff8fd8', hat: 'bun', apron: 1 }, q: ['I want to bake a cake. I need ___ flour.', 'some', ['any', 'many']], order: 'Two bags of flour and six eggs, please.', want: { flour: 2, egg: 6 } },
+  { name: 'Leo', look: { skin: '#f1b98a', hair: '#c0392b', band: '#ffd23f', shirt: '#ffd23f', hat: 'hair' }, q: ['How ___ honey is in this jar?', 'much', ['many']], order: 'Lovely! One jar of honey and two apples, please.', want: { honey: 1, apple: 2 } },
+  { name: 'Sara', look: { skin: '#7a4a2a', hair: '#1d1d2b', band: '#8e6cff', shirt: '#8e6cff', hat: 'bun' }, q: ["I don't need ___ milk today, thanks.", 'any', ['some', 'many']], order: 'Just five potatoes and a piece of cheese.', want: { potato: 5, cheese: 1 } },
+  { name: 'Mr Brown', look: { skin: '#ffd6b0', hair: '#8a6a3a', band: '#3e8f25', shirt: '#a0592c', hat: 'straw' }, q: ['Oh! There are only ___ pumpkins left.', 'a few', ['a little', 'much']], order: "Then I'll take two pumpkins, please.", want: { pumpkin: 2 } },
+  { name: 'Ivy', look: { skin: '#f1b98a', hair: '#ffd23f', band: '#ff5a5f', shirt: '#ff5a5f', hat: 'hair' }, q: ['Can I have ___ strawberries, please?', 'some', ['any', 'a']], order: 'Eight strawberries and a jar of honey.', want: { strawberry: 8, honey: 1 } },
+  { name: 'Max', look: { skin: '#c98b5b', hair: '#5a3716', band: '#ff9f1c', shirt: '#2f80ed', hat: 'cap' }, q: ["I'd like ___ cheese for my sandwich.", 'a little', ['a few', 'many']], order: 'So, two pieces of cheese and a loaf of bread.', want: { cheese: 2, bread: 1 } },
+  { name: 'Nora', look: { skin: '#ffe0c4', hair: '#1d1d2b', band: '#33e0d6', shirt: '#33e0d6', hat: 'straw' }, q: ['How ___ tomatoes do I need for soup?', 'many', ['much']], order: 'Five? OK! Five tomatoes and three potatoes, please.', want: { tomato: 5, potato: 3 } },
+  { name: 'Ben', look: { skin: '#7a4a2a', hair: '#1d1d2b', band: '#7cff4f', shirt: '#ff9f1c', hat: 'hair', apron: 1 }, q: ['My cows give ___ milk every day!', 'a lot of', ['many', 'a few']], order: 'But I need bread: two loaves of bread and three apples.', want: { bread: 2, apple: 3 } },
+];
+let M = { on: false, i: 0, gold: 0, happy: 0, basket: {}, stage: 'idle', sold: {}, miss: 0 };
+$('bIc').innerHTML = ic('basket');
+Object.keys(IT).forEach((k) => { const b = document.createElement('button'); b.type = 'button'; b.dataset.k = k; b.disabled = true; b.innerHTML = ic(k) + shelfLabel(k); b.onclick = () => addItem(k); $('mShelf').appendChild(b); });
+const shelfOn = (on) => { $('mShelf').querySelectorAll('button').forEach((b) => (b.disabled = !on)); $('mShelf').classList.toggle('live', on); $('mServe').disabled = !on; };
+function basketRender() {
+  const box = $('mBasket'); const keys = Object.keys(M.basket).filter((k) => M.basket[k] > 0);
+  if (!keys.length) { box.innerHTML = '<span class="fm-empty">Empty. Click the shelf to add things. Click a thing here to take it out.</span>'; return; }
+  box.innerHTML = '';
+  keys.forEach((k) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'fm-bi'; b.innerHTML = ic(k) + amount(k, M.basket[k]); b.title = 'Take one out'; b.onclick = () => { M.basket[k]--; tone(320, .06); basketRender(); }; box.appendChild(b); });
+}
+function addItem(k) {
+  if (M.stage !== 'basket') return;
+  M.basket[k] = (M.basket[k] || 0) + 1; if (M.basket[k] > 12) { M.basket[k] = 12; toast('That is enough!'); }
+  tone(520 + M.basket[k] * 40, .06); basketRender();
+}
+const bubble = (html) => { $('mBubble').innerHTML = `<small>${CUST[M.i] ? CUST[M.i].name : 'Farm shop'}</small>${html}`; };
+function mTop() { $('mNum').textContent = Math.min(M.i + (M.on ? 1 : 0), 10); $('mGold').textContent = M.gold; $('mHappy').textContent = M.happy; $('mSun').style.left = (M.i / CUST.length * 100) + '%'; }
+function mNext() {
+  if (M.i >= CUST.length) return mEnd();
+  const c = CUST[M.i]; M.stage = 'q'; M.basket = {}; M.miss = 0; basketRender(); shelfOn(false); mTop();
+  const el = $('mCust'); el.innerHTML = custSvg(c.look); el.classList.add('out'); void el.offsetWidth; setTimeout(() => el.classList.remove('out'), 30);
+  bubble(c.q[0].replace('___', '<span class="slot">?</span>'));
+  $('mHint').textContent = 'Step 1: choose the right word';
+  const box = $('mOpts'); box.innerHTML = '';
+  shuffle([c.q[1], ...c.q[2]]).forEach((x) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'opt'; b.textContent = x; b.onclick = () => mPick(x, b); box.appendChild(b); });
+}
+function mPick(x, btn) {
+  const c = CUST[M.i]; if (M.stage !== 'q') return;
+  if (x !== c.q[1]) { M.miss++; btn.classList.remove('bad'); void btn.offsetWidth; btn.classList.add('bad'); buzz(); return; }
+  btn.classList.add('ok'); $('mOpts').querySelectorAll('button').forEach((b) => (b.disabled = true));
+  $('mBubble').querySelector('.slot').textContent = c.q[1]; say(c.q[0].replace('___', c.q[1]));
+  gain('mk:q' + M.i, 5, '+5 XP');
+  setTimeout(() => {
+    M.stage = 'basket'; bubble(c.order); say(c.order); shelfOn(true);
+    $('mHint').textContent = 'Step 2: fill the basket, then press SERVE';
+    $('mOpts').innerHTML = '<button class="btn alt" type="button" id="mAgain">Say it again</button>'; $('mAgain').onclick = () => say(c.order);
+  }, 1300);
+}
+function mServe() {
+  if (M.stage !== 'basket') return;
+  const c = CUST[M.i]; const keys = [...new Set([...Object.keys(c.want), ...Object.keys(M.basket)])];
+  const probs = [];
+  keys.forEach((k) => { const w = c.want[k] || 0, h = M.basket[k] || 0; const nm = isU(k) ? IT[k][0] : IT[k][1];
+    if (!w && h) probs.push(`I didn't ask for any ${nm}.`);
+    else if (h > w) probs.push(`That's too ${isU(k) ? 'much' : 'many'} ${nm}.`);
+    else if (h < w) probs.push(`That's not enough ${nm}.`); });
+  if (probs.length) {
+    M.miss++; buzz(); $('mCust').innerHTML = custSvg(c.look, 'sad');
+    bubble(`<span class="bad">Hmm... ${probs[0]}</span><br>${c.order}`); say('Hmm. ' + probs[0]);
+    return;
+  }
+  M.stage = 'paid'; shelfOn(false); ching();
+  const pay = Object.keys(c.want).reduce((s, k) => s + IT[k][4] * c.want[k], 0);
+  M.gold += pay; if (M.miss === 0) M.happy++;
+  Object.keys(c.want).forEach((k) => { M.sold[k] = (M.sold[k] || 0) + c.want[k]; });
+  $('mCust').innerHTML = custSvg(c.look, 'happy');
+  const thanks = ['Thank you! Have a nice day!', 'Perfect, thanks!', 'Great, see you tomorrow!', 'Wonderful, thank you!'][M.i % 4];
+  bubble(`${thanks} <br><b>+${pay} gold</b>`); say(thanks);
+  gain('mk:c' + M.i, 10, `+10 XP · +${pay} gold`); mTop();
+  $('mOpts').innerHTML = ''; $('mHint').textContent = '';
+  setTimeout(() => { $('mCust').classList.add('out'); setTimeout(() => { M.i++; mNext(); }, 500); }, 1500);
+}
+function mEnd() {
+  M.on = false; M.stage = 'idle'; shelfOn(false); mTop(); $('mSun').style.left = '100%';
+  $('mCust').classList.add('out');
+  const list = Object.keys(M.sold).map((k) => amount(k, M.sold[k]));
+  $('mBubble').innerHTML = '<small>Farm shop</small>The market is closed. Good job!';
+  $('mHint').innerHTML = '';
+  $('mOpts').innerHTML = `<div style="text-align:center"><div class="fm-win">MARKET CLOSED!</div>You earned <b>${M.gold} gold</b> · Happy customers: <b>${M.happy}/10</b>
+    <div class="fm-sold"><b>Today you sold:</b> ${listJoin(list)}.<br><small>Now tell your teacher: "I sold ... How many eggs did I sell? How much honey?"</small></div>
+    <p><button class="btn" type="button" id="mReplay">Play again</button></p></div>`;
+  $('mReplay').onclick = mStart;
+  gain('mk:end', 40, '+40 XP · BEST FARMER!'); fanfare(); burst(40);
+}
+function mStart() { M = { on: true, i: 0, gold: 0, happy: 0, basket: {}, stage: 'q', sold: {}, miss: 0 }; mNext(); $('game').scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+$('mStart').onclick = mStart; $('mServe').onclick = mServe; mTop();
+
+// ---------- 6. рецепт ----------
+const INGR = [['flour', '2 cups of flour'], ['egg', '3 eggs'], ['milk', 'a cup of milk'], ['sugar', 'a spoon of sugar'], ['butter', 'some butter'], ['strawberry', 'a few strawberries'], ['honey', 'a little honey']];
+$('ingr').innerHTML = INGR.map(([k, t]) => `<li>${ic(k)}${t}</li>`).join('');
+$('pan').innerHTML = ic('pancakes');
+$('bank').innerHTML = ['some', 'any', 'a few', 'a little', 'much', 'many', 'a lot of'].map((w) => `<span class="chip">${w}</span>`).join('');
+const STORY = "It's Saturday morning. My friends are coming, so I want to make pancakes. I open the fridge. There is [some|a lot of] milk, but there aren't [any] eggs! I run to the chicken coop. Good news: my chickens are busy and there are [a lot of|some] eggs. I take three. Next, the flour. How [much] flour do I need? Two cups. And how [many] strawberries? Only [a few], about six. I put [a little] sugar in the bowl, just one spoon. I mix everything and cook the pancakes in [some|a little] butter. Is there [any] honey for the top? Yes, there is! I put [a little|some] honey on every pancake. Breakfast is ready!";
+let gapN = 0;
+$('story').innerHTML = STORY.replace(/\[([^\]]+)\]/g, (_, a) => `<input data-a="${a}" data-i="${gapN++}" aria-label="gap ${gapN}" autocomplete="off" spellcheck="false">`);
+const gaps = [...$('story').querySelectorAll('input')];
+gaps.forEach((inp) => {
+  const check = (final) => {
+    const v = inp.value.trim().toLowerCase().replace(/\s+/g, ' '); const ok = inp.dataset.a.split('|').includes(v);
+    inp.classList.toggle('ok', ok); inp.classList.toggle('bad', !ok && final && v !== '');
+    if (ok) { gain('rg' + inp.dataset.i, 3, '+3 XP'); if (gaps.every((x) => x.classList.contains('ok'))) { $('pan').classList.add('done'); gain('recipe-all', 20, '+20 XP · pancakes are ready!'); } }
+  };
+  inp.oninput = () => check(false); inp.onblur = () => check(true);
+  inp.onkeydown = (e) => { if (e.key === 'Enter') { check(true); const n = gaps[gaps.indexOf(inp) + 1]; if (n) n.focus(); } };
+});
+const TF = [['There are some eggs in the fridge.', false], ['The chickens have got a lot of eggs.', true], ['You need three cups of flour.', false], ['There are about six strawberries in the pancakes.', true], ['The pancakes need a lot of sugar.', false], ["There isn't any honey.", false]];
+TF.forEach(([s, a], i) => {
+  const d = document.createElement('div'); d.className = 'tf'; d.innerHTML = `<span><b>${i + 1}.</b> ${s}</span><button class="opt" type="button">True</button><button class="opt" type="button">False</button>`;
+  const [bt, bf] = d.querySelectorAll('button');
+  const ans = (v, btn) => { if (v === a) { btn.classList.add('ok'); bt.disabled = bf.disabled = true; gain('tf' + i, 5, '+5 XP'); } else { btn.classList.remove('bad'); void btn.offsetWidth; btn.classList.add('bad'); buzz(); } };
+  bt.onclick = () => ans(true, bt); bf.onclick = () => ans(false, bf);
+  $('tfList').appendChild(d);
+});
+
+// ---------- 7. баги ----------
+const BUGS = [
+  ['How many milk do you need?', false, 'How much milk do you need?'],
+  ['I bought two breads.', false, 'I bought two loaves of bread.'],
+  ["There aren't any carrots in the basket.", true, 'Correct!'],
+  ['Can I have some honeys?', false, 'Can I have some honey?'],
+  ['We have a lot of eggs this spring.', true, 'Correct!'],
+  ['Is there any apples?', false, 'Are there any apples?'],
+  ['I need a few sugar for the cake.', false, 'I need a little sugar for the cake.'],
+  ['How many cows have you got?', true, 'Correct!'],
+  ['My sheep give a lot of wools.', false, 'My sheep give a lot of wool.'],
+  ["There isn't some water in the watering can.", false, "There isn't any water in the watering can."],
+];
+BUGS.forEach(([s, ok, fix], i) => {
+  const d = document.createElement('div'); d.className = 'bug';
+  d.innerHTML = `<span><b>${i + 1}.</b> ${s}</span><span><button class="opt" type="button">OK</button><button class="opt" type="button">BUG</button></span><span class="fix">${fix}</span>`;
+  const [bOk, bBug] = d.querySelectorAll('button');
+  const ans = (v, btn) => { if (v === ok) { btn.classList.add('ok'); d.classList.add('done'); bOk.disabled = bBug.disabled = true; if (!ok) say(fix); gain('b' + i, 15, '+15 XP · bug fixed!'); } else { btn.classList.remove('bad'); void btn.offsetWidth; btn.classList.add('bad'); buzz(); } };
+  bOk.onclick = () => ans(true, bOk); bBug.onclick = () => ans(false, bBug);
+  $('bugList').appendChild(d);
+});
+
+// ---------- 8. місії ----------
+const MIS = [
+  ['seeds', 'First crops', 'Buy seeds and plant them in your fields.', '"I planted ... seeds. How many will grow?"', 20],
+  ['wateringcan', 'Water day', 'Water all your crops. Check your watering can!', '"I watered all my crops. I needed a lot of water."', 20],
+  ['basket', 'Harvest time', 'Pick your crops and count them.', '"I\'ve got ... and a few ... There aren\'t any ... yet."', 30],
+  ['shop', 'Shopping trip', 'Go to the shop. Check the prices and buy something.', '"How much are the seeds? They cost ... I have ... gold left."', 30],
+  ['chicken', 'Animal friend', 'Visit, feed or pet an animal on your farm.', '"I have ... chickens. They give me some eggs every day."', 20],
+  ['box', 'Sell it!', 'Sell five things from your farm.', '"I sold some ... and a few ... I got ... gold."', 30],
+  ['fish', 'Gone fishing', 'Try to catch three fish.', '"I caught a few fish! How many did you catch?"', 30],
+  ['heart', 'Make a friend', 'Talk to three people in the town. Give one a gift.', '"I gave her some flowers. She liked them a lot!"', 20],
+];
+MIS.forEach(([k, title, task, sayIt, n], i) => {
+  const m = document.createElement('div'); m.className = 'mis';
+  m.insertAdjacentHTML('beforeend', ic(k));
+  const body = document.createElement('div'); body.innerHTML = `<h3>${title}</h3><p>${task}</p><div class="say">${sayIt}</div>`; m.appendChild(body);
+  const row = document.createElement('div'); row.className = 'row'; row.innerHTML = `<span class="xp">+${n} XP</span>`;
+  const btn = document.createElement('button'); btn.type = 'button'; btn.className = 'btn'; btn.textContent = 'Done'; btn.onclick = () => { m.classList.add('done'); btn.disabled = true; gain('m' + i, n, `Mission complete! +${n} XP`); };
+  row.appendChild(btn); m.appendChild(row); $('misList').appendChild(m);
+});
+
+// ---------- 9. інтерв’ю ----------
+const TALK = [
+  ['How much time do you spend on games every week?', 'how much'],
+  ['How many animals would you like on your farm? Which ones?', 'how many'],
+  ['Is there any food you don\'t like?', 'any'],
+  ['What do you have for breakfast? Is there any milk in it?', 'some / any'],
+  ['Which season do you like most? Why?', 'speaking'],
+  ['Have you got any pets? How many?', 'any · how many'],
+  ['What can you cook? What do you need for it?', 'some · a little · a few'],
+  ['What would you sell in your own farm shop?', 'a lot of'],
+];
+TALK.forEach(([q, t]) => { const d = document.createElement('div'); d.className = 'tk'; d.innerHTML = `<span>${q}</span><small>${t}</small>`; d.onclick = () => { $('talkList').querySelectorAll('.tk').forEach((x) => (x.style.outline = '')); d.style.outline = '5px solid #8e6cff'; say(q); }; $('talkList').appendChild(d); });
+let tmr; $('timerBtn').onclick = () => { clearInterval(tmr); let s = 30; const el = $('timer30'); el.textContent = '0:30';
+  tmr = setInterval(() => { s--; el.textContent = '0:' + String(s).padStart(2, '0'); if (s <= 0) { clearInterval(tmr); el.textContent = 'Well done!'; gain('talk' + Date.now(), 15, 'Great answer! +15 XP'); } }, 1000); };
+
+// ---------- 10. відео (офіційні канали, перевірено через oEmbed) ----------
+const VIDS = [
+  ['ot7uXNQskhs', 'The official trailer', 'ConcernedApe', 'Pause 5 times. What can you see? "There are some ... There aren\'t any ..."', 'some / any'],
+  ['-vlBE3vSfNU', 'Multiplayer update trailer', 'ConcernedApe', 'How many players farm together? What do they do? How many animals can you count?', 'How many?'],
+  ['8ac2-LRIAeU', 'Nintendo Switch 2 Edition', 'Nintendo of America', 'Which seasons do you see? Which crops? "There are a lot of ... There is a little ..."', 'a lot of'],
+  ['IcAZXEZQgRw', 'The very first trailer', 'ConcernedApe', 'This is an old version of the game! What is different? Were there any animals?', 'Speaking'],
+];
+VIDS.forEach(([id, title, ch, task, mode], i) => {
+  const d = document.createElement('div'); d.className = 'vid';
+  d.innerHTML = `<div class="frame"><button class="play" type="button"><span>PLAY</span></button></div><div class="info"><span class="mode">${mode}</span><h3>${title}</h3><small>Channel: ${ch}</small><div class="task">${task}</div><button class="btn alt" type="button">I talked about it</button></div>`;
+  d.querySelector('.play').onclick = (e) => { e.currentTarget.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${title}"></iframe>`; };
+  const b = d.querySelector('.info .btn'); b.onclick = () => { b.disabled = true; b.textContent = 'Great!'; gain('vid' + i, 20, '+20 XP · great talk!'); };
+  $('vidList').appendChild(d);
+});
+</script>
+<script>window.MURLY_LESSON={"id": "farm", "title": "Farm Life", "homework": ["words", "rules", "market", "recipe", "bugs", "talk"], "hw": {"words": [{"type": "gap", "instruction": "Write the missing word.", "text": "a [bottle] of milk\na [jar] of honey\na [bag] of flour\na [piece] of cheese\na [loaf] of bread\none potato, three [potatoes]\none strawberry, five [strawberries]\none tomato, four [tomatoes]\none sheep, two [sheep]\none loaf of bread, two [loaves] of bread"}], "rules": [{"type": "choice", "instruction": "Choose the correct word.", "text": "How {many|much} eggs do you need?\nHow {much|many} water does a tomato need?\nThere is {some|any} milk in the fridge.\nAre there {any|some} pumpkins in the shop?\nI have {a few|a little} apples, only three.\nPut {a little|a few} sugar in my tea, please. Not much!\nWe have {a lot of|a little} cows on our farm: twenty!\nThere isn't {any|some} flour. Let's buy some!"}, {"type": "truefalse", "instruction": "Countable or uncountable? True = countable, False = uncountable.", "text": "egg = True\nmilk = False\ncarrot = True\nflour = False\nhoney = False\napple = True\nmoney = False\ncoin = True\nbread = False\nsheep = True"}], "market": [{"type": "choice", "instruction": "You work in the farm shop. Choose the correct word.", "text": "How {many|much} eggs have you got today?\nHave you got {any|some|a} carrots?\nI want to bake a cake. I need {some|any|many} flour.\nHow {much|many} honey is in this jar?\nI don't need {any|some|many} milk today, thanks.\nOh! There are only {a few|a little|much} pumpkins left.\nCan I have {some|any|a} strawberries, please?\nI'd like {a little|a few|many} cheese for my sandwich.\nHow {many|much} tomatoes do I need for soup?\nMy cows give {a lot of|many|a few} milk every day!"}], "recipe": [{"type": "choice", "instruction": "Read the pancake story again. Choose the correct word.", "text": "There is {some|any|many} milk in the fridge.\nBut there aren't {any|some|much} eggs!\nMy chickens are busy and there are {a lot of|much|a little} eggs.\nHow {much|many} flour do I need? Two cups.\nAnd how {many|much} strawberries?\nOnly {a few|a little|much}, about six.\nI put {a little|a few|many} sugar in the bowl, just one spoon.\nIs there {any|many|a} honey for the top?"}, {"type": "truefalse", "instruction": "True or false?", "text": "There are some eggs in the fridge. = False\nThe chickens have got a lot of eggs. = True\nYou need three cups of flour. = False\nThere are about six strawberries in the pancakes. = True\nThe pancakes need a lot of sugar. = False\nThere isn't any honey. = False"}], "bugs": [{"type": "truefalse", "instruction": "Is the sentence correct? True = correct, False = there is a mistake.", "text": "How many milk do you need? = False\nI bought two breads. = False\nThere aren't any carrots in the basket. = True\nCan I have some honeys? = False\nWe have a lot of eggs this spring. = True\nIs there any apples? = False\nI need a few sugar for the cake. = False\nHow many cows have you got? = True\nMy sheep give a lot of wools. = False\nThere isn't some water in the watering can. = False"}], "talk": [{"type": "voice", "instruction": "Record your answers. Use some, any, a lot of, a few, a little.", "text": "My farm shop: what do you sell? How much or how many of each thing have you got? What haven't you got?\nHow many animals would you like on your farm? Which ones?\nWhat do you have for breakfast? Is there any milk in it?\nWhat can you cook? What do you need for it?\nWhich season do you like most? Why?"}]}};</script>
+<script src="kit.js" defer></script>
+</body>
+</html>
