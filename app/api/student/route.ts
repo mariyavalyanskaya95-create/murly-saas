@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { auth } from '@clerk/nextjs/server';
-import { reviewWord, saveHomeworkNote, setOwnPin, submitHomework, useHomeworkPass } from '@/lib/student-data';
+import { addOwnWord, reviewWord, saveHomeworkNote, setOwnPin, submitHomework, useHomeworkPass } from '@/lib/student-data';
 import { normPhone, validPhone, validPin } from '@/lib/pin-login';
 
 export const dynamic = 'force-dynamic';
@@ -8,7 +8,7 @@ export const dynamic = 'force-dynamic';
 export async function POST(req: Request) {
   const { userId } = await auth();
   if (!userId) return NextResponse.json({ error: 'unauthorized' }, { status: 401 });
-  let body: { op?: string; id?: string; ok?: boolean; phone?: string; pin?: string; score?: number; total?: number; answer?: string; answers?: Record<string, string>; note?: string };
+  let body: { op?: string; id?: string; ok?: boolean; phone?: string; pin?: string; score?: number; total?: number; answer?: string; answers?: Record<string, string>; note?: string; en?: string; uk?: string; example?: string };
   try { body = await req.json(); } catch { return NextResponse.json({ error: 'bad_json' }, { status: 400 }); }
   if (body.op === 'setPin') {
     const phone = normPhone(body.phone ?? ''); const pin = String(body.pin ?? '').trim();
@@ -26,6 +26,10 @@ export async function POST(req: Request) {
   if (body.op === 'homeworkNote' && body.id) {
     const ok = await saveHomeworkNote(userId, body.id, String(body.note ?? '')).catch(() => false);
     return ok ? NextResponse.json({ ok: true }) : NextResponse.json({ error: 'not_found' }, { status: 404 });
+  }
+  if (body.op === 'addWord') {
+    const r = await addOwnWord(userId, { en: String(body.en ?? ''), uk: String(body.uk ?? ''), example: String(body.example ?? '') }).catch(() => ({ error: 'db' }));
+    return 'ok' in r ? NextResponse.json(r) : NextResponse.json(r, { status: r.error === 'no_student' ? 404 : 400 });
   }
   if (body.op === 'usePass' && body.id) {
     const r = await useHomeworkPass(userId, body.id).catch(() => ({ error: 'db' }));
