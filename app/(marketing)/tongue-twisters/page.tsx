@@ -29,7 +29,7 @@ export default function TongueTwistersPage() {
         <div className="mu-container">
           <Kit id="st-cat-blep" className="kit-hero" />
           <h1>{t({ uk: 'Скоромовки', ru: 'Скороговорки', en: 'Tongue twisters' })} <em>{t({ uk: 'для язика.', ru: 'для языка.', en: 'for your tongue.' })}</em></h1>
-          <HeroTip>{t({ uk: 'Послухай, повтори повільно, а потім скажи три рази швидко на час. Кожна скоромовка тренує звук, який українцям дається найважче.', ru: 'Послушай, повтори медленно, а потом скажи три раза быстро на время. Каждая скороговорка тренирует звук, который сложнее всего даётся.', en: 'Listen, repeat slowly, then say it three times fast against the clock. Each twister trains a sound that is hard for Ukrainian speakers.' })}</HeroTip>
+          <HeroTip>{t({ uk: 'Послухай, повтори повільно, потім скажи тричі швидко на час.', ru: 'Послушай, повтори медленно, потом скажи трижды быстро на время.', en: 'Listen, repeat slowly, then say it three times fast against the clock.' })}</HeroTip>
         </div>
       </section>
       <section className="mu-section" style={{ paddingTop: 8 }}>
