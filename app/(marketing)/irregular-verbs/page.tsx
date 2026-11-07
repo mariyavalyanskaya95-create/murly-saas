@@ -27,9 +27,9 @@ export function generateMetadata(): Metadata {
 }
 
 const GROUPS: { icon: string; mod: string; title: T; text: T }[] = [
-  { icon: 'd-bolt', mod: 'mu-card--lime', title: { uk: 'Усі три однакові', ru: 'Все три одинаковые', en: 'All three the same' }, text: { uk: 'cut, put, let, hit, hurt, cost, set, shut. Нічого не змінюється. Підступний лише read: пишеться так само, але в минулому читається як «ред».', ru: 'cut, put, let, hit, hurt, cost, set, shut. Ничего не меняется. Коварный только read: пишется так же, но в прошедшем читается как «ред».', en: 'cut, put, let, hit, hurt, cost, set, shut. Nothing changes. The only tricky one is read: same spelling, but in the past it sounds like “red”.' } },
+  { icon: 'd-bolt', mod: 'mu-card--lime', title: { uk: 'Усі три однакові', ru: 'Все три одинаковые', en: 'All three the same' }, text: { uk: 'cut, put, let, hit, hurt, cost, set, shut. Виняток read: пишеться так само, а в минулому звучить як «ред».', ru: 'cut, put, let, hit, hurt, cost, set, shut. Исключение read: пишется так же, а в прошедшем звучит как «ред».', en: 'cut, put, let, hit, hurt, cost, set, shut. Except read: same spelling, but in the past it sounds like “red”.' } },
   { icon: 'd-spark', mod: 'mu-card--mustard', title: { uk: 'Закінчення -ought / -aught', ru: 'Окончание -ought / -aught', en: 'Ending in -ought / -aught' }, text: { uk: 'buy, bring, think, fight → bought, brought, thought, fought. teach, catch → taught, caught. Друга і третя форми однакові.', ru: 'buy, bring, think, fight → bought, brought, thought, fought. teach, catch → taught, caught. Вторая и третья формы одинаковые.', en: 'buy, bring, think, fight → bought, brought, thought, fought. teach, catch → taught, caught. The second and third forms are the same.' } },
-  { icon: 'e-speak', mod: 'mu-card--sky', title: { uk: 'i → a → u' }, text: { uk: 'begin, drink, sing, ring, swim, sink. Як пісенька: sing, sang, sung. Одна голосна змінюється по черзі.', ru: 'begin, drink, sing, ring, swim, sink. Как песенка: sing, sang, sung. Одна гласная меняется по очереди.', en: 'begin, drink, sing, ring, swim, sink. Like a little song: sing, sang, sung. One vowel changes each time.' } },
+  { icon: 'e-speak', mod: 'mu-card--sky', title: { uk: 'i → a → u' }, text: { uk: 'begin, drink, sing, ring, swim, sink: sing, sang, sung.', ru: 'begin, drink, sing, ring, swim, sink: sing, sang, sung.', en: 'begin, drink, sing, ring, swim, sink: sing, sang, sung.' } },
   { icon: 'e-globe', mod: 'mu-card--ink', title: { uk: '-ew → -own' }, text: { uk: 'blow, grow, know, throw, fly → blew, grew, knew, threw, flew → blown, grown, known, thrown, flown.' } },
 ];
 
@@ -44,9 +44,6 @@ export default function IrregularVerbsPage() {
           <Kit id="st-cat-cool" className="kit-hero" />
           <h1>{t({ uk: 'Неправильні дієслова', ru: 'Неправильные глаголы', en: 'Irregular verbs' })} <em>{t({ uk: 'за алфавітом.', ru: 'по алфавиту.', en: 'from A to Z.' })}</em></h1>
           <HeroTip>{t({ uk: 'Натисни на будь-яку форму, щоб послухати вимову. Навушники праворуч озвучать усі три форми підряд.', ru: 'Нажми на любую форму, чтобы послушать произношение. Наушники справа озвучат все три формы подряд.', en: 'Tap any form to hear how it sounds. The headphones on the right play all three forms in a row.' })}</HeroTip>
-          <Link href="/irregular-verbs/games" className="mu-btn mu-btn--lime mu-btn--lg">
-            {t({ uk: 'Тренуватися в іграх', ru: 'Тренироваться в играх', en: 'Practise with games' })}<span className="mu-btn__arrow"><Icon id="e-arrow" /></span>
-          </Link>
         </div>
       </section>
 
@@ -60,7 +57,6 @@ export default function IrregularVerbsPage() {
       <section className="mu-section mu-section--tomato" data-stickers="4">
         <div className="mu-container">
           <div className="mu-section__head">
-            <span className="mu-section__eyebrow mu-section__eyebrow--lime"><Icon id="d-bulb" />{t({ uk: 'Лайфхак', ru: 'Лайфхак', en: 'Pro tip' })}</span>
             {t.lang === 'ru' ? (
               <h2 className="mu-section__title">Учи <em>группами,</em> а не списком.</h2>
             ) : t.lang === 'en' ? (
@@ -68,7 +64,7 @@ export default function IrregularVerbsPage() {
             ) : (
               <h2 className="mu-section__title">Вчи <em>групами,</em> а не списком.</h2>
             )}
-            <p className="mu-section__lead">{t({ uk: 'Багато дієслів змінюються за однаковим шаблоном. Запам’ятав шаблон, і пів таблиці вже в голові.', ru: 'Многие глаголы меняются по одному шаблону. Запомнил шаблон, и полтаблицы уже в голове.', en: 'Many verbs change by the same pattern. Learn the pattern and half the table is already in your head.' })}</p>
+            <p className="mu-section__lead">{t({ uk: 'Багато дієслів змінюються за одним шаблоном.', ru: 'Многие глаголы меняются по одному шаблону.', en: 'Many verbs follow the same pattern.' })}</p>
           </div>
           <div className="mu-cards" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))' }}>
             {GROUPS.map((g) => (
