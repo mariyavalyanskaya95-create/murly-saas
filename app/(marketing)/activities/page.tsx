@@ -26,7 +26,7 @@ export default function ActivitiesHub() {
       <section className="mu-page-hero act-hero">
         <div className="mu-container">
           <h1>{t({ uk: 'Activities', ru: 'Activities', en: 'Activities' })} <em>{t({ uk: 'для уроків англійської.', ru: 'для уроков английского.', en: 'for English lessons.' })}</em></h1>
-          <HeroTip>{t({ uk: 'Готові активності на 20-40 хвилин: картки з малюнками, корисні фрази і питання для обговорення. Показуй слайди на уроці або завантаж PDF для друку.', ru: 'Готовые активности на 20-40 минут: карточки с рисунками, полезные фразы и вопросы для обсуждения. Показывай слайды на уроке или скачай PDF для печати.', en: 'Ready-made 20-40 minute activities: illustrated cards, useful phrases and discussion questions. Present the slides in class or download a PDF to print.' })}</HeroTip>
+          <HeroTip>{t({ uk: 'Активності на 20-40 хвилин: картки, фрази і питання. Показуй слайди на уроці або друкуй PDF.', ru: 'Активности на 20-40 минут: карточки, фразы и вопросы. Показывай слайды на уроке или печатай PDF.', en: '20-40 minute activities: cards, phrases and questions. Present the slides in class or print the PDF.' })}</HeroTip>
         </div>
       </section>
       <section className="mu-section" style={{ paddingTop: 8 }}>
