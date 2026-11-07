@@ -1,0 +1,43 @@
+// Міні-продукти Murly: що продаємо і які документи для друку входять
+type T = { uk: string; ru: string; en: string };
+export type Product = { id: string; price: number; old?: number; who: 'student' | 'teacher'; icon: string; bundle?: boolean; name: T; text: T; docs: string[] };
+
+export const PRODUCTS: Product[] = [
+  { id: 'nmt-checklist', price: 99, who: 'student', icon: 'e-pencil', docs: ['nmt-plan-8w', 'nmt-strategies'],
+    name: { uk: 'Чек-лист підготовки до НМТ', ru: 'Чек-лист подготовки к НМТ', en: 'NMT prep checklist' },
+    text: { uk: 'План на 8 тижнів, стратегії для кожного типу завдань і чек-лист на день іспиту', ru: 'План на 8 недель, стратегии для каждого типа заданий и чек-лист на день экзамена', en: 'An 8-week plan, strategies for every task type and an exam-day checklist' } },
+  { id: 'words-100', price: 85, who: 'student', icon: 'e-speak', docs: ['words-100', 'words-100-test'],
+    name: { uk: '100 важливих слів для НМТ', ru: '100 важных слов для НМТ', en: '100 key words for the NMT' },
+    text: { uk: '10 тем з перекладом і прикладами плюс тест на 40 завдань з ключами', ru: '10 тем с переводом и примерами плюс тест на 40 заданий с ключами', en: '10 topics with translations and examples plus a 40-item test with answers' } },
+  { id: 'verbs-30', price: 85, who: 'student', icon: 'e-book', docs: ['verbs-30-plan', 'verbs-30-cards'],
+    name: { uk: 'Неправильні дієслова: картки і план на 30 днів', ru: 'Неправильные глаголы: карточки и план на 30 дней', en: 'Irregular verbs: cards and a 30-day plan' },
+    text: { uk: '150 карток для вирізання, по 5 дієслів на день і щотижневі тести', ru: '150 карточек для вырезания, по 5 глаголов в день и еженедельные тесты', en: '150 cut-out cards, 5 verbs a day and weekly tests' } },
+  { id: 'grammar-a1b1', price: 149, who: 'student', icon: 'e-abc', docs: ['grammar-a1b1'],
+    name: { uk: 'Уся базова граматика A1-B1', ru: 'Вся базовая грамматика A1-B1', en: 'All basic grammar A1-B1' },
+    text: { uk: 'Правила, приклади, типові помилки і вправи з ключами', ru: 'Правила, примеры, типичные ошибки и упражнения с ключами', en: 'Rules, examples, common mistakes and exercises with answers' } },
+  { id: 'tenses', price: 85, who: 'student', icon: 'd-clock', docs: ['tenses-cheatsheet'],
+    name: { uk: 'Усі 12 часів на 2 сторінках', ru: 'Все 12 времён на 2 страницах', en: 'All 12 tenses on 2 pages' },
+    text: { uk: 'Формули, коли вживати, маркери і 10 типових помилок', ru: 'Формулы, когда употреблять, маркеры и 10 типичных ошибок', en: 'Formulas, uses, markers and 10 common mistakes' } },
+  { id: 'phrasal-60', price: 85, who: 'student', icon: 'e-book', docs: ['phrasal-verbs-60'],
+    name: { uk: '60 фразових дієслів', ru: '60 фразовых глаголов', en: '60 phrasal verbs' },
+    text: { uk: 'Значення, приклади і вправа на 20 завдань з ключами', ru: 'Значения, примеры и упражнение на 20 заданий с ключами', en: 'Meanings, examples and a 20-item exercise with answers' } },
+  { id: 'writing', price: 85, who: 'student', icon: 'e-pencil', docs: ['writing-templates'],
+    name: { uk: 'Шаблони для письма', ru: 'Шаблоны для письма', en: 'Writing templates' },
+    text: { uk: 'Лист другу й есе-думка: структура, фрази-зв’язки, зразки і самоперевірка', ru: 'Письмо другу и эссе-мнение: структура, связки, образцы и самопроверка', en: 'Letter to a friend and opinion paragraph: structure, linkers, models and a self-check' } },
+  { id: 'kids-pack', price: 149, who: 'student', icon: 'd-kid', docs: ['kids-speaking-cards', 'kids-games-print'],
+    name: { uk: 'Для дітей: картки й ігри для друку', ru: 'Для детей: карточки и игры для печати', en: 'For kids: cards and printable games' },
+    text: { uk: '60 карток для розмови і 6 ігор: бінго, мемо, гра-ходилка та інші. A1-A2', ru: '60 карточек для разговора и 6 игр: бинго, мемо, игра-бродилка и другие. A1-A2', en: '60 speaking cards and 6 games: bingo, memory, a board game and more. A1-A2' } },
+  { id: 'nmt-start', price: 199, old: 269, who: 'student', icon: 'd-heart', bundle: true, docs: ['nmt-plan-8w', 'nmt-strategies', 'words-100', 'words-100-test', 'verbs-30-plan', 'verbs-30-cards'],
+    name: { uk: 'Старт до НМТ: 3 в 1', ru: 'Старт к НМТ: 3 в 1', en: 'NMT starter: 3 in 1' },
+    text: { uk: 'Чек-лист, 100 слів і дієслова за 30 днів разом', ru: 'Чек-лист, 100 слов и глаголы за 30 дней вместе', en: 'Checklist, 100 words and 30-day verbs together' } },
+  { id: 'nmt-all', price: 299, old: 588, who: 'student', icon: 'd-spark', bundle: true, docs: ['nmt-plan-8w', 'nmt-strategies', 'words-100', 'words-100-test', 'verbs-30-plan', 'verbs-30-cards', 'grammar-a1b1', 'tenses-cheatsheet', 'phrasal-verbs-60', 'writing-templates'],
+    name: { uk: 'Усе для НМТ', ru: 'Всё для НМТ', en: 'Everything for the NMT' },
+    text: { uk: 'Усі 7 матеріалів для учнів разом', ru: 'Все 7 материалов для учеников вместе', en: 'All 7 student materials together' } },
+  { id: 'speaking-club', price: 199, who: 'teacher', icon: 'e-mic', docs: ['speaking-club-10', 'speaking-club-cards'],
+    name: { uk: '10 уроків для Speaking club', ru: '10 уроков для Speaking club', en: '10 Speaking club lessons' },
+    text: { uk: 'Готові уроки на 60 хвилин і 80 карток з питаннями. A2-B2', ru: 'Готовые уроки на 60 минут и 80 карточек с вопросами. A2-B2', en: 'Ready 60-minute lessons and 80 question cards. A2-B2' } },
+  { id: 'first-lesson', price: 85, who: 'teacher', icon: 'e-board', docs: ['first-lesson'],
+    name: { uk: 'Перший урок з новим учнем', ru: 'Первый урок с новым учеником', en: 'First lesson with a new student' },
+    text: { uk: 'План на 60 хвилин, усна перевірка рівня, анкета, цілі й лист батькам', ru: 'План на 60 минут, устная проверка уровня, анкета, цели и письмо родителям', en: 'A 60-minute plan, oral level check, needs survey, goals and a parent message' } },
+];
+export const getProduct = (id: string) => PRODUCTS.find((p) => p.id === id);

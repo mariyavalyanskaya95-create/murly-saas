@@ -33,6 +33,8 @@ export const db = {
     call(`${table}?teacher_id=eq.${enc(teacherId)}&select=*${extra}`) as Promise<Record<string, unknown>[]>,
   insert: (table: string, rows: Record<string, unknown>[]) =>
     rows.length ? call(table, { method: 'POST', body: JSON.stringify(rows), prefer: 'return=minimal' }) : Promise.resolve(null),
+  insertReturning: (table: string, rows: Record<string, unknown>[]) =>
+    call(table, { method: 'POST', body: JSON.stringify(rows), prefer: 'return=representation' }) as Promise<Record<string, unknown>[]>,
   upsert: (table: string, rows: Record<string, unknown>[]) =>
     call(table, { method: 'POST', body: JSON.stringify(rows), prefer: 'resolution=merge-duplicates,return=minimal' }),
   update: (table: string, teacherId: string, id: string, patch: Record<string, unknown>) =>
