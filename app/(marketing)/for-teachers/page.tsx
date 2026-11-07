@@ -16,9 +16,9 @@ export function generateMetadata(): Metadata {
   return {
     title: t({ uk: 'Murly для вчителів англійської: кабінет, уроки, домашка', ru: 'Murly для учителей английского: кабинет, уроки, домашка', en: 'Murly for English teachers: dashboard, lessons, homework' }),
     description: t({
-      uk: 'Учні, розклад, 100+ готових уроків по 60 хвилин, домашка з автоперевіркою, словник кожного учня, оплати і монетки для мотивації.',
-      ru: 'Ученики, расписание, 100+ готовых уроков по 60 минут, домашка с автопроверкой, словарь каждого ученика, оплаты и монетки для мотивации.',
-      en: 'Students, schedule, 100+ ready-made 60-minute lessons, auto-checked homework, a word list for every student, payments and coins for motivation.',
+      uk: 'Учні, розклад, готові уроки на 60 хвилин, домашка з автоперевіркою, словник кожного учня, оплати і монетки для мотивації.',
+      ru: 'Ученики, расписание, готовые уроки на 60 минут, домашка с автопроверкой, словарь каждого ученика, оплаты и монетки для мотивации.',
+      en: 'Students, schedule, ready-made 60-minute lessons, auto-checked homework, a word list for every student, payments and coins for motivation.',
     }),
     alternates: alt('/for-teachers'),
   };
@@ -33,7 +33,7 @@ const GROUPS: { id: string; icon: string; title: T; pts: T[] }[] = [
     { uk: 'Telegram-бот для вас, учнів і батьків', ru: 'Telegram-бот для вас, учеников и родителей', en: 'Telegram bot for you, students and parents' },
   ] },
   { id: 'lessons', icon: 'e-board', title: { uk: 'Уроки', ru: 'Уроки', en: 'Lessons' }, pts: [
-    { uk: '100+ готових уроків на 60 хвилин', ru: '100+ готовых уроков на 60 минут', en: '100+ ready 60-minute lessons' },
+    { uk: 'Готові уроки на 60 хвилин, A1-C1', ru: 'Готовые уроки на 60 минут, A1-C1', en: 'Ready 60-minute lessons, A1-C1' },
     { uk: 'Уроки за іграми: Minecraft, Roblox та інші', ru: 'Уроки по играм: Minecraft, Roblox и другие', en: 'Game lessons: Minecraft, Roblox and more' },
     { uk: 'Конструктор своїх уроків', ru: 'Конструктор своих уроков', en: 'Your own lesson builder' },
     { uk: 'Розмовні activities і дошка', ru: 'Разговорные activities и доска', en: 'Speaking activities and a whiteboard' },
@@ -48,15 +48,15 @@ const GROUPS: { id: string; icon: string; title: T; pts: T[] }[] = [
 
 const STEPS: { n: string; icon: string; title: T; text: T }[] = [
   { n: '01', icon: 'd-team', title: { uk: 'Створи кабінет', ru: 'Создай кабинет', en: 'Create a dashboard' }, text: { uk: 'Реєстрація за хвилину. Додай учнів: ім’я, рівень, ціна.', ru: 'Регистрация за минуту. Добавь учеников: имя, уровень, цена.', en: 'Sign up in a minute. Add students: name, level, price.' } },
-  { n: '02', icon: 'd-send', title: { uk: 'Надішли код', ru: 'Отправь код', en: 'Send the code' }, text: { uk: 'У кожного учня свій код або посилання. Він вводить його і бачить свій кабінет.', ru: 'У каждого ученика свой код или ссылка. Он вводит его и видит свой кабинет.', en: 'Each student has their own code or link. They enter it and see their dashboard.' } },
+  { n: '02', icon: 'd-send', title: { uk: 'Надішли код', ru: 'Отправь код', en: 'Send the code' }, text: { uk: 'У кожного учня свій код або посилання до кабінету.', ru: 'У каждого ученика свой код или ссылка в кабинет.', en: 'Each student gets their own code or link to the dashboard.' } },
   { n: '03', icon: 'e-board', title: { uk: 'Проведи урок', ru: 'Проведи урок', en: 'Teach the lesson' }, text: { uk: 'Відкрий готовий урок на 60 хвилин або свій. Нові слова одразу в словник учня.', ru: 'Открой готовый урок на 60 минут или свой. Новые слова сразу в словарь ученика.', en: 'Open a ready 60-minute lesson or your own. New words go straight into the student’s word list.' } },
-  { n: '04', icon: 'e-pencil', title: { uk: 'Задай домашку', ru: 'Задай домашку', en: 'Set homework' }, text: { uk: 'Учень робить її в кабінеті, вправи перевіряються самі, ти бачиш результат.', ru: 'Ученик делает её в кабинете, упражнения проверяются сами, ты видишь результат.', en: 'The student does it in their dashboard, exercises are checked automatically, you see the results.' } },
+  { n: '04', icon: 'e-pencil', title: { uk: 'Задай домашку', ru: 'Задай домашку', en: 'Set homework' }, text: { uk: 'Вправи перевіряються самі, ти бачиш результат.', ru: 'Упражнения проверяются сами, ты видишь результат.', en: 'Exercises are checked automatically, you see the results.' } },
 ];
 
 const FAQ: { q: T; a: T }[] = [
   { q: { uk: 'Чи можна вести дітей і дорослих?', ru: 'Можно ли вести детей и взрослых?', en: 'Can I teach both kids and adults?' }, a: { uk: 'Так. Уроки розбиті за рівнями й віком: діти, підлітки, дорослі, а також підготовка до НМТ.', ru: 'Да. Уроки разбиты по уровням и возрасту: дети, подростки, взрослые, а также подготовка к НМТ.', en: 'Yes. Lessons are sorted by level and age: kids, teens, adults, plus NMT (Ukrainian school exam) prep.' } },
   { q: { uk: 'Чи можна додавати свої уроки й завдання?', ru: 'Можно ли добавлять свои уроки и задания?', en: 'Can I add my own lessons and tasks?' }, a: { uk: 'Так. Є конструктор уроків: тексти, вправи, аудіо, відео. Готовий урок з бібліотеки теж можна змінити під себе.', ru: 'Да. Есть конструктор уроков: тексты, упражнения, аудио, видео. Готовый урок из библиотеки тоже можно изменить под себя.', en: 'Yes. There is a lesson builder: texts, exercises, audio, video. You can also adapt any ready lesson from the library.' } },
-  { q: { uk: 'Що бачить учень?', ru: 'Что видит ученик?', en: 'What does the student see?' }, a: { uk: 'Свій розклад, домашку, словник від тебе, ігри зі своїми словами і монетки. Усе просто, щоб розібралася навіть дитина.', ru: 'Своё расписание, домашку, словарь от тебя, игры со своими словами и монетки. Всё просто, чтобы разобрался даже ребёнок.', en: 'Their schedule, homework, the word list from you, games with their words and coins. Simple enough for a child to figure out.' } },
+  { q: { uk: 'Що бачить учень?', ru: 'Что видит ученик?', en: 'What does the student see?' }, a: { uk: 'Свій розклад, домашку, словник від тебе, ігри зі своїми словами і монетки.', ru: 'Своё расписание, домашку, словарь от тебя, игры со своими словами и монетки.', en: 'Their schedule, homework, the word list from you, games with their words and coins.' } },
   { q: { uk: 'Скільки коштує?', ru: 'Сколько стоит?', en: 'How much does it cost?' }, a: { uk: 'Почати можна безкоштовно. Ціни на тарифи дивись на сторінці «Тарифи».', ru: 'Начать можно бесплатно. Цены на тарифы смотри на странице «Тарифы».', en: 'You can start for free. See the plan prices on the “Pricing” page.' } },
 ];
 
@@ -95,8 +95,7 @@ export default function ForTeachersPage() {
       <section className="mu-section" id="how" data-stickers="4" style={{ scrollMarginTop: 90 }}>
         <div className="mu-container">
           <div className="mu-section__head">
-            <span className="mu-section__eyebrow"><Icon id="e-cal" />{t({ uk: 'Як це працює', ru: 'Как это работает', en: 'How it works' })}</span>
-            <h2 className="mu-section__title">{t({ uk: 'Чотири', ru: 'Четыре', en: 'Four' })} <em>{t({ uk: 'кроки.', ru: 'шага.', en: 'steps.' })}</em></h2>
+            <h2 className="mu-section__title">{t({ uk: 'Як це', ru: 'Как это', en: 'How it' })} <em>{t({ uk: 'працює.', ru: 'работает.', en: 'works.' })}</em></h2>
           </div>
           <div className="mu-steps">
             {STEPS.map((s) => (
@@ -114,7 +113,6 @@ export default function ForTeachersPage() {
       <section className="mu-section" style={{ paddingTop: 0 }}>
         <div className="mu-container">
           <div className="mu-section__head">
-            <span className="mu-section__eyebrow"><Icon id="d-bulb" />{t({ uk: 'Питання', ru: 'Вопросы', en: 'Questions' })}</span>
             <h2 className="mu-section__title">{t({ uk: 'Питання', ru: 'Вопросы', en: 'Teacher' })} <em>{t({ uk: 'вчителів.', ru: 'учителей.', en: 'questions.' })}</em></h2>
           </div>
           <Faq items={FAQ.map((f) => ({ q: t(f.q), a: t(f.a) }))} />
