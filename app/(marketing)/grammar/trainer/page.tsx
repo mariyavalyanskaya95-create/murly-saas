@@ -31,7 +31,6 @@ export default function TrainerIndex() {
         <div className="mu-container">
           <h1>{L({ uk: 'Тренажери', ru: 'Тренажёры', en: 'Trainers' })} <em>{L({ uk: 'на 100 завдань.', ru: 'на 100 заданий.', en: 'with 100 tasks.' })}</em></h1>
           <HeroTip>{L({ uk: 'У кожному: коли вживаємо, форми + / − / ?, головна пастка, маркери і 5 раундів по 20 завдань. Після кожної відповіді пояснення «Чому так?».', ru: 'В каждом: когда употребляем, формы + / − / ?, главная ловушка, маркеры и 5 раундов по 20 заданий. После каждого ответа объяснение «Почему так?».', en: 'Each one has: when to use it, + / − / ? forms, the main trap, signal words and 5 rounds of 20 tasks, with a “Why?” after every answer.' })}</HeroTip>
-          <Link href="/grammar" className="mu-btn mu-btn--lg">{L({ uk: 'Правила граматики', ru: 'Правила грамматики', en: 'Grammar rules' })}</Link>
         </div>
       </section>
       {levels.map((lv) => (
