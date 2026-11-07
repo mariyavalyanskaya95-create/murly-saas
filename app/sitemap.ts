@@ -22,6 +22,7 @@ import { SITE_URL } from '@/lib/seo';
 import { BLOG } from '@/lib/blog';
 import { GAME_LESSONS } from '@/lib/game-lessons';
 import { SONGS } from '@/lib/songs';
+import { PRODUCTS } from '@/lib/shop';
 
 const STATIC: [string, number][] = [
   ['/', 1], ['/nmt', 0.9], ['/nmt/mock', 0.9], ['/irregular-verbs', 0.9], ['/irregular-verbs/games', 0.7],
@@ -42,6 +43,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...ALL_STORIES.map((s) => [`/stories/${s.id}`, 0.5] as [string, number]),
     ...MOCKS.map((m) => [`/nmt/mock/${m.id}`, 0.8] as [string, number]),
     ...SONGS.map((x) => [`/songs/${x.id}`, 0.6] as [string, number]),
+    ...PRODUCTS.map((x) => [`/shop/${x.id}`, 0.6] as [string, number]),
     ...SERIES.flatMap((s) => [[`/series/${s.slug}`, 0.6] as [string, number], ...s.episodes.map((e) => [`/series/${s.slug}/${e.n}`, 0.5] as [string, number])]),
     ...SKILLS.map((s) => [`/learn/${s.id}`, 0.6] as [string, number]),
     ...lessons.map((l) => [`/lessons/${l.id.replace(/^lib-/, '')}`, 0.6] as [string, number]),
