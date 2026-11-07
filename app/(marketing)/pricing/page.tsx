@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import Icon from '@/components/Icon';
 import Stickers from '@/components/Stickers';
 import SiteNav from '@/components/SiteNav';
@@ -6,6 +7,7 @@ import SiteFooter from '@/components/SiteFooter';
 import PricingSection from '@/components/PricingSection';
 import Faq from '@/components/Faq';
 import { tr } from '@/lib/i18n-server';
+import { PRODUCTS } from '@/lib/shop';
 import type { T } from '@/lib/i18n';
 import Kit from '@/components/Kit';
 
@@ -22,18 +24,6 @@ export function generateMetadata(): Metadata {
 }
 
 // Міні-продукти: купуються один раз, без підписки. Мінімум 85 ₴.
-const MINI: { icon: string; price: number; old?: number; name: T; text: T; who: 'student' | 'teacher'; bundle?: boolean }[] = [
-  { icon: 'e-pencil', price: 99, who: 'student', name: { uk: 'Чек-лист підготовки до НМТ', ru: 'Чек-лист подготовки к НМТ', en: 'NMT prep checklist' }, text: { uk: 'План на 8 тижнів, стратегії і день іспиту', ru: 'План на 8 недель, стратегии и день экзамена', en: 'An 8-week plan, strategies and exam day' } },
-  { icon: 'e-trophy', price: 85, who: 'student', name: { uk: 'Пробний НМТ з розбором', ru: 'Пробный НМТ с разбором', en: 'NMT mock test with answers explained' }, text: { uk: 'Повний тест як на іспиті і пояснення кожної відповіді', ru: 'Полный тест как на экзамене и объяснение каждого ответа', en: 'A full exam-style test and every answer explained' } },
-  { icon: 'e-abc', price: 149, who: 'student', name: { uk: 'Уся базова граматика A1-B1', ru: 'Вся базовая грамматика A1-B1', en: 'All basic grammar A1-B1' }, text: { uk: 'Правила, приклади і вправи', ru: 'Правила, примеры и упражнения', en: 'Rules, examples and exercises' } },
-  { icon: 'e-book', price: 85, who: 'student', name: { uk: 'Неправильні дієслова: картки і план на 30 днів', ru: 'Неправильные глаголы: карточки и план на 30 дней', en: 'Irregular verbs: cards and a 30-day plan' }, text: { uk: 'Друкуєш, вчиш по 5 на день', ru: 'Печатаешь, учишь по 5 в день', en: 'Print them, learn 5 a day' } },
-  { icon: 'e-speak', price: 85, who: 'student', name: { uk: '100 важливих слів для НМТ', ru: '100 важных слов для НМТ', en: '100 key words for the NMT' }, text: { uk: '10 тем, приклади і тест', ru: '10 тем, примеры и тест', en: '10 topics, examples and a test' } },
-  { icon: 'd-heart', price: 199, old: 269, who: 'student', bundle: true, name: { uk: 'Старт до НМТ: 3 в 1', ru: 'Старт к НМТ: 3 в 1', en: 'NMT starter: 3 in 1' }, text: { uk: 'Чек-лист, 100 слів і дієслова за 30 днів разом з іграми для друку', ru: 'Чек-лист, 100 слов и глаголы за 30 дней вместе с играми для печати', en: 'Checklist, 100 words and 30-day verbs, plus printable games' } },
-  { icon: 'd-spark', price: 299, who: 'student', bundle: true, name: { uk: 'Усе для НМТ', ru: 'Всё для НМТ', en: 'Everything for the NMT' }, text: { uk: 'Чек-лист, пробник, граматика, дієслова і 100 слів разом', ru: 'Чек-лист, пробник, грамматика, глаголы и 100 слов вместе', en: 'Checklist, mock test, grammar, verbs and 100 words together' } },
-  { icon: 'e-mic', price: 199, who: 'teacher', name: { uk: '10 уроків для Speaking club', ru: '10 уроков для Speaking club', en: '10 Speaking club lessons' }, text: { uk: 'Теми, питання і картки, бери і веди', ru: 'Темы, вопросы и карточки, бери и веди', en: 'Topics, questions and cards, ready to teach' } },
-  { icon: 'e-board', price: 85, who: 'teacher', name: { uk: 'Шаблон першого уроку з новим учнем', ru: 'Шаблон первого урока с новым учеником', en: 'First lesson template for a new student' }, text: { uk: 'Знайомство, тест рівня і план навчання', ru: 'Знакомство, тест уровня и план обучения', en: 'Getting to know, level test and a study plan' } },
-];
-
 const FAQ: { q: T; a: T }[] = [
   { q: { uk: 'Що можна безкоштовно?', ru: 'Что можно бесплатно?', en: 'What can I do for free?' }, a: { uk: 'Учням: граматика, неправильні дієслова, ігри і квіз щодня. Вчителям: кабінет на 3 учнів і 6 готових уроків. Без картки і без терміну.', ru: 'Ученикам: грамматика, неправильные глаголы, игры и квиз каждый день. Учителям: кабинет на 3 учеников и 6 готовых уроков. Без карты и без срока.', en: 'Students: grammar, irregular verbs, games and a daily quiz. Teachers: a dashboard for 3 students and 6 ready-made lessons. No card, no time limit.' } },
   { q: { uk: 'Мій вчитель уже платить. Мені теж треба?', ru: 'Мой учитель уже платит. Мне тоже надо?', en: 'My teacher already pays. Do I need to?' }, a: { uk: 'Ні. Якщо вчитель на платному тарифі, уроки, домашка і все для навчання з ним для тебе безкоштовні.', ru: 'Нет. Если учитель на платном тарифе, уроки, домашка и всё для учёбы с ним для тебя бесплатны.', en: 'No. If your teacher is on a paid plan, lessons, homework and everything for learning with them are free for you.' } },
@@ -42,6 +32,7 @@ const FAQ: { q: T; a: T }[] = [
   { q: { uk: 'Що дає «Запроси колегу»?', ru: 'Что даёт «Пригласи коллегу»?', en: 'What does “Invite a colleague” give?' }, a: { uk: 'Коли вчитель за твоїм посиланням оформить Pro, ви обоє отримаєте ще місяць безкоштовно.', ru: 'Когда учитель по твоей ссылке оформит Pro, вы оба получите ещё месяц бесплатно.', en: 'When a teacher who joined via your link gets Pro, you both get another month free.' } },
   { q: { uk: 'Можна скасувати будь-коли?', ru: 'Можно отменить в любой момент?', en: 'Can I cancel anytime?' }, a: { uk: 'Так, у кабінеті, в один клік. Доступ лишається до кінця оплаченого періоду, без штрафів.', ru: 'Да, в кабинете, в один клик. Доступ сохраняется до конца оплаченного периода, без штрафов.', en: 'Yes, in your dashboard, in one click. You keep access until the end of the paid period, no penalties.' } },
   { q: { uk: 'Як оплатити?', ru: 'Как оплатить?', en: 'How do I pay?' }, a: { uk: 'Карткою онлайн, у гривнях. Оплату ще підключаємо, а поки безкоштовне працює без обмежень.', ru: 'Картой онлайн, в гривнах. Оплату ещё подключаем, а пока бесплатное работает без ограничений.', en: 'By card online, in hryvnias. Payments are still being connected. Until then, everything free works without limits.' } },
+  { q: { uk: 'Як я отримаю матеріали для друку?', ru: 'Как я получу материалы для печати?', en: 'How do I get the printables?' }, a: { uk: 'Одразу після оплати на пошту прийде лист з посиланням. Відкриваєш файл і натискаєш «Друк або PDF»: можна роздрукувати або зберегти як PDF. Посилання діє завжди.', ru: 'Сразу после оплаты на почту придёт письмо со ссылкой. Открываешь файл и нажимаешь «Печать или PDF»: можно распечатать или сохранить как PDF. Ссылка действует всегда.', en: 'Right after payment you get an email with a link. Open a file and press “Print or PDF” to print it or save it as a PDF. The link never expires.' } },
 ];
 
 export default function PricingPage() {
@@ -70,16 +61,16 @@ export default function PricingPage() {
             <div key={who} className="pr-mini-group">
               <h3 className="pr-mini-title"><Icon id={who === 'student' ? 'd-kid' : 'd-team'} />{who === 'student' ? t({ uk: 'Учням і батькам', ru: 'Ученикам и родителям', en: 'Students and parents' }) : t({ uk: 'Вчителям', ru: 'Учителям', en: 'Teachers' })}</h3>
               <div className="pr-mini">
-                {MINI.filter((m) => m.who === who).map((m) => (
-                  <div key={m.name.uk} className={`pr-mini__card ${m.bundle ? 'is-bundle' : ''}`}>
+                {PRODUCTS.filter((m) => m.who === who).map((m) => (
+                  <Link key={m.id} href={`/shop/${m.id}`} className={`pr-mini__card ${m.bundle ? 'is-bundle' : ''}`}>
                     <span className="pr-mini__ic"><Icon id={m.icon} /></span>
                     <b>{t(m.name)}</b>
                     <small>{t(m.text)}</small>
                     <div className="pr-mini__foot">
                       <span className="pr-mini__price">{m.old && <s className="pr-mini__old">{m.old} ₴</s>}{m.price} ₴</span>
-                      <span className="pr-mini__soon">{t({ uk: 'Скоро', ru: 'Скоро', en: 'Soon' })}</span>
+                      <span className="pr-mini__soon">{t({ uk: 'Детальніше', ru: 'Подробнее', en: 'Details' })}</span>
                     </div>
-                  </div>
+                  </Link>
                 ))}
               </div>
             </div>
