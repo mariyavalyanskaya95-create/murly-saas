@@ -46,7 +46,7 @@ const ROLES: { id: string; kit: string; icon: string; mod: string; who: T; pts: 
   {
     id: 'parents', kit: 'st-cat-heart', icon: 'd-heart', mod: 'mu-role--sky',
     who: { uk: 'Я з батьків', ru: 'Я родитель', en: 'I’m a parent' },
-    pts: [{ uk: 'Дитина вчиться регулярно', ru: 'Ребёнок учится регулярно', en: 'Your child learns regularly' }, { uk: 'Домашка й успіхи в Telegram', ru: 'Домашка и успехи в Telegram', en: 'Homework and progress in Telegram' }, { uk: 'Без сварок через уроки', ru: 'Без ссор из-за уроков', en: 'No fights over homework' }],
+    pts: [{ uk: 'Кабінет для дитини з 6 років', ru: 'Кабинет для ребёнка с 6 лет', en: 'A child account from age 6' }, { uk: 'Домашка й успіхи в Telegram', ru: 'Домашка и успехи в Telegram', en: 'Homework and progress in Telegram' }, { uk: 'Монетки за навчання', ru: 'Монетки за учёбу', en: 'Coins for learning' }],
     main: { href: '/for-parents', label: { uk: 'Для батьків', ru: 'Для родителей', en: 'For parents' } },
     alt: { href: '/baby-english', label: { uk: 'Малюкам до 7 років', ru: 'Малышам до 7 лет', en: 'Kids under 7' } },
   },
@@ -79,7 +79,7 @@ const MQ: T[] = [
 const HOW: { n: string; icon: string; title: T; text: T }[] = [
   { n: '01', icon: 'd-team', title: { uk: 'Учитель створює кабінет', ru: 'Учитель создаёт кабинет', en: 'The teacher creates a dashboard' }, text: { uk: 'Додає учнів і надсилає кожному код або посилання.', ru: 'Добавляет учеников и отправляет каждому код или ссылку.', en: 'Adds students and sends each one a code or a link.' } },
   { n: '02', icon: 'd-kid', title: { uk: 'Учень приєднується', ru: 'Ученик присоединяется', en: 'The student joins' }, text: { uk: 'Вводить код, і в нього з’являються розклад, слова та домашка.', ru: 'Вводит код, и у него появляются расписание, слова и домашка.', en: 'Enters the code and gets a schedule, words and homework.' } },
-  { n: '03', icon: 'e-pencil', title: { uk: 'Вчиться і грає', ru: 'Учится и играет', en: 'Learns and plays' }, text: { uk: 'Уроки, вправи, ігри зі своїми словами. Усе перевіряється одразу.', ru: 'Уроки, упражнения, игры со своими словами. Всё проверяется сразу.', en: 'Lessons, exercises, games with their own words. Everything is checked instantly.' } },
+  { n: '03', icon: 'e-pencil', title: { uk: 'Вчиться і грає', ru: 'Учится и играет', en: 'Learns and plays' }, text: { uk: 'Уроки, вправи й ігри з його словами. Перевірка одразу.', ru: 'Уроки, упражнения и игры с его словами. Проверка сразу.', en: 'Lessons, exercises and games with their words. Checked instantly.' } },
   { n: '04', icon: 'c-fish', title: { uk: 'Заробляє монетки', ru: 'Зарабатывает монетки', en: 'Earns coins' }, text: { uk: 'І витрачає їх у своєму містечку: нові кімнати, меблі, сад.', ru: 'И тратит их в своём городке: новые комнаты, мебель, сад.', en: 'And spends them in their town: new rooms, furniture, a garden.' } },
 ];
 
@@ -112,7 +112,6 @@ export default function HomePage() {
       <section className="mu-section" id="who" style={{ paddingTop: 8 }}>
         <div className="mu-container">
           <div className="mu-section__head">
-            <span className="mu-section__eyebrow"><Icon id="e-arrow" />{t({ uk: 'Почни тут', ru: 'Начни здесь', en: 'Start here' })}</span>
             <h2 className="mu-section__title">{t({ uk: 'Хто', ru: 'Кто', en: 'Who are' })} <em>{t({ uk: 'ти?', ru: 'ты?', en: 'you?' })}</em></h2>
           </div>
           <div className="mu-roles">
@@ -141,8 +140,7 @@ export default function HomePage() {
       <section className="mu-section mu-section--tomato" id="features" data-stickers="4">
         <div className="mu-container">
           <div className="mu-section__head">
-            <span className="mu-section__eyebrow mu-section__eyebrow--lime"><Icon id="d-spark" />{t({ uk: 'Що є в Murly', ru: 'Что есть в Murly', en: 'What’s inside Murly' })}</span>
-            <h2 className="mu-section__title">{t({ uk: 'Усе для англійської в одному', ru: 'Всё для английского в одном', en: 'Everything for English in one' })} <em>{t({ uk: 'місці.', ru: 'месте.', en: 'place.' })}</em></h2>
+            <h2 className="mu-section__title">{t({ uk: 'Що є в', ru: 'Что есть в', en: 'What’s in' })} <em>Murly.</em></h2>
           </div>
           <div className="mu-cards mu-cards--4">
             {FEATURES.map((f) => (
@@ -162,8 +160,7 @@ export default function HomePage() {
       <section className="mu-section" id="how" data-stickers="4">
         <div className="mu-container">
           <div className="mu-section__head">
-            <span className="mu-section__eyebrow"><Icon id="e-cap" />{t({ uk: 'Як це працює', ru: 'Как это работает', en: 'How it works' })}</span>
-            <h2 className="mu-section__title">{t({ uk: 'Чотири кроки, і', ru: 'Четыре шага, и', en: 'Four steps and' })} <em>{t({ uk: 'поїхали.', ru: 'поехали.', en: 'off you go.' })}</em></h2>
+            <h2 className="mu-section__title">{t({ uk: 'Як це', ru: 'Как это', en: 'How it' })} <em>{t({ uk: 'працює.', ru: 'работает.', en: 'works.' })}</em></h2>
           </div>
           <div className="mu-steps">
             {HOW.map((s) => (
