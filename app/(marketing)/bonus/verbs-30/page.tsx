@@ -33,7 +33,7 @@ export default function Verbs30Page() {
         <div className="mu-container">
           <Kit id="st-cat-cool" className="kit-hero" />
           <h1>{t({ uk: 'Дієслова', ru: 'Глаголы', en: 'Irregular verbs' })} <em>{t({ uk: 'за 30 днів.', ru: 'за 30 дней.', en: 'in 30 days.' })}</em></h1>
-          <HeroTip>{t({ uk: 'Обери день з плану і грай саме з його дієсловами. Лаймові дні це повторення. Прогрес зберігається в цьому браузері.', ru: 'Выбери день из плана и играй именно с его глаголами. Лаймовые дни это повторение. Прогресс сохраняется в этом браузере.', en: 'Pick a day from the plan and play with its verbs. Lime days are review days. Progress is saved in this browser.' })}</HeroTip>
+          <HeroTip>{t({ uk: 'Обери день і грай з його дієсловами. Лаймові дні для повторення. Прогрес зберігається в цьому браузері.', ru: 'Выбери день и играй с его глаголами. Лаймовые дни для повторения. Прогресс сохраняется в этом браузере.', en: 'Pick a day and play with its verbs. Lime days are for review. Progress is saved in this browser.' })}</HeroTip>
         </div>
       </section>
       <section className="mu-section" style={{ paddingTop: 8 }}>
