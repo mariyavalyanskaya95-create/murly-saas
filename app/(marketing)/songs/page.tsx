@@ -24,7 +24,7 @@ export default function SongsPage() {
       <section className="mu-page-hero" style={{ paddingBottom: 16 }}>
         <div className="mu-container">
           <h1>{t({ uk: 'Англійська', ru: 'Английский', en: 'English' })} <em>{t({ uk: 'через пісні.', ru: 'по песням.', en: 'through songs.' })}</em></h1>
-          <HeroTip>{t({ uk: 'Дивись офіційний кліп, розбирай вирази з пісні з озвучкою, пройди міні-квіз і поговори з учителем. Тексти пісень ми не публікуємо: їх можна відкрити в офіційних джерелах.', ru: 'Смотри официальный клип, разбирай выражения из песни с озвучкой, пройди мини-квиз и поговори с учителем. Тексты песен мы не публикуем: их можно открыть в официальных источниках.', en: 'Watch the official video, learn phrases with audio, do a mini quiz and talk with your teacher. We don’t publish lyrics: you can find them in official sources.' })}</HeroTip>
+          <HeroTip>{t({ uk: 'Офіційний кліп, вирази з озвучкою, міні-квіз і питання для розмови. Тексти пісень шукай в офіційних джерелах.', ru: 'Официальный клип, выражения с озвучкой, мини-квиз и вопросы для разговора. Тексты песен ищи в официальных источниках.', en: 'Official video, phrases with audio, a mini quiz and questions to discuss. Find the lyrics in official sources.' })}</HeroTip>
         </div>
       </section>
       <section className="mu-section" style={{ paddingTop: 8 }}>
