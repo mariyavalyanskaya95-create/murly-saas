@@ -39,9 +39,7 @@ export default function GrammarIndexPage() {
         <div className="mu-container">
           <Kit id="il-cat-read" className="kit-hero" />
           <h1>{t({ uk: 'Граматика', ru: 'Грамматика', en: 'Grammar' })} <em>{t({ uk: 'без нудьги.', ru: 'без скуки.', en: 'without the boredom.' })}</em></h1>
-          <HeroTip>{t({ uk: '52 теми простими словами: коли вживати, формула, головні пастки, смішна сценка і 100 завдань з поясненнями.', ru: '52 темы простыми словами: когда использовать, формула, главные ловушки, смешная сценка и 100 заданий с объяснениями.', en: '52 topics in plain words: when to use them, the formula, the main traps, a funny scene and 100 tasks with explanations.' })}</HeroTip>
-          <Link href="/grammar/trainer" className="mu-btn mu-btn--lime mu-btn--lg">{t({ uk: 'Тренажери на 100 завдань', ru: 'Тренажёры на 100 заданий', en: '100-task trainers' })}</Link>{' '}
-          <Link href="/irregular-verbs" className="mu-btn mu-btn--lg">{t({ uk: 'Неправильні дієслова', ru: 'Неправильные глаголы', en: 'Irregular verbs' })}</Link>
+          <HeroTip>{t({ uk: '52 теми: коли вживати, формула, пастки, сценка і 100 завдань з поясненнями.', ru: '52 темы: когда использовать, формула, ловушки, сценка и 100 заданий с объяснениями.', en: '52 topics: when to use it, the formula, traps, a scene and 100 tasks with explanations.' })}</HeroTip>
         </div>
       </section>
 
