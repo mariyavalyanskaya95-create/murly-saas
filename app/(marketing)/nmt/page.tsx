@@ -15,25 +15,23 @@ import Kit from '@/components/Kit';
 const POLAROIDS = [
   { label: 'Teen Life', icon: 'e-speak', bg: 'var(--mu-mustard)', ink: 'var(--mu-ink)', href: '/quiz/teen-life' },
   { label: 'Films & Netflix', icon: 'd-camera', bg: 'var(--mu-tomato)', ink: 'var(--mu-lime)', href: '/quiz/films-netflix' },
-  { label: 'Grammar Boss', icon: 'e-abc', bg: 'var(--mu-sky)', ink: 'var(--mu-ink)' },
-  { label: 'Mock Test', icon: 'd-kid', bg: 'var(--mu-lime)', ink: 'var(--mu-ink)' },
-  { label: 'Reading', icon: 'e-book', bg: 'var(--mu-ink)', ink: 'var(--mu-lime)' },
-  { label: 'Writing', icon: 'e-pencil', bg: 'var(--mu-mustard)', ink: 'var(--mu-ink)' },
+  { label: 'Grammar Boss', icon: 'e-abc', bg: 'var(--mu-sky)', ink: 'var(--mu-ink)', href: '/grammar/trainer' },
+  { label: 'Mock Test', icon: 'd-kid', bg: 'var(--mu-lime)', ink: 'var(--mu-ink)', href: '/nmt/mock' },
+  { label: 'Reading', icon: 'e-book', bg: 'var(--mu-ink)', ink: 'var(--mu-lime)', href: '/learn/reading' },
+  { label: 'Writing', icon: 'e-pencil', bg: 'var(--mu-mustard)', ink: 'var(--mu-ink)', href: '/learn/writing' },
 ];
 
 const FEATURES: { icon: string; mod: string; title: T; chips: T[] }[] = [
   { icon: 'd-spark', mod: '', title: { uk: 'Розбір кожної помилки', ru: 'Разбор каждой ошибки', en: 'Every mistake explained' }, chips: [{ uk: '«Чому так?»', ru: '«Почему так?»', en: '“Why?”' }, { uk: 'що повторити', ru: 'что повторить', en: 'what to review' }] },
-  { icon: 'd-clock', mod: '', title: { uk: '5 хвилин на день', ru: '5 минут в день', en: '5 minutes a day' }, chips: [{ uk: 'короткі квізи', ru: 'короткие квизы', en: 'short quizzes' }, { uk: 'у своєму темпі', ru: 'в своём темпе', en: 'at your pace' }] },
   { icon: 'e-trophy', mod: '', title: { uk: 'Пробні НМТ', ru: 'Пробные НМТ', en: 'NMT mock tests' }, chips: [{ uk: '20 варіантів', ru: '20 вариантов', en: '20 tests' }, { uk: 'таймер і бал', ru: 'таймер и балл', en: 'timer and score' }] },
-  { icon: 'e-board', mod: '', title: { uk: 'Банк завдань', ru: 'Банк заданий', en: 'Task bank' }, chips: [{ uk: 'reading' }, { uk: 'use of English' }] },
-  { icon: 'e-flame', mod: 'mu-card--ink', title: { uk: 'XP і рівні', ru: 'XP и уровни', en: 'XP and levels' }, chips: [{ uk: 'бали за завдання', ru: 'очки за задания', en: 'points for tasks' }, { uk: 'видно прогрес', ru: 'виден прогресс', en: 'see your progress' }] },
-  { icon: 'd-team', mod: '', title: { uk: 'Для репетиторів', ru: 'Для репетиторов', en: 'For tutors' }, chips: [{ uk: 'домашка в один клік', ru: 'домашка в один клик', en: 'one-click homework' }, { uk: 'прогрес учнів', ru: 'прогресс учеников', en: 'student progress' }] },
+  { icon: 'e-board', mod: '', title: { uk: 'Завдання як на іспиті', ru: 'Задания как на экзамене', en: 'Exam-style tasks' }, chips: [{ uk: 'reading' }, { uk: 'use of English' }] },
+  { icon: 'd-team', mod: 'mu-card--ink', title: { uk: 'Для репетиторів', ru: 'Для репетиторов', en: 'For tutors' }, chips: [{ uk: 'домашка в один клік', ru: 'домашка в один клик', en: 'one-click homework' }, { uk: 'прогрес учнів', ru: 'прогресс учеников', en: 'student progress' }] },
 ];
 const STEPS: { n: string; icon: string; title: string; text: T; href?: string }[] = [
-  { n: '01', icon: 'e-speak', title: 'Teen Life', text: { uk: 'Розмовна тема № 1. Друзі, школа, соцмережі. Часи та базові конструкції.', ru: 'Разговорная тема № 1. Друзья, школа, соцсети. Времена и базовые конструкции.', en: 'Speaking topic no. 1. Friends, school, social media. Tenses and basic structures.' }, href: '/quiz/teen-life' },
-  { n: '02', icon: 'd-camera', title: 'Films & Netflix', text: { uk: 'Reading-блок на знайомих темах. Вчишся розуміти контекст, а не зубрити.', ru: 'Reading-блок на знакомых темах. Учишься понимать контекст, а не зубрить.', en: 'A reading block on familiar topics. You learn to understand context instead of cramming.' }, href: '/quiz/films-netflix' },
-  { n: '03', icon: 'e-abc', title: 'Grammar Boss', text: { uk: 'Усі 12 часів + умовні, пасив, reported speech. Коротко, з прикладами.', ru: 'Все 12 времён + условные, пассив, reported speech. Коротко, с примерами.', en: 'All 12 tenses + conditionals, passive, reported speech. Short, with examples.' }, href: '/grammar/trainer' },
-  { n: '04', icon: 'e-trophy', title: '20 mock tests', text: { uk: 'Повний пробник НМТ, близько 60 хв. Таймер, бали, детальний аналіз помилок.', ru: 'Полный пробный тест НМТ, около 60 минут. Таймер, баллы, подробный разбор ошибок.', en: 'A full 60-minute NMT practice test. Timer, score, detailed review of mistakes.' }, href: '/nmt/mock' },
+  { n: '01', icon: 'e-speak', title: 'Teen Life', text: { uk: 'Друзі, школа, соцмережі. Часи й базові конструкції.', ru: 'Друзья, школа, соцсети. Времена и базовые конструкции.', en: 'Friends, school, social media. Tenses and basic structures.' }, href: '/quiz/teen-life' },
+  { n: '02', icon: 'd-camera', title: 'Films & Netflix', text: { uk: 'Reading на знайомі теми: кіно й серіали.', ru: 'Reading на знакомые темы: кино и сериалы.', en: 'Reading on familiar topics: films and series.' }, href: '/quiz/films-netflix' },
+  { n: '03', icon: 'e-abc', title: 'Grammar Boss', text: { uk: 'Усі 12 часів, умовні, пасив, reported speech.', ru: 'Все 12 времён, условные, пассив, reported speech.', en: 'All 12 tenses, conditionals, passive, reported speech.' }, href: '/grammar/trainer' },
+  { n: '04', icon: 'e-trophy', title: '20 mock tests', text: { uk: '32 завдання, близько 60 хвилин, таймер і розбір помилок.', ru: '32 задания, около 60 минут, таймер и разбор ошибок.', en: '32 questions, about 60 minutes, a timer and a review of mistakes.' }, href: '/nmt/mock' },
 ];
 
 export function generateMetadata(): Metadata {
@@ -113,26 +111,13 @@ export default function NmtPage() {
         </div>
       </section>
 
-      {/* SHOUT */}
-      <section className="mu-shout" data-stickers="2">
-        <div className="mu-container">
-          <div className="mu-shout__text">
-            {t({ uk: 'Школа вчить граматику.', ru: 'Школа учит грамматику.', en: 'School teaches grammar.' })}
-            <br />
-            {t({ uk: 'Ми вчимо', ru: 'Мы учим', en: 'We teach you to' })} <em>{t({ uk: 'здавати', ru: 'сдавать', en: 'pass' })}</em> {t({ uk: 'НМТ.', ru: 'НМТ.', en: 'the NMT.' })}
-            <span className="mu-shout__stamp"><Icon id="e-trophy" />{t({ uk: 'НА 200', ru: 'НА 200', en: 'FOR 200' })}</span>
-          </div>
-        </div>
-      </section>
-
       <div className="mu-scallop" style={{ backgroundColor: 'var(--mu-tomato)' }} />
 
       {/* FEATURES */}
       <section className="mu-section mu-section--tomato" id="how" data-stickers="4">
         <div className="mu-container">
           <div className="mu-section__head">
-            <span className="mu-section__eyebrow mu-section__eyebrow--lime"><Icon id="d-spark" />Core features</span>
-            <h2 className="mu-section__title">{t({ uk: 'Все для 200+ в\u00a0одному', ru: 'Всё для 200+ в\u00a0одном', en: 'Everything for 200+ in\u00a0one' })} <em>{t({ uk: 'місці.', ru: 'месте.', en: 'place.' })}</em></h2>
+            <h2 className="mu-section__title">{t({ uk: 'Що є для', ru: 'Что есть для', en: 'What you get for the' })} <em>{t({ uk: 'НМТ.', ru: 'НМТ.', en: 'NMT.' })}</em></h2>
           </div>
           <div className="mu-cards">
             {FEATURES.map((f) => (
@@ -152,7 +137,6 @@ export default function NmtPage() {
       <section className="mu-section" id="path" data-stickers="4">
         <div className="mu-container">
           <div className="mu-section__head">
-            <span className="mu-section__eyebrow"><Icon id="e-cap" />Your road to 200</span>
             <h2 className="mu-section__title">{t({ uk: 'Твій шлях до', ru: 'Твой путь к', en: 'Your road to the' })} <em>{t({ uk: 'НМТ.', ru: 'НМТ.', en: 'NMT.' })}</em></h2>
           </div>
           <div className="mu-steps">
@@ -179,8 +163,7 @@ export default function NmtPage() {
       <section className="mu-section" id="pricing" data-stickers="4" style={{ paddingTop: 40 }}>
         <div className="mu-container">
           <div className="mu-section__head">
-            <span className="mu-section__eyebrow"><Icon id="d-money" />Pricing</span>
-            <h2 className="mu-section__title">{t({ uk: 'Чесні', ru: 'Честные', en: 'Honest' })} <em>{t({ uk: 'тарифи.', ru: 'тарифы.', en: 'pricing.' })}</em></h2>
+            <h2 className="mu-section__title"><em>{t({ uk: 'Тарифи.', ru: 'Тарифы.', en: 'Pricing.' })}</em></h2>
           </div>
           <PricingSection firstQuiz={firstQuiz} start="student" />
         </div>
