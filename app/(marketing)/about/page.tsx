@@ -28,7 +28,7 @@ const PRINCIPLES: { icon: string; title: T; pts: T[] }[] = [
   { icon: 'e-trophy', title: { uk: 'Як гра', ru: 'Как игра', en: 'Like a game' }, pts: [
     { uk: 'XP і рівні', ru: 'XP и уровни', en: 'XP and levels' }, { uk: 'Монетки й 3D-містечко', ru: 'Монетки и 3D-городок', en: 'Coins and a 3D town' }, { uk: 'Уроки за іграми', ru: 'Уроки по играм', en: 'Game-based lessons' }] },
   { icon: 'e-abc', title: { uk: 'Коротко і зрозуміло', ru: 'Коротко и понятно', en: 'Short and clear' }, pts: [
-    { uk: 'Граматика простими словами', ru: 'Грамматика простыми словами', en: 'Grammar made simple' }, { uk: 'Пояснення кожної помилки', ru: 'Объяснение каждой ошибки', en: 'Every mistake explained' }, { uk: 'Без зубріння', ru: 'Без зубрёжки', en: 'No cramming' }] },
+    { uk: 'Граматика простими словами', ru: 'Грамматика простыми словами', en: 'Grammar made simple' }, { uk: 'Пояснення кожної помилки', ru: 'Объяснение каждой ошибки', en: 'Every mistake explained' }] },
   { icon: 'd-heart', title: { uk: 'Для всіх віків', ru: 'Для всех возрастов', en: 'For all ages' }, pts: [
     { uk: 'Малюки й діти', ru: 'Малыши и дети', en: 'Little ones and kids' }, { uk: 'Підлітки й НМТ', ru: 'Подростки и НМТ', en: 'Teens and NMT' }, { uk: 'Дорослі', ru: 'Взрослые', en: 'Adults' }] },
 ];
@@ -41,10 +41,7 @@ export default function AboutPage() {
       <section className="mu-page-hero" data-stickers="6">
         <div className="mu-container">
           <Kit id="st-cat-box" className="kit-hero" />
-          <h1>{t({ uk: 'Англійська, яку', ru: 'Английский, который', en: 'English you' })} <em>{t({ uk: 'хочеться', ru: 'хочется', en: 'want' })}</em> {t({ uk: 'вчити.', ru: 'учить.', en: 'to learn.' })}</h1>
-          <Link href="/sign-up" className="mu-btn mu-btn--lime mu-btn--lg">
-            {t({ uk: 'Почати безкоштовно', ru: 'Начать бесплатно', en: 'Start for free' })}<span className="mu-btn__arrow"><Icon id="e-arrow" /></span>
-          </Link>
+          <h1>{t({ uk: 'Про', ru: 'О', en: 'About' })} <em>Murly.</em></h1>
         </div>
       </section>
 
@@ -53,7 +50,6 @@ export default function AboutPage() {
       <section className="mu-section" data-stickers="4">
         <div className="mu-container">
           <div className="mu-section__head">
-            <span className="mu-section__eyebrow"><Icon id="d-bulb" />{t({ uk: 'Як ми думаємо', ru: 'Как мы думаем', en: 'How we think' })}</span>
             <h2 className="mu-section__title">{t({ uk: 'Чотири', ru: 'Четыре', en: 'Four' })} <em>{t({ uk: 'правила.', ru: 'правила.', en: 'rules.' })}</em></h2>
           </div>
           <div className="mu-cards" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(230px, 1fr))' }}>
