@@ -35,7 +35,7 @@ export default function PracticePage() {
         <div className="mu-container">
           <Kit id="il-cat-headphones" className="kit-hero" />
           <h1>Listening {t({ uk: 'і', ru: 'и', en: 'and' })} <em>Reading.</em></h1>
-          <HeroTip>{t({ uk: 'Діалоги з озвучкою і тексти за рівнями. Слухай, читай, відповідай, і Murly одразу перевірить.', ru: 'Диалоги с озвучкой и тексты по уровням. Слушай, читай, отвечай, и Murly сразу проверит.', en: 'Dialogues with audio and texts by level. Listen, read, answer, and Murly checks it right away.' })}</HeroTip>
+          <HeroTip>{t({ uk: 'Діалоги з озвучкою і тексти за рівнями. Відповіді перевіряються одразу.', ru: 'Диалоги с озвучкой и тексты по уровням. Ответы проверяются сразу.', en: 'Dialogues with audio and texts by level. Answers are checked right away.' })}</HeroTip>
         </div>
       </section>
       <section className="mu-section" style={{ paddingTop: 8 }}>
