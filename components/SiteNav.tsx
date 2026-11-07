@@ -28,10 +28,8 @@ const MENU: { title: T; items: { href: string; icon: string; label: T; text: T; 
       { href: '/level-test', icon: 'e-trophy', label: { uk: 'Тест на рівень', ru: 'Тест на уровень', en: 'Level test' }, text: { uk: 'A1-C1 за 10 хвилин, для дітей гра', ru: 'A1-C1 за 10 минут, для детей игра', en: 'A1-C1 in 10 minutes, a game for kids' } },
       { href: '/songs', icon: 'e-speak', label: { uk: 'Пісні', ru: 'Песни', en: 'Songs' }, text: { uk: 'Taylor Swift, Katy Perry, The Weeknd: вирази й квізи', ru: 'Taylor Swift, Katy Perry, The Weeknd: выражения и квизы', en: 'Taylor Swift, Katy Perry, The Weeknd: phrases and quizzes' } },
       { href: '/stories', icon: 'e-head', label: { uk: 'Історії й серіали', ru: 'Истории и сериалы', en: 'Stories and series' }, text: { uk: 'Історії, аудіо, аудіосеріали', ru: 'Истории, аудио, аудиосериалы', en: 'Stories, audio, audio series' } },
-      { href: '/blog', icon: 'e-book', label: { uk: 'Блог', ru: 'Блог', en: 'Blog' }, text: { uk: 'Поради для вчителів, учнів і батьків', ru: 'Советы для учителей, учеников и родителей', en: 'Tips for teachers, students and parents' } },
       { href: '/grammar', icon: 'e-abc', label: { uk: 'Граматика', ru: 'Грамматика', en: 'Grammar' }, text: { uk: '52 теми і тренажери на 100 завдань', ru: '52 темы и тренажёры на 100 заданий', en: '52 topics and 100-task trainers' } },
       { href: '/irregular-verbs', icon: 'e-book', label: { uk: 'Неправильні дієслова', ru: 'Неправильные глаголы', en: 'Irregular verbs' }, text: { uk: 'Таблиця з озвучкою, картки й ігри', ru: 'Таблица с озвучкой, карточки и игры', en: 'Voiced table, cards and games' } },
-      { href: '/games', icon: 'd-rocket', label: { uk: 'Ігри', ru: 'Игры', en: 'Games' }, text: { uk: 'Квест, 3D-містечко, дієслова', ru: 'Квест, 3D-городок, глаголы', en: 'Quest, 3D town, verbs' } },
     ],
   },
   {
@@ -46,7 +44,6 @@ const MENU: { title: T; items: { href: string; icon: string; label: T; text: T; 
     title: { uk: 'З учителем', ru: 'С учителем', en: 'With a teacher' },
     items: [
       { href: '/#code', icon: 'd-lock', label: { uk: 'Є код від учителя?', ru: 'Есть код от учителя?', en: 'Have a teacher code?' }, text: { uk: 'Приєднатися і бачити домашку', ru: 'Присоединиться и видеть домашку', en: 'Join and see your homework' } },
-      { href: '/for-teachers', icon: 'd-team', label: { uk: 'Для вчителів', ru: 'Для учителей', en: 'For teachers' }, text: { uk: 'Учні, розклад, домашка, дошка', ru: 'Ученики, расписание, домашка, доска', en: 'Students, schedule, homework, board' } },
       { href: '/lessons', icon: 'e-board', label: { uk: 'Готові уроки', ru: 'Готовые уроки', en: 'Ready-made lessons' }, text: { uk: 'Версія учня і версія вчителя', ru: 'Версия ученика и версия учителя', en: 'Student’s and teacher’s versions' } },
       { href: '/game-lessons', icon: 'e-trophy', label: { uk: 'Уроки за іграми', ru: 'Уроки по играм', en: 'Game-based lessons' }, text: { uk: 'Minecraft, Roblox, мода, будівництво', ru: 'Minecraft, Roblox, мода, стройка', en: 'Minecraft, Roblox, fashion, building' } },
       { href: '/activities', icon: 'e-speak', label: { uk: 'Розмовні activities', ru: 'Разговорные activities', en: 'Speaking activities' }, text: { uk: 'Картки, слайди і PDF для уроку', ru: 'Карточки, слайды и PDF для урока', en: 'Cards, slides and PDF for class' } },
@@ -55,11 +52,11 @@ const MENU: { title: T; items: { href: string; icon: string; label: T; text: T; 
   {
     title: { uk: 'Murly', ru: 'Murly', en: 'Murly' },
     items: [
-      { href: '/for-parents', icon: 'd-heart', label: { uk: 'Для батьків', ru: 'Для родителей', en: 'For parents' }, text: { uk: 'Як записати дитину і бачити прогрес', ru: 'Как записать ребёнка и видеть прогресс', en: 'Sign your child up, see progress' } },
       { href: '/baby-english', icon: 'c-cat-sit', label: { uk: 'Англійська з малюком', ru: 'Английский с малышом', en: 'English with little ones' }, text: { uk: 'Поради, казки, ігри для друку 0-7', ru: 'Советы, сказки, игры для печати 0-7', en: 'Tips, stories, printable games 0-7' } },
-      { href: '/pricing', icon: 'd-money', label: { uk: 'Тарифи', ru: 'Тарифы', en: 'Pricing' }, text: { uk: 'Почни безкоштовно', ru: 'Начни бесплатно', en: 'Start for free' } },
-      { href: '/about', icon: 'c-cat', label: { uk: 'Про нас', ru: 'О нас', en: 'About us' }, text: { uk: 'Хто ми і навіщо Murly', ru: 'Кто мы и зачем Murly', en: 'Who we are and why Murly' } },
-      { href: '/contact', icon: 'd-phone', label: { uk: 'Контакти', ru: 'Контакты', en: 'Contact' }, text: { uk: 'Напиши нам', ru: 'Напиши нам', en: 'Write to us' } },
+      { href: '/pricing', icon: 'd-money', label: { uk: 'Тарифи', ru: 'Тарифы', en: 'Pricing' }, text: { uk: 'Від 0 ₴, міні-продукти', ru: 'От 0 ₴, мини-продукты', en: 'From 0 ₴, mini products' } },
+      { href: '/blog', icon: 'e-book', label: { uk: 'Блог', ru: 'Блог', en: 'Blog' }, text: { uk: 'Статті для вчителів, учнів і батьків', ru: 'Статьи для учителей, учеников и родителей', en: 'Articles for teachers, students and parents' } },
+      { href: '/about', icon: 'c-cat', label: { uk: 'Про нас', ru: 'О нас', en: 'About us' }, text: { uk: 'Чотири правила Murly', ru: 'Четыре правила Murly', en: 'Murly’s four rules' } },
+      { href: '/contact', icon: 'd-phone', label: { uk: 'Контакти', ru: 'Контакты', en: 'Contact' }, text: { uk: 'Пошта і часті питання', ru: 'Почта и частые вопросы', en: 'Email and FAQ' } },
     ],
   },
 ];

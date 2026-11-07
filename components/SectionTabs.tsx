@@ -11,8 +11,8 @@ export const GROUPS: Record<'read' | 'grammar', { title: T; tabs: Tab[] }> = {
     title: { uk: 'Вчитися самому', ru: 'Учиться самому', en: 'Learn on your own' },
     tabs: [
       { href: '/learn', icon: 'd-spark', label: { uk: 'За навичками й рівнем', ru: 'По навыкам и уровню', en: 'By skill and level' } },
-      { href: '/stories', icon: 'e-book', label: { uk: 'Історії й тексти', ru: 'Истории и тексты', en: 'Stories and texts' } },
-      { href: '/practice', icon: 'e-head', label: { uk: 'Аудіо з питаннями', ru: 'Аудио с вопросами', en: 'Audio with questions' } },
+      { href: '/stories', icon: 'e-book', label: { uk: 'Історії', ru: 'Истории', en: 'Stories' } },
+      { href: '/practice', icon: 'e-head', label: { uk: 'Діалоги й тексти', ru: 'Диалоги и тексты', en: 'Dialogues and texts' } },
       { href: '/series', icon: 'e-head', label: { uk: 'Аудіосеріали', ru: 'Аудиосериалы', en: 'Audio series' } },
       { href: '/grammar', icon: 'e-abc', label: { uk: 'Граматика', ru: 'Грамматика', en: 'Grammar' } },
       { href: '/tongue-twisters', icon: 'e-speak', label: { uk: 'Скоромовки', ru: 'Скороговорки', en: 'Tongue twisters' } },
@@ -22,7 +22,7 @@ export const GROUPS: Record<'read' | 'grammar', { title: T; tabs: Tab[] }> = {
     title: { uk: 'Граматика', ru: 'Грамматика', en: 'Grammar' },
     tabs: [
       { href: '/grammar', icon: 'e-abc', label: { uk: 'Правила', ru: 'Правила', en: 'Rules' } },
-      { href: '/grammar/trainer', icon: 'e-trophy', label: { uk: 'Тренажери на 100 завдань', ru: 'Тренажёры на 100 заданий', en: '100-task trainers' } },
+      { href: '/grammar/trainer', icon: 'e-trophy', label: { uk: 'Тренажери', ru: 'Тренажёры', en: 'Trainers' } },
       { href: '/irregular-verbs', icon: 'e-book', label: { uk: 'Неправильні дієслова', ru: 'Неправильные глаголы', en: 'Irregular verbs' } },
       { href: '/irregular-verbs/games', icon: 'd-cup', label: { uk: 'Ігри з дієсловами', ru: 'Игры с глаголами', en: 'Verb games' } },
     ],

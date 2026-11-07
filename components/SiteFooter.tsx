@@ -15,9 +15,9 @@ export default function SiteFooter() {
           <div>
             <div className="mu-logo">MUR<Kit id="st-cat-blep" className="mu-logo__cat" />LY</div>
             <p>{t({
-              uk: 'Онлайн-платформа англійської для дітей, підлітків і дорослих. Кабінети для вчителя й учня. Створено в Україні.',
-              ru: 'Онлайн-платформа английского для детей, подростков и взрослых. Кабинеты для учителя и ученика. Создано в Украине.',
-              en: 'An online English platform for kids, teens and adults. Dashboards for teachers and students. Made in Ukraine.',
+              uk: 'Онлайн-платформа англійської для дітей, підлітків і дорослих. Кабінети для вчителя й учня.',
+              ru: 'Онлайн-платформа английского для детей, подростков и взрослых. Кабинеты для учителя и ученика.',
+              en: 'An online English platform for kids, teens and adults. Dashboards for teachers and students.',
             })}</p>
           </div>
           <div>
@@ -33,16 +33,16 @@ export default function SiteFooter() {
           <div>
             <h4>{t({ uk: 'НМТ', ru: 'НМТ', en: 'NMT' })}</h4>
             <ul>
-              <li><Link href="/level-test">{t({ uk: 'Тест на рівень', ru: 'Тест на уровень', en: 'Level test' })}</Link></li>
               <li><Link href="/nmt">{t({ uk: 'НМТ з англійської', ru: 'НМТ по английскому', en: 'NMT English exam' })}</Link></li>
               <li><Link href="/nmt/mock">{t({ uk: '20 пробних НМТ', ru: '20 пробных НМТ', en: '20 NMT mock tests' })}</Link></li>
-              <li><Link href="/bonus/nmt-checklist">{t({ uk: 'Чек-лист НМТ', ru: 'Чек-лист НМТ', en: 'NMT checklist' })}</Link></li>
+              <li><Link href="/bonus/nmt-checklist">{t({ uk: 'НМТ-батл і вправи', ru: 'НМТ-батл и упражнения', en: 'NMT battle and drills' })}</Link></li>
               <li><Link href="/bonus/100-words">{t({ uk: '100 слів для НМТ', ru: '100 слов для НМТ', en: '100 NMT words' })}</Link></li>
             </ul>
           </div>
           <div>
             <h4>{t({ uk: 'Вчитися', ru: 'Учиться', en: 'Learn' })}</h4>
             <ul>
+              <li><Link href="/level-test">{t({ uk: 'Тест на рівень', ru: 'Тест на уровень', en: 'Level test' })}</Link></li>
               <li><Link href="/grammar">{t({ uk: 'Граматика', ru: 'Грамматика', en: 'Grammar' })}</Link></li>
               <li><Link href="/grammar/trainer">{t({ uk: 'Тренажери граматики', ru: 'Тренажёры грамматики', en: 'Grammar trainers' })}</Link></li>
               <li><Link href="/irregular-verbs">{t({ uk: 'Неправильні дієслова', ru: 'Неправильные глаголы', en: 'Irregular verbs' })}</Link></li>
