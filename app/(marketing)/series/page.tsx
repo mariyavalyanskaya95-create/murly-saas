@@ -23,7 +23,7 @@ export default function SeriesHub() {
       <section className="mu-page-hero" style={{ paddingBottom: 16 }}>
         <div className="mu-container">
           <h1>{t({ uk: 'Слухай історію', ru: 'Слушай историю', en: 'Listen to the story' })} <em>{t({ uk: 'серія за серією.', ru: 'серия за серией.', en: 'episode by episode.' })}</em></h1>
-          <HeroTip>{t({ uk: 'Кожна серія 4–5 хвилин, у кожного персонажа свій голос. Після серії слова й питання. Кінцівка, після якої хочеться слухати далі.', ru: 'Каждая серия 4–5 минут, у каждого персонажа свой голос. После серии слова и вопросы. Концовка, после которой хочется слушать дальше.', en: 'Each episode is 4–5 minutes, every character has a voice. Words and questions after each one, and a cliffhanger ending.' })}</HeroTip>
+          <HeroTip>{t({ uk: 'Серії по 4–5 хвилин, у кожного персонажа свій голос. Після серії слова й питання.', ru: 'Серии по 4–5 минут, у каждого персонажа свой голос. После серии слова и вопросы.', en: 'Episodes of 4–5 minutes, every character has a voice. Words and questions after each one.' })}</HeroTip>
         </div>
       </section>
       <section className="mu-section" style={{ paddingTop: 8 }}>
