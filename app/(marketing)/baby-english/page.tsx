@@ -19,9 +19,9 @@ export function generateMetadata(): Metadata {
   return {
     title: t({ uk: 'Англійська з малюком: поради, книжки, казки та ігри для друку | Murly', ru: 'Английский с малышом: советы, книжки, сказки и игры для печати | Murly', en: 'English with your little one: tips, books, stories and printable games | Murly' }),
     description: t({
-      uk: 'Для батьків білінгвів і тих, хто знайомить малюка з англійською з 0 до 7 років: чіткі поради за віком, добірка книжок, наші казки й віршики, фрази на кожен день і безкоштовні ігри для друку.',
-      ru: 'Для родителей билингвов и тех, кто знакомит малыша с английским с 0 до 7 лет: чёткие советы по возрасту, подборка книжек, наши сказки и стишки, фразы на каждый день и бесплатные игры для печати.',
-      en: 'For parents raising bilingual children or introducing English from 0 to 7: clear tips by age, a book list, our own stories and rhymes, everyday phrases and free printable games.',
+      uk: 'Англійська для малюків 0-7 років: поради за віком, фрази на щодень, казки, віршики, книжки і безкоштовні ігри для друку.',
+      ru: 'Английский для малышей 0-7 лет: советы по возрасту, фразы на каждый день, сказки, стишки, книжки и бесплатные игры для печати.',
+      en: 'English for little ones aged 0-7: tips by age, everyday phrases, stories, rhymes, books and free printable games.',
     }),
     alternates: alt('/baby-english'),
   };
@@ -55,7 +55,6 @@ export default function BabyEnglishPage() {
       <section className="mu-section no-print" id="tips">
         <div className="mu-container">
           <div className="mu-section__head">
-            <span className="mu-section__eyebrow"><Icon id="d-bulb" />{t({ uk: 'Поради', ru: 'Советы', en: 'Tips' })}</span>
             <h2 className="mu-section__title">{t({ uk: 'Що робити', ru: 'Что делать', en: 'What to do' })} <em>{t({ uk: 'в кожному віці.', ru: 'в каждом возрасте.', en: 'at each age.' })}</em></h2>
           </div>
           <Stages stages={STAGES} />
@@ -111,9 +110,8 @@ export default function BabyEnglishPage() {
       <section className="mu-section no-print" id="books">
         <div className="mu-container">
           <div className="mu-section__head">
-            <span className="mu-section__eyebrow"><Icon id="e-book" />{t({ uk: 'Книжки', ru: 'Книжки', en: 'Books' })}</span>
             <h2 className="mu-section__title">{t({ uk: 'Що почитати', ru: 'Что почитать', en: 'What to read' })} <em>{t({ uk: 'англійською.', ru: 'по-английски.', en: 'in English.' })}</em></h2>
-            <p className="t-muted">{t({ uk: 'Відомі англомовні книжки для малюків. Шукайте їх у книгарнях і бібліотеках.', ru: 'Известные англоязычные книжки для малышей. Ищите их в книжных и библиотеках.', en: 'Well-known English picture books for little ones. Look for them in bookshops and libraries.' })}</p>
+            <p className="t-muted">{t({ uk: 'Шукайте в книгарнях і бібліотеках.', ru: 'Ищите в книжных и библиотеках.', en: 'Look for them in bookshops and libraries.' })}</p>
           </div>
           <div className="bb-books">
             {BOOKS.map((b) => (
@@ -140,8 +138,8 @@ export default function BabyEnglishPage() {
 
       <section className="mu-section no-print">
         <div className="mu-container bb-cta">
-          <h2 className="mu-section__title">{t({ uk: 'Коли дитина підросте,', ru: 'Когда ребёнок подрастёт,', en: 'When your child grows up,' })} <em>{t({ uk: 'Murly буде поруч.', ru: 'Murly будет рядом.', en: 'Murly will be there.' })}</em></h2>
-          <p>{t({ uk: 'З 6 років: домашка-гра, слова, граматика простими словами і 3D-містечко, де все англійською.', ru: 'С 6 лет: домашка-игра, слова, грамматика простыми словами и 3D-городок, где всё на английском.', en: 'From age 6: homework as a game, words, simple grammar and a 3D town where everything is in English.' })}</p>
+          <h2 className="mu-section__title">{t({ uk: 'З 6 років:', ru: 'С 6 лет:', en: 'From age 6:' })} <em>{t({ uk: 'кабінет учня.', ru: 'кабинет ученика.', en: 'a student account.' })}</em></h2>
+          <p>{t({ uk: 'Домашка-гра, слова, граматика і 3D-містечко англійською.', ru: 'Домашка-игра, слова, грамматика и 3D-городок на английском.', en: 'Homework as a game, words, grammar and a 3D town in English.' })}</p>
           <div className="mu-hero__cta" style={{ justifyContent: 'center' }}>
             <Link href="/for-parents" className="mu-btn mu-btn--ink mu-btn--lg">{t({ uk: 'Для батьків школярів', ru: 'Для родителей школьников', en: 'For parents of school kids' })}<span className="mu-btn__arrow"><Icon id="e-arrow" /></span></Link>
           </div>
