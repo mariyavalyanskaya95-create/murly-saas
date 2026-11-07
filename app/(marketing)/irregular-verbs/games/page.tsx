@@ -44,7 +44,6 @@ export default function IrregularVerbsGamesPage() {
           <Kit id="st-cat-blep" className="kit-hero" />
           <h1>{t({ uk: 'Неправильні дієслова', ru: 'Неправильные глаголы', en: 'Irregular verbs' })} <em>{t({ uk: 'в іграх.', ru: 'в играх.', en: 'in games.' })}</em></h1>
           <HeroTip>{t({ uk: 'Обери, що тренуєш, і гру. Слова щоразу перемішуються.', ru: 'Выбери, что тренируешь, и игру. Слова каждый раз перемешиваются.', en: 'Choose what to practise and a game. The words are shuffled every time.' })}</HeroTip>
-          <Link href="/irregular-verbs" className="mu-btn mu-btn--lg">{t({ uk: 'До таблиці', ru: 'К таблице', en: 'To the table' })}</Link>
         </div>
       </section>
 
