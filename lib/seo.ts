@@ -4,7 +4,7 @@ import type { Metadata } from 'next';
 import { getLang } from './i18n-server';
 
 export const SITE_URL = 'https://murly.com.ua';
-const withLang = (path: string, lang: string) => (lang === 'uk' ? path : `${path}${path.includes('?') ? '&' : '?'}lang=${lang}`);
+export const withLang = (path: string, lang: string) => (lang === 'uk' ? path : `${path}${path.includes('?') ? '&' : '?'}lang=${lang}`);
 
 // canonical для поточної мови + hreflang для всіх трьох
 export function alt(path?: string): Metadata['alternates'] {
@@ -18,3 +18,6 @@ export function alt(path?: string): Metadata['alternates'] {
 
 // Сторінки кабінетів і службові: не індексуємо
 export const PRIVATE_PREFIXES = ['/teacher', '/student', '/dashboard', '/api', '/p/', '/join', '/sign-in', '/sign-up', '/login', '/r/', '/play/g/', '/welcome'];
+
+// Повна адреса сторінки поточною мовою (для JSON-LD)
+export const absUrl = (path: string, lang: string = getLang()) => `${SITE_URL}${withLang(path, lang)}`;
