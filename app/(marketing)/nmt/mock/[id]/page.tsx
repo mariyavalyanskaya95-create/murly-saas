@@ -5,13 +5,14 @@ import Link from 'next/link';
 import SiteNav from '@/components/SiteNav';
 import SiteFooter from '@/components/SiteFooter';
 import MockTest from '@/components/mock/MockTest';
-import { getMock } from '@/lib/mock';
+import { getMock, FREE } from '@/lib/mock';
 import { tr } from '@/lib/i18n-server';
 
 export function generateMetadata({ params }: { params: { id: string } }): Metadata {
   const t = tr();
   return {
     title: t({ uk: `Пробний НМТ з англійської, варіант ${params.id}`, ru: `Пробный НМТ по английскому, вариант ${params.id}`, en: `NMT English mock test ${params.id}` }),
+    description: t({ uk: `Пробний НМТ з англійської онлайн, варіант ${params.id}: 32 завдання у форматі іспиту, таймер і пояснення «Чому так?» до кожної відповіді.${FREE.includes(params.id) ? ' Безкоштовно, без реєстрації.' : ''}`, ru: `Пробный НМТ по английскому онлайн, вариант ${params.id}: 32 задания в формате экзамена, таймер и объяснение «Почему так?» к каждому ответу.${FREE.includes(params.id) ? ' Бесплатно, без регистрации.' : ''}`, en: `NMT English mock test ${params.id} online: 32 exam-style questions, a timer and a «Why?» explanation for every answer.${FREE.includes(params.id) ? ' Free, no sign-up.' : ''}` }),
     alternates: alt(`/nmt/mock/${params.id}`),
   };
 }
