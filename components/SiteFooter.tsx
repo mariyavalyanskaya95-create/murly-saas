@@ -34,6 +34,7 @@ export default function SiteFooter() {
             <h4>{t({ uk: 'НМТ', ru: 'НМТ', en: 'NMT' })}</h4>
             <ul>
               <li><Link href="/nmt">{t({ uk: 'НМТ з англійської', ru: 'НМТ по английскому', en: 'NMT English exam' })}</Link></li>
+              <li><Link href="/nmt/calculator">{t({ uk: 'Калькулятор балів НМТ', ru: 'Калькулятор баллов НМТ', en: 'NMT score calculator' })}</Link></li>
               <li><Link href="/nmt/mock">{t({ uk: '20 пробних НМТ', ru: '20 пробных НМТ', en: '20 NMT mock tests' })}</Link></li>
               <li><Link href="/bonus/nmt-checklist">{t({ uk: 'НМТ-батл і вправи', ru: 'НМТ-батл и упражнения', en: 'NMT battle and drills' })}</Link></li>
               <li><Link href="/bonus/100-words">{t({ uk: '100 слів для НМТ', ru: '100 слов для НМТ', en: '100 NMT words' })}</Link></li>
