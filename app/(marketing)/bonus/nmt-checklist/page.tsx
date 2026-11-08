@@ -10,14 +10,15 @@ import Kit from '@/components/Kit';
 import type { GameSet } from '@/components/games/engine';
 import { NMT_BATTLE, NMT_COLLOC, COLLOC_VERBS, NMT_FALSE, NMT_WORDS } from '@/lib/content/nmt-bonus';
 import { tr } from '@/lib/i18n-server';
+import SeoNote from '@/components/SeoNote';
 
 import HeroTip from '@/components/HeroTip';
 // Бонус до PDF «Чек-лист підготовки до НМТ»: НМТ-батл, сталі вирази, слова-звʼязки, хибні друзі
 export function generateMetadata(): Metadata {
   const t = tr();
   return {
-    title: t({ uk: 'НМТ з англійської: НМТ-батл і вправи до чек-листа', ru: 'НМТ по английскому: НМТ-батл и упражнения к чек-листу', en: 'NMT English: NMT battle and checklist exercises' }),
-    description: t({ uk: 'Граматика у форматі пропусків НМТ, сталі вирази make, do, take, слова-звʼязки і хибні друзі перекладача.', ru: 'Грамматика в формате пропусков НМТ, устойчивые выражения make, do, take, слова-связки и ложные друзья переводчика.', en: 'NMT-style gap grammar, make/do/take collocations, linking words and false friends.' }),
+    title: t({ uk: 'Вправи до НМТ з англійської онлайн: пропуски, сталі вирази', ru: 'Упражнения к НМТ по английскому онлайн: пропуски, выражения', en: 'NMT English practice online: gap fills and collocations' }),
+    description: t({ uk: 'Безкоштовні вправи до НМТ з англійської: граматика у форматі пропусків, сталі вирази make, do, take, слова-звʼязки і хибні друзі перекладача.', ru: 'Бесплатные упражнения к НМТ по английскому: грамматика в формате пропусков, выражения make, do, take, слова-связки и ложные друзья переводчика.', en: 'Free NMT English practice: gap-fill grammar, make/do/take collocations, linking words and false friends.' }),
     alternates: alt('/bonus/nmt-checklist'),
   };
 }
@@ -39,6 +40,7 @@ export default function NmtChecklistBonusPage() {
           <Kit id="il-cat-exam" className="kit-hero" />
           <h1>{t({ uk: 'Тренування', ru: 'Тренировка', en: 'NMT' })} <em>{t({ uk: 'до НМТ.', ru: 'к НМТ.', en: 'practice.' })}</em></h1>
           <HeroTip>{t({ uk: 'НМТ-батл з 24 питань у форматі пропусків, сталі вирази, слова-звʼязки і хибні друзі перекладача.', ru: 'НМТ-батл из 24 вопросов в формате пропусков, устойчивые выражения, слова-связки и ложные друзья переводчика.', en: 'A 24-question NMT battle in the gap format, collocations, linking words and false friends.' })}</HeroTip>
+          <SeoNote free={{ uk: 'Безкоштовно, без реєстрації', ru: 'Бесплатно, без регистрации', en: 'Free, no sign-up' }} sell={{ text: { uk: 'Повний план на 8 тижнів:', ru: 'Полный план на 8 недель:', en: 'The full 8-week plan:' }, links: [{ href: '/shop/nmt-checklist', label: { uk: 'Чек-лист підготовки до НМТ', ru: 'Чек-лист подготовки к НМТ', en: 'NMT prep checklist' } }, { href: '/shop/nmt-start', label: { uk: 'Старт до НМТ: 3 в 1', ru: 'Старт к НМТ: 3 в 1', en: 'NMT starter: 3 in 1' } }] }} />
           <Link href="/nmt" className="mu-btn mu-btn--lg">{t({ uk: 'Квізи у форматі НМТ', ru: 'Квизы в формате НМТ', en: 'NMT-style quizzes' })}</Link>
         </div>
       </section>
