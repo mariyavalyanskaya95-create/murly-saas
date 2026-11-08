@@ -11,6 +11,7 @@ import { CORE_VERBS } from '@/lib/irregular-verbs';
 import { localizeVerbs } from '@/lib/content/verbs';
 import { verbPlan } from '@/lib/verb-plan';
 import { tr } from '@/lib/i18n-server';
+import SeoNote from '@/components/SeoNote';
 
 import HeroTip from '@/components/HeroTip';
 // Бонус до PDF «Неправильні дієслова за 30 днів»: ігри по днях плану (сюди веде QR-код)
@@ -18,7 +19,7 @@ export function generateMetadata(): Metadata {
   const t = tr();
   return {
     title: t({ uk: 'Неправильні дієслова за 30 днів: ігри на кожен день', ru: 'Неправильные глаголы за 30 дней: игры на каждый день', en: 'Irregular verbs in 30 days: a game for every day' }),
-    description: t({ uk: 'План на 30 днів: 3-4 неправильні дієслова на день, повторення кожен 5-й день, квіз, пари й анаграми.', ru: 'План на 30 дней: 3-4 неправильных глагола в день, повторение каждый 5-й день, квиз, пары и анаграммы.', en: 'A 30-day plan: 3-4 irregular verbs a day, review every 5th day, with quiz, pairs and anagrams.' }),
+    description: t({ uk: 'Як вивчити неправильні дієслова за 30 днів: 3-4 дієслова на день, повторення кожен 5-й день, квіз, пари й анаграми. Безкоштовно, без реєстрації.', ru: 'Как выучить неправильные глаголы за 30 дней: 3-4 глагола в день, повторение каждый 5-й день, квиз, пары и анаграммы. Бесплатно, без регистрации.', en: 'Learn irregular verbs in 30 days: 3-4 verbs a day, review every 5th day, quiz, pairs and anagrams. Free, no sign-up.' }),
     alternates: alt('/bonus/verbs-30'),
   };
 }
@@ -34,6 +35,7 @@ export default function Verbs30Page() {
           <Kit id="st-cat-cool" className="kit-hero" />
           <h1>{t({ uk: 'Дієслова', ru: 'Глаголы', en: 'Irregular verbs' })} <em>{t({ uk: 'за 30 днів.', ru: 'за 30 дней.', en: 'in 30 days.' })}</em></h1>
           <HeroTip>{t({ uk: 'Обери день і грай з його дієсловами. Лаймові дні для повторення. Прогрес зберігається в цьому браузері.', ru: 'Выбери день и играй с его глаголами. Лаймовые дни для повторения. Прогресс сохраняется в этом браузере.', en: 'Pick a day and play with its verbs. Lime days are for review. Progress is saved in this browser.' })}</HeroTip>
+          <SeoNote free={{ uk: 'Безкоштовно, без реєстрації', ru: 'Бесплатно, без регистрации', en: 'Free, no sign-up' }} sell={{ text: { uk: 'Хочеш вчити офлайн?', ru: 'Хочешь учить офлайн?', en: 'Want to learn offline?' }, links: [{ href: '/shop/verbs-30', label: { uk: 'Картки для друку і план на 30 днів', ru: 'Карточки для печати и план на 30 дней', en: 'Printable cards and a 30-day plan' } }] }} />
         </div>
       </section>
       <section className="mu-section" style={{ paddingTop: 8 }}>
