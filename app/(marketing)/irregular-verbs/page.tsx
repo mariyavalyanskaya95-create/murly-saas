@@ -9,6 +9,7 @@ import SiteNav from '@/components/SiteNav';
 import SiteFooter from '@/components/SiteFooter';
 import VerbsAlphabet from '@/components/VerbsAlphabet';
 import { tr } from '@/lib/i18n-server';
+import SeoNote from '@/components/SeoNote';
 import type { T } from '@/lib/i18n';
 import Kit from '@/components/Kit';
 
@@ -16,11 +17,11 @@ import HeroTip from '@/components/HeroTip';
 export function generateMetadata(): Metadata {
   const t = tr();
   return {
-    title: t({ uk: 'Таблиця неправильних дієслів англійської з вимовою та перекладом', ru: 'Таблица неправильных глаголов английского с произношением и переводом', en: 'English irregular verbs table with pronunciation and translation' }),
+    title: t({ uk: 'Неправильні дієслова англійської: таблиця з перекладом', ru: 'Неправильные глаголы английского: таблица с переводом', en: 'English irregular verbs table with translation and audio' }),
     description: t({
-      uk: 'Повна таблиця неправильних дієслів англійської мови за алфавітом: три форми, переклад українською, пошук і озвучка кожного слова. Плюс безкоштовні ігри.',
-      ru: 'Полная таблица неправильных глаголов английского языка по алфавиту: три формы, перевод, поиск и озвучка каждого слова. Плюс бесплатные игры.',
-      en: 'A full A-Z table of English irregular verbs: all three forms, translation, search and audio for every word. Plus free games.',
+      uk: 'Таблиця неправильних дієслів англійської мови за алфавітом: три форми, переклад, озвучка кожної форми та ігри. Безкоштовно і без реєстрації.',
+      ru: 'Таблица неправильных глаголов английского языка по алфавиту: три формы, перевод, озвучка каждой формы и игры. Бесплатно и без регистрации.',
+      en: 'English irregular verbs from A to Z: all three forms, translation, audio for every form and games. Free, no sign-up.',
     }),
     alternates: alt('/irregular-verbs'),
   };
@@ -44,6 +45,7 @@ export default function IrregularVerbsPage() {
           <Kit id="st-cat-cool" className="kit-hero" />
           <h1>{t({ uk: 'Неправильні дієслова', ru: 'Неправильные глаголы', en: 'Irregular verbs' })} <em>{t({ uk: 'за алфавітом.', ru: 'по алфавиту.', en: 'from A to Z.' })}</em></h1>
           <HeroTip>{t({ uk: 'Натисни на будь-яку форму, щоб послухати вимову. Навушники праворуч озвучать усі три форми підряд.', ru: 'Нажми на любую форму, чтобы послушать произношение. Наушники справа озвучат все три формы подряд.', en: 'Tap any form to hear how it sounds. The headphones on the right play all three forms in a row.' })}</HeroTip>
+          <SeoNote free={{ uk: 'Безкоштовно, без реєстрації', ru: 'Бесплатно, без регистрации', en: 'Free, no sign-up' }} sell={{ text: { uk: 'Хочеш вчити офлайн?', ru: 'Хочешь учить офлайн?', en: 'Want to learn offline?' }, links: [{ href: '/shop/verbs-30', label: { uk: 'Картки для друку і план на 30 днів', ru: 'Карточки для печати и план на 30 дней', en: 'Printable cards and a 30-day plan' } }] }} />
         </div>
       </section>
 
