@@ -10,13 +10,14 @@ import Kit from '@/components/Kit';
 import { MOCKS, SOON, FREE } from '@/lib/mock';
 import { PAID_ENABLED } from '@/lib/plans';
 import { tr } from '@/lib/i18n-server';
+import SeoNote from '@/components/SeoNote';
 
 import HeroTip from '@/components/HeroTip';
 export function generateMetadata(): Metadata {
   const t = tr();
   return {
-    title: t({ uk: 'Пробний НМТ з англійської з поясненнями', ru: 'Пробный НМТ по английскому с объяснениями', en: 'NMT English mock test with explanations' }),
-    description: t({ uk: '32 завдання у форматі НМТ-2026: оголошення, читання, пропуски. Біля кожної відповіді кнопка «Чому так?».', ru: '32 задания в формате НМТ-2026: объявления, чтение, пропуски. Возле каждого ответа кнопка «Почему так?».', en: '32 questions in the NMT 2026 format: notices, reading, gap fills. Every answer has a «Why?» button.' }),
+    title: t({ uk: 'Пробний НМТ з англійської онлайн з поясненнями | Murly', ru: 'Пробный НМТ по английскому онлайн с объяснениями | Murly', en: 'NMT English mock tests online with explanations | Murly' }),
+    description: t({ uk: `${MOCKS.length} пробних НМТ з англійської у форматі 2026: 32 завдання, таймер і розбір кожної відповіді. Варіанти 1 і 2 безкоштовно, без реєстрації.`, ru: `${MOCKS.length} пробных НМТ по английскому в формате 2026: 32 задания, таймер и разбор каждого ответа. Варианты 1 и 2 бесплатно, без регистрации.`, en: `${MOCKS.length} NMT English mock tests in the 2026 format: 32 questions, a timer and every answer explained. Tests 1 and 2 are free, no sign-up.` }),
     alternates: alt('/nmt/mock'),
   };
 }
@@ -31,6 +32,7 @@ export default function MockListPage() {
           <Kit id="il-cat-exam" className="kit-hero" />
           <h1>{t({ uk: 'Як справжній НМТ,', ru: 'Как настоящий НМТ,', en: 'Like the real NMT,' })} <em>{t({ uk: 'але з поясненнями.', ru: 'но с объяснениями.', en: 'but with explanations.' })}</em></h1>
           <HeroTip>{t({ uk: '32 завдання, 6 частин, як на іспиті. Біля кожної відповіді кнопка «Чому так?»: розбираємо, чому правильний саме цей варіант і де пастки.', ru: '32 задания, 6 частей, как на экзамене. Возле каждого ответа кнопка «Почему так?»: разбираем, почему правильный именно этот вариант и где ловушки.', en: '32 questions in 6 parts, like the real exam. Every answer has a «Why?» button that explains the right choice and the traps.' })}</HeroTip>
+          <SeoNote free={PAID_ENABLED ? { uk: 'Варіанти 1 і 2 безкоштовно, без реєстрації', ru: 'Варианты 1 и 2 бесплатно, без регистрации', en: 'Tests 1 and 2 are free, no sign-up' } : { uk: 'Варіанти 1 і 2 безкоштовні завжди, зараз відкриті всі. Без реєстрації', ru: 'Варианты 1 и 2 бесплатны всегда, сейчас открыты все. Без регистрации', en: 'Tests 1 and 2 are always free, all tests are open for now. No sign-up' }} sell={{ text: { uk: 'План підготовки на папері:', ru: 'План подготовки на бумаге:', en: 'A prep plan on paper:' }, links: [{ href: '/shop/nmt-start', label: { uk: 'Старт до НМТ: 3 в 1', ru: 'Старт к НМТ: 3 в 1', en: 'NMT starter: 3 in 1' } }, { href: '/shop/nmt-checklist', label: { uk: 'Чек-лист підготовки до НМТ', ru: 'Чек-лист подготовки к НМТ', en: 'NMT prep checklist' } }] }} />
         </div>
       </section>
       <section className="mu-section" style={{ paddingTop: 8 }}>
