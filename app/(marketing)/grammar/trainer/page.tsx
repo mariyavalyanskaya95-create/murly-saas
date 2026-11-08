@@ -8,14 +8,15 @@ import SiteNav from '@/components/SiteNav';
 import SiteFooter from '@/components/SiteFooter';
 import { DRILLS } from '@/lib/drills';
 import { tr } from '@/lib/i18n-server';
+import SeoNote from '@/components/SeoNote';
 import { localizeDrill } from '@/lib/content/drills';
 
 import HeroTip from '@/components/HeroTip';
 export function generateMetadata(): Metadata {
   const L = tr();
   return {
-    title: L({ uk: 'Тренажери граматики англійської: по 100 завдань на тему | Murly', ru: 'Тренажёры грамматики английского: по 100 заданий на тему | Murly', en: 'English grammar trainers: 100 tasks per topic | Murly' }),
-    description: L({ uk: 'Коротка теорія, головні пастки і 100 завдань з поясненням кожної відповіді: часи, артиклі, модальні, умовні речення, пасив.', ru: 'Короткая теория, главные ловушки и 100 заданий с объяснением каждого ответа: времена, артикли, модальные, условные, пассив.', en: 'Short theory, the main traps and 100 tasks with explanations: tenses, articles, modals, conditionals, the passive.' }),
+    title: L({ uk: 'Вправи з граматики англійської онлайн: 100 завдань на тему', ru: 'Упражнения по грамматике английского онлайн: 100 заданий', en: 'English grammar exercises online: 100 tasks per topic' }),
+    description: L({ uk: 'Тренажери граматики англійської: теорія, пастки і 100 завдань з поясненням кожної відповіді. Часи, артиклі, модальні, пасив. Безкоштовно.', ru: 'Тренажёры грамматики английского: теория, ловушки и 100 заданий с объяснением каждого ответа. Времена, артикли, модальные, пассив. Бесплатно.', en: 'English grammar trainers: theory, traps and 100 tasks with every answer explained. Tenses, articles, modals, the passive. Free.' }),
     alternates: alt('/grammar/trainer'),
   };
 }
@@ -31,6 +32,7 @@ export default function TrainerIndex() {
         <div className="mu-container">
           <h1>{L({ uk: 'Тренажери', ru: 'Тренажёры', en: 'Trainers' })} <em>{L({ uk: 'на 100 завдань.', ru: 'на 100 заданий.', en: 'with 100 tasks.' })}</em></h1>
           <HeroTip>{L({ uk: 'У кожному: коли вживаємо, форми + / − / ?, головна пастка, маркери і 5 раундів по 20 завдань. Після кожної відповіді пояснення «Чому так?».', ru: 'В каждом: когда употребляем, формы + / − / ?, главная ловушка, маркеры и 5 раундов по 20 заданий. После каждого ответа объяснение «Почему так?».', en: 'Each one has: when to use it, + / − / ? forms, the main trap, signal words and 5 rounds of 20 tasks, with a “Why?” after every answer.' })}</HeroTip>
+          <SeoNote free={{ uk: 'Безкоштовно, без реєстрації', ru: 'Бесплатно, без регистрации', en: 'Free, no sign-up' }} sell={{ text: { uk: 'Шпаргалка під рукою:', ru: 'Шпаргалка под рукой:', en: 'A cheat sheet at hand:' }, links: [{ href: '/shop/tenses', label: { uk: 'Усі 12 часів на 2 сторінках', ru: 'Все 12 времён на 2 страницах', en: 'All 12 tenses on 2 pages' } }, { href: '/shop/grammar-a1b1', label: { uk: 'Граматика A1-B1 для друку', ru: 'Грамматика A1-B1 для печати', en: 'Printable A1-B1 grammar' } }] }} />
         </div>
       </section>
       {levels.map((lv) => (
