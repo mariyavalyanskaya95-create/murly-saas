@@ -11,17 +11,18 @@ import { DRILLS } from '@/lib/drills';
 import { localizeDrill } from '@/lib/content/drills';
 import { GRAMMAR_GROUPS } from '@/lib/grammar-groups';
 import { tr } from '@/lib/i18n-server';
+import SeoNote from '@/components/SeoNote';
 import Kit from '@/components/Kit';
 
 import HeroTip from '@/components/HeroTip';
 export function generateMetadata(): Metadata {
   const t = tr();
   return {
-    title: t({ uk: 'Граматика англійської простими словами: правила, приклади, вправи', ru: 'Грамматика английского простыми словами: правила, примеры, упражнения', en: 'English grammar made simple: rules, examples, exercises' }),
+    title: t({ uk: 'Граматика англійської для початківців і до НМТ | Murly', ru: 'Грамматика английского для начинающих и к НМТ | Murly', en: 'English grammar for beginners and NMT prep | Murly' }),
     description: t({
-      uk: 'Часи, артиклі, ступені порівняння, умовні речення і пасив. Коротко, з прикладами і перекладом, а після кожної теми квіз.',
-      ru: 'Времена, артикли, степени сравнения, условные предложения и пассив. Коротко, с примерами и переводом, а после каждой темы квиз.',
-      en: 'Tenses, articles, comparatives, conditionals and the passive. Short, with examples and translations, and a quiz after every topic.',
+      uk: 'Граматика англійської простими словами: часи, артиклі, модальні, умовні речення, пасив. Правила, приклади і по 100 завдань на тему. Безкоштовно.',
+      ru: 'Грамматика английского простыми словами: времена, артикли, модальные, условные, пассив. Правила, примеры и по 100 заданий на тему. Бесплатно.',
+      en: 'English grammar made simple: tenses, articles, modals, conditionals, the passive. Rules, examples and 100 tasks per topic. Free.',
     }),
     alternates: alt('/grammar'),
   };
@@ -40,6 +41,7 @@ export default function GrammarIndexPage() {
           <Kit id="il-cat-read" className="kit-hero" />
           <h1>{t({ uk: 'Граматика', ru: 'Грамматика', en: 'Grammar' })} <em>{t({ uk: 'без нудьги.', ru: 'без скуки.', en: 'without the boredom.' })}</em></h1>
           <HeroTip>{t({ uk: '52 теми: коли вживати, формула, пастки, сценка і 100 завдань з поясненнями.', ru: '52 темы: когда использовать, формула, ловушки, сценка и 100 заданий с объяснениями.', en: '52 topics: when to use it, the formula, traps, a scene and 100 tasks with explanations.' })}</HeroTip>
+          <SeoNote free={{ uk: 'Безкоштовно, без реєстрації', ru: 'Бесплатно, без регистрации', en: 'Free, no sign-up' }} sell={{ text: { uk: 'Потрібно все на папері?', ru: 'Нужно всё на бумаге?', en: 'Want it all on paper?' }, links: [{ href: '/shop/grammar-a1b1', label: { uk: 'Уся базова граматика A1-B1', ru: 'Вся базовая грамматика A1-B1', en: 'All basic grammar A1-B1' } }, { href: '/shop/tenses', label: { uk: 'Усі 12 часів на 2 сторінках', ru: 'Все 12 времён на 2 страницах', en: 'All 12 tenses on 2 pages' } }] }} />
         </div>
       </section>
 
