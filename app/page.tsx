@@ -16,14 +16,16 @@ import { SITE_TOUR } from '@/lib/tours';
 
 export function generateMetadata(): Metadata {
   const t = tr();
+  const title = t({ uk: 'Murly: англійська для дітей, підлітків і дорослих онлайн', ru: 'Murly: английский для детей, подростков и взрослых онлайн', en: 'Murly: online English for kids, teens and adults' });
+  const description = t({
+    uk: 'Платформа англійської: граматика, неправильні дієслова, пробні НМТ, ігри і кабінет вчителя з розкладом і домашкою. Багато чого безкоштовно.',
+    ru: 'Платформа английского: грамматика, неправильные глаголы, пробные НМТ, игры и кабинет учителя с расписанием и домашкой. Многое бесплатно.',
+    en: 'An English platform: grammar, irregular verbs, NMT mock tests, games and a teacher dashboard with schedule and homework. Lots of it is free.',
+  });
   return {
-    title: t({ uk: 'Murly: англійська, яку хочеться вчити', ru: 'Murly: английский, который хочется учить', en: 'Murly: English you actually want to learn' }),
-    description: t({
-      uk: 'Уроки з учителем, домашка-гра, граматика простими словами, неправильні дієслова і 3D-містечко, де все англійською. Кабінети для вчителя й учня.',
-      ru: 'Уроки с учителем, домашка-игра, грамматика простыми словами, неправильные глаголы и 3D-городок, где всё на английском. Кабинеты для учителя и ученика.',
-      en: 'Lessons with a teacher, homework as a game, simple grammar, irregular verbs and a 3D town where everything is in English. Dashboards for teachers and students.',
-    }),
+    title, description,
     alternates: alt('/'),
+    openGraph: { title, description, type: 'website', siteName: 'Murly', url: '/' },
   };
 }
 
@@ -71,6 +73,18 @@ const FEATURES: { icon: string; mod: string; title: T; chips: T[]; href: string 
   { icon: 'e-trophy', mod: 'mu-card--sky', href: '/nmt', title: { uk: 'Підготовка до НМТ', ru: 'Подготовка к НМТ', en: 'NMT exam prep' }, chips: [{ uk: '20 пробних', ru: '20 пробных', en: '20 mocks' }, { uk: 'з розбором', ru: 'с разбором', en: 'with explanations' }] },
 ];
 
+// Що таке Murly: 4 короткі картки одразу після героя
+const WHAT: { icon: string; mod: string; title: T; chips: T[]; href: string; more: T }[] = [
+  { icon: 'd-kid', mod: 'mu-card--lime', href: '/grammar', title: { uk: 'Учням', ru: 'Ученикам', en: 'Students' }, more: { uk: 'Спробувати', ru: 'Попробовать', en: 'Try it' },
+    chips: [{ uk: 'граматика', ru: 'грамматика', en: 'grammar' }, { uk: 'неправильні дієслова', ru: 'неправильные глаголы', en: 'irregular verbs' }, { uk: 'пробні НМТ', ru: 'пробные НМТ', en: 'NMT mocks' }, { uk: 'ігри', ru: 'игры', en: 'games' }, { uk: 'безкоштовно', ru: 'бесплатно', en: 'free' }] },
+  { icon: 'd-team', mod: 'mu-card--mustard', href: '/for-teachers', title: { uk: 'Вчителям', ru: 'Учителям', en: 'Teachers' }, more: { uk: 'Що вміє кабінет', ru: 'Что умеет кабинет', en: 'See the dashboard' },
+    chips: [{ uk: 'учні', ru: 'ученики', en: 'students' }, { uk: 'розклад', ru: 'расписание', en: 'schedule' }, { uk: 'домашка', ru: 'домашка', en: 'homework' }, { uk: 'оплати', ru: 'оплаты', en: 'payments' }, { uk: 'Telegram-бот', ru: 'Telegram-бот', en: 'Telegram bot' }] },
+  { icon: 'd-heart', mod: 'mu-card--sky', href: '/for-parents', title: { uk: 'Батькам', ru: 'Родителям', en: 'Parents' }, more: { uk: 'Для батьків', ru: 'Для родителей', en: 'For parents' },
+    chips: [{ uk: 'кабінет дитини з 6 років', ru: 'кабинет ребёнка с 6 лет', en: 'child account from 6' }, { uk: 'успіхи в Telegram', ru: 'успехи в Telegram', en: 'progress in Telegram' }, { uk: 'монетки за навчання', ru: 'монетки за учёбу', en: 'coins for learning' }] },
+  { icon: 'e-pencil', mod: 'mu-card--ink', href: '/pricing#mini', title: { uk: 'Матеріали для друку', ru: 'Материалы для печати', en: 'Printables' }, more: { uk: 'Усі матеріали', ru: 'Все материалы', en: 'All materials' },
+    chips: [{ uk: 'НМТ', ru: 'НМТ', en: 'NMT' }, { uk: 'граматика', ru: 'грамматика', en: 'grammar' }, { uk: 'дієслова', ru: 'глаголы', en: 'verbs' }, { uk: 'PDF з ключами', ru: 'PDF с ключами', en: 'PDF with answers' }, { uk: 'від 85 ₴', ru: 'от 85 ₴', en: 'from 85 ₴' }] },
+];
+
 const MQ: T[] = [
   { uk: 'Murly' }, { uk: 'Уроки', ru: 'Уроки', en: 'Lessons' }, { uk: 'Домашка-гра', ru: 'Домашка-игра', en: 'Homework game' }, { uk: 'Граматика', ru: 'Грамматика', en: 'Grammar' },
   { uk: 'Ігри', ru: 'Игры', en: 'Games' }, { uk: 'Слова', ru: 'Слова', en: 'Words' }, { uk: 'НМТ', ru: 'НМТ', en: 'NMT' },
@@ -107,6 +121,26 @@ export default function HomePage() {
         </div>
       </section>
       <Marquee items={MQ.map((x) => t(x))} />
+
+      {/* ЩО ТАКЕ MURLY */}
+      <section className="mu-section mu-what" id="what" style={{ paddingTop: 32, paddingBottom: 16 }}>
+        <div className="mu-container">
+          <div className="mu-section__head">
+            <h2 className="mu-section__title">{t({ uk: 'Що таке', ru: 'Что такое', en: 'What is' })} <em>Murly?</em></h2>
+            <p className="mu-section__lead">{t({ uk: 'Платформа англійської для дітей, підлітків і дорослих.', ru: 'Платформа английского для детей, подростков и взрослых.', en: 'An English platform for kids, teens and adults.' })}</p>
+          </div>
+          <div className="mu-cards mu-cards--4">
+            {WHAT.map((w) => (
+              <Link key={w.href} href={w.href} className={`mu-card mu-card--link ${w.mod}`}>
+                <div className="mu-card__icon"><Icon id={w.icon} /></div>
+                <h3 className="mu-card__title">{t(w.title)}</h3>
+                <div className="mu-chips">{w.chips.map((c) => <span key={c.uk}>{t(c)}</span>)}</div>
+                <span className="mu-card__more">{t(w.more)} →</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* ХТО ТИ */}
       <section className="mu-section" id="who" style={{ paddingTop: 8 }}>
