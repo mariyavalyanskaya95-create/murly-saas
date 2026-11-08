@@ -10,14 +10,15 @@ import Kit from '@/components/Kit';
 import type { GameSet } from '@/components/games/engine';
 import { NMT_WORDS, NMT_TOPICS_T, NMT_WORDS_RU } from '@/lib/content/nmt-bonus';
 import { tr } from '@/lib/i18n-server';
+import SeoNote from '@/components/SeoNote';
 
 import HeroTip from '@/components/HeroTip';
 // Бонус до PDF «100 важливих слів для НМТ»: ігри по темах (сюди веде QR-код)
 export function generateMetadata(): Metadata {
   const t = tr();
   return {
-    title: t({ uk: '100 важливих слів для НМТ: ігри та картки', ru: '100 важных слов для НМТ: игры и карточки', en: '100 key words for the NMT: games and flashcards' }),
-    description: t({ uk: 'Тренуй 100 слів для НМТ з англійської по 10 темах: квіз, пари, анаграми і картки.', ru: 'Тренируй 100 слов для НМТ по английскому по 10 темам: квиз, пары, анаграммы и карточки.', en: 'Practise 100 key words for the NMT English exam in 10 topics: quiz, pairs, anagrams and flashcards.' }),
+    title: t({ uk: '100 слів для НМТ з англійської: ігри та картки онлайн', ru: '100 слов для НМТ по английскому: игры и карточки онлайн', en: '100 key NMT English words: online games and flashcards' }),
+    description: t({ uk: 'Слова для НМТ з англійської: 100 важливих слів за 10 темами в іграх. Квіз, пари, анаграми і картки, безкоштовно і без реєстрації.', ru: 'Слова для НМТ по английскому: 100 важных слов по 10 темам в играх. Квиз, пары, анаграммы и карточки, бесплатно и без регистрации.', en: 'Words for the NMT English exam: 100 key words in 10 topics as games. Quiz, pairs, anagrams and flashcards, free and no sign-up.' }),
     alternates: alt('/bonus/100-words'),
   };
 }
@@ -41,6 +42,7 @@ export default function Words100Page() {
           <Kit id="il-cat-read" className="kit-hero" />
           <h1>{t({ uk: '100 слів для НМТ', ru: '100 слов для НМТ', en: '100 words for the NMT' })} <em>{t({ uk: 'в іграх.', ru: 'в играх.', en: 'in games.' })}</em></h1>
           <HeroTip>{t({ uk: 'Обери тему і гру. Слова щоразу перемішуються, а підказка показує приклад з файлу.', ru: 'Выбери тему и игру. Слова каждый раз перемешиваются, а подсказка показывает пример из файла.', en: 'Pick a topic and a game. Words are shuffled every time, and the hint shows the example from the PDF.' })}</HeroTip>
+          <SeoNote free={{ uk: 'Безкоштовно, без реєстрації', ru: 'Бесплатно, без регистрации', en: 'Free, no sign-up' }} sell={{ text: { uk: 'Слова з прикладами і тест на папері:', ru: 'Слова с примерами и тест на бумаге:', en: 'Words with examples and a test on paper:' }, links: [{ href: '/shop/words-100', label: { uk: '100 важливих слів для НМТ', ru: '100 важных слов для НМТ', en: '100 key words for the NMT' } }] }} />
         </div>
       </section>
       <section className="mu-section" style={{ paddingTop: 8 }}>
