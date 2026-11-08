@@ -4191,3 +4191,42 @@ a.pr-mini__card{color:inherit;text-decoration:none}
 .mu-what .mu-card{padding:20px}
 .mu-what .mu-card__title{margin-bottom:6px}
 .mu-what .mu-card__more{display:inline-block;margin-top:10px;font-weight:700;text-decoration:underline;text-underline-offset:3px}
+
+/* ===== Калькулятор НМТ і плакат дієслів ===== */
+.nc{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:20px;align-items:start}
+.nc-box{border:2px solid var(--mu-ink);border-radius:20px;background:#fff;padding:20px}
+.nc-box h2{margin:0 0 10px;font-size:20px}
+details.nc-box{grid-column:1/-1}
+details.nc-box summary{cursor:pointer;font-weight:700}
+.nc-label{display:block;font-weight:700;margin:6px 0}
+.nc-select{width:100%;border:2px solid var(--mu-ink);border-radius:12px;padding:10px 12px;font:inherit;margin-bottom:12px;background:#fff}
+.nc-row{display:flex;gap:12px;align-items:center}
+.nc-row input[type=range]{flex:1;accent-color:var(--mu-violet)}
+.nc-num{width:72px;border:2px solid var(--mu-ink);border-radius:12px;padding:8px;font:inherit;font-size:18px;text-align:center}
+.nc-res{margin-top:16px;padding:16px;border-radius:16px;background:var(--mu-ok);display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center}
+.nc-res.is-fail{background:#FADBD4}
+.nc-res__big{font-size:48px;font-weight:800;color:var(--mu-ink);line-height:1.1}
+.nc-table{width:100%;border-collapse:collapse}
+.nc-table th,.nc-table td{border-bottom:1px solid #dfe3f0;padding:6px 8px;text-align:left}
+.nc-table--full{max-width:360px;margin-top:10px}
+.nc-table tr.is-on td{background:var(--mu-paper);font-weight:700}
+.nc-cta{grid-column:1/-1;display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:0}
+.nc-faq{max-width:820px;margin-top:32px}
+.nc-faq details{border-bottom:1px solid #dfe3f0;padding:10px 0}
+.nc-faq summary{cursor:pointer;font-weight:700}
+.nc-src{font-size:14px;margin-top:16px}
+@media (max-width:800px){.nc{grid-template-columns:1fr}}
+.ivp.pv-page{max-width:1000px;padding:28px 32px;font-size:10.5px}
+.ivp-head{display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:2px solid #534AB7;padding-bottom:6px;margin-bottom:8px}
+.ivp-head b{font-size:22px;color:#534AB7}
+.ivp-legend{display:flex;gap:6px}
+.ivp-legend i{font-style:normal;font-weight:700;padding:2px 8px;border-radius:999px}
+.ivp-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.ivp-t{width:100%;border-collapse:collapse}
+.ivp-t th{text-align:left;font-size:10px;color:#5a607a;border-bottom:1px solid #c9cedf;padding:2px 4px}
+.ivp-t td{padding:2px 4px;border-bottom:1px solid #eef0f6;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:90px}
+.k-aaa{background:#E3F4E1}.k-aba{background:#FFF1C9}.k-abb{background:#E6ECFB}.k-abc{background:#FBE3EC}
+.ivp-foot{margin-top:8px;font-size:10px;color:#5a607a;text-align:right}
+@media print{.ivp.pv-page{padding:0;font-size:8.5px}.ivp-t td{max-width:none}}
+/* Заголовки сторінок: на десктопі в один рядок і для укр/рус (довші слова) */
+@media (min-width: 900px){ .mu-page-hero h1 { max-width: 1240px; font-size: clamp(38px, 5.4vw, 74px); } }
