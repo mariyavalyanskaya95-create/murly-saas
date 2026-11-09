@@ -12,10 +12,10 @@ import Kit from '@/components/Kit';
 export function generateMetadata(): Metadata {
   const t = tr();
   return {
-    title: t({ uk: 'Ігри англійською для дітей, підлітків і дорослих | Murly', ru: 'Игры на английском для детей, подростков и взрослых | Murly', en: 'English games for kids, teens and adults | Murly' }),
+    title: t({ uk: 'Ігри англійською онлайн: ігри в слова, квест і квізи | Murly', ru: 'Игры на английском онлайн: игры в слова, квест и квизы | Murly', en: 'English games online: word games, a quest and quizzes | Murly' }),
     description: t({
-      uk: 'Квест, 3D-містечко, гра з наліпками, настільна гра для уроку, ігри з неправильними дієсловами, квізи і скоромовки.',
-      ru: 'Квест, 3D-городок, игра с наклейками, настольная игра для урока, игры с неправильными глаголами, квизы и скороговорки.',
+      uk: 'Безкоштовні ігри англійською онлайн без реєстрації: ігри в слова, вгадай слово за картинкою чи звуком, квест для дітей, гра з наліпками, ігри з неправильними дієсловами, квізи і скоромовки.',
+      ru: 'Бесплатные игры на английском онлайн без регистрации: игры в слова, угадай слово по картинке или звуку, квест для детей, игра с наклейками, игры с неправильными глаголами, квизы и скороговорки.',
       en: 'A quest, a 3D town, a sticker game, a board game for lessons, irregular verb games, quizzes and tongue twisters.',
     }),
     alternates: alt('/games'),
@@ -85,6 +85,12 @@ export default function GamesPage() {
               </Link>
             ))}
           </div>
+        </div>
+      </section>
+      <section className="mu-section" style={{ paddingTop: 0 }}>
+        <div className="mu-container" style={{ maxWidth: 820 }}>
+          <h2 className="gm-h">{t({ uk: 'Ігри в слова англійською онлайн', ru: 'Игры в слова на английском онлайн', en: 'English word games online' })}</h2>
+          <p>{t({ uk: 'Усі ігри Murly безкоштовні й відкриваються просто в браузері, без реєстрації. Щоб вгадати слово за картинкою чи на слух, грай у «Stop & Go» і «Знайди, Бульбашко!». Короткі раунди слів з зірочками є в «Саду Murly». Для старших: анаграми й пари з неправильними дієсловами та квізи у форматі НМТ. Учитель може показати будь-яку гру на уроці через демонстрацію екрана.', ru: 'Все игры Murly бесплатные и открываются прямо в браузере, без регистрации. Чтобы угадать слово по картинке или на слух, играй в «Stop & Go» и «Найди, Пузырёк!». Короткие раунды слов со звёздочками есть в «Саду Murly». Для старших: анаграммы и пары с неправильными глаголами и квизы в формате НМТ. Учитель может показать любую игру на уроке через демонстрацию экрана.', en: 'All Murly games are free and run in the browser with no sign-up. To guess a word from a picture or by ear, play Stop & Go and Find it, Bubbles! Murly Garden has short word rounds with stars. Older learners get anagrams and pairs with irregular verbs and NMT-style quizzes. Teachers can show any game in class by sharing the screen.' })}</p>
         </div>
       </section>
       <SiteFooter />
