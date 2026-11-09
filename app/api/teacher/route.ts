@@ -11,6 +11,15 @@ import { lessonSections, type Block } from '@/lib/lesson';
 import { uniqLessons } from '@/lib/lesson-dedupe';
 export const dynamic = 'force-dynamic';
 
+// Через ~10 хв після призначення чи перенесення заняття бот пише учневі (див. /api/cron/lesson-notify).
+// Кожна нова зміна відсуває відправку, тож кілька правок підряд дадуть одне повідомлення.
+const NOTIFY_DELAY = 10 * 60 * 1000;
+const notifyFor = (start: unknown) => {
+  const s = new Date(String(start)).getTime(); const now = Date.now();
+  return Number.isFinite(s) && s > now && s < now + 14 * 86400000 ? new Date(now + NOTIFY_DELAY).toISOString() : null;
+};
+const withNotify = (patch: Row) => ('start' in patch ? { ...patch, notify_at: notifyFor(patch.start), notify_moved: true } : patch);
+
 type Row = Record<string, unknown>;
 const pick = (o: Row, keys: string[]) => Object.fromEntries(keys.filter((k) => k in o).map((k) => [k, o[k]]));
 
@@ -148,12 +157,12 @@ export async function POST(req: Request) {
         const key = (sid: unknown, st: unknown) => `${sid}|${new Date(String(st)).getTime()}`;
         const seen = new Set(have.map((r) => key(r.student_id, r.start)));
         const fresh = rows.filter((r) => { const k = key(r.student_id, r.start); if (seen.has(k)) return false; seen.add(k); return true; });
-        if (fresh.length) await db.insert('lessons', fresh);
+        if (fresh.length) await db.insert('lessons', fresh.map((r) => (r.status === 'planned' ? { ...r, notify_at: notifyFor(r.start) } : r)));
         break;
       }
-      case 'updateLesson': await db.update('lessons', t, id, toDb.lessonPatch(p.patch as Row)); break;
+      case 'updateLesson': await db.update('lessons', t, id, withNotify(toDb.lessonPatch(p.patch as Row))); break;
       case 'removeLesson': await db.remove('lessons', t, id); break;
-      case 'updateLessons': for (const it of ((p.items as Row[]) ?? []).slice(0, 300)) await db.update('lessons', t, String(it.id), toDb.lessonPatch(it.patch as Row)); break;
+      case 'updateLessons': for (const it of ((p.items as Row[]) ?? []).slice(0, 300)) await db.update('lessons', t, String(it.id), withNotify(toDb.lessonPatch(it.patch as Row))); break;
       case 'removeLessons': for (const x of ((p.ids as string[]) ?? []).slice(0, 300)) await db.remove('lessons', t, String(x)); break;
       case 'addNote': await db.insert('notes', [toDb.note(p, t)]); break;
       case 'updateNote': await db.update('notes', t, id, pick(p.patch as Row, ['text', 'images', 'files', 'at'])); break;
