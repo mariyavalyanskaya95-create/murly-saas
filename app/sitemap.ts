@@ -30,7 +30,7 @@ const STATIC: [string, number][] = [
   ['/', 1], ['/nmt', 0.9], ['/nmt/mock', 0.9], ['/irregular-verbs', 0.9], ['/irregular-verbs/games', 0.7],
   ['/grammar', 0.9], ['/level-test', 0.9], ['/nmt/calculator', 0.9], ['/irregular-verbs/poster', 0.8], ['/play/stickers', 0.7], ['/play/stop-go', 0.7], ['/play/garden', 0.7], ['/play/city', 0.7], ['/play/town', 0.6], ['/play/quest', 0.7], ['/play/story', 0.5], ['/songs', 0.8], ['/grammar/trainer', 0.8], ['/activities', 0.9], ['/game-lessons', 0.8], ['/for-teachers', 0.9], ['/for-parents', 0.8], ['/baby-english', 0.8],
   ['/pricing', 0.8], ['/lessons', 0.8], ['/learn', 0.7], ['/practice', 0.7], ['/stories', 0.7], ['/series', 0.7], ['/games', 0.7],
-  ['/tongue-twisters', 0.6], ['/worlds', 0.5], ['/about', 0.5], ['/blog', 0.8], ['/contact', 0.4],
+  ['/tongue-twisters', 0.6], ['/worlds', 0.5], ['/about', 0.5], ['/blog', 0.8], ['/contact', 0.4], ['/legal/rules', 0.3],
   ['/bonus/nmt-checklist', 0.6], ['/bonus/100-words', 0.6], ['/bonus/verbs-30', 0.6],
 ];
 
