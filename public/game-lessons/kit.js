@@ -19,7 +19,7 @@
   const ch = 'BroadcastChannel' in window ? new BroadcastChannel('murly-lk-' + ID) : null;
   const ls = { get: (k) => { try { return localStorage.getItem(k); } catch (e) { return null; } }, set: (k, v) => { try { localStorage.setItem(k, v); } catch (e) { /* */ } } };
   const cookieLang = (document.cookie.match(/(?:^|; )murly_lang=(\w+)/) || [])[1];
-  let LANG = ls.get('murly:tlang') || (cookieLang === 'ru' ? 'ru' : 'uk');
+  let LANG = cookieLang === 'ru' || cookieLang === 'uk' ? cookieLang : (ls.get('murly:tlang') || 'uk');
   const T = (uk, ru) => (LANG === 'ru' ? ru : uk);
   const esc = (s) => String(s == null ? '' : s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   const uid = () => (crypto.randomUUID ? crypto.randomUUID() : 'x' + Date.now() + Math.random().toString(16).slice(2));
@@ -44,14 +44,73 @@
     document.querySelectorAll('.lk-tnote[data-ru], details.teacher [data-ru]').forEach((p) => { if (!p.dataset.uk) p.dataset.uk = p.innerHTML; p.innerHTML = LANG === 'ru' ? p.dataset.ru : p.dataset.uk; });
     document.querySelectorAll('[data-mk-lang]').forEach((b) => b.classList.toggle('on', b.dataset.mkLang === LANG));
   }
-  function setLang(l, fromCh) { LANG = l; ls.set('murly:tlang', l); applyLang(); if (!fromCh && ch) ch.postMessage({ t: 'lang', l }); if (PULT) renderPult(); else renderBanner(); }
+  function setLang(l, fromCh) { LANG = l; ls.set('murly:tlang', l); try { document.cookie = 'murly_lang=' + l + '; path=/; max-age=31536000; samesite=lax'; } catch (e) { /* */ } applyLang(); if (!fromCh && ch) ch.postMessage({ t: 'lang', l }); if (PULT) renderPult(); else renderBanner(); }
   const langSw = () => `<span class="mk-lang"><button type="button" data-mk-lang="uk">УКР</button><button type="button" data-mk-lang="ru">РУС</button></span>`;
   const bindLang = (root) => root.querySelectorAll('[data-mk-lang]').forEach((b) => (b.onclick = () => setLang(b.dataset.mkLang)));
+
+
+  // ---------- звук: можна вимкнути озвучку й ефекти ----------
+  let MUTED = ls.get('murly:mute') === '1';
+  (function patchSound() {
+    try {
+      const ss = window.speechSynthesis;
+      if (ss && !PULT) { const orig = ss.speak.bind(ss); ss.speak = function (u) { if (MUTED) return; return orig(u); }; }
+      ['OscillatorNode', 'AudioBufferSourceNode'].forEach((n) => { const P = window[n] && window[n].prototype; if (P && P.start) { const o = P.start; P.start = function () { if (MUTED) return; return o.apply(this, arguments); }; } });
+      const mp = HTMLMediaElement.prototype.play; HTMLMediaElement.prototype.play = function () { if (MUTED && !(this instanceof HTMLVideoElement)) return Promise.resolve(); return mp.apply(this, arguments); };
+    } catch (e) { /* */ }
+  })();
+  const SND_ON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg>';
+  const SND_OFF = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M17 9l5 6M22 9l-5 6"/></svg>';
+  function soundBtn() {
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'mk-snd';
+    const paint = () => { b.innerHTML = (MUTED ? SND_OFF : SND_ON) + ' ' + (MUTED ? T('Звук вимкнено', 'Звук выключен') : T('Звук увімкнено', 'Звук включён')); b.classList.toggle('off', MUTED); };
+    b.onclick = () => { MUTED = !MUTED; ls.set('murly:mute', MUTED ? '1' : '0'); if (MUTED) { try { window.speechSynthesis && window.speechSynthesis.cancel(); } catch (e) { /* */ } document.querySelectorAll('audio').forEach((a) => a.pause()); } paint(); };
+    paint(); return b;
+  }
+
+  // ---------- слово у словник: виділи слово або фразу на сторінці ----------
+  let addBtn = null;
+  function wordPicker() {
+    addBtn = document.createElement('button'); addBtn.type = 'button'; addBtn.className = 'mk-addword'; addBtn.hidden = true;
+    addBtn.textContent = T('+ У словник', '+ В словарь');
+    document.body.appendChild(addBtn);
+    let picked = '';
+    document.addEventListener('selectionchange', () => {
+      const sel = window.getSelection(); const txt = sel ? String(sel).trim().replace(/\s+/g, ' ') : '';
+      if (!txt || txt.length > 60 || !/[a-z]/i.test(txt) || !sel.rangeCount) { setTimeout(() => { if (!String(window.getSelection() || '').trim()) addBtn.hidden = true; }, 150); return; }
+      picked = txt; const r = sel.getRangeAt(0).getBoundingClientRect();
+      addBtn.textContent = T('+ У словник', '+ В словарь'); addBtn.style.top = (window.scrollY + r.bottom + 6) + 'px'; addBtn.style.left = (window.scrollX + r.left) + 'px'; addBtn.hidden = false;
+    });
+    addBtn.addEventListener('mousedown', (e) => e.preventDefault());
+    addBtn.onclick = async () => {
+      const en = picked; if (!en) return;
+      const uk = prompt(T(`Переклад для «${en}»:`, `Перевод для «${en}»:`), '');
+      if (uk === null) return;
+      if (!uk.trim()) { toastMk(T('Додайте переклад, щоб зберегти слово.', 'Добавьте перевод, чтобы сохранить слово.')); return; }
+      let ok = false;
+      try {
+        if (document.body.classList.contains('mk-teacher')) {
+          const st = student();
+          if (!st || SID === 'local') { toastMk(T('Спочатку оберіть учня вгорі.', 'Сначала выберите ученика вверху.')); return; }
+          ok = await api('addWord', { id: uid(), studentId: st.id, en, uk: uk.trim(), example: null, at: new Date().toISOString() });
+          if (ok) toastMk(T(`«${en}» додано у словник: ${esc(st.name)}`, `«${en}» добавлено в словарь: ${esc(st.name)}`));
+        } else {
+          const r = await fetch('/api/student', { method: 'POST', credentials: 'same-origin', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ op: 'addWord', en, uk: uk.trim() }) });
+          ok = r.ok;
+          if (r.status === 401) { toastMk(T('Увійдіть у кабінет учня, щоб зберігати слова.', 'Войдите в кабинет ученика, чтобы сохранять слова.')); return; }
+          if (ok) toastMk(T(`«${en}» додано у твій словник`, `«${en}» добавлено в твой словарь`));
+        }
+      } catch (e) { ok = false; }
+      if (!ok) toastMk(T('Не вийшло зберегти, спробуйте ще раз.', 'Не получилось сохранить, попробуйте ещё раз.'));
+      addBtn.hidden = true; try { window.getSelection().removeAllRanges(); } catch (e) { /* */ }
+    };
+  }
 
   // ---------- плашки Murly ----------
   function brand() {
     const bar = document.createElement('div'); bar.className = 'mk-bar';
     bar.innerHTML = `<a href="${ON_SITE ? '/game-lessons' : 'https://murly.com.ua/game-lessons'}">${LOGO}Murly <small>Game lessons</small></a><small>murly.com.ua</small>`;
+    bar.appendChild(soundBtn());
     document.body.prepend(bar);
     const foot = document.createElement('div'); foot.className = 'mk-foot';
     foot.innerHTML = `<a href="https://murly.com.ua">${LOGO}Murly · English lessons for kids, teens and adults · murly.com.ua</a>`;
@@ -307,6 +366,7 @@
       return;
     }
     brand();
+    if (ON_SITE) wordPicker();
     document.body.classList.add('mk-student');
     D = await load();
     if (!D) return;
