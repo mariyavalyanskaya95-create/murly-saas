@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { alt } from '@/lib/seo';
-import { notFound } from 'next/navigation';
+import { notFound, permanentRedirect } from 'next/navigation';
 import { auth, currentUser } from '@clerk/nextjs/server';
 import Stickers from '@/components/Stickers';
 import SiteNav from '@/components/SiteNav';
@@ -32,7 +32,12 @@ export function generateMetadata({ params }: { params: { id: string } }): Metada
 
 export default async function LessonPage({ params }: { params: { id: string } }) {
   const plan = find(params.id);
-  if (!plan) notFound();
+  if (!plan) {
+    // старі адреси «…-vocabulary» ведуть на сам урок
+    const base = params.id.replace(/-vocabulary$/, '');
+    if (base !== params.id && find(base)) permanentRedirect(`/lessons/${base}`);
+    notFound();
+  }
   const { userId } = await auth();
   let teacher = false;
   if (userId) {
