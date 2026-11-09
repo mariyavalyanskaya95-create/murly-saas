@@ -15,7 +15,9 @@ function Rich({ text }: { text: string }) {
   return (
     <>
       {text.split(/\n{2,}/).map((para, i) => (
-        <p key={i}>{para.split(/(\*\*[^*]+\*\*)/g).map((chunk, k) => (chunk.startsWith('**') && chunk.endsWith('**') ? <b key={k}>{chunk.slice(2, -2)}</b> : <span key={k}>{chunk}</span>))}</p>
+        <p key={i}>{para.split(/(\*\*[^*]+\*\*|https?:\/\/[^\s)]+)/g).map((chunk, k) => (chunk.startsWith('**') && chunk.endsWith('**') ? <b key={k}>{chunk.slice(2, -2)}</b>
+          : /^https?:\/\//.test(chunk) ? <a key={k} href={chunk} target="_blank" rel="noreferrer" className="mu-btn mu-btn--lime t-btn-sm" style={{ margin: '4px 0' }}>{/murly\.com\.ua\/game-lessons\//.test(chunk) ? 'Відкрити урок / Open lesson' : chunk}</a>
+          : <span key={k}>{chunk}</span>))}</p>
       ))}
     </>
   );
