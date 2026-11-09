@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Weird Laws Around the World + Life in Finland | Murly</title>
+<link rel="icon" href="/favicon.svg">
+<meta name="description" content="Free interactive English lesson for teens (B1): strange but real laws around the world, a Law or myth game, must / have to / be allowed to, and a funny role-play.">
+<link rel="canonical" href="https://murly.com.ua/game-lessons/weird-laws.html">
+<style>
+:root{--paper:#F3F0EA;--ink:#17181C;--violet:#3D4A7A;--lav:#D9D3C7;--pink:#E9C9BC;--green:#D4E2CF;--white:#fff;--muted:#62646B;--accent:#B5482F}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+/* hero */
+.hero{background:linear-gradient(rgba(16,17,22,.62),rgba(16,17,22,.78)),url("https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=900&q=70&auto=format&fit=crop") center/cover;color:#fff;padding:70px 18px 56px;text-align:center;position:relative;overflow:hidden}
+.hero .kicker{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#E9C9BC;font-weight:700}
+.hero .cr{position:absolute;right:12px;bottom:8px;font-size:11px;color:rgba(255,255,255,.6)}
+.hero h1{margin:8px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(36px,6vw,64px);letter-spacing:-.5px;font-weight:700}
+.hero h1 span{color:var(--pink);font-style:italic}
+.hero p{margin:12px 0 0;font-size:17px;color:#e6e2da}
+.hero .flags{display:flex;justify-content:center;gap:12px;margin-top:22px;flex-wrap:wrap}
+.hero .flags svg{width:40px;height:26px;border-radius:3px;opacity:.9}
+/* sections */
+section{margin-top:30px;background:var(--white);border-radius:18px;padding:28px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.05)}
+section h2{margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tag{font-family:"Segoe UI",system-ui,sans-serif;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--paper);color:var(--accent);text-transform:uppercase;letter-spacing:1px}
+.lk-n{display:inline-grid;place-items:center;width:42px;height:42px;background:var(--violet);color:#fff;border-radius:50%;font-size:21px;flex:none}
+.lk-mode{font-size:13px;font-weight:700;border:2px dashed var(--lav);color:var(--muted);padding:2px 10px;border-radius:999px}
+.lk-ins{font-size:17px;background:var(--paper);border-radius:12px;padding:10px 14px;margin:6px 0 18px}
+.lk-sub{margin:24px 0 10px;font-size:19px}
+.btn{font:inherit;font-weight:700;border:0;border-radius:999px;background:var(--ink);color:#fff;padding:10px 20px;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+.btn.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+/* teacher */
+.lk-tbtn{position:fixed;right:16px;top:70px;z-index:45;font:inherit;font-weight:800;border:2px solid var(--ink);background:var(--pink);padding:8px 14px;border-radius:12px;cursor:pointer}
+body.teacher .lk-tbtn{background:var(--green)}
+.lk-ans,.lk-tnote{display:none}
+body.teacher .lk-ans{display:block;margin-top:8px;font-weight:700;color:#1d5a12;background:var(--green);border-left:5px solid #5aa845;padding:6px 10px;font-size:15px;border-radius:6px}
+body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff3f7;border-left:5px solid #d9789a;padding:8px 12px;font-size:15px;border-radius:6px}
+/* overview */
+.lk-overview ul{font-size:17px;line-height:1.7;margin:6px 0 16px}
+.lk-stages{display:flex;flex-wrap:wrap;gap:8px}
+.lk-stages a{display:grid;border-radius:14px;padding:8px 12px;text-decoration:none;color:var(--ink);background:var(--paper);font-weight:700;min-width:100px}
+.lk-stages a span{text-transform:capitalize}
+.lk-stages a b{font-size:20px;color:var(--violet)}
+.lk-stages a small{font-weight:600;color:var(--muted)}
+/* warm-up */
+.taxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tax{background:var(--paper);border-radius:18px;padding:16px;display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center}
+.tax svg{width:56px;height:56px}
+.tax b{display:block;font-size:17px}
+.tax small{color:var(--muted);font-size:14px}
+.qs{display:grid;gap:10px;margin-top:18px}
+.qs div{background:var(--green);border-radius:14px;padding:10px 16px;font-size:18px;font-weight:600}
+.phr{background:#fff7e8;border-radius:14px;padding:12px 16px;margin-top:16px;font-size:15px}
+.phr ul{margin:6px 0 0;padding-left:18px}
+.fic{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:16px}
+.fic .c{background:#fff;border:2px solid #1B2140;border-radius:16px;padding:14px 16px;box-shadow:3px 3px 0 #1B2140}
+.fic .c b{display:block;font-size:18px;line-height:1.35;margin-bottom:8px}
+.fic .c .k{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.fic .c .k span{font-size:13px;background:#eef1fb;border-radius:999px;padding:3px 10px}
+.fic .c details{margin-top:8px;font-size:15px;color:#3b4160}
+.fic .c summary{cursor:pointer;font-weight:700;color:#534AB7}
+.fi-n{display:inline-flex;width:28px;height:28px;border-radius:50%;background:#2F4BA0;color:#fff;align-items:center;justify-content:center;font-size:14px;margin-right:6px}
+/* vocab */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:12px}
+.vc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:2px solid transparent;transition:border-color .2s,transform .2s}
+.vc:hover{border-color:var(--violet);transform:translateY(-2px)}
+.vc b{font-size:18px;display:flex;align-items:center;gap:8px}
+.vc b svg{width:20px;height:20px;flex:none;color:var(--violet)}
+.vc p{margin:6px 0 0;font-size:14px;color:var(--muted)}
+.vc em{display:block;margin-top:6px;font-size:14px;color:var(--violet);font-style:normal;font-weight:600}
+.vc.played{background:#e6ecfb}
+/* grammar */
+.gram{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.gb{border-radius:18px;padding:16px}
+.gb h3{margin:0 0 6px;font-size:19px}
+.gb .f{display:inline-block;background:#fff;border-radius:8px;padding:3px 10px;font-weight:800;margin:4px 0;font-family:Consolas,monospace;font-size:15px}
+.gb p{margin:6px 0 0;font-size:15px}
+.g1{background:var(--pink)}.g2{background:var(--lav)}.g3{background:var(--green)}.g4{background:#fbe7c6}
+.warn{margin-top:14px;background:var(--ink);color:#fff;border-radius:14px;padding:12px 16px;font-size:16px}
+.warn b{color:var(--pink)}
+.q{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:2px dashed var(--paper);font-size:18px}
+.q:last-child{border-bottom:0}
+.q .n{width:32px;height:32px;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;border-radius:50%;font-weight:800;font-size:15px}
+.opt{font:inherit;font-size:16px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:10px;padding:4px 12px;cursor:pointer;margin:0 2px}
+.opt.ok{background:var(--green);border-color:#5aa845}
+.opt.bad{background:var(--pink);animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+/* tour */
+.tour{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.law{border-radius:22px;overflow:hidden;background:var(--paper);display:flex;flex-direction:column}
+.law .pic{height:150px;display:grid;place-items:center;position:relative}
+.law .pic svg.ill{width:130px;height:130px}
+.law .pic svg.fl{position:absolute;left:14px;top:14px;width:46px;height:30px;border-radius:5px;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.law .pic .no{position:absolute;right:14px;top:14px;background:var(--ink);color:#fff;font-weight:800;border-radius:999px;padding:2px 10px;font-size:13px}
+.law .body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.law h3{margin:0;font-size:20px}
+.law .where{font-size:13px;font-weight:800;color:var(--violet);text-transform:uppercase;letter-spacing:1px}
+.law p{margin:0;font-size:16px}
+.law .why{font-size:14px;color:var(--muted)}
+.law .dq{margin-top:auto;background:#fff;border-radius:12px;padding:8px 12px;font-weight:700;font-size:15px}
+.law .lsn{font:inherit;font-size:13px;font-weight:700;background:none;border:0;color:var(--violet);cursor:pointer;padding:0;text-align:left}
+/* game */
+.game{max-width:720px;margin:0 auto;text-align:center}
+.score{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.score span{background:var(--paper);border-radius:999px;padding:6px 16px;font-weight:800}
+.stmt{background:var(--ink);color:#fff;border-radius:22px;padding:28px 24px;min-height:150px;display:grid;place-items:center;font-size:23px;font-weight:700;position:relative}
+.stmt small{position:absolute;top:12px;left:18px;font-size:13px;color:var(--lav);font-weight:700}
+.choose{display:flex;justify-content:center;gap:14px;margin:18px 0}
+.choose button{font:inherit;font-size:18px;font-weight:700;border:2px solid var(--ink);border-radius:999px;padding:12px 28px;cursor:pointer}
+.choose .bl{background:var(--green)}.choose .bm{background:var(--pink)}
+.choose button:disabled{opacity:.5;cursor:default}
+.verdict{min-height:70px;font-size:17px;background:var(--paper);border-radius:16px;padding:12px 16px;text-align:left}
+.verdict b.r{color:#2d7a1d}.verdict b.w{color:#b23a62}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.dots i{width:14px;height:14px;border-radius:50%;background:var(--paper)}
+.dots i.r{background:#7cc663}.dots i.w{background:#e47b9f}.dots i.c{outline:3px solid var(--violet)}
+.final{font-size:22px;font-weight:800;color:var(--violet)}
+/* invent */
+.inv{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.frames{display:grid;gap:10px}
+.frames label{font-size:14px;font-weight:700;color:var(--muted)}
+.frames select,.frames input{font:inherit;width:100%;padding:8px 10px;border:2px solid var(--lav);border-radius:10px;background:#fff}
+.poster{background:var(--paper);border:3px solid var(--ink);border-radius:20px;padding:22px;text-align:center;min-height:260px;display:flex;flex-direction:column;gap:10px;justify-content:center}
+.poster .seal{width:70px;height:70px;margin:0 auto}
+.poster h3{margin:0;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--violet)}
+.poster .rule{font-size:22px;font-weight:800}
+.poster .pen{font-size:16px;color:var(--muted)}
+.ideas{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ideas span{background:var(--pink);border-radius:999px;padding:5px 12px;font-size:14px;font-weight:600}
+/* roleplay */
+.rp{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.role{border-radius:20px;padding:18px}
+.role h3{margin:0 0 6px;display:flex;align-items:center;gap:10px}
+.role h3 svg{width:42px;height:42px}
+.role ul{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.r1{background:var(--lav)}.r2{background:var(--green)}
+.scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:16px}
+.sc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:3px solid transparent}
+.sc.on{border-color:var(--violet);background:#fff}
+.sc b{display:block;font-size:17px;margin-bottom:4px}
+.sc p{margin:0;font-size:15px}
+.timer{font-size:40px;font-weight:800;text-align:center;margin:14px 0 6px;color:var(--violet)}
+.ctr{text-align:center}
+/* homework */
+.hwb{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hwc{background:var(--paper);border-radius:18px;padding:18px}
+.hwc h3{margin:0 0 8px}
+.hwc ol,.hwc ul{margin:6px 0 0;padding-left:20px;line-height:1.7}
+.hwc textarea{width:100%;min-height:150px;font:inherit;border:2px solid var(--lav);border-radius:12px;padding:10px;margin-top:10px}
+.end{text-align:center;background:var(--ink);color:#fff;box-shadow:none}
+.end h2{justify-content:center}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(140px);background:var(--ink);color:#fff;font-weight:800;padding:12px 22px;border-radius:14px;transition:transform .3s;z-index:50}
+.toast.show{transform:translateX(-50%) translateY(0)}
+/* photos */
+.ph{margin:0}
+.ph img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;background:var(--paper)}
+.ph figcaption{font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.2px}
+.tax{grid-template-columns:1fr !important;padding:12px !important}
+.law .pic{height:auto !important;display:block !important;padding:0;position:relative}
+.law .pic .ph img{border-radius:0;aspect-ratio:16/10;transition:filter .5s}
+.law .pic .ph figcaption{padding:4px 12px 0}
+.law.hide .pic .ph img{filter:blur(10px) grayscale(.6)}
+.law.hide .reveal-body,.law.hide .fl,.law.hide .where{visibility:hidden}
+.law .clue{font-size:15px;font-style:italic;color:var(--ink)}
+.law .gc{display:flex;flex-wrap:wrap;gap:6px}
+.law .gc button{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:4px 12px;cursor:pointer}
+.law .gc button.ok{background:var(--green)}.law .gc button.bad{background:var(--pink)}
+.law:not(.hide) .guess{display:none}
+.fair{display:grid;gap:4px;background:#fff;border-radius:12px;padding:8px 12px}
+.fair .ends{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.fair input{width:100%;accent-color:var(--accent)}
+.fair output{font-size:14px;font-weight:700;color:var(--accent)}
+.gph{max-width:720px;margin:0 auto 12px}
+.gph img{aspect-ratio:21/9}
+.fine{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.fq{background:var(--paper);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.fq h3{margin:0;font-size:18px}
+.fq .opts{display:flex;flex-wrap:wrap;gap:6px}
+.fq .opts button{font:inherit;font-size:14px;font-weight:700;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 12px;cursor:pointer}
+.fq .opts button.ok{background:var(--green)}.fq .opts button.bad{background:var(--pink)}
+.fq .res{font-size:15px;min-height:22px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{position:relative;aspect-ratio:16/9;background:#111}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;cursor:pointer;background:#111 center/cover;display:grid;place-items:center}
+.vid .play span{background:rgba(0,0,0,.7);color:#fff;font-weight:700;border-radius:999px;padding:10px 20px;font-size:15px;letter-spacing:1px}
+.vid .info{padding:14px 16px}
+.vid .info h3{margin:0 0 2px;font-size:18px}
+.vid .info small{color:var(--muted)}
+.vid .info ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+@media(max-width:760px){.inv,.rp,.hwb{grid-template-columns:1fr}.lk-tbtn{top:auto;bottom:70px}}
+</style>
+<link rel="stylesheet" href="kit.css">
+</head>
+<body>
+<header class="hero">
+  <div class="kicker">The rule book nobody reads</div>
+  <h1>Weird <span>Laws</span> Around the World</h1>
+  <p>Strange but real rules from Singapore to Helsinki · plus your life in Finland · B1 · 60 min</p>
+  <div class="flags" id="heroFlags"></div>
+  <span class="cr">Photo: Chris Karidis / Unsplash</span>
+</header>
+
+<button class="lk-tbtn" id="teacherBtn" type="button">Teacher version</button>
+
+<div class="wrap">
+  <section class="lk-overview">
+    <h2>In this lesson you will:</h2>
+    <ul>
+      <li>Talk about your life in Finland: rules, habits and things that surprise newcomers.</li>
+      <li>Play <b>"Is it true in Finland?"</b>: you are the expert.</li>
+      <li>Make a <b>survival guide</b> for a new student in Finland with <b>must / mustn't / have to / don't have to</b>.</li>
+      <li>Go on a photo tour of 8 strange but real laws: guess the country, then vote "fair or ridiculous?".</li>
+      <li>Play <b>Law or myth?</b>, guess real fines and watch two short news clips.</li>
+      <li>Write your own law and act out a scene with a tourist.</li>
+    </ul>
+    <div class="lk-stages" id="stages"></div>
+  </section>
+
+  <section id="s1" data-stage="warm-up" data-min="6">
+    <h2><span class="lk-n">1</span>Life in Finland <span class="tag">warm-up</span><span class="lk-mode">teacher + student</span></h2>
+    <p class="lk-ins">You live in Finland, so today you are the expert. Answer the questions and give examples.</p>
+    <div class="qs">
+      <div>1. How long have you lived in Finland? What was the first thing that surprised you?</div>
+      <div>2. What do Finnish people do that Ukrainians usually don't? And the other way round?</div>
+      <div>3. What is your favourite and least favourite thing about Finnish winter?</div>
+      <div>4. Is there a rule in Finland (at school, on the bus, on the road) that you think is strange?</div>
+    </div>
+    <div class="phr"><b>Useful phrases</b><ul><li>I've lived in Finland for ... / since ...</li><li>When I moved here, I was surprised that ...</li><li>Finnish people usually ..., but in Ukraine people ...</li><li>The strangest thing for me is ...</li></ul></div>
+    <div hidden><div id="taxes"></div></div>
+    <p class="lk-tnote" data-ru="Заметка: 5-6 минут, разогрев. Пусть ученик говорит как можно больше, вы только задаёте уточняющие вопросы: «Why?», «Can you give an example?». Запишите 2-3 интересные вещи, которые он скажет: к ним можно вернуться в задании 3.">Нотатка: 5-6 хвилин, розминка. Хай учень говорить якомога більше, ви лише ставите уточнювальні питання: «Why?», «Can you give an example?». Запишіть 2-3 цікаві речі, які він скаже: до них можна повернутися в завданні 3.</p>
+  </section>
+
+  <section id="s2" data-stage="speaking" data-min="9">
+    <h2><span class="lk-n">2</span>Is it true in Finland? <span class="tag">speaking</span><span class="lk-mode">teacher + student</span></h2>
+    <p class="lk-ins">You are the Finland expert. The teacher reads a statement. Say if it's <b>true</b>, <b>false</b> or <b>partly true</b> and explain. Then compare: is it the same in Ukraine? Open "Check" only after you answer.</p>
+    <div class="fic">
+      <div class="c"><b><span class="fi-n">1</span>In Finland, a speeding fine depends on how much money you earn.</b><div class="k"><span>True?</span><span>False?</span><span>Same in Ukraine?</span></div><details><summary>Check</summary>True. Finland uses "day-fines": the fine depends on income. In 2015 a businessman got a fine of 54,000 euros for speeding.</details></div>
+      <div class="c"><b><span class="fi-n">2</span>You can walk in almost any forest and pick berries and mushrooms, even if the land belongs to someone else.</b><div class="k"><span>True?</span><span>False?</span><span>Same in Ukraine?</span></div><details><summary>Check</summary>True. It is called "everyman's right" (jokamiehenoikeus). But you can't go too close to people's houses or make a fire without permission.</details></div>
+      <div class="c"><b><span class="fi-n">3</span>Cars must have winter tyres in December, January and February.</b><div class="k"><span>True?</span><span>False?</span><span>Same in Ukraine?</span></div><details><summary>Check</summary>True. Winter tyres are required from 1 December to the end of February.</details></div>
+      <div class="c"><b><span class="fi-n">4</span>Drivers must keep the car headlights on all the time, even on a sunny summer day.</b><div class="k"><span>True?</span><span>False?</span><span>Same in Ukraine?</span></div><details><summary>Check</summary>True. Headlights must be on whenever you drive.</details></div>
+      <div class="c"><b><span class="fi-n">5</span>People wear a small reflector on their coat or bag when it's dark.</b><div class="k"><span>True?</span><span>False?</span><span>Same in Ukraine?</span></div><details><summary>Check</summary>True. The traffic law says pedestrians should use a reflector in the dark. Many kids get them at school.</details></div>
+      <div class="c"><b><span class="fi-n">6</span>There are about 3 million saunas in Finland. That's more than one sauna for every two people.</b><div class="k"><span>True?</span><span>False?</span><span>Same in Ukraine?</span></div><details><summary>Check</summary>True. About 5.6 million people live in Finland and there are around 3 million saunas.</details></div>
+      <div class="c"><b><span class="fi-n">7</span>Every family with a new baby can get a free "baby box" from the state, with clothes and things for the baby.</b><div class="k"><span>True?</span><span>False?</span><span>Same in Ukraine?</span></div><details><summary>Check</summary>True. It's the maternity package from Kela. Families can choose the box or money.</details></div>
+      <div class="c"><b><span class="fi-n">8</span>People in Finland usually talk a lot to strangers on buses and trains.</b><div class="k"><span>True?</span><span>False?</span><span>Same in Ukraine?</span></div><details><summary>Check</summary>Usually false. It's a habit, not a law: many Finns prefer to be quiet in public transport. Ask: is it the same in Ukraine?</details></div>
+      <div class="c"><b><span class="fi-n">9</span>Children in Finland start school when they are 7.</b><div class="k"><span>True?</span><span>False?</span><span>Same in Ukraine?</span></div><details><summary>Check</summary>True. Before that, there is one year of free pre-school at 6.</details></div>
+      <div class="c"><b><span class="fi-n">10</span>Finland has a world championship in carrying your wife.</b><div class="k"><span>True?</span><span>False?</span><span>Same in Ukraine?</span></div><details><summary>Check</summary>True. The Wife Carrying World Championships take place in Sonkajärvi every summer.</details></div>
+    </div>
+    <div class="phr"><b>Useful phrases</b><ul><li>That's true. For example, ...</li><li>That's not really true. Actually, ...</li><li>It's partly true: ... but ...</li><li>In Ukraine it's different: people / drivers / students have to ...</li></ul></div>
+    <div hidden><div id="vocab"></div><div id="vq"></div></div>
+    <p class="lk-tnote" data-ru="Заметка: факты проверены. Если ученик спорит, это отлично: просите пример из его жизни. Если времени мало, возьмите 6 карточек. Хвалите фразы с have to / must / be allowed to, они понадобятся дальше.">Нотатка: факти перевірені. Якщо учень сперечається, це чудово: просіть приклад з його життя. Якщо часу мало, візьміть 6 карток. Хваліть фрази з have to / must / be allowed to, вони знадобляться далі.</p>
+  </section>
+
+  <section id="s3" data-stage="speaking" data-min="9">
+    <h2><span class="lk-n">3</span>Survival guide: Finland <span class="tag">speaking</span><span class="lk-mode">teacher + student</span></h2>
+    <p class="lk-ins">A Ukrainian teenager is moving to Finland next month. Give him 6 tips. Use a different form in each tip. Talk about school, winter, the sauna, buses, shops, nature or friends.</p>
+    <div class="gram">
+      <div class="gb g1"><h3>Obligation</h3><span class="f">You must / have to ...</span><p>You <b>have to</b> take off your shoes when you visit someone.</p></div>
+      <div class="gb g2"><h3>It's forbidden</h3><span class="f">You mustn't ...</span><p>You <b>mustn't</b> cross the road on a red light.</p></div>
+      <div class="gb g3"><h3>No need</h3><span class="f">You don't have to ...</span><p>You <b>don't have to</b> pay for school lunch.</p></div>
+      <div class="gb g4"><h3>Permission</h3><span class="f">You're (not) allowed to ...</span><p>You're <b>allowed to</b> pick berries in the forest.</p></div>
+      <div class="gb g2"><h3>Advice</h3><span class="f">Don't be surprised if ...</span><p><b>Don't be surprised if</b> it's dark at 3 pm in December.</p></div>
+    </div>
+    <div class="warn"><b>Careful!</b> <b>mustn't</b> = it's forbidden. <b>don't have to</b> = it isn't necessary.</div>
+    <div class="ideas"><span>school lunch</span><span>winter darkness</span><span>sauna</span><span>quiet on the bus</span><span>shoes off at home</span><span>reflectors</span><span>summer cottage (mökki)</span><span>being on time</span></div>
+    <div class="phr"><b>Then switch!</b><ul><li>The teacher asks questions as the new student: "Do I have to speak Finnish at school?", "Am I allowed to go to the forest alone?"</li><li>Answer with the forms above and give one personal story.</li></ul></div>
+    <div hidden><div id="gq"></div></div>
+    <p class="lk-tnote" data-ru="Заметка: цель: 6 советов, каждый с другой формой. Главная ловушка: mustn't и don't have to. Потом поменяйтесь: вы «новенький», задавайте вопросы. Исправляйте «must to» и «don't must».">Нотатка: мета: 6 порад, кожна з іншою формою. Головна пастка: mustn't і don't have to. Потім поміняйтеся: ви «новенький», ставте питання. Виправляйте «must to» і «don't must».</p>
+  </section>
+
+  <section id="s4" data-stage="reading" data-min="12">
+    <h2><span class="lk-n">4</span>Weird laws tour <span class="tag">reading + speaking</span><span class="lk-mode">teacher + student</span></h2>
+    <p class="lk-ins">All 8 rules are <b>real</b>. First read the clue and guess the country. Then read the full card, click "Listen" and answer the question. Finally, move the slider: is the law fair or ridiculous? Explain why.</p>
+    <div class="ctr" style="margin-bottom:14px"><button class="btn alt" id="revealAll" type="button">Show all countries</button></div>
+    <div class="tour" id="tour"></div>
+    <p class="lk-tnote" data-ru="Заметка: все 8 правил реальные (проверено). Детали: Сингапур: продажа и ввоз жвачки запрещены с 1992 года, лечебную жвачку (например, никотиновую) можно купить в аптеке. Автобан: остановка без необходимости запрещена, а пустой бак считается вашей виной, поэтому могут оштрафовать (обычно десятки евро). Тишина по воскресеньям: правила разные в разных федеральных землях и домах, газонокосилки с мотором в жилых районах по воскресеньям и праздникам запрещены по всей стране. Швейцария: закон о защите животных требует, чтобы социальные животные, как морские свинки, имели контакт с сородичами. Венеция: кормить голубей на площади Сан-Марко запрещено с 2008 года. Япония: «закон метабо» 2008 года: ежегодная проверка обхвата талии для людей 40-74 лет через работодателя/страховку; штрафа для людей нет. Франция: с 1993 года судья может запретить имя, если оно против интересов ребёнка (известный случай: «Nutella», 2015). Финляндия: некоторые штрафы (например, за превышение скорости) зависят от дохода. Если времени мало, выберите 5 карточек.">Нотатка: усі 8 правил справжні (перевірено). Деталі: Сінгапур: продаж і ввезення жувальної гумки заборонені з 1992 року, лікувальну гумку (наприклад, нікотинову) можна купити в аптеці. Автобан: зупинка без потреби заборонена, а порожній бак вважається вашою провиною, тому можуть оштрафувати (зазвичай десятки євро). Тиша в неділю: правила різні в різних федеральних землях і будинках, газонокосарки з мотором у житлових районах у неділю й свята заборонені по всій країні. Швейцарія: закон про захист тварин вимагає, щоб соціальні тварини, як морські свинки, мали контакт з одноплемінниками. Венеція: годувати голубів на площі Сан-Марко заборонено з 2008 року. Японія: «закон метабо» 2008 року: щорічна перевірка обхвату талії для людей 40-74 років через роботодавця / страховку; штрафу для людей немає. Франція: з 1993 року суддя може заборонити ім'я, якщо воно проти інтересів дитини (відомий випадок: «Nutella», 2015). Фінляндія: деякі штрафи (наприклад, за перевищення швидкості) залежать від доходу. Якщо часу мало, оберіть 5 карток.</p>
+    <h3 class="lk-sub">How much is the fine? Guess first, then check.</h3>
+    <div class="fine" id="fine"></div>
+    <p class="lk-tnote" data-ru="Заметка: суммы взяты из новостей. Рим: штрафы за сидение на Испанской лестнице с 2019 года сообщались в размере от 250 до 400 евро. Финляндия: в 2015 году бизнесмен получил штраф 54 000 евро за превышение скорости; в 2023 году другой миллионер получил 121 000 евро. Попросите ученика сначала сказать: «I think it's about ... because ...». Цифры не учить, главное это обсуждение.">Нотатка: суми взято з новин. Рим: штрафи за сидіння на Іспанських сходах з 2019 року повідомлялися в розмірі від 250 до 400 євро. Фінляндія: у 2015 році бізнесмен отримав штраф 54 000 євро за перевищення швидкості; у 2023 році інший мільйонер отримав 121 000 євро. Попросіть учня спершу сказати: «I think it's about ... because ...». Цифри не вчити, головне це обговорення.</p>
+  </section>
+
+  <section id="s5" data-stage="game" data-min="10">
+    <h2><span class="lk-n">5</span>Law or myth? <span class="tag">main game</span><span class="lk-mode">teacher + student</span></h2>
+    <p class="lk-ins">The internet is full of "crazy laws", but many of them are fake. Read the statement. Is it a <b>real law</b> or a <b>myth</b>? Explain your guess first: "I think it's real / a myth because ..."</p>
+    <div class="game">
+      <figure class="ph gph"><img id="gImg" src="" alt="" loading="lazy"><figcaption id="gCr"></figcaption></figure>
+      <div class="score"><span>Statement <b id="gNum">1</b> / 10</span><span>Score: <b id="gScore">0</b></span></div>
+      <div class="stmt" id="gStmt"><small>LAW OR MYTH?</small><span></span></div>
+      <div class="choose"><button class="bl" id="gLaw" type="button">Real law</button><button class="bm" id="gMyth" type="button">Myth</button></div>
+      <div class="verdict" id="gVerdict">Your guess?</div>
+      <div class="ctr" style="margin-top:14px"><button class="btn" id="gNext" type="button">Next</button> <button class="btn alt" id="gReset" type="button">Start again</button></div>
+      <div class="dots" id="gDots"></div>
+    </div>
+    <p class="lk-ans" id="gAns"></p>
+    <p class="lk-tnote" data-ru="Заметка: 5 реальных законов и 5 мифов. Реальные: Рим (Испанская лестница, 2019), Барселона (купальник на улицах города, с 2011), Канада (канадская музыка на радио), Дания (список разрешённых имён), Шотландия (право ходить по большей части земли, 2003). Мифы: умереть в британском парламенте (юристы не нашли такого закона), запрет смывать туалет после 22:00 в Швейцарии (максимум правило некоторых домов, не закон), запрет есть минс-пай на Рождество в Англии (такого закона сейчас нет), свинья по имени Наполеон во Франции, мороженое в заднем кармане в Алабаме (источника нет). Сначала пусть ученик объяснит выбор, потом нажимайте.">Нотатка: 5 справжніх законів і 5 міфів. Справжні: Рим (Іспанські сходи, 2019), Барселона (купальник на вулицях міста, з 2011), Канада (канадська музика на радіо), Данія (список дозволених імен), Шотландія (право ходити по більшій частині землі, 2003). Міфи: померти в британському парламенті (юристи не знайшли такого закону), заборона змивати туалет після 22:00 у Швейцарії (щонайбільше правило деяких будинків, не закон), заборона їсти мінс-пай на Різдво в Англії (такого закону зараз немає), свиня на ім'я Наполеон у Франції, морозиво в задній кишені в Алабамі (джерела немає). Спершу хай учень пояснить вибір, потім натискайте.</p>
+  </section>
+
+  <section id="s6" data-stage="speaking" data-min="8">
+    <h2><span class="lk-n">6</span>Invent your own law <span class="tag">speaking</span><span class="lk-mode">teacher + student</span></h2>
+    <p class="lk-ins">Imagine you can pass one new law. It can be for your school, your city, your home or the internet. Build it, then defend it: why is it a good idea? Who will support it? Who will be against it?</p>
+    <div class="inv">
+      <div class="frames">
+        <label for="iPlace">Where?</label>
+        <select id="iPlace"><option>At my school</option><option>In my city</option><option>At home</option><option>In Finland</option><option>On the internet</option></select>
+        <label for="iType">What kind of rule?</label>
+        <select id="iType"><option value="must">everyone must</option><option value="mustnt">nobody is allowed to</option><option value="allowed">everyone is allowed to</option><option value="banned">... is banned</option><option value="dont">nobody has to</option></select>
+        <label for="iWhat">What? (write it)</label>
+        <input id="iWhat" placeholder="e.g. use phones during lunch break" value="">
+        <label for="iPen">The penalty if you break the law</label>
+        <input id="iPen" placeholder="e.g. a fine of 5 euros / a written warning" value="">
+        <button class="btn" id="iMake" type="button">Make the law</button>
+      </div>
+      <div class="poster" id="poster">
+        <svg class="seal" viewBox="0 0 70 70"><circle cx="35" cy="35" r="32" fill="#534AB7"/><circle cx="35" cy="35" r="25" fill="none" stroke="#F4C0D1" stroke-width="3" stroke-dasharray="4 3"/><path d="M22 47h26M26 47V29M35 47V29M44 47V29M20 29h30L35 19z" stroke="#fff" stroke-width="3" fill="none" stroke-linejoin="round"/></svg>
+        <h3>New law</h3>
+        <div class="rule" id="pRule">Your law will appear here.</div>
+        <div class="pen" id="pPen"></div>
+      </div>
+    </div>
+    <div class="ideas"><span>homework on weekends</span><span>phones at dinner</span><span>school starts at 10 am</span><span>free bikes in the city</span><span>a 4-day school week</span><span>no homework during holidays</span></div>
+    <div class="phr"><b>Explain your law</b><ul><li>I think this law is a good idea because ...</li><li>Students / parents / tourists will be happy because they won't have to ...</li><li>Some people won't like it because they won't be allowed to ...</li><li>If you break this law, you will have to ...</li></ul></div>
+    <p class="lk-tnote" data-ru="Заметка: сделайте 2-3 закона. Потом учитель «голосует» как парламент: задавайте вопросы «What if someone breaks it?», «Is it fair for teachers?». Хвалите правильные must / have to / be allowed to, исправляйте «must to».">Нотатка: зробіть 2-3 закони. Потім учитель «голосує» як парламент: ставте питання «What if someone breaks it?», «Is it fair for teachers?». Хваліть правильні must / have to / be allowed to, виправляйте «must to».</p>
+  </section>
+
+  <section id="s7" data-stage="role-play" data-min="7">
+    <h2><span class="lk-n">7</span>Oops, I didn't know! <span class="tag">role-play</span><span class="lk-mode">teacher + student</span></h2>
+    <p class="lk-ins">A tourist breaks a strange rule without knowing it. Choose a scene. One person is the tourist, the other is the officer or inspector. Stay polite. The tourist tries to talk their way out of it; the officer explains the rule calmly.</p>
+    <div class="rp">
+      <div class="role r1"><h3>Tourist</h3>
+        <ul><li>Sorry, I didn't know that ... was banned.</li><li>Really? Am I not allowed to ...?</li><li>In my country we don't have to ...</li><li>Do I have to pay a fine? How much is it?</li><li>Can you give me a warning this time?</li></ul></div>
+      <div class="role r2"><h3>Officer / inspector</h3>
+        <ul><li>Excuse me, you mustn't ... here.</li><li>It's against the law to ...</li><li>I'm afraid I have to fine you.</li><li>You need a permit for that.</li><li>OK, this time it's just a warning. Have a nice day!</li></ul></div>
+    </div>
+    <div class="scen" id="scen"></div>
+    <div class="timer" id="rpT">2:00</div>
+    <div class="ctr"><button class="btn" id="rpGo" type="button">Start 2 minutes</button> <button class="btn alt" id="rpSwap" type="button">Swap roles</button></div>
+    <p class="lk-tnote" data-ru="Заметка: сначала учитель играет офицера, ученик туриста, потом наоборот. Цель: использовать минимум 3 фразы из карточек. Сцены лёгкие, без «страшных» последствий: самое худшее это штраф или предупреждение.">Нотатка: спершу вчитель грає офіцера, учень туриста, потім навпаки. Мета: вжити щонайменше 3 фрази з карток. Сцени легкі, без «страшних» наслідків: найгірше це штраф або попередження.</p>
+  </section>
+
+  <section id="s9" data-stage="video" data-min="6">
+    <h2><span class="lk-n">8</span>Watch &amp; discuss <span class="tag">video</span><span class="lk-mode">teacher + student</span></h2>
+    <p class="lk-ins">Two short news clips about real rules from this lesson. Read the questions first, then watch and discuss.</p>
+    <div class="vids" id="vidList"></div>
+    <p class="lk-tnote" data-ru="Заметка: перед уроком посмотрите оба видео сами (реклама, громкость, длина). Канал Bloomberg News: правило про Испанскую лестницу в Риме. Канал Morning Brew Daily: штрафы в Финляндии зависят от дохода. Если видео не загрузилось, просто обсудите вопросы. Включайте субтитры на английском.">Нотатка: перед уроком перегляньте обидва відео самі (реклама, гучність, довжина). Канал Bloomberg News: правило про Іспанські сходи в Римі. Канал Morning Brew Daily: штрафи у Фінляндії залежать від доходу. Якщо відео не завантажилося, просто обговоріть питання. Вмикайте англійські субтитри.</p>
+  </section>
+
+  <section id="s8" data-stage="homework" data-min="0">
+    <h2><span class="lk-n">9</span>Homework <span class="tag">homework</span><span class="lk-mode">student</span></h2>
+    <div class="hwb">
+      <div class="hwc"><h3>A. Finland vs Ukraine</h3>
+        <p>Write 5 sentences about rules in Finland and in Ukraine. Use: <b>must, mustn't, have to, don't have to, be allowed to, is banned</b>.</p>
+        <p style="color:var(--muted);font-size:15px">Example: In Finland, you have to use winter tyres in December. In Ukraine, ...</p>
+        <textarea id="hwText" placeholder="1. In Finland, ...&#10;2. In Ukraine, ...&#10;3. ...&#10;4. ...&#10;5. ..."></textarea>
+      </div>
+      <div class="hwc"><h3>B. Mini presentation</h3>
+        <p><b>"3 strange rules in my city"</b>. Find or notice 3 rules in your city, school or building (for example, quiet hours, bike rules, rubbish, dogs, shops on Sunday).</p>
+        <ul><li>3 slides, 1 rule on each slide, with a picture.</li><li>Say what the rule is, why it exists and if you like it.</li><li>Speak for 1-2 minutes.</li></ul>
+      </div>
+    </div>
+    <p class="lk-tnote" data-ru="Заметка: часть A проверьте на mustn't / don't have to. Часть B делает связь с прошлыми уроками. Напомните: правила должны быть настоящими, пусть ученик проверит источник.">Нотатка: частину A перевірте на mustn't / don't have to. Частина B продовжує минулі уроки. Нагадайте: правила мають бути справжніми, хай учень перевірить джерело.</p>
+  </section>
+
+  <section class="end"><h2>That's a wrap</h2><p>Thank you for the lesson. Next time you travel, read the small print.</p></section>
+</div>
+
+<div class="toast" id="toast"></div>
+<script>
+const $ = (id) => document.getElementById(id);
+function say(w) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; u.rate = .9; speechSynthesis.speak(u); } catch (e) { } }
+function toast(t) { const el = $('toast'); el.textContent = t; el.classList.add('show'); clearTimeout(toast.t); toast.t = setTimeout(() => el.classList.remove('show'), 1800); }
+
+// ---------- flags (simple stripes) ----------
+const FL = {
+  de: '<svg class="fl" viewBox="0 0 30 20"><rect width="30" height="7" fill="#1B2140"/><rect y="6.6" width="30" height="6.8" fill="#D9363E"/><rect y="13.3" width="30" height="6.7" fill="#F2C230"/></svg>',
+  sg: '<svg class="fl" viewBox="0 0 30 20"><rect width="30" height="10" fill="#D9363E"/><rect y="10" width="30" height="10" fill="#fff"/><circle cx="6" cy="5" r="3" fill="#fff"/><circle cx="7.2" cy="5" r="2.6" fill="#D9363E"/></svg>',
+  ch: '<svg class="fl" viewBox="0 0 30 20"><rect width="30" height="20" fill="#D9363E"/><rect x="13" y="4" width="4" height="12" fill="#fff"/><rect x="9" y="8" width="12" height="4" fill="#fff"/></svg>',
+  it: '<svg class="fl" viewBox="0 0 30 20"><rect width="10" height="20" fill="#3E9B5A"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#D9363E"/></svg>',
+  jp: '<svg class="fl" viewBox="0 0 30 20"><rect width="30" height="20" fill="#fff"/><circle cx="15" cy="10" r="6" fill="#D9363E"/></svg>',
+  fr: '<svg class="fl" viewBox="0 0 30 20"><rect width="10" height="20" fill="#2F4BA0"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#D9363E"/></svg>',
+  fi: '<svg class="fl" viewBox="0 0 30 20"><rect width="30" height="20" fill="#fff"/><rect x="8" width="5" height="20" fill="#2F4BA0"/><rect y="7.5" width="30" height="5" fill="#2F4BA0"/></svg>',
+  ua: '<svg class="fl" viewBox="0 0 30 20"><rect width="30" height="10" fill="#3B72C9"/><rect y="10" width="30" height="10" fill="#F2C230"/></svg>',
+};
+$('heroFlags').innerHTML = ['sg', 'de', 'ch', 'it', 'jp', 'fr', 'fi'].map((k) => FL[k].replace('class="fl"', '')).join('');
+
+// ---------- warm-up taxes ----------
+const TAXES = [
+  ['Bettensteuer', 'a tax for sleeping in a hotel in some cities', '<svg viewBox="0 0 56 56"><rect x="6" y="26" width="44" height="14" rx="3" fill="#AFC3F0"/><rect x="6" y="18" width="14" height="10" rx="3" fill="#fff" stroke="#1B2140" stroke-width="2"/><path d="M6 46V16M50 46V30" stroke="#1B2140" stroke-width="3"/><text x="36" y="20" font-size="12" font-weight="800" fill="#534AB7">Zz</text></svg>'],
+  ['Zwischenerzeugnissteuer', 'a tax on some drinks like sherry and port, and a very long word', '<svg viewBox="0 0 56 56"><path d="M22 6h12v10l6 8v26H16V24l6-8z" fill="#F4C0D1" stroke="#1B2140" stroke-width="2.5"/><rect x="18" y="30" width="20" height="10" fill="#fff"/><text x="22" y="38" font-size="8" font-weight="800" fill="#1B2140">TAX</text></svg>'],
+  ['Luftverkehrsteuer', 'a tax on plane tickets when you fly from Germany', '<svg viewBox="0 0 56 56"><path d="M6 30l44-16-6 8-24 10 4 12-6 2-6-11-6 1z" fill="#534AB7"/><circle cx="44" cy="42" r="8" fill="#CDEBC0" stroke="#1B2140" stroke-width="2"/><text x="40" y="46" font-size="10" font-weight="800" fill="#1B2140">&#8364;</text></svg>'],
+];
+const U = (id) => `https://images.unsplash.com/photo-${id}?w=900&q=70&auto=format&fit=crop`;
+const PH = (id, alt, who) => `<figure class="ph"><img src="${U(id)}" alt="${alt}" loading="lazy"><figcaption>Photo: ${who} / Unsplash</figcaption></figure>`;
+const TAXPH = [['1618773928121-c32242e63f39', 'A hotel bed', 'Vojtech Bruzek'], ['1510267222691-b90c3f0494d6', 'Bottles of port wine', 'Bruno Martins'], ['1436491865332-7a61a109cc05', 'A plane in the sky', 'Ross Parmly']];
+$('taxes').innerHTML = TAXES.map(([n, d], i) => `<div class="tax">${PH(...TAXPH[i])}<div><b>${n}</b><small>${d}</small></div></div>`).join('');
+
+// ---------- vocabulary ----------
+const SPK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 9a4 4 0 0 1 0 6M19 6a8 8 0 0 1 0 12"/></svg>';
+const VOC = [
+  ['a law', 'an official rule of a country', 'There is a law about Sunday quiet in Germany.'],
+  ['a rule', 'something that tells you what you can or can\'t do', 'Our school has a rule about phones.'],
+  ['a fine', 'money you pay when you break a rule', 'He got a fine for parking in the wrong place.'],
+  ['to fine someone', 'to make someone pay money as a punishment', 'The police can fine you for that.'],
+  ['to ban', 'to say officially that something is not allowed', 'Singapore banned the sale of chewing gum in 1992.'],
+  ['banned', 'not allowed by a law or a rule', 'Phones are banned in our exam room.'],
+  ['illegal', 'against the law', 'It is illegal to drive without a licence.'],
+  ['legal', 'allowed by the law', 'Is it legal to ride an e-scooter here?'],
+  ['to be allowed to', 'to have permission to do something', 'We are allowed to eat in the classroom.'],
+  ['to be forbidden', 'to be not allowed (a strong, formal word)', 'Smoking is forbidden in the station.'],
+  ['to break the law', 'to do something that is illegal', 'He broke the law, but he didn\'t know it.'],
+  ['to obey', 'to do what a law or a person tells you', 'Drivers must obey the speed limit.'],
+  ['a penalty', 'a punishment for breaking a rule', 'The penalty is a fine of 50 euros.'],
+  ['a permit', 'an official paper that allows you to do something', 'You need a permit to fish in this lake.'],
+  ['it\'s against the law', 'it is illegal', 'It\'s against the law to feed pigeons here.'],
+  ['to get away with', 'to do something wrong and not be punished', 'He copied his homework and got away with it.'],
+];
+$('vocab').innerHTML = VOC.map(([w, d, e], i) => `<div class="vc" data-i="${i}"><b>${SPK}${w}</b><p>${d}</p><em>${e}</em></div>`).join('');
+$('vocab').onclick = (e) => { const c = e.target.closest('.vc'); if (!c) return; const v = VOC[+c.dataset.i]; c.classList.add('played'); say(v[0].replace(/^to /, 'to ') + '. ' + v[2]); };
+
+function quiz(el, items) {
+  $(el).innerHTML = items.map(([pre, opts, post], i) => `<div class="q" data-i="${i}"><span class="n">${i + 1}</span><span>${pre}</span>${opts.map((o, j) => `<button class="opt" type="button" data-j="${j}">${o}</button>`).join('')}<span>${post}</span></div>`).join('') + `<p class="lk-ans">${items.map(([, o], i) => `${i + 1}. ${o[0]}`).join('; ')}</p>`;
+  // shuffle buttons visually
+  $(el).querySelectorAll('.q').forEach((q) => { const bs = [...q.querySelectorAll('.opt')]; const tail = q.lastElementChild; bs.sort(() => Math.random() - .5).forEach((b) => q.insertBefore(b, tail)); });
+  $(el).onclick = (e) => { const b = e.target.closest('.opt'); if (!b) return; const q = b.closest('.q'); if (q.dataset.done) return; if (b.dataset.j === '0') { b.classList.add('ok'); q.dataset.done = 1; toast('Correct!'); } else { b.classList.add('bad'); setTimeout(() => b.classList.remove('bad'), 400); } };
+}
+quiz('vq', [
+  ['You can\'t do it. It\'s', ['illegal', 'legal', 'a permit'], '.'],
+  ['The police gave him a', ['fine', 'law', 'obey'], 'of 30 euros.'],
+  ['You need a', ['permit', 'penalty', 'ban'], 'to build a house.'],
+  ['She ate my chocolate and', ['got away with it', 'obeyed it', 'banned it'], '. Nobody saw her!'],
+  ['Good citizens', ['obey', 'break', 'fine'], 'the law.'],
+]);
+
+// ---------- grammar ----------
+quiz('gq', [
+  ['In Singapore, you', ['aren\'t allowed to', 'don\'t have to', 'are allowed to'], 'sell chewing gum.'],
+  ['On Sunday you', ['don\'t have to', 'mustn\'t', 'have to'], 'get up early. There is no school!'],
+  ['In Germany, drivers', ['mustn\'t', 'don\'t have to', 'are allowed to'], 'stop on the Autobahn without a good reason.'],
+  ['Feeding pigeons in St Mark\'s Square', ['is banned', 'bans', 'is ban'], 'since 2008.'],
+  ['Do you', ['have to', 'must', 'allowed to'], 'wear a uniform at your school?'],
+  ['We', ['are allowed to', 'must to', 'allowed'], 'use calculators in maths tests.'],
+]);
+
+// ---------- weird laws tour ----------
+const LAWS = [
+  ['sg', 'gum', 'Singapore', 'No chewing gum in the shops', 'Since 1992, you aren\'t allowed to sell or import chewing gum in Singapore. You can only buy special medical gum at a pharmacy.', 'Why? Old gum on streets, doors and the metro was a big cleaning problem.', 'Would a gum ban work in your city? Is gum a problem at your school?', '#F4C0D1'],
+  ['de', 'fuel', 'Germany', 'Don\'t run out of fuel on the Autobahn', 'On the Autobahn, you mustn\'t stop without a real reason. If your car stops because the tank is empty, it is your own fault, so the police can fine you.', 'Why? A car standing on a fast motorway is very dangerous.', 'Do you think this fine is fair? What other things can a driver forget?', '#AFC3F0'],
+  ['de', 'quiet', 'Germany', 'Sunday is quiet day', 'In many places in Germany, Sunday is a day of rest (Ruhezeit). In residential areas you aren\'t allowed to use a motor lawn mower on Sundays and holidays.', 'Why? People should be able to relax. Many buildings also have quiet hours at night.', 'What noisy things do your neighbours do? Do you have quiet hours in Ukraine?', '#CDEBC0'],
+  ['ch', 'pig', 'Switzerland', 'A guinea pig must not be lonely', 'In Switzerland, the animal welfare law says social animals like guinea pigs must have contact with animals of their own kind. So you shouldn\'t keep just one.', 'Why? Guinea pigs are social and they get sad and stressed alone.', 'Is this a good law? Which other animals need a friend?', '#F4C0D1'],
+  ['it', 'pigeon', 'Italy (Venice)', 'Don\'t feed the pigeons!', 'Feeding pigeons in St Mark\'s Square in Venice is banned. Tourists who do it can get a fine.', 'Why? Thousands of birds damaged the old buildings and made them dirty.', 'Have you ever fed birds in a city? Would you pay a fine for a selfie with pigeons?', '#AFC3F0'],
+  ['jp', 'tape', 'Japan', 'The waistline check', 'Since 2008, Japan\'s "metabo law" says adults aged 40 to 74 have to get their waist measured in a yearly health check. People with a big waist get advice on diet and sport.', 'Why? The government wants people to stay healthy. Nobody is fined for their size.', 'Is it OK for a country to check people\'s health like this? Why or why not?', '#CDEBC0'],
+  ['fr', 'name', 'France', 'A judge can say no to a baby\'s name', 'In France, if parents choose a name that is against the child\'s interest, a judge can refuse it. In 2015 a court did not allow a baby to be called "Nutella".', 'Why? A very silly name could make the child\'s life difficult.', 'Should parents be allowed to choose any name? What name would you ban?', '#F4C0D1'],
+  ['fi', 'coins', 'Finland', 'Rich drivers pay bigger fines', 'In Finland, some fines, for example for speeding, depend on how much money you earn. A millionaire can pay a fine of thousands of euros for the same mistake.', 'Why? A small fine doesn\'t stop a very rich person.', 'Is this fairer than one fine for everyone? Remember your taxes presentation!', '#AFC3F0'],
+];
+// photo, clue (country hidden), options for the guess game
+const LPH = [
+  ['1525625293386-3f8f99389edd', 'Marina Bay Sands at night', 'Hu Chen', 'In this rich Asian city-state, you can\'t buy normal chewing gum in shops.', ['Japan', 'Singapore', 'South Korea']],
+  ['1578991132108-16c5296b63dc', 'Cars on a motorway at night', 'Julian Hochgesang', 'On this country\'s famous motorways, an empty tank can get you a fine.', ['Austria', 'Italy', 'Germany']],
+  ['1458245201577-fc8a130b8829', 'A lawn mower on green grass', 'Daniel Watson', 'Here, the lawn mower stays in the garage on Sundays and holidays.', ['Germany', 'Spain', 'Ireland']],
+  ['1548767797-d8c844163c4c', 'Two guinea pigs eating a carrot', 'Bonnie Kittle', 'In this Alpine country, a pet guinea pig needs company by law.', ['Switzerland', 'Austria', 'Norway']],
+  ['1790435510226-50fb81e7de5e', 'Piazzetta di San Marco in Venice', 'Michael Hamments', 'In this city of canals, feeding the birds in the main square is banned.', ['Amsterdam', 'Venice', 'Bruges']],
+  ['1703756291638-b1774ae3c186', 'A tape measure', 'William Warby', 'In this country, adults over 40 get their waist measured at a yearly check-up.', ['USA', 'China', 'Japan']],
+  ['1502602898657-3e91760cbb34', 'The Eiffel Tower in Paris', 'Chris Karidis', 'In this country, a judge once said no to a baby called "Nutella".', ['Belgium', 'France', 'Italy']],
+  ['1538332576228-eb5b4c4de6f5', 'Helsinki by the sea', 'Tapio Haaja', 'In this Nordic country, a millionaire pays a much bigger speeding fine.', ['Finland', 'Sweden', 'Iceland']],
+];
+$('tour').innerHTML = LAWS.map(([f, ic, where, h, txt, why, q], i) => { const [pid, alt, who, clue, opts] = LPH[i]; return `<article class="law hide" data-i="${i}"><div class="pic">${PH(pid, alt, who)}${FL[f]}<span class="no">${i + 1} / 8</span></div><div class="body"><div class="guess"><p class="clue">${clue}</p><div class="gc">${opts.map((o) => `<button type="button" data-o="${o}">${o}</button>`).join('')}</div></div><span class="where">${where}</span><div class="reveal-body" style="display:flex;flex-direction:column;gap:8px"><h3>${h}</h3><p>${txt}</p><p class="why">${why}</p><button class="lsn" type="button" data-i="${i}">Listen</button><div class="dq">${q}</div><label class="fair"><span class="ends"><span>Fair</span><span>Ridiculous</span></span><input type="range" min="0" max="100" value="50" aria-label="Fair or ridiculous"><output>Move the slider</output></label></div></div></article>`; }).join('');
+const REAL = ['Singapore', 'Germany', 'Germany', 'Switzerland', 'Venice', 'Japan', 'France', 'Finland'];
+const FAIRW = (v) => v < 20 ? 'Totally fair' : v < 40 ? 'Quite fair' : v < 60 ? 'Not sure' : v < 80 ? 'A bit ridiculous' : 'Ridiculous';
+$('tour').onclick = (e) => {
+  const b = e.target.closest('.lsn'); if (b) { const l = LAWS[+b.dataset.i]; say(l[3] + '. ' + l[4]); return; }
+  const g = e.target.closest('.gc button'); if (!g) return;
+  const card = g.closest('.law'); const ok = g.dataset.o === REAL[+card.dataset.i];
+  g.classList.add(ok ? 'ok' : 'bad');
+  if (ok) { toast('Correct: ' + LAWS[+card.dataset.i][2]); setTimeout(() => card.classList.remove('hide'), 500); }
+};
+$('tour').oninput = (e) => { if (e.target.type !== 'range') return; e.target.nextElementSibling.textContent = FAIRW(+e.target.value); };
+$('revealAll').onclick = () => document.querySelectorAll('.law.hide').forEach((c) => c.classList.remove('hide'));
+
+// ---------- How much is the fine? (amounts as reported in the news) ----------
+const FINES = [
+  ['Rome, 2019', 'Sitting on the Spanish Steps', ['up to 40 euros', 'up to 400 euros', 'up to 4,000 euros'], 1, 'News reports said fines of 250 to 400 euros.'],
+  ['Finland, 2015', 'A businessman drove too fast (about 103 km/h where the limit was 80)', ['5,400 euros', '54,000 euros', '540 euros'], 1, 'He got a fine of 54,000 euros because his income was very high.'],
+  ['Finland, 2023', 'A millionaire drove 82 km/h where the limit was 50', ['1,210 euros', '12,100 euros', '121,000 euros'], 2, 'News reports said about 121,000 euros.'],
+];
+$('fine').innerHTML = FINES.map(([w, h, o], i) => `<div class="fq" data-i="${i}"><span class="where" style="font-size:12px;font-weight:800;color:var(--accent);text-transform:uppercase;letter-spacing:1px">${w}</span><h3>${h}</h3><div class="opts">${o.map((x, j) => `<button type="button" data-j="${j}">${x}</button>`).join('')}</div><div class="res"></div></div>`).join('');
+$('fine').onclick = (e) => { const b = e.target.closest('.opts button'); if (!b) return; const c = b.closest('.fq'); const f = FINES[+c.dataset.i]; const ok = +b.dataset.j === f[3]; b.classList.add(ok ? 'ok' : 'bad'); if (ok) { c.querySelector('.res').textContent = f[4]; say(f[4]); } };
+
+// ---------- Law or myth game ----------
+const GAME = [
+  ['In Rome, you can get a fine for sitting on the famous Spanish Steps.', true, 'Real! Since 2019, sitting on the Spanish Steps is not allowed. The city wants to protect the old stairs.'],
+  ['In the UK, it is illegal to die in the Houses of Parliament.', false, 'Myth! This is a famous legend, but lawyers have found no such law. It\'s just a funny story.'],
+  ['In Canada, radio stations have to play a certain amount of Canadian music.', true, 'Real! Canadian radio has rules called "CanCon": many stations must play a set share of Canadian songs.'],
+  ['In Switzerland, it is against the law to flush the toilet after 10 pm in a flat.', false, 'Myth! Some buildings have quiet-hour house rules, but there is no Swiss law against flushing.'],
+  ['In Barcelona, walking around the city streets in swimwear can get you a fine.', true, 'Real! Since 2011, the city can fine people in swimwear or without a shirt away from the beach.'],
+  ['In England, it is illegal to eat mince pies on Christmas Day.', false, 'Myth! People often repeat this, but there is no such law today. You are allowed to eat them!'],
+  ['In Denmark, parents usually choose a baby\'s name from an official list, or they have to ask for approval.', true, 'Real! Denmark has a list of approved names. Other names need special permission.'],
+  ['In France, it is illegal to call a pig "Napoleon".', false, 'Myth! There is no French law about pig names. It\'s a popular internet joke.'],
+  ['In Scotland, you are allowed to walk across most land, even private fields, if you are responsible.', true, 'Real! The "right to roam" law from 2003 lets people walk across most land if they respect it.'],
+  ['In Alabama, USA, it is illegal to carry an ice cream cone in your back pocket.', false, 'Myth! It appears on many "crazy laws" lists, but nobody has found the real law.'],
+];
+const GPH = [
+  ['1663143146856-683650ffee76', 'The Spanish Steps in Rome', 'Matteo del Piano'],
+  ['1768420640161-6c3de9dd71b4', 'The Houses of Parliament in London', 'Phillip Brecht'],
+  ['1589903308904-1010c2294adc', 'A radio studio microphone', 'Will Francis'],
+  ['1573137785546-9d19e4f33f87', 'Zurich old town', 'Rico Reutimann'],
+  ['1534001265532-393289eb8ed3', 'The beach promenade in Barcelona', 'Lucrezia Carnelos'],
+  ['1745151773393-a8771ee4802c', 'Mince pies', 'Dan Counsell'],
+  ['1513622470522-26c3c8a854bc', 'Nyhavn in Copenhagen', 'Nick Karvounis'],
+  ['1516467508483-a7212febe31a', 'A pig on a farm', 'Christopher Carson'],
+  ['1609674750700-33895b9b7ce1', 'The Scottish Highlands', 'Zhi Xuan Hew'],
+  ['1497034825429-c343d7c6a68f', 'An ice cream cone', 'ian dooley'],
+];
+let gi = 0, gs = 0; const gres = [];
+function gShow() {
+  const [t] = GAME[gi];
+  $('gStmt').querySelector('span').textContent = t;
+  const [gp, ga, gw] = GPH[gi]; $('gImg').src = U(gp); $('gImg').alt = ga; $('gCr').textContent = `Photo: ${gw} / Unsplash`;
+  $('gNum').textContent = gi + 1; $('gScore').textContent = gs;
+  $('gLaw').disabled = $('gMyth').disabled = false;
+  $('gVerdict').innerHTML = 'Your guess? Say why first.';
+  $('gNext').style.display = 'none';
+  $('gDots').innerHTML = GAME.map((_, i) => `<i class="${gres[i] === true ? 'r' : gres[i] === false ? 'w' : ''}${i === gi ? ' c' : ''}"></i>`).join('');
+}
+function gPick(isLaw) {
+  const [, real, ex] = GAME[gi]; const ok = isLaw === real;
+  gres[gi] = ok; if (ok) gs++;
+  $('gLaw').disabled = $('gMyth').disabled = true;
+  $('gVerdict').innerHTML = `<b class="${ok ? 'r' : 'w'}">${ok ? 'Correct!' : 'Not this time.'}</b> ${ex}`;
+  $('gScore').textContent = gs;
+  $('gNext').style.display = '';
+  $('gNext').textContent = gi === GAME.length - 1 ? 'See result' : 'Next';
+  say(ex);
+  $('gDots').innerHTML = GAME.map((_, i) => `<i class="${gres[i] === true ? 'r' : gres[i] === false ? 'w' : ''}${i === gi ? ' c' : ''}"></i>`).join('');
+}
+$('gLaw').onclick = () => gPick(true);
+$('gMyth').onclick = () => gPick(false);
+$('gNext').onclick = () => {
+  if (gi < GAME.length - 1) { gi++; gShow(); return; }
+  $('gStmt').querySelector('span').innerHTML = `<span class="final" style="color:#F4C0D1">You got ${gs} / 10!</span>`;
+  $('gVerdict').innerHTML = gs >= 8 ? 'Impressive. You can spot internet myths.' : gs >= 5 ? 'Not bad. The internet fooled you a few times.' : 'The internet is tricky. Lesson learned: always check your sources.';
+  $('gNext').style.display = 'none'; $('gLaw').disabled = $('gMyth').disabled = true;
+};
+$('gReset').onclick = () => { gi = 0; gs = 0; gres.length = 0; gShow(); };
+$('gAns').textContent = GAME.map(([t, r], i) => `${i + 1}. ${r ? 'LAW' : 'MYTH'}`).join(' · ');
+gShow();
+
+// ---------- invent your law ----------
+$('iMake').onclick = () => {
+  const p = $('iPlace').value, t = $('iType').value, w = $('iWhat').value.trim() || 'use phones during lunch break', pen = $('iPen').value.trim();
+  const rule = { must: `${p}, everyone must ${w}.`, mustnt: `${p}, nobody is allowed to ${w}.`, allowed: `${p}, everyone is allowed to ${w}.`, banned: `${p}, ${w} is banned.`, dont: `${p}, nobody has to ${w}.` }[t];
+  $('pRule').textContent = rule;
+  $('pPen').textContent = pen ? `Penalty: ${pen}` : 'Penalty: decide what happens if someone breaks it.';
+  say(rule);
+};
+
+// ---------- role-play ----------
+const SCEN = [
+  ['Pigeon selfie', 'Venice. The tourist is feeding pigeons for a cool photo. A city officer comes.'],
+  ['Sunday mower', 'Germany, Sunday morning. The tourist is mowing the garden at a holiday flat. A neighbour or officer comes.'],
+  ['Gum at the border', 'Singapore airport. The tourist has 20 packs of chewing gum in the suitcase. A customs officer checks the bag.'],
+  ['Swimwear in the city', 'Barcelona. The tourist is walking to a café in swimwear. A police officer stops him or her.'],
+  ['No ticket', 'A train in Germany. The tourist has a ticket for the wrong day. The ticket inspector comes.'],
+];
+let sc = 0;
+$('scen').innerHTML = SCEN.map(([h, p], i) => `<div class="sc${i === 0 ? ' on' : ''}" data-i="${i}"><b>${h}</b><p>${p}</p></div>`).join('');
+$('scen').onclick = (e) => { const c = e.target.closest('.sc'); if (!c) return; sc = +c.dataset.i; $('scen').querySelectorAll('.sc').forEach((x) => x.classList.toggle('on', x === c)); };
+let rpI = null;
+$('rpGo').onclick = () => {
+  clearInterval(rpI); let s = 120; $('rpT').textContent = '2:00';
+  rpI = setInterval(() => { s--; $('rpT').textContent = `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`; if (s <= 0) { clearInterval(rpI); toast('Time is up! Swap roles.'); } }, 1000);
+};
+$('rpSwap').onclick = () => toast('Now swap: the tourist is the officer!');
+
+// ---------- Watch & discuss (official channels, checked via YouTube oEmbed) ----------
+const VIDS = [
+  ['teDStmVYtj8', 'Rome Enforces Spanish Steps Sitting Ban, New Tourist Rules', 'Bloomberg News', ['What exactly are tourists not allowed to do on the Spanish Steps?', 'Why does the city think this rule is necessary?', 'Would you follow this rule as a tourist? Is it fair to locals and tourists?']],
+  ['17_RYeghDsM', 'You don\u2019t want to be caught speeding in Finland', 'Morning Brew Daily', ['How does Finland decide how big a speeding fine is?', 'Why do some people think this system is fairer?', 'Should Germany or Ukraine copy this idea? Why or why not?']],
+];
+VIDS.forEach(([id, title, ch, qs]) => {
+  const d = document.createElement('div'); d.className = 'vid';
+  d.innerHTML = `<div class="frame"><button class="play" type="button" style="background-image:url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)"><span>PLAY</span></button></div><div class="info"><h3>${title}</h3><small>YouTube · ${ch}</small><ol>${qs.map((q) => `<li>${q}</li>`).join('')}</ol></div>`;
+  d.querySelector('.play').onclick = (e) => { e.currentTarget.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${title}"></iframe>`; };
+  $('vidList').appendChild(d);
+});
+
+// ---------- homework draft ----------
+try { const k = 'murly:weird-laws-fi:hw'; $('hwText').value = localStorage.getItem(k) || ''; $('hwText').oninput = () => localStorage.setItem(k, $('hwText').value); } catch (e) { }
+
+// ---------- stages + teacher button ----------
+const STAGES = [...document.querySelectorAll('.wrap > section[id]')];
+$('stages').innerHTML = STAGES.map((s) => `<a href="#${s.id}"><b>${s.querySelector('.lk-n').textContent}</b><span>${s.dataset.stage}</span><small>${s.dataset.min ? s.dataset.min + ' min' : 'at home'}</small></a>`).join('');
+$('teacherBtn').onclick = (e) => { const on = document.body.classList.toggle('teacher'); e.currentTarget.textContent = on ? 'Student version' : 'Teacher version'; };
+</script>
+<script>window.MURLY_LESSON={"id": "weird-laws-fi", "title": "Weird Laws Around the World + Life in Finland", "homework": ["s4", "s8"], "hw": {"s1": [{"type": "voice", "instruction": "Answer the questions. Record your voice.", "text": "How long have you lived in Finland? What surprised you first?\nWhat do Finnish people do that Ukrainians usually don't?\nIs there a rule in Finland that you think is strange?"}], "s2": [{"type": "truefalse", "instruction": "Life in Finland. True or False?", "text": "In Finland, a speeding fine can depend on how much money you earn. = True\nYou can pick berries in most forests, even on private land. = True\nWinter tyres are not needed in Finland. = False\nDrivers must keep the headlights on all the time. = True\nThere are about 3 million saunas in Finland. = True\nChildren in Finland start school at 5. = False"}], "s3": [{"type": "voice", "instruction": "Give a new student 6 tips about life in Finland. Record your voice (1 minute).", "text": "Use: must, mustn't, have to, don't have to, be allowed to, Don't be surprised if ..."}], "s4": [{"type": "truefalse", "instruction": "Read the weird laws tour again. True or False?", "text": "In Singapore you can buy medical chewing gum at a pharmacy. = True\nIn Germany it is fine to stop on the Autobahn when you want a break. = False\nIn Switzerland you should not keep only one guinea pig. = True\nFeeding pigeons in St Mark's Square in Venice is allowed. = False\nJapan fines people who have a big waist. = False\nIn France a judge did not allow a baby to be called Nutella. = True\nIn Finland some fines depend on how much money you earn. = True"}], "s5": [{"type": "truefalse", "instruction": "Law or myth? Write True if it is a real law and False if it is a myth.", "text": "In Rome, you can get a fine for sitting on the Spanish Steps. = True\nIn the UK, it is illegal to die in the Houses of Parliament. = False\nIn Canada, radio stations have to play a certain amount of Canadian music. = True\nIn Switzerland, it is against the law to flush the toilet after 10 pm. = False\nIn Barcelona, walking in the city streets in swimwear can get you a fine. = True\nIn France, it is illegal to call a pig Napoleon. = False"}], "s6": [{"type": "voice", "instruction": "Invent your own law. Record your voice (30-60 seconds).", "text": "What is your new law? Where is it?\nWhy is it a good idea?\nWho will be happy and who will be angry?\nWhat is the penalty if someone breaks it?"}], "s7": [{"type": "voice", "instruction": "You are a tourist. You broke a strange rule. Record what you say to the police officer.", "text": "Say sorry and explain that you didn't know the rule.\nAsk if you have to pay a fine.\nAsk for a warning this time."}], "s8": [{"type": "open", "instruction": "Write 5 sentences about rules in Finland and in Ukraine. Use must, mustn't, have to, don't have to, be allowed to, is banned.", "text": "1. In Finland, ...\n2. In Ukraine, ...\n3. In both countries, ...\n4. In Finland, but not in Ukraine, ...\n5. I think the strangest rule is ..."}, {"type": "voice", "instruction": "Mini presentation: 3 strange rules in my city. Make 3 slides and record yourself presenting them (1-2 minutes).", "text": "Rule 1: what is it and why does it exist?\nRule 2: what is it and do you like it?\nRule 3: what is it and would you change it?"}]}};</script>
+<script src="kit.js" defer></script>
+</body>
+</html>
