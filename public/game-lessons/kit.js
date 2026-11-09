@@ -263,10 +263,16 @@
     if (!banner) { banner = document.createElement('div'); banner.className = 'mk-banner'; const w = document.querySelector('.wrap'); (w || document.body).before(banner); }
     const st = student(); const mk = getMark(SID);
     const s = mk && info(mk.sec);
-    banner.innerHTML = `<span>${D && D.students.length ? studentSelect() : ''}</span><span>${s ? T(`Минулого разу${st ? ' з ' + esc(st.name) : ''} зупинилися на завданні ${esc(s.n)} «${esc(s.title)}» (${fmtDate(mk.at)}).`, `В прошлый раз${st ? ' с ' + esc(st.name) : ''} остановились на задании ${esc(s.n)} «${esc(s.title)}» (${fmtDate(mk.at)}).`) : T('Оберіть учня, і урок запам’ятає, де ви зупинилися.', 'Выберите ученика, и урок запомнит, где вы остановились.')}</span>${s ? `<button type="button">${T('Продовжити звідси', 'Продолжить отсюда')}</button>` : ''}${HOME.length ? `<button type="button" data-home style="background:#ffd23f">${T('Задати домашку уроку', 'Задать домашку урока')}</button>` : ''}`;
+    banner.innerHTML = `<span>${D && D.students.length ? studentSelect() : ''}</span><span>${s ? T(`Минулого разу${st ? ' з ' + esc(st.name) : ''} зупинилися на завданні ${esc(s.n)} «${esc(s.title)}» (${fmtDate(mk.at)}).`, `В прошлый раз${st ? ' с ' + esc(st.name) : ''} остановились на задании ${esc(s.n)} «${esc(s.title)}» (${fmtDate(mk.at)}).`) : T('Оберіть учня, і урок запам’ятає, де ви зупинилися.', 'Выберите ученика, и урок запомнит, где вы остановились.')}</span>${s ? `<button type="button">${T('Продовжити звідси', 'Продолжить отсюда')}</button>` : ''}${HOME.length ? `<button type="button" data-home style="background:#ffd23f">${T('Задати домашку уроку', 'Задать домашку урока')}</button>` : ''}<button type="button" data-give style="background:#AFC3F0">${T('Додати урок у кабінет учня', 'Добавить урок в кабинет ученика')}</button>`;
     const sel = banner.querySelector('[data-mk-student]'); if (sel) sel.onchange = () => setStudent(sel.value);
-    const go = banner.querySelector('button:not([data-home])'); if (go && s) go.onclick = () => goTo(s.id);
+    const go = banner.querySelector('button:not([data-home]):not([data-give])'); if (go && s) go.onclick = () => goTo(s.id);
     const hb = banner.querySelector('[data-home]'); if (hb) hb.onclick = () => hwModal('all');
+    const gb = banner.querySelector('[data-give]'); if (gb) gb.onclick = async () => {
+      const st2 = student();
+      if (!st2 || SID === 'local') { toastMk(T('Спочатку оберіть учня зліва.', 'Сначала выберите ученика слева.')); return; }
+      const ok = await api('addNote', { id: uid(), studentId: st2.id, text: T('Урок: ', 'Урок: ') + TITLE, at: new Date().toISOString(), files: [{ url: lessonUrl(''), name: TITLE }] });
+      toastMk(ok ? T(`Готово: урок «${TITLE}» у кабінеті ${st2.name} (Матеріали з уроків) і в історії уроків.`, `Готово: урок «${TITLE}» в кабинете ${st2.name} (Материалы с уроков) и в истории уроков.`) : T('Не вийшло, спробуйте ще раз.', 'Не получилось, попробуйте ещё раз.'));
+    };
   }
   function goTo(id) { const s = info(id); if (!s) return; s.el.scrollIntoView({ behavior: 'smooth', block: 'start' }); s.el.classList.remove('mk-flash'); void s.el.offsetWidth; s.el.classList.add('mk-flash'); }
   let dock = null;
