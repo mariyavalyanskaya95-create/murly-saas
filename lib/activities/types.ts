@@ -49,6 +49,7 @@ export type Slide =
 export type Activity = {
   slug: string;
   title: string; // англійською, як на обкладинці
+  seoTitle?: string; // заголовок для пошуку, якщо назва на обкладинці нічого не каже
   audience: 'kids' | 'teens' | 'adults';
   levels: ('A1' | 'A2' | 'B1' | 'B2' | 'C1')[];
   type: 'speaking' | 'grammar';

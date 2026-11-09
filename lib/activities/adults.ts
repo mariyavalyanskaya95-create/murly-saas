@@ -161,6 +161,7 @@ export const ADULTS: Activity[] = [
   {
     slug: 'small-firsts-passport',
     title: 'The Small Firsts Passport',
+    seoTitle: 'Have you ever...? Розмовна гра на Present Perfect',
     audience: 'adults',
     levels: ['A2', 'B1'],
     type: 'grammar',
