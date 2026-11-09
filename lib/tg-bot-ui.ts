@@ -20,6 +20,7 @@ export const BTN: Record<string, T3> = {
   next: { uk: '📅 Заняття', ru: '📅 Занятия', en: '📅 Lessons' },
   hw: { uk: '📝 Домашка', ru: '📝 Домашка', en: '📝 Homework' },
   coins: { uk: '🪙 Монетки', ru: '🪙 Монетки', en: '🪙 Coins' },
+  words: { uk: '📖 Словник', ru: '📖 Словарь', en: '📖 My words' },
   lang: { uk: '🌐 Мова', ru: '🌐 Язык', en: '🌐 Language' },
 };
 const norm = (s: string) => s.toLowerCase().replace(/[^\p{L}\p{N} ]+/gu, '').replace(/\s+/g, ' ').trim();
@@ -38,7 +39,7 @@ export function replyKeyboard(lang: Lang, o: { teacher?: boolean; canPay?: boole
     rows.push([b('today')]);
   }
   if (o.student) {
-    const r1 = [b('next'), b('hw')];
+    const r1 = [b('next'), b('hw'), b('words')];
     const r2 = [b('stats')];
     if (o.canPay) r2.push(b('pay'));
     if (o.coins) r2.push(b('coins'));

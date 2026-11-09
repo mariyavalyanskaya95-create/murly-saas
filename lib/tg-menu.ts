@@ -38,6 +38,7 @@ export function menuKeyboard(lang: Lang, links: Link[]) {
   const second: { text: string; callback_data: string }[] = [
     { text: t({ uk: 'Заняття', ru: 'Занятия', en: 'Lessons' }), callback_data: 'm:next' },
     { text: t({ uk: 'Домашка', ru: 'Домашка', en: 'Homework' }), callback_data: 'm:hw' },
+    { text: t({ uk: 'Словник', ru: 'Словарь', en: 'Words' }), callback_data: 'm:words' },
   ];
   if (links.some(hasCoins)) second.push({ text: t({ uk: 'Монетки', ru: 'Монетки', en: 'Coins' }), callback_data: 'm:coins' });
   rows.push(second);
@@ -118,6 +119,18 @@ export async function menuAnswer(kind: string, lang: Lang, links: Link[]): Promi
         : t({ uk: 'Монетки з’являться, коли учень увійде у свій кабінет на сайті.', ru: 'Монетки появятся, когда ученик войдёт в свой кабинет на сайте.', en: 'Coins appear once the student signs in to their account on the site.' })));
     }
 
+    if (kind === 'words') {
+      const ws = await db.query(`words?student_id=eq.${sid}&select=en,uk,at&order=at.desc&limit=200`).catch(() => []);
+      const seen = new Set<string>();
+      const list = ws.filter((w) => { const e = String(w.en || '').trim().toLowerCase(); if (!e || seen.has(e)) return false; seen.add(e); return true; });
+      const shown = list.slice(0, 60);
+      parts.push(head(k) + (shown.length
+        ? t({ uk: `Слів у словнику: <b>${list.length}</b>`, ru: `Слов в словаре: <b>${list.length}</b>`, en: `Words: <b>${list.length}</b>` }) + '\n\n'
+          + shown.map((w) => `<b>${esc(String(w.en))}</b>: ${esc(String(w.uk || ''))}`).join('\n')
+          + (list.length > shown.length ? '\n\n' + t({ uk: `Тут останні ${shown.length}. Усі слова й тренування в кабінеті: murly.com.ua/student`, ru: `Здесь последние ${shown.length}. Все слова и тренировки в кабинете: murly.com.ua/student`, en: `Showing the latest ${shown.length}. All words and practice: murly.com.ua/student` }) : '')
+        : t({ uk: 'Словник поки порожній. Слова з уроків з’являться тут.', ru: 'Словарь пока пуст. Слова с уроков появятся здесь.', en: 'No words yet. Words from lessons will appear here.' })));
+    }
+
     if (kind === 'next') {
       const up = await db.query(`lessons?student_id=eq.${sid}&status=eq.planned&start=gte.${enc(new Date().toISOString())}&select=student_id,start,topic&order=start.asc&limit=8`).then((r) => uniqLessons(r).slice(0, 4)).catch(() => []);
       parts.push(head(k) + (up.length
@@ -140,6 +153,7 @@ export async function menuAnswer(kind: string, lang: Lang, links: Link[]): Promi
     pay: t({ uk: 'Оплата', ru: 'Оплата', en: 'Payments' }), stats: t({ uk: 'Успішність', ru: 'Успеваемость', en: 'Progress' }),
     coins: t({ uk: 'Монетки', ru: 'Монетки', en: 'Coins' }), next: t({ uk: 'Найближчі заняття', ru: 'Ближайшие занятия', en: 'Upcoming lessons' }),
     hw: t({ uk: 'Домашка до здачі', ru: 'Домашка к сдаче', en: 'Homework to do' }),
+    words: t({ uk: 'Мій словник', ru: 'Мой словарь', en: 'My words' }),
   }[kind] || '';
   return `<b>${title}</b>\n\n${parts.join('\n\n')}`;
 }
