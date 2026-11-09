@@ -6,8 +6,8 @@ import type { T } from './i18n';
 import { LEGAL } from './legal-config';
 
 export type LegalSection = { title: T; paras: T[] };
-export type LegalDocId = 'offer' | 'privacy' | 'refund';
-export type LegalDoc = { id: LegalDocId; href: string; title: T; description: T; sections: LegalSection[] };
+export type LegalDocId = 'offer' | 'privacy' | 'refund' | 'rules';
+export type LegalDoc = { id: LegalDocId; href: string; title: T; description: T; sections: LegalSection[]; public?: boolean }; // public: не залежить від реквізитів ФОП, відкрита завжди
 
 // Підставляє реквізити замість {fop}, {taxId}, {address}, {email}, {phone}, {provider}
 export function fill(text: string): string {
@@ -633,6 +633,72 @@ const REFUND: LegalSection[] = [
   },
 ];
 
+
+/* ---------------------------------------------------------------- */
+/* г) Правила користування і права на Murly                          */
+/* ---------------------------------------------------------------- */
+const RULES: LegalSection[] = [
+  {
+    title: { uk: 'Про що ці правила', ru: 'О чём эти правила', en: 'What these rules cover' },
+    paras: [
+      { uk: 'Ці правила діють для сайту murly.com.ua, кабінетів учителя й учня, Telegram-бота Murly, ігор, уроків і матеріалів для друку. Користуючись сайтом, ви погоджуєтеся з ними.', ru: 'Эти правила действуют для сайта murly.com.ua, кабинетов учителя и ученика, Telegram-бота Murly, игр, уроков и материалов для печати. Пользуясь сайтом, вы соглашаетесь с ними.', en: 'These rules apply to murly.com.ua, the teacher and student accounts, the Murly Telegram bot, games, lessons and printable materials. By using the site, you agree to them.' },
+      { uk: 'Питання щодо правил і дозволів пишіть на {email}.', ru: 'Вопросы о правилах и разрешениях пишите на {email}.', en: 'Questions about these rules or permissions: {email}.' },
+    ],
+  },
+  {
+    title: { uk: 'Назва Murly і наші знаки', ru: 'Название Murly и наши знаки', en: 'The Murly name and our marks' },
+    paras: [
+      { uk: 'Назва Murly, логотип, котик Murly та інші персонажі сайту є позначеннями нашого проєкту. Вони відрізняють наші уроки, ігри й сервіс від інших.', ru: 'Название Murly, логотип, котик Murly и другие персонажи сайта являются обозначениями нашего проекта. Они отличают наши уроки, игры и сервис от других.', en: 'The Murly name, logo, the Murly cat and the other characters on the site identify our project. They set our lessons, games and service apart from others.' },
+      { uk: 'Без нашого письмового дозволу не можна використовувати назву Murly, схожі на неї назви, логотип чи персонажів для своїх курсів, шкіл, каналів, застосунків, доменів, товарів або реклами, а також видавати себе за Murly чи нашу команду.', ru: 'Без нашего письменного разрешения нельзя использовать название Murly, похожие на него названия, логотип или персонажей для своих курсов, школ, каналов, приложений, доменов, товаров или рекламы, а также выдавать себя за Murly или нашу команду.', en: 'Without our written permission you may not use the Murly name, similar names, the logo or the characters for your own courses, schools, channels, apps, domains, products or ads, or present yourself as Murly or our team.' },
+      { uk: 'Можна згадувати Murly у відгуках, статтях і дописах та ставити посилання на сайт, якщо з тексту зрозуміло, що це не офіційний матеріал Murly.', ru: 'Можно упоминать Murly в отзывах, статьях и постах и ставить ссылки на сайт, если из текста понятно, что это не официальный материал Murly.', en: 'You may mention Murly in reviews, articles and posts and link to the site, as long as it is clear the text is not an official Murly publication.' },
+    ],
+  },
+  {
+    title: { uk: 'Авторські права на матеріали', ru: 'Авторские права на материалы', en: 'Copyright in our materials' },
+    paras: [
+      { uk: 'Тексти, уроки, вправи, тести, пробні НМТ, ілюстрації, іконки, наліпки, аудіо, ігри, дизайн і програмний код Murly захищені авторським правом. За законом України «Про авторське право і суміжні права» право виникає в момент створення твору, окрема реєстрація для цього не потрібна.', ru: 'Тексты, уроки, упражнения, тесты, пробные НМТ, иллюстрации, иконки, наклейки, аудио, игры, дизайн и программный код Murly защищены авторским правом. По закону Украины «Об авторском праве и смежных правах» право возникает в момент создания произведения, отдельная регистрация для этого не нужна.', en: 'Murly texts, lessons, exercises, tests, NMT mocks, illustrations, icons, stickers, audio, games, design and code are protected by copyright. Under Ukrainian copyright law, the right arises when a work is created; no registration is needed.' },
+      { uk: 'Частина фото на сайті взята з Unsplash за їхньою ліцензією з підписом автора, а відео YouTube показані через офіційний програвач. Права на них належать їхнім авторам.', ru: 'Часть фото на сайте взята с Unsplash по их лицензии с подписью автора, а видео YouTube показаны через официальный плеер. Права на них принадлежат их авторам.', en: 'Some photos come from Unsplash under its licence and are credited, and YouTube videos are shown through the official player. Their rights belong to their authors.' },
+    ],
+  },
+  {
+    title: { uk: 'Що можна', ru: 'Что можно', en: 'What you may do' },
+    paras: [
+      { uk: 'Учням і батькам: вчитися на сайті, проходити ігри та тести, друкувати безкоштовні матеріали для себе.', ru: 'Ученикам и родителям: учиться на сайте, проходить игры и тесты, печатать бесплатные материалы для себя.', en: 'Students and parents: learn on the site, play the games and take the tests, print free materials for personal use.' },
+      { uk: 'Учителям: показувати уроки, ігри й матеріали своїм учням на заняттях, зокрема через демонстрацію екрана, давати учням посилання на сторінки Murly і друкувати матеріали для своїх груп.', ru: 'Учителям: показывать уроки, игры и материалы своим ученикам на занятиях, в том числе через демонстрацию экрана, давать ученикам ссылки на страницы Murly и печатать материалы для своих групп.', en: 'Teachers: show lessons, games and materials to your students in class, including by screen sharing, send students links to Murly pages and print materials for your groups.' },
+      { uk: 'Куплені матеріали для друку можна використовувати покупцеві та його учням без обмеження строку.', ru: 'Купленные материалы для печати может использовать покупатель и его ученики без ограничения срока.', en: 'Purchased printables may be used by the buyer and the buyer’s students with no time limit.' },
+    ],
+  },
+  {
+    title: { uk: 'Що не можна', ru: 'Что нельзя', en: 'What you may not do' },
+    paras: [
+      { uk: 'Копіювати уроки, тексти, тести, ілюстрації чи ігри Murly на інші сайти, у канали, курси, посібники або застосунки, повністю чи частинами, без письмового дозволу.', ru: 'Копировать уроки, тексты, тесты, иллюстрации или игры Murly на другие сайты, в каналы, курсы, пособия или приложения, полностью или частями, без письменного разрешения.', en: 'Copy Murly lessons, texts, tests, illustrations or games to other sites, channels, courses, books or apps, in whole or in part, without written permission.' },
+      { uk: 'Продавати, перепродавати або безкоштовно розповсюджувати наші матеріали, зокрема куплені PDF, і видавати їх за свої. Прибирати з них назву Murly чи посилання.', ru: 'Продавать, перепродавать или бесплатно распространять наши материалы, в том числе купленные PDF, и выдавать их за свои. Убирать из них название Murly или ссылки.', en: 'Sell, resell or freely distribute our materials, including purchased PDFs, or pass them off as your own. Remove the Murly name or links from them.' },
+      { uk: 'Масово завантажувати сторінки й матеріали програмами, використовувати їх для навчання моделей штучного інтелекту або створення схожого сервісу.', ru: 'Массово скачивать страницы и материалы программами, использовать их для обучения моделей искусственного интеллекта или создания похожего сервиса.', en: 'Bulk-download pages or materials with software, or use them to train AI models or build a similar service.' },
+      { uk: 'Передавати свій акаунт іншим, обходити оплату чи обмеження сервісу, заважати роботі сайту.', ru: 'Передавать свой аккаунт другим, обходить оплату или ограничения сервиса, мешать работе сайта.', en: 'Share your account, get around payment or service limits, or interfere with how the site works.' },
+    ],
+  },
+  {
+    title: { uk: 'Ваші матеріали', ru: 'Ваши материалы', en: 'Your own content' },
+    paras: [
+      { uk: 'Уроки, файли, нотатки й слова, які вчитель чи учень додає в кабінет, залишаються їхніми. Murly зберігає та показує їх тільки в межах кабінету, щоб сервіс працював.', ru: 'Уроки, файлы, заметки и слова, которые учитель или ученик добавляет в кабинет, остаются их собственными. Murly хранит и показывает их только в пределах кабинета, чтобы сервис работал.', en: 'Lessons, files, notes and words a teacher or student adds to an account remain theirs. Murly stores and shows them only within the account so the service works.' },
+      { uk: 'Не завантажуйте чужі матеріали, на які у вас немає прав. Якщо правовласник поскаржиться, ми можемо прибрати такий файл.', ru: 'Не загружайте чужие материалы, на которые у вас нет прав. Если правообладатель пожалуется, мы можем убрать такой файл.', en: 'Do not upload other people’s materials you have no rights to. If a rights holder complains, we may remove the file.' },
+    ],
+  },
+  {
+    title: { uk: 'Якщо правила порушено', ru: 'Если правила нарушены', en: 'If the rules are broken' },
+    paras: [
+      { uk: 'Ми можемо попередити, обмежити або закрити доступ до акаунта, вимагати прибрати скопійовані матеріали чи назву Murly і звертатися до хостингу, платформ і суду для захисту своїх прав.', ru: 'Мы можем предупредить, ограничить или закрыть доступ к аккаунту, потребовать убрать скопированные материалы или название Murly и обращаться к хостингу, платформам и в суд для защиты своих прав.', en: 'We may warn you, limit or close access to an account, require copied materials or the Murly name to be removed, and contact hosting providers, platforms or the courts to protect our rights.' },
+      { uk: 'Побачили копію наших матеріалів або підробку під Murly? Напишіть на {email} і додайте посилання.', ru: 'Увидели копию наших материалов или подделку под Murly? Напишите на {email} и добавьте ссылку.', en: 'Seen a copy of our materials or something pretending to be Murly? Write to {email} with a link.' },
+    ],
+  },
+  {
+    title: { uk: 'Зміни правил', ru: 'Изменения правил', en: 'Changes to these rules' },
+    paras: [
+      { uk: 'Ми можемо оновлювати ці правила. Дата останньої зміни вказана вгорі сторінки.', ru: 'Мы можем обновлять эти правила. Дата последнего изменения указана вверху страницы.', en: 'We may update these rules. The date of the latest change is shown at the top of the page.' },
+    ],
+  },
+];
+
 export const LEGAL_DOCS: Record<LegalDocId, LegalDoc> = {
   offer: {
     id: 'offer',
@@ -666,5 +732,17 @@ export const LEGAL_DOCS: Record<LegalDocId, LegalDoc> = {
       en: 'When and how you can get a refund for a Murly subscription or digital product.',
     },
     sections: REFUND,
+  },
+  rules: {
+    id: 'rules',
+    href: '/legal/rules',
+    public: true,
+    title: { uk: 'Правила користування і права на Murly', ru: 'Правила пользования и права на Murly', en: 'Terms of use and rights to Murly' },
+    description: {
+      uk: 'Що можна і що не можна робити з назвою Murly, уроками, іграми та матеріалами сайту.',
+      ru: 'Что можно и что нельзя делать с названием Murly, уроками, играми и материалами сайта.',
+      en: 'What you may and may not do with the Murly name, lessons, games and site materials.',
+    },
+    sections: RULES,
   },
 };
