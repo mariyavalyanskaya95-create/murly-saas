@@ -75,9 +75,9 @@ export default function SiteFooter() {
             <LangSwitch className="mu-lang--footer" />
           </div>
         </div>
-        {LEGAL.ready && (
+        {(
           <div className="mu-footer__legal">
-            {Object.values(LEGAL_DOCS).map((d) => (
+            {Object.values(LEGAL_DOCS).filter((d) => LEGAL.ready || d.public).map((d) => (
               <Link key={d.id} href={d.href}>{t(d.title)}</Link>
             ))}
           </div>

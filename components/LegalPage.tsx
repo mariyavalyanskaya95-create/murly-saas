@@ -13,7 +13,7 @@ const fmtDate = (iso: string) => iso.split('-').reverse().join('.');
 export default function LegalPage({ id }: { id: LegalDocId }) {
   const t = tr();
   const doc = LEGAL_DOCS[id];
-  const others = Object.values(LEGAL_DOCS).filter((d) => d.id !== id);
+  const others = Object.values(LEGAL_DOCS).filter((d) => d.id !== id && (LEGAL.ready || d.public));
   return (
     <>
       <SiteNav />
@@ -29,7 +29,7 @@ export default function LegalPage({ id }: { id: LegalDocId }) {
       <section className="mu-section legal">
         <div className="mu-container">
           <div className="legal__wrap">
-            {!LEGAL.ready && (
+            {!LEGAL.ready && !doc.public && (
               <div className="legal__note" role="note">{t(DRAFT_NOTE)}</div>
             )}
 
