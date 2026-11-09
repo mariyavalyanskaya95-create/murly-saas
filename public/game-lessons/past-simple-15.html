@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Past Simple: 15 Key Irregular Verbs | Murly</title>
+<link rel="icon" href="/favicon.svg">
+<meta name="description" content="Interactive English lesson for NMT: Past Simple review, the first 15 irregular verbs step by step and 15 useful NMT words. Flashcards, Verb rush game, story builder and NMT-style test.">
+<link rel="canonical" href="https://murly.com.ua/game-lessons/past-simple-15.html">
+<style>
+:root{--ink:#1d1d2b;--paper:#fffdf6;--gold:#ffd23f;--mint:#33e0d6;--red:#ff5a5f;--green:#7cff4f;--violet:#8e6cff;--blue:#2f80ed;--sky:#8fd3ff}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Trebuchet MS",Verdana,system-ui,sans-serif;color:var(--ink);background:linear-gradient(180deg,#ffcf6b 0,#ffe7a8 420px,#fff6dc 100%);min-height:100vh}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+.hero{padding:34px 18px 10px;text-align:center}
+.hero h1{margin:0;font-size:clamp(32px,5.6vw,58px);letter-spacing:1px;color:#fff;text-shadow:4px 4px 0 var(--ink),-2px -2px 0 var(--ink),2px -2px 0 var(--ink),-2px 2px 0 var(--ink);text-transform:uppercase}
+.hero p{margin:10px 0 0;font-size:19px;font-weight:700}
+.hero .clock{display:inline-flex;gap:8px;margin-top:14px;flex-wrap:wrap;justify-content:center}
+.hero .clock span{background:#fff;border:3px solid var(--ink);padding:4px 12px;font-weight:900;box-shadow:3px 3px 0 var(--ink)}
+.hud{position:sticky;top:0;z-index:20;display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;padding:10px;background:rgba(29,29,43,.94);color:#fff;margin-top:26px;border-bottom:4px solid #000}
+.hud b{font-size:18px}
+.bar{width:min(340px,60vw);height:22px;background:#333;border:3px solid #000;position:relative}
+.bar i{position:absolute;inset:0 auto 0 0;width:0;background:repeating-linear-gradient(90deg,#7cff4f 0 10px,#55d62f 10px 20px);transition:width .4s}
+.hud .lvl{background:var(--green);color:#000;font-weight:900;padding:2px 10px;border:3px solid #000}
+.star{font-weight:900;font-size:18px;color:var(--gold)}
+nav.steps{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:22px 0 4px}
+nav.steps a{background:#fff;border:3px solid var(--ink);padding:6px 11px;font-weight:800;color:var(--ink);text-decoration:none;box-shadow:3px 3px 0 var(--ink);font-size:15px}
+nav.steps a:hover{background:var(--gold)}
+section{margin-top:38px;background:var(--paper);border:4px solid var(--ink);box-shadow:8px 8px 0 rgba(29,29,43,.85);padding:24px}
+section h2{margin:0 0 6px;font-size:28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tag{font-size:14px;font-weight:900;padding:3px 10px;border:3px solid var(--ink);background:var(--gold);text-transform:uppercase;letter-spacing:1px}
+.sub{margin:0 0 16px;font-size:17px;color:#444}
+.btn{font:inherit;font-weight:900;border:3px solid var(--ink);background:var(--green);padding:8px 16px;cursor:pointer;box-shadow:3px 3px 0 var(--ink);text-transform:uppercase;letter-spacing:.5px}
+.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.btn.alt{background:#fff}
+.btn.sm{padding:4px 10px;font-size:13px}
+.lk-ans,.lk-tnote{display:none}
+body.teacher .lk-ans{display:block;margin-top:8px;font-weight:800;color:#0b7a3b;background:#e9ffe0;border-left:5px solid #3ecf4c;padding:6px 10px;font-size:15px}
+body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff4dc;border-left:5px solid #ff9f1c;padding:8px 12px;font-size:15px}
+.lk-n{display:inline-grid;place-items:center;width:42px;height:42px;background:var(--ink);color:#fff;border-radius:50%;font-size:22px;flex:none}
+.lk-mode{font-size:13px;font-weight:800;border:2px dashed var(--ink);padding:2px 10px;border-radius:999px}
+.lk-sub{margin:22px 0 10px;font-size:19px}
+/* warm-up */
+.starters{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.st{border:3px solid var(--ink);background:#fff;padding:12px;font-size:17px;font-weight:700;cursor:pointer}
+.st:nth-child(3n+1){background:#e6fff0}.st:nth-child(3n+2){background:#fff0fb}.st:nth-child(3n){background:#e3f4ff}
+.st small{display:block;color:#666;font-weight:600;font-size:14px;margin-top:4px}
+.st.done{outline:4px solid var(--green)}
+.pool{display:flex;flex-wrap:wrap;gap:8px;min-height:44px;padding:10px;border:3px dashed var(--ink);background:#fff}
+.w{font:inherit;font-weight:900;font-size:16px;border:3px solid var(--ink);background:var(--gold);padding:5px 11px;cursor:pointer}
+.w.sel{background:var(--mint);transform:translateY(-3px)}
+.w.ok{background:var(--green)}.w.bad{background:var(--red);color:#fff;animation:shake .3s}
+.w.gone{visibility:hidden}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+/* grammar map */
+.map{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.mp{border:4px solid var(--ink);padding:14px}
+.mp.p{background:#e6fff0}.mp.n{background:#ffe9e9}.mp.q{background:#e3f4ff}
+.mp h3{margin:0 0 6px;font-size:22px}
+.f{font-family:Consolas,monospace;font-weight:900;font-size:16px;background:#fff;border:3px solid var(--ink);padding:6px 10px;display:inline-block;margin:6px 0}
+.mp ul{margin:6px 0 0;padding-left:20px;font-size:16px;line-height:1.55}
+.trap{margin-top:16px;padding:14px 16px;border:4px solid var(--red);background:#fff;font-size:17px}
+.trap b.big{font-size:22px;color:var(--red)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.chip{border:2px solid var(--ink);background:#fff;padding:2px 9px;font-weight:800;font-size:14px}
+.q{display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding:11px 0;border-bottom:2px dashed #d9d2bf;font-size:18px}
+.q:last-child{border-bottom:0}
+.q .n{width:32px;height:32px;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;font-weight:900}
+.opt{font:inherit;font-size:17px;font-weight:800;border:3px solid var(--ink);background:#fff;padding:4px 12px;cursor:pointer;margin:0 3px}
+.opt.ok{background:var(--green)}.opt.bad{background:var(--red);color:#fff;animation:shake .3s}
+.slot{display:inline-block;min-width:90px;border-bottom:3px solid var(--ink);text-align:center;font-weight:900;color:#2b7a0b}
+.score{font-weight:900;font-size:18px;margin-top:10px}
+/* verb cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px}
+.card{perspective:900px;height:210px;cursor:pointer}
+.card .in{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+.card.flip .in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;border:3px solid var(--ink);background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:10px;text-align:center}
+.face.front b{font-size:30px}
+.face.front small{font-size:14px;color:#666;font-weight:700}
+.face.back{transform:rotateY(180deg);background:#fff5c9;font-size:14px;line-height:1.35}
+.face.back .forms{font-size:18px;font-weight:900}
+.face.back .forms span{color:#b3261e}
+.face.back em{font-size:13px;color:#2b7a0b;font-weight:700}
+.face .tip{font-size:12.5px;color:#5a3d00}
+.face .num{position:absolute;top:6px;left:8px;font-size:12px;font-weight:900;color:#999}
+.lis{font:inherit;font-size:13px;font-weight:900;border:2px solid var(--ink);background:var(--mint);padding:2px 8px;cursor:pointer}
+.table{width:100%;border-collapse:collapse;margin-top:14px;font-size:17px;background:#fff}
+.table th,.table td{border:2px solid var(--ink);padding:6px 10px;text-align:left}
+.table th{background:var(--ink);color:#fff}
+.table td.v2{color:#b3261e;font-weight:900}.table td.v3{color:var(--blue);font-weight:900}
+.match{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:10px}
+.match .col{display:grid;gap:8px}
+.mt{font:inherit;font-size:18px;font-weight:900;border:3px solid var(--ink);background:#fff;padding:8px;cursor:pointer}
+.mt.sel{background:var(--mint)}.mt.ok{background:var(--green);opacity:.55;cursor:default}.mt.bad{background:var(--red);color:#fff;animation:shake .3s}
+.patterns{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-top:14px}
+.pt{border:3px dashed var(--ink);background:#fff;padding:10px;font-size:15px}
+.pt b{font-size:17px}
+/* rush */
+.rush{background:#1d1d2b;color:#fff;border:5px solid #000;padding:18px;text-align:center}
+.rush .v1{font-size:44px;font-weight:900;color:var(--gold);text-shadow:3px 3px 0 #000;margin:6px 0}
+.rush .uk{font-size:16px;color:#bbb}
+.rush .opts{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:12px}
+.rush .opt{font-size:22px;padding:8px 20px;color:var(--ink)}
+.rush .stat{display:flex;gap:18px;justify-content:center;font-weight:900;font-size:18px;flex-wrap:wrap}
+.rush .combo{color:var(--green)}
+.timer{height:14px;background:#333;border:2px solid #000;margin-top:12px}
+.timer i{display:block;height:100%;width:100%;background:linear-gradient(90deg,#ff5a5f,#ffd23f,#7cff4f);transition:width .25s linear}
+.rush .big{font-size:30px;color:var(--gold);font-weight:900}
+/* fix */
+.bug{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;padding:12px 0;border-bottom:2px dashed #d9d2bf;font-size:18px}
+.bug .fix{grid-column:1/-1;font-weight:800;color:#2b7a0b;display:none}
+.bug.done .fix{display:block}
+/* vocab */
+.vgrid .card{height:200px}
+.vgrid .face.front b{font-size:21px}
+.text{font-size:18px;line-height:2.2}
+.text input{font:inherit;font-weight:800;width:150px;border:0;border-bottom:3px solid var(--ink);background:#fffbe6;padding:0 6px;text-align:center}
+.text input.ok{background:#c9ffb3}.text input.bad{background:#ffd0d0}
+.bank{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 12px}
+/* story */
+.story{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.story h4{margin:0 0 8px;font-size:18px}
+.slist{display:grid;gap:8px;min-height:100px;border:3px dashed #c9c2ad;padding:10px;margin:0}
+ol.slist{padding-left:34px;background:#f4ffe9}
+ol.slist li{font-size:16px;padding:6px 0;border-bottom:1px dashed #c9c2ad}
+.sent{font:inherit;font-size:16px;text-align:left;background:#fff;border:3px solid var(--ink);padding:8px 12px;cursor:pointer}
+.sent:hover{background:#fff8d6}
+.sent.bad{background:var(--red);color:#fff;animation:shake .3s}
+/* nmt */
+.nmt{font-size:18px;line-height:2.3;background:#fff;border:3px solid var(--ink);padding:14px 18px}
+.nmt b.g{display:inline-block;min-width:28px;text-align:center;background:var(--ink);color:#fff;padding:0 6px}
+.nq{display:grid;grid-template-columns:40px repeat(4,1fr);gap:6px;align-items:center;margin:6px 0}
+.nq .opt{margin:0;text-align:left}
+.nq .opt.pick{background:var(--mint)}
+.nq .opt.ok{background:var(--green)}.nq .opt.bad{background:var(--red);color:#fff}
+/* talk */
+.talk{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.tk{border:4px solid var(--ink);padding:16px;font-size:18px;font-weight:700;min-height:140px;display:flex;flex-direction:column;justify-content:space-between;gap:10px}
+.tk:nth-child(4n+1){background:#e6fff0}.tk:nth-child(4n+2){background:#fff0fb}.tk:nth-child(4n+3){background:#fff7d6}.tk:nth-child(4n+4){background:#e3f4ff}
+.tk small{font-weight:700;color:#555;font-size:14px}
+.tk.done{outline:4px solid var(--green)}
+details.teacher{margin-top:30px;border:3px dashed #888;background:#fff;padding:12px 16px;font-size:15px}
+details.teacher summary{font-weight:900;cursor:pointer}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(120px);background:var(--ink);color:#fff;font-weight:900;padding:12px 22px;border:4px solid var(--green);transition:transform .3s;z-index:50}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.pxl{position:fixed;width:9px;height:9px;z-index:60;pointer-events:none;animation:px .8s ease-out forwards}
+@keyframes px{to{transform:translate(var(--dx),var(--dy));opacity:0}}
+@media(max-width:760px){.map,.story,.match{grid-template-columns:1fr}.nq{grid-template-columns:30px 1fr 1fr}}
+</style>
+<link rel="stylesheet" href="kit.css">
+</head>
+<body>
+<header class="hero">
+  <h1>Past Simple: 15 Key Verbs</h1>
+  <p>Review Past Simple · learn 15 irregular verbs · 15 NMT words · Level A2</p>
+  <div class="clock"><span>yesterday</span><span>last week</span><span>two days ago</span><span>in 2025</span></div>
+</header>
+
+<div class="hud">
+  <span class="lvl" id="lvl">LEVEL 1</span>
+  <div class="bar"><i id="xpbar"></i></div>
+  <b id="xptext">0 XP</b>
+  <span class="star">&#9733; <span id="stars">0</span></span>
+</div>
+
+<div class="wrap">
+  <nav class="steps">
+    <a href="#s1">1. Warm-up</a>
+    <a href="#s2">2. Grammar map</a>
+    <a href="#s3">3. Verbs 1-5</a>
+    <a href="#s4">4. Verbs 6-10</a>
+    <a href="#s5">5. Verbs 11-15</a>
+    <a href="#s6">6. Verb rush</a>
+    <a href="#s7">7. Fix the mistake</a>
+    <a href="#s8">8. NMT words</a>
+    <a href="#s9">9. Story builder</a>
+    <a href="#s10">10. NMT test</a>
+    <a href="#s11">11. Speaking</a>
+  </nav>
+
+  <section id="s1" data-stage="warm-up" data-min="5">
+    <h2><span class="lk-n">1</span>What did you do? <span class="tag">warm-up</span><span class="lk-mode">speaking</span></h2>
+    <p class="sub">Click a card and finish the sentence about YOU. Speak, do not write.</p>
+    <div class="starters" id="starters"></div>
+    <h3 class="lk-sub">Time detective: click only the PAST time markers</h3>
+    <div class="pool" id="markers"></div>
+    <p class="score" id="markScore"></p>
+    <p class="lk-ans">Past markers: yesterday, last weekend, last year, two days ago, in 2024, an hour ago, last night. Not past: tomorrow, every day, now, next week, usually.</p>
+    <p class="lk-tnote" data-ru="Заметка: не исправляйте каждую ошибку, просто слушайте, какие глаголы Артур уже знает. Запишите 2-3 ошибки (например, «I go to school yesterday») и вернитесь к ним после блока 2. Цель: снять страх, показать, что Past Simple он уже частично знает.">Нотатка: не виправляйте кожну помилку, просто слухайте, які дієслова Артур уже знає. Запишіть 2-3 помилки (наприклад, «I go to school yesterday») і поверніться до них після блоку 2. Мета: зняти страх, показати, що Past Simple він уже частково знає.</p>
+  </section>
+
+  <section id="s2" data-stage="grammar" data-min="7">
+    <h2><span class="lk-n">2</span>Grammar map <span class="tag">rule</span><span class="lk-mode">explain + check</span></h2>
+    <p class="sub">Past Simple = a finished action in the past. One past form only in (+). In (-) and (?) the past is in <b>did</b>.</p>
+    <div class="map">
+      <div class="mp p"><h3>+ Positive</h3><div class="f">I / He / They + V2</div>
+        <ul><li>I <b>played</b> football. (regular: +ed)</li><li>She <b>went</b> home. (irregular: V2)</li><li>We <b>were</b> tired. He <b>was</b> late.</li></ul></div>
+      <div class="mp n"><h3>- Negative</h3><div class="f">didn't + V1</div>
+        <ul><li>I <b>didn't go</b> to school.</li><li>He <b>didn't see</b> me.</li><li>BUT: I <b>wasn't</b> / they <b>weren't</b> (no did with be!)</li></ul></div>
+      <div class="mp q"><h3>? Question</h3><div class="f">Did + subject + V1?</div>
+        <ul><li><b>Did</b> you <b>go</b> out? Yes, I did. / No, I didn't.</li><li>What <b>did</b> you <b>do</b>?</li><li>BUT: <b>Were</b> you at home? <b>Was</b> it fun?</li></ul></div>
+    </div>
+    <div class="trap"><b class="big">TRAP!</b> <b>did</b> already shows the past. The verb goes back to V1.<br>
+      I didn't <s>went</s> <b>go</b>. · Did you <s>saw</s> <b>see</b> it? · She didn't <s>made</s> <b>make</b> it.</div>
+    <div class="chips"><span class="chip">yesterday</span><span class="chip">last night / week / year</span><span class="chip">two days ago</span><span class="chip">in 2023</span><span class="chip">when I was 10</span><span class="chip">at 7 o'clock</span></div>
+    <h3 class="lk-sub">Quick check: choose the right form</h3>
+    <div id="mapQ"></div>
+    <p class="score" id="mapScore"></p>
+    <p class="lk-ans">Answers: 1 went · 2 didn't go · 3 Did · 4 see · 5 was · 6 weren't · 7 did you do · 8 ago</p>
+    <p class="lk-tnote" data-ru="Заметка: попросите Артура самому сказать формулу по каждой колонке. Главная ловушка для НМТ: didn't/Did + V1. Покажите жестом: «did забрал прошлое себе». С to be отдельно: was/were без did. Если ошибся в 2+ вопросах, разберите их сразу.">Нотатка: попросіть Артура самому сказати формулу для кожної колонки. Головна пастка для НМТ: didn't/Did + V1. Покажіть жестом: «did забрав минуле собі». З to be окремо: was/were без did. Якщо помилився у 2+ питаннях, розберіть їх одразу.</p>
+  </section>
+
+  <section id="s3" data-stage="verbs 1-5" data-min="7">
+    <h2><span class="lk-n">3</span>Verbs 1-5 <span class="tag">block 1</span><span class="lk-mode">flip · listen · repeat</span></h2>
+    <p class="sub">Say V1, guess V2 and V3, then click to flip. Press the speaker and repeat 2 times.</p>
+    <div class="grid" id="cards0"></div>
+    <div class="patterns" id="pat0"></div>
+    <h3 class="lk-sub">Quick match: V1 to V2</h3>
+    <div class="match" id="match0"></div>
+    <p class="score" id="mscore0"></p>
+    <p class="lk-ans">be: was/were, been · have: had, had · do: did, done · go: went, gone · get: got, got</p>
+    <p class="lk-tnote" data-ru="Заметка: сначала ученик пытается угадать форму, потом переворачивает карточку. Слушаем и повторяем хором 2 раза: «go, went, gone». После match закройте карточки и спросите в разнобой: «go?», «have?». Попросите одно предложение о вчера с каждым глаголом.">Нотатка: спочатку учень пробує вгадати форму, потім перевертає картку. Слухаємо й повторюємо разом 2 рази: «go, went, gone». Після match закрийте картки і спитайте вроздріб: «go?», «have?». Попросіть одне речення про вчора з кожним дієсловом.</p>
+  </section>
+
+  <section id="s4" data-stage="verbs 6-10" data-min="7">
+    <h2><span class="lk-n">4</span>Verbs 6-10 <span class="tag">block 2</span><span class="lk-mode">flip · listen · repeat</span></h2>
+    <p class="sub">New 5 verbs. First do a fast review: can you say V2 of be, have, do, go, get?</p>
+    <div class="grid" id="cards1"></div>
+    <div class="patterns" id="pat1"></div>
+    <h3 class="lk-sub">Quick match: V1 to V2 (+ 5 old verbs)</h3>
+    <div class="match" id="match1"></div>
+    <p class="score" id="mscore1"></p>
+    <p class="lk-ans">make: made, made · say: said, said · see: saw, seen · come: came, come · take: took, taken</p>
+    <p class="lk-tnote" data-ru="Заметка: обратите внимание на произношение said /sed/ (не «сейд»). come и become: V3 = V1. В match добавлены и глаголы из блока 1, так мы повторяем. Мини-задание вслух: «Yesterday I made..., I saw..., I took...».">Нотатка: зверніть увагу на вимову said /sed/ (не «сейд»). come: V3 = V1. У match додано й дієслова з блоку 1, так ми повторюємо. Міні-завдання вголос: «Yesterday I made..., I saw..., I took...».</p>
+  </section>
+
+  <section id="s5" data-stage="verbs 11-15" data-min="7">
+    <h2><span class="lk-n">5</span>Verbs 11-15 <span class="tag">block 3</span><span class="lk-mode">flip · listen · repeat</span></h2>
+    <p class="sub">The last 5. Then look at the full table of 15 verbs and read it aloud.</p>
+    <div class="grid" id="cards2"></div>
+    <div class="patterns" id="pat2"></div>
+    <h3 class="lk-sub">Quick match: V1 to V2 (mixed 15)</h3>
+    <div class="match" id="match2"></div>
+    <p class="score" id="mscore2"></p>
+    <h3 class="lk-sub">All 15 verbs</h3>
+    <table class="table" id="fullTable"><thead><tr><th>#</th><th>V1</th><th>V2 (Past Simple)</th><th>V3</th><th>Українською</th><th></th></tr></thead><tbody></tbody></table>
+    <p class="lk-ans">know: knew, known · think: thought, thought · give: gave, given · find: found, found · tell: told, told</p>
+    <p class="lk-tnote" data-ru="Заметка: know/knew/known: k не читается. thought: группа -ought (bought, brought позже). После таблицы: ученик закрывает колонки V2/V3 рукой и называет формы по памяти. Цель: 12 из 15 без подсказки.">Нотатка: know/knew/known: k не читається. thought: група -ought (bought, brought пізніше). Після таблиці: учень закриває колонки V2/V3 рукою і називає форми з пам’яті. Мета: 12 з 15 без підказки.</p>
+  </section>
+
+  <section id="s6" data-stage="game" data-min="5">
+    <h2><span class="lk-n">6</span>Verb rush <span class="tag">game</span><span class="lk-mode">60 seconds</span></h2>
+    <p class="sub">See V1, click its Past Simple (V2). Fast and correct answers build a COMBO: x2, x3, x4 points!</p>
+    <div class="rush" id="rush">
+      <div class="stat"><span>Score: <b id="rScore">0</b></span><span class="combo">Combo: x<b id="rCombo">1</b></span><span>Best: <b id="rBest">0</b></span></div>
+      <div class="timer"><i id="rBar"></i></div>
+      <div id="rBody"><p class="big">Ready?</p><p class="uk">15 verbs, 60 seconds. A mistake resets your combo.</p><button class="btn" id="rStart">Start</button></div>
+    </div>
+    <p class="lk-ans">be: was/were · have: had · do: did · go: went · get: got · make: made · say: said · see: saw · come: came · take: took · know: knew · think: thought · give: gave · find: found · tell: told</p>
+    <p class="lk-tnote" data-ru="Заметка: сыграйте 2 раза, второй раз попробуйте побить рекорд. После игры попросите назвать 3 глагола, где он ошибся, и составить с ними предложения. Хороший результат: 150+ очков.">Нотатка: зіграйте 2 рази, вдруге спробуйте побити рекорд. Після гри попросіть назвати 3 дієслова, де він помилився, і скласти з ними речення. Гарний результат: 150+ балів.</p>
+  </section>
+
+  <section id="s7" data-stage="accuracy" data-min="5">
+    <h2><span class="lk-n">7</span>Fix the mistake <span class="tag">NMT trap</span><span class="lk-mode">find + fix</span></h2>
+    <p class="sub">Is the sentence correct? Click OK or MISTAKE. Then say the correct sentence aloud.</p>
+    <div id="bugs"></div>
+    <p class="score" id="bugScore"></p>
+    <p class="lk-ans">Correct: 3, 6, 9. All others have a mistake (see the green line after the answer).</p>
+    <p class="lk-tnote" data-ru="Заметка: после каждого ответа ученик сам произносит правильный вариант. Спросите «почему?»: он должен сказать «після did / didn’t іде V1». Это типичная ловушка НМТ.">Нотатка: після кожної відповіді учень сам вимовляє правильний варіант. Спитайте «чому?»: він має сказати «після did / didn’t іде V1». Це типова пастка НМТ.</p>
+  </section>
+
+  <section id="s8" data-stage="vocabulary" data-min="10">
+    <h2><span class="lk-n">8</span>15 NMT words <span class="tag">vocabulary</span><span class="lk-mode">cards · match · gaps</span></h2>
+    <p class="sub">These words are often in NMT texts. Flip the card, listen, read the example in Past Simple.</p>
+    <div class="grid vgrid" id="vcards"></div>
+    <h3 class="lk-sub">Match: English to Ukrainian</h3>
+    <div class="match" id="vmatch"></div>
+    <p class="score" id="vmScore"></p>
+    <h3 class="lk-sub">Fill the gaps (one word)</h3>
+    <div class="bank" id="vbank"></div>
+    <div class="text" id="vgap"></div>
+    <p><button class="btn" id="vCheck">Check</button> <span class="score" id="vgScore"></span></p>
+    <p class="lk-ans">1 improved · 2 opportunity · 3 decided · 4 challenge · 5 prepared · 6 result · 7 suggested · 8 available · 9 achieved · 10 recently</p>
+    <p class="lk-tnote" data-ru="Заметка: обратите внимание, что глаголы из словаря правильные: achieve-achieved, improve-improved, decide-decided, prepare-prepared, suggest-suggested. Попросите Артура составить 3 своих предложения о прошлом с этими словами. Для НМТ: successful (прилагательное), success (существительное), successfully (наречие).">Нотатка: зверніть увагу, що дієслова зі словника правильні: achieve-achieved, improve-improved, decide-decided, prepare-prepared, suggest-suggested. Попросіть Артура скласти 3 власні речення про минуле з цими словами. Для НМТ: successful (прикметник), success (іменник), successfully (прислівник).</p>
+  </section>
+
+  <section id="s9" data-stage="story" data-min="6">
+    <h2><span class="lk-n">9</span>Story builder: My best day last year <span class="tag">reading</span><span class="lk-mode">put in order</span></h2>
+    <p class="sub">Click the sentences in the right order to build the story. Then read it aloud and change 3 details to make it YOUR story.</p>
+    <div class="story">
+      <div><h4>Pieces</h4><div class="slist" id="sPool"></div></div>
+      <div><h4>My story</h4><ol class="slist" id="sOut"></ol></div>
+    </div>
+    <p class="lk-ans">Order: 1 Last year... important day · 2 In the morning I got up... · 3 My dad gave me... · 4 We went... · 5 There I saw... · 6 I took a photo... · 7 In the evening I told... · 8 I think it was...</p>
+    <p class="lk-tnote" data-ru="Заметка: после сборки ученик подчеркивает голосом все глаголы V2. Потом рассказывает свою версию: «My best day last year was...», минимум 5 предложений с глаголами из урока. Помогайте вопросами: Where did you go? Who did you see?">Нотатка: після збирання учень голосом виділяє всі дієслова V2. Потім розповідає свою версію: «My best day last year was...», щонайменше 5 речень з дієсловами з уроку. Допомагайте питаннями: Where did you go? Who did you see?</p>
+  </section>
+
+  <section id="s10" data-stage="NMT practice" data-min="6">
+    <h2><span class="lk-n">10</span>Mini NMT: Use of English <span class="tag">exam</span><span class="lk-mode">8 gaps · A B C D</span></h2>
+    <p class="sub">Read the text. For each gap choose A, B, C or D. Then press Check.</p>
+    <div class="nmt" id="nmtText"></div>
+    <div id="nmtQ" style="margin-top:14px"></div>
+    <p><button class="btn" id="nCheck">Check</button> <span class="score" id="nScore"></span></p>
+    <p class="lk-ans">Answers: 1 B (had) · 2 A (didn't) · 3 A (challenge) · 4 C (decided) · 5 B (got) · 6 B (improved) · 7 C (Did) · 8 A (successful)</p>
+    <p class="lk-tnote" data-ru="Заметка: формат как в НМТ (заполнение пропусков). Научите стратегию: сначала читаем весь текст, потом смотрим на слова вокруг пропуска (time marker, did, артикль a/an). Пункт 8: перед существительным experience нужно прилагательное.">Нотатка: формат як у НМТ (заповнення пропусків). Навчіть стратегії: спочатку читаємо весь текст, потім дивимося на слова навколо пропуску (маркер часу, did, артикль a/an). Пункт 8: перед іменником experience потрібен прикметник.</p>
+  </section>
+
+  <section id="s11" data-stage="speaking" data-min="6">
+    <h2><span class="lk-n">11</span>Speaking: tell me about it <span class="tag">speaking</span><span class="lk-mode">questions</span></h2>
+    <p class="sub">Answer in 2-3 sentences. Use the 15 verbs and new words. Then ask your teacher the same question.</p>
+    <div class="talk" id="talk"></div>
+    <p class="lk-tnote" data-ru="Заметка: требуйте полный ответ (2-3 предложения), а не только «Yes, I did». Отмечайте на листе, какие из 15 глаголов он использовал сам. В конце: «Сколько глаголов ты использовал?» Хвалите за did + V1 в вопросах.">Нотатка: вимагайте повну відповідь (2-3 речення), а не лише «Yes, I did». Позначайте, які з 15 дієслів він ужив сам. Наприкінці: «Скільки дієслів ти використав?» Хваліть за did + V1 у питаннях.</p>
+  </section>
+
+  <details class="teacher">
+    <summary data-ru="Для учителя: план на 60 минут">Для вчителя: план на 60 хвилин</summary>
+    <p data-ru="Ученик: Артур, 11 класс, готовится к НМТ, уровень около A2, слабое место: неправильные глаголы и Past Simple. Цель урока: повторить Past Simple (+ / - / ?, маркеры времени) и выучить первые 15 неправильных глаголов в 3 мини-блоках по 5, плюс 15 слов для НМТ.">Учень: Артур, 11 клас, готується до НМТ, рівень приблизно A2, слабке місце: неправильні дієслова і Past Simple. Мета уроку: повторити Past Simple (+ / - / ?, маркери часу) і вивчити перші 15 неправильних дієслів у 3 міні-блоках по 5, плюс 15 слів для НМТ.</p>
+    <p data-ru="1. Warm-up (5 мин). 2. Grammar map (7 мин). 3-5. Глаголы по 5 (по 7 мин): карточки, слушаем, повторяем, match; каждый новый блок начинается с повторения предыдущего. 6. Verb rush (5 мин, 2 попытки). 7. Fix the mistake (5 мин). 8. Слова (10 мин). 9. Story builder (6 мин). 10. Mini NMT (6 мин). 11. Speaking (6 мин). Если не успеваете: 9 или 11 перенесите на начало следующего урока.">1. Warm-up (5 хв). 2. Grammar map (7 хв). 3-5. Дієслова по 5 (по 7 хв): картки, слухаємо, повторюємо, match; кожен новий блок починається з повторення попереднього. 6. Verb rush (5 хв, 2 спроби). 7. Fix the mistake (5 хв). 8. Слова (10 хв). 9. Story builder (6 хв). 10. Mini NMT (6 хв). 11. Speaking (6 хв). Якщо не встигаєте: 9 або 11 перенесіть на початок наступного уроку.</p>
+    <p data-ru="Домашка: глаголы (вставить V2), выбор правильной формы, верно/неверно и голосовое сообщение на 1 минуту «My best day last year». На следующем уроке: быстрый Verb rush на 15 глаголов, потом следующие 15.">Домашка: дієслова (вставити V2), вибір правильної форми, правильно/неправильно і голосове повідомлення на 1 хвилину «My best day last year». На наступному уроці: швидкий Verb rush на 15 дієслів, потім наступні 15.</p>
+  </details>
+</div>
+
+<div class="toast" id="toast"></div>
+<script>
+const $ = (id) => document.getElementById(id);
+const shuffle = (a) => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+let lastX = innerWidth / 2, lastY = innerHeight / 2;
+addEventListener('pointerdown', (e) => { lastX = e.clientX; lastY = e.clientY; }, true);
+let AC; function beep(f, d, t) { try { AC = AC || new (window.AudioContext || window.webkitAudioContext)(); const o = AC.createOscillator(), g = AC.createGain(); o.type = t || 'square'; o.frequency.value = f; g.gain.value = .05; o.connect(g); g.connect(AC.destination); o.start(); g.gain.exponentialRampToValueAtTime(.0001, AC.currentTime + d); o.stop(AC.currentTime + d); } catch (e) { } }
+const pop = () => { beep(660, .12); setTimeout(() => beep(880, .12), 90); };
+const fanfare = () => [523, 659, 784, 1046].forEach((f, i) => setTimeout(() => beep(f, .2), i * 120));
+const buzz = () => beep(140, .2, 'sawtooth');
+function burst(n = 14) {
+  const cols = ['#7cff4f', '#ffd23f', '#33e0d6', '#ff5a5f', '#ff8fd8', '#8e6cff'];
+  for (let i = 0; i < n; i++) { const p = document.createElement('i'); p.className = 'pxl'; p.style.left = lastX + 'px'; p.style.top = lastY + 'px'; p.style.background = cols[i % cols.length];
+    const a = Math.random() * Math.PI * 2, r = 50 + Math.random() * 70; p.style.setProperty('--dx', Math.cos(a) * r + 'px'); p.style.setProperty('--dy', Math.sin(a) * r - 30 + 'px'); document.body.appendChild(p); setTimeout(() => p.remove(), 800); }
+}
+const LESSON_ID = 'past-simple-15';
+let xp = 0, stars = 0; const done = new Set();
+function gain(key, n, msg) {
+  if (done.has(key)) return; done.add(key); const before = Math.floor(xp / 100); xp += n; if (n >= 15) stars++;
+  try { if (location.hostname.endsWith('murly.com.ua')) fetch('/api/xp', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ items: [{ key: `game:${LESSON_ID}:${key}`, amount: Math.min(60, n) }], source: 'game' }) }).catch(() => {}); } catch (e) { }
+  const lvl = Math.floor(xp / 100) + 1;
+  burst(); if (lvl - 1 > before) fanfare(); else pop();
+  $('xpbar').style.width = (xp % 100) + '%'; $('xptext').textContent = xp + ' XP'; $('lvl').textContent = 'LEVEL ' + lvl; $('stars').textContent = stars;
+  toast(msg || ('+' + n + ' XP'));
+}
+let tt; function toast(m) { const t = $('toast'); t.textContent = m; t.classList.add('show'); clearTimeout(tt); tt = setTimeout(() => t.classList.remove('show'), 1400); }
+function say(w) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; u.rate = .85; speechSynthesis.speak(u); } catch (e) { } }
+
+// ---------- дані ----------
+// [V1, V2, V3, укр, підказка, приклад]
+const VERBS = [
+  ['be', 'was / were', 'been', 'бути', 'I, he, she, it: was. You, we, they: were.', 'I was at home yesterday. We were tired.'],
+  ['have', 'had', 'had', 'мати; have breakfast: снідати', 'Одна форма для V2 і V3: had.', 'I had pizza for dinner last night.'],
+  ['do', 'did', 'done', 'робити', 'did ще й допоміжне: Did you...? I didn’t...', 'I did my homework two hours ago.'],
+  ['go', 'went', 'gone', 'йти, їхати', 'went зовсім не схоже на go: просто запам’ятай!', 'We went to the cinema last weekend.'],
+  ['get', 'got', 'got', 'отримувати, діставатися, ставати', 'e → o: get → got. get up = вставати.', 'I got a good mark yesterday.'],
+  ['make', 'made', 'made', 'робити, створювати', 'make → made: k зникає, + d.', 'My mum made a cake last Sunday.'],
+  ['say', 'said', 'said', 'казати', 'Читаємо /sed/, не «сейд»!', 'He said "hello" and left.'],
+  ['see', 'saw', 'seen', 'бачити', 'saw (V2), seen (V3): see + n.', 'I saw my friend in the park.'],
+  ['come', 'came', 'come', 'приходити', 'V3 = V1: come, came, come.', 'She came home late last night.'],
+  ['take', 'took', 'taken', 'брати; take a photo: фотографувати', 'take → took (oo), taken = take + n.', 'I took a lot of photos in Lviv.'],
+  ['know', 'knew', 'known', 'знати', 'k не читається: /nəʊ/, /njuː/, /nəʊn/.', 'I knew the answer!'],
+  ['think', 'thought', 'thought', 'думати', 'Родина -ought: think → thought (пізніше bought, brought).', 'I thought the test was easy.'],
+  ['give', 'gave', 'given', 'давати', 'i → a: give → gave, given = give + n.', 'My friend gave me a book.'],
+  ['find', 'found', 'found', 'знаходити', 'V2 = V3: found. find → found (i → ou).', 'I found my keys under the bed.'],
+  ['tell', 'told', 'told', 'розповідати, казати комусь', 'tell → told, як sell → sold. tell somebody!', 'She told me a funny story.'],
+];
+const V2 = (v) => v[1].split(' / ')[0];
+const PATTERNS = [
+  [['V2 = V3', 'have-had-had, get-got-got. Вчиш одне слово, а маєш дві форми!'], ['Просто запам’ятай', 'be: was/were, go: went. Найчастіші й найдивніші.'], ['did = помічник', 'do-did-done. did стоїть у питаннях і запереченнях.']],
+  [['+ d', 'make-made, say-said: схоже на правильні.'], ['V3 = V1', 'come-came-come. Легко!'], ['-en у V3', 'see-seen, take-taken: V3 часто з n.']],
+  [['-ew', 'know-knew (як grow-grew, throw-threw).'], ['-ought', 'think-thought (bought, brought, fought).'], ['V2 = V3', 'find-found-found, tell-told-told.']],
+];
+const VOCAB = [
+  ['to achieve', 'досягати', 'She achieved her goal last year.'],
+  ['to improve', 'покращувати', 'I improved my English last summer.'],
+  ['to decide', 'вирішувати', 'We decided to go to the sea.'],
+  ['to prepare', 'готувати(ся)', 'I prepared for the test yesterday.'],
+  ['to suggest', 'пропонувати, радити', 'My friend suggested a new film.'],
+  ['an opportunity', 'можливість', 'I had an opportunity to visit Kyiv.'],
+  ['an experience', 'досвід, враження', 'The trip was a great experience.'],
+  ['a challenge', 'виклик, складне завдання', 'The exam was a real challenge.'],
+  ['a goal', 'мета, ціль', 'My goal was to get 180 points.'],
+  ['a result', 'результат', 'I got a good result in the test.'],
+  ['a skill', 'навичка, вміння', 'He took a course and got a new skill.'],
+  ['available', 'доступний, вільний', 'The tickets were available online.'],
+  ['important', 'важливий', 'It was an important day for me.'],
+  ['successful', 'успішний', 'The concert was very successful.'],
+  ['recently', 'нещодавно', 'I recently found a good app for English.'],
+];
+
+// ---------- 1 warm-up ----------
+const STARTERS = [
+  ['Yesterday I ...', 'got up at ... / went to ... / had ... for breakfast'],
+  ['Last weekend I went ...', 'to my friend’s house / to the park / nowhere'],
+  ['Last night I saw ...', 'a film / a video / my friends'],
+  ['Two days ago I had ...', 'a test / a good day / a lot of homework'],
+  ['Last week I didn’t ...', 'go out / do my homework / see my friends'],
+  ['Last summer I was ...', 'in ... / at home / very busy'],
+];
+STARTERS.forEach(([t, s], i) => { const d = document.createElement('div'); d.className = 'st'; d.innerHTML = `${t}<small>${s}</small>`; d.onclick = () => { d.classList.add('done'); gain('st' + i, 5, 'Great! +5 XP'); }; $('starters').appendChild(d); });
+const MARK = [['yesterday', 1], ['tomorrow', 0], ['last weekend', 1], ['every day', 0], ['two days ago', 1], ['now', 0], ['last year', 1], ['next week', 0], ['in 2024', 1], ['usually', 0], ['an hour ago', 1], ['last night', 1]];
+let mOk = 0; const mTotal = MARK.filter((m) => m[1]).length;
+shuffle(MARK).forEach(([w, p]) => { const b = document.createElement('button'); b.className = 'w'; b.textContent = w; b.onclick = () => { if (b.classList.contains('ok')) return; if (p) { b.classList.add('ok'); mOk++; $('markScore').textContent = `${mOk} / ${mTotal}`; if (mOk === mTotal) gain('markers', 15, 'Time detective! +15 XP'); } else { b.classList.add('bad'); buzz(); setTimeout(() => b.classList.remove('bad'), 400); } }; $('markers').appendChild(b); });
+
+// ---------- вибір варіантів (спільне) ----------
+function quiz(box, items, scoreEl, key, xpN) {
+  let right = 0, answered = 0;
+  items.forEach(([pre, opts, post], i) => {
+    const q = document.createElement('div'); q.className = 'q';
+    q.innerHTML = `<span class="n">${i + 1}</span><span>${pre} <span class="slot">___</span> ${post}</span><span></span>`;
+    const holder = q.lastChild; let first = true;
+    shuffle(opts.map((o, k) => [o, k === 0])).forEach(([o, ok]) => {
+      const b = document.createElement('button'); b.className = 'opt'; b.textContent = o;
+      b.onclick = () => { if (q.dataset.done) return;
+        if (ok) { b.classList.add('ok'); q.querySelector('.slot').textContent = o; q.dataset.done = 1; answered++; if (first) right++; pop(); scoreEl.textContent = `${right} / ${items.length}`; if (answered === items.length) gain(key, xpN, `${right}/${items.length} first try! +${xpN} XP`); }
+        else { first = false; b.classList.add('bad'); buzz(); setTimeout(() => b.classList.remove('bad'), 400); } };
+      holder.appendChild(b);
+    });
+    box.appendChild(q);
+  });
+}
+quiz($('mapQ'), [
+  ['Last weekend I', ['went', 'go', 'goed'], 'to my grandma.'],
+  ['I', ['didn’t go', 'didn’t went', 'not went'], 'to school yesterday.'],
+  ['', ['Did', 'Do', 'Was'], 'you see the match last night?'],
+  ['Did you', ['see', 'saw', 'seen'], 'my message?'],
+  ['It', ['was', 'were', 'did'], 'a great day.'],
+  ['They', ['weren’t', 'didn’t', 'wasn’t'], 'at home on Sunday.'],
+  ['What', ['did you do', 'you did', 'did you did'], 'yesterday?'],
+  ['I met him two days', ['ago', 'last', 'yesterday'], '.'],
+], $('mapScore'), 'map', 20);
+
+// ---------- 3-5 картки і match ----------
+function makeCard(front, back, speak, n) {
+  const c = document.createElement('div'); c.className = 'card';
+  c.innerHTML = `<div class="in"><div class="face front">${n ? `<span class="num">${n}</span>` : ''}${front}</div><div class="face back">${back}<button class="lis" type="button">&#128264; listen</button></div></div>`;
+  c.onclick = (e) => { if (e.target.classList.contains('lis')) { say(speak); return; } c.classList.toggle('flip'); if (c.classList.contains('flip')) say(speak); };
+  return c;
+}
+let flipped = [0, 0, 0];
+[0, 1, 2].forEach((b) => {
+  VERBS.slice(b * 5, b * 5 + 5).forEach((v, k) => {
+    const i = b * 5 + k;
+    const c = makeCard(`<b>${v[0]}</b><small>${v[3]}</small><small>V2? V3?</small>`, `<div class="forms">${v[0]} · <span>${v[1]}</span> · ${v[2]}</div><div>${v[3]}</div><div class="tip">${v[4]}</div><em>${v[5]}</em>`, `${v[0]}. ${v[1].replace(' / ', ', ')}. ${v[2]}. ${v[5]}`, i + 1);
+    c.addEventListener('click', () => { if (!c.dataset.seen && c.classList.contains('flip')) { c.dataset.seen = 1; flipped[b]++; if (flipped[b] === 5) gain('cards' + b, 10, 'All 5 cards! +10 XP'); } });
+    $('cards' + b).appendChild(c);
+  });
+  PATTERNS[b].forEach(([t, d]) => { const p = document.createElement('div'); p.className = 'pt'; p.innerHTML = `<b>${t}</b><br>${d}`; $('pat' + b).appendChild(p); });
+  const set = b === 0 ? VERBS.slice(0, 5) : b === 1 ? VERBS.slice(5, 10).concat(shuffle(VERBS.slice(0, 5)).slice(0, 2)) : VERBS.slice(10, 15).concat(shuffle(VERBS.slice(0, 10)).slice(0, 3));
+  matchGame($('match' + b), set.map((v) => [v[0], v[1]]), $('mscore' + b), 'match' + b, 20);
+});
+function matchGame(box, pairs, scoreEl, key, xpN) {
+  box.innerHTML = ''; const L = document.createElement('div'), R = document.createElement('div'); L.className = R.className = 'col';
+  let sel = null, okN = 0, miss = 0;
+  shuffle(pairs).forEach(([a]) => { const b = document.createElement('button'); b.className = 'mt'; b.textContent = a; b.dataset.k = a; b.onclick = () => { if (b.classList.contains('ok')) return; L.querySelectorAll('.mt').forEach((x) => x.classList.remove('sel')); b.classList.add('sel'); sel = b; say(a); }; L.appendChild(b); });
+  shuffle(pairs).forEach(([a, z]) => { const b = document.createElement('button'); b.className = 'mt'; b.textContent = z; b.onclick = () => { if (!sel || b.classList.contains('ok')) return;
+    if (sel.dataset.k === a) { sel.classList.remove('sel'); sel.classList.add('ok'); b.classList.add('ok'); sel = null; okN++; pop(); scoreEl.textContent = `${okN} / ${pairs.length}` + (miss ? ` · mistakes: ${miss}` : ''); if (okN === pairs.length) gain(key, xpN, `Matched! +${xpN} XP`); }
+    else { miss++; b.classList.add('bad'); buzz(); setTimeout(() => b.classList.remove('bad'), 400); } }; R.appendChild(b); });
+  box.append(L, R);
+}
+VERBS.forEach((v, i) => { const tr = document.createElement('tr'); tr.innerHTML = `<td>${i + 1}</td><td><b>${v[0]}</b></td><td class="v2">${v[1]}</td><td class="v3">${v[2]}</td><td>${v[3]}</td><td><button class="lis" type="button">&#128264;</button></td>`; tr.querySelector('button').onclick = () => say(`${v[0]}, ${v[1].replace(' / ', ', ')}, ${v[2]}`); $('fullTable').tBodies[0].appendChild(tr); });
+
+// ---------- 6 Verb rush ----------
+const FAKE = { be: ['beed', 'been'], have: ['haved', 'has'], do: ['doed', 'done'], go: ['goed', 'gone'], get: ['getted', 'gotten'], make: ['maked', 'make'], say: ['sayed', 'says'], see: ['seed', 'seen'], come: ['comed', 'come'], take: ['taked', 'taken'], know: ['knowed', 'known'], think: ['thinked', 'thinks'], give: ['gived', 'given'], find: ['finded', 'finds'], tell: ['telled', 'tells'] };
+let R = null, best = 0, rTimer = null;
+$('rStart').onclick = startRush;
+function startRush() {
+  R = { score: 0, combo: 1, streak: 0, left: 60, right: 0, wrong: 0, deck: [], miss: new Set() };
+  $('rScore').textContent = 0; $('rCombo').textContent = 1;
+  clearInterval(rTimer); rTimer = setInterval(() => { if (!R) return; R.left--; $('rBar').style.width = (R.left / 60 * 100) + '%'; if (R.left <= 0) endRush(); }, 1000);
+  $('rBar').style.width = '100%'; nextRush();
+}
+function nextRush() {
+  if (!R.deck.length) R.deck = shuffle(VERBS);
+  const v = R.deck.pop(), right = V2(v);
+  const opts = shuffle([right, ...shuffle(FAKE[v[0]]).slice(0, 1), V2(shuffle(VERBS.filter((x) => x !== v))[0])]);
+  $('rBody').innerHTML = `<div class="v1">${v[0]}</div><div class="uk">${v[3]}</div><div class="opts"></div>`;
+  const box = $('rBody').querySelector('.opts'); const t0 = Date.now();
+  opts.forEach((o) => { const b = document.createElement('button'); b.className = 'opt'; b.textContent = o; b.onclick = () => {
+    if (!R || R.left <= 0) return;
+    if (o === right) { const fast = Date.now() - t0 < 3000; R.streak++; R.combo = Math.min(4, 1 + Math.floor(R.streak / 3)); R.score += 10 * R.combo + (fast ? 2 : 0); R.right++; b.classList.add('ok'); pop(); }
+    else { R.streak = 0; R.combo = 1; R.wrong++; R.miss.add(`${v[0]} → ${right}`); b.classList.add('bad'); buzz(); }
+    $('rScore').textContent = R.score; $('rCombo').textContent = R.combo; setTimeout(() => { if (R) nextRush(); }, o === right ? 250 : 700);
+  }; box.appendChild(b); });
+}
+function endRush() {
+  clearInterval(rTimer); const r = R; R = null; best = Math.max(best, r.score); $('rBest').textContent = best;
+  $('rBody').innerHTML = `<p class="big">TIME! ${r.score} points</p><p class="uk">Correct: ${r.right} · Mistakes: ${r.wrong}${r.miss.size ? '<br>Repeat: ' + [...r.miss].join(', ') : ''}</p><button class="btn" id="rStart">Play again</button>`;
+  $('rStart').onclick = startRush; fanfare();
+  gain('rush', 15, 'Verb rush done! +15 XP'); if (r.score >= 150) gain('rush150', 20, 'Super combo! +20 XP');
+}
+
+// ---------- 7 Fix the mistake ----------
+const BUGS = [
+  ['I didn’t went to school yesterday.', false, 'I didn’t go to school yesterday.'],
+  ['Did you saw the new film?', false, 'Did you see the new film?'],
+  ['We had a great time last weekend.', true, 'Correct!'],
+  ['She goed to the shop an hour ago.', false, 'She went to the shop an hour ago.'],
+  ['He didn’t told me the truth.', false, 'He didn’t tell me the truth.'],
+  ['I found my phone in the car.', true, 'Correct!'],
+  ['They was at home last night.', false, 'They were at home last night.'],
+  ['Did she made a cake?', false, 'Did she make a cake?'],
+  ['I thought it was a good idea.', true, 'Correct!'],
+  ['My friend gived me his notes.', false, 'My friend gave me his notes.'],
+];
+let bRight = 0, bDone = 0;
+BUGS.forEach(([s, ok, fix], i) => {
+  const d = document.createElement('div'); d.className = 'bug';
+  d.innerHTML = `<span><b>${i + 1}.</b> ${s}</span><span><button class="opt" data-v="1">OK</button><button class="opt" data-v="0">MISTAKE</button></span><span class="fix">&#10004; ${fix}</span>`;
+  d.querySelectorAll('.opt').forEach((b) => b.onclick = () => { if (d.classList.contains('done')) return; d.classList.add('done'); bDone++;
+    if ((b.dataset.v === '1') === ok) { b.classList.add('ok'); bRight++; pop(); } else { b.classList.add('bad'); buzz(); }
+    $('bugScore').textContent = `${bRight} / ${BUGS.length}`; if (bDone === BUGS.length) gain('bugs', 20, `Bug hunter: ${bRight}/${BUGS.length}! +20 XP`); });
+  $('bugs').appendChild(d);
+});
+
+// ---------- 8 vocabulary ----------
+let vFlip = 0;
+VOCAB.forEach(([w, uk, ex], i) => { const c = makeCard(`<b>${w}</b><small>click me</small>`, `<div class="forms">${w}</div><div><b>${uk}</b></div><em>${ex}</em>`, `${w}. ${ex}`, i + 1); c.addEventListener('click', () => { if (!c.dataset.seen && c.classList.contains('flip')) { c.dataset.seen = 1; vFlip++; if (vFlip === VOCAB.length) gain('vcards', 15, 'All 15 words! +15 XP'); } }); $('vcards').appendChild(c); });
+matchGame($('vmatch'), shuffle(VOCAB).slice(0, 8).map((v) => [v[0], v[1]]), $('vmScore'), 'vmatch', 20);
+const VG = [
+  ['Last year I ___ my English a lot.', 'improved'],
+  ['I had a great ___ to study in Poland for a month.', 'opportunity'],
+  ['We ___ to go to the mountains last summer.', 'decided'],
+  ['The math test was a real ___ for me.', 'challenge'],
+  ['I ___ for the exam for three weeks.', 'prepared'],
+  ['I got a good ___ in the test: 11 out of 12!', 'result'],
+  ['My teacher ___ a new website for practice.', 'suggested'],
+  ['The new book wasn’t ___ in the shop, so I bought it online.', 'available'],
+  ['She worked hard and ___ her goal.', 'achieved'],
+  ['I ___ watched a great film about space.', 'recently'],
+];
+shuffle(VG.map((x) => x[1])).forEach((w) => { const c = document.createElement('span'); c.className = 'chip'; c.textContent = w; $('vbank').appendChild(c); });
+$('vgap').innerHTML = VG.map(([s], i) => `${i + 1}. ` + s.replace('___', `<input data-i="${i}" autocomplete="off" spellcheck="false">`)).join('<br>');
+$('vCheck').onclick = () => { let ok = 0; $('vgap').querySelectorAll('input').forEach((inp) => { const r = inp.value.trim().toLowerCase() === VG[+inp.dataset.i][1]; inp.classList.toggle('ok', r); inp.classList.toggle('bad', !r); if (r) ok++; }); $('vgScore').textContent = `${ok} / ${VG.length}`; if (ok >= 8) gain('vgap', 20, `Word master: ${ok}/10! +20 XP`); else toast('Check the red ones and try again'); };
+
+// ---------- 9 story ----------
+const STORY = [
+  'Last year I had a really important day: my first football tournament.',
+  'In the morning I got up at 6 o’clock and did some exercises.',
+  'My dad gave me a new pair of boots for good luck.',
+  'We went to the stadium by bus, and my friends came with us.',
+  'There I saw a lot of strong teams, and I thought it was a real challenge.',
+  'In the final I found a great opportunity and scored the winning goal! I took a photo with the cup.',
+  'In the evening I told my grandma about our successful day, and she said she was proud of me.',
+  'I think it was my best day last year because I achieved my goal.',
+];
+let sNext = 0;
+shuffle(STORY.map((s, i) => [s, i])).forEach(([s, i]) => { const b = document.createElement('button'); b.className = 'sent'; b.textContent = s; b.onclick = () => {
+  if (i === sNext) { const li = document.createElement('li'); li.textContent = s; $('sOut').appendChild(li); b.remove(); sNext++; pop(); if (sNext === STORY.length) gain('story', 25, 'Story complete! +25 XP'); }
+  else { b.classList.add('bad'); buzz(); setTimeout(() => b.classList.remove('bad'), 400); } }; $('sPool').appendChild(b); });
+
+// ---------- 10 NMT ----------
+const NMT_TEXT = 'Last year I <b class="g">1</b> a great opportunity: I took part in a youth project in Kyiv. At first, I <b class="g">2</b> know anybody there, and it was a real <b class="g">3</b> for me. But I <b class="g">4</b> to try my best. Every day we <b class="g">5</b> new tasks and worked in teams. In two weeks I <b class="g">6</b> my English and found new friends. <b class="g">7</b> you ever take part in a project like this? For me, it was a very <b class="g">8</b> experience, and I got great results.';
+const NMT = [
+  [['have', 'had', 'has', 'having'], 1], [['didn’t', 'don’t', 'wasn’t', 'not'], 0], [['challenge', 'skill', 'result', 'goal'], 0], [['decide', 'decides', 'decided', 'deciding'], 2],
+  [['get', 'got', 'gets', 'getting'], 1], [['improve', 'improved', 'improves', 'improving'], 1], [['Do', 'Was', 'Did', 'Have'], 2], [['successful', 'success', 'successfully', 'succeed'], 0],
+];
+$('nmtText').innerHTML = NMT_TEXT;
+const nPick = [];
+NMT.forEach(([opts], i) => { const r = document.createElement('div'); r.className = 'nq'; r.innerHTML = `<b>${i + 1}</b>`; opts.forEach((o, k) => { const b = document.createElement('button'); b.className = 'opt'; b.textContent = 'ABCD'[k] + ') ' + o; b.onclick = () => { if (r.dataset.done) return; r.querySelectorAll('.opt').forEach((x) => x.classList.remove('pick')); b.classList.add('pick'); nPick[i] = k; }; r.appendChild(b); }); $('nmtQ').appendChild(r); });
+$('nCheck').onclick = () => { let ok = 0; [...$('nmtQ').children].forEach((r, i) => { const bs = r.querySelectorAll('.opt'); bs.forEach((b) => b.classList.remove('ok', 'bad')); if (nPick[i] === NMT[i][1]) { ok++; bs[NMT[i][1]].classList.add('ok'); } else if (nPick[i] != null) bs[nPick[i]].classList.add('bad'); }); $('nScore').textContent = `${ok} / 8`; if (ok === 8) gain('nmt', 30, 'NMT ready: 8/8! +30 XP'); else if (ok >= 6) gain('nmt6', 15, `${ok}/8, good! Fix the red ones. +15 XP`); else toast(`${ok}/8. Read again and fix the red ones`); };
+
+// ---------- 11 speaking ----------
+const TALK = [
+  ['Did you ever find money or something valuable in the street? What did you do?', 'find, found · do, did'],
+  ['What did you do when you got a bad mark? What did your parents say?', 'get, got · say, said'],
+  ['Where did you go last summer? Who did you go with? Was it a good experience?', 'go, went · be, was'],
+  ['What did you achieve last school year? Was it a challenge?', 'achieve, achieved · be, was'],
+  ['Who told you about the NMT for the first time? What did you think about it?', 'tell, told · think, thought'],
+  ['Did you ever see a famous person? What did you say or do?', 'see, saw · say, said'],
+];
+TALK.forEach(([q, h], i) => { const d = document.createElement('div'); d.className = 'tk'; d.innerHTML = `<span>${q}</span><small>Use: ${h}</small><span><button class="lis" type="button">&#128264; listen</button> <button class="btn sm" type="button">I answered</button></span>`;
+  d.querySelector('.lis').onclick = () => say(q); d.querySelector('.btn').onclick = () => { d.classList.add('done'); gain('talk' + i, 10, 'Well said! +10 XP'); }; $('talk').appendChild(d); });
+</script>
+<script>window.MURLY_LESSON={"id": "past-simple-15", "title": "Past Simple: 15 Key Irregular Verbs", "homework": ["s6", "s10", "s7", "s8", "s11"], "hw": {"s6": [{"type": "gap", "instruction": "Write the Past Simple form (V2) of the verb in brackets.", "text": "Yesterday I [was] (be) at home all day.\nWe [were] (be) very tired after the trip.\nI [had] (have) pizza for dinner last night.\nShe [did] (do) her homework two hours ago.\nWe [went] (go) to the cinema last weekend.\nI [got] (get) a good mark in English yesterday.\nMy mum [made] (make) a cake on Sunday.\nHe [said] (say) goodbye and left.\nI [saw] (see) my friend in the park.\nThey [came] (come) home late last night.\nI [took] (take) a lot of photos in Lviv.\nI [knew] (know) all the answers!\nI [thought] (think) the test was easy.\nMy friend [gave] (give) me his notes.\nI [found] (find) my keys under the bed.\nShe [told] (tell) me a funny story."}], "s10": [{"type": "choice", "instruction": "Choose the correct form.", "text": "Last summer we {went|goed|go} to the sea.\nI {didn't see|didn't saw|not saw} him yesterday.\n{Did|Do|Were} you find your phone?\nShe {told|telled|tell} me about the test.\nI {thought|thinked|think} it was easy, but it wasn't.\nWe {were|was|did} at school on Monday.\nDid he {give|gave|given} you the book?\nI {had|haved|have} an opportunity to travel last year.\nThey {came|comed|come} home at 10 pm.\nMy dad {made|maked|make} breakfast this morning.\nI {improved|improve|improveed} my English last year.\nShe {achieved|achieve|achieveed} her goal.\nIt was a very {successful|success|successfully} day.\nI {recently|recent|recenty} found a good app for English.\nHe didn't {know|knew|known} the answer."}], "s7": [{"type": "truefalse", "instruction": "Is the sentence correct? True = correct, False = there is a mistake.", "text": "I didn't went to school yesterday. = False\nDid you see my message? = True\nShe goed home at 5. = False\nWe had a great time last weekend. = True\nHe didn't told me anything. = False\nThey was at home last night. = False\nI found my phone in the car. = True\nDid she made a cake? = False\nMy friend gave me a present two days ago. = True\nI taked a photo of the sea. = False"}], "s8": [{"type": "gap", "instruction": "Fill in the gap with a word from the lesson: achieved, improved, decided, prepared, suggested, opportunity, experience, challenge, goal, result, skill, available, important, successful, recently.", "text": "Last year I [improved] my English a lot.\nI had a great [opportunity] to visit Kyiv.\nWe [decided] to go to the mountains.\nThe exam was a real [challenge] for me.\nI [prepared] for the test for three weeks.\nI got a good [result] in the test.\nMy teacher [suggested] a new website.\nThe tickets were [available] online.\nShe worked hard and [achieved] her goal.\nThe trip was a great [experience]."}], "s11": [{"type": "voice", "instruction": "Record a 1-minute voice message in the Past Simple. Use at least 8 of the 15 verbs.", "text": "My best day last year: where did you go, what did you do, who did you see?\nWhat did you achieve last school year? Was it a challenge?\nDid you ever find something valuable? What did you do?\nWho told you about the NMT for the first time? What did you think about it?"}]}};</script>
+<script src="kit.js" defer></script>
+</body>
+</html>
