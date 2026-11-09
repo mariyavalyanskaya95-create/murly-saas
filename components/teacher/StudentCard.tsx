@@ -179,7 +179,10 @@ const dayAt = (d: string) => (d && d !== todayIso() ? new Date(`${d}T12:00:00`).
 
 function WordsTab({ id }: { id: string }) {
   const t = useT();
-  const { data, addWord, removeWord, updateWord } = useTeacher();
+  const { data, addWord, removeWord, updateWord, updateStudent } = useTeacher();
+  const st = data.students.find((x) => x.id === id);
+  const trLang: 'uk' | 'ru' = st?.trLang ?? (t.lang === 'ru' ? 'ru' : 'uk');
+  const trName = trLang === 'ru' ? t({ uk: 'Рус', ru: 'Рус', en: 'Rus' }) : t({ uk: 'Укр', ru: 'Укр', en: 'Ukr' });
   const [f, setF] = useState({ en: '', uk: '', example: '' });
   const [wDay, setWDay] = useState(todayIso());
   const [play, setPlay] = useState(false);
@@ -190,7 +193,7 @@ function WordsTab({ id }: { id: string }) {
   useEffect(() => {
     const w = f.en.trim();
     if (w.length < 2) { setSug(null); return; }
-    const to = t.lang === 'ru' ? 'ru' : 'uk';
+    const to = trLang;
     const timer = setTimeout(() => {
       setLoadingSug(true);
       fetch(`/api/dict?w=${encodeURIComponent(w)}&to=${to}`).then((r) => r.json())
@@ -198,7 +201,7 @@ function WordsTab({ id }: { id: string }) {
         .catch(() => setSug(null)).finally(() => setLoadingSug(false));
     }, 600);
     return () => clearTimeout(timer);
-  }, [f.en, t.lang]);
+  }, [f.en, trLang]);
 
   // Додати списком: учитель вставляє слова (по одному в рядку), Murly підбирає переклад і приклад
   type Row = { en: string; uk: string; example: string; options: string[]; examples: string[]; loading: boolean };
@@ -219,7 +222,7 @@ function WordsTab({ id }: { id: string }) {
     setBulkText(todo.map((r) => r.en).join('\n'));
     const init: Row[] = todo.map((r) => ({ en: r.en, uk: '', example: '', options: [], examples: [], loading: true }));
     setRows(init);
-    const to = t.lang === 'ru' ? 'ru' : 'uk';
+    const to = trLang;
     let next = 0;
     const work = async () => {
       while (next < init.length) {
@@ -249,15 +252,19 @@ function WordsTab({ id }: { id: string }) {
   };
 
   const sets = useMemo(() => [
-    { id: 'en', title: t({ uk: 'Англ → Укр', ru: 'Англ → Укр', en: 'Eng → Ukr' }), prompt: t({ uk: 'Як це перекладається?', ru: 'Как это переводится?', en: 'How do you translate this?' }), items: words.map((w) => ({ q: w.en, a: w.uk })) },
-    { id: 'uk', title: t({ uk: 'Укр → Англ', ru: 'Укр → Англ', en: 'Ukr → Eng' }), prompt: t({ uk: 'Як це англійською?', ru: 'Как это по-английски?', en: 'How do you say it in English?' }), items: words.map((w) => ({ q: w.uk, a: w.en })) },
-  ], [words, t]);
+    { id: 'en', title: t({ uk: `Англ → ${trName}`, ru: `Англ → ${trName}`, en: `Eng → ${trName}` }), prompt: t({ uk: 'Як це перекладається?', ru: 'Как это переводится?', en: 'How do you translate this?' }), items: words.map((w) => ({ q: w.en, a: w.uk })) },
+    { id: 'uk', title: t({ uk: `${trName} → Англ`, ru: `${trName} → Англ`, en: `${trName} → Eng` }), prompt: t({ uk: 'Як це англійською?', ru: 'Как это по-английски?', en: 'How do you say it in English?' }), items: words.map((w) => ({ q: w.uk, a: w.en })) },
+  ], [words, t, trName]);
 
   return (
     <>
       <div className="t-card">
         <div className="t-card__head">
           <h2>{t({ uk: 'Додати слова і фрази', ru: 'Добавить слова и фразы', en: 'Add words and phrases' })}</h2>
+          <span className="g-chips" role="group" aria-label={t({ uk: 'Мова перекладу', ru: 'Язык перевода', en: 'Translation language' })} style={{ margin: 0 }}>
+            <small className="t-muted">{t({ uk: 'Переклад:', ru: 'Перевод:', en: 'Translation:' })}</small>
+            {(['uk', 'ru'] as const).map((l) => <button key={l} type="button" className={`g-chip ${trLang === l ? 'is-on' : ''}`} onClick={() => updateStudent(id, { trLang: l })}>{l === 'uk' ? 'УКР' : 'РУС'}</button>)}
+          </span>
           <button type="button" className="mu-btn t-btn-sm" onClick={() => setBulkOpen(!bulkOpen)}>{bulkOpen ? t({ uk: 'Одне слово з підказками', ru: 'Одно слово с подсказками', en: 'One word with hints' }) : t({ uk: 'Списком', ru: 'Списком', en: 'As a list' })}</button>
         </div>
         {bulkOpen && (

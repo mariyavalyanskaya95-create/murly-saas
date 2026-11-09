@@ -24,7 +24,8 @@ export const splitWordLine = (raw: string): { en: string; uk: string; example?: 
 
 export default function QuickWords({ studentId, name }: { studentId: string; name: string }) {
   const t = useT();
-  const { addWord } = useTeacher();
+  const { addWord, data } = useTeacher();
+  const trLang = data.students.find((x) => x.id === studentId)?.trLang ?? (t.lang === 'ru' ? 'ru' : 'uk');
   const [open, setOpen] = useState(false);
   const [text, setText] = useState('');
   const [busy, setBusy] = useState(false);
@@ -48,7 +49,7 @@ export default function QuickWords({ studentId, name }: { studentId: string; nam
     for (const r of parsed) {
       if (r.uk) { addWord(studentId, { en: r.en, uk: r.uk, example: r.example, at }); n++; continue; }
       try {
-        const to = t.lang === 'ru' ? 'ru' : 'uk';
+        const to = trLang;
         const d = await fetch(`/api/dict?w=${encodeURIComponent(r.en)}&to=${to}`).then((x) => x.json());
         const tr = (d.translations ?? [])[0];
         if (tr) { addWord(studentId, { en: r.en, uk: tr, example: d.examples?.[0]?.en || undefined, at }); n++; } else missed.push(r.en);
