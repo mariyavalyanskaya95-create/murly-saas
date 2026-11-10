@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IN / AT / ON for places + Work talk (B1) | Murly</title>
+<link rel="icon" href="/favicon.svg">
+<meta name="description" content="Interactive B1 English lesson: in / at / on for position, a reading about working anywhere and a discussion about work.">
+<link rel="canonical" href="https://murly.com.ua/game-lessons/in-at-on-work.html">
+<style>
+:root{--paper:#F3F0EA;--ink:#17181C;--violet:#3D4A7A;--lav:#D9D3C7;--pink:#E9C9BC;--green:#D4E2CF;--white:#fff;--muted:#62646B;--accent:#B5482F}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+/* hero */
+.hero{background:linear-gradient(rgba(16,17,22,.62),rgba(16,17,22,.78)),#2E3A63;color:#fff;padding:70px 18px 56px;text-align:center;position:relative;overflow:hidden}
+.hero .kicker{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#E9C9BC;font-weight:700}
+.hero .cr{position:absolute;right:12px;bottom:8px;font-size:11px;color:rgba(255,255,255,.6)}
+.hero h1{margin:8px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(36px,6vw,64px);letter-spacing:-.5px;font-weight:700}
+.hero h1 span{color:var(--pink);font-style:italic}
+.hero p{margin:12px 0 0;font-size:17px;color:#e6e2da}
+.hero .flags{display:flex;justify-content:center;gap:12px;margin-top:22px;flex-wrap:wrap}
+.hero .flags svg{width:40px;height:26px;border-radius:3px;opacity:.9}
+/* sections */
+section{margin-top:30px;background:var(--white);border-radius:18px;padding:28px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.05)}
+section h2{margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tag{font-family:"Segoe UI",system-ui,sans-serif;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--paper);color:var(--accent);text-transform:uppercase;letter-spacing:1px}
+.lk-n{display:inline-grid;place-items:center;width:42px;height:42px;background:var(--violet);color:#fff;border-radius:50%;font-size:21px;flex:none}
+.lk-mode{font-size:13px;font-weight:700;border:2px dashed var(--lav);color:var(--muted);padding:2px 10px;border-radius:999px}
+.lk-ins{font-size:17px;background:var(--paper);border-radius:12px;padding:10px 14px;margin:6px 0 18px}
+.lk-sub{margin:24px 0 10px;font-size:19px}
+.btn{font:inherit;font-weight:700;border:0;border-radius:999px;background:var(--ink);color:#fff;padding:10px 20px;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+.btn.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+/* teacher */
+.lk-tbtn{position:fixed;right:16px;top:70px;z-index:45;font:inherit;font-weight:800;border:2px solid var(--ink);background:var(--pink);padding:8px 14px;border-radius:12px;cursor:pointer}
+body.teacher .lk-tbtn{background:var(--green)}
+.lk-ans,.lk-tnote{display:none}
+body.teacher .lk-ans{display:block;margin-top:8px;font-weight:700;color:#1d5a12;background:var(--green);border-left:5px solid #5aa845;padding:6px 10px;font-size:15px;border-radius:6px}
+body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff3f7;border-left:5px solid #d9789a;padding:8px 12px;font-size:15px;border-radius:6px}
+/* overview */
+.lk-overview ul{font-size:17px;line-height:1.7;margin:6px 0 16px}
+.lk-stages{display:flex;flex-wrap:wrap;gap:8px}
+.lk-stages a{display:grid;border-radius:14px;padding:8px 12px;text-decoration:none;color:var(--ink);background:var(--paper);font-weight:700;min-width:100px}
+.lk-stages a span{text-transform:capitalize}
+.lk-stages a b{font-size:20px;color:var(--violet)}
+.lk-stages a small{font-weight:600;color:var(--muted)}
+/* warm-up */
+.taxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tax{background:var(--paper);border-radius:18px;padding:16px;display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center}
+.tax svg{width:56px;height:56px}
+.tax b{display:block;font-size:17px}
+.tax small{color:var(--muted);font-size:14px}
+.qs{display:grid;gap:10px;margin-top:18px}
+.qs div{background:var(--green);border-radius:14px;padding:10px 16px;font-size:18px;font-weight:600}
+.phr{background:#fff7e8;border-radius:14px;padding:12px 16px;margin-top:16px;font-size:15px}
+.phr ul{margin:6px 0 0;padding-left:18px}
+.fic{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:16px}
+.fic .c{background:#fff;border:2px solid #1B2140;border-radius:16px;padding:14px 16px;box-shadow:3px 3px 0 #1B2140}
+.fic .c b{display:block;font-size:18px;line-height:1.35;margin-bottom:8px}
+.fic .c .k{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.fic .c .k span{font-size:13px;background:#eef1fb;border-radius:999px;padding:3px 10px}
+.fic .c details{margin-top:8px;font-size:15px;color:#3b4160}
+.fic .c summary{cursor:pointer;font-weight:700;color:#534AB7}
+.fi-n{display:inline-flex;width:28px;height:28px;border-radius:50%;background:#2F4BA0;color:#fff;align-items:center;justify-content:center;font-size:14px;margin-right:6px}
+/* vocab */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:12px}
+.vc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:2px solid transparent;transition:border-color .2s,transform .2s}
+.vc:hover{border-color:var(--violet);transform:translateY(-2px)}
+.vc b{font-size:18px;display:flex;align-items:center;gap:8px}
+.vc b svg{width:20px;height:20px;flex:none;color:var(--violet)}
+.vc p{margin:6px 0 0;font-size:14px;color:var(--muted)}
+.vc em{display:block;margin-top:6px;font-size:14px;color:var(--violet);font-style:normal;font-weight:600}
+.vc.played{background:#e6ecfb}
+/* grammar */
+.gram{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.gb{border-radius:18px;padding:16px}
+.gb h3{margin:0 0 6px;font-size:19px}
+.gb .f{display:inline-block;background:#fff;border-radius:8px;padding:3px 10px;font-weight:800;margin:4px 0;font-family:Consolas,monospace;font-size:15px}
+.gb p{margin:6px 0 0;font-size:15px}
+.g1{background:var(--pink)}.g2{background:var(--lav)}.g3{background:var(--green)}.g4{background:#fbe7c6}
+.warn{margin-top:14px;background:var(--ink);color:#fff;border-radius:14px;padding:12px 16px;font-size:16px}
+.warn b{color:var(--pink)}
+.q{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:2px dashed var(--paper);font-size:18px}
+.q:last-child{border-bottom:0}
+.q .n{width:32px;height:32px;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;border-radius:50%;font-weight:800;font-size:15px}
+.opt{font:inherit;font-size:16px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:10px;padding:4px 12px;cursor:pointer;margin:0 2px}
+.opt.ok{background:var(--green);border-color:#5aa845}
+.opt.bad{background:var(--pink);animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+/* tour */
+.tour{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.law{border-radius:22px;overflow:hidden;background:var(--paper);display:flex;flex-direction:column}
+.law .pic{height:150px;display:grid;place-items:center;position:relative}
+.law .pic svg.ill{width:130px;height:130px}
+.law .pic svg.fl{position:absolute;left:14px;top:14px;width:46px;height:30px;border-radius:5px;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.law .pic .no{position:absolute;right:14px;top:14px;background:var(--ink);color:#fff;font-weight:800;border-radius:999px;padding:2px 10px;font-size:13px}
+.law .body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.law h3{margin:0;font-size:20px}
+.law .where{font-size:13px;font-weight:800;color:var(--violet);text-transform:uppercase;letter-spacing:1px}
+.law p{margin:0;font-size:16px}
+.law .why{font-size:14px;color:var(--muted)}
+.law .dq{margin-top:auto;background:#fff;border-radius:12px;padding:8px 12px;font-weight:700;font-size:15px}
+.law .lsn{font:inherit;font-size:13px;font-weight:700;background:none;border:0;color:var(--violet);cursor:pointer;padding:0;text-align:left}
+/* game */
+.game{max-width:720px;margin:0 auto;text-align:center}
+.score{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.score span{background:var(--paper);border-radius:999px;padding:6px 16px;font-weight:800}
+.stmt{background:var(--ink);color:#fff;border-radius:22px;padding:28px 24px;min-height:150px;display:grid;place-items:center;font-size:23px;font-weight:700;position:relative}
+.stmt small{position:absolute;top:12px;left:18px;font-size:13px;color:var(--lav);font-weight:700}
+.choose{display:flex;justify-content:center;gap:14px;margin:18px 0}
+.choose button{font:inherit;font-size:18px;font-weight:700;border:2px solid var(--ink);border-radius:999px;padding:12px 28px;cursor:pointer}
+.choose .bl{background:var(--green)}.choose .bm{background:var(--pink)}
+.choose button:disabled{opacity:.5;cursor:default}
+.verdict{min-height:70px;font-size:17px;background:var(--paper);border-radius:16px;padding:12px 16px;text-align:left}
+.verdict b.r{color:#2d7a1d}.verdict b.w{color:#b23a62}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.dots i{width:14px;height:14px;border-radius:50%;background:var(--paper)}
+.dots i.r{background:#7cc663}.dots i.w{background:#e47b9f}.dots i.c{outline:3px solid var(--violet)}
+.final{font-size:22px;font-weight:800;color:var(--violet)}
+/* invent */
+.inv{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.frames{display:grid;gap:10px}
+.frames label{font-size:14px;font-weight:700;color:var(--muted)}
+.frames select,.frames input{font:inherit;width:100%;padding:8px 10px;border:2px solid var(--lav);border-radius:10px;background:#fff}
+.poster{background:var(--paper);border:3px solid var(--ink);border-radius:20px;padding:22px;text-align:center;min-height:260px;display:flex;flex-direction:column;gap:10px;justify-content:center}
+.poster .seal{width:70px;height:70px;margin:0 auto}
+.poster h3{margin:0;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--violet)}
+.poster .rule{font-size:22px;font-weight:800}
+.poster .pen{font-size:16px;color:var(--muted)}
+.ideas{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ideas span{background:var(--pink);border-radius:999px;padding:5px 12px;font-size:14px;font-weight:600}
+/* roleplay */
+.rp{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.role{border-radius:20px;padding:18px}
+.role h3{margin:0 0 6px;display:flex;align-items:center;gap:10px}
+.role h3 svg{width:42px;height:42px}
+.role ul{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.r1{background:var(--lav)}.r2{background:var(--green)}
+.scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:16px}
+.sc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:3px solid transparent}
+.sc.on{border-color:var(--violet);background:#fff}
+.sc b{display:block;font-size:17px;margin-bottom:4px}
+.sc p{margin:0;font-size:15px}
+.timer{font-size:40px;font-weight:800;text-align:center;margin:14px 0 6px;color:var(--violet)}
+.ctr{text-align:center}
+/* homework */
+.hwb{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hwc{background:var(--paper);border-radius:18px;padding:18px}
+.hwc h3{margin:0 0 8px}
+.hwc ol,.hwc ul{margin:6px 0 0;padding-left:20px;line-height:1.7}
+.hwc textarea{width:100%;min-height:150px;font:inherit;border:2px solid var(--lav);border-radius:12px;padding:10px;margin-top:10px}
+.end{text-align:center;background:var(--ink);color:#fff;box-shadow:none}
+.end h2{justify-content:center}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(140px);background:var(--ink);color:#fff;font-weight:800;padding:12px 22px;border-radius:14px;transition:transform .3s;z-index:50}
+.toast.show{transform:translateX(-50%) translateY(0)}
+/* photos */
+.ph{margin:0}
+.ph img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;background:var(--paper)}
+.ph figcaption{font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.2px}
+.tax{grid-template-columns:1fr !important;padding:12px !important}
+.law .pic{height:auto !important;display:block !important;padding:0;position:relative}
+.law .pic .ph img{border-radius:0;aspect-ratio:16/10;transition:filter .5s}
+.law .pic .ph figcaption{padding:4px 12px 0}
+.law.hide .pic .ph img{filter:blur(10px) grayscale(.6)}
+.law.hide .reveal-body,.law.hide .fl,.law.hide .where{visibility:hidden}
+.law .clue{font-size:15px;font-style:italic;color:var(--ink)}
+.law .gc{display:flex;flex-wrap:wrap;gap:6px}
+.law .gc button{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:4px 12px;cursor:pointer}
+.law .gc button.ok{background:var(--green)}.law .gc button.bad{background:var(--pink)}
+.law:not(.hide) .guess{display:none}
+.fair{display:grid;gap:4px;background:#fff;border-radius:12px;padding:8px 12px}
+.fair .ends{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.fair input{width:100%;accent-color:var(--accent)}
+.fair output{font-size:14px;font-weight:700;color:var(--accent)}
+.gph{max-width:720px;margin:0 auto 12px}
+.gph img{aspect-ratio:21/9}
+.fine{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.fq{background:var(--paper);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.fq h3{margin:0;font-size:18px}
+.fq .opts{display:flex;flex-wrap:wrap;gap:6px}
+.fq .opts button{font:inherit;font-size:14px;font-weight:700;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 12px;cursor:pointer}
+.fq .opts button.ok{background:var(--green)}.fq .opts button.bad{background:var(--pink)}
+.fq .res{font-size:15px;min-height:22px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{position:relative;aspect-ratio:16/9;background:#111}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;cursor:pointer;background:#111 center/cover;display:grid;place-items:center}
+.vid .play span{background:rgba(0,0,0,.7);color:#fff;font-weight:700;border-radius:999px;padding:10px 20px;font-size:15px;letter-spacing:1px}
+.vid .info{padding:14px 16px}
+.vid .info h3{margin:0 0 2px;font-size:18px}
+.vid .info small{color:var(--muted)}
+.vid .info ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+@media(max-width:760px){.inv,.rp,.hwb{grid-template-columns:1fr}.lk-tbtn{top:auto;bottom:70px}}
+
+.pr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.pb{border-radius:18px;padding:16px 18px}
+.pb h3{margin:0;font-family:Georgia,serif;font-size:30px}
+.pb .m{font-size:15px;color:var(--muted);margin:2px 0 8px}
+.pb .chips{display:flex;flex-wrap:wrap;gap:6px}
+.pb .chips span{background:#fff;border-radius:999px;padding:4px 11px;font-size:14px;font-weight:600}
+.pb ul{margin:10px 0 0;padding-left:18px;font-size:15px}
+.p-in{background:#DCE6F5}.p-at{background:#F3D9CF}.p-on{background:#D4E2CF}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-size:15px;margin-top:10px}
+.ex div{background:var(--paper);border-radius:10px;padding:8px 12px}
+.ex b{color:var(--accent)}
+.q{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.q .n{font-weight:800;color:var(--violet);min-width:24px}
+.q .gap{display:inline-block;min-width:44px;border-bottom:2px solid var(--ink);text-align:center;font-weight:800}
+.q .opts{margin-left:auto;display:flex;gap:6px}
+.q .opts button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 14px;cursor:pointer}
+.q.ok{background:#DDEED7}.q.ok .gap{color:#2F7A3B}
+.q.bad{background:#F6DAD3}
+.score{font-weight:800;margin-top:12px}
+.text{font-size:18px;line-height:1.75;background:var(--paper);border-radius:16px;padding:18px 22px}
+.text h3{margin:0 0 6px;font-family:Georgia,serif;font-size:24px}
+.text p{margin:0 0 12px}
+.text.hl mark{background:#F3D9CF;border-radius:4px;padding:0 3px;font-weight:700}
+.tf{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:9px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.tf .opts{margin-left:auto;display:flex;gap:6px}
+.tf button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.tf.ok{background:#DDEED7}.tf.bad{background:#F6DAD3}
+.disc{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px;margin-top:6px}
+.disc div{background:var(--green);border-radius:14px;padding:12px 16px;font-size:17px;font-weight:600}
+.disc div i{font-style:normal;color:var(--violet);margin-right:6px}
+.spin{text-align:center;margin-top:16px}
+.spin .card{display:inline-block;min-height:80px;min-width:min(560px,100%);background:var(--ink);color:#fff;border-radius:18px;padding:20px 24px;font-size:22px;font-weight:700;margin-bottom:12px}
+@media(max-width:700px){.ex{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="kit.css">
+</head>
+<body>
+<header class="hero">
+  <div class="kicker">Murphy Blue · Unit 123 · B1</div>
+  <h1>In, <span>at</span>, on + work talk</h1>
+  <p>Prepositions of position · a reading about working anywhere · a discussion about work · 60 min</p>
+</header>
+
+<button class="lk-tbtn" id="teacherBtn" type="button">Teacher version</button>
+
+<div class="wrap">
+  <section class="lk-overview">
+    <h2>In this lesson you will:</h2>
+    <ul>
+      <li>Talk about where and how you work.</li>
+      <li>Learn when to use <b>in</b>, <b>at</b> and <b>on</b> for position.</li>
+      <li>Practise with 20 quick sentences.</li>
+      <li>Translate 16 sentences and a short text from Russian into English, with no hints.</li>
+      <li>Read a short story about a person who works "anywhere" and answer questions.</li>
+      <li>Discuss work: office or home, a perfect working day, your dream job.</li>
+      <li>Describe your workplace using in / at / on.</li>
+    </ul>
+    <div class="lk-stages" id="stages"></div>
+  </section>
+
+  <section id="s1" data-stage="warm-up" data-min="5">
+    <h2><span class="lk-n">1</span>Where do you work? <span class="tag">warm-up</span><span class="lk-mode">teacher + student</span></h2>
+    <p class="lk-ins">Answer the questions. Listen to the little words before the places: <b>in</b>, <b>at</b> or <b>on</b>?</p>
+    <div class="qs">
+      <div>1. Where are you right now: at home, at work or somewhere else?</div>
+      <div>2. Where do you usually work or study: in an office, at home, in a café?</div>
+      <div>3. What is on your desk right now?</div>
+      <div>4. Do you ever work on a train, on a bus or on a plane?</div>
+    </div>
+    <p class="lk-tnote" data-ru="Заметка: 4-5 минут. Не исправляйте сразу: запишите 2-3 ошибки с in / at / on и вернитесь к ним после правила. Перевод: at home = дома · at work = на работе · in an office = в офисе · on a train = в поезде (именно on!).">Нотатка: 4-5 хвилин. Не виправляйте одразу: запишіть 2-3 помилки з in / at / on і поверніться до них після правила. Переклад: at home = вдома · at work = на роботі · in an office = в офісі · on a train = в поїзді (саме on!).</p>
+  </section>
+  <section id="s2" data-stage="grammar" data-min="12">
+    <h2><span class="lk-n">2</span>In, at or on? <span class="tag">grammar</span><span class="lk-mode">teacher + student</span></h2>
+    <p class="lk-ins">All three can be "в / на" in Ukrainian. Think: is the thing <b>around</b> you, is it a <b>point</b>, or is it a <b>surface</b> or a <b>line</b>?</p>
+    <div class="pr">
+      <div class="pb p-in"><h3>IN</h3><div class="m">inside, surrounded: walls, borders, water</div>
+        <div class="chips"><span>in a room</span><span>in an office</span><span>in a car</span><span>in the garden</span><span>in a queue</span><span>in Kyiv</span><span>in the sea</span><span>in a photo</span><span>in a newspaper</span></div>
+        <ul><li>My laptop is <b>in</b> my bag.</li><li>She lives <b>in</b> a flat <b>in</b> the city centre.</li></ul></div>
+      <div class="pb p-at"><h3>AT</h3><div class="m">a point: where something happens or where you stop</div>
+        <div class="chips"><span>at the door</span><span>at the bus stop</span><span>at reception</span><span>at the traffic lights</span><span>at my desk</span><span>at the top / bottom</span><span>at the end of the street</span><span>at a meeting</span></div>
+        <ul><li>Wait for me <b>at</b> the entrance.</li><li>Turn left <b>at</b> the traffic lights.</li></ul></div>
+      <div class="pb p-on"><h3>ON</h3><div class="m">on a surface or a line: walls, floors, roads, pages</div>
+        <div class="chips"><span>on the table</span><span>on the wall</span><span>on the floor</span><span>on the ceiling</span><span>on the 3rd floor</span><span>on the left / right</span><span>on a map</span><span>on page 12</span><span>on a list</span></div>
+        <ul><li>There's a clock <b>on</b> the wall.</li><li>Our office is <b>on</b> the second floor.</li></ul></div>
+    </div>
+    <h3 class="lk-sub">Be careful with these</h3>
+    <div class="ex">
+      <div><b>in</b> the corner of a room (inside)</div><div><b>at / on</b> the corner of a street (outside)</div>
+      <div><b>in</b> the front / back of a car</div><div><b>at</b> the front / back of a building, a queue, a cinema</div>
+      <div><b>in</b> a car, <b>in</b> a taxi</div><div><b>on</b> a bus, <b>on</b> a train, <b>on</b> a plane, <b>on</b> a bike</div>
+      <div><b>in</b> a picture / photo, <b>in</b> a book</div><div><b>on</b> a page, <b>on</b> a screen, <b>on</b> a website</div>
+    </div>
+    <div class="warn"><b>Tip:</b> if you can stand <b>inside</b> it, use <b>in</b>. If it's a <b>place on a map</b> where you stop or meet, use <b>at</b>. If it's a <b>surface</b> or a <b>line</b>, use <b>on</b>.</div>
+    <p class="lk-tnote" data-ru="Подсказка правила для объяснения: IN = внутри, со всех сторон что-то окружает (комната, машина, город, страна, вода, картинка). AT = точка: место, где мы останавливаемся, встречаемся или где что-то происходит (остановка, дверь, ресепшн, светофор, at my desk = за моим столом). ON = поверхность или линия (стол, стена, пол, этаж, страница, дорога, слева / справа). Ловушки: in a car, но on a bus / train / plane (в большой транспорт, где можно стоять и ходить, ставим on); in the corner of the room, но at / on the corner of the street; at the top / bottom of the page; in a photo, но on a screen. Это Murphy Blue, Unit 123.">Підказка правила для пояснення: IN = всередині, з усіх боків щось оточує (кімната, машина, місто, країна, вода, картинка). AT = точка: місце, де ми зупиняємося, зустрічаємося або де щось відбувається (зупинка, двері, рецепція, світлофор, стіл у значенні «за столом»: at my desk). ON = поверхня або лінія (стіл, стіна, підлога, поверх, сторінка, дорога, ліворуч / праворуч). Пастки: in a car, але on a bus / train / plane (у великий транспорт, де можна стояти й ходити, ставимо on); in the corner of the room, але at / on the corner of the street; at the top / bottom of the page; in a photo, але on a screen. Це Murphy Blue, Unit 123.</p>
+    <p class="lk-tnote" data-ru="Перевод: a queue = очередь · reception = ресепшн · the traffic lights = светофор · the ceiling = потолок · the entrance = вход · a surface = поверхность · the corner = угол.">Переклад: a queue = черга · reception = рецепція · the traffic lights = світлофор · the ceiling = стеля · the entrance = вхід · a surface = поверхня · the corner = кут / ріг.</p>
+  </section>
+  <section id="s3" data-stage="practice" data-min="10">
+    <h2><span class="lk-n">3</span>Quick practice <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+    <p class="lk-ins">Choose <b>in</b>, <b>at</b> or <b>on</b>. Say the full sentence out loud before you click.</p>
+    <div id="qList">
+      <div class="q" data-a="on"><span class="n">1</span><span>The keys are <span class="gap">...</span> the table.</span><span class="opts"><button type="button">in</button><button type="button">at</button><button type="button">on</button></span></div>
+      <div class="q" data-a="in"><span class="n">2</span><span>I work <span class="gap">...</span> an office in the city centre.</span><span class="opts"><button type="button">in</button><button type="button">at</button><button type="button">on</button></span></div>
+      <div class="q" data-a="at"><span class="n">3</span><span>Please wait <span class="gap">...</span> the bus stop.</span><span class="opts"><button type="button">in</button><button type="button">at</button><button type="button">on</button></span></div>
+      <div class="q" data-a="on"><span class="n">4</span><span>There is a big map <span class="gap">...</span> the wall.</span><span class="opts"><button type="button">in</button><button type="button">at</button><button type="button">on</button></span></div>
+      <div class="q" data-a="in"><span class="n">5</span><span>My boss is <span class="gap">...</span> a meeting room.</span><span class="opts"><button type="button">in</button><button type="button">at</button><button type="button">on</button></span></div>
+      <div class="q" data-a="at"><span class="n">6</span><span>Turn right <span class="gap">...</span> the traffic lights.</span><span class="opts"><button type="button">in</button><button type="button">at</button><button type="button">on</button></span></div>
+      <div class="q" data-a="on"><span class="n">7</span><span>Our office is <span class="gap">...</span> the fourth floor.</span><span class="opts"><button type="button">in</button><button type="button">at</button><button type="button">on</button></span></div>
+      <div class="q" data-a="in"><span class="n">8</span><span>I left my phone <span class="gap">...</span> the car.</span><span class="opts"><button type="button">in</button><button type="button">at</button><button type="button">on</button></span></div>
+      <div class="q" data-a="on"><span class="n">9</span><span>I usually answer emails <span class="gap">...</span> the train.</span><span class="opts"><button type="button">in</button><button type="button">at</button><button type="button">on</button></span></div>
+      <div class="q" data-a="at"><span class="n">10</span><span>Can you meet me <span class="gap">...</span> the entrance?</span><span class="opts"><button type="button">in</button><button type="button">at</button><button type="button">on</button></span></div>
+      <div class="q" data-a="in"><span class="n">11</span><span>There is a coffee machine <span class="gap">...</span> the corner of the kitchen.</span><span class="opts"><button type="button">in</button><button type="button">at</button><button type="button">on</button></span></div>
+      <div class="q" data-a="at"><span class="n">12</span><span>Write your name <span class="gap">...</span> the top of the page.</span><span class="opts"><button type="button">in</button><button type="button">at</button><button type="button">on</button></span></div>
+      <div class="q" data-a="in"><span class="n">13</span><span>Look at the woman <span class="gap">...</span> this photo.</span><span class="opts"><button type="button">in</button><button type="button">at</button><button type="button">on</button></span></div>
+      <div class="q" data-a="on"><span class="n">14</span><span>The pharmacy is <span class="gap">...</span> the left.</span><span class="opts"><button type="button">in</button><button type="button">at</button><button type="button">on</button></span></div>
+      <div class="q" data-a="at"><span class="n">15</span><span>Leave the parcel <span class="gap">...</span> reception, please.</span><span class="opts"><button type="button">in</button><button type="button">at</button><button type="button">on</button></span></div>
+      <div class="q" data-a="on"><span class="n">16</span><span>There is a spider <span class="gap">...</span> the ceiling!</span><span class="opts"><button type="button">in</button><button type="button">at</button><button type="button">on</button></span></div>
+      <div class="q" data-a="at"><span class="n">17</span><span>He was standing <span class="gap">...</span> the back of the queue.</span><span class="opts"><button type="button">in</button><button type="button">at</button><button type="button">on</button></span></div>
+      <div class="q" data-a="in"><span class="n">18</span><span>I read about it <span class="gap">...</span> a newspaper.</span><span class="opts"><button type="button">in</button><button type="button">at</button><button type="button">on</button></span></div>
+      <div class="q" data-a="on"><span class="n">19</span><span>Your name is <span class="gap">...</span> the list.</span><span class="opts"><button type="button">in</button><button type="button">at</button><button type="button">on</button></span></div>
+      <div class="q" data-a="at"><span class="n">20</span><span>We had lunch <span class="gap">...</span> a café on the corner.</span><span class="opts"><button type="button">in</button><button type="button">at</button><button type="button">on</button></span></div>
+    </div>
+    <div class="score" id="qScore"></div>
+    <p class="lk-ans">1 on · 2 in · 3 at · 4 on · 5 in · 6 at · 7 on · 8 in · 9 on · 10 at · 11 in · 12 at · 13 in · 14 on · 15 at · 16 on · 17 at · 18 in · 19 on · 20 at</p>
+    <p class="lk-tnote" data-ru="Ответы: 1 on · 2 in · 3 at · 4 on · 5 in · 6 at · 7 on · 8 in · 9 on · 10 at · 11 in · 12 at · 13 in · 14 on · 15 at · 16 on · 17 at · 18 in · 19 on · 20 at. Частые ошибки: «on the train» (ученики говорят in), «at reception», «at the top of the page», «in the corner of the kitchen». Просите объяснить выбор: «inside / a point / a surface».">Відповіді: 1 on · 2 in · 3 at · 4 on · 5 in · 6 at · 7 on · 8 in · 9 on · 10 at · 11 in · 12 at · 13 in · 14 on · 15 at · 16 on · 17 at · 18 in · 19 on · 20 at. Найчастіші помилки: «on the train» (учні кажуть in), «at reception», «at the top of the page», «in the corner of the kitchen». Просіть пояснити вибір: «inside / a point / a surface».</p>
+  </section>
+  <section id="s8" data-stage="translation" data-min="12">
+    <h2><span class="lk-n">4</span>Translate it yourself <span class="tag">translation</span><span class="lk-mode">teacher + student</span></h2>
+    <p class="lk-ins">No hints this time. Translate each sentence into English out loud. Think first: inside, a point or a surface?</p>
+    <div class="disc">
+      <div><i>1</i>Мой ноутбук в сумке, а телефон на столе.</div>
+      <div><i>2</i>Наш офис на пятом этаже.</div>
+      <div><i>3</i>Подожди меня у входа.</div>
+      <div><i>4</i>Я обычно читаю почту в поезде.</div>
+      <div><i>5</i>На стене над моим столом висит карта.</div>
+      <div><i>6</i>Начальник сейчас на совещании.</div>
+      <div><i>7</i>Сегодня я работаю дома.</div>
+      <div><i>8</i>Аптека слева, сразу за светофором.</div>
+      <div><i>9</i>В углу комнаты стоит кофемашина.</div>
+      <div><i>10</i>Оставь документы на ресепшене.</div>
+      <div><i>11</i>Моё имя есть в списке?</div>
+      <div><i>12</i>Давай встретимся в кафе на углу.</div>
+      <div><i>13</i>Кто эта женщина на фото?</div>
+      <div><i>14</i>Я сижу за столом у окна.</div>
+      <div><i>15</i>Напиши дату вверху страницы.</div>
+      <div><i>16</i>Мы стояли в конце очереди.</div>
+    </div>
+    <h3 class="lk-sub">Now a short text</h3>
+    <div class="text"><p>Я работаю в небольшой компании. Наш офис находится в центре города, на третьем этаже. По понедельникам я работаю дома, а в остальные дни езжу в офис на автобусе. В автобусе я обычно слушаю подкасты. Мой стол стоит у окна, а на стене висит большая доска с планами команды. На обед мы часто ходим в кафе на углу. Иногда у нас встречи в офисе клиента, и тогда я весь день в дороге.</p></div>
+    <p class="lk-ans">1) My laptop is in my bag, and my phone is on the table. · 2) Our office is on the fifth floor. · 3) Wait for me at the entrance. · 4) I usually read my emails on the train. · 5) There is a map on the wall above my desk. · 6) The boss is at a meeting now. (in a meeting тоже правильно) · 7) I&#x27;m working at home today. (from home тоже правильно) · 8) The pharmacy is on the left, just after the traffic lights. · 9) There is a coffee machine in the corner of the room. · 10) Leave the documents at reception. · 11) Is my name on the list? · 12) Let&#x27;s meet at the café on the corner. · 13) Who is the woman in the photo? · 14) I sit at a desk by the window. (at the window тоже можно) · 15) Write the date at the top of the page. · 16) We were standing at the back of the queue. (at the end of the queue)</p>
+    <p class="lk-ans">I work for a small company. Our office is in the city centre, on the third floor. On Mondays I work at home, and on the other days I go to the office by bus. On the bus I usually listen to podcasts. My desk is by the window, and there is a big board with the team&#x27;s plans on the wall. We often have lunch at the café on the corner. Sometimes we have meetings at the client&#x27;s office, and then I&#x27;m on the road all day.</p>
+    <p class="lk-tnote" data-ru="Ответы (предложения): 1) My laptop is in my bag, and my phone is on the table. · 2) Our office is on the fifth floor. · 3) Wait for me at the entrance. · 4) I usually read my emails on the train. · 5) There is a map on the wall above my desk. · 6) The boss is at a meeting now. (in a meeting тоже правильно) · 7) I&amp;#x27;m working at home today. (from home тоже правильно) · 8) The pharmacy is on the left, just after the traffic lights. · 9) There is a coffee machine in the corner of the room. · 10) Leave the documents at reception. · 11) Is my name on the list? · 12) Let&amp;#x27;s meet at the café on the corner. · 13) Who is the woman in the photo? · 14) I sit at a desk by the window. (at the window тоже можно) · 15) Write the date at the top of the page. · 16) We were standing at the back of the queue. (at the end of the queue)">Відповіді (речення): 1) My laptop is in my bag, and my phone is on the table. · 2) Our office is on the fifth floor. · 3) Wait for me at the entrance. · 4) I usually read my emails on the train. · 5) There is a map on the wall above my desk. · 6) The boss is at a meeting now. (in a meeting тоже правильно) · 7) I&#x27;m working at home today. (from home тоже правильно) · 8) The pharmacy is on the left, just after the traffic lights. · 9) There is a coffee machine in the corner of the room. · 10) Leave the documents at reception. · 11) Is my name on the list? · 12) Let&#x27;s meet at the café on the corner. · 13) Who is the woman in the photo? · 14) I sit at a desk by the window. (at the window тоже можно) · 15) Write the date at the top of the page. · 16) We were standing at the back of the queue. (at the end of the queue)</p>
+    <p class="lk-tnote" data-ru="Ответ (текст): I work for a small company. Our office is in the city centre, on the third floor. On Mondays I work at home, and on the other days I go to the office by bus. On the bus I usually listen to podcasts. My desk is by the window, and there is a big board with the team&amp;#x27;s plans on the wall. We often have lunch at the café on the corner. Sometimes we have meetings at the client&amp;#x27;s office, and then I&amp;#x27;m on the road all day.">Відповідь (текст): I work for a small company. Our office is in the city centre, on the third floor. On Mondays I work at home, and on the other days I go to the office by bus. On the bus I usually listen to podcasts. My desk is by the window, and there is a big board with the team&#x27;s plans on the wall. We often have lunch at the café on the corner. Sometimes we have meetings at the client&#x27;s office, and then I&#x27;m on the road all day.</p>
+    <p class="lk-tnote" data-ru="Подсказка для объяснения: «в поезде / в автобусе» = on the train / on the bus; «на ресепшене» = at reception (без the); «у окна» = by / at the window; «вверху страницы» = at the top of the page; «на фото» = in the photo; «в конце очереди» = at the back / at the end of the queue; «в дороге» = on the road. Не подсказывайте сразу: пусть сначала переведёт сам, потом исправляйте.">Підказка для пояснення: «в поезде / в автобусе» = on the train / on the bus; «на ресепшене» = at reception (без the); «у окна» = by / at the window; «вверху страницы» = at the top of the page; «на фото» = in the photo; «в конце очереди» = at the back / at the end of the queue; «в дороге» = on the road. Не підказуйте одразу: хай спершу перекладе сам, потім виправляйте.</p>
+  </section>
+
+  <section id="s4" data-stage="reading" data-min="12">
+    <h2><span class="lk-n">5</span>Reading: Working anywhere <span class="tag">reading</span><span class="lk-mode">teacher + student</span></h2>
+    <p class="lk-ins">Read the story (about 250 words). First read for the main idea: where does Marta work during the week? Then click "Show prepositions" and explain each one.</p>
+    <div class="ctr" style="margin-bottom:12px"><button class="btn alt" id="hlBtn" type="button">Show prepositions</button></div>
+    <div class="text" id="rText">
+      <h3>Working anywhere</h3>
+      <p>Marta works for a small design company, but she doesn't sit <mark>in</mark> an office every day. On Mondays and Tuesdays she works <mark>at</mark> home. Her desk is <mark>in</mark> the corner of the living room, next to the window, and there is a big plant <mark>on</mark> the floor beside it.</p>
+      <p>On Wednesdays she goes to a coworking space <mark>in</mark> the city centre. It is <mark>on</mark> the third floor of an old building <mark>on</mark> Market Street. When she arrives, she leaves her bike <mark>at</mark> the entrance and takes the lift. Inside, people sit <mark>at</mark> long wooden tables. Some of them are <mark>on</mark> video calls, others are reading something <mark>on</mark> their laptops. There is a small kitchen <mark>at</mark> the end of the corridor. Marta's favourite place is <mark>at</mark> the window, because she can watch the people <mark>in</mark> the street below.</p>
+      <p>On Thursdays the whole team meets <mark>at</mark> the client's office. It is a modern building near the airport, so Marta usually goes by train. She likes working <mark>on</mark> the train: she answers emails and plans her day. On Fridays the team often has lunch <mark>at</mark> a small café <mark>on</mark> the corner.</p>
+      <p>"I don't need the same desk every day," Marta says. "I need good Wi-Fi, a quiet place and coffee. With those three things, I can work anywhere: <mark>at</mark> home, <mark>in</mark> a café or <mark>on</mark> a train."</p>
+    </div>
+    <h3 class="lk-sub">True or false? Correct the false sentences.</h3>
+      <div class="tf" data-a="F"><span>1. Marta works in an office every day.</span><span class="opts"><button type="button">True</button><button type="button">False</button></span></div>
+      <div class="tf" data-a="T"><span>2. Her desk at home is in the corner of the living room.</span><span class="opts"><button type="button">True</button><button type="button">False</button></span></div>
+      <div class="tf" data-a="F"><span>3. The coworking space is on the first floor.</span><span class="opts"><button type="button">True</button><button type="button">False</button></span></div>
+      <div class="tf" data-a="T"><span>4. People in the coworking space sit at long tables.</span><span class="opts"><button type="button">True</button><button type="button">False</button></span></div>
+      <div class="tf" data-a="T"><span>5. Her favourite place is at the window.</span><span class="opts"><button type="button">True</button><button type="button">False</button></span></div>
+      <div class="tf" data-a="F"><span>6. She goes to the client's office by bus.</span><span class="opts"><button type="button">True</button><button type="button">False</button></span></div>
+      <div class="tf" data-a="F"><span>7. She doesn't like working on the train.</span><span class="opts"><button type="button">True</button><button type="button">False</button></span></div>
+      <div class="tf" data-a="T"><span>8. On Fridays the team has lunch at a café.</span><span class="opts"><button type="button">True</button><button type="button">False</button></span></div>
+    <div class="qs" style="margin-top:16px">
+      <div>Would you like Marta's week? Why / why not?</div>
+      <div>Which of her places would be the best for you: at home, in a coworking space, on a train?</div>
+    </div>
+    <p class="lk-ans">1 False · 2 True · 3 False · 4 True · 5 True · 6 False · 7 False · 8 True</p>
+    <p class="lk-tnote" data-ru="Ответы: 1 False · 2 True · 3 False · 4 True · 5 True · 6 False · 7 False · 8 True. Исправления: 1 she works at home on Mon and Tue · 3 on the third floor · 6 by train · 7 she likes it. Предлогов в тексте 26: попросите объяснить 5-6 (inside / point / surface).">Відповіді: 1 False · 2 True · 3 False · 4 True · 5 True · 6 False · 7 False · 8 True. Виправлення: 1 she works in an office only some days / at home on Mon and Tue · 3 on the third floor · 6 by train · 7 she likes it. Прийменників у тексті 26: попросіть пояснити 5-6 (inside / point / surface).</p>
+    <p class="lk-tnote" data-ru="Перевод: a coworking space = коворкинг · the entrance = вход · the lift = лифт · a video call = видеозвонок · the corridor = коридор · a client = клиент · to plan the day = планировать день · beside = рядом с · anywhere = где угодно.">Переклад: a coworking space = коворкінг · the entrance = вхід · the lift = ліфт · a video call = відеодзвінок · the corridor = коридор · a client = клієнт · to plan the day = планувати день · beside = поруч із · anywhere = будь-де.</p>
+  </section>
+  <section id="s5" data-stage="discussion" data-min="14">
+    <h2><span class="lk-n">6</span>Let's talk about work <span class="tag">discussion</span><span class="lk-mode">teacher + student</span></h2>
+    <p class="lk-ins">Pick a random question or go in order. Answer in 3-4 sentences and give an example from your life. Then ask the teacher the same question.</p>
+    <div class="spin"><div class="card" id="dCard">Click "Random question"</div><br><button class="btn" id="dBtn" type="button">Random question</button></div>
+    <div class="disc">
+      <div><i>1</i>What do you do? Where do you work: in an office, at home or somewhere else?</div>
+      <div><i>2</i>Describe your workplace. What is on your desk? What is on the walls?</div>
+      <div><i>3</i>Do you prefer working at home or in the office? Why?</div>
+      <div><i>4</i>What is the best and the worst thing about your job?</div>
+      <div><i>5</i>How do you get to work? What do you do on the way?</div>
+      <div><i>6</i>Have you ever worked in a café or on a train? Can you focus there?</div>
+      <div><i>7</i>What does a perfect working day look like for you?</div>
+      <div><i>8</i>Is it important to have friends at work? Why?</div>
+      <div><i>9</i>If you could change one thing at your workplace, what would it be?</div>
+      <div><i>10</i>What job would you like to try for one week? Why?</div>
+      <div><i>11</i>Do you think people will still work in offices in 20 years?</div>
+      <div><i>12</i>What is more important for you: a good salary or a nice team?</div>
+    </div>
+    <div class="phr"><b>Useful phrases</b><ul><li>To be honest, I prefer ... because ...</li><li>The best thing about my job is ... The worst thing is ...</li><li>I usually work at ... / in ... / on ...</li><li>It depends: sometimes ..., but ...</li><li>If I could change one thing, I would ...</li></ul></div>
+    <p class="lk-tnote" data-ru="Заметка: 12-15 минут, это главная разговорная часть. Задавайте уточняющие вопросы: «Why?», «Can you give an example?», «And what about your colleagues?». Следите за in / at / on в его ответах и мягко исправляйте. Вопрос 9: второй условный (If I could ..., I would ...).">Нотатка: 12-15 хвилин, це головна розмовна частина. Ставте уточнювальні питання: «Why?», «Can you give an example?», «And what about your colleagues?». Слідкуйте за in / at / on в його відповідях і м'яко виправляйте. Питання 9: другий умовний (If I could ..., I would ...).</p>
+    <p class="lk-tnote" data-ru="Перевод: a workplace = рабочее место · a colleague = коллега · a salary = зарплата · a team = команда · to focus = сосредоточиться · on the way = по дороге · to work from home / remotely = работать из дома / удалённо · a commute = дорога на работу.">Переклад: a workplace = робоче місце · a colleague = колега · a salary = зарплата · a team = команда · to focus = зосередитися · on the way = дорогою · to work from home / remotely = працювати з дому / віддалено · a commute = дорога на роботу.</p>
+  </section>
+  <section id="s6" data-stage="speaking" data-min="7">
+    <h2><span class="lk-n">7</span>Describe and draw <span class="tag">speaking game</span><span class="lk-mode">teacher + student</span></h2>
+    <p class="lk-ins">Describe your workplace or your room. The teacher draws it on the board, following only your words. Then compare the drawing with the real place. Use at least 8 prepositions.</p>
+    <div class="ideas"><span>on the left / right</span><span>in the corner</span><span>on the wall</span><span>on the desk</span><span>at the window</span><span>next to</span><span>opposite</span><span>above / under</span><span>at the back of</span><span>in the middle of</span></div>
+    <div class="phr"><b>Start like this</b><ul><li>When you come in, there's a ... on the left.</li><li>My desk is at the window / in the corner.</li><li>On the wall above the desk there is ...</li><li>In the middle of the room there's ...</li></ul></div>
+    <p class="lk-tnote" data-ru="Заметка: откройте доску Murly или Paint и рисуйте схематично. Смешные неточности рисунка = повод уточнить предлог. Потом можно поменяться: вы описываете, ученик рисует.">Нотатка: відкрийте дошку Murly або Paint і малюйте схематично. Смішні неточності малюнка = привід уточнити прийменник. Потім можна поміняти ролі: ви описуєте, учень малює.</p>
+    <p class="lk-tnote" data-ru="Перевод: next to = рядом · opposite = напротив · above = над · under = под · in the middle of = посередине · at the back of = в глубине, сзади.">Переклад: next to = поруч · opposite = навпроти · above = над · under = під · in the middle of = посередині · at the back of = в глибині, позаду.</p>
+  </section>
+  <section id="s7" data-stage="homework" data-min="0">
+    <h2><span class="lk-n">8</span>Homework <span class="tag">homework</span><span class="lk-mode">student</span></h2>
+    <div class="hwb">
+      <div class="hwc"><h3>A. My working day</h3>
+        <p>Write 8 sentences about your working day and your workplace. Use <b>in</b>, <b>at</b> and <b>on</b> at least twice each.</p>
+        <p style="color:var(--muted);font-size:15px">Example: I start work at 9. My desk is in the corner, and there is a plant on it.</p>
+        <textarea id="hwText" placeholder="1. ...&#10;2. ...&#10;3. ..."></textarea>
+      </div>
+      <div class="hwc"><h3>B. Voice message</h3>
+        <p>Record 1 minute: <b>"Office or home: where do I work better?"</b></p>
+        <ul><li>Where you work now.</li><li>What you like and don't like about it.</li><li>Your perfect workplace.</li></ul>
+      </div>
+    </div>
+    <p class="lk-tnote" data-ru="Заметка: в части A проверьте on the train / at reception / in the corner. В части B слушайте не только предлоги, но и связность: because, but, so.">Нотатка: у частині A перевірте on the train / at reception / in the corner. У частині B слухайте не лише прийменники, а й зв'язність: because, but, so.</p>
+  </section>
+
+  <section class="end"><h2>Great work!</h2><p>See you next lesson. Don't forget: in = inside, at = a point, on = a surface.</p></section>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+const $ = (id) => document.getElementById(id);
+function say(w) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; u.rate = .9; speechSynthesis.speak(u); } catch (e) { } }
+// practice
+let ok = 0, done = 0; const total = document.querySelectorAll('#qList .q').length;
+document.querySelectorAll('#qList .q').forEach((q) => q.querySelectorAll('button').forEach((b) => b.onclick = () => {
+  if (q.classList.contains('ok')) return;
+  const good = b.textContent === q.dataset.a;
+  if (!q.dataset.tried) { done++; if (good) ok++; q.dataset.tried = 1; }
+  q.classList.toggle('ok', good); q.classList.toggle('bad', !good);
+  if (good) { q.querySelector('.gap').textContent = q.dataset.a; say(q.children[1].textContent.replace('...', q.dataset.a)); }
+  $('qScore').textContent = `First try: ${ok} / ${done} (of ${total})`;
+}));
+// reading
+$('hlBtn').onclick = (e) => { const on = $('rText').classList.toggle('hl'); e.currentTarget.textContent = on ? 'Hide prepositions' : 'Show prepositions'; };
+document.querySelectorAll('.tf').forEach((r) => r.querySelectorAll('button').forEach((b) => b.onclick = () => { const good = b.textContent[0] === r.dataset.a; r.classList.toggle('ok', good); r.classList.toggle('bad', !good); }));
+// discussion
+const DQ = [...document.querySelectorAll('.disc div')].map((d) => d.textContent.replace(/^\d+/, ''));
+let last = -1; $('dBtn').onclick = () => { let i; do { i = Math.floor(Math.random() * DQ.length); } while (i === last && DQ.length > 1); last = i; $('dCard').textContent = DQ[i]; };
+// homework draft
+try { const k = 'murly:in-at-on-work:hw'; $('hwText').value = localStorage.getItem(k) || ''; $('hwText').oninput = () => localStorage.setItem(k, $('hwText').value); } catch (e) { }
+// stages + teacher
+const STAGES = [...document.querySelectorAll('.wrap > section[id]')];
+$('stages').innerHTML = STAGES.map((s) => `<a href="#${s.id}"><b>${s.querySelector('.lk-n').textContent}</b><span>${s.dataset.stage}</span><small>${s.dataset.min !== '0' ? s.dataset.min + ' min' : 'at home'}</small></a>`).join('');
+$('teacherBtn').onclick = (e) => { const on = document.body.classList.toggle('teacher'); e.currentTarget.textContent = on ? 'Student version' : 'Teacher version'; };
+</script>
+<script>window.MURLY_LESSON={"id": "in-at-on-work", "title": "In / at / on + work talk", "homework": ["s3", "s4", "s8", "s7"], "hw": {"s1": [{"type": "voice", "instruction": "Answer the questions. Record your voice.", "text": "Where do you usually work or study?\nWhat is on your desk right now?\nDo you ever work on a train or on a bus?"}], "s3": [{"type": "choice", "instruction": "Choose in, at or on.", "text": "The keys are {on|in|at} the table.\nI work {in|at|on} an office in the city centre.\nPlease wait {at|in|on} the bus stop.\nThere is a big map {on|in|at} the wall.\nMy boss is {in|at|on} a meeting room.\nTurn right {at|in|on} the traffic lights.\nOur office is {on|in|at} the fourth floor.\nI left my phone {in|at|on} the car.\nI usually answer emails {on|in|at} the train.\nCan you meet me {at|in|on} the entrance?\nThere is a coffee machine {in|at|on} the corner of the kitchen.\nWrite your name {at|in|on} the top of the page."}], "s4": [{"type": "truefalse", "instruction": "Read the story \"Working anywhere\" again. True or False?", "text": "Marta works in an office every day. = False\nHer desk at home is in the corner of the living room. = True\nThe coworking space is on the first floor. = False\nPeople in the coworking space sit at long tables. = True\nHer favourite place is at the window. = True\nShe goes to the client's office by bus. = False\nShe doesn't like working on the train. = False\nOn Fridays the team has lunch at a café. = True"}], "s5": [{"type": "voice", "instruction": "Answer two questions about work. Record your voice (1-2 minutes).", "text": "Do you prefer working at home or in the office? Why?\nWhat does a perfect working day look like for you?"}], "s6": [{"type": "open", "instruction": "Describe your workplace or your room in 8 sentences. Use in, at and on.", "text": "When you come in, ...\nOn the left ...\nIn the corner ..."}], "s7": [{"type": "open", "instruction": "Write 8 sentences about your working day and your workplace. Use in, at and on at least twice each.", "text": "1. I start work at ...\n2. My desk is ...\n3. ..."}, {"type": "voice", "instruction": "Record 1 minute: Office or home: where do I work better?", "text": "Where do you work now?\nWhat do you like and not like about it?\nWhat is your perfect workplace?"}], "s8": [{"type": "open", "instruction": "Translate into English.", "text": "Мой ноутбук в сумке, а телефон на столе.\nНаш офис на пятом этаже.\nПодожди меня у входа.\nЯ обычно читаю почту в поезде.\nНа стене над моим столом висит карта.\nНачальник сейчас на совещании.\nСегодня я работаю дома.\nАптека слева, сразу за светофором.\nВ углу комнаты стоит кофемашина.\nОставь документы на ресепшене."}]}};</script>
+<script src="kit.js" defer></script>
+</body>
+</html>
