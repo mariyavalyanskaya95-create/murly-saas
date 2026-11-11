@@ -279,7 +279,7 @@ body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff3f7;border-l
 <div class="wrap">
   <section class="lk-overview">
     <h2>In this lesson you will:</h2>
-    <ul><li>Talk about your last holiday.</li><li>Learn 14 travel words (with Russian translation).</li><li>Review the Past Simple: regular and irregular verbs, negatives and questions.</li><li>Read Mia's holiday story and listen to Tom's trip to London.</li><li>Tell your own crazy holiday story.</li></ul>
+    <ul><li>Talk about your last holiday.</li><li>Learn 14 travel words (with Russian translation).</li><li>Review the Past Simple: regular and irregular verbs, negatives and questions.</li><li>Read Mia's holiday story and listen to Tom's trip to London.</li><li>Play games with 20 irregular verbs: flip cards, verb rush, memory, listen and write, bowling.</li><li>Tell your own crazy holiday story.</li></ul>
     <div class="lk-stages" id="stages"></div>
   </section>
 
@@ -390,8 +390,77 @@ body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff3f7;border-l
 
     <p class="lk-tnote" data-ru="Ответы A: 1 went · 2 missed · 3 lost · 4 stayed · 5 rained · 6 didn&#x27;t · 7 Did · 8 was · 9 were · 10 found. B: go-went · see-saw · lose-lost · find-found · take-took · get-got · eat-ate · buy-bought · swim-swam · fly-flew · sleep-slept · leave-left. C: stopped · studied · didn&#x27;t like · did you enjoy · planned · weren&#x27;t. D: travelled /d/ · packed /t/ · waited /ɪd/ · stayed /d/ · stopped /t/ · visited /ɪd/ · laughed /t/ · rained /d/. Правило: /ɪd/ после t и d; /t/ после глухих (p, k, s, sh, ch, f); /d/ после остальных.">Відповіді A: 1 went · 2 missed · 3 lost · 4 stayed · 5 rained · 6 didn't · 7 Did · 8 was · 9 were · 10 found. B: go-went · see-saw · lose-lost · find-found · take-took · get-got · eat-ate · buy-bought · swim-swam · fly-flew · sleep-slept · leave-left. C: stopped · studied · didn't like · did you enjoy · planned · weren't. D: travelled /d/ · packed /t/ · waited /ɪd/ · stayed /d/ · stopped /t/ · visited /ɪd/ · laughed /t/ · rained /d/. Правило: /ɪd/ після t і d; /t/ після глухих (p, k, s, sh, ch, f); /d/ після інших.</p>
   </section>
+  <section id="s10" data-stage="games" data-min="15">
+    <h2><span class="lk-n">5</span>Irregular verbs: play and check <span class="tag">games</span><span class="lk-mode">teacher + student</span></h2>
+<style>
+.fl{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.fl button{font:inherit;height:96px;border:2px solid var(--ink);border-radius:16px;background:#fff;cursor:pointer;box-shadow:3px 3px 0 var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.fl button b{font-size:22px}.fl button small{color:var(--muted);font-size:12px}
+.fl button.on{background:#E5DEFF}.fl button.on b{color:#3D2E8C}
+.rush{max-width:640px;margin:0 auto;text-align:center;background:var(--paper);border-radius:18px;padding:18px}
+.rush .st{display:flex;justify-content:space-between;font-weight:800;font-size:18px}
+.rush .tm{height:12px;background:#fff;border-radius:999px;overflow:hidden;margin:10px 0}.rush .tm i{display:block;height:100%;background:#7B5BD6;width:100%;transition:width .2s linear}
+.rush .w{font:700 54px Georgia,serif;margin:10px 0}
+.rush .op{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.rush .op button{font:inherit;font-size:22px;font-weight:800;border:2px solid var(--ink);border-radius:14px;background:#fff;padding:12px;cursor:pointer}
+.rush .op button.ok{background:#CDE8C6}.rush .op button.bad{background:#F6C9BF}
+.mem{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;max-width:760px;margin:0 auto}
+.mem button{aspect-ratio:1/1;font:inherit;font-size:18px;font-weight:800;border:2px solid var(--ink);border-radius:14px;cursor:pointer;background:#7B5BD6;color:transparent;box-shadow:3px 3px 0 var(--ink)}
+.mem button.up{background:#fff;color:var(--ink)}.mem button.gone{background:#CDE8C6;color:#2F6B3A;cursor:default}
+.spell{max-width:640px;margin:0 auto;text-align:center;background:var(--paper);border-radius:18px;padding:18px}
+.spell input{font:inherit;font-size:24px;text-align:center;border:2px solid var(--ink);border-radius:12px;padding:8px;width:240px}
+.spell .res{font-weight:800;font-size:20px;min-height:30px;margin-top:8px}
+@media(max-width:700px){.mem{grid-template-columns:repeat(4,1fr)}}
+</style>
+    <p class="lk-ins">20 irregular verbs: the 15 most common ones + 5 from our holiday story. First flip the cards, then play the games.</p>
+    <h3 class="lk-sub">A. Flip cards: say the past form, then click to check</h3>
+    <div class="fl" id="gFl"></div>
+    <h3 class="lk-sub">B. Verb rush: 60 seconds! Combo = more points</h3>
+    <div class="rush"><div class="st"><span>Score: <b id="rS">0</b></span><span>Combo: x<b id="rC">1</b></span><span>Best: <b id="rB">0</b></span></div><div class="tm"><i id="rT"></i></div><div id="rBody"><div class="w">Ready?</div><button class="btn" type="button" id="rGo">Start</button></div></div>
+    <h3 class="lk-sub">C. Memory: find the pairs (go → went)</h3>
+    <div class="mem" id="gMem"></div><div class="ctr" style="margin-top:10px"><span id="gMemR" style="font-weight:800"></span> <button class="btn alt" type="button" id="gMemN">New game</button></div>
+    <h3 class="lk-sub">D. Listen and write the past form</h3>
+    <div class="spell"><p>Click "Listen", hear the verb, write its <b>past</b> form.</p><button class="btn" type="button" id="spL">Listen</button> <button class="btn alt" type="button" id="spN">Next verb</button><div style="margin-top:12px"><input id="spI" autocomplete="off" spellcheck="false" placeholder="past form"> <button class="btn alt" type="button" id="spC">Check</button></div><div class="res" id="spR"></div><div style="font-weight:700">Score: <span id="spS">0</span> / <span id="spT">0</span></div></div>
+    <h3 class="lk-sub">E. Bowling: answer and knock down the pins!</h3>
+    <div style="position:relative;width:100%;aspect-ratio:16/10;border-radius:18px;overflow:hidden;border:3px solid var(--ink)"><iframe src="bowling.html?set=irregular&amp;names=Polina,Teacher&amp;theme=summer" title="Murly Bowling" style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe></div>
+    <div class="ctr" style="margin-top:10px"><a class="btn alt" href="bowling.html?set=irregular&amp;names=Polina,Teacher&amp;theme=summer" target="_blank" rel="noopener">Open bowling full screen</a></div>
+    <p class="lk-ans">be: was / were · have: had · do: did · go: went · get: got · make: made · say: said · see: saw · come: came · take: took · know: knew · think: thought · give: gave · find: found · tell: told · lose: lost · buy: bought · eat: ate · swim: swam · fly: flew</p>
+<script>
+(function () {
+  const V = [["be", "was / were", "быть", "I was at home yesterday."], ["have", "had", "иметь", "We had pizza for dinner."], ["do", "did", "делать", "I did my homework."], ["go", "went", "идти, ехать", "We went to the beach."], ["get", "got", "получать, добираться", "We got to the hotel late."], ["make", "made", "делать, создавать", "Mum made a cake."], ["say", "said", "сказать", "He said \"hello\"."], ["see", "saw", "видеть", "I saw a dolphin!"], ["come", "came", "приходить", "She came home late."], ["take", "took", "брать", "I took 200 photos."], ["know", "knew", "знать", "I knew the answer."], ["think", "thought", "думать", "I thought it was a joke."], ["give", "gave", "давать", "Dad gave me some money."], ["find", "found", "находить", "We found a nice café."], ["tell", "told", "рассказывать", "She told me a secret."], ["lose", "lost", "терять", "I lost my phone."], ["buy", "bought", "покупать", "I bought a T-shirt."], ["eat", "ate", "есть", "We ate ice cream."], ["swim", "swam", "плавать", "I swam in the sea."], ["fly", "flew", "летать", "We flew to Rome."]];
+  const sp = (w, r) => { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; u.rate = r || .9; speechSynthesis.speak(u); } catch (e) { } };
+  const sh = (a) => a.map((x) => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map((x) => x[1]);
+  const g = (id) => document.getElementById(id);
+  const p2 = (v) => v[1].split(' / ')[0];
+  // flip cards
+  g('gFl').innerHTML = V.map((v, i) => `<button type="button" data-i="${i}"><b>${v[0]}</b><small>${v[2]}</small></button>`).join('');
+  g('gFl').querySelectorAll('button').forEach((b) => b.onclick = () => { const v = V[+b.dataset.i]; const on = !b.classList.contains('on'); b.classList.toggle('on', on); b.querySelector('b').textContent = on ? v[1] : v[0]; b.querySelector('small').textContent = on ? v[3] : v[2]; if (on) sp(v[0] + ', ' + p2(v) + '. ' + v[3]); });
+  // rush
+  let rs = 0, rc = 1, rb = 0, rt = 0, rtimer = null, cur = null;
+  try { rb = +localStorage.getItem('murly:rush:polina') || 0; } catch (e) { } g('rB').textContent = rb;
+  function rq() { cur = V[Math.floor(Math.random() * V.length)]; const wrong = sh(V.filter((x) => x !== cur)).slice(0, 3).map(p2); const fake = cur[0] + 'ed'; const opts = sh([p2(cur), wrong[0], wrong[1], fake]); g('rBody').innerHTML = `<div class="w">${cur[0]}</div><div class="op">${opts.map((o) => `<button type="button">${o}</button>`).join('')}</div>`;
+    g('rBody').querySelectorAll('button').forEach((b) => b.onclick = () => { if (b.textContent === p2(cur)) { b.classList.add('ok'); rs += 10 * rc; rc = Math.min(4, rc + 1); } else { b.classList.add('bad'); rc = 1; } g('rS').textContent = rs; g('rC').textContent = rc; setTimeout(rq, 260); }); }
+  function rstart() { rs = 0; rc = 1; rt = 60; g('rS').textContent = 0; g('rC').textContent = 1; rq(); clearInterval(rtimer); rtimer = setInterval(() => { rt -= .2; g('rT').style.width = Math.max(0, rt / 60 * 100) + '%'; if (rt <= 0) { clearInterval(rtimer); if (rs > rb) { rb = rs; try { localStorage.setItem('murly:rush:polina', rb); } catch (e) { } g('rB').textContent = rb; } g('rBody').innerHTML = `<div class="w">${rs} points!</div><button class="btn" type="button" id="rGo">Play again</button>`; g('rGo').onclick = rstart; } }, 200); }
+  g('rGo').onclick = rstart;
+  // memory
+  function mem() { const pick = sh(V).slice(0, 9); const cards = sh(pick.flatMap((v, i) => [[v[0], i], [p2(v), i]])); let open = [], found = 0, tries = 0; g('gMemR').textContent = '';
+    g('gMem').innerHTML = cards.map(([t, i]) => `<button type="button" data-i="${i}">${t}</button>`).join('');
+    g('gMem').querySelectorAll('button').forEach((b) => b.onclick = () => { if (b.classList.contains('up') || b.classList.contains('gone') || open.length === 2) return; b.classList.add('up'); open.push(b); if (open.length === 2) { tries++; const [a, c] = open; if (a.dataset.i === c.dataset.i) { setTimeout(() => { a.classList.add('gone'); c.classList.add('gone'); open = []; found++; sp(pick[+a.dataset.i][0] + ', ' + p2(pick[+a.dataset.i])); if (found === 9) g('gMemR').textContent = `All pairs in ${tries} tries!`; }, 350); } else setTimeout(() => { a.classList.remove('up'); c.classList.remove('up'); open = []; }, 800); } }); }
+  g('gMemN').onclick = mem; mem();
+  // listen & spell
+  let sv = null, sS = 0, sT = 0;
+  const snext = () => { sv = V[Math.floor(Math.random() * V.length)]; g('spI').value = ''; g('spR').textContent = ''; sp(sv[0]); };
+  g('spL').onclick = () => { if (!sv) snext(); else sp(sv[0]); };
+  g('spN').onclick = snext;
+  const sc = () => { if (!sv) return; const ans = sv[1].split(' / ').map((x) => x.trim()); const ok = ans.includes(g('spI').value.trim().toLowerCase()); sT++; if (ok) sS++; g('spS').textContent = sS; g('spT').textContent = sT; g('spR').textContent = ok ? 'Correct! ' + sv[0] + ' → ' + sv[1] : 'Not quite: ' + sv[0] + ' → ' + sv[1]; g('spR').style.color = ok ? '#2F7A3B' : '#B5482F'; sp(p2(sv)); };
+  g('spC').onclick = sc; g('spI').onkeydown = (e) => { if (e.key === 'Enter') sc(); };
+})();
+</script>
+
+    <p class="lk-tnote" data-ru="Заметка: 20 глаголов (15 самых частых, как с Артуром, + 5 из урока). Порядок: карточки (ученица сначала называет форму сама) → Verb rush 2 раза, чтобы побить рекорд → Memory → Listen and write → Боулинг. Можно играть частями в конце нескольких уроков.">Нотатка: 20 дієслів (15 найчастіших, як з Артуром, + 5 з уроку). Порядок: картки (учениця спершу каже форму сама) → Verb rush 2 рази, щоб побити рекорд → Memory → Listen and write → Боулінг. Можна грати частинами в кінці кількох уроків.</p>
+  </section>
   <section id="s5" data-stage="reading" data-min="10">
-    <h2><span class="lk-n">5</span>Reading: Mia's holiday <span class="tag">reading</span><span class="lk-mode">teacher + student</span></h2>
+    <h2><span class="lk-n">6</span>Reading: Mia's holiday <span class="tag">reading</span><span class="lk-mode">teacher + student</span></h2>
     <img class="photo" src="https://images.unsplash.com/photo-1519692933481-e162a57d6721?w=900&q=70&auto=format&fit=crop" alt="Rain on holiday"><div class="cap">Photo: Osman Rana / Unsplash</div>
     <p class="lk-ins">Read the story. Find 10 verbs in the Past Simple. Which are regular? Which are irregular? Then answer True or False.</p>
     <div class="text"><h3>Mia's terrible (and amazing) holiday</h3>
@@ -421,7 +490,7 @@ body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff3f7;border-l
     <p class="lk-tnote" data-ru="Перевод: the seaside = морское побережье · a booking = бронирование · a receptionist = администратор · tiny = крошечный · an umbrella = зонт · an aquarium = аквариум · to feel sick = тошнить · the sunset = закат · a sandcastle = замок из песка.">Переклад: the seaside = морське узбережжя · a booking = бронювання · a receptionist = адміністратор · tiny = крихітний · an umbrella = парасолька · an aquarium = акваріум · to feel sick = нудити · the sunset = захід сонця · a sandcastle = замок з піску.</p>
   </section>
   <section id="s6" data-stage="listening" data-min="8">
-    <h2><span class="lk-n">6</span>Listening: Tom's trip to London <span class="tag">listening</span><span class="lk-mode">teacher + student</span></h2>
+    <h2><span class="lk-n">7</span>Listening: Tom's trip to London <span class="tag">listening</span><span class="lk-mode">teacher + student</span></h2>
     <img class="photo" src="https://images.unsplash.com/photo-1554123168-b400f9c806ca?w=900&q=70&auto=format&fit=crop" alt="An airport"><div class="cap">Photo: Marco López / Unsplash</div>
     <p class="lk-ins">Read the questions. Listen to Tom and choose the answers.</p>
     <div class="lis"><button class="btn" type="button" data-play="l1">Play</button><button class="btn alt" type="button" data-play="l1" data-slow="1">Play slowly</button><button class="btn alt" type="button" data-stop="1">Stop</button></div>
@@ -437,14 +506,14 @@ body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff3f7;border-l
     <p class="lk-tnote" data-ru="Ответы: 1 London · 2 by plane · 3 the crown jewels · 4 a police officer · 5 a small dinosaur. Потом спросите: «What didn&#x27;t they see?» (Big Ben).">Відповіді: 1 London · 2 by plane · 3 the crown jewels · 4 a police officer · 5 a small dinosaur. Потім спитайте: «What didn't they see?» (Big Ben).</p>
   </section>
   <section id="s7" data-stage="video" data-min="8">
-    <h2><span class="lk-n">7</span>Watch & discuss <span class="tag">video</span><span class="lk-mode">teacher + student</span></h2>
+    <h2><span class="lk-n">8</span>Watch & discuss <span class="tag">video</span><span class="lk-mode">teacher + student</span></h2>
     <p class="lk-ins">Watch one video with English subtitles. Answer the questions.</p>
     <div class="vids" data-vids="[[&quot;Hu9FfMKiSKg&quot;, &quot;Holiday from Hell: an A2 story&quot;, &quot;In the Lighthouse&quot;, [&quot;What went wrong? Name three things.&quot;, &quot;Write down 5 verbs in the Past Simple.&quot;, &quot;Was the ending happy or sad?&quot;]], [&quot;PgsG98vByiw&quot;, &quot;The past simple tense&quot;, &quot;BBC Learning English · 6 Minute Grammar&quot;, [&quot;How do we make the past simple of regular verbs?&quot;, &quot;Write two irregular verbs from the video.&quot;, &quot;Make a question with \&quot;did\&quot;.&quot;]]]"></div>
 
     <p class="lk-tnote" data-ru="Заметка: первое видео (5 мин) история уровня A2, второе (6 мин) объяснение грамматики. Посмотрите перед уроком.">Нотатка: перше відео (5 хв) історія рівня A2, друге (6 хв) пояснення граматики. Перегляньте перед уроком.</p>
   </section>
   <section id="s8" data-stage="speaking" data-min="14">
-    <h2><span class="lk-n">8</span>Speaking <span class="tag">speaking</span><span class="lk-mode">teacher + student</span></h2>
+    <h2><span class="lk-n">9</span>Speaking <span class="tag">speaking</span><span class="lk-mode">teacher + student</span></h2>
     <p class="lk-ins">Part 1: choose three photos and tell a story about "My crazy holiday". Use: first, then, after that, finally.</p>
     <div class="pics">
       <figure><img src="https://images.unsplash.com/photo-1554123168-b400f9c806ca?w=600&q=70&auto=format&fit=crop" alt="At the airport" loading="lazy"><figcaption>At the airport<small>Photo: Marco López / Unsplash</small></figcaption></figure>
@@ -466,7 +535,7 @@ body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff3f7;border-l
     <p class="lk-tnote" data-ru="Заметка: в части 1 ученица может придумывать, главное прошедшее время и связки first, then, after that. «Two truths and a lie»: вы тоже играете, чтобы ученица задавала вопросы с did.">Нотатка: у частині 1 учениця може вигадувати, головне минулий час і зв'язки first, then, after that. «Two truths and a lie»: ви теж граєте, щоб учениця ставила питання з did.</p>
   </section>
   <section id="s9" data-stage="homework" data-min="0">
-    <h2><span class="lk-n">9</span>Homework <span class="tag">homework</span><span class="lk-mode">teacher + student</span></h2>
+    <h2><span class="lk-n">10</span>Homework <span class="tag">homework</span><span class="lk-mode">teacher + student</span></h2>
     <div class="hwb">
       <div class="hwc"><h3>A. My best (or worst) trip</h3><p>Write 8-10 sentences. Use at least 6 irregular verbs and 4 words from the lesson. Add one negative sentence and one question.</p><textarea id="hwText" placeholder="Last summer I went to ..."></textarea></div>
       <div class="hwc"><h3>B. Irregular verbs</h3><p>Learn 10 verbs: go, see, lose, find, take, get, eat, buy, swim, fly. Play the games on <a href="/irregular-verbs/games">Murly irregular verbs</a>.</p><p>Record a voice message: tell your story from part A (1 minute).</p></div>
@@ -477,7 +546,7 @@ body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff3f7;border-l
   <section class="end"><h2>Great job!</h2><p>See you next lesson.</p></section>
 </div>
 <div class="toast" id="toast"></div>
-<script>window.MURLY_LESSON={"id": "past-simple-holiday", "title": "Past Simple: holiday stories", "homework": ["s2", "s4", "s5", "s9"], "hw": {"s2": [{"type": "match", "instruction": "Match the words with their translations.", "text": "to travel = путешествовать\nto pack = собирать вещи (чемодан)\na suitcase = чемодан\nto miss (a plane / a bus) = опоздать (на самолёт / автобус)\nto get lost = заблудиться\nto lose = потерять\nto find = найти\nto arrive = прибыть, приехать\nto stay (at a hotel) = остановиться (в отеле)\nto rain = идти (о дожде)"}], "s4": [{"type": "choice", "instruction": "Choose the correct form.", "text": "Last year we {went|go|goed} to Spain.\nWe {missed|misted|miss} the plane because the taxi was late.\nMy dad {lost|losed|lose} his passport at the airport!\nWe {stayed|staied|stay} in a small hotel near the beach.\nI {didn't|don't|wasn't} swim in the sea because it was too cold.\n{Did|Were|Do} you take a lot of photos?\nThe food {was|were|did} terrible!\nWe {were|was|did} very tired after the trip.\nMy sister {found|finded|find} a beautiful shell on the beach."}, {"type": "gap", "instruction": "Write the past form.", "text": "go = [went]\nsee = [saw]\nlose = [lost]\nfind = [found]\ntake = [took]\nget = [got]\neat = [ate]\nbuy = [bought]\nswim = [swam]\nfly = [flew]\nsleep = [slept]\nleave = [left]"}], "s5": [{"type": "truefalse", "instruction": "Read Mia's story again. True or False?", "text": "Mia's family went to the mountains. = False\nThey missed the train because of the brother's shoes. = True\nThe hotel had their booking. = False\nTheir room was very big. = False\nIt rained for several days. = True\nThey visited a chocolate factory. = True\nMia didn't swim on the last day. = False\nMia thought it was the best holiday. = True"}], "s8": [{"type": "voice", "instruction": "Tell a story: My crazy holiday. Use first, then, after that, finally. (1 minute)", "text": "Where did you go?\nWhat happened?\nHow did it end?"}], "s9": [{"type": "open", "instruction": "Write 8-10 sentences: My best (or worst) trip. Use 6 irregular verbs.", "text": "Last summer I went to ..."}]}};</script>
+<script>window.MURLY_LESSON={"id": "past-simple-holiday", "title": "Past Simple: holiday stories", "homework": ["s2", "s4", "s10", "s5", "s9"], "hw": {"s2": [{"type": "match", "instruction": "Match the words with their translations.", "text": "to travel = путешествовать\nto pack = собирать вещи (чемодан)\na suitcase = чемодан\nto miss (a plane / a bus) = опоздать (на самолёт / автобус)\nto get lost = заблудиться\nto lose = потерять\nto find = найти\nto arrive = прибыть, приехать\nto stay (at a hotel) = остановиться (в отеле)\nto rain = идти (о дожде)"}], "s4": [{"type": "choice", "instruction": "Choose the correct form.", "text": "Last year we {went|go|goed} to Spain.\nWe {missed|misted|miss} the plane because the taxi was late.\nMy dad {lost|losed|lose} his passport at the airport!\nWe {stayed|staied|stay} in a small hotel near the beach.\nI {didn't|don't|wasn't} swim in the sea because it was too cold.\n{Did|Were|Do} you take a lot of photos?\nThe food {was|were|did} terrible!\nWe {were|was|did} very tired after the trip.\nMy sister {found|finded|find} a beautiful shell on the beach."}, {"type": "gap", "instruction": "Write the past form.", "text": "go = [went]\nsee = [saw]\nlose = [lost]\nfind = [found]\ntake = [took]\nget = [got]\neat = [ate]\nbuy = [bought]\nswim = [swam]\nfly = [flew]\nsleep = [slept]\nleave = [left]"}], "s10": [{"type": "gap", "instruction": "Write the past form of the irregular verbs.", "text": "be = [was]\nhave = [had]\ndo = [did]\ngo = [went]\nget = [got]\nmake = [made]\nsay = [said]\nsee = [saw]\ncome = [came]\ntake = [took]\nknow = [knew]\nthink = [thought]\ngive = [gave]\nfind = [found]\ntell = [told]\nlose = [lost]\nbuy = [bought]\neat = [ate]\nswim = [swam]\nfly = [flew]"}], "s5": [{"type": "truefalse", "instruction": "Read Mia's story again. True or False?", "text": "Mia's family went to the mountains. = False\nThey missed the train because of the brother's shoes. = True\nThe hotel had their booking. = False\nTheir room was very big. = False\nIt rained for several days. = True\nThey visited a chocolate factory. = True\nMia didn't swim on the last day. = False\nMia thought it was the best holiday. = True"}], "s8": [{"type": "voice", "instruction": "Tell a story: My crazy holiday. Use first, then, after that, finally. (1 minute)", "text": "Where did you go?\nWhat happened?\nHow did it end?"}], "s9": [{"type": "open", "instruction": "Write 8-10 sentences: My best (or worst) trip. Use 6 irregular verbs.", "text": "Last summer I went to ..."}]}};</script>
 <script>
 const $ = (id) => document.getElementById(id);
 const LIS = {"l1": "Hello! My name is Tom. Last spring I went to London with my class. We travelled by plane. It was my first flight, and I was a bit scared. On the first day we visited the Tower of London and saw the crown jewels. They were amazing! In the afternoon we got lost in a big park, but a friendly police officer helped us. On the second day it rained, so we went to the Natural History Museum. I loved the dinosaurs. I bought a small dinosaur for my little sister. We didn't have time to see Big Ben, but I want to go back next year."};
