@@ -388,8 +388,8 @@ function sceneSVG(th) {
       <path d="M0 560Q180 520 330 560" stroke="#fff" stroke-width="6" fill="none" opacity=".7"/><path d="M1280 560Q1100 520 950 560" stroke="#fff" stroke-width="6" fill="none" opacity=".7"/>`;
     // props drawn in Figma, cropped to their content (public/game-lessons/art/summer)
     const IMG = (n, x, y, w, h) => `<image href="art/summer/${n}.svg" x="${x}" y="${y}" width="${w}" height="${h}" preserveAspectRatio="xMidYMax meet"/>`;
-    near += IMG('palm', 1080, 290, 270, 262) + IMG('boat', 60, 430, 250, 147) + IMG('umbrella', 30, 548, 230, 233)
-      + IMG('shells', 250, 690, 130, 112) + IMG('flops', 920, 640, 150, 140) + IMG('castle', 1060, 560, 200, 203);
+    near += IMG('palm', 1010, 290, 260, 252) + IMG('boat', 90, 375, 220, 129) + IMG('umbrella', 30, 548, 230, 233)
+      + IMG('shells', 232, 690, 125, 108) + IMG('flops', 920, 640, 150, 140) + IMG('castle', 1060, 560, 200, 203);
   }
   if (th === 'classic') {
     back += `<rect y="${HZ}" width="${W}" height="${800 - HZ}" fill="url(#floor-${th})"/>${Array.from({ length: 9 }, (_, i) => `<rect x="${i * 150 - 20}" y="0" width="70" height="${HZ}" fill="#fff" opacity=".04"/>`).join('')}
