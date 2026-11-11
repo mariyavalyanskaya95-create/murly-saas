@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Murly Bowling: a team quiz game for English lessons | Murly</title>
+<link rel="icon" href="/favicon.svg">
+<meta name="description" content="Murly Bowling: answer English questions, roll the ball and knock down the pins. A team game for online and classroom lessons.">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#2b2f55;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:#17181C;overflow:hidden}
+#stage{position:absolute;left:50%;top:50%;width:1280px;height:800px;transform-origin:center center;overflow:hidden;border-radius:18px;user-select:none}
+.scr{position:absolute;inset:0;display:none}
+.scr.on{display:block}
+.bg{position:absolute;inset:0}
+h1,h2,.fx{font-family:"Arial Black","Segoe UI Black",Impact,system-ui,sans-serif;letter-spacing:.5px}
+.btn{font:900 30px/1 "Arial Black",Impact,sans-serif;color:#fff;background:#FF9F1C;border:4px solid #17181C;border-radius:14px;padding:16px 46px;cursor:pointer;box-shadow:6px 6px 0 #17181C;transform:skewX(-8deg);text-transform:uppercase}
+.btn:active{transform:skewX(-8deg) translate(3px,3px);box-shadow:3px 3px 0 #17181C}
+.btn.sm{font-size:18px;padding:10px 20px;box-shadow:4px 4px 0 #17181C}
+.btn.pink{background:#F472B6}.btn.blue{background:#5B8DEF}.btn.green{background:#3DBE6E}.btn.red{background:#E5484D}.btn.ghost{background:#fff;color:#17181C}
+.panel{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:rgba(255,255,255,.88);border:4px solid #17181C;border-radius:26px;box-shadow:10px 10px 0 rgba(23,24,28,.85);padding:34px 46px}
+.logo{display:flex;align-items:center;gap:14px;justify-content:center;margin-bottom:20px}
+.logo h1{margin:0;font-size:68px;color:#fff;-webkit-text-stroke:3px #3D2E8C;text-shadow:5px 5px 0 #3D2E8C}
+.logo small{display:block;font:900 26px "Arial Black",sans-serif;color:#F472B6;-webkit-text-stroke:1px #3D2E8C;text-align:center}
+.row{display:grid;grid-template-columns:230px 560px 90px;align-items:center;gap:18px;margin:16px 0}
+.row label{font:900 26px "Arial Black",sans-serif;text-transform:uppercase}
+.row .v{font:900 30px "Arial Black",sans-serif;text-align:center}
+input[type=range]{width:100%;accent-color:#5B4BC4;height:28px}
+.themes{display:flex;gap:12px;justify-content:center;margin:10px 0 6px}
+.th{width:120px;height:86px;border:4px solid #17181C;border-radius:16px;cursor:pointer;display:flex;align-items:flex-end;justify-content:center;font:900 15px "Arial Black",sans-serif;color:#fff;-webkit-text-stroke:1px #17181C;padding-bottom:6px;position:relative;overflow:hidden}
+.th.sel{outline:6px solid #FF9F1C;outline-offset:3px}
+.sets{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:8px}
+.chip{font:800 17px system-ui;border:3px solid #17181C;background:#fff;border-radius:999px;padding:7px 16px;cursor:pointer}
+.chip.sel{background:#FFE07A}
+textarea{width:100%;height:330px;font:16px/1.5 Consolas,monospace;border:3px solid #17181C;border-radius:14px;padding:12px}
+.teams{display:flex;gap:40px;justify-content:center;margin:30px 0}
+.tm{text-align:center;cursor:pointer}
+.tm .ball{width:120px;height:120px;margin:0 auto 12px;transition:transform .2s}
+.tm:hover .ball{transform:scale(1.08) rotate(-10deg)}
+.tm input{font:900 22px "Arial Black",sans-serif;width:200px;text-align:center;background:#F472B6;color:#fff;border:4px solid #17181C;border-radius:10px;padding:8px;box-shadow:4px 4px 0 #17181C;-webkit-text-stroke:.5px #17181C}
+.grid{display:grid;grid-template-columns:repeat(8,110px);gap:18px 22px;justify-content:center}
+.gb{text-align:center;cursor:pointer}
+.gb svg{width:88px;height:88px;transition:transform .15s}
+.gb:hover svg{transform:scale(1.12)}
+.gb .lb{font:900 13px "Arial Black",sans-serif;background:#F472B6;color:#fff;border:3px solid #17181C;border-radius:8px;padding:2px 6px;margin-top:4px;min-height:24px}
+.gb.taken .lb{background:#5BC0F8}
+.gb.cur svg{filter:drop-shadow(0 0 0 #FF9F1C) drop-shadow(0 0 10px #FF9F1C)}
+/* game */
+#lane{position:absolute;inset:0}
+.hud-l{position:absolute;left:24px;top:20px;color:#fff;font:900 54px/1 "Arial Black",sans-serif;-webkit-text-stroke:2px #17181C;text-shadow:3px 3px 0 #17181C}
+.hud-l small{display:block;font-size:20px;-webkit-text-stroke:1px #17181C}
+.board{position:absolute;right:20px;top:20px;display:flex;flex-direction:column;gap:10px;align-items:flex-end}
+.sc{display:flex;align-items:center;gap:0;font:900 26px "Arial Black",sans-serif}
+.sc .n{background:#5BC0F8;color:#fff;-webkit-text-stroke:1px #17181C;border:4px solid #17181C;border-radius:10px 0 0 10px;padding:6px 16px 6px 18px;transform:skewX(-8deg);box-shadow:4px 4px 0 #17181C}
+.sc:nth-child(2) .n{background:#F472B6}.sc:nth-child(3) .n{background:#3DBE6E}.sc:nth-child(4) .n{background:#FF9F1C}
+.sc .p{background:#fff;border:4px solid #17181C;border-radius:999px;min-width:62px;height:62px;display:grid;place-items:center;margin-left:-10px;position:relative;z-index:1;box-shadow:4px 4px 0 #17181C}
+.sc .p svg{position:absolute;inset:-4px;width:62px;height:62px;opacity:.35}
+.sc .p b{position:relative}
+.sc.on .n{outline:5px solid #FFE07A}
+.sc.bump .p{animation:bump .5s}
+@keyframes bump{50%{transform:scale(1.35)}}
+.pin{position:absolute;transform-origin:50% 92%;transition:transform .55s cubic-bezier(.3,.7,.4,1),opacity .6s;will-change:transform}
+.pin svg{width:100%;height:100%;display:block}
+.pin.fall{opacity:.0}
+.bowl{position:absolute;will-change:transform,left,top,width}
+.bowl svg{width:100%;height:100%;display:block}
+.meter{position:absolute;left:50%;transform:translateX(-50%);bottom:150px;display:flex;border:4px solid #17181C;border-radius:8px;overflow:hidden;box-shadow:5px 5px 0 rgba(0,0,0,.35)}
+.meter div{width:92px;height:64px;display:grid;place-items:center;font:900 38px "Arial Black",sans-serif;color:#fff;-webkit-text-stroke:1.5px #17181C}
+.meter .ptr{position:absolute;top:-16px;width:18px;height:96px;background:#fff;border:4px solid #17181C;border-radius:8px;transform:translateX(-50%);box-shadow:0 0 12px #fff}
+.hint{position:absolute;left:50%;transform:translateX(-50%);bottom:96px;font:900 24px "Arial Black",sans-serif;color:#fff;-webkit-text-stroke:1px #17181C;text-shadow:2px 2px 0 #17181C;white-space:nowrap}
+.pw{position:absolute;left:46px;bottom:110px;width:150px;height:150px;cursor:pointer;animation:float 2s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-10px) rotate(-4deg)}}
+.pw .t{position:absolute;bottom:18px;left:0;right:0;text-align:center;font:900 15px "Arial Black",sans-serif;color:#fff;-webkit-text-stroke:1px #17181C}
+.big{position:absolute;left:0;right:0;top:36%;text-align:center;font:900 110px "Arial Black",Impact,sans-serif;color:#fff;-webkit-text-stroke:5px #3D2E8C;text-shadow:8px 8px 0 #3D2E8C;opacity:0;transform:scale(.4);transition:all .35s cubic-bezier(.3,1.6,.5,1);pointer-events:none}
+.big.show{opacity:1;transform:scale(1)}
+.qbox{position:absolute;inset:0;background:rgba(20,22,45,.55);display:none;align-items:center;justify-content:center}
+.qbox.on{display:flex}
+.qcard{width:900px;background:#fff;border:5px solid #17181C;border-radius:28px;box-shadow:12px 12px 0 #17181C;padding:30px 40px;text-align:center;position:relative}
+.qcard .who{position:absolute;top:-28px;left:50%;transform:translateX(-50%) skewX(-8deg);background:#5BC0F8;border:4px solid #17181C;border-radius:10px;padding:6px 22px;font:900 24px "Arial Black",sans-serif;color:#fff;-webkit-text-stroke:1px #17181C;display:flex;gap:10px;align-items:center}
+.qcard .who svg{width:34px;height:34px}
+.qcard img{max-width:100%;height:280px;object-fit:cover;border-radius:16px;border:3px solid #17181C;margin-bottom:12px}
+.qcard .q{font:800 38px/1.25 system-ui,sans-serif;margin:14px 0 22px}
+.qcard .ans{font:900 40px "Arial Black",sans-serif;color:#3DBE6E;margin:-6px 0 18px;min-height:46px}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:12px}
+.opts button{font:800 28px system-ui;border:4px solid #17181C;background:#fff;border-radius:16px;padding:14px;cursor:pointer;box-shadow:4px 4px 0 #17181C}
+.opts button.ok{background:#B9EBC8}.opts button.bad{background:#F8C4C4}
+.qbtns{display:flex;gap:18px;justify-content:center}
+.end{text-align:center}
+.end h2{font-size:84px;margin:0;color:#fff;-webkit-text-stroke:4px #3D2E8C;text-shadow:7px 7px 0 #3D2E8C}
+.podium{display:flex;gap:30px;justify-content:center;align-items:flex-end;margin:30px 0}
+.podium div{text-align:center;font:900 26px "Arial Black",sans-serif}
+.podium svg{width:110px;height:110px}
+.cf{position:absolute;width:14px;height:22px;top:-30px;animation:cf 2.6s linear forwards}
+@keyframes cf{to{transform:translateY(900px) rotate(720deg)}}
+.corner{position:absolute;top:18px;display:flex;gap:10px}
+.mute{position:absolute;right:20px;bottom:18px}
+.small{font-size:15px;color:#555;margin-top:8px}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="bg" id="bg"></div>
+
+  <!-- 1. setup -->
+  <div class="scr on" id="sSetup">
+    <div class="panel" style="width:1000px">
+      <div class="logo"><span id="logoBall"></span><div><h1>Murly Bowling</h1><small id="thName">Classic</small></div></div>
+      <div class="row"><label>Teams</label><input type="range" id="rTeams" min="1" max="4" value="2"><div class="v" id="vTeams">2</div></div>
+      <div class="row"><label>Shots</label><input type="range" id="rShots" min="2" max="40" step="2" value="16"><div class="v" id="vShots">16</div></div>
+      <div class="row"><label>Timer</label><input type="range" id="rTime" min="0" max="60" step="10" value="0"><div class="v" id="vTime">OFF</div></div>
+      <div class="themes" id="themes"></div>
+      <div class="sets" id="sets"></div>
+      <div style="text-align:center;margin-top:22px;display:flex;gap:16px;justify-content:center"><button class="btn sm pink" id="bEdit" type="button">Edit questions</button><button class="btn" id="bNext1" type="button">Next</button></div>
+    </div>
+  </div>
+
+  <!-- 1b. edit -->
+  <div class="scr" id="sEdit">
+    <div class="panel" style="width:1060px">
+      <h2 style="margin:0 0 6px;font-size:34px">Your questions</h2>
+      <div class="small" style="margin:0 0 10px">One question per line: <b>question = answer</b>. Optional wrong answers: <b>question = answer | wrong 1 | wrong 2 | wrong 3</b>. They save in this browser.</div>
+      <textarea id="tEdit" spellcheck="false"></textarea>
+      <div style="text-align:center;margin-top:16px;display:flex;gap:16px;justify-content:center"><button class="btn sm ghost" id="bEditBack" type="button">Back</button><button class="btn sm green" id="bEditSave" type="button">Save</button></div>
+    </div>
+  </div>
+
+  <!-- 2. teams -->
+  <div class="scr" id="sTeams">
+    <div class="panel" style="width:1100px;text-align:center">
+      <h2 style="margin:0;font-size:52px">Teams</h2>
+      <div class="small">Click a ball to change it. Click a name to rename the team.</div>
+      <div class="teams" id="teams"></div>
+      <div style="display:flex;gap:18px;justify-content:center"><button class="btn sm ghost" id="bBack2" type="button">Back</button><button class="btn sm blue" id="bRandom" type="button">Random</button><button class="btn" id="bStart" type="button">Start</button></div>
+    </div>
+  </div>
+
+  <!-- 3. ball picker -->
+  <div class="scr" id="sBalls">
+    <div class="panel" style="width:1180px;text-align:center">
+      <h2 style="margin:0 0 18px;font-size:42px" id="pickTitle">Team 1</h2>
+      <div class="grid" id="grid"></div>
+    </div>
+  </div>
+
+  <!-- 4. game -->
+  <div class="scr" id="sGame">
+    <div id="lane"></div>
+    <div class="hud-l"><span id="shots">16</span><small>SHOTS LEFT</small></div>
+    <div class="board" id="board"></div>
+    <div class="big" id="big"></div>
+    <div class="qbox" id="qbox"><div class="qcard" id="qcard"></div></div>
+  </div>
+
+  <!-- 5. end -->
+  <div class="scr" id="sEnd">
+    <div class="panel end" style="width:1000px">
+      <h2 id="winTitle">Team 1 wins!</h2>
+      <div class="podium" id="podium"></div>
+      <div style="display:flex;gap:18px;justify-content:center"><button class="btn sm ghost" id="bMenu" type="button">Menu</button><button class="btn" id="bAgain" type="button">Play again</button></div>
+    </div>
+  </div>
+  <button class="btn sm ghost mute" id="bMute" type="button">Sound: on</button>
+</div>
+
+<script>
+'use strict';
+const $ = (id) => document.getElementById(id);
+const sh = (a) => a.map((x) => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map((x) => x[1]);
+const rnd = (a, b) => a + Math.random() * (b - a);
+const P = new URLSearchParams(location.search);
+const ls = { get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }, set(k, v) { try { localStorage.setItem(k, v); } catch (e) { } } };
+
+// ---------- scale ----------
+function fit() { const s = Math.min(innerWidth / 1280, innerHeight / 800); $('stage').style.transform = `translate(-50%,-50%) scale(${s})`; }
+addEventListener('resize', fit); fit();
+
+// ---------- sound (WebAudio, our own) ----------
+let MUTE = ls.get('murly:bowl:mute') === '1';
+let AC = null; const ac = () => (AC = AC || new (window.AudioContext || window.webkitAudioContext)());
+function tone(f, d, type = 'sine', v = .15, slide = 0) { if (MUTE) return; try { const c = ac(), o = c.createOscillator(), g = c.createGain(); o.type = type; o.frequency.value = f; if (slide) o.frequency.exponentialRampToValueAtTime(slide, c.currentTime + d); g.gain.value = v; g.gain.exponentialRampToValueAtTime(.001, c.currentTime + d); o.connect(g).connect(c.destination); o.start(); o.stop(c.currentTime + d); } catch (e) { } }
+function noise(d, v = .25) { if (MUTE) return; try { const c = ac(), b = c.createBuffer(1, c.sampleRate * d, c.sampleRate), a = b.getChannelData(0); for (let i = 0; i < a.length; i++) a[i] = (Math.random() * 2 - 1) * (1 - i / a.length); const s = c.createBufferSource(), g = c.createGain(), f = c.createBiquadFilter(); f.type = 'lowpass'; f.frequency.value = 900; s.buffer = b; g.gain.value = v; s.connect(f).connect(g).connect(c.destination); s.start(); } catch (e) { } }
+const SND = { click: () => tone(660, .08, 'square', .06), roll: () => noise(1.1, .18), hit: () => { noise(.35, .5); tone(180, .2, 'triangle', .2, 90); }, ok: () => { tone(660, .12); setTimeout(() => tone(880, .18), 110); }, bad: () => tone(220, .35, 'sawtooth', .08, 120), strike: () => [523, 659, 784, 1047].forEach((f, i) => setTimeout(() => tone(f, .25, 'triangle', .14), i * 110)), pw: () => [400, 600, 900].forEach((f, i) => setTimeout(() => tone(f, .15, 'sine', .12), i * 80)) };
+function setMute() { $('bMute').textContent = 'Sound: ' + (MUTE ? 'off' : 'on'); }
+$('bMute').onclick = () => { MUTE = !MUTE; ls.set('murly:bowl:mute', MUTE ? '1' : '0'); setMute(); }; setMute();
+
+// ---------- balls (our own SVG) ----------
+const BALLS = [
+  ['Watermelon', 'stripes', '#3BAA4A', '#1E6B2C'], ['Orange', 'dots', '#FF9F1C', '#E07A00'], ['Basketball', 'basket', '#F07B2E', '#5A2A0A'], ['Football', 'soccer', '#FFFFFF', '#17181C'],
+  ['Tennis', 'tennis', '#D8F04A', '#FFFFFF'], ['Planet', 'ring', '#8E7CF0', '#FFD25A'], ['Moon', 'craters', '#CFCFD8', '#9A9AAE'], ['Donut', 'donut', '#F7A8C9', '#FFF3B0'],
+  ['Beach ball', 'beach', '#FF5D5D', '#4DA3FF'], ['Kiwi', 'kiwi', '#8BC34A', '#3E2A14'], ['Lemon', 'dots', '#FFE14D', '#E8C100'], ['Murly cat', 'cat', '#B8A7F5', '#3D2E8C'],
+  ['Earth', 'earth', '#3E8EF7', '#43B85B'], ['Strawberry', 'seeds', '#E9314A', '#FFE07A'], ['Cookie', 'chips', '#D9A066', '#5A3418'], ['Bubblegum', 'swirl', '#FF8FCB', '#FFFFFF'],
+  ['Galaxy', 'stars', '#2C2470', '#FFFFFF'], ['Candy', 'swirl', '#FF5D5D', '#FFFFFF'], ['Eyeball', 'eye', '#FFFFFF', '#3E8EF7'], ['Smiley', 'smile', '#FFD23F', '#17181C'],
+  ['Lava', 'stripes', '#FF5B1F', '#FFD23F'], ['Ice', 'craters', '#BFEFFF', '#7FD3F2'], ['Mint', 'dots', '#7FE0B5', '#2E9C70'], ['Pizza', 'pizza', '#FFC94D', '#D9342B']];
+function ballSVG(i, id) {
+  const [, t, a, b] = BALLS[i]; const u = 'b' + i + (id || ''); let d = '';
+  const C = `<clipPath id="${u}c"><circle cx="50" cy="50" r="46"/></clipPath>`;
+  if (t === 'stripes') for (let k = 0; k < 6; k++) d += `<path d="M${10 + k * 16} 0 Q${30 + k * 16} 50 ${10 + k * 16} 100" stroke="${b}" stroke-width="6" fill="none"/>`;
+  if (t === 'dots') for (let k = 0; k < 22; k++) d += `<circle cx="${(k * 37) % 92 + 4}" cy="${(k * 53) % 92 + 4}" r="2.6" fill="${b}"/>`;
+  if (t === 'basket') d = `<path d="M50 4V96M4 50H96M18 14Q50 50 18 86M82 14Q50 50 82 86" stroke="${b}" stroke-width="3.5" fill="none"/>`;
+  if (t === 'soccer') d = `<polygon points="50,32 66,44 60,63 40,63 34,44" fill="${b}"/>` + [[50, 4, 50, 32], [96, 40, 66, 44], [80, 92, 60, 63], [20, 92, 40, 63], [4, 40, 34, 44]].map(([x1, y1, x2, y2]) => `<path d="M${x1} ${y1}L${x2} ${y2}" stroke="${b}" stroke-width="3"/>`).join('') + `<polygon points="50,0 62,6 50,10 38,6" fill="${b}"/><polygon points="98,52 92,66 86,54" fill="${b}"/><polygon points="2,52 8,66 14,54" fill="${b}"/>`;
+  if (t === 'tennis') d = `<path d="M14 18Q46 50 14 84M86 18Q54 50 86 84" stroke="${b}" stroke-width="5" fill="none"/>`;
+  if (t === 'ring') d = `<circle cx="34" cy="36" r="8" fill="#fff" opacity=".35"/><circle cx="64" cy="66" r="12" fill="#000" opacity=".12"/>`;
+  if (t === 'craters') d = [[30, 30, 10], [64, 26, 7], [58, 60, 13], [26, 66, 7], [80, 52, 5]].map(([x, y, r]) => `<circle cx="${x}" cy="${y}" r="${r}" fill="${b}"/>`).join('');
+  if (t === 'donut') d = `<circle cx="50" cy="50" r="34" fill="${b}" opacity=".0"/><path d="M8 50Q14 18 50 12Q86 18 92 50Q80 44 70 52Q58 40 46 50Q34 42 24 54Q16 46 8 50Z" fill="#C46A35"/>` + [[30, 28, '#4DA3FF'], [50, 22, '#3DBE6E'], [70, 30, '#FFE07A'], [40, 40, '#fff'], [62, 42, '#4DA3FF']].map(([x, y, c]) => `<rect x="${x}" y="${y}" width="7" height="2.6" rx="1.3" fill="${c}" transform="rotate(${x * 7} ${x} ${y})"/>`).join('') + `<circle cx="50" cy="50" r="12" fill="#fff" stroke="#17181C" stroke-width="2"/>`;
+  if (t === 'beach') d = `<path d="M50 50L50 0A50 50 0 0 1 93 25Z" fill="${b}"/><path d="M50 50L93 75A50 50 0 0 1 50 100Z" fill="#FFE07A"/><path d="M50 50L7 75A50 50 0 0 1 7 25Z" fill="#3DBE6E"/><circle cx="50" cy="50" r="7" fill="#fff"/>`;
+  if (t === 'kiwi') { d = `<circle cx="50" cy="50" r="30" fill="#C5E86C"/><circle cx="50" cy="50" r="10" fill="#FFFBE6"/>`; for (let k = 0; k < 14; k++) { const g = k / 14 * Math.PI * 2; d += `<circle cx="${50 + Math.cos(g) * 19}" cy="${50 + Math.sin(g) * 19}" r="1.9" fill="${b}"/>`; } }
+  if (t === 'cat') d = `<path d="M18 30L24 6L40 22ZM82 30L76 6L60 22Z" fill="${a}" stroke="${b}" stroke-width="3"/><circle cx="36" cy="48" r="5" fill="${b}"/><circle cx="64" cy="48" r="5" fill="${b}"/><path d="M44 62Q50 68 56 62" stroke="${b}" stroke-width="3" fill="none"/><path d="M47 56h6l-3 3z" fill="#F472B6"/><path d="M20 58h14M20 64h14M66 58h14M66 64h14" stroke="${b}" stroke-width="2"/>`;
+  if (t === 'earth') d = `<path d="M20 26Q34 18 44 30Q40 44 26 42Q18 36 20 26ZM58 50Q76 44 84 60Q78 80 62 76Q54 64 58 50ZM40 66Q48 70 44 84Q34 80 40 66Z" fill="${b}"/>`;
+  if (t === 'seeds') { for (let k = 0; k < 20; k++) d += `<ellipse cx="${(k * 29) % 84 + 8}" cy="${(k * 47) % 80 + 14}" rx="1.8" ry="3" fill="${b}"/>`; d += `<path d="M30 6Q50 18 70 6Q60 0 50 4Q40 0 30 6Z" fill="#3DBE6E"/>`; }
+  if (t === 'chips') d = [[30, 30], [60, 24], [48, 52], [26, 64], [72, 58], [58, 80], [80, 38]].map(([x, y]) => `<path d="M${x} ${y}l5 2l-1 5l-5-1z" fill="${b}"/>`).join('');
+  if (t === 'swirl') d = `<path d="M50 50m-6 0a6 6 0 1 1 12 0a12 12 0 1 1-24 0a18 18 0 1 1 36 0a24 24 0 1 1-48 0a30 30 0 1 1 60 0a36 36 0 1 1-72 0" stroke="${b}" stroke-width="6" fill="none"/>`;
+  if (t === 'stars') for (let k = 0; k < 26; k++) d += `<circle cx="${(k * 41) % 92 + 4}" cy="${(k * 59) % 92 + 4}" r="${k % 5 ? 1.2 : 2.6}" fill="${b}"/>`;
+  if (t === 'eye') d = `<path d="M10 30Q20 40 18 52M84 24Q78 38 88 46M30 86Q36 76 46 82" stroke="#E5484D" stroke-width="2" fill="none"/><circle cx="56" cy="46" r="22" fill="${b}"/><circle cx="58" cy="44" r="10" fill="#17181C"/><circle cx="62" cy="40" r="4" fill="#fff"/>`;
+  if (t === 'smile') d = `<circle cx="36" cy="40" r="6" fill="${b}"/><circle cx="64" cy="40" r="6" fill="${b}"/><path d="M28 60Q50 82 72 60" stroke="${b}" stroke-width="5" fill="none" stroke-linecap="round"/>`;
+  if (t === 'pizza') d = [[30, 30], [60, 26], [46, 54], [24, 64], [72, 58], [56, 80]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="7" fill="${b}"/>`).join('') + `<path d="M20 40l4 4M70 40l3 5M40 76l5 2" stroke="#3DBE6E" stroke-width="3"/>`;
+  const ring = t === 'ring' ? `<ellipse cx="50" cy="54" rx="58" ry="12" fill="none" stroke="${b}" stroke-width="6" transform="rotate(-18 50 54)"/>` : '';
+  return `<svg viewBox="-10 -10 120 120"><defs>${C}<radialGradient id="${u}g" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".45" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".28"/></radialGradient></defs><ellipse cx="50" cy="100" rx="34" ry="6" fill="#000" opacity=".18"/><circle cx="50" cy="50" r="46" fill="${a}"/><g clip-path="url(#${u}c)">${d}</g><circle cx="50" cy="50" r="46" fill="url(#${u}g)"/>${ring}<circle cx="50" cy="50" r="46" fill="none" stroke="#17181C" stroke-width="3.5"/></svg>`;
+}
+
+// ---------- themes (our own drawings) ----------
+const THEMES = {
+  classic: { name: 'Classic', sky: 'linear-gradient(#2E2A6E,#5B4BC4 60%,#8E7CF0)', floor: ['#E9C58F', '#D4A867'], side: '#3A2F7A', deco: 'classic' },
+  spring: { name: 'Spring', sky: 'linear-gradient(#9FE3FF,#D9F5FF 55%,#A8E6A1 56%,#7CCB72)', floor: ['#F4D9A8', '#E6BE84'], side: '#5FA857', deco: 'spring' },
+  summer: { name: 'Summer', sky: 'linear-gradient(#7ED7F7,#BDEBFA 48%,#3CC6D6 49%,#7FE0E6 60%,#F5DDA8 61%,#EFCB89)', floor: ['#C9925A', '#B07A44'], side: '#9C6A38', deco: 'summer' },
+  fall: { name: 'Fall', sky: 'linear-gradient(#FFB37A,#FFD9A8 55%,#C77B3B 56%,#A65F2A)', floor: ['#E2B87C', '#C99A5C'], side: '#7A3E1E', deco: 'fall' },
+  winter: { name: 'Winter', sky: 'linear-gradient(#5D7FD1,#A9C3F2 55%,#F2F7FF 56%,#DCE8FA)', floor: ['#D8E9FF', '#B8D2F5'], side: '#6F8FC9', deco: 'winter' } };
+let TH = THEMES[P.get('theme')] ? P.get('theme') : (ls.get('murly:bowl:theme') || 'classic'); if (!THEMES[TH]) TH = 'classic';
+function decoSVG(k) {
+  const W = 1280, H = 800; let s = '';
+  if (k === 'classic') { for (let i = 0; i < 40; i++) s += `<circle cx="${(i * 131) % W}" cy="${(i * 71) % 300}" r="${i % 3 + 1}" fill="#fff" opacity=".5"/>`; s += `<text x="640" y="120" text-anchor="middle" font-family="Arial Black" font-size="64" fill="#FFE07A" stroke="#17181C" stroke-width="3">MURLY LANES</text>`; }
+  if (k === 'spring') { s += `<circle cx="1120" cy="110" r="60" fill="#FFE07A"/>`; for (let i = 0; i < 18; i++) { const x = 40 + i * 70, y = 470 + (i % 3) * 30; s += `<g transform="translate(${x},${y})"><circle r="9" fill="#FFE07A"/>${[0, 72, 144, 216, 288].map((a) => `<circle cx="${Math.cos(a / 57.3) * 14}" cy="${Math.sin(a / 57.3) * 14}" r="9" fill="${i % 2 ? '#F7A8C9' : '#fff'}"/>`).join('')}</g>`; } }
+  if (k === 'summer') { s += `<circle cx="1100" cy="100" r="56" fill="#FFE07A"/><path d="M60 420q20-160 10-300M70 130q-80 10-100 60M70 130q90-10 120 40M70 130q-40-70-100-70M70 130q60-60 110-50" stroke="#2E8B3A" stroke-width="16" fill="none" stroke-linecap="round"/><path d="M1210 430q-20-160-10-300M1200 140q80 10 100 60M1200 140q-90-10-120 40M1200 140q40-70 100-70" stroke="#2E8B3A" stroke-width="16" fill="none" stroke-linecap="round"/><path d="M60 420q-4-160 10-300" stroke="#8A5A2B" stroke-width="16" fill="none"/><path d="M1210 430q4-160-10-300" stroke="#8A5A2B" stroke-width="16" fill="none"/><path d="M90 640l120-20 30 40-130 20z" fill="#E8A33D" stroke="#17181C" stroke-width="3"/><g transform="translate(1070,600)"><path d="M0 60h120l-10-40h-100z" fill="#F2C46B" stroke="#17181C" stroke-width="3"/><path d="M20 20v-30h20v30M70 20v-40h20v40" fill="#F2C46B" stroke="#17181C" stroke-width="3"/></g>`; }
+  if (k === 'fall') { for (let i = 0; i < 26; i++) s += `<path transform="translate(${(i * 97) % W},${(i * 61) % 380 + 20}) rotate(${i * 37})" d="M0 -14C10 -6 10 6 0 14C-10 6 -10 -6 0 -14Z" fill="${['#E8742B', '#D9342B', '#F2B035'][i % 3]}"/>`; s += `<path d="M0 470q160-60 320 0t320 0 320 0 320 0V520H0z" fill="#8E4B22" opacity=".5"/>`; }
+  if (k === 'winter') { for (let i = 0; i < 60; i++) s += `<circle cx="${(i * 89) % W}" cy="${(i * 53) % 440}" r="${i % 3 + 2}" fill="#fff" opacity=".9"/>`; s += `<path d="M40 470l90-170 90 170zM1060 470l90-170 90 170z" fill="#3E7C5A"/><path d="M80 400l50-90 50 90zM1100 400l50-90 50 90z" fill="#fff" opacity=".85"/>`; }
+  return `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" style="position:absolute;inset:0">${s}</svg>`;
+}
+function applyTheme() { const t = THEMES[TH]; $('bg').style.background = t.sky; $('bg').innerHTML = decoSVG(t.deco); $('thName').textContent = t.name; document.querySelectorAll('.th').forEach((e) => e.classList.toggle('sel', e.dataset.t === TH)); }
+$('themes').innerHTML = Object.entries(THEMES).map(([k, t]) => `<div class="th" data-t="${k}" style="background:${t.sky}">${t.name}</div>`).join('');
+document.querySelectorAll('.th').forEach((e) => e.onclick = () => { TH = e.dataset.t; ls.set('murly:bowl:theme', TH); applyTheme(); SND.click(); });
+$('logoBall').innerHTML = `<div style="width:90px;height:90px">${ballSVG(11, 'logo')}</div>`;
+
+// ---------- question sets ----------
+const SETS = {
+  personality: { name: 'Personality (A2)', q: [
+    ['He isn\'t afraid of anything. He is ...', 'brave', 'boring', 'arrogant', 'crazy'],
+    ['This film is so ... . I fell asleep!', 'boring', 'brave', 'adventurous', 'crazy'],
+    ['Lena is my ... . We do everything together.', 'best friend', 'boring', 'arrogant', 'brave'],
+    ['My uncle went to the North Pole on a bike. He is very ... .', 'adventurous', 'boring', 'a good listener', 'arrogant'],
+    ['He thinks he is better than everybody. He is ... .', 'arrogant', 'brave', 'a good listener', 'best friend'],
+    ['My dog eats socks and sings to the moon. He\'s ...!', 'crazy', 'boring', 'arrogant', 'a good listener'],
+    ['She listens and never interrupts. She is ... .', 'a good listener', 'crazy', 'arrogant', 'boring'],
+    ['How do you say «смелый» in English?', 'brave', 'boring', 'crazy', 'arrogant'],
+    ['How do you say «скучный» in English?', 'boring', 'brave', 'best friend', 'crazy'],
+    ['How do you say «высокомерный» in English?', 'arrogant', 'adventurous', 'boring', 'brave'],
+    ['How do you say «хороший слушатель» in English?', 'a good listener', 'best friend', 'brave', 'crazy'],
+    ['How do you say «лучший друг» in English?', 'best friend', 'a good listener', 'arrogant', 'boring'],
+    ['How do you say «сумасшедший» in English?', 'crazy', 'brave', 'boring', 'adventurous'],
+    ['How do you say «любящий приключения» in English?', 'adventurous', 'arrogant', 'crazy', 'brave'],
+    ['The opposite of "interesting" is ...', 'boring', 'brave', 'crazy', 'arrogant'],
+    ['The opposite of "scared" is ...', 'brave', 'boring', 'a good listener', 'adventurous'],
+    ['"I\'m the best. Everyone else is terrible." This person is ...', 'arrogant', 'brave', 'boring', 'a good listener'],
+    ['"Let\'s jump into the lake in December!" This person is ...', 'adventurous', 'boring', 'arrogant', 'a good listener'],
+    ['Say a sentence about your best friend. Use "is".', '(the teacher decides)'],
+    ['Describe a cartoon character with two words from the lesson.', '(the teacher decides)']] },
+  'in-at-on': { name: 'In / at / on (B1)', q: [
+    ['The keys are ... the table.', 'on', 'in', 'at'], ['Please wait ... the bus stop.', 'at', 'in', 'on'], ['I usually answer emails ... the train.', 'on', 'in', 'at'],
+    ['Our office is ... the fourth floor.', 'on', 'at', 'in'], ['There\'s a coffee machine ... the corner of the kitchen.', 'in', 'on', 'at'], ['Leave the parcel ... reception.', 'at', 'in', 'on'],
+    ['Look at the woman ... this photo.', 'in', 'on', 'at'], ['Write your name ... the top of the page.', 'at', 'on', 'in'], ['I left my phone ... the car.', 'in', 'on', 'at'],
+    ['Your name is ... the list.', 'on', 'in', 'at'], ['Turn right ... the traffic lights.', 'at', 'on', 'in'], ['There is a spider ... the ceiling!', 'on', 'at', 'in']] },
+  speaking: { name: 'Speaking (any level)', q: [
+    ['Name three things in your bag.', '(the teacher decides)'], ['What did you do last weekend?', '(the teacher decides)'], ['Describe your best friend in 3 words.', '(the teacher decides)'],
+    ['What is your favourite food? Why?', '(the teacher decides)'], ['Say 5 animals in 10 seconds!', '(the teacher decides)'], ['What would you do with a million dollars?', '(the teacher decides)']] } };
+function customQs() { const t = ls.get('murly:bowl:custom') || ''; return t.split('\n').map((l) => l.trim()).filter((l) => l.includes('=')).map((l) => { const [q, r] = l.split('='); const parts = r.split('|').map((x) => x.trim()).filter(Boolean); return [q.trim(), ...parts]; }); }
+let SET = SETS[P.get('set')] ? P.get('set') : (ls.get('murly:bowl:set') || 'personality'); if (!SETS[SET] && SET !== 'custom') SET = 'personality';
+function renderSets() { const all = Object.entries(SETS).map(([k, s]) => [k, s.name]).concat([['custom', 'My questions']]); $('sets').innerHTML = all.map(([k, n]) => `<span class="chip${k === SET ? ' sel' : ''}" data-s="${k}">${n}</span>`).join(''); document.querySelectorAll('.chip').forEach((c) => c.onclick = () => { SET = c.dataset.s; ls.set('murly:bowl:set', SET); renderSets(); SND.click(); if (SET === 'custom' && !customQs().length) openEdit(); }); }
+renderSets();
+function openEdit() { $('tEdit').value = ls.get('murly:bowl:custom') || 'She is not afraid of spiders. She is ... = brave | boring | crazy\nHow do you say «скучный» in English? = boring\nTell us about your best friend. = (the teacher decides)'; show('sEdit'); }
+$('bEdit').onclick = openEdit; $('bEditBack').onclick = () => show('sSetup');
+$('bEditSave').onclick = () => { ls.set('murly:bowl:custom', $('tEdit').value); SET = 'custom'; ls.set('murly:bowl:set', SET); renderSets(); show('sSetup'); };
+
+// ---------- setup ----------
+const S = { teams: 2, shots: 16, time: 0 };
+const bindR = (r, v, k, f) => { const up = () => { S[k] = +$(r).value; $(v).textContent = f ? f(S[k]) : S[k]; }; $(r).oninput = up; up(); };
+bindR('rTeams', 'vTeams', 'teams'); bindR('rShots', 'vShots', 'shots'); bindR('rTime', 'vTime', 'time', (x) => (x ? x + ' s' : 'OFF'));
+function show(id) { document.querySelectorAll('.scr').forEach((s) => s.classList.toggle('on', s.id === id)); }
+
+// ---------- teams ----------
+let TEAMS = [];
+function makeTeams() { const used = TEAMS.map((t) => t.ball); TEAMS = Array.from({ length: S.teams }, (_, i) => TEAMS[i] || { name: 'Team ' + (i + 1), ball: [0, 8, 2, 3][i] }); if (P.get('names') && !makeTeams.done) { P.get('names').split(',').forEach((n, i) => { if (TEAMS[i]) TEAMS[i].name = n.trim(); }); makeTeams.done = true; } renderTeams(); }
+function renderTeams() { $('teams').innerHTML = TEAMS.map((t, i) => `<div class="tm"><div class="ball" data-i="${i}">${ballSVG(t.ball, 't' + i)}</div><input value="${t.name.replace(/"/g, '&quot;')}" data-i="${i}" maxlength="16"></div>`).join('');
+  document.querySelectorAll('.tm .ball').forEach((b) => b.onclick = () => { pick = +b.dataset.i; renderGrid(); show('sBalls'); SND.click(); });
+  document.querySelectorAll('.tm input').forEach((n) => n.oninput = () => { TEAMS[+n.dataset.i].name = n.value || 'Team ' + (+n.dataset.i + 1); }); }
+let pick = 0;
+function renderGrid() { $('pickTitle').textContent = TEAMS[pick].name + ': choose your ball'; $('grid').innerHTML = BALLS.map((b, i) => { const who = TEAMS.findIndex((t) => t.ball === i); return `<div class="gb${who >= 0 ? ' taken' : ''}${who === pick ? ' cur' : ''}" data-i="${i}">${ballSVG(i, 'g' + i)}<div class="lb">${who >= 0 ? TEAMS[who].name : b[0]}</div></div>`; }).join('');
+  document.querySelectorAll('.gb').forEach((g) => g.onclick = () => { const i = +g.dataset.i; if (TEAMS.some((t, k) => k !== pick && t.ball === i)) return; TEAMS[pick].ball = i; SND.ok(); renderTeams(); show('sTeams'); }); }
+$('bNext1').onclick = () => { makeTeams(); show('sTeams'); SND.click(); };
+$('bBack2').onclick = () => show('sSetup');
+$('bRandom').onclick = () => { const b = sh(BALLS.map((_, i) => i)); TEAMS.forEach((t, i) => { t.ball = b[i]; }); TEAMS = sh(TEAMS); renderTeams(); SND.pw(); };
+
+// ---------- lane geometry (2D perspective) ----------
+const VP = { x: 640, y: 150 }; // far end
+const LN = { nearY: 790, farY: 230, nearHalf: 250, farHalf: 92 };
+const lerp = (a, b, t) => a + (b - a) * t;
+function laneAt(t) { const y = lerp(LN.nearY, LN.farY, t); const half = lerp(LN.nearHalf, LN.farHalf, t); return { y, half, s: lerp(1, .36, t) }; } // t: 0 near, 1 far
+function laneSVG() {
+  const t = THEMES[TH]; const n = laneAt(0), f = laneAt(1); let boards = '';
+  for (let k = 1; k < 12; k++) { const u = k / 12; boards += `<path d="M${640 - n.half + u * n.half * 2} ${n.y}L${640 - f.half + u * f.half * 2} ${f.y}" stroke="#000" stroke-opacity=".08" stroke-width="2"/>`; }
+  let arrows = ''; [-2, -1, 0, 1, 2].forEach((k) => { const a = laneAt(.25); const x = 640 + k * a.half * .32; arrows += `<path d="M${x} ${a.y - 14}l9 18h-18z" fill="#3D2E8C" opacity=".55"/>`; });
+  return `<svg viewBox="0 0 1280 800" width="1280" height="800" style="position:absolute;inset:0">
+    <defs><linearGradient id="lf" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="${t.floor[0]}"/><stop offset="1" stop-color="${t.floor[1]}"/></linearGradient></defs>
+    <path d="M${640 - n.half - 70} ${n.y}L${640 - f.half - 26} ${f.y}L${640 + f.half + 26} ${f.y}L${640 + n.half + 70} ${n.y}Z" fill="${t.side}"/>
+    <path d="M${640 - n.half - 40} ${n.y}L${640 - f.half - 14} ${f.y}L${640 - f.half} ${f.y}L${640 - n.half} ${n.y}Z" fill="#000" opacity=".25"/>
+    <path d="M${640 + n.half + 40} ${n.y}L${640 + f.half + 14} ${f.y}L${640 + f.half} ${f.y}L${640 + n.half} ${n.y}Z" fill="#000" opacity=".25"/>
+    <path d="M${640 - n.half} ${n.y}L${640 - f.half} ${f.y}L${640 + f.half} ${f.y}L${640 + n.half} ${n.y}Z" fill="url(#lf)" stroke="#17181C" stroke-width="4"/>
+    ${boards}${arrows}
+    <rect x="${640 - f.half - 40}" y="${f.y - 120}" width="${f.half * 2 + 80}" height="120" rx="10" fill="#17181C" opacity=".85"/>
+    <path d="M${640 - f.half - 60} ${f.y - 120}h${f.half * 2 + 120}l-20 -34h-${f.half * 2 + 80}z" fill="${t.side}" stroke="#17181C" stroke-width="4"/>
+    <text x="640" y="${f.y - 128}" text-anchor="middle" font-family="Arial Black" font-size="24" fill="#fff" stroke="#17181C" stroke-width="1" id="laneTeam"></text>
+  </svg>`;
+}
+const PINPOS = [[0, 0], [-1, 1], [1, 1], [-2, 2], [0, 2], [2, 2], [-3, 3], [-1, 3], [1, 3], [3, 3]];
+const PIN_SVG = '<svg viewBox="0 0 40 100"><ellipse cx="20" cy="96" rx="14" ry="4" fill="#000" opacity=".25"/><path d="M20 4c7 0 9 7 8 14-1 6-4 9-1 16 5 11 10 19 9 36-1 14-7 26-16 26S5 84 4 70C3 53 8 45 13 34c3-7 0-10-1-16-1-7 1-14 8-14z" fill="#fff" stroke="#17181C" stroke-width="3"/><path d="M12 24h16M11 30h18" stroke="#E5484D" stroke-width="4"/><path d="M14 10c2-3 6-3 8-1" stroke="#fff" stroke-width="3" opacity=".8" fill="none"/></svg>';
+let pins = [];
+function buildLane() {
+  $('lane').innerHTML = laneSVG(); pins = [];
+  PINPOS.forEach(([cx, row]) => { const t = .95 - row * .045; const g = laneAt(t); const w = 40 * g.s * 1.25, h = 100 * g.s * 1.25; const x = 640 + cx * 22 * g.s * 1.1 * 1.25 - w / 2; const y = g.y - h; const d = document.createElement('div'); d.className = 'pin'; d.style.cssText = `left:${x}px;top:${y}px;width:${w}px;height:${h}px;z-index:${10 + row}`; d.innerHTML = PIN_SVG; d.dataset.cx = cx; $('lane').appendChild(d); pins.push(d); });
+  const b = document.createElement('div'); b.className = 'bowl'; b.id = 'bowl'; $('lane').appendChild(b);
+  const m = document.createElement('div'); m.className = 'meter'; m.id = 'meter'; m.style.display = 'none'; m.innerHTML = ['#F2B035', '#3E9EE6', '#7B5BD6', '#F472B6', '#E5484D'].map((c, i) => `<div style="background:${c}">${i + 1}</div>`).join('') + '<i class="ptr" id="ptr"></i>'; $('lane').appendChild(m);
+  const h = document.createElement('div'); h.className = 'hint'; h.id = 'hint'; $('lane').appendChild(h);
+  const p = document.createElement('div'); p.className = 'pw'; p.id = 'pw'; p.style.display = 'none'; p.innerHTML = `<svg viewBox="0 0 100 100"><path d="M14 40h72v46a6 6 0 0 1-6 6H20a6 6 0 0 1-6-6z" fill="#F472B6" stroke="#17181C" stroke-width="4"/><path d="M8 28h84v14H8z" fill="#FF8FCB" stroke="#17181C" stroke-width="4"/><path d="M50 28v64" stroke="#FFE07A" stroke-width="8"/><path d="M50 28c-10-22-30-18-24-6 4 7 24 6 24 6zM50 28c10-22 30-18 24-6-4 7-24 6-24 6z" fill="#FFE07A" stroke="#17181C" stroke-width="3"/></svg><div class="t">POWER UP</div>`; $('lane').appendChild(p);
+}
+function placeBall(t, xoff) { const g = laneAt(t); const size = 92 * g.s; const b = $('bowl'); b.style.left = (640 + xoff * g.half - size / 2) + 'px'; b.style.top = (g.y - size) + 'px'; b.style.width = b.style.height = size + 'px'; b.style.zIndex = t > .9 ? 9 : 30; }
+
+// ---------- game ----------
+let G = null;
+function pool() { return SET === 'custom' ? customQs() : SETS[SET].q; }
+function startGame() {
+  const q = pool(); if (!q.length) { openEdit(); return; }
+  G = { turn: 0, left: S.shots, score: TEAMS.map(() => 0), bag: [], double: TEAMS.map(() => false), pwNext: 2 + Math.floor(Math.random() * 3) };
+  buildLane(); renderBoard(); show('sGame'); nextTurn();
+}
+function renderBoard() { $('board').innerHTML = TEAMS.map((t, i) => `<div class="sc${i === G.turn ? ' on' : ''}" id="sc${i}"><span class="n">${esc(t.name)}${G.double[i] ? ' x2' : ''}</span><span class="p">${ballSVG(t.ball, 's' + i)}<b>${G.score[i]}</b></span></div>`).join(''); $('shots').textContent = G.left; }
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+function bigMsg(t, ms = 1300) { $('big').textContent = t; $('big').classList.add('show'); clearTimeout(bigMsg.t); bigMsg.t = setTimeout(() => $('big').classList.remove('show'), ms); }
+function resetPins() { pins.forEach((p) => { p.classList.remove('fall'); p.style.transform = ''; p.dataset.down = ''; }); }
+function nextTurn() {
+  if (G.left <= 0) return endGame();
+  resetPins(); renderBoard(); $('laneTeam').textContent = TEAMS[G.turn].name; $('meter').style.display = 'none'; $('hint').textContent = ''; $('pw').style.display = 'none';
+  $('bowl').innerHTML = ballSVG(TEAMS[G.turn].ball, 'bw'); $('bowl').style.transition = 'none'; placeBall(0.02, 0);
+  setTimeout(askQuestion, 450);
+}
+let timerI = null;
+function askQuestion() {
+  if (!G.bag.length) G.bag = sh(pool().slice());
+  const q = G.bag.pop(); const [text, ans, ...wrong] = q; const t = TEAMS[G.turn]; const judge = !wrong.length;
+  const opts = judge ? [] : sh([ans, ...wrong]);
+  $('qcard').innerHTML = `<div class="who">${ballSVG(t.ball, 'q')}${esc(t.name)}</div>${S.time ? `<div style="position:absolute;right:24px;top:18px;font:900 30px Arial Black" id="qt">${S.time}</div>` : ''}<div class="q">${esc(text)}</div>
+    ${opts.length ? `<div class="opts">${opts.map((o) => `<button type="button">${esc(o)}</button>`).join('')}</div>` : `<div class="ans" id="qa"></div><div class="qbtns"><button class="btn sm ghost" id="qShow" type="button">Show answer</button><button class="btn sm green" id="qOk" type="button">Correct</button><button class="btn sm red" id="qNo" type="button">Wrong</button></div>`}`;
+  $('qbox').classList.add('on');
+  let done = false; const finish = (ok) => { if (done) return; done = true; clearInterval(timerI); if (ok) SND.ok(); else SND.bad(); setTimeout(() => { $('qbox').classList.remove('on'); if (ok) aimPhase(); else { bigMsg('Oops! No roll'); setTimeout(() => endTurn(0), 1300); } }, ok ? 700 : 1100); };
+  if (opts.length) $('qcard').querySelectorAll('.opts button').forEach((b) => b.onclick = () => { if (done) return; const ok = b.textContent === ans; b.classList.add(ok ? 'ok' : 'bad'); if (!ok) $('qcard').querySelectorAll('.opts button').forEach((x) => { if (x.textContent === ans) x.classList.add('ok'); }); finish(ok); });
+  else { $('qShow').onclick = () => { $('qa').textContent = ans; SND.click(); }; $('qOk').onclick = () => finish(true); $('qNo').onclick = () => finish(false); }
+  clearInterval(timerI); if (S.time) { let s = S.time; timerI = setInterval(() => { s--; if ($('qt')) $('qt').textContent = s; if (s <= 3 && s > 0) tone(880, .08, 'square', .06); if (s <= 0) finish(false); }, 1000); }
+}
+// aim meter: pointer sweeps 1..5; centre (3) is best
+let aimRaf = 0;
+function aimPhase() {
+  $('meter').style.display = 'flex'; $('hint').textContent = 'Click or press SPACE to roll!';
+  if (--G.pwNext <= 0) { G.pwNext = 3 + Math.floor(Math.random() * 3); $('pw').style.display = 'block'; }
+  const m = $('meter'), p = $('ptr'); const W = 460; let x = 0, dir = 1, speed = 7 + Math.random() * 3;
+  const step = () => { x += dir * speed; if (x > W) { x = W; dir = -1; } if (x < 0) { x = 0; dir = 1; } p.style.left = x + 'px'; aimRaf = requestAnimationFrame(step); }; step();
+  const go = (e) => { if (e && e.target && e.target.closest && e.target.closest('.pw,.btn')) return; cancelAnimationFrame(aimRaf); document.removeEventListener('keydown', key); $('sGame').removeEventListener('pointerdown', go); $('hint').textContent = ''; roll(x / W); };
+  const key = (e) => { if (e.code === 'Space' || e.code === 'Enter') { e.preventDefault(); go(); } };
+  setTimeout(() => { document.addEventListener('keydown', key); $('sGame').addEventListener('pointerdown', go); }, 250);
+}
+$('sGame').addEventListener('click', (e) => { if (e.target.closest('#pw')) openPower(); });
+function roll(u) { // u 0..1, 0.5 = centre
+  $('meter').style.display = 'none'; $('pw').style.display = 'none';
+  const seg = Math.min(4, Math.floor(u * 5)); const off = (u - .5) * 2; // -1..1
+  const aimX = off * .55 + rnd(-.06, .06);
+  let n; if (seg === 2) n = Math.random() < .5 ? 10 : 7 + Math.floor(Math.random() * 3); else if (seg === 1 || seg === 3) n = 4 + Math.floor(Math.random() * 5); else n = Math.random() < .35 ? 0 : 1 + Math.floor(Math.random() * 3);
+  SND.roll(); const b = $('bowl'); const T0 = performance.now(), D = 1150; const spin = 0;
+  const anim = (now) => { const k = Math.min(1, (now - T0) / D); const e = 1 - Math.pow(1 - k, 1.6); const t = .02 + e * .93; const curve = Math.sin(k * Math.PI) * off * -.08; placeBall(t, aimX * k + curve * (1 - k)); b.style.transform = `rotate(${k * 900 * (off >= 0 ? 1 : -1)}deg)`; if (k < 1) requestAnimationFrame(anim); else knock(n, aimX); }; requestAnimationFrame(anim);
+}
+function knock(n, aimX) {
+  if (n > 0) SND.hit(); else tone(140, .3, 'triangle', .1);
+  // choose pins nearest to the hit line first
+  const order = pins.map((p, i) => [Math.abs(+p.dataset.cx / 3 - aimX * 1.4) + Math.random() * .5 + PINPOS[i][1] * .12, p]).sort((a, c) => a[0] - c[0]).map((x) => x[1]);
+  order.slice(0, n).forEach((p, i) => { const dir = (+p.dataset.cx - aimX * 3) >= 0 ? 1 : -1; setTimeout(() => { p.style.transform = `translate(${dir * rnd(20, 60)}px,${rnd(-50, -10)}px) rotate(${dir * rnd(70, 110)}deg)`; setTimeout(() => p.classList.add('fall'), 300); }, i * 45); });
+  $('bowl').style.transition = 'opacity .4s'; setTimeout(() => { $('bowl').style.opacity = 0; }, 200);
+  setTimeout(() => { $('bowl').style.opacity = 1; $('bowl').style.transition = 'none';
+    let pts = n + (n === 10 ? 5 : 0); if (G.double[G.turn]) { pts *= 2; G.double[G.turn] = false; }
+    if (n === 10) { SND.strike(); bigMsg('STRIKE!'); confetti(40); } else if (n === 0) bigMsg('Gutter ball!'); else bigMsg(n + (n === 1 ? ' pin' : ' pins') + (pts > n ? '  +' + pts : ''));
+    setTimeout(() => endTurn(pts), 1400); }, 900);
+}
+function endTurn(pts) {
+  G.score[G.turn] += pts; G.left--; renderBoard(); if (pts) { const el = $('sc' + G.turn); el.classList.add('bump'); }
+  G.turn = (G.turn + 1) % TEAMS.length; setTimeout(nextTurn, 700);
+}
+// power-ups
+const POWERS = [
+  ['Double!', 'Your next roll counts double.', () => { G.double[G.turn] = true; }],
+  ['+10 points', 'A gift from the Murly cat.', () => { G.score[G.turn] += 10; }],
+  ['Swap!', 'Swap points with the leader.', () => { const top = G.score.indexOf(Math.max(...G.score)); [G.score[G.turn], G.score[top]] = [G.score[top], G.score[G.turn]]; }],
+  ['Steal 5', 'Take 5 points from another team.', () => { const o = TEAMS.map((_, i) => i).filter((i) => i !== G.turn); if (o.length) { const v = o[Math.floor(Math.random() * o.length)]; const s = Math.min(5, G.score[v]); G.score[v] -= s; G.score[G.turn] += s; } }],
+  ['Oh no! -5', 'The cat ate your points.', () => { G.score[G.turn] = Math.max(0, G.score[G.turn] - 5); }],
+  ['Give 5', 'Be generous! Give 5 points to the last team.', () => { const o = TEAMS.map((_, i) => i).filter((i) => i !== G.turn); if (o.length) { const low = o.reduce((a, i) => (G.score[i] < G.score[a] ? i : a), o[0]); const s = Math.min(5, G.score[G.turn]); G.score[G.turn] -= s; G.score[low] += s; } }]];
+function openPower() {
+  $('pw').style.display = 'none'; SND.pw(); const p = POWERS[Math.floor(Math.random() * (TEAMS.length > 1 ? POWERS.length : 2))];
+  p[2](); renderBoard(); bigMsg(p[0], 1600); $('hint').textContent = p[1] + '  Now roll!';
+}
+function confetti(n) { for (let i = 0; i < n; i++) { const c = document.createElement('i'); c.className = 'cf'; c.style.left = Math.random() * 1280 + 'px'; c.style.background = ['#FF9F1C', '#F472B6', '#5BC0F8', '#3DBE6E', '#FFE07A', '#7B5BD6'][i % 6]; c.style.animationDelay = Math.random() * .6 + 's'; $('stage').appendChild(c); setTimeout(() => c.remove(), 3400); } }
+function endGame() {
+  const order = TEAMS.map((t, i) => [G.score[i], t]).sort((a, b) => b[0] - a[0]); const tie = order.length > 1 && order[0][0] === order[1][0];
+  $('winTitle').textContent = tie ? 'It\'s a draw!' : order[0][1].name + ' wins!';
+  $('podium').innerHTML = order.map(([s, t], i) => `<div style="transform:translateY(${i * 24}px)">${ballSVG(t.ball, 'p' + i)}<div>${esc(t.name)}</div><div style="font-size:40px">${s}</div></div>`).join('');
+  show('sEnd'); SND.strike(); confetti(90);
+}
+$('bStart').onclick = () => { SND.click(); startGame(); };
+$('bAgain').onclick = () => { startGame(); };
+$('bMenu').onclick = () => show('sSetup');
+applyTheme();
+if (P.get('teams')) { $('rTeams').value = P.get('teams'); $('rTeams').oninput(); }
+if (P.get('shots')) { $('rShots').value = P.get('shots'); $('rShots').oninput(); }
+</script>
+</body>
+</html>
