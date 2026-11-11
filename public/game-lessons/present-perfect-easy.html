@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Present Perfect: easy (A2) | Murly</title>
+<link rel="icon" href="/favicon.svg">
+<meta name="description" content="Easy A2 lesson on the present perfect: have/has + V3, ever, never, just, already, yet, and present perfect vs past simple. Games, reading, listening, songs and speaking.">
+<link rel="canonical" href="https://murly.com.ua/game-lessons/present-perfect-easy.html">
+<style>
+:root{--paper:#F3F0EA;--ink:#17181C;--violet:#3D4A7A;--lav:#D9D3C7;--pink:#E9C9BC;--green:#D4E2CF;--white:#fff;--muted:#62646B;--accent:#B5482F}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+/* hero */
+.hero{background:linear-gradient(rgba(16,17,22,.5),rgba(16,17,22,.72)),url("https://images.unsplash.com/photo-1554123168-b400f9c806ca?w=1400&q=70&auto=format&fit=crop");color:#fff;padding:70px 18px 56px;text-align:center;position:relative;overflow:hidden}
+.hero .kicker{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#E9C9BC;font-weight:700}
+.hero .cr{position:absolute;right:12px;bottom:8px;font-size:11px;color:rgba(255,255,255,.6)}
+.hero h1{margin:8px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(36px,6vw,64px);letter-spacing:-.5px;font-weight:700}
+.hero h1 span{color:var(--pink);font-style:italic}
+.hero p{margin:12px 0 0;font-size:17px;color:#e6e2da}
+.hero .flags{display:flex;justify-content:center;gap:12px;margin-top:22px;flex-wrap:wrap}
+.hero .flags svg{width:40px;height:26px;border-radius:3px;opacity:.9}
+/* sections */
+section{margin-top:30px;background:var(--white);border-radius:18px;padding:28px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.05)}
+section h2{margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tag{font-family:"Segoe UI",system-ui,sans-serif;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--paper);color:var(--accent);text-transform:uppercase;letter-spacing:1px}
+.lk-n{display:inline-grid;place-items:center;width:42px;height:42px;background:var(--violet);color:#fff;border-radius:50%;font-size:21px;flex:none}
+.lk-mode{font-size:13px;font-weight:700;border:2px dashed var(--lav);color:var(--muted);padding:2px 10px;border-radius:999px}
+.lk-ins{font-size:17px;background:var(--paper);border-radius:12px;padding:10px 14px;margin:6px 0 18px}
+.lk-sub{margin:24px 0 10px;font-size:19px}
+.btn{font:inherit;font-weight:700;border:0;border-radius:999px;background:var(--ink);color:#fff;padding:10px 20px;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+.btn.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+/* teacher */
+.lk-tbtn{position:fixed;right:16px;top:70px;z-index:45;font:inherit;font-weight:800;border:2px solid var(--ink);background:var(--pink);padding:8px 14px;border-radius:12px;cursor:pointer}
+body.teacher .lk-tbtn{background:var(--green)}
+.lk-ans,.lk-tnote{display:none}
+body.teacher .lk-ans{display:block;margin-top:8px;font-weight:700;color:#1d5a12;background:var(--green);border-left:5px solid #5aa845;padding:6px 10px;font-size:15px;border-radius:6px}
+body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff3f7;border-left:5px solid #d9789a;padding:8px 12px;font-size:15px;border-radius:6px}
+/* overview */
+.lk-overview ul{font-size:17px;line-height:1.7;margin:6px 0 16px}
+.lk-stages{display:flex;flex-wrap:wrap;gap:8px}
+.lk-stages a{display:grid;border-radius:14px;padding:8px 12px;text-decoration:none;color:var(--ink);background:var(--paper);font-weight:700;min-width:100px}
+.lk-stages a span{text-transform:capitalize}
+.lk-stages a b{font-size:20px;color:var(--violet)}
+.lk-stages a small{font-weight:600;color:var(--muted)}
+/* warm-up */
+.taxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tax{background:var(--paper);border-radius:18px;padding:16px;display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center}
+.tax svg{width:56px;height:56px}
+.tax b{display:block;font-size:17px}
+.tax small{color:var(--muted);font-size:14px}
+.qs{display:grid;gap:10px;margin-top:18px}
+.qs div{background:var(--green);border-radius:14px;padding:10px 16px;font-size:18px;font-weight:600}
+.phr{background:#fff7e8;border-radius:14px;padding:12px 16px;margin-top:16px;font-size:15px}
+.phr ul{margin:6px 0 0;padding-left:18px}
+.fic{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:16px}
+.fic .c{background:#fff;border:2px solid #1B2140;border-radius:16px;padding:14px 16px;box-shadow:3px 3px 0 #1B2140}
+.fic .c b{display:block;font-size:18px;line-height:1.35;margin-bottom:8px}
+.fic .c .k{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.fic .c .k span{font-size:13px;background:#eef1fb;border-radius:999px;padding:3px 10px}
+.fic .c details{margin-top:8px;font-size:15px;color:#3b4160}
+.fic .c summary{cursor:pointer;font-weight:700;color:#534AB7}
+.fi-n{display:inline-flex;width:28px;height:28px;border-radius:50%;background:#2F4BA0;color:#fff;align-items:center;justify-content:center;font-size:14px;margin-right:6px}
+/* vocab */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:12px}
+.vc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:2px solid transparent;transition:border-color .2s,transform .2s}
+.vc:hover{border-color:var(--violet);transform:translateY(-2px)}
+.vc b{font-size:18px;display:flex;align-items:center;gap:8px}
+.vc b svg{width:20px;height:20px;flex:none;color:var(--violet)}
+.vc p{margin:6px 0 0;font-size:14px;color:var(--muted)}
+.vc em{display:block;margin-top:6px;font-size:14px;color:var(--violet);font-style:normal;font-weight:600}
+.vc.played{background:#e6ecfb}
+/* grammar */
+.gram{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.gb{border-radius:18px;padding:16px}
+.gb h3{margin:0 0 6px;font-size:19px}
+.gb .f{display:inline-block;background:#fff;border-radius:8px;padding:3px 10px;font-weight:800;margin:4px 0;font-family:Consolas,monospace;font-size:15px}
+.gb p{margin:6px 0 0;font-size:15px}
+.g1{background:var(--pink)}.g2{background:var(--lav)}.g3{background:var(--green)}.g4{background:#fbe7c6}
+.warn{margin-top:14px;background:var(--ink);color:#fff;border-radius:14px;padding:12px 16px;font-size:16px}
+.warn b{color:var(--pink)}
+.q{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:2px dashed var(--paper);font-size:18px}
+.q:last-child{border-bottom:0}
+.q .n{width:32px;height:32px;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;border-radius:50%;font-weight:800;font-size:15px}
+.opt{font:inherit;font-size:16px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:10px;padding:4px 12px;cursor:pointer;margin:0 2px}
+.opt.ok{background:var(--green);border-color:#5aa845}
+.opt.bad{background:var(--pink);animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+/* tour */
+.tour{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.law{border-radius:22px;overflow:hidden;background:var(--paper);display:flex;flex-direction:column}
+.law .pic{height:150px;display:grid;place-items:center;position:relative}
+.law .pic svg.ill{width:130px;height:130px}
+.law .pic svg.fl{position:absolute;left:14px;top:14px;width:46px;height:30px;border-radius:5px;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.law .pic .no{position:absolute;right:14px;top:14px;background:var(--ink);color:#fff;font-weight:800;border-radius:999px;padding:2px 10px;font-size:13px}
+.law .body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.law h3{margin:0;font-size:20px}
+.law .where{font-size:13px;font-weight:800;color:var(--violet);text-transform:uppercase;letter-spacing:1px}
+.law p{margin:0;font-size:16px}
+.law .why{font-size:14px;color:var(--muted)}
+.law .dq{margin-top:auto;background:#fff;border-radius:12px;padding:8px 12px;font-weight:700;font-size:15px}
+.law .lsn{font:inherit;font-size:13px;font-weight:700;background:none;border:0;color:var(--violet);cursor:pointer;padding:0;text-align:left}
+/* game */
+.game{max-width:720px;margin:0 auto;text-align:center}
+.score{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.score span{background:var(--paper);border-radius:999px;padding:6px 16px;font-weight:800}
+.stmt{background:var(--ink);color:#fff;border-radius:22px;padding:28px 24px;min-height:150px;display:grid;place-items:center;font-size:23px;font-weight:700;position:relative}
+.stmt small{position:absolute;top:12px;left:18px;font-size:13px;color:var(--lav);font-weight:700}
+.choose{display:flex;justify-content:center;gap:14px;margin:18px 0}
+.choose button{font:inherit;font-size:18px;font-weight:700;border:2px solid var(--ink);border-radius:999px;padding:12px 28px;cursor:pointer}
+.choose .bl{background:var(--green)}.choose .bm{background:var(--pink)}
+.choose button:disabled{opacity:.5;cursor:default}
+.verdict{min-height:70px;font-size:17px;background:var(--paper);border-radius:16px;padding:12px 16px;text-align:left}
+.verdict b.r{color:#2d7a1d}.verdict b.w{color:#b23a62}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.dots i{width:14px;height:14px;border-radius:50%;background:var(--paper)}
+.dots i.r{background:#7cc663}.dots i.w{background:#e47b9f}.dots i.c{outline:3px solid var(--violet)}
+.final{font-size:22px;font-weight:800;color:var(--violet)}
+/* invent */
+.inv{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.frames{display:grid;gap:10px}
+.frames label{font-size:14px;font-weight:700;color:var(--muted)}
+.frames select,.frames input{font:inherit;width:100%;padding:8px 10px;border:2px solid var(--lav);border-radius:10px;background:#fff}
+.poster{background:var(--paper);border:3px solid var(--ink);border-radius:20px;padding:22px;text-align:center;min-height:260px;display:flex;flex-direction:column;gap:10px;justify-content:center}
+.poster .seal{width:70px;height:70px;margin:0 auto}
+.poster h3{margin:0;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--violet)}
+.poster .rule{font-size:22px;font-weight:800}
+.poster .pen{font-size:16px;color:var(--muted)}
+.ideas{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ideas span{background:var(--pink);border-radius:999px;padding:5px 12px;font-size:14px;font-weight:600}
+/* roleplay */
+.rp{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.role{border-radius:20px;padding:18px}
+.role h3{margin:0 0 6px;display:flex;align-items:center;gap:10px}
+.role h3 svg{width:42px;height:42px}
+.role ul{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.r1{background:var(--lav)}.r2{background:var(--green)}
+.scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:16px}
+.sc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:3px solid transparent}
+.sc.on{border-color:var(--violet);background:#fff}
+.sc b{display:block;font-size:17px;margin-bottom:4px}
+.sc p{margin:0;font-size:15px}
+.timer{font-size:40px;font-weight:800;text-align:center;margin:14px 0 6px;color:var(--violet)}
+.ctr{text-align:center}
+/* homework */
+.hwb{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hwc{background:var(--paper);border-radius:18px;padding:18px}
+.hwc h3{margin:0 0 8px}
+.hwc ol,.hwc ul{margin:6px 0 0;padding-left:20px;line-height:1.7}
+.hwc textarea{width:100%;min-height:150px;font:inherit;border:2px solid var(--lav);border-radius:12px;padding:10px;margin-top:10px}
+.end{text-align:center;background:var(--ink);color:#fff;box-shadow:none}
+.end h2{justify-content:center}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(140px);background:var(--ink);color:#fff;font-weight:800;padding:12px 22px;border-radius:14px;transition:transform .3s;z-index:50}
+.toast.show{transform:translateX(-50%) translateY(0)}
+/* photos */
+.ph{margin:0}
+.ph img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;background:var(--paper)}
+.ph figcaption{font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.2px}
+.tax{grid-template-columns:1fr !important;padding:12px !important}
+.law .pic{height:auto !important;display:block !important;padding:0;position:relative}
+.law .pic .ph img{border-radius:0;aspect-ratio:16/10;transition:filter .5s}
+.law .pic .ph figcaption{padding:4px 12px 0}
+.law.hide .pic .ph img{filter:blur(10px) grayscale(.6)}
+.law.hide .reveal-body,.law.hide .fl,.law.hide .where{visibility:hidden}
+.law .clue{font-size:15px;font-style:italic;color:var(--ink)}
+.law .gc{display:flex;flex-wrap:wrap;gap:6px}
+.law .gc button{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:4px 12px;cursor:pointer}
+.law .gc button.ok{background:var(--green)}.law .gc button.bad{background:var(--pink)}
+.law:not(.hide) .guess{display:none}
+.fair{display:grid;gap:4px;background:#fff;border-radius:12px;padding:8px 12px}
+.fair .ends{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.fair input{width:100%;accent-color:var(--accent)}
+.fair output{font-size:14px;font-weight:700;color:var(--accent)}
+.gph{max-width:720px;margin:0 auto 12px}
+.gph img{aspect-ratio:21/9}
+.fine{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.fq{background:var(--paper);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.fq h3{margin:0;font-size:18px}
+.fq .opts{display:flex;flex-wrap:wrap;gap:6px}
+.fq .opts button{font:inherit;font-size:14px;font-weight:700;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 12px;cursor:pointer}
+.fq .opts button.ok{background:var(--green)}.fq .opts button.bad{background:var(--pink)}
+.fq .res{font-size:15px;min-height:22px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{position:relative;aspect-ratio:16/9;background:#111}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;cursor:pointer;background:#111 center/cover;display:grid;place-items:center}
+.vid .play span{background:rgba(0,0,0,.7);color:#fff;font-weight:700;border-radius:999px;padding:10px 20px;font-size:15px;letter-spacing:1px}
+.vid .info{padding:14px 16px}
+.vid .info h3{margin:0 0 2px;font-size:18px}
+.vid .info small{color:var(--muted)}
+.vid .info ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+@media(max-width:760px){.inv,.rp,.hwb{grid-template-columns:1fr}.lk-tbtn{top:auto;bottom:70px}}
+
+.pr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.pb{border-radius:18px;padding:16px 18px}
+.pb h3{margin:0;font-family:Georgia,serif;font-size:30px}
+.pb .m{font-size:15px;color:var(--muted);margin:2px 0 8px}
+.pb .chips{display:flex;flex-wrap:wrap;gap:6px}
+.pb .chips span{background:#fff;border-radius:999px;padding:4px 11px;font-size:14px;font-weight:600}
+.pb ul{margin:10px 0 0;padding-left:18px;font-size:15px}
+.p-in{background:#DCE6F5}.p-at{background:#F3D9CF}.p-on{background:#D4E2CF}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-size:15px;margin-top:10px}
+.ex div{background:var(--paper);border-radius:10px;padding:8px 12px}
+.ex b{color:var(--accent)}
+.q{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.q .n{font-weight:800;color:var(--violet);min-width:24px}
+.q .gap{display:inline-block;min-width:44px;border-bottom:2px solid var(--ink);text-align:center;font-weight:800}
+.q .opts{margin-left:auto;display:flex;gap:6px}
+.q .opts button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 14px;cursor:pointer}
+.q.ok{background:#DDEED7}.q.ok .gap{color:#2F7A3B}
+.q.bad{background:#F6DAD3}
+.score{font-weight:800;margin-top:12px}
+.text{font-size:18px;line-height:1.75;background:var(--paper);border-radius:16px;padding:18px 22px}
+.text h3{margin:0 0 6px;font-family:Georgia,serif;font-size:24px}
+.text p{margin:0 0 12px}
+.text.hl mark{background:#F3D9CF;border-radius:4px;padding:0 3px;font-weight:700}
+.tf{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:9px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.tf .opts{margin-left:auto;display:flex;gap:6px}
+.tf button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.tf.ok{background:#DDEED7}.tf.bad{background:#F6DAD3}
+.disc{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px;margin-top:6px}
+.disc div{background:var(--green);border-radius:14px;padding:12px 16px;font-size:17px;font-weight:600}
+.disc div i{font-style:normal;color:var(--violet);margin-right:6px}
+.spin{text-align:center;margin-top:16px}
+.spin .card{display:inline-block;min-height:80px;min-width:min(560px,100%);background:var(--ink);color:#fff;border-radius:18px;padding:20px 24px;font-size:22px;font-weight:700;margin-bottom:12px}
+@media(max-width:700px){.ex{grid-template-columns:1fr}}
+
+.hero{background-size:cover!important;background-position:center!important}
+.voc{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.voc div{background:var(--paper);border-radius:14px;padding:10px 14px;cursor:pointer;border:2px solid transparent}
+.voc div:hover{border-color:var(--violet)}
+.voc b{display:block;font-size:18px}.voc span{display:block;color:var(--accent);font-weight:700;font-size:15px}.voc em{display:block;font-size:14px;color:var(--muted);margin-top:3px}
+.mt{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:10px}
+.mt button{font:inherit;font-size:16px;text-align:left;border:2px solid var(--ink);background:#fff;border-radius:14px;padding:9px 14px;cursor:pointer}
+.mt button.sel{background:#FFE7A8}.mt button.done{background:#CDE8C6;border-color:#4C9A5B;cursor:default}
+.ch{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ch .n{font-weight:800;color:var(--violet);min-width:24px}
+.ch .o{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.ch .o button{font:inherit;font-size:15px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.ch.ok{background:#DDEED7}.ch.bad{background:#F6DAD3}
+.ty{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ty input{font:inherit;border:2px solid var(--ink);border-radius:10px;padding:4px 10px;width:220px}
+.ty.ok{background:#DDEED7}.ty.bad{background:#F6DAD3}
+.ty small{color:var(--muted)}
+.photo{width:100%;height:300px;object-fit:cover;border-radius:16px;display:block}
+.cap{font-size:11px;color:var(--muted);margin:4px 0 12px}
+.pics{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.pics figure{margin:0;background:var(--paper);border-radius:16px;overflow:hidden}
+.pics img{width:100%;height:170px;object-fit:cover;display:block}
+.pics figcaption{padding:8px 12px;font-weight:700}
+.pics small{display:block;font-weight:400;font-size:10px;color:var(--muted)}
+.lis{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:8px 0 14px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{aspect-ratio:16/9;background:#000;position:relative}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;background-size:cover;background-position:center;cursor:pointer;display:grid;place-items:center}
+.vid .play span{background:#E5484D;color:#fff;font-weight:800;border-radius:12px;padding:10px 20px}
+.vid .info{padding:12px 16px}.vid h3{margin:0;font-size:18px}.vid small{color:var(--muted)}
+.vid ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th,.tbl td{border:1px solid #ddd;padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--paper)}
+@media(max-width:700px){.mt{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="kit.css">
+</head>
+<body>
+<header class="hero">
+  <div class="kicker">A2 · grammar</div>
+  <h1>Have you <span>ever</span>...?</h1>
+  <p>Present Perfect: have / has + V3 · ever, never, just, already, yet · 75 min</p>
+  <span class="cr">Photo: Marco López / Unsplash</span>
+</header>
+<button class="lk-tbtn" id="teacherBtn" type="button">Teacher version</button>
+<div class="wrap">
+  <section class="lk-overview">
+    <h2>In this lesson you will:</h2>
+    <ul><li>Talk about your life experience: "Have you ever...?"</li><li>Learn the easy rules of the Present Perfect.</li><li>See when to use Present Perfect and when Past Simple.</li><li>Practise with 6 tasks and play V3 games.</li><li>Read Ella's bucket list, listen to Sam and sing a song.</li></ul>
+    <div class="lk-stages" id="stages"></div>
+  </section>
+
+  <section id="s1" data-stage="warm-up" data-min="5">
+    <h2><span class="lk-n">1</span>Have you ever...? <span class="tag">warm-up</span><span class="lk-mode">teacher + student</span></h2>
+    <img class="photo" src="https://images.unsplash.com/photo-1691983831816-4b5d2f6b6340?w=900&q=70&auto=format&fit=crop" alt="A tent in the forest"><div class="cap">Photo: Y S / Unsplash</div>
+    <p class="lk-ins">Answer "Yes, I have" or "No, I haven't". If yes, tell one detail.</p>
+    <div class="qs">
+      <div>1. Have you ever slept in a tent?</div>
+      <div>2. Have you ever been to another country?</div>
+      <div>3. Have you ever eaten something really strange?</div>
+      <div>4. Have you ever lost something important?</div>
+    </div>
+    <div class="phr"><b>Answers</b><ul><li>Yes, I have. / No, I haven't.</li><li>No, never.</li><li>Yes! I went there last year. It was ...</li></ul></div>
+
+    <p class="lk-tnote" data-ru="Заметка: 4 мин. Не объясняйте правило, пусть ученица просто отвечает. Потом скажите: «Мы только что говорили в Present Perfect!»">Нотатка: 4 хв. Не пояснюйте правило, хай учениця просто відповідає. Потім скажіть: «Ми щойно говорили в Present Perfect!»</p>
+  </section>
+  <section id="s2" data-stage="grammar" data-min="10">
+    <h2><span class="lk-n">2</span>Present Perfect: easy rules <span class="tag">grammar</span><span class="lk-mode">teacher + student</span></h2>
+    <p class="lk-ins">Present Perfect = have / has + V3. We use it for the past that is important NOW. When it happened is not important.</p>
+    <div class="gram">
+      <div class="gb g1"><h3>1. Life experience</h3><span class="f">ever / never</span><p>I <b>have been</b> to London. (when? not important)<br>I <b>have never eaten</b> sushi.</p></div>
+      <div class="gb g2"><h3>2. Result now</h3><span class="f">something happened, it matters now</span><p>I <b>have lost</b> my keys. (I can't open the door now!)</p></div>
+      <div class="gb g3"><h3>3. Just / already / yet</h3><span class="f">recent news</span><p>I<b>'ve just eaten</b>. She<b>'s already done</b> it. We <b>haven't finished yet</b>.</p></div>
+    </div>
+    <table class="tbl" style="margin-top:14px">
+      <tr><th></th><th>Formula</th><th>Example</th></tr>
+      <tr><td><b>+</b></td><td>I / you / we / they <b>have</b> + V3<br>he / she / it <b>has</b> + V3</td><td>I<b>'ve seen</b> it. She<b>'s visited</b> Paris.</td></tr>
+      <tr><td><b>−</b></td><td><b>haven't / hasn't</b> + V3</td><td>I <b>haven't seen</b> it. He <b>hasn't finished</b>.</td></tr>
+      <tr><td><b>?</b></td><td><b>Have / Has</b> + subject + V3?</td><td><b>Have</b> you <b>seen</b> it? Yes, I have. / No, I haven't.</td></tr>
+    </table>
+    <div class="warn"><b>V3:</b> regular verbs = like Past Simple (visit<b>ed</b>, play<b>ed</b>). Irregular verbs = the 3rd form: go-went-<b>gone</b>, see-saw-<b>seen</b>, eat-ate-<b>eaten</b>.</div>
+    <div class="phr"><b>been or gone?</b><ul><li>She <b>has been</b> to Rome = she went and came back.</li><li>She <b>has gone</b> to Rome = she is there now.</li></ul></div>
+
+    <p class="lk-tnote" data-ru="Подсказка: Present Perfect = прошлое, важное сейчас. Время не называем. Три случая: опыт (ever/never), результат сейчас, just/already/yet. Слова-подсказки: ever (когда-нибудь), never (никогда), just (только что), already (уже), yet (ещё не / уже в вопросе). Типичные ошибки: «She have», «I have went», «I have seen him yesterday».">Підказка: Present Perfect = минуле, важливе зараз. Час не називаємо. Три випадки: досвід (ever/never), результат зараз, just/already/yet. Слова-підказки: ever (колись), never (ніколи), just (щойно), already (вже), yet (ще не / вже у питанні). Типові помилки: «She have», «I have went», «I have seen him yesterday».</p>
+  </section>
+  <section id="s3" data-stage="grammar" data-min="6">
+    <h2><span class="lk-n">3</span>Present Perfect or Past Simple? <span class="tag">grammar</span><span class="lk-mode">teacher + student</span></h2>
+    <p class="lk-ins">Easy rule: exact time in the past (yesterday, last year, ago) = Past Simple. No time, experience or result = Present Perfect.</p>
+    <table class="tbl">
+      <tr><th>Present Perfect (no time)</th><th>Past Simple (exact time)</th></tr>
+      <tr><td>I <b>have been</b> to Spain.</td><td>I <b>went</b> to Spain <b>last summer</b>.</td></tr>
+      <tr><td><b>Have</b> you ever <b>eaten</b> sushi?</td><td><b>Did</b> you <b>eat</b> sushi <b>yesterday</b>?</td></tr>
+      <tr><td>I <b>have lost</b> my phone! (it's gone now)</td><td>I <b>lost</b> my phone <b>two days ago</b>.</td></tr>
+      <tr><td>ever, never, just, already, yet</td><td>yesterday, last week, ago, in 2020, when</td></tr>
+    </table>
+    <div class="phr"><b>A typical dialogue</b><ul><li>A: <b>Have you ever been</b> to the sea?</li><li>B: Yes, I <b>have</b>. I <b>went</b> to Odesa two years ago. It <b>was</b> amazing!</li></ul></div>
+
+    <p class="lk-tnote" data-ru="Объяснение: спрашиваем в Present Perfect («Have you ever...?»), подробности рассказываем в Past Simple (when, where, how).">Пояснення: питаємо в Present Perfect («Have you ever...?»), деталі розповідаємо в Past Simple (when, where, how).</p>
+  </section>
+  <section id="s4" data-stage="practice" data-min="15">
+    <h2><span class="lk-n">4</span>Practice <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+    <p class="lk-ins">Do the tasks one by one. Say each sentence out loud before you check.</p>
+    <h3 class="lk-sub">1. Have or has?</h3>
+    <div>
+      <div class="ch" data-a="have"><span class="n">1</span><span class="s">I ___ seen this film three times.</span><span class="o"><button type="button">have</button><button type="button">has</button></span></div>
+      <div class="ch" data-a="has"><span class="n">2</span><span class="s">My sister ___ never been to Italy.</span><span class="o"><button type="button">have</button><button type="button">has</button></span></div>
+      <div class="ch" data-a="have"><span class="n">3</span><span class="s">We ___ just finished lunch.</span><span class="o"><button type="button">have</button><button type="button">has</button></span></div>
+      <div class="ch" data-a="Has"><span class="n">4</span><span class="s">___ your dad bought a new car?</span><span class="o"><button type="button">Have</button><button type="button">Has</button></span></div>
+      <div class="ch" data-a="have"><span class="n">5</span><span class="s">They ___ lost their dog!</span><span class="o"><button type="button">have</button><button type="button">has</button></span></div>
+      <div class="ch" data-a="Have"><span class="n">6</span><span class="s">___ you ever eaten snails?</span><span class="o"><button type="button">Have</button><button type="button">Has</button></span></div>
+    </div>
+    <h3 class="lk-sub">2. Write V3 (the 3rd form)</h3>
+    <div>
+      <div class="ty" data-a="gone|been|gone / been"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>go →</span><small></small><input type="text" autocomplete="off" spellcheck="false"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+      <div class="ty" data-a="seen"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>see →</span><small></small><input type="text" autocomplete="off" spellcheck="false"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+      <div class="ty" data-a="eaten"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>eat →</span><small></small><input type="text" autocomplete="off" spellcheck="false"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+      <div class="ty" data-a="done"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>do →</span><small></small><input type="text" autocomplete="off" spellcheck="false"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+      <div class="ty" data-a="taken"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>take →</span><small></small><input type="text" autocomplete="off" spellcheck="false"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+      <div class="ty" data-a="written"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>write →</span><small></small><input type="text" autocomplete="off" spellcheck="false"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+      <div class="ty" data-a="swum"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>swim →</span><small></small><input type="text" autocomplete="off" spellcheck="false"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+      <div class="ty" data-a="flown"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>fly →</span><small></small><input type="text" autocomplete="off" spellcheck="false"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+      <div class="ty" data-a="bought"><span class="n" style="font-weight:800;color:var(--violet)">9</span><span>buy →</span><small></small><input type="text" autocomplete="off" spellcheck="false"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+      <div class="ty" data-a="played"><span class="n" style="font-weight:800;color:var(--violet)">10</span><span>play →</span><small></small><input type="text" autocomplete="off" spellcheck="false"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+    </div>
+    <h3 class="lk-sub">3. Open the brackets (Present Perfect)</h3>
+    <div>
+      <div class="ty" data-a="have visited|&#x27;ve visited"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>I ___ (visit) London.</span><small></small><input type="text" autocomplete="off" spellcheck="false"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+      <div class="ty" data-a="hasn&#x27;t finished|has not finished"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>She ___ (not / finish) her homework yet.</span><small></small><input type="text" autocomplete="off" spellcheck="false"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+      <div class="ty" data-a="have ridden|have you ever ridden"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>___ you ever ___ (ride) a horse? (write: have ... ridden)</span><small></small><input type="text" autocomplete="off" spellcheck="false"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+      <div class="ty" data-a="have just eaten|&#x27;ve just eaten"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>We ___ (just / eat) pizza.</span><small></small><input type="text" autocomplete="off" spellcheck="false"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+      <div class="ty" data-a="has broken|&#x27;s broken"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>My brother ___ (break) his phone again!</span><small></small><input type="text" autocomplete="off" spellcheck="false"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+      <div class="ty" data-a="have never seen|&#x27;ve never seen"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>They ___ (never / see) snow.</span><small></small><input type="text" autocomplete="off" spellcheck="false"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+    </div>
+    <h3 class="lk-sub">4. Present Perfect or Past Simple?</h3>
+    <div>
+      <div class="ch" data-a="have been"><span class="n">1</span><span class="s">I ___ to Paris. It was amazing!</span><span class="o"><button type="button">have been</button><button type="button">went</button></span></div>
+      <div class="ch" data-a="went"><span class="n">2</span><span class="s">I ___ to Paris in 2023.</span><span class="o"><button type="button">have been</button><button type="button">went</button></span></div>
+      <div class="ch" data-a="have lost"><span class="n">3</span><span class="s">Oh no! I ___ my keys!</span><span class="o"><button type="button">have lost</button><button type="button">lost</button></span></div>
+      <div class="ch" data-a="met"><span class="n">4</span><span class="s">We ___ our teacher two days ago.</span><span class="o"><button type="button">have met</button><button type="button">met</button></span></div>
+      <div class="ch" data-a="has never tried"><span class="n">5</span><span class="s">She ___ Japanese food.</span><span class="o"><button type="button">has never tried</button><button type="button">never tried yesterday</button></span></div>
+      <div class="ch" data-a="bought"><span class="n">6</span><span class="s">Yesterday I ___ a new T-shirt.</span><span class="o"><button type="button">have bought</button><button type="button">bought</button></span></div>
+      <div class="ch" data-a="Have / seen"><span class="n">7</span><span class="s">___ you ever ___ a dolphin?</span><span class="o"><button type="button">Have / seen</button><button type="button">Did / see</button></span></div>
+      <div class="ch" data-a="Did / see"><span class="n">8</span><span class="s">___ you ___ the dolphin show last Sunday?</span><span class="o"><button type="button">Have / seen</button><button type="button">Did / see</button></span></div>
+    </div>
+    <h3 class="lk-sub">5. Ask with "ever" and answer about you (speaking)</h3>
+    <div class="qs">
+      <div>1. you / fly / on a plane</div>
+      <div>2. you / see / a dolphin</div>
+      <div>3. you / eat / sushi</div>
+      <div>4. you / meet / a famous person</div>
+      <div>5. you / lose / your phone</div>
+    </div>
+    <h3 class="lk-sub">6. Translate into English</h3>
+    <div>
+      <div class="ty" data-a="i have never been to america|i&#x27;ve never been to america"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Я никогда не была в Америке.</span><small></small><input type="text" autocomplete="off" spellcheck="false"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+      <div class="ty" data-a="have you done your homework yet|have you already done your homework"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Ты уже сделала домашку?</span><small></small><input type="text" autocomplete="off" spellcheck="false"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+      <div class="ty" data-a="he has just come|he has just arrived|he&#x27;s just come|he&#x27;s just arrived"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Он только что пришёл.</span><small></small><input type="text" autocomplete="off" spellcheck="false"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+      <div class="ty" data-a="we haven&#x27;t seen this film yet|we have not seen this film yet|we haven&#x27;t seen this movie yet"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Мы ещё не видели этот фильм.</span><small></small><input type="text" autocomplete="off" spellcheck="false"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+      <div class="ty" data-a="i have lost my phone|i&#x27;ve lost my phone"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Я потеряла свой телефон!</span><small></small><input type="text" autocomplete="off" spellcheck="false"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+      <div class="ty" data-a="have you ever swum in the ocean|have you ever swum in an ocean"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Ты когда-нибудь плавала в океане?</span><small></small><input type="text" autocomplete="off" spellcheck="false"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+    </div>
+
+    <p class="lk-tnote" data-ru="Ответы: 1) have · has · have · Has · have · Have. 2) gone (been) · seen · eaten · done · taken · written · swum · flown · bought · played. 3) have visited · hasn&#x27;t finished · Have ... ridden · have just eaten · has broken · have never seen. 4) have been · went · have lost · met · has never tried · bought · Have / seen · Did / see. 5) Have you ever flown on a plane? (seen a dolphin, eaten sushi, met a famous person, lost your phone). 6) I have never been to America · Have you done your homework yet? · He has just come · We haven&#x27;t seen this film yet · I have lost my phone! · Have you ever swum in the ocean?">Відповіді: 1) have · has · have · Has · have · Have. 2) gone (been) · seen · eaten · done · taken · written · swum · flown · bought · played. 3) have visited · hasn't finished · Have ... ridden · have just eaten · has broken · have never seen. 4) have been · went · have lost · met · has never tried · bought · Have / seen · Did / see. 5) Have you ever flown on a plane? (seen a dolphin, eaten sushi, met a famous person, lost your phone). 6) I have never been to America · Have you done your homework yet? · He has just come · We haven't seen this film yet · I have lost my phone! · Have you ever swum in the ocean?</p>
+  </section>
+  <section id="s5" data-stage="games" data-min="12">
+    <h2><span class="lk-n">5</span>V3 games <span class="tag">games</span><span class="lk-mode">teacher + student</span></h2>
+<style>
+.fl{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.fl button{font:inherit;height:96px;border:2px solid var(--ink);border-radius:16px;background:#fff;cursor:pointer;box-shadow:3px 3px 0 var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.fl button b{font-size:22px}.fl button small{color:var(--muted);font-size:12px}
+.fl button.on{background:#E5DEFF}.fl button.on b{color:#3D2E8C}
+.rush{max-width:640px;margin:0 auto;text-align:center;background:var(--paper);border-radius:18px;padding:18px}
+.rush .st{display:flex;justify-content:space-between;font-weight:800;font-size:18px}
+.rush .tm{height:12px;background:#fff;border-radius:999px;overflow:hidden;margin:10px 0}.rush .tm i{display:block;height:100%;background:#7B5BD6;width:100%;transition:width .2s linear}
+.rush .w{font:700 54px Georgia,serif;margin:10px 0}
+.rush .op{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.rush .op button{font:inherit;font-size:22px;font-weight:800;border:2px solid var(--ink);border-radius:14px;background:#fff;padding:12px;cursor:pointer}
+.rush .op button.ok{background:#CDE8C6}.rush .op button.bad{background:#F6C9BF}
+.mem{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;max-width:760px;margin:0 auto}
+.mem button{aspect-ratio:1/1;font:inherit;font-size:18px;font-weight:800;border:2px solid var(--ink);border-radius:14px;cursor:pointer;background:#7B5BD6;color:transparent;box-shadow:3px 3px 0 var(--ink)}
+.mem button.up{background:#fff;color:var(--ink)}.mem button.gone{background:#CDE8C6;color:#2F6B3A;cursor:default}
+.spell{max-width:640px;margin:0 auto;text-align:center;background:var(--paper);border-radius:18px;padding:18px}
+.spell input{font:inherit;font-size:24px;text-align:center;border:2px solid var(--ink);border-radius:12px;padding:8px;width:240px}
+.spell .res{font-weight:800;font-size:20px;min-height:30px;margin-top:8px}
+@media(max-width:700px){.mem{grid-template-columns:repeat(4,1fr)}}
+</style>
+    <p class="lk-ins">20 irregular verbs in the 3rd form (V3). Flip the cards, then play: rush, memory, listen and write, bowling.</p>
+    <h3 class="lk-sub">A. Flip cards: say the 3rd (V3) form, then click to check</h3>
+    <div class="fl" id="gFl"></div>
+    <h3 class="lk-sub">B. Verb rush: 60 seconds! Combo = more points</h3>
+    <div class="rush"><div class="st"><span>Score: <b id="rS">0</b></span><span>Combo: x<b id="rC">1</b></span><span>Best: <b id="rB">0</b></span></div><div class="tm"><i id="rT"></i></div><div id="rBody"><div class="w">Ready?</div><button class="btn" type="button" id="rGo">Start</button></div></div>
+    <h3 class="lk-sub">C. Memory: find the pairs (go → went)</h3>
+    <div class="mem" id="gMem"></div><div class="ctr" style="margin-top:10px"><span id="gMemR" style="font-weight:800"></span> <button class="btn alt" type="button" id="gMemN">New game</button></div>
+    <h3 class="lk-sub">D. Listen and write the 3rd (V3) form</h3>
+    <div class="spell"><p>Click "Listen", hear the verb, write its <b>3rd (V3)</b> form.</p><button class="btn" type="button" id="spL">Listen</button> <button class="btn alt" type="button" id="spN">Next verb</button><div style="margin-top:12px"><input id="spI" autocomplete="off" spellcheck="false" placeholder="3rd (V3) form"> <button class="btn alt" type="button" id="spC">Check</button></div><div class="res" id="spR"></div><div style="font-weight:700">Score: <span id="spS">0</span> / <span id="spT">0</span></div></div>
+    <h3 class="lk-sub">E. Bowling: answer and knock down the pins!</h3>
+    <div style="position:relative;width:100%;aspect-ratio:16/10;border-radius:18px;overflow:hidden;border:3px solid var(--ink)"><iframe src="bowling.html?set=present-perfect&amp;names=Polina,Teacher&amp;theme=summer" title="Murly Bowling" style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe></div>
+    <div class="ctr" style="margin-top:10px"><a class="btn alt" href="bowling.html?set=present-perfect&amp;names=Polina,Teacher&amp;theme=summer" target="_blank" rel="noopener">Open bowling full screen</a></div>
+    <p class="lk-ans">be: been · go: gone / been · see: seen · do: done · eat: eaten · take: taken · write: written · swim: swum · fly: flown · buy: bought · lose: lost · find: found · make: made · break: broken · meet: met · win: won · ride: ridden · forget: forgotten · give: given · get: got</p>
+<script>
+(function () {
+  const V = [["be", "been", "быть", "I have been to Paris."], ["go", "gone / been", "идти, ехать", "She has gone to school."], ["see", "seen", "видеть", "I have seen this film."], ["do", "done", "делать", "Have you done your homework?"], ["eat", "eaten", "есть", "I have never eaten snails."], ["take", "taken", "брать", "He has taken my pen!"], ["write", "written", "писать", "I have written a letter."], ["swim", "swum", "плавать", "Have you ever swum in the ocean?"], ["fly", "flown", "летать", "I have never flown on a plane."], ["buy", "bought", "покупать", "Mum has bought a new car."], ["lose", "lost", "терять", "I have lost my keys."], ["find", "found", "находить", "Have you found your phone?"], ["make", "made", "делать, создавать", "We have made a cake."], ["break", "broken", "ломать", "He has broken his arm."], ["meet", "met", "встречать", "I have met a famous singer!"], ["win", "won", "выигрывать", "Our team has won the cup!"], ["ride", "ridden", "ездить верхом/на велосипеде", "Have you ever ridden a horse?"], ["forget", "forgotten", "забывать", "I have forgotten my homework."], ["give", "given", "давать", "She has given me a present."], ["get", "got", "получать", "I have got a new phone."]];
+  const sp = (w, r) => { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; u.rate = r || .9; speechSynthesis.speak(u); } catch (e) { } };
+  const sh = (a) => a.map((x) => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map((x) => x[1]);
+  const g = (id) => document.getElementById(id);
+  const p2 = (v) => v[1].split(' / ')[0];
+  // flip cards
+  g('gFl').innerHTML = V.map((v, i) => `<button type="button" data-i="${i}"><b>${v[0]}</b><small>${v[2]}</small></button>`).join('');
+  g('gFl').querySelectorAll('button').forEach((b) => b.onclick = () => { const v = V[+b.dataset.i]; const on = !b.classList.contains('on'); b.classList.toggle('on', on); b.querySelector('b').textContent = on ? v[1] : v[0]; b.querySelector('small').textContent = on ? v[3] : v[2]; if (on) sp(v[0] + ', ' + p2(v) + '. ' + v[3]); });
+  // rush
+  let rs = 0, rc = 1, rb = 0, rt = 0, rtimer = null, cur = null;
+  try { rb = +localStorage.getItem('murly:rush:'+'present-perfect') || 0; } catch (e) { } g('rB').textContent = rb;
+  function rq() { cur = V[Math.floor(Math.random() * V.length)]; const wrong = sh(V.filter((x) => x !== cur)).slice(0, 3).map(p2); const fake = cur[0] + 'ed'; const opts = sh([p2(cur), wrong[0], wrong[1], fake]); g('rBody').innerHTML = `<div class="w">${cur[0]}</div><div class="op">${opts.map((o) => `<button type="button">${o}</button>`).join('')}</div>`;
+    g('rBody').querySelectorAll('button').forEach((b) => b.onclick = () => { if (b.textContent === p2(cur)) { b.classList.add('ok'); rs += 10 * rc; rc = Math.min(4, rc + 1); } else { b.classList.add('bad'); rc = 1; } g('rS').textContent = rs; g('rC').textContent = rc; setTimeout(rq, 260); }); }
+  function rstart() { rs = 0; rc = 1; rt = 60; g('rS').textContent = 0; g('rC').textContent = 1; rq(); clearInterval(rtimer); rtimer = setInterval(() => { rt -= .2; g('rT').style.width = Math.max(0, rt / 60 * 100) + '%'; if (rt <= 0) { clearInterval(rtimer); if (rs > rb) { rb = rs; try { localStorage.setItem('murly:rush:'+'present-perfect', rb); } catch (e) { } g('rB').textContent = rb; } g('rBody').innerHTML = `<div class="w">${rs} points!</div><button class="btn" type="button" id="rGo">Play again</button>`; g('rGo').onclick = rstart; } }, 200); }
+  g('rGo').onclick = rstart;
+  // memory
+  function mem() { const pick = sh(V).slice(0, 9); const cards = sh(pick.flatMap((v, i) => [[v[0], i], [p2(v), i]])); let open = [], found = 0, tries = 0; g('gMemR').textContent = '';
+    g('gMem').innerHTML = cards.map(([t, i]) => `<button type="button" data-i="${i}">${t}</button>`).join('');
+    g('gMem').querySelectorAll('button').forEach((b) => b.onclick = () => { if (b.classList.contains('up') || b.classList.contains('gone') || open.length === 2) return; b.classList.add('up'); open.push(b); if (open.length === 2) { tries++; const [a, c] = open; if (a.dataset.i === c.dataset.i) { setTimeout(() => { a.classList.add('gone'); c.classList.add('gone'); open = []; found++; sp(pick[+a.dataset.i][0] + ', ' + p2(pick[+a.dataset.i])); if (found === 9) g('gMemR').textContent = `All pairs in ${tries} tries!`; }, 350); } else setTimeout(() => { a.classList.remove('up'); c.classList.remove('up'); open = []; }, 800); } }); }
+  g('gMemN').onclick = mem; mem();
+  // listen & spell
+  let sv = null, sS = 0, sT = 0;
+  const snext = () => { sv = V[Math.floor(Math.random() * V.length)]; g('spI').value = ''; g('spR').textContent = ''; sp(sv[0]); };
+  g('spL').onclick = () => { if (!sv) snext(); else sp(sv[0]); };
+  g('spN').onclick = snext;
+  const sc = () => { if (!sv) return; const ans = sv[1].split(' / ').map((x) => x.trim()); const ok = ans.includes(g('spI').value.trim().toLowerCase()); sT++; if (ok) sS++; g('spS').textContent = sS; g('spT').textContent = sT; g('spR').textContent = ok ? 'Correct! ' + sv[0] + ' → ' + sv[1] : 'Not quite: ' + sv[0] + ' → ' + sv[1]; g('spR').style.color = ok ? '#2F7A3B' : '#B5482F'; sp(p2(sv)); };
+  g('spC').onclick = sc; g('spI').onkeydown = (e) => { if (e.key === 'Enter') sc(); };
+})();
+</script>
+
+    <p class="lk-tnote" data-ru="Заметка: 20 глаголов в третьей форме. Начните с карточек, потом Verb rush 2 раза, Memory, в конце боулинг.">Нотатка: 20 дієслів у третій формі. Почніть з карток, потім Verb rush 2 рази, Memory, на кінець боулінг.</p>
+  </section>
+  <section id="s6" data-stage="reading" data-min="10">
+    <h2><span class="lk-n">6</span>Reading: Ella's bucket list <span class="tag">reading</span><span class="lk-mode">teacher + student</span></h2>
+    <img class="photo" src="https://images.unsplash.com/photo-1475503572774-15a45e5d60b9?w=900&q=70&auto=format&fit=crop" alt="A family on the beach"><div class="cap">Photo: Natalya Zaritskaya / Unsplash</div>
+    <p class="lk-ins">Read Ella's story. Underline all Present Perfect forms (have / has + V3). Find one sentence in Past Simple. Then answer True or False.</p>
+    <div class="text"><h3>Ella's bucket list</h3>
+      <p>Hi! I'm Ella and I'm 12. I have a "bucket list": a list of things I want to do in my life. I have already done some of them!</p>
+      <p>I have swum with dolphins. That happened in Egypt two years ago, and it was the best day of my life. I have also ridden a horse, and I have climbed a real mountain with my dad. I have seen the Eiffel Tower, but I haven't been to the top yet.</p>
+      <p>But there are many things I have never done. I have never flown in a helicopter. I have never tried Japanese food, and I have never seen snow! My friend Mia has seen snow many times. She lives in Finland.</p>
+      <p>This week I have just added a new thing to my list: learn to play the guitar. Have you got a bucket list? What have you done?</p></div>
+    <h3 class="lk-sub">True or False?</h3>
+    <div>
+      <div class="ch" data-a="True"><span class="n">1</span><span class="s">Ella has swum with dolphins.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+      <div class="ch" data-a="False"><span class="n">2</span><span class="s">She swam with dolphins last week.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+      <div class="ch" data-a="True"><span class="n">3</span><span class="s">She has climbed a mountain with her dad.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+      <div class="ch" data-a="False"><span class="n">4</span><span class="s">She has been to the top of the Eiffel Tower.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+      <div class="ch" data-a="True"><span class="n">5</span><span class="s">She has never seen snow.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+      <div class="ch" data-a="False"><span class="n">6</span><span class="s">Mia has never seen snow.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+      <div class="ch" data-a="True"><span class="n">7</span><span class="s">Ella has just added the guitar to her list.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+    </div>
+    <div class="qs">
+      <div>What has Ella done? Name three things.</div>
+      <div>What has she never done?</div>
+      <div>Make your own bucket list: 3 things you have done and 3 things you haven't done yet.</div>
+    </div>
+
+    <p class="lk-tnote" data-ru="Ответы: 1 True · 2 False · 3 True · 4 False · 5 True · 6 False · 7 True. Past Simple в тексте: «That happened in Egypt two years ago, and it was the best day». Перевод: a bucket list = список желаний · to climb = подниматься · the top = вершина · a helicopter = вертолёт.">Відповіді: 1 True · 2 False · 3 True · 4 False · 5 True · 6 False · 7 True. Past Simple в тексті: «That happened in Egypt two years ago, and it was the best day». Переклад: a bucket list = список мрій · to climb = підніматися · the top = верхівка · a helicopter = гелікоптер.</p>
+  </section>
+  <section id="s7" data-stage="listening" data-min="7">
+    <h2><span class="lk-n">7</span>Listening: Sam's crazy day <span class="tag">listening</span><span class="lk-mode">teacher + student</span></h2>
+    <img class="photo" src="https://images.unsplash.com/photo-1530281700549-e82e7bf110d6?w=900&q=70&auto=format&fit=crop" alt="A happy dog"><div class="cap">Photo: Oscar Sutton / Unsplash</div>
+    <p class="lk-ins">Read the questions. Listen to Sam and choose the answers.</p>
+    <div class="lis"><button class="btn" type="button" data-play="l1">Play</button><button class="btn alt" type="button" data-play="l1" data-slow="1">Play slowly</button><button class="btn alt" type="button" data-stop="1">Stop</button></div>
+    <div class="lk-tnote" data-script="l1">Hi, I&#x27;m Sam. Today has been a crazy day! I have woken up late, so I have missed the school bus. My mum has driven me to school. I have forgotten my maths book, and I haven&#x27;t done my homework yet. But there is good news too: our football team has just won the match! I have scored a goal. It has been the best and the worst day!</div>
+    <div>
+      <div class="ch" data-a="He has woken up late"><span class="n">1</span><span class="s">Why has Sam missed the bus?</span><span class="o"><button type="button">He has woken up late</button><button type="button">He has lost his ticket</button><button type="button">He has been ill</button></span></div>
+      <div class="ch" data-a="his mum"><span class="n">2</span><span class="s">Who has driven him to school?</span><span class="o"><button type="button">his dad</button><button type="button">his mum</button><button type="button">his teacher</button></span></div>
+      <div class="ch" data-a="his maths book"><span class="n">3</span><span class="s">What has he forgotten?</span><span class="o"><button type="button">his phone</button><button type="button">his maths book</button><button type="button">his lunch</button></span></div>
+      <div class="ch" data-a="No, he hasn&#x27;t"><span class="n">4</span><span class="s">Has he done his homework?</span><span class="o"><button type="button">Yes, he has</button><button type="button">No, he hasn&#x27;t</button></span></div>
+      <div class="ch" data-a="his team has won"><span class="n">5</span><span class="s">What is the good news?</span><span class="o"><button type="button">he has got a dog</button><button type="button">his team has won</button><button type="button">he has found his book</button></span></div>
+    </div>
+
+    <p class="lk-tnote" data-ru="Ответы: 1 He has woken up late · 2 his mum · 3 his maths book · 4 No, he hasn&#x27;t · 5 his team has won. Примечание: в живой речи о событиях сегодняшнего дня говорят и в Past Simple, но здесь специально Present Perfect («today has been»).">Відповіді: 1 He has woken up late · 2 his mum · 3 his maths book · 4 No, he hasn't · 5 his team has won. Примітка: в живій мові про події сьогоднішнього дня кажуть і в Past Simple, але тут навмисно Present Perfect («today has been»).</p>
+  </section>
+  <section id="s8" data-stage="video" data-min="8">
+    <h2><span class="lk-n">8</span>Watch & sing <span class="tag">video</span><span class="lk-mode">teacher + student</span></h2>
+    <p class="lk-ins">Watch one video with English subtitles.</p>
+    <div class="vids" data-vids="[[&quot;o-GWYDA4IQY&quot;, &quot;Present perfect with &#x27;ever&#x27; and &#x27;never&#x27;&quot;, &quot;BBC Learning English · 6 Minute Grammar&quot;, [&quot;When do we use \&quot;ever\&quot;?&quot;, &quot;Write one example with \&quot;never\&quot;.&quot;, &quot;Ask the teacher a \&quot;Have you ever...?\&quot; question.&quot;]], [&quot;WFsV2PFyAGA&quot;, &quot;Have you ever: a present perfect song&quot;, &quot;Engames&quot;, [&quot;Sing along!&quot;, &quot;Write down 3 questions from the song.&quot;, &quot;Answer them about you.&quot;]], [&quot;jwmKjgwlMk8&quot;, &quot;Present perfect and past simple&quot;, &quot;BBC Learning English · 6 Minute Grammar&quot;, [&quot;What is the main difference?&quot;, &quot;Write one example of each.&quot;]]]"></div>
+
+    <p class="lk-tnote" data-ru="Заметка: посмотрите видео перед уроком. Песня короткая (2 мин) и весёлая, подойдёт для 10-летних.">Нотатка: перегляньте відео перед уроком. Пісня коротка (2 хв) і весела, підійде для 10-річних.</p>
+  </section>
+  <section id="s9" data-stage="speaking" data-min="10">
+    <h2><span class="lk-n">9</span>Speaking: Have you ever...? <span class="tag">speaking</span><span class="lk-mode">teacher + student</span></h2>
+    <p class="lk-ins">Take turns. Click for a question. If the answer is "Yes, I have", add one sentence in Past Simple: when, where, how was it?</p>
+    <div class="spin"><div class="card" id="hCard">Click "Random question"</div><br><button class="btn" type="button" data-spin="[&quot;Have you ever slept in a tent?&quot;, &quot;Have you ever cooked a meal for your family?&quot;, &quot;Have you ever been on TV or in a newspaper?&quot;, &quot;Have you ever forgotten your homework?&quot;, &quot;Have you ever won a prize?&quot;, &quot;Have you ever got lost in a city?&quot;, &quot;Have you ever seen a famous person?&quot;, &quot;Have you ever broken something expensive?&quot;, &quot;Have you ever flown on a plane?&quot;, &quot;Have you ever met a celebrity?&quot;]" data-target="hCard">Random question</button></div>
+    <div class="pics">
+      <figure><img src="https://images.unsplash.com/photo-1554123168-b400f9c806ca?w=600&q=70&auto=format&fit=crop" alt="fly on a plane" loading="lazy"><figcaption>fly on a plane<small>Photo: Marco López / Unsplash</small></figcaption></figure>
+      <figure><img src="https://images.unsplash.com/photo-1691983831816-4b5d2f6b6340?w=600&q=70&auto=format&fit=crop" alt="sleep in a tent" loading="lazy"><figcaption>sleep in a tent<small>Photo: Y S / Unsplash</small></figcaption></figure>
+      <figure><img src="https://images.unsplash.com/photo-1661347561879-c9ab77bac89f?w=600&q=70&auto=format&fit=crop" alt="play games all night" loading="lazy"><figcaption>play games all night<small>Photo: Samsung Memory / Unsplash</small></figcaption></figure>
+      <figure><img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=600&q=70&auto=format&fit=crop" alt="stay in a hotel" loading="lazy"><figcaption>stay in a hotel<small>Photo: Vojtech Bruzek / Unsplash</small></figcaption></figure>
+    </div>
+    <h3 class="lk-sub">Already or not yet?</h3>
+    <div class="qs">
+      <div>Tell me what you have already done today and what you haven't done yet.</div>
+      <div>Example: I've already had breakfast. I haven't done my homework yet.</div>
+    </div>
+
+    <p class="lk-tnote" data-ru="Заметка: за каждое «Yes, I have» требуйте одно предложение в Past Simple. Это главный навык урока: вопрос в Present Perfect, детали в Past Simple.">Нотатка: за кожне «Yes, I have» вимагайте одне речення в Past Simple. Це головна навичка уроку: питання в Present Perfect, деталі в Past Simple.</p>
+  </section>
+  <section id="s10" data-stage="homework" data-min="0">
+    <h2><span class="lk-n">10</span>Homework <span class="tag">homework</span><span class="lk-mode">teacher + student</span></h2>
+    <div class="hwb">
+      <div class="hwc"><h3>A. My bucket list</h3><p>Write 8 sentences: <b>4 things I have done</b> and <b>4 things I have never done</b>. Add one detail in Past Simple to two of them.</p><textarea id="hwText" placeholder="I have ... . I went there in ...&#10;I have never ..."></textarea></div>
+      <div class="hwc"><h3>B. Interview</h3><p>Ask your mum, dad or a friend 5 "Have you ever...?" questions. Write down their answers. Learn the V3 forms: been, gone, seen, done, eaten, taken, written, swum, flown, bought.</p></div>
+    </div>
+
+    <p class="lk-tnote" data-ru="Заметка: проверьте have/has, V3 и что в предложениях с точным временем стоит Past Simple.">Нотатка: перевірте have/has, V3 і що в реченнях з точним часом стоїть Past Simple.</p>
+  </section>
+  <section class="end"><h2>Great job!</h2><p>See you next lesson.</p></section>
+</div>
+<div class="toast" id="toast"></div>
+<script>window.MURLY_LESSON={"id": "present-perfect-easy", "title": "Present Perfect: easy", "homework": ["s4", "s6", "s10"], "hw": {"s4": [{"type": "choice", "instruction": "Have or has?", "text": "I {have|has} seen this film three times.\nMy sister {has|have} never been to Italy.\nWe {have|has} just finished lunch.\n{Has|Have} your dad bought a new car?\nThey {have|has} lost their dog!\n{Have|Has} you ever eaten snails?"}, {"type": "gap", "instruction": "Write V3.", "text": "go = [gone]\nsee = [seen]\neat = [eaten]\ndo = [done]\ntake = [taken]\nwrite = [written]\nswim = [swum]\nfly = [flown]\nbuy = [bought]\nplay = [played]"}], "s6": [{"type": "truefalse", "instruction": "Read Ella's bucket list again. True or False?", "text": "Ella has swum with dolphins. = True\nShe swam with dolphins last week. = False\nShe has climbed a mountain with her dad. = True\nShe has been to the top of the Eiffel Tower. = False\nShe has never seen snow. = True\nMia has never seen snow. = False\nElla has just added the guitar to her list. = True"}], "s9": [{"type": "voice", "instruction": "Answer 3 questions. Add one detail in Past Simple. (1 minute)", "text": "Have you ever flown on a plane?\nHave you ever won a prize?\nHave you ever seen a famous person?"}], "s10": [{"type": "open", "instruction": "Write 8 sentences: 4 things you have done and 4 things you have never done.", "text": "I have ...\nI have never ..."}]}};</script>
+<script>
+const $ = (id) => document.getElementById(id);
+const LIS = {"l1": "Hi, I'm Sam. Today has been a crazy day! I have woken up late, so I have missed the school bus. My mum has driven me to school. I have forgotten my maths book, and I haven't done my homework yet. But there is good news too: our football team has just won the match! I have scored a goal. It has been the best and the worst day!"};
+function say(w, rate) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; const v = speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang) && /Google|Natural|Libby|Sonia|Daniel/.test(x.name)) || speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang)); if (v) u.voice = v; u.rate = rate || .95; speechSynthesis.speak(u); } catch (e) { } }
+const sh = (a) => a.map((x) => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map((x) => x[1]);
+document.querySelectorAll('.voc div').forEach((d) => d.onclick = () => say(d.dataset.say));
+document.querySelectorAll('[data-play]').forEach((b) => b.onclick = () => say(LIS[b.dataset.play], b.dataset.slow ? .75 : .95));
+document.querySelectorAll('[data-stop]').forEach((b) => b.onclick = () => { try { speechSynthesis.cancel(); } catch (e) { } });
+document.querySelectorAll('.ch').forEach((q) => q.querySelectorAll('button').forEach((b) => b.onclick = () => { if (q.classList.contains('ok')) return; const ok = b.textContent === q.dataset.a; q.classList.toggle('ok', ok); q.classList.toggle('bad', !ok); if (ok) { const s = q.querySelector('.s'); if (s && s.textContent.includes('___')) { s.textContent = s.textContent.replace('___', q.dataset.a); } } }));
+const norm = (x) => x.toLowerCase().replace(/[’']/g, "'").replace(/\s+/g, ' ').replace(/[.!?]$/, '').trim();
+document.querySelectorAll('.ty').forEach((r) => { const inp = r.querySelector('input'); const chk = () => { const ok = r.dataset.a.split('|').some((a) => norm(a) === norm(inp.value)); r.classList.toggle('ok', ok); r.classList.toggle('bad', !ok && inp.value.trim() !== ''); }; r.querySelector('button').onclick = chk; inp.onkeydown = (e) => { if (e.key === 'Enter') chk(); }; });
+document.querySelectorAll('[data-mt]').forEach((box) => { const pairs = JSON.parse(box.dataset.pairs); const L = sh(pairs.map((p) => p[0])), R = sh(pairs.map((p) => p[1])); let sel = null, done = 0, err = 0; box.innerHTML = L.map((w, i) => `<button type="button" data-w="${w}">${w}</button><button type="button" data-d="${R[i]}">${R[i]}</button>`).join('');
+  box.querySelectorAll('button').forEach((b) => b.onclick = () => { if (b.classList.contains('done')) return; if (!sel || (sel.dataset.w && b.dataset.w) || (sel.dataset.d && b.dataset.d)) { if (sel) sel.classList.remove('sel'); sel = b; b.classList.add('sel'); return; } const w = sel.dataset.w || b.dataset.w, d = sel.dataset.d || b.dataset.d; if (pairs.some((p) => p[0] === w && p[1] === d)) { sel.classList.add('done'); b.classList.add('done'); done++; say(w); if (done === pairs.length) document.querySelector(`[data-mtres="${box.dataset.mt}"]`).textContent = err ? `Done! Mistakes: ${err}` : 'Perfect!'; } else err++; sel.classList.remove('sel'); sel = null; }); });
+document.querySelectorAll('[data-vids]').forEach((box) => JSON.parse(box.dataset.vids).forEach(([id, title, ch, qs]) => { const d = document.createElement('div'); d.className = 'vid'; d.innerHTML = `<div class="frame"><button class="play" type="button" style="background-image:url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)"><span>PLAY</span></button></div><div class="info"><h3>${title}</h3><small>YouTube · ${ch}</small><ol>${qs.map((q) => `<li>${q}</li>`).join('')}</ol></div>`; d.querySelector('.play').onclick = (e) => { e.currentTarget.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&cc_load_policy=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${title}"></iframe>`; }; box.appendChild(d); }));
+document.querySelectorAll('[data-spin]').forEach((b) => { const list = JSON.parse(b.dataset.spin); let last = -1; b.onclick = () => { let i; do { i = Math.floor(Math.random() * list.length); } while (i === last && list.length > 1); last = i; document.getElementById(b.dataset.target).textContent = list[i]; }; });
+try { const k = 'murly:' + (window.MURLY_LESSON ? MURLY_LESSON.id : 'x') + ':hw'; const t = $('hwText'); if (t) { t.value = localStorage.getItem(k) || ''; t.oninput = () => localStorage.setItem(k, t.value); } } catch (e) { }
+const STAGES = [...document.querySelectorAll('.wrap > section[id]')];
+$('stages').innerHTML = STAGES.map((s) => `<a href="#${s.id}"><b>${s.querySelector('.lk-n').textContent}</b><span>${s.dataset.stage}</span><small>${s.dataset.min !== '0' ? s.dataset.min + ' min' : 'at home'}</small></a>`).join('');
+$('teacherBtn').onclick = (e) => { const on = document.body.classList.toggle('teacher'); e.currentTarget.textContent = on ? 'Student version' : 'Teacher version'; };
+</script>
+<script src="kit.js" defer></script>
+</body>
+</html>
