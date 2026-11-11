@@ -49,12 +49,46 @@
   const bindLang = (root) => root.querySelectorAll('[data-mk-lang]').forEach((b) => (b.onclick = () => setLang(b.dataset.mkLang)));
 
 
+  // Sentry: помилки в уроках-іграх (без персональних даних)
+  try { if (!window.Sentry && !document.querySelector('script[data-sentry]')) { window.sentryOnLoad = function () { Sentry.init({ environment: location.hostname === 'murly.com.ua' ? 'production' : 'preview', tracesSampleRate: 0, sendDefaultPii: false, ignoreErrors: ['ResizeObserver loop', 'NotAllowedError', 'AbortError', 'Failed to fetch'] }); }; const sc = document.createElement('script'); sc.src = 'https://js-de.sentry-cdn.com/ab16a8689135769db5b55f83469560fd.min.js'; sc.crossOrigin = 'anonymous'; sc.async = true; sc.dataset.sentry = '1'; document.head.appendChild(sc); } } catch (e) { /* */ }
   // ---------- звук: можна вимкнути озвучку й ефекти ----------
   let MUTED = ls.get('murly:mute') === '1';
+  let LIVE = false;
+  const ttsLink = (t) => '/api/tts?q=2&v=narrator&t=' + encodeURIComponent(String(t).slice(0, 1500));
+  // Учитель відкрив урок: заздалегідь готуємо озвучку всіх фраз, щоб учні чули живий голос одразу
+  function warmVoices() {
+    try {
+      const key = 'murly:warm:' + location.pathname; if (ls.get(key) === '3') return;
+      const set = new Set();
+      document.querySelectorAll('[data-say]').forEach((e) => e.dataset.say && set.add(e.dataset.say));
+      document.querySelectorAll('[data-script]').forEach((e) => e.textContent.trim() && set.add(e.textContent.trim()));
+      const list = [...set].filter((t) => t.length < 1500).slice(0, 150);
+      let i = 0; const next = () => { if (i >= list.length) { ls.set(key, '3'); return; } const t = list[i++]; fetch(ttsLink(t)).then((r) => { try { r.body && r.body.cancel(); } catch (e) { /* */ } }).catch(() => {}).finally(() => setTimeout(next, 250)); };
+      setTimeout(next, 3000);
+    } catch (e) { /* */ }
+  }
   (function patchSound() {
     try {
       const ss = window.speechSynthesis;
-      if (ss && !PULT) { const orig = ss.speak.bind(ss); ss.speak = function (u) { if (MUTED) return; return orig(u); }; }
+      if (ss && !PULT) {
+        // Живий голос Murly (MP3 з кешу /api/tts) замість голосу браузера; якщо його немає, говорить браузер
+        const orig = ss.speak.bind(ss), origCancel = ss.cancel.bind(ss);
+        let cur = null;
+        fetch('/api/tts?check=1').then((r) => r.json()).then((j) => { LIVE = !!j.ok; }).catch(() => { LIVE = false; });
+        ss.cancel = function () { if (cur) { cur.onended = null; cur.onerror = null; cur.pause(); cur = null; } return origCancel(); };
+        ss.speak = function (u) {
+          if (MUTED) return;
+          const text = (u && u.text) || '';
+          if (!LIVE || !text || text.length > 1500 || (u.lang && !/^en/i.test(u.lang))) return orig(u);
+          if (cur) { cur.onended = null; cur.onerror = null; cur.pause(); }
+          const a = new Audio(ttsLink(text)); a.playbackRate = u.rate && u.rate < 0.85 ? 0.8 : 1; cur = a;
+          let fell = false;
+          const fb = () => { if (fell) return; fell = true; if (cur === a) cur = null; orig(u); };
+          a.onended = () => { if (cur === a) cur = null; try { u.onend && u.onend(new Event('end')); } catch (e) { /* */ } };
+          a.onerror = fb;
+          const p = a.play(); if (p && p.catch) p.catch(fb);
+        };
+      }
       ['OscillatorNode', 'AudioBufferSourceNode'].forEach((n) => { const P = window[n] && window[n].prototype; if (P && P.start) { const o = P.start; P.start = function () { if (MUTED) return; return o.apply(this, arguments); }; } });
       const mp = HTMLMediaElement.prototype.play; HTMLMediaElement.prototype.play = function () { if (MUTED && !(this instanceof HTMLVideoElement)) return Promise.resolve(); return mp.apply(this, arguments); };
     } catch (e) { /* */ }
@@ -379,6 +413,7 @@
     document.body.classList.remove('mk-student'); document.body.classList.add('mk-teacher');
     if (!D.students.length && D.local) SID = 'local';
     tools(); renderDock(); renderBanner(); markSection(); watchScroll(); applyLang();
+    if (!D.local) setTimeout(() => { if (LIVE) warmVoices(); }, 1500);
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
 })();
