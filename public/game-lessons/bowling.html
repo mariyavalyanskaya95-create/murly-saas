@@ -47,9 +47,9 @@ textarea{width:100%;height:330px;font:16px/1.5 Consolas,monospace;border:3px sol
 .gb.cur svg{filter:drop-shadow(0 0 0 #FF9F1C) drop-shadow(0 0 10px #FF9F1C)}
 /* game */
 #lane{position:absolute;inset:0}
-.hud-l{position:absolute;left:24px;top:20px;color:#fff;font:900 54px/1 "Arial Black",sans-serif;-webkit-text-stroke:2px #17181C;text-shadow:3px 3px 0 #17181C}
+.hud-l{position:absolute;z-index:60;left:24px;top:20px;color:#fff;font:900 54px/1 "Arial Black",sans-serif;-webkit-text-stroke:2px #17181C;text-shadow:3px 3px 0 #17181C}
 .hud-l small{display:block;font-size:20px;-webkit-text-stroke:1px #17181C}
-.board{position:absolute;right:20px;top:20px;display:flex;flex-direction:column;gap:10px;align-items:flex-end}
+.board{position:absolute;z-index:60;right:20px;top:20px;display:flex;flex-direction:column;gap:10px;align-items:flex-end}
 .sc{display:flex;align-items:center;gap:0;font:900 26px "Arial Black",sans-serif}
 .sc .n{background:#5BC0F8;color:#fff;-webkit-text-stroke:1px #17181C;border:4px solid #17181C;border-radius:10px 0 0 10px;padding:6px 16px 6px 18px;transform:skewX(-8deg);box-shadow:4px 4px 0 #17181C}
 .sc:nth-child(2) .n{background:#F472B6}.sc:nth-child(3) .n{background:#3DBE6E}.sc:nth-child(4) .n{background:#FF9F1C}
@@ -71,9 +71,9 @@ textarea{width:100%;height:330px;font:16px/1.5 Consolas,monospace;border:3px sol
 .pw{position:absolute;left:46px;bottom:110px;width:150px;height:150px;cursor:pointer;animation:float 2s ease-in-out infinite}
 @keyframes float{50%{transform:translateY(-10px) rotate(-4deg)}}
 .pw .t{position:absolute;bottom:18px;left:0;right:0;text-align:center;font:900 15px "Arial Black",sans-serif;color:#fff;-webkit-text-stroke:1px #17181C}
-.big{position:absolute;left:0;right:0;top:36%;text-align:center;font:900 110px "Arial Black",Impact,sans-serif;color:#fff;-webkit-text-stroke:5px #3D2E8C;text-shadow:8px 8px 0 #3D2E8C;opacity:0;transform:scale(.4);transition:all .35s cubic-bezier(.3,1.6,.5,1);pointer-events:none}
+.big{position:absolute;z-index:90;left:0;right:0;top:36%;text-align:center;font:900 110px "Arial Black",Impact,sans-serif;color:#fff;-webkit-text-stroke:5px #3D2E8C;text-shadow:8px 8px 0 #3D2E8C;opacity:0;transform:scale(.4);transition:all .35s cubic-bezier(.3,1.6,.5,1);pointer-events:none}
 .big.show{opacity:1;transform:scale(1)}
-.qbox{position:absolute;inset:0;background:rgba(20,22,45,.55);display:none;align-items:center;justify-content:center}
+.qbox{position:absolute;inset:0;z-index:100;background:rgba(20,22,45,.55);display:none;align-items:center;justify-content:center}
 .qbox.on{display:flex}
 .qcard{width:900px;background:#fff;border:5px solid #17181C;border-radius:28px;box-shadow:12px 12px 0 #17181C;padding:30px 40px;text-align:center;position:relative}
 .qcard .who{position:absolute;top:-28px;left:50%;transform:translateX(-50%) skewX(-8deg);background:#5BC0F8;border:4px solid #17181C;border-radius:10px;padding:6px 22px;font:900 24px "Arial Black",sans-serif;color:#fff;-webkit-text-stroke:1px #17181C;display:flex;gap:10px;align-items:center}
@@ -313,7 +313,7 @@ function laneSVG() {
     <path d="M${640 + n.half + 40} ${n.y}L${640 + f.half + 14} ${f.y}L${640 + f.half} ${f.y}L${640 + n.half} ${n.y}Z" fill="#000" opacity=".25"/>
     <path d="M${640 - n.half} ${n.y}L${640 - f.half} ${f.y}L${640 + f.half} ${f.y}L${640 + n.half} ${n.y}Z" fill="url(#lf)" stroke="#17181C" stroke-width="4"/>
     ${boards}${arrows}
-    <rect x="${640 - f.half - 40}" y="${f.y - 120}" width="${f.half * 2 + 80}" height="120" rx="10" fill="#17181C" opacity=".85"/>
+    <rect x="${640 - f.half - 40}" y="${f.y - 120}" width="${f.half * 2 + 80}" height="120" rx="10" fill="#17181C" opacity=".55"/>
     <path d="M${640 - f.half - 60} ${f.y - 120}h${f.half * 2 + 120}l-20 -34h-${f.half * 2 + 80}z" fill="${t.side}" stroke="#17181C" stroke-width="4"/>
     <text x="640" y="${f.y - 128}" text-anchor="middle" font-family="Arial Black" font-size="24" fill="#fff" stroke="#17181C" stroke-width="1" id="laneTeam"></text>
   </svg>`;
@@ -323,13 +323,13 @@ const PIN_SVG = '<svg viewBox="0 0 40 100"><ellipse cx="20" cy="96" rx="14" ry="
 let pins = [];
 function buildLane() {
   $('lane').innerHTML = laneSVG(); pins = [];
-  PINPOS.forEach(([cx, row]) => { const t = .95 - row * .045; const g = laneAt(t); const w = 40 * g.s * 1.25, h = 100 * g.s * 1.25; const x = 640 + cx * 22 * g.s * 1.1 * 1.25 - w / 2; const y = g.y - h; const d = document.createElement('div'); d.className = 'pin'; d.style.cssText = `left:${x}px;top:${y}px;width:${w}px;height:${h}px;z-index:${10 + row}`; d.innerHTML = PIN_SVG; d.dataset.cx = cx; $('lane').appendChild(d); pins.push(d); });
+  PINPOS.forEach(([cx, row]) => { const t = .985 - row * .055; const g = laneAt(t); const w = 40 * g.s * 2.1, h = 100 * g.s * 2.1; const x = 640 + cx * 26 * g.s * 1.9 - w / 2; const y = g.y - h; const d = document.createElement('div'); d.className = 'pin'; d.style.cssText = `left:${x}px;top:${y}px;width:${w}px;height:${h}px;z-index:${10 + row}`; d.innerHTML = PIN_SVG; d.dataset.cx = cx; $('lane').appendChild(d); pins.push(d); });
   const b = document.createElement('div'); b.className = 'bowl'; b.id = 'bowl'; $('lane').appendChild(b);
   const m = document.createElement('div'); m.className = 'meter'; m.id = 'meter'; m.style.display = 'none'; m.innerHTML = ['#F2B035', '#3E9EE6', '#7B5BD6', '#F472B6', '#E5484D'].map((c, i) => `<div style="background:${c}">${i + 1}</div>`).join('') + '<i class="ptr" id="ptr"></i>'; $('lane').appendChild(m);
   const h = document.createElement('div'); h.className = 'hint'; h.id = 'hint'; $('lane').appendChild(h);
   const p = document.createElement('div'); p.className = 'pw'; p.id = 'pw'; p.style.display = 'none'; p.innerHTML = `<svg viewBox="0 0 100 100"><path d="M14 40h72v46a6 6 0 0 1-6 6H20a6 6 0 0 1-6-6z" fill="#F472B6" stroke="#17181C" stroke-width="4"/><path d="M8 28h84v14H8z" fill="#FF8FCB" stroke="#17181C" stroke-width="4"/><path d="M50 28v64" stroke="#FFE07A" stroke-width="8"/><path d="M50 28c-10-22-30-18-24-6 4 7 24 6 24 6zM50 28c10-22 30-18 24-6-4 7-24 6-24 6z" fill="#FFE07A" stroke="#17181C" stroke-width="3"/></svg><div class="t">POWER UP</div>`; $('lane').appendChild(p);
 }
-function placeBall(t, xoff) { const g = laneAt(t); const size = 92 * g.s; const b = $('bowl'); b.style.left = (640 + xoff * g.half - size / 2) + 'px'; b.style.top = (g.y - size) + 'px'; b.style.width = b.style.height = size + 'px'; b.style.zIndex = t > .9 ? 9 : 30; }
+function placeBall(t, xoff) { const g = laneAt(t); const size = 110 * g.s; const b = $('bowl'); b.style.left = (640 + xoff * g.half - size / 2) + 'px'; b.style.top = (g.y - size) + 'px'; b.style.width = b.style.height = size + 'px'; b.style.zIndex = t > .9 ? 9 : 30; }
 
 // ---------- game ----------
 let G = null;
@@ -346,7 +346,7 @@ function resetPins() { pins.forEach((p) => { p.classList.remove('fall'); p.style
 function nextTurn() {
   if (G.left <= 0) return endGame();
   resetPins(); renderBoard(); $('laneTeam').textContent = TEAMS[G.turn].name; $('meter').style.display = 'none'; $('hint').textContent = ''; $('pw').style.display = 'none';
-  $('bowl').innerHTML = ballSVG(TEAMS[G.turn].ball, 'bw'); $('bowl').style.transition = 'none'; placeBall(0.02, 0);
+  $('bowl').innerHTML = ballSVG(TEAMS[G.turn].ball, 'bw'); $('bowl').style.transition = 'none'; $('bowl').style.transform = ''; placeBall(0.02, 0); $('bowl').style.opacity = 1;
   setTimeout(askQuestion, 450);
 }
 let timerI = null;
@@ -388,7 +388,7 @@ function knock(n, aimX) {
   const order = pins.map((p, i) => [Math.abs(+p.dataset.cx / 3 - aimX * 1.4) + Math.random() * .5 + PINPOS[i][1] * .12, p]).sort((a, c) => a[0] - c[0]).map((x) => x[1]);
   order.slice(0, n).forEach((p, i) => { const dir = (+p.dataset.cx - aimX * 3) >= 0 ? 1 : -1; setTimeout(() => { p.style.transform = `translate(${dir * rnd(20, 60)}px,${rnd(-50, -10)}px) rotate(${dir * rnd(70, 110)}deg)`; setTimeout(() => p.classList.add('fall'), 300); }, i * 45); });
   $('bowl').style.transition = 'opacity .4s'; setTimeout(() => { $('bowl').style.opacity = 0; }, 200);
-  setTimeout(() => { $('bowl').style.opacity = 1; $('bowl').style.transition = 'none';
+  setTimeout(() => {
     let pts = n + (n === 10 ? 5 : 0); if (G.double[G.turn]) { pts *= 2; G.double[G.turn] = false; }
     if (n === 10) { SND.strike(); bigMsg('STRIKE!'); confetti(40); } else if (n === 0) bigMsg('Gutter ball!'); else bigMsg(n + (n === 1 ? ' pin' : ' pins') + (pts > n ? '  +' + pts : ''));
     setTimeout(() => endTurn(pts), 1400); }, 900);
