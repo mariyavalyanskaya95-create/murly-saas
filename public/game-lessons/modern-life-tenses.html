@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Modern life: four tenses (B1) | Murly</title>
+<link rel="icon" href="/favicon.svg">
+<meta name="description" content="B1 English lesson: present simple, present continuous, past simple and past continuous together. Modern life problems: phones, stress, FOMO. Reading, listening, video and speaking.">
+<link rel="canonical" href="https://murly.com.ua/game-lessons/modern-life-tenses.html">
+<style>
+:root{--paper:#F3F0EA;--ink:#17181C;--violet:#3D4A7A;--lav:#D9D3C7;--pink:#E9C9BC;--green:#D4E2CF;--white:#fff;--muted:#62646B;--accent:#B5482F}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+/* hero */
+.hero{background:linear-gradient(rgba(16,17,22,.62),rgba(16,17,22,.78)),#2E3A63;color:#fff;padding:70px 18px 56px;text-align:center;position:relative;overflow:hidden}
+.hero .kicker{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#E9C9BC;font-weight:700}
+.hero .cr{position:absolute;right:12px;bottom:8px;font-size:11px;color:rgba(255,255,255,.6)}
+.hero h1{margin:8px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(36px,6vw,64px);letter-spacing:-.5px;font-weight:700}
+.hero h1 span{color:var(--pink);font-style:italic}
+.hero p{margin:12px 0 0;font-size:17px;color:#e6e2da}
+.hero .flags{display:flex;justify-content:center;gap:12px;margin-top:22px;flex-wrap:wrap}
+.hero .flags svg{width:40px;height:26px;border-radius:3px;opacity:.9}
+/* sections */
+section{margin-top:30px;background:var(--white);border-radius:18px;padding:28px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.05)}
+section h2{margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tag{font-family:"Segoe UI",system-ui,sans-serif;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--paper);color:var(--accent);text-transform:uppercase;letter-spacing:1px}
+.lk-n{display:inline-grid;place-items:center;width:42px;height:42px;background:var(--violet);color:#fff;border-radius:50%;font-size:21px;flex:none}
+.lk-mode{font-size:13px;font-weight:700;border:2px dashed var(--lav);color:var(--muted);padding:2px 10px;border-radius:999px}
+.lk-ins{font-size:17px;background:var(--paper);border-radius:12px;padding:10px 14px;margin:6px 0 18px}
+.lk-sub{margin:24px 0 10px;font-size:19px}
+.btn{font:inherit;font-weight:700;border:0;border-radius:999px;background:var(--ink);color:#fff;padding:10px 20px;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+.btn.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+/* teacher */
+.lk-tbtn{position:fixed;right:16px;top:70px;z-index:45;font:inherit;font-weight:800;border:2px solid var(--ink);background:var(--pink);padding:8px 14px;border-radius:12px;cursor:pointer}
+body.teacher .lk-tbtn{background:var(--green)}
+.lk-ans,.lk-tnote{display:none}
+body.teacher .lk-ans{display:block;margin-top:8px;font-weight:700;color:#1d5a12;background:var(--green);border-left:5px solid #5aa845;padding:6px 10px;font-size:15px;border-radius:6px}
+body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff3f7;border-left:5px solid #d9789a;padding:8px 12px;font-size:15px;border-radius:6px}
+/* overview */
+.lk-overview ul{font-size:17px;line-height:1.7;margin:6px 0 16px}
+.lk-stages{display:flex;flex-wrap:wrap;gap:8px}
+.lk-stages a{display:grid;border-radius:14px;padding:8px 12px;text-decoration:none;color:var(--ink);background:var(--paper);font-weight:700;min-width:100px}
+.lk-stages a span{text-transform:capitalize}
+.lk-stages a b{font-size:20px;color:var(--violet)}
+.lk-stages a small{font-weight:600;color:var(--muted)}
+/* warm-up */
+.taxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tax{background:var(--paper);border-radius:18px;padding:16px;display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center}
+.tax svg{width:56px;height:56px}
+.tax b{display:block;font-size:17px}
+.tax small{color:var(--muted);font-size:14px}
+.qs{display:grid;gap:10px;margin-top:18px}
+.qs div{background:var(--green);border-radius:14px;padding:10px 16px;font-size:18px;font-weight:600}
+.phr{background:#fff7e8;border-radius:14px;padding:12px 16px;margin-top:16px;font-size:15px}
+.phr ul{margin:6px 0 0;padding-left:18px}
+.fic{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:16px}
+.fic .c{background:#fff;border:2px solid #1B2140;border-radius:16px;padding:14px 16px;box-shadow:3px 3px 0 #1B2140}
+.fic .c b{display:block;font-size:18px;line-height:1.35;margin-bottom:8px}
+.fic .c .k{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.fic .c .k span{font-size:13px;background:#eef1fb;border-radius:999px;padding:3px 10px}
+.fic .c details{margin-top:8px;font-size:15px;color:#3b4160}
+.fic .c summary{cursor:pointer;font-weight:700;color:#534AB7}
+.fi-n{display:inline-flex;width:28px;height:28px;border-radius:50%;background:#2F4BA0;color:#fff;align-items:center;justify-content:center;font-size:14px;margin-right:6px}
+/* vocab */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:12px}
+.vc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:2px solid transparent;transition:border-color .2s,transform .2s}
+.vc:hover{border-color:var(--violet);transform:translateY(-2px)}
+.vc b{font-size:18px;display:flex;align-items:center;gap:8px}
+.vc b svg{width:20px;height:20px;flex:none;color:var(--violet)}
+.vc p{margin:6px 0 0;font-size:14px;color:var(--muted)}
+.vc em{display:block;margin-top:6px;font-size:14px;color:var(--violet);font-style:normal;font-weight:600}
+.vc.played{background:#e6ecfb}
+/* grammar */
+.gram{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.gb{border-radius:18px;padding:16px}
+.gb h3{margin:0 0 6px;font-size:19px}
+.gb .f{display:inline-block;background:#fff;border-radius:8px;padding:3px 10px;font-weight:800;margin:4px 0;font-family:Consolas,monospace;font-size:15px}
+.gb p{margin:6px 0 0;font-size:15px}
+.g1{background:var(--pink)}.g2{background:var(--lav)}.g3{background:var(--green)}.g4{background:#fbe7c6}
+.warn{margin-top:14px;background:var(--ink);color:#fff;border-radius:14px;padding:12px 16px;font-size:16px}
+.warn b{color:var(--pink)}
+.q{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:2px dashed var(--paper);font-size:18px}
+.q:last-child{border-bottom:0}
+.q .n{width:32px;height:32px;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;border-radius:50%;font-weight:800;font-size:15px}
+.opt{font:inherit;font-size:16px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:10px;padding:4px 12px;cursor:pointer;margin:0 2px}
+.opt.ok{background:var(--green);border-color:#5aa845}
+.opt.bad{background:var(--pink);animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+/* tour */
+.tour{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.law{border-radius:22px;overflow:hidden;background:var(--paper);display:flex;flex-direction:column}
+.law .pic{height:150px;display:grid;place-items:center;position:relative}
+.law .pic svg.ill{width:130px;height:130px}
+.law .pic svg.fl{position:absolute;left:14px;top:14px;width:46px;height:30px;border-radius:5px;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.law .pic .no{position:absolute;right:14px;top:14px;background:var(--ink);color:#fff;font-weight:800;border-radius:999px;padding:2px 10px;font-size:13px}
+.law .body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.law h3{margin:0;font-size:20px}
+.law .where{font-size:13px;font-weight:800;color:var(--violet);text-transform:uppercase;letter-spacing:1px}
+.law p{margin:0;font-size:16px}
+.law .why{font-size:14px;color:var(--muted)}
+.law .dq{margin-top:auto;background:#fff;border-radius:12px;padding:8px 12px;font-weight:700;font-size:15px}
+.law .lsn{font:inherit;font-size:13px;font-weight:700;background:none;border:0;color:var(--violet);cursor:pointer;padding:0;text-align:left}
+/* game */
+.game{max-width:720px;margin:0 auto;text-align:center}
+.score{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.score span{background:var(--paper);border-radius:999px;padding:6px 16px;font-weight:800}
+.stmt{background:var(--ink);color:#fff;border-radius:22px;padding:28px 24px;min-height:150px;display:grid;place-items:center;font-size:23px;font-weight:700;position:relative}
+.stmt small{position:absolute;top:12px;left:18px;font-size:13px;color:var(--lav);font-weight:700}
+.choose{display:flex;justify-content:center;gap:14px;margin:18px 0}
+.choose button{font:inherit;font-size:18px;font-weight:700;border:2px solid var(--ink);border-radius:999px;padding:12px 28px;cursor:pointer}
+.choose .bl{background:var(--green)}.choose .bm{background:var(--pink)}
+.choose button:disabled{opacity:.5;cursor:default}
+.verdict{min-height:70px;font-size:17px;background:var(--paper);border-radius:16px;padding:12px 16px;text-align:left}
+.verdict b.r{color:#2d7a1d}.verdict b.w{color:#b23a62}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.dots i{width:14px;height:14px;border-radius:50%;background:var(--paper)}
+.dots i.r{background:#7cc663}.dots i.w{background:#e47b9f}.dots i.c{outline:3px solid var(--violet)}
+.final{font-size:22px;font-weight:800;color:var(--violet)}
+/* invent */
+.inv{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.frames{display:grid;gap:10px}
+.frames label{font-size:14px;font-weight:700;color:var(--muted)}
+.frames select,.frames input{font:inherit;width:100%;padding:8px 10px;border:2px solid var(--lav);border-radius:10px;background:#fff}
+.poster{background:var(--paper);border:3px solid var(--ink);border-radius:20px;padding:22px;text-align:center;min-height:260px;display:flex;flex-direction:column;gap:10px;justify-content:center}
+.poster .seal{width:70px;height:70px;margin:0 auto}
+.poster h3{margin:0;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--violet)}
+.poster .rule{font-size:22px;font-weight:800}
+.poster .pen{font-size:16px;color:var(--muted)}
+.ideas{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ideas span{background:var(--pink);border-radius:999px;padding:5px 12px;font-size:14px;font-weight:600}
+/* roleplay */
+.rp{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.role{border-radius:20px;padding:18px}
+.role h3{margin:0 0 6px;display:flex;align-items:center;gap:10px}
+.role h3 svg{width:42px;height:42px}
+.role ul{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.r1{background:var(--lav)}.r2{background:var(--green)}
+.scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:16px}
+.sc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:3px solid transparent}
+.sc.on{border-color:var(--violet);background:#fff}
+.sc b{display:block;font-size:17px;margin-bottom:4px}
+.sc p{margin:0;font-size:15px}
+.timer{font-size:40px;font-weight:800;text-align:center;margin:14px 0 6px;color:var(--violet)}
+.ctr{text-align:center}
+/* homework */
+.hwb{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hwc{background:var(--paper);border-radius:18px;padding:18px}
+.hwc h3{margin:0 0 8px}
+.hwc ol,.hwc ul{margin:6px 0 0;padding-left:20px;line-height:1.7}
+.hwc textarea{width:100%;min-height:150px;font:inherit;border:2px solid var(--lav);border-radius:12px;padding:10px;margin-top:10px}
+.end{text-align:center;background:var(--ink);color:#fff;box-shadow:none}
+.end h2{justify-content:center}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(140px);background:var(--ink);color:#fff;font-weight:800;padding:12px 22px;border-radius:14px;transition:transform .3s;z-index:50}
+.toast.show{transform:translateX(-50%) translateY(0)}
+/* photos */
+.ph{margin:0}
+.ph img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;background:var(--paper)}
+.ph figcaption{font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.2px}
+.tax{grid-template-columns:1fr !important;padding:12px !important}
+.law .pic{height:auto !important;display:block !important;padding:0;position:relative}
+.law .pic .ph img{border-radius:0;aspect-ratio:16/10;transition:filter .5s}
+.law .pic .ph figcaption{padding:4px 12px 0}
+.law.hide .pic .ph img{filter:blur(10px) grayscale(.6)}
+.law.hide .reveal-body,.law.hide .fl,.law.hide .where{visibility:hidden}
+.law .clue{font-size:15px;font-style:italic;color:var(--ink)}
+.law .gc{display:flex;flex-wrap:wrap;gap:6px}
+.law .gc button{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:4px 12px;cursor:pointer}
+.law .gc button.ok{background:var(--green)}.law .gc button.bad{background:var(--pink)}
+.law:not(.hide) .guess{display:none}
+.fair{display:grid;gap:4px;background:#fff;border-radius:12px;padding:8px 12px}
+.fair .ends{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.fair input{width:100%;accent-color:var(--accent)}
+.fair output{font-size:14px;font-weight:700;color:var(--accent)}
+.gph{max-width:720px;margin:0 auto 12px}
+.gph img{aspect-ratio:21/9}
+.fine{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.fq{background:var(--paper);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.fq h3{margin:0;font-size:18px}
+.fq .opts{display:flex;flex-wrap:wrap;gap:6px}
+.fq .opts button{font:inherit;font-size:14px;font-weight:700;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 12px;cursor:pointer}
+.fq .opts button.ok{background:var(--green)}.fq .opts button.bad{background:var(--pink)}
+.fq .res{font-size:15px;min-height:22px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{position:relative;aspect-ratio:16/9;background:#111}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;cursor:pointer;background:#111 center/cover;display:grid;place-items:center}
+.vid .play span{background:rgba(0,0,0,.7);color:#fff;font-weight:700;border-radius:999px;padding:10px 20px;font-size:15px;letter-spacing:1px}
+.vid .info{padding:14px 16px}
+.vid .info h3{margin:0 0 2px;font-size:18px}
+.vid .info small{color:var(--muted)}
+.vid .info ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+@media(max-width:760px){.inv,.rp,.hwb{grid-template-columns:1fr}.lk-tbtn{top:auto;bottom:70px}}
+
+.pr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.pb{border-radius:18px;padding:16px 18px}
+.pb h3{margin:0;font-family:Georgia,serif;font-size:30px}
+.pb .m{font-size:15px;color:var(--muted);margin:2px 0 8px}
+.pb .chips{display:flex;flex-wrap:wrap;gap:6px}
+.pb .chips span{background:#fff;border-radius:999px;padding:4px 11px;font-size:14px;font-weight:600}
+.pb ul{margin:10px 0 0;padding-left:18px;font-size:15px}
+.p-in{background:#DCE6F5}.p-at{background:#F3D9CF}.p-on{background:#D4E2CF}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-size:15px;margin-top:10px}
+.ex div{background:var(--paper);border-radius:10px;padding:8px 12px}
+.ex b{color:var(--accent)}
+.q{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.q .n{font-weight:800;color:var(--violet);min-width:24px}
+.q .gap{display:inline-block;min-width:44px;border-bottom:2px solid var(--ink);text-align:center;font-weight:800}
+.q .opts{margin-left:auto;display:flex;gap:6px}
+.q .opts button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 14px;cursor:pointer}
+.q.ok{background:#DDEED7}.q.ok .gap{color:#2F7A3B}
+.q.bad{background:#F6DAD3}
+.score{font-weight:800;margin-top:12px}
+.text{font-size:18px;line-height:1.75;background:var(--paper);border-radius:16px;padding:18px 22px}
+.text h3{margin:0 0 6px;font-family:Georgia,serif;font-size:24px}
+.text p{margin:0 0 12px}
+.text.hl mark{background:#F3D9CF;border-radius:4px;padding:0 3px;font-weight:700}
+.tf{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:9px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.tf .opts{margin-left:auto;display:flex;gap:6px}
+.tf button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.tf.ok{background:#DDEED7}.tf.bad{background:#F6DAD3}
+.disc{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px;margin-top:6px}
+.disc div{background:var(--green);border-radius:14px;padding:12px 16px;font-size:17px;font-weight:600}
+.disc div i{font-style:normal;color:var(--violet);margin-right:6px}
+.spin{text-align:center;margin-top:16px}
+.spin .card{display:inline-block;min-height:80px;min-width:min(560px,100%);background:var(--ink);color:#fff;border-radius:18px;padding:20px 24px;font-size:22px;font-weight:700;margin-bottom:12px}
+@media(max-width:700px){.ex{grid-template-columns:1fr}}
+
+.hero{background-size:cover!important;background-position:center!important}
+.voc{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.voc div{background:var(--paper);border-radius:14px;padding:10px 14px;cursor:pointer;border:2px solid transparent}
+.voc div:hover{border-color:var(--violet)}
+.voc b{display:block;font-size:18px}.voc span{display:block;color:var(--accent);font-weight:700;font-size:15px}.voc em{display:block;font-size:14px;color:var(--muted);margin-top:3px}
+.mt{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:10px}
+.mt button{font:inherit;font-size:16px;text-align:left;border:2px solid var(--ink);background:#fff;border-radius:14px;padding:9px 14px;cursor:pointer}
+.mt button.sel{background:#FFE7A8}.mt button.done{background:#CDE8C6;border-color:#4C9A5B;cursor:default}
+.ch{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ch .n{font-weight:800;color:var(--violet);min-width:24px}
+.ch .o{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.ch .o button{font:inherit;font-size:15px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.ch.ok{background:#DDEED7}.ch.bad{background:#F6DAD3}
+.ty{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ty input{font:inherit;border:2px solid var(--ink);border-radius:10px;padding:4px 10px;width:220px}
+.ty.ok{background:#DDEED7}.ty.bad{background:#F6DAD3}
+.ty small{color:var(--muted)}
+.photo{width:100%;height:300px;object-fit:cover;border-radius:16px;display:block}
+.cap{font-size:11px;color:var(--muted);margin:4px 0 12px}
+.pics{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.pics figure{margin:0;background:var(--paper);border-radius:16px;overflow:hidden}
+.pics img{width:100%;height:170px;object-fit:cover;display:block}
+.pics figcaption{padding:8px 12px;font-weight:700}
+.pics small{display:block;font-weight:400;font-size:10px;color:var(--muted)}
+.lis{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:8px 0 14px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{aspect-ratio:16/9;background:#000;position:relative}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;background-size:cover;background-position:center;cursor:pointer;display:grid;place-items:center}
+.vid .play span{background:#E5484D;color:#fff;font-weight:800;border-radius:12px;padding:10px 20px}
+.vid .info{padding:12px 16px}.vid h3{margin:0;font-size:18px}.vid small{color:var(--muted)}
+.vid ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th,.tbl td{border:1px solid #ddd;padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--paper)}
+@media(max-width:700px){.mt{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="kit.css">
+</head>
+<body>
+<header class="hero">
+  <div class="kicker">B1 · grammar + speaking</div>
+  <h1>Modern <span>life</span>, four tenses</h1>
+  <p>Present Simple · Present Continuous · Past Simple · Past Continuous · phones, stress and FOMO · 70 min</p>
+  <span class="cr">Photo: ROBIN WORRALL / Unsplash</span>
+</header>
+<button class="lk-tbtn" id="teacherBtn" type="button">Teacher version</button>
+<div class="wrap">
+  <section class="lk-overview">
+    <h2>In this lesson you will:</h2>
+    <ul><li>Talk about your habits and your life these days.</li><li>Learn 16 words about modern life problems (with Russian translation).</li><li>Put four tenses together: habits, now, the past and the background of a story.</li><li>Read a story, listen to a podcast and watch a short video.</li><li>Discuss the problems of modern people.</li></ul>
+    <div class="lk-stages" id="stages"></div>
+  </section>
+
+  <section id="s1" data-stage="warm-up" data-min="6">
+    <h2><span class="lk-n">1</span>How was your week? <span class="tag">warm-up</span><span class="lk-mode">teacher + student</span></h2>
+    <img class="photo" src="https://images.unsplash.com/photo-1566915541858-48b56240e292?w=900&q=70&auto=format&fit=crop" alt="Friends looking at their phones"><div class="cap">Photo: Brusk Dede / Unsplash</div>
+    <p class="lk-ins">Look at the photo. What are these people doing? Is this normal for you and your friends?</p>
+    <div class="qs">
+      <div>1. What are the people in the photo doing right now? Why?</div>
+      <div>2. What do you usually do after school?</div>
+      <div>3. What were you doing yesterday at 9 pm?</div>
+      <div>4. What did you do last weekend that was NOT on a screen?</div>
+    </div>
+    <div class="phr"><b>Useful phrases</b><ul><li>They are ...ing because ...</li><li>I usually ... / I never ...</li><li>At 9 pm yesterday I was ...</li><li>Last weekend I went / played / met ...</li></ul></div>
+
+    <p class="lk-tnote" data-ru="Заметка: 5-6 минут. Вопросы специально в разных временах: 1 Present Continuous, 2 Present Simple, 3 Past Continuous, 4 Past Simple. Не исправляйте сразу, запишите ошибки и вернитесь к ним после грамматики.">Нотатка: 5-6 хвилин. Питання навмисно в різних часах: 1 Present Continuous, 2 Present Simple, 3 Past Continuous, 4 Past Simple. Не виправляйте одразу, запишіть помилки й поверніться до них після граматики.</p>
+  </section>
+  <section id="s2" data-stage="vocabulary" data-min="8">
+    <h2><span class="lk-n">2</span>Modern life words <span class="tag">vocabulary</span><span class="lk-mode">teacher + student</span></h2>
+    <p class="lk-ins">Click a card to hear the word. Then say: which of these problems do you have? Which do your friends have?</p>
+    <div class="voc">
+      <div data-say="to be addicted to. Many teenagers are addicted to their phones."><b>to be addicted to</b><span>быть зависимым от</span><em>Many teenagers are addicted to their phones.</em></div>
+      <div data-say="screen time. My screen time was 7 hours yesterday!"><b>screen time</b><span>экранное время</span><em>My screen time was 7 hours yesterday!</em></div>
+      <div data-say="to scroll. I was scrolling TikTok when my mum came in."><b>to scroll</b><span>листать (ленту)</span><em>I was scrolling TikTok when my mum came in.</em></div>
+      <div data-say="a notification. I turn off notifications when I study."><b>a notification</b><span>уведомление</span><em>I turn off notifications when I study.</em></div>
+      <div data-say="FOMO (fear of missing out). FOMO makes people check their phones all the time."><b>FOMO (fear of missing out)</b><span>страх что-то пропустить</span><em>FOMO makes people check their phones all the time.</em></div>
+      <div data-say="to procrastinate. I always procrastinate before exams."><b>to procrastinate</b><span>откладывать на потом</span><em>I always procrastinate before exams.</em></div>
+      <div data-say="to be under pressure. Students are under a lot of pressure these days."><b>to be under pressure</b><span>быть под давлением</span><em>Students are under a lot of pressure these days.</em></div>
+      <div data-say="anxious. She feels anxious before tests."><b>anxious</b><span>тревожный, взволнованный</span><em>She feels anxious before tests.</em></div>
+      <div data-say="lonely. You can have 500 followers and still feel lonely."><b>lonely</b><span>одинокий</span><em>You can have 500 followers and still feel lonely.</em></div>
+      <div data-say="to compare yourself with. Don&#x27;t compare yourself with people on Instagram."><b>to compare yourself with</b><span>сравнивать себя с</span><em>Don't compare yourself with people on Instagram.</em></div>
+      <div data-say="a deadline. The deadline for the project is Friday."><b>a deadline</b><span>крайний срок, дедлайн</span><em>The deadline for the project is Friday.</em></div>
+      <div data-say="to switch off. I can&#x27;t switch off in the evening."><b>to switch off</b><span>отключаться, расслабляться</span><em>I can't switch off in the evening.</em></div>
+      <div data-say="to waste time. I wasted two hours on YouTube."><b>to waste time</b><span>тратить время зря</span><em>I wasted two hours on YouTube.</em></div>
+      <div data-say="burnout. Too much work can lead to burnout."><b>burnout</b><span>выгорание</span><em>Too much work can lead to burnout.</em></div>
+      <div data-say="to keep in touch. Social media helps us keep in touch with friends."><b>to keep in touch</b><span>поддерживать связь</span><em>Social media helps us keep in touch with friends.</em></div>
+      <div data-say="a digital detox. I&#x27;m doing a digital detox this weekend."><b>a digital detox</b><span>цифровой детокс</span><em>I'm doing a digital detox this weekend.</em></div>
+    </div>
+    <h3 class="lk-sub">Quick check: match the word and the translation.</h3>
+    <div class="mt" data-mt="m1" data-pairs="[[&quot;to be addicted to&quot;, &quot;быть зависимым от&quot;], [&quot;screen time&quot;, &quot;экранное время&quot;], [&quot;to scroll&quot;, &quot;листать (ленту)&quot;], [&quot;a notification&quot;, &quot;уведомление&quot;], [&quot;FOMO (fear of missing out)&quot;, &quot;страх что-то пропустить&quot;], [&quot;to procrastinate&quot;, &quot;откладывать на потом&quot;], [&quot;to be under pressure&quot;, &quot;быть под давлением&quot;], [&quot;anxious&quot;, &quot;тревожный, взволнованный&quot;]]"></div>
+    <div class="big" data-mtres="m1" style="font-weight:800;text-align:center;margin-top:8px"></div>
+
+    <p class="lk-tnote" data-ru="Перевод: to be addicted to = быть зависимым от · screen time = экранное время · to scroll = листать (ленту) · a notification = уведомление · FOMO (fear of missing out) = страх что-то пропустить · to procrastinate = откладывать на потом · to be under pressure = быть под давлением · anxious = тревожный, взволнованный · lonely = одинокий · to compare yourself with = сравнивать себя с · a deadline = крайний срок, дедлайн · to switch off = отключаться, расслабляться · to waste time = тратить время зря · burnout = выгорание · to keep in touch = поддерживать связь · a digital detox = цифровой детокс">Переклад для пульта: to be addicted to = быть зависимым от · screen time = экранное время · to scroll = листать (ленту) · a notification = уведомление · FOMO (fear of missing out) = страх что-то пропустить · to procrastinate = откладывать на потом · to be under pressure = быть под давлением · anxious = тревожный, взволнованный · lonely = одинокий · to compare yourself with = сравнивать себя с · a deadline = крайний срок, дедлайн · to switch off = отключаться, расслабляться · to waste time = тратить время зря · burnout = выгорание · to keep in touch = поддерживать связь · a digital detox = цифровой детокс</p>
+  </section>
+  <section id="s3" data-stage="grammar" data-min="10">
+    <h2><span class="lk-n">3</span>Four tenses, one story <span class="tag">grammar</span><span class="lk-mode">teacher + student</span></h2>
+    <p class="lk-ins">Read the table. Then explain to the teacher: what is the difference between "I play" and "I am playing"? Between "I played" and "I was playing"?</p>
+    <table class="tbl">
+      <tr><th>Tense</th><th>Use it for</th><th>Example</th><th>Signal words</th></tr>
+      <tr><td><b>Present Simple</b><br>I check / he checks</td><td>habits, facts, routines</td><td>I <b>check</b> my phone 100 times a day.</td><td>always, usually, every day, never</td></tr>
+      <tr><td><b>Present Continuous</b><br>I am checking</td><td>now, around now, temporary situations, changes</td><td>I<b>'m trying</b> to use my phone less this month.</td><td>now, at the moment, these days, this week</td></tr>
+      <tr><td><b>Past Simple</b><br>I checked / went</td><td>finished actions in the past, a story's main events</td><td>I <b>turned off</b> my phone and <b>went</b> outside.</td><td>yesterday, last week, ago, in 2020, then</td></tr>
+      <tr><td><b>Past Continuous</b><br>I was checking</td><td>background, an action in progress in the past</td><td>I <b>was scrolling</b> when my mum <b>came</b> in.</td><td>while, when, at 9 pm yesterday, all evening</td></tr>
+    </table>
+    <div class="gram" style="margin-top:14px">
+      <div class="gb g1"><h3>Long + short</h3><span class="f">was/were + -ing ... when + past simple</span><p>I <b>was doing</b> my homework <b>when</b> my phone <b>buzzed</b>.</p></div>
+      <div class="gb g2"><h3>Two long actions</h3><span class="f">while + past continuous</span><p><b>While</b> I <b>was studying</b>, my friends <b>were playing</b> online.</p></div>
+      <div class="gb g3"><h3>One after another</h3><span class="f">past simple, past simple</span><p>I <b>woke up</b>, <b>checked</b> my phone and <b>got</b> angry.</p></div>
+      <div class="gb g4"><h3>No -ing!</h3><span class="f">state verbs</span><p>know, want, need, like, believe, understand: I <b>know</b> (not "I'm knowing").</p></div>
+    </div>
+    <div class="warn"><b>Careful!</b> "These days I <b>am spending</b> too much time online" = a temporary situation now. "I <b>spend</b> 3 hours online every day" = a habit.</div>
+
+    <p class="lk-tnote" data-ru="Подсказка для объяснения: PS = привычка, факт; PC = сейчас или временно («these days»); PaS = законченное действие, главные события истории; PaC = фон, действие в процессе в прошлом. Формула истории: Past Continuous (фон) + when + Past Simple (событие). While + Past Continuous. Глаголы состояния (know, want, need, like) не бывают с -ing. Типичные ошибки: «I was knowing», «When I was come», «I am usually play».">Підказка для пояснення: PS = звичка, факт; PC = зараз або тимчасово («these days»); PaS = завершена дія, головні події історії; PaC = фон, дія в процесі в минулому. Формула історії: Past Continuous (фон) + when + Past Simple (подія). While + Past Continuous. Дієслова стану (know, want, need, like) не мають -ing. Типові помилки: «I was knowing», «When I was come», «I am usually play».</p>
+  </section>
+  <section id="s4" data-stage="practice" data-min="12">
+    <h2><span class="lk-n">4</span>Practice: choose and write <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+    <p class="lk-ins">Part A: choose the right form. Part B: write the verb in the correct form. Then explain why.</p>
+    <h3 class="lk-sub">A. Choose</h3>
+    <div>
+      <div class="ch" data-a="is sitting"><span class="n">1</span><span class="s">Look! My brother ___ on his phone again.</span><span class="o"><button type="button">sits</button><button type="button">is sitting</button><button type="button">sat</button><button type="button">was sitting</button></span></div>
+      <div class="ch" data-a="check"><span class="n">2</span><span class="s">I ___ my phone about 80 times a day.</span><span class="o"><button type="button">check</button><button type="button">am checking</button><button type="button">checked</button><button type="button">was checking</button></span></div>
+      <div class="ch" data-a="left"><span class="n">3</span><span class="s">Yesterday I ___ my phone at home and felt strange all day.</span><span class="o"><button type="button">leave</button><button type="button">am leaving</button><button type="button">left</button><button type="button">was leaving</button></span></div>
+      <div class="ch" data-a="was watching"><span class="n">4</span><span class="s">I ___ TikTok when the teacher asked me a question.</span><span class="o"><button type="button">watch</button><button type="button">am watching</button><button type="button">watched</button><button type="button">was watching</button></span></div>
+      <div class="ch" data-a="are trying"><span class="n">5</span><span class="s">These days more and more people ___ digital detoxes.</span><span class="o"><button type="button">try</button><button type="button">are trying</button><button type="button">tried</button><button type="button">were trying</button></span></div>
+      <div class="ch" data-a="was studying"><span class="n">6</span><span class="s">While she ___ for the exam, her friends were chatting online.</span><span class="o"><button type="button">studies</button><button type="button">is studying</button><button type="button">studied</button><button type="button">was studying</button></span></div>
+      <div class="ch" data-a="know"><span class="n">7</span><span class="s">I ___ what FOMO means.</span><span class="o"><button type="button">know</button><button type="button">am knowing</button><button type="button">knew</button><button type="button">was knowing</button></span></div>
+      <div class="ch" data-a="were watching"><span class="n">8</span><span class="s">When the lights went out, we ___ a film.</span><span class="o"><button type="button">watch</button><button type="button">are watching</button><button type="button">watched</button><button type="button">were watching</button></span></div>
+      <div class="ch" data-a="spent"><span class="n">9</span><span class="s">Last summer I ___ a week without social media.</span><span class="o"><button type="button">spend</button><button type="button">am spending</button><button type="button">spent</button><button type="button">was spending</button></span></div>
+      <div class="ch" data-a="uses"><span class="n">10</span><span class="s">My dad never ___ his phone at dinner.</span><span class="o"><button type="button">use</button><button type="button">uses</button><button type="button">is using</button><button type="button">was using</button></span></div>
+      <div class="ch" data-a="felt"><span class="n">11</span><span class="s">At 2 am I was still scrolling, so I ___ tired the next day.</span><span class="o"><button type="button">feel</button><button type="button">am feeling</button><button type="button">felt</button><button type="button">was feeling</button></span></div>
+      <div class="ch" data-a="am trying"><span class="n">12</span><span class="s">Shh! I ___ to concentrate.</span><span class="o"><button type="button">try</button><button type="button">am trying</button><button type="button">tried</button><button type="button">was trying</button></span></div>
+    </div>
+    <h3 class="lk-sub">B. Write the correct form</h3>
+    <div>
+      <div class="ty" data-a="am trying|&#x27;m trying"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Right now I ___ (try) to stop checking my phone.</span><small>present</small><input type="text" autocomplete="off" spellcheck="false"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+      <div class="ty" data-a="doesn&#x27;t use|does not use"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>My sister ___ (not / use) Instagram. She thinks it&#x27;s boring.</span><small>present</small><input type="text" autocomplete="off" spellcheck="false"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+      <div class="ty" data-a="was doing / called|was doing/called"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>I ___ (do) my homework when my best friend ___ (call). (two words: verb 1 / verb 2 with a slash)</span><small>past</small><input type="text" autocomplete="off" spellcheck="false"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+      <div class="ty" data-a="didn&#x27;t sleep|did not sleep"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>We ___ (not / sleep) well last night because the neighbours were noisy.</span><small>past</small><input type="text" autocomplete="off" spellcheck="false"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+      <div class="ty" data-a="were you doing|were doing"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>What ___ you ___ (do) at 10 pm yesterday? (write: were ... doing)</span><small>past</small><input type="text" autocomplete="off" spellcheck="false"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+      <div class="ty" data-a="do you spend|do spend"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>How many hours ___ you usually ___ (spend) online?</span><small>present</small><input type="text" autocomplete="off" spellcheck="false"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+      <div class="ty" data-a="was walking / saw|was walking/saw"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>While I ___ (walk) to school, I ___ (see) an accident. (verb 1 / verb 2)</span><small>past</small><input type="text" autocomplete="off" spellcheck="false"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+      <div class="ty" data-a="isn&#x27;t listening|is not listening"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>Look at him! He ___ (not / listen) to the teacher.</span><small>present</small><input type="text" autocomplete="off" spellcheck="false"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+      <div class="ty" data-a="lost"><span class="n" style="font-weight:800;color:var(--violet)">9</span><span>I ___ (lose) my phone two days ago, but then I found it in the fridge!</span><small>past</small><input type="text" autocomplete="off" spellcheck="false"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+      <div class="ty" data-a="are becoming"><span class="n" style="font-weight:800;color:var(--violet)">10</span><span>People ___ (become) more anxious these days.</span><small>present</small><input type="text" autocomplete="off" spellcheck="false"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+    </div>
+    <h3 class="lk-sub">C. Find the mistake (speaking)</h3>
+    <div class="qs">
+      <div>1. I am knowing the answer.</div>
+      <div>2. When I was come home, my mum cooked dinner.</div>
+      <div>3. She is usually going to bed at 11.</div>
+      <div>4. While I watched TV, the phone was ringing.</div>
+      <div>5. Yesterday I was go to the cinema.</div>
+      <div>6. Look! It rains again.</div>
+    </div>
+
+    <p class="lk-tnote" data-ru="Ответы A: 1 is sitting · 2 check · 3 left · 4 was watching · 5 are trying · 6 was studying · 7 know · 8 were watching · 9 spent · 10 uses · 11 felt · 12 am trying. B: 1 am trying · 2 doesn&#x27;t use · 3 was doing / called · 4 didn&#x27;t sleep · 5 were you doing · 6 do you spend · 7 was walking / saw · 8 isn&#x27;t listening · 9 lost · 10 are becoming. C: 1 I know · 2 When I came home, my mum was cooking dinner · 3 She usually goes to bed at 11 · 4 While I was watching TV, the phone rang · 5 Yesterday I went to the cinema · 6 Look! It&#x27;s raining again.">Відповіді A: 1 is sitting · 2 check · 3 left · 4 was watching · 5 are trying · 6 was studying · 7 know · 8 were watching · 9 spent · 10 uses · 11 felt · 12 am trying. B: 1 am trying · 2 doesn't use · 3 was doing / called · 4 didn't sleep · 5 were you doing · 6 do you spend · 7 was walking / saw · 8 isn't listening · 9 lost · 10 are becoming. C: 1 I know · 2 When I came home, my mum was cooking dinner · 3 She usually goes to bed at 11 · 4 While I was watching TV, the phone rang · 5 Yesterday I went to the cinema · 6 Look! It's raining again.</p>
+  </section>
+  <section id="s5" data-stage="reading" data-min="12">
+    <h2><span class="lk-n">5</span>Reading: The day my phone died <span class="tag">reading</span><span class="lk-mode">teacher + student</span></h2>
+    <img class="photo" src="https://images.unsplash.com/photo-1495654794940-1c0cd2aeedc1?w=900&q=70&auto=format&fit=crop" alt="A person holding a phone"><div class="cap">Photo: Kelly Sikkema / Unsplash</div>
+    <p class="lk-ins">Read the story. Find one example of each tense: Present Simple, Present Continuous, Past Simple, Past Continuous. Then answer True or False.</p>
+    <div class="text"><h3>The day my phone died</h3>
+      <p>I usually check my phone the moment I wake up. I read my messages, I look at the news and I scroll through TikTok before I even get out of bed. So last Tuesday was a shock.</p>
+      <p>I was walking to the bus stop and listening to music when my phone suddenly switched off. The battery was dead, and I had forgotten my charger at home. At first I felt anxious. What if somebody was trying to call me? What if my friends were chatting about something important?</p>
+      <p>On the bus, everybody was looking at their screens. Nobody was talking. For the first time, I looked out of the window. I noticed a small café that I had never seen before, and an old man who was feeding birds in the park.</p>
+      <p>At school, while my classmates were checking their notifications during the break, I talked to a new student. His name is Leo and he is from Spain. We laughed a lot, and now we are planning to start a band together!</p>
+      <p>When I got home and charged my phone, I had 47 notifications. Most of them were not important at all. These days I am trying to leave my phone in my bag more often. I still love it, but I don't want it to control my life.</p></div>
+    <h3 class="lk-sub">True or False?</h3>
+    <div>
+      <div class="ch" data-a="True"><span class="n">1</span><span class="s">The writer usually checks the phone right after waking up.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+      <div class="ch" data-a="False"><span class="n">2</span><span class="s">The phone died because it fell in water.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+      <div class="ch" data-a="True"><span class="n">3</span><span class="s">At first, the writer felt anxious without the phone.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+      <div class="ch" data-a="False"><span class="n">4</span><span class="s">On the bus, people were talking to each other.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+      <div class="ch" data-a="True"><span class="n">5</span><span class="s">The writer met a new student during the break.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+      <div class="ch" data-a="False"><span class="n">6</span><span class="s">Leo is from Portugal.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+      <div class="ch" data-a="False"><span class="n">7</span><span class="s">Most of the 47 notifications were important.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+      <div class="ch" data-a="True"><span class="n">8</span><span class="s">Now the writer is trying to use the phone less.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+    </div>
+    <div class="qs">
+      <div>What did the writer notice for the first time? Why?</div>
+      <div>Has something like this ever happened to you? What did you do?</div>
+      <div>Could you live without your phone for one day? One week?</div>
+    </div>
+
+    <p class="lk-tnote" data-ru="Ответы: 1 True · 2 False · 3 True · 4 False · 5 True · 6 False · 7 False · 8 True. Примеры времён: PS «I usually check», PC «we are planning / I am trying», PaS «my phone suddenly switched off», PaC «I was walking ... when». Есть и Past Perfect («I had forgotten», «had never seen»): можно упомянуть как бонус.">Відповіді: 1 True · 2 False · 3 True · 4 False · 5 True · 6 False · 7 False · 8 True. Приклади часів: PS «I usually check», PC «we are planning / I am trying», PaS «my phone suddenly switched off», PaC «I was walking ... when». Також є Past Perfect («I had forgotten», «had never seen»): можна згадати як бонус.</p>
+    <p class="lk-tnote" data-ru="Перевод: the moment I wake up = как только просыпаюсь · battery was dead = батарея села · a charger = зарядка · to notice = заметить · to feed birds = кормить птиц · to start a band = создать группу · to control = контролировать.">Переклад: the moment I wake up = як тільки прокидаюся · battery was dead = батарея сіла · a charger = зарядка · to notice = помітити · to feed birds = годувати птахів · to start a band = створити гурт · to control = контролювати.</p>
+  </section>
+  <section id="s6" data-stage="listening" data-min="8">
+    <h2><span class="lk-n">6</span>Listening: Maya's digital detox <span class="tag">listening</span><span class="lk-mode">teacher + student</span></h2>
+    <img class="photo" src="https://images.unsplash.com/photo-1758874573615-a4fa078b1980?w=900&q=70&auto=format&fit=crop" alt="A tired person sleeping at a desk"><div class="cap">Photo: Vitaly Gariev / Unsplash</div>
+    <p class="lk-ins">Read the questions first. Listen to Maya. Choose the right answers. Listen again if you need to.</p>
+    <div class="lis"><button class="btn" type="button" data-play="l1">Play</button><button class="btn alt" type="button" data-play="l1" data-slow="1">Play slowly</button><button class="btn alt" type="button" data-stop="1">Stop</button></div>
+    <div class="lk-tnote" data-script="l1">Hi, I&#x27;m Maya, and this is my digital detox diary. Last month I was spending about six hours a day on my phone. One evening I was lying in bed and scrolling when I realised it was three in the morning. I felt terrible the next day. So I decided to try a digital detox for one week. On the first day I felt bored and anxious, and I kept looking for my phone. But on the third day something changed. I started reading a book and I went for long walks with my dog. I also slept much better. Now I use my phone for about two hours a day, and I never take it to bed. These days I&#x27;m learning to play the guitar, and I&#x27;m really enjoying it.</div>
+    <div>
+      <div class="ch" data-a="about six hours a day"><span class="n">1</span><span class="s">How much time was Maya spending on her phone last month?</span><span class="o"><button type="button">about two hours a day</button><button type="button">about six hours a day</button><button type="button">about ten hours a day</button></span></div>
+      <div class="ch" data-a="three in the morning"><span class="n">2</span><span class="s">What time was it when she realised she was still scrolling?</span><span class="o"><button type="button">midnight</button><button type="button">three in the morning</button><button type="button">six in the morning</button></span></div>
+      <div class="ch" data-a="one week"><span class="n">3</span><span class="s">How long was her digital detox?</span><span class="o"><button type="button">one day</button><button type="button">one week</button><button type="button">one month</button></span></div>
+      <div class="ch" data-a="bored and anxious"><span class="n">4</span><span class="s">How did she feel on the first day?</span><span class="o"><button type="button">happy and relaxed</button><button type="button">bored and anxious</button><button type="button">tired and hungry</button></span></div>
+      <div class="ch" data-a="to play the guitar"><span class="n">5</span><span class="s">What is she learning these days?</span><span class="o"><button type="button">to play the guitar</button><button type="button">to cook</button><button type="button">to swim</button></span></div>
+    </div>
+
+    <p class="lk-tnote" data-ru="Ответы: 1 about six hours a day · 2 three in the morning · 3 one week · 4 bored and anxious · 5 to play the guitar. После прослушивания спросите: какие времена использовала Maya? (was spending, was lying and scrolling, realised, felt, decided, I&#x27;m learning).">Відповіді: 1 about six hours a day · 2 three in the morning · 3 one week · 4 bored and anxious · 5 to play the guitar. Після прослуховування спитайте: які часи вжила Maya? (was spending, was lying and scrolling, realised, felt, decided, I'm learning).</p>
+  </section>
+  <section id="s7" data-stage="video" data-min="8">
+    <h2><span class="lk-n">7</span>Watch & discuss <span class="tag">video</span><span class="lk-mode">teacher + student</span></h2>
+    <p class="lk-ins">Choose one video. Read the questions first, then watch with English subtitles.</p>
+    <div class="vids" data-vids="[[&quot;KkrhHUeMjIU&quot;, &quot;Are you addicted to your smartphone?&quot;, &quot;BBC Learning English · 6 Minute English&quot;, [&quot;Write down 3 new words or phrases you hear.&quot;, &quot;Do the presenters think they are addicted? Do you agree with them?&quot;, &quot;What do YOU do to stop checking your phone?&quot;]], [&quot;uTB5I8V9Eog&quot;, &quot;Past simple and past continuous&quot;, &quot;BBC Learning English · 6 Minute Grammar&quot;, [&quot;When do we use the past continuous?&quot;, &quot;Write one example from the video.&quot;, &quot;Now make your own example about your phone.&quot;]]]"></div>
+
+    <p class="lk-tnote" data-ru="Заметка: перед уроком посмотрите видео. Первое (6 мин) о зависимости от смартфона, второе (6 мин) грамматическое. Если времени мало, смотрите первые 3 минуты первого.">Нотатка: перед уроком перегляньте відео. Перше (6 хв) про залежність від смартфона, друге (6 хв) граматичне. Якщо часу мало, дивіться перші 3 хвилини першого.</p>
+  </section>
+  <section id="s8" data-stage="speaking" data-min="14">
+    <h2><span class="lk-n">8</span>Speaking: problems of modern life <span class="tag">speaking</span><span class="lk-mode">teacher + student</span></h2>
+    <p class="lk-ins">Part 1: choose a photo. Describe it: what is happening (Present Continuous)? Then invent a story: what happened before (Past Simple + Past Continuous)?</p>
+    <div class="pics">
+      <figure><img src="https://images.unsplash.com/photo-1551848815-e381858b0e7e?w=600&q=70&auto=format&fit=crop" alt="Tired all the time" loading="lazy"><figcaption>Tired all the time<small>Photo: Maccy / Unsplash</small></figcaption></figure>
+      <figure><img src="https://images.unsplash.com/photo-1661347561879-c9ab77bac89f?w=600&q=70&auto=format&fit=crop" alt="Gaming all night" loading="lazy"><figcaption>Gaming all night<small>Photo: Samsung Memory / Unsplash</small></figcaption></figure>
+      <figure><img src="https://images.unsplash.com/photo-1618616191524-a9721186cbe4?w=600&q=70&auto=format&fit=crop" alt="Stress and pressure" loading="lazy"><figcaption>Stress and pressure<small>Photo: Uday Mittal / Unsplash</small></figcaption></figure>
+      <figure><img src="https://images.unsplash.com/photo-1611926653458-09294b3142bf?w=600&q=70&auto=format&fit=crop" alt="Social media" loading="lazy"><figcaption>Social media<small>Photo: Adem AY / Unsplash</small></figcaption></figure>
+      <figure><img src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=600&q=70&auto=format&fit=crop" alt="Life in a big city" loading="lazy"><figcaption>Life in a big city<small>Photo: ben o'bro / Unsplash</small></figcaption></figure>
+      <figure><img src="https://images.unsplash.com/photo-1532356884227-66d7c0e9e4c2?w=600&q=70&auto=format&fit=crop" alt="Together but alone" loading="lazy"><figcaption>Together but alone<small>Photo: ROBIN WORRALL / Unsplash</small></figcaption></figure>
+    </div>
+    <h3 class="lk-sub">Part 2: discussion</h3>
+    <div class="spin"><div class="card" id="dCard">Click "Random question"</div><br><button class="btn" type="button" data-spin="[&quot;Which problem from the photos is the biggest for teenagers today? Why?&quot;, &quot;Do you compare yourself with people on social media? How does it make you feel?&quot;, &quot;What were you doing the last time you felt really stressed?&quot;, &quot;How do you switch off after a long day?&quot;, &quot;Should phones be banned at school? Give two reasons.&quot;, &quot;Is it possible to be lonely with 500 followers?&quot;, &quot;What problems did your parents have when they were your age? Were they different?&quot;, &quot;What is one thing you are doing these days to feel better?&quot;, &quot;Tell a story: a time when technology caused a problem for you.&quot;, &quot;If you could change one thing about modern life, what would it be?&quot;]" data-target="dCard">Random question</button></div>
+    <div class="qs">
+      <div>1. Which problem from the photos is the biggest for teenagers today? Why?</div>
+      <div>2. Do you compare yourself with people on social media? How does it make you feel?</div>
+      <div>3. What were you doing the last time you felt really stressed?</div>
+      <div>4. How do you switch off after a long day?</div>
+      <div>5. Should phones be banned at school? Give two reasons.</div>
+      <div>6. Is it possible to be lonely with 500 followers?</div>
+      <div>7. What problems did your parents have when they were your age? Were they different?</div>
+      <div>8. What is one thing you are doing these days to feel better?</div>
+      <div>9. Tell a story: a time when technology caused a problem for you.</div>
+      <div>10. If you could change one thing about modern life, what would it be?</div>
+    </div>
+    <div class="phr"><b>Useful phrases</b><ul><li>In this photo, a guy is ... . I think he ... because ...</li><li>I think the biggest problem is ... because ...</li><li>When I was ..., I ...</li><li>These days I'm trying to ...</li><li>On the one hand ..., on the other hand ...</li></ul></div>
+
+    <p class="lk-tnote" data-ru="Заметка: главная разговорная часть, 12-15 мин. Задавайте уточняющие вопросы: «Why?», «What happened next?». Следите за временами и мягко исправляйте. Вопрос 5 можно сделать мини-дебатами: вы «за», ученик «против», потом наоборот.">Нотатка: головна розмовна частина, 12-15 хв. Ставте уточнювальні питання: «Why?», «What happened next?». Слідкуйте за часами й м'яко виправляйте. Питання 5 можна зробити міні-дебатами: ви «за», учень «проти», потім навпаки.</p>
+  </section>
+  <section id="s9" data-stage="homework" data-min="0">
+    <h2><span class="lk-n">9</span>Homework <span class="tag">homework</span><span class="lk-mode">teacher + student</span></h2>
+    <div class="hwb">
+      <div class="hwc"><h3>A. Story</h3><p>Write a story (120-150 words): <b>"The day I switched off my phone"</b>. Use all four tenses and at least 6 words from the lesson.</p><p style="color:var(--muted);font-size:15px">Start: "I usually ... . But last ..., I was ... when ..."</p><textarea id="hwText" placeholder="I usually ..."></textarea></div>
+      <div class="hwc"><h3>B. Challenge</h3><p>Try a mini digital detox: no phone for 3 hours. Then record a voice message (1 minute): what did you do, how did you feel, what are you doing differently now?</p></div>
+    </div>
+
+    <p class="lk-tnote" data-ru="Заметка: в части A проверьте when / while и глаголы состояния. Хвалите сложные предложения с двумя временами.">Нотатка: у частині A перевірте when / while і дієслова стану. Хваліть складні речення з двома часами.</p>
+  </section>
+  <section class="end"><h2>Great job!</h2><p>See you next lesson.</p></section>
+</div>
+<div class="toast" id="toast"></div>
+<script>window.MURLY_LESSON={"id": "modern-life-tenses", "title": "Modern life: four tenses", "homework": ["s4", "s5", "s9"], "hw": {"s2": [{"type": "match", "instruction": "Match the words with their meanings.", "text": "to be addicted to = быть зависимым от\nscreen time = экранное время\nto scroll = листать (ленту)\na notification = уведомление\nFOMO (fear of missing out) = страх что-то пропустить\nto procrastinate = откладывать на потом\nto be under pressure = быть под давлением\nanxious = тревожный, взволнованный\nlonely = одинокий\nto compare yourself with = сравнивать себя с"}], "s4": [{"type": "choice", "instruction": "Choose the correct form.", "text": "Look! My brother {is sitting|sits|sat|was sitting} on his phone again.\nI {check|am checking|checked|was checking} my phone about 80 times a day.\nYesterday I {left|leave|am leaving|was leaving} my phone at home and felt strange all day.\nI {was watching|watch|am watching|watched} TikTok when the teacher asked me a question.\nThese days more and more people {are trying|try|tried|were trying} digital detoxes.\nWhile she {was studying|studies|is studying|studied} for the exam, her friends were chatting online.\nI {know|am knowing|knew|was knowing} what FOMO means.\nWhen the lights went out, we {were watching|watch|are watching|watched} a film.\nLast summer I {spent|spend|am spending|was spending} a week without social media.\nMy dad never {uses|use|is using|was using} his phone at dinner.\nAt 2 am I was still scrolling, so I {felt|feel|am feeling|was feeling} tired the next day.\nShh! I {am trying|try|tried|was trying} to concentrate."}], "s5": [{"type": "truefalse", "instruction": "Read \"The day my phone died\" again. True or False?", "text": "The writer usually checks the phone right after waking up. = True\nThe phone died because it fell in water. = False\nAt first, the writer felt anxious without the phone. = True\nOn the bus, people were talking to each other. = False\nThe writer met a new student during the break. = True\nLeo is from Portugal. = False\nMost of the 47 notifications were important. = False\nNow the writer is trying to use the phone less. = True"}], "s8": [{"type": "voice", "instruction": "Answer two questions. Record your voice (1-2 minutes).", "text": "Which problem of modern life is the biggest for teenagers? Why?\nTell a story: a time when technology caused a problem for you."}], "s9": [{"type": "open", "instruction": "Write a story (120-150 words): The day I switched off my phone. Use all four tenses.", "text": "I usually ... . But last ..., I was ... when ..."}, {"type": "voice", "instruction": "Try 3 hours without your phone. Record 1 minute: what did you do and how did you feel?", "text": "What did you do?\nHow did you feel?\nWhat are you doing differently now?"}]}};</script>
+<script>
+const $ = (id) => document.getElementById(id);
+const LIS = {"l1": "Hi, I'm Maya, and this is my digital detox diary. Last month I was spending about six hours a day on my phone. One evening I was lying in bed and scrolling when I realised it was three in the morning. I felt terrible the next day. So I decided to try a digital detox for one week. On the first day I felt bored and anxious, and I kept looking for my phone. But on the third day something changed. I started reading a book and I went for long walks with my dog. I also slept much better. Now I use my phone for about two hours a day, and I never take it to bed. These days I'm learning to play the guitar, and I'm really enjoying it."};
+function say(w, rate) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; const v = speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang) && /Google|Natural|Libby|Sonia|Daniel/.test(x.name)) || speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang)); if (v) u.voice = v; u.rate = rate || .95; speechSynthesis.speak(u); } catch (e) { } }
+const sh = (a) => a.map((x) => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map((x) => x[1]);
+document.querySelectorAll('.voc div').forEach((d) => d.onclick = () => say(d.dataset.say));
+document.querySelectorAll('[data-play]').forEach((b) => b.onclick = () => say(LIS[b.dataset.play], b.dataset.slow ? .75 : .95));
+document.querySelectorAll('[data-stop]').forEach((b) => b.onclick = () => { try { speechSynthesis.cancel(); } catch (e) { } });
+document.querySelectorAll('.ch').forEach((q) => q.querySelectorAll('button').forEach((b) => b.onclick = () => { if (q.classList.contains('ok')) return; const ok = b.textContent === q.dataset.a; q.classList.toggle('ok', ok); q.classList.toggle('bad', !ok); if (ok) { const s = q.querySelector('.s'); if (s && s.textContent.includes('___')) { s.textContent = s.textContent.replace('___', q.dataset.a); } } }));
+const norm = (x) => x.toLowerCase().replace(/[’']/g, "'").replace(/\s+/g, ' ').replace(/[.!?]$/, '').trim();
+document.querySelectorAll('.ty').forEach((r) => { const inp = r.querySelector('input'); const chk = () => { const ok = r.dataset.a.split('|').some((a) => norm(a) === norm(inp.value)); r.classList.toggle('ok', ok); r.classList.toggle('bad', !ok && inp.value.trim() !== ''); }; r.querySelector('button').onclick = chk; inp.onkeydown = (e) => { if (e.key === 'Enter') chk(); }; });
+document.querySelectorAll('[data-mt]').forEach((box) => { const pairs = JSON.parse(box.dataset.pairs); const L = sh(pairs.map((p) => p[0])), R = sh(pairs.map((p) => p[1])); let sel = null, done = 0, err = 0; box.innerHTML = L.map((w, i) => `<button type="button" data-w="${w}">${w}</button><button type="button" data-d="${R[i]}">${R[i]}</button>`).join('');
+  box.querySelectorAll('button').forEach((b) => b.onclick = () => { if (b.classList.contains('done')) return; if (!sel || (sel.dataset.w && b.dataset.w) || (sel.dataset.d && b.dataset.d)) { if (sel) sel.classList.remove('sel'); sel = b; b.classList.add('sel'); return; } const w = sel.dataset.w || b.dataset.w, d = sel.dataset.d || b.dataset.d; if (pairs.some((p) => p[0] === w && p[1] === d)) { sel.classList.add('done'); b.classList.add('done'); done++; say(w); if (done === pairs.length) document.querySelector(`[data-mtres="${box.dataset.mt}"]`).textContent = err ? `Done! Mistakes: ${err}` : 'Perfect!'; } else err++; sel.classList.remove('sel'); sel = null; }); });
+document.querySelectorAll('[data-vids]').forEach((box) => JSON.parse(box.dataset.vids).forEach(([id, title, ch, qs]) => { const d = document.createElement('div'); d.className = 'vid'; d.innerHTML = `<div class="frame"><button class="play" type="button" style="background-image:url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)"><span>PLAY</span></button></div><div class="info"><h3>${title}</h3><small>YouTube · ${ch}</small><ol>${qs.map((q) => `<li>${q}</li>`).join('')}</ol></div>`; d.querySelector('.play').onclick = (e) => { e.currentTarget.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&cc_load_policy=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${title}"></iframe>`; }; box.appendChild(d); }));
+document.querySelectorAll('[data-spin]').forEach((b) => { const list = JSON.parse(b.dataset.spin); let last = -1; b.onclick = () => { let i; do { i = Math.floor(Math.random() * list.length); } while (i === last && list.length > 1); last = i; document.getElementById(b.dataset.target).textContent = list[i]; }; });
+try { const k = 'murly:' + (window.MURLY_LESSON ? MURLY_LESSON.id : 'x') + ':hw'; const t = $('hwText'); if (t) { t.value = localStorage.getItem(k) || ''; t.oninput = () => localStorage.setItem(k, t.value); } } catch (e) { }
+const STAGES = [...document.querySelectorAll('.wrap > section[id]')];
+$('stages').innerHTML = STAGES.map((s) => `<a href="#${s.id}"><b>${s.querySelector('.lk-n').textContent}</b><span>${s.dataset.stage}</span><small>${s.dataset.min !== '0' ? s.dataset.min + ' min' : 'at home'}</small></a>`).join('');
+$('teacherBtn').onclick = (e) => { const on = document.body.classList.toggle('teacher'); e.currentTarget.textContent = on ? 'Student version' : 'Teacher version'; };
+</script>
+<script src="kit.js" defer></script>
+</body>
+</html>

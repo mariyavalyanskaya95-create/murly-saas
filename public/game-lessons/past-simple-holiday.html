@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Past Simple: holiday stories (A2) | Murly</title>
+<link rel="icon" href="/favicon.svg">
+<meta name="description" content="A2 English lesson: past simple (regular and irregular verbs, negatives, questions) with holiday stories, reading, listening, video and speaking.">
+<link rel="canonical" href="https://murly.com.ua/game-lessons/past-simple-holiday.html">
+<style>
+:root{--paper:#F3F0EA;--ink:#17181C;--violet:#3D4A7A;--lav:#D9D3C7;--pink:#E9C9BC;--green:#D4E2CF;--white:#fff;--muted:#62646B;--accent:#B5482F}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+/* hero */
+.hero{background:linear-gradient(rgba(16,17,22,.62),rgba(16,17,22,.78)),#2E3A63;color:#fff;padding:70px 18px 56px;text-align:center;position:relative;overflow:hidden}
+.hero .kicker{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#E9C9BC;font-weight:700}
+.hero .cr{position:absolute;right:12px;bottom:8px;font-size:11px;color:rgba(255,255,255,.6)}
+.hero h1{margin:8px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(36px,6vw,64px);letter-spacing:-.5px;font-weight:700}
+.hero h1 span{color:var(--pink);font-style:italic}
+.hero p{margin:12px 0 0;font-size:17px;color:#e6e2da}
+.hero .flags{display:flex;justify-content:center;gap:12px;margin-top:22px;flex-wrap:wrap}
+.hero .flags svg{width:40px;height:26px;border-radius:3px;opacity:.9}
+/* sections */
+section{margin-top:30px;background:var(--white);border-radius:18px;padding:28px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.05)}
+section h2{margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tag{font-family:"Segoe UI",system-ui,sans-serif;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--paper);color:var(--accent);text-transform:uppercase;letter-spacing:1px}
+.lk-n{display:inline-grid;place-items:center;width:42px;height:42px;background:var(--violet);color:#fff;border-radius:50%;font-size:21px;flex:none}
+.lk-mode{font-size:13px;font-weight:700;border:2px dashed var(--lav);color:var(--muted);padding:2px 10px;border-radius:999px}
+.lk-ins{font-size:17px;background:var(--paper);border-radius:12px;padding:10px 14px;margin:6px 0 18px}
+.lk-sub{margin:24px 0 10px;font-size:19px}
+.btn{font:inherit;font-weight:700;border:0;border-radius:999px;background:var(--ink);color:#fff;padding:10px 20px;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+.btn.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+/* teacher */
+.lk-tbtn{position:fixed;right:16px;top:70px;z-index:45;font:inherit;font-weight:800;border:2px solid var(--ink);background:var(--pink);padding:8px 14px;border-radius:12px;cursor:pointer}
+body.teacher .lk-tbtn{background:var(--green)}
+.lk-ans,.lk-tnote{display:none}
+body.teacher .lk-ans{display:block;margin-top:8px;font-weight:700;color:#1d5a12;background:var(--green);border-left:5px solid #5aa845;padding:6px 10px;font-size:15px;border-radius:6px}
+body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff3f7;border-left:5px solid #d9789a;padding:8px 12px;font-size:15px;border-radius:6px}
+/* overview */
+.lk-overview ul{font-size:17px;line-height:1.7;margin:6px 0 16px}
+.lk-stages{display:flex;flex-wrap:wrap;gap:8px}
+.lk-stages a{display:grid;border-radius:14px;padding:8px 12px;text-decoration:none;color:var(--ink);background:var(--paper);font-weight:700;min-width:100px}
+.lk-stages a span{text-transform:capitalize}
+.lk-stages a b{font-size:20px;color:var(--violet)}
+.lk-stages a small{font-weight:600;color:var(--muted)}
+/* warm-up */
+.taxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tax{background:var(--paper);border-radius:18px;padding:16px;display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center}
+.tax svg{width:56px;height:56px}
+.tax b{display:block;font-size:17px}
+.tax small{color:var(--muted);font-size:14px}
+.qs{display:grid;gap:10px;margin-top:18px}
+.qs div{background:var(--green);border-radius:14px;padding:10px 16px;font-size:18px;font-weight:600}
+.phr{background:#fff7e8;border-radius:14px;padding:12px 16px;margin-top:16px;font-size:15px}
+.phr ul{margin:6px 0 0;padding-left:18px}
+.fic{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:16px}
+.fic .c{background:#fff;border:2px solid #1B2140;border-radius:16px;padding:14px 16px;box-shadow:3px 3px 0 #1B2140}
+.fic .c b{display:block;font-size:18px;line-height:1.35;margin-bottom:8px}
+.fic .c .k{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.fic .c .k span{font-size:13px;background:#eef1fb;border-radius:999px;padding:3px 10px}
+.fic .c details{margin-top:8px;font-size:15px;color:#3b4160}
+.fic .c summary{cursor:pointer;font-weight:700;color:#534AB7}
+.fi-n{display:inline-flex;width:28px;height:28px;border-radius:50%;background:#2F4BA0;color:#fff;align-items:center;justify-content:center;font-size:14px;margin-right:6px}
+/* vocab */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:12px}
+.vc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:2px solid transparent;transition:border-color .2s,transform .2s}
+.vc:hover{border-color:var(--violet);transform:translateY(-2px)}
+.vc b{font-size:18px;display:flex;align-items:center;gap:8px}
+.vc b svg{width:20px;height:20px;flex:none;color:var(--violet)}
+.vc p{margin:6px 0 0;font-size:14px;color:var(--muted)}
+.vc em{display:block;margin-top:6px;font-size:14px;color:var(--violet);font-style:normal;font-weight:600}
+.vc.played{background:#e6ecfb}
+/* grammar */
+.gram{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.gb{border-radius:18px;padding:16px}
+.gb h3{margin:0 0 6px;font-size:19px}
+.gb .f{display:inline-block;background:#fff;border-radius:8px;padding:3px 10px;font-weight:800;margin:4px 0;font-family:Consolas,monospace;font-size:15px}
+.gb p{margin:6px 0 0;font-size:15px}
+.g1{background:var(--pink)}.g2{background:var(--lav)}.g3{background:var(--green)}.g4{background:#fbe7c6}
+.warn{margin-top:14px;background:var(--ink);color:#fff;border-radius:14px;padding:12px 16px;font-size:16px}
+.warn b{color:var(--pink)}
+.q{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:2px dashed var(--paper);font-size:18px}
+.q:last-child{border-bottom:0}
+.q .n{width:32px;height:32px;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;border-radius:50%;font-weight:800;font-size:15px}
+.opt{font:inherit;font-size:16px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:10px;padding:4px 12px;cursor:pointer;margin:0 2px}
+.opt.ok{background:var(--green);border-color:#5aa845}
+.opt.bad{background:var(--pink);animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+/* tour */
+.tour{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.law{border-radius:22px;overflow:hidden;background:var(--paper);display:flex;flex-direction:column}
+.law .pic{height:150px;display:grid;place-items:center;position:relative}
+.law .pic svg.ill{width:130px;height:130px}
+.law .pic svg.fl{position:absolute;left:14px;top:14px;width:46px;height:30px;border-radius:5px;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.law .pic .no{position:absolute;right:14px;top:14px;background:var(--ink);color:#fff;font-weight:800;border-radius:999px;padding:2px 10px;font-size:13px}
+.law .body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.law h3{margin:0;font-size:20px}
+.law .where{font-size:13px;font-weight:800;color:var(--violet);text-transform:uppercase;letter-spacing:1px}
+.law p{margin:0;font-size:16px}
+.law .why{font-size:14px;color:var(--muted)}
+.law .dq{margin-top:auto;background:#fff;border-radius:12px;padding:8px 12px;font-weight:700;font-size:15px}
+.law .lsn{font:inherit;font-size:13px;font-weight:700;background:none;border:0;color:var(--violet);cursor:pointer;padding:0;text-align:left}
+/* game */
+.game{max-width:720px;margin:0 auto;text-align:center}
+.score{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.score span{background:var(--paper);border-radius:999px;padding:6px 16px;font-weight:800}
+.stmt{background:var(--ink);color:#fff;border-radius:22px;padding:28px 24px;min-height:150px;display:grid;place-items:center;font-size:23px;font-weight:700;position:relative}
+.stmt small{position:absolute;top:12px;left:18px;font-size:13px;color:var(--lav);font-weight:700}
+.choose{display:flex;justify-content:center;gap:14px;margin:18px 0}
+.choose button{font:inherit;font-size:18px;font-weight:700;border:2px solid var(--ink);border-radius:999px;padding:12px 28px;cursor:pointer}
+.choose .bl{background:var(--green)}.choose .bm{background:var(--pink)}
+.choose button:disabled{opacity:.5;cursor:default}
+.verdict{min-height:70px;font-size:17px;background:var(--paper);border-radius:16px;padding:12px 16px;text-align:left}
+.verdict b.r{color:#2d7a1d}.verdict b.w{color:#b23a62}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.dots i{width:14px;height:14px;border-radius:50%;background:var(--paper)}
+.dots i.r{background:#7cc663}.dots i.w{background:#e47b9f}.dots i.c{outline:3px solid var(--violet)}
+.final{font-size:22px;font-weight:800;color:var(--violet)}
+/* invent */
+.inv{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.frames{display:grid;gap:10px}
+.frames label{font-size:14px;font-weight:700;color:var(--muted)}
+.frames select,.frames input{font:inherit;width:100%;padding:8px 10px;border:2px solid var(--lav);border-radius:10px;background:#fff}
+.poster{background:var(--paper);border:3px solid var(--ink);border-radius:20px;padding:22px;text-align:center;min-height:260px;display:flex;flex-direction:column;gap:10px;justify-content:center}
+.poster .seal{width:70px;height:70px;margin:0 auto}
+.poster h3{margin:0;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--violet)}
+.poster .rule{font-size:22px;font-weight:800}
+.poster .pen{font-size:16px;color:var(--muted)}
+.ideas{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ideas span{background:var(--pink);border-radius:999px;padding:5px 12px;font-size:14px;font-weight:600}
+/* roleplay */
+.rp{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.role{border-radius:20px;padding:18px}
+.role h3{margin:0 0 6px;display:flex;align-items:center;gap:10px}
+.role h3 svg{width:42px;height:42px}
+.role ul{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.r1{background:var(--lav)}.r2{background:var(--green)}
+.scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:16px}
+.sc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:3px solid transparent}
+.sc.on{border-color:var(--violet);background:#fff}
+.sc b{display:block;font-size:17px;margin-bottom:4px}
+.sc p{margin:0;font-size:15px}
+.timer{font-size:40px;font-weight:800;text-align:center;margin:14px 0 6px;color:var(--violet)}
+.ctr{text-align:center}
+/* homework */
+.hwb{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hwc{background:var(--paper);border-radius:18px;padding:18px}
+.hwc h3{margin:0 0 8px}
+.hwc ol,.hwc ul{margin:6px 0 0;padding-left:20px;line-height:1.7}
+.hwc textarea{width:100%;min-height:150px;font:inherit;border:2px solid var(--lav);border-radius:12px;padding:10px;margin-top:10px}
+.end{text-align:center;background:var(--ink);color:#fff;box-shadow:none}
+.end h2{justify-content:center}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(140px);background:var(--ink);color:#fff;font-weight:800;padding:12px 22px;border-radius:14px;transition:transform .3s;z-index:50}
+.toast.show{transform:translateX(-50%) translateY(0)}
+/* photos */
+.ph{margin:0}
+.ph img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;background:var(--paper)}
+.ph figcaption{font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.2px}
+.tax{grid-template-columns:1fr !important;padding:12px !important}
+.law .pic{height:auto !important;display:block !important;padding:0;position:relative}
+.law .pic .ph img{border-radius:0;aspect-ratio:16/10;transition:filter .5s}
+.law .pic .ph figcaption{padding:4px 12px 0}
+.law.hide .pic .ph img{filter:blur(10px) grayscale(.6)}
+.law.hide .reveal-body,.law.hide .fl,.law.hide .where{visibility:hidden}
+.law .clue{font-size:15px;font-style:italic;color:var(--ink)}
+.law .gc{display:flex;flex-wrap:wrap;gap:6px}
+.law .gc button{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:4px 12px;cursor:pointer}
+.law .gc button.ok{background:var(--green)}.law .gc button.bad{background:var(--pink)}
+.law:not(.hide) .guess{display:none}
+.fair{display:grid;gap:4px;background:#fff;border-radius:12px;padding:8px 12px}
+.fair .ends{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.fair input{width:100%;accent-color:var(--accent)}
+.fair output{font-size:14px;font-weight:700;color:var(--accent)}
+.gph{max-width:720px;margin:0 auto 12px}
+.gph img{aspect-ratio:21/9}
+.fine{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.fq{background:var(--paper);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.fq h3{margin:0;font-size:18px}
+.fq .opts{display:flex;flex-wrap:wrap;gap:6px}
+.fq .opts button{font:inherit;font-size:14px;font-weight:700;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 12px;cursor:pointer}
+.fq .opts button.ok{background:var(--green)}.fq .opts button.bad{background:var(--pink)}
+.fq .res{font-size:15px;min-height:22px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{position:relative;aspect-ratio:16/9;background:#111}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;cursor:pointer;background:#111 center/cover;display:grid;place-items:center}
+.vid .play span{background:rgba(0,0,0,.7);color:#fff;font-weight:700;border-radius:999px;padding:10px 20px;font-size:15px;letter-spacing:1px}
+.vid .info{padding:14px 16px}
+.vid .info h3{margin:0 0 2px;font-size:18px}
+.vid .info small{color:var(--muted)}
+.vid .info ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+@media(max-width:760px){.inv,.rp,.hwb{grid-template-columns:1fr}.lk-tbtn{top:auto;bottom:70px}}
+
+.pr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.pb{border-radius:18px;padding:16px 18px}
+.pb h3{margin:0;font-family:Georgia,serif;font-size:30px}
+.pb .m{font-size:15px;color:var(--muted);margin:2px 0 8px}
+.pb .chips{display:flex;flex-wrap:wrap;gap:6px}
+.pb .chips span{background:#fff;border-radius:999px;padding:4px 11px;font-size:14px;font-weight:600}
+.pb ul{margin:10px 0 0;padding-left:18px;font-size:15px}
+.p-in{background:#DCE6F5}.p-at{background:#F3D9CF}.p-on{background:#D4E2CF}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-size:15px;margin-top:10px}
+.ex div{background:var(--paper);border-radius:10px;padding:8px 12px}
+.ex b{color:var(--accent)}
+.q{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.q .n{font-weight:800;color:var(--violet);min-width:24px}
+.q .gap{display:inline-block;min-width:44px;border-bottom:2px solid var(--ink);text-align:center;font-weight:800}
+.q .opts{margin-left:auto;display:flex;gap:6px}
+.q .opts button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 14px;cursor:pointer}
+.q.ok{background:#DDEED7}.q.ok .gap{color:#2F7A3B}
+.q.bad{background:#F6DAD3}
+.score{font-weight:800;margin-top:12px}
+.text{font-size:18px;line-height:1.75;background:var(--paper);border-radius:16px;padding:18px 22px}
+.text h3{margin:0 0 6px;font-family:Georgia,serif;font-size:24px}
+.text p{margin:0 0 12px}
+.text.hl mark{background:#F3D9CF;border-radius:4px;padding:0 3px;font-weight:700}
+.tf{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:9px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.tf .opts{margin-left:auto;display:flex;gap:6px}
+.tf button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.tf.ok{background:#DDEED7}.tf.bad{background:#F6DAD3}
+.disc{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px;margin-top:6px}
+.disc div{background:var(--green);border-radius:14px;padding:12px 16px;font-size:17px;font-weight:600}
+.disc div i{font-style:normal;color:var(--violet);margin-right:6px}
+.spin{text-align:center;margin-top:16px}
+.spin .card{display:inline-block;min-height:80px;min-width:min(560px,100%);background:var(--ink);color:#fff;border-radius:18px;padding:20px 24px;font-size:22px;font-weight:700;margin-bottom:12px}
+@media(max-width:700px){.ex{grid-template-columns:1fr}}
+
+.hero{background-size:cover!important;background-position:center!important}
+.voc{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.voc div{background:var(--paper);border-radius:14px;padding:10px 14px;cursor:pointer;border:2px solid transparent}
+.voc div:hover{border-color:var(--violet)}
+.voc b{display:block;font-size:18px}.voc span{display:block;color:var(--accent);font-weight:700;font-size:15px}.voc em{display:block;font-size:14px;color:var(--muted);margin-top:3px}
+.mt{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:10px}
+.mt button{font:inherit;font-size:16px;text-align:left;border:2px solid var(--ink);background:#fff;border-radius:14px;padding:9px 14px;cursor:pointer}
+.mt button.sel{background:#FFE7A8}.mt button.done{background:#CDE8C6;border-color:#4C9A5B;cursor:default}
+.ch{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ch .n{font-weight:800;color:var(--violet);min-width:24px}
+.ch .o{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.ch .o button{font:inherit;font-size:15px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.ch.ok{background:#DDEED7}.ch.bad{background:#F6DAD3}
+.ty{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ty input{font:inherit;border:2px solid var(--ink);border-radius:10px;padding:4px 10px;width:220px}
+.ty.ok{background:#DDEED7}.ty.bad{background:#F6DAD3}
+.ty small{color:var(--muted)}
+.photo{width:100%;height:300px;object-fit:cover;border-radius:16px;display:block}
+.cap{font-size:11px;color:var(--muted);margin:4px 0 12px}
+.pics{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.pics figure{margin:0;background:var(--paper);border-radius:16px;overflow:hidden}
+.pics img{width:100%;height:170px;object-fit:cover;display:block}
+.pics figcaption{padding:8px 12px;font-weight:700}
+.pics small{display:block;font-weight:400;font-size:10px;color:var(--muted)}
+.lis{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:8px 0 14px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{aspect-ratio:16/9;background:#000;position:relative}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;background-size:cover;background-position:center;cursor:pointer;display:grid;place-items:center}
+.vid .play span{background:#E5484D;color:#fff;font-weight:800;border-radius:12px;padding:10px 20px}
+.vid .info{padding:12px 16px}.vid h3{margin:0;font-size:18px}.vid small{color:var(--muted)}
+.vid ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th,.tbl td{border:1px solid #ddd;padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--paper)}
+@media(max-width:700px){.mt{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="kit.css">
+</head>
+<body>
+<header class="hero">
+  <div class="kicker">A2 · Past Simple</div>
+  <h1>My crazy <span>holiday</span></h1>
+  <p>Past Simple · regular and irregular verbs · travel words · stories · 70 min</p>
+  <span class="cr">Photo: CJ Dayrit / Unsplash</span>
+</header>
+<button class="lk-tbtn" id="teacherBtn" type="button">Teacher version</button>
+<div class="wrap">
+  <section class="lk-overview">
+    <h2>In this lesson you will:</h2>
+    <ul><li>Talk about your last holiday.</li><li>Learn 14 travel words (with Russian translation).</li><li>Review the Past Simple: regular and irregular verbs, negatives and questions.</li><li>Read Mia's holiday story and listen to Tom's trip to London.</li><li>Tell your own crazy holiday story.</li></ul>
+    <div class="lk-stages" id="stages"></div>
+  </section>
+
+  <section id="s1" data-stage="warm-up" data-min="5">
+    <h2><span class="lk-n">1</span>Last summer <span class="tag">warm-up</span><span class="lk-mode">teacher + student</span></h2>
+    <img class="photo" src="https://images.unsplash.com/photo-1475503572774-15a45e5d60b9?w=900&q=70&auto=format&fit=crop" alt="A family on the beach"><div class="cap">Photo: Natalya Zaritskaya / Unsplash</div>
+    <p class="lk-ins">Answer the questions. Use the past: went, was, saw, did ...</p>
+    <div class="qs">
+      <div>1. Where did you go last summer?</div>
+      <div>2. Who did you go with?</div>
+      <div>3. What was the best thing? What was the worst thing?</div>
+      <div>4. Did anything funny or strange happen?</div>
+    </div>
+    <div class="phr"><b>Useful phrases</b><ul><li>I went to ... with ...</li><li>The best thing was ...</li><li>I didn't like ... because ...</li><li>Something funny happened: ...</li></ul></div>
+
+    <p class="lk-tnote" data-ru="Заметка: 4-5 минут. Если ученица никуда не ездила, спрашивайте о любой поездке или выходных. Записывайте ошибки с прошедшим временем.">Нотатка: 4-5 хвилин. Якщо учениця нікуди не їздила, питайте про будь-яку поїздку або вихідні. Записуйте помилки з минулим часом.</p>
+  </section>
+  <section id="s2" data-stage="vocabulary" data-min="8">
+    <h2><span class="lk-n">2</span>Travel words <span class="tag">vocabulary</span><span class="lk-mode">teacher + student</span></h2>
+    <p class="lk-ins">Click a card to hear the word. Then answer: did you ever ... (get lost, miss a bus, lose something)?</p>
+    <div class="voc">
+      <div data-say="to travel. We travelled to Italy last summer."><b>to travel</b><span>путешествовать</span><em>We travelled to Italy last summer.</em></div>
+      <div data-say="to pack. I packed my suitcase the night before."><b>to pack</b><span>собирать вещи (чемодан)</span><em>I packed my suitcase the night before.</em></div>
+      <div data-say="a suitcase. My suitcase was very heavy."><b>a suitcase</b><span>чемодан</span><em>My suitcase was very heavy.</em></div>
+      <div data-say="to miss (a plane / a bus). We missed the bus and walked to the hotel."><b>to miss (a plane / a bus)</b><span>опоздать (на самолёт / автобус)</span><em>We missed the bus and walked to the hotel.</em></div>
+      <div data-say="to get lost. We got lost in the old town."><b>to get lost</b><span>заблудиться</span><em>We got lost in the old town.</em></div>
+      <div data-say="to lose. My brother lost his passport!"><b>to lose</b><span>потерять</span><em>My brother lost his passport!</em></div>
+      <div data-say="to find. We found a great pizza place."><b>to find</b><span>найти</span><em>We found a great pizza place.</em></div>
+      <div data-say="to arrive. We arrived at the hotel at midnight."><b>to arrive</b><span>прибыть, приехать</span><em>We arrived at the hotel at midnight.</em></div>
+      <div data-say="to stay (at a hotel). We stayed at a small hotel by the sea."><b>to stay (at a hotel)</b><span>остановиться (в отеле)</span><em>We stayed at a small hotel by the sea.</em></div>
+      <div data-say="to rain. It rained every day!"><b>to rain</b><span>идти (о дожде)</span><em>It rained every day!</em></div>
+      <div data-say="a tent. We slept in a tent in the forest."><b>a tent</b><span>палатка</span><em>We slept in a tent in the forest.</em></div>
+      <div data-say="to take photos. I took 300 photos of the sea."><b>to take photos</b><span>фотографировать</span><em>I took 300 photos of the sea.</em></div>
+      <div data-say="terrible. The food was terrible."><b>terrible</b><span>ужасный</span><em>The food was terrible.</em></div>
+      <div data-say="amazing. The view was amazing."><b>amazing</b><span>потрясающий</span><em>The view was amazing.</em></div>
+    </div>
+    <h3 class="lk-sub">Quick check: match the word and the translation.</h3>
+    <div class="mt" data-mt="m1" data-pairs="[[&quot;to travel&quot;, &quot;путешествовать&quot;], [&quot;to pack&quot;, &quot;собирать вещи (чемодан)&quot;], [&quot;a suitcase&quot;, &quot;чемодан&quot;], [&quot;to miss (a plane / a bus)&quot;, &quot;опоздать (на самолёт / автобус)&quot;], [&quot;to get lost&quot;, &quot;заблудиться&quot;], [&quot;to lose&quot;, &quot;потерять&quot;], [&quot;to find&quot;, &quot;найти&quot;]]"></div>
+    <div class="big" data-mtres="m1" style="font-weight:800;text-align:center;margin-top:8px"></div>
+
+    <p class="lk-tnote" data-ru="Перевод: to travel = путешествовать · to pack = собирать вещи (чемодан) · a suitcase = чемодан · to miss (a plane / a bus) = опоздать (на самолёт / автобус) · to get lost = заблудиться · to lose = потерять · to find = найти · to arrive = прибыть, приехать · to stay (at a hotel) = остановиться (в отеле) · to rain = идти (о дожде) · a tent = палатка · to take photos = фотографировать · terrible = ужасный · amazing = потрясающий">Переклад для пульта: to travel = путешествовать · to pack = собирать вещи (чемодан) · a suitcase = чемодан · to miss (a plane / a bus) = опоздать (на самолёт / автобус) · to get lost = заблудиться · to lose = потерять · to find = найти · to arrive = прибыть, приехать · to stay (at a hotel) = остановиться (в отеле) · to rain = идти (о дожде) · a tent = палатка · to take photos = фотографировать · terrible = ужасный · amazing = потрясающий</p>
+  </section>
+  <section id="s3" data-stage="grammar" data-min="8">
+    <h2><span class="lk-n">3</span>Past Simple: quick review <span class="tag">grammar</span><span class="lk-mode">teacher + student</span></h2>
+    <p class="lk-ins">Read the rules. Say three sentences about yesterday: one positive, one negative, one question.</p>
+    <div class="gram">
+      <div class="gb g1"><h3>Regular verbs</h3><span class="f">verb + -ed</span><p>travel → travel<b>led</b> · pack → pack<b>ed</b><br>stop → sto<b>pped</b> · study → stud<b>ied</b> · live → liv<b>ed</b></p></div>
+      <div class="gb g2"><h3>Irregular verbs</h3><span class="f">learn them!</span><p>go → <b>went</b> · see → <b>saw</b> · lose → <b>lost</b> · find → <b>found</b> · take → <b>took</b> · get → <b>got</b> · eat → <b>ate</b> · buy → <b>bought</b></p></div>
+      <div class="gb g3"><h3>Negative</h3><span class="f">didn't + verb</span><p>We <b>didn't go</b> to the beach. (NOT "didn't went")</p></div>
+      <div class="gb g4"><h3>Questions</h3><span class="f">Did ... + verb?</span><p><b>Did</b> you <b>like</b> it? Yes, I did. / No, I didn't.<br>Where <b>did</b> you <b>go</b>?</p></div>
+      <div class="gb g2"><h3>to be</h3><span class="f">was / were</span><p>I / he / she / it <b>was</b> · we / you / they <b>were</b><br>It <b>wasn't</b> fun. <b>Were</b> you tired?</p></div>
+    </div>
+    <div class="warn"><b>Careful!</b> After <b>didn't</b> and <b>did</b> the verb has NO -ed and no past form: <b>didn't see</b>, <b>Did you go?</b></div>
+
+    <p class="lk-tnote" data-ru="Подсказка для объяснения: правильные глаголы + -ed; правописание: удвоение согласной после краткой ударной гласной (stop-stopped, plan-planned), y после согласной → ied (study-studied, но play-played), -e → +d (live-lived). Отрицание и вопрос с did/didn&#x27;t + базовая форма. Was/were для to be (без did!). Типичные ошибки: «didn&#x27;t went», «Did you went?», «I was go».">Підказка для пояснення: правильні дієслова + -ed; правопис: подвоєння приголосної після короткого наголошеного голосного (stop-stopped, plan-planned), y після приголосної → ied (study-studied, але play-played), -e → +d (live-lived). Заперечення й питання з did/didn't + базова форма. Was/were для to be (без did!). Типові помилки: «didn't went», «Did you went?», «I was go».</p>
+  </section>
+  <section id="s4" data-stage="practice" data-min="12">
+    <h2><span class="lk-n">4</span>Practice <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+    <p class="lk-ins">A: choose. B: write the past form of irregular verbs. C: write the verb in the right form. D: how does -ed sound?</p>
+    <h3 class="lk-sub">A. Choose</h3>
+    <div>
+      <div class="ch" data-a="went"><span class="n">1</span><span class="s">Last year we ___ to Spain.</span><span class="o"><button type="button">go</button><button type="button">went</button><button type="button">goed</button></span></div>
+      <div class="ch" data-a="missed"><span class="n">2</span><span class="s">We ___ the plane because the taxi was late.</span><span class="o"><button type="button">missed</button><button type="button">misted</button><button type="button">miss</button></span></div>
+      <div class="ch" data-a="lost"><span class="n">3</span><span class="s">My dad ___ his passport at the airport!</span><span class="o"><button type="button">losed</button><button type="button">lost</button><button type="button">lose</button></span></div>
+      <div class="ch" data-a="stayed"><span class="n">4</span><span class="s">We ___ in a small hotel near the beach.</span><span class="o"><button type="button">staied</button><button type="button">stayed</button><button type="button">stay</button></span></div>
+      <div class="ch" data-a="rained"><span class="n">5</span><span class="s">It ___ every day, so we ___ to the cinema. (choose the first verb)</span><span class="o"><button type="button">rained</button><button type="button">rains</button><button type="button">rainned</button></span></div>
+      <div class="ch" data-a="didn&#x27;t"><span class="n">6</span><span class="s">I ___ swim in the sea because it was too cold.</span><span class="o"><button type="button">didn&#x27;t</button><button type="button">don&#x27;t</button><button type="button">wasn&#x27;t</button></span></div>
+      <div class="ch" data-a="Did"><span class="n">7</span><span class="s">___ you take a lot of photos?</span><span class="o"><button type="button">Did</button><button type="button">Were</button><button type="button">Do</button></span></div>
+      <div class="ch" data-a="was"><span class="n">8</span><span class="s">The food ___ terrible!</span><span class="o"><button type="button">were</button><button type="button">was</button><button type="button">did</button></span></div>
+      <div class="ch" data-a="were"><span class="n">9</span><span class="s">We ___ very tired after the trip.</span><span class="o"><button type="button">was</button><button type="button">were</button><button type="button">did</button></span></div>
+      <div class="ch" data-a="found"><span class="n">10</span><span class="s">My sister ___ a beautiful shell on the beach.</span><span class="o"><button type="button">finded</button><button type="button">found</button><button type="button">find</button></span></div>
+    </div>
+    <h3 class="lk-sub">B. Irregular verbs: write the past form</h3>
+    <div>
+      <div class="ty" data-a="went"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>go →</span><small></small><input type="text" autocomplete="off" spellcheck="false"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+      <div class="ty" data-a="saw"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>see →</span><small></small><input type="text" autocomplete="off" spellcheck="false"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+      <div class="ty" data-a="lost"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>lose →</span><small></small><input type="text" autocomplete="off" spellcheck="false"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+      <div class="ty" data-a="found"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>find →</span><small></small><input type="text" autocomplete="off" spellcheck="false"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+      <div class="ty" data-a="took"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>take →</span><small></small><input type="text" autocomplete="off" spellcheck="false"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+      <div class="ty" data-a="got"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>get →</span><small></small><input type="text" autocomplete="off" spellcheck="false"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+      <div class="ty" data-a="ate"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>eat →</span><small></small><input type="text" autocomplete="off" spellcheck="false"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+      <div class="ty" data-a="bought"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>buy →</span><small></small><input type="text" autocomplete="off" spellcheck="false"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+      <div class="ty" data-a="swam"><span class="n" style="font-weight:800;color:var(--violet)">9</span><span>swim →</span><small></small><input type="text" autocomplete="off" spellcheck="false"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+      <div class="ty" data-a="flew"><span class="n" style="font-weight:800;color:var(--violet)">10</span><span>fly →</span><small></small><input type="text" autocomplete="off" spellcheck="false"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+      <div class="ty" data-a="slept"><span class="n" style="font-weight:800;color:var(--violet)">11</span><span>sleep →</span><small></small><input type="text" autocomplete="off" spellcheck="false"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+      <div class="ty" data-a="left"><span class="n" style="font-weight:800;color:var(--violet)">12</span><span>leave →</span><small></small><input type="text" autocomplete="off" spellcheck="false"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+    </div>
+    <h3 class="lk-sub">C. Write the correct form</h3>
+    <div>
+      <div class="ty" data-a="stopped"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>We ___ (stop) at a café.</span><small></small><input type="text" autocomplete="off" spellcheck="false"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+      <div class="ty" data-a="studied"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>My brother ___ (study) the map.</span><small></small><input type="text" autocomplete="off" spellcheck="false"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+      <div class="ty" data-a="didn&#x27;t like|did not like"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>I ___ (not / like) the hotel.</span><small></small><input type="text" autocomplete="off" spellcheck="false"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+      <div class="ty" data-a="did you enjoy|did enjoy"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>___ you ___ (enjoy) the trip? (Did you ...)</span><small></small><input type="text" autocomplete="off" spellcheck="false"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+      <div class="ty" data-a="planned"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>We ___ (plan) everything, but it went wrong!</span><small></small><input type="text" autocomplete="off" spellcheck="false"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+      <div class="ty" data-a="weren&#x27;t|were not"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>They ___ (not / be) happy.</span><small></small><input type="text" autocomplete="off" spellcheck="false"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+    </div>
+    <h3 class="lk-sub">D. Listen to yourself: /t/, /d/ or /ɪd/?</h3>
+    <div>
+      <div class="ch" data-a="/d/"><span class="n">1</span><span class="s">travelled</span><span class="o"><button type="button">/t/</button><button type="button">/d/</button><button type="button">/ɪd/</button></span></div>
+      <div class="ch" data-a="/t/"><span class="n">2</span><span class="s">packed</span><span class="o"><button type="button">/t/</button><button type="button">/d/</button><button type="button">/ɪd/</button></span></div>
+      <div class="ch" data-a="/ɪd/"><span class="n">3</span><span class="s">waited</span><span class="o"><button type="button">/t/</button><button type="button">/d/</button><button type="button">/ɪd/</button></span></div>
+      <div class="ch" data-a="/d/"><span class="n">4</span><span class="s">stayed</span><span class="o"><button type="button">/t/</button><button type="button">/d/</button><button type="button">/ɪd/</button></span></div>
+      <div class="ch" data-a="/t/"><span class="n">5</span><span class="s">stopped</span><span class="o"><button type="button">/t/</button><button type="button">/d/</button><button type="button">/ɪd/</button></span></div>
+      <div class="ch" data-a="/ɪd/"><span class="n">6</span><span class="s">visited</span><span class="o"><button type="button">/t/</button><button type="button">/d/</button><button type="button">/ɪd/</button></span></div>
+      <div class="ch" data-a="/t/"><span class="n">7</span><span class="s">laughed</span><span class="o"><button type="button">/t/</button><button type="button">/d/</button><button type="button">/ɪd/</button></span></div>
+      <div class="ch" data-a="/d/"><span class="n">8</span><span class="s">rained</span><span class="o"><button type="button">/t/</button><button type="button">/d/</button><button type="button">/ɪd/</button></span></div>
+    </div>
+
+    <p class="lk-tnote" data-ru="Ответы A: 1 went · 2 missed · 3 lost · 4 stayed · 5 rained · 6 didn&#x27;t · 7 Did · 8 was · 9 were · 10 found. B: go-went · see-saw · lose-lost · find-found · take-took · get-got · eat-ate · buy-bought · swim-swam · fly-flew · sleep-slept · leave-left. C: stopped · studied · didn&#x27;t like · did you enjoy · planned · weren&#x27;t. D: travelled /d/ · packed /t/ · waited /ɪd/ · stayed /d/ · stopped /t/ · visited /ɪd/ · laughed /t/ · rained /d/. Правило: /ɪd/ после t и d; /t/ после глухих (p, k, s, sh, ch, f); /d/ после остальных.">Відповіді A: 1 went · 2 missed · 3 lost · 4 stayed · 5 rained · 6 didn't · 7 Did · 8 was · 9 were · 10 found. B: go-went · see-saw · lose-lost · find-found · take-took · get-got · eat-ate · buy-bought · swim-swam · fly-flew · sleep-slept · leave-left. C: stopped · studied · didn't like · did you enjoy · planned · weren't. D: travelled /d/ · packed /t/ · waited /ɪd/ · stayed /d/ · stopped /t/ · visited /ɪd/ · laughed /t/ · rained /d/. Правило: /ɪd/ після t і d; /t/ після глухих (p, k, s, sh, ch, f); /d/ після інших.</p>
+  </section>
+  <section id="s5" data-stage="reading" data-min="10">
+    <h2><span class="lk-n">5</span>Reading: Mia's holiday <span class="tag">reading</span><span class="lk-mode">teacher + student</span></h2>
+    <img class="photo" src="https://images.unsplash.com/photo-1519692933481-e162a57d6721?w=900&q=70&auto=format&fit=crop" alt="Rain on holiday"><div class="cap">Photo: Osman Rana / Unsplash</div>
+    <p class="lk-ins">Read the story. Find 10 verbs in the Past Simple. Which are regular? Which are irregular? Then answer True or False.</p>
+    <div class="text"><h3>Mia's terrible (and amazing) holiday</h3>
+      <p>Last August Mia and her family went on holiday to the seaside. They planned everything, but nothing went right.</p>
+      <p>First, they missed their train because Mia's little brother couldn't find his shoes. They took the next train and arrived three hours late. When they got to the hotel, there was a problem: the hotel didn't have their booking! The receptionist was very kind, and she found them a room, but it was tiny and the window didn't open.</p>
+      <p>The next day it rained. And the day after that. And the day after that! Mia's mum bought umbrellas, and they visited a museum, an aquarium and a chocolate factory. Mia ate so much chocolate that she felt sick.</p>
+      <p>On the last day the sun finally came out. They spent the whole day on the beach. Mia swam in the sea, built a sandcastle with her brother and took 200 photos. In the evening they watched the sunset and ate pizza.</p>
+      <p>"It was the worst holiday ever," Mia's dad said on the train home. "No," said Mia. "It was the best!"</p></div>
+    <h3 class="lk-sub">True or False?</h3>
+    <div>
+      <div class="ch" data-a="False"><span class="n">1</span><span class="s">Mia&#x27;s family went to the mountains.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+      <div class="ch" data-a="True"><span class="n">2</span><span class="s">They missed the train because of the brother&#x27;s shoes.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+      <div class="ch" data-a="False"><span class="n">3</span><span class="s">The hotel had their booking.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+      <div class="ch" data-a="False"><span class="n">4</span><span class="s">Their room was very big.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+      <div class="ch" data-a="True"><span class="n">5</span><span class="s">It rained for several days.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+      <div class="ch" data-a="True"><span class="n">6</span><span class="s">They visited a chocolate factory.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+      <div class="ch" data-a="False"><span class="n">7</span><span class="s">Mia didn&#x27;t swim on the last day.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+      <div class="ch" data-a="True"><span class="n">8</span><span class="s">Mia thought it was the best holiday.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+    </div>
+    <div class="qs">
+      <div>What went wrong? Name three things.</div>
+      <div>Why did Mia think it was the best holiday?</div>
+      <div>Did you ever have a holiday like this?</div>
+    </div>
+
+    <p class="lk-tnote" data-ru="Ответы: 1 False · 2 True · 3 False · 4 False · 5 True · 6 True · 7 False · 8 True. Неправильные глаголы в тексте: went, couldn&#x27;t, took, got, was, found, bought, ate, felt, came, spent, swam, built, said. Правильные: planned, missed, arrived, rained, visited, watched.">Відповіді: 1 False · 2 True · 3 False · 4 False · 5 True · 6 True · 7 False · 8 True. Неправильні дієслова в тексті: went, couldn't, took, got, was, found, bought, ate, felt, came, spent, swam, built, said. Правильні: planned, missed, arrived, rained, visited, watched.</p>
+    <p class="lk-tnote" data-ru="Перевод: the seaside = морское побережье · a booking = бронирование · a receptionist = администратор · tiny = крошечный · an umbrella = зонт · an aquarium = аквариум · to feel sick = тошнить · the sunset = закат · a sandcastle = замок из песка.">Переклад: the seaside = морське узбережжя · a booking = бронювання · a receptionist = адміністратор · tiny = крихітний · an umbrella = парасолька · an aquarium = акваріум · to feel sick = нудити · the sunset = захід сонця · a sandcastle = замок з піску.</p>
+  </section>
+  <section id="s6" data-stage="listening" data-min="8">
+    <h2><span class="lk-n">6</span>Listening: Tom's trip to London <span class="tag">listening</span><span class="lk-mode">teacher + student</span></h2>
+    <img class="photo" src="https://images.unsplash.com/photo-1554123168-b400f9c806ca?w=900&q=70&auto=format&fit=crop" alt="An airport"><div class="cap">Photo: Marco López / Unsplash</div>
+    <p class="lk-ins">Read the questions. Listen to Tom and choose the answers.</p>
+    <div class="lis"><button class="btn" type="button" data-play="l1">Play</button><button class="btn alt" type="button" data-play="l1" data-slow="1">Play slowly</button><button class="btn alt" type="button" data-stop="1">Stop</button></div>
+    <div class="lk-tnote" data-script="l1">Hello! My name is Tom. Last spring I went to London with my class. We travelled by plane. It was my first flight, and I was a bit scared. On the first day we visited the Tower of London and saw the crown jewels. They were amazing! In the afternoon we got lost in a big park, but a friendly police officer helped us. On the second day it rained, so we went to the Natural History Museum. I loved the dinosaurs. I bought a small dinosaur for my little sister. We didn&#x27;t have time to see Big Ben, but I want to go back next year.</div>
+    <div>
+      <div class="ch" data-a="London"><span class="n">1</span><span class="s">Where did Tom go?</span><span class="o"><button type="button">Paris</button><button type="button">London</button><button type="button">Rome</button></span></div>
+      <div class="ch" data-a="by plane"><span class="n">2</span><span class="s">How did they travel?</span><span class="o"><button type="button">by train</button><button type="button">by bus</button><button type="button">by plane</button></span></div>
+      <div class="ch" data-a="the crown jewels"><span class="n">3</span><span class="s">What did they see at the Tower of London?</span><span class="o"><button type="button">the crown jewels</button><button type="button">dinosaurs</button><button type="button">Big Ben</button></span></div>
+      <div class="ch" data-a="a police officer"><span class="n">4</span><span class="s">Who helped them in the park?</span><span class="o"><button type="button">a teacher</button><button type="button">a police officer</button><button type="button">a taxi driver</button></span></div>
+      <div class="ch" data-a="a small dinosaur"><span class="n">5</span><span class="s">What did Tom buy for his sister?</span><span class="o"><button type="button">a crown</button><button type="button">a small dinosaur</button><button type="button">an umbrella</button></span></div>
+    </div>
+
+    <p class="lk-tnote" data-ru="Ответы: 1 London · 2 by plane · 3 the crown jewels · 4 a police officer · 5 a small dinosaur. Потом спросите: «What didn&#x27;t they see?» (Big Ben).">Відповіді: 1 London · 2 by plane · 3 the crown jewels · 4 a police officer · 5 a small dinosaur. Потім спитайте: «What didn't they see?» (Big Ben).</p>
+  </section>
+  <section id="s7" data-stage="video" data-min="8">
+    <h2><span class="lk-n">7</span>Watch & discuss <span class="tag">video</span><span class="lk-mode">teacher + student</span></h2>
+    <p class="lk-ins">Watch one video with English subtitles. Answer the questions.</p>
+    <div class="vids" data-vids="[[&quot;Hu9FfMKiSKg&quot;, &quot;Holiday from Hell: an A2 story&quot;, &quot;In the Lighthouse&quot;, [&quot;What went wrong? Name three things.&quot;, &quot;Write down 5 verbs in the Past Simple.&quot;, &quot;Was the ending happy or sad?&quot;]], [&quot;PgsG98vByiw&quot;, &quot;The past simple tense&quot;, &quot;BBC Learning English · 6 Minute Grammar&quot;, [&quot;How do we make the past simple of regular verbs?&quot;, &quot;Write two irregular verbs from the video.&quot;, &quot;Make a question with \&quot;did\&quot;.&quot;]]]"></div>
+
+    <p class="lk-tnote" data-ru="Заметка: первое видео (5 мин) история уровня A2, второе (6 мин) объяснение грамматики. Посмотрите перед уроком.">Нотатка: перше відео (5 хв) історія рівня A2, друге (6 хв) пояснення граматики. Перегляньте перед уроком.</p>
+  </section>
+  <section id="s8" data-stage="speaking" data-min="14">
+    <h2><span class="lk-n">8</span>Speaking <span class="tag">speaking</span><span class="lk-mode">teacher + student</span></h2>
+    <p class="lk-ins">Part 1: choose three photos and tell a story about "My crazy holiday". Use: first, then, after that, finally.</p>
+    <div class="pics">
+      <figure><img src="https://images.unsplash.com/photo-1554123168-b400f9c806ca?w=600&q=70&auto=format&fit=crop" alt="At the airport" loading="lazy"><figcaption>At the airport<small>Photo: Marco López / Unsplash</small></figcaption></figure>
+      <figure><img src="https://images.unsplash.com/photo-1631080801009-5b4741cf3f12?w=600&q=70&auto=format&fit=crop" alt="A suitcase" loading="lazy"><figcaption>A suitcase<small>Photo: CJ Dayrit / Unsplash</small></figcaption></figure>
+      <figure><img src="https://images.unsplash.com/photo-1691983831816-4b5d2f6b6340?w=600&q=70&auto=format&fit=crop" alt="Camping" loading="lazy"><figcaption>Camping<small>Photo: Y S / Unsplash</small></figcaption></figure>
+      <figure><img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=600&q=70&auto=format&fit=crop" alt="A hotel room" loading="lazy"><figcaption>A hotel room<small>Photo: Vojtech Bruzek / Unsplash</small></figcaption></figure>
+      <figure><img src="https://images.unsplash.com/photo-1530281700549-e82e7bf110d6?w=600&q=70&auto=format&fit=crop" alt="A dog on the beach" loading="lazy"><figcaption>A dog on the beach<small>Photo: Oscar Sutton / Unsplash</small></figcaption></figure>
+      <figure><img src="https://images.unsplash.com/photo-1519692933481-e162a57d6721?w=600&q=70&auto=format&fit=crop" alt="A rainy day" loading="lazy"><figcaption>A rainy day<small>Photo: Osman Rana / Unsplash</small></figcaption></figure>
+    </div>
+    <div class="phr"><b>Story helpers</b><ul><li>First, we ... . Then ... .</li><li>After that, ... . Suddenly, ... !</li><li>Finally, we ... . It was ... .</li></ul></div>
+    <h3 class="lk-sub">Part 2: ask and answer</h3>
+    <div class="spin"><div class="card" id="pCard">Click "Random question"</div><br><button class="btn" type="button" data-spin="[&quot;Where did you go on your last holiday?&quot;, &quot;What did you eat there?&quot;, &quot;Did you ever get lost? What happened?&quot;, &quot;Did you ever miss a bus, a train or a plane?&quot;, &quot;What was the best trip of your life?&quot;, &quot;Did you ever sleep in a tent?&quot;, &quot;What did you do last weekend?&quot;, &quot;What did you buy last time you went shopping?&quot;]" data-target="pCard">Random question</button></div>
+    <h3 class="lk-sub">Part 3: Two truths and a lie</h3>
+    <div class="qs">
+      <div>Say three sentences about your past: two are true, one is a lie. The teacher guesses the lie. Then swap!</div>
+      <div>Example: I swam in the Black Sea. I met a famous singer. I lost my phone in a taxi.</div>
+    </div>
+
+    <p class="lk-tnote" data-ru="Заметка: в части 1 ученица может придумывать, главное прошедшее время и связки first, then, after that. «Two truths and a lie»: вы тоже играете, чтобы ученица задавала вопросы с did.">Нотатка: у частині 1 учениця може вигадувати, головне минулий час і зв'язки first, then, after that. «Two truths and a lie»: ви теж граєте, щоб учениця ставила питання з did.</p>
+  </section>
+  <section id="s9" data-stage="homework" data-min="0">
+    <h2><span class="lk-n">9</span>Homework <span class="tag">homework</span><span class="lk-mode">teacher + student</span></h2>
+    <div class="hwb">
+      <div class="hwc"><h3>A. My best (or worst) trip</h3><p>Write 8-10 sentences. Use at least 6 irregular verbs and 4 words from the lesson. Add one negative sentence and one question.</p><textarea id="hwText" placeholder="Last summer I went to ..."></textarea></div>
+      <div class="hwc"><h3>B. Irregular verbs</h3><p>Learn 10 verbs: go, see, lose, find, take, get, eat, buy, swim, fly. Play the games on <a href="/irregular-verbs/games">Murly irregular verbs</a>.</p><p>Record a voice message: tell your story from part A (1 minute).</p></div>
+    </div>
+
+    <p class="lk-tnote" data-ru="Заметка: проверьте didn&#x27;t + базовая форма и was/were.">Нотатка: перевірте didn't + базова форма і was/were.</p>
+  </section>
+  <section class="end"><h2>Great job!</h2><p>See you next lesson.</p></section>
+</div>
+<div class="toast" id="toast"></div>
+<script>window.MURLY_LESSON={"id": "past-simple-holiday", "title": "Past Simple: holiday stories", "homework": ["s2", "s4", "s5", "s9"], "hw": {"s2": [{"type": "match", "instruction": "Match the words with their translations.", "text": "to travel = путешествовать\nto pack = собирать вещи (чемодан)\na suitcase = чемодан\nto miss (a plane / a bus) = опоздать (на самолёт / автобус)\nto get lost = заблудиться\nto lose = потерять\nto find = найти\nto arrive = прибыть, приехать\nto stay (at a hotel) = остановиться (в отеле)\nto rain = идти (о дожде)"}], "s4": [{"type": "choice", "instruction": "Choose the correct form.", "text": "Last year we {went|go|goed} to Spain.\nWe {missed|misted|miss} the plane because the taxi was late.\nMy dad {lost|losed|lose} his passport at the airport!\nWe {stayed|staied|stay} in a small hotel near the beach.\nI {didn't|don't|wasn't} swim in the sea because it was too cold.\n{Did|Were|Do} you take a lot of photos?\nThe food {was|were|did} terrible!\nWe {were|was|did} very tired after the trip.\nMy sister {found|finded|find} a beautiful shell on the beach."}, {"type": "gap", "instruction": "Write the past form.", "text": "go = [went]\nsee = [saw]\nlose = [lost]\nfind = [found]\ntake = [took]\nget = [got]\neat = [ate]\nbuy = [bought]\nswim = [swam]\nfly = [flew]\nsleep = [slept]\nleave = [left]"}], "s5": [{"type": "truefalse", "instruction": "Read Mia's story again. True or False?", "text": "Mia's family went to the mountains. = False\nThey missed the train because of the brother's shoes. = True\nThe hotel had their booking. = False\nTheir room was very big. = False\nIt rained for several days. = True\nThey visited a chocolate factory. = True\nMia didn't swim on the last day. = False\nMia thought it was the best holiday. = True"}], "s8": [{"type": "voice", "instruction": "Tell a story: My crazy holiday. Use first, then, after that, finally. (1 minute)", "text": "Where did you go?\nWhat happened?\nHow did it end?"}], "s9": [{"type": "open", "instruction": "Write 8-10 sentences: My best (or worst) trip. Use 6 irregular verbs.", "text": "Last summer I went to ..."}]}};</script>
+<script>
+const $ = (id) => document.getElementById(id);
+const LIS = {"l1": "Hello! My name is Tom. Last spring I went to London with my class. We travelled by plane. It was my first flight, and I was a bit scared. On the first day we visited the Tower of London and saw the crown jewels. They were amazing! In the afternoon we got lost in a big park, but a friendly police officer helped us. On the second day it rained, so we went to the Natural History Museum. I loved the dinosaurs. I bought a small dinosaur for my little sister. We didn't have time to see Big Ben, but I want to go back next year."};
+function say(w, rate) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; const v = speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang) && /Google|Natural|Libby|Sonia|Daniel/.test(x.name)) || speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang)); if (v) u.voice = v; u.rate = rate || .95; speechSynthesis.speak(u); } catch (e) { } }
+const sh = (a) => a.map((x) => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map((x) => x[1]);
+document.querySelectorAll('.voc div').forEach((d) => d.onclick = () => say(d.dataset.say));
+document.querySelectorAll('[data-play]').forEach((b) => b.onclick = () => say(LIS[b.dataset.play], b.dataset.slow ? .75 : .95));
+document.querySelectorAll('[data-stop]').forEach((b) => b.onclick = () => { try { speechSynthesis.cancel(); } catch (e) { } });
+document.querySelectorAll('.ch').forEach((q) => q.querySelectorAll('button').forEach((b) => b.onclick = () => { if (q.classList.contains('ok')) return; const ok = b.textContent === q.dataset.a; q.classList.toggle('ok', ok); q.classList.toggle('bad', !ok); if (ok) { const s = q.querySelector('.s'); if (s && s.textContent.includes('___')) { s.textContent = s.textContent.replace('___', q.dataset.a); } } }));
+const norm = (x) => x.toLowerCase().replace(/[’']/g, "'").replace(/\s+/g, ' ').replace(/[.!?]$/, '').trim();
+document.querySelectorAll('.ty').forEach((r) => { const inp = r.querySelector('input'); const chk = () => { const ok = r.dataset.a.split('|').some((a) => norm(a) === norm(inp.value)); r.classList.toggle('ok', ok); r.classList.toggle('bad', !ok && inp.value.trim() !== ''); }; r.querySelector('button').onclick = chk; inp.onkeydown = (e) => { if (e.key === 'Enter') chk(); }; });
+document.querySelectorAll('[data-mt]').forEach((box) => { const pairs = JSON.parse(box.dataset.pairs); const L = sh(pairs.map((p) => p[0])), R = sh(pairs.map((p) => p[1])); let sel = null, done = 0, err = 0; box.innerHTML = L.map((w, i) => `<button type="button" data-w="${w}">${w}</button><button type="button" data-d="${R[i]}">${R[i]}</button>`).join('');
+  box.querySelectorAll('button').forEach((b) => b.onclick = () => { if (b.classList.contains('done')) return; if (!sel || (sel.dataset.w && b.dataset.w) || (sel.dataset.d && b.dataset.d)) { if (sel) sel.classList.remove('sel'); sel = b; b.classList.add('sel'); return; } const w = sel.dataset.w || b.dataset.w, d = sel.dataset.d || b.dataset.d; if (pairs.some((p) => p[0] === w && p[1] === d)) { sel.classList.add('done'); b.classList.add('done'); done++; say(w); if (done === pairs.length) document.querySelector(`[data-mtres="${box.dataset.mt}"]`).textContent = err ? `Done! Mistakes: ${err}` : 'Perfect!'; } else err++; sel.classList.remove('sel'); sel = null; }); });
+document.querySelectorAll('[data-vids]').forEach((box) => JSON.parse(box.dataset.vids).forEach(([id, title, ch, qs]) => { const d = document.createElement('div'); d.className = 'vid'; d.innerHTML = `<div class="frame"><button class="play" type="button" style="background-image:url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)"><span>PLAY</span></button></div><div class="info"><h3>${title}</h3><small>YouTube · ${ch}</small><ol>${qs.map((q) => `<li>${q}</li>`).join('')}</ol></div>`; d.querySelector('.play').onclick = (e) => { e.currentTarget.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&cc_load_policy=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${title}"></iframe>`; }; box.appendChild(d); }));
+document.querySelectorAll('[data-spin]').forEach((b) => { const list = JSON.parse(b.dataset.spin); let last = -1; b.onclick = () => { let i; do { i = Math.floor(Math.random() * list.length); } while (i === last && list.length > 1); last = i; document.getElementById(b.dataset.target).textContent = list[i]; }; });
+try { const k = 'murly:' + (window.MURLY_LESSON ? MURLY_LESSON.id : 'x') + ':hw'; const t = $('hwText'); if (t) { t.value = localStorage.getItem(k) || ''; t.oninput = () => localStorage.setItem(k, t.value); } } catch (e) { }
+const STAGES = [...document.querySelectorAll('.wrap > section[id]')];
+$('stages').innerHTML = STAGES.map((s) => `<a href="#${s.id}"><b>${s.querySelector('.lk-n').textContent}</b><span>${s.dataset.stage}</span><small>${s.dataset.min !== '0' ? s.dataset.min + ' min' : 'at home'}</small></a>`).join('');
+$('teacherBtn').onclick = (e) => { const on = document.body.classList.toggle('teacher'); e.currentTarget.textContent = on ? 'Student version' : 'Teacher version'; };
+</script>
+<script src="kit.js" defer></script>
+</body>
+</html>
