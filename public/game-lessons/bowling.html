@@ -451,7 +451,7 @@ const PIN_SVG = '<svg viewBox="0 0 40 100"><defs><linearGradient id="pg" x1="0" 
 let pins = [];
 function buildLane() {
   $('lane').innerHTML = sceneSVG(TH); pins = [];
-  PINPOS.forEach(([cx, row]) => { const t = .985 - row * .055; const g = laneAt(t); const w = 40 * g.s * 2.1, h = 100 * g.s * 2.1; const x = 640 + cx * 26 * g.s * 1.9 - w / 2; const y = g.y - h; const d = document.createElement('div'); d.className = 'pin'; d.style.cssText = `left:${x}px;top:${y}px;width:${w}px;height:${h}px;z-index:${10 + row}`; d.innerHTML = PIN_SVG; d.dataset.cx = cx; $('lane').appendChild(d); pins.push(d); });
+  PINPOS.forEach(([cx, row]) => { const t = .985 - (3 - row) * .055; const g = laneAt(t); const w = 40 * g.s * 2.1, h = 100 * g.s * 2.1; const x = 640 + cx * 26 * g.s * 1.9 - w / 2; const y = g.y - h; const d = document.createElement('div'); d.className = 'pin'; d.style.cssText = `left:${x}px;top:${y}px;width:${w}px;height:${h}px;z-index:${13 - row}`; d.innerHTML = PIN_SVG; d.dataset.cx = cx; $('lane').appendChild(d); pins.push(d); });
   const b = document.createElement('div'); b.className = 'bowl'; b.id = 'bowl'; $('lane').appendChild(b);
   const m = document.createElement('div'); m.className = 'meter'; m.id = 'meter'; m.style.display = 'none'; m.innerHTML = ['#F2B035', '#3E9EE6', '#7B5BD6', '#F472B6', '#E5484D'].map((c, i) => `<div style="background:${c}">${i + 1}</div>`).join('') + '<i class="ptr" id="ptr"></i>'; $('lane').appendChild(m);
   const h = document.createElement('div'); h.className = 'hint'; h.id = 'hint'; $('lane').appendChild(h);
