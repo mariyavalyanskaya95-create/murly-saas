@@ -385,12 +385,63 @@ function sceneSVG(th) {
       ${Array.from({ length: 34 }, (_, i) => `<path d="M${(i * 157) % W} ${HZ + 20 + (i * 37) % 190}q14-6 28 0" stroke="#fff" stroke-width="3" fill="none" opacity=".55" stroke-linecap="round"/>`).join('')}
       <path d="M0 560Q180 520 330 560L380 800H0Z" fill="url(#sand-${th})"/><path d="M1280 560Q1100 520 950 560L900 800H1280Z" fill="url(#sand-${th})"/>
       <path d="M0 560Q180 520 330 560" stroke="#fff" stroke-width="6" fill="none" opacity=".7"/><path d="M1280 560Q1100 520 950 560" stroke="#fff" stroke-width="6" fill="none" opacity=".7"/>`;
-    // boat
-    near += `<g transform="translate(40,600) rotate(-14)"><path d="M0 0Q120 40 260 10L240 50Q120 80 20 40Z" fill="#E8A33D" stroke="#17181C" stroke-width="4"/><path d="M14 10Q120 44 250 18" stroke="#B5721E" stroke-width="10" fill="none"/><path d="M40 22l2 30M110 32l2 34M180 30l2 32" stroke="#B5721E" stroke-width="4"/></g>`;
-    near += `<g transform="translate(1090,640)"><path d="M0 70h140l-12-44h-116z" fill="#F2C46B" stroke="#17181C" stroke-width="3"/><path d="M18 26v-34h24v34M80 26v-48h26v48" fill="#F2C46B" stroke="#17181C" stroke-width="3"/><path d="M18 -8h6v-6h6v6h6v-6h6v8M80 -22h6v-6h6v6h6v-6h6v8" fill="none" stroke="#17181C" stroke-width="2"/><path d="M92 -28v-24l18 8-18 8" fill="#E5484D" stroke="#17181C" stroke-width="2"/></g>
-      <g transform="translate(1000,620) rotate(-10)"><circle r="16" fill="#3A2F7A" stroke="#17181C" stroke-width="3"/><circle cx="40" r="16" fill="#3A2F7A" stroke="#17181C" stroke-width="3"/><path d="M16 0h8" stroke="#17181C" stroke-width="4"/><path d="M-8-6l6-4M32-6l6-4" stroke="#fff" stroke-width="3" opacity=".7"/></g>
-      <g transform="translate(1130,730) rotate(-20)"><path d="M0 0c10-30 40-30 46 0s-10 50-23 50S-6 26 0 0z" fill="#B57BEA" stroke="#17181C" stroke-width="3"/><path d="M60 10c10-30 40-30 46 0s-10 50-23 50S54 36 60 10z" fill="#B57BEA" stroke="#17181C" stroke-width="3"/><path d="M14 10q9 12 18 0M74 20q9 12 18 0" stroke="#8C52C9" stroke-width="5" fill="none"/></g>
-      <g transform="translate(70,730)">${[0, 1, 2, 3, 4, 5].map((i) => `<ellipse cx="${Math.cos(i) * 34}" cy="${Math.sin(i) * 12}" rx="14" ry="9" fill="#9AA0B4" stroke="#17181C" stroke-width="2"/>`).join('')}<path d="M-10 0q10-30 10-40q8 22 14 34q-12 10-24 6z" fill="#FF9F1C"/></g>`;
+    // props: soft outlines, gradients, highlights and ground shadows
+    const O = 'stroke="#3B2A1A" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"';
+    back += `<defs>
+      <linearGradient id="bt-${th}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFC15E"/><stop offset="1" stop-color="#D9822B"/></linearGradient>
+      <linearGradient id="bti-${th}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9C5A22"/><stop offset="1" stop-color="#C47A35"/></linearGradient>
+      <linearGradient id="cs-${th}" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#F7D58C"/><stop offset=".6" stop-color="#EBC071"/><stop offset="1" stop-color="#D3A458"/></linearGradient>
+      <linearGradient id="ln-${th}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5B4BB0"/><stop offset=".5" stop-color="#2A1F66"/><stop offset="1" stop-color="#7E6BE0"/></linearGradient>
+      <linearGradient id="um-${th}" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#FF6B8B"/><stop offset="1" stop-color="#E5486B"/></linearGradient>
+      <radialGradient id="sh-${th}"><stop offset="0" stop-color="#7A5A2A" stop-opacity=".35"/><stop offset="1" stop-color="#7A5A2A" stop-opacity="0"/></radialGradient></defs>`;
+    // rowing boat on the sand, with seats and an oar
+    near += `<g transform="translate(50,455) rotate(-4) scale(.9)"><path d="M-20 64q40-10 80 0t80 0t80 0t80 0" stroke="#fff" stroke-width="4" fill="none" opacity=".7"/>
+      <ellipse cx="135" cy="62" rx="150" ry="18" fill="url(#sh-${th})"/>
+      <path d="M0 6Q135 -8 272 6L250 48Q135 78 24 48Z" fill="url(#bt-${th})" ${O}/>
+      <path d="M14 10Q135 -2 258 10L246 26Q135 36 26 26Z" fill="url(#bti-${th})" ${O}/>
+      <path d="M70 12v16M135 8v20M200 12v16" stroke="#7A4519" stroke-width="10" stroke-linecap="round"/>
+      <path d="M8 22Q135 48 262 22" stroke="#FFF1D0" stroke-width="5" fill="none" opacity=".75"/>
+      <path d="M26 44Q135 66 248 44" stroke="#A85D1F" stroke-width="4" fill="none" opacity=".6"/>
+      <g transform="translate(170,-8) rotate(28)"><rect x="0" y="-4" width="120" height="8" rx="4" fill="#C98A4B" ${O}/><path d="M118 -12q30 2 34 12q-4 10-34 12z" fill="#E3A863" ${O}/></g></g>`;
+    // beach umbrella and towel (left), replaces the campfire
+    near += `<g transform="translate(150,700) scale(.9)">
+      <ellipse cx="0" cy="66" rx="110" ry="16" fill="url(#sh-${th})"/>
+      <path d="M-80 40l140 -10l20 34l-142 12z" fill="#5BC0F8" ${O}/><path d="M-72 48l140 -10M-66 58l140 -10" stroke="#fff" stroke-width="6" opacity=".9"/>
+      <path d="M10 60L-6 -110" stroke="#3B2A1A" stroke-width="10" stroke-linecap="round"/><path d="M10 60L-6 -110" stroke="#F2F2F2" stroke-width="5" stroke-linecap="round"/>
+      <path d="M-96 -88Q-6 -170 84 -118Q-6 -112 -96 -88Z" fill="url(#um-${th})" ${O}/>
+      <path d="M-96 -88Q-40 -100 -6 -112Q-30 -150 -40 -146Q-80 -126 -96 -88Z" fill="#fff" opacity=".9"/>
+      <path d="M-6 -112Q30 -118 84 -118Q60 -150 30 -158Q8 -140 -6 -112Z" fill="#fff" opacity=".9"/>
+      <path d="M-60 -126q20-30 60-36" stroke="#fff" stroke-width="4" fill="none" opacity=".5"/></g>`;
+    // sandcastle with towers, windows, flag and shading
+    near += `<g transform="translate(1080,600)">
+      <ellipse cx="80" cy="128" rx="110" ry="16" fill="url(#sh-${th})"/>
+      <path d="M0 126L10 54H150L160 126Z" fill="url(#cs-${th})" ${O}/>
+      <path d="M10 54v-10h14v8h14v-8h14v8h14v-8h14v8h14v-8h14v8h14v-8h14v10" fill="url(#cs-${th})" ${O}/>
+      <path d="M18 54V-6h40V54M102 54V-26h40V54" fill="url(#cs-${th})" ${O}/>
+      <path d="M14 -6l6-10 6 10 6-10 6 10 6-10 6 10 6-10 6 10zM98 -26l6-10 6 10 6-10 6 10 6-10 6 10 6-10 6 10z" fill="#E3B866" ${O}/>
+      <path d="M68 126v-34q12-14 24 0v34z" fill="#8A6430" ${O}/>
+      <path d="M32 18q6-8 12 0v14h-12zM116 0q6-8 12 0v14h-12z" fill="#8A6430" ${O}/>
+      <path d="M122 -36v-40" stroke="#3B2A1A" stroke-width="3"/><path d="M122 -76l26 8-26 8z" fill="#FF6B8B" ${O}/>
+      <path d="M24 66h120M30 96h110" stroke="#C99B52" stroke-width="3" opacity=".7"/>
+      <circle cx="40" cy="80" r="3" fill="#C99B52"/><circle cx="110" cy="104" r="3" fill="#C99B52"/><circle cx="130" cy="74" r="2.5" fill="#C99B52"/>
+      <path d="M-30 120l8-14 8 14-14-8h16z" fill="#FF8A5B" ${O}/></g>`;
+    // sunglasses lying on the sand
+    near += `<g transform="translate(985,640) rotate(-8)">
+      <ellipse cx="44" cy="30" rx="58" ry="9" fill="url(#sh-${th})"/>
+      <path d="M-10 -6q-14-4-18 6" stroke="#3B2A1A" stroke-width="4" fill="none"/><path d="M98 -6q14-4 18 6" stroke="#3B2A1A" stroke-width="4" fill="none"/>
+      <path d="M-8 -8h42q4 0 3 6l-4 16q-3 10-14 10h-12q-12 0-15-12z" fill="url(#ln-${th})" ${O}/>
+      <path d="M54 -8h42q4 0 2 6l-3 16q-3 10-14 10h-12q-12 0-15-12z" fill="url(#ln-${th})" ${O}/>
+      <path d="M34 -4q10-6 20 0" stroke="#3B2A1A" stroke-width="4" fill="none"/>
+      <path d="M0 -2l12 0M62 -2l12 0" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity=".8"/></g>`;
+    // a pair of flip-flops with straps
+    const flop = (x, y, r) => `<g transform="translate(${x},${y}) rotate(${r})"><ellipse cx="22" cy="68" rx="30" ry="7" fill="url(#sh-${th})"/>
+      <path d="M22 0C40 0 46 18 42 34C38 50 40 62 22 66C4 62 6 50 2 34C-2 18 4 0 22 0Z" fill="#B57BEA" ${O}/>
+      <path d="M22 6C34 6 38 18 35 32C32 46 34 56 22 59C10 56 12 46 9 32C6 18 10 6 22 6Z" fill="#D2A6F5"/>
+      <path d="M22 16L6 36M22 16L38 36" stroke="#FFD23F" stroke-width="6" stroke-linecap="round"/><circle cx="22" cy="16" r="4" fill="#FFD23F" ${O.replace('stroke-width="3"', 'stroke-width="2"')}/></g>`;
+    near += flop(1120, 700, -24) + flop(1185, 690, 6);
+    // starfish and shells
+    near += `<g transform="translate(330,750) rotate(12)"><path d="M0-22L6-7L22-6L10 4L14 20L0 11L-14 20L-10 4L-22-6L-6-7Z" fill="#FF8A5B" ${O}/><circle r="2" cy="-8" fill="#FFD0B8"/><circle r="2" cx="6" fill="#FFD0B8"/><circle r="2" cx="-6" fill="#FFD0B8"/></g>
+      <g transform="translate(960,760)"><path d="M0 0q14-26 28 0z" fill="#FFE3EC" ${O}/><path d="M14 0v-14M7 0l3-12M21 0l-3-12" stroke="#E9A8BC" stroke-width="2"/></g>`;
   }
   if (th === 'classic') {
     back += `<rect y="${HZ}" width="${W}" height="${800 - HZ}" fill="url(#floor-${th})"/>${Array.from({ length: 9 }, (_, i) => `<rect x="${i * 150 - 20}" y="0" width="70" height="${HZ}" fill="#fff" opacity=".04"/>`).join('')}
