@@ -165,6 +165,7 @@ textarea{width:100%;height:330px;font:16px/1.5 Consolas,monospace;border:3px sol
     </div>
   </div>
   <button class="btn sm ghost mute" id="bMute" type="button">Sound: on</button>
+  <a class="btn sm ghost" id="bHome" href="/games" style="position:absolute;left:20px;bottom:18px;text-decoration:none">All games</a>
 </div>
 
 <script>
@@ -303,7 +304,7 @@ $('bEditSave').onclick = () => { ls.set('murly:bowl:custom', $('tEdit').value); 
 const S = { teams: 2, shots: 16, time: 0 };
 const bindR = (r, v, k, f) => { const up = () => { S[k] = +$(r).value; $(v).textContent = f ? f(S[k]) : S[k]; }; $(r).oninput = up; up(); };
 bindR('rTeams', 'vTeams', 'teams'); bindR('rShots', 'vShots', 'shots'); bindR('rTime', 'vTime', 'time', (x) => (x ? x + ' s' : 'OFF'));
-function show(id) { document.querySelectorAll('.scr').forEach((s) => s.classList.toggle('on', s.id === id)); }
+function show(id) { document.querySelectorAll('.scr').forEach((s) => s.classList.toggle('on', s.id === id)); $('bHome').style.display = (id === 'sGame' || window.top !== window.self) ? 'none' : ''; }
 
 // ---------- teams ----------
 let TEAMS = [];
@@ -508,7 +509,7 @@ function endGame() {
 $('bStart').onclick = () => { SND.click(); startGame(); };
 $('bAgain').onclick = () => { startGame(); };
 $('bMenu').onclick = () => show('sSetup');
-applyTheme();
+applyTheme(); show('sSetup');
 if (P.get('teams')) { $('rTeams').value = P.get('teams'); $('rTeams').oninput(); }
 if (P.get('shots')) { $('rShots').value = P.get('shots'); $('rShots').oninput(); }
 </script>
