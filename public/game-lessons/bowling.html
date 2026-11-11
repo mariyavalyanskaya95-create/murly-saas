@@ -6,7 +6,7 @@
 <title>Murly Bowling: a team quiz game for English lessons | Murly</title>
 <link rel="icon" href="/favicon.svg">
 <meta name="description" content="Murly Bowling: answer English questions, roll the ball and knock down the pins. A team game for online and classroom lessons.">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;700;800;900&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box}
 html,body{margin:0;height:100%;background:#2b2f55;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:#17181C;overflow:hidden}
@@ -14,8 +14,8 @@ html,body{margin:0;height:100%;background:#2b2f55;font-family:"Segoe UI",system-
 .scr{position:absolute;inset:0;display:none}
 .scr.on{display:block}
 .bg{position:absolute;inset:0}
-h1,h2,.fx{font-family:"Fredoka","Arial Rounded MT Bold","Arial Black",system-ui,sans-serif;letter-spacing:.5px}
-.btn{font:700 30px/1 "Fredoka","Arial Black",sans-serif;color:#fff;background:#FF9F1C;border:4px solid #17181C;border-radius:14px;padding:16px 46px;cursor:pointer;box-shadow:6px 6px 0 #17181C;transform:skewX(-8deg);text-transform:uppercase}
+h1,h2,.fx{font-family:"Rubik","Arial Rounded MT Bold","Arial Black",system-ui,sans-serif;letter-spacing:.5px}
+.btn{font:700 30px/1 "Rubik","Arial Black",sans-serif;color:#fff;background:#FF9F1C;border:4px solid #17181C;border-radius:14px;padding:16px 46px;cursor:pointer;box-shadow:6px 6px 0 #17181C;transform:skewX(-8deg);text-transform:uppercase}
 .btn:active{transform:skewX(-8deg) translate(3px,3px);box-shadow:3px 3px 0 #17181C}
 .btn.sm{font-size:18px;padding:10px 20px;box-shadow:4px 4px 0 #17181C}
 .btn.pink{background:#F472B6}.btn.blue{background:#5B8DEF}.btn.green{background:#3DBE6E}.btn.red{background:#E5484D}.btn.ghost{background:#fff;color:#17181C}
@@ -24,15 +24,15 @@ h1,h2,.fx{font-family:"Fredoka","Arial Rounded MT Bold","Arial Black",system-ui,
 .panel .small{color:#fff;text-shadow:1px 1px 0 #17181C}
 .logo{display:flex;align-items:center;gap:14px;justify-content:center;margin-bottom:20px}
 .logo h1{margin:0;font-size:68px;color:#fff;-webkit-text-stroke:3px #3D2E8C;text-shadow:5px 5px 0 #3D2E8C}
-.logo small{display:block;font:700 26px "Fredoka","Arial Black",sans-serif;color:#F472B6;-webkit-text-stroke:1px #3D2E8C;text-align:center}
+.logo small{display:block;font:700 26px "Rubik","Arial Black",sans-serif;color:#F472B6;-webkit-text-stroke:1px #3D2E8C;text-align:center}
 .row{display:grid;grid-template-columns:230px 560px 90px;align-items:center;gap:18px;margin:16px 0}
-.row label{font:700 26px "Fredoka","Arial Black",sans-serif;text-transform:uppercase}
-.row .v{font:700 30px "Fredoka","Arial Black",sans-serif;text-align:center}
+.row label{font:700 26px "Rubik","Arial Black",sans-serif;text-transform:uppercase}
+.row .v{font:700 30px "Rubik","Arial Black",sans-serif;text-align:center}
 input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:22px;background:linear-gradient(#3D2E8C,#5B4BC4);border:3px solid #17181C;border-radius:999px;box-shadow:inset 0 3px 0 rgba(0,0,0,.25)}
 input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:46px;height:46px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFE2B8,#FF9F1C 45%,#D96A00);border:3px solid #17181C;box-shadow:0 4px 0 rgba(0,0,0,.3);cursor:pointer}
 input[type=range]::-moz-range-thumb{width:40px;height:40px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFE2B8,#FF9F1C 45%,#D96A00);border:3px solid #17181C;cursor:pointer}
 .themes{display:flex;gap:12px;justify-content:center;margin:10px 0 6px}
-.th{width:120px;height:86px;border:4px solid #17181C;border-radius:16px;cursor:pointer;display:flex;align-items:flex-end;justify-content:center;font:700 15px "Fredoka","Arial Black",sans-serif;color:#fff;-webkit-text-stroke:1px #17181C;padding-bottom:6px;position:relative;overflow:hidden}
+.th{width:120px;height:86px;border:4px solid #17181C;border-radius:16px;cursor:pointer;display:flex;align-items:flex-end;justify-content:center;font:700 15px "Rubik","Arial Black",sans-serif;color:#fff;-webkit-text-stroke:1px #17181C;padding-bottom:6px;position:relative;overflow:hidden}
 .th.sel{outline:6px solid #FF9F1C;outline-offset:3px}
 .sets{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:8px}
 .chip{font:800 17px system-ui;border:3px solid #17181C;background:#fff;border-radius:999px;padding:7px 16px;cursor:pointer}
@@ -42,20 +42,20 @@ textarea{width:100%;height:330px;font:16px/1.5 Consolas,monospace;border:3px sol
 .tm{text-align:center;cursor:pointer}
 .tm .ball{width:120px;height:120px;margin:0 auto 12px;transition:transform .2s}
 .tm:hover .ball{transform:scale(1.08) rotate(-10deg)}
-.tm input{font:700 22px "Fredoka","Arial Black",sans-serif;width:200px;text-align:center;background:#F472B6;color:#fff;border:4px solid #17181C;border-radius:10px;padding:8px;box-shadow:4px 4px 0 #17181C;-webkit-text-stroke:.5px #17181C}
+.tm input{font:700 22px "Rubik","Arial Black",sans-serif;width:200px;text-align:center;background:#F472B6;color:#fff;border:4px solid #17181C;border-radius:10px;padding:8px;box-shadow:4px 4px 0 #17181C;-webkit-text-stroke:.5px #17181C}
 .grid{display:grid;grid-template-columns:repeat(8,110px);gap:18px 22px;justify-content:center}
 .gb{text-align:center;cursor:pointer}
 .gb svg{width:88px;height:88px;transition:transform .15s}
 .gb:hover svg{transform:scale(1.12)}
-.gb .lb{font:700 13px "Fredoka","Arial Black",sans-serif;background:#F472B6;color:#fff;border:3px solid #17181C;border-radius:8px;padding:2px 6px;margin-top:4px;min-height:24px}
+.gb .lb{font:700 13px "Rubik","Arial Black",sans-serif;background:#F472B6;color:#fff;border:3px solid #17181C;border-radius:8px;padding:2px 6px;margin-top:4px;min-height:24px}
 .gb.taken .lb{background:#5BC0F8}
 .gb.cur svg{filter:drop-shadow(0 0 0 #FF9F1C) drop-shadow(0 0 10px #FF9F1C)}
 /* game */
 #lane{position:absolute;inset:0}
-.hud-l{position:absolute;z-index:60;left:24px;top:20px;color:#fff;font:700 54px/1 "Fredoka","Arial Black",sans-serif;-webkit-text-stroke:2px #17181C;text-shadow:3px 3px 0 #17181C}
+.hud-l{position:absolute;z-index:60;left:24px;top:20px;color:#fff;font:700 54px/1 "Rubik","Arial Black",sans-serif;-webkit-text-stroke:2px #17181C;text-shadow:3px 3px 0 #17181C}
 .hud-l small{display:block;font-size:20px;-webkit-text-stroke:1px #17181C}
 .board{position:absolute;z-index:60;right:20px;top:20px;display:flex;flex-direction:column;gap:10px;align-items:flex-end}
-.sc{display:flex;align-items:center;gap:0;font:700 26px "Fredoka","Arial Black",sans-serif}
+.sc{display:flex;align-items:center;gap:0;font:700 26px "Rubik","Arial Black",sans-serif}
 .sc .n{background:#5BC0F8;color:#fff;-webkit-text-stroke:1px #17181C;border:4px solid #17181C;border-radius:10px 0 0 10px;padding:6px 16px 6px 18px;transform:skewX(-8deg);box-shadow:4px 4px 0 #17181C}
 .sc:nth-child(2) .n{background:#F472B6}.sc:nth-child(3) .n{background:#3DBE6E}.sc:nth-child(4) .n{background:#FF9F1C}
 .sc .p{background:#fff;border:4px solid #17181C;border-radius:999px;min-width:62px;height:62px;display:grid;place-items:center;margin-left:-10px;position:relative;z-index:1;box-shadow:4px 4px 0 #17181C}
@@ -70,22 +70,22 @@ textarea{width:100%;height:330px;font:16px/1.5 Consolas,monospace;border:3px sol
 .bowl{position:absolute;will-change:transform,left,top,width}
 .bowl svg{width:100%;height:100%;display:block}
 .meter{position:absolute;left:50%;transform:translateX(-50%);bottom:150px;display:flex;border:4px solid #17181C;border-radius:8px;overflow:hidden;box-shadow:5px 5px 0 rgba(0,0,0,.35)}
-.meter div{width:92px;height:64px;display:grid;place-items:center;font:700 38px "Fredoka","Arial Black",sans-serif;color:#fff;-webkit-text-stroke:1.5px #17181C}
+.meter div{width:92px;height:64px;display:grid;place-items:center;font:700 38px "Rubik","Arial Black",sans-serif;color:#fff;-webkit-text-stroke:1.5px #17181C}
 .meter .ptr{position:absolute;top:-16px;width:18px;height:96px;background:#fff;border:4px solid #17181C;border-radius:8px;transform:translateX(-50%);box-shadow:0 0 12px #fff}
-.hint{position:absolute;z-index:35;left:50%;transform:translateX(-50%);bottom:232px;font:700 24px "Fredoka","Arial Black",sans-serif;color:#fff;-webkit-text-stroke:1px #17181C;text-shadow:2px 2px 0 #17181C;white-space:nowrap}
+.hint{position:absolute;z-index:35;left:50%;transform:translateX(-50%);bottom:232px;font:700 24px "Rubik","Arial Black",sans-serif;color:#fff;-webkit-text-stroke:1px #17181C;text-shadow:2px 2px 0 #17181C;white-space:nowrap}
 .pw{position:absolute;left:46px;bottom:110px;width:150px;height:150px;cursor:pointer;animation:float 2s ease-in-out infinite}
 @keyframes float{50%{transform:translateY(-10px) rotate(-4deg)}}
-.pw .t{position:absolute;bottom:18px;left:0;right:0;text-align:center;font:700 15px "Fredoka","Arial Black",sans-serif;color:#fff;-webkit-text-stroke:1px #17181C}
-.big{position:absolute;z-index:90;left:0;right:0;top:36%;text-align:center;font:700 110px "Fredoka","Arial Black",sans-serif;color:#fff;-webkit-text-stroke:5px #3D2E8C;text-shadow:8px 8px 0 #3D2E8C;opacity:0;transform:scale(.4);transition:all .35s cubic-bezier(.3,1.6,.5,1);pointer-events:none}
+.pw .t{position:absolute;bottom:18px;left:0;right:0;text-align:center;font:700 15px "Rubik","Arial Black",sans-serif;color:#fff;-webkit-text-stroke:1px #17181C}
+.big{position:absolute;z-index:90;left:0;right:0;top:36%;text-align:center;font:700 110px "Rubik","Arial Black",sans-serif;color:#fff;-webkit-text-stroke:5px #3D2E8C;text-shadow:8px 8px 0 #3D2E8C;opacity:0;transform:scale(.4);transition:all .35s cubic-bezier(.3,1.6,.5,1);pointer-events:none}
 .big.show{opacity:1;transform:scale(1)}
 .qbox{position:absolute;inset:0;z-index:100;background:rgba(20,22,45,.55);display:none;align-items:center;justify-content:center}
 .qbox.on{display:flex}
 .qcard{width:900px;background:#fff;border:5px solid #17181C;border-radius:28px;box-shadow:12px 12px 0 #17181C;padding:30px 40px;text-align:center;position:relative}
-.qcard .who{position:absolute;top:-28px;left:50%;transform:translateX(-50%) skewX(-8deg);background:#5BC0F8;border:4px solid #17181C;border-radius:10px;padding:6px 22px;font:700 24px "Fredoka","Arial Black",sans-serif;color:#fff;-webkit-text-stroke:1px #17181C;display:flex;gap:10px;align-items:center}
+.qcard .who{position:absolute;top:-28px;left:50%;transform:translateX(-50%) skewX(-8deg);background:#5BC0F8;border:4px solid #17181C;border-radius:10px;padding:6px 22px;font:700 24px "Rubik","Arial Black",sans-serif;color:#fff;-webkit-text-stroke:1px #17181C;display:flex;gap:10px;align-items:center}
 .qcard .who svg{width:34px;height:34px}
 .qcard img{max-width:100%;height:280px;object-fit:cover;border-radius:16px;border:3px solid #17181C;margin-bottom:12px}
 .qcard .q{font:800 38px/1.25 system-ui,sans-serif;margin:14px 0 22px}
-.qcard .ans{font:700 40px "Fredoka","Arial Black",sans-serif;color:#3DBE6E;margin:-6px 0 18px;min-height:46px}
+.qcard .ans{font:700 40px "Rubik","Arial Black",sans-serif;color:#3DBE6E;margin:-6px 0 18px;min-height:46px}
 .opts{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:12px}
 .opts button{font:800 28px system-ui;border:4px solid #17181C;background:#fff;border-radius:16px;padding:14px;cursor:pointer;box-shadow:4px 4px 0 #17181C}
 .opts button.ok{background:#B9EBC8}.opts button.bad{background:#F8C4C4}
@@ -93,12 +93,13 @@ textarea{width:100%;height:330px;font:16px/1.5 Consolas,monospace;border:3px sol
 .end{text-align:center}
 .end h2{font-size:84px;margin:0;color:#fff;-webkit-text-stroke:4px #3D2E8C;text-shadow:7px 7px 0 #3D2E8C}
 .podium{display:flex;gap:30px;justify-content:center;align-items:flex-end;margin:30px 0}
-.podium div{text-align:center;font:700 26px "Fredoka","Arial Black",sans-serif}
+.podium div{text-align:center;font:700 26px "Rubik","Arial Black",sans-serif}
 .podium svg{width:110px;height:110px}
 .cf{position:absolute;width:14px;height:22px;top:-30px;animation:cf 2.6s linear forwards}
 @keyframes cf{to{transform:translateY(900px) rotate(720deg)}}
 .corner{position:absolute;top:18px;display:flex;gap:10px}
 .mute{position:absolute;right:20px;bottom:18px}
+#sGame.on~.mute{left:20px;right:auto;top:166px;bottom:auto;z-index:60}
 .small{font-size:15px;color:#555;margin-top:8px}
 #lane{transform-origin:640px 280px;will-change:transform}
 .shake{animation:shk .45s}
@@ -112,10 +113,10 @@ textarea{width:100%;height:330px;font:16px/1.5 Consolas,monospace;border:3px sol
 @keyframes wob{25%{transform:rotate(7deg)}50%{transform:rotate(-5deg)}75%{transform:rotate(3deg)}}
 .trail{position:absolute;pointer-events:none;z-index:29}
 .trail svg{width:100%;height:100%}
-.fsb{position:absolute;right:20px;bottom:76px;z-index:60}
-.stats{font:600 18px Fredoka,system-ui;color:#fff;text-shadow:1px 1px 0 #17181C;margin:-6px 0 18px}
+.fsb{position:absolute;left:20px;top:112px;z-index:60}
+.stats{font:600 18px Rubik,system-ui;color:#fff;text-shadow:1px 1px 0 #17181C;margin:-6px 0 18px}
 .tgls{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:6px 0 4px}
-.tgl{font:700 18px "Fredoka","Arial Black",sans-serif;border:3px solid #17181C;border-radius:999px;padding:8px 16px;background:#fff;cursor:pointer;box-shadow:3px 3px 0 #17181C;display:flex;gap:8px;align-items:center}
+.tgl{font:700 18px "Rubik","Arial Black",sans-serif;border:3px solid #17181C;border-radius:999px;padding:8px 16px;background:#fff;cursor:pointer;box-shadow:3px 3px 0 #17181C;display:flex;gap:8px;align-items:center}
 .tgl i{width:34px;height:20px;border-radius:99px;background:#C9CEDC;border:2px solid #17181C;position:relative;transition:background .2s}
 .tgl i:after{content:"";position:absolute;top:1px;left:1px;width:14px;height:14px;border-radius:50%;background:#fff;border:1px solid #17181C;transition:left .2s}
 .tgl.on i{background:#3DBE6E}.tgl.on i:after{left:16px}
@@ -126,7 +127,7 @@ textarea{width:100%;height:330px;font:16px/1.5 Consolas,monospace;border:3px sol
 .meter.picked div{opacity:.25}.meter.picked div.sel{opacity:1}
 .sc .p .crown{position:absolute;inset:auto;top:-26px;left:50%;transform:translateX(-50%) rotate(8deg);width:44px;height:30px;opacity:1;z-index:2}
 .rake{position:absolute;z-index:25;pointer-events:none;transition:transform .5s ease-in-out}
-.skip{position:absolute;left:18px;top:16px;font:700 18px "Fredoka","Arial Black",sans-serif;background:#fff;border:3px solid #17181C;border-radius:10px;padding:4px 12px;cursor:pointer}
+.skip{position:absolute;left:18px;top:16px;font:700 18px "Rubik","Arial Black",sans-serif;background:#fff;border:3px solid #17181C;border-radius:10px;padding:4px 12px;cursor:pointer}
 
 </style>
 </head>
@@ -283,7 +284,7 @@ const THEMES = {
 let TH = THEMES[P.get('theme')] ? P.get('theme') : (ls.get('murly:bowl:theme') || 'classic'); if (!THEMES[TH]) TH = 'classic';
 function decoSVG(k) {
   const W = 1280, H = 800; let s = '';
-  if (k === 'classic') { for (let i = 0; i < 40; i++) s += `<circle cx="${(i * 131) % W}" cy="${(i * 71) % 300}" r="${i % 3 + 1}" fill="#fff" opacity=".5"/>`; s += `<text x="640" y="120" text-anchor="middle" font-family="Fredoka, Arial Black" font-weight="700" font-size="64" fill="#FFE07A" stroke="#17181C" stroke-width="3">MURLY LANES</text>`; }
+  if (k === 'classic') { for (let i = 0; i < 40; i++) s += `<circle cx="${(i * 131) % W}" cy="${(i * 71) % 300}" r="${i % 3 + 1}" fill="#fff" opacity=".5"/>`; s += `<text x="640" y="120" text-anchor="middle" font-family="Rubik, Arial Black" font-weight="700" font-size="64" fill="#FFE07A" stroke="#17181C" stroke-width="3">MURLY LANES</text>`; }
   if (k === 'spring') { s += `<circle cx="1120" cy="110" r="60" fill="#FFE07A"/>`; for (let i = 0; i < 18; i++) { const x = 40 + i * 70, y = 470 + (i % 3) * 30; s += `<g transform="translate(${x},${y})"><circle r="9" fill="#FFE07A"/>${[0, 72, 144, 216, 288].map((a) => `<circle cx="${Math.cos(a / 57.3) * 14}" cy="${Math.sin(a / 57.3) * 14}" r="9" fill="${i % 2 ? '#F7A8C9' : '#fff'}"/>`).join('')}</g>`; } }
   if (k === 'summer') { s += `<circle cx="1100" cy="100" r="56" fill="#FFE07A"/><path d="M60 420q20-160 10-300M70 130q-80 10-100 60M70 130q90-10 120 40M70 130q-40-70-100-70M70 130q60-60 110-50" stroke="#2E8B3A" stroke-width="16" fill="none" stroke-linecap="round"/><path d="M1210 430q-20-160-10-300M1200 140q80 10 100 60M1200 140q-90-10-120 40M1200 140q40-70 100-70" stroke="#2E8B3A" stroke-width="16" fill="none" stroke-linecap="round"/><path d="M60 420q-4-160 10-300" stroke="#8A5A2B" stroke-width="16" fill="none"/><path d="M1210 430q4-160-10-300" stroke="#8A5A2B" stroke-width="16" fill="none"/><path d="M90 640l120-20 30 40-130 20z" fill="#E8A33D" stroke="#17181C" stroke-width="3"/><g transform="translate(1070,600)"><path d="M0 60h120l-10-40h-100z" fill="#F2C46B" stroke="#17181C" stroke-width="3"/><path d="M20 20v-30h20v30M70 20v-40h20v40" fill="#F2C46B" stroke="#17181C" stroke-width="3"/></g>`; }
   if (k === 'fall') { for (let i = 0; i < 26; i++) s += `<path transform="translate(${(i * 97) % W},${(i * 61) % 380 + 20}) rotate(${i * 37})" d="M0 -14C10 -6 10 6 0 14C-10 6 -10 -6 0 -14Z" fill="${['#E8742B', '#D9342B', '#F2B035'][i % 3]}"/>`; s += `<path d="M0 470q160-60 320 0t320 0 320 0 320 0V520H0z" fill="#8E4B22" opacity=".5"/>`; }
@@ -385,68 +386,15 @@ function sceneSVG(th) {
       ${Array.from({ length: 34 }, (_, i) => `<path d="M${(i * 157) % W} ${HZ + 20 + (i * 37) % 190}q14-6 28 0" stroke="#fff" stroke-width="3" fill="none" opacity=".55" stroke-linecap="round"/>`).join('')}
       <path d="M0 560Q180 520 330 560L380 800H0Z" fill="url(#sand-${th})"/><path d="M1280 560Q1100 520 950 560L900 800H1280Z" fill="url(#sand-${th})"/>
       <path d="M0 560Q180 520 330 560" stroke="#fff" stroke-width="6" fill="none" opacity=".7"/><path d="M1280 560Q1100 520 950 560" stroke="#fff" stroke-width="6" fill="none" opacity=".7"/>`;
-    // props: soft outlines, gradients, highlights and ground shadows
-    const O = 'stroke="#3B2A1A" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"';
-    back += `<defs>
-      <linearGradient id="bt-${th}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFC15E"/><stop offset="1" stop-color="#D9822B"/></linearGradient>
-      <linearGradient id="bti-${th}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9C5A22"/><stop offset="1" stop-color="#C47A35"/></linearGradient>
-      <linearGradient id="cs-${th}" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#F7D58C"/><stop offset=".6" stop-color="#EBC071"/><stop offset="1" stop-color="#D3A458"/></linearGradient>
-      <linearGradient id="ln-${th}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5B4BB0"/><stop offset=".5" stop-color="#2A1F66"/><stop offset="1" stop-color="#7E6BE0"/></linearGradient>
-      <linearGradient id="um-${th}" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#FF6B8B"/><stop offset="1" stop-color="#E5486B"/></linearGradient>
-      <radialGradient id="sh-${th}"><stop offset="0" stop-color="#7A5A2A" stop-opacity=".35"/><stop offset="1" stop-color="#7A5A2A" stop-opacity="0"/></radialGradient></defs>`;
-    // rowing boat on the sand, with seats and an oar
-    near += `<g transform="translate(50,455) rotate(-4) scale(.9)"><path d="M-20 64q40-10 80 0t80 0t80 0t80 0" stroke="#fff" stroke-width="4" fill="none" opacity=".7"/>
-      <ellipse cx="135" cy="62" rx="150" ry="18" fill="url(#sh-${th})"/>
-      <path d="M0 6Q135 -8 272 6L250 48Q135 78 24 48Z" fill="url(#bt-${th})" ${O}/>
-      <path d="M14 10Q135 -2 258 10L246 26Q135 36 26 26Z" fill="url(#bti-${th})" ${O}/>
-      <path d="M70 12v16M135 8v20M200 12v16" stroke="#7A4519" stroke-width="10" stroke-linecap="round"/>
-      <path d="M8 22Q135 48 262 22" stroke="#FFF1D0" stroke-width="5" fill="none" opacity=".75"/>
-      <path d="M26 44Q135 66 248 44" stroke="#A85D1F" stroke-width="4" fill="none" opacity=".6"/>
-      <g transform="translate(170,-8) rotate(28)"><rect x="0" y="-4" width="120" height="8" rx="4" fill="#C98A4B" ${O}/><path d="M118 -12q30 2 34 12q-4 10-34 12z" fill="#E3A863" ${O}/></g></g>`;
-    // beach umbrella and towel (left), replaces the campfire
-    near += `<g transform="translate(150,700) scale(.9)">
-      <ellipse cx="0" cy="66" rx="110" ry="16" fill="url(#sh-${th})"/>
-      <path d="M-80 40l140 -10l20 34l-142 12z" fill="#5BC0F8" ${O}/><path d="M-72 48l140 -10M-66 58l140 -10" stroke="#fff" stroke-width="6" opacity=".9"/>
-      <path d="M10 60L-6 -110" stroke="#3B2A1A" stroke-width="10" stroke-linecap="round"/><path d="M10 60L-6 -110" stroke="#F2F2F2" stroke-width="5" stroke-linecap="round"/>
-      <path d="M-96 -88Q-6 -170 84 -118Q-6 -112 -96 -88Z" fill="url(#um-${th})" ${O}/>
-      <path d="M-96 -88Q-40 -100 -6 -112Q-30 -150 -40 -146Q-80 -126 -96 -88Z" fill="#fff" opacity=".9"/>
-      <path d="M-6 -112Q30 -118 84 -118Q60 -150 30 -158Q8 -140 -6 -112Z" fill="#fff" opacity=".9"/>
-      <path d="M-60 -126q20-30 60-36" stroke="#fff" stroke-width="4" fill="none" opacity=".5"/></g>`;
-    // sandcastle with towers, windows, flag and shading
-    near += `<g transform="translate(1080,600)">
-      <ellipse cx="80" cy="128" rx="110" ry="16" fill="url(#sh-${th})"/>
-      <path d="M0 126L10 54H150L160 126Z" fill="url(#cs-${th})" ${O}/>
-      <path d="M10 54v-10h14v8h14v-8h14v8h14v-8h14v8h14v-8h14v8h14v-8h14v10" fill="url(#cs-${th})" ${O}/>
-      <path d="M18 54V-6h40V54M102 54V-26h40V54" fill="url(#cs-${th})" ${O}/>
-      <path d="M14 -6l6-10 6 10 6-10 6 10 6-10 6 10 6-10 6 10zM98 -26l6-10 6 10 6-10 6 10 6-10 6 10 6-10 6 10z" fill="#E3B866" ${O}/>
-      <path d="M68 126v-34q12-14 24 0v34z" fill="#8A6430" ${O}/>
-      <path d="M32 18q6-8 12 0v14h-12zM116 0q6-8 12 0v14h-12z" fill="#8A6430" ${O}/>
-      <path d="M122 -36v-40" stroke="#3B2A1A" stroke-width="3"/><path d="M122 -76l26 8-26 8z" fill="#FF6B8B" ${O}/>
-      <path d="M24 66h120M30 96h110" stroke="#C99B52" stroke-width="3" opacity=".7"/>
-      <circle cx="40" cy="80" r="3" fill="#C99B52"/><circle cx="110" cy="104" r="3" fill="#C99B52"/><circle cx="130" cy="74" r="2.5" fill="#C99B52"/>
-      <path d="M-30 120l8-14 8 14-14-8h16z" fill="#FF8A5B" ${O}/></g>`;
-    // sunglasses lying on the sand
-    near += `<g transform="translate(985,640) rotate(-8)">
-      <ellipse cx="44" cy="30" rx="58" ry="9" fill="url(#sh-${th})"/>
-      <path d="M-10 -6q-14-4-18 6" stroke="#3B2A1A" stroke-width="4" fill="none"/><path d="M98 -6q14-4 18 6" stroke="#3B2A1A" stroke-width="4" fill="none"/>
-      <path d="M-8 -8h42q4 0 3 6l-4 16q-3 10-14 10h-12q-12 0-15-12z" fill="url(#ln-${th})" ${O}/>
-      <path d="M54 -8h42q4 0 2 6l-3 16q-3 10-14 10h-12q-12 0-15-12z" fill="url(#ln-${th})" ${O}/>
-      <path d="M34 -4q10-6 20 0" stroke="#3B2A1A" stroke-width="4" fill="none"/>
-      <path d="M0 -2l12 0M62 -2l12 0" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity=".8"/></g>`;
-    // a pair of flip-flops with straps
-    const flop = (x, y, r) => `<g transform="translate(${x},${y}) rotate(${r})"><ellipse cx="22" cy="68" rx="30" ry="7" fill="url(#sh-${th})"/>
-      <path d="M22 0C40 0 46 18 42 34C38 50 40 62 22 66C4 62 6 50 2 34C-2 18 4 0 22 0Z" fill="#B57BEA" ${O}/>
-      <path d="M22 6C34 6 38 18 35 32C32 46 34 56 22 59C10 56 12 46 9 32C6 18 10 6 22 6Z" fill="#D2A6F5"/>
-      <path d="M22 16L6 36M22 16L38 36" stroke="#FFD23F" stroke-width="6" stroke-linecap="round"/><circle cx="22" cy="16" r="4" fill="#FFD23F" ${O.replace('stroke-width="3"', 'stroke-width="2"')}/></g>`;
-    near += flop(1120, 700, -24) + flop(1185, 690, 6);
-    // starfish and shells
-    near += `<g transform="translate(330,750) rotate(12)"><path d="M0-22L6-7L22-6L10 4L14 20L0 11L-14 20L-10 4L-22-6L-6-7Z" fill="#FF8A5B" ${O}/><circle r="2" cy="-8" fill="#FFD0B8"/><circle r="2" cx="6" fill="#FFD0B8"/><circle r="2" cx="-6" fill="#FFD0B8"/></g>
-      <g transform="translate(960,760)"><path d="M0 0q14-26 28 0z" fill="#FFE3EC" ${O}/><path d="M14 0v-14M7 0l3-12M21 0l-3-12" stroke="#E9A8BC" stroke-width="2"/></g>`;
+    // props drawn in Figma, cropped to their content (public/game-lessons/art/summer)
+    const IMG = (n, x, y, w, h) => `<image href="art/summer/${n}.svg" x="${x}" y="${y}" width="${w}" height="${h}" preserveAspectRatio="xMidYMax meet"/>`;
+    near += IMG('palm', 1080, 290, 270, 262) + IMG('boat', 60, 430, 250, 147) + IMG('umbrella', 30, 548, 230, 233)
+      + IMG('shells', 250, 690, 130, 112) + IMG('flops', 920, 640, 150, 140) + IMG('castle', 1060, 560, 200, 203);
   }
   if (th === 'classic') {
     back += `<rect y="${HZ}" width="${W}" height="${800 - HZ}" fill="url(#floor-${th})"/>${Array.from({ length: 9 }, (_, i) => `<rect x="${i * 150 - 20}" y="0" width="70" height="${HZ}" fill="#fff" opacity=".04"/>`).join('')}
       ${Array.from({ length: 50 }, (_, i) => `<circle cx="${(i * 131) % W}" cy="${(i * 71) % 260 + 10}" r="${i % 3 + 1}" fill="#FFE07A" opacity=".6"/>`).join('')}
-      <text x="640" y="70" text-anchor="middle" font-family="Fredoka, Arial Black" font-weight="700" font-size="58" fill="#FF8FCB" stroke="#fff" stroke-width="2" style="filter:drop-shadow(0 0 10px #FF4FB0)">MURLY LANES</text>
+      <text x="640" y="70" text-anchor="middle" font-family="Rubik, Arial Black" font-weight="700" font-size="58" fill="#FF8FCB" stroke="#fff" stroke-width="2" style="filter:drop-shadow(0 0 10px #FF4FB0)">MURLY LANES</text>
       ${[-1, 1].map((k) => `<path d="M${640 + k * 380} 800L${640 + k * 230} ${HZ}" stroke="#5BC0F8" stroke-width="6" opacity=".7" style="filter:drop-shadow(0 0 8px #5BC0F8)"/>`).join('')}`;
     near += `<g transform="translate(90,620)"><rect width="150" height="120" rx="16" fill="#3D2E8C" stroke="#17181C" stroke-width="4"/><path d="M10 30h130" stroke="#5BC0F8" stroke-width="6"/>${[0, 1, 2].map((i) => `<g transform="translate(${30 + i * 45},10) scale(.35)">${ballSVG([2,8,11][i], 'rt' + i).replace('<svg ', '<svg width="100" height="100" ')}</g>`).join('')}</g>`;
   }
@@ -494,7 +442,7 @@ function sceneSVG(th) {
   else if (th === 'winter') house += `<path d="M${hx - hw / 2 - 30} ${hy - 110}L${hx} ${hy - 200}L${hx + hw / 2 + 30} ${hy - 110}Z" fill="#7A4E26" stroke="#17181C" stroke-width="4"/><path d="M${hx - hw / 2 - 30} ${hy - 110}L${hx} ${hy - 200}L${hx + hw / 2 + 30} ${hy - 110}Q${hx} ${hy - 130} ${hx - hw / 2 - 30} ${hy - 110}Z" fill="#fff" stroke="#17181C" stroke-width="3"/>`;
   else if (th === 'classic') house = `<rect x="${hx - hw / 2}" y="${hy - 130}" width="${hw}" height="134" rx="10" fill="#120F2A" stroke="#5BC0F8" stroke-width="4" style="filter:drop-shadow(0 0 8px #5BC0F8)"/><path d="M${hx - hw / 2} ${hy - 100}h${hw}" stroke="#FF4FB0" stroke-width="5"/>`;
   else house += `<path d="M${hx - hw / 2 - 30} ${hy - 110}L${hx} ${hy - 196}L${hx + hw / 2 + 30} ${hy - 110}Z" fill="${th === 'fall' ? '#C4571A' : '#F7A8C9'}" stroke="#17181C" stroke-width="4"/><path d="M${hx - hw / 2 - 10} ${hy - 116}L${hx} ${hy - 182}L${hx + hw / 2 + 10} ${hy - 116}" stroke="#fff" stroke-width="4" fill="none" opacity=".5"/>${th === 'spring' ? [-.42, -.22, .22, .42].map((k, i) => flower(hx + k * hw, hy - 110, ['#fff', '#FFE07A', '#B8A7F5', '#fff'][i], .8)).join('') : ''}`;
-  const sign = `<g transform="translate(${hx},${th === 'classic' ? hy - 150 : hy - 150})"><text text-anchor="middle" font-family="Fredoka, Arial Black" font-weight="700" font-size="30" fill="#fff" stroke="#17181C" stroke-width="5" paint-order="stroke" id="laneTeam"></text></g>`;
+  const sign = `<g transform="translate(${hx},${th === 'classic' ? hy - 150 : hy - 150})"><text text-anchor="middle" font-family="Rubik, Arial Black" font-weight="700" font-size="30" fill="#fff" stroke="#17181C" stroke-width="5" paint-order="stroke" id="laneTeam"></text></g>`;
   return `<svg viewBox="0 0 1280 800" width="1280" height="800" style="position:absolute;inset:0">${back}${lane}${house}${sign}${near}</svg>`;
 }
 
@@ -552,7 +500,7 @@ function askQuestion() {
   if (!G.bag.length) G.bag = sh(pool().slice());
   const q = G.bag.pop(); const [text, ans, ...wrong] = q; const t = TEAMS[G.turn]; const judge = !wrong.length;
   const opts = judge ? [] : sh([ans, ...wrong]);
-  $('qcard').innerHTML = `<div class="who">${ballSVG(t.ball, 'q')}${esc(t.name)}</div><button class="skip" id="qSkip" type="button" title="Another question">Skip</button>${S.time ? `<div style="position:absolute;right:24px;top:18px;font:700 30px Fredoka,Arial Black" id="qt">${S.time}</div>` : ''}<div class="q">${esc(text)}</div>
+  $('qcard').innerHTML = `<div class="who">${ballSVG(t.ball, 'q')}${esc(t.name)}</div><button class="skip" id="qSkip" type="button" title="Another question">Skip</button>${S.time ? `<div style="position:absolute;right:24px;top:18px;font:700 30px Rubik,Arial Black" id="qt">${S.time}</div>` : ''}<div class="q">${esc(text)}</div>
     ${opts.length ? `<div class="opts">${opts.map((o) => `<button type="button">${esc(o)}</button>`).join('')}</div>` : `<div class="ans" id="qa"></div><div class="qbtns" id="qb1"><button class="btn sm" id="qShow" type="button">Check</button></div><div class="qbtns" id="qb2" style="display:none"><button class="btn sm red" id="qNo" type="button">Oops</button><button class="btn sm green" id="qOk" type="button">Okay</button></div>`}`;
   $('qbox').classList.add('on');
   let done = false; const finish = (ok) => { if (done) return; done = true; clearInterval(timerI); G.lastOk = ok; G.stats[G.turn][ok ? 'right' : 'wrong']++; if (ok) SND.ok(); else SND.bad(); setTimeout(() => { $('qbox').classList.remove('on'); if (ok) aimPhase(); else { $('hint').textContent = 'Oops! The ball slips...'; setTimeout(() => roll(Math.random() < .5 ? .02 : .98, 'gutter'), 500); } }, ok ? 700 : 1100); };
