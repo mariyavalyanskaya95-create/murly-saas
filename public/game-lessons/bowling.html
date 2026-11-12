@@ -363,7 +363,8 @@ function palm(x, y, s, flip) { const k = flip ? -1 : 1; return `<g transform="tr
 function pine(x, y, s, snow) { return `<g transform="translate(${x},${y}) scale(${s})"><rect x="-8" y="-20" width="16" height="30" fill="#6B4A2B"/>${[0, 1, 2].map((i) => `<path d="M${-70 + i * 14} ${-10 - i * 55}L0 ${-90 - i * 55}L${70 - i * 14} ${-10 - i * 55}Z" fill="${['#2F7D4F', '#37925C', '#43A86A'][i]}"/>${snow ? `<path d="M${-40 + i * 8} ${-46 - i * 55}L0 ${-90 - i * 55}L${40 - i * 8} ${-46 - i * 55}Q0 ${-56 - i * 55} ${-40 + i * 8} ${-46 - i * 55}Z" fill="#fff"/>` : ''}`).join('')}</g>`; }
 function flower(x, y, c, s = 1) { return `<g transform="translate(${x},${y}) scale(${s})">${[0, 72, 144, 216, 288].map((a) => `<ellipse cx="${Math.cos(a / 57.3) * 9}" cy="${Math.sin(a / 57.3) * 9}" rx="8" ry="6" transform="rotate(${a} ${Math.cos(a / 57.3) * 9} ${Math.sin(a / 57.3) * 9})" fill="${c}" stroke="#17181C" stroke-width="1.5"/>`).join('')}<circle r="6" fill="#FFD23F" stroke="#17181C" stroke-width="1.5"/></g>`; }
 function sceneSVG(th) {
-  const T = THEMES[th]; const n = laneAt(0), f = laneAt(1); const W = 1280; let back = '', near = '';
+  const T = THEMES[th]; const n = laneAt(0), f = laneAt(1);
+  const IMG = (nm, x, y, w, h) => `<image href="art/${th}/${nm}.svg" x="${x}" y="${y}" width="${w}" height="${h}" preserveAspectRatio="xMidYMax meet"/>`; const W = 1280; let back = '', near = '';
   // perspective rows for boards
   const N = 26, ts = []; for (let k = 0; k <= N; k++) ts.push((1 - 1 / (1 + .16 * k)) / (1 - 1 / (1 + .16 * N)));
   const P = (t, side) => { const g = laneAt(t); return [640 + side * g.half, g.y]; };
@@ -387,7 +388,6 @@ function sceneSVG(th) {
       <path d="M0 560Q180 520 330 560L380 800H0Z" fill="url(#sand-${th})"/><path d="M1280 560Q1100 520 950 560L900 800H1280Z" fill="url(#sand-${th})"/>
       <path d="M0 560Q180 520 330 560" stroke="#fff" stroke-width="6" fill="none" opacity=".7"/><path d="M1280 560Q1100 520 950 560" stroke="#fff" stroke-width="6" fill="none" opacity=".7"/>`;
     // props drawn in Figma, cropped to their content (public/game-lessons/art/summer)
-    const IMG = (n, x, y, w, h) => `<image href="art/summer/${n}.svg" x="${x}" y="${y}" width="${w}" height="${h}" preserveAspectRatio="xMidYMax meet"/>`;
     near += IMG('palm', 1010, 290, 260, 252) + IMG('boat', 90, 375, 220, 129) + IMG('umbrella', 30, 548, 230, 233)
       + IMG('shells', 232, 690, 125, 108) + IMG('flops', 920, 640, 150, 140) + IMG('castle', 1060, 560, 200, 203);
   }
@@ -396,7 +396,6 @@ function sceneSVG(th) {
       ${Array.from({ length: 50 }, (_, i) => `<circle cx="${(i * 131) % W}" cy="${(i * 71) % 260 + 10}" r="${i % 3 + 1}" fill="#FFE07A" opacity=".6"/>`).join('')}
       <text x="640" y="70" text-anchor="middle" font-family="Rubik, Arial Black" font-weight="700" font-size="58" fill="#FF8FCB" stroke="#fff" stroke-width="2" style="filter:drop-shadow(0 0 10px #FF4FB0)">MURLY LANES</text>
       ${[-1, 1].map((k) => `<path d="M${640 + k * 380} 800L${640 + k * 230} ${HZ}" stroke="#5BC0F8" stroke-width="6" opacity=".7" style="filter:drop-shadow(0 0 8px #5BC0F8)"/>`).join('')}`;
-    near += `<g transform="translate(90,620)"><rect width="150" height="120" rx="16" fill="#3D2E8C" stroke="#17181C" stroke-width="4"/><path d="M10 30h130" stroke="#5BC0F8" stroke-width="6"/>${[0, 1, 2].map((i) => `<g transform="translate(${30 + i * 45},10) scale(.35)">${ballSVG([2,8,11][i], 'rt' + i).replace('<svg ', '<svg width="100" height="100" ')}</g>`).join('')}</g>`;
   }
   if (th === 'spring') {
     back += `<circle cx="1120" cy="100" r="50" fill="#FFE07A"/><g fill="#fff"><ellipse cx="300" cy="100" rx="70" ry="24"/><ellipse cx="350" cy="86" rx="44" ry="24"/><ellipse cx="840" cy="70" rx="56" ry="18"/></g>
@@ -407,14 +406,21 @@ function sceneSVG(th) {
     back += `<circle cx="1100" cy="110" r="52" fill="#FFE2A8"/><path d="M0 ${HZ}Q260 ${HZ - 60} 520 ${HZ - 10}T1280 ${HZ}V800H0Z" fill="#C77B3B"/><rect y="${HZ + 40}" width="${W}" height="${760 - HZ}" fill="url(#leafg-${th})"/>
       ${[100, 1180, 240, 1040].map((x, i) => `<g transform="translate(${x},${HZ + 40})"><rect x="-10" y="-120" width="20" height="130" fill="#6B3A1E"/><circle cy="-150" r="${70 - i * 6}" fill="${['#E8742B', '#D9342B', '#F2B035', '#E8742B'][i]}"/><circle cx="-40" cy="-120" r="40" fill="${['#D9342B', '#F2B035', '#E8742B', '#F2B035'][i]}"/><circle cx="40" cy="-118" r="42" fill="${['#F2B035', '#E8742B', '#D9342B', '#D9342B'][i]}"/></g>`).join('')}
       ${Array.from({ length: 34 }, (_, i) => `<path transform="translate(${(i * 97) % W},${(i * 61) % 760 + 20}) rotate(${i * 37})" d="M0 -10C8 -4 8 4 0 10C-8 4 -8 -4 0 -10Z" fill="${['#E8742B', '#D9342B', '#F2B035'][i % 3]}"/>`).join('')}`;
-    near += `<g transform="translate(110,660)"><ellipse rx="56" ry="40" fill="#F07B2E" stroke="#17181C" stroke-width="4"/><path d="M-20-38q20 10 40 0M-30 0q30-48 0-38M30 0q-30-48 0-38" stroke="#C4571A" stroke-width="4" fill="none"/><path d="M0-40q4-18 16-20" stroke="#3E7C3A" stroke-width="7" fill="none"/></g><g transform="translate(1170,680)"><ellipse rx="44" ry="32" fill="#FF9F1C" stroke="#17181C" stroke-width="4"/><path d="M0-32q4-16 14-18" stroke="#3E7C3A" stroke-width="6" fill="none"/></g>`;
   }
   if (th === 'winter') {
     back += `<path d="M0 ${HZ}L160 ${HZ - 150}L320 ${HZ}ZM260 ${HZ}L460 ${HZ - 190}L660 ${HZ}ZM760 ${HZ}L980 ${HZ - 170}L1200 ${HZ}Z" fill="#8FA9DE"/><path d="M160 ${HZ - 150}l-40 40h80zM460 ${HZ - 190}l-50 50h100zM980 ${HZ - 170}l-46 46h92z" fill="#fff"/>
       <rect y="${HZ}" width="${W}" height="${800 - HZ}" fill="url(#snowg-${th})"/>${pine(110, HZ + 60, 1, true)}${pine(1180, HZ + 60, 1, true)}${pine(220, HZ + 20, .7, true)}${pine(1060, HZ + 20, .7, true)}
       ${Array.from({ length: 70 }, (_, i) => `<circle cx="${(i * 89) % W}" cy="${(i * 53) % 760}" r="${i % 3 + 2}" fill="#fff" opacity=".9"/>`).join('')}`;
-    near += `<g transform="translate(1150,640)"><circle cy="60" r="46" fill="#fff" stroke="#17181C" stroke-width="3"/><circle cy="0" r="32" fill="#fff" stroke="#17181C" stroke-width="3"/><circle cx="-10" cy="-6" r="4"/><circle cx="10" cy="-6" r="4"/><path d="M0 2l26 6-26 4z" fill="#FF9F1C"/><path d="M-30 22q30 14 60 0" stroke="#E5484D" stroke-width="10" fill="none"/><rect x="-24" y="-52" width="48" height="24" fill="#3D2E8C"/><rect x="-34" y="-30" width="68" height="8" fill="#3D2E8C"/></g>`;
   }
+  // props drawn in Figma (public/game-lessons/art/<theme>), slots: left front, left near lane, left back, right front, right near lane, right back
+  const PROPS = {
+    spring: ['park-bench', 'tulip-pot', 'birdhouse', 'flower-bush', 'bunny', 'watering-can'],
+    fall: ['scarecrow', 'pumpkin', 'leaf-pile', 'apple-crate', 'hedgehog', 'acorn-and-oak-leaf'],
+    winter: ['snowman', 'gifts', 'pine-tree', 'sled', 'penguin', 'lantern'],
+    classic: ['arcade-claw-machine', 'soda-cup', 'neon-star-sign', 'bowling-ball-rack', 'bowling-shoes', 'disco-ball'],
+  }[th];
+  if (PROPS) { const SL = [[40, 560, 210, 220], [250, 680, 130, 120], [110, 400, 170, 170], [1050, 560, 210, 220], [905, 675, 145, 125], [1040, 370, 180, 180]];
+    near += PROPS.map((n, i) => IMG(n, ...SL[i])).join(''); }
   // ---- lane ----
   let lane = '';
   const deckL = (t) => P(t, -1), deckR = (t) => P(t, 1);
