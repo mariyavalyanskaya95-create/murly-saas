@@ -219,7 +219,7 @@ textarea{width:100%;height:330px;font:16px/1.5 Consolas,monospace;border:3px sol
 // ---------- lane geometry (2D perspective) ----------
 const VP = { x: 640, y: 150 }; // far end
 const ART_PROPS = {
-  summer: [['palm', 1, .58, 330, 40], ['umbrella', -1, .3, 270, 150], ['castle', 1, .3, 260, 150], ['shells', -1, .06, 170, 40], ['flops', 1, .06, 200, 40]],
+  summer: [['palm', 1, .58, 330, 40], ['umbrella', -1, .3, 260, 110], ['castle', 1, .3, 260, 150], ['shells', -1, .06, 170, 40], ['flops', 1, .06, 200, 40]],
   spring: [['birdhouse', -1, .55, 210, 40], ['flower-bush', 1, .55, 240, 40], ['park-bench', -1, .3, 270, 150], ['watering-can', 1, .3, 200, 150], ['tulip-pot', -1, .06, 170, 40], ['bunny', 1, .06, 180, 40]],
   fall: [['scarecrow', -1, .55, 240, 40], ['leaf-pile', 1, .55, 220, 40], ['apple-crate', -1, .3, 240, 150], ['acorn-and-oak-leaf', 1, .3, 180, 150], ['pumpkin', -1, .06, 200, 40], ['hedgehog', 1, .06, 210, 40]],
   winter: [['pine-tree', -1, .55, 250, 40], ['lantern', 1, .55, 180, 40], ['snowman', -1, .3, 250, 150], ['sled', 1, .3, 240, 150], ['gifts', -1, .06, 190, 40], ['penguin', 1, .06, 180, 40]],
@@ -432,7 +432,7 @@ function sceneSVG(th) {
   // props drawn in Figma (public/game-lessons/art/<theme>), placed on the ground with lane perspective:
   // [name, side -1 left / 1 right, depth t 0 near..1 far, size at the near edge, gap from the lane]
   const PROPS = ART_PROPS[th] || [];
-  if (th === 'summer') near += IMG('boat', 70, 395, 230, 135);
+  if (th === 'summer') near += IMG('boat', 2, 352, 140, 90);
   PROPS.slice().sort((p, q) => q[2] - p[2]).forEach(([nm, side, t, base, gap]) => {
     const g = laneAt(t); const w = base * g.s; const h = w * 1.15; const cx = 640 + side * (g.half + gap * g.s + w / 2);
     near += IMG(nm, Math.round(cx - w / 2), Math.round(g.y + 8 - h), Math.round(w), Math.round(h));
