@@ -32,7 +32,10 @@ input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:22px
 input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:46px;height:46px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFE2B8,#FF9F1C 45%,#D96A00);border:3px solid #17181C;box-shadow:0 4px 0 rgba(0,0,0,.3);cursor:pointer}
 input[type=range]::-moz-range-thumb{width:40px;height:40px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFE2B8,#FF9F1C 45%,#D96A00);border:3px solid #17181C;cursor:pointer}
 .themes{display:flex;gap:12px;justify-content:center;margin:10px 0 6px}
-.th{width:120px;height:86px;border:4px solid #17181C;border-radius:16px;cursor:pointer;display:flex;align-items:flex-end;justify-content:center;font:700 15px "Balsamiq Sans","Arial Black",sans-serif;color:#fff;-webkit-text-stroke:1px #17181C;padding-bottom:6px;position:relative;overflow:hidden}
+.th{width:132px;height:104px;border:4px solid #17181C;border-radius:18px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;position:relative;overflow:hidden;box-shadow:4px 4px 0 #17181C;transition:transform .2s}
+.th img{position:absolute;left:50%;top:8px;height:64px;transform:translateX(-50%);transition:transform .3s cubic-bezier(.3,1.6,.5,1);pointer-events:none}
+.th:hover{transform:translateY(-3px)}.th:hover img,.th.sel img{transform:translateX(-50%) scale(1.12) rotate(-4deg)}
+.th span{position:relative;margin-bottom:6px;background:#fff;border:3px solid #17181C;border-radius:999px;padding:1px 12px;font:700 15px "Balsamiq Sans","Arial Black",sans-serif;color:#17181C}
 .th.sel{outline:6px solid #FF9F1C;outline-offset:3px}
 .sets{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:8px}
 .chip{font:800 17px system-ui;border:3px solid #17181C;background:#fff;border-radius:999px;padding:7px 16px;cursor:pointer}
@@ -312,7 +315,9 @@ function decoSVG(k) {
   return `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" style="position:absolute;inset:0">${s}</svg>`;
 }
 function applyTheme() { const t = THEMES[TH]; $('bg').style.background = '#000'; $('bg').innerHTML = `<div style="position:absolute;inset:-20px;filter:blur(7px) saturate(1.1)">${sceneSVG(TH)}</div>`; $('thName').textContent = t.name; document.querySelectorAll('.th').forEach((e) => e.classList.toggle('sel', e.dataset.t === TH)); }
-$('themes').innerHTML = Object.entries(THEMES).map(([k, t]) => `<div class="th" data-t="${k}"><div style="position:absolute;left:0;top:0;width:1280px;height:800px;transform:scale(.0938);transform-origin:0 0">${sceneSVG(k)}</div><span style="position:relative">${t.name}</span></div>`).join('');
+// theme cards: one picture and the name, no peek at the lane (Murly cat scenes replace the picture later)
+const THEME_CARD = { classic: ['disco-ball', '#3A2F7A', '#6A4FC9'], spring: ['tulip-pot', '#8FD66A', '#D8F3FF'], summer: ['umbrella', '#4FD3DB', '#FFE7A8'], fall: ['pumpkin', '#E8742B', '#FFD9A8'], winter: ['snowman', '#9DB6EE', '#F4F8FF'] };
+$('themes').innerHTML = Object.entries(THEMES).map(([k, t]) => { const [img, c1, c2] = THEME_CARD[k] || ['', '#ccc', '#eee']; return `<div class="th" data-t="${k}" style="background:linear-gradient(160deg,${c2},${c1})"><img src="art/${k}/${img}.svg" alt="" draggable="false"><span>${t.name}</span></div>`; }).join('');
 document.querySelectorAll('.th').forEach((e) => e.onclick = () => { TH = e.dataset.t; ls.set('murly:bowl:theme', TH); applyTheme(); SND.click(); });
 $('logoBall').innerHTML = `<div style="width:90px;height:90px">${ballSVG(11, 'logo')}</div>`;
 
