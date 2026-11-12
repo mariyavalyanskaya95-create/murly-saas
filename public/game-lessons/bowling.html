@@ -127,6 +127,18 @@ textarea{width:100%;height:330px;font:16px/1.5 Consolas,monospace;border:3px sol
 .meter.picked div{opacity:.25}.meter.picked div.sel{opacity:1}
 .sc .p .crown{position:absolute;inset:auto;top:-26px;left:50%;transform:translateX(-50%) rotate(8deg);width:44px;height:30px;opacity:1;z-index:2}
 .rake{position:absolute;z-index:25;pointer-events:none;transition:transform .5s ease-in-out}
+.qbox.on{animation:qfade .2s ease-out}.qbox.on .qcard{animation:qpop .38s cubic-bezier(.3,1.5,.5,1)}
+@keyframes qfade{from{background:rgba(20,22,45,0)}}@keyframes qpop{from{transform:scale(.6) translateY(40px);opacity:0}}
+#wx{position:absolute;inset:0;width:1280px;height:800px;pointer-events:none;z-index:50}
+.pin.gold svg{filter:sepia(1) saturate(5) hue-rotate(-12deg) brightness(1.08) drop-shadow(0 0 10px #FFD23F)}
+.pin.gold:after{content:"";position:absolute;left:50%;top:-14%;width:60%;height:30%;transform:translateX(-50%);background:radial-gradient(circle,#FFF6C4 0,rgba(255,214,63,0) 70%);animation:twk 1.2s ease-in-out infinite}
+@keyframes twk{50%{opacity:.3;transform:translateX(-50%) scale(.6)}}
+.bowl.fire svg{filter:drop-shadow(0 0 14px #FF7A1A) drop-shadow(0 0 28px #FFB020) saturate(1.3)}
+.trail.fire{filter:hue-rotate(-20deg) saturate(3) brightness(1.4) blur(2px)}
+#stage.slowmo:before{content:"";position:absolute;inset:0;z-index:45;pointer-events:none;box-shadow:inset 0 0 220px 60px rgba(10,8,30,.75);animation:qfade .3s}
+.big small{display:block;font-size:38px;-webkit-text-stroke:2px #3D2E8C;text-shadow:4px 4px 0 #3D2E8C;margin-top:-6px}
+.flame{display:inline-block;width:24px;height:24px;vertical-align:-3px;margin-left:6px;animation:twk2 .5s ease-in-out infinite alternate}
+@keyframes twk2{to{transform:scale(1.15) rotate(6deg)}}
 .skip{position:absolute;left:18px;top:16px;font:700 18px "Rubik","Arial Black",sans-serif;background:#fff;border:3px solid #17181C;border-radius:10px;padding:4px 12px;cursor:pointer}
 
 </style>
@@ -136,6 +148,7 @@ textarea{width:100%;height:330px;font:16px/1.5 Consolas,monospace;border:3px sol
   <div class="bg" id="bg"></div>
 
   <!-- 1. setup -->
+  <canvas id="wx" width="1280" height="800"></canvas>
   <div class="scr on" id="sSetup">
     <div class="panel" style="width:1000px">
       <div class="logo"><span id="logoBall"></span><div><h1>Murly Bowling</h1><small id="thName">Classic</small></div></div>
@@ -205,6 +218,13 @@ textarea{width:100%;height:330px;font:16px/1.5 Consolas,monospace;border:3px sol
 'use strict';
 // ---------- lane geometry (2D perspective) ----------
 const VP = { x: 640, y: 150 }; // far end
+const ART_PROPS = {
+  summer: [['palm', 1, .58, 330, 40], ['umbrella', -1, .3, 270, 150], ['castle', 1, .3, 260, 150], ['shells', -1, .06, 170, 40], ['flops', 1, .06, 200, 40]],
+  spring: [['birdhouse', -1, .55, 210, 40], ['flower-bush', 1, .55, 240, 40], ['park-bench', -1, .3, 270, 150], ['watering-can', 1, .3, 200, 150], ['tulip-pot', -1, .06, 170, 40], ['bunny', 1, .06, 180, 40]],
+  fall: [['scarecrow', -1, .55, 240, 40], ['leaf-pile', 1, .55, 220, 40], ['apple-crate', -1, .3, 240, 150], ['acorn-and-oak-leaf', 1, .3, 180, 150], ['pumpkin', -1, .06, 200, 40], ['hedgehog', 1, .06, 210, 40]],
+  winter: [['pine-tree', -1, .55, 250, 40], ['lantern', 1, .55, 180, 40], ['snowman', -1, .3, 250, 150], ['sled', 1, .3, 240, 150], ['gifts', -1, .06, 190, 40], ['penguin', 1, .06, 180, 40]],
+  classic: [['neon-star-sign', -1, .55, 210, 40], ['disco-ball', 1, .55, 200, 40], ['arcade-claw-machine', -1, .3, 250, 150], ['bowling-ball-rack', 1, .3, 260, 150], ['soda-cup', -1, .06, 150, 40], ['bowling-shoes', 1, .06, 220, 40]],
+  };
 const LN = { nearY: 790, farY: 230, nearHalf: 250, farHalf: 92 };
 const lerp = (a, b, t) => a + (b - a) * t;
 function laneAt(t) { const y = lerp(LN.nearY, LN.farY, t); const half = lerp(LN.nearHalf, LN.farHalf, t); return { y, half, s: lerp(1, .36, t) }; } // t: 0 near, 1 far
@@ -387,9 +407,6 @@ function sceneSVG(th) {
       ${Array.from({ length: 34 }, (_, i) => `<path d="M${(i * 157) % W} ${HZ + 20 + (i * 37) % 190}q14-6 28 0" stroke="#fff" stroke-width="3" fill="none" opacity=".55" stroke-linecap="round"/>`).join('')}
       <path d="M0 560Q180 520 330 560L380 800H0Z" fill="url(#sand-${th})"/><path d="M1280 560Q1100 520 950 560L900 800H1280Z" fill="url(#sand-${th})"/>
       <path d="M0 560Q180 520 330 560" stroke="#fff" stroke-width="6" fill="none" opacity=".7"/><path d="M1280 560Q1100 520 950 560" stroke="#fff" stroke-width="6" fill="none" opacity=".7"/>`;
-    // props drawn in Figma, cropped to their content (public/game-lessons/art/summer)
-    near += IMG('palm', 1010, 290, 260, 252) + IMG('boat', 90, 375, 220, 129) + IMG('umbrella', 30, 548, 230, 233)
-      + IMG('shells', 232, 690, 125, 108) + IMG('flops', 920, 640, 150, 140) + IMG('castle', 1060, 560, 200, 203);
   }
   if (th === 'classic') {
     back += `<rect y="${HZ}" width="${W}" height="${800 - HZ}" fill="url(#floor-${th})"/>${Array.from({ length: 9 }, (_, i) => `<rect x="${i * 150 - 20}" y="0" width="70" height="${HZ}" fill="#fff" opacity=".04"/>`).join('')}
@@ -412,15 +429,14 @@ function sceneSVG(th) {
       <rect y="${HZ}" width="${W}" height="${800 - HZ}" fill="url(#snowg-${th})"/>${pine(110, HZ + 60, 1, true)}${pine(1180, HZ + 60, 1, true)}${pine(220, HZ + 20, .7, true)}${pine(1060, HZ + 20, .7, true)}
       ${Array.from({ length: 70 }, (_, i) => `<circle cx="${(i * 89) % W}" cy="${(i * 53) % 760}" r="${i % 3 + 2}" fill="#fff" opacity=".9"/>`).join('')}`;
   }
-  // props drawn in Figma (public/game-lessons/art/<theme>), slots: left front, left near lane, left back, right front, right near lane, right back
-  const PROPS = {
-    spring: ['park-bench', 'tulip-pot', 'birdhouse', 'flower-bush', 'bunny', 'watering-can'],
-    fall: ['scarecrow', 'pumpkin', 'leaf-pile', 'apple-crate', 'hedgehog', 'acorn-and-oak-leaf'],
-    winter: ['snowman', 'gifts', 'pine-tree', 'sled', 'penguin', 'lantern'],
-    classic: ['arcade-claw-machine', 'soda-cup', 'neon-star-sign', 'bowling-ball-rack', 'bowling-shoes', 'disco-ball'],
-  }[th];
-  if (PROPS) { const SL = [[40, 560, 210, 220], [250, 680, 130, 120], [110, 400, 170, 170], [1050, 560, 210, 220], [905, 675, 145, 125], [1040, 370, 180, 180]];
-    near += PROPS.map((n, i) => IMG(n, ...SL[i])).join(''); }
+  // props drawn in Figma (public/game-lessons/art/<theme>), placed on the ground with lane perspective:
+  // [name, side -1 left / 1 right, depth t 0 near..1 far, size at the near edge, gap from the lane]
+  const PROPS = ART_PROPS[th] || [];
+  if (th === 'summer') near += IMG('boat', 70, 395, 230, 135);
+  PROPS.slice().sort((p, q) => q[2] - p[2]).forEach(([nm, side, t, base, gap]) => {
+    const g = laneAt(t); const w = base * g.s; const h = w * 1.15; const cx = 640 + side * (g.half + gap * g.s + w / 2);
+    near += IMG(nm, Math.round(cx - w / 2), Math.round(g.y + 8 - h), Math.round(w), Math.round(h));
+  });
   // ---- lane ----
   let lane = '';
   const deckL = (t) => P(t, -1), deckR = (t) => P(t, 1);
@@ -470,14 +486,15 @@ let G = null;
 function pool() { return SET === 'custom' ? customQs() : SETS[SET].q; }
 function startGame() {
   const q = pool(); if (!q.length) { openEdit(); return; }
-  G = { turn: 0, left: S.shots, stats: TEAMS.map(() => ({ right: 0, wrong: 0, strikes: 0, pins: 0 })), score: TEAMS.map(() => 0), bag: [], double: TEAMS.map(() => false), pwNext: 2 + Math.floor(Math.random() * 3) };
+  G = { turn: 0, left: S.shots, stats: TEAMS.map(() => ({ right: 0, wrong: 0, strikes: 0, pins: 0 })), score: TEAMS.map(() => 0), bag: [], double: TEAMS.map(() => false), streak: TEAMS.map(() => 0), fire: TEAMS.map(() => false), pwNext: 2 + Math.floor(Math.random() * 3) };
   buildLane(); renderBoard(); show('sGame'); nextTurn();
 }
+const FLAME = '<svg class="flame" viewBox="0 0 24 24"><path d="M12 2c1 4 6 6 6 12a6 6 0 0 1-12 0c0-3 2-5 3-6 0 2 1 3 2 3 0-4-1-6 1-9z" fill="#FF7A1A" stroke="#17181C" stroke-width="1.6"/><path d="M12 12c1 2 3 3 3 5a3 3 0 0 1-6 0c0-1 1-2 1.5-2.5 0 1 .5 1.5 1 1.5 0-2 0-3 .5-4z" fill="#FFD23F"/></svg>';
 const CROWN = '<svg class="crown" viewBox="0 0 44 30"><path d="M3 26L6 6l10 10 6-14 6 14 10-10 3 20z" fill="#FFD23F" stroke="#17181C" stroke-width="2.5" stroke-linejoin="round"/><circle cx="22" cy="19" r="3" fill="#F472B6" stroke="#17181C" stroke-width="1.5"/></svg>';
-function renderBoard() { const mx = Math.max(...G.score); const lead = mx > 0 && G.score.filter((s) => s === mx).length === 1 ? G.score.indexOf(mx) : -1; $('board').innerHTML = TEAMS.map((t, i) => `<div class="sc${i === G.turn ? ' on' : ''}" id="sc${i}"><span class="n">${esc(t.name)}${G.double[i] ? ' x2' : ''}</span><span class="p">${i === lead ? CROWN : ''}${ballSVG(t.ball, 's' + i)}<b>${G.score[i]}</b></span></div>`).join(''); $('shots').textContent = G.left; }
+function renderBoard() { const mx = Math.max(...G.score); const lead = mx > 0 && G.score.filter((s) => s === mx).length === 1 ? G.score.indexOf(mx) : -1; $('board').innerHTML = TEAMS.map((t, i) => `<div class="sc${i === G.turn ? ' on' : ''}" id="sc${i}"><span class="n">${esc(t.name)}${G.double[i] ? ' x2' : ''}${G.fire[i] ? FLAME : ''}</span><span class="p">${i === lead ? CROWN : ''}${ballSVG(t.ball, 's' + i)}<b>${G.score[i]}</b></span></div>`).join(''); $('shots').textContent = G.left; }
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-function bigMsg(t, ms = 1300) { $('big').textContent = t; $('big').classList.add('show'); clearTimeout(bigMsg.t); bigMsg.t = setTimeout(() => $('big').classList.remove('show'), ms); }
-function resetPins() { pins.forEach((p) => { p.classList.remove('fall'); p.style.transform = ''; p.style.opacity = ''; p.dataset.down = ''; }); }
+function bigMsg(t, ms = 1300, sub) { $('big').innerHTML = esc(t) + (sub ? `<small>${esc(sub)}</small>` : ''); $('big').classList.add('show'); clearTimeout(bigMsg.t); bigMsg.t = setTimeout(() => $('big').classList.remove('show'), ms); }
+function resetPins() { pins.forEach((p) => { p.classList.remove('fall', 'gold'); p.dataset.gold = ''; p.style.transform = ''; p.style.opacity = ''; p.dataset.down = ''; }); }
 // pin rake: a bar drops over the pins, sweeps, then lifts with a fresh rack
 function rake(done) {
   const anyDown = pins.some((p) => p.dataset.down); if (!anyDown) { done(); return; }
@@ -491,7 +508,7 @@ function nextTurn() {
   if (G.left <= 0) return endGame();
   $('lane').style.transition = 'transform .7s cubic-bezier(.4,0,.2,1)'; $('lane').style.transform = ''; document.querySelectorAll('.trail').forEach((g) => g.remove()); renderBoard(); $('laneTeam').textContent = TEAMS[G.turn].name; $('meter').style.display = 'none'; $('hint').textContent = ''; $('pw').style.display = 'none';
   G.roll2 = false;
-  rake(() => { resetBall(); readyBall(askQuestion, 'Tap the ball to get a question!'); });
+  rake(() => { pins.forEach((p) => { p.classList.remove('gold'); p.dataset.gold = ''; }); if (Math.random() < .3) { const gp = pins[Math.floor(Math.random() * pins.length)]; gp.classList.add('gold'); gp.dataset.gold = '1'; } resetBall(); readyBall(askQuestion, pins.some((p) => p.dataset.gold) ? 'Golden pin! Knock it down for +5. Tap the ball!' : 'Tap the ball to get a question!'); });
 }
 function resetBall() { const b = $('bowl'); b.innerHTML = ballSVG(TEAMS[G.turn].ball, 'bw'); b.style.transition = 'none'; b.style.transform = ''; placeBall(0.02, 0); b.style.opacity = 1; }
 // the ball glows and waits for a tap (or Space) to start the next step
@@ -509,7 +526,7 @@ function askQuestion() {
   $('qcard').innerHTML = `<div class="who">${ballSVG(t.ball, 'q')}${esc(t.name)}</div><button class="skip" id="qSkip" type="button" title="Another question">Skip</button>${S.time ? `<div style="position:absolute;right:24px;top:18px;font:700 30px Rubik,Arial Black" id="qt">${S.time}</div>` : ''}<div class="q">${esc(text)}</div>
     ${opts.length ? `<div class="opts">${opts.map((o) => `<button type="button">${esc(o)}</button>`).join('')}</div>` : `<div class="ans" id="qa"></div><div class="qbtns" id="qb1"><button class="btn sm" id="qShow" type="button">Check</button></div><div class="qbtns" id="qb2" style="display:none"><button class="btn sm red" id="qNo" type="button">Oops</button><button class="btn sm green" id="qOk" type="button">Okay</button></div>`}`;
   $('qbox').classList.add('on');
-  let done = false; const finish = (ok) => { if (done) return; done = true; clearInterval(timerI); G.lastOk = ok; G.stats[G.turn][ok ? 'right' : 'wrong']++; if (ok) SND.ok(); else SND.bad(); setTimeout(() => { $('qbox').classList.remove('on'); if (ok) aimPhase(); else { $('hint').textContent = 'Oops! The ball slips...'; setTimeout(() => roll(Math.random() < .5 ? .02 : .98, 'gutter'), 500); } }, ok ? 700 : 1100); };
+  let done = false; const finish = (ok) => { if (done) return; done = true; clearInterval(timerI); G.lastOk = ok; G.stats[G.turn][ok ? 'right' : 'wrong']++; if (ok) { if (++G.streak[G.turn] >= 3) { G.streak[G.turn] = 0; G.fire[G.turn] = true; G.fireNow = true; } } else G.streak[G.turn] = 0; if (ok) SND.ok(); else SND.bad(); setTimeout(() => { $('qbox').classList.remove('on'); if (ok) { if (G.fireNow) { G.fireNow = false; renderBoard(); bigMsg('ON FIRE!', 1300, '3 right answers in a row'); SND.pw(); setTimeout(aimPhase, 1200); } else aimPhase(); } else { $('hint').textContent = 'Oops! The ball slips...'; setTimeout(() => roll(Math.random() < .5 ? .02 : .98, 'gutter'), 500); } }, ok ? 700 : 1100); };
   $('qSkip').onclick = () => { if (done) return; done = true; clearInterval(timerI); SND.click(); askQuestion(); };
   if (opts.length) $('qcard').querySelectorAll('.opts button').forEach((b) => b.onclick = () => { if (done) return; const ok = b.textContent === ans; b.classList.add(ok ? 'ok' : 'bad'); if (!ok) $('qcard').querySelectorAll('.opts button').forEach((x) => { if (x.textContent === ans) x.classList.add('ok'); }); finish(ok); });
   else { $('qShow').onclick = () => { $('qa').textContent = ans; $('qb1').style.display = 'none'; $('qb2').style.display = 'flex'; SND.click(); clearInterval(timerI); }; $('qOk').onclick = () => finish(true); $('qNo').onclick = () => finish(false); }
@@ -543,30 +560,34 @@ function roll(u, mode) { // u 0..1, 0.5 = centre; mode 'gutter' = wrong answer
     if (S.never && n === 0) n = Math.max(1, Math.ceil(up * .3));
     n = Math.max(0, Math.min(up, n));
   }
-  SND.roll(); const b = $('bowl'); const T0 = performance.now(), D = 1150;
-  const L = $('lane'); L.style.transition = 'transform 1.2s cubic-bezier(.45,0,.25,1)'; requestAnimationFrame(() => { L.style.transform = 'scale(1.42) translateY(48px)'; });
-  const ghosts = [.32, .2, .1].map((o) => { const g = document.createElement('div'); g.className = 'trail'; g.style.opacity = o; g.innerHTML = b.innerHTML; L.appendChild(g); return g; }); const hist = [];
-  const anim = (now) => { const k = Math.min(1, (now - T0) / D); const e = 1 - Math.pow(1 - k, 1.6); const t = .02 + e * .93; const curve = Math.sin(k * Math.PI) * off * -.08; placeBall(t, aimX * k + curve * (1 - k)); b.style.transform = `rotate(${k * 900 * (off >= 0 ? 1 : -1)}deg)`;
+  const fire = mode !== 'gutter' && G.fire[G.turn]; if (fire) { G.fire[G.turn] = false; n = Math.max(n, Math.random() < .6 ? up : Math.ceil(up * .8)); aimX = aimX * .3; renderBoard(); }
+  const slow = n === 10 && up === 10; // strike: slow-motion finish
+  SND.roll(); const b = $('bowl'); b.classList.toggle('fire', fire); const T0 = performance.now(), D = slow ? 1900 : 1150;
+  const L = $('lane'); L.style.transition = `transform ${slow ? 1.8 : 1.2}s cubic-bezier(.45,0,.25,1)`; requestAnimationFrame(() => { L.style.transform = slow ? 'scale(1.75) translateY(70px)' : 'scale(1.42) translateY(48px)'; });
+  if (slow) setTimeout(() => $('stage').classList.add('slowmo'), 650);
+  const ghosts = [.32, .2, .1].map((o) => { const g = document.createElement('div'); g.className = 'trail' + (fire ? ' fire' : ''); g.style.opacity = o; g.innerHTML = b.innerHTML; L.appendChild(g); return g; }); const hist = [];
+  const anim = (now) => { const k = Math.min(1, (now - T0) / D); const e = slow ? (k < .55 ? (k / .55) * .78 : .78 + (1 - Math.pow(1 - (k - .55) / .45, 1.3)) * .22) : 1 - Math.pow(1 - k, 1.6); const t = .02 + e * .93; const curve = Math.sin(k * Math.PI) * off * -.08; placeBall(t, aimX * k + curve * (1 - k)); b.style.transform = `rotate(${k * 900 * (off >= 0 ? 1 : -1)}deg)`;
     hist.unshift([b.style.left, b.style.top, b.style.width]); hist.length = 12; ghosts.forEach((g, i) => { const h = hist[(i + 1) * 3]; if (h) { g.style.left = h[0]; g.style.top = h[1]; g.style.width = g.style.height = h[2]; } });
     if (k < 1) requestAnimationFrame(anim); else { ghosts.forEach((g) => g.remove()); knock(n, aimX); } }; requestAnimationFrame(anim);
 }
 function sparks(x, y, k) { const C = ['#FFE07A', '#FF9F1C', '#F472B6', '#5BC0F8', '#fff']; for (let i = 0; i < k; i++) { const d = document.createElement('div'); d.className = 'spark'; const a = Math.random() * Math.PI * 2, r = 60 + Math.random() * 140; d.style.left = x + 'px'; d.style.top = y + 'px'; d.style.setProperty('--dx', Math.cos(a) * r + 'px'); d.style.setProperty('--dy', Math.sin(a) * r - 40 + 'px'); d.innerHTML = `<svg viewBox="0 0 20 20"><path d="M10 0l2.6 7.4L20 10l-7.4 2.6L10 20l-2.6-7.4L0 10l7.4-2.6z" fill="${C[i % 5]}" stroke="#17181C" stroke-width="1"/></svg>`; $('lane').appendChild(d); setTimeout(() => d.remove(), 900); } }
-function flyPin(p, dir, delay) { setTimeout(() => { let vx = dir * rnd(2.2, 5.5), vy = rnd(-7, -3.5), x = 0, y = 0, r = 0, vr = dir * rnd(8, 16), f = 0; const step = () => { f++; vy += .42; x += vx; y += vy; r += vr; vx *= .985; p.style.transform = `translate(${x}px,${y}px) rotate(${r}deg)`; p.style.opacity = f > 26 ? Math.max(0, 1 - (f - 26) / 14) : 1; if (f < 40) requestAnimationFrame(step); }; requestAnimationFrame(step); }, delay); }
+function flyPin(p, dir, delay) { setTimeout(() => { p.style.transition = 'none'; let vx = dir * rnd(2.2, 5.5), vy = rnd(-7, -3.5), x = 0, y = 0, r = 0, vr = dir * rnd(8, 16), f = 0; const step = () => { f++; vy += .42; x += vx; y += vy; r += vr; vx *= .985; p.style.transform = `translate(${x}px,${y}px) rotate(${r}deg)`; p.style.opacity = f > 26 ? Math.max(0, 1 - (f - 26) / 14) : 1; if (f < 40) requestAnimationFrame(step); }; requestAnimationFrame(step); }, delay); }
 function knock(n, aimX) {
   const st = G.stats[G.turn]; st.pins += n; const up0 = pins.filter((p) => !p.dataset.down).length; const strike = n === 10 && up0 === 10, spare = G.roll2 && n > 0 && n === up0; if (strike) st.strikes++;
   if (n > 0) SND.hit(); else tone(140, .3, 'triangle', .1);
+  setTimeout(() => $('stage').classList.remove('slowmo'), 900); $('bowl').classList.remove('fire');
   const bl = $('bowl'); const bx = parseFloat(bl.style.left) + parseFloat(bl.style.width) / 2, by = parseFloat(bl.style.top) + parseFloat(bl.style.height) / 2;
   if (n > 0) sparks(bx, by, n >= 7 ? 22 : 10);
   // pins nearest to the hit line fall first, then knock their neighbours
   const order = pins.map((p, i) => [Math.abs(+p.dataset.cx / 3 - aimX * 1.4) + Math.random() * .5 + PINPOS[i][1] * .12, p]).filter((x) => !x[1].dataset.down).sort((a, c) => a[0] - c[0]).map((x) => x[1]);
-  order.slice(0, n).forEach((p, i) => { const dir = (+p.dataset.cx - aimX * 3) >= 0 ? 1 : -1; p.dataset.down = '1'; flyPin(p, dir, i * 55); clack(i * 55, .55 - i * .03); });
+  const gold = order.slice(0, n).some((p) => p.dataset.gold); order.slice(0, n).forEach((p, i) => { const dir = (+p.dataset.cx - aimX * 3) >= 0 ? 1 : -1; p.dataset.down = '1'; flyPin(p, dir, i * 55); clack(i * 55, .55 - i * .03); });
   order.slice(n).forEach((p, i) => setTimeout(() => { p.classList.add('wob'); setTimeout(() => p.classList.remove('wob'), 650); }, 120 + i * 40));
   if (n >= 7) { const sg = $('stage'); sg.classList.remove('shake'); void sg.offsetWidth; sg.classList.add('shake'); }
   if (strike) { const fl = $('flash'); fl.classList.add('on'); requestAnimationFrame(() => requestAnimationFrame(() => fl.classList.remove('on'))); }
   bl.style.transition = 'opacity .4s'; setTimeout(() => { bl.style.opacity = 0; }, 200);
   setTimeout(() => {
-    let pts = n + (strike ? 5 : spare ? 3 : 0); if (G.double[G.turn]) { pts *= 2; G.double[G.turn] = false; }
-    if (strike) { SND.strike(); bigMsg('STRIKE!'); confetti(60); } else if (spare) { SND.strike(); bigMsg('SPARE!'); confetti(30); } else if (n === 9 && up0 === 10) { bigMsg('So close! 9'); } else if (n === 0) bigMsg('Gutter ball!'); else bigMsg(n + (n === 1 ? ' pin' : ' pins') + (pts > n ? '  +' + pts : ''));
+    let pts = n + (strike ? 5 : spare ? 3 : 0) + (gold ? 5 : 0); if (G.double[G.turn]) { pts *= 2; G.double[G.turn] = false; }
+    if (strike) { SND.strike(); bigMsg('STRIKE!', 1700, TEAMS[G.turn].name + (gold ? '  +golden pin' : '')); confetti(90); } else if (gold) { SND.strike(); bigMsg('Golden pin!', 1500, n + ' pins  +' + pts); confetti(40); } else if (spare) { SND.strike(); bigMsg('SPARE!'); confetti(30); } else if (n === 9 && up0 === 10) { bigMsg('So close! 9'); } else if (n === 0) bigMsg('Gutter ball!'); else bigMsg(n + (n === 1 ? ' pin' : ' pins') + (pts > n ? '  +' + pts : ''));
     const again = S.two && !G.roll2 && !strike && G.lastOk && pins.some((p) => !p.dataset.down);
     setTimeout(() => { if (again) { G.score[G.turn] += pts; renderBoard(); if (pts) $('sc' + G.turn).classList.add('bump'); G.roll2 = true; $('lane').style.transform = ''; resetBall(); readyBall(aimPhase, 'Tap the ball for your second roll!'); } else endTurn(pts); }, 1500); }, 1000);
 }
@@ -599,6 +620,37 @@ $('bFs').onclick = () => { try { if (document.fullscreenElement) document.exitFu
 document.addEventListener('fullscreenchange', () => { $('bFs').textContent = document.fullscreenElement ? 'Exit full screen' : 'Full screen'; fit(); });
 $('bAgain').onclick = () => { startGame(); };
 $('bMenu').onclick = () => show('sSetup');
+
+// ---------- weather: petals, sun glints, leaves, snow, neon sparkles ----------
+(function weather() {
+  const cv = $('wx'); const cx = cv && cv.getContext && cv.getContext('2d'); if (!cx) return; let parts = [], cur = '', last = performance.now();
+  const reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const mk = (th, fresh) => { const p = { x: Math.random() * 1280, y: fresh ? Math.random() * 800 : -20, r: 0, vr: rnd(-1.5, 1.5), ph: Math.random() * 6.28 };
+    if (th === 'winter') Object.assign(p, { s: rnd(2, 5.5), vy: rnd(30, 70), vx: rnd(-10, 10) });
+    else if (th === 'fall') Object.assign(p, { s: rnd(7, 12), vy: rnd(35, 60), vx: rnd(10, 35), c: ['#E8742B', '#D9342B', '#F2B035'][Math.floor(Math.random() * 3)] });
+    else if (th === 'spring') Object.assign(p, { s: rnd(5, 8), vy: rnd(25, 45), vx: rnd(15, 40), c: ['#F7A8C9', '#FFD1E3', '#fff'][Math.floor(Math.random() * 3)] });
+    else if (th === 'summer') Object.assign(p, { s: rnd(2, 4), vy: 0, vx: 0, y: rnd(345, 560), life: Math.random() });
+    else Object.assign(p, { s: rnd(2, 4), vy: 0, vx: 0, y: rnd(20, 760), life: Math.random(), c: ['#FF4FB0', '#5BC0F8', '#FFE07A', '#B57BEA'][Math.floor(Math.random() * 4)] });
+    return p; };
+  const N = { winter: 90, fall: 26, spring: 34, summer: 40, classic: 40 };
+  const step = (now) => { const dt = Math.min(.05, (now - last) / 1000); last = now;
+    if (cur !== TH) { cur = TH; parts = Array.from({ length: reduce ? 0 : N[TH] || 0 }, () => mk(TH, true)); }
+    cx.clearRect(0, 0, 1280, 800);
+    for (const p of parts) {
+      if (TH === 'summer' || TH === 'classic') { p.life += dt * .6; if (p.life > 1) Object.assign(p, mk(TH, true), { life: 0 }); const a = Math.sin(p.life * Math.PI);
+        cx.globalAlpha = a * (TH === 'summer' ? .9 : .8); cx.fillStyle = TH === 'summer' ? '#fff' : p.c; cx.beginPath(); const r = p.s * (0.6 + a); cx.moveTo(p.x, p.y - r * 2); cx.lineTo(p.x + r * .5, p.y - r * .5); cx.lineTo(p.x + r * 2, p.y); cx.lineTo(p.x + r * .5, p.y + r * .5); cx.lineTo(p.x, p.y + r * 2); cx.lineTo(p.x - r * .5, p.y + r * .5); cx.lineTo(p.x - r * 2, p.y); cx.lineTo(p.x - r * .5, p.y - r * .5); cx.fill(); continue; }
+      p.ph += dt * 2; p.y += p.vy * dt; p.x += (p.vx + Math.sin(p.ph) * 18) * dt; p.r += p.vr * dt;
+      if (p.y > 820 || p.x > 1300) Object.assign(p, mk(TH, false));
+      cx.globalAlpha = .9; cx.save(); cx.translate(p.x, p.y); cx.rotate(p.r);
+      if (TH === 'winter') { cx.fillStyle = '#fff'; cx.beginPath(); cx.arc(0, 0, p.s, 0, 6.29); cx.fill(); }
+      else if (TH === 'fall') { cx.fillStyle = p.c; cx.strokeStyle = '#6B3A1E'; cx.lineWidth = 1.2; cx.beginPath(); cx.moveTo(0, -p.s); cx.quadraticCurveTo(p.s, 0, 0, p.s); cx.quadraticCurveTo(-p.s, 0, 0, -p.s); cx.fill(); cx.stroke(); }
+      else { cx.fillStyle = p.c; cx.beginPath(); cx.ellipse(0, 0, p.s, p.s * .6, 0, 0, 6.29); cx.fill(); }
+      cx.restore(); }
+    cx.globalAlpha = 1; requestAnimationFrame(step); };
+  requestAnimationFrame(step);
+})();
+// preload every theme's art so switching themes and the first roll never stutter
+setTimeout(() => { Object.entries(ART_PROPS).forEach(([th, list]) => list.forEach(([nm]) => { const im = new Image(); im.src = `art/${th}/${nm}.svg`; })); }, 1500);
 applyTheme(); renderTgls(); show('sSetup');
 if (P.get('teams')) { $('rTeams').value = P.get('teams'); $('rTeams').oninput(); }
 if (P.get('shots')) { $('rShots').value = P.get('shots'); $('rShots').oninput(); }
