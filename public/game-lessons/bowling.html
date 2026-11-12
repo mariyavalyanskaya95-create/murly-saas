@@ -6,16 +6,16 @@
 <title>Murly Bowling: a team quiz game for English lessons | Murly</title>
 <link rel="icon" href="/favicon.svg">
 <meta name="description" content="Murly Bowling: answer English questions, roll the ball and knock down the pins. A team game for online and classroom lessons.">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;700;800;900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital,wght@0,400;0,700;1,700&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box}
-html,body{margin:0;height:100%;background:#2b2f55;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:#17181C;overflow:hidden}
+html,body{margin:0;height:100%;background:#2b2f55;font-family:"Balsamiq Sans","Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:#17181C;overflow:hidden}
 #stage{position:absolute;left:50%;top:50%;width:1280px;height:800px;transform-origin:center center;overflow:hidden;border-radius:18px;user-select:none}
 .scr{position:absolute;inset:0;display:none}
 .scr.on{display:block}
 .bg{position:absolute;inset:0}
-h1,h2,.fx{font-family:"Rubik","Arial Rounded MT Bold","Arial Black",system-ui,sans-serif;letter-spacing:.5px}
-.btn{font:700 30px/1 "Rubik","Arial Black",sans-serif;color:#fff;background:#FF9F1C;border:4px solid #17181C;border-radius:14px;padding:16px 46px;cursor:pointer;box-shadow:6px 6px 0 #17181C;transform:skewX(-8deg);text-transform:uppercase}
+h1,h2,.fx{font-family:"Balsamiq Sans","Arial Rounded MT Bold","Arial Black",system-ui,sans-serif;letter-spacing:.5px}
+.btn{font:700 30px/1 "Balsamiq Sans","Arial Black",sans-serif;color:#fff;background:#FF9F1C;border:4px solid #17181C;border-radius:14px;padding:16px 46px;cursor:pointer;box-shadow:6px 6px 0 #17181C;transform:skewX(-8deg);text-transform:uppercase}
 .btn:active{transform:skewX(-8deg) translate(3px,3px);box-shadow:3px 3px 0 #17181C}
 .btn.sm{font-size:18px;padding:10px 20px;box-shadow:4px 4px 0 #17181C}
 .btn.pink{background:#F472B6}.btn.blue{background:#5B8DEF}.btn.green{background:#3DBE6E}.btn.red{background:#E5484D}.btn.ghost{background:#fff;color:#17181C}
@@ -24,15 +24,15 @@ h1,h2,.fx{font-family:"Rubik","Arial Rounded MT Bold","Arial Black",system-ui,sa
 .panel .small{color:#fff;text-shadow:1px 1px 0 #17181C}
 .logo{display:flex;align-items:center;gap:14px;justify-content:center;margin-bottom:20px}
 .logo h1{margin:0;font-size:68px;color:#fff;-webkit-text-stroke:3px #3D2E8C;text-shadow:5px 5px 0 #3D2E8C}
-.logo small{display:block;font:700 26px "Rubik","Arial Black",sans-serif;color:#F472B6;-webkit-text-stroke:1px #3D2E8C;text-align:center}
+.logo small{display:block;font:700 26px "Balsamiq Sans","Arial Black",sans-serif;color:#F472B6;-webkit-text-stroke:1px #3D2E8C;text-align:center}
 .row{display:grid;grid-template-columns:230px 560px 90px;align-items:center;gap:18px;margin:16px 0}
-.row label{font:700 26px "Rubik","Arial Black",sans-serif;text-transform:uppercase}
-.row .v{font:700 30px "Rubik","Arial Black",sans-serif;text-align:center}
+.row label{font:700 26px "Balsamiq Sans","Arial Black",sans-serif;text-transform:uppercase}
+.row .v{font:700 30px "Balsamiq Sans","Arial Black",sans-serif;text-align:center}
 input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:22px;background:linear-gradient(#3D2E8C,#5B4BC4);border:3px solid #17181C;border-radius:999px;box-shadow:inset 0 3px 0 rgba(0,0,0,.25)}
 input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:46px;height:46px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFE2B8,#FF9F1C 45%,#D96A00);border:3px solid #17181C;box-shadow:0 4px 0 rgba(0,0,0,.3);cursor:pointer}
 input[type=range]::-moz-range-thumb{width:40px;height:40px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFE2B8,#FF9F1C 45%,#D96A00);border:3px solid #17181C;cursor:pointer}
 .themes{display:flex;gap:12px;justify-content:center;margin:10px 0 6px}
-.th{width:120px;height:86px;border:4px solid #17181C;border-radius:16px;cursor:pointer;display:flex;align-items:flex-end;justify-content:center;font:700 15px "Rubik","Arial Black",sans-serif;color:#fff;-webkit-text-stroke:1px #17181C;padding-bottom:6px;position:relative;overflow:hidden}
+.th{width:120px;height:86px;border:4px solid #17181C;border-radius:16px;cursor:pointer;display:flex;align-items:flex-end;justify-content:center;font:700 15px "Balsamiq Sans","Arial Black",sans-serif;color:#fff;-webkit-text-stroke:1px #17181C;padding-bottom:6px;position:relative;overflow:hidden}
 .th.sel{outline:6px solid #FF9F1C;outline-offset:3px}
 .sets{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:8px}
 .chip{font:800 17px system-ui;border:3px solid #17181C;background:#fff;border-radius:999px;padding:7px 16px;cursor:pointer}
@@ -42,20 +42,20 @@ textarea{width:100%;height:330px;font:16px/1.5 Consolas,monospace;border:3px sol
 .tm{text-align:center;cursor:pointer}
 .tm .ball{width:120px;height:120px;margin:0 auto 12px;transition:transform .2s}
 .tm:hover .ball{transform:scale(1.08) rotate(-10deg)}
-.tm input{font:700 22px "Rubik","Arial Black",sans-serif;width:200px;text-align:center;background:#F472B6;color:#fff;border:4px solid #17181C;border-radius:10px;padding:8px;box-shadow:4px 4px 0 #17181C;-webkit-text-stroke:.5px #17181C}
+.tm input{font:700 22px "Balsamiq Sans","Arial Black",sans-serif;width:200px;text-align:center;background:#F472B6;color:#fff;border:4px solid #17181C;border-radius:10px;padding:8px;box-shadow:4px 4px 0 #17181C;-webkit-text-stroke:.5px #17181C}
 .grid{display:grid;grid-template-columns:repeat(8,110px);gap:18px 22px;justify-content:center}
 .gb{text-align:center;cursor:pointer}
 .gb svg{width:88px;height:88px;transition:transform .15s}
 .gb:hover svg{transform:scale(1.12)}
-.gb .lb{font:700 13px "Rubik","Arial Black",sans-serif;background:#F472B6;color:#fff;border:3px solid #17181C;border-radius:8px;padding:2px 6px;margin-top:4px;min-height:24px}
+.gb .lb{font:700 13px "Balsamiq Sans","Arial Black",sans-serif;background:#F472B6;color:#fff;border:3px solid #17181C;border-radius:8px;padding:2px 6px;margin-top:4px;min-height:24px}
 .gb.taken .lb{background:#5BC0F8}
 .gb.cur svg{filter:drop-shadow(0 0 0 #FF9F1C) drop-shadow(0 0 10px #FF9F1C)}
 /* game */
 #lane{position:absolute;inset:0}
-.hud-l{position:absolute;z-index:60;left:24px;top:20px;color:#fff;font:700 54px/1 "Rubik","Arial Black",sans-serif;-webkit-text-stroke:2px #17181C;text-shadow:3px 3px 0 #17181C}
+.hud-l{position:absolute;z-index:60;left:24px;top:20px;color:#fff;font:700 54px/1 "Balsamiq Sans","Arial Black",sans-serif;-webkit-text-stroke:2px #17181C;text-shadow:3px 3px 0 #17181C}
 .hud-l small{display:block;font-size:20px;-webkit-text-stroke:1px #17181C}
 .board{position:absolute;z-index:60;right:20px;top:20px;display:flex;flex-direction:column;gap:10px;align-items:flex-end}
-.sc{display:flex;align-items:center;gap:0;font:700 26px "Rubik","Arial Black",sans-serif}
+.sc{display:flex;align-items:center;gap:0;font:700 26px "Balsamiq Sans","Arial Black",sans-serif}
 .sc .n{background:#5BC0F8;color:#fff;-webkit-text-stroke:1px #17181C;border:4px solid #17181C;border-radius:10px 0 0 10px;padding:6px 16px 6px 18px;transform:skewX(-8deg);box-shadow:4px 4px 0 #17181C}
 .sc:nth-child(2) .n{background:#F472B6}.sc:nth-child(3) .n{background:#3DBE6E}.sc:nth-child(4) .n{background:#FF9F1C}
 .sc .p{background:#fff;border:4px solid #17181C;border-radius:999px;min-width:62px;height:62px;display:grid;place-items:center;margin-left:-10px;position:relative;z-index:1;box-shadow:4px 4px 0 #17181C}
@@ -70,30 +70,30 @@ textarea{width:100%;height:330px;font:16px/1.5 Consolas,monospace;border:3px sol
 .bowl{position:absolute;will-change:transform,left,top,width}
 .bowl svg{width:100%;height:100%;display:block}
 .meter{position:absolute;left:50%;transform:translateX(-50%);bottom:150px;display:flex;border:4px solid #17181C;border-radius:8px;overflow:hidden;box-shadow:5px 5px 0 rgba(0,0,0,.35)}
-.meter div{width:92px;height:64px;display:grid;place-items:center;font:700 38px "Rubik","Arial Black",sans-serif;color:#fff;-webkit-text-stroke:1.5px #17181C}
+.meter div{width:92px;height:64px;display:grid;place-items:center;font:700 38px "Balsamiq Sans","Arial Black",sans-serif;color:#fff;-webkit-text-stroke:1.5px #17181C}
 .meter .ptr{position:absolute;top:-16px;width:18px;height:96px;background:#fff;border:4px solid #17181C;border-radius:8px;transform:translateX(-50%);box-shadow:0 0 12px #fff}
-.hint{position:absolute;z-index:35;left:50%;transform:translateX(-50%);bottom:232px;font:700 24px "Rubik","Arial Black",sans-serif;color:#fff;-webkit-text-stroke:1px #17181C;text-shadow:2px 2px 0 #17181C;white-space:nowrap}
+.hint{position:absolute;z-index:35;left:50%;transform:translateX(-50%);bottom:232px;font:700 24px "Balsamiq Sans","Arial Black",sans-serif;color:#fff;-webkit-text-stroke:1px #17181C;text-shadow:2px 2px 0 #17181C;white-space:nowrap}
 .pw{position:absolute;left:46px;bottom:110px;width:150px;height:150px;cursor:pointer;animation:float 2s ease-in-out infinite}
 @keyframes float{50%{transform:translateY(-10px) rotate(-4deg)}}
-.pw .t{position:absolute;bottom:18px;left:0;right:0;text-align:center;font:700 15px "Rubik","Arial Black",sans-serif;color:#fff;-webkit-text-stroke:1px #17181C}
-.big{position:absolute;z-index:90;left:0;right:0;top:36%;text-align:center;font:700 110px "Rubik","Arial Black",sans-serif;color:#fff;-webkit-text-stroke:5px #3D2E8C;text-shadow:8px 8px 0 #3D2E8C;opacity:0;transform:scale(.4);transition:all .35s cubic-bezier(.3,1.6,.5,1);pointer-events:none}
+.pw .t{position:absolute;bottom:18px;left:0;right:0;text-align:center;font:700 15px "Balsamiq Sans","Arial Black",sans-serif;color:#fff;-webkit-text-stroke:1px #17181C}
+.big{position:absolute;z-index:90;left:0;right:0;top:36%;text-align:center;font:700 110px "Balsamiq Sans","Arial Black",sans-serif;color:#fff;-webkit-text-stroke:5px #3D2E8C;text-shadow:8px 8px 0 #3D2E8C;opacity:0;transform:scale(.4);transition:all .35s cubic-bezier(.3,1.6,.5,1);pointer-events:none}
 .big.show{opacity:1;transform:scale(1)}
 .qbox{position:absolute;inset:0;z-index:100;background:rgba(20,22,45,.55);display:none;align-items:center;justify-content:center}
 .qbox.on{display:flex}
 .qcard{width:900px;background:#fff;border:5px solid #17181C;border-radius:28px;box-shadow:12px 12px 0 #17181C;padding:30px 40px;text-align:center;position:relative}
-.qcard .who{position:absolute;top:-28px;left:50%;transform:translateX(-50%) skewX(-8deg);background:#5BC0F8;border:4px solid #17181C;border-radius:10px;padding:6px 22px;font:700 24px "Rubik","Arial Black",sans-serif;color:#fff;-webkit-text-stroke:1px #17181C;display:flex;gap:10px;align-items:center}
+.qcard .who{position:absolute;top:-28px;left:50%;transform:translateX(-50%) skewX(-8deg);background:#5BC0F8;border:4px solid #17181C;border-radius:10px;padding:6px 22px;font:700 24px "Balsamiq Sans","Arial Black",sans-serif;color:#fff;-webkit-text-stroke:1px #17181C;display:flex;gap:10px;align-items:center}
 .qcard .who svg{width:34px;height:34px}
 .qcard img{max-width:100%;height:280px;object-fit:cover;border-radius:16px;border:3px solid #17181C;margin-bottom:12px}
-.qcard .q{font:800 38px/1.25 system-ui,sans-serif;margin:14px 0 22px}
-.qcard .ans{font:700 40px "Rubik","Arial Black",sans-serif;color:#3DBE6E;margin:-6px 0 18px;min-height:46px}
+.qcard .q{font:700 40px/1.25 "Balsamiq Sans",system-ui,sans-serif;margin:14px 0 22px}
+.qcard .ans{font:700 40px "Balsamiq Sans","Arial Black",sans-serif;color:#3DBE6E;margin:-6px 0 18px;min-height:46px}
 .opts{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:12px}
-.opts button{font:800 28px system-ui;border:4px solid #17181C;background:#fff;border-radius:16px;padding:14px;cursor:pointer;box-shadow:4px 4px 0 #17181C}
+.opts button{font:700 28px "Balsamiq Sans",system-ui;border:4px solid #17181C;background:#fff;border-radius:16px;padding:14px;cursor:pointer;box-shadow:4px 4px 0 #17181C}
 .opts button.ok{background:#B9EBC8}.opts button.bad{background:#F8C4C4}
 .qbtns{display:flex;gap:18px;justify-content:center}
 .end{text-align:center}
 .end h2{font-size:84px;margin:0;color:#fff;-webkit-text-stroke:4px #3D2E8C;text-shadow:7px 7px 0 #3D2E8C}
 .podium{display:flex;gap:30px;justify-content:center;align-items:flex-end;margin:30px 0}
-.podium div{text-align:center;font:700 26px "Rubik","Arial Black",sans-serif}
+.podium div{text-align:center;font:700 26px "Balsamiq Sans","Arial Black",sans-serif}
 .podium svg{width:110px;height:110px}
 .cf{position:absolute;width:14px;height:22px;top:-30px;animation:cf 2.6s linear forwards}
 @keyframes cf{to{transform:translateY(900px) rotate(720deg)}}
@@ -114,9 +114,9 @@ textarea{width:100%;height:330px;font:16px/1.5 Consolas,monospace;border:3px sol
 .trail{position:absolute;pointer-events:none;z-index:29}
 .trail svg{width:100%;height:100%}
 .fsb{position:absolute;left:20px;top:112px;z-index:60}
-.stats{font:600 18px Rubik,system-ui;color:#fff;text-shadow:1px 1px 0 #17181C;margin:-6px 0 18px}
+.stats{font:600 18px "Balsamiq Sans",system-ui;color:#fff;text-shadow:1px 1px 0 #17181C;margin:-6px 0 18px}
 .tgls{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:6px 0 4px}
-.tgl{font:700 18px "Rubik","Arial Black",sans-serif;border:3px solid #17181C;border-radius:999px;padding:8px 16px;background:#fff;cursor:pointer;box-shadow:3px 3px 0 #17181C;display:flex;gap:8px;align-items:center}
+.tgl{font:700 18px "Balsamiq Sans","Arial Black",sans-serif;border:3px solid #17181C;border-radius:999px;padding:8px 16px;background:#fff;cursor:pointer;box-shadow:3px 3px 0 #17181C;display:flex;gap:8px;align-items:center}
 .tgl i{width:34px;height:20px;border-radius:99px;background:#C9CEDC;border:2px solid #17181C;position:relative;transition:background .2s}
 .tgl i:after{content:"";position:absolute;top:1px;left:1px;width:14px;height:14px;border-radius:50%;background:#fff;border:1px solid #17181C;transition:left .2s}
 .tgl.on i{background:#3DBE6E}.tgl.on i:after{left:16px}
@@ -139,7 +139,7 @@ textarea{width:100%;height:330px;font:16px/1.5 Consolas,monospace;border:3px sol
 .big small{display:block;font-size:38px;-webkit-text-stroke:2px #3D2E8C;text-shadow:4px 4px 0 #3D2E8C;margin-top:-6px}
 .flame{display:inline-block;width:24px;height:24px;vertical-align:-3px;margin-left:6px;animation:twk2 .5s ease-in-out infinite alternate}
 @keyframes twk2{to{transform:scale(1.15) rotate(6deg)}}
-.skip{position:absolute;left:18px;top:16px;font:700 18px "Rubik","Arial Black",sans-serif;background:#fff;border:3px solid #17181C;border-radius:10px;padding:4px 12px;cursor:pointer}
+.skip{position:absolute;left:18px;top:16px;font:700 18px "Balsamiq Sans","Arial Black",sans-serif;background:#fff;border:3px solid #17181C;border-radius:10px;padding:4px 12px;cursor:pointer}
 
 </style>
 </head>
@@ -304,7 +304,7 @@ const THEMES = {
 let TH = THEMES[P.get('theme')] ? P.get('theme') : (ls.get('murly:bowl:theme') || 'classic'); if (!THEMES[TH]) TH = 'classic';
 function decoSVG(k) {
   const W = 1280, H = 800; let s = '';
-  if (k === 'classic') { for (let i = 0; i < 40; i++) s += `<circle cx="${(i * 131) % W}" cy="${(i * 71) % 300}" r="${i % 3 + 1}" fill="#fff" opacity=".5"/>`; s += `<text x="640" y="120" text-anchor="middle" font-family="Rubik, Arial Black" font-weight="700" font-size="64" fill="#FFE07A" stroke="#17181C" stroke-width="3">MURLY LANES</text>`; }
+  if (k === 'classic') { for (let i = 0; i < 40; i++) s += `<circle cx="${(i * 131) % W}" cy="${(i * 71) % 300}" r="${i % 3 + 1}" fill="#fff" opacity=".5"/>`; s += `<text x="640" y="120" text-anchor="middle" font-family="'Balsamiq Sans', Arial Black" font-weight="700" font-size="64" fill="#FFE07A" stroke="#17181C" stroke-width="3">MURLY LANES</text>`; }
   if (k === 'spring') { s += `<circle cx="1120" cy="110" r="60" fill="#FFE07A"/>`; for (let i = 0; i < 18; i++) { const x = 40 + i * 70, y = 470 + (i % 3) * 30; s += `<g transform="translate(${x},${y})"><circle r="9" fill="#FFE07A"/>${[0, 72, 144, 216, 288].map((a) => `<circle cx="${Math.cos(a / 57.3) * 14}" cy="${Math.sin(a / 57.3) * 14}" r="9" fill="${i % 2 ? '#F7A8C9' : '#fff'}"/>`).join('')}</g>`; } }
   if (k === 'summer') { s += `<circle cx="1100" cy="100" r="56" fill="#FFE07A"/><path d="M60 420q20-160 10-300M70 130q-80 10-100 60M70 130q90-10 120 40M70 130q-40-70-100-70M70 130q60-60 110-50" stroke="#2E8B3A" stroke-width="16" fill="none" stroke-linecap="round"/><path d="M1210 430q-20-160-10-300M1200 140q80 10 100 60M1200 140q-90-10-120 40M1200 140q40-70 100-70" stroke="#2E8B3A" stroke-width="16" fill="none" stroke-linecap="round"/><path d="M60 420q-4-160 10-300" stroke="#8A5A2B" stroke-width="16" fill="none"/><path d="M1210 430q4-160-10-300" stroke="#8A5A2B" stroke-width="16" fill="none"/><path d="M90 640l120-20 30 40-130 20z" fill="#E8A33D" stroke="#17181C" stroke-width="3"/><g transform="translate(1070,600)"><path d="M0 60h120l-10-40h-100z" fill="#F2C46B" stroke="#17181C" stroke-width="3"/><path d="M20 20v-30h20v30M70 20v-40h20v40" fill="#F2C46B" stroke="#17181C" stroke-width="3"/></g>`; }
   if (k === 'fall') { for (let i = 0; i < 26; i++) s += `<path transform="translate(${(i * 97) % W},${(i * 61) % 380 + 20}) rotate(${i * 37})" d="M0 -14C10 -6 10 6 0 14C-10 6 -10 -6 0 -14Z" fill="${['#E8742B', '#D9342B', '#F2B035'][i % 3]}"/>`; s += `<path d="M0 470q160-60 320 0t320 0 320 0 320 0V520H0z" fill="#8E4B22" opacity=".5"/>`; }
@@ -411,7 +411,7 @@ function sceneSVG(th) {
   if (th === 'classic') {
     back += `<rect y="${HZ}" width="${W}" height="${800 - HZ}" fill="url(#floor-${th})"/>${Array.from({ length: 9 }, (_, i) => `<rect x="${i * 150 - 20}" y="0" width="70" height="${HZ}" fill="#fff" opacity=".04"/>`).join('')}
       ${Array.from({ length: 50 }, (_, i) => `<circle cx="${(i * 131) % W}" cy="${(i * 71) % 260 + 10}" r="${i % 3 + 1}" fill="#FFE07A" opacity=".6"/>`).join('')}
-      <text x="640" y="70" text-anchor="middle" font-family="Rubik, Arial Black" font-weight="700" font-size="58" fill="#FF8FCB" stroke="#fff" stroke-width="2" style="filter:drop-shadow(0 0 10px #FF4FB0)">MURLY LANES</text>
+      <text x="640" y="70" text-anchor="middle" font-family="'Balsamiq Sans', Arial Black" font-weight="700" font-size="58" fill="#FF8FCB" stroke="#fff" stroke-width="2" style="filter:drop-shadow(0 0 10px #FF4FB0)">MURLY LANES</text>
       ${[-1, 1].map((k) => `<path d="M${640 + k * 380} 800L${640 + k * 230} ${HZ}" stroke="#5BC0F8" stroke-width="6" opacity=".7" style="filter:drop-shadow(0 0 8px #5BC0F8)"/>`).join('')}`;
   }
   if (th === 'spring') {
@@ -464,7 +464,7 @@ function sceneSVG(th) {
   else if (th === 'winter') house += `<path d="M${hx - hw / 2 - 30} ${hy - 110}L${hx} ${hy - 200}L${hx + hw / 2 + 30} ${hy - 110}Z" fill="#7A4E26" stroke="#17181C" stroke-width="4"/><path d="M${hx - hw / 2 - 30} ${hy - 110}L${hx} ${hy - 200}L${hx + hw / 2 + 30} ${hy - 110}Q${hx} ${hy - 130} ${hx - hw / 2 - 30} ${hy - 110}Z" fill="#fff" stroke="#17181C" stroke-width="3"/>`;
   else if (th === 'classic') house = `<rect x="${hx - hw / 2}" y="${hy - 130}" width="${hw}" height="134" rx="10" fill="#120F2A" stroke="#5BC0F8" stroke-width="4" style="filter:drop-shadow(0 0 8px #5BC0F8)"/><path d="M${hx - hw / 2} ${hy - 100}h${hw}" stroke="#FF4FB0" stroke-width="5"/>`;
   else house += `<path d="M${hx - hw / 2 - 30} ${hy - 110}L${hx} ${hy - 196}L${hx + hw / 2 + 30} ${hy - 110}Z" fill="${th === 'fall' ? '#C4571A' : '#F7A8C9'}" stroke="#17181C" stroke-width="4"/><path d="M${hx - hw / 2 - 10} ${hy - 116}L${hx} ${hy - 182}L${hx + hw / 2 + 10} ${hy - 116}" stroke="#fff" stroke-width="4" fill="none" opacity=".5"/>${th === 'spring' ? [-.42, -.22, .22, .42].map((k, i) => flower(hx + k * hw, hy - 110, ['#fff', '#FFE07A', '#B8A7F5', '#fff'][i], .8)).join('') : ''}`;
-  const sign = `<g transform="translate(${hx},${th === 'classic' ? hy - 150 : hy - 150})"><text text-anchor="middle" font-family="Rubik, Arial Black" font-weight="700" font-size="30" fill="#fff" stroke="#17181C" stroke-width="5" paint-order="stroke" id="laneTeam"></text></g>`;
+  const sign = `<g transform="translate(${hx},${th === 'classic' ? hy - 150 : hy - 150})"><text text-anchor="middle" font-family="'Balsamiq Sans', Arial Black" font-weight="700" font-size="30" fill="#fff" stroke="#17181C" stroke-width="5" paint-order="stroke" id="laneTeam"></text></g>`;
   return `<svg viewBox="0 0 1280 800" width="1280" height="800" style="position:absolute;inset:0">${back}${lane}${house}${sign}${near}</svg>`;
 }
 
@@ -523,7 +523,7 @@ function askQuestion() {
   if (!G.bag.length) G.bag = sh(pool().slice());
   const q = G.bag.pop(); const [text, ans, ...wrong] = q; const t = TEAMS[G.turn]; const judge = !wrong.length;
   const opts = judge ? [] : sh([ans, ...wrong]);
-  $('qcard').innerHTML = `<div class="who">${ballSVG(t.ball, 'q')}${esc(t.name)}</div><button class="skip" id="qSkip" type="button" title="Another question">Skip</button>${S.time ? `<div style="position:absolute;right:24px;top:18px;font:700 30px Rubik,Arial Black" id="qt">${S.time}</div>` : ''}<div class="q">${esc(text)}</div>
+  $('qcard').innerHTML = `<div class="who">${ballSVG(t.ball, 'q')}${esc(t.name)}</div><button class="skip" id="qSkip" type="button" title="Another question">Skip</button>${S.time ? `<div style="position:absolute;right:24px;top:18px;font:700 30px 'Balsamiq Sans',Arial Black" id="qt">${S.time}</div>` : ''}<div class="q">${esc(text)}</div>
     ${opts.length ? `<div class="opts">${opts.map((o) => `<button type="button">${esc(o)}</button>`).join('')}</div>` : `<div class="ans" id="qa"></div><div class="qbtns" id="qb1"><button class="btn sm" id="qShow" type="button">Check</button></div><div class="qbtns" id="qb2" style="display:none"><button class="btn sm red" id="qNo" type="button">Oops</button><button class="btn sm green" id="qOk" type="button">Okay</button></div>`}`;
   $('qbox').classList.add('on');
   let done = false; const finish = (ok) => { if (done) return; done = true; clearInterval(timerI); G.lastOk = ok; G.stats[G.turn][ok ? 'right' : 'wrong']++; if (ok) { if (++G.streak[G.turn] >= 3) { G.streak[G.turn] = 0; G.fire[G.turn] = true; G.fireNow = true; } } else G.streak[G.turn] = 0; if (ok) SND.ok(); else SND.bad(); setTimeout(() => { $('qbox').classList.remove('on'); if (ok) { if (G.fireNow) { G.fireNow = false; renderBoard(); bigMsg('ON FIRE!', 1300, '3 right answers in a row'); SND.pw(); setTimeout(aimPhase, 1200); } else aimPhase(); } else { $('hint').textContent = 'Oops! The ball slips...'; setTimeout(() => roll(Math.random() < .5 ? .02 : .98, 'gutter'), 500); } }, ok ? 700 : 1100); };
