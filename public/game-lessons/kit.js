@@ -318,10 +318,9 @@
     dock.classList.toggle('min', share);
     dock.innerHTML = `<button type="button" class="mk-home" title="${share ? T('Показати панель учителя', 'Показать панель учителя') : 'Murly'}">${LOGO}</button>
       <button type="button" class="mk-b" data-a="pult">${IC.screen} ${T('Пульт для демонстрації', 'Пульт для демонстрации')}</button>
-      <button type="button" class="mk-b${document.body.classList.contains('teacher') ? ' on' : ''}" data-a="ans">${IC.eye} ${T('Відповіді', 'Ответы')}</button>${langSw()}`;
+${langSw()}`;
     dock.querySelector('.mk-home').onclick = () => { if (document.body.classList.contains('mk-share')) { if (confirm(T('Вийти з режиму демонстрації? Учень знову побачить кнопки вчителя, якщо ви показуєте екран.', 'Выйти из режима демонстрации? Ученик снова увидит кнопки учителя, если вы показываете экран.'))) setShare(false); } else location.href = ON_SITE ? '/teacher' : 'https://murly.com.ua'; };
     dock.querySelector('[data-a=pult]').onclick = openPult;
-    dock.querySelector('[data-a=ans]').onclick = () => { document.body.classList.toggle('teacher'); renderDock(); };
     bindLang(dock); applyLang();
   }
   function setShare(on) { document.body.classList.toggle('mk-share', on); if (on) document.body.classList.remove('teacher'); else INFO.forEach((s) => s.el.classList.remove('mk-reveal')); renderDock(); if (ch) ch.postMessage({ t: 'share', on }); }
@@ -338,7 +337,7 @@
   }
 
   // ---------- пульт ----------
-  let pultRoot = null; let t0 = 0; let tRun = false; let tAcc = 0; let shareOn = true;
+  let trQ = ''; let trOut = ''; let pultRoot = null; let t0 = 0; let tRun = false; let tAcc = 0; let shareOn = true;
   const secNotes = (s) => [...s.el.querySelectorAll('.lk-tnote')].map((p) => (LANG === 'ru' && p.dataset.ru ? p.dataset.ru : (p.dataset.uk || p.innerHTML)));
   const secAns = (s) => [...s.el.querySelectorAll('.lk-ans')].map((p) => esc(p.textContent.trim())).filter(Boolean);
   function renderPult() {
@@ -362,6 +361,9 @@
       <div class="box"><b>${T('Хід уроку', 'Ход урока')}</b> <span class="muted">${T('натисніть, щоб прокрутити урок учню', 'нажмите, чтобы прокрутить урок ученику')}</span>
         <ol>${INFO.map((x) => `<li class="${x.id === (s && s.id) ? 'cur' : ''}${mk && mk.sec === x.id ? ' mark' : ''}"><button type="button" data-go="${x.id}"><i>${esc(x.n)}</i><span data-mk="${T('тут зупинилися', 'тут остановились')}">${esc(x.title)}</span><small>${x.min ? x.min + ' ' + T('хв', 'мин') : ''}</small></button></li>`).join('')}</ol></div>
       <div class="box row">${HOME.length ? `<button type="button" class="btn2 go" data-a="home">${IC.hw}${T('Задати всю домашку уроку', 'Задать всю домашку урока')}</button>` : ''}<button type="button" class="btn2${shareOn ? ' on' : ''}" data-a="share">${IC.screen}${shareOn ? T('Демонстрація: увімкнена', 'Демонстрация: включена') : T('Демонстрація: вимкнена', 'Демонстрация: выключена')}</button></div>
+      <div class="box mk-tr"><b>${T('Перекладач', 'Переводчик')}</b> <span class="muted">${T('учень цього не бачить', 'ученик этого не видит')}</span>
+        <form class="row" style="margin-top:8px"><input name="q" autocomplete="off" placeholder="${T('Слово або фраза', 'Слово или фраза')}" value="${esc(trQ)}"><button type="submit" class="btn2">${T('Перекласти', 'Перевести')}</button></form>
+        <div class="mk-tr-out">${trOut}</div></div>
       ${plan ? `<details class="box"><summary>${T('План уроку', 'План урока')}</summary>${plan.innerHTML.replace(/<summary[\s\S]*?<\/summary>/, '')}</details>` : ''}`;
     bindLang(pultRoot); applyLang();
     const sel = pultRoot.querySelector('[data-mk-student]'); if (sel) sel.onchange = () => setStudent(sel.value);
@@ -371,6 +373,18 @@
     if (q('hw')) q('hw').onclick = () => hwModal(s.id);
     if (q('home')) q('home').onclick = () => hwModal('all');
     if (q('reveal')) q('reveal').onclick = () => { const on = !s.el.classList.contains('mk-reveal'); s.el.classList.toggle('mk-reveal', on); if (ch) ch.postMessage({ t: 'reveal', id: s.id, on }); renderPult(); };
+    const trf = pultRoot.querySelector('.mk-tr form');
+    trf.onsubmit = async (e) => {
+      e.preventDefault(); trQ = trf.q.value.trim(); if (!trQ) return;
+      const out = pultRoot.querySelector('.mk-tr-out'); out.innerHTML = `<p class="muted">${T('Перекладаю…', 'Перевожу…')}</p>`;
+      const dl = `<a class="muted" target="_blank" rel="noopener" href="https://www.deepl.com/translator#${/[А-Яа-яІіЇїЄєҐґЁё]/.test(trQ) ? (LANG === 'ru' ? 'ru' : 'uk') + '/en' : 'en/' + (LANG === 'ru' ? 'ru' : 'uk')}/${encodeURIComponent(trQ)}">${T('Відкрити в DeepL', 'Открыть в DeepL')}</a>`;
+      try {
+        const r = await fetch(`/api/translate?q=${encodeURIComponent(trQ)}&to=${LANG === 'ru' ? 'ru' : 'uk'}`, { credentials: 'same-origin' });
+        const j = r.ok ? await r.json() : {};
+        trOut = j.text ? `<div class="ans" style="font-size:17px">${esc(j.text)}</div>${(j.alt || []).length ? `<p class="muted" style="margin:6px 0 0">${T('Ще', 'Ещё')}: ${j.alt.map(esc).join(' · ')}</p>` : ''}<p style="margin:6px 0 0">${dl}</p>` : `<p class="muted">${T('Не вдалося перекласти.', 'Не получилось перевести.')} ${dl}</p>`;
+      } catch (err) { trOut = `<p class="muted">${dl}</p>`; }
+      out.innerHTML = trOut;
+    };
     q('share').onclick = () => { shareOn = !shareOn; if (ch) ch.postMessage({ t: 'setshare', on: shareOn }); renderPult(); };
     q('timer').onclick = () => { if (tRun) { tAcc += Date.now() - t0; tRun = false; } else { t0 = Date.now(); tRun = true; } renderPult(); };
     tick();

@@ -92,3 +92,9 @@ body.mk-pult > :not(#mk-pult):not(.mk-modal){display:none!important}
 .mk-addword{position:absolute;z-index:99999;border:2px solid #1d1d2b;background:#AFC3F0;color:#1d1d2b;border-radius:999px;padding:6px 14px;font:800 13px/1.2 system-ui,-apple-system,"Segoe UI",sans-serif;cursor:pointer;box-shadow:0 3px 0 #1d1d2b}
 .mk-addword[hidden]{display:none}
 body.mk-share .mk-addword{display:none}
+
+/* Відповіді й нотатки вчителя видно лише в пульті; на вкладці уроку (яку бачить учень) вони сховані */
+#teacherBtn,.lk-tbtn{display:none!important}
+body:not(.mk-pult) .lk-ans,body:not(.mk-pult) .lk-tnote,body:not(.mk-pult) details.teacher{display:none!important}
+body:not(.mk-pult) section.mk-reveal .lk-ans{display:block!important;margin-top:8px;font-weight:700;color:#1a6b3c;background:#e6f6ec;border-left:4px solid #5bbf7f;padding:6px 10px;font-size:15px}
+.mk-p .mk-tr input{flex:1;min-width:160px;font:inherit;padding:7px 9px;border:2px solid #1d1d2b;background:#fff}
