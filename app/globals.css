@@ -4408,3 +4408,9 @@ a.ab-card:hover { transform: translateY(-3px); }
 /* Таблиця дієслів: одна колонка, не розтягнута на весь екран */
 .va-main { max-width: 860px; }
 .va--z2 .va-row { grid-template-columns: 1fr 1.2fr 1.2fr 1.8fr 26px; }
+/* Картки: довгі слова в заголовках не вилазять за рамку, більше повітря */
+.mu-card__title { overflow-wrap: break-word; hyphens: auto; }
+.ab-cards { grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 22px; }
+.ab-card { padding: 28px 26px; }
+.ab-card .mu-card__title { font-size: clamp(18px, 1.5vw, 22px); line-height: 1.2; }
+.ab-text { margin-top: 4px; }
