@@ -11,6 +11,7 @@ export const GROUPS: Record<'read' | 'grammar', { title: T; tabs: Tab[] }> = {
     title: { uk: 'Вчитися самому', ru: 'Учиться самому', en: 'Learn on your own' },
     tabs: [
       { href: '/learn', icon: 'd-spark', label: { uk: 'За навичками й рівнем', ru: 'По навыкам и уровню', en: 'By skill and level' } },
+      { href: '/books', icon: 'e-book', label: { uk: 'Казки', ru: 'Сказки', en: 'Fairy tales' } },
       { href: '/stories', icon: 'e-book', label: { uk: 'Історії', ru: 'Истории', en: 'Stories' } },
       { href: '/practice', icon: 'e-head', label: { uk: 'Діалоги й тексти', ru: 'Диалоги и тексты', en: 'Dialogues and texts' } },
       { href: '/series', icon: 'e-head', label: { uk: 'Аудіосеріали', ru: 'Аудиосериалы', en: 'Audio series' } },
