@@ -1,5 +1,6 @@
 'use client';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import Link from 'next/link';
 import Icon from './Icon';
 import { useT } from './LangProvider';
 import { VERBS_AZ as VERBS_AZ_UK, Verb } from '@/lib/irregular-verbs';
@@ -31,6 +32,10 @@ export default function VerbsAlphabet() {
   const { ok, say } = useSpeech();
   const [q, setQ] = useState('');
   const [topOnly, setTopOnly] = useState(false);
+  // масштаб таблиці: 0 звичайний, 1 компактний, 2 щільний (дві колонки), запам'ятовуємо
+  const [zoom, setZoom] = useState(0);
+  useEffect(() => { try { const z = Number(localStorage.getItem('murly:va-zoom')); if (z >= 0 && z <= 2) setZoom(z); } catch { /* */ } }, []);
+  const setZ = (z: number) => { const v = Math.max(0, Math.min(2, z)); setZoom(v); try { localStorage.setItem('murly:va-zoom', String(v)); } catch { /* */ } };
 
   const groups = useMemo(() => {
     const s = q.trim().toLowerCase();
@@ -48,26 +53,32 @@ export default function VerbsAlphabet() {
   const sayAll = (v: Verb) => say(`${v.base}. ${v.past}. ${v.pp}`);
 
   return (
-    <div className="va">
-      <div className="va-bar">
-        <nav className="va-abc" aria-label={t({ uk: 'Алфавіт', ru: 'Алфавит', en: 'Alphabet' })}>
-          {ABC.map((L) => groups.has(L)
-            ? <a key={L} href={`#letter-${L}`}>{L}</a>
-            : <span key={L} aria-hidden="true">{L}</span>)}
-        </nav>
-        <div className="v-table__bar" style={{ marginBottom: 0 }}>
-          <label className="v-search">
-            <Icon id="d-seo" />
-            <input type="search" value={q} onChange={(e) => setQ(e.target.value)}
-              placeholder={t({ uk: 'Пошук: go, went, бачити…', ru: 'Поиск: go, went, видеть…', en: 'Search: go, went, see…' })} aria-label={t({ uk: 'Пошук дієслова', ru: 'Поиск глагола', en: 'Search for a verb' })} />
-          </label>
+    <div className={`va va--z${zoom}`}>
+      <aside className="va-side">
+        <label className="v-search">
+          <Icon id="d-seo" />
+          <input type="search" value={q} onChange={(e) => setQ(e.target.value)}
+            placeholder={t({ uk: 'Пошук: go, went, бачити…', ru: 'Поиск: go, went, видеть…', en: 'Search: go, went, see…' })} aria-label={t({ uk: 'Пошук дієслова', ru: 'Поиск глагола', en: 'Search for a verb' })} />
+        </label>
+        <div className="va-side__row">
           <button className={`g-chip ${topOnly ? 'is-on' : ''}`} onClick={() => setTopOnly(!topOnly)} aria-pressed={topOnly}>
             {t({ uk: 'Найчастіші', ru: 'Самые частые', en: 'Most common' })}
           </button>
           <span className="v-count">{count} {t({ uk: 'дієслів', ru: 'глаголов', en: 'verbs' })}</span>
         </div>
-      </div>
-
+        <div className="va-zoom" role="group" aria-label={t({ uk: 'Масштаб таблиці', ru: 'Масштаб таблицы', en: 'Table zoom' })}>
+          <span>{t({ uk: 'Масштаб', ru: 'Масштаб', en: 'Zoom' })}</span>
+          <button type="button" onClick={() => setZ(zoom + 1)} disabled={zoom === 2} aria-label={t({ uk: 'Зменшити, більше дієслів на екрані', ru: 'Уменьшить, больше глаголов на экране', en: 'Zoom out, more verbs on screen' })}>−</button>
+          <button type="button" onClick={() => setZ(zoom - 1)} disabled={zoom === 0} aria-label={t({ uk: 'Збільшити', ru: 'Увеличить', en: 'Zoom in' })}>+</button>
+        </div>
+        <nav className="va-abc" aria-label={t({ uk: 'Алфавіт', ru: 'Алфавит', en: 'Alphabet' })}>
+          {ABC.map((L) => groups.has(L)
+            ? <a key={L} href={`#letter-${L}`}>{L}</a>
+            : <span key={L} aria-hidden="true">{L}</span>)}
+        </nav>
+        <Link href="/irregular-verbs/poster?pages=3" className="va-side__print">{t({ uk: 'Роздрукувати / PDF', ru: 'Распечатать / PDF', en: 'Print / PDF' })}</Link>
+      </aside>
+      <div className="va-main">
       {!ok && <p className="va-note">{t({ uk: 'Твій браузер не підтримує озвучку, але таблиця працює.', ru: 'Твой браузер не поддерживает озвучку, но таблица работает.', en: 'Your browser doesn’t support audio, but the table still works.' })}</p>}
 
       <div className="va-list">
@@ -89,6 +100,7 @@ export default function VerbsAlphabet() {
           </section>
         ))}
         {!count && <p className="v-empty">{t({ uk: 'Нічого не знайшли. Спробуй іншу форму слова.', ru: 'Ничего не нашли. Попробуй другую форму слова.', en: 'Nothing found. Try another form of the word.' })}</p>}
+      </div>
       </div>
     </div>
   );
