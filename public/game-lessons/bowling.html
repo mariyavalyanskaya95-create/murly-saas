@@ -277,7 +277,10 @@ const FIG_BALLS = {
 };
 const ballList = () => (FIG_BALLS[typeof TH === 'undefined' ? 'classic' : TH] || FIG_BALLS.classic).concat(CUTE_BALLS);
 const ballName = (i) => ballList()[i % 8].replace(/^(spring|summer|autumn)-/, '').replace(/-ball$/, '').replace(/-/g, ' ').replace(/^./, (c) => c.toUpperCase());
-function ballSVG(i, id) { return `<svg viewBox="0 0 100 100"><image href="art/balls/${ballList()[i % 8]}.svg" x="2" y="2" width="96" height="96"/></svg>`; }
+// every ball is cut to a perfect circle: stems, caps and ladybug heads are trimmed, then a soft rim and shine are added
+const BALL_FIX = { 'striped-ball': 1.7 };
+function ballSVG(i, id) { const n = ballList()[i % 8]; const u = 'fb' + i + (id || '') + Math.random().toString(36).slice(2, 6); const k = BALL_FIX[n] || 1; const sz = 100 * k, o = (100 - sz) / 2;
+  return `<svg viewBox="0 0 100 100"><defs><clipPath id="${u}"><circle cx="50" cy="50" r="47"/></clipPath></defs><g clip-path="url(#${u})"><circle cx="50" cy="50" r="47" fill="#EDE7FF"/><image href="art/balls/${n}.svg" x="${o}" y="${o}" width="${sz}" height="${sz}" preserveAspectRatio="xMidYMax slice"/><ellipse cx="34" cy="28" rx="13" ry="8" fill="#fff" opacity=".45" transform="rotate(-30 34 28)"/></g><circle cx="50" cy="50" r="47" fill="none" stroke="#7A6A9E" stroke-width="3"/></svg>`; }
 function ballSVGOld(i, id) {
   const [, t, a, b] = BALLS[i]; const u = 'b' + i + (id || ''); let d = '';
   const C = `<clipPath id="${u}c"><circle cx="50" cy="50" r="46"/></clipPath>`;
