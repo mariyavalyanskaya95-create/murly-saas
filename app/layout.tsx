@@ -1,6 +1,7 @@
 import CookieBar from '@/components/CookieBar';
 import type { Metadata } from 'next';
 import WordPick from '@/components/WordPick';
+import SeasonalDecor from '@/components/SeasonalDecor';
 import { ClerkProvider } from '@clerk/nextjs';
 import { ruRU, ukUA } from '@clerk/localizations';
 import LangProvider from '@/components/LangProvider';
@@ -83,7 +84,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <script src="https://js-de.sentry-cdn.com/ab16a8689135769db5b55f83469560fd.min.js" crossOrigin="anonymous" async />
           <script dangerouslySetInnerHTML={{ __html: "try{if(window.self!==window.top)document.documentElement.classList.add('is-embed')}catch(e){document.documentElement.classList.add('is-embed')}" }} />
         </head>
-        <body><noscript><iframe src={`https://www.googletagmanager.com/ns.html?id=${GTM}`} height="0" width="0" style={{ display: 'none', visibility: 'hidden' }} /></noscript><LangProvider lang={lang}>{children}<WordPick /><CookieBar /></LangProvider></body>
+        <body><noscript><iframe src={`https://www.googletagmanager.com/ns.html?id=${GTM}`} height="0" width="0" style={{ display: 'none', visibility: 'hidden' }} /></noscript><LangProvider lang={lang}>{children}<WordPick /><CookieBar /><SeasonalDecor /></LangProvider></body>
       </html>
     </ClerkProvider>
   );

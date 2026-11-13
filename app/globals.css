@@ -4233,3 +4233,21 @@ details.nc-box summary{cursor:pointer;font-weight:700}
 @media print{.ivp.pv-page{padding:0;font-size:8.5px}.ivp-t td{max-width:none}}
 /* Заголовки сторінок: на десктопі в один рядок і для укр/рус (довші слова) */
 @media (min-width: 900px){ .mu-page-hero h1 { max-width: 1240px; font-size: clamp(38px, 5.4vw, 74px); } }
+
+/* Сезонна прикраса: сніг, листя, сердечка (components/SeasonalDecor.tsx) */
+.mu-decor { position: fixed; inset: 0; z-index: 45; pointer-events: none; }
+.mu-decor-btn { position: fixed; right: 14px; bottom: calc(14px + env(safe-area-inset-bottom)); z-index: 46; width: 38px; height: 38px; display: grid; place-items: center; border-radius: 50%; border: 1.5px solid var(--mu-ink); background: rgba(255,255,255,.9); color: var(--mu-ink); cursor: pointer; box-shadow: 0 3px 12px rgba(27,33,64,.12); transition: transform .15s; }
+.mu-decor-btn:hover { transform: translateY(-2px); }
+.mu-decor-btn:focus-visible { outline: 3px solid var(--mu-blue); outline-offset: 2px; }
+body:has(.qw-fab) .mu-decor-btn { bottom: 84px; }
+@media (max-width: 900px) { body:has(.t-side) .mu-decor-btn { bottom: 84px; } }
+@media print { .mu-decor, .mu-decor-btn { display: none; } }
+/* Котик-підбадьорювач */
+.mu-buddy { position: fixed; right: 62px; bottom: calc(6px + env(safe-area-inset-bottom)); z-index: 47; display: flex; align-items: flex-end; gap: 6px; cursor: pointer; transform: translateY(130%); transition: transform .5s cubic-bezier(.3,1.4,.5,1); pointer-events: none; }
+.mu-buddy.is-on { transform: translateY(0); pointer-events: auto; }
+.mu-buddy img { width: 96px; height: 96px; object-fit: contain; filter: drop-shadow(0 4px 8px rgba(27,33,64,.18)); }
+.mu-buddy__say { max-width: 230px; margin-bottom: 58px; padding: 10px 14px; background: #fff; color: var(--mu-ink); border: 1.5px solid var(--mu-ink); border-radius: 18px 18px 4px 18px; font-size: 15px; font-weight: 600; line-height: 1.35; box-shadow: 0 6px 20px rgba(27,33,64,.12); }
+body:has(.qw-fab) .mu-buddy { bottom: 74px; }
+@media (max-width: 900px) { body:has(.t-side) .mu-buddy { bottom: 74px; } .mu-buddy img { width: 76px; height: 76px; } .mu-buddy__say { max-width: 190px; font-size: 14px; margin-bottom: 44px; } }
+@media (prefers-reduced-motion: reduce) { .mu-buddy { transition: none; } }
+@media print { .mu-buddy { display: none; } }
