@@ -11,6 +11,7 @@ export default function LessonRow({ l, showStudent = true, showDate = true }: { 
   const { data, setLessonStatus, addLessons } = useTeacher();
   const [dup, setDup] = useState<string | null>(null); // дата для копії заняття
   const [more, setMore] = useState(false); // рідкісні дії сховані під «Ще»
+  const [dupMsg, setDupMsg] = useState('');
   const st = data.students.find((s) => s.id === l.studentId);
   const link = lessonLink(data, l);
   // Час у поясі учня, якщо він інший, ніж у тебе
@@ -25,7 +26,9 @@ export default function LessonRow({ l, showStudent = true, showDate = true }: { 
     const s0 = new Date(l.start);
     const [y, m, dd] = dup.split('-').map(Number);
     const n = new Date(y, m - 1, dd, s0.getHours(), s0.getMinutes());
-    addLessons({ studentId: l.studentId, start: n.toISOString(), duration: l.duration, topic: l.topic, link: l.link, groupId: l.groupId });
+    const ok = addLessons({ studentId: l.studentId, start: n.toISOString(), duration: l.duration, topic: l.topic, link: l.link, groupId: l.groupId });
+    const when = n.toLocaleDateString(t.lang === 'en' ? 'en-GB' : t.lang === 'ru' ? 'ru-RU' : 'uk-UA', { weekday: 'short', day: 'numeric', month: 'short' });
+    setDupMsg(ok ? t({ uk: `Готово: копія на ${when}.`, ru: `Готово: копия на ${when}.`, en: `Done: copy on ${when}.` }) : t({ uk: `На ${when} у учня вже є заняття о цій порі.`, ru: `На ${when} у ученика уже есть занятие в это время.`, en: `There is already a lesson then on ${when}.` }));
     setDup(null);
   };
 
@@ -74,6 +77,7 @@ export default function LessonRow({ l, showStudent = true, showDate = true }: { 
                 <button className="t-icon-btn" onClick={() => setDup(null)} aria-label={t({ uk: 'Скасувати', ru: 'Отмена', en: 'Cancel' })}>✕</button>
               </span>
             )}
+          {dupMsg && <span className="wg-msg" role="status">{dupMsg}</span>}
           <SeriesTools ls={[l]} />
           </div>
         )}
