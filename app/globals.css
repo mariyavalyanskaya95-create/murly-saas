@@ -4306,3 +4306,10 @@ a.ab-card:hover { transform: translateY(-3px); }
 .ab-q { border: 1.5px solid var(--mu-ink); border-radius: 16px; background: #fff; padding: 14px 18px; margin-top: 10px; }
 .ab-q summary { cursor: pointer; font-weight: 700; font-size: 17px; }
 .ab-q p { margin: 10px 0 0; line-height: 1.55; color: var(--mu-ink-soft); }
+/* Сезонний одяг котиків на головній */
+.mcat__steam path { animation: mcat-steam 2.4s ease-in-out infinite; }
+.mcat__steam path:nth-child(2) { animation-delay: .6s; }
+@keyframes mcat-steam { 0%, 100% { opacity: .2; transform: translateY(2px); } 50% { opacity: .9; transform: translateY(-3px); } }
+.mcat__leaf { transform-box: fill-box; transform-origin: 50% 100%; animation: mcat-leaf 3.2s ease-in-out infinite; }
+@keyframes mcat-leaf { 0%, 100% { rotate: -6deg; } 50% { rotate: 8deg; } }
+@media (prefers-reduced-motion: reduce) { .mcat__steam path, .mcat__leaf { animation: none; } }
