@@ -4406,3 +4406,5 @@ a.ab-card:hover { transform: translateY(-3px); }
 .va-side .v-search input { min-width: 0; width: 100%; padding: 10px 0; font-size: 14px; }
 .va-side .v-search svg { width: 18px; height: 18px; flex: none; }
 .va-zoom button { flex: none; }
+.va-intro--faq { text-align: left; margin: 0 0 18px; max-width: none; }
+.va-print { margin-top: 18px; }
