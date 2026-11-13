@@ -33,7 +33,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:46px;heigh
 input[type=range]::-moz-range-thumb{width:40px;height:40px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFE2B8,#FF9F1C 45%,#D96A00);border:3px solid #17181C;cursor:pointer}
 .themes{display:flex;gap:12px;justify-content:center;margin:10px 0 6px}
 .th{width:132px;height:104px;border:4px solid #17181C;border-radius:18px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;position:relative;overflow:hidden;box-shadow:4px 4px 0 #17181C;transition:transform .2s}
-.th img{position:absolute;left:50%;top:8px;height:64px;transform:translateX(-50%);transition:transform .3s cubic-bezier(.3,1.6,.5,1);pointer-events:none}
+.th img{position:absolute;left:50%;top:4px;height:74px;max-width:124px;object-fit:contain;transform:translateX(-50%);transition:transform .3s cubic-bezier(.3,1.6,.5,1);pointer-events:none}
 .th:hover{transform:translateY(-3px)}.th:hover img,.th.sel img{transform:translateX(-50%) scale(1.12) rotate(-4deg)}
 .th span{position:relative;margin-bottom:6px;background:#fff;border:3px solid #17181C;border-radius:999px;padding:1px 12px;font:700 15px "Balsamiq Sans","Arial Black",sans-serif;color:#17181C}
 .th.sel{outline:6px solid #FF9F1C;outline-offset:3px}
@@ -142,6 +142,10 @@ textarea{width:100%;height:330px;font:16px/1.5 Consolas,monospace;border:3px sol
 .big small{display:block;font-size:38px;-webkit-text-stroke:2px #3D2E8C;text-shadow:4px 4px 0 #3D2E8C;margin-top:-6px}
 .flame{display:inline-block;width:24px;height:24px;vertical-align:-3px;margin-left:6px;animation:twk2 .5s ease-in-out infinite alternate}
 @keyframes twk2{to{transform:scale(1.15) rotate(6deg)}}
+.mcat{position:absolute;left:-170px;top:236px;width:150px;z-index:6;pointer-events:none;animation:mcat 26s ease-in-out infinite}
+.mcat img{width:100%;display:block;animation:mbob 1.6s ease-in-out infinite}
+@keyframes mcat{0%,8%{transform:translateX(0)}30%,55%{transform:translateX(480px)}78%,100%{transform:translateX(0)}}
+@keyframes mbob{50%{transform:translateY(-6px) rotate(-3deg)}}
 .skip{position:absolute;left:18px;top:16px;font:700 18px "Balsamiq Sans","Arial Black",sans-serif;background:#fff;border:3px solid #17181C;border-radius:10px;padding:4px 12px;cursor:pointer}
 
 </style>
@@ -262,7 +266,19 @@ const BALLS = [
   ['Galaxy', 'stars', '#2C2470', '#FFFFFF'], ['Candy', 'swirl', '#FF5D5D', '#FFFFFF'], ['Eyeball', 'eye', '#FFFFFF', '#3E8EF7'], ['Smiley', 'smile', '#FFD23F', '#17181C'],
   ['Lava', 'stripes', '#FF5B1F', '#FFD23F'], ['Ice', 'craters', '#BFEFFF', '#7FD3F2'], ['Mint', 'dots', '#7FE0B5', '#2E9C70'], ['Pizza', 'pizza', '#FFC94D', '#D9342B']];
 function shade(hex, k) { const n = parseInt(hex.slice(1), 16); let r = n >> 16, g = (n >> 8) & 255, b = n & 255; const f = (c) => Math.max(0, Math.min(255, Math.round(k < 0 ? c * (1 + k) : c + (255 - c) * k))); return '#' + [f(r), f(g), f(b)].map((x) => x.toString(16).padStart(2, '0')).join(''); }
-function ballSVG(i, id) {
+// seasonal balls drawn in Figma (art/balls): 4 for the season + 4 cute ones shared by all themes
+const CUTE_BALLS = ['cat-ball', 'paw-ball', 'rainbow-ball', 'heart-ball'];
+const FIG_BALLS = {
+  spring: ['spring-pink-flowers', 'spring-ladybug', 'spring-mint-daisies', 'spring-easter-eggs'],
+  summer: ['summer-watermelon', 'summer-beach-ball', 'summer-orange-slice', 'summer-seashells'],
+  fall: ['autumn-pumpkin', 'autumn-leaves', 'autumn-acorns', 'autumn-red-apple'],
+  winter: ['snowball', 'ornament-ball', 'mitten-ball', 'icy-star-ball'],
+  classic: ['striped-ball', 'disco-ball', 'disco-star-ball', 'lightning-ball'],
+};
+const ballList = () => (FIG_BALLS[typeof TH === 'undefined' ? 'classic' : TH] || FIG_BALLS.classic).concat(CUTE_BALLS);
+const ballName = (i) => ballList()[i % 8].replace(/^(spring|summer|autumn)-/, '').replace(/-ball$/, '').replace(/-/g, ' ').replace(/^./, (c) => c.toUpperCase());
+function ballSVG(i, id) { return `<svg viewBox="0 0 100 100"><image href="art/balls/${ballList()[i % 8]}.svg" x="2" y="2" width="96" height="96"/></svg>`; }
+function ballSVGOld(i, id) {
   const [, t, a, b] = BALLS[i]; const u = 'b' + i + (id || ''); let d = '';
   const C = `<clipPath id="${u}c"><circle cx="50" cy="50" r="46"/></clipPath>`;
   if (t === 'stripes') for (let k = 0; k < 6; k++) d += `<path d="M${10 + k * 16} 0 Q${30 + k * 16} 50 ${10 + k * 16} 100" stroke="${b}" stroke-width="6" fill="none"/>`;
@@ -314,12 +330,12 @@ function decoSVG(k) {
   if (k === 'winter') { for (let i = 0; i < 60; i++) s += `<circle cx="${(i * 89) % W}" cy="${(i * 53) % 440}" r="${i % 3 + 2}" fill="#fff" opacity=".9"/>`; s += `<path d="M40 470l90-170 90 170zM1060 470l90-170 90 170z" fill="#3E7C5A"/><path d="M80 400l50-90 50 90zM1100 400l50-90 50 90z" fill="#fff" opacity=".85"/>`; }
   return `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" style="position:absolute;inset:0">${s}</svg>`;
 }
-function applyTheme() { const t = THEMES[TH]; $('bg').style.background = '#000'; $('bg').innerHTML = `<div style="position:absolute;inset:-20px;filter:blur(7px) saturate(1.1)">${sceneSVG(TH)}</div>`; $('thName').textContent = t.name; document.querySelectorAll('.th').forEach((e) => e.classList.toggle('sel', e.dataset.t === TH)); }
+function applyTheme() { const t = THEMES[TH]; if ($('logoBall')) $('logoBall').innerHTML = `<div style="width:90px;height:90px">${ballSVG(4, 'logo')}</div>`; $('bg').style.background = '#000'; $('bg').innerHTML = `<div style="position:absolute;inset:-20px;filter:blur(7px) saturate(1.1)">${sceneSVG(TH)}</div>`; $('thName').textContent = t.name; document.querySelectorAll('.th').forEach((e) => e.classList.toggle('sel', e.dataset.t === TH)); }
 // theme cards: one picture and the name, no peek at the lane (Murly cat scenes replace the picture later)
-const THEME_CARD = { classic: ['disco-ball', '#3A2F7A', '#6A4FC9'], spring: ['tulip-pot', '#8FD66A', '#D8F3FF'], summer: ['umbrella', '#4FD3DB', '#FFE7A8'], fall: ['pumpkin', '#E8742B', '#FFD9A8'], winter: ['snowman', '#9DB6EE', '#F4F8FF'] };
-$('themes').innerHTML = Object.entries(THEMES).map(([k, t]) => { const [img, c1, c2] = THEME_CARD[k] || ['', '#ccc', '#eee']; return `<div class="th" data-t="${k}" style="background:linear-gradient(160deg,${c2},${c1})"><img src="art/${k}/${img}.svg" alt="" draggable="false"><span>${t.name}</span></div>`; }).join('');
+const THEME_CARD = { classic: ['bowling', '#B8A7F5', '#EDE7FF'], spring: ['spring', '#BFE8C2', '#F4FBEF'], summer: ['swimming', '#A6E3EC', '#FFF6D6'], fall: ['autumn', '#F7C99A', '#FFF3E0'], winter: ['sledding', '#BFD3F5', '#F4F8FF'] };
+$('themes').innerHTML = Object.entries(THEMES).map(([k, t]) => { const [img, c1, c2] = THEME_CARD[k] || ['', '#ccc', '#eee']; return `<div class="th" data-t="${k}" style="background:linear-gradient(160deg,${c2},${c1})"><img src="art/cats/${img}.svg" alt="" draggable="false"><span>${t.name}</span></div>`; }).join('');
 document.querySelectorAll('.th').forEach((e) => e.onclick = () => { TH = e.dataset.t; ls.set('murly:bowl:theme', TH); applyTheme(); SND.click(); });
-$('logoBall').innerHTML = `<div style="width:90px;height:90px">${ballSVG(11, 'logo')}</div>`;
+$('logoBall').innerHTML = `<div style="width:90px;height:90px">${ballSVG(4, 'logo')}</div>`;
 
 // ---------- question sets ----------
 const SETS = {
@@ -373,16 +389,16 @@ function show(id) { document.querySelectorAll('.scr').forEach((s) => s.classList
 
 // ---------- teams ----------
 let TEAMS = [];
-function makeTeams() { const used = TEAMS.map((t) => t.ball); TEAMS = Array.from({ length: S.teams }, (_, i) => TEAMS[i] || { name: 'Team ' + (i + 1), ball: [0, 8, 2, 3][i] }); if (P.get('names') && !makeTeams.done) { P.get('names').split(',').forEach((n, i) => { if (TEAMS[i]) TEAMS[i].name = n.trim(); }); makeTeams.done = true; } renderTeams(); }
+function makeTeams() { const used = TEAMS.map((t) => t.ball); TEAMS = Array.from({ length: S.teams }, (_, i) => TEAMS[i] || { name: 'Team ' + (i + 1), ball: [0, 1, 2, 3][i] }); if (P.get('names') && !makeTeams.done) { P.get('names').split(',').forEach((n, i) => { if (TEAMS[i]) TEAMS[i].name = n.trim(); }); makeTeams.done = true; } renderTeams(); }
 function renderTeams() { $('teams').innerHTML = TEAMS.map((t, i) => `<div class="tm"><div class="ball" data-i="${i}">${ballSVG(t.ball, 't' + i)}</div><input value="${t.name.replace(/"/g, '&quot;')}" data-i="${i}" maxlength="16"></div>`).join('');
   document.querySelectorAll('.tm .ball').forEach((b) => b.onclick = () => { pick = +b.dataset.i; renderGrid(); show('sBalls'); SND.click(); });
   document.querySelectorAll('.tm input').forEach((n) => n.oninput = () => { TEAMS[+n.dataset.i].name = n.value || 'Team ' + (+n.dataset.i + 1); }); }
 let pick = 0;
-function renderGrid() { $('pickTitle').textContent = TEAMS[pick].name + ': choose your ball'; $('grid').innerHTML = BALLS.map((b, i) => { const who = TEAMS.findIndex((t) => t.ball === i); return `<div class="gb${who >= 0 ? ' taken' : ''}${who === pick ? ' cur' : ''}" data-i="${i}">${ballSVG(i, 'g' + i)}<div class="lb">${who >= 0 ? TEAMS[who].name : b[0]}</div></div>`; }).join('');
+function renderGrid() { $('pickTitle').textContent = TEAMS[pick].name + ': choose your ball'; $('grid').innerHTML = ballList().map((b, i) => { const who = TEAMS.findIndex((t) => t.ball === i); return `<div class="gb${who >= 0 ? ' taken' : ''}${who === pick ? ' cur' : ''}" data-i="${i}">${ballSVG(i, 'g' + i)}<div class="lb">${who >= 0 ? TEAMS[who].name : ballName(i)}</div></div>`; }).join('');
   document.querySelectorAll('.gb').forEach((g) => g.onclick = () => { const i = +g.dataset.i; if (TEAMS.some((t, k) => k !== pick && t.ball === i)) return; TEAMS[pick].ball = i; SND.ok(); renderTeams(); show('sTeams'); }); }
 $('bNext1').onclick = () => { makeTeams(); show('sTeams'); SND.click(); };
 $('bBack2').onclick = () => show('sSetup');
-$('bRandom').onclick = () => { const b = sh(BALLS.map((_, i) => i)); TEAMS.forEach((t, i) => { t.ball = b[i]; }); TEAMS = sh(TEAMS); renderTeams(); SND.pw(); };
+$('bRandom').onclick = () => { const b = sh(ballList().map((_, i) => i)); TEAMS.forEach((t, i) => { t.ball = b[i]; }); TEAMS = sh(TEAMS); renderTeams(); SND.pw(); };
 
 function palm(x, y, s, flip) { const k = flip ? -1 : 1; return `<g transform="translate(${x},${y}) scale(${s * k},${s})"><path d="M0 0C6-60 4-130-6-190" stroke="#8A5A2B" stroke-width="16" fill="none" stroke-linecap="round"/><path d="M0 0C6-60 4-130-6-190" stroke="#B07A44" stroke-width="6" fill="none" stroke-dasharray="4 14"/>${[[-90, 30], [-40, -10], [20, -20], [70, 20], [110, 60], [-130, 70]].map(([a, b]) => `<path d="M-6 -190Q${a / 2} ${-230 + b / 3} ${a} ${-170 + b}" stroke="#2E9D49" stroke-width="18" fill="none" stroke-linecap="round"/><path d="M-6 -190Q${a / 2} ${-230 + b / 3} ${a} ${-170 + b}" stroke="#58C46E" stroke-width="6" fill="none" stroke-linecap="round"/>`).join('')}<circle cx="-10" cy="-186" r="9" fill="#6B4A2B"/><circle cx="4" cy="-182" r="9" fill="#6B4A2B"/></g>`; }
 function pine(x, y, s, snow) { return `<g transform="translate(${x},${y}) scale(${s})"><rect x="-8" y="-20" width="16" height="30" fill="#6B4A2B"/>${[0, 1, 2].map((i) => `<path d="M${-70 + i * 14} ${-10 - i * 55}L0 ${-90 - i * 55}L${70 - i * 14} ${-10 - i * 55}Z" fill="${['#2F7D4F', '#37925C', '#43A86A'][i]}"/>${snow ? `<path d="M${-40 + i * 8} ${-46 - i * 55}L0 ${-90 - i * 55}L${40 - i * 8} ${-46 - i * 55}Q0 ${-56 - i * 55} ${-40 + i * 8} ${-46 - i * 55}Z" fill="#fff"/>` : ''}`).join('')}</g>`; }
@@ -479,6 +495,7 @@ let pins = [];
 function buildLane() {
   $('lane').innerHTML = sceneSVG(TH); pins = [];
   PINPOS.forEach(([cx, row]) => { const t = .985 - (3 - row) * .055; const g = laneAt(t); const w = 40 * g.s * 2.1, h = 100 * g.s * 2.1; const x = 640 + cx * 26 * g.s * 1.9 - w / 2; const y = g.y - h; const d = document.createElement('div'); d.className = 'pin'; d.style.cssText = `left:${x}px;top:${y}px;width:${w}px;height:${h}px;z-index:${13 - row}`; d.innerHTML = PIN_SVG; d.dataset.cx = cx; $('lane').appendChild(d); pins.push(d); });
+  const mc = document.createElement('div'); mc.className = 'mcat'; mc.innerHTML = `<img src="art/cats/${THEME_CARD[TH] ? THEME_CARD[TH][0] : 'waving'}.svg" alt="">`; $('lane').appendChild(mc);
   const b = document.createElement('div'); b.className = 'bowl'; b.id = 'bowl'; $('lane').appendChild(b);
   const m = document.createElement('div'); m.className = 'meter'; m.id = 'meter'; m.style.display = 'none'; m.innerHTML = ['#F2B035', '#3E9EE6', '#7B5BD6', '#F472B6', '#E5484D'].map((c, i) => `<div style="background:${c}">${i + 1}</div>`).join('') + '<i class="ptr" id="ptr"></i>'; $('lane').appendChild(m);
   const h = document.createElement('div'); h.className = 'hint'; h.id = 'hint'; $('lane').appendChild(h);
