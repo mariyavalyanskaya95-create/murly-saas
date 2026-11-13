@@ -142,6 +142,48 @@
     };
   }
 
+  // ---------- картки слів: кнопка «+ у словник» (учитель обирає учня, учень додає собі) ----------
+  function vocabAdd() {
+    const cards = [...document.querySelectorAll('.voc > div, [data-word]')].filter((c) => c.querySelector('b'));
+    if (!cards.length) return;
+    const teacher = document.body.classList.contains('mk-teacher');
+    let pop = null;
+    const close = () => { if (pop) { pop.remove(); pop = null; } };
+    document.addEventListener('click', (e) => { if (pop && !pop.contains(e.target) && !e.target.closest('.mk-vadd')) close(); });
+    const save = async (c, sid, btn) => {
+      const en = c.querySelector('b').textContent.trim(); const tr = (c.querySelector('span') || {}).textContent || ''; const ex = (c.querySelector('em') || {}).textContent || '';
+      if (!tr.trim()) { toastMk(T('У картки немає перекладу.', 'У карточки нет перевода.')); return; }
+      let ok = false;
+      try {
+        if (teacher) ok = await api('addWord', { id: uid(), studentId: sid, en, uk: tr.trim(), example: ex.trim() || null, at: new Date().toISOString() });
+        else { const r = await fetch('/api/student', { method: 'POST', credentials: 'same-origin', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ op: 'addWord', en, uk: tr.trim(), example: ex.trim() || undefined }) });
+          if (r.status === 401) { toastMk(T('Увійдіть у кабінет учня, щоб зберігати слова.', 'Войдите в кабинет ученика, чтобы сохранять слова.')); return; } ok = r.ok; }
+      } catch (e) { ok = false; }
+      if (ok) { btn.classList.add('done'); btn.innerHTML = '&#10003;'; const st = teacher && D && D.students.find((x) => x.id === sid);
+        toastMk(teacher ? T(`«${en}» додано у словник: ${esc(st ? st.name : '')}`, `«${en}» добавлено в словарь: ${esc(st ? st.name : '')}`) : T(`«${en}» додано у твій словник`, `«${en}» добавлено в твой словарь`)); }
+      else toastMk(T('Не вийшло зберегти, спробуйте ще раз.', 'Не получилось сохранить, попробуйте ещё раз.'));
+    };
+    cards.forEach((c) => {
+      if (c.querySelector('.mk-vadd')) return;
+      c.style.position = c.style.position || 'relative';
+      const b = document.createElement('button'); b.type = 'button'; b.className = 'mk-vadd'; b.innerHTML = '+';
+      b.title = T('Додати у словник', 'Добавить в словарь'); b.setAttribute('aria-label', b.title);
+      b.onclick = (e) => {
+        e.stopPropagation(); close();
+        if (!teacher) { save(c, null, b); return; }
+        const list = (D && D.students) || [];
+        if (!list.length || SID === 'local') { toastMk(T('Додайте учнів у кабінеті, щоб зберігати їм слова.', 'Добавьте учеников в кабинете, чтобы сохранять им слова.')); return; }
+        const cur = student();
+        pop = document.createElement('div'); pop.className = 'mk-vpop';
+        pop.innerHTML = `<b>${T('Додати у словник', 'Добавить в словарь')}</b><select>${list.map((x) => `<option value="${esc(x.id)}"${cur && cur.id === x.id ? ' selected' : ''}>${esc(x.name)}</option>`).join('')}</select><button type="button">${T('Додати', 'Добавить')}</button>`;
+        pop.addEventListener('click', (ev) => ev.stopPropagation());
+        pop.querySelector('button').onclick = () => { const sid = pop.querySelector('select').value; close(); save(c, sid, b); };
+        c.appendChild(pop);
+      };
+      c.appendChild(b);
+    });
+  }
+
   // ---------- плашки Murly ----------
   function brand() {
     const bar = document.createElement('div'); bar.className = 'mk-bar';
@@ -425,8 +467,9 @@ ${langSw()}`;
     if (ON_SITE) wordPicker();
     document.body.classList.add('mk-student');
     D = await load();
-    if (!D) return;
+    if (!D) { if (ON_SITE) vocabAdd(); return; }
     document.body.classList.remove('mk-student'); document.body.classList.add('mk-teacher');
+    if (ON_SITE && !D.local) vocabAdd();
     if (!D.students.length && D.local) SID = 'local';
     tools(); renderDock(); renderBanner(); markSection(); watchScroll(); applyLang();
     if (!D.local) setTimeout(() => { if (LIVE) warmVoices(); }, 1500);

@@ -98,3 +98,12 @@ body.mk-share .mk-addword{display:none}
 body:not(.mk-pult) .lk-ans,body:not(.mk-pult) .lk-tnote,body:not(.mk-pult) details.teacher{display:none!important}
 body:not(.mk-pult) section.mk-reveal .lk-ans{display:block!important;margin-top:8px;font-weight:700;color:#1a6b3c;background:#e6f6ec;border-left:4px solid #5bbf7f;padding:6px 10px;font-size:15px}
 .mk-p .mk-tr input{flex:1;min-width:160px;font:inherit;padding:7px 9px;border:2px solid #1d1d2b;background:#fff}
+
+/* «+» на картках слів: додати у словник */
+.mk-vadd{position:absolute;top:6px;right:6px;width:28px;height:28px;border-radius:50%;border:1.5px solid #1d1d2b;background:#fff;color:#1d1d2b;font:700 18px/1 system-ui,sans-serif;cursor:pointer;display:grid;place-items:center;opacity:.55;transition:opacity .15s,transform .15s;z-index:2}
+.voc > div:hover .mk-vadd,[data-word]:hover .mk-vadd,.mk-vadd:focus-visible{opacity:1}
+.mk-vadd:hover{transform:scale(1.1);background:#AFC3F0}
+.mk-vadd.done{opacity:1;background:#BFE5CB;font-size:14px}
+.mk-vpop{position:absolute;top:38px;right:6px;z-index:5;display:grid;gap:6px;min-width:190px;padding:10px;background:#fff;border:1.5px solid #1d1d2b;border-radius:12px;box-shadow:0 8px 24px rgba(27,33,64,.18);font:500 14px/1.3 system-ui,sans-serif;color:#1d1d2b;cursor:default}
+.mk-vpop select{font:inherit;padding:6px;border:1.5px solid #1d1d2b;border-radius:8px;background:#fff}
+.mk-vpop button{font:inherit;font-weight:700;padding:6px 10px;border:1.5px solid #1d1d2b;border-radius:999px;background:#AFC3F0;cursor:pointer}
