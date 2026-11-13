@@ -14,7 +14,7 @@ export function generateMetadata({ params }: { params: { id: string } }): Metada
   const b = bookById(params.id); const t = tr();
   if (!b) return {};
   return {
-    title: t({ uk: `${b.title} (${b.titleT.uk}): казка англійською з перекладом | Murly`, ru: `${b.title} (${b.titleT.ru}): сказка на английском с переводом | Murly`, en: `${b.title}: easy English fairy tale with translation | Murly` }),
+    title: t({ uk: `${b.title} (${b.titleT.uk})${b.base ? ' B1-B2' : ''}: казка англійською з перекладом | Murly`, ru: `${b.title} (${b.titleT.ru})${b.base ? ' B1-B2' : ''}: сказка на английском с переводом | Murly`, en: `${b.title}${b.base ? ' (B1-B2)' : ''}: English fairy tale with translation | Murly` }),
     description: `${t(b.about)} ${t({ uk: `Рівень ${b.level}. Натисни на слово, щоб побачити переклад і послухати.`, ru: `Уровень ${b.level}. Нажми на слово, чтобы увидеть перевод и послушать.`, en: `Level ${b.level}. Tap a word for its translation and audio.` })}`,
     alternates: alt(`/books/${b.id}`),
   };
