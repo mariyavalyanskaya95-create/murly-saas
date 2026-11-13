@@ -76,7 +76,7 @@ function Shell({ userId, name, children }: { userId: string; name: string; child
           </nav>
           <main className="t-main">
             <SyncBanner />
-            {children}
+            {lesson.on && privPage ? null : children}
           </main>
         </div>
       </div>
