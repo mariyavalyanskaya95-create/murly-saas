@@ -1,6 +1,7 @@
 // Бот Murly: постійне меню-кнопки внизу і запис оплат учителем.
 // Емодзі тут лише в кнопках бота (так просила власниця), на сайті їх немає.
 import { db } from './db';
+import { teacherTz } from '@/lib/tz-server';
 import { L, esc } from './telegram';
 import { teacherBalances } from './tg-menu';
 
@@ -109,8 +110,7 @@ async function balanceLine(lang: Lang, teacherId: string, name: string) {
 }
 
 // ---------- Відмітити урок ----------
-const TZ = 'Europe/Kyiv';
-const when = (iso: unknown, lang: Lang) => new Date(String(iso)).toLocaleString(lang === 'en' ? 'en-GB' : lang === 'ru' ? 'ru-RU' : 'uk-UA', { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', timeZone: TZ });
+const whenTz = (iso: unknown, lang: Lang, tz: string) => new Date(String(iso)).toLocaleString(lang === 'en' ? 'en-GB' : lang === 'ru' ? 'ru-RU' : 'uk-UA', { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', timeZone: tz });
 
 async function recentLessons(teacherId: string) {
   const from = new Date(Date.now() - 4 * 86400000).toISOString();
@@ -120,6 +120,7 @@ async function recentLessons(teacherId: string) {
 
 // Крок 1: найближчі незакриті заняття (за останні 4 дні і на найближчі години) + «урок не з розкладу»
 export async function attendPick(lang: Lang, teacherId: string) {
+  const tzT = await teacherTz(teacherId); const when = (iso: unknown, lg: Lang) => whenTz(iso, lg, tzT);
   const [ls, st] = await Promise.all([recentLessons(teacherId), myStudents(teacherId)]);
   const nm = (id: unknown) => st.find((x) => x.id === id)?.name || '';
   const rows: { text: string; callback_data: string }[][] = ls.map((l) => [{ text: `${when(l.start, lang)} · ${nm(l.student_id)}`.slice(0, 60), callback_data: `tl:${String(l.id).slice(0, 8)}` }]);
@@ -132,6 +133,7 @@ export async function attendPick(lang: Lang, teacherId: string) {
 
 // Крок 2: був / пропустив / скасовано
 export async function attendAsk(lang: Lang, teacherId: string, id8: string) {
+  const tzT = await teacherTz(teacherId); const when = (iso: unknown, lg: Lang) => whenTz(iso, lg, tzT);
   const [ls, st] = await Promise.all([recentLessons(teacherId), myStudents(teacherId)]);
   const l = ls.find((x) => String(x.id).startsWith(id8));
   if (!l) return { text: L(lang, { uk: 'Урок уже відмічено або не знайдено.', ru: 'Урок уже отмечен или не найден.', en: 'Lesson already marked or not found.' }) };
@@ -150,6 +152,7 @@ export async function attendAsk(lang: Lang, teacherId: string, id8: string) {
 
 // Крок 3: зберегти статус, показати баланс, кнопка «Скасувати»
 export async function attendSave(lang: Lang, teacherId: string, id8: string, code: string) {
+  const tzT = await teacherTz(teacherId); const when = (iso: unknown, lg: Lang) => whenTz(iso, lg, tzT);
   const status = code === 'd' ? 'done' : code === 'm' ? 'missed' : code === 'p' ? 'charged' : code === 'c' ? 'cancelled' : '';
   const [ls, st] = await Promise.all([recentLessons(teacherId), myStudents(teacherId)]);
   const l = ls.find((x) => String(x.id).startsWith(id8));

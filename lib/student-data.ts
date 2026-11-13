@@ -25,6 +25,7 @@ export type Enrollment = {
   adult: boolean; nmt: boolean;
   passOk: boolean; // можна взяти «пропуск» за монетки
   tgLinked: boolean; tgLink: string; // Telegram-сповіщення
+  tz?: string; // часовий пояс учня
   materials: { at: string; files: { url: string; name: string }[] }[];
   lessons: StudentLesson[]; words: StudentWord[]; homework: StudentHomework[];
 };
@@ -87,7 +88,7 @@ export async function getEnrollments(userId: string, lang = 'uk'): Promise<Enrol
       loginPhone: s.login_phone ? String(s.login_phone) : undefined,
       adult: Boolean(s.is_adult), nmt: Boolean(s.nmt),
       passOk: !s.is_adult && !s.pass_off,
-      tgLinked: Boolean(s.tg_chat_id), tgLink: studentLink(String(s.id), lang),
+      tgLinked: Boolean(s.tg_chat_id), tgLink: studentLink(String(s.id), lang), tz: s.tz ? String(s.tz) : undefined,
       loginPin: s.login_pin ? String(s.login_pin) : undefined,
       // документи, з якими працювали на уроках (текст нотаток учню не показуємо)
       materials: notes.map((n) => ({ at: String(n.at), files: ((n.files as { url: string; name: string }[] | null) ?? []).filter((f) => f && f.url) })).filter((m) => m.files.length),
@@ -203,6 +204,15 @@ export async function reviewWord(userId: string, wordId: string, ok: boolean) {
 }
 
 // Заметка учня до домашки (відповіді, питання вчителю). Вчитель отримує повідомлення в Telegram
+// Учень сам обирає свій часовий пояс (або його визначає браузер при першому вході)
+export async function setStudentTz(userId: string, studentId: string, tz: string) {
+  if (!dbReady()) return false;
+  const st = await db.query(`students?id=eq.${enc(studentId)}&user_id=eq.${enc(userId)}&select=id`);
+  if (!st[0]) return false;
+  await db.patchWhere(`students?id=eq.${enc(studentId)}`, { tz });
+  return true;
+}
+
 export async function saveHomeworkNote(userId: string, id: string, note: string) {
   if (!dbReady()) return false;
   const hw = await db.query(`homework?id=eq.${enc(id)}&select=id,student_id,teacher_id,title,student_note`);

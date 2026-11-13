@@ -1,6 +1,8 @@
 // Меню бота: оплата, успішність, монетки, заняття, домашка.
 // Хто що бачить: дорослий учень і батьки бачать оплату; діти й батьки бачать монетки; дитина сама оплату не бачить.
 import { db } from './db';
+import { DEFAULT_TZ, tzOr } from '@/lib/tz';
+import { teacherTz } from '@/lib/tz-server';
 import { balanceOf as coinsOf } from './coins';
 import { L, esc } from './telegram';
 
@@ -11,7 +13,7 @@ type Role = 'self' | 'parent';
 type Link = { role: Role; s: Record<string, unknown> };
 const LOC: Record<Lang, string> = { uk: 'uk-UA', ru: 'ru-RU', en: 'en-GB' };
 const asLang = (x: unknown): Lang => (x === 'ru' || x === 'en' ? x : 'uk');
-const COLS = 'id,name,price,prepaid_lessons,owed_lessons,pay_mode,is_adult,user_id,tg_lang,parent_tg_lang';
+const COLS = 'id,name,price,prepaid_lessons,owed_lessons,pay_mode,is_adult,user_id,tg_lang,parent_tg_lang,tz';
 
 // Усі учні, до яких прив’язаний цей чат (сам учень або батьки; у батьків може бути кілька дітей)
 export async function linksOf(chat: number): Promise<{ lang: Lang; links: Link[] }> {
@@ -50,8 +52,8 @@ export const menuTitle = (lang: Lang) => L(lang, { uk: 'Що подивитис�
 export const notLinked = 'Цей Telegram ще не підключений до учня. Відкрий посилання від учителя.\nЭтот Telegram ещё не подключён к ученику. Открой ссылку от учителя.\nThis Telegram is not linked to a student yet. Open the link from your teacher.';
 
 const money = (n: number, lang: Lang) => `${Math.round(n).toLocaleString(LOC[lang])} ₴`;
-const when = (iso: unknown, lang: Lang) => new Date(String(iso)).toLocaleString(LOC[lang], { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Kyiv' });
-const day = (iso: unknown, lang: Lang) => new Date(String(iso)).toLocaleDateString(LOC[lang], { day: 'numeric', month: 'short', timeZone: 'Europe/Kyiv' });
+const when = (iso: unknown, lang: Lang, tz = DEFAULT_TZ) => new Date(String(iso)).toLocaleString(LOC[lang], { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', timeZone: tz });
+const day = (iso: unknown, lang: Lang, tz = DEFAULT_TZ) => new Date(String(iso)).toLocaleDateString(LOC[lang], { day: 'numeric', month: 'short', timeZone: tz });
 
 // Відповідь на кнопку: текст (HTML) для всіх прив’язаних учнів
 export async function menuAnswer(kind: string, lang: Lang, links: Link[]): Promise<string> {
@@ -134,7 +136,7 @@ export async function menuAnswer(kind: string, lang: Lang, links: Link[]): Promi
     if (kind === 'next') {
       const up = await db.query(`lessons?student_id=eq.${sid}&status=eq.planned&start=gte.${enc(new Date().toISOString())}&select=student_id,start,topic&order=start.asc&limit=8`).then((r) => uniqLessons(r).slice(0, 4)).catch(() => []);
       parts.push(head(k) + (up.length
-        ? up.map((l) => `${when(l.start, lang)}${l.topic ? `: ${esc(String(l.topic))}` : ''}`).join('\n')
+        ? up.map((l) => `${when(l.start, lang, tzOr(k.s.tz))}${l.topic ? `: ${esc(String(l.topic))}` : ''}`).join('\n')
         : t({ uk: 'Найближчих занять поки не заплановано.', ru: 'Ближайших занятий пока не запланировано.', en: 'No upcoming lessons yet.' })));
     }
 
@@ -159,7 +161,6 @@ export async function menuAnswer(kind: string, lang: Lang, links: Link[]): Promi
 }
 
 // ---------- Меню вчителя: перевірка, оплати, розклад ----------
-const TZ = 'Europe/Kyiv';
 export async function teacherOf(chat: number): Promise<{ id: string; lang: Lang } | null> {
   const r = await db.query(`teacher_settings?tg_chat_id=eq.${enc(String(chat))}&select=teacher_id,tg_lang`).catch(() => []);
   return r[0] ? { id: String(r[0].teacher_id), lang: asLang(r[0].tg_lang) } : null;
@@ -174,7 +175,7 @@ export function teacherKeyboard(lang: Lang) {
 }
 
 // Початок доби за Києвом (UTC-мітка), зсув у днях
-function kyivDayStart(addDays = 0) {
+function kyivDayStart(addDays = 0, TZ = DEFAULT_TZ) {
   const now = new Date();
   const k = new Date(now.toLocaleString('en-US', { timeZone: TZ }));
   const off = k.getTime() - now.getTime();
@@ -201,6 +202,7 @@ export async function teacherBalances(teacherId: string) {
 
 export async function teacherAnswer(kind: string, lang: Lang, teacherId: string): Promise<string> {
   const t = (o: { uk: string; ru: string; en: string }) => L(lang, o);
+  const TZ = await teacherTz(teacherId);
   const T = enc(teacherId);
   if (kind === 'review') {
     const [hw, st] = await Promise.all([
@@ -210,7 +212,7 @@ export async function teacherAnswer(kind: string, lang: Lang, teacherId: string)
     if (!hw.length) return `<b>${t({ uk: 'На перевірку', ru: 'На проверку', en: 'To review' })}</b>\n\n${t({ uk: 'Усе перевірено, нових здач немає.', ru: 'Всё проверено, новых сдач нет.', en: 'All checked, nothing new.' })}`;
     const nm = (id: unknown) => esc(String(st.find((s) => s.id === id)?.name || ''));
     return `<b>${t({ uk: `На перевірку: ${hw.length}`, ru: `На проверку: ${hw.length}`, en: `To review: ${hw.length}` })}</b>\n\n` +
-      hw.map((h) => `${nm(h.student_id)}: ${esc(String(h.title || ''))}${Number(h.total) ? ` (${h.score}/${h.total})` : ''}${h.done_at ? `, ${day(h.done_at, lang)}` : ''}`).join('\n') +
+      hw.map((h) => `${nm(h.student_id)}: ${esc(String(h.title || ''))}${Number(h.total) ? ` (${h.score}/${h.total})` : ''}${h.done_at ? `, ${day(h.done_at, lang, TZ)}` : ''}`).join('\n') +
       `\n\nmurly.com.ua/teacher/review`;
   }
   if (kind === 'pay') {
@@ -229,12 +231,12 @@ export async function teacherAnswer(kind: string, lang: Lang, teacherId: string)
   }
   if (kind === 'today') {
     const [ls, st] = await Promise.all([
-      db.query(`lessons?teacher_id=eq.${T}&status=eq.planned&start=gte.${enc(kyivDayStart(0).toISOString())}&start=lt.${enc(kyivDayStart(2).toISOString())}&select=student_id,start,topic&order=start.asc`).then(uniqLessons).catch(() => []),
+      db.query(`lessons?teacher_id=eq.${T}&status=eq.planned&start=gte.${enc(kyivDayStart(0, TZ).toISOString())}&start=lt.${enc(kyivDayStart(2, TZ).toISOString())}&select=student_id,start,topic&order=start.asc`).then(uniqLessons).catch(() => []),
       db.query(`students?teacher_id=eq.${T}&select=id,name`).catch(() => []),
     ]);
     const nm = (id: unknown) => esc(String(st.find((s) => s.id === id)?.name || ''));
     const tm = (iso: unknown) => new Date(String(iso)).toLocaleTimeString(LOC[lang], { hour: '2-digit', minute: '2-digit', timeZone: TZ });
-    const split = kyivDayStart(1).getTime();
+    const split = kyivDayStart(1, TZ).getTime();
     const block = (title: string, arr: Record<string, unknown>[]) => `<b>${title}</b>\n` + (arr.length ? arr.map((l) => `${tm(l.start)} ${nm(l.student_id)}${l.topic ? `: ${esc(String(l.topic))}` : ''}`).join('\n') : t({ uk: 'Занять немає', ru: 'Занятий нет', en: 'No lessons' }));
     return `${block(t({ uk: 'Сьогодні', ru: 'Сегодня', en: 'Today' }), ls.filter((l) => +new Date(String(l.start)) < split))}\n\n${block(t({ uk: 'Завтра', ru: 'Завтра', en: 'Tomorrow' }), ls.filter((l) => +new Date(String(l.start)) >= split))}`;
   }

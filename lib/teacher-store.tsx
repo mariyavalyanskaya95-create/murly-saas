@@ -14,6 +14,7 @@ export type Student = {
   tg?: boolean; parentTg?: boolean; // підключили Telegram учень / батьки
   loginPhone?: string; loginPin?: string; // вхід учня за номером і PIN
   trLang?: 'uk' | 'ru'; // мова перекладу слів у словнику учня
+  tz?: string; // часовий пояс учня (IANA), порожньо = Київ
   payRemind?: boolean; passOff?: boolean; // нагадування про оплату в боті; заборона «пропуску» за монетки
   adult?: boolean; nmt?: boolean; // дорослий: без монеток; nmt: показувати НМТ
   owedLessons?: number; prepaidLessons?: number; // стартовий баланс: уроки до Murly (борг / оплачено наперед)
@@ -46,7 +47,7 @@ export type Homework = {
   note?: string; // заметки й питання учня
   passUsed?: boolean; // учень узяв +1 день за монетки
 };
-export type Settings = { name: string; link: string; linkKind: 'zoom' | 'meet' | 'other'; ai?: boolean };
+export type Settings = { name: string; link: string; linkKind: 'zoom' | 'meet' | 'other'; ai?: boolean; tz?: string };
 
 type Data = {
   students: Student[]; groups: Group[]; lessons: Lesson[]; notes: Note[]; words: Word[]; payments: Payment[]; homework: Homework[]; plans: Plan[]; settings: Settings;
