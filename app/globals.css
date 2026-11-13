@@ -4251,3 +4251,35 @@ body:has(.qw-fab) .mu-buddy { bottom: 74px; }
 @media (max-width: 900px) { body:has(.t-side) .mu-buddy { bottom: 74px; } .mu-buddy img { width: 76px; height: 76px; } .mu-buddy__say { max-width: 190px; font-size: 14px; margin-bottom: 44px; } }
 @media (prefers-reduced-motion: reduce) { .mu-buddy { transition: none; } }
 @media print { .mu-buddy { display: none; } }
+
+/* Розклад: пастельні теми, примітка, тривалість, копія */
+.wg { --wg-bg: #FBFAFF; --wg-head: #EEEBFC; --wg-line: #E4E0F5; --wg-today: #F1EEFD; --wg-pill: #CDBFF5; }
+.wg--pink { --wg-bg: #FFF8FA; --wg-head: #FBE6EE; --wg-line: #F5DCE6; --wg-today: #FDEEF3; --wg-pill: #F4C0D1; }
+.wg--blue { --wg-bg: #F7FBFF; --wg-head: #E2EEFB; --wg-line: #D9E7F6; --wg-today: #EAF3FD; --wg-pill: #AFCDF0; }
+.wg--green { --wg-bg: #FAFDF6; --wg-head: #E8F5DA; --wg-line: #DDEDCB; --wg-today: #F0F8E6; --wg-pill: #C6E6A4; }
+.wg--yellow { --wg-bg: #FFFDF4; --wg-head: #FBF3D2; --wg-line: #F2E8C2; --wg-today: #FDF7DF; --wg-pill: #F6E08F; }
+.wg--peach { --wg-bg: #FFFAF6; --wg-head: #FCE8DA; --wg-line: #F4DDCD; --wg-today: #FDF0E6; --wg-pill: #F8C7A6; }
+.wg--mint { --wg-bg: #F6FDFA; --wg-head: #DDF4EB; --wg-line: #CDEBDF; --wg-today: #E9F8F2; --wg-pill: #A9E4C8; }
+.wg .wg-scroll { background: var(--wg-bg); }
+.wg .wg-head { background: var(--wg-head); border-left-color: var(--wg-line); }
+.wg .wg-corner { background: var(--wg-head); }
+.wg .wg-col { border-left-color: var(--wg-line); background-image: linear-gradient(to bottom, var(--wg-line) 1px, transparent 1px); }
+.wg .wg-col.is-today { background-color: var(--wg-today); }
+.wg .wg-head.is-today b { background: var(--wg-pill); }
+.wg-themes { display: inline-flex; gap: 6px; align-items: center; margin-left: 10px; }
+.wg-swatch { width: 26px; height: 26px; border-radius: 50%; border: 1.5px solid var(--mu-ink); cursor: pointer; padding: 0; transition: transform .15s; }
+.wg-swatch:hover { transform: scale(1.1); }
+.wg-swatch.is-on { box-shadow: 0 0 0 3px #fff, 0 0 0 5px var(--mu-ink); }
+.wg-note { font-size: 11px; line-height: 1.2; font-style: normal; color: var(--mu-ink-soft); overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.wg-note-dot { position: absolute; right: 5px; bottom: 4px; width: 7px; height: 7px; border-radius: 50%; background: var(--mu-ink); }
+.wg-edit { display: grid; gap: 10px; margin: 10px 0; }
+.wg-edit label { display: grid; gap: 4px; font-size: 13px; font-weight: 700; }
+.wg-edit textarea { font: inherit; font-weight: 500; font-size: 14px; padding: 8px 10px; border: 1.5px solid var(--mu-ink); border-radius: 12px; resize: vertical; background: #fff; }
+.wg-durs { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.wg-durs input, .wg-copy input { font: inherit; font-size: 14px; padding: 5px 8px; border: 1.5px solid var(--mu-ink); border-radius: 10px; background: #fff; }
+.wg-durs input { width: 76px; }
+.wg-msg { margin: 4px 0 8px; padding: 8px 12px; border-radius: 12px; background: var(--mu-blue-soft, #E2E8FA); font-size: 14px; font-weight: 600; }
+/* Плашка «Murly безкоштовний для нових користувачів» над футером */
+.mu-freenote { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin: 28px 0 22px; padding: 16px 20px; background: #fff; border: 1.5px solid var(--mu-ink); border-radius: 20px; box-shadow: 0 6px 22px rgba(27,33,64,.07); }
+.mu-freenote p { flex: 1 1 320px; margin: 0; font-size: 16px; line-height: 1.45; }
+.mu-freenote__ic { width: 26px; height: 26px; flex: none; color: var(--mu-ink); }
