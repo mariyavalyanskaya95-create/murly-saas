@@ -4283,3 +4283,15 @@ body:has(.qw-fab) .mu-buddy { bottom: 74px; }
 .mu-freenote { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin: 28px 0 22px; padding: 16px 20px; background: #fff; border: 1.5px solid var(--mu-ink); border-radius: 20px; box-shadow: 0 6px 22px rgba(27,33,64,.07); }
 .mu-freenote p { flex: 1 1 320px; margin: 0; font-size: 16px; line-height: 1.45; }
 .mu-freenote__ic { width: 26px; height: 26px; flex: none; color: var(--mu-ink); }
+/* Палітра кольорів учня */
+.t-dot--blush, .t-student--blush { --c: #FBDDE6; } .t-dot--rose, .t-student--rose { --c: #F6C3D5; } .t-dot--pink, .t-student--pink { --c: #F2A9C2; }
+.t-dot--mauve, .t-student--mauve { --c: #E7C9E8; } .t-dot--peach, .t-student--peach { --c: #FDD5B8; } .t-dot--sand, .t-student--sand { --c: #EEDFC9; }
+.t-dot--butter, .t-student--butter { --c: #FBEBB2; } .t-dot--lemon, .t-student--lemon { --c: #F5F0A8; } .t-dot--pistachio, .t-student--pistachio { --c: #D7EDB4; }
+.t-dot--sage, .t-student--sage { --c: #C9DEC6; } .t-dot--aqua, .t-student--aqua { --c: #BCE7EA; } .t-dot--baby, .t-student--baby { --c: #C6DDF8; }
+.t-dot--lavender, .t-student--lavender { --c: #DED2F8; } .t-dot--grey, .t-student--grey { --c: #DFE1EA; }
+.sc-colors { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+.sc-color { width: 30px; height: 30px; border-radius: 50%; border: 1.5px solid var(--mu-ink); background: var(--c); cursor: pointer; padding: 0; transition: transform .15s; }
+.sc-colors.is-compact .sc-color { width: 24px; height: 24px; }
+.sc-color:hover { transform: scale(1.12); }
+.sc-color.is-on { box-shadow: 0 0 0 3px #fff, 0 0 0 5px var(--mu-ink); }
+.sc-color:focus-visible { outline: 3px solid var(--mu-blue); outline-offset: 3px; }
