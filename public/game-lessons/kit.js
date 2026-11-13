@@ -42,6 +42,8 @@
   // ---------- нотатки українською / російською ----------
   function applyLang() {
     document.querySelectorAll('.lk-tnote[data-ru], details.teacher [data-ru]').forEach((p) => { if (!p.dataset.uk) p.dataset.uk = p.innerHTML; p.innerHTML = LANG === 'ru' ? p.dataset.ru : p.dataset.uk; });
+    // переклади слів у самому уроці (картки, таблиці, match): <span data-tr-ru="...">укр</span>
+    document.querySelectorAll('[data-tr-ru]').forEach((p) => { if (p.dataset.trUk === undefined) p.dataset.trUk = p.innerHTML; p.innerHTML = LANG === 'ru' ? p.dataset.trRu : p.dataset.trUk; });
     document.querySelectorAll('[data-mk-lang]').forEach((b) => b.classList.toggle('on', b.dataset.mkLang === LANG));
   }
   function setLang(l, fromCh) { LANG = l; ls.set('murly:tlang', l); try { document.cookie = 'murly_lang=' + l + '; path=/; max-age=31536000; samesite=lax'; } catch (e) { /* */ } applyLang(); if (!fromCh && ch) ch.postMessage({ t: 'lang', l }); if (PULT) renderPult(); else renderBanner(); }
