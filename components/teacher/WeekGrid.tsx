@@ -77,7 +77,7 @@ export default function WeekGrid({ days }: { days: Date[] }) {
       <button key={key} type="button" onClick={() => setSel(sel === key ? null : key)}
         draggable onDragStart={(e) => { e.dataTransfer.setData('text/plain', key); e.dataTransfer.effectAllowed = 'move'; grab.current = e.clientY - (e.currentTarget as HTMLElement).getBoundingClientRect().top; }}
         className={`wg-l t-student--${st?.color ?? 'lime'} is-${l.status} ${l.status === 'planned' && past ? 'is-unmarked' : ''} ${sel === key ? 'is-sel' : ''} ${grp ? 'is-group' : ''}`}
-        style={{ top, height: h, ...side }} title={`${fmtTime(l.start, t.lang)} ${st?.name ?? ''}`}>
+        style={{ top, height: h, ...side }} title={`${fmtTime(l.start, t.lang)} ${st?.name ?? ''}${!grp && (st as { tz?: string })?.tz ? ` · ${new Date(l.start).toLocaleTimeString(t.lang === 'en' ? 'en-GB' : t.lang === 'ru' ? 'ru-RU' : 'uk-UA', { hour: '2-digit', minute: '2-digit', timeZone: (st as { tz?: string }).tz })} (${(st as { tz?: string }).tz})` : ''}`}>
         <b>{st?.name ?? '?'}</b>
         <span>{fmtTime(l.start, t.lang)}{l.duration !== 60 ? ` · ${l.duration}′` : ''}</span>
         {l.status === 'done' && <i className="wg-mark">✓</i>}

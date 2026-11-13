@@ -13,6 +13,8 @@ export default function LessonRow({ l, showStudent = true, showDate = true }: { 
   const [more, setMore] = useState(false); // рідкісні дії сховані під «Ще»
   const st = data.students.find((s) => s.id === l.studentId);
   const link = lessonLink(data, l);
+  // Час у поясі учня, якщо він інший, ніж у тебе
+  const theirs = (() => { if (!st?.tz) return null; try { const loc = t.lang === 'en' ? 'en-GB' : t.lang === 'ru' ? 'ru-RU' : 'uk-UA'; const o = { hour: '2-digit', minute: '2-digit' } as const; const a = new Date(l.start).toLocaleTimeString(loc, { ...o, timeZone: st.tz }); return a !== new Date(l.start).toLocaleTimeString(loc, o) ? a : null; } catch { return null; } })();
   const past = new Date(l.start).getTime() + l.duration * 60000 < Date.now();
   const started = new Date(l.start).getTime() <= Date.now(); // «був / не прийшов» можна відмітити тільки коли урок уже почався
 
@@ -31,6 +33,7 @@ export default function LessonRow({ l, showStudent = true, showDate = true }: { 
     <div className={`t-lesson is-${l.status}`}>
       <div className="t-lesson__time">
         <b>{fmtTime(l.start, t.lang)}</b>
+        {theirs && <span className="t-lesson__tz" title={st?.tz}>{t({ uk: 'в учня', ru: 'у ученика', en: 'their time' })} {theirs}</span>}
         {showDate && <span>{fmtDate(l.start, t.lang)}</span>}
         <span>{l.duration} {t({ uk: 'хв', ru: 'мин', en: 'min' })}</span>
       </div>

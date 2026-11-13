@@ -1,4 +1,5 @@
 'use client';
+import TzSelect from '@/components/TzSelect';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useMemo, useRef, useState } from 'react';
@@ -523,6 +524,11 @@ function PayTab({ id }: { id: string }) {
           </div>
         </form>
         <p className="t-muted">{t({ uk: 'Оплати мінус проведені заняття.', ru: 'Оплаты минус проведённые занятия.', en: 'Payments minus lessons held.' })}</p>
+      </div>
+      <div className="t-card">
+        <h2>{t({ uk: 'Часовий пояс учня', ru: 'Часовой пояс ученика', en: 'Student’s time zone' })}</h2>
+        <p className="t-muted">{t({ uk: 'Нагадування в Telegram учню і батькам приходять у їхньому часі. У розкладі ти бачиш час і свій, і учня.', ru: 'Напоминания в Telegram ученику и родителям приходят в их времени. В расписании ты видишь время и своё, и ученика.', en: 'Telegram reminders reach the student and parents in their local time. The schedule shows both your time and theirs.' })}</p>
+        <TzSelect value={s.tz} onChange={(tz) => updateStudent(id, { tz })} />
       </div>
       <label className="t-card t-remind">
         <input type="checkbox" checked={!!s.payRemind} onChange={(e) => updateStudent(id, { payRemind: e.target.checked })} />
