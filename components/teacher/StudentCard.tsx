@@ -139,11 +139,27 @@ export default function StudentCard({ id }: { id: string }) {
       {tab === 'words' && <WordsTab id={s.id} />}
       {tab === 'notes' && <NotesTab id={s.id} />}
       {tab === 'pay' && <PayTab id={s.id} />}
+      {tab === 'profile' && <StudentTz id={s.id} />}
       {tab === 'profile' && (
         <ProfileTab id={s.id} onDelete={() => { t.removeStudent(s.id); router.push('/teacher/students'); }} />
       )}
       <QuickWords studentId={s.id} name={s.name} />
     </div>
+  );
+}
+
+// Часовий пояс учня: у профілі, бо це дані про учня
+function StudentTz({ id }: { id: string }) {
+  const t = useT();
+  const { data, updateStudent } = useTeacher();
+  const s = data.students.find((x) => x.id === id);
+  if (!s) return null;
+  return (
+    <div className="t-card">
+        <h2>{t({ uk: 'Часовий пояс учня', ru: 'Часовой пояс ученика', en: 'Student’s time zone' })}</h2>
+        <p className="t-muted">{t({ uk: 'Нагадування в Telegram учню і батькам приходять у їхньому часі. У розкладі ти бачиш час і свій, і учня.', ru: 'Напоминания в Telegram ученику и родителям приходят в их времени. В расписании ты видишь время и своё, и ученика.', en: 'Telegram reminders reach the student and parents in their local time. The schedule shows both your time and theirs.' })}</p>
+        <TzSelect value={s.tz} onChange={(tz) => updateStudent(id, { tz })} />
+      </div>
   );
 }
 
@@ -524,11 +540,6 @@ function PayTab({ id }: { id: string }) {
           </div>
         </form>
         <p className="t-muted">{t({ uk: 'Оплати мінус проведені заняття.', ru: 'Оплаты минус проведённые занятия.', en: 'Payments minus lessons held.' })}</p>
-      </div>
-      <div className="t-card">
-        <h2>{t({ uk: 'Часовий пояс учня', ru: 'Часовой пояс ученика', en: 'Student’s time zone' })}</h2>
-        <p className="t-muted">{t({ uk: 'Нагадування в Telegram учню і батькам приходять у їхньому часі. У розкладі ти бачиш час і свій, і учня.', ru: 'Напоминания в Telegram ученику и родителям приходят в их времени. В расписании ты видишь время и своё, и ученика.', en: 'Telegram reminders reach the student and parents in their local time. The schedule shows both your time and theirs.' })}</p>
-        <TzSelect value={s.tz} onChange={(tz) => updateStudent(id, { tz })} />
       </div>
       <label className="t-card t-remind">
         <input type="checkbox" checked={!!s.payRemind} onChange={(e) => updateStudent(id, { payRemind: e.target.checked })} />
