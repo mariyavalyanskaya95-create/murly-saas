@@ -16,8 +16,8 @@ export function generateMetadata({ params }: { params: { id: string } }): Metada
   const s = songById(params.id); const t = tr();
   if (!s) return {};
   return {
-    title: t({ uk: `${s.title} (${s.artist}): англійська через пісню | Murly`, ru: `${s.title} (${s.artist}): английский по песне | Murly`, en: `${s.title} (${s.artist}): learn English with the song | Murly` }),
-    description: `${t(s.about)} ${s.phrases.map((p) => p.en).join(', ')}.`,
+    title: t({ uk: `${s.title} (${s.artist}): фрази з перекладом, англійська по пісні | Murly`, ru: `${s.title} (${s.artist}): фразы с переводом, английский по песне | Murly`, en: `${s.title} (${s.artist}): phrases explained, learn English with the song | Murly` }),
+    description: `${t(s.about)} ${t({ uk: 'Фрази з перекладом:', ru: 'Фразы с переводом:', en: 'Phrases explained:' })} ${s.phrases.slice(0, 5).map((p) => p.en).join(', ')}. ${t({ uk: 'Квіз і вправи безкоштовно.', ru: 'Квиз и упражнения бесплатно.', en: 'Free quiz and exercises.' })}`.slice(0, 300),
     alternates: alt(`/songs/${s.id}`),
   };
 }
@@ -30,8 +30,21 @@ export default function SongPage({ params }: { params: { id: string } }) {
   const next = SONGS[(i + 1) % SONGS.length];
   const L = SONG_LESSONS[s.id];
   const D = SONG_DEEP[s.id];
+  const url = `https://murly.com.ua/songs/${s.id}`;
+  const ld = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      { '@type': 'LearningResource', name: `${s.title} (${s.artist}): ${t({ uk: 'англійська по пісні', ru: 'английский по песне', en: 'learn English with the song' })}`, url, inLanguage: ['en', t.lang], educationalLevel: s.level, learningResourceType: ['Lesson', 'Quiz'], isAccessibleForFree: true, teaches: s.phrases.map((p) => p.en).slice(0, 10), about: { '@type': 'MusicRecording', name: s.title, byArtist: { '@type': 'MusicGroup', name: s.artist }, datePublished: String(s.year) }, provider: { '@type': 'Organization', name: 'Murly', url: 'https://murly.com.ua' } },
+      { '@type': 'BreadcrumbList', itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Murly', item: 'https://murly.com.ua' },
+        { '@type': 'ListItem', position: 2, name: t({ uk: 'Англійська через пісні', ru: 'Английский по песням', en: 'English through songs' }), item: 'https://murly.com.ua/songs' },
+        { '@type': 'ListItem', position: 3, name: `${s.title} (${s.artist})`, item: url },
+      ] },
+    ],
+  };
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
       <SiteNav />
       <section className="mu-page-hero" style={{ paddingBottom: 8 }}>
         <div className="mu-container sg-head">
