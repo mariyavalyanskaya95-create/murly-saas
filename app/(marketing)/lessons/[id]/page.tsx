@@ -27,7 +27,13 @@ export function generateMetadata({ params }: { params: { id: string } }): Metada
   const p = find(params.id);
   if (!p) return {};
   const aims = (p.aims ?? '').split('\n').filter(Boolean).slice(0, 2).join('. ');
-  return { title: `${p.title} · ${p.level} | Murly`, description: aims || p.title, alternates: alt(`/lessons/${params.id}`) };
+  const lang = getLang();
+  const L = (x: { uk: string; ru: string; en: string }) => (lang === 'ru' ? x.ru : lang === 'en' ? x.en : x.uk);
+  // заголовок під пошук: назва уроку + рівень + «безкоштовно», опис: тема, цілі й що є на сторінці
+  const title = `${p.title}: ${L({ uk: 'урок англійської', ru: 'урок английского', en: 'English lesson' })} ${p.level} | Murly`;
+  const extra = L({ uk: 'Безкоштовно: вправи з автоперевіркою, слова з озвучкою, питання для розмови.', ru: 'Бесплатно: упражнения с автопроверкой, слова с озвучкой, вопросы для разговора.', en: 'Free: self-checking exercises, words with audio, speaking questions.' });
+  const description = [p.topic, aims].filter(Boolean).join('. ').slice(0, 200) + '. ' + extra;
+  return { title, description, alternates: alt(`/lessons/${params.id}`) };
 }
 
 export default async function LessonPage({ params }: { params: { id: string } }) {
