@@ -660,9 +660,9 @@ export const BOOKS: Book[] = [
   "id": "three-little-pigs-b1",
   "title": "The Three Little Pigs",
   "titleT": {
-   "uk": "Три поросятка (B1-B2)",
-   "ru": "Три поросёнка (B1-B2)",
-   "en": "The Three Little Pigs (B1-B2)"
+   "uk": "Три поросятка",
+   "ru": "Три поросёнка",
+   "en": "The Three Little Pigs"
   },
   "level": "B1-B2",
   "age": "10+",
@@ -744,9 +744,9 @@ export const BOOKS: Book[] = [
   "id": "little-red-riding-hood-b1",
   "title": "Little Red Riding Hood",
   "titleT": {
-   "uk": "Червона Шапочка (B1-B2)",
-   "ru": "Красная Шапочка (B1-B2)",
-   "en": "Little Red Riding Hood (B1-B2)"
+   "uk": "Червона Шапочка",
+   "ru": "Красная Шапочка",
+   "en": "Little Red Riding Hood"
   },
   "level": "B1-B2",
   "age": "10+",
@@ -828,9 +828,9 @@ export const BOOKS: Book[] = [
   "id": "cinderella-b1",
   "title": "Cinderella",
   "titleT": {
-   "uk": "Попелюшка (B1-B2)",
-   "ru": "Золушка (B1-B2)",
-   "en": "Cinderella (B1-B2)"
+   "uk": "Попелюшка",
+   "ru": "Золушка",
+   "en": "Cinderella"
   },
   "level": "B1-B2",
   "age": "11+",
