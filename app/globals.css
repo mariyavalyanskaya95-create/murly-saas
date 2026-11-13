@@ -1132,6 +1132,9 @@ a.t-stat:hover { transform: translateY(-2px); }
 .t-lesson:first-of-type { border-top: 0; }
 .t-lesson__time { display: flex; flex-direction: column; font-size: 13px; color: var(--mu-ink-muted); }
 .t-lesson__time b { font-size: 20px; color: var(--mu-ink); }
+.t-lesson__tz { font-size: 12px; font-weight: 700; color: #5B4BB0; white-space: nowrap; }
+.tz-select { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.tz-select select { max-width: 100%; }
 .t-lesson__info { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
 .t-lesson__name { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: 17px; color: var(--mu-ink); text-decoration: none; }
 .t-lesson__name:hover { text-decoration: underline; }
