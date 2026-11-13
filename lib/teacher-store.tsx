@@ -158,10 +158,11 @@ function useStore(userId: string) {
         return { ...l, id: uid(), start: dt.toISOString(), status: (l.status ?? 'planned') as LessonStatus };
       }).filter((r) => !dataRef.current.lessons.some((x) => x.studentId === r.studentId && x.status !== 'cancelled' && new Date(x.start).getTime() === new Date(r.start).getTime()));
       // без дублів: якщо в учня вже є заняття на цей самий час, нове не створюємо
-      if (!rows.length) return;
+      if (!rows.length) return 0;
       dataRef.current = { ...dataRef.current, lessons: [...dataRef.current.lessons, ...rows] };
       update((d) => ({ ...d, lessons: [...d.lessons, ...rows] }));
       sync('addLessons', { rows });
+      return rows.length;
     },
     setLessonStatus: (id: string, status: LessonStatus) => {
       update((d) => ({ ...d, lessons: d.lessons.map((x) => (x.id === id ? { ...x, status } : x)) }));
