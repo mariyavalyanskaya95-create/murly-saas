@@ -19,8 +19,10 @@ export function generateMetadata(): Metadata {
 
 export default function SongsPage() {
   const t = tr();
+  const ld = { '@context': 'https://schema.org', '@type': 'ItemList', name: t({ uk: 'Англійська через пісні', ru: 'Английский по песням', en: 'Learn English with songs' }), numberOfItems: SONGS.length, itemListElement: SONGS.map((s, i) => ({ '@type': 'ListItem', position: i + 1, url: `https://murly.com.ua/songs/${s.id}`, name: `${s.title} (${s.artist})` })) };
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
       <SiteNav />
       <section className="mu-page-hero" style={{ paddingBottom: 16 }}>
         <div className="mu-container">
