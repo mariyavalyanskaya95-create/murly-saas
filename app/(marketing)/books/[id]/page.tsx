@@ -34,6 +34,8 @@ export default function BookPage({ params }: { params: { id: string } }) {
         <div className="mu-container bk-wrap">
           <Link href="/books" className="t-back">← {t({ uk: 'Усі казки', ru: 'Все сказки', en: 'All tales' })}</Link>
           <h1 className="bk-title">{b.title} <small>{t(b.titleT)} · {b.level}</small></h1>
+          {b.harder && <p className="bk-alt"><Link href={`/books/${b.harder}`}>{t({ uk: 'Є складніша версія цієї казки для B1-B2', ru: 'Есть более сложная версия этой сказки для B1-B2', en: 'There is a harder B1-B2 version of this tale' })} →</Link></p>}
+          {b.base && <p className="bk-alt"><Link href={`/books/${b.base}`}>← {t({ uk: 'Простіша версія для A1-A2', ru: 'Более простая версия для A1-A2', en: 'Easier A1-A2 version' })}</Link></p>}
           <BookReader b={b} />
           <p className="bk-next"><Link href={`/books/${next.id}`} className="mu-btn">{t({ uk: 'Наступна казка', ru: 'Следующая сказка', en: 'Next tale' })}: {next.title}</Link></p>
         </div>
