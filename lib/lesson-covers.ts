@@ -45,7 +45,6 @@ const COVERS: Record<string, string> = {
   'lib-gr-passive': '1647427060118-4911c9821b82',
   'lib-gr-perfect-vs-past': '1528569937393-ee892b976859',
   'lib-drill-to-be': '1669689290695-7f0efe5d4c8e',
-  'lib-modern-monsters': '1695758987304-694fdcb654fa',
   'lib-drill-there-is-are': '1622429420355-5677170f4fad',
   'lib-drill-present-simple': '1609775436218-78e51e5e61dd',
   'lib-drill-imperatives-lets': '1786765609630-faeb98763bfd',
