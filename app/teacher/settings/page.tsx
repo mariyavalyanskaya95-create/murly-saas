@@ -6,6 +6,7 @@ import { useT } from '@/components/LangProvider';
 import ProfileCard from '@/components/ProfileCard';
 import { InviteCard } from '@/components/teacher/Growth';
 import type { T } from '@/lib/i18n';
+import TzSelect, { browserTz } from '@/components/TzSelect';
 
 const KINDS: { id: Settings['linkKind']; label: T; hint: T }[] = [
   { id: 'zoom', label: { uk: 'Zoom' }, hint: { uk: 'https://zoom.us/j/1234567890' } },
@@ -19,6 +20,8 @@ export default function SettingsPage() {
   const [f, setF] = useState<Settings>(data.settings);
   const [saved, setSaved] = useState(false);
   useEffect(() => { if (ready) setF(data.settings); }, [ready]); // eslint-disable-line react-hooks/exhaustive-deps
+  // Пояс учителя ще не обрано: беремо з браузера і зберігаємо одразу, щоб бот писав у твоєму часі
+  useEffect(() => { if (ready && !data.settings.tz) saveSettings({ ...data.settings, tz: browserTz() }); }, [ready]); // eslint-disable-line react-hooks/exhaustive-deps
   if (!ready) return null;
 
   const kind = KINDS.find((k) => k.id === f.linkKind)!;
@@ -43,6 +46,10 @@ export default function SettingsPage() {
         <div className="t-form">
           <label>{t({ uk: 'Ім’я', ru: 'Имя', en: 'Name' })}<input value={f.name} onChange={(e) => { setF({ ...f, name: e.target.value }); setSaved(false); }} placeholder={t({ uk: 'Напр. Марія', ru: 'Напр. Мария', en: 'e.g. Maria' })} /></label>
         </div>
+
+        <h2>{t({ uk: 'Твій часовий пояс', ru: 'Твой часовой пояс', en: 'Your time zone' })}</h2>
+        <p className="t-muted">{t({ uk: 'У цьому часі бот надсилає тобі розклад і ранкові нагадування. Учням пояс задаєш у картці учня.', ru: 'В этом времени бот присылает тебе расписание и утренние напоминания. Ученикам пояс задаёшь в карточке ученика.', en: 'The bot sends you the schedule and morning reminders in this time. Set each student’s zone on their card.' })}</p>
+        <div className="t-form" style={{ marginBottom: 14 }}><label className="t-form__wide">{t({ uk: 'Країна / пояс', ru: 'Страна / пояс', en: 'Country / zone' })}<TzSelect value={f.tz} onChange={(tz) => { setF({ ...f, tz }); setSaved(false); }} /></label></div>
 
         <h2>{t({ uk: 'Дзвінки', ru: 'Звонки', en: 'Calls' })}</h2>
         <p className="t-muted">{t({ uk: 'Кнопка «Дзвінок» з’явиться біля кожного заняття.', ru: 'Кнопка «Звонок» появится возле каждого занятия.', en: 'A “Call” button will appear next to every lesson.' })}</p>
