@@ -102,10 +102,10 @@ export default function MurlyCat({ className = '', skin = 'white', greet = 0, hi
               <ellipse cx="88" cy="224" rx="16" ry="9" fill={k.paw} stroke={k.line} strokeWidth="2.5" /><ellipse cx="132" cy="224" rx="16" ry="9" fill={k.paw} stroke={k.line} strokeWidth="2.5" />
               <path d="M82 226h12M126 226h12" stroke="#C9D3F3" strokeWidth="2.5" strokeLinecap="round" />
               {season === 'autumn' && skin === 'white' && (
-                <g className="mcat__leaf" transform="rotate(-18 60 160)">
+                <g transform="translate(76 188) scale(.78) rotate(-14) translate(-60 -180)"><g className="mcat__leaf">
                   <path d="M60 128l5 12 11-6-3 13 12 2-10 8 5 9-12-3-2 12-6-10-6 10-2-12-12 3 5-9-10-8 12-2-3-13 11 6z" fill="#E8742B" stroke="#B9531C" strokeWidth="1.8" strokeLinejoin="round" />
                   <path d="M60 140v40" stroke="#9A4317" strokeWidth="2.2" strokeLinecap="round" />
-                </g>
+                </g></g>
               )}
               {season && skin === 'peach' && (
                 <g className="mcat__cup">
