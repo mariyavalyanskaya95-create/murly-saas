@@ -1,14 +1,14 @@
 import { NextResponse } from 'next/server';
 import { db, dbReady } from '@/lib/db';
 import { L, SITE, tgReady, tgSend } from '@/lib/telegram';
+import { tzOr } from '@/lib/tz';
 
 export const dynamic = 'force-dynamic';
 
 // Кожні 5 хвилин (Supabase pg_cron): заняття, які призначили або перенесли щонайменше 10 хв тому,
 // одним повідомленням на учня йдуть у Telegram учню і батькам. Повторний виклик нічого не дублює.
-const TZ = 'Europe/Kyiv';
 const LOC: Record<string, string> = { uk: 'uk-UA', ru: 'ru-RU', en: 'en-GB' };
-const when = (iso: string, lang: string) => new Date(iso).toLocaleString(LOC[lang] || 'uk-UA', { weekday: 'long', day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit', timeZone: TZ });
+const when = (iso: string, lang: string, tz: string) => new Date(iso).toLocaleString(LOC[lang] || 'uk-UA', { weekday: 'long', day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit', timeZone: tz });
 const enc = encodeURIComponent;
 
 export async function GET() {
@@ -26,11 +26,12 @@ export async function GET() {
   if (!byStudent.size) return NextResponse.json({ sent: 0 });
 
   const ids = Array.from(byStudent.keys());
-  const students = await db.query(`students?id=in.(${ids.map(enc).join(',')})&select=id,name,tg_chat_id,tg_lang,parent_tg_chat_id,parent_tg_lang`).catch(() => []);
+  const students = await db.query(`students?id=in.(${ids.map(enc).join(',')})&select=id,name,tg_chat_id,tg_lang,parent_tg_chat_id,parent_tg_lang,tz`).catch(() => []);
   let sent = 0;
   for (const s of students) {
     const ls = (byStudent.get(String(s.id)) ?? []).slice(0, 6);
     if (!ls.length) continue;
+    const tz = tzOr(s.tz);
     const moved = ls.some((l) => l.notified_start || l.notify_moved);
     const text = (lang: string, parent: boolean) => {
       const head = parent
@@ -38,7 +39,7 @@ export async function GET() {
         : moved
           ? L(lang, { uk: '📅 Час заняття змінено:', ru: '📅 Время занятия изменилось:', en: '📅 Your lesson time has changed:' })
           : L(lang, { uk: '📅 Нове заняття в розкладі:', ru: '📅 Новое занятие в расписании:', en: '📅 New lesson in your schedule:' });
-      const lines = ls.map((l) => `<b>${when(String(l.start), lang)}</b>${l.topic ? ` · ${String(l.topic).replace(/[<>&]/g, '')}` : ''}`);
+      const lines = ls.map((l) => `<b>${when(String(l.start), lang, tz)}</b>${l.topic ? ` · ${String(l.topic).replace(/[<>&]/g, '')}` : ''}`);
       return `${head}\n${lines.join('\n')}`;
     };
     const btn = (lang: string) => ({ text: L(lang, { uk: 'Мій розклад', ru: 'Моё расписание', en: 'My schedule' }), url: `${SITE}/student` });
