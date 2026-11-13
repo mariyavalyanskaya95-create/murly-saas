@@ -419,3 +419,88 @@
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
 })();
+
+// Word bank: слово можна перетягнути в пропуск або натиснути слово, потім пропуск (працює і на телефоні)
+(function () {
+  const BANKS = '.bank, .fm-bank, [data-bank]';
+  const css = document.createElement('style');
+  css.textContent = `${BANKS.split(',').map((s) => s.trim() + ' .chip').join(',')}{cursor:grab;user-select:none;touch-action:none;transition:transform .15s,opacity .2s,box-shadow .15s}
+.chip.wb-sel{background:#c9b8ff;transform:translateY(-2px);box-shadow:0 3px 0 #1d1d35}
+.chip.wb-used{opacity:.35;text-decoration:line-through}
+.wb-ghost{position:fixed;z-index:9999;pointer-events:none;transform:translate(-50%,-60%) rotate(-3deg);box-shadow:0 6px 14px rgba(0,0,0,.25);cursor:grabbing}
+input.wb-over{outline:3px dashed #7b6cf6;outline-offset:2px;background:#efeaff!important}
+input.wb-fill{animation:wbpop .25s}
+@keyframes wbpop{50%{transform:scale(1.08)}}`;
+  document.head.appendChild(css);
+  const hint = () => document.querySelectorAll(BANKS).forEach((b) => {
+    if (b.previousElementSibling && b.previousElementSibling.classList.contains('wb-hint')) return;
+    const h = document.createElement('p'); h.className = 'wb-hint'; h.style.cssText = 'margin:4px 0 0;font-size:13px;opacity:.7';
+    h.textContent = 'Drag a word into the gap, or tap a word and then tap the gap.'; b.before(h);
+  });
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', hint); else hint();
+  const isGap = (el) => el && el.tagName === 'INPUT' && (!el.type || el.type === 'text');
+  // пропуски, до яких належить банк: наступні сусідні блоки, інакше вся секція
+  function gapsOf(bank) {
+    let out = [];
+    for (let n = bank.nextElementSibling; n && !n.matches(BANKS); n = n.nextElementSibling) {
+      out = out.concat([...n.querySelectorAll('input')].filter(isGap));
+      if (out.length) break;
+    }
+    if (!out.length) out = [...(bank.closest('section') || bank.parentElement).querySelectorAll('input')].filter(isGap);
+    return out;
+  }
+  const bankOf = (inp) => [...document.querySelectorAll(BANKS)].find((b) => gapsOf(b).includes(inp));
+  function refresh(bank) {
+    if (!bank) return;
+    const used = gapsOf(bank).map((i) => i.value.trim().toLowerCase()).filter(Boolean);
+    bank.querySelectorAll('.chip').forEach((c) => {
+      const w = c.textContent.trim().toLowerCase(); const k = used.indexOf(w);
+      c.classList.toggle('wb-used', k >= 0); if (k >= 0) used.splice(k, 1);
+    });
+  }
+  function put(inp, chip) {
+    inp.value = chip.textContent.trim();
+    inp.classList.remove('ok', 'bad', 'wb-over'); inp.classList.remove('wb-fill'); void inp.offsetWidth; inp.classList.add('wb-fill');
+    inp.dispatchEvent(new Event('input', { bubbles: true }));
+    refresh(bankOf(inp));
+  }
+  let sel = null, lastGap = null, drag = null;
+  const unsel = () => { if (sel) sel.classList.remove('wb-sel'); sel = null; };
+  document.addEventListener('focusin', (e) => { if (isGap(e.target)) lastGap = e.target; });
+  document.addEventListener('input', (e) => { if (isGap(e.target)) refresh(bankOf(e.target)); });
+  document.addEventListener('pointerdown', (e) => {
+    const chip = e.target.closest && e.target.closest('.chip');
+    if (!chip || !chip.closest(BANKS)) return;
+    e.preventDefault();
+    drag = { chip, x: e.clientX, y: e.clientY, ghost: null, over: null };
+  });
+  document.addEventListener('pointermove', (e) => {
+    if (!drag) return;
+    if (!drag.ghost && Math.hypot(e.clientX - drag.x, e.clientY - drag.y) > 6) {
+      drag.ghost = drag.chip.cloneNode(true); drag.ghost.classList.add('wb-ghost'); drag.ghost.classList.remove('wb-sel', 'wb-used');
+      document.body.appendChild(drag.ghost); unsel();
+    }
+    if (!drag.ghost) return;
+    drag.ghost.style.left = e.clientX + 'px'; drag.ghost.style.top = e.clientY + 'px';
+    const t = document.elementFromPoint(e.clientX, e.clientY);
+    const inp = isGap(t) && gapsOf(drag.chip.closest(BANKS)).includes(t) ? t : null;
+    if (drag.over !== inp) { if (drag.over) drag.over.classList.remove('wb-over'); if (inp) inp.classList.add('wb-over'); drag.over = inp; }
+  });
+  const end = () => {
+    if (!drag) return;
+    const d = drag; drag = null;
+    if (d.ghost) { d.ghost.remove(); if (d.over) put(d.over, d.chip); return; }
+    // натискання: якщо курсор стоїть у порожньому пропуску цього банку, ставимо туди; інакше вибираємо слово
+    const gaps = gapsOf(d.chip.closest(BANKS));
+    if (lastGap && gaps.includes(lastGap) && document.activeElement === lastGap) { put(lastGap, d.chip); return; }
+    if (sel === d.chip) { unsel(); return; }
+    unsel(); sel = d.chip; sel.classList.add('wb-sel');
+  };
+  document.addEventListener('pointerup', end);
+  document.addEventListener('pointercancel', () => { if (drag && drag.ghost) drag.ghost.remove(); drag = null; });
+  // вибране слово + клік по пропуску
+  document.addEventListener('click', (e) => {
+    if (!sel || !isGap(e.target)) return;
+    if (gapsOf(sel.closest(BANKS)).includes(e.target)) { put(e.target, sel); unsel(); }
+  });
+})();
