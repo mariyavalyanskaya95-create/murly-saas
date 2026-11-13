@@ -4401,3 +4401,8 @@ a.ab-card:hover { transform: translateY(-3px); }
   .va--z2 .va-letter { break-after: avoid; }
   .va--z2 .va-row { break-inside: avoid; }
 }
+.va-side { overflow-x: hidden; }
+.va-side .v-search { flex: none; min-width: 0; box-shadow: none; padding: 0 12px; }
+.va-side .v-search input { min-width: 0; width: 100%; padding: 10px 0; font-size: 14px; }
+.va-side .v-search svg { width: 18px; height: 18px; flex: none; }
+.va-zoom button { flex: none; }
