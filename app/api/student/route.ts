@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { auth } from '@clerk/nextjs/server';
-import { addOwnWord, reviewWord, saveHomeworkNote, setOwnPin, submitHomework, useHomeworkPass } from '@/lib/student-data';
+import { addOwnWord, reviewWord, saveHomeworkNote, setOwnPin, setStudentTz, submitHomework, useHomeworkPass } from '@/lib/student-data';
+import { validTz } from '@/lib/tz';
 import { normPhone, validPhone, validPin } from '@/lib/pin-login';
 
 export const dynamic = 'force-dynamic';
@@ -8,7 +9,7 @@ export const dynamic = 'force-dynamic';
 export async function POST(req: Request) {
   const { userId } = await auth();
   if (!userId) return NextResponse.json({ error: 'unauthorized' }, { status: 401 });
-  let body: { op?: string; id?: string; ok?: boolean; phone?: string; pin?: string; score?: number; total?: number; answer?: string; answers?: Record<string, string>; note?: string; en?: string; uk?: string; example?: string };
+  let body: { op?: string; id?: string; ok?: boolean; phone?: string; pin?: string; score?: number; total?: number; answer?: string; answers?: Record<string, string>; note?: string; en?: string; uk?: string; example?: string; tz?: string };
   try { body = await req.json(); } catch { return NextResponse.json({ error: 'bad_json' }, { status: 400 }); }
   if (body.op === 'setPin') {
     const phone = normPhone(body.phone ?? ''); const pin = String(body.pin ?? '').trim();
@@ -18,6 +19,11 @@ export async function POST(req: Request) {
       const r = await setOwnPin(userId, phone, pin);
       return r === 'ok' ? NextResponse.json({ ok: true, phone, pin }) : NextResponse.json({ error: r }, { status: r === 'pin_taken' ? 409 : 404 });
     } catch (e) { console.error(e); return NextResponse.json({ error: 'db_error' }, { status: 500 }); }
+  }
+  if (body.op === 'setTz' && body.id) {
+    if (!validTz(body.tz)) return NextResponse.json({ error: 'bad_tz' }, { status: 400 });
+    const ok = await setStudentTz(userId, body.id, body.tz).catch(() => false);
+    return ok ? NextResponse.json({ ok: true }) : NextResponse.json({ error: 'not_found' }, { status: 404 });
   }
   if (body.op === 'review' && body.id) {
     const r = await reviewWord(userId, body.id, Boolean(body.ok)).catch(() => false);
