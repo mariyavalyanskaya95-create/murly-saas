@@ -4467,3 +4467,8 @@ a.ab-card:hover { transform: translateY(-3px); }
 .bk-next { margin: 8px 0 0; }
 @media (max-width: 700px) { .bk-page { grid-template-columns: 1fr; padding: 18px; } .bk-pic { min-height: 140px; } .bk-kit { width: 110px; height: 110px; } }
 .bk-nw { white-space: nowrap; }
+.bk-group { font-size: 22px; margin: 6px 0 16px; }
+.bk-alt { margin: -4px 0 14px; font-weight: 700; font-size: 15px; }
+.bk-alt a { color: var(--mu-ink); }
+.bk-page--long .bk-text { font-size: clamp(17px, 1.7vw, 20px); line-height: 1.75; }
+.bk-page--long { grid-template-columns: 170px 1fr; }
