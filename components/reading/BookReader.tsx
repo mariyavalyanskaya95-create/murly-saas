@@ -91,7 +91,7 @@ export default function BookReader({ b }: { b: Book }) {
       </div>
 
       {!end ? (
-        <div className="bk-page" style={{ ['--bk' as string]: b.color }}>
+        <div className={`bk-page ${b.level.startsWith('B') ? 'bk-page--long' : ''}`} style={{ ['--bk' as string]: b.color }}>
           <div className="bk-pic" aria-hidden="true"><Kit id={b.kit} className="bk-kit" /><span>{page + 1} / {total}</span></div>
           <p className="bk-text">
             {tokens.map((x, i) => x.w
