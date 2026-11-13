@@ -49,9 +49,14 @@ export default function BookReader({ b }: { b: Book }) {
   const tokens = useMemo(() => {
     if (end) return [];
     const text = b.pages[page];
-    const out: { s: string; w?: boolean; at: number }[] = [];
+    const out: { s: string; w?: boolean; at: number; tail?: string }[] = [];
     const re = /[A-Za-z]+(?:['’][a-z]+)?/g; let m: RegExpExecArray | null; let last = 0;
-    while ((m = re.exec(text))) { if (m.index > last) out.push({ s: text.slice(last, m.index), at: last }); out.push({ s: m[0], w: true, at: m.index }); last = m.index + m[0].length; }
+    while ((m = re.exec(text))) {
+      if (m.index > last) out.push({ s: text.slice(last, m.index), at: last });
+      // розділовий знак одразу після слова тримаємо разом зі словом, щоб він не переносився на новий рядок
+      const tail = (/^[^\sA-Za-z]+/.exec(text.slice(m.index + m[0].length)) || [''])[0];
+      out.push({ s: m[0], w: true, at: m.index, tail }); last = m.index + m[0].length + tail.length; re.lastIndex = last;
+    }
     if (last < text.length) out.push({ s: text.slice(last), at: last });
     return out;
   }, [b, page, end]);
@@ -88,7 +93,7 @@ export default function BookReader({ b }: { b: Book }) {
           <div className="bk-pic" aria-hidden="true"><Kit id={b.kit} className="bk-kit" /><span>{page + 1} / {total}</span></div>
           <p className="bk-text">
             {tokens.map((x, i) => x.w
-              ? <button key={i} type="button" className={`bk-w ${b.words.includes(key(x.s)) ? 'is-key' : ''} ${saved.includes(key(x.s)) ? 'is-saved' : ''}`} onClick={(e) => open(x.s, x.at, e.currentTarget)}>{x.s}</button>
+              ? <span key={i} className="bk-nw"><button type="button" className={`bk-w ${b.words.includes(key(x.s)) ? 'is-key' : ''} ${saved.includes(key(x.s)) ? 'is-saved' : ''}`} onClick={(e) => open(x.s, x.at, e.currentTarget)}>{x.s}</button>{x.tail}</span>
               : <span key={i}>{x.s}</span>)}
           </p>
           {pop && (
