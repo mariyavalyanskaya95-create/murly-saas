@@ -9,12 +9,10 @@ import SiteNav from '@/components/SiteNav';
 import SiteFooter from '@/components/SiteFooter';
 import VerbsAlphabet from '@/components/VerbsAlphabet';
 import { tr } from '@/lib/i18n-server';
-import SeoNote from '@/components/SeoNote';
 import type { T } from '@/lib/i18n';
 import Kit from '@/components/Kit';
 import Faq from '@/components/Faq';
 
-import HeroTip from '@/components/HeroTip';
 export function generateMetadata(): Metadata {
   const t = tr();
   return {
@@ -45,13 +43,10 @@ export default function IrregularVerbsPage() {
         <div className="mu-container">
           <Kit id="st-cat-cool" className="kit-hero" />
           <h1>{t({ uk: 'Таблиця неправильних дієслів', ru: 'Таблица неправильных глаголов', en: 'Irregular verbs table' })} <em>{t({ uk: 'з перекладом.', ru: 'с переводом.', en: 'with translation.' })}</em></h1>
-          <p className="va-intro">{t({ uk: 'Усі 136 неправильних дієслів англійської мови за алфавітом: три форми (V1, V2, V3), переклад українською і вимова кожної форми. Таблицю можна роздрукувати або зберегти в PDF.', ru: 'Все 136 неправильных глаголов английского языка по алфавиту: три формы (V1, V2, V3), перевод и произношение каждой формы. Таблицу можно распечатать или сохранить в PDF.', en: 'All 136 English irregular verbs from A to Z: three forms (V1, V2, V3), translation and audio for every form. Print the table or save it as a PDF.' })}</p>
           <div className="va-print">
-            <Link href="/irregular-verbs/print" className="mu-btn mu-btn--lime">{t({ uk: 'Роздрукувати таблицю / PDF', ru: 'Распечатать таблицу / PDF', en: 'Print the table / PDF' })}</Link>
+            <Link href="/irregular-verbs/poster?pages=3" className="mu-btn mu-btn--lime">{t({ uk: 'Роздрукувати таблицю / PDF', ru: 'Распечатать таблицу / PDF', en: 'Print the table / PDF' })}</Link>
             <Link href="/irregular-verbs/games" className="mu-btn">{t({ uk: 'Ігри з дієсловами', ru: 'Игры с глаголами', en: 'Verb games' })}</Link>
           </div>
-          <HeroTip>{t({ uk: 'Натисни на будь-яку форму, щоб послухати вимову. Навушники праворуч озвучать усі три форми підряд.', ru: 'Нажми на любую форму, чтобы послушать произношение. Наушники справа озвучат все три формы подряд.', en: 'Tap any form to hear how it sounds. The headphones on the right play all three forms in a row.' })}</HeroTip>
-          <SeoNote free={{ uk: 'Безкоштовно, без реєстрації', ru: 'Бесплатно, без регистрации', en: 'Free, no sign-up' }} sell={{ text: { uk: 'Хочеш вчити офлайн?', ru: 'Хочешь учить офлайн?', en: 'Want to learn offline?' }, links: [{ href: '/irregular-verbs/poster', label: { uk: 'Безкоштовний плакат PDF', ru: 'Бесплатный плакат PDF', en: 'Free PDF poster' } }, { href: '/shop/verbs-30', label: { uk: 'Картки для друку і план на 30 днів', ru: 'Карточки для печати и план на 30 дней', en: 'Printable cards and a 30-day plan' } }] }} />
         </div>
       </section>
 
@@ -103,6 +98,7 @@ export default function IrregularVerbsPage() {
 
       <section className="mu-section">
         <div className="mu-container" style={{ maxWidth: 820 }}>
+          <p className="va-intro va-intro--faq">{t({ uk: 'Усі 136 неправильних дієслів англійської мови за алфавітом: три форми (V1, V2, V3), переклад українською і вимова кожної форми. Таблицю можна роздрукувати або зберегти в PDF.', ru: 'Все 136 неправильных глаголов английского языка по алфавиту: три формы (V1, V2, V3), перевод и произношение каждой формы. Таблицу можно распечатать или сохранить в PDF.', en: 'All 136 English irregular verbs from A to Z: three forms (V1, V2, V3), translation and audio for every form. Print the table or save it as a PDF.' })}</p>
           <h2 className="mu-section__title">{t({ uk: 'Часті питання про', ru: 'Частые вопросы о', en: 'FAQ about' })} <em>{t({ uk: 'неправильні дієслова.', ru: 'неправильных глаголах.', en: 'irregular verbs.' })}</em></h2>
           <Faq items={[
             { q: t({ uk: 'Що таке неправильні дієслова в англійській мові?', ru: 'Что такое неправильные глаголы в английском языке?', en: 'What are irregular verbs in English?' }), a: t({ uk: 'Це дієслова, які в минулому часі й третій формі не отримують закінчення -ed. Наприклад, go, went, gone або buy, bought, bought. Їх треба запам’ятати, бо правила тут немає.', ru: 'Это глаголы, которые в прошедшем времени и третьей форме не получают окончание -ed. Например, go, went, gone или buy, bought, bought. Их нужно запомнить, потому что правила здесь нет.', en: 'They are verbs that do not add -ed in the past and the third form, for example go, went, gone or buy, bought, bought. You have to learn them, as there is no rule.' }) },
