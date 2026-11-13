@@ -3,12 +3,15 @@ import Icon from './Icon';
 import { LangSwitch } from './LangProvider';
 import { tr } from '@/lib/i18n-server';
 import Kit from '@/components/Kit';
+import FreeNote from '@/components/FreeNote';
 import { LEGAL } from '@/lib/legal-config';
 import { LEGAL_DOCS } from '@/lib/legal';
 
 export default function SiteFooter() {
   const t = tr();
   return (
+    <>
+    <FreeNote />
     <footer className="mu-footer">
       <div className="mu-container">
         <div className="mu-footer__grid">
@@ -87,5 +90,6 @@ export default function SiteFooter() {
         </div>
       </div>
     </footer>
+    </>
   );
 }
