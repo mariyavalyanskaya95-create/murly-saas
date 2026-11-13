@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import LessonRow from '@/components/teacher/LessonRow';
 import { LessonForm } from '@/components/teacher/forms';
 import ScheduleImport from '@/components/teacher/ScheduleImport';
@@ -26,7 +26,20 @@ export default function SchedulePage() {
   const [imp, setImp] = useState(false);
   const [ext, setExt] = useState(false);
   const [view, setView] = useState<'grid' | 'list'>('grid');
+  // пастельна тема розкладу, запам'ятовуємо на цьому пристрої
+  const [theme, setTheme] = useState('lavender');
+  useEffect(() => { try { const v = localStorage.getItem('murly:wg-theme'); if (v) setTheme(v); } catch { /* */ } }, []);
+  const pickTheme = (v: string) => { setTheme(v); try { localStorage.setItem('murly:wg-theme', v); } catch { /* */ } };
   if (!ready) return null;
+  const THEMES: { id: string; name: string; c: string }[] = [
+    { id: 'lavender', name: t({ uk: 'Лаванда', ru: 'Лаванда', en: 'Lavender' }), c: '#E4E0FA' },
+    { id: 'pink', name: t({ uk: 'Рожева', ru: 'Розовая', en: 'Pink' }), c: '#FBE0EA' },
+    { id: 'blue', name: t({ uk: 'Блакитна', ru: 'Голубая', en: 'Blue' }), c: '#DCEBFA' },
+    { id: 'green', name: t({ uk: 'Салатова', ru: 'Салатовая', en: 'Green' }), c: '#E2F3D2' },
+    { id: 'yellow', name: t({ uk: 'Жовтенька', ru: 'Жёлтенькая', en: 'Yellow' }), c: '#FBF1C9' },
+    { id: 'peach', name: t({ uk: 'Персикова', ru: 'Персиковая', en: 'Peach' }), c: '#FCE3D3' },
+    { id: 'mint', name: t({ uk: "М'ятна", ru: 'Мятная', en: 'Mint' }), c: '#D6F2E8' },
+  ];
 
   const monday = startOfWeek(new Date()); monday.setDate(monday.getDate() + offset * 7);
   const days = Array.from({ length: 7 }, (_, i) => { const d = new Date(monday); d.setDate(d.getDate() + i); return d; });
@@ -58,9 +71,14 @@ export default function SchedulePage() {
       <div className="g-chips" style={{ justifyContent: 'flex-start' }}>
         <button className={`g-chip ${view === 'grid' ? 'is-on' : ''}`} onClick={() => setView('grid')}>{t({ uk: 'Сітка', ru: 'Сетка', en: 'Grid' })}</button>
         <button className={`g-chip ${view === 'list' ? 'is-on' : ''}`} onClick={() => setView('list')}>{t({ uk: 'Список', ru: 'Список', en: 'List' })}</button>
+        {view === 'grid' && (
+          <span className="wg-themes" role="radiogroup" aria-label={t({ uk: 'Колір розкладу', ru: 'Цвет расписания', en: 'Schedule colour' })}>
+            {THEMES.map((x) => <button key={x.id} type="button" role="radio" aria-checked={theme === x.id} title={x.name} aria-label={x.name} className={`wg-swatch ${theme === x.id ? 'is-on' : ''}`} style={{ background: x.c }} onClick={() => pickTheme(x.id)} />)}
+          </span>
+        )}
       </div>
 
-      {view === 'grid' ? <WeekGrid days={days} /> : (
+      {view === 'grid' ? <WeekGrid days={days} theme={theme} /> : (
         <div className="t-week">
           {days.map((d) => {
             const ls = data.lessons.filter((l) => sameDay(new Date(l.start), d)).sort((a, b) => a.start.localeCompare(b.start));
