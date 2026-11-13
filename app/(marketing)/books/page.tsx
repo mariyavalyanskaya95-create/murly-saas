@@ -12,7 +12,7 @@ export function generateMetadata(): Metadata {
   const t = tr();
   return {
     title: t({ uk: 'Казки англійською для дітей: читати з перекладом і озвучкою | Murly', ru: 'Сказки на английском для детей: читать с переводом и озвучкой | Murly', en: 'Fairy tales in English for kids: read with translation and audio | Murly' }),
-    description: t({ uk: 'Прості казки англійською для дітей A1-A2: Три поросятка, Червона Шапочка, Попелюшка. Натисни на слово, щоб побачити переклад і послухати. Питання після казки. Безкоштовно.', ru: 'Простые сказки на английском для детей A1-A2: Три поросёнка, Красная Шапочка, Золушка. Нажми на слово, чтобы увидеть перевод и послушать. Вопросы после сказки. Бесплатно.', en: 'Simple English fairy tales for kids (A1-A2): The Three Little Pigs, Little Red Riding Hood, Cinderella. Tap any word for a translation and audio. Free.' }),
+    description: t({ uk: 'Казки англійською для дітей і дорослих A1-B2: Три поросятка, Червона Шапочка, Попелюшка, Гидке каченя, Златовласка, байки Езопа. Є версії B1-B2. Натисни на слово, щоб побачити переклад і послухати. Питання після казки. Безкоштовно.', ru: 'Сказки на английском для детей и взрослых A1-B2: Три поросёнка, Красная Шапочка, Золушка, Гадкий утёнок, Златовласка, басни Эзопа. Есть версии B1-B2. Нажми на слово, чтобы увидеть перевод и послушать. Вопросы после сказки. Бесплатно.', en: 'Simple English fairy tales for kids (A1-A2): The Three Little Pigs, Little Red Riding Hood, Cinderella. Tap any word for a translation and audio. Free.' }),
     alternates: alt('/books'),
   };
 }
@@ -32,21 +32,29 @@ export default function BooksPage() {
           <p className="bk-lead">{t({ uk: 'Натисни на будь-яке слово: побачиш переклад і почуєш вимову.', ru: 'Нажми на любое слово: увидишь перевод и услышишь произношение.', en: 'Tap any word to see the translation and hear it.' })}</p>
         </div>
       </section>
-      <section className="mu-section" style={{ paddingTop: 8 }}>
-        <div className="mu-container bk-grid">
-          {BOOKS.map((b) => (
-            <Link key={b.id} href={`/books/${b.id}`} className="bk-card" style={{ ['--bk' as string]: b.color }}>
-              <span className="bk-card__cover"><Kit id={b.kit} className="bk-card__kit" /></span>
-              <span className="bk-card__body">
-                <b>{b.title}</b>
-                <small>{t(b.titleT)}</small>
-                <span className="bk-card__tags"><span className="gr-level">{b.level}</span><span className="le-tag">{b.age} {t({ uk: 'років', ru: 'лет', en: 'years' })}</span></span>
-                <span className="bk-card__about">{t(b.about)}</span>
-              </span>
-            </Link>
-          ))}
-        </div>
-      </section>
+      {[
+        { key: 'a', title: t({ uk: 'Для початківців · A1-A2', ru: 'Для начинающих · A1-A2', en: 'Beginners · A1-A2' }), list: BOOKS.filter((b) => !b.level.startsWith('B')) },
+        { key: 'b', title: t({ uk: 'Для впевнених · B1-B2', ru: 'Для уверенных · B1-B2', en: 'Confident readers · B1-B2' }), list: BOOKS.filter((b) => b.level.startsWith('B')) },
+      ].map((g) => (
+        <section key={g.key} className="mu-section" style={{ paddingTop: 8 }}>
+          <div className="mu-container">
+            <h2 className="bk-group">{g.title}</h2>
+            <div className="bk-grid">
+              {g.list.map((b) => (
+                <Link key={b.id} href={`/books/${b.id}`} className="bk-card" style={{ ['--bk' as string]: b.color }}>
+                  <span className="bk-card__cover"><Kit id={b.kit} className="bk-card__kit" /></span>
+                  <span className="bk-card__body">
+                    <b>{b.title}</b>
+                    <small>{t(b.titleT)}</small>
+                    <span className="bk-card__tags"><span className="gr-level">{b.level}</span><span className="le-tag">{b.age} {t({ uk: 'років', ru: 'лет', en: 'years' })}</span></span>
+                    <span className="bk-card__about">{t(b.about)}</span>
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      ))}
       <SiteFooter />
     </>
   );
