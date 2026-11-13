@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from 'react';
 import { type Lesson, type LessonStatus, fmtTime, localeOf, sameDay, useTeacher } from '@/lib/teacher-store';
 import { useT } from '@/components/LangProvider';
 import SeriesTools from './SeriesTools';
+import StudentColor from './StudentColor';
 
 const ROW = 52; // висота години в пікселях
 
@@ -166,6 +167,7 @@ export default function WeekGrid({ days, theme = 'lavender' }: { days: Date[]; t
               </div>
             </>
           )}
+          {!pickedGroup && pickedSt && <div className="wg-edit"><label>{t({ uk: 'Колір учня', ru: 'Цвет ученика', en: 'Student colour' })}<StudentColor id={pickedSt.id} compact /></label></div>}
           <div className="wg-edit">
             <label>{t({ uk: 'Тривалість', ru: 'Длительность', en: 'Length' })}
               <span className="wg-durs">

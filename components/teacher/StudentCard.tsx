@@ -1,4 +1,5 @@
 'use client';
+import StudentColor from './StudentColor';
 import TzSelect from '@/components/TzSelect';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -140,6 +141,7 @@ export default function StudentCard({ id }: { id: string }) {
       {tab === 'notes' && <NotesTab id={s.id} />}
       {tab === 'pay' && <PayTab id={s.id} />}
       {tab === 'profile' && <StudentTz id={s.id} />}
+      {tab === 'profile' && <div className="t-card"><h2>{tt({ uk: 'Колір учня', ru: 'Цвет ученика', en: 'Student colour' })}</h2><p className="t-muted">{tt({ uk: 'Цим кольором учень позначений у розкладі й списках.', ru: 'Этим цветом ученик отмечен в расписании и списках.', en: 'This colour marks the student in the schedule and lists.' })}</p><StudentColor id={s.id} /></div>}
       {tab === 'profile' && (
         <ProfileTab id={s.id} onDelete={() => { t.removeStudent(s.id); router.push('/teacher/students'); }} />
       )}
