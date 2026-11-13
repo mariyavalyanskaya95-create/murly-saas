@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { validTz } from '@/lib/tz';
 import { PAID_ENABLED, START_ACTIVE_STUDENTS, teacherPlan } from '@/lib/plans';
 import { auth, clerkClient } from '@clerk/nextjs/server';
 import { db, dbReady } from '@/lib/db';
@@ -36,6 +37,7 @@ const toDb = {
     if ('payRemind' in p) o.pay_remind = Boolean(p.payRemind);
     if ('trLang' in p) o.tr_lang = p.trLang === 'ru' ? 'ru' : p.trLang === 'uk' ? 'uk' : null;
     if ('passOff' in p) o.pass_off = Boolean(p.passOff);
+    if ('tz' in p) o.tz = validTz(p.tz) ? p.tz : null;
     if ('owedLessons' in p) o.owed_lessons = Math.max(0, Math.round(Number(p.owedLessons) || 0));
     if ('prepaidLessons' in p) o.prepaid_lessons = Math.max(0, Math.round(Number(p.prepaidLessons) || 0));
     for (const k of ['contact', 'parent', 'link', 'song', 'about']) if (k in p && p[k] === undefined) o[k] = null;
@@ -54,11 +56,11 @@ const toDb = {
     if ('updatedAt' in p) o.updated_at = p.updatedAt;
     return o;
   },
-  settings: (s: Row, t: string) => ({ teacher_id: t, name: s.name ?? '', link: s.link ?? '', link_kind: s.linkKind ?? 'zoom', updated_at: new Date().toISOString() }),
+  settings: (s: Row, t: string) => ({ teacher_id: t, name: s.name ?? '', link: s.link ?? '', link_kind: s.linkKind ?? 'zoom', ...('tz' in s ? { tz: validTz(s.tz) ? s.tz : null } : {}), updated_at: new Date().toISOString() }),
 };
 const und = (v: unknown) => (v === null ? undefined : v);
 const fromDb = {
-  student: (r: Row) => ({ trLang: r.tr_lang === 'ru' ? 'ru' : r.tr_lang === 'uk' ? 'uk' : undefined, payRemind: Boolean(r.pay_remind), passOff: Boolean(r.pass_off), id: r.id, name: r.name, level: r.level, price: r.price, contact: und(r.contact), parent: und(r.parent), link: und(r.link), color: r.color, createdAt: r.created_at, inviteCode: und(r.invite_code), joined: Boolean(r.user_id), song: und(r.song), songUrl: und(r.song_url), about: und(r.about), profile: und(r.profile), payMode: r.pay_mode === 'post' ? 'post' : 'pre', loginPhone: und(r.login_phone), loginPin: und(r.login_pin), adult: Boolean(r.is_adult), nmt: Boolean(r.nmt), owedLessons: Number(r.owed_lessons) || 0, prepaidLessons: Number(r.prepaid_lessons) || 0, tg: Boolean(r.tg_chat_id), parentTg: Boolean(r.parent_tg_chat_id) }),
+  student: (r: Row) => ({ trLang: r.tr_lang === 'ru' ? 'ru' : r.tr_lang === 'uk' ? 'uk' : undefined, payRemind: Boolean(r.pay_remind), passOff: Boolean(r.pass_off), tz: und(r.tz), id: r.id, name: r.name, level: r.level, price: r.price, contact: und(r.contact), parent: und(r.parent), link: und(r.link), color: r.color, createdAt: r.created_at, inviteCode: und(r.invite_code), joined: Boolean(r.user_id), song: und(r.song), songUrl: und(r.song_url), about: und(r.about), profile: und(r.profile), payMode: r.pay_mode === 'post' ? 'post' : 'pre', loginPhone: und(r.login_phone), loginPin: und(r.login_pin), adult: Boolean(r.is_adult), nmt: Boolean(r.nmt), owedLessons: Number(r.owed_lessons) || 0, prepaidLessons: Number(r.prepaid_lessons) || 0, tg: Boolean(r.tg_chat_id), parentTg: Boolean(r.parent_tg_chat_id) }),
   lesson: (r: Row) => ({ id: r.id, studentId: r.student_id, start: r.start, duration: r.duration, topic: und(r.topic), link: und(r.link), status: r.status, groupId: und(r.group_id) }),
   group: (r: Row) => ({ id: r.id, name: r.name, color: r.color, studentIds: (r.student_ids as string[] | null) ?? [], link: und(r.link), createdAt: r.created_at }),
   note: (r: Row) => ({ id: r.id, studentId: r.student_id, text: r.text, at: r.at, images: und(r.images), files: und(r.files) }),
@@ -103,7 +105,7 @@ export async function GET() {
       payments: payments.map(fromDb.payment),
       homework: homework.map(fromDb.homework),
       plans: plans.map(fromDb.plan),
-      settings: s ? { name: s.name, link: s.link, linkKind: s.link_kind, ...(s.is_owner === true && aiReady() ? { ai: true } : {}) } : { name: '', link: '', linkKind: 'zoom' },
+      settings: s ? { name: s.name, link: s.link, linkKind: s.link_kind, tz: s.tz ?? undefined, ...(s.is_owner === true && aiReady() ? { ai: true } : {}) } : { name: '', link: '', linkKind: 'zoom' },
     });
   } catch (e) {
     console.error(e);
