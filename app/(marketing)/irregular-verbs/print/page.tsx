@@ -10,7 +10,7 @@ export function generateMetadata(): Metadata {
   const t = tr();
   return {
     title: t({ uk: 'Таблиця неправильних дієслів для друку (PDF) | Murly', ru: 'Таблица неправильных глаголов для печати (PDF) | Murly', en: 'Printable irregular verbs table (PDF) | Murly' }),
-    description: t({ uk: 'Таблиця неправильних дієслів англійської мови для друку: 137 дієслів, три форми і переклад. Роздрукуй або збережи у PDF безкоштовно.', ru: 'Таблица неправильных глаголов английского языка для печати: 137 глаголов, три формы и перевод. Распечатай или сохрани в PDF бесплатно.', en: 'Printable English irregular verbs table: 137 verbs, three forms and translation. Print or save as PDF for free.' }),
+    description: t({ uk: 'Таблиця неправильних дієслів англійської мови для друку: 136 дієслів, три форми і переклад. Роздрукуй або збережи у PDF безкоштовно.', ru: 'Таблица неправильных глаголов английского языка для печати: 136 глаголов, три формы и перевод. Распечатай или сохрани в PDF бесплатно.', en: 'Printable English irregular verbs table: 136 verbs, three forms and translation. Print or save as PDF for free.' }),
     alternates: { canonical: '/irregular-verbs/print' },
   };
 }
