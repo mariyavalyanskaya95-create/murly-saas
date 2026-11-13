@@ -49,7 +49,7 @@ export default function SiteFooter() {
               <li><Link href="/level-test">{t({ uk: 'Тест на рівень', ru: 'Тест на уровень', en: 'Level test' })}</Link></li>
               <li><Link href="/grammar">{t({ uk: 'Граматика', ru: 'Грамматика', en: 'Grammar' })}</Link></li>
               <li><Link href="/grammar/trainer">{t({ uk: 'Тренажери граматики', ru: 'Тренажёры грамматики', en: 'Grammar trainers' })}</Link></li>
-              <li><Link href="/irregular-verbs">{t({ uk: 'Неправильні дієслова', ru: 'Неправильные глаголы', en: 'Irregular verbs' })}</Link></li>
+              <li><Link href="/irregular-verbs">{t({ uk: 'Таблиця неправильних дієслів', ru: 'Таблица неправильных глаголов', en: 'Irregular verbs table' })}</Link></li>
               <li><Link href="/bonus/verbs-30">{t({ uk: 'Дієслова за 30 днів', ru: 'Глаголы за 30 дней', en: 'Verbs in 30 days' })}</Link></li>
               <li><Link href="/stories">{t({ uk: 'Історії й серіали', ru: 'Истории и сериалы', en: 'Stories and series' })}</Link></li>
               <li><Link href="/practice">{t({ uk: 'Діалоги й тексти', ru: 'Диалоги и тексты', en: 'Dialogues and texts' })}</Link></li>
