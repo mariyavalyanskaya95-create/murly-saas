@@ -4347,3 +4347,57 @@ a.ab-card:hover { transform: translateY(-3px); }
 .ivp-t th:nth-child(2),.ivp-t td:nth-child(2),.ivp-t th:nth-child(3),.ivp-t td:nth-child(3){width:23%}
 .ivp-t td{max-width:none}
 @media print{.ivp-t td{white-space:normal;overflow:visible}}
+/* Плакат: перемикачі формату й мови, режим «3 сторінки» */
+.ivp-opts { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 10px; font-size: 14px; font-weight: 600; }
+.ivp-opts span { margin-left: 6px; }
+.ivp-pages { display: grid; gap: 24px; }
+.ivp--page.pv-page { max-width: 794px; font-size: 13px; }
+.ivp--page .ivp-t td { white-space: normal; overflow: visible; padding: 4px 8px; }
+.ivp--page .ivp-t th { font-size: 12px; padding: 4px 8px; }
+@media print {
+  .ivp-pages { display: block; position: absolute; left: 0; top: 0; width: 100%; visibility: visible; }
+  .ivp--page.pv-page { position: static !important; width: 100%; font-size: 11.5px; break-after: page; page-break-after: always; }
+  .ivp--page.pv-page:last-child { break-after: auto; page-break-after: auto; }
+  .ivp--page .ivp-t td { padding: 3px 6px; }
+}
+/* Таблиця дієслів: панель зліва, масштаб */
+.va-side { display: grid; gap: 12px; align-content: start; padding: 14px; border: 1.5px solid var(--mu-ink); border-radius: 18px; background: #fff; }
+.va-side .v-search { width: 100%; }
+.va-side__row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.va-zoom { display: flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 700; }
+.va-zoom span { margin-right: auto; }
+.va-zoom button { width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid var(--mu-ink); background: #fff; font: 700 20px/1 system-ui, sans-serif; cursor: pointer; }
+.va-zoom button:hover:not(:disabled) { background: var(--mu-lime); }
+.va-zoom button:disabled { opacity: .35; cursor: default; }
+.va-side .va-abc { display: grid; grid-template-columns: repeat(6, 1fr); gap: 5px; justify-content: stretch; }
+.va-side .va-abc a, .va-side .va-abc span { width: auto; height: 30px; font-size: 13px; }
+.va-side__print { font-weight: 700; font-size: 14px; color: var(--mu-ink); }
+.va-main { min-width: 0; }
+.va-main .va-list { margin-top: 0; }
+@media (min-width: 1000px) {
+  .va { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 22px; align-items: start; }
+  .va-side { position: sticky; top: 110px; max-height: calc(100vh - 130px); overflow: auto; }
+  .va-group { scroll-margin-top: 120px; }
+}
+@media (max-width: 999px) { .va-side { margin-bottom: 12px; } .va-side .va-abc { grid-template-columns: repeat(9, 1fr); } }
+/* компактний */
+.va--z1 .va-row { padding: 4px 16px; gap: 8px; }
+.va--z1 .va-word { font-size: 14px; padding: 2px 6px; margin: -2px -6px; }
+.va--z1 .v-uk { font-size: 13.5px; }
+.va--z1 .va-letter { font-size: 20px; padding: 8px 16px 2px; }
+.va--z1 .va-all { width: 28px; height: 28px; }
+.va--z1 .va-all .mu-ic { width: 15px; height: 15px; }
+/* щільний: дві колонки */
+.va--z2 .va-row { padding: 2px 10px; gap: 6px; grid-template-columns: 1fr 1.15fr 1.15fr 1.5fr 26px; }
+.va--z2 .va-word { font-size: 12.5px; padding: 1px 4px; margin: -1px -4px; }
+.va--z2 .va-word__ic { display: none; }
+.va--z2 .v-uk { font-size: 12px; }
+.va--z2 .va-letter { font-size: 16px; padding: 6px 10px 2px; }
+.va--z2 .va-all { width: 22px; height: 22px; box-shadow: none; }
+.va--z2 .va-all .mu-ic { width: 12px; height: 12px; }
+.va--z2 .va-row--head { display: none; }
+@media (min-width: 1000px) {
+  .va--z2 .va-list { column-count: 2; column-gap: 0; column-rule: 1.5px solid var(--mu-paper-dark); }
+  .va--z2 .va-letter { break-after: avoid; }
+  .va--z2 .va-row { break-inside: avoid; }
+}
