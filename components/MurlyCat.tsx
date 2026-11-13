@@ -16,6 +16,9 @@ const SAY: Record<Pose, string[]> = {
   love: ['I love English!', 'You’re awesome!', 'Hugs!', 'Best friends!', 'Purr-fect!'],
   sleep: ['Zzz… five more minutes', 'So sleepy…', 'Wake me up for a game!', 'Dreaming in English…'],
 };
+// Сезонний одяг: восени шарф, у білого котика кленовий листок, у персикової береток і какао; взимку шапка й шарф
+type Season = 'autumn' | 'winter' | null;
+const seasonOf = (d = new Date()): Season => { const m = d.getMonth() + 1; return m >= 9 && m <= 11 ? 'autumn' : m === 12 || m <= 2 ? 'winter' : null; };
 const pick = (a: string[]) => a[Math.floor(Math.random() * a.length)];
 const hello = () => { const h = new Date().getHours(); return h < 12 ? 'Good morning!' : h < 18 ? 'Good afternoon!' : 'Good evening!'; };
 
@@ -32,6 +35,9 @@ export default function MurlyCat({ className = '', skin = 'white', greet = 0, hi
   const [pose, setPose] = useState<Pose>('idle');
   const [line, setLine] = useState('');
   const [n, setN] = useState(0);
+  const [season, setSeason] = useState<Season>(null);
+  useEffect(() => { setSeason(seasonOf()); }, []);
+  const scarf = season === 'autumn' ? ['#E07B39', '#F2C14E'] : season === 'winter' ? ['#9DB4EE', '#FFFFFF'] : null;
   // плавне стеження: ціль з мишки, поточне значення наближається до неї в кожному кадрі
   useEffect(() => {
     const el = box.current; if (!el) return;
@@ -58,7 +64,8 @@ export default function MurlyCat({ className = '', skin = 'white', greet = 0, hi
     const id = setTimeout(() => setPose('idle'), pose === 'sleep' ? 4200 : 2800);
     return () => clearTimeout(id);
   }, [pose, n]);
-  const show = (p: Pose, text?: string) => { setPose(p); setLine(text ?? pick(SAY[p])); setN((x) => x + 1); };
+  const AUTUMN = ['Cosy autumn vibes!', 'Pumpkin spice and English!', 'Look, a maple leaf!', 'Hot cocoa time!', 'I love autumn!'];
+  const show = (p: Pose, text?: string) => { setPose(p); setLine(text ?? (season === 'autumn' && Math.random() < 0.45 ? pick(AUTUMN) : pick(SAY[p]))); setN((x) => x + 1); };
   const next = () => show(POSES[n % POSES.length]);
   // вітається сам, коли заходиш на сайт, і зрідка щось каже (не більше трьох разів)
   useEffect(() => {
@@ -94,6 +101,20 @@ export default function MurlyCat({ className = '', skin = 'white', greet = 0, hi
               <ellipse cx="110" cy="194" rx="24" ry="22" fill={k.belly} />
               <ellipse cx="88" cy="224" rx="16" ry="9" fill={k.paw} stroke={k.line} strokeWidth="2.5" /><ellipse cx="132" cy="224" rx="16" ry="9" fill={k.paw} stroke={k.line} strokeWidth="2.5" />
               <path d="M82 226h12M126 226h12" stroke="#C9D3F3" strokeWidth="2.5" strokeLinecap="round" />
+              {season === 'autumn' && skin === 'white' && (
+                <g className="mcat__leaf" transform="rotate(-18 60 160)">
+                  <path d="M60 128l5 12 11-6-3 13 12 2-10 8 5 9-12-3-2 12-6-10-6 10-2-12-12 3 5-9-10-8 12-2-3-13 11 6z" fill="#E8742B" stroke="#B9531C" strokeWidth="1.8" strokeLinejoin="round" />
+                  <path d="M60 140v40" stroke="#9A4317" strokeWidth="2.2" strokeLinecap="round" />
+                </g>
+              )}
+              {season && skin === 'peach' && (
+                <g className="mcat__cup">
+                  <path d="M50 150h26l-3 32h-20z" fill="#FFFFFF" stroke="#C9A07E" strokeWidth="2" />
+                  <rect x="51" y="160" width="24" height="10" rx="2" fill="#C8875A" />
+                  <rect x="47" y="145" width="32" height="7" rx="3.5" fill="#F4C0D1" stroke="#D97C9E" strokeWidth="1.5" />
+                  <g className="mcat__steam" fill="none" stroke="#C9D3F3" strokeWidth="2.5" strokeLinecap="round"><path d="M58 138q-4-6 0-12" /><path d="M68 138q-4-6 0-12" /></g>
+                </g>
+              )}
               <ellipse cx="72" cy="184" rx="11" ry="14" fill={k.paw} stroke={k.line} strokeWidth="2.5" transform="rotate(18 72 184)" />
             </g>
             <g className="mcat__arm">
@@ -101,13 +122,29 @@ export default function MurlyCat({ className = '', skin = 'white', greet = 0, hi
               <ellipse cx="153" cy="192" rx="7" ry="4" fill="#F4C0D1" opacity=".7" />
               <g className="mcat__pencil"><rect x="156" y="150" width="9" height="40" rx="3" fill="#F4C0D1" transform="rotate(22 160 170)" /><path d="M160 192l4 10 4-10z" fill="#3A4378" transform="rotate(22 160 170)" /></g>
             </g>
-            <path d="M84 146q26 13 52 0" fill="none" stroke={k.collar} strokeWidth="10" strokeLinecap="round" />
-            <circle cx="110" cy="154" r="6.5" fill="#F7D46B" />
+            {scarf ? (
+              <g className="mcat__scarf">
+                <path d="M128 150c4 12 2 26-4 38l14 4c6-14 6-30 0-42z" fill={scarf[0]} stroke="#1B2140" strokeOpacity=".25" strokeWidth="1.5" />
+                <path d="M127 162l11 3M126 174l11 3" stroke={scarf[1]} strokeWidth="3.5" />
+                <path d="M124 188l-2 6M129 189l-1 6M134 190l0 6" stroke={scarf[0]} strokeWidth="2.5" strokeLinecap="round" />
+                <path d="M78 142q32 20 64 0" fill="none" stroke={scarf[0]} strokeWidth="15" strokeLinecap="round" />
+                <path d="M78 142q32 20 64 0" fill="none" stroke={scarf[1]} strokeWidth="3.5" strokeDasharray="6 9" strokeLinecap="round" />
+              </g>
+            ) : (<>
+              <path d="M84 146q26 13 52 0" fill="none" stroke={k.collar} strokeWidth="10" strokeLinecap="round" />
+              <circle cx="110" cy="154" r="6.5" fill="#F7D46B" />
+            </>)}
             <g className="mcat__head">
               <g className="mcat__ear mcat__ear--l"><path d="M52 74c-8-26-6-48 4-56 12 6 30 22 40 38z" fill={`url(#f${uid})`} stroke={k.line} strokeWidth="2.5" /><path d="M60 62c-4-16-3-28 2-34 7 5 17 14 23 24z" fill="#F7C9D8" /></g>
               <g className="mcat__ear mcat__ear--r"><path d="M168 74c8-26 6-48-4-56-12 6-30 22-40 38z" fill={`url(#f${uid})`} stroke={k.line} strokeWidth="2.5" /><path d="M160 62c4-16 3-28-2-34-7 5-17 14-23 24z" fill="#F7C9D8" /></g>
               <ellipse cx="110" cy="94" rx="66" ry="56" fill={`url(#f${uid})`} stroke={k.line} strokeWidth="2.5" />
-              {skin === 'peach' && <g className="mcat__bow"><path d="M150 36c-14-14-30-8-26 6 3 10 20 8 26-6zm0 0c14-14 30-8 26 6-3 10-20 8-26-6z" fill="#F4A6C1" stroke="#D97C9E" strokeWidth="2" /><circle cx="150" cy="36" r="6" fill="#E98DAF" /></g>}
+              {season === 'autumn' && skin === 'peach' && (
+                <g className="mcat__beret"><ellipse cx="100" cy="44" rx="40" ry="14" fill="#C8553D" stroke="#9E3B28" strokeWidth="2" transform="rotate(-10 100 44)" /><ellipse cx="96" cy="40" rx="30" ry="7" fill="#D96A50" opacity=".6" transform="rotate(-10 96 40)" /><circle cx="104" cy="29" r="4" fill="#9E3B28" /></g>
+              )}
+              {season === 'winter' && (
+                <g className="mcat__beanie"><path d="M62 58c6-30 30-42 48-42s42 12 48 42z" fill="#9DB4EE" stroke="#6F86C8" strokeWidth="2" /><rect x="58" y="52" width="104" height="14" rx="7" fill="#FFFFFF" stroke="#C9D3F3" strokeWidth="2" /><circle cx="110" cy="14" r="10" fill="#FFFFFF" stroke="#C9D3F3" strokeWidth="2" /></g>
+              )}
+              {skin === 'peach' && season !== 'autumn' && <g className="mcat__bow"><path d="M150 36c-14-14-30-8-26 6 3 10 20 8 26-6zm0 0c14-14 30-8 26 6-3 10-20 8-26-6z" fill="#F4A6C1" stroke="#D97C9E" strokeWidth="2" /><circle cx="150" cy="36" r="6" fill="#E98DAF" /></g>}
               <g className="mcat__face">
                 {closed ? (
                   <g fill="none" stroke="#1B2140" strokeWidth="4" strokeLinecap="round">
