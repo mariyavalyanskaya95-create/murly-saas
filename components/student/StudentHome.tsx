@@ -1,5 +1,6 @@
 'use client';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import TzSelect, { browserTz } from '../TzSelect';
 import Icon from '../Icon';
 import GameHub from '../games/GameHub';
 import HomeworkList from './HomeworkList';
@@ -143,6 +144,8 @@ export default function StudentHome({ enrollments, name }: { enrollments: Enroll
         </section>
       )}
 
+      <MyTz key={'tz' + e.studentId} studentId={e.studentId} tz0={e.tz} />
+
       <MyLogin key={e.studentId} phone={e.loginPhone} pin={e.loginPin} />
     </div>
   );
@@ -205,6 +208,21 @@ function MyLogin({ phone: phone0, pin: pin0 }: { phone?: string; pin?: string })
           {err && <p className="t-neg">{err}</p>}
         </>
       )}
+    </section>
+  );
+}
+
+// Часовий пояс учня: перший раз беремо з браузера і зберігаємо, далі можна змінити
+function MyTz({ studentId, tz0 }: { studentId: string; tz0?: string }) {
+  const t = useT();
+  const [tz, setTz] = useState(tz0 || '');
+  const save = (v: string) => { setTz(v); fetch('/api/student', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ op: 'setTz', id: studentId, tz: v }) }).catch(() => null); };
+  useEffect(() => { if (!tz0) save(browserTz()); }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  return (
+    <section className="t-card">
+      <h2>{t({ uk: 'Мій часовий пояс', ru: 'Мой часовой пояс', en: 'My time zone' })}</h2>
+      <p className="t-muted">{t({ uk: 'Нагадування про заняття в Telegram приходять у твоєму часі.', ru: 'Напоминания о занятиях в Telegram приходят в твоём времени.', en: 'Lesson reminders in Telegram come in your local time.' })}</p>
+      <TzSelect value={tz || undefined} onChange={save} />
     </section>
   );
 }
