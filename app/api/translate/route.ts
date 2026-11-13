@@ -32,7 +32,7 @@ async function mymemory(q: string, from: string, to: string) {
   try {
     const r = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(q)}&langpair=${from}|${to}`, { next: { revalidate: 86400 } });
     const j = await r.json() as { responseData?: { translatedText?: string } };
-    const t = (j.responseData?.translatedText ?? '').trim();
+    const t = (j.responseData?.translatedText ?? '').trim().replace(/[;,.]+$/, '').trim();
     return !t || /MYMEMORY|QUERY LENGTH|INVALID/i.test(t) ? null : t;
   } catch { return null; }
 }
