@@ -178,9 +178,9 @@ export async function POST(req: Request) {
     } else if (p.kind === 'parent') {
       await db.patchWhere(`students?id=eq.${encodeURIComponent(p.id)}`, { parent_tg_chat_id: String(chat), parent_tg_lang: p.lang });
       await tgSend(chat, L(p.lang, {
-        uk: 'Готово! Сюди приходитимуть нові домашки дитини від учителя.',
-        ru: 'Готово! Сюда будут приходить новые домашки ребёнка от учителя.',
-        en: 'Done! Your child’s new homework from the teacher will come here.',
+        uk: 'Готово! Бот підключено.\n\nКнопки меню внизу:\n• Заняття: найближчі й минулі, відвідуваність\n• Оплата: скільки оплачено або до сплати\n• Успішність: домашки, бали, слова\n• Домашка: що задано зараз\n\nНові домашки дитини приходитимуть сюди самі.',
+        ru: 'Готово! Бот подключён.\n\nКнопки меню внизу:\n• Занятия: ближайшие и прошедшие, посещаемость\n• Оплата: сколько оплачено или к оплате\n• Успеваемость: домашки, баллы, слова\n• Домашка: что задано сейчас\n\nНовые домашки ребёнка будут приходить сюда сами.',
+        en: 'Done! The bot is connected.\n\nMenu buttons at the bottom:\n• Lessons: upcoming and past, attendance\n• Payments: paid or to pay\n• Progress: homework, scores, words\n• Homework: what is set now\n\nYour child’s new homework will come here automatically.',
       }));
     } else {
       await db.upsert('teacher_settings', [{ teacher_id: p.id, tg_chat_id: String(chat), tg_lang: p.lang }]);
