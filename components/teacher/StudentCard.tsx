@@ -75,8 +75,8 @@ export default function StudentCard({ id }: { id: string }) {
         </div>
         <Link href={`/teacher/students/${s.id}/lesson`} className="mu-btn mu-btn--lime t-btn-sm t-hero__board"><Icon id="d-phone" />{tt({ uk: 'Почати урок', ru: 'Начать урок', en: 'Start lesson' })}</Link>
         <Link href={`/teacher/students/${s.id}/board`} className="mu-btn t-btn-sm t-hero__board"><Icon id="e-board" />{tt({ uk: 'Дошка', ru: 'Доска', en: 'Board' })}</Link>
-        <ParentLinkButton id={s.id} />
-        <TelegramButton id={s.id} kid={!s.adult} />
+        <ParentLinkButton id={s.id} name={s.name} lang={(s.trLang ?? (tt.lang as ML))} />
+        <TelegramButton id={s.id} lang={(s.trLang ?? (tt.lang as ML))} />
         <button type="button" className="mu-btn t-btn-sm t-hero__edit t-private" onClick={() => { setTab('profile'); setTimeout(() => document.querySelector('.t-tabs')?.scrollIntoView({ behavior: 'smooth' }), 50); }}><Icon id="e-pencil" />{tt({ uk: 'Змінити дані', ru: 'Изменить данные', en: 'Edit details' })}</button>
         <div className={`t-hero__bal t-private ${b < 0 ? (s.payMode === 'post' ? 't-warn' : 't-neg') : ''}`}>
           <small>{b < 0 ? (s.payMode === 'post' ? tt({ uk: 'До оплати', ru: 'К оплате', en: 'To pay' }) : tt({ uk: 'Борг', ru: 'Долг', en: 'Owes' })) : tt({ uk: 'Баланс', ru: 'Баланс', en: 'Balance' })}</small><b>{fmtMoney(Math.abs(b), tt.lang)}</b>
@@ -1049,8 +1049,22 @@ function StudentStats({ id }: { id: string }) {
   );
 }
 
-// Посилання для батьків: копіюємо в буфер, щоб надіслати в месенджер
-function ParentLinkButton({ id }: { id: string }) {
+// Готові повідомлення, які вчитель пересилає в месенджер: одразу видно, навіщо це посилання
+type ML = 'uk' | 'ru' | 'en';
+const pickL = (l: ML, o: { uk: string; ru: string; en: string }) => o[l];
+const parentMsg = (l: ML, name: string, url: string) => pickL(l, {
+  uk: `Вітаю! Ось звіт про заняття англійською (${name}):\n• дати занять і відвідуваність\n• скільки занять оплачено або до сплати\n• домашні завдання й оцінки\n\nРеєструватися не потрібно, сторінка оновлюється сама, можна зберегти посилання:\n${url}`,
+  ru: `Здравствуйте! Вот отчёт о занятиях английским (${name}):\n• даты занятий и посещаемость\n• сколько занятий оплачено или к оплате\n• домашние задания и оценки\n\nРегистрироваться не нужно, страница обновляется сама, ссылку можно сохранить:\n${url}`,
+  en: `Hello! Here is the English lessons report for ${name}:\n• lesson dates and attendance\n• lessons paid or to pay\n• homework and scores\n\nNo sign-up needed, the page updates itself, so you can bookmark it:\n${url}`,
+});
+const studentMsg = (l: ML, url: string) => pickL(l, {
+  uk: `Підключи бота Murly в Telegram, він:\n• нагадає про урок\n• надішле нову домашку\n• покаже твої монетки й успіхи\n\nНатисни посилання і «Start»:\n${url}`,
+  ru: `Подключи бота Murly в Telegram, он:\n• напомнит об уроке\n• пришлёт новую домашку\n• покажет твои монетки и успехи\n\nНажми на ссылку и «Start»:\n${url}`,
+  en: `Connect the Murly bot in Telegram. It will:\n• remind you about lessons\n• send new homework\n• show your coins and progress\n\nTap the link and press Start:\n${url}`,
+});
+
+// Звіт для батьків: копіюємо готове повідомлення з посиланням, батькам не треба нічого реєструвати
+function ParentLinkButton({ id, name, lang }: { id: string; name: string; lang: ML }) {
   const t = useT();
   const [st, setSt] = useState<'' | 'copied' | 'err'>('');
   const [url, setUrl] = useState('');
@@ -1058,56 +1072,49 @@ function ParentLinkButton({ id }: { id: string }) {
     const j = await fetch(`/api/parent-link?student=${id}`).then((r) => r.json()).catch(() => null);
     if (!j?.url) { setSt('err'); return; }
     setUrl(j.url);
-    try { await navigator.clipboard.writeText(j.url); setSt('copied'); } catch { setSt('err'); }
+    try { await navigator.clipboard.writeText(parentMsg(lang, name, j.url)); setSt('copied'); } catch { setSt('err'); }
   };
   return (
     <span className="t-parent t-private">
-      <button type="button" className="mu-btn t-btn-sm" onClick={go} title={t({ uk: 'Посилання на звіт: дати занять, відвідуваність, оплати й борг, домашки й успішність. Без входу.', ru: 'Ссылка на отчёт: даты занятий, посещаемость, оплаты и долг, домашки и успеваемость. Без входа.', en: 'Report link: lesson dates, attendance, payments and balance, homework and scores. No login.' })}><Icon id="d-heart" />{t({ uk: 'Звіт для батьків', ru: 'Отчёт для родителей', en: 'Parent report' })}</button>
-      {st === 'copied' && <small className="t-pos">{t({ uk: 'Посилання на звіт скопійовано', ru: 'Ссылка на отчёт скопирована', en: 'Report link copied' })} · <a href={url} target="_blank" rel="noopener noreferrer">{t({ uk: 'переглянути', ru: 'посмотреть', en: 'preview' })}</a></small>}
-      {st === 'err' && url && <input readOnly value={url} onFocus={(e) => e.target.select()} className="t-parent__url" />}
+      <button type="button" className="mu-btn t-btn-sm" onClick={go} title={t({ uk: 'Копіює готове повідомлення для батьків з посиланням на звіт: дати занять, відвідуваність, оплати, домашки. Без реєстрації.', ru: 'Копирует готовое сообщение для родителей со ссылкой на отчёт: даты занятий, посещаемость, оплаты, домашки. Без регистрации.', en: 'Copies a ready message for parents with the report link: lesson dates, attendance, payments, homework. No sign-up.' })}><Icon id="d-heart" />{t({ uk: 'Звіт для батьків', ru: 'Отчёт для родителей', en: 'Parent report' })}</button>
+      {st === 'copied' && <small className="t-pos t-parent__note">{t({ uk: 'Скопійовано готове повідомлення з посиланням на звіт. Встав його батькам у Telegram або Viber.', ru: 'Скопировано готовое сообщение со ссылкой на отчёт. Вставь его родителям в Telegram или Viber.', en: 'A ready message with the report link is copied. Paste it to the parents in any messenger.' })} <a href={url} target="_blank" rel="noopener noreferrer">{t({ uk: 'Переглянути звіт', ru: 'Посмотреть отчёт', en: 'Preview the report' })}</a></small>}
+      {st === 'err' && url && <textarea readOnly value={parentMsg(lang, name, url)} onFocus={(e) => e.target.select()} className="t-parent__url" rows={6} />}
       {st === 'err' && !url && <small className="t-neg">{t({ uk: 'Не вдалося', ru: 'Не удалось', en: 'Failed' })}</small>}
     </span>
   );
 }
 
-// Telegram: посилання підключення для учня і батьків, щоб переслати їм у месенджер
-function TelegramButton({ id, kid }: { id: string; kid: boolean }) {
+// Telegram для учня: копіюємо повідомлення з поясненням, що робить бот
+function TelegramButton({ id, lang }: { id: string; lang: ML }) {
   const t = useT();
   const [open, setOpen] = useState(false);
-  const [d, setD] = useState<{ ready?: boolean; student?: { linked: boolean; link: string }; parent?: { linked: boolean; link: string } } | null>(null);
-  const [copied, setCopied] = useState('');
+  const [d, setD] = useState<{ ready?: boolean; student?: { linked: boolean; link: string } } | null>(null);
+  const [copied, setCopied] = useState(false);
   const box = useRef<HTMLSpanElement>(null);
   useEffect(() => {
     if (!open) return;
-    fetch(`/api/tg-links?student=${id}&lang=${t.lang}`).then((r) => r.json()).then(setD).catch(() => setD({ ready: false }));
+    fetch(`/api/tg-links?student=${id}&lang=${lang}`).then((r) => r.json()).then(setD).catch(() => setD({ ready: false }));
     const down = (e: PointerEvent) => { if (!box.current?.contains(e.target as Node)) setOpen(false); };
     const key = (e: KeyboardEvent) => { if (e.key === 'Escape') setOpen(false); };
     window.addEventListener('pointerdown', down); window.addEventListener('keydown', key);
     return () => { window.removeEventListener('pointerdown', down); window.removeEventListener('keydown', key); };
-  }, [open, id, t.lang]);
-  const copy = async (k: string, link: string) => { try { await navigator.clipboard.writeText(link); setCopied(k); window.setTimeout(() => setCopied(''), 1800); } catch { window.prompt('', link); } };
-  const row = (k: 'student' | 'parent', label: string) => {
-    const x = d?.[k]; if (!x) return null;
-    return (
-      <div className="t-tg__row">
-        <b>{label}</b>
-        {x.linked ? <span className="t-tag t-tag--done">{t({ uk: 'Підключено', ru: 'Подключено', en: 'Connected' })}</span> : <span className="t-tag">{t({ uk: 'Не підключено', ru: 'Не подключено', en: 'Not connected' })}</span>}
-        <button type="button" className="t-link-btn" onClick={() => copy(k, x.link)}>{copied === k ? t({ uk: 'Скопійовано', ru: 'Скопировано', en: 'Copied' }) : t({ uk: 'Копіювати посилання', ru: 'Копировать ссылку', en: 'Copy link' })}</button>
-      </div>
-    );
-  };
+  }, [open, id, lang]);
+  const copy = async (link: string) => { const msg = studentMsg(lang, link); try { await navigator.clipboard.writeText(msg); setCopied(true); window.setTimeout(() => setCopied(false), 2500); } catch { window.prompt('', msg); } };
+  const x = d?.student;
   return (
     <span className="t-tg t-private" ref={box}>
-      <button type="button" className="mu-btn t-btn-sm" aria-expanded={open} onClick={() => setOpen(!open)}><Icon id="d-send" />Telegram</button>
+      <button type="button" className="mu-btn t-btn-sm" aria-expanded={open} onClick={() => setOpen(!open)}><Icon id="d-send" />{t({ uk: 'Бот для учня', ru: 'Бот для ученика', en: 'Student bot' })}</button>
       {open && (
         <div className="t-tg__pop" role="dialog" aria-label="Telegram">
           {!d && <p className="t-muted">…</p>}
           {d && d.ready === false && <p className="t-muted">{t({ uk: 'Бот ще не налаштований.', ru: 'Бот ещё не настроен.', en: 'The bot is not set up yet.' })}</p>}
-          {d?.ready && <>
-            <p className="t-muted">{t({ uk: 'Перешли посилання. Після натискання «Start» бот надсилатиме нові домашки.', ru: 'Перешли ссылку. После нажатия «Start» бот будет присылать новые домашки.', en: 'Send this link. After they press Start, the bot will send new homework.' })}</p>
-            {row('student', t({ uk: 'Учню', ru: 'Ученику', en: 'Student' }))}
-            {kid && row('parent', t({ uk: 'Батькам (сповіщення в Telegram)', ru: 'Родителям (уведомления в Telegram)', en: 'Parents (Telegram alerts)' }))}
-            <p className="t-muted" style={{ fontSize: 12, margin: '6px 0 0' }}>{t({ uk: 'Це посилання на бота. Звіт про заняття й оплати: кнопка «Звіт для батьків».', ru: 'Это ссылка на бота. Отчёт о занятиях и оплатах: кнопка «Отчёт для родителей».', en: 'This is a bot link. For the lessons and payments report use “Parent report”.' })}</p>
+          {d?.ready && x && <>
+            <p className="t-tg__what">{t({ uk: 'Бот Murly в Telegram для учня: нагадує про уроки, надсилає нові домашки, показує монетки й успіхи.', ru: 'Бот Murly в Telegram для ученика: напоминает об уроках, присылает новые домашки, показывает монетки и успехи.', en: 'The Murly Telegram bot for the student: lesson reminders, new homework, coins and progress.' })}</p>
+            <div className="t-tg__row">
+              {x.linked ? <span className="t-tag t-tag--done">{t({ uk: 'Учень уже підключив', ru: 'Ученик уже подключил', en: 'Already connected' })}</span> : <span className="t-tag">{t({ uk: 'Ще не підключено', ru: 'Ещё не подключено', en: 'Not connected yet' })}</span>}
+              <button type="button" className="mu-btn mu-btn--lime t-btn-sm" onClick={() => copy(x.link)}>{copied ? t({ uk: 'Скопійовано!', ru: 'Скопировано!', en: 'Copied!' }) : t({ uk: 'Копіювати повідомлення учню', ru: 'Копировать сообщение ученику', en: 'Copy message for the student' })}</button>
+            </div>
+            <p className="t-muted" style={{ fontSize: 12, margin: '6px 0 0' }}>{t({ uk: 'Скопіюється текст з поясненням і посиланням. Батькам надсилай кнопку «Звіт для батьків», їм бот не потрібен.', ru: 'Скопируется текст с объяснением и ссылкой. Родителям отправляй кнопку «Отчёт для родителей», им бот не нужен.', en: 'This copies a message with an explanation and the link. For parents use “Parent report”; they do not need the bot.' })}</p>
           </>}
         </div>
       )}
