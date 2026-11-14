@@ -22,7 +22,7 @@ export default async function ParentPage({ params }: { params: { token: string }
   const s = st[0];
   if (!s) notFound();
   const [lessons, hw, words, teacher, pays] = await Promise.all([
-    db.query(`lessons?student_id=eq.${enc(sid)}&select=student_id,start,status,topic&order=start.desc&limit=200`).then(uniqLessons).catch(() => []),
+    db.query(`lessons?student_id=eq.${enc(sid)}&select=student_id,start,status&order=start.desc&limit=200`).then(uniqLessons).catch(() => []),
     db.query(`homework?student_id=eq.${enc(sid)}&select=title,status,score,total,feedback,due,done_at,created_at&order=created_at.desc&limit=30`).catch(() => []),
     db.query(`words?student_id=eq.${enc(sid)}&select=id`).catch(() => []),
     db.query(`teacher_settings?teacher_id=eq.${enc(String(s.teacher_id))}&select=name`).catch(() => []),
@@ -89,12 +89,12 @@ export default async function ParentPage({ params }: { params: { token: string }
         <section className="t-card">
           <h2>{t({ uk: 'Минулі заняття', ru: 'Прошедшие занятия', en: 'Past lessons' })}</h2>
           {past.length ? past.map((l, i) => { const k = STATUS[String(l.status)] ?? STATUS.planned; return (
-            <div key={i} className="t-row"><span>{fmt(l.start)}{l.topic ? <small className="t-muted"> · {String(l.topic)}</small> : null}</span><b className={k.cls}>{t(k)}</b></div>
+            <div key={i} className="t-row"><span>{fmt(l.start)}</span><b className={k.cls}>{t(k)}</b></div>
           ); }) : <p className="t-muted">{t({ uk: 'Занять ще не було.', ru: 'Занятий ещё не было.', en: 'No lessons yet.' })}</p>}
         </section>
         <section className="t-card">
           <h2>{t({ uk: 'Найближчі заняття', ru: 'Ближайшие занятия', en: 'Upcoming lessons' })}</h2>
-          {upcoming.length ? upcoming.map((l, i) => <div key={i} className="t-row"><span>{fmt(l.start)}</span><b>{l.topic ? String(l.topic) : ''}</b></div>)
+          {upcoming.length ? upcoming.map((l, i) => <div key={i} className="t-row"><span>{fmt(l.start)}</span></div>)
             : <p className="t-muted">{t({ uk: 'Поки не заплановано.', ru: 'Пока не запланировано.', en: 'Nothing planned yet.' })}</p>}
         </section>
         <section className="t-card">
