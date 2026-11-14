@@ -85,7 +85,7 @@ export async function menuAnswer(kind: string, lang: Lang, links: Link[]): Promi
       if (b !== 0 && lessons) line += t({ uk: ` (≈ ${lessons} зан.)`, ru: ` (≈ ${lessons} зан.)`, en: ` (≈ ${lessons} lessons)` });
       const extra = [
         price ? t({ uk: `Ціна заняття: ${money(price, lang)}`, ru: `Цена занятия: ${money(price, lang)}`, en: `Lesson price: ${money(price, lang)}` }) : '',
-        pays[0] ? t({ uk: `Остання оплата: ${money(Number(pays[0].amount), lang)}, ${day(pays[0].at, lang)}`, ru: `Последняя оплата: ${money(Number(pays[0].amount), lang)}, ${day(pays[0].at, lang)}`, en: `Last payment: ${money(Number(pays[0].amount), lang)}, ${day(pays[0].at, lang)}` }) : '',
+        pays.length ? t({ uk: 'Останні оплати:', ru: 'Последние оплаты:', en: 'Recent payments:' }) + '\n' + pays.slice(0, 3).map((p) => `${day(p.at, lang)}: ${money(Number(p.amount), lang)}`).join('\n') : '',
       ].filter(Boolean).join('\n');
       parts.push(`${head(k)}${line}${extra ? `\n${extra}` : ''}`);
     }
@@ -134,10 +134,27 @@ export async function menuAnswer(kind: string, lang: Lang, links: Link[]): Promi
     }
 
     if (kind === 'next') {
-      const up = await db.query(`lessons?student_id=eq.${sid}&status=eq.planned&start=gte.${enc(new Date().toISOString())}&select=student_id,start,topic&order=start.asc&limit=8`).then((r) => uniqLessons(r).slice(0, 4)).catch(() => []);
-      parts.push(head(k) + (up.length
-        ? up.map((l) => `${when(l.start, lang, tzOr(k.s.tz))}${l.topic ? `: ${esc(String(l.topic))}` : ''}`).join('\n')
-        : t({ uk: 'Найближчих занять поки не заплановано.', ru: 'Ближайших занятий пока не запланировано.', en: 'No upcoming lessons yet.' })));
+      const nowIso = enc(new Date().toISOString());
+      const [up, past] = await Promise.all([
+        db.query(`lessons?student_id=eq.${sid}&status=eq.planned&start=gte.${nowIso}&select=student_id,start,topic&order=start.asc&limit=8`).then((r) => uniqLessons(r).slice(0, 4)).catch(() => []),
+        db.query(`lessons?student_id=eq.${sid}&start=lt.${nowIso}&status=in.(done,missed,charged,cancelled)&select=student_id,start,status&order=start.desc&limit=12`).then((r) => uniqLessons(r).slice(0, 6)).catch(() => []),
+      ]);
+      const tz = tzOr(k.s.tz);
+      // батькам тему не показуємо: там можуть бути нотатки вчителя
+      const showTopic = k.role === 'self';
+      const ST: Record<string, { uk: string; ru: string; en: string }> = {
+        done: { uk: 'був', ru: 'был', en: 'attended' },
+        missed: { uk: 'пропуск', ru: 'пропуск', en: 'missed' },
+        charged: { uk: 'пропуск, оплачується', ru: 'пропуск, оплачивается', en: 'missed, charged' },
+        cancelled: { uk: 'скасовано', ru: 'отменён', en: 'cancelled' },
+      };
+      const a = up.length
+        ? up.map((l) => `${when(l.start, lang, tz)}${showTopic && l.topic ? `: ${esc(String(l.topic))}` : ''}`).join('\n')
+        : t({ uk: 'Найближчих занять поки не заплановано.', ru: 'Ближайших занятий пока не запланировано.', en: 'No upcoming lessons yet.' });
+      const b = past.length
+        ? `\n\n<b>${t({ uk: 'Минулі заняття', ru: 'Прошедшие занятия', en: 'Past lessons' })}</b>\n` + past.map((l) => `${day(l.start, lang, tz)}: ${t(ST[String(l.status)] || ST.done)}`).join('\n')
+        : '';
+      parts.push(head(k) + a + b);
     }
 
     if (kind === 'hw') {
@@ -153,7 +170,7 @@ export async function menuAnswer(kind: string, lang: Lang, links: Link[]): Promi
   if (!parts.length) return t({ uk: 'Тут поки нічого показати.', ru: 'Здесь пока нечего показать.', en: 'Nothing to show here yet.' });
   const title = {
     pay: t({ uk: 'Оплата', ru: 'Оплата', en: 'Payments' }), stats: t({ uk: 'Успішність', ru: 'Успеваемость', en: 'Progress' }),
-    coins: t({ uk: 'Монетки', ru: 'Монетки', en: 'Coins' }), next: t({ uk: 'Найближчі заняття', ru: 'Ближайшие занятия', en: 'Upcoming lessons' }),
+    coins: t({ uk: 'Монетки', ru: 'Монетки', en: 'Coins' }), next: t({ uk: 'Заняття: найближчі', ru: 'Занятия: ближайшие', en: 'Lessons: upcoming' }),
     hw: t({ uk: 'Домашка до здачі', ru: 'Домашка к сдаче', en: 'Homework to do' }),
     words: t({ uk: 'Мій словник', ru: 'Мой словарь', en: 'My words' }),
   }[kind] || '';
