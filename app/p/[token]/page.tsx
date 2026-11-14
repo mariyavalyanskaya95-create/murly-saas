@@ -36,7 +36,6 @@ export default async function ParentPage({ params }: { params: { token: string }
   const balLessons = price ? Math.floor(Math.abs(balance) / price) : 0;
   const money = (n: number) => `${Math.round(n).toLocaleString(LOC[t.lang])} ₴`;
   const tz = String(s.tz || 'Europe/Kyiv');
-  const past = lessons.filter((l) => +new Date(String(l.start)) <= now).slice(0, 12);
   const STATUS: Record<string, { uk: string; ru: string; en: string; cls: string }> = {
     done: { uk: 'відбулося', ru: 'состоялось', en: 'held', cls: 't-pos' },
     missed: { uk: 'пропуск', ru: 'пропуск', en: 'missed', cls: 't-warn' },
@@ -45,6 +44,7 @@ export default async function ParentPage({ params }: { params: { token: string }
     planned: { uk: 'не позначено', ru: 'не отмечено', en: 'not marked', cls: 't-muted' },
   };
   const now = Date.now();
+  const past = lessons.filter((l) => +new Date(String(l.start)) <= now).slice(0, 12);
   const held = lessons.filter((l) => l.status === 'done').length;
   const missed = lessons.filter((l) => l.status === 'missed' || l.status === 'charged').length;
   const att = held + missed ? Math.round((held / (held + missed)) * 100) : null;
