@@ -4472,3 +4472,8 @@ a.ab-card:hover { transform: translateY(-3px); }
 .bk-alt a { color: var(--mu-ink); }
 .bk-page--long .bk-text { font-size: clamp(17px, 1.7vw, 20px); line-height: 1.75; }
 .bk-page--long { grid-template-columns: 170px 1fr; }
+/* Звіт для батьків */
+.pr-big { font-size: 20px; font-weight: 800; margin: 4px 0 6px; }
+.pr-pay.is-debt { border-color: #E07A86; }
+.pr-more { margin-top: 8px; }
+.pr-more summary { cursor: pointer; font-weight: 700; margin-bottom: 6px; }
