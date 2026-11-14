@@ -13,20 +13,37 @@ export const metadata: Metadata = { title: 'Murly', robots: { index: false, foll
 const enc = encodeURIComponent;
 const LOC = { uk: 'uk-UA', ru: 'ru-RU', en: 'en-GB' } as const;
 
-// Сторінка для батьків: як навчається дитина. Без цін і без входу.
+// Звіт для батьків без входу: заняття (дати й відвідуваність), оплати й борг, домашки й успішність.
 export default async function ParentPage({ params }: { params: { token: string } }) {
   const sid = parseParentToken(params.token);
   if (!sid || !dbReady()) notFound();
   const t = tr();
-  const st = await db.query(`students?id=eq.${enc(sid)}&select=id,name,level,teacher_id`).catch(() => []);
+  const st = await db.query(`students?id=eq.${enc(sid)}&select=id,name,level,teacher_id,price,pay_mode,owed_lessons,prepaid_lessons,tz`).catch(() => []);
   const s = st[0];
   if (!s) notFound();
-  const [lessons, hw, words, teacher] = await Promise.all([
+  const [lessons, hw, words, teacher, pays] = await Promise.all([
     db.query(`lessons?student_id=eq.${enc(sid)}&select=student_id,start,status,topic&order=start.desc&limit=200`).then(uniqLessons).catch(() => []),
     db.query(`homework?student_id=eq.${enc(sid)}&select=title,status,score,total,feedback,due,done_at,created_at&order=created_at.desc&limit=30`).catch(() => []),
     db.query(`words?student_id=eq.${enc(sid)}&select=id`).catch(() => []),
     db.query(`teacher_settings?teacher_id=eq.${enc(String(s.teacher_id))}&select=name`).catch(() => []),
+    db.query(`payments?student_id=eq.${enc(sid)}&select=amount,at&order=at.desc&limit=100`).catch(() => []),
   ]);
+  // оплати: скільки занять оплачено наперед або скільки винні (так само, як у кабінеті вчителя)
+  const price = Number(s.price) || 0;
+  const paidSum = pays.reduce((n, p) => n + (Number(p.amount) || 0), 0);
+  const billed = lessons.filter((l) => l.status === 'done' || l.status === 'charged').length;
+  const balance = paidSum - billed * price + ((Number(s.prepaid_lessons) || 0) - (Number(s.owed_lessons) || 0)) * price;
+  const balLessons = price ? Math.floor(Math.abs(balance) / price) : 0;
+  const money = (n: number) => `${Math.round(n).toLocaleString(LOC[t.lang])} ₴`;
+  const tz = String(s.tz || 'Europe/Kyiv');
+  const past = lessons.filter((l) => +new Date(String(l.start)) <= now).slice(0, 12);
+  const STATUS: Record<string, { uk: string; ru: string; en: string; cls: string }> = {
+    done: { uk: 'відбулося', ru: 'состоялось', en: 'held', cls: 't-pos' },
+    missed: { uk: 'пропуск', ru: 'пропуск', en: 'missed', cls: 't-warn' },
+    charged: { uk: 'пропуск, оплачено', ru: 'пропуск, оплачено', en: 'missed, charged', cls: 't-warn' },
+    cancelled: { uk: 'скасовано', ru: 'отменено', en: 'cancelled', cls: 't-muted' },
+    planned: { uk: 'не позначено', ru: 'не отмечено', en: 'not marked', cls: 't-muted' },
+  };
   const now = Date.now();
   const held = lessons.filter((l) => l.status === 'done').length;
   const missed = lessons.filter((l) => l.status === 'missed' || l.status === 'charged').length;
@@ -36,7 +53,7 @@ export default async function ParentPage({ params }: { params: { token: string }
   const scored = done.filter((h) => Number(h.total) > 0);
   const avg = scored.length ? Math.round((scored.reduce((n, h) => n + Number(h.score) / Number(h.total), 0) / scored.length) * 100) : null;
   const late = hw.filter((h) => h.status === 'assigned' && h.due && +new Date(String(h.due)) < now).length;
-  const fmt = (iso: unknown) => new Date(String(iso)).toLocaleString(LOC[t.lang], { weekday: 'short', day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Kyiv' });
+  const fmt = (iso: unknown) => new Date(String(iso)).toLocaleString(LOC[t.lang], { weekday: 'short', day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit', timeZone: tz });
   const fmtD = (iso: unknown) => new Date(String(iso)).toLocaleDateString(LOC[t.lang], { day: 'numeric', month: 'short' });
 
   return (
@@ -55,6 +72,26 @@ export default async function ParentPage({ params }: { params: { token: string }
           <div className="t-stats__item"><b>{avg != null ? `${avg}%` : '–'}</b><span>{t({ uk: 'середній бал', ru: 'средний балл', en: 'average score' })}</span></div>
           <div className="t-stats__item"><b>{words.length}</b><span>{t({ uk: 'слів вивчено', ru: 'слов изучено', en: 'words learned' })}</span></div>
         </div>
+        {price > 0 && (
+          <section className={`t-card pr-pay ${balance < 0 ? 'is-debt' : ''}`}>
+            <h2>{t({ uk: 'Оплата занять', ru: 'Оплата занятий', en: 'Lesson payments' })}</h2>
+            {balance > 0 ? <p className="pr-big t-pos">{t({ uk: `Оплачено наперед: ${balLessons} зан. (${money(balance)})`, ru: `Оплачено наперёд: ${balLessons} зан. (${money(balance)})`, en: `Prepaid: ${balLessons} lessons (${money(balance)})` })}</p>
+              : balance < 0 ? <p className="pr-big t-neg">{t({ uk: `До сплати: ${money(-balance)}${balLessons ? ` (${balLessons} зан.)` : ''}`, ru: `К оплате: ${money(-balance)}${balLessons ? ` (${balLessons} зан.)` : ''}`, en: `To pay: ${money(-balance)}${balLessons ? ` (${balLessons} lessons)` : ''}` })}</p>
+              : <p className="pr-big">{t({ uk: 'Усе оплачено', ru: 'Всё оплачено', en: 'All paid' })}</p>}
+            <p className="t-muted">{t({ uk: `Вартість заняття: ${money(price)}. Оплачено всього: ${money(paidSum)}, проведено й оплачуваних занять: ${billed}.`, ru: `Стоимость занятия: ${money(price)}. Оплачено всего: ${money(paidSum)}, проведено и оплачиваемых занятий: ${billed}.`, en: `Price per lesson: ${money(price)}. Paid in total: ${money(paidSum)}, billable lessons: ${billed}.` })}</p>
+            {pays.length > 0 && (
+              <details className="pr-more"><summary>{t({ uk: 'Історія оплат', ru: 'История оплат', en: 'Payment history' })}</summary>
+                {pays.slice(0, 12).map((p, i) => <div key={i} className="t-row"><span>{fmtD(p.at)}</span><b>{money(Number(p.amount) || 0)}</b></div>)}
+              </details>
+            )}
+          </section>
+        )}
+        <section className="t-card">
+          <h2>{t({ uk: 'Минулі заняття', ru: 'Прошедшие занятия', en: 'Past lessons' })}</h2>
+          {past.length ? past.map((l, i) => { const k = STATUS[String(l.status)] ?? STATUS.planned; return (
+            <div key={i} className="t-row"><span>{fmt(l.start)}{l.topic ? <small className="t-muted"> · {String(l.topic)}</small> : null}</span><b className={k.cls}>{t(k)}</b></div>
+          ); }) : <p className="t-muted">{t({ uk: 'Занять ще не було.', ru: 'Занятий ещё не было.', en: 'No lessons yet.' })}</p>}
+        </section>
         <section className="t-card">
           <h2>{t({ uk: 'Найближчі заняття', ru: 'Ближайшие занятия', en: 'Upcoming lessons' })}</h2>
           {upcoming.length ? upcoming.map((l, i) => <div key={i} className="t-row"><span>{fmt(l.start)}</span><b>{l.topic ? String(l.topic) : ''}</b></div>)
