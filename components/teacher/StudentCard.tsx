@@ -1062,8 +1062,8 @@ function ParentLinkButton({ id }: { id: string }) {
   };
   return (
     <span className="t-parent t-private">
-      <button type="button" className="mu-btn t-btn-sm" onClick={go} title={t({ uk: 'Сторінка з успіхами учня для батьків, без входу', ru: 'Страница с успехами ученика для родителей, без входа', en: 'A progress page for parents, no login' })}><Icon id="d-heart" />{t({ uk: 'Батькам', ru: 'Родителям', en: 'For parents' })}</button>
-      {st === 'copied' && <small className="t-pos">{t({ uk: 'Посилання скопійовано', ru: 'Ссылка скопирована', en: 'Link copied' })}</small>}
+      <button type="button" className="mu-btn t-btn-sm" onClick={go} title={t({ uk: 'Посилання на звіт: дати занять, відвідуваність, оплати й борг, домашки й успішність. Без входу.', ru: 'Ссылка на отчёт: даты занятий, посещаемость, оплаты и долг, домашки и успеваемость. Без входа.', en: 'Report link: lesson dates, attendance, payments and balance, homework and scores. No login.' })}><Icon id="d-heart" />{t({ uk: 'Звіт для батьків', ru: 'Отчёт для родителей', en: 'Parent report' })}</button>
+      {st === 'copied' && <small className="t-pos">{t({ uk: 'Посилання на звіт скопійовано', ru: 'Ссылка на отчёт скопирована', en: 'Report link copied' })} · <a href={url} target="_blank" rel="noopener noreferrer">{t({ uk: 'переглянути', ru: 'посмотреть', en: 'preview' })}</a></small>}
       {st === 'err' && url && <input readOnly value={url} onFocus={(e) => e.target.select()} className="t-parent__url" />}
       {st === 'err' && !url && <small className="t-neg">{t({ uk: 'Не вдалося', ru: 'Не удалось', en: 'Failed' })}</small>}
     </span>
@@ -1106,7 +1106,8 @@ function TelegramButton({ id, kid }: { id: string; kid: boolean }) {
           {d?.ready && <>
             <p className="t-muted">{t({ uk: 'Перешли посилання. Після натискання «Start» бот надсилатиме нові домашки.', ru: 'Перешли ссылку. После нажатия «Start» бот будет присылать новые домашки.', en: 'Send this link. After they press Start, the bot will send new homework.' })}</p>
             {row('student', t({ uk: 'Учню', ru: 'Ученику', en: 'Student' }))}
-            {kid && row('parent', t({ uk: 'Батькам', ru: 'Родителям', en: 'Parents' }))}
+            {kid && row('parent', t({ uk: 'Батькам (сповіщення в Telegram)', ru: 'Родителям (уведомления в Telegram)', en: 'Parents (Telegram alerts)' }))}
+            <p className="t-muted" style={{ fontSize: 12, margin: '6px 0 0' }}>{t({ uk: 'Це посилання на бота. Звіт про заняття й оплати: кнопка «Звіт для батьків».', ru: 'Это ссылка на бота. Отчёт о занятиях и оплатах: кнопка «Отчёт для родителей».', en: 'This is a bot link. For the lessons and payments report use “Parent report”.' })}</p>
           </>}
         </div>
       )}
