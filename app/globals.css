@@ -4511,3 +4511,4 @@ textarea.t-parent__url { width: 300px; font: inherit; font-size: 13px; }
 @keyframes srPop{0%{transform:scale(.3) translateY(10px);opacity:0}60%{opacity:1}100%{transform:none}}
 .sr-item:hover svg{filter:drop-shadow(1.6px 0 0 #fff) drop-shadow(-1.6px 0 0 #fff) drop-shadow(0 1.6px 0 #fff) drop-shadow(0 -1.6px 0 #fff) drop-shadow(0 6px 6px rgba(27,33,64,.25))}
 @media (prefers-reduced-motion:reduce){.sr-item.is-pop svg{animation:none}}
+.mu-section--tomato .mu-card--ink .mu-chips span { background: rgba(255,255,255,.14); color: #fff; border-color: rgba(255,255,255,.45); }
