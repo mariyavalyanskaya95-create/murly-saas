@@ -20,6 +20,7 @@ export type Post = {
   art: ArtId[];          // 1-3 ілюстрації зі спрайту для обкладинки
   minutes: number;       // час читання
   title: Record<Lang2, string>;
+  seoTitle?: Record<Lang2, string>; // коротший заголовок для Google, якщо H1 довгий
   description: Record<Lang2, string>; // meta description, 140-160 символів
   keywords: Record<Lang2, string[]>;  // головні пошукові запити статті
   body: Record<Lang2, Block[]>;
