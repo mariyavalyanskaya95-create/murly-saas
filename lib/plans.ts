@@ -1,6 +1,9 @@
 // Тарифи і пробний місяць. Поки немає ФОП (оплати підключимо через ФОП Андрія), PAID_ENABLED = false:
 // усе безкоштовно, лічильник пробного місяця і нагадування про оплату вимкнені.
 export const PAID_ENABLED = false;
+// Перші користувачі: усі, хто зареєструвався до запуску оплати (дата створення акаунта в Clerk), мають −50% назавжди.
+// Коли вмикатимемо оплату, вписати сюди дату запуску і застосувати знижку в checkout.
+export const FOUNDER_DISCOUNT = 0.5;
 export const TRIAL_DAYS = 30;
 export const PRICES = { teacherPro: 249, teacherProYear: 2240, school: 990, schoolYear: 8910, schoolExtraTeacher: 190, studentPlus: 99, studentPlusYear: 790, family: 149, familyYear: 1340, nmtPack: 299 } as const;
 
