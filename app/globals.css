@@ -4507,3 +4507,7 @@ textarea.t-parent__url { width: 300px; font: inherit; font-size: 13px; }
 .ct-words li b { margin-right: 6px; }
 .ct-tip { background: var(--mu-cream, #faf6ee); border-radius: 12px; padding: 10px 14px; }
 .ct-src { font-weight: 700; font-size: 14px; }
+.sr-item.is-pop svg{animation:srPop .45s cubic-bezier(.3,1.6,.5,1)}
+@keyframes srPop{0%{transform:scale(.3) translateY(10px);opacity:0}60%{opacity:1}100%{transform:none}}
+.sr-item:hover svg{filter:drop-shadow(1.6px 0 0 #fff) drop-shadow(-1.6px 0 0 #fff) drop-shadow(0 1.6px 0 #fff) drop-shadow(0 -1.6px 0 #fff) drop-shadow(0 6px 6px rgba(27,33,64,.25))}
+@media (prefers-reduced-motion:reduce){.sr-item.is-pop svg{animation:none}}
