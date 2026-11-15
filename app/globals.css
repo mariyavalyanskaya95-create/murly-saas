@@ -4480,3 +4480,4 @@ a.ab-card:hover { transform: translateY(-3px); }
 .t-parent__note { display: block; max-width: 320px; line-height: 1.4; }
 .t-tg__what { margin: 0 0 8px; font-size: 14px; font-weight: 600; }
 textarea.t-parent__url { width: 300px; font: inherit; font-size: 13px; }
+.lp-seo-intro { max-width: 760px; margin: 0 0 18px; font-size: 15px; line-height: 1.55; color: var(--mu-ink-soft, #5b5566); }
