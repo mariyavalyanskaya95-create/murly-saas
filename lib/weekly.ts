@@ -4,6 +4,7 @@ import { db } from './db';
 import { esc, tgSend } from './telegram';
 import { OWNER_TEACHER_ID } from './plans';
 import { uniqLessons } from './lesson-dedupe';
+import { gscLines } from './gsc';
 
 const enc = encodeURIComponent;
 // свої люди, не нові клієнти (Марія попросила не рахувати)
@@ -79,6 +80,7 @@ export async function weeklyText(): Promise<string> {
     .map(([id, v]) => `• ${esc(names.get(id) || 'Учитель')}: уроков ${v.lsWeek}, новых учеников ${v.stNew}, домашек ${v.hw}`);
   const mine = owner ? per.get(owner) : undefined;
 
+  const google = await gscLines().catch(() => [] as string[]);
   return [
     `📊 <b>Murly за неделю</b> (${day(from)} – ${day(new Date(now))})`,
     '',
@@ -96,6 +98,7 @@ export async function weeklyText(): Promise<string> {
     `• учились на сайте (получали XP): ${xpUsers.size}`,
     fb.length ? `• идей от учителей: ${fb.length}` : '',
     `• аккаунтов всего: ${total}, учеников в кабинетах: ${students.length}`,
+    ...(google.length ? ['', ...google] : []),
   ].filter((x) => x !== '').join('\n');
 }
 
