@@ -1759,7 +1759,7 @@ a.t-stat:hover { transform: translateY(-2px); }
 .mu-role--mustard { background: var(--mu-mustard); }
 .mu-role--sky { background: var(--mu-sky); }
 .mu-role__ic { display: grid; place-items: center; width: 64px; height: 64px; border-radius: 50%; background: var(--mu-ink); color: var(--mu-lime); font-size: 30px; }
-.mu-role h3 { font-size: 30px; margin: 4px 0 0; }
+.mu-role h3 { font-size: 24px; line-height: 1.12; margin: 4px 0 0; overflow-wrap: anywhere; }
 .mu-role p { flex: 1; line-height: 1.5; margin: 0; }
 .mu-role__cta { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; margin-top: 6px; }
 .mu-role__alt { font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
