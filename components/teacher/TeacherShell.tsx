@@ -36,7 +36,7 @@ function Shell({ userId, name, children }: { userId: string; name: string; child
   const active = (href: string) => (href === '/teacher' ? path === href : path.startsWith(href));
   const privPage = NAV.some((n) => n.priv && (n.href === '/teacher' ? path === '/teacher' : path.startsWith(n.href)));
   // у режимі уроку зі сторінок з розкладом і грошима переходимо до учнів
-  useEffect(() => { if (lesson.on && privPage) router.replace('/teacher/students'); }, [lesson.on, privPage, router]);
+  useEffect(() => { if (lesson.ready && lesson.on && privPage) router.replace('/teacher/students'); }, [lesson.ready, lesson.on, privPage, router]);
 
   return (
     <TeacherProvider userId={userId}>
