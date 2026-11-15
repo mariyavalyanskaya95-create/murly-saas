@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { billedUnits } from '@/lib/billing';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import Kit from '@/components/Kit';
@@ -22,7 +23,7 @@ export default async function ParentPage({ params }: { params: { token: string }
   const s = st[0];
   if (!s) notFound();
   const [lessons, hw, words, teacher, pays] = await Promise.all([
-    db.query(`lessons?student_id=eq.${enc(sid)}&select=student_id,start,status&order=start.desc&limit=200`).then(uniqLessons).catch(() => []),
+    db.query(`lessons?student_id=eq.${enc(sid)}&select=student_id,start,status,duration&order=start.desc&limit=200`).then(uniqLessons).catch(() => []),
     db.query(`homework?student_id=eq.${enc(sid)}&select=title,status,score,total,feedback,due,done_at,created_at&order=created_at.desc&limit=30`).catch(() => []),
     db.query(`words?student_id=eq.${enc(sid)}&select=id`).catch(() => []),
     db.query(`teacher_settings?teacher_id=eq.${enc(String(s.teacher_id))}&select=name`).catch(() => []),
@@ -31,7 +32,7 @@ export default async function ParentPage({ params }: { params: { token: string }
   // оплати: скільки занять оплачено наперед або скільки винні (так само, як у кабінеті вчителя)
   const price = Number(s.price) || 0;
   const paidSum = pays.reduce((n, p) => n + (Number(p.amount) || 0), 0);
-  const billed = lessons.filter((l) => l.status === 'done' || l.status === 'charged').length;
+  const billed = billedUnits(lessons.filter((l) => l.status === 'done' || l.status === 'charged'));
   const balance = paidSum - billed * price + ((Number(s.prepaid_lessons) || 0) - (Number(s.owed_lessons) || 0)) * price;
   const balLessons = price ? Math.floor(Math.abs(balance) / price) : 0;
   const money = (n: number) => `${Math.round(n).toLocaleString(LOC[t.lang])} ₴`;
