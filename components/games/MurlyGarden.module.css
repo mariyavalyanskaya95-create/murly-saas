@@ -163,3 +163,18 @@
   .btn:hover, .card:hover, .topic:hover, .opt:hover:not(:disabled) { transform: none; }
 }
 @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+
+/* ---------- живий сад ---------- */
+.sway path { transform-box: fill-box; transform-origin: 50% 100%; animation: sway 3.2s ease-in-out infinite alternate; }
+.sway path:nth-child(2) { animation-duration: 2.7s; } .sway path:nth-child(3) { animation-duration: 3.6s; }
+@keyframes sway { from { transform: rotate(-6deg); } to { transform: rotate(6deg); } }
+.fly { animation: flyPath 10s ease-in-out infinite; }
+@keyframes flyPath { 0% { transform: translate(0, 0); } 25% { transform: translate(60px, -40px); } 50% { transform: translate(120px, 10px); } 75% { transform: translate(40px, 30px); } 100% { transform: translate(0, 0); } }
+.wing, .wing2 { transform-box: fill-box; animation: flap .28s ease-in-out infinite alternate; }
+.wing { transform-origin: 100% 50%; } .wing2 { transform-origin: 0% 50%; }
+@keyframes flap { from { transform: scaleX(1); } to { transform: scaleX(.35); } }
+.bee { animation: buzz 4s ease-in-out infinite; }
+@keyframes buzz { 0%, 100% { transform: translate(0, 0); } 30% { transform: translate(26px, -18px); } 60% { transform: translate(-18px, -8px); } }
+.spark { transform-box: fill-box; transform-origin: center; animation: spark .9s ease-out forwards; opacity: 0; }
+@keyframes spark { 0% { transform: translateY(10px) scale(.2); opacity: 0; } 30% { opacity: 1; } 100% { transform: translateY(-34px) scale(1.1); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .sway path, .fly, .wing, .wing2, .bee, .spark { animation: none !important; } .spark { opacity: 0; } }

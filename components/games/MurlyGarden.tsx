@@ -465,11 +465,44 @@ export function GardenScene({ owned, fresh, labels, onSpot, cat }: { owned: Gard
           <path d="M40 280l4-8 4 8M300 268l4-8 4 8M520 270l4-8 4 8M770 290l4-8 4 8M560 470l4-8 4 8M280 470l4-8 4 8M30 380l4-8 4 8M790 400l4-8 4 8M500 300l4-8 4 8" />
         </g>
         {layers(['swing', 'tree', 'birdhouse', 'path', 'pond', 'lanterns', 'bench', 'flowers', 'veggies'])}
+        {/* трава гойдається на вітрі */}
+        <g className={s.sway} fill="#7DC489" stroke={INK} strokeWidth="1.6" strokeLinejoin="round">
+          <path d="M120 470q-4-22 2-34q2 14 6 18q2-16 10-24q-2 20 0 40z" /><path d="M640 476q-4-22 2-34q2 14 6 18q2-16 10-24q-2 20 0 40z" /><path d="M380 486q-3-18 2-28q2 12 5 15q2-13 8-20q-2 17 0 33z" />
+        </g>
+        {/* метелики: що більше відновлено, то їх більше */}
+        {BUTTERFLIES.slice(0, Math.min(4, 1 + Math.floor(has.size / 3))).map((b, i) => (
+          <g key={i} className={s.fly} style={{ animationDuration: `${b.d}s`, animationDelay: `${-i * 1.7}s` }}>
+            <g transform={`translate(${b.x} ${b.y})`}>
+              <g className={s.wing}><path d="M0 0q-14-14-18-2q-2 10 18 2zM0 0q-12 10-10 16q8 2 10-16z" fill={b.c} stroke={INK} strokeWidth="1.4" /></g>
+              <g className={s.wing2}><path d="M0 0q14-14 18-2q2 10-18 2zM0 0q12 10 10 16q-8 2-10-16z" fill={b.c} stroke={INK} strokeWidth="1.4" /></g>
+              <path d="M0-6v14" stroke={INK} strokeWidth="2.2" strokeLinecap="round" />
+            </g>
+          </g>
+        ))}
+        {/* бджілка біля квітів */}
+        {has.has('flowers') && (
+          <g className={s.bee}><g transform="translate(560 360)">
+            <ellipse cx="0" cy="0" rx="9" ry="6.5" fill={YELLOW} stroke={INK} strokeWidth="1.6" /><path d="M-3-6v12M3-6v12" stroke={INK} strokeWidth="2" />
+            <g className={s.wing}><ellipse cx="-2" cy="-9" rx="5" ry="4" fill="#FFFFFF" stroke={INK} strokeWidth="1.2" opacity=".9" /></g>
+          </g></g>
+        )}
+        {/* іскорки, коли щойно щось відновили */}
+        {fresh && SPOTS[fresh] && (
+          <g key={`spark-${fresh}`} transform={`translate(${SPOTS[fresh].badge[0]} ${SPOTS[fresh].badge[1]})`}>
+            {[0, 45, 90, 135, 180, 225, 270, 315].map((a, i) => (
+              <g key={a} transform={`rotate(${a})`}><path className={s.spark} style={{ animationDelay: `${i * 0.03}s` }} d={starPath(0, -18, 7)} fill={i % 2 ? PINK : YELLOW} stroke={INK} strokeWidth="1.2" /></g>
+            ))}
+          </g>
+        )}
       </svg>
       {cat && <div className={s.catBox}>{cat}</div>}
     </div>
   );
 }
+
+const BUTTERFLIES = [
+  { x: 180, y: 300, c: PINK, d: 9 }, { x: 600, y: 280, c: LAV, d: 11 }, { x: 420, y: 330, c: YELLOW, d: 10 }, { x: 90, y: 360, c: '#A9E4C8', d: 12 },
+];
 
 /* ---------- гра ---------- */
 type Screen = 'garden' | 'topics' | 'round' | 'result';
