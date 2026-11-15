@@ -43,7 +43,7 @@
 /* ---------- старт ---------- */
 .intro {
   display: grid;
-  grid-template-columns: 180px 1fr;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
   gap: 24px;
   align-items: center;
   background: #fff;
@@ -279,6 +279,9 @@
 .winCount { margin: 0; font-weight: 700; }
 
 /* ---------- телефон ---------- */
+@media (max-width: 760px) {
+  .intro { grid-template-columns: 1fr; }
+}
 @media (max-width: 560px) {
   .intro { grid-template-columns: 1fr; padding: 18px 16px; gap: 12px; }
   .introCat { width: 130px; margin: 0 auto; }
@@ -300,3 +303,15 @@
     transition: none !important;
   }
 }
+
+/* ---------- живе демо на старті ---------- */
+.demo { position: relative; border: 2px solid var(--ink); border-radius: 18px; overflow: hidden; background: linear-gradient(#DCEBFF, #F3F8FF 60%); }
+.demoLight { position: absolute; top: 10px; left: 10px; display: flex; flex-direction: column; gap: 5px; padding: 6px; background: #2B2540; border-radius: 12px; border: 2px solid var(--ink); }
+.demoLight i { width: 16px; height: 16px; border-radius: 50%; background: #4a4360; transition: background .25s, box-shadow .25s; }
+.demoRed i:first-child { background: #F26B6B; box-shadow: 0 0 10px #F26B6B; }
+.demoGreen i:last-child { background: #62D27A; box-shadow: 0 0 10px #62D27A; }
+/* ---------- конфеті ---------- */
+.win { position: relative; overflow: hidden; }
+.confetti { position: absolute; inset: 0; pointer-events: none; }
+.confetti i { position: absolute; top: -20px; width: 9px; height: 14px; border-radius: 2px; opacity: .9; animation: fall linear infinite; }
+@keyframes fall { 0% { transform: translateY(-20px) rotate(0); } 100% { transform: translateY(560px) rotate(540deg); } }

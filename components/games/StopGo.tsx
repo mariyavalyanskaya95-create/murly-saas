@@ -314,6 +314,34 @@ export function Scene({ steps, pos, view, turning, anim, animKey }: { steps: num
   );
 }
 
+
+// Демо на старті: котик сам іде доріжкою, світлофор перемикається, Murly обертається на червоне
+function IntroDemo() {
+  const [k, setK] = useState(0);
+  useEffect(() => { const id = window.setInterval(() => setK((x) => (x + 1) % 12), 900); return () => window.clearInterval(id); }, []);
+  // 0-4 зелене (крок кожні 0,9 с), 5-7 червоне (стоїмо), 8-11 зелене до фінішу
+  const red = k >= 5 && k <= 7;
+  const pos = k <= 4 ? k : k <= 7 ? 4 : Math.min(5, 4 + (k - 7));
+  return (
+    <div className={s.demo} aria-hidden="true">
+      <Scene steps={5} pos={k === 11 ? 5 : pos} view={red ? 'front' : 'back'} turning={k === 4} anim={red ? '' : 'hop'} animKey={red ? -1 : k} />
+      <div className={`${s.demoLight} ${red ? s.demoRed : s.demoGreen}`}><i /><i /></div>
+    </div>
+  );
+}
+
+// Конфеті на фінальному екрані
+function Confetti() {
+  const cols = ['#B9A6F2', '#F6B5C8', '#F7D46B', '#A9E4C8', '#9CC8F2'];
+  return (
+    <div className={s.confetti} aria-hidden="true">
+      {Array.from({ length: 36 }, (_, i) => (
+        <i key={i} style={{ left: `${(i * 37) % 100}%`, background: cols[i % cols.length], animationDelay: `${(i % 9) * 0.25}s`, animationDuration: `${2.6 + (i % 5) * 0.4}s`, transform: `rotate(${i * 23}deg)` }} />
+      ))}
+    </div>
+  );
+}
+
 // ---------- гра ----------
 type Phase = 'ready' | 'green' | 'turning' | 'red' | 'done';
 type Screen = 'intro' | 'play' | 'level' | 'win';
@@ -481,7 +509,7 @@ export default function StopGo() {
     return (
       <div className={s.root}>
         <div className={s.intro}>
-          <svg className={s.introCat} viewBox="0 0 160 180" aria-hidden="true"><MurlyArt view="front" /></svg>
+          <IntroDemo />
           <div className={s.introText}>
             <p className={s.lead}>{t({ uk: 'Дійди доріжкою до котика Murly!', ru: 'Дойди по дорожке до котика Murly!', en: 'Walk along the path to Murly the cat!' })}</p>
             <ul className={s.rules}>
@@ -509,6 +537,7 @@ export default function StopGo() {
     return (
       <div className={s.root}>
         <div className={s.win}>
+          <Confetti />
           <svg className={s.winCat} viewBox="0 0 160 180" aria-hidden="true"><MurlyArt view="happy" /></svg>
           <h2 className={s.winTitle}>Hooray! You reached Murly!</h2>
           {sub({ uk: 'Ура! Усі три рівні пройдено.', ru: 'Ура! Все три уровня пройдены.', en: '' })}
