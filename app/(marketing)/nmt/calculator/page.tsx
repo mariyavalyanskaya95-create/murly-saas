@@ -43,7 +43,7 @@ export default function NmtCalculatorPage() {
             <h2>{t({ uk: 'Питання й відповіді', ru: 'Вопросы и ответы', en: 'FAQ' })}</h2>
             {FAQ.map((f) => <details key={f.q.uk}><summary>{t(f.q)}</summary><p>{t(f.a)}</p></details>)}
             <p className="t-muted nc-src">{t({ uk: 'Джерело: таблиці переведення тестових балів НМТ до шкали 100-200 (додаток до правил прийому 2026 року, дані УЦОЯО). Калькулятор довідковий, офіційні результати дивись на testportal.gov.ua.', ru: 'Источник: таблицы перевода тестовых баллов НМТ в шкалу 100-200 (приложение к правилам приёма 2026 года, данные УЦОКО). Калькулятор справочный, официальные результаты смотри на testportal.gov.ua.', en: 'Source: NMT test-to-scale conversion tables (annex to the 2026 admission rules, UCEQA data). For reference only; official results are on testportal.gov.ua.' })}</p>
-            <p><Link href="/nmt">{t({ uk: 'Усе про НМТ з англійської', ru: 'Всё про НМТ по английскому', en: 'All about NMT English' })}</Link> · <Link href="/shop/nmt-checklist">{t({ uk: 'Чек-лист підготовки', ru: 'Чек-лист подготовки', en: 'Prep checklist' })}</Link></p>
+            <p><Link href="/nmt/english">{t({ uk: 'Структура тесту і теми НМТ з англійської', ru: 'Структура теста и темы НМТ по английскому', en: 'NMT English format and topics' })}</Link> · <Link href="/nmt">{t({ uk: 'Усе про НМТ з англійської', ru: 'Всё про НМТ по английскому', en: 'All about NMT English' })}</Link> · <Link href="/shop/nmt-checklist">{t({ uk: 'Чек-лист підготовки', ru: 'Чек-лист подготовки', en: 'Prep checklist' })}</Link></p>
           </div>
         </div>
       </section>
