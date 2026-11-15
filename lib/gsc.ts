@@ -1,4 +1,5 @@
 // Google Search Console для тижневого зведення: службовий акаунт (ключ JSON у змінній GSC_SA_JSON на Vercel).
+// Доступ: службовий акаунт murly-weekly (проєкт budget-bot) з обмеженим доступом у Search Console.
 import { createSign } from 'crypto';
 
 const SITE = process.env.GSC_SITE || 'https://murly.com.ua/';
