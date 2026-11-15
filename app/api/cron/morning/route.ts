@@ -17,10 +17,11 @@ const due = (tz: unknown, sentOn: unknown) => { const p = localParts(tzOr(tz)); 
 export async function GET() {
   if (!tgReady() || !dbReady()) return NextResponse.json({ skipped: true });
   const tsent = await teacherMorning().catch((e) => { console.error(e); return 0; });
+  const psent = await parentMorning().catch((e) => { console.error(e); return 0; });
   const all = await db.query('students?tg_chat_id=not.is.null&select=id,name,tg_chat_id,tg_lang,tz,morning_sent_on').catch(() => []);
   const today = new Map<string, string>();
   const students = all.filter((s) => { const d = due(s.tz, s.morning_sent_on); if (d) today.set(String(s.id), d); return Boolean(d); });
-  if (!students.length) return NextResponse.json({ sent: 0, teachers: tsent });
+  if (!students.length) return NextResponse.json({ sent: 0, teachers: tsent, parents: psent });
   const now = Date.now();
   const in24 = new Date(now + 24 * 3600 * 1000).toISOString();
   const ids = students.map((s) => String(s.id)).join(',');
@@ -46,7 +47,7 @@ export async function GET() {
       { text: L(lang, { uk: 'Мій кабінет', ru: 'Мой кабинет', en: 'My account' }), url: `${SITE}/student` });
     if (ok) sent++;
   }
-  return NextResponse.json({ sent, teachers: tsent });
+  return NextResponse.json({ sent, teachers: tsent, parents: psent });
 }
 
 // Учителю зранку: заняття на сьогодні, скільки чекає перевірки, хто чекає оплати
@@ -82,3 +83,32 @@ async function teacherMorning() {
   return n;
 }
 
+
+// Батькам о 8:00 за часом учня: нагадування, що сьогодні заняття (без тем, там можуть бути нотатки вчителя).
+// Окремої позначки «вже надіслано» в базі немає, тому шлемо лише в годину HOUR: крон щогодинний, повтору не буде.
+async function parentMorning() {
+  const kids = (await db.query('students?parent_tg_chat_id=not.is.null&select=id,name,parent_tg_chat_id,parent_tg_lang,tz').catch(() => []))
+    .filter((s) => localParts(tzOr(s.tz)).hour === HOUR);
+  if (!kids.length) return 0;
+  const now = new Date(); const in24 = new Date(now.getTime() + 18 * 3600 * 1000);
+  const ids = kids.map((s) => String(s.id)).join(',');
+  const lessons = uniqLessons(await db.query(`lessons?student_id=in.(${ids})&status=eq.planned&start=gte.${encodeURIComponent(now.toISOString())}&start=lt.${encodeURIComponent(in24.toISOString())}&select=student_id,start,duration&order=start.asc`).catch(() => []));
+  // один чат може бути прив’язаний до кількох дітей: одне повідомлення на чат
+  const byChat = new Map<string, string[]>(); const langOf = new Map<string, string>();
+  for (const s of kids) {
+    const ls = lessons.filter((l) => l.student_id === s.id);
+    if (!ls.length) continue;
+    const chat = String(s.parent_tg_chat_id); const lang = String(s.parent_tg_lang || 'uk'); const tz = tzOr(s.tz);
+    langOf.set(chat, lang);
+    const arr = byChat.get(chat) ?? [];
+    ls.forEach((l) => arr.push(`📅 ${esc(String(s.name || ''))}: ${L(lang, { uk: 'заняття о', ru: 'занятие в', en: 'lesson at' })} <b>${time(String(l.start), lang, tz)}</b>${Number(l.duration) ? ` (${Number(l.duration)} ${L(lang, { uk: 'хв', ru: 'мин', en: 'min' })})` : ''}`));
+    byChat.set(chat, arr);
+  }
+  let n = 0;
+  for (const [chat, lines] of byChat) {
+    const lang = langOf.get(chat) || 'uk';
+    const ok = await tgSend(chat, `${L(lang, { uk: 'Доброго ранку! Сьогодні англійська:', ru: 'Доброе утро! Сегодня английский:', en: 'Good morning! English today:' })}\n${lines.join('\n')}`);
+    if (ok) n++;
+  }
+  return n;
+}
