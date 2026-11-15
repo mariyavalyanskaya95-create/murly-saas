@@ -5,12 +5,13 @@
 import { createContext, useCallback, useContext, useEffect, useState } from 'react';
 
 const KEY = 'murly:lesson-mode';
-const Ctx = createContext<{ on: boolean; toggle: () => void }>({ on: false, toggle: () => {} });
+const Ctx = createContext<{ on: boolean; ready: boolean; toggle: () => void }>({ on: false, ready: false, toggle: () => {} });
 
 export function LessonModeProvider({ children }: { children: React.ReactNode }) {
   const [on, setOn] = useState(true);
-  useEffect(() => { try { const v = sessionStorage.getItem(KEY); setOn(v === null ? true : v === '1'); } catch { /* */ } }, []);
+  const [ready, setReady] = useState(false); // поки не прочитали вибір вчителя, нікуди не перенаправляємо
+  useEffect(() => { try { const v = sessionStorage.getItem(KEY); setOn(v === null ? true : v === '1'); } catch { /* */ } setReady(true); }, []);
   const toggle = useCallback(() => setOn((v) => { const n = !v; try { sessionStorage.setItem(KEY, n ? '1' : '0'); } catch { /* */ } return n; }), []);
-  return <Ctx.Provider value={{ on, toggle }}>{children}</Ctx.Provider>;
+  return <Ctx.Provider value={{ on, ready, toggle }}>{children}</Ctx.Provider>;
 }
 export const useLessonMode = () => useContext(Ctx);
