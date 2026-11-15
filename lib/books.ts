@@ -329,7 +329,8 @@ export const BOOKS: Book[] = [
    "How did the duckling feel? Why?",
    "What can we do when someone is different?",
    "What is your favourite season? Why?"
-  ]
+  ],
+  "harder": "ugly-duckling-b1"
  },
  {
   "id": "hansel-and-gretel",
@@ -411,7 +412,8 @@ export const BOOKS: Book[] = [
    "Was Gretel brave? Why?",
    "What would you do if you got lost in a forest?",
    "What would your dream house be made of?"
-  ]
+  ],
+  "harder": "hansel-and-gretel-b1"
  },
  {
   "id": "goldilocks",
@@ -493,7 +495,8 @@ export const BOOKS: Book[] = [
    "Was it OK to go into the bears’ house? Why?",
    "Do you like your porridge hot or cold?",
    "What is “just right” for you: big, middle or small?"
-  ]
+  ],
+  "harder": "goldilocks-b1"
  },
  {
   "id": "tortoise-and-hare",
@@ -574,7 +577,8 @@ export const BOOKS: Book[] = [
    "Are you more like the tortoise or the hare?",
    "Why is it bad to be too proud?",
    "Tell about a time you did not give up."
-  ]
+  ],
+  "harder": "tortoise-and-hare-b1"
  },
  {
   "id": "lion-and-mouse",
@@ -654,7 +658,8 @@ export const BOOKS: Book[] = [
    "Have you ever helped someone bigger or older than you?",
    "Why did the lion laugh?",
    "What makes a good friend?"
-  ]
+  ],
+  "harder": "lion-and-mouse-b1"
  },
  {
   "id": "three-little-pigs-b1",
@@ -908,6 +913,426 @@ export const BOOKS: Book[] = [
    "Retell the story from the stepmother’s point of view."
   ],
   "base": "cinderella"
+ },
+ {
+  "id": "ugly-duckling-b1",
+  "base": "ugly-duckling",
+  "title": "The Ugly Duckling",
+  "titleT": {
+   "uk": "Гидке каченя",
+   "ru": "Гадкий утёнок",
+   "en": "The Ugly Duckling"
+  },
+  "level": "B1-B2",
+  "age": "11+",
+  "kit": "st-cat-heart",
+  "color": "#CFE8F7",
+  "about": {
+   "uk": "Гидке каченя для B1-B2: Past Continuous, used to, порівняння (the ugliest, as ... as) і почуття героя.",
+   "ru": "Гадкий утёнок для B1-B2: Past Continuous, used to, сравнения (the ugliest, as ... as) и чувства героя.",
+   "en": "The Ugly Duckling for B1-B2: past continuous, used to, comparisons and feelings."
+  },
+  "pages": [
+   "It was a warm summer day, and a mother duck was sitting on her nest beside a quiet lake. She had been waiting for weeks, and at last the eggs began to crack. One by one, five fluffy yellow ducklings climbed out and looked around at the bright new world.",
+   "Only one egg, the largest of all, had not opened. An old duck who was swimming past warned her, \"That egg doesn't look like yours. Leave it and take care of the others.\" But the mother duck was patient. A few days later the egg finally cracked, and out came a big grey bird with a long neck.",
+   "\"What an ugly duckling!\" laughed the other animals. The hens pecked him, the ducks chased him, and even his brothers and sisters refused to play with him. \"I wish you had never been born,\" one of them said. The poor duckling felt that he didn't belong anywhere.",
+   "One morning, while everyone was still sleeping, he ran away. He wandered through fields and marshes, hiding from hunters and their dogs. Wherever he went, he heard the same words: \"You are the ugliest bird we have ever seen.\" He used to hope that someone would be kind to him, but slowly he stopped hoping.",
+   "Autumn came, and the leaves turned brown. One evening he saw a group of beautiful white birds flying south over the lake. They had long, elegant necks and wings as white as snow. He didn't know their name, but he felt a strange love for them and wished he could be like them.",
+   "The winter was long and terribly cold. The lake froze, and the duckling was so weak that he could hardly move. A farmer found him lying in the ice and carried him home, but the children were so loud and excited that the frightened bird escaped again and spent the rest of the winter alone among the reeds.",
+   "At last the sun grew warm, and spring returned. The duckling spread his wings and was surprised to find that they were strong. He flew over a garden and landed on a lake where three of those beautiful white birds were swimming. \"They will probably chase me away,\" he thought, \"but I would rather be hurt by them than live alone.\"",
+   "He bowed his head and waited. Then he saw his reflection in the clear water. He was no longer a clumsy grey bird. He was a swan! The other swans swam around him and welcomed him. Children on the shore shouted, \"Look, there's a new one, and he's the most beautiful of all!\" He had never imagined such happiness, but he did not become proud, because he remembered what it felt like to be lonely."
+  ],
+  "words": [
+   "nest",
+   "crack",
+   "patient",
+   "neck",
+   "belong",
+   "wander",
+   "elegant",
+   "freeze",
+   "reflection",
+   "swan"
+  ],
+  "questions": [
+   {
+    "q": "Why did the old duck warn the mother?",
+    "options": [
+     "The egg was too small",
+     "The egg looked different",
+     "The nest was dangerous"
+    ],
+    "answer": 1
+   },
+   {
+    "q": "Why did the duckling run away?",
+    "options": [
+     "Everyone was unkind to him",
+     "He wanted to find the swans",
+     "The farmer took him"
+    ],
+    "answer": 0
+   },
+   {
+    "q": "Why did he escape from the farmer's house?",
+    "options": [
+     "He was hungry",
+     "The children frightened him",
+     "The farmer was angry"
+    ],
+    "answer": 1
+   },
+   {
+    "q": "What did he discover in the water?",
+    "options": [
+     "He had become a swan",
+     "He was still ugly",
+     "He had a brother"
+    ],
+    "answer": 0
+   }
+  ],
+  "talk": [
+   "Have you ever felt that you didn't belong somewhere? What helped?",
+   "Why do people sometimes judge others by how they look?",
+   "Why didn't the swan become proud at the end?"
+  ]
+ },
+ {
+  "id": "hansel-and-gretel-b1",
+  "base": "hansel-and-gretel",
+  "title": "Hansel and Gretel",
+  "titleT": {
+   "uk": "Гензель і Гретель",
+   "ru": "Гензель и Гретель",
+   "en": "Hansel and Gretel"
+  },
+  "level": "B1-B2",
+  "age": "11+",
+  "kit": "st-cat-box",
+  "color": "#F9D7A8",
+  "about": {
+   "uk": "Гензель і Гретель для B1-B2: Past Perfect, непряма мова (She said that...), модальні could, had to, managed to.",
+   "ru": "Гензель и Гретель для B1-B2: Past Perfect, косвенная речь (She said that...), модальные could, had to, managed to.",
+   "en": "Hansel and Gretel for B1-B2: past perfect, reported speech and modals like could, had to, managed to."
+  },
+  "pages": [
+   "On the edge of a great forest lived a poor woodcutter with his two children, Hansel and Gretel. Their mother had died years before, and their father had married again. Times were hard, and there was hardly enough bread for one meal a day.",
+   "One night, when the children were supposed to be asleep, they heard their stepmother whispering. She said that there wasn't enough food for four people and that the children had to be left in the forest. Their father refused at first, but in the end he gave in. Gretel began to cry, but Hansel told her not to worry.",
+   "When everyone was asleep, Hansel crept outside and filled his pockets with white pebbles that shone in the moonlight. The next morning, as the family walked deep into the forest, he secretly dropped them along the path. That night the children followed the shining pebbles and managed to find their way home.",
+   "Their father was delighted, but the stepmother was furious. A few weeks later she took them into the forest again, and this time Hansel only had a piece of bread. He dropped crumbs along the way, but by the evening the birds had eaten every single one. The children were completely lost.",
+   "For three days they wandered among the trees, tired and starving. Then they came to a little house made of gingerbread, with windows of clear sugar and a roof covered in cakes. They were so hungry that they started to break off pieces and eat them. Suddenly the door opened, and an old woman came out, leaning on a stick.",
+   "\"Come in, my dears,\" she said kindly. \"Nobody will hurt you here.\" She gave them pancakes with milk and two soft beds. But the old woman was really a wicked witch who had built the house to trap children. The next morning she locked Hansel in a cage and made Gretel do all the housework.",
+   "Every day the witch, who couldn't see very well, asked Hansel to hold out his finger so that she could feel whether he had got fatter. Clever Hansel held out a thin old bone instead. After four weeks the witch lost her patience. \"Fat or thin, I will cook him today!\" she cried, and she told Gretel to check whether the oven was hot enough.",
+   "Gretel guessed what the witch was planning. \"I don't know how to do it,\" she said. \"Show me.\" When the witch bent down and put her head into the oven, Gretel pushed her in and slammed the door. She freed her brother, and in the witch's house they found boxes of pearls and jewels. They filled their pockets and set off, and at last they recognised the path to their home. Their father, who had regretted his decision every day, hugged them with tears in his eyes. The stepmother had gone, and from then on they lived together without fear or hunger."
+  ],
+  "words": [
+   "woodcutter",
+   "whisper",
+   "pebble",
+   "crumb",
+   "starving",
+   "wicked",
+   "trap",
+   "cage",
+   "patience",
+   "regret"
+  ],
+  "questions": [
+   {
+    "q": "What did the children overhear one night?",
+    "options": [
+     "A plan to leave them in the forest",
+     "A plan to move to the city",
+     "A story about a witch"
+    ],
+    "answer": 0
+   },
+   {
+    "q": "Why didn't the bread crumbs help?",
+    "options": [
+     "Hansel lost them",
+     "The birds ate them",
+     "It was too dark"
+    ],
+    "answer": 1
+   },
+   {
+    "q": "How did Hansel trick the witch?",
+    "options": [
+     "He hid in the oven",
+     "He showed her a bone instead of his finger",
+     "He ran away at night"
+    ],
+    "answer": 1
+   },
+   {
+    "q": "How did their father feel when they came back?",
+    "options": [
+     "angry",
+     "surprised but cold",
+     "very happy and sorry"
+    ],
+    "answer": 2
+   }
+  ],
+  "talk": [
+   "Was it fair to blame the father? Why or why not?",
+   "Which of the two children was braver? Explain.",
+   "Why do so many fairy tales have a dangerous forest?"
+  ]
+ },
+ {
+  "id": "goldilocks-b1",
+  "base": "goldilocks",
+  "title": "Goldilocks and the Three Bears",
+  "titleT": {
+   "uk": "Златовласка і три ведмеді",
+   "ru": "Златовласка и три медведя",
+   "en": "Goldilocks and the Three Bears"
+  },
+  "level": "B1-B2",
+  "age": "11+",
+  "kit": "st-cat-box",
+  "color": "#FBE3A4",
+  "about": {
+   "uk": "Златовласка для B1-B2: too / enough, Present Perfect у діалогах (Someone has been eating...), ввічливі прохання.",
+   "ru": "Златовласка для B1-B2: too / enough, Present Perfect в диалогах (Someone has been eating...), вежливые просьбы.",
+   "en": "Goldilocks for B1-B2: too and enough, present perfect continuous in dialogue, polite requests."
+  },
+  "pages": [
+   "In a small house at the edge of a wood lived a family of three bears: a huge Father Bear, a medium-sized Mother Bear and a tiny Baby Bear. Every morning Mother Bear made porridge for breakfast, and while it was cooling down, the family went for a short walk among the trees.",
+   "Not far away lived a curious girl with golden curls, so everyone called her Goldilocks. She was clever and brave, but she rarely thought before she acted. That morning she was picking flowers when she noticed the bears' house and the open window.",
+   "She knocked, but nobody answered. Instead of going home, she pushed the door and stepped inside. On the table there were three bowls of porridge. The big one was far too hot, the middle one was too cold, but the little one was just right, so she ate it all without thinking twice.",
+   "Feeling full, she decided to have a rest. The big chair was too hard, and the medium chair was too soft. The little chair seemed comfortable enough, but as soon as she sat down, it cracked and broke into pieces. Goldilocks shrugged and went upstairs to look around.",
+   "There were three beds in the bedroom. The first one was too high to climb into, and the second one was so soft that she sank into it. The smallest bed, however, was perfect. She lay down, pulled up the blanket and fell fast asleep.",
+   "Meanwhile the bears came home. \"Someone has been eating my porridge,\" growled Father Bear. \"Someone has been eating mine too,\" said Mother Bear. \"And someone has eaten all of mine!\" cried Baby Bear. Then they saw the chairs, and Baby Bear burst into tears when he found his own lying broken on the floor.",
+   "Quietly the bears climbed the stairs. \"Someone has been sleeping in my bed,\" said Father Bear in his deep voice. \"And in mine,\" said Mother Bear. \"Someone has been sleeping in my bed,\" squeaked Baby Bear, \"and she's still there!\"",
+   "Goldilocks opened her eyes and saw three bears staring at her. She screamed, jumped out of the window and ran all the way home without looking back. Later that evening she felt ashamed. The next day she came back with a basket of honey and a letter of apology, and she even helped Father Bear repair the little chair. From then on, she always knocked and waited before entering anyone's home."
+  ],
+  "words": [
+   "porridge",
+   "curious",
+   "curls",
+   "bowl",
+   "comfortable",
+   "shrug",
+   "growl",
+   "stare",
+   "ashamed",
+   "apology"
+  ],
+  "questions": [
+   {
+    "q": "Why did the bears leave the house?",
+    "options": [
+     "to wait for the porridge to cool",
+     "to visit Goldilocks",
+     "to buy food"
+    ],
+    "answer": 0
+   },
+   {
+    "q": "What happened to the little chair?",
+    "options": [
+     "Goldilocks took it",
+     "It broke",
+     "Father Bear sat on it"
+    ],
+    "answer": 1
+   },
+   {
+    "q": "Who found Goldilocks first?",
+    "options": [
+     "Father Bear",
+     "Mother Bear",
+     "Baby Bear"
+    ],
+    "answer": 2
+   },
+   {
+    "q": "How did Goldilocks change at the end?",
+    "options": [
+     "She never went to the woods again",
+     "She apologised and became more careful",
+     "She became friends with a wolf"
+    ],
+    "answer": 1
+   }
+  ],
+  "talk": [
+   "What should Goldilocks have done when nobody answered the door?",
+   "Is it enough to say sorry? What else can you do?",
+   "Which bear would you like to be and why?"
+  ]
+ },
+ {
+  "id": "tortoise-and-hare-b1",
+  "base": "tortoise-and-hare",
+  "title": "The Tortoise and the Hare",
+  "titleT": {
+   "uk": "Черепаха і заєць",
+   "ru": "Черепаха и заяц",
+   "en": "The Tortoise and the Hare"
+  },
+  "level": "B1-B2",
+  "age": "11+",
+  "kit": "st-cat-heart",
+  "color": "#CDEBC3",
+  "about": {
+   "uk": "Байка про черепаху й зайця для B1-B2: умовні речення (If I..., I would...), сталі вирази, мораль своїми словами.",
+   "ru": "Басня про черепаху и зайца для B1-B2: условные предложения (If I..., I would...), устойчивые выражения, мораль своими словами.",
+   "en": "The fable for B1-B2: conditionals, set phrases and explaining a moral in your own words."
+  },
+  "pages": [
+   "In a green meadow lived a hare who was extremely proud of his speed. Every day he boasted to the other animals: \"Nobody in this meadow can run as fast as I can. If there were a race, I would win it without even trying.\"",
+   "Most animals were tired of his showing off, but nobody dared to say anything. One afternoon a tortoise, who had been listening quietly, looked up and said, \"I'll race you.\" The hare laughed so hard that he nearly fell over. \"You? You're the slowest creature I've ever met!\"",
+   "\"Maybe,\" replied the tortoise calmly, \"but a race isn't over until someone crosses the finish line.\" The animals agreed that the race would start at the old oak tree and finish at the river. The fox, who was known to be fair, would be the judge.",
+   "The next morning half the meadow came to watch. The fox shouted, \"Ready, steady, go!\" and the hare shot off like an arrow. Within seconds he had disappeared over the hill, while the tortoise was still taking her first slow steps.",
+   "Halfway to the river the hare looked back. The tortoise was nowhere to be seen. \"I've got plenty of time,\" he said to himself. \"If I have a short nap under this tree, I'll still win easily.\" The sun was warm, the grass was soft, and soon he was fast asleep.",
+   "Meanwhile the tortoise kept going. She didn't stop to rest or to eat, and she didn't waste energy worrying about the hare. Step by step, hour after hour, she moved forward. When she passed the sleeping hare, she didn't wake him. She simply carried on.",
+   "When the hare finally woke up, the sun was already setting. He jumped to his feet and ran as fast as he had ever run in his life. But as he reached the top of the last hill, he heard the animals cheering. The tortoise had just crossed the finish line.",
+   "The hare was embarrassed, but to everyone's surprise, he walked up to the tortoise and congratulated her. \"I underestimated you,\" he admitted. \"Talent isn't enough if you don't make an effort.\" The tortoise smiled. \"And slow and steady wins the race,\" she said. From that day on, the hare spent less time boasting and more time training."
+  ],
+  "words": [
+   "meadow",
+   "boast",
+   "show off",
+   "dare",
+   "judge",
+   "arrow",
+   "nap",
+   "waste",
+   "embarrassed",
+   "underestimate"
+  ],
+  "questions": [
+   {
+    "q": "Why were the animals tired of the hare?",
+    "options": [
+     "He was always boasting",
+     "He was very slow",
+     "He never spoke"
+    ],
+    "answer": 0
+   },
+   {
+    "q": "Who was the judge of the race?",
+    "options": [
+     "the owl",
+     "the fox",
+     "the hare's friend"
+    ],
+    "answer": 1
+   },
+   {
+    "q": "Why did the hare stop?",
+    "options": [
+     "He was hurt",
+     "He thought he had plenty of time",
+     "He got lost"
+    ],
+    "answer": 1
+   },
+   {
+    "q": "What did the hare learn?",
+    "options": [
+     "Talent needs effort too",
+     "Tortoises are cheaters",
+     "Races are boring"
+    ],
+    "answer": 0
+   }
+  ],
+  "talk": [
+   "Explain “slow and steady wins the race” with an example from your life.",
+   "Is talent or hard work more important? Why?",
+   "Was the hare right to congratulate the tortoise?"
+  ]
+ },
+ {
+  "id": "lion-and-mouse-b1",
+  "base": "lion-and-mouse",
+  "title": "The Lion and the Mouse",
+  "titleT": {
+   "uk": "Лев і миша",
+   "ru": "Лев и мышь",
+   "en": "The Lion and the Mouse"
+  },
+  "level": "B1-B2",
+  "age": "11+",
+  "kit": "st-cat-heart",
+  "color": "#F4D2B8",
+  "about": {
+   "uk": "Байка про лева й мишу для B1-B2: пасив (was caught, was tied), фразові дієслова (let go, give up, pay back) і мораль.",
+   "ru": "Басня про льва и мышь для B1-B2: пассив (was caught, was tied), фразовые глаголы (let go, give up, pay back) и мораль.",
+   "en": "The fable for B1-B2: the passive, phrasal verbs (let go, give up, pay back) and the moral."
+  },
+  "pages": [
+   "On a hot afternoon in the savannah, a huge lion was sleeping in the shade of a tree. He had eaten a large meal and was snoring loudly. Nearby, a little mouse was looking for seeds and, without noticing, ran straight across the lion's nose.",
+   "The lion woke up with a roar and caught the mouse under his enormous paw. \"How dare you disturb the king of the animals?\" he growled. \"I'm going to eat you for my dessert.\" The mouse was trembling with fear, but she managed to speak.",
+   "\"Please, Your Majesty, let me go,\" she begged. \"I'm far too small to be a proper meal. If you spare my life, I promise I'll pay you back one day.\" The lion burst out laughing. \"You? Help me? That's the funniest thing I've heard all year!\" But he was in a good mood, so he lifted his paw and let her go.",
+   "Several weeks later, a group of hunters came to the savannah. They had been tracking the lion for days, and one night they set a trap made of thick ropes. The next morning the lion walked straight into it. In a moment he was caught in the net and couldn't move.",
+   "He roared and pulled with all his strength, but the harder he struggled, the tighter the ropes became. He was tied so firmly that he couldn't even lift his head. Exhausted, he gave up and lay still. The hunters were planning to come back with a cart and take him to the city.",
+   "Far away, the mouse heard the lion's desperate roar and recognised it at once. Although she was frightened, she didn't hesitate. She ran as fast as her tiny legs could carry her and soon found the lion lying helpless in the net.",
+   "\"Don't move,\" she whispered. Then she began to bite through the ropes with her sharp little teeth. It took a long time, and her mouth was sore, but she didn't stop. One rope broke, then another, until finally the lion was able to pull himself free.",
+   "The lion looked at the little mouse in amazement. \"I laughed at you,\" he said quietly, \"but you saved my life. I was wrong to think that someone so small could never help someone so big.\" From that day on, the lion and the mouse were the best of friends, and the lion never again judged anyone by their size."
+  ],
+  "words": [
+   "savannah",
+   "shade",
+   "snore",
+   "paw",
+   "disturb",
+   "tremble",
+   "spare",
+   "trap",
+   "struggle",
+   "hesitate"
+  ],
+  "questions": [
+   {
+    "q": "Why did the lion wake up?",
+    "options": [
+     "The hunters came",
+     "The mouse ran across his nose",
+     "It started raining"
+    ],
+    "answer": 1
+   },
+   {
+    "q": "Why did the lion let the mouse go?",
+    "options": [
+     "He believed her promise",
+     "He was in a good mood",
+     "He wasn't hungry at all"
+    ],
+    "answer": 1
+   },
+   {
+    "q": "How was the lion caught?",
+    "options": [
+     "in a net of ropes",
+     "in a cage",
+     "in a hole"
+    ],
+    "answer": 0
+   },
+   {
+    "q": "What is the moral of the story?",
+    "options": [
+     "Never sleep in the shade",
+     "Even small friends can help a lot",
+     "Hunters are dangerous"
+    ],
+    "answer": 1
+   }
+  ],
+  "talk": [
+   "Tell about a time when someone unexpected helped you.",
+   "Why did the lion laugh at the mouse's promise?",
+   "Is it important to keep promises? Why?"
+  ]
  }
 ];
 export const bookById = (id: string) => BOOKS.find((b) => b.id === id);
