@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { auth } from '@clerk/nextjs/server';
 import { db, dbReady } from '@/lib/db';
-import { linksOf, menuAnswer, notLinked, teacherAnswer, teacherOf } from '@/lib/tg-menu';
+import { linksOf, menuAnswer, notLinked, pickChild, teacherAnswer, teacherOf, uniqKids } from '@/lib/tg-menu';
 import { adhocPick, adhocSave, adhocUndo, attendAsk, attendPick, attendSave, attendUndo, buttonAction, feedbackMarker, hwAskFeedback, hwCheck, hwView, payFromText, reviewList, customMarker, parseAmount, payAskCustom, payPickAmount, payPickStudent, paySave, payUndo, replyKeyboard } from '@/lib/tg-bot-ui';
 import { L, LANG_ASK, LANG_KEYBOARD, parsePayload, setupBotProfile, tgApi, setupWebhook, teacherLink, tgReady, tgSend, webhookSecret } from '@/lib/telegram';
 
@@ -95,8 +95,23 @@ export async function POST(req: Request) {
     if (kind === 'lang') { await tgApi('sendMessage', { chat_id: chat, text: LANG_ASK, reply_markup: LANG_KEYBOARD }); return NextResponse.json({ ok: true }); }
     const { lang, links } = await linksOf(chat);
     if (!links.length) { await tgSend(chat, notLinked); return NextResponse.json({ ok: true }); }
+    if (uniqKids(links) > 1) { const r = pickChild(kind, lang, links); await html(chat, r.text, r.reply_markup); return NextResponse.json({ ok: true }); }
     const text = await menuAnswer(kind, lang, links);
     await html(chat, text);
+    return NextResponse.json({ ok: true });
+  }
+  // обрали дитину: показуємо тільки її
+  if (cq && /^c:/.test(cq.data || '')) {
+    const chat = cq.message?.chat?.id;
+    await tgApi('answerCallbackQuery', { callback_query_id: cq.id });
+    if (!chat || !dbReady()) return NextResponse.json({ ok: true });
+    const [, kind, id] = (cq.data || '').split(':');
+    const { lang, links } = await linksOf(chat);
+    const mine = links.filter((k) => String(k.s.id) === id);
+    if (!mine.length) { await tgSend(chat, notLinked); return NextResponse.json({ ok: true }); }
+    // одна дитина може бути прив’язана і як «сам», і як «батьки»: лишаємо роль батьків
+    const one = mine.find((k) => k.role === 'parent') ?? mine[0];
+    await html(chat, await menuAnswer(kind, lang, [one]));
     return NextResponse.json({ ok: true });
   }
   if (cq) {
@@ -146,6 +161,7 @@ export async function POST(req: Request) {
     }
     const { lang, links } = await linksOf(chat);
     if (!links.length) { await tgSend(chat, notLinked); return NextResponse.json({ ok: true }); }
+    if (uniqKids(links) > 1) { const r = pickChild(act, lang, links); await html(chat, r.text, r.reply_markup); return NextResponse.json({ ok: true }); }
     await html(chat, await menuAnswer(act, lang, links));
     return NextResponse.json({ ok: true });
   }
