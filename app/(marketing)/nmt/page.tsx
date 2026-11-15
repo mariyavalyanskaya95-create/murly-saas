@@ -98,6 +98,7 @@ export default function NmtPage() {
               {t({ uk: 'Почати квіз', ru: 'Начать квиз', en: 'Start a quiz' })}
               <span className="mu-btn__arrow"><Icon id="e-arrow" /></span>
             </Link>
+            <Link href="/nmt/english" className="mu-btn mu-btn--lg">{t({ uk: 'Структура і теми НМТ', ru: 'Структура и темы НМТ', en: 'NMT format and topics' })}</Link>
           </div>
           <SeoNote free={{ uk: 'Пробні НМТ, квізи і граматика безкоштовно, без реєстрації', ru: 'Пробные НМТ, квизы и грамматика бесплатно, без регистрации', en: 'Mock tests, quizzes and grammar for free, no sign-up' }} sell={{ text: { uk: 'План підготовки на папері:', ru: 'План подготовки на бумаге:', en: 'A prep plan on paper:' }, links: [{ href: '/nmt/calculator', label: { uk: 'Калькулятор балів НМТ', ru: 'Калькулятор баллов НМТ', en: 'NMT score calculator' } }, { href: '/shop/nmt-start', label: { uk: 'Старт до НМТ: 3 в 1', ru: 'Старт к НМТ: 3 в 1', en: 'NMT starter: 3 in 1' } }, { href: '/shop/nmt-checklist', label: { uk: 'Чек-лист підготовки до НМТ', ru: 'Чек-лист подготовки к НМТ', en: 'NMT prep checklist' } }] }} />
         </div>
