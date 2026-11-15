@@ -19,7 +19,7 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   const l: Lang2 = tr().lang === 'ru' ? 'ru' : 'uk';
   const path = `/blog/${p.slug}`;
   return {
-    title: `${p.title[l]} | Murly`,
+    title: `${(p.seoTitle ?? p.title)[l]} | Murly`,
     description: p.description[l],
     keywords: p.keywords[l],
     alternates: { canonical: l === 'ru' ? `${path}?lang=ru` : path, languages: { 'uk-UA': path, 'ru-UA': `${path}?lang=ru`, 'x-default': path } },
