@@ -3,6 +3,7 @@ import { db, dbReady } from '@/lib/db';
 import { L, SITE, esc, notifyParent, tgReady, tgSend } from '@/lib/telegram';
 import { teacherBalances } from '@/lib/tg-menu';
 import { PAID_ENABLED } from '@/lib/plans';
+import { sendWeekly } from '@/lib/weekly';
 
 export const dynamic = 'force-dynamic';
 
@@ -16,6 +17,9 @@ export async function GET(req: Request) {
 
   await payReminders().catch((e) => console.error(e));
   await trialTips().catch((e) => console.error(e));
+  // по понеділках власниці приходить зведення за тиждень
+  const wd = new Date().toLocaleDateString('en-GB', { weekday: 'short', timeZone: 'Europe/Kyiv' });
+  if (wd === 'Mon') await sendWeekly().catch((e) => console.error(e));
   // Ранкові повідомлення учням і вчителям тепер у /api/cron/morning (за місцевим часом кожного)
   return NextResponse.json({ ok: true });
 }
