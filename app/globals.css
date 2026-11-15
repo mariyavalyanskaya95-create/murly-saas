@@ -4512,3 +4512,9 @@ textarea.t-parent__url { width: 300px; font: inherit; font-size: 13px; }
 .sr-item:hover svg{filter:drop-shadow(1.6px 0 0 #fff) drop-shadow(-1.6px 0 0 #fff) drop-shadow(0 1.6px 0 #fff) drop-shadow(0 -1.6px 0 #fff) drop-shadow(0 6px 6px rgba(27,33,64,.25))}
 @media (prefers-reduced-motion:reduce){.sr-item.is-pop svg{animation:none}}
 .mu-section--tomato .mu-card--ink .mu-chips span { background: rgba(255,255,255,.14); color: #fff; border-color: rgba(255,255,255,.45); }
+/* Нижнє меню кабінету: підписи не налазять одне на одне (довгі назви в два рядки) */
+@media (max-width: 900px) {
+  .t-side { grid-auto-columns: 86px; justify-content: start; }
+  .t-side__link { white-space: normal; line-height: 1.1; overflow: hidden; word-break: normal; overflow-wrap: anywhere; padding: 6px 4px; }
+}
+@media (min-width: 600px) and (max-width: 900px) { .t-side { grid-auto-columns: 96px; } }
