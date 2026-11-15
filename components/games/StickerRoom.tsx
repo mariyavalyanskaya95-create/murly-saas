@@ -5,10 +5,10 @@ import { useT } from '../LangProvider';
 import { ROOMS, STICKERS, TABS } from '@/lib/sticker-room';
 import { say, stopSpeak } from '@/lib/speak';
 
-type Item = { u: number; id: string; x: number; y: number; s: number; f: boolean };
+type Item = { u: number; id: string; x: number; y: number; s: number; f: boolean; r?: number };
 const KEY = (r: string) => `murly-sticker-${r}`;
 // головне слово, за яким перевіряємо опис
-const NOUN: Record<string, string> = { teddy: 'teddy', fish: 'fish', bird: 'bird', coffee: 'coffee machine', menu: 'menu', fruit: 'fruit', icecream: 'ice cream', shelf: 'shelf', pizza: 'pizza' };
+const NOUN: Record<string, string> = { tv: 'tv', car: 'car', blocks: 'blocks', teddy: 'teddy', fish: 'fish', bird: 'bird', coffee: 'coffee machine', menu: 'menu', fruit: 'fruit', icecream: 'ice cream', shelf: 'shelf', pizza: 'pizza' };
 const noun = (id: string) => NOUN[id] ?? id;
 const nameOf = (id: string) => STICKERS[id].en.replace(/^(a|an) /, '');
 const PHRASES = ['There is', 'There are', 'next to the', 'on the', 'under the', 'in front of the', 'behind the', 'on the left', 'on the right', 'in the middle', 'on the wall', 'near the window'];
@@ -58,6 +58,9 @@ export default function StickerRoom() {
     return { x: ((e.clientX - r.left) / r.width) * 100, y: ((e.clientY - r.top) / r.height) * 100, inside: e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom };
   };
   const clamp = (v: number, a: number, b: number) => Math.max(a, Math.min(b, v));
+  // настінні наліпки тримаються на стіні, решта стоїть на підлозі
+  const snapY = (id: string, y: number) => (STICKERS[id].wall ? clamp(y, 18, 62) : clamp(y, 46, 100));
+  const [popU, setPopU] = useState<number | null>(null);
 
   const add = (id: string, x?: number, y?: number) => {
     const st = STICKERS[id];
@@ -72,8 +75,8 @@ export default function StickerRoom() {
       }
       px = best.x; py = best.y;
     }
-    const it: Item = { u: uid.current++, id, x: px, y: py, s: 1, f: false };
-    setItems((l) => [...l, it]); setSel(it.u); setCheck(null);
+    const it: Item = { u: uid.current++, id, x: px, y: snapY(id, py), s: 1, f: false, r: 0 };
+    setItems((l) => [...l, it]); setSel(it.u); setCheck(null); setPopU(it.u); say(st.en);
     return it;
   };
 
@@ -86,7 +89,7 @@ export default function StickerRoom() {
       }
       const d = drag.current; if (!d || !stage.current) return;
       const p = pos(e); d.moved = true;
-      setItems((l) => l.map((i) => (i.u === d.u ? { ...i, x: clamp(p.x + d.dx, 2, 98), y: clamp(p.y + d.dy, 8, 100) } : i)));
+      setItems((l) => l.map((i) => (i.u === d.u ? { ...i, x: clamp(p.x + d.dx, 2, 98), y: snapY(i.id, p.y + d.dy) } : i)));
     };
     const up = () => {
       const d = drag.current;
@@ -113,7 +116,7 @@ export default function StickerRoom() {
   const savePng = () => {
     const parts = items.slice().sort((a, b) => (STICKERS[a.id].wall === STICKERS[b.id].wall ? a.y - b.y : STICKERS[a.id].wall ? -1 : 1)).map((i) => {
       const st = STICKERS[i.id]; const w = st.w * i.s; const x = i.x * 4 - w / 2; const y = i.y * 3.4 - w;
-      return `<svg x="${x}" y="${y}" width="${w}" height="${w}" viewBox="0 0 100 100"><g transform="${i.f ? 'translate(100 0) scale(-1 1)' : ''}">${st.svg}</g></svg>`;
+      return `<svg x="${x}" y="${y}" width="${w}" height="${w}" viewBox="0 0 100 100"><g transform="${i.f ? 'translate(100 0) scale(-1 1) ' : ''}rotate(${i.r ?? 0} 50 50)">${st.svg}</g></svg>`;
     }).join('');
     const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1020" viewBox="0 0 400 340"><rect width="400" height="340" fill="#EEF0FA"/>${ROOMS[room].svg}${parts}</svg>`;
     const img = new Image();
@@ -139,10 +142,10 @@ export default function StickerRoom() {
               const st = STICKERS[i.id];
               return (
                 <button key={i.u} type="button" aria-label={st.en}
-                  className={`sr-item ${sel === i.u ? 'is-sel' : ''}`}
+                  className={`sr-item ${sel === i.u ? 'is-sel' : ''} ${popU === i.u ? 'is-pop' : ''}`}
                   style={{ left: `${i.x}%`, top: `${i.y}%`, width: `${(st.w * i.s) / 4}%`, zIndex: st.wall ? 2 : 10 + Math.round(i.y * 10) + (sel === i.u ? 2000 : 0) }}
                   onPointerDown={(e) => { e.preventDefault(); setSel(i.u); const p = pos(e); drag.current = { u: i.u, dx: i.x - p.x, dy: i.y - p.y, moved: false }; }}>
-                  <svg viewBox="0 0 100 100" style={{ transform: i.f ? 'scaleX(-1)' : undefined }} dangerouslySetInnerHTML={{ __html: st.svg }} />
+                  <svg viewBox="0 0 100 100" style={{ transform: `${i.f ? 'scaleX(-1) ' : ''}rotate(${i.r ?? 0}deg)` }} dangerouslySetInnerHTML={{ __html: st.svg }} />
                 </button>
               );
             })}
@@ -157,6 +160,8 @@ export default function StickerRoom() {
                 <span className="sr-tools__btns">
                   <button type="button" className="mu-btn t-btn-sm" onClick={() => upd({ s: Math.max(0.5, +(selItem.s - 0.15).toFixed(2)) })} aria-label={t({ uk: 'Менше', ru: 'Меньше', en: 'Smaller' })}>−</button>
                   <button type="button" className="mu-btn t-btn-sm" onClick={() => upd({ s: Math.min(2, +(selItem.s + 0.15).toFixed(2)) })} aria-label={t({ uk: 'Більше', ru: 'Больше', en: 'Bigger' })}>+</button>
+                  <button type="button" className="mu-btn t-btn-sm" onClick={() => upd({ r: ((selItem.r ?? 0) - 15) % 360 })} aria-label={t({ uk: 'Повернути вліво', ru: 'Повернуть влево', en: 'Rotate left' })}>⟲</button>
+                  <button type="button" className="mu-btn t-btn-sm" onClick={() => upd({ r: ((selItem.r ?? 0) + 15) % 360 })} aria-label={t({ uk: 'Повернути вправо', ru: 'Повернуть вправо', en: 'Rotate right' })}>⟳</button>
                   <button type="button" className="mu-btn t-btn-sm" onClick={() => upd({ f: !selItem.f })}>{t({ uk: 'Розвернути', ru: 'Развернуть', en: 'Flip' })}</button>
                   <button type="button" className="mu-btn t-btn-sm" onClick={() => { setItems((l) => l.filter((i) => i.u !== sel)); setSel(null); }}>{t({ uk: 'Прибрати', ru: 'Убрать', en: 'Remove' })}</button>
                 </span>
