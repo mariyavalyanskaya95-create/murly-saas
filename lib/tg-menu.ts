@@ -55,6 +55,17 @@ const money = (n: number, lang: Lang) => `${Math.round(n).toLocaleString(LOC[lan
 const when = (iso: unknown, lang: Lang, tz = DEFAULT_TZ) => new Date(String(iso)).toLocaleString(LOC[lang], { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', timeZone: tz });
 const day = (iso: unknown, lang: Lang, tz = DEFAULT_TZ) => new Date(String(iso)).toLocaleDateString(LOC[lang], { day: 'numeric', month: 'short', timeZone: tz });
 
+// Якщо до чату прив’язано кількох учнів (двоє дітей), спершу питаємо, про кого показати
+export function pickChild(kind: string, lang: Lang, links: Link[]) {
+  const seen = new Set<string>();
+  const kids = links.filter((k) => { const id = String(k.s.id); if (seen.has(id)) return false; seen.add(id); return true; });
+  return {
+    text: L(lang, { uk: 'Про кого показати?', ru: 'О ком показать?', en: 'Who would you like to see?' }),
+    reply_markup: { inline_keyboard: kids.map((k) => [{ text: String(k.s.name || '…'), callback_data: `c:${kind}:${k.s.id}` }]) },
+  };
+}
+export const uniqKids = (links: Link[]) => new Set(links.map((k) => String(k.s.id))).size;
+
 // Відповідь на кнопку: текст (HTML) для всіх прив’язаних учнів
 export async function menuAnswer(kind: string, lang: Lang, links: Link[]): Promise<string> {
   const t = (o: { uk: string; ru: string; en: string }) => L(lang, o);
@@ -172,7 +183,7 @@ export async function menuAnswer(kind: string, lang: Lang, links: Link[]): Promi
     pay: t({ uk: 'Оплата', ru: 'Оплата', en: 'Payments' }), stats: t({ uk: 'Успішність', ru: 'Успеваемость', en: 'Progress' }),
     coins: t({ uk: 'Монетки', ru: 'Монетки', en: 'Coins' }), next: t({ uk: 'Заняття: найближчі', ru: 'Занятия: ближайшие', en: 'Lessons: upcoming' }),
     hw: t({ uk: 'Домашка до здачі', ru: 'Домашка к сдаче', en: 'Homework to do' }),
-    words: t({ uk: 'Мій словник', ru: 'Мой словарь', en: 'My words' }),
+    words: t({ uk: 'Словник', ru: 'Словарь', en: 'Words' }),
   }[kind] || '';
   return `<b>${title}</b>\n\n${parts.join('\n\n')}`;
 }
