@@ -23,3 +23,16 @@ export async function GET(req: Request) {
     parent: { linked: Boolean(s.parent_tg_chat_id), link: parentLink(sid, lang) },
   });
 }
+
+// Учитель відключає Telegram учня або батьків (наприклад, підключили не той чат)
+export async function DELETE(req: Request) {
+  const { userId } = await auth();
+  if (!userId || !dbReady()) return NextResponse.json({ error: 'auth' }, { status: 401 });
+  const url = new URL(req.url);
+  const sid = url.searchParams.get('student') || '';
+  const who = url.searchParams.get('who') === 'parent' ? 'parent' : 'student';
+  if (!/^[0-9a-f-]{36}$/i.test(sid)) return NextResponse.json({ error: 'bad' }, { status: 400 });
+  const patch = who === 'parent' ? { parent_tg_chat_id: null } : { tg_chat_id: null };
+  await db.patchWhere(`students?id=eq.${encodeURIComponent(sid)}&teacher_id=eq.${encodeURIComponent(userId)}`, patch);
+  return NextResponse.json({ ok: true });
+}
