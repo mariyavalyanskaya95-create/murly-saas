@@ -2,6 +2,7 @@
 // Дані кабінету вчителя.
 // ЗАРАЗ: зберігаються в браузері (localStorage) для кожного акаунта окремо.
 // ДАЛІ: ця ж модель переїде в базу (Supabase), інтерфейс useTeacher() не зміниться.
+import { billedUnits } from './billing';
 import type { Plan } from './lesson';
 import type { Lang } from './i18n';
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
@@ -332,7 +333,7 @@ export function balanceText(s: Student | undefined, b: number, lang: Lang): { te
 export function balanceOf(d: Data, studentId: string) {
   const st = d.students.find((s) => s.id === studentId);
   const paid = d.payments.filter((p) => p.studentId === studentId).reduce((n, p) => n + p.amount, 0);
-  const spent = d.lessons.filter((l) => l.studentId === studentId && isBilled(l.status)).length * (st?.price ?? 0);
+  const spent = billedUnits(d.lessons.filter((l) => l.studentId === studentId && isBilled(l.status))) * (st?.price ?? 0); // короткий урок рахується частково
   const start = ((st?.prepaidLessons ?? 0) - (st?.owedLessons ?? 0)) * (st?.price ?? 0); // стартовий баланс у уроках
   return paid - spent + start; // < 0 означає борг
 }

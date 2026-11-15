@@ -7,6 +7,7 @@ import { balanceOf as coinsOf } from './coins';
 import { L, esc } from './telegram';
 
 import { uniqLessons } from './lesson-dedupe';
+import { billedUnits } from './billing';
 const enc = encodeURIComponent;
 type Lang = 'uk' | 'ru' | 'en';
 type Role = 'self' | 'parent';
@@ -80,11 +81,11 @@ export async function menuAnswer(kind: string, lang: Lang, links: Link[]): Promi
       const price = Number(k.s.price) || 0;
       const [pays, done] = await Promise.all([
         db.query(`payments?student_id=eq.${sid}&select=amount,at&order=at.desc`).catch(() => []),
-        db.query(`lessons?student_id=eq.${sid}&status=in.(done,charged)&select=id,student_id,start,status`).then(uniqLessons).catch(() => []),
+        db.query(`lessons?student_id=eq.${sid}&status=in.(done,charged)&select=id,student_id,start,status,duration`).then(uniqLessons).catch(() => []),
       ]);
       const paid = pays.reduce((n, p) => n + Number(p.amount || 0), 0);
       const start = ((Number(k.s.prepaid_lessons) || 0) - (Number(k.s.owed_lessons) || 0)) * price;
-      const b = paid - done.length * price + start;
+      const b = paid - billedUnits(done) * price + start;
       const lessons = price ? Math.round(Math.abs(b) / price) : 0;
       const post = k.s.pay_mode === 'post';
       let line: string;
@@ -217,12 +218,12 @@ export async function teacherBalances(teacherId: string) {
   const [st, pays, done] = await Promise.all([
     db.query(`students?teacher_id=eq.${T}&select=id,name,price,prepaid_lessons,owed_lessons,pay_mode`).catch(() => []),
     db.query(`payments?teacher_id=eq.${T}&select=student_id,amount`).catch(() => []),
-    db.query(`lessons?teacher_id=eq.${T}&status=in.(done,charged)&select=student_id,start,status`).then(uniqLessons).catch(() => []),
+    db.query(`lessons?teacher_id=eq.${T}&status=in.(done,charged)&select=student_id,start,status,duration`).then(uniqLessons).catch(() => []),
   ]);
   return st.map((s) => {
     const price = Number(s.price) || 0;
     const paid = pays.filter((p) => p.student_id === s.id).reduce((n, p) => n + Number(p.amount || 0), 0);
-    const held = done.filter((l) => l.student_id === s.id).length;
+    const held = billedUnits(done.filter((l) => l.student_id === s.id));
     const start = ((Number(s.prepaid_lessons) || 0) - (Number(s.owed_lessons) || 0)) * price;
     return { id: String(s.id), name: String(s.name || ''), price, post: s.pay_mode === 'post', b: paid - held * price + start };
   });
