@@ -105,6 +105,7 @@ export default function WeekGrid({ days, theme = 'lavender' }: { days: Date[]; t
         {l.status === 'done' && <i className="wg-mark">✓</i>}
         {l.status === 'missed' && <i className="wg-mark">✕</i>}
         {l.status === 'charged' && <i className="wg-mark">₴</i>}
+        {l.trial && <i className="wg-trial">{l.trial === 'free' ? t({ uk: 'пробний', ru: 'пробный', en: 'trial' }) : t({ uk: 'пробний ₴', ru: 'пробный ₴', en: 'trial ₴' })}</i>}
       </button>
     );
   };
@@ -168,6 +169,10 @@ export default function WeekGrid({ days, theme = 'lavender' }: { days: Date[]; t
             </>
           )}
           {!pickedGroup && pickedSt && <div className="wg-edit"><label>{t({ uk: 'Колір учня', ru: 'Цвет ученика', en: 'Student colour' })}<StudentColor id={pickedSt.id} compact /></label></div>}
+          {!pickedGroup && <div className="wg-edit"><label>{t({ uk: 'Тип', ru: 'Тип', en: 'Type' })}
+            <span className="wg-durs">
+              {([['', t({ uk: 'Звичайне', ru: 'Обычное', en: 'Regular' })], ['free', t({ uk: 'Пробний безкоштовний', ru: 'Пробный бесплатный', en: 'Free trial' })], ['paid', t({ uk: 'Пробний платний', ru: 'Пробный платный', en: 'Paid trial' })]] as const).map(([k, n]) => <button key={k || 'reg'} type="button" className={`g-chip ${(picked.trial ?? '') === k ? 'is-on' : ''}`} onClick={() => updateLesson(picked.id, { trial: k || null })}>{n}</button>)}
+            </span></label></div>}
           <div className="wg-edit">
             <label>{t({ uk: 'Тривалість', ru: 'Длительность', en: 'Length' })}
               <span className="wg-durs">

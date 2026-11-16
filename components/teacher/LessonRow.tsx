@@ -43,6 +43,7 @@ export default function LessonRow({ l, showStudent = true, showDate = true }: { 
       <div className="t-lesson__info">
         {showStudent && st && <Link href={`/teacher/students/${st.id}`} className="t-lesson__name"><span className={`t-dot t-dot--${st.color}`} />{st.name}</Link>}
         {l.groupId && (() => { const g = (data.groups ?? []).find((x) => x.id === l.groupId); return g ? <Link href="/teacher/groups" className="t-tag t-tag--group">{t({ uk: 'Група', ru: 'Группа', en: 'Group' })}: {g.name}</Link> : null; })()}
+        {l.trial && <span className="t-tag t-tag--trial">{l.trial === 'free' ? t({ uk: 'Пробний, безкоштовний', ru: 'Пробный, бесплатный', en: 'Trial, free' }) : t({ uk: 'Пробний, платний', ru: 'Пробный, платный', en: 'Trial, paid' })}</span>}
         {l.topic && <span className="t-lesson__topic">{l.topic}</span>}
         {l.status === 'done' && <span className="t-tag t-tag--done">{t({ uk: 'Відбувся', ru: 'Состоялся', en: 'Took place' })}</span>}
         {l.status === 'missed' && <span className="t-tag t-tag--late">{t({ uk: 'Не прийшов', ru: 'Не пришёл', en: 'No-show' })}</span>}

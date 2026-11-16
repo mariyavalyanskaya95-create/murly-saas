@@ -53,7 +53,7 @@ export function LessonForm({ studentId, onDone }: { studentId?: string; onDone?:
   const t = useT();
   const { data, addLessons } = useTeacher();
   const next = new Date(); next.setHours(next.getHours() + 1, 0, 0, 0);
-  const [f, setF] = useState({ studentId: studentId ?? data.students[0]?.id ?? '', start: toLocalInput(next), duration: '60', repeat: '1', topic: '' });
+  const [f, setF] = useState({ studentId: studentId ?? data.students[0]?.id ?? '', start: toLocalInput(next), duration: '60', repeat: '1', topic: '', kind: '' });
   const set = (k: keyof typeof f) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => setF({ ...f, [k]: e.target.value });
 
   if (!data.students.length) return <p className="t-empty">{t({ uk: 'Спочатку додай учня, а потім плануй заняття.', ru: 'Сначала добавь ученика, а потом планируй занятия.', en: 'Add a student first, then plan lessons.' })}</p>;
@@ -61,7 +61,7 @@ export function LessonForm({ studentId, onDone }: { studentId?: string; onDone?:
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!f.studentId) return;
-    addLessons({ studentId: f.studentId, start: new Date(f.start).toISOString(), duration: Number(f.duration) || 60, topic: f.topic.trim() || undefined }, Number(f.repeat));
+    addLessons({ studentId: f.studentId, start: new Date(f.start).toISOString(), duration: Number(f.duration) || 60, topic: f.topic.trim() || (f.kind ? t({ uk: 'Пробний урок', ru: 'Пробный урок', en: 'Trial lesson' }) : undefined), trial: f.kind === 'free' || f.kind === 'paid' ? f.kind : undefined }, f.kind ? 1 : Number(f.repeat));
     onDone?.();
   };
 
@@ -72,16 +72,22 @@ export function LessonForm({ studentId, onDone }: { studentId?: string; onDone?:
           {data.students.map((s) => <option key={s.id} value={s.id}>{s.name}</option>)}
         </select></label>
       )}
+      <label>{t({ uk: 'Тип заняття', ru: 'Тип занятия', en: 'Lesson type' })}<select value={f.kind} onChange={(e) => { const k = e.target.value; setF({ ...f, kind: k, duration: k ? '30' : f.duration === '30' ? '60' : f.duration, repeat: k ? '1' : f.repeat }); }}>
+        <option value="">{t({ uk: 'Звичайне заняття', ru: 'Обычное занятие', en: 'Regular lesson' })}</option>
+        <option value="free">{t({ uk: 'Пробний урок, безкоштовний', ru: 'Пробный урок, бесплатный', en: 'Trial lesson, free' })}</option>
+        <option value="paid">{t({ uk: 'Пробний урок, платний', ru: 'Пробный урок, платный', en: 'Trial lesson, paid' })}</option>
+      </select></label>
       <label>{t({ uk: 'Дата і час', ru: 'Дата и время', en: 'Date and time' })}<input type="datetime-local" value={f.start} onChange={set('start')} required /></label>
       <label>{t({ uk: 'Тривалість', ru: 'Длительность', en: 'Duration' })}<select value={f.duration} onChange={set('duration')}>
         {['30', '45', '60', '90'].map((m) => <option key={m} value={m}>{m} {t({ uk: 'хв', ru: 'мин', en: 'min' })}</option>)}
       </select></label>
-      <label>{t({ uk: 'Повторювати', ru: 'Повторять', en: 'Repeat' })}<select value={f.repeat} onChange={set('repeat')}>
+      {f.kind && <p className="t-form__wide t-muted" style={{ margin: 0 }}>{f.kind === 'free' ? t({ uk: 'Безкоштовний пробний не списується з балансу учня й не рахується в заробітку.', ru: 'Бесплатный пробный не списывается с баланса ученика и не считается в заработке.', en: 'A free trial is not charged to the student and not counted in your income.' }) : t({ uk: 'Платний пробний списується як звичайне заняття (30 хв рахуються як пів заняття).', ru: 'Платный пробный списывается как обычное занятие (30 мин считаются как пол-занятия).', en: 'A paid trial is charged like a regular lesson (30 min counts as half a lesson).' })}</p>}
+      {!f.kind && <label>{t({ uk: 'Повторювати', ru: 'Повторять', en: 'Repeat' })}<select value={f.repeat} onChange={set('repeat')}>
         <option value="1">{t({ uk: 'Один раз', ru: 'Один раз', en: 'Once' })}</option>
         <option value="4">{t({ uk: 'Щотижня, 4 тижні', ru: 'Еженедельно, 4 недели', en: 'Weekly, 4 weeks' })}</option>
         <option value="8">{t({ uk: 'Щотижня, 8 тижнів', ru: 'Еженедельно, 8 недель', en: 'Weekly, 8 weeks' })}</option>
         <option value="12">{t({ uk: 'Щотижня, 12 тижнів', ru: 'Еженедельно, 12 недель', en: 'Weekly, 12 weeks' })}</option>
-      </select></label>
+      </select></label>}
       <label className="t-form__wide">{t({ uk: 'Тема (необов’язково)', ru: 'Тема (необязательно)', en: 'Topic (optional)' })}<input value={f.topic} onChange={set('topic')} placeholder={t({ uk: 'Напр. Present Perfect, Unit 5', ru: 'Напр. Present Perfect, Unit 5', en: 'e.g. Present Perfect, Unit 5' })} /></label>
       <div className="t-form__actions"><button className="mu-btn mu-btn--lime" type="submit">{t({ uk: 'Запланувати', ru: 'Запланировать', en: 'Schedule' })}</button></div>
     </form>
