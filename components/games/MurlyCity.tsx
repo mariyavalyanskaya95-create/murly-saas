@@ -1,5 +1,5 @@
 'use client';
-// Гра «Murly City»: настільна гра для розмовних уроків. Гравці кидають кубик, ходять містом,
+// Гра «City Walk»: настільна гра для розмовних уроків. Гравці кидають кубик, ходять містом,
 // виконують усні завдання й купують місця. Один екран: урок через демонстрацію екрана або 2-4 гравці по черзі.
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useT } from '../LangProvider';
@@ -229,7 +229,7 @@ const CORNER_FILL: Record<string, string> = { start: '#F7D46B', coffee: '#F4C0D1
 type BoardProps = { owners: (number | null)[]; players: Player[]; turn: number; focus: number | null };
 
 export function CityBoard({ owners, players, turn, focus }: BoardProps) {
-  const label = 'Murly City board';
+  const label = 'City Walk board';
   return (
     <svg className={s.svg} viewBox="-6 -6 712 712" role="img" aria-label={label}>
       <defs>
@@ -618,7 +618,7 @@ export default function MurlyCity() {
       <div className={s.boardWrap}>
         <CityBoard owners={g.owners} players={g.players} turn={g.turn} focus={focusCell} />
         <div className={s.center}>
-          <p className={s.title}>Murly City</p>
+          <p className={s.title}>City Walk</p>
           <p className={s.deckName}>{deck.title} <span>{deck.level}</span></p>
           <div className={s.centerRow}>
             <Die face={face} rolling={rolling} />
