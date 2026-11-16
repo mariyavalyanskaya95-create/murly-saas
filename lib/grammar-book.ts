@@ -5,7 +5,7 @@ import type { T } from './i18n';
 import type { SectionType } from './exercise';
 
 export type BookId = 'beginner' | 'intermediate';
-export type Scene = 'be-family' | 'be-flip' | 'ing-motor' | 'ing-flip' | 'simple-thieves';
+export type Scene = 'be-family' | 'be-flip' | 'ing-motor' | 'ing-flip' | 'simple-thieves' | 'police-do' | 'do-flip' | 'now-vs-always' | 'backpack' | 'time-machine';
 export type BookUnit = {
   n: number; slug: string; title: string; level: string; scene: Scene; free: boolean;
   topic: T;                 // коротко, про що юніт
@@ -67,7 +67,7 @@ export const RED: BookUnit[] = [
     ],
     rules: [
       { h: { uk: 'Міняємо місцями', ru: 'Меняем местами', en: 'Swap places' }, p: { uk: 'It is cold → Is it cold? Слова ті самі, тільки am, is чи are стає першим.', ru: 'It is cold → Is it cold? Слова те же, только am, is или are становится первым.', en: 'It is cold → Is it cold?' } },
-      { h: { uk: 'Де? Що? Скільки?', ru: 'Где? Что? Сколько?', en: 'Where? What? How old?' }, p: { uk: 'Питальне слово ставимо ще раніше: Where is my bag? How old are you?', ru: 'Вопросительное слово ставим ещё раньше: Where is my bag? How old are you?', en: 'Where is my bag? How old are you?' } },
+      { h: { uk: 'Де? Що? Скільки?', ru: 'Где? Что? Сколько?', en: 'Where? What? How old?' }, p: { uk: 'Питальне слово (where, what, how old) стоїть на самому початку, перед am, is чи are: Where is my bag? How old are you?', ru: 'Вопросительное слово (where, what, how old) стоит в самом начале, перед am, is или are: Where is my bag? How old are you?', en: 'Where is my bag? How old are you?' } },
       { h: { uk: 'Коротка відповідь', ru: 'Краткий ответ', en: 'Short answers' }, p: { uk: 'Відповідаємо «Yes, I am» або «No, I’m not». Після Yes не скорочуємо: не можна Yes, I’m.', ru: 'Отвечаем «Yes, I am» или «No, I’m not». После Yes не сокращаем: нельзя Yes, I’m.', en: 'Yes, I am. No, I’m not.' } },
     ],
     examples: [
@@ -94,7 +94,7 @@ export const RED: BookUnit[] = [
     ],
     rules: [
       { h: { uk: 'Прямо зараз', ru: 'Прямо сейчас', en: 'Right now' }, p: { uk: 'Кажемо про те, що відбувається в цю хвилину: Look! It’s snowing. Підказки: now, look!, listen!', ru: 'Говорим о том, что происходит в эту минуту: Look! It’s snowing. Подсказки: now, look!, listen!', en: 'Look! It’s snowing.' } },
-      { h: { uk: 'Як дописати -ing', ru: 'Как дописать -ing', en: 'Spelling' }, p: { uk: 'Зазвичай просто додаємо -ing: read → reading. Якщо в кінці e, вона зникає: make → making. Коротке слово з однією голосною подвоює останню літеру: swim → swimming.', ru: 'Обычно просто добавляем -ing: read → reading. Если в конце e, она исчезает: make → making. Короткое слово с одной гласной удваивает последнюю букву: swim → swimming.', en: 'read → reading, make → making, swim → swimming.' } },
+      { h: { uk: 'Як дописати -ing', ru: 'Как дописать -ing', en: 'Spelling' }, p: { uk: 'Зазвичай просто додаємо -ing: read → reading. Якщо в кінці німа e, вона зникає: make → making. Коротке слово на «голосна + приголосна» подвоює останню літеру: swim → swimming, run → running. А ie змінюється на y: lie → lying.', ru: 'Обычно просто добавляем -ing: read → reading. Если в конце немая e, она исчезает: make → making. Короткое слово на «гласная + согласная» удваивает последнюю букву: swim → swimming, run → running. А ie меняется на y: lie → lying.', en: 'read → reading, make → making, swim → swimming.' } },
       { h: { uk: 'Як сказати «ні»', ru: 'Как сказать «нет»', en: 'Negative' }, p: { uk: 'Додаємо not до водія: I’m not sleeping. She isn’t cooking.', ru: 'Добавляем not к водителю: I’m not sleeping. She isn’t cooking.', en: 'I’m not sleeping. She isn’t cooking.' } },
     ],
     examples: [
@@ -130,7 +130,7 @@ export const RED: BookUnit[] = [
       ['What are you doing?', { uk: 'Що ти робиш?', ru: 'Что ты делаешь?' }],
       ['Where are they going?', { uk: 'Куди вони йдуть?', ru: 'Куда они идут?' }],
     ],
-    traps: [['You are going home?', 'Are you going home?'], ['What you are doing?', 'What are you doing?'], ['Is she cooking? Yes, she cooking.', 'Yes, she is.']],
+    traps: [['You are going home?', 'Are you going home?'], ['What you are doing?', 'What are you doing?'], ['Is she cooking? Yes, she cooking.', 'Is she cooking? Yes, she is.']],
     exercises: [
       { type: 'gap', title: { uk: 'Водій вперед', ru: 'Водитель вперёд', en: 'Driver first' }, instruction: 'Write Am, Is or Are.', text: '[Are] you sleeping?\n[Is] your mum cooking?\n[Are] the dogs barking?\n[Am] I talking too loudly?\n[Is] it snowing?' },
       { type: 'gap', title: { uk: 'Склади питання', ru: 'Составь вопрос', en: 'Make questions' }, instruction: 'Write the question.', text: 'you / play / a game → [Are you playing a game?]\nshe / watch / TV → [Is she watching TV?]\nthey / have / fun → [Are they having fun?]\nwhat / you / do → [What are you doing?]\nwhere / he / go → [Where is he going?]' },
@@ -141,29 +141,163 @@ export const RED: BookUnit[] = [
   {
     n: 5, slug: 'present-simple', title: 'I do / work / like (present simple)', level: 'A1', scene: 'simple-thieves', free: true,
     topic: { uk: 'Звички, розклад і факти', ru: 'Привычки, расписание и факты', en: 'Habits, timetables and facts' },
-    story: { uk: 'Present Simple схожий на сімпл-дімпл: натискаєш ті самі кнопочки знову і знову. Так і тут: те, що повторюється (звички, розклад, факти). I, you, we, they беруть дієслово як є: I play. А he, she, it маленькі злодюжки: хотіли вкрасти долари, а вкрали букву S. Тепер мусять додавати її до дієслова: he plays, she likes.', ru: 'Present Simple похож на симпл-димпл: нажимаешь одни и те же кнопочки снова и снова. Так и здесь: то, что повторяется (привычки, расписание, факты). I, you, we, they берут глагол как есть: I play. А he, she, it маленькие воришки: хотели украсть доллары, а украли букву S. Теперь им приходится добавлять её к глаголу: he plays, she likes.', en: 'Like a simple dimple toy, you press the same buttons again and again. He, she and it stole the letter S, so they add it to the verb: he plays.' },
+    story: { uk: 'Present Simple схожий на сімпл-дімпл: натискаєш ті самі кнопочки знову і знову. Так і тут: це те, що повторюється (звички, розклад, факти). I, you, we, they чесні кульки, беруть дієслово як є: I play. А he, she, it маленькі злодюжки: хотіли вкрасти долари, а вкрали букву S. Тепер мусять додавати її до дієслова: he plays, she likes.', ru: 'Present Simple похож на симпл-димпл: нажимаешь одни и те же кнопочки снова и снова. Так и здесь: это то, что повторяется (привычки, расписание, факты). I, you, we, they честные шарики, берут глагол как есть: I play. А he, she, it маленькие воришки: хотели украсть доллары, а украли букву S. Теперь им приходится добавлять её к глаголу: he plays, she likes.', en: 'Like a simple dimple toy, you press the same buttons again and again. He, she and it stole the letter S, so they add it to the verb: he plays.' },
     formula: [
-      { label: { uk: '+  Ствердження', ru: '+  Утверждение', en: '+  Positive' }, rows: [['I / you / we / they', 'play'], ['he / she / it', 'plays']] },
-      { label: { uk: '−  Заперечення', ru: '−  Отрицание', en: '−  Negative' }, rows: [['I / you / we / they', 'don’t play'], ['he / she / it', 'doesn’t play']] },
-      { label: { uk: '?  Питання', ru: '?  Вопрос', en: '?  Question' }, rows: [['Do', 'I / you / we / they play?'], ['Does', 'he / she / it play?']] },
+      { label: { uk: 'Хто + дієслово', ru: 'Кто + глагол', en: 'Who + verb' }, rows: [['I / you / we / they', 'play, like, go'], ['he / she / it', 'plays, likes, goes']] },
+      { label: { uk: 'Як додати S', ru: 'Как добавить S', en: 'Adding S' }, rows: [['work', 'works'], ['watch, go', 'watches, goes'], ['study', 'studies'], ['have', 'has']] },
     ],
     rules: [
-      { h: { uk: 'He, she, it + s', ru: 'He, she, it + s', en: 'He, she, it + s' }, p: { uk: 'He works, she likes. Після s, sh, ch, x, o пишемо -es: watches, goes. Якщо в кінці приголосна + y, буде -ies: study → studies. Have перетворюється на has.', ru: 'He works, she likes. После s, sh, ch, x, o пишем -es: watches, goes. Если в конце согласная + y, будет -ies: study → studies. Have превращается в has.', en: 'He works, she watches, it goes, he studies, she has.' } },
-      { h: { uk: 'Do і does: поліцейські', ru: 'Do и does: полицейские', en: 'Do and does' }, p: { uk: 'У запереченні й питанні з’являється do. Злодюжки віддають йому свою S, і виходить does. Тому дієслово вже без S: He doesn’t play. Does she like pizza?', ru: 'В отрицании и вопросе появляется do. Воришки отдают ему свою S, и получается does. Поэтому глагол уже без S: He doesn’t play. Does she like pizza?', en: 'He doesn’t play. Does she like pizza?' } },
+      { h: { uk: 'Коли кажемо', ru: 'Когда говорим', en: 'When' }, p: { uk: 'Про те, що буває регулярно: I get up at 7. Про розклад: The bus leaves at 8. Про факти: Cats love fish.', ru: 'О том, что бывает регулярно: I get up at 7. О расписании: The bus leaves at 8. О фактах: Cats love fish.', en: 'Habits, timetables, facts.' } },
+      { h: { uk: 'He, she, it + s', ru: 'He, she, it + s', en: 'He, she, it + s' }, p: { uk: 'До дієслова після he, she, it додаємо -s: works, likes. Після s, sh, ch, x, o пишемо -es: watches, goes. Приголосна + y дає -ies: study → studies. Have перетворюється на has.', ru: 'К глаголу после he, she, it добавляем -s: works, likes. После s, sh, ch, x, o пишем -es: watches, goes. Согласная + y даёт -ies: study → studies. Have превращается в has.', en: 'works, watches, goes, studies, has.' } },
       { h: { uk: 'Слова-підказки', ru: 'Слова-подсказки', en: 'Signal words' }, p: { uk: 'every day, usually, always, often, sometimes, never, on Mondays.', ru: 'every day, usually, always, often, sometimes, never, on Mondays.', en: 'every day, usually, always, often, sometimes, never, on Mondays.' } },
     ],
     examples: [
       ['I play football on Saturdays.', { uk: 'Я граю у футбол по суботах.', ru: 'Я играю в футбол по субботам.' }],
       ['My sister watches cartoons every evening.', { uk: 'Моя сестра щовечора дивиться мультики.', ru: 'Моя сестра каждый вечер смотрит мультики.' }],
-      ['He doesn’t like broccoli.', { uk: 'Він не любить броколі.', ru: 'Он не любит брокколи.' }],
-      ['Does your cat sleep a lot? Yes, it does.', { uk: 'Твій кіт багато спить? Так.', ru: 'Твой кот много спит? Да.' }],
+      ['The shop opens at nine.', { uk: 'Магазин відкривається о дев’ятій.', ru: 'Магазин открывается в девять.' }],
+      ['Cats love fish.', { uk: 'Коти люблять рибу.', ru: 'Коты любят рыбу.' }],
     ],
-    traps: [['She play tennis.', 'She plays tennis.'], ['He doesn’t plays.', 'He doesn’t play.'], ['Does she likes it?', 'Does she like it?']],
+    traps: [['She play tennis.', 'She plays tennis.'], ['I plays the guitar.', 'I play the guitar.'], ['He haves a dog.', 'He has a dog.']],
     exercises: [
       { type: 'gap', title: { uk: 'Злодюжки беруть S', ru: 'Воришки берут S', en: 'The thieves take the S' }, instruction: 'Write the he / she / it form.', text: 'play → he [plays]\nwatch → she [watches]\ngo → it [goes]\nstudy → he [studies]\nhave → she [has]\nwash → he [washes]\nlike → she [likes]\nfly → it [flies]' },
       { type: 'gap', title: { uk: 'Розкрий дужки', ru: 'Раскрой скобки', en: 'Open the brackets' }, instruction: 'Put the verbs in brackets into the present simple.', text: 'My dad [drinks] (drink) coffee every morning.\nWe [go] (go) to school by bus.\nThe shop [opens] (open) at nine.\nMy cats [sleep] (sleep) all day.\nAnna [speaks] (speak) three languages.\nI [love] (love) pancakes.' },
+      { type: 'choice', title: { uk: 'З S чи без?', ru: 'С S или без?', en: 'With or without S?' }, instruction: 'Choose the correct form.', text: 'My brother {plays|play} the guitar.\nThey {live|lives} in Odesa.\nShe {goes|go} to bed at ten.\nI {like|likes} cats.\nOur teacher {has|have} a red car.\nWe {watch|watches} films on Fridays.' },
+      { type: 'gap', title: { uk: 'Про себе й друга', ru: 'О себе и друге', en: 'Me and my friend' }, instruction: 'Write the verb in the correct form.', text: 'I get up at seven. My friend [gets] up at eight.\nI like tea. My friend [likes] juice.\nI walk to school. My friend [goes] by bus.\nI have a cat. My friend [has] a parrot.' },
+    ],
+  },
+  {
+    n: 6, slug: 'present-simple-negative', title: 'I don’t… (present simple negative)', level: 'A1', scene: 'police-do', free: false,
+    topic: { uk: 'Як сказати «не люблю», «не грає»', ru: 'Как сказать «не люблю», «не играет»', en: 'How to say “I don’t…”' },
+    story: { uk: 'Щоб сказати «ні», приходить поліцейський do з табличкою NOT. Біля I, you, we, they він просто стоїть: I don’t play. А в злодюжок he, she, it він забирає вкрадену S і бере її собі: do + es = does. Тому дієслово знову без S: He doesn’t play.', ru: 'Чтобы сказать «нет», приходит полицейский do с табличкой NOT. Рядом с I, you, we, they он просто стоит: I don’t play. А у воришек he, she, it он забирает украденную S и берёт её себе: do + es = does. Поэтому глагол снова без S: He doesn’t play.', en: 'To say “no”, officer do comes with a NOT sign. He takes the S back from he, she, it: does. So the verb has no S: He doesn’t play.' },
+    formula: [
+      { label: { uk: 'Заперечення', ru: 'Отрицание', en: 'Negative' }, rows: [['I / you / we / they', 'don’t play'], ['he / she / it', 'doesn’t play']] },
+      { label: { uk: 'Повна форма', ru: 'Полная форма', en: 'Full form' }, rows: [['don’t', 'do not'], ['doesn’t', 'does not']] },
+    ],
+    rules: [
+      { h: { uk: 'Don’t і doesn’t', ru: 'Don’t и doesn’t', en: 'Don’t and doesn’t' }, p: { uk: 'I, you, we, they + don’t. He, she, it + doesn’t. Після них дієслово завжди без змін: doesn’t play, doesn’t go.', ru: 'I, you, we, they + don’t. He, she, it + doesn’t. После них глагол всегда без изменений: doesn’t play, doesn’t go.', en: 'don’t / doesn’t + verb.' } },
+      { h: { uk: 'S уже в does', ru: 'S уже в does', en: 'The S is in does' }, p: { uk: 'Не можна дві S в одному реченні: He doesn’t plays: це помилка. Правильно: He doesn’t play.', ru: 'Нельзя две S в одном предложении: He doesn’t plays: это ошибка. Правильно: He doesn’t play.', en: 'He doesn’t play, not “doesn’t plays”.' } },
+      { h: { uk: 'Not без do не працює', ru: 'Not без do не работает', en: 'Not needs do' }, p: { uk: 'Не можна просто I not like. Обов’язково з помічником: I don’t like.', ru: 'Нельзя просто I not like. Обязательно с помощником: I don’t like.', en: 'I don’t like, not “I not like”.' } },
+    ],
+    examples: [
+      ['I don’t like rain.', { uk: 'Я не люблю дощ.', ru: 'Я не люблю дождь.' }],
+      ['She doesn’t eat meat.', { uk: 'Вона не їсть м’яса.', ru: 'Она не ест мясо.' }],
+      ['We don’t have a car.', { uk: 'У нас немає машини.', ru: 'У нас нет машины.' }],
+      ['My phone doesn’t work.', { uk: 'Мій телефон не працює.', ru: 'Мой телефон не работает.' }],
+    ],
+    traps: [['He doesn’t plays.', 'He doesn’t play.'], ['She don’t like it.', 'She doesn’t like it.'], ['I not like milk.', 'I don’t like milk.']],
+    exercises: [
       { type: 'choice', title: { uk: 'Don’t чи doesn’t?', ru: 'Don’t или doesn’t?', en: 'Don’t or doesn’t?' }, instruction: 'Choose the correct form.', text: 'I {don’t|doesn’t} like rain.\nShe {doesn’t|don’t} eat meat.\nThey {don’t|doesn’t} live here.\nMy brother {doesn’t|don’t} play the guitar.\nWe {don’t|doesn’t} have a car.\nIt {doesn’t|don’t} work.' },
-      { type: 'choice', title: { uk: 'Поліцейський не любить зайву S', ru: 'Полицейский не любит лишнюю S', en: 'No extra S after does' }, instruction: 'Choose the correct question.', text: '{Does she like pizza?|Does she likes pizza?|Do she like pizza?}\n{Do you play chess?|Does you play chess?|Do you plays chess?}\n{Does it rain a lot here?|Do it rain a lot here?|Does it rains a lot here?}\n{Do they speak English?|Does they speak English?|Do they speaks English?}' },
+      { type: 'gap', title: { uk: 'Поліцейський забирає S', ru: 'Полицейский забирает S', en: 'The officer takes the S' }, instruction: 'Make the sentence negative.', text: 'He plays chess. → He [doesn’t play/does not play] chess.\nShe likes coffee. → She [doesn’t like/does not like] coffee.\nI watch TV. → I [don’t watch/do not watch] TV.\nThe bus stops here. → The bus [doesn’t stop/does not stop] here.\nWe go to bed late. → We [don’t go/do not go] to bed late.' },
+      { type: 'choice', title: { uk: 'Знайди правильне', ru: 'Найди правильное', en: 'Find the right one' }, instruction: 'Choose the correct sentence.', text: '{He doesn’t speak French.|He doesn’t speaks French.|He don’t speak French.}\n{I don’t know.|I doesn’t know.|I not know.}\n{My cat doesn’t like water.|My cat don’t like water.|My cat doesn’t likes water.}\n{They don’t work on Sundays.|They doesn’t work on Sundays.|They don’t works on Sundays.}' },
+      { type: 'gap', title: { uk: 'Розкрий дужки', ru: 'Раскрой скобки', en: 'Open the brackets' }, instruction: 'Write the negative form of the verb.', text: 'My dad [doesn’t drink/does not drink] (not drink) coffee.\nI [don’t understand/do not understand] (not understand) this word.\nOur dog [doesn’t like/does not like] (not like) the rain.\nThey [don’t watch/do not watch] (not watch) TV in the morning.' },
+    ],
+  },
+  {
+    n: 7, slug: 'present-simple-questions', title: 'Do you…? (present simple questions)', level: 'A1', scene: 'do-flip', free: false,
+    topic: { uk: 'Як запитати: ти любиш? він грає?', ru: 'Как спросить: ты любишь? он играет?', en: 'How to ask: do you like…?' },
+    story: { uk: 'У питанні поліцейський do робить сальто і стає на початок речення: Do you like pizza? У злодюжок він знову забирає S: Does she like pizza? Дієслово like без S, бо S уже в does.', ru: 'В вопросе полицейский do делает сальто и встаёт в начало предложения: Do you like pizza? У воришек он снова забирает S: Does she like pizza? Глагол like без S, потому что S уже в does.', en: 'In a question do jumps to the front: Do you like pizza? With he, she, it it becomes does, so the verb has no S.' },
+    formula: [
+      { label: { uk: 'Питання', ru: 'Вопрос', en: 'Question' }, rows: [['Do', 'I / you / we / they play?'], ['Does', 'he / she / it play?']] },
+      { label: { uk: 'Коротка відповідь', ru: 'Краткий ответ', en: 'Short answer' }, rows: [['Yes, I do.', 'No, I don’t.'], ['Yes, she does.', 'No, she doesn’t.']] },
+    ],
+    rules: [
+      { h: { uk: 'Do і does на початку', ru: 'Do и does в начале', en: 'Do or does first' }, p: { uk: 'Do + I, you, we, they. Does + he, she, it. Далі дієслово без S: Does he play?', ru: 'Do + I, you, we, they. Does + he, she, it. Дальше глагол без S: Does he play?', en: 'Do you play? Does he play?' } },
+      { h: { uk: 'Питальні слова', ru: 'Вопросительные слова', en: 'Question words' }, p: { uk: 'Where, what, when стоять перед do чи does: Where do you live? What does she like?', ru: 'Where, what, when стоят перед do или does: Where do you live? What does she like?', en: 'Where do you live?' } },
+      { h: { uk: 'Коротка відповідь', ru: 'Краткий ответ', en: 'Short answers' }, p: { uk: 'Відповідаємо помічником, без основного дієслова: Do you like it? Yes, I do. / No, I don’t.', ru: 'Отвечаем помощником, без основного глагола: Do you like it? Yes, I do. / No, I don’t.', en: 'Yes, I do. / No, I don’t.' } },
+    ],
+    examples: [
+      ['Do you like pizza? Yes, I do.', { uk: 'Ти любиш піцу? Так.', ru: 'Ты любишь пиццу? Да.' }],
+      ['Does your cat sleep a lot? Yes, it does.', { uk: 'Твій кіт багато спить? Так.', ru: 'Твой кот много спит? Да.' }],
+      ['Where do you live?', { uk: 'Де ти живеш?', ru: 'Где ты живёшь?' }],
+      ['What time does the film start?', { uk: 'О котрій починається фільм?', ru: 'Во сколько начинается фильм?' }],
+    ],
+    traps: [['You like pizza?', 'Do you like pizza?'], ['Does she likes it?', 'Does she like it?'], ['Where you live?', 'Where do you live?']],
+    exercises: [
+      { type: 'gap', title: { uk: 'Do чи Does?', ru: 'Do или Does?', en: 'Do or Does?' }, instruction: 'Write Do or Does.', text: '[Do] you play chess?\n[Does] your mum work here?\n[Do] they speak English?\n[Does] it rain a lot in London?\n[Do] we have homework today?\n[Does] Max like dogs?' },
+      { type: 'choice', title: { uk: 'Без зайвої S', ru: 'Без лишней S', en: 'No extra S' }, instruction: 'Choose the correct question.', text: '{Does she like pizza?|Does she likes pizza?|Do she like pizza?}\n{Do you play the piano?|Does you play the piano?|Do you plays the piano?}\n{Does it snow here?|Do it snow here?|Does it snows here?}\n{Where does he live?|Where he lives?|Where does he lives?}' },
+      { type: 'choice', title: { uk: 'Коротка відповідь', ru: 'Краткий ответ', en: 'Short answers' }, instruction: 'Choose the correct short answer.', text: 'Do you like cats? Yes, {I do|I like|I am}.\nDoes he play football? No, {he doesn’t|he don’t|he isn’t}.\nDo they live here? Yes, {they do|they live|they are}.\nDoes your mum drive? No, {she doesn’t|she don’t|she not}.' },
+      { type: 'gap', title: { uk: 'Склади питання', ru: 'Составь вопрос', en: 'Make questions' }, instruction: 'Write the question.', text: 'you / like / ice cream → [Do you like ice cream?]\nshe / play / tennis → [Does she play tennis?]\nwhere / they / live → [Where do they live?]\nwhat / he / eat / for breakfast → [What does he eat for breakfast?]' },
+    ],
+  },
+  {
+    n: 8, slug: 'present-continuous-or-simple', title: 'I am doing and I do', level: 'A1-A2', scene: 'now-vs-always', free: false,
+    topic: { uk: 'Зараз чи завжди?', ru: 'Сейчас или всегда?', en: 'Now or always?' },
+    story: { uk: 'Дві іграшки на одній полиці. Моторчик -ing їде прямо зараз: I’m reading. Сімпл-дімпл натискаємо знову і знову, це звичка: I read every day. Перш ніж сказати, спитай себе: це відбувається зараз чи буває постійно?', ru: 'Две игрушки на одной полке. Моторчик -ing едет прямо сейчас: I’m reading. Симпл-димпл нажимаем снова и снова, это привычка: I read every day. Прежде чем сказать, спроси себя: это происходит сейчас или бывает постоянно?', en: 'The -ing motor runs right now: I’m reading. The simple dimple is pressed again and again: I read every day.' },
+    formula: [
+      { label: { uk: 'Зараз (моторчик)', ru: 'Сейчас (моторчик)', en: 'Now (motor)' }, rows: [['am / is / are + -ing', 'I’m reading now.'], ['now, at the moment', 'look!, listen!']] },
+      { label: { uk: 'Завжди (сімпл-дімпл)', ru: 'Всегда (симпл-димпл)', en: 'Always (simple dimple)' }, rows: [['verb (+s)', 'I read every day.'], ['every day, usually', 'often, never']] },
+    ],
+    rules: [
+      { h: { uk: 'Зараз', ru: 'Сейчас', en: 'Now' }, p: { uk: 'Те, що відбувається в цю хвилину або ці дні: Look! It’s raining. I’m learning to swim this month.', ru: 'То, что происходит в эту минуту или в эти дни: Look! It’s raining. I’m learning to swim this month.', en: 'Look! It’s raining.' } },
+      { h: { uk: 'Завжди, зазвичай', ru: 'Всегда, обычно', en: 'Always, usually' }, p: { uk: 'Звички, розклад і факти: It rains a lot in autumn. I swim every Sunday.', ru: 'Привычки, расписание и факты: It rains a lot in autumn. I swim every Sunday.', en: 'It rains a lot in autumn.' } },
+      { h: { uk: 'Дієслова без моторчика', ru: 'Глаголы без моторчика', en: 'Verbs without -ing' }, p: { uk: 'Know, like, love, want, need, understand, believe зазвичай не беруть -ing: I know, а не I’m knowing.', ru: 'Know, like, love, want, need, understand, believe обычно не берут -ing: I know, а не I’m knowing.', en: 'I know, not “I’m knowing”.' } },
+    ],
+    examples: [
+      ['She plays the piano, but now she’s playing the guitar.', { uk: 'Вона грає на піаніно, але зараз грає на гітарі.', ru: 'Она играет на пианино, но сейчас играет на гитаре.' }],
+      ['I usually walk to school. Today I’m going by bus.', { uk: 'Зазвичай я йду до школи пішки. Сьогодні їду автобусом.', ru: 'Обычно я хожу в школу пешком. Сегодня еду на автобусе.' }],
+      ['What do you do? What are you doing?', { uk: 'Ким ти працюєш? Що ти зараз робиш?', ru: 'Кем ты работаешь? Что ты сейчас делаешь?' }],
+      ['I know the answer.', { uk: 'Я знаю відповідь.', ru: 'Я знаю ответ.' }],
+    ],
+    traps: [['I’m knowing the answer.', 'I know the answer.'], ['Look! It snows.', 'Look! It’s snowing.'], ['I am go to school every day.', 'I go to school every day.']],
+    exercises: [
+      { type: 'choice', title: { uk: 'Зараз чи завжди?', ru: 'Сейчас или всегда?', en: 'Now or always?' }, instruction: 'Choose the correct form.', text: 'Look! The dog {is running|runs} after the cat.\nI {go|am going} to school every day.\nShh! Dad {is sleeping|sleeps}.\nShe {drinks|is drinking} milk every morning.\nWe {are watching|watch} a film right now.\nMy cat usually {sleeps|is sleeping} on the sofa.' },
+      { type: 'gap', title: { uk: 'Розкрий дужки', ru: 'Раскрой скобки', en: 'Open the brackets' }, instruction: 'Put the verbs into the present simple or the present continuous.', text: 'It [is raining/’s raining] (rain) now. Take an umbrella!\nMy brother [plays] (play) football on Tuesdays.\nListen! Somebody [is singing/’s singing] (sing).\nI [don’t like/do not like] (not like) horror films.\nWhat [are] you [doing] (do) at the moment?' },
+      { type: 'choice', title: { uk: 'Ці дієслова без моторчика', ru: 'Эти глаголы без моторчика', en: 'No -ing with these' }, instruction: 'Choose the correct sentence.', text: '{I know your sister.|I’m knowing your sister.}\n{Do you want some tea?|Are you wanting some tea?}\n{She likes this song.|She is liking this song.}\n{I understand you.|I’m understanding you.}' },
+      { type: 'match', title: { uk: 'Питання й відповідь', ru: 'Вопрос и ответ', en: 'Match' }, instruction: 'Match the questions with the answers.', text: 'What do you do? = I’m a teacher.\nWhat are you doing? = I’m making a cake.\nDo you like cake? = Yes, I love it!\nAre you busy now? = No, I’m free.' },
+    ],
+  },
+  {
+    n: 9, slug: 'have-and-have-got', title: 'I have… / I’ve got…', level: 'A1-A2', scene: 'backpack', free: false,
+    topic: { uk: 'Як сказати «у мене є»', ru: 'Как сказать «у меня есть»', en: 'How to say what you have' },
+    story: { uk: 'Уяви рюкзак. Щоб розповісти, що в ньому, англійці кажуть «я маю»: I’ve got a sandwich, а не «у мене є». Have got більше для розмови, have просто як звичайне дієслово. Злодюжки he, she, it і тут зі своєю S: has got, has.', ru: 'Представь рюкзак. Чтобы рассказать, что в нём, англичане говорят «я имею»: I’ve got a sandwich, а не «у меня есть». Have got чаще в разговоре, have просто как обычный глагол. Воришки he, she, it и тут со своей S: has got, has.', en: 'Imagine a backpack: I’ve got a sandwich. He, she, it have their S again: has got, has.' },
+    formula: [
+      { label: { uk: 'have got (розмовне)', ru: 'have got (разговорное)', en: 'have got' }, rows: [['I / you / we / they', 'have got (’ve got)'], ['he / she / it', 'has got (’s got)']] },
+      { label: { uk: 'have (як звичайне дієслово)', ru: 'have (как обычный глагол)', en: 'have' }, rows: [['I / you / we / they', 'have'], ['he / she / it', 'has']] },
+    ],
+    rules: [
+      { h: { uk: '«Я маю» замість «у мене є»', ru: '«Я имею» вместо «у меня есть»', en: 'I have' }, p: { uk: 'У мене є кіт: I’ve got a cat або I have a cat. Обидва варіанти правильні.', ru: 'У меня есть кот: I’ve got a cat или I have a cat. Оба варианта правильные.', en: 'I’ve got a cat = I have a cat.' } },
+      { h: { uk: 'Заперечення й питання з got', ru: 'Отрицание и вопрос с got', en: 'With got' }, p: { uk: 'Як у to be: I haven’t got a dog. Have you got a pen? Yes, I have.', ru: 'Как у to be: I haven’t got a dog. Have you got a pen? Yes, I have.', en: 'I haven’t got… Have you got…?' } },
+      { h: { uk: 'Заперечення й питання без got', ru: 'Отрицание и вопрос без got', en: 'Without got' }, p: { uk: 'Як у Present Simple, з do і does: I don’t have a dog. Do you have a pen? Does she have a bike?', ru: 'Как в Present Simple, с do и does: I don’t have a dog. Do you have a pen? Does she have a bike?', en: 'I don’t have… Do you have…?' } },
+    ],
+    examples: [
+      ['I’ve got a little sister.', { uk: 'У мене є молодша сестра.', ru: 'У меня есть младшая сестра.' }],
+      ['She has a new phone.', { uk: 'У неї новий телефон.', ru: 'У неё новый телефон.' }],
+      ['Have you got a pen? Yes, I have.', { uk: 'У тебе є ручка? Так.', ru: 'У тебя есть ручка? Да.' }],
+      ['Do you have a pet? No, I don’t.', { uk: 'У тебе є домашній улюбленець? Ні.', ru: 'У тебя есть питомец? Нет.' }],
+    ],
+    traps: [['He have got a bike.', 'He has got a bike.'], ['I haven’t a car.', 'I haven’t got a car. / I don’t have a car.'], ['Do you have got a pen?', 'Have you got a pen? / Do you have a pen?']],
+    exercises: [
+      { type: 'choice', title: { uk: 'Have чи has?', ru: 'Have или has?', en: 'Have or has?' }, instruction: 'Choose the correct form.', text: 'I {have|has} got two brothers.\nMy dad {has|have} got a beard.\nThey {have|has} a big garden.\nOur cat {has|have} green eyes.\nWe {have|has} got a test tomorrow.' },
+      { type: 'gap', title: { uk: 'Що в рюкзаку?', ru: 'Что в рюкзаке?', en: 'What’s in the bag?' }, instruction: 'Write have got, has got, haven’t got or hasn’t got.', text: 'I [have got/’ve got] a sandwich in my bag.\nTom [hasn’t got/has not got] a pencil. Can you give him one?\nWe [have got/’ve got] three dogs!\nShe [has got/’s got] long hair.\nThey [haven’t got/have not got] a TV.' },
+      { type: 'choice', title: { uk: 'Питання й відповіді', ru: 'Вопросы и ответы', en: 'Questions and answers' }, instruction: 'Choose the correct option.', text: '{Have you got|Do you got|Has you got} a brother?\n{Does she have|Has she have|Does she has} a bike?\nHave they got a garden? Yes, {they have|they do|they got}.\nDo you have a pet? No, {I don’t|I haven’t|I not}.' },
+      { type: 'gap', title: { uk: 'Без got', ru: 'Без got', en: 'Without got' }, instruction: 'Write have, has, don’t have or doesn’t have.', text: 'I [have] a cat and a dog.\nMy sister [has] a new bike.\nSorry, I [don’t have/do not have] a pen.\nOur school [doesn’t have/does not have] a pool.' },
+    ],
+  },
+  {
+    n: 10, slug: 'was-were', title: 'was / were', level: 'A1-A2', scene: 'time-machine', free: false,
+    topic: { uk: 'Як сказати «був», «була», «були»', ru: 'Как сказать «был», «была», «были»', en: 'How to say “was” and “were”' },
+    story: { uk: 'Сідаємо в машину часу й летимо у вчора. Кульки BE переодягаються: am та is стають was, а are стає were. Хто з ким дружив, той з тим і залишився: I was, she was, they were.', ru: 'Садимся в машину времени и летим во вчера. Шарики BE переодеваются: am и is становятся was, а are становится were. Кто с кем дружил, тот с тем и остался: I was, she was, they were.', en: 'Get into the time machine: am and is become was, are becomes were.' },
+    formula: [
+      { label: { uk: 'Сьогодні → учора', ru: 'Сегодня → вчера', en: 'Now → yesterday' }, rows: [['am, is', 'was'], ['are', 'were']] },
+      { label: { uk: 'Заперечення й питання', ru: 'Отрицание и вопрос', en: 'Negative and question' }, rows: [['I / he / she / it', 'wasn’t · Was he…?'], ['you / we / they', 'weren’t · Were you…?']] },
+    ],
+    rules: [
+      { h: { uk: 'Was і were', ru: 'Was и were', en: 'Was and were' }, p: { uk: 'I, he, she, it + was. You, we, they + were. Yesterday I was at home. They were at school.', ru: 'I, he, she, it + was. You, we, they + were. Yesterday I was at home. They were at school.', en: 'I was, they were.' } },
+      { h: { uk: 'Як сказати «ні»', ru: 'Как сказать «нет»', en: 'Negative' }, p: { uk: 'Додаємо not: wasn’t, weren’t. It wasn’t cold. We weren’t late.', ru: 'Добавляем not: wasn’t, weren’t. It wasn’t cold. We weren’t late.', en: 'wasn’t, weren’t.' } },
+      { h: { uk: 'Питання', ru: 'Вопрос', en: 'Questions' }, p: { uk: 'Знову сальто: You were late → Were you late? Відповідь: Yes, I was. / No, I wasn’t.', ru: 'Снова сальто: You were late → Were you late? Ответ: Yes, I was. / No, I wasn’t.', en: 'Were you late? Yes, I was.' } },
+    ],
+    examples: [
+      ['I was at home yesterday.', { uk: 'Учора я був удома.', ru: 'Вчера я был дома.' }],
+      ['The film was really funny.', { uk: 'Фільм був дуже смішний.', ru: 'Фильм был очень смешной.' }],
+      ['We weren’t tired.', { uk: 'Ми не були втомлені.', ru: 'Мы не были уставшими.' }],
+      ['Where were you last night?', { uk: 'Де ти був учора ввечері?', ru: 'Где ты был вчера вечером?' }],
+    ],
+    traps: [['They was at school.', 'They were at school.'], ['I were tired.', 'I was tired.'], ['You was late?', 'Were you late?']],
+    exercises: [
+      { type: 'choice', title: { uk: 'Was чи were?', ru: 'Was или were?', en: 'Was or were?' }, instruction: 'Choose was or were.', text: 'I {was|were} ill last week.\nMy parents {were|was} in Lviv.\nIt {was|were} cold yesterday.\nWe {were|was} at the cinema.\nThe test {was|were} easy.\nYou {were|was} right!' },
+      { type: 'gap', title: { uk: 'Машина часу', ru: 'Машина времени', en: 'Time machine' }, instruction: 'Change the sentence to the past.', text: 'I am happy. → Yesterday I [was] happy.\nThey are at the park. → Yesterday they [were] at the park.\nShe is busy. → Yesterday she [was] busy.\nWe aren’t hungry. → Yesterday we [weren’t/were not] hungry.\nIt isn’t sunny. → Yesterday it [wasn’t/was not] sunny.' },
+      { type: 'gap', title: { uk: 'Питання', ru: 'Вопросы', en: 'Questions' }, instruction: 'Write Was or Were.', text: '[Were] you at school yesterday?\n[Was] the pizza good?\nWhere [were] your keys?\n[Was] Anna at the party?\nWhy [were] they late?' },
+      { type: 'choice', title: { uk: 'Коротка відповідь', ru: 'Краткий ответ', en: 'Short answers' }, instruction: 'Choose the correct short answer.', text: 'Were you tired? Yes, {I was|I were|I am}.\nWas it expensive? No, {it wasn’t|it weren’t|it isn’t}.\nWere they at home? No, {they weren’t|they wasn’t|they aren’t}.' },
     ],
   },
 ];
@@ -171,8 +305,7 @@ export const RED: BookUnit[] = [
 export const BOOK_UNITS: Record<BookId, BookUnit[]> = { beginner: RED, intermediate: [] };
 // Що буде далі в книзі Beginner (поки «скоро»)
 export const RED_NEXT: { n: number; title: string }[] = [
-  { n: 6, title: 'I don’t… (present simple negative)' }, { n: 7, title: 'Do you…? (present simple questions)' },
-  { n: 8, title: 'I am doing and I do' }, { n: 9, title: 'I have… / I’ve got…' }, { n: 10, title: 'was / were' },
   { n: 11, title: 'worked / got / went (past simple)' }, { n: 12, title: 'I didn’t… Did you…?' },
+  { n: 13, title: 'there is / there are' }, { n: 14, title: 'can / can’t' }, { n: 15, title: 'I’m going to…' },
 ];
 export const getUnit = (book: string, slug: string) => (BOOK_UNITS[book as BookId] ?? []).find((u) => u.slug === slug);
