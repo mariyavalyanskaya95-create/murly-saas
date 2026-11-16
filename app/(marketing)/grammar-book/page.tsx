@@ -12,7 +12,7 @@ import { alt } from '@/lib/seo';
 export function generateMetadata(): Metadata {
   const t = tr();
   return {
-    title: t({ uk: 'Граматика англійської з картинками: книга Murly A1-A2 | Murly', ru: 'Грамматика английского с картинками: книга Murly A1-A2 | Murly', en: 'English grammar with pictures: the Murly book A1-A2 | Murly' }),
+    title: t({ uk: 'Граматика англійської з картинками: книга для початківців A1-A2 | Murly', ru: 'Грамматика английского с картинками: книга для начинающих A1-A2 | Murly', en: 'English grammar with pictures: a beginner book A1-A2 | Murly' }),
     description: t({ uk: 'Граматика простими словами і смішними асоціаціями: сторінка правила і сторінка вправ з автоперевіркою. am/is/are, Present Continuous, Present Simple. Перші юніти безкоштовно, можна роздрукувати.', ru: 'Грамматика простыми словами и смешными ассоциациями: страница правила и страница упражнений с автопроверкой. am/is/are, Present Continuous, Present Simple. Первые юниты бесплатно, можно распечатать.', en: 'Grammar in simple words with funny pictures: a rule page and a practice page with auto-check. First units free, printable.' }),
     alternates: alt('/grammar-book'),
   };
@@ -30,7 +30,7 @@ export default function GrammarBookPage() {
           <HeroTip>{t({ uk: 'Кожен юніт це розворот: ліворуч правило простими словами і смішна картинка-асоціація, праворуч вправи з автоперевіркою. Можна роздрукувати в PDF. Перші 5 юнітів безкоштовно.', ru: 'Каждый юнит это разворот: слева правило простыми словами и смешная картинка-ассоциация, справа упражнения с автопроверкой. Можно распечатать в PDF. Первые 5 юнитов бесплатно.', en: 'Each unit is a spread: the rule with a funny picture on the left, practice with auto-check on the right. Printable. The first 5 units are free.' })}</HeroTip>
         </div>
       </section>
-      {(['red', 'blue'] as const).map((id) => {
+      {(['beginner', 'intermediate'] as const).map((id) => {
         const b = BOOKS[id]; const units = BOOK_UNITS[id];
         return (
           <section key={id} className="mu-section" style={{ paddingTop: 12 }}>
