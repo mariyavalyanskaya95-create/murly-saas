@@ -7,6 +7,9 @@ import MatchGame from './MatchGame';
 import AnagramGame from './AnagramGame';
 import CardsGame from './CardsGame';
 import HangmanGame from './HangmanGame';
+import SpellGame from './SpellGame';
+import MemoryGame from './MemoryGame';
+import ListenGame from './ListenGame';
 import { useT } from '../LangProvider';
 import type { T } from '@/lib/i18n';
 
@@ -15,6 +18,9 @@ export const TEMPLATES: { id: GameTemplate; title: T; icon: string; text: T }[] 
   { id: 'match', title: { uk: 'Пари', ru: 'Пары', en: 'Pairs' }, icon: 'c-yarn', text: { uk: 'З’єднай слово з відповіддю', ru: 'Соедини слово с ответом', en: 'Match each word with its answer' } },
   { id: 'anagram', title: { uk: 'Анаграма', ru: 'Анаграмма', en: 'Anagram' }, icon: 'e-abc', text: { uk: 'Збери слово з літер', ru: 'Собери слово из букв', en: 'Build the word from letters' } },
   { id: 'hangman', title: { uk: 'Вгадай слово', ru: 'Угадай слово', en: 'Hangman' }, icon: 'e-abc', text: { uk: 'Вгадуй літери, поки кульки не полетіли', ru: 'Угадывай буквы, пока шарики не улетели', en: 'Guess the letters before the balloons fly away' } },
+  { id: 'spell', title: { uk: 'Напиши слово', ru: 'Напиши слово', en: 'Spell it' }, icon: 'e-abc', text: { uk: 'Бачиш переклад, чуєш слово, пишеш сам', ru: 'Видишь перевод, слышишь слово, пишешь сам', en: 'See the translation, hear it, type it' } },
+  { id: 'listen', title: { uk: 'Слово на слух', ru: 'Слово на слух', en: 'Listen and pick' }, icon: 'e-speak', text: { uk: 'Слухай і обирай переклад', ru: 'Слушай и выбирай перевод', en: 'Listen and choose the translation' } },
+  { id: 'memory', title: { uk: 'Пари на час', ru: 'Пары на время', en: 'Memory race' }, icon: 'd-cup', text: { uk: 'Знайди всі пари якнайшвидше', ru: 'Найди все пары как можно быстрее', en: 'Find all the pairs fast' } },
   { id: 'cards', title: { uk: 'Картки', ru: 'Карточки', en: 'Flashcards' }, icon: 'e-book', text: { uk: 'Перевертай і запам’ятовуй', ru: 'Переворачивай и запоминай', en: 'Flip and remember' } },
 ];
 
@@ -51,6 +57,9 @@ export default function GameHub({ sets }: { sets: GameSet[] }) {
         {tpl === 'anagram' && <AnagramGame key={set.id} items={set.items} />}
         {tpl === 'cards' && <CardsGame key={set.id} items={set.items} />}
         {tpl === 'hangman' && <HangmanGame key={set.id} items={set.items} />}
+        {tpl === 'spell' && <SpellGame key={set.id} items={set.items} />}
+        {tpl === 'listen' && <ListenGame key={set.id} items={set.items} />}
+        {tpl === 'memory' && <MemoryGame key={set.id} items={set.items} />}
       </div>
     </div>
   );
