@@ -6,6 +6,7 @@ import QuizGame from './QuizGame';
 import MatchGame from './MatchGame';
 import AnagramGame from './AnagramGame';
 import CardsGame from './CardsGame';
+import HangmanGame from './HangmanGame';
 import { useT } from '../LangProvider';
 import type { T } from '@/lib/i18n';
 
@@ -13,6 +14,7 @@ export const TEMPLATES: { id: GameTemplate; title: T; icon: string; text: T }[] 
   { id: 'quiz', title: { uk: 'Квіз', ru: 'Квиз', en: 'Quiz' }, icon: 'e-trophy', text: { uk: 'Обери правильний варіант з чотирьох', ru: 'Выбери правильный вариант из четырёх', en: 'Pick the right answer out of four' } },
   { id: 'match', title: { uk: 'Пари', ru: 'Пары', en: 'Pairs' }, icon: 'c-yarn', text: { uk: 'З’єднай слово з відповіддю', ru: 'Соедини слово с ответом', en: 'Match each word with its answer' } },
   { id: 'anagram', title: { uk: 'Анаграма', ru: 'Анаграмма', en: 'Anagram' }, icon: 'e-abc', text: { uk: 'Збери слово з літер', ru: 'Собери слово из букв', en: 'Build the word from letters' } },
+  { id: 'hangman', title: { uk: 'Вгадай слово', ru: 'Угадай слово', en: 'Hangman' }, icon: 'e-abc', text: { uk: 'Вгадуй літери, поки кульки не полетіли', ru: 'Угадывай буквы, пока шарики не улетели', en: 'Guess the letters before the balloons fly away' } },
   { id: 'cards', title: { uk: 'Картки', ru: 'Карточки', en: 'Flashcards' }, icon: 'e-book', text: { uk: 'Перевертай і запам’ятовуй', ru: 'Переворачивай и запоминай', en: 'Flip and remember' } },
 ];
 
@@ -48,6 +50,7 @@ export default function GameHub({ sets }: { sets: GameSet[] }) {
         {tpl === 'match' && <MatchGame key={set.id} items={set.items} />}
         {tpl === 'anagram' && <AnagramGame key={set.id} items={set.items} />}
         {tpl === 'cards' && <CardsGame key={set.id} items={set.items} />}
+        {tpl === 'hangman' && <HangmanGame key={set.id} items={set.items} />}
       </div>
     </div>
   );

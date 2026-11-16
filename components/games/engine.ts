@@ -14,7 +14,7 @@ export type GameSet = {
   items: GameItem[];
 };
 
-export type GameTemplate = 'quiz' | 'match' | 'anagram' | 'cards';
+export type GameTemplate = 'quiz' | 'match' | 'anagram' | 'cards' | 'hangman';
 
 export function shuffle<T>(arr: T[]): T[] {
   const a = [...arr];
