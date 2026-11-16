@@ -13,6 +13,7 @@ export const BATCH_5: Plan[] = [
     aims: 'Знаю, коли казати am, is, are\nВмію утворювати заперечення: I’m not, he isn’t, they aren’t\nВикористовую короткі форми I’m, she’s, we’re\nМожу розповісти про себе і друзів 5-6 реченнями',
     duration: 60,
     blocks: [
+      { id: 'b5-tobe-page', type: 'text', text: '**Інтерактивний урок на одній сторінці з пультом учителя** (переклади, зразки відповідей і навідні питання до кожного блоку): https://murly.com.ua/game-lessons/to-be-squad.html' },
       h('Warm-up · 5 хв'),
       talk(`What’s your name?
 How old are you?
@@ -25,9 +26,9 @@ If you are an animal, what animal are you?`),
       note('Почни з себе: «I’m Anna. I’m a teacher. I’m not a cat, but my cat is very important.» Учень відповідає на питання повними реченнями, якщо може, але не виправляй на цьому етапі. Мета: почути, чи учень уже плутає am / is / are, і відзначити собі типові помилки для «Розбору помилок».'),
 
       h('Lead-in · 6 хв'),
-      t(`**Meet my squad!** (a post by Sofia, 13)
+      t(`**Meet my squad!** (a post by Sophie, 13)
 
-Hi, I’m Sofia and I’m from Lviv. I’m in Year 8. This is my squad!
+Hi, I’m Sophie and I’m from Bristol. I’m in Year 8. This is my squad!
 
 **Dan** is my best friend. He’s funny and he’s really good at football. He isn’t good at maths, but that’s OK, I am!
 
@@ -50,10 +51,10 @@ tired = втомлений
 hungry = голодний
 late = який запізнюється
 bored = якому нудно`),
-      ex(['truefalse', 'Прочитай пост і обери True або False.', `Sofia is from Kyiv. = False
+      ex(['truefalse', 'Прочитай пост і обери True або False.', `Sophie is from Manchester. = False
 Dan is good at football. = True
 Dan is good at maths. = False
-Mia and Kira are in Sofia’s class. = False
+Mia and Kira are in Sophie’s class. = False
 Biscuit is orange. = True
 Biscuit is a fan of dogs. = False`]),
       note('Учень читає вголос по абзацу, слова зі словничка пояснюй по ходу. Після True / False попроси знайти в тексті всі am, is, are і ’m, ’s, ’re. Запитай: «Чому про Dan is, а про Mia and Kira are?» Нехай учень сам спробує сформулювати правило.'),
@@ -164,7 +165,7 @@ Dan is = Dan isn’t`),
       meme('st-cat-box', 'I am in a box.', 'The box is my home now.', 'Я в коробці. Коробка тепер мій дім.'),
       ex(['open', 'Напиши 6 речень: 3 позитивні і 3 заперечні.', `Write about you: 3 true sentences with am / is / are.
 Write about your friend or pet: 3 sentences with isn’t / aren’t / ’m not.`]),
-      note('Домашка: міні-пост «Meet my squad» про себе і 2-3 друзів або тварин (6-8 речень), як у тексті Sofia. Обов’язково 2 заперечення. Бонус: придумати свій мем з котиком з am / is / are. На наступному уроці учень прочитає свій пост, а ти поставиш до нього питання (наступна тема: питання з am / is / are).'),
+      note('Домашка: міні-пост «Meet my squad» про себе і 2-3 друзів або тварин (6-8 речень), як у тексті Sophie. Обов’язково 2 заперечення. Бонус: придумати свій мем з котиком з am / is / are. На наступному уроці учень прочитає свій пост, а ти поставиш до нього питання (наступна тема: питання з am / is / are).'),
     ],
   },
 
