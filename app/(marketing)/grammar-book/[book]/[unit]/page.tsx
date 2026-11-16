@@ -1,4 +1,4 @@
-import { notFound } from 'next/navigation';
+import { notFound, permanentRedirect } from 'next/navigation';
 import type { Metadata } from 'next';
 import SiteNav from '@/components/SiteNav';
 import SiteFooter from '@/components/SiteFooter';
@@ -23,6 +23,7 @@ export function generateMetadata({ params }: { params: { book: string; unit: str
 }
 
 export default function BookUnitPage({ params }: { params: { book: string; unit: string } }) {
+  if (params.book === 'red') permanentRedirect(`/grammar-book/beginner/${params.unit}`);
   const units = BOOK_UNITS[params.book as BookId]; const u = getUnit(params.book, params.unit);
   if (!units || !u) notFound();
   const i = units.indexOf(u!);
