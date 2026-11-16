@@ -29,7 +29,7 @@ export default function TeacherToday() {
   const prevMon = new Date(monday); prevMon.setDate(monday.getDate() - 7);
   const monthStart = new Date(today.getFullYear(), today.getMonth(), 1);
   const inRange = (iso: string, a: Date, b: Date) => { const d = new Date(iso); return d >= a && d < b; };
-  const earned = (a: Date, b: Date) => data.lessons.filter((l) => isBilled(l.status) && inRange(l.start, a, b));
+  const earned = (a: Date, b: Date) => data.lessons.filter((l) => isBilled(l.status) && l.trial !== 'free' && inRange(l.start, a, b));
   const sum = (ls: typeof data.lessons) => ls.reduce((n, l) => n + price(l.studentId), 0);
   const thisWeek = earned(monday, nextMon);
   const lastWeek = earned(prevMon, monday);
