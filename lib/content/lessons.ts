@@ -15,6 +15,8 @@ import ru6 from './ru/lessons6.json';
 import en6 from './en/lessons6.json';
 import ru7 from './ru/lessons7.json';
 import en7 from './en/lessons7.json';
+import ru9 from './ru/lessons9.json';
+import en9 from './en/lessons9.json';
 import ruXb1 from './ru/extra-b1.json';
 import enXb1 from './en/extra-b1.json';
 import ruXb2 from './ru/extra-b2.json';
@@ -41,4 +43,4 @@ function drillDict(lang: Exclude<Lang, 'uk'>): Dict {
   for (const dr of DRILLS) pair(drillToPlan(dr), drillToPlan(localizeDrill(dr, lang), DRILL_LABELS[lang]));
   return d;
 }
-export const localizeLesson = localizeWith({ ru: { ...ruP, ...ru1, ...ru2, ...ru3, ...ru4, ...ru5, ...ru6, ...ru7, ...ruXb1, ...ruXb2, ...ruXb3, ...ruXb4, ...ruXpr, ...drillDict('ru') }, en: { ...enP, ...en1, ...en2, ...en3, ...en4, ...en5, ...en6, ...en7, ...enXb1, ...enXb2, ...enXb3, ...enXb4, ...enXpr, ...drillDict('en') } });
+export const localizeLesson = localizeWith({ ru: { ...ruP, ...ru1, ...ru2, ...ru3, ...ru4, ...ru5, ...ru6, ...ru7, ...ru9, ...ruXb1, ...ruXb2, ...ruXb3, ...ruXb4, ...ruXpr, ...drillDict('ru') }, en: { ...enP, ...en1, ...en2, ...en3, ...en4, ...en5, ...en6, ...en7, ...en9, ...enXb1, ...enXb2, ...enXb3, ...enXb4, ...enXpr, ...drillDict('en') } });
