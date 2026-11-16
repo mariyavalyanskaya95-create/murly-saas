@@ -14,7 +14,7 @@ type Role = 'self' | 'parent';
 type Link = { role: Role; s: Record<string, unknown> };
 const LOC: Record<Lang, string> = { uk: 'uk-UA', ru: 'ru-RU', en: 'en-GB' };
 const asLang = (x: unknown): Lang => (x === 'ru' || x === 'en' ? x : 'uk');
-const COLS = 'id,name,price,prepaid_lessons,owed_lessons,pay_mode,is_adult,user_id,tg_lang,parent_tg_lang,tz';
+const COLS = 'id,teacher_id,name,price,prepaid_lessons,owed_lessons,pay_mode,is_adult,user_id,tg_lang,parent_tg_lang,tz';
 
 // Усі учні, до яких прив’язаний цей чат (сам учень або батьки; у батьків може бути кілька дітей)
 export async function linksOf(chat: number): Promise<{ lang: Lang; links: Link[] }> {
@@ -99,7 +99,11 @@ export async function menuAnswer(kind: string, lang: Lang, links: Link[]): Promi
         price ? t({ uk: `Ціна заняття: ${money(price, lang)}`, ru: `Цена занятия: ${money(price, lang)}`, en: `Lesson price: ${money(price, lang)}` }) : '',
         pays.length ? t({ uk: 'Останні оплати:', ru: 'Последние оплаты:', en: 'Recent payments:' }) + '\n' + pays.slice(0, 3).map((p) => `${day(p.at, lang)}: ${money(Number(p.amount), lang)}`).join('\n') : '',
       ].filter(Boolean).join('\n');
-      parts.push(`${head(k)}${line}${extra ? `\n${extra}` : ''}`);
+      // реквізити вчителя: номер карти в <code>, щоб у Telegram скопіювати одним дотиком
+      const ts = k.s.teacher_id ? await db.query(`teacher_settings?teacher_id=eq.${enc(String(k.s.teacher_id))}&select=pay_info`).catch(() => []) : [];
+      const info = String(ts[0]?.pay_info || '').trim();
+      const req = info ? '\n\n' + t({ uk: 'Реквізити для оплати:', ru: 'Реквизиты для оплаты:', en: 'Payment details:' }) + '\n<code>' + esc(info) + '</code>' : '';
+      parts.push(`${head(k)}${line}${extra ? `\n${extra}` : ''}${req}`);
     }
 
     if (kind === 'stats') {

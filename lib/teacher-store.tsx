@@ -48,7 +48,7 @@ export type Homework = {
   note?: string; // заметки й питання учня
   passUsed?: boolean; // учень узяв +1 день за монетки
 };
-export type Settings = { name: string; link: string; linkKind: 'zoom' | 'meet' | 'other'; ai?: boolean; tz?: string };
+export type Settings = { name: string; link: string; linkKind: 'zoom' | 'meet' | 'other'; ai?: boolean; tz?: string; payInfo?: string };
 
 type Data = {
   students: Student[]; groups: Group[]; lessons: Lesson[]; notes: Note[]; words: Word[]; payments: Payment[]; homework: Homework[]; plans: Plan[]; settings: Settings;
