@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Have you got a cat? Have and have got (A1) | Murly</title>
+<link rel="icon" href="/favicon.svg">
+<meta name="description" content="A1 lesson on have got and have: I have got, she has got, questions, negatives and short answers. Listening, monster reading, grammar-book exercises, translation and video.">
+<link rel="canonical" href="https://murly.com.ua/game-lessons/have-got.html">
+<style>
+:root{--paper:#F3F0EA;--ink:#17181C;--violet:#3D4A7A;--lav:#D9D3C7;--pink:#E9C9BC;--green:#D4E2CF;--white:#fff;--muted:#62646B;--accent:#B5482F}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+/* hero */
+.hero{background:linear-gradient(rgba(16,17,22,.5),rgba(16,17,22,.72)),url("https://images.unsplash.com/photo-1583209814683-c023dd293cc6?w=1400&q=70&auto=format&fit=crop");color:#fff;padding:70px 18px 56px;text-align:center;position:relative;overflow:hidden}
+.hero .kicker{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#E9C9BC;font-weight:700}
+.hero .cr{position:absolute;right:12px;bottom:8px;font-size:11px;color:rgba(255,255,255,.6)}
+.hero h1{margin:8px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(36px,6vw,64px);letter-spacing:-.5px;font-weight:700}
+.hero h1 span{color:var(--pink);font-style:italic}
+.hero p{margin:12px 0 0;font-size:17px;color:#e6e2da}
+.hero .flags{display:flex;justify-content:center;gap:12px;margin-top:22px;flex-wrap:wrap}
+.hero .flags svg{width:40px;height:26px;border-radius:3px;opacity:.9}
+/* sections */
+section{margin-top:30px;background:var(--white);border-radius:18px;padding:28px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.05)}
+section h2{margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tag{font-family:"Segoe UI",system-ui,sans-serif;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--paper);color:var(--accent);text-transform:uppercase;letter-spacing:1px}
+.lk-n{display:inline-grid;place-items:center;width:42px;height:42px;background:var(--violet);color:#fff;border-radius:50%;font-size:21px;flex:none}
+.lk-mode{font-size:13px;font-weight:700;border:2px dashed var(--lav);color:var(--muted);padding:2px 10px;border-radius:999px}
+.lk-ins{font-size:17px;background:var(--paper);border-radius:12px;padding:10px 14px;margin:6px 0 18px}
+.lk-sub{margin:24px 0 10px;font-size:19px}
+.btn{font:inherit;font-weight:700;border:0;border-radius:999px;background:var(--ink);color:#fff;padding:10px 20px;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+.btn.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+/* teacher */
+.lk-tbtn{position:fixed;right:16px;top:70px;z-index:45;font:inherit;font-weight:800;border:2px solid var(--ink);background:var(--pink);padding:8px 14px;border-radius:12px;cursor:pointer}
+body.teacher .lk-tbtn{background:var(--green)}
+.lk-ans,.lk-tnote{display:none}
+body.teacher .lk-ans{display:block;margin-top:8px;font-weight:700;color:#1d5a12;background:var(--green);border-left:5px solid #5aa845;padding:6px 10px;font-size:15px;border-radius:6px}
+body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff3f7;border-left:5px solid #d9789a;padding:8px 12px;font-size:15px;border-radius:6px}
+/* overview */
+.lk-overview ul{font-size:17px;line-height:1.7;margin:6px 0 16px}
+.lk-stages{display:flex;flex-wrap:wrap;gap:8px}
+.lk-stages a{display:grid;border-radius:14px;padding:8px 12px;text-decoration:none;color:var(--ink);background:var(--paper);font-weight:700;min-width:100px}
+.lk-stages a span{text-transform:capitalize}
+.lk-stages a b{font-size:20px;color:var(--violet)}
+.lk-stages a small{font-weight:600;color:var(--muted)}
+/* warm-up */
+.taxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tax{background:var(--paper);border-radius:18px;padding:16px;display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center}
+.tax svg{width:56px;height:56px}
+.tax b{display:block;font-size:17px}
+.tax small{color:var(--muted);font-size:14px}
+.qs{display:grid;gap:10px;margin-top:18px}
+.qs div{background:var(--green);border-radius:14px;padding:10px 16px;font-size:18px;font-weight:600}
+.phr{background:#fff7e8;border-radius:14px;padding:12px 16px;margin-top:16px;font-size:15px}
+.phr ul{margin:6px 0 0;padding-left:18px}
+.fic{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:16px}
+.fic .c{background:#fff;border:2px solid #1B2140;border-radius:16px;padding:14px 16px;box-shadow:3px 3px 0 #1B2140}
+.fic .c b{display:block;font-size:18px;line-height:1.35;margin-bottom:8px}
+.fic .c .k{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.fic .c .k span{font-size:13px;background:#eef1fb;border-radius:999px;padding:3px 10px}
+.fic .c details{margin-top:8px;font-size:15px;color:#3b4160}
+.fic .c summary{cursor:pointer;font-weight:700;color:#534AB7}
+.fi-n{display:inline-flex;width:28px;height:28px;border-radius:50%;background:#2F4BA0;color:#fff;align-items:center;justify-content:center;font-size:14px;margin-right:6px}
+/* vocab */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:12px}
+.vc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:2px solid transparent;transition:border-color .2s,transform .2s}
+.vc:hover{border-color:var(--violet);transform:translateY(-2px)}
+.vc b{font-size:18px;display:flex;align-items:center;gap:8px}
+.vc b svg{width:20px;height:20px;flex:none;color:var(--violet)}
+.vc p{margin:6px 0 0;font-size:14px;color:var(--muted)}
+.vc em{display:block;margin-top:6px;font-size:14px;color:var(--violet);font-style:normal;font-weight:600}
+.vc.played{background:#e6ecfb}
+/* grammar */
+.gram{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.gb{border-radius:18px;padding:16px}
+.gb h3{margin:0 0 6px;font-size:19px}
+.gb .f{display:inline-block;background:#fff;border-radius:8px;padding:3px 10px;font-weight:800;margin:4px 0;font-family:Consolas,monospace;font-size:15px}
+.gb p{margin:6px 0 0;font-size:15px}
+.g1{background:var(--pink)}.g2{background:var(--lav)}.g3{background:var(--green)}.g4{background:#fbe7c6}
+.warn{margin-top:14px;background:var(--ink);color:#fff;border-radius:14px;padding:12px 16px;font-size:16px}
+.warn b{color:var(--pink)}
+.q{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:2px dashed var(--paper);font-size:18px}
+.q:last-child{border-bottom:0}
+.q .n{width:32px;height:32px;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;border-radius:50%;font-weight:800;font-size:15px}
+.opt{font:inherit;font-size:16px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:10px;padding:4px 12px;cursor:pointer;margin:0 2px}
+.opt.ok{background:var(--green);border-color:#5aa845}
+.opt.bad{background:var(--pink);animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+/* tour */
+.tour{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.law{border-radius:22px;overflow:hidden;background:var(--paper);display:flex;flex-direction:column}
+.law .pic{height:150px;display:grid;place-items:center;position:relative}
+.law .pic svg.ill{width:130px;height:130px}
+.law .pic svg.fl{position:absolute;left:14px;top:14px;width:46px;height:30px;border-radius:5px;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.law .pic .no{position:absolute;right:14px;top:14px;background:var(--ink);color:#fff;font-weight:800;border-radius:999px;padding:2px 10px;font-size:13px}
+.law .body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.law h3{margin:0;font-size:20px}
+.law .where{font-size:13px;font-weight:800;color:var(--violet);text-transform:uppercase;letter-spacing:1px}
+.law p{margin:0;font-size:16px}
+.law .why{font-size:14px;color:var(--muted)}
+.law .dq{margin-top:auto;background:#fff;border-radius:12px;padding:8px 12px;font-weight:700;font-size:15px}
+.law .lsn{font:inherit;font-size:13px;font-weight:700;background:none;border:0;color:var(--violet);cursor:pointer;padding:0;text-align:left}
+/* game */
+.game{max-width:720px;margin:0 auto;text-align:center}
+.score{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.score span{background:var(--paper);border-radius:999px;padding:6px 16px;font-weight:800}
+.stmt{background:var(--ink);color:#fff;border-radius:22px;padding:28px 24px;min-height:150px;display:grid;place-items:center;font-size:23px;font-weight:700;position:relative}
+.stmt small{position:absolute;top:12px;left:18px;font-size:13px;color:var(--lav);font-weight:700}
+.choose{display:flex;justify-content:center;gap:14px;margin:18px 0}
+.choose button{font:inherit;font-size:18px;font-weight:700;border:2px solid var(--ink);border-radius:999px;padding:12px 28px;cursor:pointer}
+.choose .bl{background:var(--green)}.choose .bm{background:var(--pink)}
+.choose button:disabled{opacity:.5;cursor:default}
+.verdict{min-height:70px;font-size:17px;background:var(--paper);border-radius:16px;padding:12px 16px;text-align:left}
+.verdict b.r{color:#2d7a1d}.verdict b.w{color:#b23a62}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.dots i{width:14px;height:14px;border-radius:50%;background:var(--paper)}
+.dots i.r{background:#7cc663}.dots i.w{background:#e47b9f}.dots i.c{outline:3px solid var(--violet)}
+.final{font-size:22px;font-weight:800;color:var(--violet)}
+/* invent */
+.inv{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.frames{display:grid;gap:10px}
+.frames label{font-size:14px;font-weight:700;color:var(--muted)}
+.frames select,.frames input{font:inherit;width:100%;padding:8px 10px;border:2px solid var(--lav);border-radius:10px;background:#fff}
+.poster{background:var(--paper);border:3px solid var(--ink);border-radius:20px;padding:22px;text-align:center;min-height:260px;display:flex;flex-direction:column;gap:10px;justify-content:center}
+.poster .seal{width:70px;height:70px;margin:0 auto}
+.poster h3{margin:0;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--violet)}
+.poster .rule{font-size:22px;font-weight:800}
+.poster .pen{font-size:16px;color:var(--muted)}
+.ideas{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ideas span{background:var(--pink);border-radius:999px;padding:5px 12px;font-size:14px;font-weight:600}
+/* roleplay */
+.rp{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.role{border-radius:20px;padding:18px}
+.role h3{margin:0 0 6px;display:flex;align-items:center;gap:10px}
+.role h3 svg{width:42px;height:42px}
+.role ul{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.r1{background:var(--lav)}.r2{background:var(--green)}
+.scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:16px}
+.sc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:3px solid transparent}
+.sc.on{border-color:var(--violet);background:#fff}
+.sc b{display:block;font-size:17px;margin-bottom:4px}
+.sc p{margin:0;font-size:15px}
+.timer{font-size:40px;font-weight:800;text-align:center;margin:14px 0 6px;color:var(--violet)}
+.ctr{text-align:center}
+/* homework */
+.hwb{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hwc{background:var(--paper);border-radius:18px;padding:18px}
+.hwc h3{margin:0 0 8px}
+.hwc ol,.hwc ul{margin:6px 0 0;padding-left:20px;line-height:1.7}
+.hwc textarea{width:100%;min-height:150px;font:inherit;border:2px solid var(--lav);border-radius:12px;padding:10px;margin-top:10px}
+.end{text-align:center;background:var(--ink);color:#fff;box-shadow:none}
+.end h2{justify-content:center}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(140px);background:var(--ink);color:#fff;font-weight:800;padding:12px 22px;border-radius:14px;transition:transform .3s;z-index:50}
+.toast.show{transform:translateX(-50%) translateY(0)}
+/* photos */
+.ph{margin:0}
+.ph img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;background:var(--paper)}
+.ph figcaption{font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.2px}
+.tax{grid-template-columns:1fr !important;padding:12px !important}
+.law .pic{height:auto !important;display:block !important;padding:0;position:relative}
+.law .pic .ph img{border-radius:0;aspect-ratio:16/10;transition:filter .5s}
+.law .pic .ph figcaption{padding:4px 12px 0}
+.law.hide .pic .ph img{filter:blur(10px) grayscale(.6)}
+.law.hide .reveal-body,.law.hide .fl,.law.hide .where{visibility:hidden}
+.law .clue{font-size:15px;font-style:italic;color:var(--ink)}
+.law .gc{display:flex;flex-wrap:wrap;gap:6px}
+.law .gc button{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:4px 12px;cursor:pointer}
+.law .gc button.ok{background:var(--green)}.law .gc button.bad{background:var(--pink)}
+.law:not(.hide) .guess{display:none}
+.fair{display:grid;gap:4px;background:#fff;border-radius:12px;padding:8px 12px}
+.fair .ends{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.fair input{width:100%;accent-color:var(--accent)}
+.fair output{font-size:14px;font-weight:700;color:var(--accent)}
+.gph{max-width:720px;margin:0 auto 12px}
+.gph img{aspect-ratio:21/9}
+.fine{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.fq{background:var(--paper);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.fq h3{margin:0;font-size:18px}
+.fq .opts{display:flex;flex-wrap:wrap;gap:6px}
+.fq .opts button{font:inherit;font-size:14px;font-weight:700;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 12px;cursor:pointer}
+.fq .opts button.ok{background:var(--green)}.fq .opts button.bad{background:var(--pink)}
+.fq .res{font-size:15px;min-height:22px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{position:relative;aspect-ratio:16/9;background:#111}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;cursor:pointer;background:#111 center/cover;display:grid;place-items:center}
+.vid .play span{background:rgba(0,0,0,.7);color:#fff;font-weight:700;border-radius:999px;padding:10px 20px;font-size:15px;letter-spacing:1px}
+.vid .info{padding:14px 16px}
+.vid .info h3{margin:0 0 2px;font-size:18px}
+.vid .info small{color:var(--muted)}
+.vid .info ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+@media(max-width:760px){.inv,.rp,.hwb{grid-template-columns:1fr}.lk-tbtn{top:auto;bottom:70px}}
+
+.pr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.pb{border-radius:18px;padding:16px 18px}
+.pb h3{margin:0;font-family:Georgia,serif;font-size:30px}
+.pb .m{font-size:15px;color:var(--muted);margin:2px 0 8px}
+.pb .chips{display:flex;flex-wrap:wrap;gap:6px}
+.pb .chips span{background:#fff;border-radius:999px;padding:4px 11px;font-size:14px;font-weight:600}
+.pb ul{margin:10px 0 0;padding-left:18px;font-size:15px}
+.p-in{background:#DCE6F5}.p-at{background:#F3D9CF}.p-on{background:#D4E2CF}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-size:15px;margin-top:10px}
+.ex div{background:var(--paper);border-radius:10px;padding:8px 12px}
+.ex b{color:var(--accent)}
+.q{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.q .n{font-weight:800;color:var(--violet);min-width:24px}
+.q .gap{display:inline-block;min-width:44px;border-bottom:2px solid var(--ink);text-align:center;font-weight:800}
+.q .opts{margin-left:auto;display:flex;gap:6px}
+.q .opts button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 14px;cursor:pointer}
+.q.ok{background:#DDEED7}.q.ok .gap{color:#2F7A3B}
+.q.bad{background:#F6DAD3}
+.score{font-weight:800;margin-top:12px}
+.text{font-size:18px;line-height:1.75;background:var(--paper);border-radius:16px;padding:18px 22px}
+.text h3{margin:0 0 6px;font-family:Georgia,serif;font-size:24px}
+.text p{margin:0 0 12px}
+.text.hl mark{background:#F3D9CF;border-radius:4px;padding:0 3px;font-weight:700}
+.tf{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:9px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.tf .opts{margin-left:auto;display:flex;gap:6px}
+.tf button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.tf.ok{background:#DDEED7}.tf.bad{background:#F6DAD3}
+.disc{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px;margin-top:6px}
+.disc div{background:var(--green);border-radius:14px;padding:12px 16px;font-size:17px;font-weight:600}
+.disc div i{font-style:normal;color:var(--violet);margin-right:6px}
+.spin{text-align:center;margin-top:16px}
+.spin .card{display:inline-block;min-height:80px;min-width:min(560px,100%);background:var(--ink);color:#fff;border-radius:18px;padding:20px 24px;font-size:22px;font-weight:700;margin-bottom:12px}
+@media(max-width:700px){.ex{grid-template-columns:1fr}}
+
+.hero{background-size:cover!important;background-position:center!important}
+.voc{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.voc div{background:var(--paper);border-radius:14px;padding:10px 14px;cursor:pointer;border:2px solid transparent}
+.voc div:hover{border-color:var(--violet)}
+.voc b{display:block;font-size:18px}.voc span{display:block;color:var(--accent);font-weight:700;font-size:15px}.voc em{display:block;font-size:14px;color:var(--muted);margin-top:3px}
+.mt{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:10px}
+.mt button{font:inherit;font-size:16px;text-align:left;border:2px solid var(--ink);background:#fff;border-radius:14px;padding:9px 14px;cursor:pointer}
+.mt button.sel{background:#FFE7A8}.mt button.done{background:#CDE8C6;border-color:#4C9A5B;cursor:default}
+.ch{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ch .n{font-weight:800;color:var(--violet);min-width:24px}
+.ch .o{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.ch .o button{font:inherit;font-size:15px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.ch.ok{background:#DDEED7}.ch.bad{background:#F6DAD3}
+.ty{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ty input{font:inherit;border:2px solid var(--ink);border-radius:10px;padding:4px 10px;width:220px}
+.ty.ok{background:#DDEED7}.ty.bad{background:#F6DAD3}
+.ty small{color:var(--muted)}
+.photo{width:100%;height:300px;object-fit:cover;border-radius:16px;display:block}
+.cap{font-size:11px;color:var(--muted);margin:4px 0 12px}
+.pics{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.pics figure{margin:0;background:var(--paper);border-radius:16px;overflow:hidden}
+.pics img{width:100%;height:170px;object-fit:cover;display:block}
+.pics figcaption{padding:8px 12px;font-weight:700}
+.pics small{display:block;font-weight:400;font-size:10px;color:var(--muted)}
+.lis{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:8px 0 14px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{aspect-ratio:16/9;background:#000;position:relative}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;background-size:cover;background-position:center;cursor:pointer;display:grid;place-items:center}
+.vid .play span{background:#E5484D;color:#fff;font-weight:800;border-radius:12px;padding:10px 20px}
+.vid .info{padding:12px 16px}.vid h3{margin:0;font-size:18px}.vid small{color:var(--muted)}
+.vid ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th,.tbl td{border:1px solid #ddd;padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--paper)}
+@media(max-width:700px){.mt{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="kit.css">
+</head>
+<body>
+<header class="hero">
+  <div class="kicker">A1 · grammar</div>
+  <h1>Have you got a <span>cat</span>?</h1>
+  <p>have got · has got · do you have · listening · video · 60 min</p>
+  <span class="cr">Photo: Unsplash</span>
+</header>
+<button class="lk-tbtn" id="teacherBtn" type="button">Teacher version</button>
+<div class="wrap">
+  <section class="lk-overview">
+    <h2>In this lesson you will:</h2>
+    <ul><li>Say what you have: I&#39;ve got / I have.</li><li>Listen to two cat owners at the vet.</li><li>Learn the two teams: have got and do / does have.</li><li>Practise with 4 exercises and translation.</li><li>Draw and describe a monster, watch videos and speak.</li></ul>
+    <div class="lk-stages" id="stages"></div>
+  </section>
+  <section id="s1" data-stage="warm-up" data-min="5">
+    <h2><span class="lk-n">1</span>What have you got? <span class="tag">warm-up</span><span class="lk-mode">teacher + student</span></h2>
+
+    <img class="photo" src="https://images.unsplash.com/photo-1583209814683-c023dd293cc6?w=900&q=70&auto=format&fit=crop" alt="Things on a table" loading="lazy" style="height:240px"><div class="cap">Photo: Unsplash</div>
+    <p class="lk-ins">30 seconds: name everything in your school bag or on your desk in English!</p>
+    <div class="spin"><div class="card" id="wCard">Click "Random question"</div><br><button class="btn" type="button" data-spin="[&quot;What is in your school bag today?&quot;, &quot;Have you got a pet? What is its name?&quot;, &quot;What three things do you always have with you?&quot;, &quot;Have you got any brothers or sisters?&quot;, &quot;Have you got a favourite mug or cup?&quot;, &quot;What have you got on your phone screen?&quot;, &quot;Has your cat or dog got a funny habit?&quot;]" data-target="wCard">Random question</button></div>
+    <p class="lk-tnote" data-ru="Заметка: игра «Что в рюкзаке?»: ученик за 30 секунд называет вещи по-английски. Не исправляйте, только отметьте, использует ли уже «I have» / «I&amp;#39;ve got».&lt;br&gt;&lt;b&gt;Образец:&lt;/b&gt; I&amp;#39;ve got a pen, two books, a phone and a banana!">Нотатка: гра «Що в рюкзаку?»: учень за 30 секунд називає речі англійською. Не виправляйте, лише відмітьте, чи вже вживає «I have» / «I&#39;ve got».<br><b>Зразок:</b> I&#39;ve got a pen, two books, a phone and a banana!</p>
+  </section>
+  <section id="s2" data-stage="listening" data-min="7">
+    <h2><span class="lk-n">2</span>Listen: two cat owners at the vet <span class="tag">listening</span><span class="lk-mode">teacher + student</span></h2>
+
+    <div class="lis"><button class="btn" type="button" data-play="l1">Play</button><button class="btn alt" type="button" data-play="l1" data-slow="1">Play slowly</button><button class="btn alt" type="button" data-stop="1">Stop</button></div>
+    <details><summary><b>Show the dialogue</b></summary><div class="text" style="margin-top:8px"><p><b>Lena:</b> Hi! Is that your cat? He&#x27;s huge!</p><p><b>Ethan:</b> Yes, this is Pumpkin. He&#x27;s got a cold, so we&#x27;re here to see the vet.</p><p><b>Lena:</b> Oh, poor thing. My cat has got a problem with her teeth.</p><p><b>Ethan:</b> Have you got just one cat?</p><p><b>Lena:</b> No, I&#x27;ve got two cats and a hamster. What about you?</p><p><b>Ethan:</b> Only Pumpkin. But he&#x27;s got a lot of toys. He has more toys than me!</p><p><b>Lena:</b> Ha! Does he have a favourite toy?</p><p><b>Ethan:</b> Yes, he does. A plastic fish. He hasn&#x27;t got any interest in the expensive ones.</p><p><b>Lena:</b> Typical cat. Have you got a photo of him with the fish?</p><p><b>Ethan:</b> Yes, I have. Look! My sister has got a hundred photos of him. She&#x27;s got a lot of free time.</p><p><b>Lena:</b> I haven&#x27;t got a sister, only a brother. And he hasn&#x27;t got time for anything, only football.</p></div></details>
+    <h3 class="lk-sub">True or False?</h3>
+    <div class="ch" data-a="True"><span class="n">1</span><span class="s">Pumpkin has got a cold.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="False"><span class="n">2</span><span class="s">Lena has got one cat.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="True"><span class="n">3</span><span class="s">Lena has got a hamster.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="True"><span class="n">4</span><span class="s">Pumpkin&#39;s favourite toy is a plastic fish.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="False"><span class="n">5</span><span class="s">Ethan hasn&#39;t got a sister.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="True"><span class="n">6</span><span class="s">Lena has got a brother.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;О чём диалог:&lt;/b&gt; Лена и Итан встретились у ветеринара. Кот Итана Пампкин простудился, у кошки Лены проблемы с зубами. У Лены две кошки и хомяк, у Пампкина куча игрушек, любимая пластиковая рыбка. У сестры Итана сотня фото кота, а брат Лены интересуется только футболом.&lt;br&gt;&lt;b&gt;Ответы:&lt;/b&gt; T, F, T, T, F, T.&lt;br&gt;&lt;b&gt;После:&lt;/b&gt; попросите найти в диалоге все have / has got и does ... have."><b>Про що діалог:</b> Лена й Ітан зустрілися у ветеринара. Кіт Ітана Пампкін застудився, у кішки Лени проблеми із зубами. У Лени дві кішки й хом&#39;як, у Пампкіна купа іграшок, улюблена пластикова рибка. Сестра Ітана має сотню фото кота, а брат Лени цікавиться тільки футболом.<br><b>Відповіді:</b> T, F, T, T, F, T.<br><b>Після:</b> попросіть знайти в діалозі всі have / has got і does ... have.</p>
+  </section>
+  <section id="s3" data-stage="vocabulary" data-min="6">
+    <h2><span class="lk-n">3</span>Words: pets and things <span class="tag">vocabulary</span><span class="lk-mode">teacher + student</span></h2>
+
+    <div class="voc"><div data-say="vet. We are at the vet."><b>vet</b><span><span data-tr-uk="ветеринар" data-tr-ru="ветеринар">ветеринар</span></span><em>We are at the vet.</em></div>
+<div data-say="huge. Your cat is huge!"><b>huge</b><span><span data-tr-uk="величезний" data-tr-ru="огромный">величезний</span></span><em>Your cat is huge!</em></div>
+<div data-say="a cold. He has got a cold."><b>a cold</b><span><span data-tr-uk="застуда" data-tr-ru="простуда">застуда</span></span><em>He has got a cold.</em></div>
+<div data-say="poor thing. Oh, poor thing!"><b>poor thing</b><span><span data-tr-uk="бідолаха" data-tr-ru="бедняжка">бідолаха</span></span><em>Oh, poor thing!</em></div>
+<div data-say="teeth. She has got white teeth."><b>teeth</b><span><span data-tr-uk="зуби" data-tr-ru="зубы">зуби</span></span><em>She has got white teeth.</em></div>
+<div data-say="hamster. I have got a hamster."><b>hamster</b><span><span data-tr-uk="хом&amp;#39;як" data-tr-ru="хомяк">хом&#39;як</span></span><em>I have got a hamster.</em></div>
+<div data-say="toy. My cat has got a lot of toys."><b>toy</b><span><span data-tr-uk="іграшка" data-tr-ru="игрушка">іграшка</span></span><em>My cat has got a lot of toys.</em></div>
+<div data-say="expensive. This toy is expensive."><b>expensive</b><span><span data-tr-uk="дорогий" data-tr-ru="дорогой">дорогий</span></span><em>This toy is expensive.</em></div>
+<div data-say="free time. I have not got much free time."><b>free time</b><span><span data-tr-uk="вільний час" data-tr-ru="свободное время">вільний час</span></span><em>I have not got much free time.</em></div>
+<div data-say="tail. My cat has got a long tail."><b>tail</b><span><span data-tr-uk="хвіст" data-tr-ru="хвост">хвіст</span></span><em>My cat has got a long tail.</em></div></div>
+    <h3 class="lk-sub">Find the pairs</h3>
+    <div class="mt" data-mt="m1" data-pairs="[[&quot;vet&quot;, &quot;ветеринар&quot;], [&quot;huge&quot;, &quot;величезний&quot;], [&quot;a cold&quot;, &quot;застуда&quot;], [&quot;poor thing&quot;, &quot;бідолаха&quot;], [&quot;teeth&quot;, &quot;зуби&quot;], [&quot;hamster&quot;, &quot;хом&#x27;як&quot;], [&quot;toy&quot;, &quot;іграшка&quot;], [&quot;expensive&quot;, &quot;дорогий&quot;]]" data-pairs-uk="[[&quot;vet&quot;, &quot;ветеринар&quot;], [&quot;huge&quot;, &quot;величезний&quot;], [&quot;a cold&quot;, &quot;застуда&quot;], [&quot;poor thing&quot;, &quot;бідолаха&quot;], [&quot;teeth&quot;, &quot;зуби&quot;], [&quot;hamster&quot;, &quot;хом&#x27;як&quot;], [&quot;toy&quot;, &quot;іграшка&quot;], [&quot;expensive&quot;, &quot;дорогий&quot;]]" data-pairs-ru="[[&quot;vet&quot;, &quot;ветеринар&quot;], [&quot;huge&quot;, &quot;огромный&quot;], [&quot;a cold&quot;, &quot;простуда&quot;], [&quot;poor thing&quot;, &quot;бедняжка&quot;], [&quot;teeth&quot;, &quot;зубы&quot;], [&quot;hamster&quot;, &quot;хомяк&quot;], [&quot;toy&quot;, &quot;игрушка&quot;], [&quot;expensive&quot;, &quot;дорогой&quot;]]"></div><div class="score" data-mtres="m1"></div>
+    <p class="lk-tnote" data-ru="Заметка: после карточек спрашивайте: «Has your cat got a long tail? Have you got a hamster? Have you got much free time?»">Нотатка: після карток питайте: «Has your cat got a long tail? Have you got a hamster? Have you got much free time?»</p>
+  </section>
+  <section id="s4" data-stage="grammar" data-min="6">
+    <h2><span class="lk-n">4</span>The rule: two teams <span class="tag">grammar</span><span class="lk-mode">teacher + student</span></h2>
+
+    <p class="lk-ins"><b>Have got</b> and <b>have</b> mean the same: «у мене є / у меня есть». But they are two teams. Don&#39;t mix them!</p>
+    <div class="gram">
+      <div class="gb g1"><h3>Team «got»</h3><span class="f">have / has got</span><p>I<b>&#39;ve got</b> a bike. She<b>&#39;s got</b> blue eyes.<br>I <b>haven&#39;t got</b> a phone.<br><b>Have</b> you <b>got</b> a pet? Yes, I <b>have</b>.</p></div>
+      <div class="gb g2"><h3>Team «do»</h3><span class="f">have / has + do / does</span><p>I <b>have</b> a bike. She <b>has</b> blue eyes.<br>I <b>don&#39;t have</b> a phone.<br><b>Do</b> you <b>have</b> a pet? Yes, I <b>do</b>.</p></div>
+      <div class="gb g3"><h3>he / she / it</h3><span class="f">has</span><p>My cat <b>has got</b> a long tail.<br>He<b>&#39;s got</b> = He <b>has</b> got (not «is»!)</p></div>
+    </div>
+    <div class="warn"><b>Trap:</b> «Do you have got...?» doesn&#39;t exist. Got and do are not friends!</div>
+    <p class="lk-tnote" data-ru="Как объяснить: нарисуйте две колонки «команда got» и «команда do». Попросите сказать одно предложение двумя способами: I&amp;#39;ve got a cat = I have a cat. Have got чаще в британском английском и в разговоре, have + do универсальное.">Як пояснити: намалюйте дві колонки «команда got» і «команда do». Попросіть сказати одне речення двома способами: I&#39;ve got a cat = I have a cat. Have got частіше в британській англійській і в розмові, have + do універсальне.</p>
+  </section>
+  <section id="s5" data-stage="grammar" data-min="12">
+    <h2><span class="lk-n">5</span>Have got workout <span class="tag">grammar</span><span class="lk-mode">teacher + student</span></h2>
+
+    <h3 class="lk-sub">A. has got or have got?</h3>
+    <div class="ch" data-a="has got"><span class="n">1</span><span class="s">My brother ___ a new laptop.</span><span class="o"><button type="button">has got</button><button type="button">have got</button></span></div>
+<div class="ch" data-a="have got"><span class="n">2</span><span class="s">I ___ two cousins.</span><span class="o"><button type="button">has got</button><button type="button">have got</button></span></div>
+<div class="ch" data-a="has got"><span class="n">3</span><span class="s">Our cat ___ green eyes.</span><span class="o"><button type="button">has got</button><button type="button">have got</button></span></div>
+<div class="ch" data-a="have got"><span class="n">4</span><span class="s">We ___ a big garden.</span><span class="o"><button type="button">has got</button><button type="button">have got</button></span></div>
+<div class="ch" data-a="has got"><span class="n">5</span><span class="s">The school ___ a pool.</span><span class="o"><button type="button">has got</button><button type="button">have got</button></span></div>
+<div class="ch" data-a="have got"><span class="n">6</span><span class="s">My parents ___ a car.</span><span class="o"><button type="button">has got</button><button type="button">have got</button></span></div>
+    <h3 class="lk-sub">B. Write the right form</h3>
+    <div class="ty" data-a="have got|&#x27;ve got"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>I ___ (have got) two cousins.</span><input type="text" autocomplete="off" spellcheck="false" style="width:160px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="haven&#x27;t got|have not got"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>We ___ (not have got) a printer.</span><input type="text" autocomplete="off" spellcheck="false" style="width:160px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Have"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>___ you got a ruler? Yes, I have.</span><input type="text" autocomplete="off" spellcheck="false" style="width:160px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="hasn&#x27;t got|has not got"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Dan ___ (not have got) a bike.</span><input type="text" autocomplete="off" spellcheck="false" style="width:160px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="doesn&#x27;t have|does not have"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Mia ___ (not have) a phone. (team do)</span><input type="text" autocomplete="off" spellcheck="false" style="width:160px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+    <h3 class="lk-sub">C. Short answers: same team as the question!</h3>
+    <div class="ch" data-a="I have"><span class="n">1</span><span class="s">Have you got a pet? Yes, ___</span><span class="o"><button type="button">I have</button><button type="button">I have got</button><button type="button">I do</button></span></div>
+<div class="ch" data-a="he doesn&#x27;t"><span class="n">2</span><span class="s">Does he have a bike? No, ___</span><span class="o"><button type="button">he doesn&#39;t</button><button type="button">he hasn&#39;t</button><button type="button">he isn&#39;t</button></span></div>
+<div class="ch" data-a="she hasn&#x27;t"><span class="n">3</span><span class="s">Has she got a phone? No, ___</span><span class="o"><button type="button">she hasn&#39;t</button><button type="button">she doesn&#39;t</button><button type="button">she isn&#39;t</button></span></div>
+<div class="ch" data-a="they do"><span class="n">4</span><span class="s">Do they have a garden? Yes, ___</span><span class="o"><button type="button">they do</button><button type="button">they have</button><button type="button">they are</button></span></div>
+    <h3 class="lk-sub">D. Translate into English</h3>
+    <div class="ty" data-a="I have got a cat|I&#x27;ve got a cat|I have a cat"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span style="flex:1 1 100%"><span data-tr-uk="У мене є кіт." data-tr-ru="У меня есть кот.">У мене є кіт.</span></span><input type="text" autocomplete="off" spellcheck="false" style="width:min(300px,100%)" placeholder="In English..."><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="My sister has got long hair|My sister&#x27;s got long hair|My sister has long hair"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span style="flex:1 1 100%"><span data-tr-uk="У моєї сестри довге волосся." data-tr-ru="У моей сестры длинные волосы.">У моєї сестри довге волосся.</span></span><input type="text" autocomplete="off" spellcheck="false" style="width:min(300px,100%)" placeholder="In English..."><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="We haven&#x27;t got a dog|We have not got a dog|We don&#x27;t have a dog|We do not have a dog"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span style="flex:1 1 100%"><span data-tr-uk="У нас немає собаки." data-tr-ru="У нас нет собаки.">У нас немає собаки.</span></span><input type="text" autocomplete="off" spellcheck="false" style="width:min(300px,100%)" placeholder="In English..."><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Have you got a brother|Do you have a brother"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span style="flex:1 1 100%"><span data-tr-uk="У тебе є брат?" data-tr-ru="У тебя есть брат?">У тебе є брат?</span></span><input type="text" autocomplete="off" spellcheck="false" style="width:min(300px,100%)" placeholder="In English..."><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="He hasn&#x27;t got a phone|He has not got a phone|He doesn&#x27;t have a phone|He does not have a phone"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span style="flex:1 1 100%"><span data-tr-uk="У нього немає телефону." data-tr-ru="У него нет телефона.">У нього немає телефону.</span></span><input type="text" autocomplete="off" spellcheck="false" style="width:min(300px,100%)" placeholder="In English..."><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Ответы A:&lt;/b&gt; has got · have got · has got · have got · has got · have got. &lt;b&gt;B:&lt;/b&gt; have got · haven&amp;#39;t got · Have · hasn&amp;#39;t got · doesn&amp;#39;t have. &lt;b&gt;C:&lt;/b&gt; I have · he doesn&amp;#39;t · she hasn&amp;#39;t · they do.&lt;br&gt;&lt;b&gt;На проверке спрашивайте:&lt;/b&gt; «Какая это команда, got или do?» В переводе принимаются обе команды."><b>Відповіді A:</b> has got · have got · has got · have got · has got · have got. <b>B:</b> have got · haven&#39;t got · Have · hasn&#39;t got · doesn&#39;t have. <b>C:</b> I have · he doesn&#39;t · she hasn&#39;t · they do.<br><b>На перевірці питайте:</b> «Яка це команда, got чи do?» У перекладі приймаються обидві команди.</p>
+  </section>
+  <section id="s6" data-stage="reading" data-min="7">
+    <h2><span class="lk-n">6</span>Reading: meet Zog, the school monster <span class="tag">reading</span><span class="lk-mode">teacher + student</span></h2>
+
+    <div class="text"><h3>Meet Zog, the school monster</h3>
+      <p>Zog <mark>has got</mark> three eyes and two big noses. He <mark>hasn&#39;t got</mark> any hair, but he <mark>has got</mark> a long green tail. He <mark>has got</mark> six legs, so he is very fast in PE.</p>
+      <p>Zog <mark>doesn&#39;t have</mark> a phone, but he <mark>has</mark> a pet: a small blue cat with wings. They <mark>have got</mark> the same favourite food: socks!</p>
+    </div>
+    <div class="ch" data-a="No, he hasn&#x27;t."><span class="n">1</span><span class="s">Has Zog got hair?</span><span class="o"><button type="button">No, he hasn&#39;t.</button><button type="button">Yes, he has.</button><button type="button">No, he doesn&#39;t.</button></span></div>
+<div class="ch" data-a="Three."><span class="n">2</span><span class="s">How many eyes has Zog got?</span><span class="o"><button type="button">Three.</button><button type="button">Two.</button><button type="button">Six.</button></span></div>
+<div class="ch" data-a="No, he doesn&#x27;t."><span class="n">3</span><span class="s">Does Zog have a phone?</span><span class="o"><button type="button">No, he doesn&#39;t.</button><button type="button">Yes, he does.</button></span></div>
+<div class="ch" data-a="Wings."><span class="n">4</span><span class="s">What has Zog&#39;s pet got?</span><span class="o"><button type="button">Wings.</button><button type="button">Six legs.</button><button type="button">Three noses.</button></span></div>
+<div class="ch" data-a="Socks."><span class="n">5</span><span class="s">What is their favourite food?</span><span class="o"><button type="button">Socks.</button><button type="button">Fish.</button><button type="button">Pizza.</button></span></div>
+    <h3 class="lk-sub">Draw your own monster!</h3>
+    <p class="lk-ins">1 minute: draw a monster on paper or on the board. Then describe it: <b>My monster has got ... It hasn&#39;t got ...</b></p>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Перевод:&lt;/b&gt; У Зога три глаза и два больших носа. Волос нет, зато длинный зелёный хвост. Шесть ног, поэтому он очень быстрый на физкультуре. Телефона нет, но есть питомец: маленькая синяя кошка с крыльями. Любимая еда у обоих: носки!&lt;br&gt;&lt;b&gt;Ваш монстр-пример:&lt;/b&gt; «My monster has got four arms and one big eye. It hasn&amp;#39;t got a mouth, so it doesn&amp;#39;t eat. It has got a pink umbrella.»"><b>Переклад:</b> У Зога три ока й два великі носи. Волосся немає, зате довгий зелений хвіст. Шість ніг, тому він дуже швидкий на фізкультурі. Телефону немає, але є улюбленець: маленька синя кішка з крилами. Улюблена їжа в обох: шкарпетки!<br><b>Ваш монстр-приклад:</b> «My monster has got four arms and one big eye. It hasn&#39;t got a mouth, so it doesn&#39;t eat. It has got a pink umbrella.»</p>
+  </section>
+  <section id="s7" data-stage="video" data-min="7">
+    <h2><span class="lk-n">7</span>Video: who has got what? <span class="tag">video</span><span class="lk-mode">teacher + student</span></h2>
+
+    <div class="vids" data-vids="[[&quot;WwKJI5cuIug&quot;, &quot;Muddy Puddles&quot;, &quot;Peppa Pig Official Channel&quot;, [&quot;Who is in Peppa&amp;#39;s family?&quot;, &quot;Say: Peppa has got a brother. His name is ...&quot;, &quot;Has George got boots?&quot;]], [&quot;9LhLjpsstPY&quot;, &quot;The Exam&quot;, &quot;Mr Bean Official&quot;, [&quot;What has Mr Bean got on his desk?&quot;, &quot;What hasn&amp;#39;t he got?&quot;, &quot;Write 5 sentences with has got / hasn&amp;#39;t got.&quot;]]]"></div>
+    <p class="lk-tnote" data-ru="Заметка: Peppa: первая минута, ученик называет членов семьи (Peppa has got a brother, a mum and a dad). Mr Bean: остановите, когда он раскладывает вещи на парте, ученик называет всё: He has got a pen, a pencil, a teddy... He hasn&amp;#39;t got a calculator.">Нотатка: Peppa: перша хвилина, учень називає членів родини (Peppa has got a brother, a mum and a dad). Mr Bean: зупиніть, коли він розкладає речі на парті, учень називає все: He has got a pen, a pencil, a teddy... He hasn&#39;t got a calculator.</p>
+  </section>
+  <section id="s8" data-stage="grammar" data-min="5">
+    <h2><span class="lk-n">8</span>Fix the mistakes <span class="tag">grammar</span><span class="lk-mode">teacher + student</span></h2>
+
+    <div class="ch" data-a="Have you got a ruler?"><span class="n">1</span><span class="s"></span><span class="o"><button type="button">Have you got a ruler?</button><button type="button">Do you have got a ruler?</button><button type="button">Have you a got ruler?</button></span></div>
+<div class="ch" data-a="My sister has got a cat."><span class="n">2</span><span class="s"></span><span class="o"><button type="button">My sister have got a cat.</button><button type="button">My sister has got a cat.</button><button type="button">My sister is got a cat.</button></span></div>
+<div class="ch" data-a="Tom doesn&#x27;t have a bike."><span class="n">3</span><span class="s"></span><span class="o"><button type="button">Tom doesn&#39;t has a bike.</button><button type="button">Tom don&#39;t have a bike.</button><button type="button">Tom doesn&#39;t have a bike.</button></span></div>
+<div class="ch" data-a="We haven&#x27;t got a TV."><span class="n">4</span><span class="s"></span><span class="o"><button type="button">We haven&#39;t got a TV.</button><button type="button">We don&#39;t got a TV.</button><button type="button">We not have a TV.</button></span></div>
+<div class="ch" data-a="Does your cat have toys?"><span class="n">5</span><span class="s"></span><span class="o"><button type="button">Does your cat has toys?</button><button type="button">Does your cat have toys?</button><button type="button">Has your cat have toys?</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Топ-5 ошибок:&lt;/b&gt; 1) Do you have got → Have you got / Do you have. 2) She have got → She has got. 3) She doesn&amp;#39;t has → She doesn&amp;#39;t have. 4) He is got → He has got. 5) Yes, I have got → Yes, I have.&lt;br&gt;Попросите ученика объяснить каждую ошибку словами «команда got / команда do»."><b>Топ-5 помилок:</b> 1) Do you have got → Have you got / Do you have. 2) She have got → She has got. 3) She doesn&#39;t has → She doesn&#39;t have. 4) He is got → He has got. 5) Yes, I have got → Yes, I have.<br>Попросіть учня пояснити кожну помилку словами «команда got / команда do».</p>
+  </section>
+  <section id="s9" data-stage="speaking" data-min="8">
+    <h2><span class="lk-n">9</span>Speaking: spot the difference <span class="tag">speaking</span><span class="lk-mode">teacher + student</span></h2>
+
+    <div class="spin"><div class="card" id="sCard">Click "Random question"</div><br><button class="btn" type="button" data-spin="[&quot;Have you got any brothers or sisters? What have they got that you haven&amp;#39;t got?&quot;, &quot;Describe your pet or your dream pet. What has it got?&quot;, &quot;What has your best friend got that you would like to have?&quot;, &quot;What apps have you got on your phone?&quot;, &quot;Has your cat got more toys than you?&quot;, &quot;Have you got a secret talent?&quot;, &quot;What hasn&amp;#39;t your school got, but really needs?&quot;]" data-target="sCard">Random question</button></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Игра «Найди отличия»:&lt;/b&gt; вы описываете свою воображаемую комнату (I&amp;#39;ve got a red sofa, I haven&amp;#39;t got a TV), ученик свою. Найдите 3 общие вещи и 3 отличия.&lt;br&gt;&lt;b&gt;Образец ответа:&lt;/b&gt; «My brother has got a PlayStation, but I haven&amp;#39;t got one. It&amp;#39;s not fair!»"><b>Гра «Знайди відмінності»:</b> ви описуєте свою уявну кімнату (I&#39;ve got a red sofa, I haven&#39;t got a TV), учень свою. Знайдіть 3 спільні речі й 3 відмінності.<br><b>Зразок відповіді:</b> «My brother has got a PlayStation, but I haven&#39;t got one. It&#39;s not fair!»</p>
+  </section>
+  <section id="s10" data-stage="game" data-min="3">
+    <h2><span class="lk-n">10</span>Speed round: short answers <span class="tag">game</span><span class="lk-mode">teacher + student</span></h2>
+
+    <div class="mt" data-mt="m2" data-pairs="[[&quot;Have you got a pet? (yes)&quot;, &quot;Yes, I have.&quot;], [&quot;Has she got a phone? (no)&quot;, &quot;No, she hasn&#x27;t.&quot;], [&quot;Do you have a brother? (yes)&quot;, &quot;Yes, I do.&quot;], [&quot;Does he have a bike? (no)&quot;, &quot;No, he doesn&#x27;t.&quot;], [&quot;Have they got a car? (yes)&quot;, &quot;Yes, they have.&quot;], [&quot;Do we have a test? (no)&quot;, &quot;No, we don&#x27;t.&quot;]]"></div><div class="score" data-mtres="m2"></div>
+    <p class="lk-tnote" data-ru="Главное правило: ответ из той же «команды», что и вопрос. 5 секунд на каждый.">Головне правило: відповідь з тієї ж «команди», що й питання. 5 секунд на кожну.</p>
+  </section>
+  <section id="s11" data-stage="homework" data-min="0">
+    <h2><span class="lk-n">11</span>Homework: my family and my pet <span class="tag">homework</span><span class="lk-mode">teacher + student</span></h2>
+
+    <div class="hwb">
+      <div class="hwc"><h3>Write 6-8 sentences</h3><p>About your family and your pet (or dream pet). Use both teams: <b>have got</b> and <b>do / does have</b>. Add one negative and one question.</p><textarea id="hwText" placeholder="I&#39;ve got ... My brother has got ... We don&#39;t have ... My cat hasn&#39;t got ..."></textarea></div>
+      <div class="hwc"><h3>Bonus</h3><p>Draw your monster and write 5 sentences about it with has got / hasn&#39;t got.</p></div>
+    </div>
+  </section>
+  <section class="end"><h2>Great job!</h2><p>See you next lesson.</p></section>
+</div>
+<div class="toast" id="toast"></div>
+<script>window.MURLY_LESSON={"id": "have-got", "title": "Have you got a cat? Have and have got", "homework": ["s5", "s11"], "hw": {"s5": [{"type": "gap", "instruction": "Write the right form.", "text": "My mum [has got/'s got/has] two sisters.\n[Have] you got a calculator? Yes, I have.\nTom [doesn't have/does not have] a computer.\n[Does] your school have a pool? No, it doesn't.\nWe [haven't got/have not got] a cat."}, {"type": "choice", "instruction": "Choose the correct option.", "text": "My brother {has got|have got|is got} a laptop.\n{Have|Has|Do} you got any sisters?\nI {haven't got|don't got|not have} a smartwatch.\nOur cat {doesn't have|doesn't has|don't have} a collar."}], "s11": [{"type": "open", "instruction": "Write 6-8 sentences about your family and your pet. Use have got and do / does have.", "text": "I've got ..."}]}};</script>
+<script>
+(function(){var l=(document.cookie.match(/(?:^|; )murly_lang=(\w+)/)||[])[1];try{l=l||localStorage.getItem('murly:tlang')}catch(e){}l=l==='ru'?'ru':'uk';document.querySelectorAll('[data-pairs-'+l+']').forEach(function(b){b.dataset.pairs=b.getAttribute('data-pairs-'+l)});})();
+</script>
+<script>
+const $ = (id) => document.getElementById(id);
+const LIS = {"l1": "Hi! Is that your cat? He's huge! Yes, this is Pumpkin. He's got a cold, so we're here to see the vet. Oh, poor thing. My cat has got a problem with her teeth. Have you got just one cat? No, I've got two cats and a hamster. What about you? Only Pumpkin. But he's got a lot of toys. He has more toys than me! Ha! Does he have a favourite toy? Yes, he does. A plastic fish. He hasn't got any interest in the expensive ones. Typical cat. Have you got a photo of him with the fish? Yes, I have. Look! My sister has got a hundred photos of him. She's got a lot of free time. I haven't got a sister, only a brother. And he hasn't got time for anything, only football."};
+function say(w, rate) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; const v = speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang) && /Google|Natural|Libby|Sonia|Daniel/.test(x.name)) || speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang)); if (v) u.voice = v; u.rate = rate || .95; speechSynthesis.speak(u); } catch (e) { } }
+const sh = (a) => a.map((x) => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map((x) => x[1]);
+document.querySelectorAll('.voc div').forEach((d) => d.onclick = () => say(d.dataset.say));
+document.querySelectorAll('[data-play]').forEach((b) => b.onclick = () => say(LIS[b.dataset.play], b.dataset.slow ? .75 : .95));
+document.querySelectorAll('[data-stop]').forEach((b) => b.onclick = () => { try { speechSynthesis.cancel(); } catch (e) { } });
+document.querySelectorAll('.ch').forEach((q) => q.querySelectorAll('button').forEach((b) => b.onclick = () => { if (q.classList.contains('ok')) return; const ok = b.textContent === q.dataset.a; q.classList.toggle('ok', ok); q.classList.toggle('bad', !ok); if (ok) { const s = q.querySelector('.s'); if (s && s.textContent.includes('___')) { s.textContent = s.textContent.replace('___', q.dataset.a); } } }));
+const norm = (x) => x.toLowerCase().replace(/[’']/g, "'").replace(/\s+/g, ' ').replace(/[.!?]$/, '').trim();
+document.querySelectorAll('.ty').forEach((r) => { const inp = r.querySelector('input'); const chk = () => { const ok = r.dataset.a.split('|').some((a) => norm(a) === norm(inp.value)); r.classList.toggle('ok', ok); r.classList.toggle('bad', !ok && inp.value.trim() !== ''); }; r.querySelector('button').onclick = chk; inp.onkeydown = (e) => { if (e.key === 'Enter') chk(); }; });
+document.querySelectorAll('[data-mt]').forEach((box) => { const pairs = JSON.parse(box.dataset.pairs); const L = sh(pairs.map((p) => p[0])), R = sh(pairs.map((p) => p[1])); let sel = null, done = 0, err = 0; box.innerHTML = L.map((w, i) => `<button type="button" data-w="${w}">${w}</button><button type="button" data-d="${R[i]}">${R[i]}</button>`).join('');
+  box.querySelectorAll('button').forEach((b) => b.onclick = () => { if (b.classList.contains('done')) return; if (!sel || (sel.dataset.w && b.dataset.w) || (sel.dataset.d && b.dataset.d)) { if (sel) sel.classList.remove('sel'); sel = b; b.classList.add('sel'); return; } const w = sel.dataset.w || b.dataset.w, d = sel.dataset.d || b.dataset.d; if (pairs.some((p) => p[0] === w && p[1] === d)) { sel.classList.add('done'); b.classList.add('done'); done++; say(w); if (done === pairs.length) document.querySelector(`[data-mtres="${box.dataset.mt}"]`).textContent = err ? `Done! Mistakes: ${err}` : 'Perfect!'; } else err++; sel.classList.remove('sel'); sel = null; }); });
+document.querySelectorAll('[data-vids]').forEach((box) => JSON.parse(box.dataset.vids).forEach(([id, title, ch, qs]) => { const d = document.createElement('div'); d.className = 'vid'; d.innerHTML = `<div class="frame"><button class="play" type="button" style="background-image:url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)"><span>PLAY</span></button></div><div class="info"><h3>${title}</h3><small>YouTube · ${ch}</small><ol>${qs.map((q) => `<li>${q}</li>`).join('')}</ol></div>`; d.querySelector('.play').onclick = (e) => { e.currentTarget.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&cc_load_policy=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${title}"></iframe>`; }; box.appendChild(d); }));
+document.querySelectorAll('[data-spin]').forEach((b) => { const list = JSON.parse(b.dataset.spin); let last = -1; b.onclick = () => { let i; do { i = Math.floor(Math.random() * list.length); } while (i === last && list.length > 1); last = i; document.getElementById(b.dataset.target).textContent = list[i]; }; });
+try { const k = 'murly:' + (window.MURLY_LESSON ? MURLY_LESSON.id : 'x') + ':hw'; const t = $('hwText'); if (t) { t.value = localStorage.getItem(k) || ''; t.oninput = () => localStorage.setItem(k, t.value); } } catch (e) { }
+const STAGES = [...document.querySelectorAll('.wrap > section[id]')];
+$('stages').innerHTML = STAGES.map((s) => `<a href="#${s.id}"><b>${s.querySelector('.lk-n').textContent}</b><span>${s.dataset.stage}</span><small>${s.dataset.min !== '0' ? s.dataset.min + ' min' : 'at home'}</small></a>`).join('');
+$('teacherBtn').onclick = (e) => { const on = document.body.classList.toggle('teacher'); e.currentTarget.textContent = on ? 'Student version' : 'Teacher version'; };
+</script>
+<script src="kit.js" defer></script>
+</body>
+</html>
