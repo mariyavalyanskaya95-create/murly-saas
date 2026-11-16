@@ -55,7 +55,7 @@ const Dollar = ({ x, y, s = 1 }: { x: number; y: number; s?: number }) => <text 
 
 export default function BookScene({ scene, className = '' }: { scene: Scene; className?: string }) {
   return (
-    <svg className={`bk-scene ${className}`} viewBox="0 0 600 300" role="img" aria-hidden="true">
+    <svg className={`gb-scene ${className}`} viewBox="0 0 600 300" role="img" aria-hidden="true">
       <rect x="0" y="0" width="600" height="300" rx="28" fill="#F6F4FF" />
       {[...Array(14)].map((_, i) => <circle key={i} cx={30 + (i * 83) % 560} cy={22 + (i * 47) % 260} r={3} fill="#DDE2F4" />)}
       {scene === 'be-family' && <>
