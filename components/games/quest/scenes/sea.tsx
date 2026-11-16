@@ -173,7 +173,7 @@ export const SEA: QuestLocation = {
     { uk: 'Дієслова-команди: find, take, open, move', ru: 'Глаголы-команды: find, take, open, move', en: 'Command verbs: find, take, open, move' },
   ],
   tasks: [
-    { en: 'Hi! I am Bubbles. Find the red fish.', uk: 'Привіт! Я Бульбашка. Знайди червону рибку.', ru: 'Привет! Я Пузырёк. Найди красную рыбку.', target: ['redFish'] },
+    { en: 'Hi! Please find the red fish.', uk: 'Привіт! Знайди, будь ласка, червону рибку.', ru: 'Привет! Найди, пожалуйста, красную рыбку.', target: ['redFish'] },
     { en: 'Where is the crab? Touch the crab.', uk: 'Де краб? Торкнися краба.', ru: 'Где краб? Коснись краба.', target: ['crab'] },
     { en: 'Find three starfish.', uk: 'Знайди три морські зірки.', ru: 'Найди три морские звезды.', target: ['star1', 'star2', 'star3'], all: true },
     { en: 'The key is under the big rock. Move the big rock.', uk: 'Ключ під великим каменем. Посунь великий камінь.', ru: 'Ключ под большим камнем. Сдвинь большой камень.', target: ['bigRock'], set: 'rock' },
