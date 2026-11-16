@@ -9,7 +9,7 @@ import { alt } from '@/lib/seo';
 export function generateMetadata(): Metadata {
   const t = tr();
   return {
-    title: t({ uk: 'Murly Garden: гра зі словами англійською для дітей | Murly', ru: 'Murly Garden: игра со словами на английском для детей | Murly', en: 'Murly Garden: an English word game for kids | Murly' }),
+    title: t({ uk: 'Word Garden: гра зі словами англійською для дітей | Murly', ru: 'Word Garden: игра со словами на английском для детей | Murly', en: 'Word Garden: an English word game for kids | Murly' }),
     description: t({
       uk: 'Відновлюй садок разом із котиком Murly: заробляй зірочки за англійські слова, слухай, перекладай, складай слова з літер. Тварини, їжа, дім, природа, одяг, школа, почуття.',
       ru: 'Восстанавливай сад вместе с котиком Murly: зарабатывай звёздочки за английские слова, слушай, переводи, составляй слова из букв. Животные, еда, дом, природа, одежда, школа, чувства.',
@@ -29,7 +29,7 @@ export default function GardenPage() {
         <div style={{ marginLeft: 'auto' }}><LangSwitch /></div>
       </header>
       <main className="sr-page">
-        <h1>Murly Garden</h1>
+        <h1>Word Garden</h1>
         <MurlyGarden />
       </main>
     </div>
