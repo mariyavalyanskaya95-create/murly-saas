@@ -782,7 +782,7 @@ export function HomeworkForm({ studentIds, groupId, onDone }: { studentIds: stri
     const gameLabel = t(GAMES.find((g) => g.id === game)!.label);
     const base = {
       kind: kind === 'quest' ? 'game' as const : kind,
-      title: title.trim() || (kind === 'quest' ? `${t({ uk: 'Знайди, Бульбашко!', ru: 'Найди, Пузырёк!', en: 'Find it, Bubbles!' })} ${t(QUEST_LIST.find((q) => q.id === quest)!.title)}` : kind === 'mock' ? t({ uk: `Пробний НМТ №${mock}`, ru: `Пробный НМТ №${mock}`, en: `NMT mock test #${mock}` }) : kind === 'game' ? `${t({ uk: 'Слова', ru: 'Слова', en: 'Words' })}: ${gameLabel.toLowerCase()}` : kind === 'exercise' ? t({ uk: 'Вправа', ru: 'Упражнение', en: 'Exercise' }) : t({ uk: 'Письмове завдання', ru: 'Письменное задание', en: 'Written task' })),
+      title: title.trim() || (kind === 'quest' ? `${t({ uk: 'Знайди мене', ru: 'Найди меня', en: 'Find me' })} ${t(QUEST_LIST.find((q) => q.id === quest)!.title)}` : kind === 'mock' ? t({ uk: `Пробний НМТ №${mock}`, ru: `Пробный НМТ №${mock}`, en: `NMT mock test #${mock}` }) : kind === 'game' ? `${t({ uk: 'Слова', ru: 'Слова', en: 'Words' })}: ${gameLabel.toLowerCase()}` : kind === 'exercise' ? t({ uk: 'Вправа', ru: 'Упражнение', en: 'Exercise' }) : t({ uk: 'Письмове завдання', ru: 'Письменное задание', en: 'Written task' })),
       items: kind === 'exercise' ? sections : undefined,
       instructions: instructions.trim() || undefined,
       game: kind === 'quest' ? quest : kind === 'game' ? game : kind === 'mock' ? mock : undefined,
@@ -808,7 +808,7 @@ export function HomeworkForm({ studentIds, groupId, onDone }: { studentIds: stri
       {kind === 'quest' && (
         <div className="t-form">
           <label>{t({ uk: 'Місце', ru: 'Место', en: 'Place' })}<select value={quest} onChange={(e) => setQuest(e.target.value)}>{QUEST_LIST.map((q) => <option key={q.id} value={q.id}>{t(q.title)}</option>)}</select></label>
-          <p className="t-muted t-form__wide">{t({ uk: '«Знайди, Бульбашко!»: 9 озвучених завдань англійською (A1–A2). Результат «з першої спроби» прийде в домашку.', ru: '«Найди, Пузырёк!»: 9 озвученных заданий на английском (A1–A2). Результат «с первой попытки» придёт в домашку.', en: '“Find it, Bubbles!”: 9 voiced tasks in English (A1–A2). The first-try score is saved to the homework.' })}</p>
+          <p className="t-muted t-form__wide">{t({ uk: '«Знайди мене»: 9 озвучених завдань англійською (A1–A2). Результат «з першої спроби» прийде в домашку.', ru: '«Найди меня»: 9 озвученных заданий на английском (A1–A2). Результат «с первой попытки» придёт в домашку.', en: '“Find me”: 9 voiced tasks in English (A1–A2). The first-try score is saved to the homework.' })}</p>
         </div>
       )}
       {kind === 'mock' && (
