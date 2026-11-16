@@ -81,7 +81,7 @@ export async function menuAnswer(kind: string, lang: Lang, links: Link[]): Promi
       const price = Number(k.s.price) || 0;
       const [pays, done] = await Promise.all([
         db.query(`payments?student_id=eq.${sid}&select=amount,at&order=at.desc`).catch(() => []),
-        db.query(`lessons?student_id=eq.${sid}&status=in.(done,charged)&select=id,student_id,start,status,duration`).then(uniqLessons).catch(() => []),
+        db.query(`lessons?student_id=eq.${sid}&status=in.(done,charged)&select=id,student_id,start,status,duration,trial`).then(uniqLessons).catch(() => []),
       ]);
       const paid = pays.reduce((n, p) => n + Number(p.amount || 0), 0);
       const start = ((Number(k.s.prepaid_lessons) || 0) - (Number(k.s.owed_lessons) || 0)) * price;
@@ -222,7 +222,7 @@ export async function teacherBalances(teacherId: string) {
   const [st, pays, done] = await Promise.all([
     db.query(`students?teacher_id=eq.${T}&select=id,name,price,prepaid_lessons,owed_lessons,pay_mode`).catch(() => []),
     db.query(`payments?teacher_id=eq.${T}&select=student_id,amount`).catch(() => []),
-    db.query(`lessons?teacher_id=eq.${T}&status=in.(done,charged)&select=student_id,start,status,duration`).then(uniqLessons).catch(() => []),
+    db.query(`lessons?teacher_id=eq.${T}&status=in.(done,charged)&select=student_id,start,status,duration,trial`).then(uniqLessons).catch(() => []),
   ]);
   return st.map((s) => {
     const price = Number(s.price) || 0;

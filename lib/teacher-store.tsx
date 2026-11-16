@@ -31,6 +31,7 @@ export type Lesson = {
   id: string; studentId: string; start: string; duration: number;
   topic?: string; link?: string; status: LessonStatus;
   groupId?: string; // групове заняття: у кожного учасника свій рядок з тим самим groupId і часом
+  trial?: 'free' | 'paid' | null; // пробний урок: безкоштовний не списується з балансу
 };
 export type Group = { id: string; name: string; color: string; studentIds: string[]; link?: string; createdAt: string };
 export type NoteFile = { url: string; name: string };
