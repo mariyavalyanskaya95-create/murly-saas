@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Am, is, are: meet my squad (A1) | Murly</title>
+<link rel="icon" href="/favicon.svg">
+<meta name="description" content="A1 lesson on the verb to be: am, is, are, negatives and short forms. Reading, vocabulary, grammar-book exercises, translation, video, picture description and speaking.">
+<link rel="canonical" href="https://murly.com.ua/game-lessons/to-be-squad.html">
+<style>
+:root{--paper:#F3F0EA;--ink:#17181C;--violet:#3D4A7A;--lav:#D9D3C7;--pink:#E9C9BC;--green:#D4E2CF;--white:#fff;--muted:#62646B;--accent:#B5482F}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+/* hero */
+.hero{background:linear-gradient(rgba(16,17,22,.5),rgba(16,17,22,.72)),url("https://images.unsplash.com/photo-1622352496174-9e1d969b1945?w=1400&q=70&auto=format&fit=crop");color:#fff;padding:70px 18px 56px;text-align:center;position:relative;overflow:hidden}
+.hero .kicker{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#E9C9BC;font-weight:700}
+.hero .cr{position:absolute;right:12px;bottom:8px;font-size:11px;color:rgba(255,255,255,.6)}
+.hero h1{margin:8px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(36px,6vw,64px);letter-spacing:-.5px;font-weight:700}
+.hero h1 span{color:var(--pink);font-style:italic}
+.hero p{margin:12px 0 0;font-size:17px;color:#e6e2da}
+.hero .flags{display:flex;justify-content:center;gap:12px;margin-top:22px;flex-wrap:wrap}
+.hero .flags svg{width:40px;height:26px;border-radius:3px;opacity:.9}
+/* sections */
+section{margin-top:30px;background:var(--white);border-radius:18px;padding:28px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.05)}
+section h2{margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tag{font-family:"Segoe UI",system-ui,sans-serif;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--paper);color:var(--accent);text-transform:uppercase;letter-spacing:1px}
+.lk-n{display:inline-grid;place-items:center;width:42px;height:42px;background:var(--violet);color:#fff;border-radius:50%;font-size:21px;flex:none}
+.lk-mode{font-size:13px;font-weight:700;border:2px dashed var(--lav);color:var(--muted);padding:2px 10px;border-radius:999px}
+.lk-ins{font-size:17px;background:var(--paper);border-radius:12px;padding:10px 14px;margin:6px 0 18px}
+.lk-sub{margin:24px 0 10px;font-size:19px}
+.btn{font:inherit;font-weight:700;border:0;border-radius:999px;background:var(--ink);color:#fff;padding:10px 20px;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+.btn.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+/* teacher */
+.lk-tbtn{position:fixed;right:16px;top:70px;z-index:45;font:inherit;font-weight:800;border:2px solid var(--ink);background:var(--pink);padding:8px 14px;border-radius:12px;cursor:pointer}
+body.teacher .lk-tbtn{background:var(--green)}
+.lk-ans,.lk-tnote{display:none}
+body.teacher .lk-ans{display:block;margin-top:8px;font-weight:700;color:#1d5a12;background:var(--green);border-left:5px solid #5aa845;padding:6px 10px;font-size:15px;border-radius:6px}
+body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff3f7;border-left:5px solid #d9789a;padding:8px 12px;font-size:15px;border-radius:6px}
+/* overview */
+.lk-overview ul{font-size:17px;line-height:1.7;margin:6px 0 16px}
+.lk-stages{display:flex;flex-wrap:wrap;gap:8px}
+.lk-stages a{display:grid;border-radius:14px;padding:8px 12px;text-decoration:none;color:var(--ink);background:var(--paper);font-weight:700;min-width:100px}
+.lk-stages a span{text-transform:capitalize}
+.lk-stages a b{font-size:20px;color:var(--violet)}
+.lk-stages a small{font-weight:600;color:var(--muted)}
+/* warm-up */
+.taxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tax{background:var(--paper);border-radius:18px;padding:16px;display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center}
+.tax svg{width:56px;height:56px}
+.tax b{display:block;font-size:17px}
+.tax small{color:var(--muted);font-size:14px}
+.qs{display:grid;gap:10px;margin-top:18px}
+.qs div{background:var(--green);border-radius:14px;padding:10px 16px;font-size:18px;font-weight:600}
+.phr{background:#fff7e8;border-radius:14px;padding:12px 16px;margin-top:16px;font-size:15px}
+.phr ul{margin:6px 0 0;padding-left:18px}
+.fic{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:16px}
+.fic .c{background:#fff;border:2px solid #1B2140;border-radius:16px;padding:14px 16px;box-shadow:3px 3px 0 #1B2140}
+.fic .c b{display:block;font-size:18px;line-height:1.35;margin-bottom:8px}
+.fic .c .k{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.fic .c .k span{font-size:13px;background:#eef1fb;border-radius:999px;padding:3px 10px}
+.fic .c details{margin-top:8px;font-size:15px;color:#3b4160}
+.fic .c summary{cursor:pointer;font-weight:700;color:#534AB7}
+.fi-n{display:inline-flex;width:28px;height:28px;border-radius:50%;background:#2F4BA0;color:#fff;align-items:center;justify-content:center;font-size:14px;margin-right:6px}
+/* vocab */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:12px}
+.vc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:2px solid transparent;transition:border-color .2s,transform .2s}
+.vc:hover{border-color:var(--violet);transform:translateY(-2px)}
+.vc b{font-size:18px;display:flex;align-items:center;gap:8px}
+.vc b svg{width:20px;height:20px;flex:none;color:var(--violet)}
+.vc p{margin:6px 0 0;font-size:14px;color:var(--muted)}
+.vc em{display:block;margin-top:6px;font-size:14px;color:var(--violet);font-style:normal;font-weight:600}
+.vc.played{background:#e6ecfb}
+/* grammar */
+.gram{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.gb{border-radius:18px;padding:16px}
+.gb h3{margin:0 0 6px;font-size:19px}
+.gb .f{display:inline-block;background:#fff;border-radius:8px;padding:3px 10px;font-weight:800;margin:4px 0;font-family:Consolas,monospace;font-size:15px}
+.gb p{margin:6px 0 0;font-size:15px}
+.g1{background:var(--pink)}.g2{background:var(--lav)}.g3{background:var(--green)}.g4{background:#fbe7c6}
+.warn{margin-top:14px;background:var(--ink);color:#fff;border-radius:14px;padding:12px 16px;font-size:16px}
+.warn b{color:var(--pink)}
+.q{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:2px dashed var(--paper);font-size:18px}
+.q:last-child{border-bottom:0}
+.q .n{width:32px;height:32px;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;border-radius:50%;font-weight:800;font-size:15px}
+.opt{font:inherit;font-size:16px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:10px;padding:4px 12px;cursor:pointer;margin:0 2px}
+.opt.ok{background:var(--green);border-color:#5aa845}
+.opt.bad{background:var(--pink);animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+/* tour */
+.tour{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.law{border-radius:22px;overflow:hidden;background:var(--paper);display:flex;flex-direction:column}
+.law .pic{height:150px;display:grid;place-items:center;position:relative}
+.law .pic svg.ill{width:130px;height:130px}
+.law .pic svg.fl{position:absolute;left:14px;top:14px;width:46px;height:30px;border-radius:5px;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.law .pic .no{position:absolute;right:14px;top:14px;background:var(--ink);color:#fff;font-weight:800;border-radius:999px;padding:2px 10px;font-size:13px}
+.law .body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.law h3{margin:0;font-size:20px}
+.law .where{font-size:13px;font-weight:800;color:var(--violet);text-transform:uppercase;letter-spacing:1px}
+.law p{margin:0;font-size:16px}
+.law .why{font-size:14px;color:var(--muted)}
+.law .dq{margin-top:auto;background:#fff;border-radius:12px;padding:8px 12px;font-weight:700;font-size:15px}
+.law .lsn{font:inherit;font-size:13px;font-weight:700;background:none;border:0;color:var(--violet);cursor:pointer;padding:0;text-align:left}
+/* game */
+.game{max-width:720px;margin:0 auto;text-align:center}
+.score{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.score span{background:var(--paper);border-radius:999px;padding:6px 16px;font-weight:800}
+.stmt{background:var(--ink);color:#fff;border-radius:22px;padding:28px 24px;min-height:150px;display:grid;place-items:center;font-size:23px;font-weight:700;position:relative}
+.stmt small{position:absolute;top:12px;left:18px;font-size:13px;color:var(--lav);font-weight:700}
+.choose{display:flex;justify-content:center;gap:14px;margin:18px 0}
+.choose button{font:inherit;font-size:18px;font-weight:700;border:2px solid var(--ink);border-radius:999px;padding:12px 28px;cursor:pointer}
+.choose .bl{background:var(--green)}.choose .bm{background:var(--pink)}
+.choose button:disabled{opacity:.5;cursor:default}
+.verdict{min-height:70px;font-size:17px;background:var(--paper);border-radius:16px;padding:12px 16px;text-align:left}
+.verdict b.r{color:#2d7a1d}.verdict b.w{color:#b23a62}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.dots i{width:14px;height:14px;border-radius:50%;background:var(--paper)}
+.dots i.r{background:#7cc663}.dots i.w{background:#e47b9f}.dots i.c{outline:3px solid var(--violet)}
+.final{font-size:22px;font-weight:800;color:var(--violet)}
+/* invent */
+.inv{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.frames{display:grid;gap:10px}
+.frames label{font-size:14px;font-weight:700;color:var(--muted)}
+.frames select,.frames input{font:inherit;width:100%;padding:8px 10px;border:2px solid var(--lav);border-radius:10px;background:#fff}
+.poster{background:var(--paper);border:3px solid var(--ink);border-radius:20px;padding:22px;text-align:center;min-height:260px;display:flex;flex-direction:column;gap:10px;justify-content:center}
+.poster .seal{width:70px;height:70px;margin:0 auto}
+.poster h3{margin:0;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--violet)}
+.poster .rule{font-size:22px;font-weight:800}
+.poster .pen{font-size:16px;color:var(--muted)}
+.ideas{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ideas span{background:var(--pink);border-radius:999px;padding:5px 12px;font-size:14px;font-weight:600}
+/* roleplay */
+.rp{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.role{border-radius:20px;padding:18px}
+.role h3{margin:0 0 6px;display:flex;align-items:center;gap:10px}
+.role h3 svg{width:42px;height:42px}
+.role ul{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.r1{background:var(--lav)}.r2{background:var(--green)}
+.scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:16px}
+.sc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:3px solid transparent}
+.sc.on{border-color:var(--violet);background:#fff}
+.sc b{display:block;font-size:17px;margin-bottom:4px}
+.sc p{margin:0;font-size:15px}
+.timer{font-size:40px;font-weight:800;text-align:center;margin:14px 0 6px;color:var(--violet)}
+.ctr{text-align:center}
+/* homework */
+.hwb{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hwc{background:var(--paper);border-radius:18px;padding:18px}
+.hwc h3{margin:0 0 8px}
+.hwc ol,.hwc ul{margin:6px 0 0;padding-left:20px;line-height:1.7}
+.hwc textarea{width:100%;min-height:150px;font:inherit;border:2px solid var(--lav);border-radius:12px;padding:10px;margin-top:10px}
+.end{text-align:center;background:var(--ink);color:#fff;box-shadow:none}
+.end h2{justify-content:center}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(140px);background:var(--ink);color:#fff;font-weight:800;padding:12px 22px;border-radius:14px;transition:transform .3s;z-index:50}
+.toast.show{transform:translateX(-50%) translateY(0)}
+/* photos */
+.ph{margin:0}
+.ph img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;background:var(--paper)}
+.ph figcaption{font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.2px}
+.tax{grid-template-columns:1fr !important;padding:12px !important}
+.law .pic{height:auto !important;display:block !important;padding:0;position:relative}
+.law .pic .ph img{border-radius:0;aspect-ratio:16/10;transition:filter .5s}
+.law .pic .ph figcaption{padding:4px 12px 0}
+.law.hide .pic .ph img{filter:blur(10px) grayscale(.6)}
+.law.hide .reveal-body,.law.hide .fl,.law.hide .where{visibility:hidden}
+.law .clue{font-size:15px;font-style:italic;color:var(--ink)}
+.law .gc{display:flex;flex-wrap:wrap;gap:6px}
+.law .gc button{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:4px 12px;cursor:pointer}
+.law .gc button.ok{background:var(--green)}.law .gc button.bad{background:var(--pink)}
+.law:not(.hide) .guess{display:none}
+.fair{display:grid;gap:4px;background:#fff;border-radius:12px;padding:8px 12px}
+.fair .ends{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.fair input{width:100%;accent-color:var(--accent)}
+.fair output{font-size:14px;font-weight:700;color:var(--accent)}
+.gph{max-width:720px;margin:0 auto 12px}
+.gph img{aspect-ratio:21/9}
+.fine{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.fq{background:var(--paper);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.fq h3{margin:0;font-size:18px}
+.fq .opts{display:flex;flex-wrap:wrap;gap:6px}
+.fq .opts button{font:inherit;font-size:14px;font-weight:700;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 12px;cursor:pointer}
+.fq .opts button.ok{background:var(--green)}.fq .opts button.bad{background:var(--pink)}
+.fq .res{font-size:15px;min-height:22px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{position:relative;aspect-ratio:16/9;background:#111}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;cursor:pointer;background:#111 center/cover;display:grid;place-items:center}
+.vid .play span{background:rgba(0,0,0,.7);color:#fff;font-weight:700;border-radius:999px;padding:10px 20px;font-size:15px;letter-spacing:1px}
+.vid .info{padding:14px 16px}
+.vid .info h3{margin:0 0 2px;font-size:18px}
+.vid .info small{color:var(--muted)}
+.vid .info ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+@media(max-width:760px){.inv,.rp,.hwb{grid-template-columns:1fr}.lk-tbtn{top:auto;bottom:70px}}
+
+.pr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.pb{border-radius:18px;padding:16px 18px}
+.pb h3{margin:0;font-family:Georgia,serif;font-size:30px}
+.pb .m{font-size:15px;color:var(--muted);margin:2px 0 8px}
+.pb .chips{display:flex;flex-wrap:wrap;gap:6px}
+.pb .chips span{background:#fff;border-radius:999px;padding:4px 11px;font-size:14px;font-weight:600}
+.pb ul{margin:10px 0 0;padding-left:18px;font-size:15px}
+.p-in{background:#DCE6F5}.p-at{background:#F3D9CF}.p-on{background:#D4E2CF}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-size:15px;margin-top:10px}
+.ex div{background:var(--paper);border-radius:10px;padding:8px 12px}
+.ex b{color:var(--accent)}
+.q{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.q .n{font-weight:800;color:var(--violet);min-width:24px}
+.q .gap{display:inline-block;min-width:44px;border-bottom:2px solid var(--ink);text-align:center;font-weight:800}
+.q .opts{margin-left:auto;display:flex;gap:6px}
+.q .opts button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 14px;cursor:pointer}
+.q.ok{background:#DDEED7}.q.ok .gap{color:#2F7A3B}
+.q.bad{background:#F6DAD3}
+.score{font-weight:800;margin-top:12px}
+.text{font-size:18px;line-height:1.75;background:var(--paper);border-radius:16px;padding:18px 22px}
+.text h3{margin:0 0 6px;font-family:Georgia,serif;font-size:24px}
+.text p{margin:0 0 12px}
+.text.hl mark{background:#F3D9CF;border-radius:4px;padding:0 3px;font-weight:700}
+.tf{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:9px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.tf .opts{margin-left:auto;display:flex;gap:6px}
+.tf button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.tf.ok{background:#DDEED7}.tf.bad{background:#F6DAD3}
+.disc{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px;margin-top:6px}
+.disc div{background:var(--green);border-radius:14px;padding:12px 16px;font-size:17px;font-weight:600}
+.disc div i{font-style:normal;color:var(--violet);margin-right:6px}
+.spin{text-align:center;margin-top:16px}
+.spin .card{display:inline-block;min-height:80px;min-width:min(560px,100%);background:var(--ink);color:#fff;border-radius:18px;padding:20px 24px;font-size:22px;font-weight:700;margin-bottom:12px}
+@media(max-width:700px){.ex{grid-template-columns:1fr}}
+
+.hero{background-size:cover!important;background-position:center!important}
+.voc{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.voc div{background:var(--paper);border-radius:14px;padding:10px 14px;cursor:pointer;border:2px solid transparent}
+.voc div:hover{border-color:var(--violet)}
+.voc b{display:block;font-size:18px}.voc span{display:block;color:var(--accent);font-weight:700;font-size:15px}.voc em{display:block;font-size:14px;color:var(--muted);margin-top:3px}
+.mt{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:10px}
+.mt button{font:inherit;font-size:16px;text-align:left;border:2px solid var(--ink);background:#fff;border-radius:14px;padding:9px 14px;cursor:pointer}
+.mt button.sel{background:#FFE7A8}.mt button.done{background:#CDE8C6;border-color:#4C9A5B;cursor:default}
+.ch{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ch .n{font-weight:800;color:var(--violet);min-width:24px}
+.ch .o{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.ch .o button{font:inherit;font-size:15px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.ch.ok{background:#DDEED7}.ch.bad{background:#F6DAD3}
+.ty{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ty input{font:inherit;border:2px solid var(--ink);border-radius:10px;padding:4px 10px;width:220px}
+.ty.ok{background:#DDEED7}.ty.bad{background:#F6DAD3}
+.ty small{color:var(--muted)}
+.photo{width:100%;height:300px;object-fit:cover;border-radius:16px;display:block}
+.cap{font-size:11px;color:var(--muted);margin:4px 0 12px}
+.pics{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.pics figure{margin:0;background:var(--paper);border-radius:16px;overflow:hidden}
+.pics img{width:100%;height:170px;object-fit:cover;display:block}
+.pics figcaption{padding:8px 12px;font-weight:700}
+.pics small{display:block;font-weight:400;font-size:10px;color:var(--muted)}
+.lis{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:8px 0 14px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{aspect-ratio:16/9;background:#000;position:relative}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;background-size:cover;background-position:center;cursor:pointer;display:grid;place-items:center}
+.vid .play span{background:#E5484D;color:#fff;font-weight:800;border-radius:12px;padding:10px 20px}
+.vid .info{padding:12px 16px}.vid h3{margin:0;font-size:18px}.vid small{color:var(--muted)}
+.vid ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th,.tbl td{border:1px solid #ddd;padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--paper)}
+@media(max-width:700px){.mt{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="kit.css">
+</head>
+<body>
+<header class="hero">
+  <div class="kicker">A1 · grammar</div>
+  <h1>Am, is, are: meet my <span>squad</span></h1>
+  <p>to be · negatives · short forms · reading · video · 60 min</p>
+  <span class="cr">Photo: Unsplash</span>
+</header>
+<button class="lk-tbtn" id="teacherBtn" type="button">Teacher version</button>
+<div class="wrap">
+  <section class="lk-overview">
+    <h2>In this lesson you will:</h2>
+    <ul><li>Talk about you and your friends.</li><li>Read Sophie&#39;s post about her squad.</li><li>Learn when to say am, is, are.</li><li>Practise with 4 exercises and translation.</li><li>Describe pictures, watch a video and play two truths and a lie.</li></ul>
+    <div class="lk-stages" id="stages"></div>
+  </section>
+  <section id="s1" data-stage="warm-up" data-min="5">
+    <h2><span class="lk-n">1</span>Hello! Tell me about you <span class="tag">warm-up</span><span class="lk-mode">teacher + student</span></h2>
+
+    <img class="photo" src="https://images.unsplash.com/photo-1622352496174-9e1d969b1945?w=900&q=70&auto=format&fit=crop" alt="Four friends laughing together" loading="lazy"><div class="cap">Photo: Unsplash</div>
+    <p class="lk-ins">Answer in full sentences: <b>I&#39;m ... / My ... is ...</b></p>
+    <div class="spin"><div class="card" id="wCard">Click "Random question"</div><br><button class="btn" type="button" data-spin="[&quot;What&amp;#39;s your name?&quot;, &quot;How old are you?&quot;, &quot;Where are you from?&quot;, &quot;What&amp;#39;s your favourite food?&quot;, &quot;Who is your best friend?&quot;, &quot;What is your favourite colour?&quot;, &quot;Are you a morning person or a sleepy zombie in the morning?&quot;, &quot;If you are an animal, what animal are you?&quot;]" data-target="wCard">Random question</button></div>
+    <p class="lk-tnote" data-ru="Заметка: начните с себя: «I&amp;#39;m Anna. I&amp;#39;m a teacher. I&amp;#39;m not a cat, but my cat is very important.» Не исправляйте на этом этапе, просто слушайте, путает ли ученик am / is / are, и запишите типичные ошибки на потом.&lt;br&gt;&lt;b&gt;Образцы ответов:&lt;/b&gt; I&amp;#39;m twelve. I&amp;#39;m from London. My favourite food is pizza. I&amp;#39;m a sleepy zombie in the morning!">Нотатка: почніть з себе: «I&#39;m Anna. I&#39;m a teacher. I&#39;m not a cat, but my cat is very important.» Не виправляйте на цьому етапі, просто слухайте, чи учень плутає am / is / are, і запишіть типові помилки на потім.<br><b>Зразки відповідей:</b> I&#39;m twelve. I&#39;m from London. My favourite food is pizza. I&#39;m a sleepy zombie in the morning!</p>
+  </section>
+  <section id="s2" data-stage="reading" data-min="7">
+    <h2><span class="lk-n">2</span>Reading: meet my squad! <span class="tag">reading</span><span class="lk-mode">teacher + student</span></h2>
+
+    <img class="photo" src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=900&q=70&auto=format&fit=crop" alt="Friends together at sunset" loading="lazy" style="height:260px"><div class="cap">Photo: Unsplash</div>
+    <div class="text"><h3>Meet my squad!</h3><p><i>A post by Sophie, 13</i></p>
+      <p>Hi, I<mark>&#39;m</mark> Sophie and I<mark>&#39;m</mark> from Bristol. I<mark>&#39;m</mark> in Year 8. This <mark>is</mark> my squad!</p>
+      <p><b>Dan</b> <mark>is</mark> my best friend. He<mark>&#39;s</mark> funny and he<mark>&#39;s</mark> really good at football. He <mark>isn&#39;t</mark> good at maths, but that&#39;s OK, I <mark>am</mark>!</p>
+      <p><b>Mia and Kate</b> <mark>are</mark> twins. They<mark>&#39;re</mark> 14. They <mark>aren&#39;t</mark> in my class, but we<mark>&#39;re</mark> in the same dance club.</p>
+      <p>And this <mark>is</mark> <b>Biscuit</b>. Biscuit <mark>is</mark> our cat. She<mark>&#39;s</mark> orange and she<mark>&#39;s</mark> very lazy. She <mark>isn&#39;t</mark> a fan of dogs. She<mark>&#39;s</mark> a fan of the sofa.</p>
+      <p>We <mark>aren&#39;t</mark> perfect, but we<mark>&#39;re</mark> a great team!</p>
+    </div>
+    <h3 class="lk-sub">True or False?</h3>
+    <div class="ch" data-a="False"><span class="n">1</span><span class="s">Sophie is from Manchester.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="True"><span class="n">2</span><span class="s">Dan is good at football.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="False"><span class="n">3</span><span class="s">Dan is good at maths.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="False"><span class="n">4</span><span class="s">Mia and Kate are in Sophie&#39;s class.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="True"><span class="n">5</span><span class="s">Biscuit is orange.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="False"><span class="n">6</span><span class="s">Biscuit is a fan of dogs.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Перевод:&lt;/b&gt; Привет, я Софи, я из Бристоля, учусь в 8 классе. Дэн мой лучший друг, он смешной и хорошо играет в футбол, но не очень в математике. Мия и Кейт близняшки, им 14, они не в моём классе, но мы в одном танцевальном кружке. Бискит наша кошка: рыжая, очень ленивая, не любит собак, любит диван. Мы не идеальные, но мы классная команда!&lt;br&gt;&lt;b&gt;Ответы:&lt;/b&gt; F, T, F, F, T, F.&lt;br&gt;&lt;b&gt;Вопросы после чтения:&lt;/b&gt; Why is it «Dan is», but «Mia and Kate are»? Find all the short forms (&amp;#39;m, &amp;#39;s, &amp;#39;re). Пусть ученик сам попробует сформулировать правило."><b>Переклад:</b> Привіт, я Софі, я з Брістоля, вчуся у 8 класі. Ден мій найкращий друг, він смішний і добре грає у футбол, але не дуже в математиці. Мія й Кейт близнючки, їм 14, вони не в моєму класі, але ми в одному танцювальному гуртку. Біскіт наша кішка: руда, дуже лінива, не любить собак, любить диван. Ми не ідеальні, але ми класна команда!<br><b>Відповіді:</b> F, T, F, F, T, F.<br><b>Питання після читання:</b> Why is it «Dan is», but «Mia and Kate are»? Find all the short forms (&#39;m, &#39;s, &#39;re). Хай учень сам спробує сформулювати правило.</p>
+  </section>
+  <section id="s3" data-stage="vocabulary" data-min="7">
+    <h2><span class="lk-n">3</span>Words: my squad <span class="tag">vocabulary</span><span class="lk-mode">teacher + student</span></h2>
+
+    <p class="lk-ins">Click a card to hear it. Then find the pairs.</p>
+    <div class="voc"><div data-say="squad. This is my squad!"><b>squad</b><span><span data-tr-uk="компанія друзів" data-tr-ru="компания друзей">компанія друзів</span></span><em>This is my squad!</em></div>
+<div data-say="best friend. Dan is my best friend."><b>best friend</b><span><span data-tr-uk="найкращий друг" data-tr-ru="лучший друг">найкращий друг</span></span><em>Dan is my best friend.</em></div>
+<div data-say="funny. He is very funny."><b>funny</b><span><span data-tr-uk="смішний" data-tr-ru="смешной">смішний</span></span><em>He is very funny.</em></div>
+<div data-say="be good at. She is good at art."><b>be good at</b><span><span data-tr-uk="добре вміти щось" data-tr-ru="хорошо уметь что-то">добре вміти щось</span></span><em>She is good at art.</em></div>
+<div data-say="twins. They are twins."><b>twins</b><span><span data-tr-uk="близнюки" data-tr-ru="близнецы">близнюки</span></span><em>They are twins.</em></div>
+<div data-say="the same. We are in the same class."><b>the same</b><span><span data-tr-uk="той самий" data-tr-ru="тот же самый">той самий</span></span><em>We are in the same class.</em></div>
+<div data-say="club. I am in a dance club."><b>club</b><span><span data-tr-uk="гурток, клуб" data-tr-ru="кружок, клуб">гурток, клуб</span></span><em>I am in a dance club.</em></div>
+<div data-say="lazy. My cat is lazy."><b>lazy</b><span><span data-tr-uk="лінивий" data-tr-ru="ленивый">лінивий</span></span><em>My cat is lazy.</em></div>
+<div data-say="be a fan of. I am a fan of pizza."><b>be a fan of</b><span><span data-tr-uk="бути фанатом" data-tr-ru="быть фанатом">бути фанатом</span></span><em>I am a fan of pizza.</em></div>
+<div data-say="perfect. Nobody is perfect."><b>perfect</b><span><span data-tr-uk="ідеальний" data-tr-ru="идеальный">ідеальний</span></span><em>Nobody is perfect.</em></div>
+<div data-say="tired. I am tired today."><b>tired</b><span><span data-tr-uk="втомлений" data-tr-ru="уставший">втомлений</span></span><em>I am tired today.</em></div>
+<div data-say="hungry. Are you hungry?"><b>hungry</b><span><span data-tr-uk="голодний" data-tr-ru="голодный">голодний</span></span><em>Are you hungry?</em></div>
+<div data-say="late. Sorry, I am late!"><b>late</b><span><span data-tr-uk="запізнюється" data-tr-ru="опаздывает">запізнюється</span></span><em>Sorry, I am late!</em></div>
+<div data-say="bored. We are bored."><b>bored</b><span><span data-tr-uk="нудно" data-tr-ru="скучно">нудно</span></span><em>We are bored.</em></div></div>
+    <h3 class="lk-sub">Find the pairs</h3>
+    <div class="mt" data-mt="m1" data-pairs="[[&quot;squad&quot;, &quot;компанія друзів&quot;], [&quot;best friend&quot;, &quot;найкращий друг&quot;], [&quot;funny&quot;, &quot;смішний&quot;], [&quot;be good at&quot;, &quot;добре вміти щось&quot;], [&quot;twins&quot;, &quot;близнюки&quot;], [&quot;the same&quot;, &quot;той самий&quot;], [&quot;club&quot;, &quot;гурток, клуб&quot;], [&quot;lazy&quot;, &quot;лінивий&quot;]]" data-pairs-uk="[[&quot;squad&quot;, &quot;компанія друзів&quot;], [&quot;best friend&quot;, &quot;найкращий друг&quot;], [&quot;funny&quot;, &quot;смішний&quot;], [&quot;be good at&quot;, &quot;добре вміти щось&quot;], [&quot;twins&quot;, &quot;близнюки&quot;], [&quot;the same&quot;, &quot;той самий&quot;], [&quot;club&quot;, &quot;гурток, клуб&quot;], [&quot;lazy&quot;, &quot;лінивий&quot;]]" data-pairs-ru="[[&quot;squad&quot;, &quot;компания друзей&quot;], [&quot;best friend&quot;, &quot;лучший друг&quot;], [&quot;funny&quot;, &quot;смешной&quot;], [&quot;be good at&quot;, &quot;хорошо уметь что-то&quot;], [&quot;twins&quot;, &quot;близнецы&quot;], [&quot;the same&quot;, &quot;тот же самый&quot;], [&quot;club&quot;, &quot;кружок, клуб&quot;], [&quot;lazy&quot;, &quot;ленивый&quot;]]"></div><div class="score" data-mtres="m1"></div>
+    <p class="lk-tnote" data-ru="Заметка: попросите ученика составить предложения о своих друзьях со словами: «My best friend is funny. I am good at...». Ловушка: tired / bored / hungry это прилагательные, с ними обязательно am / is / are: I am tired (не «I tired»).">Нотатка: попросіть учня скласти речення про своїх друзів зі словами: «My best friend is funny. I am good at...». Ловушка: tired / bored / hungry це прикметники, з ними обов&#39;язково am / is / are: I am tired (не «I tired»).</p>
+  </section>
+  <section id="s4" data-stage="grammar" data-min="6">
+    <h2><span class="lk-n">4</span>The rule: am, is, are <span class="tag">grammar</span><span class="lk-mode">teacher + student</span></h2>
+
+    <p class="lk-ins"><b>To be</b> means «бути / быть». In our language we often skip it («Я голодний»), but in English the sentence doesn&#39;t work without it: <b>I am hungry.</b></p>
+    <div class="gram">
+      <div class="gb g1"><h3>I</h3><span class="f">am = &#39;m</span><p>I <b>am</b> tired.<br>I<b>&#39;m not</b> late.</p></div>
+      <div class="gb g2"><h3>he / she / it</h3><span class="f">is = &#39;s</span><p>My cat <b>is</b> lazy.<br>She <b>isn&#39;t</b> at home.</p></div>
+      <div class="gb g3"><h3>you / we / they</h3><span class="f">are = &#39;re</span><p>We <b>are</b> friends.<br>They <b>aren&#39;t</b> bored.</p></div>
+    </div>
+    <div class="warn"><b>Lifehack:</b> am is like a cat that loves only one owner: only I. Is is for one, are is for many and for you. And <b>amn&#39;t</b> doesn&#39;t exist: only <b>I&#39;m not</b>!</div>
+    <p class="lk-tnote" data-ru="Как объяснить: на примере ученика и его друзей: «You are a student. I am a teacher. Your friend is...». Правило короткое, не задерживайтесь, остальное время отдайте практике. Попросите одно предложение с am, одно с is, одно с are.">Як пояснити: на прикладі учня і його друзів: «You are a student. I am a teacher. Your friend is...». Правило коротке, не затримуйтесь, решту часу віддайте практиці. Попросіть одне речення з am, одне з is, одне з are.</p>
+  </section>
+  <section id="s5" data-stage="grammar" data-min="12">
+    <h2><span class="lk-n">5</span>Am, is, are workout <span class="tag">grammar</span><span class="lk-mode">teacher + student</span></h2>
+
+    <h3 class="lk-sub">A. Choose am, is or are</h3>
+    <div class="ch" data-a="am"><span class="n">1</span><span class="s">I ___ a gamer.</span><span class="o"><button type="button">am</button><button type="button">is</button><button type="button">are</button></span></div>
+<div class="ch" data-a="is"><span class="n">2</span><span class="s">My cat ___ hungry.</span><span class="o"><button type="button">am</button><button type="button">is</button><button type="button">are</button></span></div>
+<div class="ch" data-a="are"><span class="n">3</span><span class="s">My friends ___ at the park.</span><span class="o"><button type="button">am</button><button type="button">is</button><button type="button">are</button></span></div>
+<div class="ch" data-a="are"><span class="n">4</span><span class="s">You ___ my favourite teacher.</span><span class="o"><button type="button">am</button><button type="button">is</button><button type="button">are</button></span></div>
+<div class="ch" data-a="is"><span class="n">5</span><span class="s">It ___ cold today.</span><span class="o"><button type="button">am</button><button type="button">is</button><button type="button">are</button></span></div>
+<div class="ch" data-a="are"><span class="n">6</span><span class="s">Mia and Kate ___ twins.</span><span class="o"><button type="button">am</button><button type="button">is</button><button type="button">are</button></span></div>
+    <h3 class="lk-sub">B. Write am, is or are</h3>
+    <div class="ty" data-a="am"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>I ___ in Year 7.</span><input type="text" autocomplete="off" spellcheck="false" style="width:90px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="is"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>My brother ___ 16.</span><input type="text" autocomplete="off" spellcheck="false" style="width:90px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="is"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>The cat ___ under the bed.</span><input type="text" autocomplete="off" spellcheck="false" style="width:90px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="are"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>We ___ in the same class.</span><input type="text" autocomplete="off" spellcheck="false" style="width:90px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="is"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Maths ___ my favourite subject.</span><input type="text" autocomplete="off" spellcheck="false" style="width:90px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="are"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Lucas and I ___ gamers.</span><input type="text" autocomplete="off" spellcheck="false" style="width:90px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+    <h3 class="lk-sub">C. Make it negative</h3>
+    <div class="ch" data-a="isn&#x27;t"><span class="n">1</span><span class="s">My phone ___ new.</span><span class="o"><button type="button">isn&#39;t</button><button type="button">aren&#39;t</button><button type="button">am not</button></span></div>
+<div class="ch" data-a="&#x27;m not"><span class="n">2</span><span class="s">I ___ hungry, thanks.</span><span class="o"><button type="button">&#39;m not</button><button type="button">isn&#39;t</button><button type="button">aren&#39;t</button></span></div>
+<div class="ch" data-a="aren&#x27;t"><span class="n">3</span><span class="s">My parents ___ at home today.</span><span class="o"><button type="button">aren&#39;t</button><button type="button">isn&#39;t</button><button type="button">am not</button></span></div>
+<div class="ch" data-a="isn&#x27;t"><span class="n">4</span><span class="s">It ___ cold today.</span><span class="o"><button type="button">isn&#39;t</button><button type="button">aren&#39;t</button><button type="button">amn&#39;t</button></span></div>
+<div class="ch" data-a="isn&#x27;t"><span class="n">5</span><span class="s">Biscuit ___ a dog.</span><span class="o"><button type="button">isn&#39;t</button><button type="button">aren&#39;t</button><button type="button">am not</button></span></div>
+    <h3 class="lk-sub">D. Translate into English</h3>
+    <div class="ty" data-a="I&#x27;m not tired|I am not tired"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span style="flex:1 1 100%"><span data-tr-uk="Я не втомлений." data-tr-ru="Я не устал.">Я не втомлений.</span></span><input type="text" autocomplete="off" spellcheck="false" style="width:min(300px,100%)" placeholder="In English..."><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="My cat is very funny|My cat&#x27;s very funny"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span style="flex:1 1 100%"><span data-tr-uk="Мій кіт дуже смішний." data-tr-ru="Мой кот очень смешной.">Мій кіт дуже смішний.</span></span><input type="text" autocomplete="off" spellcheck="false" style="width:min(300px,100%)" placeholder="In English..."><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="We aren&#x27;t at school|We are not at school|We&#x27;re not at school"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span style="flex:1 1 100%"><span data-tr-uk="Ми не в школі." data-tr-ru="Мы не в школе.">Ми не в школі.</span></span><input type="text" autocomplete="off" spellcheck="false" style="width:min(300px,100%)" placeholder="In English..."><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="She&#x27;s my best friend|She is my best friend"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span style="flex:1 1 100%"><span data-tr-uk="Вона моя найкраща подруга." data-tr-ru="Она моя лучшая подруга.">Вона моя найкраща подруга.</span></span><input type="text" autocomplete="off" spellcheck="false" style="width:min(300px,100%)" placeholder="In English..."><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="They&#x27;re from London|They are from London"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span style="flex:1 1 100%"><span data-tr-uk="Вони з Лондона." data-tr-ru="Они из Лондона.">Вони з Лондона.</span></span><input type="text" autocomplete="off" spellcheck="false" style="width:min(300px,100%)" placeholder="In English..."><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="He isn&#x27;t hungry|He is not hungry|He&#x27;s not hungry"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span style="flex:1 1 100%"><span data-tr-uk="Він не голодний." data-tr-ru="Он не голодный.">Він не голодний.</span></span><input type="text" autocomplete="off" spellcheck="false" style="width:min(300px,100%)" placeholder="In English..."><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Ответы A:&lt;/b&gt; am · is · are · are · is · are. &lt;b&gt;B:&lt;/b&gt; am · is · is · are · is · are. &lt;b&gt;C:&lt;/b&gt; isn&amp;#39;t · &amp;#39;m not · aren&amp;#39;t · isn&amp;#39;t · isn&amp;#39;t.&lt;br&gt;&lt;b&gt;Обратить внимание:&lt;/b&gt; my cat, Dan, maths это «он / она / оно», поэтому is. Lucas and I = we, поэтому are."><b>Відповіді A:</b> am · is · are · are · is · are. <b>B:</b> am · is · is · are · is · are. <b>C:</b> isn&#39;t · &#39;m not · aren&#39;t · isn&#39;t · isn&#39;t.<br><b>Звернути увагу:</b> my cat, Dan, maths це «він / вона / воно», тому is. Lucas and I = we, тому are.</p>
+  </section>
+  <section id="s6" data-stage="speaking" data-min="6">
+    <h2><span class="lk-n">6</span>Describe the picture <span class="tag">speaking</span><span class="lk-mode">teacher + student</span></h2>
+
+    <p class="lk-ins">Choose a photo. Who are they? Where are they? How are they? Use <b>is / are / isn&#39;t / aren&#39;t</b>.</p>
+    <div class="pics"><figure><img src="https://images.unsplash.com/photo-1564359211-fafeed8d22a7?w=600&q=70&auto=format&fit=crop" alt="Photo 1" loading="lazy"><figcaption>Photo 1<small>Photo: Unsplash</small></figcaption></figure><figure><img src="https://images.unsplash.com/photo-1536010447069-d2c8af80c584?w=600&q=70&auto=format&fit=crop" alt="Photo 2" loading="lazy"><figcaption>Photo 2<small>Photo: Unsplash</small></figcaption></figure><figure><img src="https://images.unsplash.com/photo-1622352496174-9e1d969b1945?w=600&q=70&auto=format&fit=crop" alt="Photo 3" loading="lazy"><figcaption>Photo 3<small>Photo: Unsplash</small></figcaption></figure></div>
+    <div class="phr"><b>Help</b><ul><li>They are friends. They are in the park / at home.</li><li>She is happy / funny / tired.</li><li>They aren&#39;t at school.</li><li>I think her name is ... She is ... years old.</li></ul></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Образец к фото 1:&lt;/b&gt; «This is Emma and this is Grace. They are best friends. They are in the park. They aren&amp;#39;t at school today. Emma is in a yellow top. They are happy!»&lt;br&gt;&lt;b&gt;Наводящие вопросы:&lt;/b&gt; How many people are there? Are they friends or sisters? Are they happy? Is it hot or cold? Where are they?"><b>Зразок до фото 1:</b> «This is Emma and this is Grace. They are best friends. They are in the park. They aren&#39;t at school today. Emma is in a yellow top. They are happy!»<br><b>Навідні питання:</b> How many people are there? Are they friends or sisters? Are they happy? Is it hot or cold? Where are they?</p>
+  </section>
+  <section id="s7" data-stage="video" data-min="7">
+    <h2><span class="lk-n">7</span>Video: watch and describe <span class="tag">video</span><span class="lk-mode">teacher + student</span></h2>
+
+    <div class="vids" data-vids="[[&quot;WwKJI5cuIug&quot;, &quot;Muddy Puddles&quot;, &quot;Peppa Pig Official Channel&quot;, [&quot;Who is Peppa? Who is George?&quot;, &quot;Are they happy?&quot;, &quot;Is it sunny or rainy?&quot;]], [&quot;PX1d-R59PaA&quot;, &quot;Village Fete&quot;, &quot;Mr Bean Official&quot;, [&quot;Say 3 sentences about Mr Bean: He is ... He isn&amp;#39;t ...&quot;]]]"></div>
+    <p class="lk-tnote" data-ru="Заметка: останавливайте видео каждые 40-60 секунд, когда появляется новый персонаж. Спрашивайте «Who is she?» (She&amp;#39;s Peppa. She is a pig.), «Is it sunny?» (No, it isn&amp;#39;t. It&amp;#39;s rainy.). Для Mr Bean: «He is funny. He isn&amp;#39;t quiet. He is in a car.»">Нотатка: зупиняйте відео кожні 40-60 секунд, коли з&#39;являється новий персонаж. Питайте «Who is she?» (She&#39;s Peppa. She is a pig.), «Is it sunny?» (No, it isn&#39;t. It&#39;s rainy.). Для Mr Bean: «He is funny. He isn&#39;t quiet. He is in a car.»</p>
+  </section>
+  <section id="s8" data-stage="grammar" data-min="5">
+    <h2><span class="lk-n">8</span>Fix the cat&#39;s post <span class="tag">grammar</span><span class="lk-mode">teacher + student</span></h2>
+
+    <p class="lk-ins">Biscuit the cat wrote her own post, but her grammar is terrible. Choose the correct sentence.</p>
+    <div class="ch" data-a="I am a cat."><span class="n">1</span><span class="s"></span><span class="o"><button type="button">I am a cat.</button><button type="button">I is a cat.</button><button type="button">I are a cat.</button></span></div>
+<div class="ch" data-a="My humans are nice."><span class="n">2</span><span class="s"></span><span class="o"><button type="button">My humans is nice.</button><button type="button">My humans are nice.</button><button type="button">My humans am nice.</button></span></div>
+<div class="ch" data-a="The sofa is my best friend."><span class="n">3</span><span class="s"></span><span class="o"><button type="button">The sofa are my best friend.</button><button type="button">The sofa my best friend.</button><button type="button">The sofa is my best friend.</button></span></div>
+<div class="ch" data-a="I&#x27;m not a fan of baths."><span class="n">4</span><span class="s"></span><span class="o"><button type="button">I&#39;m not a fan of baths.</button><button type="button">I amn&#39;t a fan of baths.</button><button type="button">I isn&#39;t a fan of baths.</button></span></div>
+<div class="ch" data-a="We are a happy family."><span class="n">5</span><span class="s"></span><span class="o"><button type="button">We is a happy family.</button><button type="button">We are a happy family.</button><button type="button">We am a happy family.</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Типичные ошибки:&lt;/b&gt; She happy → She is happy («есть» не пропускаем). I is → I am. They is → They are. I amn&amp;#39;t → I&amp;#39;m not. He is 13 years → He is 13 / 13 years old.&lt;br&gt;Читайте предложения «кошачьим» голосом, будет веселее. После каждого попросите объяснить, что не так в неправильных вариантах."><b>Типові помилки:</b> She happy → She is happy (є не пропускаємо). I is → I am. They is → They are. I amn&#39;t → I&#39;m not. He is 13 years → He is 13 / 13 years old.<br>Читайте речення «котячим» голосом, буде веселіше. Після кожного попросіть пояснити, що не так у неправильних варіантах.</p>
+  </section>
+  <section id="s9" data-stage="speaking" data-min="8">
+    <h2><span class="lk-n">9</span>Speaking: two truths and a lie <span class="tag">speaking</span><span class="lk-mode">teacher + student</span></h2>
+
+    <p class="lk-ins">Say 3 sentences about you with am / is / are. Two are true, one is a lie. The teacher guesses!</p>
+    <div class="spin"><div class="card" id="sCard">Click "Random question"</div><br><button class="btn" type="button" data-spin="[&quot;Describe your best friend in 3 sentences.&quot;, &quot;What are you NOT? Say 3 things.&quot;, &quot;Describe your pet or a pet you want.&quot;, &quot;Is your school big or small?&quot;, &quot;Who is your favourite singer or YouTuber? Where is he or she from?&quot;, &quot;Imagine you are a pizza. What kind of pizza are you?&quot;, &quot;Who is the funniest person in your family?&quot;]" data-target="sCard">Random question</button></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Ваш пример:&lt;/b&gt; «I&amp;#39;m 25. My cat is black. My brother is a pilot.» Ученик угадывает неправду и отвечает отрицанием: «Your brother isn&amp;#39;t a pilot!» Потом меняетесь.&lt;br&gt;Исправляйте только ошибки с am / is / are: повторите предложение правильно и попросите сказать ещё раз."><b>Ваш приклад:</b> «I&#39;m 25. My cat is black. My brother is a pilot.» Учень вгадує неправду й відповідає запереченням: «Your brother isn&#39;t a pilot!» Потім міняєтесь.<br>Виправляйте тільки помилки з am / is / are: повторіть речення правильно й попросіть сказати ще раз.</p>
+  </section>
+  <section id="s10" data-stage="game" data-min="4">
+    <h2><span class="lk-n">10</span>Speed round: make it negative <span class="tag">game</span><span class="lk-mode">teacher + student</span></h2>
+
+    <p class="lk-ins">Match the positive and the negative as fast as you can!</p>
+    <div class="mt" data-mt="m2" data-pairs="[[&quot;I am&quot;, &quot;I&#x27;m not&quot;], [&quot;she is&quot;, &quot;she isn&#x27;t&quot;], [&quot;it is&quot;, &quot;it isn&#x27;t&quot;], [&quot;we are&quot;, &quot;we aren&#x27;t&quot;], [&quot;they are&quot;, &quot;they aren&#x27;t&quot;], [&quot;you are&quot;, &quot;you aren&#x27;t&quot;]]"></div><div class="score" data-mtres="m2"></div>
+    <p class="lk-tnote" data-ru="Заметка: засеките 60 секунд. Ученик проходит дважды, второй раз быстрее. Если пишет «I amn&amp;#39;t», остановитесь и повторите правило.">Нотатка: засічіть 60 секунд. Учень проходить двічі, другий раз швидше. Якщо пише «I amn&#39;t», зупиніться й повторіть правило.</p>
+  </section>
+  <section id="s11" data-stage="homework" data-min="0">
+    <h2><span class="lk-n">11</span>Homework: my squad post <span class="tag">homework</span><span class="lk-mode">teacher + student</span></h2>
+
+    <div class="hwb">
+      <div class="hwc"><h3>Meet my squad</h3><p>Write a post about you and 2-3 friends or pets, like Sophie. 6-8 sentences. Use <b>two negatives</b> (isn&#39;t / aren&#39;t / &#39;m not).</p><textarea id="hwText" placeholder="Hi, I&#39;m ... I&#39;m from ... This is my squad! ..."></textarea></div>
+      <div class="hwc"><h3>Bonus</h3><p>Make your own cat meme with am / is / are. Example: <i>I am not lazy. I am in energy-saving mode.</i></p></div>
+    </div>
+    <p class="lk-tnote" data-ru="Заметка: на следующем уроке ученик читает свой пост, а вы задаёте 2-3 вопроса: «Is Dan funny? Are the twins in your class?»">Нотатка: на наступному уроці учень читає свій пост, а ви ставите 2-3 питання: «Is Dan funny? Are the twins in your class?»</p>
+  </section>
+  <section class="end"><h2>Great job!</h2><p>See you next lesson.</p></section>
+</div>
+<div class="toast" id="toast"></div>
+<script>window.MURLY_LESSON={"id": "to-be-squad", "title": "Am, is, are: meet my squad", "homework": ["s5", "s11"], "hw": {"s5": [{"type": "gap", "instruction": "Write am, is or are.", "text": "I [am] in Year 7.\nMy brother [is] 16.\nMy friends [are] at the skate park.\nThe cat [is] under the bed.\nWe [are] in the same class.\nLucas and I [are] gamers."}, {"type": "choice", "instruction": "Choose the negative.", "text": "My phone {isn't|aren't|am not} new.\nI {'m not|isn't|aren't} hungry.\nMy parents {aren't|isn't|am not} at home.\nBiscuit {isn't|aren't|am not} a dog."}], "s11": [{"type": "open", "instruction": "Meet my squad: write 6-8 sentences about you and your friends or pets. Use two negatives.", "text": "Hi, I'm ..."}]}};</script>
+<script>
+(function(){var l=(document.cookie.match(/(?:^|; )murly_lang=(\w+)/)||[])[1];try{l=l||localStorage.getItem('murly:tlang')}catch(e){}l=l==='ru'?'ru':'uk';document.querySelectorAll('[data-pairs-'+l+']').forEach(function(b){b.dataset.pairs=b.getAttribute('data-pairs-'+l)});})();
+</script>
+<script>
+const $ = (id) => document.getElementById(id);
+const LIS = {};
+function say(w, rate) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; const v = speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang) && /Google|Natural|Libby|Sonia|Daniel/.test(x.name)) || speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang)); if (v) u.voice = v; u.rate = rate || .95; speechSynthesis.speak(u); } catch (e) { } }
+const sh = (a) => a.map((x) => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map((x) => x[1]);
+document.querySelectorAll('.voc div').forEach((d) => d.onclick = () => say(d.dataset.say));
+document.querySelectorAll('[data-play]').forEach((b) => b.onclick = () => say(LIS[b.dataset.play], b.dataset.slow ? .75 : .95));
+document.querySelectorAll('[data-stop]').forEach((b) => b.onclick = () => { try { speechSynthesis.cancel(); } catch (e) { } });
+document.querySelectorAll('.ch').forEach((q) => q.querySelectorAll('button').forEach((b) => b.onclick = () => { if (q.classList.contains('ok')) return; const ok = b.textContent === q.dataset.a; q.classList.toggle('ok', ok); q.classList.toggle('bad', !ok); if (ok) { const s = q.querySelector('.s'); if (s && s.textContent.includes('___')) { s.textContent = s.textContent.replace('___', q.dataset.a); } } }));
+const norm = (x) => x.toLowerCase().replace(/[’']/g, "'").replace(/\s+/g, ' ').replace(/[.!?]$/, '').trim();
+document.querySelectorAll('.ty').forEach((r) => { const inp = r.querySelector('input'); const chk = () => { const ok = r.dataset.a.split('|').some((a) => norm(a) === norm(inp.value)); r.classList.toggle('ok', ok); r.classList.toggle('bad', !ok && inp.value.trim() !== ''); }; r.querySelector('button').onclick = chk; inp.onkeydown = (e) => { if (e.key === 'Enter') chk(); }; });
+document.querySelectorAll('[data-mt]').forEach((box) => { const pairs = JSON.parse(box.dataset.pairs); const L = sh(pairs.map((p) => p[0])), R = sh(pairs.map((p) => p[1])); let sel = null, done = 0, err = 0; box.innerHTML = L.map((w, i) => `<button type="button" data-w="${w}">${w}</button><button type="button" data-d="${R[i]}">${R[i]}</button>`).join('');
+  box.querySelectorAll('button').forEach((b) => b.onclick = () => { if (b.classList.contains('done')) return; if (!sel || (sel.dataset.w && b.dataset.w) || (sel.dataset.d && b.dataset.d)) { if (sel) sel.classList.remove('sel'); sel = b; b.classList.add('sel'); return; } const w = sel.dataset.w || b.dataset.w, d = sel.dataset.d || b.dataset.d; if (pairs.some((p) => p[0] === w && p[1] === d)) { sel.classList.add('done'); b.classList.add('done'); done++; say(w); if (done === pairs.length) document.querySelector(`[data-mtres="${box.dataset.mt}"]`).textContent = err ? `Done! Mistakes: ${err}` : 'Perfect!'; } else err++; sel.classList.remove('sel'); sel = null; }); });
+document.querySelectorAll('[data-vids]').forEach((box) => JSON.parse(box.dataset.vids).forEach(([id, title, ch, qs]) => { const d = document.createElement('div'); d.className = 'vid'; d.innerHTML = `<div class="frame"><button class="play" type="button" style="background-image:url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)"><span>PLAY</span></button></div><div class="info"><h3>${title}</h3><small>YouTube · ${ch}</small><ol>${qs.map((q) => `<li>${q}</li>`).join('')}</ol></div>`; d.querySelector('.play').onclick = (e) => { e.currentTarget.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&cc_load_policy=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${title}"></iframe>`; }; box.appendChild(d); }));
+document.querySelectorAll('[data-spin]').forEach((b) => { const list = JSON.parse(b.dataset.spin); let last = -1; b.onclick = () => { let i; do { i = Math.floor(Math.random() * list.length); } while (i === last && list.length > 1); last = i; document.getElementById(b.dataset.target).textContent = list[i]; }; });
+try { const k = 'murly:' + (window.MURLY_LESSON ? MURLY_LESSON.id : 'x') + ':hw'; const t = $('hwText'); if (t) { t.value = localStorage.getItem(k) || ''; t.oninput = () => localStorage.setItem(k, t.value); } } catch (e) { }
+const STAGES = [...document.querySelectorAll('.wrap > section[id]')];
+$('stages').innerHTML = STAGES.map((s) => `<a href="#${s.id}"><b>${s.querySelector('.lk-n').textContent}</b><span>${s.dataset.stage}</span><small>${s.dataset.min !== '0' ? s.dataset.min + ' min' : 'at home'}</small></a>`).join('');
+$('teacherBtn').onclick = (e) => { const on = document.body.classList.toggle('teacher'); e.currentTarget.textContent = on ? 'Student version' : 'Teacher version'; };
+</script>
+<script src="kit.js" defer></script>
+</body>
+</html>
