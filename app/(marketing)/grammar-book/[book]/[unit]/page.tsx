@@ -31,7 +31,7 @@ export default function BookUnitPage({ params }: { params: { book: string; unit:
     <>
       <SiteNav />
       <div className="no-print"><SectionTabs group="grammar" active="/grammar-book" /></div>
-      <section className="mu-section bk-wrap" style={{ paddingTop: 16 }}>
+      <section className="mu-section gb-wrap" style={{ paddingTop: 16 }}>
         <div className="mu-container">
           <BookUnitView unit={u!} book={params.book} prev={prev && { slug: prev.slug, n: prev.n }} next={next && { slug: next.slug, n: next.n }} />
         </div>
