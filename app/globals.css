@@ -1158,6 +1158,12 @@ a.t-stat:hover { transform: translateY(-2px); }
 .t-form input, .t-form select, .t-note-form textarea { width: 100%; padding: 11px 14px; border: 2px solid var(--mu-ink); border-radius: 12px; background: #fff; font: inherit; font-size: 16px; font-weight: 500; color: var(--mu-ink); }
 .t-form input:focus-visible, .t-form select:focus-visible, .t-note-form textarea:focus-visible { outline: 3px solid var(--mu-lime); outline-offset: 1px; }
 .t-form__wide { grid-column: 1 / -1; }
+/* iOS/iPadOS Safari: поле дати має власну мінімальну ширину й налазить на сусідні */
+.t-form > *, .t-form label { min-width: 0; }
+.t-form input, .t-form select { min-width: 0; max-width: 100%; box-sizing: border-box; }
+input[type="datetime-local"], input[type="date"], input[type="time"] { min-width: 0; max-width: 100%; box-sizing: border-box; }
+.t-form input[type="datetime-local"], .t-form input[type="date"], .t-form input[type="time"] { -webkit-appearance: none; appearance: none; min-height: 48px; display: block; text-align: left; }
+input[type="datetime-local"]::-webkit-date-and-time-value, input[type="date"]::-webkit-date-and-time-value, input[type="time"]::-webkit-date-and-time-value { text-align: left; }
 .t-form__actions { grid-column: 1 / -1; display: flex; gap: 10px; justify-content: flex-end; align-items: center; flex-wrap: wrap; }
 .t-form--words { grid-template-columns: 1fr 1fr 1.4fr auto; }
 .t-form--words .t-form__actions { grid-column: auto; }
