@@ -15,6 +15,7 @@ export const BATCH_9: Plan[] = [
     aims: 'Говоримо про маленькі послуги й доброту в повсякденному житті\nВивчаємо вирази: do someone a favour, help out, give someone a hand, pay it forward\nВживаємо Past Perfect, щоб розповісти, що сталося раніше\nПропонуємо допомогу і ввічливо відповідаємо на пропозиції',
     duration: 75,
     blocks: [
+      t('**Інтерактивний урок на одній сторінці з пультом учителя:** https://murly.com.ua/game-lessons/small-favours.html'),
       h('Warm-up: ten minutes, two favours · 7 хв'),
       t(`You have only **ten free minutes**. Six people need help. Choose **two** people you would help and explain why.
 
@@ -176,6 +177,7 @@ What is the kindest thing a stranger has ever done for you?`),
     aims: 'Знайомимося й говоримо про улюблені речі: одяг, косметику, друзів\nВчимо 14 слів про стиль і соцмережі\nПеревіряємо, як учениця знає to be (am, is, are)\nЧитаємо короткий профіль і пишемо свій',
     duration: 45,
     blocks: [
+      t('**Інтерактивний урок на одній сторінці з пультом учителя:** https://murly.com.ua/game-lessons/trial-my-style.html'),
       h('Hello! This or that? · 5 хв'),
       t('Choose **one**. Say: *I like… because it’s…*'),
       t(`pink **or** black?
@@ -188,8 +190,8 @@ pizza **or** sushi?`),
       note('Пробний урок, 12 років, рівень приблизно A1. Перші 5 хвилин просто знайомство й гра «This or that». Хвали за будь-яку відповідь. Слухай: чи будує речення сама, чи відповідає одним словом.'),
 
       h('Words: my style · 8 хв'),
-      img(1, '/lessons/style/makeup.svg', 'mirror · lip gloss · mascara · nail polish · blush · hair clip'),
-      img(2, '/lessons/style/outfit.svg', 'hoodie · flared jeans · sneakers · headband · earrings'),
+      img(1, 'https://images.unsplash.com/photo-1583209814683-c023dd293cc6?w=900&q=70&auto=format&fit=crop', 'lip gloss · blush · brush (Photo: Unsplash)'),
+      img(2, 'https://images.unsplash.com/photo-1603217040208-56131869e0e9?w=900&q=70&auto=format&fit=crop', 'crop top · jeans · sunglasses (Photo: Unsplash)'),
       vocab(`lip gloss = блиск для губ
 mascara = туш для вій
 nail polish = лак для нігтів
@@ -236,21 +238,21 @@ They’re expensive. → [They aren’t expensive/They are not expensive/They’
       note('Це діагностика. Порахуй помилки: 0-2 це to be вже знає, далі можна брати Present Simple; 3-5 повторити юніти 1-2 книги граматики (/grammar-book/beginner/am-is-are); більше 5 почати з to be й особових займенників.'),
 
       h('Reading: Lily’s profile · 8 хв'),
-      img(3, '/lessons/style/profile.svg', 'selfie · post · likes · followers'),
+      img(3, 'https://images.unsplash.com/photo-1695753640148-0c7b3bcd3b2b?w=900&q=70&auto=format&fit=crop', 'selfie · post (Photo: Unsplash)'),
       t(`**Hi! I’m Lily!**
 
-I’m twelve and I’m from Kyiv. My favourite colour is pink. My room is pink too!
+I’m twelve and I’m from London. My favourite colour is pink. My room is pink too!
 
-This is my best friend Sofia. She is thirteen. She is funny and kind. We are in the same class.
+This is my best friend Emma. She is thirteen. She is funny and kind. We are in the same class.
 
 My favourite things are lip gloss, my white sneakers and my cat Muffin. Muffin is grey and very lazy.
 
 I’m not good at maths, but I’m good at art. My posts are about art, cats and outfits.`),
       ex(
         ['truefalse', 'True or False?', `Lily is twelve. = True
-Lily is from Lviv. = False
-Sofia is Lily’s sister. = False
-Sofia and Lily are in the same class. = True
+Lily is from Manchester. = False
+Emma is Lily’s sister. = False
+Emma and Lily are in the same class. = True
 Muffin is a grey cat. = True
 Lily is good at maths. = False`],
       ),
