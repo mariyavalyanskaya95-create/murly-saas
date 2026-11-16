@@ -5,6 +5,7 @@ import QuizGame from '../games/QuizGame';
 import MatchGame from '../games/MatchGame';
 import AnagramGame from '../games/AnagramGame';
 import CardsGame from '../games/CardsGame';
+import HangmanGame from '../games/HangmanGame';
 import { GameFinishContext } from '../games/finish';
 import ExerciseView from '../exercise/ExerciseView';
 import { grade, type Answers, type Section } from '@/lib/exercise';
@@ -97,7 +98,7 @@ function HomeworkRow({ h, words, open, onToggle, onPatch, passOk = false }: {
             items.length >= 4
               ? <GameFinishContext.Provider value={onFinish}>
                   <div className="g-stage">
-                    {h.game === 'match' ? <MatchGame items={items} /> : h.game === 'anagram' ? <AnagramGame items={items} /> : h.game === 'cards' ? <CardsGame items={items} /> : <QuizGame items={items} />}
+                    {h.game === 'match' ? <MatchGame items={items} /> : h.game === 'anagram' ? <AnagramGame items={items} /> : h.game === 'cards' ? <CardsGame items={items} /> : h.game === 'hangman' ? <HangmanGame items={items} /> : <QuizGame items={items} />}
                   </div>
                 </GameFinishContext.Provider>
               : <p className="t-muted">{t({ uk: 'У словнику поки замало слів для гри.', ru: 'В словаре пока мало слов для игры.', en: 'There are not enough words in your dictionary for a game yet.' })}</p>
