@@ -23,7 +23,7 @@ export default async function ParentPage({ params }: { params: { token: string }
   const s = st[0];
   if (!s) notFound();
   const [lessons, hw, words, teacher, pays] = await Promise.all([
-    db.query(`lessons?student_id=eq.${enc(sid)}&select=student_id,start,status,duration&order=start.desc&limit=200`).then(uniqLessons).catch(() => []),
+    db.query(`lessons?student_id=eq.${enc(sid)}&select=student_id,start,status,duration,trial&order=start.desc&limit=200`).then(uniqLessons).catch(() => []),
     db.query(`homework?student_id=eq.${enc(sid)}&select=title,status,score,total,feedback,due,done_at,created_at&order=created_at.desc&limit=30`).catch(() => []),
     db.query(`words?student_id=eq.${enc(sid)}&select=id`).catch(() => []),
     db.query(`teacher_settings?teacher_id=eq.${enc(String(s.teacher_id))}&select=name`).catch(() => []),
