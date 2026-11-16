@@ -43,8 +43,8 @@ const toDb = {
     for (const k of ['contact', 'parent', 'link', 'song', 'about']) if (k in p && p[k] === undefined) o[k] = null;
     return o;
   },
-  lesson: (l: Row, t: string) => ({ id: l.id, teacher_id: t, student_id: l.studentId, start: l.start, duration: l.duration, topic: l.topic ?? null, link: l.link ?? null, status: l.status, group_id: l.groupId ?? null }),
-  lessonPatch: (p: Row) => pick(p, ['start', 'duration', 'topic', 'link', 'status']),
+  lesson: (l: Row, t: string) => ({ id: l.id, teacher_id: t, student_id: l.studentId, start: l.start, duration: l.duration, topic: l.topic ?? null, link: l.link ?? null, status: l.status, group_id: l.groupId ?? null, trial: l.trial === 'free' || l.trial === 'paid' ? l.trial : null }),
+  lessonPatch: (p: Row) => { const o = pick(p, ['start', 'duration', 'topic', 'link', 'status']); if ('trial' in p) o.trial = p.trial === 'free' || p.trial === 'paid' ? p.trial : null; return o; },
   note: (n: Row, t: string) => ({ id: n.id, teacher_id: t, student_id: n.studentId, text: n.text, at: n.at, images: n.images ?? null, files: n.files ?? null }),
   word: (w: Row, t: string) => ({ id: w.id, teacher_id: t, student_id: w.studentId, en: w.en, uk: w.uk, example: w.example ?? null, at: w.at }),
   payment: (p: Row, t: string) => ({ id: p.id, teacher_id: t, student_id: p.studentId, amount: p.amount, note: p.note ?? null, at: p.at }),
@@ -61,7 +61,7 @@ const toDb = {
 const und = (v: unknown) => (v === null ? undefined : v);
 const fromDb = {
   student: (r: Row) => ({ trLang: r.tr_lang === 'ru' ? 'ru' : r.tr_lang === 'uk' ? 'uk' : undefined, payRemind: Boolean(r.pay_remind), passOff: Boolean(r.pass_off), tz: und(r.tz), id: r.id, name: r.name, level: r.level, price: r.price, contact: und(r.contact), parent: und(r.parent), link: und(r.link), color: r.color, createdAt: r.created_at, inviteCode: und(r.invite_code), joined: Boolean(r.user_id), song: und(r.song), songUrl: und(r.song_url), about: und(r.about), profile: und(r.profile), payMode: r.pay_mode === 'post' ? 'post' : 'pre', loginPhone: und(r.login_phone), loginPin: und(r.login_pin), adult: Boolean(r.is_adult), nmt: Boolean(r.nmt), owedLessons: Number(r.owed_lessons) || 0, prepaidLessons: Number(r.prepaid_lessons) || 0, tg: Boolean(r.tg_chat_id), parentTg: Boolean(r.parent_tg_chat_id) }),
-  lesson: (r: Row) => ({ id: r.id, studentId: r.student_id, start: r.start, duration: r.duration, topic: und(r.topic), link: und(r.link), status: r.status, groupId: und(r.group_id) }),
+  lesson: (r: Row) => ({ id: r.id, studentId: r.student_id, start: r.start, duration: r.duration, topic: und(r.topic), link: und(r.link), status: r.status, groupId: und(r.group_id), trial: r.trial === 'free' || r.trial === 'paid' ? r.trial : undefined }),
   group: (r: Row) => ({ id: r.id, name: r.name, color: r.color, studentIds: (r.student_ids as string[] | null) ?? [], link: und(r.link), createdAt: r.created_at }),
   note: (r: Row) => ({ id: r.id, studentId: r.student_id, text: r.text, at: r.at, images: und(r.images), files: und(r.files) }),
   word: (r: Row) => ({ id: r.id, studentId: r.student_id, en: r.en, uk: r.uk, example: und(r.example), at: r.at, box: Number(r.srs_box) || 0, wrong: Number(r.srs_wrong) || 0 }),
