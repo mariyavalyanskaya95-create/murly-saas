@@ -12,7 +12,7 @@ import { tr } from '@/lib/i18n-server';
 export const dynamic = 'force-dynamic';
 export function generateMetadata({ params }: { params: { loc: string } }): Metadata {
   const q = QUEST_LIST.find((x) => x.id === params.loc);
-  return { title: `${q ? q.title.en : 'Quest'}: Find it, Bubbles! | Murly`, description: 'Квест англійською для дітей 6–11: слухай котика Бульбашку і знаходь предмети. A1–A2.' };
+  return { title: `${q ? q.title.en : 'Quest'}: Find me | Murly`, description: 'Квест англійською для дітей 6–11: слухай котика і знаходь предмети. A1–A2.' };
 }
 
 export default async function QuestLocPage({ params, searchParams }: { params: { loc: string }; searchParams: { hw?: string } }) {
