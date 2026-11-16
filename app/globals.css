@@ -4599,3 +4599,23 @@ textarea.t-parent__url { width: 300px; font: inherit; font-size: 13px; }
 .g-hang__key.is-hit { background: #CDEFD8; }
 .g-hang__key.is-miss { background: #F3D4DA; opacity: .6; }
 @media (max-width: 520px) { .g-hang__ch { width: 28px; height: 40px; font-size: 22px; } .g-hang__key { width: 34px; height: 40px; font-size: 18px; } }
+
+/* Напиши слово, Слово на слух, Пари на час */
+.g-spell { display: grid; justify-items: center; gap: 10px; }
+.g-listen { display: inline-flex; gap: 8px; align-items: center; }
+.g-listen .mu-ic, .g-listen svg { width: 22px; height: 22px; }
+.g-spell__form { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; width: 100%; }
+.g-spell__in { flex: 1 1 240px; max-width: 360px; padding: 12px 16px; border: 2px solid var(--mu-ink); border-radius: 14px; font-size: 22px; font-weight: 700; text-align: center; }
+.g-spell__in.is-right { background: #CDEFD8; }
+.g-spell__in.is-wrong { background: #F3D4DA; }
+.g-listen-big { width: 96px; height: 96px; border-radius: 50%; border: 3px solid var(--mu-ink); background: #C7C2F3; box-shadow: 0 4px 0 var(--mu-ink); display: grid; place-items: center; margin: 6px auto 10px; cursor: pointer; }
+.g-listen-big svg, .g-listen-big .mu-ic { width: 46px; height: 46px; }
+.g-listen-big:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--mu-ink); }
+.g-memo__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+@media (max-width: 560px) { .g-memo__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.g-memo__card { min-height: 84px; padding: 8px; border: 2px solid var(--mu-ink); border-radius: 16px; background: #C7C2F3; box-shadow: 0 4px 0 var(--mu-ink); font-weight: 800; font-size: 16px; cursor: pointer; transition: transform .15s, background .15s; overflow-wrap: anywhere; }
+.g-memo__card span { display: block; }
+.g-memo__card:not(.is-up) span { font-size: 28px; color: #fff; }
+.g-memo__card.is-up { background: #fff; transform: rotateY(0); }
+.g-memo__card.is-up.is-en { background: #FFF3C4; }
+.g-memo__card.is-done { background: #CDEFD8; box-shadow: none; transform: translateY(3px); opacity: .75; }
