@@ -113,6 +113,66 @@ export default function BookScene({ scene, className = '' }: { scene: Scene; cla
         <Dollar x={300} y={70} /><Dollar x={470} y={62} s={0.8} /><Dollar x={540} y={92} s={0.7} />
         <Word x={430} y={262} size={18}>He play<tspan fill="#D83A6E">s</tspan>.</Word>
       </>}
+      {scene === 'police-do' && <>
+        <Ball x={130} y={140} r={36} fill="#BFE3F2" label="he" mood="wow" arms="up" fs={14} />
+        <path d="M100 120 h60" stroke={INK} strokeWidth={9} strokeLinecap="round" />
+        <Ball x={300} y={140} r={46} fill="#3E5BA9" label="do" mood="grin" arms="side" fs={18} />
+        <path d="M262 100 h76 l-8 -26 h-60 z" fill="#1B2140" stroke={INK} strokeWidth={3} />
+        <circle cx="300" cy="86" r="6" fill="#FFD23F" />
+        <circle cx="372" cy="150" r="20" fill="#fff" stroke={INK} strokeWidth={3} />
+        <Word x={372} y={159} size={22} color="#D83A6E">S</Word>
+        <rect x="420" y="92" width="130" height="60" rx="10" fill="#fff" stroke={INK} strokeWidth={3} />
+        <Word x={485} y={132} size={26} color="#D83A6E">NOT</Word>
+        <path d="M485 152 v40" stroke={INK} strokeWidth={4} />
+        <Word x={300} y={262} size={20}>He does<tspan fill="#D83A6E">n’t</tspan> play.</Word>
+      </>}
+      {scene === 'do-flip' && <>
+        <Ball x={120} y={150} r={40} fill="#3E5BA9" label="Does" mood="wow" arms="up" legs="jump" tilt={-8} fs={13} />
+        <path d="M84 116 h72 l-8 -22 h-56 z" fill="#1B2140" stroke={INK} strokeWidth={3} />
+        <Ball x={230} y={150} r={38} fill="#F7C3D4" label="she" mood="smile" fs={13} />
+        <rect x="285" y="124" width="100" height="54" rx="18" fill="#fff" stroke={INK} strokeWidth={3} />
+        <Word x={335} y={159} size={22}>like</Word>
+        <Word x={480} y={162} size={26} color="#534AB7">pizza?</Word>
+        <Arrow d="M200 100 C 170 40, 120 40, 118 98" />
+        <Word x={300} y={262} size={20}>Does she like pizza?</Word>
+      </>}
+      {scene === 'now-vs-always' && <>
+        <rect x="30" y="60" width="250" height="170" rx="24" fill="#FFF3D6" stroke={INK} strokeWidth={3} />
+        <Word x={155} y={48} size={16}>NOW</Word>
+        <Ball x={110} y={150} r={34} fill="#B9E6C9" label="is" mood="grin" arms="side" fs={14} />
+        <Ball x={210} y={150} r={32} fill="#FFC98B" label="-ing" mood="grin" legs="run" fs={13} />
+        {[0, 1].map((i) => <path key={i} d={`M${250 + i * 10} ${130 + i * 16} h20`} stroke={INK} strokeWidth={3} strokeLinecap="round" />)}
+        <rect x="320" y="60" width="250" height="170" rx="24" fill="#FFE1EC" stroke={INK} strokeWidth={3} />
+        <Word x={445} y={48} size={16}>EVERY DAY</Word>
+        {[0, 1, 2].map((r) => [0, 1, 2, 3].map((c) => <circle key={`${r}${c}`} cx={380 + c * 42} cy={105 + r * 40} r={14} fill={['#FFC98B', '#B9E6C9', '#C7C2F3', '#BFE3F2'][c]} stroke={INK} strokeWidth={2.2} />))}
+        <Word x={155} y={268} size={18}>I’m reading.</Word>
+        <Word x={445} y={268} size={18}>I read every day.</Word>
+      </>}
+      {scene === 'backpack' && <>
+        <path d="M230 100 q70 -60 140 0 v120 q0 20 -20 20 h-100 q-20 0 -20 -20 z" fill="#FFC98B" stroke={INK} strokeWidth={3.2} />
+        <rect x="255" y="150" width="90" height="50" rx="12" fill="#FFE1A8" stroke={INK} strokeWidth={3} />
+        <path d="M270 90 q30 -40 60 0" fill="none" stroke={INK} strokeWidth={3} />
+        <rect x="248" y="58" width="22" height="50" rx="4" fill="#7FD3F2" stroke={INK} strokeWidth={2.5} transform="rotate(-14 259 83)" />
+        <path d="M320 50 l18 -10 l8 22 l-18 8 z" fill="#FFD23F" stroke={INK} strokeWidth={2.5} />
+        <circle cx="352" cy="70" r="14" fill="#E5484D" stroke={INK} strokeWidth={2.5} />
+        <Ball x={120} y={150} r={42} fill="#FFFFFF" label="I" mood="grin" arms="side" />
+        <Ball x={480} y={150} r={40} fill="#F7C3D4" label="she" mood="smile" arms="side" fs={14} />
+        <Word x={120} y={262} size={18}>I’ve got…</Word>
+        <Word x={480} y={262} size={18}>She ha<tspan fill="#D83A6E">s</tspan> got…</Word>
+      </>}
+      {scene === 'time-machine' && <>
+        <rect x="210" y="70" width="180" height="150" rx="26" fill="#C7C2F3" stroke={INK} strokeWidth={3.2} />
+        <circle cx="300" cy="135" r="42" fill="#fff" stroke={INK} strokeWidth={3} />
+        <path d="M300 135 v-26 M300 135 l-18 10" stroke={INK} strokeWidth={4} strokeLinecap="round" />
+        <Arrow d="M330 100 a42 42 0 1 0 12 30" />
+        <Word x={300} y={60} size={16}>YESTERDAY</Word>
+        <Ball x={100} y={110} r={30} fill="#FFC98B" label="am" mood="smile" fs={13} />
+        <Ball x={100} y={190} r={30} fill="#B9E6C9" label="is" mood="smile" fs={13} />
+        <Ball x={500} y={110} r={32} fill="#FFE07A" label="was" mood="grin" fs={13} />
+        <Ball x={500} y={190} r={32} fill="#BFE3F2" label="were" mood="grin" fs={12} />
+        <Word x={160} y={260} size={16}>am, is → was</Word>
+        <Word x={440} y={260} size={16}>are → were</Word>
+      </>}
     </svg>
   );
 }
