@@ -35,22 +35,22 @@ export default function GrammarBookPage() {
         return (
           <section key={id} className="mu-section" style={{ paddingTop: 12 }}>
             <div className="mu-container">
-              <div className={`bk-cover bk-cover--${id}`}>
+              <div className={`gb-cover gb-cover--${id}`}>
                 <div><span className="gr-level">{b.level}</span><h2>{t(b.title)}</h2><p>{t(b.lead)}</p></div>
               </div>
               {b.ready ? (
-                <div className="bk-units">
+                <div className="gb-units">
                   {units.map((u) => (
-                    <Link key={u.slug} href={`/grammar-book/${id}/${u.slug}`} className="bk-unit">
+                    <Link key={u.slug} href={`/grammar-book/${id}/${u.slug}`} className="gb-unit">
                       <BookScene scene={u.scene} />
-                      <span className="bk-unit__n">Unit {u.n}{u.free && <em>{t({ uk: 'безкоштовно', ru: 'бесплатно', en: 'free' })}</em>}</span>
+                      <span className="gb-unit__n">Unit {u.n}{u.free && <em>{t({ uk: 'безкоштовно', ru: 'бесплатно', en: 'free' })}</em>}</span>
                       <b>{u.title}</b>
                       <small>{t(u.topic)}</small>
                     </Link>
                   ))}
                   {RED_NEXT.map((u) => (
-                    <div key={u.n} className="bk-unit is-soon" aria-disabled="true">
-                      <span className="bk-unit__n">Unit {u.n}<em>{t({ uk: 'скоро', ru: 'скоро', en: 'soon' })}</em></span>
+                    <div key={u.n} className="gb-unit is-soon" aria-disabled="true">
+                      <span className="gb-unit__n">Unit {u.n}<em>{t({ uk: 'скоро', ru: 'скоро', en: 'soon' })}</em></span>
                       <b>{u.title}</b>
                     </div>
                   ))}
