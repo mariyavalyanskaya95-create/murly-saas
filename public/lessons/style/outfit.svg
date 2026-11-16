@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400"><rect width="600" height="400" rx="28" fill="#F4EFFF"/>
+<g stroke="#1B2140" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round">
+<!-- hoodie -->
+<path d="M70 120q40-40 80-40q40 0 80 40l30 70-34 14-16-30v120h-120v-120l-16 30-34-14z" fill="#B57BEA"/><path d="M118 82q32 40 64 0" fill="#9A63D0"/><path d="M140 112v40M160 112v40" stroke-width="3"/><rect x="118" y="190" width="64" height="34" rx="8" fill="#9A63D0"/>
+<!-- flared jeans -->
+<path d="M300 80h80l6 60-14 190h-44l-6-150-6 150h-44l-14-190z" fill="#8FB8E6"/><path d="M300 92h80" stroke-width="3"/><path d="M340 92v40" stroke-width="3"/><path d="M262 330h48M330 330h48" stroke-width="3"/>
+<!-- sneakers -->
+<path d="M430 270q0-26 24-26h20q8 18 30 20l30 6q16 4 16 22v12h-120z" fill="#fff"/><path d="M430 296h120" stroke-width="3"/><path d="M462 254l8 14M476 252l8 14" stroke-width="2.5"/><rect x="430" y="296" width="120" height="14" rx="6" fill="#FFB3CC"/>
+<!-- headband -->
+<path d="M440 150q60-70 120 0" fill="none" stroke="#FF8FB8" stroke-width="18"/><path d="M440 150q60-70 120 0" fill="none" stroke-width="3"/>
+<!-- earrings -->
+<circle cx="452" cy="200" r="12" fill="#FFE07A"/><circle cx="452" cy="224" r="8" fill="#fff"/><circle cx="548" cy="200" r="12" fill="#FFE07A"/><circle cx="548" cy="224" r="8" fill="#fff"/>
+</g>
+<g font-family="Arial Rounded MT Bold, Arial, sans-serif" font-weight="700" font-size="20" fill="#1B2140" text-anchor="middle">
+<text x="150" y="360">hoodie</text><text x="340" y="360">flared jeans</text><text x="490" y="350">sneakers</text><text x="500" y="110">headband</text><text x="500" y="218">earrings</text></g>
+</svg>

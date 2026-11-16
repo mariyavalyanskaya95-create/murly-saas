@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400"><rect width="600" height="400" rx="28" fill="#FFF0F5"/>
+
+<g stroke="#1B2140" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round">
+<!-- mirror -->
+<ellipse cx="110" cy="170" rx="70" ry="90" fill="#F7B9CF"/><ellipse cx="110" cy="170" rx="55" ry="74" fill="#E9F6FF"/><path d="M80 130q14-22 34-26" stroke="#fff" stroke-width="7" fill="none"/><rect x="100" y="258" width="20" height="60" fill="#F7B9CF"/><ellipse cx="110" cy="330" rx="50" ry="12" fill="#F7B9CF"/>
+<!-- lip gloss -->
+<rect x="220" y="150" width="46" height="150" rx="14" fill="#FF8FB8"/><rect x="226" y="80" width="34" height="76" rx="12" fill="#FFE3EC"/><path d="M232 100v40" stroke="#fff" stroke-width="5"/>
+<!-- mascara -->
+<rect x="300" y="120" width="34" height="180" rx="14" fill="#C7A6F5"/><rect x="304" y="96" width="26" height="30" rx="8" fill="#1B2140"/><path d="M312 128v160" stroke="#fff" stroke-width="4" opacity=".6"/>
+<!-- nail polish -->
+<path d="M372 210q0-20 20-20h40q20 0 20 20v80q0 14-14 14h-52q-14 0-14-14z" fill="#FF5D8A"/><rect x="394" y="140" width="36" height="52" rx="8" fill="#FFE07A"/><path d="M384 222q10-12 26-12" stroke="#fff" stroke-width="6" fill="none"/>
+<!-- blush palette -->
+<rect x="470" y="210" width="100" height="90" rx="16" fill="#FFF"/><circle cx="500" cy="242" r="16" fill="#FFB3C8"/><circle cx="540" cy="242" r="16" fill="#FF8FA3"/><circle cx="500" cy="276" r="16" fill="#F5C7A9"/><circle cx="540" cy="276" r="16" fill="#E9A3C8"/>
+<!-- hair clip & bow -->
+<path d="M470 140q20-30 40 0q20-30 40 0q-20 30-40 0q-20 30-40 0z" fill="#FFB3CC"/><circle cx="510" cy="140" r="9" fill="#FF5D8A"/>
+</g>
+<g fill="#FF8FB8"><path d="M190 60l5 10 10 2-8 7 2 10-9-5-9 5 2-10-8-7 10-2z"/><path d="M560 80l4 8 8 1-6 6 2 8-8-4-8 4 2-8-6-6 8-1z"/></g>
+<g font-family="Arial Rounded MT Bold, Arial, sans-serif" font-weight="700" font-size="20" fill="#1B2140" text-anchor="middle">
+<text x="110" y="370">mirror</text><text x="243" y="330">lip gloss</text><text x="317" y="362">mascara</text><text x="412" y="330">nail polish</text><text x="520" y="330">blush</text><text x="510" y="190">hair clip</text></g>
+</svg>
