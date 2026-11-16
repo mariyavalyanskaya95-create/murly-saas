@@ -99,13 +99,12 @@ export default function WeekGrid({ days, theme = 'lavender' }: { days: Date[]; t
         className={`wg-l t-student--${st?.color ?? 'lime'} is-${l.status} ${l.status === 'planned' && past ? 'is-unmarked' : ''} ${sel === key ? 'is-sel' : ''} ${grp ? 'is-group' : ''}`}
         style={{ top, height: h, ...side }} title={`${fmtTime(l.start, t.lang)} ${st?.name ?? ''}${l.topic ? ` · ${l.topic}` : ''}${!grp && (st as { tz?: string })?.tz ? ` · ${new Date(l.start).toLocaleTimeString(t.lang === 'en' ? 'en-GB' : t.lang === 'ru' ? 'ru-RU' : 'uk-UA', { hour: '2-digit', minute: '2-digit', timeZone: (st as { tz?: string }).tz })} (${(st as { tz?: string }).tz})` : ''}`}>
         <b>{st?.name ?? '?'}</b>
-        <span>{fmtTime(l.start, t.lang)}{l.duration !== 60 ? ` · ${l.duration}′` : ''}</span>
+        <span>{fmtTime(l.start, t.lang)}{l.duration !== 60 && !l.trial ? ` · ${l.duration}′` : ''}{l.trial && <i className="wg-trial">{l.trial === 'free' ? t({ uk: 'пробний', ru: 'пробный', en: 'trial' }) : t({ uk: 'пробний ₴', ru: 'пробный ₴', en: 'trial ₴' })}</i>}</span>
         {l.topic && h >= 48 && <em className="wg-note">{l.topic}</em>}
         {l.topic && h < 48 && <i className="wg-note-dot" aria-hidden="true" />}
         {l.status === 'done' && <i className="wg-mark">✓</i>}
         {l.status === 'missed' && <i className="wg-mark">✕</i>}
         {l.status === 'charged' && <i className="wg-mark">₴</i>}
-        {l.trial && <i className="wg-trial">{l.trial === 'free' ? t({ uk: 'пробний', ru: 'пробный', en: 'trial' }) : t({ uk: 'пробний ₴', ru: 'пробный ₴', en: 'trial ₴' })}</i>}
       </button>
     );
   };
