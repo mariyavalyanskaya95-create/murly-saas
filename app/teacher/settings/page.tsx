@@ -41,7 +41,7 @@ export default function SettingsPage() {
           <Link href="/grammar" className="mu-btn t-btn-sm">{t({ uk: 'Граматика', ru: 'Грамматика', en: 'Grammar' })}</Link>
         </div>
       </div>
-      <form className="t-card" onSubmit={(e) => { e.preventDefault(); if (validLink) { saveSettings({ ...f, link: f.link.trim(), name: f.name.trim() }); setSaved(true); } }}>
+      <form className="t-card" onSubmit={(e) => { e.preventDefault(); if (validLink) { saveSettings({ ...f, link: f.link.trim(), name: f.name.trim(), payInfo: (f.payInfo ?? '').trim() }); setSaved(true); } }}>
         <h2>{t({ uk: 'Як до тебе звертатися', ru: 'Как к тебе обращаться', en: 'What should we call you' })}</h2>
         <div className="t-form">
           <label>{t({ uk: 'Ім’я', ru: 'Имя', en: 'Name' })}<input value={f.name} onChange={(e) => { setF({ ...f, name: e.target.value }); setSaved(false); }} placeholder={t({ uk: 'Напр. Марія', ru: 'Напр. Мария', en: 'e.g. Maria' })} /></label>
@@ -50,6 +50,12 @@ export default function SettingsPage() {
         <h2>{t({ uk: 'Твій часовий пояс', ru: 'Твой часовой пояс', en: 'Your time zone' })}</h2>
         <p className="t-muted">{t({ uk: 'У цьому часі бот надсилає тобі розклад і ранкові нагадування. Учням пояс задаєш у картці учня.', ru: 'В этом времени бот присылает тебе расписание и утренние напоминания. Ученикам пояс задаёшь в карточке ученика.', en: 'The bot sends you the schedule and morning reminders in this time. Set each student’s zone on their card.' })}</p>
         <div className="t-form" style={{ marginBottom: 14 }}><label className="t-form__wide">{t({ uk: 'Країна / пояс', ru: 'Страна / пояс', en: 'Country / zone' })}<TzSelect value={f.tz} onChange={(tz) => { setF({ ...f, tz }); setSaved(false); }} /></label></div>
+
+        <h2>{t({ uk: 'Реквізити для оплати', ru: 'Реквизиты для оплаты', en: 'Payment details' })}</h2>
+        <p className="t-muted">{t({ uk: 'Учні й батьки побачать їх у боті в розділі «Оплата» разом із сумою до сплати. Можна вказати номер карти, IBAN або посилання на банку.', ru: 'Ученики и родители увидят их в боте в разделе «Оплата» вместе с суммой к оплате. Можно указать номер карты, IBAN или ссылку на банку.', en: 'Students and parents will see this in the bot under “Payments” together with the amount due. A card number, IBAN or a payment link.' })}</p>
+        <div className="t-form" style={{ marginBottom: 14 }}><label className="t-form__wide">{t({ uk: 'Карта або посилання', ru: 'Карта или ссылка', en: 'Card or link' })}
+          <textarea rows={2} maxLength={300} value={f.payInfo ?? ''} onChange={(e) => { setF({ ...f, payInfo: e.target.value }); setSaved(false); }} placeholder={t({ uk: 'Напр. Monobank 0000 0000 0000 0000, Марія', ru: 'Напр. Monobank 0000 0000 0000 0000, Мария', en: 'e.g. card 0000 0000 0000 0000' })} />
+        </label></div>
 
         <h2>{t({ uk: 'Дзвінки', ru: 'Звонки', en: 'Calls' })}</h2>
         <p className="t-muted">{t({ uk: 'Кнопка «Дзвінок» з’явиться біля кожного заняття.', ru: 'Кнопка «Звонок» появится возле каждого занятия.', en: 'A “Call” button will appear next to every lesson.' })}</p>
