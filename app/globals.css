@@ -4622,4 +4622,4 @@ textarea.t-parent__url { width: 300px; font: inherit; font-size: 13px; }
 
 /* пробний урок */
 .t-tag--trial{background:#FFE9C7;color:#7A4B00}
-.wg-trial{justify-self:start;margin-top:1px;font-style:normal;font-size:10px;font-weight:800;background:#FFE9C7;color:#7A4B00;border-radius:6px;padding:0 5px;line-height:15px}
+.wg-trial{display:inline-block;margin-left:5px;vertical-align:1px;font-style:normal;font-size:10px;font-weight:800;background:#FFE9C7;color:#7A4B00;border-radius:6px;padding:0 5px;line-height:15px}
