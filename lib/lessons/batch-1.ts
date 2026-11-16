@@ -589,6 +589,7 @@ What do you wear on a rainy day?`],
     aims: 'Назвемо членів сім’ї\nПослухаємо, як Макс показує другові фото своєї сім’ї\nНавчимося говорити have got / has got\nРозкажемо і напишемо про свою сім’ю',
     duration: 60,
     blocks: [
+      { id: 'b1-family-page', type: 'text', text: '**Інтерактивний урок на одній сторінці з пультом учителя** (переклади, зразки відповідей і навідні питання до кожного блоку): https://murly.com.ua/game-lessons/my-family.html' },
       h('Warm-up · 5 хв'),
       talk(`How are you today?
 Is your family big or small?

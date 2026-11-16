@@ -176,6 +176,7 @@ Write about your friend or pet: 3 sentences with isn’t / aren’t / ’m not.`
     aims: 'Вмію ставити питання з am, is, are\nВідповідаю коротко: Yes, I am. / No, she isn’t.\nСтавлю питання з where, how old, what, who\nМожу взяти «інтерв’ю» в нового друга',
     duration: 60,
     blocks: [
+      { id: 'b5-tobeq-page', type: 'text', text: '**Інтерактивний урок на одній сторінці з пультом учителя** (переклади, зразки відповідей і навідні питання до кожного блоку): https://murly.com.ua/game-lessons/to-be-questions.html' },
       h('Warm-up · 5 хв'),
       talk(`Are you tired today?
 Is your school far from your home?

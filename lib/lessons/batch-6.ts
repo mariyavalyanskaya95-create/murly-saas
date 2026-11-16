@@ -520,6 +520,7 @@ Right now at my home (що відбувається вдома просто за
     aims: 'Кажемо, що в нас є: I have got / I have a cat\nСтавимо питання і заперечення: Have you got...? Do you have...? I haven’t got / I don’t have\nЗнаємо, що he / she / it has got або has\nРозповідаємо про свою родину, речі й улюбленця',
     duration: 60,
     blocks: [
+      { id: 'b6-havegot-page', type: 'text', text: '**Інтерактивний урок на одній сторінці з пультом учителя** (переклади, зразки відповідей і навідні питання до кожного блоку): https://murly.com.ua/game-lessons/have-got.html' },
       h('Warm-up · 5 хв'),
       video('https://www.youtube.com/watch?v=WwKJI5cuIug', 'Watch the first minute. Who is in Peppa’s family? Say: Peppa has got a brother. His name is...', 'Peppa Pig (офіційний канал): Muddy Puddles'),
       note('Подай з гумором: «Перевіримо, чи ти розумієш серіал для дітей англійською без субтитрів». Після першої хвилини учень називає членів родини Пеппи: She has got a brother, George. She has got a mum and a dad. Далі переходь до розмови.'),
