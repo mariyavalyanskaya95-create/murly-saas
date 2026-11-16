@@ -9,7 +9,7 @@ import { alt } from '@/lib/seo';
 export function generateMetadata(): Metadata {
   const t = tr();
   return {
-    title: t({ uk: 'Murly City: розмовна настільна гра англійською | Murly', ru: 'Murly City: разговорная настольная игра на английском | Murly', en: 'Murly City: a speaking board game in English | Murly' }),
+    title: t({ uk: 'City Walk: розмовна настільна гра англійською | Murly', ru: 'City Walk: разговорная настольная игра на английском | Murly', en: 'City Walk: a speaking board game in English | Murly' }),
     description: t({
       uk: 'Настільна гра для уроків англійської: кидай кубик, ходи містом, виконуй усні завдання й купуй місця. Теми: оренда житла, моє місто, їжа й кафе, подорожі. Від A1 до B2.',
       ru: 'Настольная игра для уроков английского: бросай кубик, ходи по городу, выполняй устные задания и покупай места. Темы: аренда жилья, мой город, еда и кафе, путешествия. От A1 до B2.',
@@ -29,7 +29,7 @@ export default function CityPage() {
         <div style={{ marginLeft: 'auto' }}><LangSwitch /></div>
       </header>
       <main className="sr-page">
-        <h1>Murly City</h1>
+        <h1>City Walk</h1>
         <MurlyCity />
       </main>
     </div>
