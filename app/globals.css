@@ -4619,3 +4619,7 @@ textarea.t-parent__url { width: 300px; font: inherit; font-size: 13px; }
 .g-memo__card.is-up { background: #fff; transform: rotateY(0); }
 .g-memo__card.is-up.is-en { background: #FFF3C4; }
 .g-memo__card.is-done { background: #CDEFD8; box-shadow: none; transform: translateY(3px); opacity: .75; }
+
+/* пробний урок */
+.t-tag--trial{background:#FFE9C7;color:#7A4B00}
+.wg-trial{justify-self:start;margin-top:1px;font-style:normal;font-size:10px;font-weight:800;background:#FFE9C7;color:#7A4B00;border-radius:6px;padding:0 5px;line-height:15px}
