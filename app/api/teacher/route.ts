@@ -56,7 +56,7 @@ const toDb = {
     if ('updatedAt' in p) o.updated_at = p.updatedAt;
     return o;
   },
-  settings: (s: Row, t: string) => ({ teacher_id: t, name: s.name ?? '', link: s.link ?? '', link_kind: s.linkKind ?? 'zoom', ...('tz' in s ? { tz: validTz(s.tz) ? s.tz : null } : {}), updated_at: new Date().toISOString() }),
+  settings: (s: Row, t: string) => ({ teacher_id: t, name: s.name ?? '', link: s.link ?? '', link_kind: s.linkKind ?? 'zoom', ...('tz' in s ? { tz: validTz(s.tz) ? s.tz : null } : {}), ...('payInfo' in s ? { pay_info: String(s.payInfo ?? '').slice(0, 300).trim() || null } : {}), updated_at: new Date().toISOString() }),
 };
 const und = (v: unknown) => (v === null ? undefined : v);
 const fromDb = {
@@ -105,7 +105,7 @@ export async function GET() {
       payments: payments.map(fromDb.payment),
       homework: homework.map(fromDb.homework),
       plans: plans.map(fromDb.plan),
-      settings: s ? { name: s.name, link: s.link, linkKind: s.link_kind, tz: s.tz ?? undefined, ...(s.is_owner === true && aiReady() ? { ai: true } : {}) } : { name: '', link: '', linkKind: 'zoom' },
+      settings: s ? { name: s.name, link: s.link, linkKind: s.link_kind, tz: s.tz ?? undefined, payInfo: s.pay_info ?? '', ...(s.is_owner === true && aiReady() ? { ai: true } : {}) } : { name: '', link: '', linkKind: 'zoom' },
     });
   } catch (e) {
     console.error(e);
