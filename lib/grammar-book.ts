@@ -1,10 +1,10 @@
-// Граматична книга Murly: розворот «сторінка правила + сторінка вправ».
+// Граматична книга: розворот «сторінка правила + сторінка вправ».
 // Порядок тем як у класичних підручниках A1-A2 і B1-B2, але тексти, приклади, вправи й картинки повністю наші.
 // Перші 5 юнітів безкоштовні. Вправи пишемо у форматі lib/exercise.ts ([відповідь], {правильний|інший}).
 import type { T } from './i18n';
 import type { SectionType } from './exercise';
 
-export type BookId = 'red' | 'blue';
+export type BookId = 'beginner' | 'intermediate';
 export type Scene = 'be-family' | 'be-flip' | 'ing-motor' | 'ing-flip' | 'simple-thieves';
 export type BookUnit = {
   n: number; slug: string; title: string; level: string; scene: Scene; free: boolean;
@@ -18,33 +18,29 @@ export type BookUnit = {
 };
 
 export const BOOKS: Record<BookId, { title: T; level: string; color: string; lead: T; ready: boolean }> = {
-  red: {
-    title: { uk: 'Червона книга', ru: 'Красная книга', en: 'Red book' }, level: 'A1-A2', color: 'tomato', ready: true,
-    lead: { uk: 'Для початківців: to be, теперішні часи, минулий, питання. Сторінка правила і сторінка вправ.', ru: 'Для начинающих: to be, настоящие времена, прошедшее, вопросы. Страница правила и страница упражнений.', en: 'For beginners: to be, present tenses, the past, questions. A rule page and a practice page.' },
+  beginner: {
+    title: { uk: 'Beginner: для початківців', ru: 'Beginner: для начинающих', en: 'Beginner' }, level: 'A1-A2', color: 'tomato', ready: true,
+    lead: { uk: 'Перші кроки: to be, теперішні часи, минулий час, питання. Сторінка правила і сторінка вправ.', ru: 'Первые шаги: to be, настоящие времена, прошедшее время, вопросы. Страница правила и страница упражнений.', en: 'First steps: to be, present tenses, the past, questions. A rule page and a practice page.' },
   },
-  blue: {
-    title: { uk: 'Синя книга', ru: 'Синяя книга', en: 'Blue book' }, level: 'B1-B2', color: 'sky', ready: false,
-    lead: { uk: 'Для тих, хто вже говорить: усі часи, умовні, пасив, модальні. Готуємо після червоної.', ru: 'Для тех, кто уже говорит: все времена, условные, пассив, модальные. Готовим после красной.', en: 'For those who already speak: all tenses, conditionals, passive, modals. Coming after the red book.' },
+  intermediate: {
+    title: { uk: 'Intermediate: для тих, хто вже говорить', ru: 'Intermediate: для тех, кто уже говорит', en: 'Intermediate' }, level: 'B1-B2', color: 'sky', ready: false,
+    lead: { uk: 'Усі часи, умовні речення, пасив, модальні дієслова. Готуємо після першої книги.', ru: 'Все времена, условные предложения, пассив, модальные глаголы. Готовим после первой книги.', en: 'All tenses, conditionals, passive, modals. Coming after the first book.' },
   },
 };
 
 export const RED: BookUnit[] = [
   {
     n: 1, slug: 'am-is-are', title: 'am / is / are', level: 'A1', scene: 'be-family', free: true,
-    topic: { uk: 'Дієслово to be: я є, він є, вони є', ru: 'Глагол to be: я есть, он есть, они есть', en: 'The verb to be' },
-    story: {
-      uk: 'Знайомтеся, родина кульок BE. Am одинак: він дружить тільки з I. Is тримається за руки з he, she та it. А Are найкомпанійніший: бере з собою всіх інших, you, we і they. Хто з ким дружить, той з тим і ходить у реченні.',
-      ru: 'Знакомьтесь, семья шариков BE. Am одиночка: он дружит только с I. Is держится за руки с he, she и it. А Are самый компанейский: берёт с собой всех остальных, you, we и they. Кто с кем дружит, тот с тем и ходит в предложении.',
-      en: 'Meet the BE family. Am is a loner: he is friends only with I. Is holds hands with he, she and it. Are is the friendliest one and takes everybody else: you, we and they.',
-    },
+    topic: { uk: 'Як сказати «я учень», «вона вдома»', ru: 'Как сказать «я ученик», «она дома»', en: 'How to say who and where you are' },
+    story: { uk: 'Знайомтеся, родина кульок BE. Am дружить тільки з I. Is дружить з he, she та it. А Are любить компанію і ходить з усіма іншими: you, we, they. Запам’ятай, хто з ким дружить, і помилок не буде.', ru: 'Знакомьтесь, семья шариков BE. Am дружит только с I. Is дружит с he, she и it. А Are любит компанию и ходит со всеми остальными: you, we, they. Запомни, кто с кем дружит, и ошибок не будет.', en: 'Meet the BE family. Am is friends only with I. Is goes with he, she and it. Are loves company and goes with you, we and they.' },
     formula: [
       { label: { uk: 'Ствердження', ru: 'Утверждение', en: 'Positive' }, rows: [['I', 'am (I’m)'], ['he / she / it', 'is (he’s, she’s, it’s)'], ['you / we / they', 'are (you’re, we’re, they’re)']] },
       { label: { uk: 'Заперечення', ru: 'Отрицание', en: 'Negative' }, rows: [['I', 'am not (I’m not)'], ['he / she / it', 'is not (isn’t)'], ['you / we / they', 'are not (aren’t)']] },
     ],
     rules: [
-      { h: { uk: 'Без «є» речення падає', ru: 'Без «есть» предложение падает', en: 'No sentence without it' }, p: { uk: 'Українською ми кажемо «Я учень», без «є». Англійською так не можна: I am a student. Am, is або are стоїть майже в кожному простому реченні про те, хто ти, який ти і де ти.', ru: 'По-русски мы говорим «Я ученик», без «есть». По-английски так нельзя: I am a student. Am, is или are стоит почти в каждом простом предложении о том, кто ты, какой ты и где ты.', en: 'In English you cannot skip it: I am a student, not “I student”.' } },
-      { h: { uk: 'Один предмет = is, багато = are', ru: 'Один предмет = is, много = are', en: 'One thing = is, many = are' }, p: { uk: 'My cat is hungry. My cats are hungry. Якщо замість імені можна сказати he, she чи it, ставимо is. Якщо they, ставимо are.', ru: 'My cat is hungry. My cats are hungry. Если вместо имени можно сказать he, she или it, ставим is. Если they, ставим are.', en: 'If you can say he, she or it, use is. If you can say they, use are.' } },
-      { h: { uk: 'Короткі форми', ru: 'Краткие формы', en: 'Short forms' }, p: { uk: 'У розмові кажемо коротко: I’m, she’s, they’re, isn’t, aren’t. Але I am not скорочуємо тільки до I’m not.', ru: 'В разговоре говорим коротко: I’m, she’s, they’re, isn’t, aren’t. Но I am not сокращаем только до I’m not.', en: 'In speech we use short forms. I am not only becomes I’m not.' } },
+      { h: { uk: 'В англійській «є» не пропускаємо', ru: 'В английском «есть» не пропускаем', en: 'Never skip it' }, p: { uk: 'Ми кажемо просто «Я учень». Англійською так не можна, потрібне am, is або are: I am a student. Вона вдома: She is at home.', ru: 'Мы говорим просто «Я ученик». По-английски так нельзя, нужно am, is или are: I am a student. Она дома: She is at home.', en: 'I am a student. She is at home.' } },
+      { h: { uk: 'Один = is, багато = are', ru: 'Один = is, много = are', en: 'One = is, many = are' }, p: { uk: 'Кіт голодний: The cat is hungry. Коти голодні: The cats are hungry.', ru: 'Кот голодный: The cat is hungry. Коты голодные: The cats are hungry.', en: 'The cat is hungry. The cats are hungry.' } },
+      { h: { uk: 'Коротко в розмові', ru: 'Коротко в разговоре', en: 'Short forms' }, p: { uk: 'Зазвичай кажуть коротко: I’m, she’s, we’re. «Ні» теж коротко: isn’t, aren’t. Але з I тільки I’m not.', ru: 'Обычно говорят коротко: I’m, she’s, we’re. «Нет» тоже коротко: isn’t, aren’t. Но с I только I’m not.', en: 'I’m, she’s, we’re, isn’t, aren’t. But only I’m not.' } },
     ],
     examples: [
       ['I’m twelve.', { uk: 'Мені дванадцять.', ru: 'Мне двенадцать.' }],
@@ -58,25 +54,21 @@ export const RED: BookUnit[] = [
       { type: 'choice', title: { uk: 'Хто з ким дружить?', ru: 'Кто с кем дружит?', en: 'Who goes with whom?' }, instruction: 'Choose am, is or are.', text: 'I {am|is|are} hungry.\nMy brother {is|am|are} ten.\nWe {are|is|am} friends.\nThe pizza {is|are|am} hot.\nYou {are|is|am} late!\nMy shoes {are|is|am} new.\nIt {is|are|am} Monday today.\nTom and Kate {are|is|am} at school.' },
       { type: 'gap', title: { uk: 'Впиши am, is або are', ru: 'Впиши am, is или are', en: 'Write am, is or are' }, instruction: 'Write am, is or are.', text: 'My name [is] Anna.\nI [am] from Kyiv.\nMy dog [is] black and white.\nMy parents [are] at work.\nThis game [is] really funny.\nMax and I [are] in the same class.' },
       { type: 'gap', title: { uk: 'Скажи «ні»', ru: 'Скажи «нет»', en: 'Make it negative' }, instruction: 'Write the negative. Use short forms.', text: 'I’m tired. → [I’m not tired/I am not tired].\nShe’s at home. → [She isn’t at home/She is not at home/She’s not at home].\nThey’re hungry. → [They aren’t hungry/They are not hungry/They’re not hungry].\nIt’s my phone. → [It isn’t my phone/It is not my phone/It’s not my phone].\nWe’re late. → [We aren’t late/We are not late/We’re not late].' },
-      { type: 'truefalse', title: { uk: 'Правда про тебе?', ru: 'Правда о тебе?', en: 'True for the grammar?' }, instruction: 'Is the sentence correct? True or False.', text: 'She is my best friend. = True\nI is ready. = False\nMy cats is hungry. = False\nWe are in the kitchen. = True' },
+      { type: 'truefalse', title: { uk: 'Правильно чи ні?', ru: 'Правильно или нет?', en: 'Right or wrong?' }, instruction: 'Is the sentence correct? True or False.', text: 'She is my best friend. = True\nI is ready. = False\nMy cats is hungry. = False\nWe are in the kitchen. = True' },
     ],
   },
   {
     n: 2, slug: 'am-is-are-questions', title: 'am / is / are (questions)', level: 'A1', scene: 'be-flip', free: true,
-    topic: { uk: 'Питання з to be: Are you…? Is it…?', ru: 'Вопросы с to be: Are you…? Is it…?', en: 'Questions with to be' },
-    story: {
-      uk: 'У питанні кульки BE роблять сальто і стрибають наперед. You are ready. Хоп! Are you ready? Головне правило питання: хто стрибнув першим, той і питає.',
-      ru: 'В вопросе шарики BE делают сальто и прыгают вперёд. You are ready. Хоп! Are you ready? Главное правило вопроса: кто прыгнул первым, тот и спрашивает.',
-      en: 'In a question the BE balls do a somersault and jump to the front: You are ready → Are you ready?',
-    },
+    topic: { uk: 'Як запитати: ти готовий? це твій?', ru: 'Как спросить: ты готов? это твоё?', en: 'How to ask: are you ready?' },
+    story: { uk: 'Щоб запитати, кулька BE робить сальто і стрибає на початок речення. You are ready. Хоп! Are you ready? Хто стрибнув першим, той і питає.', ru: 'Чтобы спросить, шарик BE делает сальто и прыгает в начало предложения. You are ready. Хоп! Are you ready? Кто прыгнул первым, тот и спрашивает.', en: 'To ask a question, the BE ball jumps to the front: You are ready → Are you ready?' },
     formula: [
       { label: { uk: 'Питання', ru: 'Вопрос', en: 'Question' }, rows: [['Am', 'I …?'], ['Is', 'he / she / it …?'], ['Are', 'you / we / they …?']] },
       { label: { uk: 'Коротка відповідь', ru: 'Краткий ответ', en: 'Short answer' }, rows: [['Yes, I am.', 'No, I’m not.'], ['Yes, she is.', 'No, she isn’t.'], ['Yes, they are.', 'No, they aren’t.']] },
     ],
     rules: [
-      { h: { uk: 'Сальто вперед', ru: 'Сальто вперёд', en: 'Jump to the front' }, p: { uk: 'It is cold → Is it cold? Слова ті самі, просто am, is чи are стає першим.', ru: 'It is cold → Is it cold? Слова те же, просто am, is или are становится первым.', en: 'The words stay the same, the verb goes first.' } },
-      { h: { uk: 'Питальні слова ще раніше', ru: 'Вопросительные слова ещё раньше', en: 'Question words go first' }, p: { uk: 'Where, what, how old, who стоять перед кулькою: Where is my bag? How old are you?', ru: 'Where, what, how old, who стоят перед шариком: Where is my bag? How old are you?', en: 'Where is my bag? How old are you?' } },
-      { h: { uk: 'Yes без скорочень', ru: 'Yes без сокращений', en: 'No short form after Yes' }, p: { uk: 'Кажемо Yes, I am. Не можна Yes, I’m. А після No скорочуємо: No, I’m not.', ru: 'Говорим Yes, I am. Нельзя Yes, I’m. А после No сокращаем: No, I’m not.', en: 'Say Yes, I am, not Yes, I’m.' } },
+      { h: { uk: 'Міняємо місцями', ru: 'Меняем местами', en: 'Swap places' }, p: { uk: 'It is cold → Is it cold? Слова ті самі, тільки am, is чи are стає першим.', ru: 'It is cold → Is it cold? Слова те же, только am, is или are становится первым.', en: 'It is cold → Is it cold?' } },
+      { h: { uk: 'Де? Що? Скільки?', ru: 'Где? Что? Сколько?', en: 'Where? What? How old?' }, p: { uk: 'Питальне слово ставимо ще раніше: Where is my bag? How old are you?', ru: 'Вопросительное слово ставим ещё раньше: Where is my bag? How old are you?', en: 'Where is my bag? How old are you?' } },
+      { h: { uk: 'Коротка відповідь', ru: 'Краткий ответ', en: 'Short answers' }, p: { uk: 'Відповідаємо «Yes, I am» або «No, I’m not». Після Yes не скорочуємо: не можна Yes, I’m.', ru: 'Отвечаем «Yes, I am» или «No, I’m not». После Yes не сокращаем: нельзя Yes, I’m.', en: 'Yes, I am. No, I’m not.' } },
     ],
     examples: [
       ['Are you hungry? Yes, I am.', { uk: 'Ти голодний? Так.', ru: 'Ты голоден? Да.' }],
@@ -95,19 +87,15 @@ export const RED: BookUnit[] = [
   {
     n: 3, slug: 'present-continuous', title: 'I am doing (present continuous)', level: 'A1', scene: 'ing-motor', free: true,
     topic: { uk: 'Що відбувається прямо зараз', ru: 'Что происходит прямо сейчас', en: 'What is happening right now' },
-    story: {
-      uk: 'Закінчення -ing це моторчик. Чіпляєш його до дієслова, і дія мчить прямо зараз: playing, reading, eating. Але моторчик сам не їде, йому потрібен водій: am, is або are. Немає водія, немає поїздки!',
-      ru: 'Окончание -ing это моторчик. Цепляешь его к глаголу, и действие мчится прямо сейчас: playing, reading, eating. Но моторчик сам не едет, ему нужен водитель: am, is или are. Нет водителя, нет поездки!',
-      en: 'The -ing ending is a little motor: the action is running right now. But the motor needs a driver: am, is or are.',
-    },
+    story: { uk: 'Закінчення -ing як моторчик: чіпляєш його до дієслова, і дія відбувається прямо зараз. Але без водія моторчик не поїде. Водій це am, is або are. She is playing: водій is, дієслово з моторчиком playing.', ru: 'Окончание -ing как моторчик: цепляешь его к глаголу, и действие происходит прямо сейчас. Но без водителя моторчик не поедет. Водитель это am, is или are. She is playing: водитель is, глагол с моторчиком playing.', en: 'The -ing ending is a little motor, and am, is or are is the driver: She is playing.' },
     formula: [
       { label: { uk: 'Водій + дієслово з моторчиком', ru: 'Водитель + глагол с моторчиком', en: 'Driver + verb with the motor' }, rows: [['I', 'am (’m) playing'], ['he / she / it', 'is (’s) playing'], ['you / we / they', 'are (’re) playing']] },
-      { label: { uk: 'Як чіпляти -ing', ru: 'Как цеплять -ing', en: 'Spelling' }, rows: [['read → reading', 'просто + ing'], ['make → making', 'e зникає'], ['swim → swimming', 'подвоюємо букву'], ['lie → lying', 'ie → y']] },
+      { label: { uk: 'Як додати -ing', ru: 'Как добавить -ing', en: 'Spelling' }, rows: [['read', 'reading'], ['make', 'making'], ['swim', 'swimming'], ['lie', 'lying']] },
     ],
     rules: [
-      { h: { uk: 'Прямо зараз', ru: 'Прямо сейчас', en: 'Right now' }, p: { uk: 'Дія вже почалась і ще не закінчилась: Look! It’s snowing. Підказки: now, at the moment, look!, listen!', ru: 'Действие уже началось и ещё не закончилось: Look! It’s snowing. Подсказки: now, at the moment, look!, listen!', en: 'The action is in progress: Look! It’s snowing.' } },
-      { h: { uk: 'Ці дні, цей тиждень', ru: 'Эти дни, эта неделя', en: 'These days' }, p: { uk: 'Можна й про те, що триває зараз у житті, хоч і не в цю секунду: I’m reading a great book this week.', ru: 'Можно и о том, что длится сейчас в жизни, хоть и не в эту секунду: I’m reading a great book this week.', en: 'Also for things happening around now: I’m reading a great book this week.' } },
-      { h: { uk: 'Заперечення', ru: 'Отрицание', en: 'Negative' }, p: { uk: 'Водій каже not: I’m not sleeping. She isn’t watching TV. They aren’t listening.', ru: 'Водитель говорит not: I’m not sleeping. She isn’t watching TV. They aren’t listening.', en: 'I’m not sleeping. She isn’t watching TV.' } },
+      { h: { uk: 'Прямо зараз', ru: 'Прямо сейчас', en: 'Right now' }, p: { uk: 'Кажемо про те, що відбувається в цю хвилину: Look! It’s snowing. Підказки: now, look!, listen!', ru: 'Говорим о том, что происходит в эту минуту: Look! It’s snowing. Подсказки: now, look!, listen!', en: 'Look! It’s snowing.' } },
+      { h: { uk: 'Як дописати -ing', ru: 'Как дописать -ing', en: 'Spelling' }, p: { uk: 'Зазвичай просто додаємо -ing: read → reading. Якщо в кінці e, вона зникає: make → making. Коротке слово з однією голосною подвоює останню літеру: swim → swimming.', ru: 'Обычно просто добавляем -ing: read → reading. Если в конце e, она исчезает: make → making. Короткое слово с одной гласной удваивает последнюю букву: swim → swimming.', en: 'read → reading, make → making, swim → swimming.' } },
+      { h: { uk: 'Як сказати «ні»', ru: 'Как сказать «нет»', en: 'Negative' }, p: { uk: 'Додаємо not до водія: I’m not sleeping. She isn’t cooking.', ru: 'Добавляем not к водителю: I’m not sleeping. She isn’t cooking.', en: 'I’m not sleeping. She isn’t cooking.' } },
     ],
     examples: [
       ['Shh! The baby is sleeping.', { uk: 'Тсс! Малюк спить.', ru: 'Тсс! Малыш спит.' }],
@@ -125,20 +113,16 @@ export const RED: BookUnit[] = [
   },
   {
     n: 4, slug: 'present-continuous-questions', title: 'are you doing? (questions)', level: 'A1', scene: 'ing-flip', free: true,
-    topic: { uk: 'Питання: що ти зараз робиш?', ru: 'Вопросы: что ты сейчас делаешь?', en: 'Questions: what are you doing?' },
-    story: {
-      uk: 'Пам’ятаєш сальто? Тепер водій am, is чи are стрибає вперед, а моторчик -ing лишається біля дієслова й чекає. You are sleeping → Are you sleeping? Моторчик нікуди не стрибає.',
-      ru: 'Помнишь сальто? Теперь водитель am, is или are прыгает вперёд, а моторчик -ing остаётся у глагола и ждёт. You are sleeping → Are you sleeping? Моторчик никуда не прыгает.',
-      en: 'Remember the somersault? The driver jumps to the front and the -ing motor stays with the verb: Are you sleeping?',
-    },
+    topic: { uk: 'Як запитати: що ти робиш?', ru: 'Как спросить: что ты делаешь?', en: 'How to ask: what are you doing?' },
+    story: { uk: 'Знову сальто! Водій am, is чи are стрибає на початок, а дієслово з моторчиком -ing лишається на місці. You are sleeping → Are you sleeping?', ru: 'Снова сальто! Водитель am, is или are прыгает в начало, а глагол с моторчиком -ing остаётся на месте. You are sleeping → Are you sleeping?', en: 'The driver jumps to the front, the -ing verb stays: Are you sleeping?' },
     formula: [
       { label: { uk: 'Питання', ru: 'Вопрос', en: 'Question' }, rows: [['Am', 'I playing?'], ['Is', 'he / she / it playing?'], ['Are', 'you / we / they playing?']] },
       { label: { uk: 'Питальні слова', ru: 'Вопросительные слова', en: 'Question words' }, rows: [['What', 'are you doing?'], ['Where', 'is she going?'], ['Why', 'are you laughing?']] },
     ],
     rules: [
-      { h: { uk: 'Водій вперед', ru: 'Водитель вперёд', en: 'The driver goes first' }, p: { uk: 'She is singing → Is she singing? Дієслово з -ing лишається на місці.', ru: 'She is singing → Is she singing? Глагол с -ing остаётся на месте.', en: 'Is she singing?' } },
-      { h: { uk: 'Короткі відповіді', ru: 'Краткие ответы', en: 'Short answers' }, p: { uk: 'Відповідаємо водієм, без -ing: Are you working? Yes, I am. / No, I’m not.', ru: 'Отвечаем водителем, без -ing: Are you working? Yes, I am. / No, I’m not.', en: 'Are you working? Yes, I am. / No, I’m not.' } },
-      { h: { uk: 'Найпопулярніше питання', ru: 'Самый популярный вопрос', en: 'The most useful question' }, p: { uk: 'What are you doing? Що ти робиш? Його чують щодня і вдома, і в чаті.', ru: 'What are you doing? Что ты делаешь? Его слышат каждый день и дома, и в чате.', en: 'What are you doing?' } },
+      { h: { uk: 'Водій на початок', ru: 'Водитель в начало', en: 'Driver first' }, p: { uk: 'She is singing → Is she singing? Дієслово з -ing не рухається.', ru: 'She is singing → Is she singing? Глагол с -ing не двигается.', en: 'Is she singing?' } },
+      { h: { uk: 'Коротка відповідь', ru: 'Краткий ответ', en: 'Short answers' }, p: { uk: 'Відповідаємо без -ing: Are you working? Yes, I am. / No, I’m not.', ru: 'Отвечаем без -ing: Are you working? Yes, I am. / No, I’m not.', en: 'Yes, I am. / No, I’m not.' } },
+      { h: { uk: 'Найпотрібніше питання', ru: 'Самый нужный вопрос', en: 'The most useful question' }, p: { uk: 'What are you doing? Що ти робиш? Його можна почути щодня.', ru: 'What are you doing? Что ты делаешь? Его можно услышать каждый день.', en: 'What are you doing?' } },
     ],
     examples: [
       ['Are you listening to me?', { uk: 'Ти мене слухаєш?', ru: 'Ты меня слушаешь?' }],
@@ -156,20 +140,16 @@ export const RED: BookUnit[] = [
   },
   {
     n: 5, slug: 'present-simple', title: 'I do / work / like (present simple)', level: 'A1', scene: 'simple-thieves', free: true,
-    topic: { uk: 'Звички, розклад, факти', ru: 'Привычки, расписание, факты', en: 'Habits, timetables, facts' },
-    story: {
-      uk: 'Present Simple схожий на сімпл-дімпл: натискаєш ті самі кнопочки знову і знову. Так і з цим часом: те, що повторюється, звички, розклад і факти. I, you, we, they чесні кульки, беруть дієслово як є: I play. А he, she, it маленькі злодюжки: хотіли вкрасти долари, а вкрали букву S! Тепер мусять чіпляти її до дієслова: he plays, she likes, it works.',
-      ru: 'Present Simple похож на симпл-димпл: нажимаешь те же кнопочки снова и снова. Так и с этим временем: то, что повторяется, привычки, расписание и факты. I, you, we, they честные шарики, берут глагол как есть: I play. А he, she, it маленькие воришки: хотели украсть доллары, а украли букву S! Теперь им приходится цеплять её к глаголу: he plays, she likes, it works.',
-      en: 'Present Simple is like a simple dimple toy: you press the same buttons again and again. He, she and it are little thieves: they wanted to steal dollars but stole the letter S, so now they add it to the verb.',
-    },
+    topic: { uk: 'Звички, розклад і факти', ru: 'Привычки, расписание и факты', en: 'Habits, timetables and facts' },
+    story: { uk: 'Present Simple схожий на сімпл-дімпл: натискаєш ті самі кнопочки знову і знову. Так і тут: те, що повторюється (звички, розклад, факти). I, you, we, they беруть дієслово як є: I play. А he, she, it маленькі злодюжки: хотіли вкрасти долари, а вкрали букву S. Тепер мусять додавати її до дієслова: he plays, she likes.', ru: 'Present Simple похож на симпл-димпл: нажимаешь одни и те же кнопочки снова и снова. Так и здесь: то, что повторяется (привычки, расписание, факты). I, you, we, they берут глагол как есть: I play. А he, she, it маленькие воришки: хотели украсть доллары, а украли букву S. Теперь им приходится добавлять её к глаголу: he plays, she likes.', en: 'Like a simple dimple toy, you press the same buttons again and again. He, she and it stole the letter S, so they add it to the verb: he plays.' },
     formula: [
       { label: { uk: '+  Ствердження', ru: '+  Утверждение', en: '+  Positive' }, rows: [['I / you / we / they', 'play'], ['he / she / it', 'plays']] },
       { label: { uk: '−  Заперечення', ru: '−  Отрицание', en: '−  Negative' }, rows: [['I / you / we / they', 'don’t play'], ['he / she / it', 'doesn’t play']] },
       { label: { uk: '?  Питання', ru: '?  Вопрос', en: '?  Question' }, rows: [['Do', 'I / you / we / they play?'], ['Does', 'he / she / it play?']] },
     ],
     rules: [
-      { h: { uk: 'Злодюжки і буква S', ru: 'Воришки и буква S', en: 'The thieves and the S' }, p: { uk: 'Після he, she, it дієслово отримує -s: works, likes. Після -s, -sh, -ch, -x, -o додаємо -es: watches, goes. Приголосна + y стає -ies: study → studies. Have стає has.', ru: 'После he, she, it глагол получает -s: works, likes. После -s, -sh, -ch, -x, -o добавляем -es: watches, goes. Согласная + y становится -ies: study → studies. Have становится has.', en: 'He works, she watches, it goes, he studies, she has.' } },
-      { h: { uk: 'Поліцейський do / does', ru: 'Полицейский do / does', en: 'Officer do / does' }, p: { uk: 'У запереченні й питанні приходить помічник do. Злодюжки віддають йому вкрадену S: does = do + es. Тому дієслово знову без S: He doesn’t play. Does she like pizza?', ru: 'В отрицании и вопросе приходит помощник do. Воришки отдают ему украденную S: does = do + es. Поэтому глагол снова без S: He doesn’t play. Does she like pizza?', en: 'In negatives and questions do arrives. The thieves give the S back: does. So the verb has no S: He doesn’t play.' } },
+      { h: { uk: 'He, she, it + s', ru: 'He, she, it + s', en: 'He, she, it + s' }, p: { uk: 'He works, she likes. Після s, sh, ch, x, o пишемо -es: watches, goes. Якщо в кінці приголосна + y, буде -ies: study → studies. Have перетворюється на has.', ru: 'He works, she likes. После s, sh, ch, x, o пишем -es: watches, goes. Если в конце согласная + y, будет -ies: study → studies. Have превращается в has.', en: 'He works, she watches, it goes, he studies, she has.' } },
+      { h: { uk: 'Do і does: поліцейські', ru: 'Do и does: полицейские', en: 'Do and does' }, p: { uk: 'У запереченні й питанні з’являється do. Злодюжки віддають йому свою S, і виходить does. Тому дієслово вже без S: He doesn’t play. Does she like pizza?', ru: 'В отрицании и вопросе появляется do. Воришки отдают ему свою S, и получается does. Поэтому глагол уже без S: He doesn’t play. Does she like pizza?', en: 'He doesn’t play. Does she like pizza?' } },
       { h: { uk: 'Слова-підказки', ru: 'Слова-подсказки', en: 'Signal words' }, p: { uk: 'every day, usually, always, often, sometimes, never, on Mondays.', ru: 'every day, usually, always, often, sometimes, never, on Mondays.', en: 'every day, usually, always, often, sometimes, never, on Mondays.' } },
     ],
     examples: [
@@ -188,8 +168,8 @@ export const RED: BookUnit[] = [
   },
 ];
 
-export const BOOK_UNITS: Record<BookId, BookUnit[]> = { red: RED, blue: [] };
-// Що буде далі в червоній книзі (поки «скоро»)
+export const BOOK_UNITS: Record<BookId, BookUnit[]> = { beginner: RED, intermediate: [] };
+// Що буде далі в книзі Beginner (поки «скоро»)
 export const RED_NEXT: { n: number; title: string }[] = [
   { n: 6, title: 'I don’t… (present simple negative)' }, { n: 7, title: 'Do you…? (present simple questions)' },
   { n: 8, title: 'I am doing and I do' }, { n: 9, title: 'I have… / I’ve got…' }, { n: 10, title: 'was / were' },

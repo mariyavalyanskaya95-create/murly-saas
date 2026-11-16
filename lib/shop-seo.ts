@@ -24,7 +24,7 @@ export const FREE_LINKS: Record<string, { label: L; note: L }> = {
   '/activities': { label: { uk: 'Speaking-активності для уроків', ru: 'Speaking-активности для уроков', en: 'Speaking activities for lessons' }, note: { uk: 'слайди і PDF', ru: 'слайды и PDF', en: 'slides and PDF' } },
   '/lessons': { label: { uk: 'Готові уроки на 60 хвилин', ru: 'Готовые уроки на 60 минут', en: 'Ready 60-minute lessons' }, note: { uk: 'версія учня і вчителя', ru: 'версия ученика и учителя', en: 'student and teacher versions' } },
   '/games': { label: { uk: 'Ігри англійською для дітей', ru: 'Игры на английском для детей', en: 'English games for kids' }, note: { uk: 'квести, наліпки, 3D-містечко', ru: 'квесты, наклейки, 3D-городок', en: 'quests, stickers, a 3D town' } },
-  '/play/stickers': { label: { uk: 'Make a room: гра з наліпками', ru: 'Make a room: игра с наклейками', en: 'Make a room: sticker game' }, note: { uk: 'слова про дім для A1', ru: 'слова про дом для A1', en: 'home words for A1' } },
+  '/play/stickers': { label: { uk: 'Sticker Room: гра з наліпками', ru: 'Sticker Room: игра с наклейками', en: 'Sticker Room: sticker game' }, note: { uk: 'слова про дім для A1', ru: 'слова про дом для A1', en: 'home words for A1' } },
   '/baby-english': { label: { uk: 'Англійська для малюків', ru: 'Английский для малышей', en: 'English for little ones' }, note: { uk: 'для батьків дітей до 7 років', ru: 'для родителей детей до 7 лет', en: 'for parents of kids under 7' } },
 };
 
@@ -229,7 +229,7 @@ export const SHOP_SEO: Record<string, ShopSeo> = {
     ],
     faq: [
       { q: { uk: 'З якого віку підходять картки?', ru: 'С какого возраста подходят карточки?', en: 'What age are the cards for?' }, a: { uk: 'Для дітей, які вже знають перші слова і прості фрази (A1-A2), зазвичай 6-11 років. Для малюків до 7 років на Murly є окрема безкоштовна сторінка для батьків.', ru: 'Для детей, которые уже знают первые слова и простые фразы (A1-A2), обычно 6-11 лет. Для малышей до 7 лет на Murly есть отдельная бесплатная страница для родителей.', en: 'For kids who already know first words and simple phrases (A1-A2), usually 6-11. For kids under 7 Murly has a separate free page for parents.' } },
-      { q: { uk: 'Чи є безкоштовні ігри англійською для дітей?', ru: 'Есть ли бесплатные игры на английском для детей?', en: 'Are there free English games for kids?' }, a: { uk: 'Так, на Murly: квест «Знайди, Бульбашко!», гра з наліпками, словесні ігри і 3D-містечко. Їх можна відкрити без реєстрації.', ru: 'Да, на Murly: квест «Найди, Бульбашка!», игра с наклейками, словесные игры и 3D-городок. Их можно открыть без регистрации.', en: 'Yes, on Murly: the «Find it, Bubbles!» quest, a sticker game, word games and a 3D town. You can open them without signing up.' } },
+      { q: { uk: 'Чи є безкоштовні ігри англійською для дітей?', ru: 'Есть ли бесплатные игры на английском для детей?', en: 'Are there free English games for kids?' }, a: { uk: 'Так, на Murly: квест «Знайди мене», гра з наліпками, словесні ігри і 3D-містечко. Їх можна відкрити без реєстрації.', ru: 'Да, на Murly: квест «Найди меня», игра с наклейками, словесные игры и 3D-городок. Их можно открыть без регистрации.', en: 'Yes, on Murly: the «Find me» quest, a sticker game, word games and a 3D town. You can open them without signing up.' } },
       Q_PRINT,
       Q_FILES,
     ],

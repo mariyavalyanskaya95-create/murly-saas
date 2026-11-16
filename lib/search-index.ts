@@ -37,21 +37,21 @@ export function searchIndex(): SearchItem[] {
     const heads = p.blocks.filter((b) => b.type === 'heading').map((b) => (b as { text: string }).text);
     it.hay += ' ' + [p.aims ?? '', p.age, ...heads].join(' ');
   }
-  // квест «Знайди, Бульбашко!»: кожна локація з темами і текстами завдань
+  // квест «Знайди мене»: кожна локація з темами і текстами завдань
   const tasks = QUESTS_TEXT.join(' ');
-  by.set('/play/quest', { href: '/play/quest', title: { uk: 'Знайди, Бульбашко! Усі місця', ru: 'Найди, Пузырёк! Все места', en: 'Find it, Bubbles! All places' }, kind: { uk: 'Гра', ru: 'Игра', en: 'Game' }, level: 'A1', skill: 'vocabulary', icon: 'c-fish', color: 'sky', hay: 'квест quest гра игра game діти дети kids ' + tasks });
+  by.set('/play/quest', { href: '/play/quest', title: { uk: 'Знайди мене Усі місця', ru: 'Найди меня Все места', en: 'Find me All places' }, kind: { uk: 'Гра', ru: 'Игра', en: 'Game' }, level: 'A1', skill: 'vocabulary', icon: 'c-fish', color: 'sky', hay: 'квест quest гра игра game діти дети kids ' + tasks });
   for (const q of QUEST_LIST) {
     by.set(`/play/quest/${q.id}`, {
       href: `/play/quest/${q.id}`,
-      title: { uk: `Знайди, Бульбашко! ${q.title.uk}`, ru: `Найди, Пузырёк! ${q.title.ru}`, en: `Find it, Bubbles! ${q.title.en}` },
+      title: { uk: `Знайди мене ${q.title.uk}`, ru: `Найди меня ${q.title.ru}`, en: `Find me ${q.title.en}` },
       kind: { uk: 'Гра-квест', ru: 'Игра-квест', en: 'Quest game' }, level: 'A1', skill: 'vocabulary', icon: 'c-fish', color: 'sky',
       hay: ['квест quest гра игра game діти дети kids', ...LANGS.flatMap((l) => [q.title[l] ?? '', q.place[l] ?? '', ...q.topics.map((x) => x[l] ?? '')])].join(' '),
     });
   }
   // інші ігри й розділи
   const add = (href: string, title: T, kind: T, level: string, skill: string, icon: string, hay: string) => by.set(href, { href, title, kind, level, skill, icon, color: 'lime', hay });
-  add('/play/town', { uk: 'Murly Town 3D: місто англійською', ru: 'Murly Town 3D: город на английском', en: 'Murly Town 3D' }, { uk: 'Гра', ru: 'Игра', en: 'Game' }, 'A1', 'vocabulary', 'd-kid', 'місто город town будинок дом house кімнати комнаты rooms меблі мебель furniture предмети предметы there is there are прийменники предлоги prepositions діти дети kids');
-  add('/play/story', { uk: 'Funny Life Story: книжка-історія', ru: 'Funny Life Story: книжка-история', en: 'Funny Life Story' }, { uk: 'Гра', ru: 'Игра', en: 'Game' }, 'A1', 'reading', 'e-book', 'книжка книга book історія история story читання чтение reading малювати рисовать draw діти дети kids');
+  add('/play/town', { uk: 'My Town 3D: місто англійською', ru: 'My Town 3D: город на английском', en: 'My Town 3D' }, { uk: 'Гра', ru: 'Игра', en: 'Game' }, 'A1', 'vocabulary', 'd-kid', 'місто город town будинок дом house кімнати комнаты rooms меблі мебель furniture предмети предметы there is there are прийменники предлоги prepositions діти дети kids');
+  add('/play/story', { uk: 'My Story Book: книжка-історія', ru: 'My Story Book: книжка-история', en: 'My Story Book' }, { uk: 'Гра', ru: 'Игра', en: 'Game' }, 'A1', 'reading', 'e-book', 'книжка книга book історія история story читання чтение reading малювати рисовать draw діти дети kids');
   add('/series', { uk: 'Аудіосеріали', ru: 'Аудиосериалы', en: 'Audio series' }, { uk: 'Аудіювання', ru: 'Аудирование', en: 'Listening' }, 'A2', 'listening', 'e-head', 'серіал сериал series аудіо аудио audio слухати слушать listening lighthouse маяк');
   add('/teacher/team-game', { uk: 'Командна гра для уроку', ru: 'Командная игра для урока', en: 'Team game for a lesson' }, { uk: 'Для вчителя', ru: 'Для учителя', en: 'For teachers' }, 'all', 'vocabulary', 'd-team', 'команди команды teams вікторина викторина quiz група группа group урок lesson повторення повторение revision');
   cache = Array.from(by.values()).map((x) => ({ ...x, hay: norm(`${x.title.uk} ${x.title.ru ?? ''} ${x.title.en ?? ''} ${x.hay}`) }));

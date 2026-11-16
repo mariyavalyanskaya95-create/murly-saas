@@ -76,7 +76,7 @@ export const QUESTS_TEXT: string[] = [
  "Find something long and yellow. Take a bunch of it.",
  "Our basket is full. Pay at the till, please.",
  "We have everything! Thank you for shopping with me!",
- "Hi! I am Bubbles. Find the red fish.",
+ "Hi! Please find the red fish.",
  "Where is the crab? Touch the crab.",
  "Find three starfish.",
  "The key is under the big rock. Move the big rock.",
