@@ -4581,3 +4581,21 @@ textarea.t-parent__url { width: 300px; font: inherit; font-size: 13px; }
   .gb-fig .gb-scene, .gb-cover, .gb-table td:first-child, .gb-ex li, .gb-traps, .gb-num, .gb-fig figcaption { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   body:has(.gb-spread) .mu-nav, body:has(.gb-spread) .mu-footer, body:has(.gb-spread) .sec-tabs { display: none !important; }
 }
+
+/* Вгадай слово (кульки замість шибениці) */
+.g-hang { display: grid; justify-items: center; gap: 6px; }
+.g-hang__pic { width: min(260px, 70vw); height: auto; }
+.g-hang__pic .is-pop { animation: g-pop .35s ease-out; }
+@keyframes g-pop { from { transform: scale(1.3); opacity: 0; } to { transform: none; opacity: 1; } }
+.g-hang__word { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin: 8px 0; }
+.g-hang__ch { width: 36px; height: 46px; border-bottom: 4px solid var(--mu-ink); display: grid; place-items: center; font-size: 28px; font-weight: 800; text-transform: lowercase; }
+.g-hang__sp { width: 18px; }
+.g-hang__p { font-size: 28px; font-weight: 800; align-self: end; }
+.g-hang__word.is-right .g-hang__ch { color: #2E8B57; border-color: #2E8B57; }
+.g-hang__word.is-wrong .g-hang__ch { color: #C2364A; border-color: #C2364A; }
+.g-hang__keys { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; max-width: 520px; }
+.g-hang__key { width: 40px; height: 44px; border: 2px solid var(--mu-ink); border-radius: 10px; background: #fff; font-size: 20px; font-weight: 800; cursor: pointer; box-shadow: 0 3px 0 var(--mu-ink); }
+.g-hang__key:disabled { cursor: default; box-shadow: none; transform: translateY(3px); }
+.g-hang__key.is-hit { background: #CDEFD8; }
+.g-hang__key.is-miss { background: #F3D4DA; opacity: .6; }
+@media (max-width: 520px) { .g-hang__ch { width: 28px; height: 40px; font-size: 22px; } .g-hang__key { width: 34px; height: 40px; font-size: 18px; } }
