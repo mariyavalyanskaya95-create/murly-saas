@@ -494,7 +494,6 @@ function sceneSVG(th) {
     back += `<rect y="0" width="${W}" height="${HZ}" fill="#FFC1D6"/>${Array.from({ length: 16 }, (_, i) => `<rect x="${i * 80}" y="0" width="40" height="${HZ}" fill="#fff" opacity=".25"/>`).join('')}
       <path d="M0 40${Array.from({ length: 16 }, (_, i) => `Q${i * 80 + 40} 90 ${i * 80 + 80} 40`).join('')}" stroke="#C2185B" stroke-width="3" fill="none"/>${Array.from({ length: 16 }, (_, i) => heart(i * 80 + 40, 74, 1.1, ['#FF5D8A', '#fff', '#FFB3CC'][i % 3])).join('')}
       <g transform="translate(160,110)"><rect x="-70" y="0" width="140" height="120" rx="8" fill="#FFF0F5" stroke="#17181C" stroke-width="4"/>${heart(0, 64, 2.2, '#FF5D8A')}</g><g transform="translate(1120,110)"><rect x="-70" y="0" width="140" height="120" rx="8" fill="#FFF0F5" stroke="#17181C" stroke-width="4"/>${heart(0, 64, 2.2, '#C2185B')}</g>
-      <text x="640" y="200" text-anchor="middle" font-family="'Balsamiq Sans', Arial Black" font-weight="700" font-size="56" fill="#fff" stroke="#C2185B" stroke-width="3" style="filter:drop-shadow(0 0 10px #FF4FB0)">LOVE LANES</text>
       <rect y="${HZ}" width="${W}" height="${800 - HZ}" fill="#F7A8C9"/>${Array.from({ length: 12 }, (_, i) => `<rect x="${i * 120}" y="${HZ}" width="60" height="${800 - HZ}" fill="#FFC1D6" opacity=".6"/>`).join('')}
       ${Array.from({ length: 14 }, (_, i) => heart((i * 173) % W, HZ + 60 + (i * 97) % 380, .9, ['#FF5D8A', '#fff', '#C2185B'][i % 3], .85)).join('')}`;
   }
@@ -510,7 +509,6 @@ function sceneSVG(th) {
     back += `<rect y="0" width="${W}" height="${HZ + 40}" fill="#1B1530"/>${Array.from({ length: 10 }, (_, i) => `<path d="M${80 + i * 125} 0L${20 + i * 125} ${HZ + 40}H${150 + i * 125}Z" fill="#fff" opacity=".05"/>`).join('')}
       <path d="M0 0H${W}V60Q${W - 60} 30 ${W - 120} 60T${W - 240} 60T${W - 360} 60T${W - 480} 60T${W - 600} 60T${W - 720} 60T${W - 840} 60T${W - 960} 60T${W - 1080} 60T${W - 1200} 60T0 60Z" fill="#7B1E3A" stroke="#17181C" stroke-width="3"/>
       ${Array.from({ length: 30 }, (_, i) => `<circle cx="${i * 44 + 10}" cy="${HZ - 30}" r="5" fill="#FFE07A" style="filter:drop-shadow(0 0 6px #FFE07A)"/>`).join('')}
-      <text x="640" y="150" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-weight="700" font-size="64" fill="#FFE9A6" style="filter:drop-shadow(0 0 12px #E8C35A)">Runway</text>
       <rect y="${HZ + 40}" width="${W}" height="${760 - HZ}" fill="#2B2240"/>
       ${[-1, 1].map((sd) => Array.from({ length: 3 }, (_, r) => Array.from({ length: 6 }, (_, c) => { const x = sd < 0 ? 40 + c * 55 + r * 25 : 1240 - c * 55 - r * 25; const y = HZ + 140 + r * 90; return `<circle cx="${x}" cy="${y - 34}" r="16" fill="#4A3D70"/><path d="M${x - 24} ${y + 20}Q${x} ${y - 30} ${x + 24} ${y + 20}Z" fill="#4A3D70"/>`; }).join('')).join('')).join('')}
       ${[[200, 220], [1080, 230], [330, 260], [960, 250]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="10" fill="#fff" opacity=".9" style="filter:drop-shadow(0 0 14px #fff)"/>`).join('')}`;
