@@ -23,6 +23,7 @@ export const GROUPS: Record<'read' | 'grammar', { title: T; tabs: Tab[] }> = {
     title: { uk: 'Граматика', ru: 'Грамматика', en: 'Grammar' },
     tabs: [
       { href: '/grammar', icon: 'e-abc', label: { uk: 'Правила', ru: 'Правила', en: 'Rules' } },
+      { href: '/grammar-book', icon: 'e-book', label: { uk: 'Книга з картинками', ru: 'Книга с картинками', en: 'Picture book' } },
       { href: '/grammar/trainer', icon: 'e-trophy', label: { uk: 'Тренажери', ru: 'Тренажёры', en: 'Trainers' } },
       { href: '/irregular-verbs', icon: 'e-book', label: { uk: 'Неправильні дієслова', ru: 'Неправильные глаголы', en: 'Irregular verbs' } },
       { href: '/irregular-verbs/games', icon: 'd-cup', label: { uk: 'Ігри з дієсловами', ru: 'Игры с глаголами', en: 'Verb games' } },

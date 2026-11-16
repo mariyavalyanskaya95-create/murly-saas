@@ -30,6 +30,7 @@ const MENU: { title: T; items: { href: string; icon: string; label: T; text: T; 
       { href: '/cartoons', icon: 'e-speak', label: { uk: 'Мультики', ru: 'Мультики', en: 'Cartoons' }, text: { uk: 'Peppa Pig, Bluey, Numberblocks: фрази й поради', ru: 'Peppa Pig, Bluey, Numberblocks: фразы и советы', en: 'Peppa Pig, Bluey, Numberblocks: phrases and tips' } },
       { href: '/stories', icon: 'e-head', label: { uk: 'Історії й серіали', ru: 'Истории и сериалы', en: 'Stories and series' }, text: { uk: 'Історії, аудіо, аудіосеріали', ru: 'Истории, аудио, аудиосериалы', en: 'Stories, audio, audio series' } },
       { href: '/grammar', icon: 'e-abc', label: { uk: 'Граматика', ru: 'Грамматика', en: 'Grammar' }, text: { uk: '52 теми і тренажери на 100 завдань', ru: '52 темы и тренажёры на 100 заданий', en: '52 topics and 100-task trainers' } },
+      { href: '/grammar-book', icon: 'e-book', label: { uk: 'Книга граматики', ru: 'Книга грамматики', en: 'Grammar book' }, text: { uk: 'Правило і вправи з кумедними картинками', ru: 'Правило и упражнения со смешными картинками', en: 'Rules and practice with funny pictures' } },
       { href: '/irregular-verbs', icon: 'e-book', label: { uk: 'Неправильні дієслова', ru: 'Неправильные глаголы', en: 'Irregular verbs' }, text: { uk: 'Таблиця з озвучкою, картки й ігри', ru: 'Таблица с озвучкой, карточки и игры', en: 'Voiced table, cards and games' } },
     ],
   },
