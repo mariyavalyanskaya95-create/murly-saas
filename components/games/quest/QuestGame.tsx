@@ -1,5 +1,5 @@
 'use client';
-// «Знайди, Бульбашко!»: квест-пошук англійською. Рушій однаковий для всіх локацій.
+// «Знайди мене»: квест-пошук англійською. Рушій однаковий для всіх локацій.
 // Дитина слухає завдання і натискає на предмет; підказка перекладом; монетки; можна задати як домашку.
 import { useEffect, useRef, useState } from 'react';
 import { useT } from '@/components/LangProvider';
@@ -91,7 +91,7 @@ export default function QuestGame({ loc, hw, adult, next }: { loc: QuestLocation
         {step === -1 && (
           <div className="sq-over">
             <h2>{t(loc.title)}</h2>
-            <p>{t({ uk: 'Котик Бульбашка просить про допомогу англійською. Слухай і натискай на потрібне. Увімкни звук!', ru: 'Котик Пузырёк просит о помощи по-английски. Слушай и нажимай на нужное. Включи звук!', en: 'Bubbles the cat needs your help. Listen and tap the right thing. Turn the sound on!' })}</p>
+            <p>{t({ uk: 'Котик просить про допомогу англійською. Слухай і натискай на потрібне. Увімкни звук!', ru: 'Котик просит о помощи по-английски. Слушай и нажимай на нужное. Включи звук!', en: 'Bubbles the cat needs your help. Listen and tap the right thing. Turn the sound on!' })}</p>
             <button type="button" className="mu-btn mu-btn--lime mu-btn--lg" onClick={() => setStep(0)}>{t({ uk: 'Почати', ru: 'Начать', en: 'Start' })}</button>
           </div>
         )}
@@ -110,7 +110,7 @@ export default function QuestGame({ loc, hw, adult, next }: { loc: QuestLocation
       </div>
       {hasBag && step >= 0 && (
         <div className="sq-bag" aria-live="polite">
-          <b>{t({ uk: 'Сумка Бульбашки', ru: 'Сумка Пузырька', en: 'Bubbles’ bag' })}:</b>
+          <b>{t({ uk: 'Сумка котика', ru: 'Сумка котика', en: 'Cat’s bag' })}:</b>
           {bag.length ? bag.map((w, i) => <span key={i} className="sq-bag__it">{w}</span>) : <span className="t-muted">{t({ uk: 'поки порожньо', ru: 'пока пусто', en: 'empty for now' })}</span>}
         </div>
       )}
