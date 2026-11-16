@@ -715,7 +715,7 @@ function LoginBox({ id }: { id: string }) {
 
 const GAMES = [
   { id: 'quiz', label: { uk: 'Квіз', ru: 'Квиз', en: 'Quiz' } as T }, { id: 'match', label: { uk: 'Пари', ru: 'Пары', en: 'Pairs' } as T },
-  { id: 'anagram', label: { uk: 'Анаграма', ru: 'Анаграмма', en: 'Anagram' } as T }, { id: 'cards', label: { uk: 'Картки', ru: 'Карточки', en: 'Cards' } as T }, { id: 'hangman', label: { uk: 'Вгадай слово', ru: 'Угадай слово', en: 'Hangman' } as T },
+  { id: 'anagram', label: { uk: 'Анаграма', ru: 'Анаграмма', en: 'Anagram' } as T }, { id: 'cards', label: { uk: 'Картки', ru: 'Карточки', en: 'Cards' } as T }, { id: 'hangman', label: { uk: 'Вгадай слово', ru: 'Угадай слово', en: 'Hangman' } as T }, { id: 'spell', label: { uk: 'Напиши слово', ru: 'Напиши слово', en: 'Spell it' } as T }, { id: 'listen', label: { uk: 'Слово на слух', ru: 'Слово на слух', en: 'Listen and pick' } as T }, { id: 'memory', label: { uk: 'Пари на час', ru: 'Пары на время', en: 'Memory race' } as T },
 ] as const;
 
 function defaultDue() {
@@ -759,7 +759,7 @@ export function HomeworkForm({ studentIds, groupId, onDone }: { studentIds: stri
   const [mock, setMock] = useState(MOCKS[0].id);
   const [quest, setQuest] = useState(QUEST_LIST[0].id);
   const [sections, setSections] = useState<Section[]>([]);
-  const [game, setGame] = useState<'quiz' | 'match' | 'anagram' | 'cards' | 'hangman'>('quiz');
+  const [game, setGame] = useState<'quiz' | 'match' | 'anagram' | 'cards' | 'hangman' | 'spell' | 'listen' | 'memory'>('quiz');
   const [direction, setDirection] = useState<'en' | 'uk'>('en');
   const [title, setTitle] = useState('');
   const [instructions, setInstructions] = useState('');
