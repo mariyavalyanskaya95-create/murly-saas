@@ -6,7 +6,7 @@ import { QUESTS } from '@/components/games/quest';
 import type { HitProps } from '@/components/games/quest/types';
 import { tr } from '@/lib/i18n-server';
 
-export const metadata: Metadata = { title: 'Find it, Bubbles! Квест англійською для дітей | Murly', description: 'Котик Бульбашка просить про допомогу англійською: кухня, ванна, спальня, вітальня, школа, парк, магазин, море. Озвучені завдання, підказки, монетки.' };
+export const metadata: Metadata = { title: 'Find me Квест англійською для дітей | Murly', description: 'Котик просить про допомогу англійською: кухня, ванна, спальня, вітальня, школа, парк, магазин, море. Озвучені завдання, підказки, монетки.' };
 // мініатюра сцени без кліків
 const still = () => ({ className: 'sq-hit' } as unknown as HitProps);
 const none = new Set<string>();
@@ -21,8 +21,8 @@ export default function QuestHub() {
         <div style={{ marginLeft: 'auto' }}><LangSwitch /></div>
       </header>
       <main className="sq qh">
-        <h1>{t({ uk: 'Знайди, Бульбашко!', ru: 'Найди, Пузырёк!', en: 'Find it, Bubbles!' })}</h1>
-        <p className="t-muted">{t({ uk: 'Котик Бульбашка просить про допомогу англійською. Обери місце: у кожному 9–10 завдань з озвучкою, підказки й монетки. Рівень A1–A2, для дітей 6–11.', ru: 'Котик Пузырёк просит о помощи по-английски. Выбери место: в каждом 9–10 заданий с озвучкой, подсказки и монетки. Уровень A1–A2, для детей 6–11.', en: 'Bubbles the cat needs your help in English. Pick a place: 9–10 voiced tasks each, hints and coins. Level A1–A2, ages 6–11.' })}</p>
+        <h1>{t({ uk: 'Знайди мене', ru: 'Найди меня', en: 'Find me' })}</h1>
+        <p className="t-muted">{t({ uk: 'Котик просить про допомогу англійською. Обери місце: у кожному 9–10 завдань з озвучкою, підказки й монетки. Рівень A1–A2, для дітей 6–11.', ru: 'Котик просит о помощи по-английски. Выбери место: в каждом 9–10 заданий с озвучкой, подсказки и монетки. Уровень A1–A2, для детей 6–11.', en: 'Bubbles the cat needs your help in English. Pick a place: 9–10 voiced tasks each, hints and coins. Level A1–A2, ages 6–11.' })}</p>
         <div className="qh-grid">
           {QUESTS.map((q, i) => (
             <Link key={q.id} href={`/play/quest/${q.id}`} className="qh-card">
