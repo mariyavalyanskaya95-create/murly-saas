@@ -19,6 +19,8 @@ export default function WeekGrid({ days, theme = 'lavender' }: { days: Date[]; t
   const [cp, setCp] = useState({ date: '', time: '', dur: 60 }); // копія з будь-якою датою, часом і тривалістю
   const [msg, setMsg] = useState('');
   const [note, setNote] = useState('');
+  const [more, setMore] = useState(false); // тип, тривалість, примітка, колір
+  const [other, setOther] = useState(false); // копія на будь-яку дату
   const end = new Date(days[6]); end.setDate(end.getDate() + 1);
   const lessons = data.lessons.filter((l) => { const d = new Date(l.start); return d >= days[0] && d < end; });
   const hours = lessons.map((l) => new Date(l.start).getHours());
@@ -63,7 +65,7 @@ export default function WeekGrid({ days, theme = 'lavender' }: { days: Date[]; t
   useEffect(() => {
     const it = items.find((x) => x.key === pickKey); if (!it) return;
     const d = new Date(it.l.start); const nx = new Date(d); nx.setDate(nx.getDate() + 7);
-    setCp({ date: iso(nx), time: hm(d), dur: it.l.duration }); setNote(it.l.topic ?? ''); setMsg('');
+    setCp({ date: iso(nx), time: hm(d), dur: it.l.duration }); setNote(it.l.topic ?? ''); setMsg(''); setMore(false); setOther(false);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pickKey]);
   const onDrop = (e: React.DragEvent, day: Date) => {
@@ -131,8 +133,9 @@ export default function WeekGrid({ days, theme = 'lavender' }: { days: Date[]; t
         </div>
       </div>
 
+      {picked && <button type="button" className="wg-backdrop" aria-label={t({ uk: 'Закрити', ru: 'Закрыть', en: 'Close' })} onClick={() => setSel(null)} />}
       {picked && (
-        <div className="t-card wg-pop">
+        <div className="t-card wg-pop" role="dialog" aria-modal="false">
           <div className="t-card__head">
             <h2><span className={`t-dot t-dot--${pickedGroup?.color ?? pickedSt?.color ?? 'lime'}`} />{pickedGroup ? pickedGroup.name : pickedSt?.name ?? '?'} · {new Date(picked.start).toLocaleDateString(loc, { weekday: 'long', day: 'numeric', month: 'long' })}, {fmtTime(picked.start, t.lang)}</h2>
             <button type="button" className="t-icon-btn" onClick={() => setSel(null)} aria-label={t({ uk: 'Закрити', ru: 'Закрыть', en: 'Close' })}>✕</button>
@@ -167,6 +170,28 @@ export default function WeekGrid({ days, theme = 'lavender' }: { days: Date[]; t
               </div>
             </>
           )}
+          <div className="wg-add">
+          <b className="wg-add__title">{t({ uk: '+ Ще заняття з цим учнем', ru: '+ Ещё занятие с этим учеником', en: '+ Another lesson with this student' })}</b>
+          <div className="wg-copy">
+            <small>{t({ uk: 'Цього тижня, о тій самій годині:', ru: 'На этой неделе, в то же время:', en: 'This week, same time:' })}</small>
+            {days.filter((d) => !sameDay(d, new Date(picked.start))).map((d) => (
+              <button key={d.toISOString()} type="button" className="g-chip" onClick={() => pickedItem && copyAll(pickedItem.ls, d, new Date(picked.start).getHours(), new Date(picked.start).getMinutes())}>{d.toLocaleDateString(loc, { weekday: 'short', day: 'numeric' })}</button>
+            ))}
+          </div>
+          {!other && <button type="button" className="t-link-btn" onClick={() => setOther(true)}>{t({ uk: 'Інший день або час', ru: 'Другой день или время', en: 'Another day or time' })}</button>}
+          {other && <div className="wg-copy">
+            <small>{t({ uk: 'Дата, час і тривалість:', ru: 'Дата, время и длительность:', en: 'Date, time and length:' })}</small>
+            <input type="date" value={cp.date} onChange={(e) => setCp({ ...cp, date: e.target.value })} aria-label={t({ uk: 'Дата', ru: 'Дата', en: 'Date' })} />
+            <input type="time" value={cp.time} step={300} onChange={(e) => setCp({ ...cp, time: e.target.value })} aria-label={t({ uk: 'Час', ru: 'Время', en: 'Time' })} />
+            <input type="number" min={10} max={240} step={5} value={cp.dur} onChange={(e) => setCp({ ...cp, dur: Number(e.target.value) || 60 })} aria-label={t({ uk: 'Хвилин', ru: 'Минут', en: 'Minutes' })} style={{ width: 70 }} />
+            <span className="t-muted">{t({ uk: 'хв', ru: 'мин', en: 'min' })}</span>
+            <button type="button" className="mu-btn mu-btn--lime t-btn-sm" onClick={() => { if (!pickedItem || !cp.date || !cp.time) return; const [y, mo, dd] = cp.date.split('-').map(Number); const [hh, mm] = cp.time.split(':').map(Number); copyAll(pickedItem.ls, new Date(y, mo - 1, dd), hh, mm, cp.dur); }}>{t({ uk: 'Додати заняття', ru: 'Добавить занятие', en: 'Add lesson' })}</button>
+          </div>}
+          </div>
+          {msg && <p className="wg-msg" role="status">{msg}</p>}
+          {pickedItem && <SeriesTools key={pickedItem.key} ls={pickedItem.ls} onDone={() => setSel(null)} />}
+          <button type="button" className="t-link-btn wg-more" onClick={() => setMore(!more)} aria-expanded={more}>{more ? t({ uk: 'Сховати деталі', ru: 'Скрыть детали', en: 'Hide details' }) : t({ uk: 'Деталі: тип, тривалість, примітка, колір', ru: 'Детали: тип, длительность, примечание, цвет', en: 'Details: type, length, note, colour' })}</button>
+          {more && <>
           {!pickedGroup && pickedSt && <div className="wg-edit"><label>{t({ uk: 'Колір учня', ru: 'Цвет ученика', en: 'Student colour' })}<StudentColor id={pickedSt.id} compact /></label></div>}
           {!pickedGroup && <div className="wg-edit"><label>{t({ uk: 'Тип', ru: 'Тип', en: 'Type' })}
             <span className="wg-durs">
@@ -184,22 +209,7 @@ export default function WeekGrid({ days, theme = 'lavender' }: { days: Date[]; t
                 placeholder={t({ uk: 'Напр.: сьогодні 30 хв, ще 30 хв переносимо на наступний тиждень', ru: 'Напр.: сегодня 30 мин, ещё 30 мин переносим на следующую неделю', en: 'E.g. 30 min today, 30 more min moved to next week' })} />
             </label>
           </div>
-          <div className="wg-copy">
-            <small>{t({ uk: 'Копія на той самий час:', ru: 'Копия на то же время:', en: 'Copy at the same time:' })}</small>
-            {days.filter((d) => !sameDay(d, new Date(picked.start))).map((d) => (
-              <button key={d.toISOString()} type="button" className="g-chip" onClick={() => pickedItem && copyAll(pickedItem.ls, d, new Date(picked.start).getHours(), new Date(picked.start).getMinutes())}>{d.toLocaleDateString(loc, { weekday: 'short', day: 'numeric' })}</button>
-            ))}
-          </div>
-          <div className="wg-copy">
-            <small>{t({ uk: 'Або копія на будь-яку дату:', ru: 'Или копия на любую дату:', en: 'Or copy to any date:' })}</small>
-            <input type="date" value={cp.date} onChange={(e) => setCp({ ...cp, date: e.target.value })} aria-label={t({ uk: 'Дата', ru: 'Дата', en: 'Date' })} />
-            <input type="time" value={cp.time} step={300} onChange={(e) => setCp({ ...cp, time: e.target.value })} aria-label={t({ uk: 'Час', ru: 'Время', en: 'Time' })} />
-            <input type="number" min={10} max={240} step={5} value={cp.dur} onChange={(e) => setCp({ ...cp, dur: Number(e.target.value) || 60 })} aria-label={t({ uk: 'Хвилин', ru: 'Минут', en: 'Minutes' })} style={{ width: 70 }} />
-            <span className="t-muted">{t({ uk: 'хв', ru: 'мин', en: 'min' })}</span>
-            <button type="button" className="mu-btn mu-btn--lime t-btn-sm" onClick={() => { if (!pickedItem || !cp.date || !cp.time) return; const [y, mo, dd] = cp.date.split('-').map(Number); const [hh, mm] = cp.time.split(':').map(Number); copyAll(pickedItem.ls, new Date(y, mo - 1, dd), hh, mm, cp.dur); }}>{t({ uk: 'Створити копію', ru: 'Создать копию', en: 'Make a copy' })}</button>
-          </div>
-          {msg && <p className="wg-msg" role="status">{msg}</p>}
-          {pickedItem && <SeriesTools key={pickedItem.key} ls={pickedItem.ls} onDone={() => setSel(null)} />}
+          </>}
         </div>
       )}
 
@@ -209,7 +219,7 @@ export default function WeekGrid({ days, theme = 'lavender' }: { days: Date[]; t
         <span><i className="wg-sw is-missed" /> {label.missed}</span>
         <span><i className="wg-sw is-cancelled" /> {label.cancelled}</span>
         <span><i className="wg-sw is-unmarked" /> {t({ uk: 'Минув, не позначено', ru: 'Прошёл, не отмечен', en: 'Past, not marked' })}</span>
-        <span className="wg-tip">{t({ uk: 'Перетягни заняття, щоб перенести. З затиснутим Alt або Ctrl буде копія.', ru: 'Перетащи занятие, чтобы перенести. С зажатым Alt или Ctrl получится копия.', en: 'Drag a lesson to move it. Hold Alt or Ctrl to copy.' })}</span>
+        <span className="wg-tip">{t({ uk: 'Натисни на заняття: статус, ще одне заняття, перенесення. На комп’ютері можна перетягнути (з Alt або Ctrl буде копія).', ru: 'Нажми на занятие: статус, ещё одно занятие, перенос. На компьютере можно перетащить (с Alt или Ctrl получится копия).', en: 'Tap a lesson: status, another lesson, move. On a computer you can drag it (Alt or Ctrl makes a copy).' })}</span>
       </div>
     </div>
   );
