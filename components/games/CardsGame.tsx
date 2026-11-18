@@ -38,7 +38,8 @@ export default function CardsGame({ items, size = 15 }: { items: GameItem[]; siz
         <span>{t({ uk: 'Залишилось', ru: 'Осталось', en: 'Left' })}: {deck.length}</span>
         <span>{t({ uk: 'Вивчено', ru: 'Выучено', en: 'Learned' })}: {total - deck.length} / {total}</span>
       </div>
-      <button className={`g-card ${flipped ? 'is-flipped' : ''}`} onClick={() => setFlipped(!flipped)}>
+      {/* key: нова картка монтується заново вже лицем догори, тож відповідь наступного слова не мигає під час повороту */}
+      <button key={`${card.q}-${deck.length}`} className={`g-card ${flipped ? 'is-flipped' : ''}`} onClick={() => setFlipped(!flipped)}>
         <span className="g-card__face g-card__front">{card.q}<small>{t({ uk: 'натисни, щоб перевернути', ru: 'нажми, чтобы перевернуть', en: 'tap to flip' })}</small></span>
         <span className="g-card__face g-card__back">{card.a}{card.hint && <small>{card.hint}</small>}</span>
       </button>
