@@ -4623,3 +4623,16 @@ textarea.t-parent__url { width: 300px; font: inherit; font-size: 13px; }
 /* пробний урок */
 .t-tag--trial{background:#FFE9C7;color:#7A4B00}
 .wg-trial{display:inline-block;margin-left:5px;vertical-align:1px;font-style:normal;font-size:10px;font-weight:800;background:#FFE9C7;color:#7A4B00;border-radius:6px;padding:0 5px;line-height:15px}
+
+/* розклад: панель заняття зручна на телефоні й планшеті */
+.wg-add { border: 2px dashed var(--mu-ink); border-radius: 14px; padding: 10px 12px; margin: 10px 0; background: #fff; }
+.wg-add__title { display: block; font-size: 15px; margin-bottom: 2px; }
+.wg-more { display: block; margin: 8px 0 0; }
+.wg-backdrop { display: none; }
+@media (max-width: 1024px) {
+  .wg-backdrop { display: block; position: fixed; inset: 0; z-index: 60; border: 0; background: rgba(27,33,64,.28); }
+  .wg-pop { position: fixed; left: 0; right: 0; bottom: 0; z-index: 61; margin: 0; max-height: 78vh; overflow-y: auto; border-radius: 20px 20px 0 0; padding-bottom: calc(16px + env(safe-area-inset-bottom)); box-shadow: 0 -8px 30px rgba(0,0,0,.18); }
+  .wg-pop .t-card__head { position: sticky; top: -16px; background: inherit; z-index: 1; padding-top: 4px; }
+  .wg-pop .mu-btn, .wg-pop .g-chip { min-height: 40px; }
+  .wg-copy input { font-size: 16px; }
+}
