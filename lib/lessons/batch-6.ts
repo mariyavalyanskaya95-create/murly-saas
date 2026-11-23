@@ -25,7 +25,7 @@ What do you never say to your teacher?`),
       note('Розговори учня 3-4 хв, обери 4-5 питань. Не виправляй граматику, просто послухай, чи вживає він уже don’t / doesn’t. Якщо учень каже «I not like», запам’ятай і повернись до цього на етапі «Розбір помилок». Наприкінці запитай: «Як сказати англійською “я не люблю понеділки”?»'),
 
       h('Lead-in · 7 хв'),
-      t(`**Meet Biscuit, the laziest cat in Kyiv**
+      t(`**Meet Biscuit, the laziest cat in London**
 
 Biscuit is the cat of my friend Dana. He is orange, fat and very proud.
 
@@ -77,10 +77,10 @@ I ___ eat fish. = don’t
 Our teacher ___ give tests on Friday. = doesn’t
 We ___ have PE today. = don’t
 The cat ___ drink milk. = doesn’t
-They ___ live in Lviv. = don’t
+They ___ live in York. = don’t
 My phone ___ work. = doesn’t
 You ___ need a pen. = don’t
-Sofia ___ play the piano. = doesn’t
+Sophie ___ play the piano. = doesn’t
 My parents ___ watch TikTok. = don’t`),
       note('Учень сам обирає формат гри (квіз, пари, картки). Хай пояснює кожну відповідь одним словом: «brother = he, тому doesn’t».'),
 
@@ -166,7 +166,7 @@ Dan goes to the gym. = doesn’t go`),
         ['gap', 'Зроби речення запереченнями.', `Lily plays tennis. → Lily [doesn’t play/does not play] tennis.
 I like pizza with pineapple. → I [don’t like/do not like] pizza with pineapple.
 Our teacher gives a lot of homework. → Our teacher [doesn’t give/does not give] a lot of homework.
-My cousins live in Lviv. → My cousins [don’t live/do not live] in Lviv.
+My cousins live in York. → My cousins [don’t live/do not live] in York.
 The cat sleeps on my bed. → The cat [doesn’t sleep/does not sleep] on my bed.`],
         ['open', 'Напиши 6 речень «Things I never do» (3 про себе, 3 про когось із родини або друзів).', 'Things I don’t do... Things my friend or my mum doesn’t do...'],
       ),
@@ -198,19 +198,19 @@ What question do you want to ask your cat?`),
       h('Lead-in · 7 хв'),
       audio('A new girl in class', `
 Mark: Hi! Are you new here?
-Sofia: Yes, I’m Sofia. I’m from Odesa.
+Sophie: Yes, I’m Sophie. I’m from Brighton.
 Mark: Cool. I’m Mark. Do you like our school?
-Sofia: Yes, I do. It’s big and the canteen is good.
+Sophie: Yes, I do. It’s big and the canteen is good.
 Mark: Do you play any sports?
-Sofia: Yes, I do. I play volleyball.
+Sophie: Yes, I do. I play volleyball.
 Mark: Nice! Does your brother go to this school too?
-Sofia: No, he doesn’t. He’s only five.
+Sophie: No, he doesn’t. He’s only five.
 Mark: Where do you live?
-Sofia: Near the park. Do you know the yellow building?
+Sophie: Near the park. Do you know the yellow building?
 Mark: Yes! My cat lives there. Well, he thinks he lives there. He visits a lady on the first floor every day.
-Sofia: Ha! Does she feed him?
+Sophie: Ha! Does she feed him?
 Mark: Yes, she does. That’s why he loves her more than me.
-Sofia: What time does the first lesson start?
+Sophie: What time does the first lesson start?
 Mark: At half past eight. Come on, we’re late!`),
       vocab(`new = новий, нова
 canteen = їдальня
@@ -226,10 +226,10 @@ late = запізнілий
 question = питання
 answer = відповідь, відповідати
 how often = як часто`),
-      ex(['truefalse', 'Послухай діалог і обери True або False.', `Sofia is from Odesa. = True
-Sofia doesn’t like the school. = False
-Sofia plays basketball. = False
-Sofia’s brother goes to the same school. = False
+      ex(['truefalse', 'Послухай діалог і обери True або False.', `Sophie is from Brighton. = True
+Sophie doesn’t like the school. = False
+Sophie plays basketball. = False
+Sophie’s brother goes to the same school. = False
 Mark’s cat visits a lady every day. = True
 The first lesson starts at half past eight. = True`]),
       note('Перше слухання: хто ці люди і де вони? Друге слухання: True / False. Потім попроси учня записати всі питання з do / does, які він чує (Do you like...? Do you play...? Does your brother...? Where do you live? Does she feed him? What time does...?). Звідси переходимо до правила.'),
@@ -257,7 +257,7 @@ ___ your dad cook dinner? = Does
 ___ they go to the same school? = Do
 ___ the cat like milk? = Does
 ___ we have homework today? = Do
-___ Olya play the drums? = Does
+___ Lucy play the drums? = Does
 ___ your friends play Minecraft? = Do
 ___ it rain a lot in London? = Does
 ___ your teacher give tests? = Does
@@ -272,7 +272,7 @@ Where [do] you buy your sneakers?
 What time [does] the film start?
 [Does] your cat [catch] (catch) mice? Yes, he does.
 How often [do] they [play] (play) computer games?
-What [does] Ivan [want] (want) for his birthday?`],
+What [does] Ethan [want] (want) for his birthday?`],
         ['match', 'Знайди відповідь на питання.', `Do you like cats? = Yes, I do. I have two.
 Does your brother play football? = No, he doesn’t. He plays tennis.
 Where do you live? = In a flat near the river.
@@ -339,7 +339,7 @@ What does a koala eat? = Leaves`),
       h('Homework · 4 хв'),
       ex(
         ['gap', 'Зроби питання з речень.', `She likes K-pop. → [Does she like] K-pop?
-They live in Dnipro. → [Do they live] in Dnipro?
+They live in Leeds. → [Do they live] in Leeds?
 Your dog sleeps on the sofa. → [Does your dog sleep] on the sofa?
 You play the guitar. → [Do you play] the guitar?
 Max gets up at seven. → What time [does Max get up]?`],
@@ -372,7 +372,7 @@ What is your phone doing right now? Is it charging?`),
 
 Hi, I’m Pixel, a grey cat. Every morning I wake up at six. I usually sit on my owner’s face until she gets up. She feeds me, and then she goes to school. In the afternoon I sleep on the windowsill. I don’t go outside, because I’m an indoor cat.
 
-But today is different. Today is Saturday! At the moment my owner, Kira, isn’t sleeping. She is sitting at her desk and she is drawing a comic about me. Her little brother is playing a video game and he is shouting at the screen. And me? I’m lying on Kira’s drawing. She isn’t smiling. I think she wants a new model.`),
+But today is different. Today is Saturday! At the moment my owner, Chloe, isn’t sleeping. She is sitting at her desk and she is drawing a comic about me. Her little brother is playing a video game and he is shouting at the screen. And me? I’m lying on Chloe’s drawing. She isn’t smiling. I think she wants a new model.`),
       vocab(`wake up = прокидатися
 usually = зазвичай
 owner = власник, власниця
@@ -389,10 +389,10 @@ screen = екран
 lie = лежати`),
       ex(['truefalse', 'Прочитай і обери True або False.', `Pixel usually wakes up at six. = True
 Pixel goes outside every afternoon. = False
-Kira is sleeping at the moment. = False
-Kira is drawing a comic about Pixel. = True
-Kira’s brother is doing his homework now. = False
-Pixel is lying on Kira’s drawing. = True`]),
+Chloe is sleeping at the moment. = False
+Chloe is drawing a comic about Pixel. = True
+Chloe’s brother is doing his homework now. = False
+Pixel is lying on Chloe’s drawing. = True`]),
       note('Після True / False дай учневі два кольори: одним підкреслити дії «щодня, зазвичай» (wakes up, sit, feeds, goes, sleep), іншим дії «зараз» (is sitting, is drawing, is playing, am lying). Запитай, які слова допомогли розрізнити (every morning, usually, today, at the moment).'),
 
       h('Rule · 5 хв'),
@@ -419,7 +419,7 @@ We are having lunch now. = Continuous
 My dad never cooks. = Simple
 Listen! Someone is singing. = Continuous
 Water boils at 100 degrees. = Simple
-I am texting Oleh at the moment. = Continuous
+I am texting Oliver at the moment. = Continuous
 They often go to the cinema. = Simple
 It is raining today. = Continuous`),
       note('Учень сам обирає формат гри. Після кожної відповіді хай назве слово-підказку в реченні (every, Look!, usually...).'),
@@ -434,12 +434,12 @@ We {are having|have} lunch at the moment. Can I call you later?
 Water {boils|is boiling} at 100 degrees.
 I {want|am wanting} a new phone.
 Lily {doesn’t eat|isn’t eating} meat. She is a vegetarian.`],
-        ['gap', 'Розкрий дужки: Present Simple чи Present Continuous?', `Every day Nazar [walks] (walk) his dog after school.
-Right now Nazar [is walking/’s walking] (walk) his dog in the park.
+        ['gap', 'Розкрий дужки: Present Simple чи Present Continuous?', `Every day Noah [walks] (walk) his dog after school.
+Right now Noah [is walking/’s walking] (walk) his dog in the park.
 My mum [works] (work) in a bank.
 Listen! Someone [is playing/’s playing] (play) the piano.
 I [don’t understand/do not understand] (not understand) this question.
-What [are you doing] (you / do) now? I’m texting Oleh.
+What [are you doing] (you / do) now? I’m texting Oliver.
 How often [do you go] (you / go) to the cinema?
 Today it [is raining/’s raining] (rain), so we [are staying/’re staying] (stay) at home.`],
       ),
@@ -504,7 +504,7 @@ He never ___ (drink) cola. = drinks`),
 Be quiet! The baby [is sleeping/’s sleeping] (sleep).
 I [need] (need) help with this task.
 They [are playing/’re playing] (play) basketball at the moment.
-Ostap never [drinks] (drink) coffee.`],
+Oscar never [drinks] (drink) coffee.`],
         ['open', 'Напиши два міні-тексти по 4-5 речень.', `My usual Saturday (що ти зазвичай робиш у суботу)
 Right now at my home (що відбувається вдома просто зараз, як у прямому ефірі)`],
       ),
@@ -536,17 +536,17 @@ Has your cat or dog got a funny habit?`),
 
       h('Lead-in · 7 хв'),
       audio('Two cat owners at the vet', `
-Lena: Hi! Is that your cat? He’s huge!
-Artem: Yes, this is Pumpkin. He’s got a cold, so we’re here to see the vet.
-Lena: Oh, poor thing. My cat has got a problem with her teeth.
-Artem: Have you got just one cat?
-Lena: No, I’ve got two cats and a hamster. What about you?
-Artem: Only Pumpkin. But he’s got a lot of toys. He has more toys than me!
-Lena: Ha! Does he have a favourite toy?
-Artem: Yes, he does. A plastic fish. He hasn’t got any interest in the expensive ones.
-Lena: Typical cat. Have you got a photo of him with the fish?
-Artem: Yes, I have. Look! My sister has got a hundred photos of him. She’s got a lot of free time.
-Lena: I haven’t got a sister, only a brother. And he hasn’t got time for anything, only football.`),
+Ellie: Hi! Is that your cat? He’s huge!
+Adam: Yes, this is Pumpkin. He’s got a cold, so we’re here to see the vet.
+Ellie: Oh, poor thing. My cat has got a problem with her teeth.
+Adam: Have you got just one cat?
+Ellie: No, I’ve got two cats and a hamster. What about you?
+Adam: Only Pumpkin. But he’s got a lot of toys. He has more toys than me!
+Ellie: Ha! Does he have a favourite toy?
+Adam: Yes, he does. A plastic fish. He hasn’t got any interest in the expensive ones.
+Ellie: Typical cat. Have you got a photo of him with the fish?
+Adam: Yes, I have. Look! My sister has got a hundred photos of him. She’s got a lot of free time.
+Ellie: I haven’t got a sister, only a brother. And he hasn’t got time for anything, only football.`),
       vocab(`vet = ветеринар
 huge = величезний
 a cold = застуда
@@ -562,11 +562,11 @@ typical = типовий
 free time = вільний час
 tail = хвіст`),
       ex(['truefalse', 'Послухай і обери True або False.', `Pumpkin has got a cold. = True
-Lena has got one cat. = False
-Lena has got a hamster. = True
+Ellie has got one cat. = False
+Ellie has got a hamster. = True
 Pumpkin’s favourite toy is a plastic fish. = True
-Artem hasn’t got a sister. = False
-Lena has got a brother. = True`]),
+Adam hasn’t got a sister. = False
+Ellie has got a brother. = True`]),
       note('Перше слухання: хто ці люди і де вони? Друге: True / False. Потім попроси учня записати з діалогу всі форми have / has got і does have. Зверни увагу на скорочення: He’s got = He has got (а не He is got!).'),
 
       h('Rule · 5 хв'),
@@ -679,7 +679,7 @@ Do they have a garden? (no) = No, they don’t`),
       ex(
         ['gap', 'Допиши правильну форму.', `My mum [has got/’s got/has] two sisters.
 [Have] you got a calculator? Yes, I have.
-Ivan [doesn’t have/does not have] a computer. He has a tablet.
+Ethan [doesn’t have/does not have] a computer. He has a tablet.
 [Does] your school have a swimming pool? No, it doesn’t.
 We [haven’t got/have not got] a cat, but we have got a parrot.`],
         ['open', 'Напиши 6-8 речень про свою родину і улюбленця (або улюбленця мрії).', 'I’ve got... My brother has got... We don’t have... My cat hasn’t got...'],
@@ -761,7 +761,7 @@ The tests **were** easy. = Тести були легкі.
       game('Was or were?', 'Choose was or were', `I ___ at home yesterday. = was
 You ___ late! = were
 The pizza ___ cold. = was
-My parents ___ in Lviv. = were
+My parents ___ in York. = were
 It ___ sunny on Monday. = was
 We ___ tired after PE. = were
 The cats ___ on the roof. = were
@@ -774,7 +774,7 @@ ___ the film good? = Was`),
       ex(
         ['gap', 'Встав was або were.', `I [was] at my friend’s house yesterday.
 The pizza [was] delicious.
-My parents [were] in Lviv last weekend.
+My parents [were] in York last weekend.
 You [were] very funny in the video!
 It [was] cold and rainy on Monday.
 We [were] late for the first lesson.
@@ -797,7 +797,7 @@ I {was|were|am} ten years old in 2020.`],
       ex(['gap', 'Міні-історія: допиши словами was, were, wasn’t, weren’t.', `Last Friday [was] the day of our school disco.
 My friends and I [were] very excited.
 The music [was] great, but the room [was] very hot.
-My best friend Oksana [wasn’t/was not] there, because she [was] ill.
+My best friend Megan [wasn’t/was not] there, because she [was] ill.
 The teachers [were] near the door, and they [weren’t/were not] happy with the loud music.
 But the best moment [was] at the end: the school cat [was] on the stage, and everybody [was] dancing with him!`]),
       note('Gap і choice учень робить сам (5-6 хв). На перевірці питай: «одна людина чи багато? А якщо you?» У choice звертай увагу на did: з was / were did не потрібен. Міні-історію учень заповнює на час (2 хв) і читає вголос з виразом.'),

@@ -52,7 +52,7 @@ zebra = зебра`],
       h('Reading · 15 хв'),
       t(`**A day at the zoo**
 
-Hi! My name is Olya. Today I am at the zoo with my dad.
+Hi! My name is Lucy. Today I am at the zoo with my dad.
 
 This is a big elephant. It is grey. It can swim, but it can’t jump.
 
@@ -66,11 +66,11 @@ My favourite animal is the lion. It is big and yellow. It can run very fast.`),
       note('Спочатку прочитай текст сам, дитина слухає і показує пальцем тварин на картинках (можна намалювати разом). Потім дитина читає по одному реченню. Gist: одне питання про тему тексту. Detail: True / False і вибір. Помилки у вимові виправляй м’яко, просто повтори слово правильно.'),
       ex(['choice', 'Про що текст?', 'The text is about {a day at the zoo|a day at school|a trip to the sea}.']),
       ex(
-        ['truefalse', 'Прочитай і обери True або False.', `Olya is at the zoo with her mum. = False
+        ['truefalse', 'Прочитай і обери True або False.', `Lucy is at the zoo with her mum. = False
 The elephant is grey. = True
 There are three monkeys. = True
 A penguin can fly. = False
-Olya’s favourite animal is the lion. = True`],
+Lucy’s favourite animal is the lion. = True`],
         ['choice', 'Обери правильне слово.', `The elephant is {big|small}.
 A giraffe has a {long|short} neck.
 The monkeys are {funny|sad}.
@@ -479,13 +479,13 @@ windy = a scarf`],
       ),
 
       h('Reading · 15 хв'),
-      t(`Hi Sofia!
+      t(`Hi Sophie!
 
 I’m in the mountains with my family. It’s very cold and snowy here! I’m wearing my big red jacket, warm boots and a scarf. My little brother is wearing a funny hat with a bobble.
 
 Yesterday it was windy, so we stayed in the hotel and played games. Tomorrow it will be sunny, and we want to go skiing.
 
-What’s the weather like in Kyiv?
+What’s the weather like in London?
 Love, Mia`),
       note('Перед читанням спитай: Where is Mia? What do you think? Дитина читає листівку сама, потім gist-питання. Друге читання з олівцем: підкреслити всі слова про погоду і одяг. Далі detail-вправи. Невідомі слова (bobble, skiing) поясни жестом.'),
       ex(['choice', 'What is the postcard about?', 'Mia writes about {her holiday in the mountains|her new school|her birthday party}.']),
@@ -522,7 +522,7 @@ What’s the weather {like|is|it}?`],
 What is your favourite weather? Why?
 What do you wear on a snowy day?
 What do you like doing on a sunny day?`),
-      note('Рольова гра «Weather reporter»: дитина веде прогноз погоди для різних міст (Lviv: It’s rainy. Wear boots and take an umbrella!), ти глядач, що питає What should I wear? Можна тримати «мікрофон» (ручку). Потім голосовий запис.'),
+      note('Рольова гра «Weather reporter»: дитина веде прогноз погоди для різних міст (York: It’s rainy. Wear boots and take an umbrella!), ти глядач, що питає What should I wear? Можна тримати «мікрофон» (ручку). Потім голосовий запис.'),
       ex(['voice', 'Запиши прогноз погоди.', 'You are a weather reporter. Tell us the weather today and what we should wear.']),
 
       h('Writing · 6 хв'),
@@ -572,7 +572,7 @@ It’s cold. I’m wearing a warm [jacket] over my jumper.`],
         ['choice', 'Choose the right word.', `Look! Dad {is wearing|are wearing|wear} his boots.
 I {am wearing|is wearing|are wearing} a jacket.
 They {are wearing|is wearing|wearing} hats.
-What’s the weather {like|likes|liking} in Lviv?
+What’s the weather {like|likes|liking} in York?
 There is a lot of snow. It’s {snowy|sunny|hot}.
 There are a lot of clouds. It’s {cloudy|sunny|hot}.`],
         ['open', 'Напиши відповіді (2-3 речення).', `What’s the weather like today in your city?

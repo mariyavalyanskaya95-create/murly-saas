@@ -50,31 +50,31 @@ Sorry, I’d better get going. {Sure, see you later!|No, you don’t.|Going wher
       note('Прочитайте фрази вголос з природною інтонацією (How’s it GOing?). Учні повторюють хором або по черзі. Вправи 5-6 хв, перевірка разом. Якщо учень відповідає одним словом, попросіть «додати деталь і повернути питання».'),
 
       h('Listening · 15 хв'),
-      t('**Before you listen:** Olha has just started a new job. On Monday morning she meets a colleague in the office kitchen. What do you think they will talk about?'),
+      t('**Before you listen:** Olivia has just started a new job. On Monday morning she meets a colleague in the office kitchen. What do you think they will talk about?'),
       audio('Monday morning in the office kitchen', `
 Mark: Morning! I don’t think we’ve met. I’m Mark, from the sales team.
-Olha: Hi Mark, nice to meet you. I’m Olha. I started in marketing last week.
+Olivia: Hi Mark, nice to meet you. I’m Olivia. I started in marketing last week.
 Mark: Oh, welcome! How’s it going so far?
-Olha: Pretty well, thanks. Everyone is very friendly. It’s a bit busy, though.
+Olivia: Pretty well, thanks. Everyone is very friendly. It’s a bit busy, though.
 Mark: Yes, Mondays are always crazy here. Did you have a good weekend?
-Olha: Yes, lovely, thanks. I went cycling by the river with my sister. How about you?
+Olivia: Yes, lovely, thanks. I went cycling by the river with my sister. How about you?
 Mark: Nothing special. I watched football and cooked a big dinner for some friends.
-Olha: Sounds nice. What did you cook?
+Olivia: Sounds nice. What did you cook?
 Mark: A Thai curry. It was a bit too spicy, but everyone ate it!
-Olha: Ha, that’s the main thing. By the way, is the coffee machine always this slow?
+Olivia: Ha, that’s the main thing. By the way, is the coffee machine always this slow?
 Mark: Always. That’s why we have the best conversations here.
-Olha: Good to know. Any plans for the summer holidays?
-Mark: We’re thinking about Portugal. Have you ever been there?
-Olha: No, never, but I’d love to go. Oh, my meeting starts in two minutes. I’d better get going.
+Olivia: Good to know. Any plans for the summer holidays?
+Mark: We’re thinking about Cornwall. Have you ever been there?
+Olivia: No, never, but I’d love to go. Oh, my meeting starts in two minutes. I’d better get going.
 Mark: Sure. It was nice talking to you. Let’s catch up at lunch sometime.
-Olha: Great idea. See you later!`),
-      ex(['choice', 'Gist: listen once and choose the answer.', `Where are Olha and Mark? {In the office kitchen|In a restaurant|In a meeting room}
-Why does the conversation end? {Olha has a meeting|Mark is angry|The coffee machine breaks}`]),
-      ex(['truefalse', 'Detail: listen again. True or False?', `Olha started working in marketing last week. = True
+Olivia: Great idea. See you later!`),
+      ex(['choice', 'Gist: listen once and choose the answer.', `Where are Olivia and Mark? {In the office kitchen|In a restaurant|In a meeting room}
+Why does the conversation end? {Olivia has a meeting|Mark is angry|The coffee machine breaks}`]),
+      ex(['truefalse', 'Detail: listen again. True or False?', `Olivia started working in marketing last week. = True
 Mark works in the marketing team. = False
-Olha went cycling with her sister at the weekend. = True
+Olivia went cycling with her sister at the weekend. = True
 Mark cooked a Thai curry for his family. = False
-Mark is thinking about a holiday in Portugal. = True`]),
+Mark is thinking about a holiday in Cornwall. = True`]),
       note('Перше прослуховування на загальне розуміння (gist), друге на деталі. Після перевірки попросіть знайти в діалозі 3 способи повернути питання (How about you? / Have you ever…? / What did you cook?) і 1 спосіб завершити розмову. Загалом 12-15 хв.'),
 
       h('Language focus · 10 хв'),
@@ -82,7 +82,7 @@ Mark is thinking about a holiday in Portugal. = True`]),
       ex(['gap', 'Complete the questions and phrases.', `[Did] you have a good weekend?
 How [was] your holiday?
 What [did] you do on Saturday?
-[Have] you ever been to Portugal?
+[Have] you ever been to Cornwall?
 It was nice [talking] to you.
 Let’s [catch] up after the meeting.`]),
       ex(['translate', 'Переклади англійською.', `Як минули вихідні? = Did you have a good weekend? / How was your weekend?
@@ -110,13 +110,13 @@ Let’s catch [up] at lunch sometime.
 I’d better get [going]. My bus leaves in five minutes.
 By the [way], have you tried the new café downstairs?`],
         ['choice', 'Past Simple чи Present Perfect? Обери правильну форму.', `{Did you go|Have you gone|Do you go} anywhere nice last weekend?
-{Have you ever been|Did you ever be|Were you ever be} to Portugal?
+{Have you ever been|Did you ever be|Were you ever be} to Cornwall?
 What {did you do|have you done|do you do} on Saturday evening?
 I {went|have gone|go} to a concert on Friday.
 I {have never tried|did never try|am never trying} sushi in my life.
 We {have worked|work|worked} together since 2022.`],
         ['translate', 'Переклади англійською.', `Що ти робив у суботу? = What did you do on Saturday?
-До речі, ти коли-небудь був у Португалії? = By the way, have you ever been to Portugal?
+До речі, ти коли-небудь був у Корнуоллі? = By the way, have you ever been to Cornwall?
 Звучить чудово! = Sounds great! / That sounds great!
 Давай поспілкуємося за обідом = Let’s catch up at lunch / Let’s catch up over lunch / Let us catch up at lunch
 Я ходив у похід з друзями = I went hiking with my friends / I went hiking with friends
@@ -127,7 +127,7 @@ Did you have a good = weekend?
 Any plans for = the holidays?
 It was nice = talking to you.
 I’d better = get going.
-Have you ever = been to Portugal?
+Have you ever = been to Cornwall?
 Pretty good, thanks. = And you?
 Nice to = meet you.`),
       X.note('Блок на 10-12 хв, якщо лишився час, або розминка на початку наступного уроку. У choice звертайте увагу на маркери часу: last weekend, on Friday = Past Simple; ever, never, since = Present Perfect. «I have never tried sushi in my life»: життя ще триває, тому Present Perfect. Переклад може мати інші правильні варіанти (How was your Saturday? тощо), зараховуйте їх вручну. Гру можна робити на швидкість: учень читає початок, вчитель або партнер закінчує.'),
@@ -140,13 +140,13 @@ What three questions will you use next time you meet someone new at work?`]),
         ['gap', 'Homework plus: розкрий дужки.', `How [was] (be) your weekend?
 I [visited] (visit) my grandparents on Saturday.
 We [cooked] (cook) a big dinner for the whole family.
-[Have] you ever been to Odesa?
+[Have] you ever been to Brighton?
 It [was] (be) nice talking to you yesterday.
 Mark [has worked] (work) here for three years.`],
         ['choice', 'Обери найбільш природну відповідь.', `Morning! How’s it going? {Not bad, thanks. Busy Monday! How about you?|I go fine.|Yes, it goes.}
 Did you do anything nice at the weekend? {Not much, I just relaxed at home. And you?|No.|I did a weekend.}
-Have you ever been to Portugal? {No, never, but I’d love to go.|No, I didn’t go.|Yes, I was go.}
-I’m off to Spain next week! {Lucky you! Where exactly?|I don’t care.|Spain is a country.}
+Have you ever been to Cornwall? {No, never, but I’d love to go.|No, I didn’t go.|Yes, I was go.}
+I’m off to Scotland next week! {Lucky you! Where exactly?|I don’t care.|Scotland is a country.}
 It was nice talking to you. {You too! See you later.|Me too talking.|Thank you for talking.}
 Sorry, I’d better get going. {Sure, catch you later!|Get going where?|No, you don’t.}`],
         ['open', 'Письмо: відповідай 3-5 реченнями.', `Describe a time when small talk helped you at work, at school or on a trip.

@@ -313,7 +313,7 @@ Don’t [share] your password with anyone.`]),
       h('Reading · 15 хв'),
       t(`**Mia’s screen time challenge**
 
-Mia is fifteen and she lives in Kyiv. She uses TikTok and Instagram every day. She usually posts photos at the weekend, but she never shares her address or her school online. Her profile is private, and she only accepts people she knows.
+Mia is fifteen and she lives in London. She uses TikTok and Instagram every day. She usually posts photos at the weekend, but she never shares her address or her school online. Her profile is private, and she only accepts people she knows.
 
 Last month Mia looked at her screen time and got a shock: it was about three hours a day! She often scrolled TikTok before bed and then couldn’t sleep. She also got more than a hundred notifications every day.
 
@@ -346,23 +346,23 @@ I [scroll] TikTok before bed.`],
       note('Поверни помилки з розминки і виправте їх разом. Типова помилка: I post usually. Покажи порядок слів на «лінійці»: хто + прислівник + дієслово. Можна дати учню картки зі словами речення, щоб він склав їх у правильному порядку. 10 хвилин.'),
 
       h('Listening and speaking · 14 хв'),
-      audio('Do you want to try the challenge?', `Max: Hey Sofia, why didn’t you answer my message yesterday?
-Sofia: Sorry! I’m trying a new challenge. I never use my phone after nine.
+      audio('Do you want to try the challenge?', `Max: Hey Sophie, why didn’t you answer my message yesterday?
+Sophie: Sorry! I’m trying a new challenge. I never use my phone after nine.
 Max: Seriously? I always scroll before bed. It helps me relax.
-Sofia: I usually did that too, but then I couldn’t sleep. Now I read a book instead.
+Sophie: I usually did that too, but then I couldn’t sleep. Now I read a book instead.
 Max: And what about your followers? Don’t they miss your posts?
-Sofia: I still post, but only at the weekend. My real friends can call me.
+Sophie: I still post, but only at the weekend. My real friends can call me.
 Max: Hmm, maybe I can try it. But only for one week!
-Sofia: Deal! Let’s compare our screen time next Friday.`),
-      ex(['truefalse', 'Listen. True or False?', `Sofia doesn’t use her phone after nine. = True
+Sophie: Deal! Let’s compare our screen time next Friday.`),
+      ex(['truefalse', 'Listen. True or False?', `Sophie doesn’t use her phone after nine. = True
 Max never scrolls before bed. = False
-Sofia stopped posting completely. = False
+Sophie stopped posting completely. = False
 Max agrees to try the challenge for a week. = True`]),
       talk(`Is three hours of screen time a lot? Why?
 What should you never share online?
-Role-play: you are Max and Sofia one week later. Did the challenge work?
+Role-play: you are Max and Sophie one week later. Did the challenge work?
 What is one good thing and one bad thing about social media?`),
-      note('Аудіо прослухати двічі: спершу без завдання (хто про що говорить), потім із True/False. Далі рольова гра: учень і вчитель - Max і Sofia через тиждень. Учень має вжити мінімум 2 прислівники частоти і 2 нові слова. Виправляй м’яко, повторюючи фразу правильно. 14 хвилин.'),
+      note('Аудіо прослухати двічі: спершу без завдання (хто про що говорить), потім із True/False. Далі рольова гра: учень і вчитель - Max і Sophie через тиждень. Учень має вжити мінімум 2 прислівники частоти і 2 нові слова. Виправляй м’яко, повторюючи фразу правильно. 14 хвилин.'),
 
       X.h('Extra practice · якщо лишився час або на наступний урок'),
       X.ex(
@@ -410,7 +410,7 @@ He [never] (0%) shares his password.
 I am [never] (0%) online after 10 p.m.`],
         ['choice', 'Обери правильний варіант.', `Mia {usually posts|posts usually} at the weekend.
 Mia’s profile {is|are} private.
-Sofia {never uses|uses never} her phone after nine.
+Sophie {never uses|uses never} her phone after nine.
 Max {is always|always is} tired in the morning because he scrolls at night.
 I got fifty {notifications|profiles} in one hour, so I turned off the sound.
 Don’t {share|follow} your home address online.`],
@@ -461,7 +461,7 @@ We were late, so we {missed|noticed} the train.
       h('Reading · 15 хв'),
       t(`**A trip I will never forget**
 
-Last summer my family went to the Carpathian mountains. We stayed in a small wooden house near a forest. On the first day it was raining all the time, so we played board games and drank hot tea.
+Last summer my family went to the Rocky Mountains. We stayed in a small wooden house near a forest. On the first day it was raining all the time, so we played board games and drank hot tea.
 
 On the second day the sun was shining, and we set off early. We were walking near a lake when we saw a bear. It was drinking water and didn’t notice us. Nobody said a word. We stood very still, then we quietly walked back to the path.
 
@@ -495,20 +495,20 @@ While we {were waiting|waited} for the bus, it started to snow.`],
       note('Намалюй часову лінію: довга хвиляста лінія (Past Continuous) і коротка «блискавка» (Past Simple), що її перериває. Попроси учня придумати власне речення за цією схемою. Переклад може мати кілька правильних варіантів: якщо відповідь логічна, зарахуй її вручну. 10 хвилин.'),
 
       h('Listening and speaking · 14 хв'),
-      audio('A trip that went wrong', `Anna: How was your trip to Lviv, Den?
-Den: Well, it started badly. We missed our train!
+      audio('A trip that went wrong', `Anna: How was your trip to York, Josh?
+Josh: Well, it started badly. We missed our train!
 Anna: Oh no! What happened?
-Den: We were sitting in a cafe at the station and we were talking so much that we didn’t hear the announcement.
+Josh: We were sitting in a cafe at the station and we were talking so much that we didn’t hear the announcement.
 Anna: So what did you do?
-Den: Luckily, there was another train two hours later. While we were waiting, we walked around and found a great bookshop.
-Anna: And how was Lviv?
-Den: Amazing! But on the second day it was raining when we set off, and I forgot my umbrella at the hotel.
+Josh: Luckily, there was another train two hours later. While we were waiting, we walked around and found a great bookshop.
+Anna: And how was York?
+Josh: Amazing! But on the second day it was raining when we set off, and I forgot my umbrella at the hotel.
 Anna: Typical you! Did you buy any souvenirs?
-Den: Yes, I bought some chocolate for you. But I ate half of it on the train back. Sorry!`),
-      ex(['truefalse', 'Listen. True or False?', `Den missed his train because he was late in the morning. = False
+Josh: Yes, I bought some chocolate for you. But I ate half of it on the train back. Sorry!`),
+      ex(['truefalse', 'Listen. True or False?', `Josh missed his train because he was late in the morning. = False
 They took another train two hours later. = True
-Den found a bookshop while he was waiting. = True
-Den brought all the chocolate back for Anna. = False`]),
+Josh found a bookshop while he was waiting. = True
+Josh brought all the chocolate back for Anna. = False`]),
       talk(`Tell about a trip you remember. Where were you? What were you doing when something happened?
 Have you ever got lost? What did you do?
 Have you ever missed a train, a bus or a plane?
@@ -557,9 +557,9 @@ It was raining all day, = so we played board games.`),
 We {were swimming|swam} in the sea when it started to rain.
 {Were|Was} you sleeping when I called?
 She {didn’t notice|wasn’t noticing} the bear.
-What {did you buy|were you buying} in Lviv? I bought chocolate.
+What {did you buy|were you buying} in York? I bought chocolate.
 Last summer we {went|were going} to the sea for two weeks.`],
-        ['gap', 'Встав слово: trip, view, souvenir, missed, quietly, Suddenly, luckily.', `Our school [trip] to Lviv was great.
+        ['gap', 'Встав слово: trip, view, souvenir, missed, quietly, Suddenly, luckily.', `Our school [trip] to York was great.
 The [view] from the tower was beautiful.
 I bought a fridge magnet as a [souvenir].
 We [missed] the bus, so we took a taxi.
@@ -584,7 +584,7 @@ Imagine you got lost in a new city. What did you do?`],
       t('**Two truths and a lie.** Your teacher says three sentences about their life. Two are true, one is false. Can you guess the lie?'),
       talk(`Guess the lie: which sentence is not true?
 Now say three sentences about your life: two true, one false.`),
-      note('Дай свої три речення з Present Perfect: I have been to Poland. I have never eaten sushi. I have met a famous singer. Учень вгадує брехню і ставить питання. Потім учень робить свої три речення. Не пояснюй граматику, просто познач, що всі речення про досвід «колись у житті». 5 хвилин.'),
+      note('Дай свої три речення з Present Perfect: I have been to Wales. I have never eaten sushi. I have met a famous singer. Учень вгадує брехню і ставить питання. Потім учень робить свої три речення. Не пояснюй граматику, просто познач, що всі речення про досвід «колись у житті». 5 хвилин.'),
 
       h('Vocabulary · 10 хв'),
       vocab(`ever = коли-небудь
@@ -603,13 +603,13 @@ recently = нещодавно`),
 Have you finished your project {yet|already}?
 We have lived here {since|for} 2019.
 She has studied English {for|since} six years.
-I have {never|ever} been to Japan, but I want to go.`]),
+I have {never|ever} been to New York, but I want to go.`]),
       note('Нарисуй часову лінію від минулого до «now» і розстав на ній just (щойно), already, since 2019, for 6 years. Учень пояснює своїми словами, у чому різниця між since і for. Швидка гра: ти кажеш «2020», учень «since 2020»; ти кажеш «three days», учень «for three days». 10 хвилин.'),
 
       h('Reading · НМТ · 15 хв'),
       t(`**"I have never said no to a new experience"**
 
-**A** Seventeen-year-old Emma from Poltava has a simple rule: if something new scares her a little, she tries it. "I have climbed a mountain, I have performed on stage and I have even tried snails in France," she laughs.
+**A** Seventeen-year-old Emma from Oxford has a simple rule: if something new scares her a little, she tries it. "I have climbed a mountain, I have performed on stage and I have even tried haggis in Scotland," she laughs.
 
 **B** Her biggest adventure so far happened two years ago. She went to a summer camp abroad and didn’t know anyone there. "On the first day I was terrified. But by the end of the camp I had friends from six countries. We still chat every week."
 
@@ -621,7 +621,7 @@ Paragraph B = Making friends far from home
 Paragraph C = When things go wrong
 Paragraph D = Sharing stories online`]),
       ex(
-        ['truefalse', 'True or False?', `Emma has tried food in France. = True
+        ['truefalse', 'True or False?', `Emma has tried food in Scotland. = True
 She knew many people at the summer camp before it started. = False
 She has skateboarded a lot since she broke her arm. = False
 Emma has already decided what to study at university. = False`],
@@ -632,7 +632,7 @@ Emma thinks that mistakes are {part of the fun|a reason to stop|very dangerous}.
       note('Формат як у НМТ: спершу заголовки до абзаців (на кожен абзац 30-40 секунд, шукати ключові слова), потім завдання на деталі. Навчи стратегію: підкреслювати в питанні ключове слово і шукати синонім у тексті. Після перевірки знайдіть у тексті приклади Present Perfect і Past Simple та поясніть, чому вжито саме цей час (two years ago, last spring - точний час). 15 хвилин.'),
 
       h('Grammar · 12 хв'),
-      tip('Present Perfect (have / has + V3) говорить про досвід без точного часу: I have been to Lviv. Якщо є точний час (yesterday, in 2022, two years ago), потрібен Past Simple: I went to Lviv in 2022. Типовий діалог: **Have you ever been** to Lviv? Yes, I have. **When did you go** there? I **went** last summer.'),
+      tip('Present Perfect (have / has + V3) говорить про досвід без точного часу: I have been to York. Якщо є точний час (yesterday, in 2022, two years ago), потрібен Past Simple: I went to York in 2022. Типовий діалог: **Have you ever been** to York? Yes, I have. **When did you go** there? I **went** last summer.'),
       ex(
         ['gap', 'Open the brackets.', `I [have never tried/’ve never tried] (never / try) sushi.
 She [has already finished/’s already finished] (already / finish) her project.
@@ -645,23 +645,23 @@ She {has lost|lost} her keys, so she can’t open the door now.`],
 Ти коли-небудь бачив сніг? = Have you ever seen snow?`],
       ),
       ex(['choice', 'НМТ-формат: read the text and choose the correct option for each gap.', `My cousin Tom {has visited|visited|visits|is visiting} twelve countries so far.
-Last year he {went|has gone|goes|has been going} to Portugal with his friends.
-He {has never been|never was|is never|was never being} to Asia, but he dreams about Japan.
+Last year he {went|has gone|goes|has been going} to Cornwall with his friends.
+He {has never been|never was|is never|was never being} to America, but he dreams about New York.
 He {has just bought|just buys|is just buying|just has bought} a new guidebook, and he is reading it now.`]),
       note('Останнє завдання - у форматі граматичного тесту НМТ (вибір з чотирьох варіантів у зв’язному тексті). Попроси учня спершу знайти в кожному реченні «маркер часу» (so far, last year, never, just) і лише потім обирати. Помилки розбирай через питання: Is there a finished time? 12 хвилин.'),
 
       h('Listening and speaking · 12 хв'),
       audio('Interview: the experience game', `Kate: OK, my first question. Have you ever been on TV?
-Oleh: Yes, I have, actually!
+Oliver: Yes, I have, actually!
 Kate: Really? When was that?
-Oleh: Two years ago. A journalist interviewed me at a football match. I was so nervous!
+Oliver: Two years ago. A journalist interviewed me at a football match. I was so nervous!
 Kate: Cool! Have you ever cooked a meal for your whole family?
-Oleh: No, I haven’t. I’ve only made sandwiches. What about you? Have you ever broken a bone?
+Oliver: No, I haven’t. I’ve only made sandwiches. What about you? Have you ever broken a bone?
 Kate: Yes, I’ve broken my leg. I fell off a horse when I was ten.
-Oleh: Ouch! Have you been on a horse since then?
+Oliver: Ouch! Have you been on a horse since then?
 Kate: No, never. I’ve been too scared!`),
-      ex(['truefalse', 'Listen. True or False?', `Oleh has been on TV. = True
-Oleh has cooked dinner for his family many times. = False
+      ex(['truefalse', 'Listen. True or False?', `Oliver has been on TV. = True
+Oliver has cooked dinner for his family many times. = False
 Kate broke her leg when she was ten. = True`]),
       talk(`Have you ever met a famous person?
 What is the most interesting place you have been to? When did you go there?
@@ -672,9 +672,9 @@ Find someone who…: ask your teacher five Have you ever…? questions and one f
 
       X.h('Extra practice · якщо лишився час або на наступний урок'),
       X.ex(
-        ['choice', 'НМТ-формат: прочитай текст і обери правильний варіант для кожного пропуску.', `My grandma Nina {has lived|lives|is living|lived} in Odesa since 1975.
+        ['choice', 'НМТ-формат: прочитай текст і обери правильний варіант для кожного пропуску.', `My grandma Nora {has lived|lives|is living|lived} in Brighton since 1975.
 She {has worked|works|is working|was work} as a teacher for forty years and she still loves her job.
-In 2015 she {visited|has visited|visits|is visiting} Paris for the first time.
+In 2015 she {visited|has visited|visits|is visiting} New York for the first time.
 Since then she {has been|was|is|had being} abroad five times.
 Last month she {bought|has bought|buys|is buying} a new camera.
 She {has already taken|already takes|is already taking|has already take} more than five hundred photos with it.
@@ -692,7 +692,7 @@ I haven’t done my homework {yet|already|just|ever}.
 She has {just|yet|ever|since} left, so you can still catch her at the bus stop.
 Have you {ever|yet|since|ago} been to the sea?
 I {have never|never have|haven’t never|has never} seen a real tiger.
-I visited Lviv two years {ago|since|for|yet}.`],
+I visited York two years {ago|since|for|yet}.`],
       ),
       X.game('Third forms', 'Назви третю форму дієслова (V3).', `go = gone
 be = been
@@ -720,7 +720,7 @@ Write soon! I {haven’t heard|didn’t hear|don’t hear|am not hearing} from y
 Вона щойно повернулася додому = She has just come home / She’s just come home / She has just returned home / She has just got home / She’s just got home / She has just come back home
 Ми знаємо одне одного з 2018 року = We have known each other since 2018 / We’ve known each other since 2018
 Ти вже бачив цей фільм? = Have you seen this film yet? / Have you already seen this film? / Have you seen this movie yet? / Have you already seen this movie?
-Я відвідав Львів минулого літа = I visited Lviv last summer / I went to Lviv last summer
+Я відвідав Йорк минулого літа = I visited York last summer / I went to York last summer
 Він ще не відповів на моє повідомлення = He hasn’t answered my message yet / He has not answered my message yet / He hasn’t replied to my message yet / He has not replied to my message yet`],
         ['open', 'Напиши відповіді англійською.', `Write 5 sentences about things you have done this year. Add one sentence in Past Simple with a time expression.
 Write an email to a friend (60-80 words) about a new experience you have had recently.`],

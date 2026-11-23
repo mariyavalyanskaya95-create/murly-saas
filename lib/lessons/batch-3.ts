@@ -56,7 +56,7 @@ We used the library computers for our history [research].`],
       note('Дайте 6-7 хвилин на текст і питання без словника, як на іспиті. Під час перевірки просіть учня показати рядок у тексті, який доводить відповідь. Для кожного неправильного варіанту A-D коротко поясніть, чому він не підходить.'),
       t(`Last September, Oakfield Secondary School tried something new: no phones during the school day. Students now leave their phones in a locker when they arrive and collect them at 3 pm.
 
-At first, many students were unhappy. “I felt lost without my phone for the first week,” says Daria, 15. “But then I noticed that people started talking at lunch instead of scrolling.”
+At first, many students were unhappy. “I felt lost without my phone for the first week,” says Grace, 15. “But then I noticed that people started talking at lunch instead of scrolling.”
 
 Teachers say lessons have become calmer. “Students are more focused, and fewer of them come to class late,” explains Mr Collins, the head teacher. However, some parents are worried that they cannot contact their children during the day. The school now allows parents to call the office in an emergency.
 
@@ -65,10 +65,10 @@ There were other changes too. Fewer arguments started on social media during the
 After one year, the school asked students what they thought. Almost two thirds said they would keep the rule, although many wanted to use phones in the library for research.`),
       ex(
         ['truefalse', 'True or False?', `Students keep their phones in their bags during lessons. = False
-Daria found the first week difficult. = True
+Grace found the first week difficult. = True
 According to Mr Collins, students are less focused now. = False
 Parents can call the school office if something serious happens. = True`],
-        ['choice', 'Choose the best answer (A-D).', `What did Daria notice after the first week? {People talked to each other at lunch|She did not miss her phone at all|Her friends lost their phones|Lunch breaks became shorter}
+        ['choice', 'Choose the best answer (A-D).', `What did Grace notice after the first week? {People talked to each other at lunch|She did not miss her phone at all|Her friends lost their phones|Lunch breaks became shorter}
 According to Mr Collins, the rule has helped students to {concentrate better in class|get higher marks in every subject|make more friends online|finish school earlier}
 How did the school respond to parents’ worries? {It let parents call the office in an emergency|It gave every student a school phone|It cancelled the rule for younger students|It asked parents to visit the school}
 Why does Max mention books? {He used his breaks differently after the ban|He needed books for his research|The library sold books cheaply|He had to read them for homework}
@@ -82,19 +82,19 @@ Anna: OK, everyone, today we need to decide what we think about the phone-free r
 Mark: I’ll be honest, I don’t like it. My bus is often late, and I can’t tell my mum.
 Anna: But you can use the phone in the office, right?
 Mark: Yes, but there’s always a queue at the end of the day.
-Sofia: I see your point, Mark, but I think the rule works. Lessons are much quieter now.
+Sophie: I see your point, Mark, but I think the rule works. Lessons are much quieter now.
 Mark: Quieter, maybe. But we live in a digital world. We should learn to use phones wisely, not just hide them.
-Sofia: That’s fair. What if we had phone time in the library for research?
+Sophie: That’s fair. What if we had phone time in the library for research?
 Anna: I like that idea. Twenty minutes a day, only for schoolwork.
 Mark: And maybe a phone zone near the bus stop after lessons?
 Anna: Great. So we keep the rule, add a library session and ask about a phone zone. Let’s vote on Friday.`),
       ex(
         ['truefalse', 'True or False?', `Mark is happy with the phone-free rule. = False
 Mark’s problem is connected with his bus. = True
-Sofia thinks lessons have become quieter. = True
+Sophie thinks lessons have become quieter. = True
 The students decide to cancel the rule. = False`],
         ['choice', 'Choose the correct answer.', `Mark believes students should {learn to use phones wisely|never use phones at school|buy cheaper phones|use phones only at home}.
-Sofia suggests phone time {in the library|in every lesson|at lunch|on the bus}.
+Sophie suggests phone time {in the library|in every lesson|at lunch|on the bus}.
 The vote will take place {on Friday|today|next month|after the holidays}.`],
       ),
 
@@ -167,7 +167,7 @@ If you are late, you [have to/must] go to the office first.
 We [don’t have to/do not have to] buy books, the school gives them to us.
 The concert has started, so you [mustn’t/must not/can’t/cannot] talk now.`],
         ['choice', 'Обери правильну відповідь за текстом уроку.', `At Oakfield, students collect their phones {at 3 pm|at lunch|in the morning}.
-In the first week, Daria felt {lost|happy|calm} without her phone.
+In the first week, Grace felt {lost|happy|calm} without her phone.
 Mr Collins says that fewer students {come to class late|forget their homework|get bad marks}.
 During breaks, the library became {much busier|closed|quieter}.
 Max has read {four books|two books|ten books} this term.
@@ -232,8 +232,8 @@ My brother never {lends|borrows} me his bike.`]),
       h('НМТ Use of English · 15 хв'),
       tip('Стратегія для тексту з пропусками: 1) прочитай увесь текст, щоб зрозуміти зміст; 2) для кожного пропуску визнач, що перевіряють: граматику (час, форма) чи лексику (значення, сталий вираз); 3) підстав відповідь і перевір слова **до і після** пропуску; 4) не залишай пропусків без відповіді.'),
       note('Текст A учень виконує самостійно за 5 хвилин, текст B за 5 хвилин, далі 5 хвилин на розбір. Розбираючи помилку, просіть назвати тип пропуску (час, прийменник, пара слів). Зверніть увагу на часові маркери: last summer, since then, for two months.'),
-      ex(['choice', 'Text A: My summer camp. Choose the correct option (A-D).', `Last summer I {went|have gone|go|was going} to a language camp in the Carpathians.
-On the first day I {made|did|took|got} friends with a boy from Lviv.
+      ex(['choice', 'Text A: My summer camp. Choose the correct option (A-D).', `Last summer I {went|have gone|go|was going} to a language camp in Scotland.
+On the first day I {made|did|took|got} friends with a boy from York.
 We {had|have had|were having|has} lessons every morning and went hiking in the afternoon.
 One evening our teacher {told|said|spoke|talked} us funny stories about his life in London.
 I {have studied|study|studied|am studying} English since I was seven, but that summer I finally started to speak it.
@@ -312,7 +312,7 @@ I have saved a lot of money {since|for|from|during} June.`],
 Він завжди каже правду = He always tells the truth
 Ми ухвалили рішення = We made a decision / We have made a decision / We’ve made a decision
 Я сумую за бабусею = I miss my grandma / I miss my granny / I miss my grandmother
-Я позичив книжку в Ані = I borrowed a book from Anya / I borrowed a book from Ania / I borrowed the book from Anya / I borrowed the book from Ania / I borrowed a book from Anna / I borrowed the book from Anna`],
+Я позичив книжку в Анни = I borrowed a book from Anna / I borrowed the book from Anna`],
         ['open', 'Письмо: дай розгорнуту відповідь.', `Write three sentences about things you have done since September. Use since and for.
 Tell a short story (4-5 sentences) about a day when you missed or lost something. Use at least three words from today’s pairs.`],
       ),
@@ -535,7 +535,7 @@ suggest what someone should do (paragraph D): [advise]`],
       note('Цей текст учень виконує на час: 6 хвилин. Зайві заголовки тут: «Games that only adults can play» і «How to win every time». Другий навмисно схожий на абзац E: в абзаці сказано якраз протилежне (don’t worry about winning). Друга вправа тренує пошук перефразувань.'),
       t(`**A.** Ten years ago, many people thought board games would soon disappear. Today, cafés where you can play board games are opening in cities all over the world, and sales of games have grown every year.
 
-**B.** Why? Many young people say they are tired of screens. After a day of online lessons and messages, sitting around a table with real cards and dice feels refreshing. “It’s the only time my friends and I put our phones away,” says Oleh, 16.
+**B.** Why? Many young people say they are tired of screens. After a day of online lessons and messages, sitting around a table with real cards and dice feels refreshing. “It’s the only time my friends and I put our phones away,” says Oliver, 16.
 
 **C.** Board games are not only fun. Strategy games teach you to plan ahead, and cooperative games, where all the players work together against the game, build teamwork. Some teachers now use them in maths and language lessons.
 
@@ -711,14 +711,14 @@ We can [also] go cycling in the park.`],
       h('Listening and planning · 8 хв'),
       note('Діалог задає ситуацію для фінального листа. Після вправи учень усно планує лист за питаннями: по одному-два реченню на пункт. Не пишемо, лише говоримо, щоб на письмо залишився час.'),
       audio('A phone call from Alex', `
-Alex: Hi Marta! Have you got a minute?
-Marta: Sure, Alex. What’s up?
+Alex: Hi Molly! Have you got a minute?
+Molly: Sure, Alex. What’s up?
 Alex: You know my mum’s birthday is next month. I want to cook a Ukrainian dish for her.
-Marta: That’s so sweet! What kind of dish?
+Molly: That’s so sweet! What kind of dish?
 Alex: Something not too difficult. To be honest, I’m not a great cook.
-Marta: Don’t worry. I’ll write you a proper letter with my favourite recipe.
+Molly: Don’t worry. I’ll write you a proper letter with my favourite recipe.
 Alex: Perfect. And tell me when I can come and cook it with you. I’m free in the first week of August.
-Marta: Great, I’ll check with my parents and let you know.`),
+Molly: Great, I’ll check with my parents and let you know.`),
       ex(['truefalse', 'True or False?', `Alex wants to cook a dish for his mum’s birthday. = True
 Alex says he is an excellent cook. = False
 Alex is free in the first week of August. = True`]),
@@ -741,7 +741,7 @@ It will be cold, [so] bring a warm sweater.
 The hotel is small, [but] it is very cosy.
 We can [also] visit the zoo if you want.
 [By the way], my sister says hi!
-See you soon! [Take care], Olya`],
+See you soon! [Take care], Lucy`],
         ['translate', 'Переклади англійською.', `Дякую за твого листа = Thanks for your letter / Thank you for your letter
 Як у тебе справи? = How are you doing? / How are you? / How are things?
 Тобі варто взяти зручне взуття = You should bring comfortable shoes / You should take comfortable shoes

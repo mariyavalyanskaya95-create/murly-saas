@@ -25,20 +25,20 @@ Has your cat (or a pet you know) done anything funny this week?`),
       note('Обери 4-5 питань, 3-4 хв. Не виправляй, просто слухай, чи вживає учень have / has + третю форму. Найчастіше учні кажуть «I already did it» або «I have do». Запиши 2-3 помилки для етапу «Розбір помилок». Наприкінці запитай: «Як сказати англійською “я вже зробив домашку”?»'),
 
       h('Lead-in · 7 хв'),
-      t(`**Group chat: Liza’s surprise party (Saturday, 6 pm)**
+      t(`**Group chat: Rosie’s surprise party (Saturday, 6 pm)**
 
 **Mark:** Guys, the party is in two hours! What have you done? What haven’t you done yet?
-**Olya:** I’ve already bought the balloons. Twenty pink balloons!
+**Lucy:** I’ve already bought the balloons. Twenty pink balloons!
 **Dan:** I’ve just picked up the cake. It’s in my bag. Don’t ask.
 **Mark:** In your BAG?! Has it survived?
 **Dan:** Not yet. I mean, yes. Mostly.
-**Olya:** Has anyone invited Liza’s cousin yet?
+**Lucy:** Has anyone invited Rosie’s cousin yet?
 **Mark:** Yes, I’ve already sent her a message. She hasn’t answered yet.
-**Sofia:** Hi! Sorry, I’ve just woken up. Have I missed anything?
-**Mark:** Sofia, have you made the playlist yet?
-**Sofia:** Ummm... not yet. But I’ve already chosen the first song!
+**Sophie:** Hi! Sorry, I’ve just woken up. Have I missed anything?
+**Mark:** Sophie, have you made the playlist yet?
+**Sophie:** Ummm... not yet. But I’ve already chosen the first song!
 **Dan:** Breaking news: my cat has just sat on the cake.
-**Olya:** NOOOO.`),
+**Lucy:** NOOOO.`),
       vocab(`surprise party = вечірка-сюрприз
 balloon = повітряна кулька
 pick up = забрати
@@ -53,11 +53,11 @@ choose = обирати
 breaking news = термінова новина
 tidy = охайний, прибирати
 last minute = останній момент`),
-      ex(['truefalse', 'Прочитай чат і обери True або False.', `Olya has already bought the balloons. = True
+      ex(['truefalse', 'Прочитай чат і обери True або False.', `Lucy has already bought the balloons. = True
 Dan has just bought a new bag. = False
-Liza’s cousin has already answered. = False
-Sofia has just woken up. = True
-Sofia has made the playlist. = False
+Rosie’s cousin has already answered. = False
+Sophie has just woken up. = True
+Sophie has made the playlist. = False
 Dan’s cat has just sat on the cake. = True`]),
       note('Розподіліть ролі і прочитайте чат «за персонажів». Слова пройди швидко: учень знаходить їх у тексті. Після True / False попроси підкреслити всі have / has + третю форму і обвести just, already, yet. Запитай: де стоїть yet у реченні? А already? Хай учень сам помітить, що yet в кінці, а just і already посередині.'),
 
@@ -206,7 +206,7 @@ What is the craziest thing a cat can do?`),
 Host (Mia): Welcome to our school podcast! Today my guest is Tim from 8-B. Tim, have you ever been on TV?
 Tim: Yes, I have! Once. I was in the background of a news report about our school fair.
 Mia: Cool! Have you ever eaten something really strange?
-Tim: Yes. I’ve tried snails in France. It was... interesting.
+Tim: Yes. I’ve tried haggis in Scotland. It was... interesting.
 Mia: Have you ever met a famous person?
 Tim: No, I haven’t. But I’ve seen a famous footballer at the airport. He didn’t see me.
 Mia: Have you ever broken a bone?
@@ -249,15 +249,15 @@ Tim’s cat has caught a mouse. = False`]),
 Скільки разів: **once** (1), **twice** (2), **three times**, **many times**: I’ve seen this film **three times**.
 
 **been чи gone?**
-She has **been** to Paris. = Вона була в Парижі (і вже повернулась).
-She has **gone** to Paris. = Вона поїхала в Париж (і зараз там).
+She has **been** to New York. = Вона була в Нью-Йорку (і вже повернулась).
+She has **gone** to New York. = Вона поїхала в Нью-Йорк (і зараз там).
 
 **Лайфхак.** Never вже є запереченням. «I haven’t never» = подвійне «ні», англійці так не кажуть.`),
       note('Намалюй лінію життя від народження до «зараз». Досвід можна поставити будь-де на лінії, дата не важлива. Поясни been / gone на прикладі: мама has gone to the shop (її немає вдома), мама has been to the shop (вона вже вдома з пакетами). На все 5 хв.'),
       meme('st-cat-cool', 'Have you ever seen a cat on a skateboard?', 'Me: No. Cat: You have now.', 'Ти коли-небудь бачив кота на скейті? Я: Ні. Кіт: Тепер бачив.'),
 
       h('Game: V3 of experiences · 4 хв'),
-      game('V3 of experiences', 'Write the third form (V3). Have you ever ___?', `be (to Paris) = been
+      game('V3 of experiences', 'Write the third form (V3). Have you ever ___?', `be (to New York) = been
 eat (sushi) = eaten
 see (a ghost) = seen
 meet (a famous person) = met
@@ -283,7 +283,7 @@ We [have seen/’ve seen] (see) this film three times!
 My grandma [has never used/’s never used] (never / use) TikTok.`],
         ['choice', 'Обери правильний варіант.', `Have you ever {seen|saw|see} a dolphin?
 I have {never|ever|not} tried bubble tea.
-Has he ever {been|gone|went} to Italy? Yes, he went there last year.
+Has he ever {been|gone|went} to Scotland? Yes, he went there last year.
 My parents aren’t at home. They have {gone|been|went} to the cinema.
 Have you ever won a prize? Yes, {I have|I won|I did have}.
 I’ve read this book {twice|two|second}.`],
@@ -320,7 +320,7 @@ Have you ever tried snails? = Yes, once. Never again!`],
 5. Have you ever ridden a horse? «Yes, I rode.» (неправильно) → **Yes, I have.** Коротка відповідь повторює have.`),
       ex(['choice', 'Знайди правильне речення.', `{Have you ever seen a shark?|Did you ever seen a shark?|Have you ever saw a shark?}
 {I’ve never tried snowboarding.|I haven’t never tried snowboarding.|I have never try snowboarding.}
-{She has been to Spain twice.|She has been in Spain two times ago.|She have been to Spain twice.}
+{She has been to Wales twice.|She has been in Wales two times ago.|She have been to Wales twice.}
 {Has your cat ever caught a mouse?|Did your cat ever caught a mouse?|Has your cat ever catch a mouse?}
 Have you ever met a famous person? {No, I haven’t.|No, I didn’t meet.|No, I haven’t met never.}
 {My friends have never been to a concert.|My friends has never been to a concert.|My friends have never went to a concert.}`]),
@@ -340,7 +340,7 @@ Have you ever sent a message to the wrong person? What did it say?`),
       note('Обери 6-7 питань. Важливо: перше питання в Present Perfect (Have you ever...?), а деталі вже в Past Simple (When was it? What did you eat?). Не пояснюй це зараз, просто моделюй своїми уточнювальними питаннями, це місток до уроку Perfect vs Past. Друге коло: гра «Never have I ever»: учень каже I have never..., ти теж, хто першим не знайде нового речення, програв.'),
 
       h('Speed round · 3 хв'),
-      game('Speed round: have or has, ever or never?', 'Choose have, has, ever or never', `___ you ever been to Odesa? = Have
+      game('Speed round: have or has, ever or never?', 'Choose have, has, ever or never', `___ you ever been to Brighton? = Have
 I have ___ seen snow in July. = never
 ___ your mum ever played Minecraft? = Has
 Have you ___ tried pineapple pizza? = ever
@@ -358,7 +358,7 @@ They ___ been to this café twice. = have`),
         ['gap', 'Допиши питання і відповіді.', `[Have] you ever [tried] (try) surfing?
 I [have never seen/’ve never seen] (never / see) the sea.
 [Has] Tom ever [lost] (lose) his keys? Yes, he [has].
-My cousins [have been/’ve been] (be) to Poland three times.
+My cousins [have been/’ve been] (be) to the USA three times.
 Mum isn’t here. She [has gone/’s gone] (go) to the market.`],
         ['open', 'Візьми інтерв’ю в когось із родини або друзів: 6 питань Have you ever...? Запиши відповіді.', 'Have you ever...? Yes, I have. / No, I haven’t. / I’ve never...'],
       ),
@@ -387,9 +387,9 @@ How many hours can you sleep without waking up? Be honest.`),
       h('Lead-in · 7 хв'),
       t(`**My profile for the school website**
 
-Hi! My name is Tom and I’m 14. I have lived in Lviv since 2020. Before that, my family lived in a small town near Poltava.
+Hi! My name is Tom and I’m 14. I have lived in York since 2020. Before that, my family lived in a small town near Oxford.
 
-I have been at this school for three years. I have known my best friend Ihor since our first day here. He sat on my bag and we started laughing. We have been best friends since that day!
+I have been at this school for three years. I have known my best friend Henry since our first day here. He sat on my bag and we started laughing. We have been best friends since that day!
 
 I have played the drums for two years. My neighbours have hated me for two years too.
 
@@ -410,9 +410,9 @@ believe = вірити
 a long time = довгий час
 a month = місяць
 a while = якийсь час`),
-      ex(['truefalse', 'Прочитай профіль і обери True або False.', `Tom has lived in Lviv for his whole life. = False
+      ex(['truefalse', 'Прочитай профіль і обери True або False.', `Tom has lived in York for his whole life. = False
 Tom has been at this school for three years. = True
-Tom and Ihor have been friends since their first day at school. = True
+Tom and Henry have been friends since their first day at school. = True
 Tom has played the drums for five years. = False
 Tom has had Pixel since he was a kitten. = True
 Tom has had a dog for a long time. = False`]),
@@ -453,7 +453,7 @@ ___ half an hour = for`),
         ['gap', 'Розкрий дужки (Present Perfect) і допиши for або since.', `I [have known/’ve known] (know) Sam [since] we were in kindergarten.
 My mum [has worked/’s worked] (work) in this hospital [for] ten years.
 We [have had/’ve had] (have) this car [since] 2021.
-Oleh [has played/’s played] (play) basketball [for] four years.
+Oliver [has played/’s played] (play) basketball [for] four years.
 They [have lived/’ve lived] (live) in this flat [since] last spring.
 I [have been/’ve been] (be) a fan of this band [for] two years.
 How long [have] you [had] (have) your phone?
@@ -469,7 +469,7 @@ I {have had|have|had} this hoodie for ages. I love it!`],
       ex(
         ['sort', 'Розклади вирази по групах.', `for: three hours; two weeks; a month; a long time; ten minutes; ages
 since: 2015; Friday; my birthday; last summer; 9 o’clock; I was a kid`],
-        ['translate', 'Переклади англійською.', `Я живу в Києві з 2018 року = I have lived in Kyiv since 2018 / I’ve lived in Kyiv since 2018
+        ['translate', 'Переклади англійською.', `Я живу в Лондоні з 2018 року = I have lived in London since 2018 / I’ve lived in London since 2018
 Ми знаємо одне одного три роки = We have known each other for three years / We’ve known each other for three years
 Скільки часу в тебе цей телефон? = How long have you had this phone?
 Вона грає на гітарі з дитинства = She has played the guitar since she was a child / She’s played the guitar since she was a child / She has played the guitar since childhood
@@ -530,7 +530,7 @@ Twelve months. How long? = for a year`),
         ['gap', 'Розкрий дужки і допиши for або since.', `My brother [has had/’s had] (have) his skateboard [since] his birthday.
 I [have studied/’ve studied] (study) Spanish [for] six months.
 We [have known/’ve known] (know) our teacher [since] September.
-Lena [has been/’s been] (be) in the school choir [for] two years.`],
+Ellie [has been/’s been] (be) in the school choir [for] two years.`],
         ['open', 'Напиши свій профіль для шкільного сайту (як у Том): 6-8 речень з for і since.', 'I have lived in... since... I have known... for... I have had... since...'],
       ),
       video('https://www.youtube.com/watch?v=9LhLjpsstPY', 'Watch Mr Bean at the exam. Write 3 sentences: How long has he been in the exam room? How long has he looked at the paper? Since when has he been nervous?', 'Mr Bean (офіційний канал): The Exam'),
@@ -558,21 +558,21 @@ What did your cat (or a pet you know) do yesterday?`),
 
       h('Lead-in · 7 хв'),
       audio('The lost phone', `
-Nastia: Oh no, oh no, oh no! I’ve lost my phone!
-Bohdan: Again? When did you last see it?
-Nastia: I had it at lunch. I took a photo of my pasta.
-Bohdan: Have you checked your bag?
-Nastia: Yes, I have. Twice.
-Bohdan: Have you looked in the canteen?
-Nastia: Yes. I went there ten minutes ago. It wasn’t there.
-Bohdan: Have you ever lost it before?
-Nastia: Yes, many times. Last month I left it on the bus. In May I dropped it in a cake.
-Bohdan: In a cake?!
-Nastia: It was a birthday cake. A long story.
-Bohdan: Okay, I’ve just called your number. Listen...
-Nastia: I can hear it! It’s... in my hood.
-Bohdan: Classic. Have you finished panicking now?
-Nastia: Yes. I’ve found my phone and my dignity.`),
+Amy: Oh no, oh no, oh no! I’ve lost my phone!
+Jack: Again? When did you last see it?
+Amy: I had it at lunch. I took a photo of my pasta.
+Jack: Have you checked your bag?
+Amy: Yes, I have. Twice.
+Jack: Have you looked in the canteen?
+Amy: Yes. I went there ten minutes ago. It wasn’t there.
+Jack: Have you ever lost it before?
+Amy: Yes, many times. Last month I left it on the bus. In May I dropped it in a cake.
+Jack: In a cake?!
+Amy: It was a birthday cake. A long story.
+Jack: Okay, I’ve just called your number. Listen...
+Amy: I can hear it! It’s... in my hood.
+Jack: Classic. Have you finished panicking now?
+Amy: Yes. I’ve found my phone and my dignity.`),
       vocab(`lose = губити
 check = перевіряти
 canteen = їдальня
@@ -587,7 +587,7 @@ find = знаходити
 dignity = гідність
 result = результат
 experience = досвід`),
-      ex(['truefalse', 'Послухай діалог і обери True або False.', `Nastia has lost her phone. = True
+      ex(['truefalse', 'Послухай діалог і обери True або False.', `Amy has lost her phone. = True
 She took a photo of her pasta at lunch. = True
 She went to the canteen an hour ago. = False
 She has never lost her phone before. = False
@@ -607,10 +607,10 @@ ever, never, just, already, yet, for, since, today, this week
 I**’ve lost** my phone! = Я загубив телефон! (і зараз його немає)
 
 **Як говорять у житті:** питання про досвід у Present Perfect, деталі в Past Simple.
-Have you ever **been** to Lviv? Yes, I have. I **went** there last summer. It **was** great!
+Have you ever **been** to York? Yes, I have. I **went** there last summer. It **was** great!
 
 **Лайфхак «Стоп-слова».** Yesterday, ago, last і When? це червоне світло для have. Побачив їх, вмикай Past Simple.`),
-      note('Намалюй дві шкали: одна закінчується в минулому (Past Simple, конкретна точка), друга тягнеться до «зараз» (Present Perfect). Склади з учнем пару: I have been to Lviv. / I went to Lviv last summer. На все 5 хв.'),
+      note('Намалюй дві шкали: одна закінчується в минулому (Past Simple, конкретна точка), друга тягнеться до «зараз» (Present Perfect). Склади з учнем пару: I have been to York. / I went to York last summer. На все 5 хв.'),
       meme('st-cat-coffee', 'Me: I have finished my homework!', 'Teacher: When? Me: ...Define “finished”.', 'Я: Я закінчив домашку! Вчитель: Коли? Я: ...Що ти маєш на увазі під «закінчив»?'),
 
       h('Game: Past or Perfect? · 4 хв'),
@@ -634,7 +634,7 @@ when I was six = Past Simple`),
 I [have seen/’ve seen] (see) this film three times.
 She [has just left/’s just left] (just / leave). You can still catch her!
 We [went] (go) to the sea two years ago.
-[Have] you ever [been] (be) to Kharkiv?
+[Have] you ever [been] (be) to Liverpool?
 When [did] you [buy] (buy) these sneakers?
 My cat [has broken/’s broken] (break) my headphones. Now I can’t listen to music!
 Tom [won] (win) the chess competition in 2024.`],
@@ -647,7 +647,7 @@ We {have already watched|have already watch|already have watching} this episode,
       ),
       meme('st-cat-shock', 'Owner: Who has broken my favourite cup?', 'Cat: I did it two minutes ago. But I haven’t done anything today.', 'Власник: Хто розбив мою улюблену чашку? Кіт: Я це зробив дві хвилини тому. Але сьогодні я нічого не робив.'),
       ex(
-        ['match', 'Склади діалог: питання і відповідь.', `Have you ever been to Italy? = Yes, I have. I went there in 2023.
+        ['match', 'Склади діалог: питання і відповідь.', `Have you ever been to Scotland? = Yes, I have. I went there in 2023.
 When did you go there? = Two years ago, in summer.
 Have you finished the book yet? = Yes, I finished it last night.
 Have you ever tried karaoke? = Yes, once. I sang terribly.
@@ -655,7 +655,7 @@ What did you eat for breakfast? = Pancakes with honey.
 Has your sister passed her test? = Yes, she has. She’s so happy.`],
         ['translate', 'Переклади англійською.', `Я загубив ключі! (і зараз їх немає) = I have lost my keys! / I’ve lost my keys!
 Я загубив ключі вчора = I lost my keys yesterday
-Ти коли-небудь був у Франції? = Have you ever been to France?
+Ти коли-небудь був у Шотландії? = Have you ever been to Scotland?
 Коли ти туди їздив? = When did you go there?
 Вона щойно прийшла = She has just come / She’s just come / She has just arrived / She’s just arrived
 Ми бачили цей фільм минулого тижня = We saw this film last week / We saw this movie last week`],
@@ -670,7 +670,7 @@ Has your sister passed her test? = Yes, she has. She’s so happy.`],
       h('Розбір помилок · 6 хв'),
       tip(`**Топ-5 помилок українськомовних учнів**
 
-1. «I have been to Lviv last year.» (неправильно) → **I went to Lviv last year.** Last year = Past Simple.
+1. «I have been to York last year.» (неправильно) → **I went to York last year.** Last year = Past Simple.
 2. «I have seen him two days ago.» (неправильно) → **I saw him two days ago.** Ago тільки з Past Simple.
 3. «When have you started?» (неправильно) → **When did you start?** Питання When...? = Past Simple.
 4. «Did you ever try sushi?» (на уроці неправильно) → **Have you ever tried sushi?** Досвід за життя = Present Perfect.
@@ -831,7 +831,7 @@ past: was built; were eaten; was painted; were taken; was invented`],
 Англійською мовою розмовляють у багатьох країнах = English is spoken in many countries
 Цей будинок побудували в 1990 році = This house was built in 1990
 Моє печиво з’їли = My cookies were eaten / My biscuits were eaten
-Ці фото зробили в Карпатах = These photos were taken in the Carpathians / These photos were taken in the Carpathian Mountains
+Ці фото зробили у Скелястих горах = These photos were taken in the Rocky Mountains / These photos were taken in the Rockies
 Картину намалювала моя сестра = The picture was painted by my sister / The painting was painted by my sister / The picture was drawn by my sister`],
       ),
       note('Gap і choice учень робить сам, потім перевірка. Головна пастка: «It made in China» без be. Друга: was / were (The windows were). У перекладі допомагай знайти, що українською пасив звучить як «побудували», «з’їли», «розмовляють».'),

@@ -32,7 +32,7 @@ Hi, I’m Sophie and I’m from Bristol. I’m in Year 8. This is my squad!
 
 **Dan** is my best friend. He’s funny and he’s really good at football. He isn’t good at maths, but that’s OK, I am!
 
-**Mia and Kira** are twins. They’re 14. They aren’t in my class, but we’re in the same dance club.
+**Mia and Chloe** are twins. They’re 14. They aren’t in my class, but we’re in the same dance club.
 
 And this is **Biscuit**. Biscuit is our cat. She’s orange and she’s very lazy. She isn’t a fan of dogs. She’s a fan of the sofa.
 
@@ -54,10 +54,10 @@ bored = якому нудно`),
       ex(['truefalse', 'Прочитай пост і обери True або False.', `Sophie is from Manchester. = False
 Dan is good at football. = True
 Dan is good at maths. = False
-Mia and Kira are in Sophie’s class. = False
+Mia and Chloe are in Sophie’s class. = False
 Biscuit is orange. = True
 Biscuit is a fan of dogs. = False`]),
-      note('Учень читає вголос по абзацу, слова зі словничка пояснюй по ходу. Після True / False попроси знайти в тексті всі am, is, are і ’m, ’s, ’re. Запитай: «Чому про Dan is, а про Mia and Kira are?» Нехай учень сам спробує сформулювати правило.'),
+      note('Учень читає вголос по абзацу, слова зі словничка пояснюй по ходу. Після True / False попроси знайти в тексті всі am, is, are і ’m, ’s, ’re. Запитай: «Чому про Dan is, а про Mia and Chloe are?» Нехай учень сам спробує сформулювати правило.'),
 
       h('Rule · 5 хв'),
       tip(`**To be** це дієслово «бути». Українською ми його часто пропускаємо («Я голодний»), а англійською БЕЗ нього речення не працює: **I am hungry.**
@@ -81,7 +81,7 @@ You ___ my favourite teacher. = are
 It ___ cold today. = is
 We ___ in Year 8. = are
 Biscuit ___ orange. = is
-Mia and Kira ___ twins. = are
+Mia and Chloe ___ twins. = are
 I ___ not late! = am
 The pizza ___ hot. = is`),
       ex(
@@ -103,12 +103,12 @@ Biscuit {isn’t|aren’t|am not} a dog.`],
       ex(
         ['sort', 'Розклади слова за формою to be.', `am: I
 is: he; she; it; my cat; Dan; the school
-are: you; we; they; my friends; Mia and Kira`],
+are: you; we; they; my friends; Mia and Chloe`],
         ['translate', 'Переклади англійською.', `Я не втомлений. = I’m not tired / I am not tired
 Мій кіт дуже смішний. = My cat is very funny / My cat’s very funny
 Ми не в школі. = We aren’t at school / We are not at school / We’re not at school
 Вона моя найкраща подруга. = She’s my best friend / She is my best friend
-Вони з Одеси. = They’re from Odesa / They are from Odesa
+Вони з Брайтона. = They’re from Brighton / They are from Brighton
 Він не голодний. = He isn’t hungry / He is not hungry / He’s not hungry`],
       ),
       meme('st-cat-cool', 'We aren’t late.', 'Everyone else is early.', 'Ми не запізнюємось. Це всі інші прийшли зарано.'),
@@ -191,8 +191,8 @@ Are you a pizza person or a sushi person?`),
       h('Lead-in · 6 хв'),
       audio('New in class', `A: Hi! Are you new here?
 B: Yes, I am. I’m Max.
-A: I’m Lena. Nice to meet you! Where are you from, Max?
-B: I’m from Dnipro.
+A: I’m Ellie. Nice to meet you! Where are you from, Max?
+B: I’m from Leeds.
 A: Cool. Is your family here too?
 B: Yes, it is. My mum, my dad and my little sister.
 A: How old is she?
@@ -218,10 +218,10 @@ strict = суворий
 canteen = їдальня
 tidy = охайний, прибраний`),
       ex(['choice', 'Послухай (або прочитай) і обери правильну відповідь.', `Is Max new at school? {Yes, he is.|No, he isn’t.}
-Where is Max from? {Dnipro|Lviv|Kharkiv}
+Where is Max from? {Leeds|York|Liverpool}
 How old is Max’s sister? {eight|ten|six}
 Is Max into sports? {No, he isn’t.|Yes, he is.}
-Is Lena a gamer? {No, she isn’t.|Yes, she is.}
+Is Ellie a gamer? {No, she isn’t.|Yes, she is.}
 What is Pixel? {a cat|a dog|a game}`]),
       note('Якщо немає озвучки, прочитай діалог за ролями з учнем. Після вправи попроси знайти всі питання в діалозі і подивитися, що стоїть на першому місці. Підведи до висновку: у питанні am / is / are міняється місцями з підметом.'),
 
@@ -269,7 +269,7 @@ Am I late? No, {you aren’t|you isn’t|I’m not}.
 Is Biscuit hungry? Yes, {she is|she’s|she are}.`],
       ),
       ex(
-        ['match', 'Знайди відповідь на питання.', `Where are you from? = I’m from Poltava.
+        ['match', 'Знайди відповідь на питання.', `Where are you from? = I’m from Oxford.
 How old is your sister? = She’s eleven.
 Who is your best friend? = It’s Tom.
 What is your favourite subject? = It’s art.
@@ -432,7 +432,7 @@ Shh! Mum [is talking/’s talking] (talk) on the phone.
 We [are making/’re making] (make) a video for our class.
 Tom [is running/’s running] (run) to the bus stop.
 My sister [is lying/’s lying] (lie) on the sofa.
-I [am writing/’m writing] (write) a message to Kira.`],
+I [am writing/’m writing] (write) a message to Chloe.`],
         ['gap', 'Напиши заперечення.', `I [am not watching/’m not watching] (not watch) TV. I’m reading.
 Dad [isn’t working/is not working/’s not working] (not work) today.
 The kids [aren’t sleeping/are not sleeping/’re not sleeping] (not sleep). They’re playing games!
@@ -529,7 +529,7 @@ What is your cat (or your neighbour’s cat) planning right now?`),
       note('Перевір домашній «стрім»: учень читає 3-4 речення. Постав до них питання (Are you sitting on your bed? What is your cat doing?), але поки не пояснюй форму. Подивись, чи учень відповідає короткими відповідями з теми to be, вони тут працюють так само.'),
 
       h('Lead-in · 6 хв'),
-      audio('Where are you?!', `A: Hey, Kira! Where are you? Are you coming?
+      audio('Where are you?!', `A: Hey, Chloe! Where are you? Are you coming?
 B: Hi, Dan! Yes, I’m coming. I’m on the bus.
 A: The bus? Why are you taking the bus? The park is near your house!
 B: I’m not at home. I’m at my grandma’s. Wait, what are you doing?
@@ -554,12 +554,12 @@ cry = плакати
 wear = бути вдягненим у
 hoodie = худі
 text = писати повідомлення`),
-      ex(['choice', 'Послухай (або прочитай) і обери правильну відповідь.', `Where is Kira? {on the bus|at home|in the park}
-Why is Kira taking the bus? {She’s at her grandma’s.|She’s late.|She is tired.}
-What is Dan doing? {He’s waiting for Kira.|He’s eating ice cream.|He’s on the bus.}
+      ex(['choice', 'Послухай (або прочитай) і обери правильну відповідь.', `Where is Chloe? {on the bus|at home|in the park}
+Why is Chloe taking the bus? {She’s at her grandma’s.|She’s late.|She is tired.}
+What is Dan doing? {He’s waiting for Chloe.|He’s eating ice cream.|He’s on the bus.}
 What is Mia doing? {She’s eating ice cream.|She’s sleeping.|She’s singing.}
 Is Mia joking? {No, she isn’t.|Yes, she is.}
-Is the cat travelling with Kira? {Yes, he is.|No, he isn’t.}`]),
+Is the cat travelling with Chloe? {Yes, he is.|No, he isn’t.}`]),
       note('Прочитай діалог за ролями, потім поміняйтеся ролями. Після вправи попроси учня знайти всі питання і розділити їх на 2 групи: Yes / No питання і ті, що починаються з what, where, why. Запитай: «Що стоїть на першому місці в Yes / No питанні?»'),
 
       h('Rule · 5 хв'),
@@ -587,7 +587,7 @@ My cousin. ___ are you talking to? = Who
 A video. ___ are you making? = What
 At the bus stop. ___ is Dan waiting? = Where
 Because she’s sad. ___ is Mia crying? = Why
-Kira. ___ are you texting? = Who
+Chloe. ___ are you texting? = Who
 Pizza. ___ is the cat stealing? = What
 Home. ___ are we going? = Where`),
       ex(
@@ -610,7 +610,7 @@ Is Dan wearing his new hoodie? No, {he isn’t|he doesn’t|he not is}.`],
         ['match', 'Знайди відповідь на питання.', `What are you doing? = I’m making a sandwich.
 Where are you going? = To the skate park.
 Why is Mia crying? = She’s watching a sad film.
-Who are you talking to? = My cousin from Kharkiv.
+Who are you talking to? = My cousin from Liverpool.
 Is it snowing? = Yes, it is. Look!
 Are you coming to the party? = No, I’m not. I’m ill.`],
         ['translate', 'Переклади англійською.', `Що ти робиш? = What are you doing?
@@ -728,8 +728,8 @@ Pixel does homework. = False`]),
       h('Rule · 5 хв'),
       tip(`**Present Simple** це про звички, розклад і факти: те, що відбувається **регулярно** або **завжди**.
 
-I / you / we / they → дієслово як у словнику · I **live** in Kyiv.
-he / she / it → дієслово **+ s** · She **lives** in Kyiv. · My cat **loves** pizza.
+I / you / we / they → дієслово як у словнику · I **live** in London.
+he / she / it → дієслово **+ s** · She **lives** in London. · My cat **loves** pizza.
 Лайфхак: **he, she, it, буква S тут сидить!** Третя особа однини завжди «хвостата», як кіт.
 
 **Як додавати -s:**
@@ -767,7 +767,7 @@ Mia [studies] (study) Spanish online.
 My best friend [has] (have) two cats.`],
         ['choice', 'Обери правильний варіант.', `They {live|lives} near the school.
 My brother {fixes|fixs|fix} bikes in his free time.
-Kira {does|dos|do} yoga every morning.
+Chloe {does|dos|do} yoga every morning.
 I {get|gets} up at 7.
 The bus {leaves|leave} at 8:15.
 Our cat {catches|catchs|catch} flies.`],
@@ -782,7 +782,7 @@ We (sometimes) [sometimes play] (play) games after school.
 Dan (usually) [usually takes] (take) the bus.
 My mum (often) [often cooks] (cook) pasta.
 She (always) [is always] (be) late for school!`],
-        ['translate', 'Переклади англійською.', `Я живу у Львові. = I live in Lviv
+        ['translate', 'Переклади англійською.', `Я живу в Йорку. = I live in York
 Вона любить котів. = She loves cats / She likes cats
 Мій брат грає у футбол. = My brother plays football
 Наш кіт завжди спить на дивані. = Our cat always sleeps on the sofa / Our cat always sleeps on the couch

@@ -25,7 +25,7 @@ Is your cat busy at the weekend? What does it do all day?`),
       note('Учень, найімовірніше, відповідатиме в теперішньому часі або змішує часи. Не виправляй, просто запиши 2-3 речення учня: наприкінці уроку він скаже їх правильно в Past Simple. Перші два питання повторюють was / were з минулого уроку.'),
 
       h('Lead-in · 6 хв'),
-      t(`**My crazy Saturday** (a post by Oleh, 14)
+      t(`**My crazy Saturday** (a post by Oliver, 14)
 
 On Saturday I **woke up** at 11. My cat Muffin **jumped** on my face, so I **got up**. I **had** pancakes for breakfast and **watched** a funny video about a dancing parrot.
 
@@ -46,12 +46,12 @@ call = дзвонити
 tell (told) = розповідати
 yesterday = вчора
 ago = тому (про час)`),
-      ex(['truefalse', 'Прочитай пост і обери True або False.', `Oleh woke up at 9. = False
-Muffin jumped on Oleh’s face. = True
-Oleh and Lily played football. = False
+      ex(['truefalse', 'Прочитай пост і обери True або False.', `Oliver woke up at 9. = False
+Muffin jumped on Oliver’s face. = True
+Oliver and Lily played football. = False
 It started to rain. = True
 Lily’s mum made pizza. = False
-Muffin slept on Oleh’s homework. = True`]),
+Muffin slept on Oliver’s homework. = True`]),
       note('Учень читає вголос. Після True / False попроси знайти всі дієслова в минулому часі і розділити на дві купки: ті, що закінчуються на -ed (jumped, watched), і ті, що змінились повністю (went, ate, ran). Так учень сам відкриє правильні і неправильні дієслова.'),
 
       h('Rule · 5 хв'),
@@ -166,7 +166,7 @@ try = tried`),
       ex(['open', 'Напиши пост «My crazy Saturday» про свої вихідні (8 речень).', `Use at least 4 regular verbs (-ed).
 Use at least 4 irregular verbs (went, ate, saw…).
 Use 2 time words: yesterday, last…, …ago, in the morning, then.`]),
-      note('Домашка: пост як у тексті Oleh. Бонус: зробити 10 карток з неправильними дієсловами (go / went) і вивчити. На наступному уроці учень читає пост, а ти ставиш до нього питання: це наступна тема (didn’t і Did you...?).'),
+      note('Домашка: пост як у тексті Oliver. Бонус: зробити 10 карток з неправильними дієсловами (go / went) і вивчити. На наступному уроці учень читає пост, а ти ставиш до нього питання: це наступна тема (didn’t і Did you...?).'),
     ],
   },
 
@@ -189,20 +189,20 @@ Did your cat (or dog) do anything crazy this week?`),
       note('Почни з перевірки домашки: учень читає свій пост, ти ставиш до нього 2-3 питання з Did you...? Учень, можливо, ще не вміє відповідати коротко, це нормально. Зверни увагу, чи учень пише didn’t + went: ця помилка буде в розборі.'),
 
       h('Lead-in · 6 хв'),
-      audio('Mum asks questions', `Mum: Hi, Nazar! How was school?
-Nazar: Fine.
+      audio('Mum asks questions', `Mum: Hi, Noah! How was school?
+Noah: Fine.
 Mum: Did you have the maths test today?
-Nazar: Yes, I did.
+Noah: Yes, I did.
 Mum: And? Did you get a good mark?
-Nazar: I don’t know yet. The teacher didn’t check the tests.
+Noah: I don’t know yet. The teacher didn’t check the tests.
 Mum: OK. Did you eat your lunch?
-Nazar: Er... No, I didn’t. I gave my sandwich to Dima. He forgot his lunch.
+Noah: Er... No, I didn’t. I gave my sandwich to Jamie. He forgot his lunch.
 Mum: That’s nice. What did you eat then?
-Nazar: Dima bought me a pizza after school!
+Noah: Jamie bought me a pizza after school!
 Mum: Ha! And did you do your homework?
-Nazar: Not yet. But I didn’t play games! Well... not a lot.
-Mum: Nazar!
-Nazar: Joking! I only played for ten minutes.`),
+Noah: Not yet. But I didn’t play games! Well... not a lot.
+Mum: Noah!
+Noah: Joking! I only played for ten minutes.`),
       vocab(`test = контрольна
 mark = оцінка
 check = перевіряти
@@ -217,12 +217,12 @@ break = перерва
 lose (lost) = губити
 find (found) = знаходити
 late = пізно, із запізненням`),
-      ex(['choice', 'Послухай (або прочитай) і обери правильну відповідь.', `Did Nazar have a maths test today? {Yes, he did.|No, he didn’t.}
+      ex(['choice', 'Послухай (або прочитай) і обери правильну відповідь.', `Did Noah have a maths test today? {Yes, he did.|No, he didn’t.}
 Did the teacher check the tests? {No, she didn’t.|Yes, she did.}
-Did Nazar eat his sandwich? {No, he didn’t.|Yes, he did.}
-Who forgot his lunch? {Dima|Nazar|Mum}
-What did Dima buy? {a pizza|a sandwich|a cake}
-How long did Nazar play games? {ten minutes|two hours|one hour}`]),
+Did Noah eat his sandwich? {No, he didn’t.|Yes, he did.}
+Who forgot his lunch? {Jamie|Noah|Mum}
+What did Jamie buy? {a pizza|a sandwich|a cake}
+How long did Noah play games? {ten minutes|two hours|one hour}`]),
       note('Якщо немає озвучки, прочитайте діалог за ролями. Після вправи попроси знайти всі питання з did і всі didn’t. Запитай: яка форма дієслова після did і didn’t? (базова: have, get, eat, play). Підведи до висновку: минулий час «сидить» у did, тому дієслово відпочиває.'),
 
       h('Rule · 5 хв'),
@@ -375,11 +375,11 @@ Yesterday Mum baked 12 chocolate cookies. At 8 pm she looked at the plate. It wa
 
 **Grandma:** “I **was talking** to my friend on the phone. We **were laughing** a lot.”
 
-**Little Bohdan (6):** “I **was sleeping**!” (But his mouth was full of chocolate.)
+**Little Jack (6):** “I **was sleeping**!” (But his mouth was full of chocolate.)
 
 And Pixel the cat? Pixel **was sitting** on the sofa. He **was looking** very happy.
 
-So who ate the cookies? Bohdan **wasn’t sleeping**, that’s for sure!`),
+So who ate the cookies? Jack **wasn’t sleeping**, that’s for sure!`),
       vocab(`bake = пекти
 cookie = печиво
 plate = тарілка
@@ -399,7 +399,7 @@ At 8 pm Dad was washing the car. = True
 Sam was eating cookies. = False
 Grandma was talking on the phone. = True
 Pixel was sleeping in the kitchen. = False
-Bohdan was really sleeping. = False`]),
+Jack was really sleeping. = False`]),
       note('Розіграйте історію: учень читає репліки членів родини «акторськими» голосами. Потім питання: «Who ate the cookies? How do you know?» Попроси знайти всі was / were + -ing і запитай, чому про Grandma and her friend сказано were laughing.'),
 
       h('Rule · 5 хв'),
@@ -436,7 +436,7 @@ My parents [were cooking] (cook) dinner at 7.
 It [was raining] (rain) all morning.
 We [were waiting] (wait) for the bus at 8:15.
 My cat [was sleeping] (sleep) on my homework again.
-Lily and Tanya [were chatting] (chat) in the corridor.
+Lily and Hannah [were chatting] (chat) in the corridor.
 I [wasn’t listening/was not listening] (not listen) to the teacher, sorry!
 The kids [weren’t doing/were not doing] (not do) their homework.`],
         ['choice', 'Обери правильний варіант.', `At midnight I {was sleeping|were sleeping|was sleep}.
@@ -477,7 +477,7 @@ Did you sleeping? → **Were** you sleeping? (у Past Continuous питання 
 I was knowing the answer. → I **knew** the answer. (know, like, want не ставимо в -ing)`),
       ex(['choice', 'Detective time! Знайди правильне речення.', `{I was walking my dog.|I was walk my dog.|I were walking my dog.}
 {We were having dinner.|We was having dinner.|We were have dinner.}
-{Was Bohdan sleeping?|Did Bohdan sleeping?|Bohdan was sleeping?}
+{Was Jack sleeping?|Did Jack sleeping?|Jack was sleeping?}
 {What were you doing?|What you were doing?|What did you doing?}
 {She wasn’t eating cookies.|She didn’t eating cookies.|She weren’t eating cookies.}
 {I wanted a cookie.|I was wanting a cookie.|I were wanting a cookie.}`]),
@@ -540,7 +540,7 @@ Do you like stories with a surprise ending?`),
       note('Повторюємо Past Simple і Past Continuous окремо. Перевір домашку: учень читає 2-3 речення «At 7 am I was...». Запитай: «And what happened at 7:05?» Так ти підводиш до теми уроку.'),
 
       h('Lead-in · 6 хв'),
-      t(`**The worst video call ever** (a story by Kira, 13)
+      t(`**The worst video call ever** (a story by Chloe, 13)
 
 Last Tuesday I **was having** an online English lesson. My teacher **was explaining** something important, and I **was listening** very carefully. (Really!)
 
@@ -565,11 +565,11 @@ break = перерва
 suddenly = раптом
 while = поки, в той час як
 when = коли`),
-      ex(['truefalse', 'Прочитай історію і обери True або False.', `Kira was having a maths lesson. = False
-Mango jumped on the table while Kira was writing. = True
-Kira turned off the camera. = False
-When Kira turned on the camera, the teacher was laughing. = True
-Kira’s brother was wearing a cat costume. = False
+      ex(['truefalse', 'Прочитай історію і обери True або False.', `Chloe was having a maths lesson. = False
+Mango jumped on the table while Chloe was writing. = True
+Chloe turned off the camera. = False
+When Chloe turned on the camera, the teacher was laughing. = True
+Chloe’s brother was wearing a cat costume. = False
 The teacher gave a break. = True`]),
       note('Після True / False намалюй на дошці лінію часу: довга хвиля (was writing) і коротка блискавка (jumped). Попроси учня знайти в тексті 3 пари «хвиля + блискавка».'),
 
@@ -645,8 +645,8 @@ I watched TV when the lights went off. → I **was watching** TV when the lights
 While I came home, ... → **When** I came home, ... (while з довгою дією, when з короткою)
 When I was falling, I broke my arm. → When I **fell**, I broke my arm. (падіння це коротка дія)
 When she came, we were having dinner and then we were going out. → ...and then we **went** out. (дії одна за одною в Past Simple)`),
-      ex(['choice', 'Kira’s brother tells the story. Знайди правильне речення.', `{I was playing when Mango ran in.|I played when Mango was running in.|I was play when Mango ran in.}
-{While Kira was studying, I put on my costume.|While Kira studied, I was put on my costume.|When Kira was studying, I was putting on my costume suddenly.}
+      ex(['choice', 'Chloe’s brother tells the story. Знайди правильне речення.', `{I was playing when Mango ran in.|I played when Mango was running in.|I was play when Mango ran in.}
+{While Chloe was studying, I put on my costume.|While Chloe studied, I was put on my costume.|When Chloe was studying, I was putting on my costume suddenly.}
 {When I opened the door, everyone was looking at the camera.|When I was opening the door, everyone looked at the camera suddenly.|While I opened the door, everyone was looking.}
 {The teacher was smiling when she saw me.|The teacher smiled when she was seeing me.|The teacher was smile when she saw me.}
 {While we were laughing, Mango fell off the table.|While we laughed, Mango was falling off the table.|When we were laughing, Mango was fall off the table.}
@@ -684,7 +684,7 @@ I ___ (see) a fox while I was cycling. = saw`),
       ex(['open', 'Напиши історію «The worst / best day ever» (8-10 речень).', `Use while + Past Continuous at least 2 times.
 Use when + Past Simple at least 2 times.
 Add a surprise ending!`]),
-      note('Домашка: історія як у Kira. Можна вигадану. Бонус: намалювати комікс з 3-4 кадрів з підписами. На наступному уроці учень розповідає історію усно. Далі за програмою: Present Perfect (I have done).'),
+      note('Домашка: історія як у Chloe. Можна вигадану. Бонус: намалювати комікс з 3-4 кадрів з підписами. На наступному уроці учень розповідає історію усно. Далі за програмою: Present Perfect (I have done).'),
     ],
   },
 
