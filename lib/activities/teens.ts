@@ -498,7 +498,7 @@ export const TEENS: Activity[] = [
           { title: 'The Homework Taxi', text: 'One student asks the chat for the answers every single evening.', art: 'a-notebook' },
           { title: 'The Photo', text: 'Your friend posted a funny photo of you. You hate it, but everyone loves it.', art: 'a-face-nervous' },
           { title: 'The Party Leak', text: 'Someone added the birthday girl to the secret party chat by mistake.', art: 'a-balloon' },
-          { title: 'The Endless Voice', text: 'Danylo sends voice messages that are seven minutes long.', art: 'a-microphone' },
+          { title: 'The Endless Voice', text: 'Daniel sends voice messages that are seven minutes long.', art: 'a-microphone' },
           { title: 'Removed', text: 'Sofia was removed from a group chat and nobody told her why.', art: 'a-face-sad' },
         ],
         phrases: [
