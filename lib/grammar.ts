@@ -37,7 +37,7 @@ export const GRAMMAR: GrammarTopic[] = [
     ],
     tip: 'He, she, it: в Present Simple «шипить». Запам’ятай: -s з’являється або в дієслові (plays), або в допоміжному (does), але ніколи в обох.',
     quiz: [
-      { q: 'My sister ___ in Kyiv.', a: 'lives', options: ['live', 'lives', 'is living', 'living'] },
+      { q: 'My sister ___ in London.', a: 'lives', options: ['live', 'lives', 'is living', 'living'] },
       { q: '___ your dad work on Saturdays?', a: 'Does', options: ['Do', 'Does', 'Is', 'Are'] },
       { q: 'We ___ watch TV in the morning.', a: 'don’t', options: ['doesn’t', 'don’t', 'aren’t', 'not'] },
       { q: 'The shop ___ at 8 a.m.', a: 'opens', options: ['open', 'opens', 'is open', 'opening'] },
@@ -80,7 +80,7 @@ export const GRAMMAR: GrammarTopic[] = [
       { sign: '?', text: 'Did + підмет + V?', example: 'Did you see him?' },
     ],
     uses: [
-      { title: 'Завершена дія в минулому', example: 'I visited Lviv last summer.', uk: 'Я їздив до Львова минулого літа.' },
+      { title: 'Завершена дія в минулому', example: 'I visited Edinburgh last summer.', uk: 'Я їздив до Единбурга минулого літа.' },
       { title: 'Послідовність подій', example: 'He opened the door, looked around and left.', uk: 'Він відчинив двері, озирнувся і пішов.' },
     ],
     markers: ['yesterday', 'last week', 'ago', 'in 2020', 'when I was a child'],
@@ -199,7 +199,7 @@ export const GRAMMAR: GrammarTopic[] = [
       { q: '___ sun rises in the east.', a: 'The', options: ['A', 'An', 'The', 'без артикля'] },
       { q: 'I need ___ new phone.', a: 'a', options: ['a', 'an', 'the', 'без артикля'] },
       { q: 'It took me ___ hour to get there.', a: 'an', options: ['a', 'an', 'the', 'без артикля'] },
-      { q: 'He goes to ___ university in Lviv.', a: 'a', options: ['a', 'an', 'the', 'без артикля'] },
+      { q: 'He goes to ___ university in Edinburgh.', a: 'a', options: ['a', 'an', 'the', 'без артикля'] },
     ],
   },
   {
@@ -225,7 +225,7 @@ export const GRAMMAR: GrammarTopic[] = [
       { q: 'This test is ___ than the last one.', a: 'easier', options: ['easyer', 'easier', 'more easy', 'easiest'] },
       { q: 'It’s the ___ film I’ve ever seen.', a: 'worst', options: ['baddest', 'worse', 'worst', 'most bad'] },
       { q: 'Maths is ___ than history for me.', a: 'more difficult', options: ['difficulter', 'more difficult', 'most difficult', 'difficultest'] },
-      { q: 'Kyiv is ___ city in Ukraine.', a: 'the biggest', options: ['bigger', 'the bigest', 'the biggest', 'more big'] },
+      { q: 'London is ___ city in the UK.', a: 'the biggest', options: ['bigger', 'the bigest', 'the biggest', 'more big'] },
       { q: 'My bag is as heavy ___ yours.', a: 'as', options: ['than', 'as', 'like', 'then'] },
     ],
   },

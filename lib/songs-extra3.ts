@@ -320,7 +320,7 @@ export const MORE_E: Record<string, SongLesson> = {
       {
         group: { uk: 'Родина', ru: 'Семья', en: 'Family' },
         items: [
-          { en: 'an uncle', uk: 'дядько', ru: 'дядя', ex: 'My uncle lives in Lviv.' },
+          { en: 'an uncle', uk: 'дядько', ru: 'дядя', ex: 'My uncle lives in Edinburgh.' },
           { en: 'an aunt', uk: 'тітка', ru: 'тётя', ex: 'My aunt makes the best pancakes.' },
           { en: 'a cousin', uk: 'двоюрідний брат, двоюрідна сестра', ru: 'двоюродный брат, двоюродная сестра', ex: 'I play football with my cousin.' },
           { en: 'a grandmother', uk: 'бабуся', ru: 'бабушка', ex: 'My grandmother has a big garden.' },
@@ -357,7 +357,7 @@ export const MORE_E: Record<string, SongLesson> = {
       { q: 'We ___ talk about it at dinner.', opts: ['don’t', 'doesn’t', 'not'], a: 'don’t' },
       { q: 'My aunt ___ like spiders.', opts: ['doesn’t', 'don’t', 'isn’t'], a: 'doesn’t' },
       { q: '___ you have a big family?', opts: ['Do', 'Does', 'Are'], a: 'Do' },
-      { q: '___ your uncle live in Kyiv?', opts: ['Does', 'Do', 'Is'], a: 'Does' },
+      { q: '___ your uncle live in London?', opts: ['Does', 'Do', 'Is'], a: 'Does' },
       { q: 'She doesn’t ___ coffee.', opts: ['drink', 'drinks', 'drinking'], a: 'drink' },
       { q: 'Does he have a dog? Yes, he ___.', opts: ['does', 'do', 'has'], a: 'does' },
       { q: 'Where ___ your cousins live?', opts: ['do', 'does', 'are'], a: 'do' },

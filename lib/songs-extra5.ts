@@ -541,9 +541,9 @@ export const MORE_G: Record<string, SongLesson> = {
       },
     ],
     grammar: {
-      uk: 'Still показує, що щось триває досі, як і раніше: I still live in Kyiv. She is still at school. Still стоїть перед основним дієсловом, але після be: He still plays the piano. He is still happy. Any more (або anymore) показує, що щось уже не відбувається, і стоїть у кінці заперечного речення: I don’t play football any more. No longer означає те саме, але звучить формальніше і стоїть перед дієсловом: He no longer lives here. Не поєднуйте no longer із not: не кажіть He doesn’t no longer live here.',
-      ru: 'Still показывает, что что-то продолжается до сих пор, как и раньше: I still live in Kyiv. She is still at school. Still стоит перед основным глаголом, но после be: He still plays the piano. He is still happy. Any more (или anymore) показывает, что что-то уже не происходит, и стоит в конце отрицательного предложения: I don’t play football any more. No longer значит то же самое, но звучит формальнее и стоит перед глаголом: He no longer lives here. Не сочетайте no longer с not: не говорите He doesn’t no longer live here.',
-      en: 'Still shows that something continues, as before: I still live in Kyiv. She is still at school. Still goes before the main verb but after be: He still plays the piano. He is still happy. Any more (or anymore) shows that something has stopped and goes at the end of a negative sentence: I don’t play football any more. No longer means the same but sounds more formal and goes before the verb: He no longer lives here. Don’t use no longer with not: don’t say He doesn’t no longer live here.',
+      uk: 'Still показує, що щось триває досі, як і раніше: I still live in London. She is still at school. Still стоїть перед основним дієсловом, але після be: He still plays the piano. He is still happy. Any more (або anymore) показує, що щось уже не відбувається, і стоїть у кінці заперечного речення: I don’t play football any more. No longer означає те саме, але звучить формальніше і стоїть перед дієсловом: He no longer lives here. Не поєднуйте no longer із not: не кажіть He doesn’t no longer live here.',
+      ru: 'Still показывает, что что-то продолжается до сих пор, как и раньше: I still live in London. She is still at school. Still стоит перед основным глаголом, но после be: He still plays the piano. He is still happy. Any more (или anymore) показывает, что что-то уже не происходит, и стоит в конце отрицательного предложения: I don’t play football any more. No longer значит то же самое, но звучит формальнее и стоит перед глаголом: He no longer lives here. Не сочетайте no longer с not: не говорите He doesn’t no longer live here.',
+      en: 'Still shows that something continues, as before: I still live in London. She is still at school. Still goes before the main verb but after be: He still plays the piano. He is still happy. Any more (or anymore) shows that something has stopped and goes at the end of a negative sentence: I don’t play football any more. No longer means the same but sounds more formal and goes before the verb: He no longer lives here. Don’t use no longer with not: don’t say He doesn’t no longer live here.',
     },
     grammarEx: [
       { q: 'After all these years, Elton John is ___ performing.', opts: ['still', 'any more', 'no longer'], a: 'still' },
@@ -1115,7 +1115,7 @@ export const DEEP_G: Record<string, SongDeep> = {
           ru: 'Так говорят о человеке, без которого праздник скучный: он шутит, танцует, всех знакомит. По-русски мы скажем «душа компании», а по-английски у party есть «жизнь».',
           en: 'We say it about the person who makes a party fun: they joke, dance and introduce everyone. In English the party has a life, and this person is it.',
         },
-        ex: ['Aunt Olena is always the life of the party.', 'He is quiet at school but the life of the party at home.'],
+        ex: ['Aunt Helen is always the life of the party.', 'He is quiet at school but the life of the party at home.'],
         similar: ['a party animal', 'a social butterfly'],
         tip: {
           uk: 'Можна сказати і the life and soul of the party, це британський варіант.',

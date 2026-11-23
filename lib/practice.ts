@@ -156,14 +156,14 @@ Invite your partner to a film. Agree on the time and the place.`),
       audio('Announcement', `
 Teacher: Good morning, everyone. This is an important message about next Friday's trip to the science museum.
 Teacher: The bus will leave from the main gate at eight fifteen, not at eight thirty as we said before, so please don't be late.
-Teacher: The trip costs two hundred hryvnias. Please give the money to your class teacher by Wednesday.
+Teacher: The trip costs twenty pounds. Please give the money to your class teacher by Wednesday.
 Teacher: Bring a packed lunch and a bottle of water. You can buy snacks at the museum café, but it is quite expensive.
 Teacher: We will visit the space exhibition first and then take part in a robot workshop.
 Teacher: We will be back at school at about four o'clock. Thank you!`),
       ex(
         ['choice', 'Choose the correct answer (A, B or C).', `The bus leaves at {8:15|8:30|8:00}.
 Students must pay {by Wednesday|on Friday|at the museum}.
-The trip costs {200 hryvnias|250 hryvnias|120 hryvnias}.
+The trip costs {£20|£25|£12}.
 First, students will visit {the space exhibition|the robot workshop|the museum café}.
 They will come back at about {4 pm|3 pm|5 pm}.`],
         ['truefalse', 'True or False?', `Snacks at the museum café are cheap. = False
@@ -188,7 +188,7 @@ The time of the bus {has changed|is the same as before|is not known yet|depends 
 Students should give the money to {their class teacher|the bus driver|the museum staff|the head teacher}.
 The teacher says the museum café is {quite expensive|very cheap|closed on Fridays|too small}.`],
         ['gap', 'Встав слово з оголошення.', `The bus will [leave] from the main gate at 8:15.
-The trip [costs] two hundred hryvnias.
+The trip [costs] twenty pounds.
 Bring a [packed] lunch and a bottle of water.
 Snacks at the museum café are quite [expensive].
 We will visit the space [exhibition] first.
@@ -220,7 +220,7 @@ the Wi-Fi password = пароль від Wi-Fi
 to check out = виселитися`),
       audio('At the reception', `
 Receptionist: Good evening, welcome to the Riverside Hotel. How can I help you?
-Guest: Hi, I have a reservation. My name is Olena Koval.
+Guest: Hi, I have a reservation. My name is Emily Clarke.
 Receptionist: Let me check. Yes, a double room for three nights. Could I see your passport, please?
 Guest: Here you are.
 Receptionist: Thank you. You're in room three hundred and twelve, on the third floor. The lift is on your left.
@@ -405,25 +405,25 @@ Could you live without your phone for a week? Why or why not?`),
     aims: 'Читання у форматі НМТ: деталі, вибір відповіді, слова з контексту\nОбговоримо волонтерство',
     blocks: [
       tip('Лайфхак НМТ: відповіді в тексті йдуть по порядку питань. Якщо знайшла відповідь на питання 2, відповідь на 3 шукай нижче.'),
-      t(`When Andrii was fifteen, he joined a volunteer group in his town. "I wanted to do something useful instead of just sitting at home," he says.
+      t(`When Jack was fifteen, he joined a volunteer group in his town. "I wanted to do something useful instead of just sitting at home," he says.
 
-Every Saturday the group collects food and clothes for families who have lost their homes. Andrii sorts the boxes and delivers them by bike. "It's not always easy. Sometimes it rains, and the boxes are heavy. But when people smile and say thank you, I forget about being tired."
+Every Saturday the group collects food and clothes for families who have lost their homes. Jack sorts the boxes and delivers them by bike. "It's not always easy. Sometimes it rains, and the boxes are heavy. But when people smile and say thank you, I forget about being tired."
 
-Volunteering has also changed his plans for the future. Before, Andrii wanted to study IT. Now he is thinking about becoming a social worker. "I've learned that I like working with people more than with computers," he explains.
+Volunteering has also changed his plans for the future. Before, Jack wanted to study IT. Now he is thinking about becoming a social worker. "I've learned that I like working with people more than with computers," he explains.
 
 His advice to other teenagers is simple: "Start small. Even one hour a week can make a difference."`),
       ex(
-        ['choice', 'Choose the correct answer (A, B or C).', `Why did Andrii start volunteering? {He wanted to be useful|His school made him|His friends asked him}
-What does Andrii do on Saturdays? {sorts and delivers boxes|cooks food|teaches children}
-How has volunteering changed Andrii? {He wants a different job|He stopped using computers|He moved to another town}
-What is Andrii's advice? {Start with a little time|Volunteer every day|Only help your family}`],
+        ['choice', 'Choose the correct answer (A, B or C).', `Why did Jack start volunteering? {He wanted to be useful|His school made him|His friends asked him}
+What does Jack do on Saturdays? {sorts and delivers boxes|cooks food|teaches children}
+How has volunteering changed Jack? {He wants a different job|He stopped using computers|He moved to another town}
+What is Jack's advice? {Start with a little time|Volunteer every day|Only help your family}`],
         ['match', 'Match the words from the text with their meanings.', `useful = helpful, doing something good
 to deliver = to take things to people
 heavy = difficult to carry
 to make a difference = to change something for the better`],
       ),
       talk(`Have you ever helped people as a volunteer?
-Andrii says "Start small". What small thing could you do this month?`),
+Jack says "Start small". What small thing could you do this month?`),
       X.h('More practice'),
       X.vocab(`a volunteer = волонтер
 to join = приєднатися
@@ -436,16 +436,16 @@ a social worker = соціальний працівник
 advice = порада
 to make a difference = змінити щось на краще`),
       X.ex(
-        ['choice', 'Обери правильну відповідь (A, B, C або D).', `Andrii joined the group when he was {fifteen|fourteen|sixteen|seventeen}.
+        ['choice', 'Обери правильну відповідь (A, B, C або D).', `Jack joined the group when he was {fifteen|fourteen|sixteen|seventeen}.
 The group works {every Saturday|every Sunday|every day|once a month}.
-Andrii delivers the boxes {by bike|by car|by bus|on foot}.
+Jack delivers the boxes {by bike|by car|by bus|on foot}.
 The work is not easy when {it rains|he is at school|there are no boxes|his friends are busy}.
-When people say thank you, Andrii {forgets about being tired|feels more tired|goes home early|wants to stop}.
-Before volunteering, Andrii wanted to study {IT|medicine|law|music}.
-Now Andrii prefers working with {people|computers|animals|numbers}.`],
-        ['gap', 'Встав слово: useful, collects, delivers, heavy, tired, advice, difference.', `Andrii wanted to do something [useful].
+When people say thank you, Jack {forgets about being tired|feels more tired|goes home early|wants to stop}.
+Before volunteering, Jack wanted to study {IT|medicine|law|music}.
+Now Jack prefers working with {people|computers|animals|numbers}.`],
+        ['gap', 'Встав слово: useful, collects, delivers, heavy, tired, advice, difference.', `Jack wanted to do something [useful].
 Every Saturday the group [collects] food and clothes.
-Andrii [delivers] the boxes by bike.
+Jack [delivers] the boxes by bike.
 Sometimes the boxes are [heavy].
 When people smile, he forgets about being [tired].
 His [advice] to other teenagers is simple.
@@ -593,27 +593,27 @@ beans = квасоля
 a sunflower = соняшник
 to pick = збирати (врожай)
 the whole class = увесь клас`),
-      t(`Last spring our teacher, Ms Hanna, had a great idea. “Let’s make a garden next to our school!” she said.
+      t(`Last spring our teacher, Ms Hall, had a great idea. “Let’s make a garden next to our school!” she said.
 
-On Monday we cleaned the ground and took away old leaves and stones. On Tuesday Taras’s dad brought some seeds: tomatoes, carrots, beans and sunflowers. We planted them in long lines. Every child in our class got a job. Marta and I watered the plants every morning before lessons.
+On Monday we cleaned the ground and took away old leaves and stones. On Tuesday Harry’s dad brought some seeds: tomatoes, carrots, beans and sunflowers. We planted them in long lines. Every child in our class got a job. Lucy and I watered the plants every morning before lessons.
 
-At first nothing happened, and Bohdan was sad. “Our garden is just brown!” he said. But after two weeks we saw small green leaves. By June the sunflowers were taller than our teacher!
+At first nothing happened, and Oliver was sad. “Our garden is just brown!” he said. But after two weeks we saw small green leaves. By June the sunflowers were taller than our teacher!
 
 In September we picked the tomatoes and made a big salad for the whole class. It was the best salad in the world.`),
       ex(
-        ['truefalse', 'True or False?', `The garden was Ms Hanna’s idea. = True
-Taras’s dad brought the seeds. = True
-Bohdan was happy at first. = False
+        ['truefalse', 'True or False?', `The garden was Ms Hall’s idea. = True
+Harry’s dad brought the seeds. = True
+Oliver was happy at first. = False
 The children saw green leaves after two days. = False
 The sunflowers grew very tall. = True`],
         ['choice', 'Choose the correct answer.', `The children cleaned the ground on {Monday|Tuesday|Friday}.
-The writer and Marta {watered the plants|brought the seeds|picked the leaves} every morning.
-By June the sunflowers were taller than {the teacher|the school|Taras’s dad}.
+The writer and Lucy {watered the plants|brought the seeds|picked the leaves} every morning.
+By June the sunflowers were taller than {the teacher|the school|Harry’s dad}.
 In September the class picked {the tomatoes|the sunflowers|the beans}.
 The class made {a salad|a soup|a cake}.`],
-        ['gap', 'Past Simple: розкрий дужки.', `Ms Hanna [had] (have) a great idea.
+        ['gap', 'Past Simple: розкрий дужки.', `Ms Hall [had] (have) a great idea.
 We [cleaned] (clean) the ground on Monday.
-Taras’s dad [brought] (bring) some seeds.
+Harry’s dad [brought] (bring) some seeds.
 We [planted] (plant) them in long lines.
 After two weeks we [saw] (see) small green leaves.
 We [made] (make) a big salad.`],
@@ -640,11 +640,11 @@ at least = щонайменше
 to move in = заселитися
 a viewing = перегляд квартири
 weekdays = будні`),
-      t(`**FLAT TO RENT: 15 Shevchenko Street**
+      t(`**FLAT TO RENT: 15 Mill Road**
 
 Bright one-bedroom flat on the fourth floor. There is a lift. The flat has a modern kitchen, a small balcony and a new washing machine. It is a ten-minute walk to the metro, and there is a supermarket across the street.
 
-**Rent:** 12,000 hryvnias a month. Bills (electricity, water and gas) are not included.
+**Rent:** £950 a month. Bills (electricity, water and gas) are not included.
 
 **Deposit:** one month’s rent.
 
@@ -652,14 +652,14 @@ Bright one-bedroom flat on the fourth floor. There is a lift. The flat has a mod
 
 **Please note:** You must sign a contract for at least six months. Pets are welcome, but you must tell us about them before you move in. You mustn’t smoke inside the flat, but you can smoke on the balcony. Please don’t make noise after 10 pm: our neighbours have small children.
 
-Interested? Call Iryna on weekdays after 6 pm or send her a message at any time. Viewings are on Saturdays only.`),
+Interested? Call Rachel on weekdays after 6 pm or send her a message at any time. Viewings are on Saturdays only.`),
       ex(
         ['truefalse', 'True or False?', `The flat is on the ground floor. = False
 There is a shop near the building. = True
 The rent includes electricity and water. = False
 You can have a cat in this flat. = True
-You can call Iryna on weekday mornings. = False`],
-        ['choice', 'Choose the correct answer.', `The deposit is {12,000 hryvnias|6,000 hryvnias|24,000 hryvnias}.
+You can call Rachel on weekday mornings. = False`],
+        ['choice', 'Choose the correct answer.', `The deposit is {£950|£475|£1,900}.
 The shortest contract is {six months|one month|one year}.
 You can smoke {on the balcony|in the kitchen|in the bedroom}.
 You can see the flat {on Saturdays|on any day|after 10 pm}.
@@ -669,7 +669,7 @@ You [mustn’t/must not] smoke inside the flat.
 You [can] smoke on the balcony.
 You [must] tell the owner about your pets.
 You [mustn’t/must not] make noise after 10 pm.
-You [can] send Iryna a message at any time.`],
+You [can] send Rachel a message at any time.`],
       ),
       talk(`What is important for you when you look for a flat?
 Would you prefer a flat near the metro or near a park? Why?
@@ -694,21 +694,21 @@ shy = сором’язливий
 to admit = визнавати, зізнаватися
 a stranger = незнайома людина
 to get someone involved = залучити когось`),
-      t(`A year ago, Yana, Dmytro and Kira had never recorded anything except voice messages. Today they run “Corridor Talk”, a podcast made by students for students, and over four hundred people have listened to their latest episode.
+      t(`A year ago, Jess, Josh and Katie had never recorded anything except voice messages. Today they run “Corridor Talk”, a podcast made by students for students, and over four hundred people have listened to their latest episode.
 
-The idea started in the school canteen. “We realised that everyone was talking about the same things: exams, friendships, how to find time for everything,” says Yana. “So we thought: why not record these conversations?”
+The idea started in the school canteen. “We realised that everyone was talking about the same things: exams, friendships, how to find time for everything,” says Jess. “So we thought: why not record these conversations?”
 
-The beginning wasn’t easy. They recorded their first episode in the gym, and the echo was awful. “We listened to it once and decided never to play it again,” laughs Dmytro. Their computer science teacher lent them a microphone, and they moved to a quiet classroom after lessons.
+The beginning wasn’t easy. They recorded their first episode in the gym, and the echo was awful. “We listened to it once and decided never to play it again,” laughs Josh. Their computer science teacher lent them a microphone, and they moved to a quiet classroom after lessons.
 
-Since then, they have made twenty-two episodes. They have interviewed the school cook, a former student who now designs video games, and even the head teacher. Each episode is about fifteen minutes long because, as Kira explains, “that’s exactly how long the walk home takes.”
+Since then, they have made twenty-two episodes. They have interviewed the school cook, a former student who now designs video games, and even the head teacher. Each episode is about fifteen minutes long because, as Katie explains, “that’s exactly how long the walk home takes.”
 
-The project has taught them more than technical skills. “I used to be really shy,” Kira admits. “Now I can ask a stranger a question without my voice shaking.” Their next goal? To get students from other schools in the city involved.`),
+The project has taught them more than technical skills. “I used to be really shy,” Katie admits. “Now I can ask a stranger a question without my voice shaking.” Their next goal? To get students from other schools in the city involved.`),
       ex(
         ['choice', 'Choose the correct answer (A, B or C).', `How did the podcast idea start? {The friends noticed that students discussed the same topics|A teacher asked them to start a podcast|They saw a podcast competition}
 What was wrong with the first episode? {The sound was bad because of the echo|It was too long|Nobody wanted to speak}
 Who helped them with equipment? {their computer science teacher|the head teacher|the school cook}
 Why are the episodes about fifteen minutes long? {That is how long the walk home takes|Teachers asked for short episodes|Longer episodes were boring}
-How has the project changed Kira? {She feels more confident with new people|She wants to design video games|She talks less than before}`],
+How has the project changed Katie? {She feels more confident with new people|She wants to design video games|She talks less than before}`],
         ['truefalse', 'True or False?', `More than 400 people have listened to the latest episode. = True
 The friends still play their first episode to new listeners. = False
 Now they record in a quiet classroom. = True
@@ -724,7 +724,7 @@ We [listened] (listen) to it once and decided never to play it again.
       talk(`Do you listen to podcasts? What about?
 If you made a podcast, what would it be about?
 Who would you interview at your school? Why?
-Kira says the project helped her stop being shy. What has helped you feel more confident?`),
+Katie says the project helped her stop being shy. What has helped you feel more confident?`),
     ],
   },
   {

@@ -416,7 +416,7 @@ export const MORE_F: Record<string, SongLesson> = {
       {
         group: { uk: 'Фото і спогади', ru: 'Фото и воспоминания', en: 'Photos and memories' },
         items: [
-          { en: 'a memory', uk: 'спогад', ru: 'воспоминание', ex: 'My best memory is our trip to the Carpathians.' },
+          { en: 'a memory', uk: 'спогад', ru: 'воспоминание', ex: 'My best memory is our trip to the Lake District.' },
           { en: 'a photo album', uk: 'фотоальбом', ru: 'фотоальбом', ex: 'Grandma keeps an old photo album in the cupboard.' },
           { en: 'a keepsake', uk: 'пам’ятна річ', ru: 'памятная вещь', ex: 'This little shell is a keepsake from the sea.' },
           { en: 'to remind', uk: 'нагадувати', ru: 'напоминать', ex: 'This song reminds me of summer.' },
@@ -445,9 +445,9 @@ export const MORE_F: Record<string, SongLesson> = {
       },
     ],
     grammar: {
-      uk: 'Used to + дієслово показує звичку або стан у минулому, яких зараз уже немає: I used to have long hair. We used to live in Lviv. Питання і заперечення: Did you use to...? I didn’t use to... (тут use без -d). Would + дієслово теж описує повторювані дії в минулому, часто в розповідях: Every summer we would go to the village. Але would не вживаємо для станів: правильно I used to love cartoons, а не I would love cartoons. Ще одна корисна конструкція: remember + -ing, щоб згадати щось із минулого: I remember learning to swim.',
-      ru: 'Used to + глагол показывает привычку или состояние в прошлом, которых сейчас уже нет: I used to have long hair. We used to live in Lviv. Вопросы и отрицания: Did you use to...? I didn’t use to... (здесь use без -d). Would + глагол тоже описывает повторяющиеся действия в прошлом, часто в рассказах: Every summer we would go to the village. Но would не используем для состояний: правильно I used to love cartoons, а не I would love cartoons. Ещё одна полезная конструкция: remember + -ing, чтобы вспомнить что-то из прошлого: I remember learning to swim.',
-      en: 'Used to + verb shows a habit or state in the past that is not true now: I used to have long hair. We used to live in Lviv. Questions and negatives: Did you use to...? I didn’t use to... (use without -d here). Would + verb also describes repeated past actions, often in stories: Every summer we would go to the village. But we don’t use would for states: I used to love cartoons, not I would love cartoons. Another useful pattern is remember + -ing for memories: I remember learning to swim.',
+      uk: 'Used to + дієслово показує звичку або стан у минулому, яких зараз уже немає: I used to have long hair. We used to live in Edinburgh. Питання і заперечення: Did you use to...? I didn’t use to... (тут use без -d). Would + дієслово теж описує повторювані дії в минулому, часто в розповідях: Every summer we would go to the village. Але would не вживаємо для станів: правильно I used to love cartoons, а не I would love cartoons. Ще одна корисна конструкція: remember + -ing, щоб згадати щось із минулого: I remember learning to swim.',
+      ru: 'Used to + глагол показывает привычку или состояние в прошлом, которых сейчас уже нет: I used to have long hair. We used to live in Edinburgh. Вопросы и отрицания: Did you use to...? I didn’t use to... (здесь use без -d). Would + глагол тоже описывает повторяющиеся действия в прошлом, часто в рассказах: Every summer we would go to the village. Но would не используем для состояний: правильно I used to love cartoons, а не I would love cartoons. Ещё одна полезная конструкция: remember + -ing, чтобы вспомнить что-то из прошлого: I remember learning to swim.',
+      en: 'Used to + verb shows a habit or state in the past that is not true now: I used to have long hair. We used to live in Edinburgh. Questions and negatives: Did you use to...? I didn’t use to... (use without -d here). Would + verb also describes repeated past actions, often in stories: Every summer we would go to the village. But we don’t use would for states: I used to love cartoons, not I would love cartoons. Another useful pattern is remember + -ing for memories: I remember learning to swim.',
     },
     grammarEx: [
       { q: 'When I was little, I ___ play with toy cars all day.', opts: ['used to', 'use to', 'using to'], a: 'used to' },
@@ -1601,12 +1601,12 @@ export const DEEP_F: Record<string, SongDeep> = {
           ru: 'В клипе мы видим, как Эд Ширан взрослеет от малыша до подростка, который выступает на сцене. Grow up значит и «вырасти физически», и «стать взрослее в поведении». Grow up! говорят человеку, который ведёт себя по-детски.',
           en: 'In the video we see Ed Sheeran grow up from a toddler to a teenager performing on stage. Grow up means both to get older and to become more mature. Grow up! is said to someone acting childish.',
         },
-        ex: ['I grew up in a small village near Poltava.', 'What do you want to be when you grow up?'],
+        ex: ['I grew up in a small village near York.', 'What do you want to be when you grow up?'],
         similar: ['to get older', 'to mature'],
         tip: {
-          uk: 'Не плутайте з grow (рости, вирощувати): we grow tomatoes, але I grew up in Kyiv.',
-          ru: 'Не путайте с grow (расти, выращивать): we grow tomatoes, но I grew up in Kyiv.',
-          en: 'Don’t confuse it with grow: we grow tomatoes, but I grew up in Kyiv.',
+          uk: 'Не плутайте з grow (рости, вирощувати): we grow tomatoes, але I grew up in London.',
+          ru: 'Не путайте с grow (расти, выращивать): we grow tomatoes, но I grew up in London.',
+          en: 'Don’t confuse it with grow: we grow tomatoes, but I grew up in London.',
         },
       },
     ],

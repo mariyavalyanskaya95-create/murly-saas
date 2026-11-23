@@ -341,7 +341,7 @@ export const MORE_D: Record<string, SongLesson> = {
     ],
     warmup: [
       'What is the most ordinary part of your day? Can it ever feel special?',
-      'Do you know any songs that are played at weddings in Ukraine?',
+      'Do you know any songs that are played at weddings in your country?',
       'Would you like to be famous on YouTube or TikTok? Why or why not?',
     ],
     vocab: [
@@ -534,7 +534,7 @@ export const MORE_D: Record<string, SongLesson> = {
       { uk: 'У 2022 році Олівія отримала «Греммі» як найкраща нова виконавиця, а також за найкраще сольне поп-виконання саме цієї пісні. До музичної слави вона грала у серіалі Disney+ High School Musical: The Musical: The Series.', ru: 'В 2022 году Оливия получила «Грэмми» как лучшая новая исполнительница, а также за лучшее сольное поп-исполнение именно этой песни. До музыкальной славы она снималась в сериале Disney+ High School Musical: The Musical: The Series.', en: 'In 2022 Olivia won the Grammy for Best New Artist and the Grammy for Best Pop Solo Performance for this song. Before her music fame she acted in the Disney+ series High School Musical: The Musical: The Series.' },
     ],
     warmup: [
-      'At what age can people get a driving licence in Ukraine? In other countries?',
+      'At what age can people get a driving licence in your country? In other countries?',
       'What is the first thing you would do if you could drive?',
       'Which songs do you listen to when you feel sad?',
     ],
@@ -676,7 +676,7 @@ export const MORE_D: Record<string, SongLesson> = {
       { q: 'This school is very different ___ my old one.', opts: ['from', 'as', 'than'], a: 'from' },
       { q: 'The park is not as big ___ I remember.', opts: ['as', 'than', 'like'], a: 'as' },
       { q: 'I ___ to have long hair when I was ten.', opts: ['used', 'use', 'using'], a: 'used' },
-      { q: 'Did you ___ to live in Kharkiv?', opts: ['use', 'used', 'using'], a: 'use' },
+      { q: 'Did you ___ to live in Manchester?', opts: ['use', 'used', 'using'], a: 'use' },
       { q: 'We don’t play hide and seek ___.', opts: ['anymore', 'already', 'yet'], a: 'anymore' },
       { q: 'She ___ goes to the dance club. She stopped last year.', opts: ['no longer', 'not longer', 'anymore'], a: 'no longer' },
       { q: 'He didn’t use to ___ coffee, but now he loves it.', opts: ['like', 'liked', 'liking'], a: 'like' },
@@ -992,7 +992,7 @@ export const MORE_D: Record<string, SongLesson> = {
       'What makes you smile on a normal school day?',
       'How does your family celebrate special days?',
       'Do you like songs that mix music from different countries? Why?',
-      'What is a traditional song or dance from Ukraine that you like?',
+      'What is a traditional song or dance from your country that you like?',
       'Who do you call my dear or a similar warm name?',
       'Why do you think people around the world like this song?',
     ],
@@ -2016,7 +2016,7 @@ export const DEEP_D: Record<string, SongDeep> = {
           ru: 'Так называют книги, фильмы и песни о переходе от детства к взрослости: первая любовь, первые потери, первая свобода. Термин часто встречается в рецензиях. Многие критики описывали эту песню и альбом SOUR именно как историю взросления.',
           en: 'This is what we call books, films and songs about moving from childhood to adulthood: first love, first losses, first freedom. The term is common in reviews. Many critics described this song and the album SOUR as a coming-of-age story.',
         },
-        ex: ['My favourite film is a coming-of-age story about a girl at a summer camp.', 'The book is a funny coming-of-age story set in Lviv.'],
+        ex: ['My favourite film is a coming-of-age story about a girl at a summer camp.', 'The book is a funny coming-of-age story set in Boston.'],
         similar: ['a story about growing up'],
         tip: {
           uk: 'Пишіть через дефіси: coming-of-age. Також кажуть to come of age, тобто досягти повноліття.',
@@ -2678,7 +2678,7 @@ export const DEEP_D: Record<string, SongDeep> = {
           ru: 'Очень старое выражение, оно есть ещё в Библии. Так говорят о человеке, которого очень любят и берегут, чаще всего о ребёнке или внуке. Звучит тепло и немного старомодно. По-русски похоже говорят «как зеницу ока».',
           en: 'A very old phrase that even appears in the Bible. It describes a person who is loved and protected very much, usually a child or grandchild. It sounds warm and a little old-fashioned. Ukrainian has a similar image about guarding something like the pupil of your eye.',
         },
-        ex: ['Little Anya is the apple of her grandpa’s eye.', 'Their first puppy was the apple of their eye.'],
+        ex: ['Little Annie is the apple of her grandpa’s eye.', 'Their first puppy was the apple of their eye.'],
         similar: ['someone’s pride and joy', 'someone’s favourite'],
         tip: {
           uk: 'Apple тут в однині: the apple of my eye, а не the apples.',

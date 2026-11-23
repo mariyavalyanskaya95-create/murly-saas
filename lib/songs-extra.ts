@@ -7,7 +7,7 @@ export const SONGS_EXTRA: Song[] = [
   {
     id: 'born-this-way', artist: 'Lady Gaga', title: 'Born This Way', yt: 'wV1FrqwZyKw', year: 2011, level: 'B1', age: 'teens',
     about: { uk: 'Енергійний гімн про те, що кожна людина цінна такою, якою вона є, з усіма своїми відмінностями. Кліп дуже театральний: фантастичний вступ, незвичайний грим і костюми, тому радимо 13+ і спершу переглянути вчителю.', ru: 'Энергичный гимн о том, что каждый человек ценен таким, какой он есть, со всеми своими отличиями. Клип очень театральный: фантастическое вступление, необычный грим и костюмы, поэтому советуем 13+ и сначала посмотреть учителю.', en: 'An energetic anthem about how every person is valuable just as they are, with all their differences. The video is very theatrical, with a sci-fi intro, unusual make-up and costumes, so 13+ and teachers should watch it first.' },
-    grammar: { uk: 'Пасив із born: I was born in Kyiv. Where were you born? Ми завжди кажемо was/were born, а не I born.', ru: 'Пассив с born: I was born in Kyiv. Where were you born? Мы всегда говорим was/were born, а не I born.', en: 'Passive with born: I was born in Kyiv. Where were you born? Always say was/were born, never I born.' },
+    grammar: { uk: 'Пасив із born: I was born in London. Where were you born? Ми завжди кажемо was/were born, а не I born.', ru: 'Пассив с born: I was born in London. Where were you born? Мы всегда говорим was/were born, а не I born.', en: 'Passive with born: I was born in London. Where were you born? Always say was/were born, never I born.' },
     phrases: [
       { en: 'born this way', m: { uk: 'таким(ою) народився(лася), це частина мене', ru: 'таким(ой) родился(ась), это часть меня', en: 'this is how I have always been' }, ex: 'I’ve always been left-handed. I was born this way.' },
       { en: 'to be proud of', m: { uk: 'пишатися', ru: 'гордиться', en: 'feel good about who you are or what you did' }, ex: 'I’m proud of my little sister, she learned to swim.' },
@@ -22,7 +22,7 @@ export const SONGS_EXTRA: Song[] = [
     about: { uk: 'Спокійна балада про важкий момент у стосунках: є багато причин здатися, але людина шукає бодай одну причину лишитися. Пісня про сумніви, складні рішення і віру в людей.', ru: 'Спокойная баллада о тяжёлом моменте в отношениях: есть много причин сдаться, но человек ищет хотя бы одну причину остаться. Песня о сомнениях, трудных решениях и вере в людей.', en: 'A calm ballad about a hard moment in a relationship: there are many reasons to give up, but the person is looking for one reason to stay. A song about doubt, difficult decisions and believing in people.' },
     grammar: { uk: 'Reason to + дієслово, reason for + іменник, the reason why... Великі числа: a hundred, a thousand, millions of.', ru: 'Reason to + глагол, reason for + существительное, the reason why... Большие числа: a hundred, a thousand, millions of.', en: 'Reason to + verb, reason for + noun, the reason why... Big numbers: a hundred, a thousand, millions of.' },
     phrases: [
-      { en: 'a million reasons', m: { uk: 'мільйон причин, дуже багато причин', ru: 'миллион причин, очень много причин', en: 'very many reasons' }, ex: 'There are a million reasons to visit Lviv in winter.' },
+      { en: 'a million reasons', m: { uk: 'мільйон причин, дуже багато причин', ru: 'миллион причин, очень много причин', en: 'very many reasons' }, ex: 'There are a million reasons to visit Edinburgh in winter.' },
       { en: 'to make up your mind', m: { uk: 'вирішити, визначитися', ru: 'решить, определиться', en: 'decide' }, ex: 'Pizza or pasta? Make up your mind, the waiter is coming!' },
       { en: 'to think twice', m: { uk: 'добре подумати, перш ніж щось зробити', ru: 'хорошо подумать, прежде чем что-то сделать', en: 'think carefully before you act' }, ex: 'Think twice before you post a photo of your friend.' },
       { en: 'to have second thoughts', m: { uk: 'засумніватися в рішенні', ru: 'засомневаться в решении', en: 'start to doubt a decision' }, ex: 'I bought the ticket, but now I’m having second thoughts.' },
@@ -103,7 +103,7 @@ export const SONGS_EXTRA: Song[] = [
       { en: 'to count on someone', m: { uk: 'розраховувати на когось', ru: 'рассчитывать на кого-то', en: 'trust someone to help you' }, ex: 'You can count on me, I’ll bring the ball.' },
       { en: 'a best friend', m: { uk: 'найкращий друг, найкраща подруга', ru: 'лучший друг, лучшая подруга', en: 'your closest friend' }, ex: 'My best friend lives next door.' },
       { en: 'to lend a hand', m: { uk: 'допомогти', ru: 'помочь', en: 'help someone' }, ex: 'Can you lend a hand with these bags?' },
-      { en: 'to keep in touch', m: { uk: 'підтримувати зв’язок', ru: 'поддерживать связь', en: 'talk or write to someone regularly' }, ex: 'My friend moved to Odesa, but we keep in touch.' },
+      { en: 'to keep in touch', m: { uk: 'підтримувати зв’язок', ru: 'поддерживать связь', en: 'talk or write to someone regularly' }, ex: 'My friend moved to Brighton, but we keep in touch.' },
       { en: 'to have someone’s back', m: { uk: 'підтримувати когось, бути на чиємусь боці', ru: 'поддерживать кого-то, быть на чьей-то стороне', en: 'be ready to support someone' }, ex: 'Don’t worry about the test, I’ve got your back.' },
     ],
     talk: ['Who can you always count on?', 'How do you help your best friend?', 'How do you keep in touch with friends who live far away?'],
@@ -157,12 +157,12 @@ export const MORE_C: Record<string, SongLesson> = {
       },
     ],
     grammar: {
-      uk: 'Born в англійській працює як пасив: be + born. Тому ми кажемо I was born (я народився), she was born, they were born. Питання: Where were you born? When was your brother born? Не можна сказати I born або I am born in 2010. Про дату: in 2010, in May, on 5 May. Про місце: in Kyiv, in Ukraine. Такий самий пасив у минулому: The house was built in 1990. The song was written by Lady Gaga.',
-      ru: 'Born в английском работает как пассив: be + born. Поэтому мы говорим I was born (я родился), she was born, they were born. Вопрос: Where were you born? When was your brother born? Нельзя сказать I born или I am born in 2010. О дате: in 2010, in May, on 5 May. О месте: in Kyiv, in Ukraine. Такой же пассив в прошлом: The house was built in 1990. The song was written by Lady Gaga.',
-      en: 'In English born works as a passive: be + born. So we say I was born, she was born, they were born. Questions: Where were you born? When was your brother born? You cannot say I born or I am born in 2010. For dates: in 2010, in May, on 5 May. For places: in Kyiv, in Ukraine. The same past passive: The house was built in 1990. The song was written by Lady Gaga.',
+      uk: 'Born в англійській працює як пасив: be + born. Тому ми кажемо I was born (я народився), she was born, they were born. Питання: Where were you born? When was your brother born? Не можна сказати I born або I am born in 2010. Про дату: in 2010, in May, on 5 May. Про місце: in London, in England. Такий самий пасив у минулому: The house was built in 1990. The song was written by Lady Gaga.',
+      ru: 'Born в английском работает как пассив: be + born. Поэтому мы говорим I was born (я родился), she was born, they were born. Вопрос: Where were you born? When was your brother born? Нельзя сказать I born или I am born in 2010. О дате: in 2010, in May, on 5 May. О месте: in London, in England. Такой же пассив в прошлом: The house was built in 1990. The song was written by Lady Gaga.',
+      en: 'In English born works as a passive: be + born. So we say I was born, she was born, they were born. Questions: Where were you born? When was your brother born? You cannot say I born or I am born in 2010. For dates: in 2010, in May, on 5 May. For places: in London, in England. The same past passive: The house was built in 1990. The song was written by Lady Gaga.',
     },
     grammarEx: [
-      { q: 'I ___ born in Lviv.', opts: ['was', 'am', 'did'], a: 'was' },
+      { q: 'I ___ born in Edinburgh.', opts: ['was', 'am', 'did'], a: 'was' },
       { q: 'Where ___ your parents born?', opts: ['were', 'was', 'did'], a: 'were' },
       { q: 'My little sister was born ___ 2019.', opts: ['in', 'on', 'at'], a: 'in' },
       { q: 'Our cat was born ___ 3 April.', opts: ['on', 'in', 'at'], a: 'on' },
@@ -342,7 +342,7 @@ export const MORE_C: Record<string, SongLesson> = {
         items: [
           { en: 'a desert', uk: 'пустеля', ru: 'пустыня', ex: 'It is very hot in the desert in the daytime.' },
           { en: 'a sunset', uk: 'захід сонця', ru: 'закат', ex: 'We watched the sunset from the beach.' },
-          { en: 'a road trip', uk: 'подорож машиною', ru: 'путешествие на машине', ex: 'This summer we’re going on a road trip around Ukraine.' },
+          { en: 'a road trip', uk: 'подорож машиною', ru: 'путешествие на машине', ex: 'This summer we’re going on a road trip around Scotland.' },
           { en: 'a view', uk: 'краєвид, вид', ru: 'вид, пейзаж', ex: 'The view from the hotel window is beautiful.' },
           { en: 'a canyon', uk: 'каньйон', ru: 'каньон', ex: 'The Grand Canyon is in the USA.' },
         ],
@@ -744,7 +744,7 @@ export const MORE_C: Record<string, SongLesson> = {
       { q: 'I think it ___ rain later.', opts: ['will', 'is', 'does'], a: 'will' },
       { q: 'Look at those dark clouds! It ___ rain.', opts: ['is going to', 'will', 'rains'], a: 'is going to' },
       { q: 'What ___ you doing this weekend?', opts: ['are', 'will', 'do'], a: 'are' },
-      { q: 'She ___ going to study in Kyiv next year.', opts: ['is', 'will', 'does'], a: 'is' },
+      { q: 'She ___ going to study in London next year.', opts: ['is', 'will', 'does'], a: 'is' },
       { q: 'Don’t worry, I ___ help you with the project.', opts: ['’ll', '’m helping', 'help'], a: '’ll' },
     ],
     gapfill: [
@@ -1937,7 +1937,7 @@ export const DEEP_C: Record<string, SongDeep> = {
           ru: 'Пословица о том, что тихая вода часто глубока, так же и спокойные люди имеют богатый внутренний мир. В английском она звучит позитивно, в отличие от русского «в тихом омуте черти водятся». Тихая, но глубокая песня Билли идеальный пример.',
           en: 'A proverb saying calm water is often deep, and calm people often have a rich inner world. In English it is positive, unlike the similar Ukrainian and Russian sayings, which suggest hidden mischief. Billie’s quiet but deep song is a perfect example.',
         },
-        ex: ['Oleh hardly talks, but his poems are amazing. Still waters run deep.', 'Don’t think she’s boring because she’s quiet. Still waters run deep.'],
+        ex: ['Owen hardly talks, but his poems are amazing. Still waters run deep.', 'Don’t think she’s boring because she’s quiet. Still waters run deep.'],
         similar: ['there’s more to them than meets the eye'],
         tip: {
           uk: 'Будьте обережні з перекладом: англійська версія комплімент, а не попередження.',
