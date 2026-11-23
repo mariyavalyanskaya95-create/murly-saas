@@ -61,3 +61,20 @@ export async function gscLines(): Promise<string[]> {
     topPages.length ? `• лучшие страницы: ${topPages.map((x) => `${esc(short(x.keys?.[0] || ''))} (${x.clicks})`).join(', ')}` : '',
   ].filter(Boolean);
 }
+
+// Звіт для власниці: тижні за останні 8 тижнів + топ запитів і сторінок за 28 днів
+export async function gscReport() {
+  const k = sa(); if (!k) return { error: 'no_key' };
+  const tk = await token(k); if (!tk) return { error: 'no_access' };
+  const end = new Date(Date.now() - 2 * 864e5);
+  const weeks: { from: string; to: string; clicks: number; impressions: number; position: number }[] = [];
+  for (let i = 7; i >= 0; i--) {
+    const e = new Date(end.getTime() - i * 7 * 864e5); const s = new Date(e.getTime() - 6 * 864e5);
+    const r = (await query(tk, ymd(s), ymd(e)))[0];
+    weeks.push({ from: ymd(s), to: ymd(e), clicks: r?.clicks ?? 0, impressions: r?.impressions ?? 0, position: r ? Math.round(r.position * 10) / 10 : 0 });
+  }
+  const s28 = ymd(new Date(end.getTime() - 27 * 864e5));
+  const [qs, pages] = await Promise.all([query(tk, s28, ymd(end), ['query'], 50), query(tk, s28, ymd(end), ['page'], 30)]);
+  const m = (x: Row) => ({ key: x.keys?.[0] || '', clicks: x.clicks, impressions: x.impressions, position: Math.round(x.position * 10) / 10 });
+  return { weeks, queries: qs.map(m).sort((a, b) => b.impressions - a.impressions).slice(0, 30), pages: pages.map(m).sort((a, b) => b.impressions - a.impressions).slice(0, 20) };
+}
