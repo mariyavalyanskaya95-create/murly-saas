@@ -17,7 +17,7 @@ import HeroTip from '@/components/HeroTip';
 export function generateMetadata(): Metadata {
   const t = tr();
   return {
-    title: t({ uk: 'Ігри з неправильними дієсловами англійської онлайн: квіз, пари, анаграми', ru: 'Игры с неправильными глаголами английского онлайн: квиз, пары, анаграммы', en: 'English irregular verb games online: quiz, pairs, anagrams' }),
+    title: t({ uk: 'Irregular verbs games: ігри з неправильними дієсловами онлайн (квіз, пари, анаграми)', ru: 'Irregular verbs games: игры с неправильными глаголами онлайн (квиз, пары, анаграммы)', en: 'English irregular verb games online: quiz, pairs, anagrams' }),
     description: t({
       uk: 'Безкоштовні ігри онлайн, щоб вивчити три форми неправильних дієслів: квіз, пари, анаграми, картки й переклад. Без реєстрації, з озвучкою.',
       ru: 'Бесплатные игры онлайн, чтобы выучить три формы неправильных глаголов: квиз, пары, анаграммы, карточки и перевод. Без регистрации, с озвучкой.',
