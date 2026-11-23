@@ -87,7 +87,7 @@ export const DRILL: Drill = {
         { k: 'type', q: '“Whose idea was the picnic?” “It was ___ (Mia).”', answers: ['Mia’s'], why: 'Відповідь про власника: Mia’s. Просто Mia означало б «це була Міа».' },
         { k: 'type', q: 'We aren’t staying at a hotel. We’re staying at my ___ (aunt).', answers: ['aunt’s'], why: 'at my aunt’s = у тітки вдома. Слово house після ’s зазвичай пропускають.' },
         { k: 'choice', q: '___ headphones are these?', options: ['Whom', 'Whose', 'Who', 'Who’s'], a: 1, why: 'Питаємо про власника: Whose. Who’s = who is, Who і Whom не означають «чиї».' },
-        { k: 'choice', q: '“Whose bag is this?” “___”', options: ['It’s Emma.', 'It’s Emma’s.', 'It’s Olenas.', 'It’s of Emma.'], a: 1, why: 'Відповідаємо ім’ям з ’s: It’s Emma’s. It’s of Emma так не кажуть.' },
+        { k: 'choice', q: '“Whose bag is this?” “___”', options: ['It’s Emma.', 'It’s Emma’s.', 'It’s Emmas.', 'It’s of Emma.'], a: 1, why: 'Відповідаємо ім’ям з ’s: It’s Emma’s. It’s of Emma так не кажуть.' },
         { k: 'choice', q: 'Обери правильне питання.', options: ['Whose phone is this?', 'Who phone is this?', 'Who’s phone is this?', 'Whose is phone this?'], a: 0, why: 'Whose + іменник + is this? Who і Who’s не означають «чий», а Whose is phone this має неправильний порядок.' },
         { k: 'choice', q: 'Is this ___ laptop or yours?', options: ['Dan', 'of Dan', 'Dans', 'Dan’s'], a: 3, why: 'Власник Ден: Dan’s laptop. Of Dan перед іменником не ставлять.' },
         { k: 'choice', q: 'I didn’t see ___ message until the evening.', options: ['my friends', 'the friend of me', 'my friend’s', 'my friend'], a: 2, why: 'Повідомлення друга: my friend’s message. My friends без апострофа означає «мої друзі».' },
