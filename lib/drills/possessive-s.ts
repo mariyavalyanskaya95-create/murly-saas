@@ -154,7 +154,7 @@ export const DRILL: Drill = {
       title: 'Раунд 5. Фінальний бос',
       questions: [
         { k: 'type', q: 'Ann and Kate are sisters. ___ (Ann and Kate) mum is a vet.', answers: ['Ann and Kate’s'], why: 'Мама в них спільна, тому ’s тільки в кінці: Ann and Kate’s.' },
-        { k: 'type', q: 'Both my cousins live in Kyiv. My ___ (cousins) flat is near the river.', answers: ['cousins’'], why: 'Двоюрідних кілька і квартира в них спільна: cousins’.' },
+        { k: 'type', q: 'Both my cousins live in London. My ___ (cousins) flat is near the river.', answers: ['cousins’'], why: 'Двоюрідних кілька і квартира в них спільна: cousins’.' },
         { k: 'type', q: 'Look at that bird. ___ (it) feathers are bright blue.', answers: ['Its'], why: 'Пір’я птаха = its feathers. Апострофа немає, бо it’s = it is.' },
         { k: 'type', q: 'Can I stay at ___ (Lev) tonight?', answers: ['Lev’s'], why: 'at Lev’s = у Лева вдома. Слово house після ’s пропускаємо, а at Lev без ’s так не кажуть.' },
         { k: 'type', q: 'We arrived in the ___ (middle / the lesson).', answers: ['middle of the lesson'], why: 'Частина уроку: the middle of the lesson. Урок не людина, тому of.' },

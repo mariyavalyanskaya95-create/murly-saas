@@ -126,7 +126,7 @@ export const DRILL: Drill = {
       questions: [
         c('Обери правильне речення: ліжко в кімнаті.', ['In my room has a bed.', 'There is a bed in my room.', 'In my room there are a bed.'], 1, 'Англійською починаємо з there is, місце в кінці. A bed однина, тому is. Have тут не вживаємо.'),
         c('Обери правильне речення: торт на столі.', ['There have a cake on the table.', 'On the table are a cake.', 'There is a cake on the table.'], 2, 'Не копіюй український порядок «На столі є торт» і не став have. Правильно: There is a cake on the table.'),
-        c('Обери правильне речення: парки в Києві.', ['There are many parks in Kyiv.', 'In Kyiv have many parks.', 'In Kyiv is many parks.'], 0, 'Щоб сказати «є», потрібне there are. Без there речення неправильне, а have тут не вживаємо.'),
+        c('Обери правильне речення: парки в Лондоні.', ['There are many parks in London.', 'In London have many parks.', 'In London is many parks.'], 0, 'Щоб сказати «є», потрібне there are. Без there речення неправильне, а have тут не вживаємо.'),
         c('Обери правильне речення: собаки в саду.', ['Their are two dogs in the garden.', 'They are two dogs in the garden.', 'There are two dogs in the garden.'], 2, 'There are: є. Their означає «їхні», they are означає «вони є».'),
         c('Meet Max and Lily! ___ my best friends.', ['There are', 'They are', 'Their'], 1, 'Тут «вони є мої друзі»: they are. There are означало б «існують».'),
         c('I like my neighbours. ___ house is next to ours.', ['There', 'Their', 'They’re'], 1, 'Their: їхній. Це про належність.'),
@@ -138,7 +138,7 @@ export const DRILL: Drill = {
         c('Обери правильне речення: молоко.', ['There isn’t no milk.', 'There is not no milk.', 'There isn’t any milk.'], 2, 'Одне заперечення на речення: isn’t any або is no.'),
         c('Обери правильне речення: автобус.', ['Their is a bus at 8.', 'There is a bus at 8.', 'They’re is a bus at 8.'], 1, 'There is: є. Their і they’re тут не підходять.'),
         t('___ (there/their/they’re) are three cafés on this street.', ['There', 'there'], 'There are: на вулиці є три кафе.'),
-        t('My cousins live in Lviv. ___ (there/their/they’re) flat is in the centre.', ['Their', 'their'], 'Their: їхня квартира, належність.'),
+        t('My cousins live in Edinburgh. ___ (there/their/they’re) flat is in the centre.', ['Their', 'their'], 'Their: їхня квартира, належність.'),
         t('Tom and Dan are late. I think ___ (there/their/they’re) stuck in traffic.', ['they’re', 'they are'], 'They’re = they are: вони застрягли в заторі.'),
         t('In my bag ___ (there + be) two pens and a notebook.', ['there are', 'there’re'], 'Навіть якщо місце на початку, потрібне there. Перший предмет two pens у множині, тому there are.'),
         t('There ___ (be) a lot of snow this morning.', ['is'], 'Snow незлічуване, тому is.'),

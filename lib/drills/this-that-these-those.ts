@@ -153,7 +153,7 @@ export const DRILL: Drill = {
         { k: 'choice', q: 'Emma: “Who are ___ boys at the bus stop across the road?” Max: “They’re from my school.”', options: ['that', 'these', 'this', 'those'], a: 3, why: 'Хлопців кілька, через дорогу (далеко): those.' },
         { k: 'type', q: 'Tom: “Are these your earphones?” Lily: “No, they ___ (be, not). Mine are white.”', answers: ['aren’t', 'are not'], why: 'they: No, they aren’t.' },
         { k: 'choice', q: 'Dan (on the phone): “Hi, Mum. ___ is Dan. I’m at the station.”', options: ['That', 'This', 'These', 'Those'], a: 1, why: 'По телефону про себе: This is Dan.' },
-        { k: 'type', q: 'Sophie: “Remember our trip to Lviv?” Max: “Yes! ___ (this / that) was a great weekend.”', answers: ['That'], why: 'Вихідні вже в минулому: That was ...' },
+        { k: 'type', q: 'Sophie: “Remember our trip to Edinburgh?” Max: “Yes! ___ (this / that) was a great weekend.”', answers: ['That'], why: 'Вихідні вже в минулому: That was ...' },
         { k: 'choice', q: 'I don’t like my phone case. I want a new ___.', options: ['ones', 'one', 'it', 'them'], a: 1, why: 'Чохол один: a new one.' },
         { k: 'type', q: 'Mum: “Whose socks are ___ (this / these) on the sofa here?”', answers: ['these'], why: 'socks у множині, тут: these.' },
         { k: 'choice', q: 'Max: “Is that your cat in the garden?” Lily: “Yes, ___ is. Her name is Luna.”', options: ['that', 'this', 'it', 'she’s'], a: 2, why: 'Коротка відповідь: Yes, it is. Скорочення she’s у кінці не ставимо.' },

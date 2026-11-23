@@ -141,7 +141,7 @@ export const DRILL: Drill = {
         { k: 'type', q: 'If I ___ (not see) you before Friday, have a great holiday!', answers: ['don’t see', 'do not see'], why: 'Після if заперечення don’t + V, без won’t.' },
         { k: 'choice', q: 'Яке речення звучить правильно?', options: ['I won’t leave until you will say sorry.', 'I don’t leave until you will say sorry.', 'I won’t leave until you say sorry.', 'I won’t leave unless you will say sorry.'], a: 2, why: 'won’t у головній частині, теперішній після until: until you say sorry.' },
         { k: 'type', q: 'The moment the bell ___ (ring), the kids will run outside.', answers: ['rings'], why: 'the moment = щойно, після нього теперішній: the bell rings.' },
-        { k: 'choice', q: 'Max will text us ___ he gets to Kyiv.', options: ['as soon as', 'as soon', 'soon as', 'as soon that'], a: 0, why: 'Сполучник повністю: as soon as. Інші варіанти неповні або вигадані.' },
+        { k: 'choice', q: 'Max will text us ___ he gets to London.', options: ['as soon as', 'as soon', 'soon as', 'as soon that'], a: 0, why: 'Сполучник повністю: as soon as. Інші варіанти неповні або вигадані.' },
         { k: 'type', q: 'Before I ___ (go) to bed, I’ll set two alarms.', answers: ['go'], why: 'Після before теперішній: I go.' },
         { k: 'choice', q: 'Де все правильно?', options: ['When I’ll grow up, I’ll be a pilot.', 'When I grow up, I’ll be a pilot.', 'When I grow up, I am a pilot.', 'When I will grow up, I be a pilot.'], a: 1, why: 'Після when теперішній (grow up), у головній will be.' },
       ],

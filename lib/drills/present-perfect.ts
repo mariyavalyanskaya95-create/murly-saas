@@ -77,7 +77,7 @@ export const DRILL: Drill = {
     {
       title: 'Раунд 2. Заперечення і питання',
       questions: [
-        { k: 'choice', q: '___ you ever been to Lviv?', options: ['Did', 'Has', 'Have', 'Are'], a: 2, why: 'Питання в Present Perfect: Have / Has + підмет + V3. З you тільки have.' },
+        { k: 'choice', q: '___ you ever been to Edinburgh?', options: ['Did', 'Has', 'Have', 'Are'], a: 2, why: 'Питання в Present Perfect: Have / Has + підмет + V3. З you тільки have.' },
         { k: 'choice', q: '___ Max finished his project yet?', options: ['Have', 'Has', 'Did', 'Is'], a: 1, why: 'Max = he, тому Has. Did не поєднується з V3 finished.' },
         { k: 'type', q: 'I ___ (not / see) Emma since Monday.', answers: ['haven’t seen', 'have not seen'], why: 'Заперечення: haven’t + V3. see, saw, seen.' },
         { k: 'type', q: 'My dad ___ (not / try) TikTok yet.', answers: ['hasn’t tried', 'has not tried'], why: 'Dad = he, тому hasn’t + V3. yet у запереченні означає «ще не».' },
@@ -102,7 +102,7 @@ export const DRILL: Drill = {
     {
       title: 'Раунд 3. Just, yet, for, since',
       questions: [
-        { k: 'choice', q: 'I’ve lived in Kyiv ___ 2015.', options: ['for', 'from', 'ago', 'since'], a: 3, why: 'since + точка відліку (рік, день). for + тривалість.' },
+        { k: 'choice', q: 'I’ve lived in London ___ 2015.', options: ['for', 'from', 'ago', 'since'], a: 3, why: 'since + точка відліку (рік, день). for + тривалість.' },
         { k: 'choice', q: 'We’ve known each other ___ six years.', options: ['since', 'ago', 'for', 'during'], a: 2, why: 'six years це тривалість, тому for.' },
         { k: 'choice', q: 'Have you finished your essay ___?', options: ['still', 'just', 'yet', 'never'], a: 2, why: 'yet ставимо в кінці питань і заперечень: «вже?» або «ще не».' },
         { k: 'choice', q: 'I’ve ___ booked the tickets, so don’t worry.', options: ['yet', 'already', 'ever', 'since'], a: 1, why: 'already = вже, у ствердженні стоїть між have і V3.' },

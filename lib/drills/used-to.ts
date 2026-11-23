@@ -17,7 +17,7 @@ export const DRILL: Drill = {
       { title: 'Процес звикання: get used to + іменник / V-ing', example: 'Max is getting used to his new school.', uk: 'Макс звикає до нової школи.' },
     ],
     forms: [
-      { sign: '+', text: 'used to + V1 (однаково для всіх осіб)', example: 'We used to live in Odesa.' },
+      { sign: '+', text: 'used to + V1 (однаково для всіх осіб)', example: 'We used to live in Brighton.' },
       { sign: '−', text: 'didn’t use to + V1 (після didn’t без -d)', example: 'Tom didn’t use to like cats.' },
       { sign: '?', text: 'Did + підмет + use to + V1?', example: 'Did you use to wear glasses?' },
       { sign: 'would', text: 'would (’d) + V1: тільки дії, що повторювалися в минулому', example: 'On Sundays we would go fishing.' },
@@ -101,7 +101,7 @@ export const DRILL: Drill = {
         { k: 'choice', q: 'When we were kids, Grandma ___ us stories every night.', options: ['would tell', 'is used to telling', 'gets used to telling', 'would told'], a: 0, why: 'Повторювана дія в минулому: would tell. would told неправильне, бо після would V1.' },
         { k: 'choice', q: 'I ___ a blue bike when I was eight.', options: ['would have', 'am used to having', 'would had', 'used to have'], a: 3, why: 'have тут стан (мати), тому тільки used to have. would зі станами не вживаємо.' },
         { k: 'type', q: 'I moved to London a year ago, so now I’m used to ___ (drive) on the left.', answers: ['driving'], why: 'Уже звик: be used to + V-ing: driving.' },
-        { k: 'choice', q: 'Lily ___ in Odesa, but now she lives in Lviv.', options: ['would live', 'is used to living', 'used to live', 'gets used to live'], a: 2, why: 'Колись жила, тепер ні: used to live. live це стан, тому не would.' },
+        { k: 'choice', q: 'Lily ___ in Brighton, but now she lives in Edinburgh.', options: ['would live', 'is used to living', 'used to live', 'gets used to live'], a: 2, why: 'Колись жила, тепер ні: used to live. live це стан, тому не would.' },
         { k: 'choice', q: 'At first the new job was hard, but Dan soon ___ it.', options: ['used to', 'would', 'got used to', 'was use to'], a: 2, why: 'Процес звикання: got used to it. used to it без be / get неможливе.' },
         { k: 'type', q: 'Max ___ (use) to be really short, but now he’s the tallest in class.', answers: ['used'], why: 'Стан у минулому, тепер інакше: used to be.' },
         { k: 'choice', q: 'I don’t mind the noise. I ___ it.', options: ['used to', 'would', 'use to', 'am used to'], a: 3, why: 'Уже звик: am used to it. used to it без be неможливе.' },

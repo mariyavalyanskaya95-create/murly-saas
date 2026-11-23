@@ -56,7 +56,7 @@ export const DRILL: Drill = {
         { k: 'type', q: 'I think Max ___ (will / like) this game.', answers: ['will like'], why: 'will + V у першій формі, без -s навіть після he.' },
         { k: 'choice', q: 'I ___ going to cook pasta tonight.', options: ['are', 'is', 'am', 'will'], a: 2, why: 'I + am going to (I’m going to).' },
         { k: 'choice', q: 'Don’t worry, the cat ___ fine.', options: ['will be', 'will is', 'will being', 'wills be'], a: 0, why: 'Після will завжди be, а не is чи being. Will не змінюється: без -s.' },
-        { k: 'type', q: 'Lily ___ (going to / visit) her aunt in Lviv.', answers: ['is going to visit'], why: 'Lily = she: is + going to + V.' },
+        { k: 'type', q: 'Lily ___ (going to / visit) her aunt in Edinburgh.', answers: ['is going to visit'], why: 'Lily = she: is + going to + V.' },
         { k: 'choice', q: 'My parents are going to ___ a car.', options: ['buying', 'buys', 'bought', 'buy'], a: 3, why: 'Після going to стоїть V у першій формі: buy.' },
         { k: 'choice', q: 'He will ___ you with the project.', options: ['helps', 'helping', 'to help', 'help'], a: 3, why: 'will + V: help. Без -s, без -ing, без to.' },
         { k: 'type', q: 'Dan ___ (will / be) sixteen next month.', answers: ['will be'], why: 'will + be. Will однакове для всіх осіб.' },

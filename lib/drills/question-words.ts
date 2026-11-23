@@ -73,7 +73,7 @@ export const DRILL: Drill = {
         { k: 'type', q: '___ (who / whose) is that girl with the guitar? She’s my sister.', answers: ['who'], why: 'Питаємо про людину: Who. Whose означає «чий».' },
         { k: 'choice', q: '___ water do you drink a day? About two litres.', options: ['How much', 'How many', 'How often', 'How long'], a: 0, why: 'water незлічуване: How much.' },
         { k: 'choice', q: '___ kind of music do you like? Mostly rock.', options: ['Whose', 'What', 'How', 'Who'], a: 1, why: 'Сталий вираз: What kind of ...? (який саме).' },
-        { k: 'type', q: '___ (where / what) are you from? I’m from Kharkiv.', answers: ['where'], why: 'Сталий вираз: Where are you from? (звідки ти).' },
+        { k: 'type', q: '___ (where / what) are you from? I’m from Manchester.', answers: ['where'], why: 'Сталий вираз: Where are you from? (звідки ти).' },
         { k: 'type', q: '___ (what / when) did you have for lunch? Pasta.', answers: ['what'], why: 'Відповідь «паста» відповідає на «що?»: What.' },
       ],
     },

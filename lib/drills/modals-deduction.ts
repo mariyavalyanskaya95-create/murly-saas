@@ -11,7 +11,7 @@ export const DRILL: Drill = {
   theory: {
     when: [
       { title: 'Впевнені, що так: must be', example: 'Sophie’s bike is outside. She must be at home.', uk: 'Велосипед Софі надворі. Вона, напевно, вдома.' },
-      { title: 'Впевнені, що ні: can’t be', example: 'That can’t be Max. He’s in Kyiv today.', uk: 'Це не може бути Макс. Він сьогодні в Києві.' },
+      { title: 'Впевнені, що ні: can’t be', example: 'That can’t be Max. He’s in London today.', uk: 'Це не може бути Макс. Він сьогодні в Лондоні.' },
       { title: 'Можливо, але не впевнені: might / may / could be', example: 'Lily isn’t answering. She might be asleep.', uk: 'Лілі не відповідає. Можливо, вона спить.' },
       { title: 'Висновок про минуле: must have + V3', example: 'The road is wet. It must have rained.', uk: 'Дорога мокра. Мабуть, був дощ.' },
       { title: 'Минуле: точно ні або можливо: can’t have / might have + V3', example: 'Dan can’t have seen us. He was looking the other way.', uk: 'Ден не міг нас бачити. Він дивився в інший бік.' },

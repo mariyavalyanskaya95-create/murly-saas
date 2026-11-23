@@ -28,7 +28,7 @@ export const DRILL: Drill = {
     ],
     trap: [
       { title: 'on Monday morning, але in the morning', text: 'Частини дня беруть in: in the morning. Але якщо названо конкретний день, ставимо on: on Monday morning. Вночі: at night.', wrong: 'I have a lesson in Monday morning.', right: 'I have a lesson on Monday morning.' },
-      { title: 'Без прийменника: next, last, this, every', text: 'Перед next, last, this, every, а також перед today, tomorrow, yesterday прийменник не ставимо.', wrong: 'We’re going to Lviv on next week.', right: 'We’re going to Lviv next week.' },
+      { title: 'Без прийменника: next, last, this, every', text: 'Перед next, last, this, every, а також перед today, tomorrow, yesterday прийменник не ставимо.', wrong: 'We’re going to Edinburgh on next week.', right: 'We’re going to Edinburgh next week.' },
       { title: 'for чи since, і де стоїть ago', text: 'Українське «вже три роки» це for three years, а не since. since тільки перед точкою: since 2022. «Два дні тому» це two days ago: ago після проміжку, а не before two days.', wrong: 'I have lived here since three years.', right: 'I have lived here for three years.' },
     ],
     markers: ['at 6 o’clock', 'at night', 'on Friday', 'on 1 September', 'in July', 'in 2015', 'in the morning', 'for two weeks', 'since Monday', 'three days ago', 'until midnight', 'by Friday', 'during the film', 'while I was ...', 'from 9 to 5'],
@@ -82,7 +82,7 @@ export const DRILL: Drill = {
       title: 'Раунд 2. for, since і ago',
       questions: [
         { k: 'type', q: 'I’ve had this phone ___ (for / since) two years.', answers: ['for'], why: 'Проміжок (скільки): for two years. since ставимо перед точкою старту.' },
-        { k: 'choice', q: 'Kate has lived in Kyiv ___ 2019.', options: ['since', 'for', 'ago', 'from'], a: 0, why: '2019 це точка старту: since 2019. for потребує проміжку.' },
+        { k: 'choice', q: 'Kate has lived in London ___ 2019.', options: ['since', 'for', 'ago', 'from'], a: 0, why: '2019 це точка старту: since 2019. for потребує проміжку.' },
         { k: 'choice', q: 'We moved here three years ___.', options: ['since', 'ago', 'for', 'until'], a: 1, why: '«Три роки тому»: three years ago. ago стоїть після проміжку.' },
         { k: 'type', q: 'Max has been ill ___ (for / since) Monday.', answers: ['since'], why: 'Monday це момент, з якого почалося: since Monday.' },
         { k: 'choice', q: 'I haven’t seen Lily ___ ages!', options: ['since', 'ago', 'for', 'from'], a: 2, why: 'for ages: «цілу вічність», це проміжок.' },
@@ -131,7 +131,7 @@ export const DRILL: Drill = {
     {
       title: 'Раунд 4. Пастки: on next week і before two days',
       questions: [
-        { k: 'choice', q: 'Обери правильне речення.', options: ['We’re going to Lviv next week.', 'We’re going to Lviv on next week.', 'We’re going to Lviv in next week.', 'We’re going to Lviv at next week.'], a: 0, why: 'Перед next, last, this, every прийменник не ставимо.' },
+        { k: 'choice', q: 'Обери правильне речення.', options: ['We’re going to Edinburgh next week.', 'We’re going to Edinburgh on next week.', 'We’re going to Edinburgh in next week.', 'We’re going to Edinburgh at next week.'], a: 0, why: 'Перед next, last, this, every прийменник не ставимо.' },
         { k: 'choice', q: 'Яке речення правильне?', options: ['I have a lesson in Monday morning.', 'I have a lesson on Monday morning.', 'I have a lesson at Monday morning.', 'I have a lesson in the Monday morning.'], a: 1, why: 'Є конкретний день: on Monday morning. in the morning тільки без дня.' },
         { k: 'type', q: 'I have known Lily ___ (for / since) three years.', answers: ['for'], why: 'three years це проміжок: for. since ставимо перед точкою: since 2023.' },
         { k: 'choice', q: 'Де немає помилки?', options: ['I saw him before two days.', 'I saw him ago two days.', 'I saw him two days ago.', 'I saw him since two days.'], a: 2, why: '«Два дні тому»: two days ago, ago після проміжку. before two days це калька.' },
@@ -158,7 +158,7 @@ export const DRILL: Drill = {
       questions: [
         { k: 'choice', q: 'I’m going to the dentist ___ Thursday. My appointment is at 10.', options: ['on', 'in', 'at', 'by'], a: 0, why: 'День тижня: on Thursday.' },
         { k: 'type', q: 'Dan has been in the team ___ (for / since) last September. He’s our best player.', answers: ['since'], why: 'last September це точка старту: since.' },
-        { k: 'choice', q: 'We moved to Odesa ___ 2018. I was only six then.', options: ['on', 'in', 'since', 'for'], a: 1, why: 'Рік і Past Simple: in 2018. since потребував би Present Perfect.' },
+        { k: 'choice', q: 'We moved to Brighton ___ 2018. I was only six then.', options: ['on', 'in', 'since', 'for'], a: 1, why: 'Рік і Past Simple: in 2018. since потребував би Present Perfect.' },
         { k: 'choice', q: 'The bakery opens ___ 7 a.m. Let’s get croissants before school.', options: ['in', 'on', 'at', 'since'], a: 2, why: 'Точний час: at 7 a.m.' },
         { k: 'type', q: 'Hurry up! The train leaves ___ (in / after) ten minutes.', answers: ['in'], why: '«Через десять хвилин» від зараз: in ten minutes.' },
         { k: 'choice', q: 'Please hand in your project ___ 15 May. Late work won’t get a mark.', options: ['until', 'since', 'for', 'by'], a: 3, why: 'Крайній термін: by 15 May.' },

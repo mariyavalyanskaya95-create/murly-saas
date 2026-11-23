@@ -136,7 +136,7 @@ export const DRILL: Drill = {
         { k: 'choice', q: 'Dan built the treehouse all by ___.', options: ['hisself', 'his own', 'him', 'himself'], a: 3, why: 'Правильно himself, а не hisself. by his own без іменника не кажуть.' },
         { k: 'type', q: 'Tom asked ___ (me / myself) to wait outside.', answers: ['me'], why: 'Попросив Том, тож об’єкт me. myself тільки тоді, коли підмет I.' },
         { k: 'choice', q: 'I’m ___ to see you here!', options: ['surprised', 'surprised myself', 'surprising myself', 'surprise'], a: 0, why: '«Дивуватися» = be surprised, без myself.' },
-        { k: 'choice', q: 'Dan ___ to Kyiv last night.', options: ['came back himself', 'returned himself', 'came back', 'came himself back'], a: 2, why: '«Повернутися» = come back / return, без himself.' },
+        { k: 'choice', q: 'Dan ___ to London last night.', options: ['came back himself', 'returned himself', 'came back', 'came himself back'], a: 2, why: '«Повернутися» = come back / return, без himself.' },
         { k: 'type', q: 'You and Dan should be proud of ___ (you).', answers: ['yourselves'], why: 'You and Dan = кілька людей: yourselves.' },
         { k: 'choice', q: 'Яке речення правильне?', options: ['I don’t like to see me in photos.', 'I don’t like seeing myself in photos.', 'I don’t like seeing mine in photos.', 'I don’t like seeing meself in photos.'], a: 1, why: 'Бачу себе: myself, бо підмет теж I. meself не існує.' },
         { k: 'choice', q: 'Sophie is ___ English with an app.', options: ['learning', 'learning herself', 'learn herself', 'learnt herself'], a: 0, why: '«Вчитися» = learn, без herself.' },

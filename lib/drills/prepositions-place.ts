@@ -17,7 +17,7 @@ export const DRILL: Drill = {
       { title: 'Сталі вирази: at home, at school, at work, in bed, on the bus', example: 'Dan is still in bed, but Lily is at school.', uk: 'Ден ще в ліжку, а Лілі вже в школі.' },
     ],
     forms: [
-      { sign: 'in', text: 'всередині: in the box, in the kitchen, in the car, in Lviv, in the photo, in the sky', example: 'The milk is in the fridge.' },
+      { sign: 'in', text: 'всередині: in the box, in the kitchen, in the car, in Edinburgh, in the photo, in the sky', example: 'The milk is in the fridge.' },
       { sign: 'on', text: 'на поверхні: on the table, on the wall, on the floor, on the bus, on the screen, on the left', example: 'Your keys are on the shelf.' },
       { sign: 'at', text: 'точка або подія: at the door, at the bus stop, at the party, at home, at school, at work', example: 'Max is at the door.' },
       { sign: 'under / behind / in front of', text: 'під / позаду / перед: under the table, behind the sofa, in front of the house', example: 'The ball is behind the sofa.' },
@@ -139,7 +139,7 @@ export const DRILL: Drill = {
         { k: 'choice', q: 'Your glasses are ___ your head!', options: ['in', 'at', 'on', 'under'], a: 2, why: 'Окуляри лежать на голові, на поверхні: on.' },
         { k: 'type', q: 'There’s a spider ___ (in / on / at) the ceiling!', answers: ['on'], why: 'Стеля теж поверхня: on the ceiling.' },
         { k: 'choice', q: 'I sat ___ Lily and Sophie at the cinema.', options: ['among', 'next', 'between', 'in front'], a: 2, why: 'Між двома людьми: between. Next і in front без to / of неповні.' },
-        { k: 'choice', q: 'Max lives ___ Kyiv.', options: ['at', 'in', 'on', 'to'], a: 1, why: 'Місто: in Kyiv.' },
+        { k: 'choice', q: 'Max lives ___ London.', options: ['at', 'in', 'on', 'to'], a: 1, why: 'Місто: in London.' },
         { k: 'type', q: 'Don’t put your feet ___ (in / on / at) the table!', answers: ['on'], why: 'На поверхні столу: on the table.' },
         { k: 'choice', q: 'The keys are ___ the drawer, under the papers.', options: ['on', 'at', 'between', 'in'], a: 3, why: 'Всередині шухляди: in the drawer.' },
         { k: 'type', q: 'I’ll wait for you ___ (in / on / at) the entrance.', answers: ['at'], why: 'Точка зустрічі: at the entrance.' },

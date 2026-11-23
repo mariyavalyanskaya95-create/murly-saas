@@ -13,7 +13,7 @@ export const DRILL: Drill = {
       { title: 'Завершена дія в конкретний момент у минулому', example: 'I saw Max at the cinema yesterday.', uk: 'Я бачив Макса в кіно вчора.' },
       { title: 'Кілька дій одна за одною', example: 'She came home, had dinner and went to bed.', uk: 'Вона прийшла додому, повечеряла і лягла спати.' },
       { title: 'Минулі звички і стани, яких уже нема', example: 'When I was little, I played with Lego every day.', uk: 'Коли я був малим, я щодня грав у Lego.' },
-      { title: 'Історії, біографії, події з минулого', example: 'Tom Shevchenko was born in 1814.', uk: 'Том Шевченко народився в 1814 році.' },
+      { title: 'Історії, біографії, події з минулого', example: 'Charles Dickens was born in 1812.', uk: 'Чарльз Діккенс народився в 1812 році.' },
     ],
     forms: [
       { sign: '+', text: 'підмет + V2 (правильні: V + -ed, неправильні: друга форма з таблиці)', example: 'We watched a film. / We saw a film.' },
@@ -69,7 +69,7 @@ export const DRILL: Drill = {
         { k: 'type', q: 'They ___ (see) a whale on holiday two years ago.', answers: ['saw'], why: 'See - saw - seen. Two years ago: Past Simple, отже saw.' },
         { k: 'choice', q: 'Max ___ his first goal at the match last Saturday.', options: ['scoreed', 'scored', 'score', 'scores'], a: 1, why: 'Score закінчується на -e, тому додаємо тільки -d: scored. Scoreed: зайва e.' },
         { k: 'type', q: 'At first Sophie ___ (like) the film, but then she got bored.', answers: ['liked'], why: 'Like закінчується на -e, додаємо тільки -d: liked. Друга частина got показує, що це минуле.' },
-        { k: 'choice', q: 'We ___ a lot of photos in Lviv last month.', options: ['taked', 'taken', 'took', 'takes'], a: 2, why: 'Take - took - taken. Last month: V2 took. Taken це третя форма.' },
+        { k: 'choice', q: 'We ___ a lot of photos in Edinburgh last month.', options: ['taked', 'taken', 'took', 'takes'], a: 2, why: 'Take - took - taken. Last month: V2 took. Taken це третя форма.' },
         { k: 'type', q: 'Dan ___ (come) home late last Friday.', answers: ['came'], why: 'Come - came - come. У Past Simple друга форма came.' },
         { k: 'choice', q: 'The lesson ___ at nine o’clock yesterday.', options: ['begun', 'began', 'beginned', 'begin'], a: 1, why: 'Begin - began - begun. Yesterday вимагає V2 began, а begun це V3.' },
         { k: 'type', q: 'My little brother ___ (cry) when he dropped his ice cream.', answers: ['cried'], why: 'Cry: приголосна + y, тому y → i і -ed: cried.' },

@@ -139,7 +139,7 @@ export const DRILL: Drill = {
         { k: 'type', q: 'Where ___ (be) my sunglasses?', answers: ['are', 'were'], why: 'Sunglasses завжди у множині: where are.' },
         { k: 'type', q: 'The money ___ (be) in my wallet.', answers: ['is', '’s', 'was'], why: 'Money незлічуване, тому is, хоч грошей може бути багато.' },
         { k: 'type', q: 'I’ve got some good ___ (news) for you!', answers: ['news'], why: 'News вже закінчується на -s і не змінюється: some good news.' },
-        { k: 'type', q: 'These ___ (photo) are from our trip to Lviv.', answers: ['photos'], why: 'Photo → photos, без -e. Правило -oes діє тільки для кількох слів.' },
+        { k: 'type', q: 'These ___ (photo) are from our trip to Edinburgh.', answers: ['photos'], why: 'Photo → photos, без -e. Правило -oes діє тільки для кількох слів.' },
         { k: 'choice', q: 'Яке речення правильне?', options: ['The news is on at nine.', 'The newses are on at nine.', 'The news are on at nine.', 'A news is on at nine.'], a: 0, why: 'News однина і без a: the news is.' },
         { k: 'choice', q: 'Our luggage ___ very heavy.', options: ['were', 'have', 'is', 'are'], a: 2, why: 'Luggage незлічуване: дієслово в однині, is.' },
         { k: 'choice', q: 'Lily has long dark ___.', options: ['hairs', 'hair', 'a hair', 'hair’s'], a: 1, why: 'Зачіска, усе волосся: hair без -s. Hairs це окремі волосини.' },

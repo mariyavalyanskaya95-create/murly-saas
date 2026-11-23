@@ -64,7 +64,7 @@ export const DRILL: Drill = {
         { k: 'choice', q: 'Lily ___ her teeth twice a day.', options: ['brushs', 'brushes', 'is brushing', 'brush'], a: 1, why: 'Twice a day = звичка, Present Simple. Після -sh додаємо -es: brushes.' },
         { k: 'type', q: 'Listen! Somebody ___ (play) the piano.', answers: ['is playing'], why: 'Listen! = зараз. Somebody це однина, тому is playing.' },
         { k: 'choice', q: 'Look! The kids ___ in the lake.', options: ['are swiming', 'swim', 'are swimming', 'swims'], a: 2, why: 'Look! = Present Continuous. У swim подвоюємо m: swimming.' },
-        { k: 'type', q: 'My grandma ___ (fly) to Lviv every summer.', answers: ['flies'], why: 'Every summer = регулярна дія. Приголосна + y: y змінюється на ies, flies.' },
+        { k: 'type', q: 'My grandma ___ (fly) to Edinburgh every summer.', answers: ['flies'], why: 'Every summer = регулярна дія. Приголосна + y: y змінюється на ies, flies.' },
         { k: 'choice', q: 'Dan ___ his room every Saturday.', options: ['tidys', 'tidies', 'is tidying', 'tidy'], a: 1, why: 'Every Saturday = Present Simple. Tidy після приголосної: y → ies, tidies.' },
         { k: 'choice', q: 'I ___ in the park now. Can I call you back?', options: ['run', 'am runing', 'am running', 'runs'], a: 2, why: 'Now = am + V-ing. У run подвоюємо n: running.' },
         { k: 'type', q: 'Emma ___ (write) a message to her friend right now.', answers: ['is writing'], why: 'Right now = Present Continuous. Німе e відпадає: writing.' },
@@ -119,7 +119,7 @@ export const DRILL: Drill = {
         { k: 'choice', q: 'My mum ___ as a nurse in a big hospital.', options: ['works', 'is work', 'working', 'are working'], a: 0, why: 'Постійна робота: Present Simple, works.' },
         { k: 'type', q: 'Our class ___ (go) on a trip to the mountains every spring.', answers: ['goes'], why: 'Every spring = регулярна подія. Our class = it: goes.' },
         { k: 'choice', q: 'Hurry up! Everyone ___ for us.', options: ['wait', 'waits', 'is waiting', 'are waiting'], a: 2, why: 'Hurry up! = зараз, Continuous. Everyone граматично однина: is waiting.' },
-        { k: 'type', q: 'I ___ (stay) with my cousin in Odesa this week.', answers: ['am staying'], why: 'This week = тимчасова ситуація: am staying.' },
+        { k: 'type', q: 'I ___ (stay) with my cousin in Brighton this week.', answers: ['am staying'], why: 'This week = тимчасова ситуація: am staying.' },
       ],
     },
     {

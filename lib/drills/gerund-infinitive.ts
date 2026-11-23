@@ -65,7 +65,7 @@ export const DRILL: Drill = {
         { k: 'type', q: 'Have you given up ___ (eat) meat?', answers: ['eating'], why: 'Give up (кинути, відмовитися) + -ing: given up eating.' },
         { k: 'choice', q: 'She refused ___ the pizza with pineapple.', options: ['to eat', 'eating', 'eat', 'ate'], a: 0, why: 'Refuse + to + V: refused to eat. Refused eating неправильно.' },
         { k: 'choice', q: 'I can’t imagine ___ without my phone.', options: ['to live', 'live', 'living', 'lived'], a: 2, why: 'Imagine + -ing: can’t imagine living. Німе e випадає: live → living.' },
-        { k: 'type', q: 'We plan ___ (visit) Lviv in May.', answers: ['to visit'], why: 'Plan + to + V: plan to visit.' },
+        { k: 'type', q: 'We plan ___ (visit) Edinburgh in May.', answers: ['to visit'], why: 'Plan + to + V: plan to visit.' },
         { k: 'choice', q: 'Dan offered ___ us to the station.', options: ['driving', 'to drive', 'drive', 'drove'], a: 1, why: 'Offer + to + V: offered to drive. Offered driving неправильно.' },
       ],
     },

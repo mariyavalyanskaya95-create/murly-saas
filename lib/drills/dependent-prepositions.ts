@@ -64,7 +64,7 @@ export const DRILL: Drill = {
         { k: 'type', q: 'Dan is proud ___ (of / for / with) his little brother.', answers: ['of'], why: 'proud of: пишатися кимось. for і with тут неправильні.' },
         { k: 'choice', q: 'This phone belongs ___ Sophie.', options: ['of', 'with', 'to', 'at'], a: 2, why: 'belong to: належати комусь. of і with калька, так не кажуть.' },
         { k: 'choice', q: 'Kate is worried ___ her maths test.', options: ['of', 'about', 'at', 'on'], a: 1, why: 'worried about: хвилюватися через щось. of, at, on з worried не вживаємо.' },
-        { k: 'type', q: 'Lviv is famous ___ (for / of / with) its coffee.', answers: ['for'], why: 'famous for: відомий чимось. of і with тут неможливі.' },
+        { k: 'type', q: 'Edinburgh is famous ___ (for / of / with) its castle.', answers: ['for'], why: 'famous for: відомий чимось. of і with тут неможливі.' },
         { k: 'choice', q: 'Tom is tired ___ the same songs on the radio.', options: ['of', 'on', 'at', 'for'], a: 0, why: 'tired of: набридло щось. on, at, for з tired не вживаємо.' },
         { k: 'type', q: 'Thank you ___ (for / to / about) the lovely present!', answers: ['for'], why: 'thank somebody for something: дякувати за щось.' },
         { k: 'choice', q: 'Emma is keen ___ yoga.', options: ['on', 'in', 'at', 'of'], a: 0, why: 'keen on: захоплюватися чимось. in, at, of тут неправильні.' },
