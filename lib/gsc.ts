@@ -22,10 +22,10 @@ async function token(k: SA): Promise<string | null> {
 }
 
 type Row = { keys?: string[]; clicks: number; impressions: number; ctr: number; position: number };
-async function query(tk: string, start: string, end: string, dims: string[] = [], limit = 25): Promise<Row[]> {
+async function query(tk: string, start: string, end: string, dims: string[] = [], limit = 25, page?: string): Promise<Row[]> {
   const r = await fetch(`https://www.googleapis.com/webmasters/v3/sites/${encodeURIComponent(SITE)}/searchAnalytics/query`, {
     method: 'POST', headers: { authorization: `Bearer ${tk}`, 'content-type': 'application/json' },
-    body: JSON.stringify({ startDate: start, endDate: end, dimensions: dims, rowLimit: limit }),
+    body: JSON.stringify({ startDate: start, endDate: end, dimensions: dims, rowLimit: limit, ...(page ? { dimensionFilterGroups: [{ filters: [{ dimension: 'page', operator: 'contains', expression: page }] }] } : {}) }),
   }).catch(() => null);
   const j = r && r.ok ? await r.json().catch(() => null) : null;
   return j?.rows ?? [];
@@ -77,4 +77,13 @@ export async function gscReport() {
   const [qs, pages] = await Promise.all([query(tk, s28, ymd(end), ['query'], 50), query(tk, s28, ymd(end), ['page'], 30)]);
   const m = (x: Row) => ({ key: x.keys?.[0] || '', clicks: x.clicks, impressions: x.impressions, position: Math.round(x.position * 10) / 10 });
   return { weeks, queries: qs.map(m).sort((a, b) => b.impressions - a.impressions).slice(0, 30), pages: pages.map(m).sort((a, b) => b.impressions - a.impressions).slice(0, 20) };
+}
+
+// Запити, за якими Google показує конкретну сторінку (за 28 днів)
+export async function gscPageQueries(page: string) {
+  const k = sa(); if (!k) return { error: 'no_key' };
+  const tk = await token(k); if (!tk) return { error: 'no_access' };
+  const end = new Date(Date.now() - 2 * 864e5); const s28 = ymd(new Date(end.getTime() - 27 * 864e5));
+  const rows = await query(tk, s28, ymd(end), ['query'], 100, page);
+  return { page, queries: rows.map((x) => ({ key: x.keys?.[0] || '', clicks: x.clicks, impressions: x.impressions, position: Math.round(x.position * 10) / 10 })).sort((a, b) => b.impressions - a.impressions) };
 }
