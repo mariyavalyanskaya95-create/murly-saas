@@ -22,9 +22,9 @@ export const VARIANT_1: MockVariant = {
           why: 'Ключові слова: waiting for a home (чекають на дім), choose the right companion (обрати компаньйона), fill in the papers (оформити документи). Притулок пропонує забрати тварину додому: adopt a pet.', hint: 'Хто такі Biscuit і Luna і що означає waiting for a home?',
         },
         {
-          poster: { theme: 'notice', brand: 'SCHOOL LIBRARY', title: 'Book Swap & Sale', body: 'Pre-loved novels, comics and textbooks from 20 UAH. Every book has already made someone happy once. All money goes to new books for our library.', footer: 'Hall B · Thursday after lessons', icons: ['e-book', 'e-pencil', 'd-cup', 'd-money'], bg: '#F4EFE3', accent: '#D83A1E' },
+          poster: { theme: 'notice', brand: 'SCHOOL LIBRARY', title: 'Book Swap & Sale', body: 'Pre-loved novels, comics and textbooks from £1. Every book has already made someone happy once. All money goes to new books for our library.', footer: 'Hall B · Thursday after lessons', icons: ['e-book', 'e-pencil', 'd-cup', 'd-money'], bg: '#F4EFE3', accent: '#D83A1E' },
           answer: 4,
-          why: 'Pre-loved (буквально «вже кимось улюблені») означає вживані, б/в. Книжки продають від 20 гривень: buy second-hand books. Пастка: «all money goes to the library» не означає, що треба волонтерити.', hint: 'Pre-loved = вже кимось улюблені. Що це каже про книжки? І хто тут платить гроші?',
+          why: 'Pre-loved (буквально «вже кимось улюблені») означає вживані, б/в. Книжки продають від 1 фунта: buy second-hand books. Пастка: «all money goes to the library» не означає, що треба волонтерити.', hint: 'Pre-loved = вже кимось улюблені. Що це каже про книжки? І хто тут платить гроші?',
         },
         {
           poster: { theme: 'event', brand: 'CENTRAL PARK', title: 'Park Bootcamp', body: 'Running, stretching and team games with a real coach. No gym membership needed. Just trainers, a water bottle and a good mood.', footer: 'Every Saturday · 8:00 · Main gate', icons: ['d-bolt', 'e-trophy', 'd-clock', 'd-heart'], bg: '#D0F834', accent: '#1A1A1A' },
@@ -95,28 +95,28 @@ export const VARIANT_1: MockVariant = {
           why: 'Мія зібрала пластикові пляшки, переплавила їх і зробила лавку: built something from recycled materials. Пастка D (cleaned up a natural area): пляшки вона збирала в сусідів і в їдальні, а не на природі.', hint: 'Звідки Мія брала пляшки і що з них зробила?',
         },
         {
-          name: 'Taras, 17',
-          text: 'Taras was sure he would become a professional footballer until he broke his leg badly at fifteen. Stuck at home for months, he started editing videos of his old team’s matches. Today he films and edits match highlights for three local clubs and is planning to study cinema at university.',
+          name: 'Jack, 17',
+          text: 'Jack was sure he would become a professional footballer until he broke his leg badly at fifteen. Stuck at home for months, he started editing videos of his old team’s matches. Today he films and edits match highlights for three local clubs and is planning to study cinema at university.',
           answer: 6,
-          why: 'Тарас мріяв про футбол, але broke his leg (зламав ногу) і тепер планує вивчати кіно. Травма змінила його плани: changed their plans because of an injury.', hint: 'Що сталося з Тарасом у п’ятнадцять і що він планує тепер?',
+          why: 'Джек мріяв про футбол, але broke his leg (зламав ногу) і тепер планує вивчати кіно. Травма змінила його плани: changed their plans because of an injury.', hint: 'Що сталося з Джеком у п’ятнадцять і що він планує тепер?',
         },
         {
           name: 'Sofia, 15',
-          text: 'Every Sunday Sofia goes to a care home near her school. She shows the residents how to make video calls, send photos and spot fake messages. “Mrs Halyna now sends me better memes than my friends do,” she jokes. Sofia has also written a simple guide with big letters, which the care home now gives to every new resident.',
+          text: 'Every Sunday Sofia goes to a care home near her school. She shows the residents how to make video calls, send photos and spot fake messages. “Mrs Hughes now sends me better memes than my friends do,” she jokes. Sofia has also written a simple guide with big letters, which the care home now gives to every new resident.',
           answer: 1,
           why: 'Care home (будинок для літніх людей), residents (мешканці), video calls, fake messages: Софія вчить літніх людей користуватися телефоном. Це B: helps older people with technology.', hint: 'Хто живе в care home і чого Софія їх вчить?',
         },
         {
           name: 'Daniel, 18',
-          text: 'Daniel started baking during a long winter holiday simply because he was bored. His cinnamon cookies quickly became famous among his classmates, who began placing orders. Now he bakes three times a week, sells his cookies at a local café and keeps a notebook with every expense and every hryvnia he earns.',
+          text: 'Daniel started baking during a long winter holiday simply because he was bored. His cinnamon cookies quickly became famous among his classmates, who began placing orders. Now he bakes three times a week, sells his cookies at a local café and keeps a notebook with every expense and every pound he earns.',
           answer: 0,
           why: 'Даніель почав пекти від нудьги (хобі), а тепер sells his cookies (продає печиво) і рахує витрати та заробіток. Хобі стало маленьким бізнесом: A.', hint: 'З чого все почалося в Даніеля і що він робить зі своїм печивом тепер?',
         },
         {
-          name: 'Olena, 16',
-          text: 'Olena’s older sister is a doctor in a busy children’s hospital. Listening to her sister’s stories, Olena decided she wanted to help too. She learned first aid, and now she runs short courses for her classmates every month, using a training doll that her school bought after her request.',
+          name: 'Emily, 16',
+          text: 'Emily’s older sister is a doctor in a busy children’s hospital. Listening to her sister’s stories, Emily decided she wanted to help too. She learned first aid, and now she runs short courses for her classmates every month, using a training doll that her school bought after her request.',
           answer: 2,
-          why: 'Олена вирішила допомагати, listening to her sister’s stories (слухаючи історії сестри-лікарки). Її надихнула рідна людина: was inspired by a family member. Пастка H: вона навчає однокласників, але наживо, а не онлайн.', hint: 'Чиї історії вплинули на Олену? І де вона проводить курси: онлайн чи наживо?',
+          why: 'Емілі вирішила допомагати, listening to her sister’s stories (слухаючи історії сестри-лікарки). Її надихнула рідна людина: was inspired by a family member. Пастка H: вона навчає однокласників, але наживо, а не онлайн.', hint: 'Чиї історії вплинули на Емілі? І де вона проводить курси: онлайн чи наживо?',
         },
         {
           name: 'Max, 14',

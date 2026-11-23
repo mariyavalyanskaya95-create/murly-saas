@@ -12,7 +12,7 @@ export const VARIANT_18: MockVariant = {
       options: ['learn to mix music for others to dance to', 'share opinions about what they read', 'try a new team sport', 'help take care of nature in their city', 'have a device repaired', 'buy second-hand furniture', 'get better at drawing people', 'practise a winter sport'],
       items: [
         {
-          poster: { theme: 'block', brand: 'BYTE DOCTORS', title: 'Laptop slower than a snail?', body: 'Bring it to us. We replace cracked screens, remove viruses and rescue the photos you thought you had lost. Most jobs are ready the same day.', footer: 'Shevchenko St. 14 · Mon-Sat 10:00-19:00', icons: ['d-phone', 'd-bolt', 'd-lock', 'd-clock'], bg: '#B9DBE9', accent: '#1A1A1A' },
+          poster: { theme: 'block', brand: 'BYTE DOCTORS', title: 'Laptop slower than a snail?', body: 'Bring it to us. We replace cracked screens, remove viruses and rescue the photos you thought you had lost. Most jobs are ready the same day.', footer: '14 King Street · Mon-Sat 10:00-19:00', icons: ['d-phone', 'd-bolt', 'd-lock', 'd-clock'], bg: '#B9DBE9', accent: '#1A1A1A' },
           answer: 4,
           why: 'Replace cracked screens (замінюємо розбиті екрани), remove viruses (видаляємо віруси), most jobs are ready the same day: ремонт техніки, have a device repaired. Слова repair у тексті немає, лише перефраз. Пастка F: тут нічого не продають.',
           hint: 'Що роблять зі зламаним ноутбуком у цій майстерні?',
@@ -30,7 +30,7 @@ export const VARIANT_18: MockVariant = {
           hint: 'Про які частини тіла говорить оголошення і що беруть із собою учні?',
         },
         {
-          poster: { theme: 'notice', brand: 'THE LAST PAGE', title: 'Finished a novel, nobody to tell?', body: 'Once a month we choose one book, read it at home and meet upstairs in the café to argue about the ending. This month: a detective story set in old Lviv.', footer: 'Last Friday of the month · 19:00', icons: ['e-book', 'd-chat', 'd-cup', 'e-cal'], bg: '#F4EFE3', accent: '#2C6E9B' },
+          poster: { theme: 'notice', brand: 'THE LAST PAGE', title: 'Finished a novel, nobody to tell?', body: 'Once a month we choose one book, read it at home and meet upstairs in the café to argue about the ending. This month: a detective story set in old Edinburgh.', footer: 'Last Friday of the month · 19:00', icons: ['e-book', 'd-chat', 'd-cup', 'e-cal'], bg: '#F4EFE3', accent: '#2C6E9B' },
           answer: 1,
           why: 'Choose one book, read it at home and meet to argue about the ending (зустрічаємося посперечатися про фінал): обговорювати прочитане, share opinions about what they read. Книжок тут не купують і не обмінюють, лише обговорюють.',
           hint: 'Що учасники роблять, коли зустрічаються в кафе?',
@@ -99,18 +99,18 @@ export const VARIANT_18: MockVariant = {
       options: ['travels this way mainly for environmental reasons', 'has to work during the journey', 'is afraid of flying', 'travels with family members', 'met someone important on a journey', 'shares travel stories online', 'chose this way because it costs less', 'has not finished the journey yet'],
       items: [
         {
-          name: 'Tomasz, 34',
-          text: 'Tomasz, a scientist, used to fly to conferences several times a year. Then he worked out how much carbon dioxide his flights produced and decided he could no longer ignore the harm to the planet. Now he crosses Europe by train, even though it often costs him more than a budget flight. He always packs his laptop but hardly ever opens it: “On the train I read novels. Work can wait until I arrive.”',
+          name: 'Thomas, 34',
+          text: 'Thomas, a scientist, used to fly to conferences several times a year. Then he worked out how much carbon dioxide his flights produced and decided he could no longer ignore the harm to the planet. Now he crosses Europe by train, even though it often costs him more than a budget flight. He always packs his laptop but hardly ever opens it: “On the train I read novels. Work can wait until I arrive.”',
           answer: 0,
           why: 'Carbon dioxide his flights produced, the harm to the planet (шкода планеті): обрав потяг через довкілля, A. Пастки заперечені: costs him more (G не підходить), hardly ever opens the laptop, work can wait (B не підходить).',
-          hint: 'Що Томаш підрахував і чому після цього відмовився від літаків?',
+          hint: 'Що Томас підрахував і чому після цього відмовився від літаків?',
         },
         {
-          name: 'Andriy, 27',
-          text: 'Two years ago Andriy left Lviv with a backpack, planning to reach Japan by land and sea. So far he has crossed eleven countries by bus, train and boat, and Tokyo is still a long way off. He doesn’t post about his adventures on social media; instead he keeps a paper diary that nobody else is allowed to read. “The slower I go, the more I see,” he explains, adding that he is in no hurry to arrive.',
+          name: 'Andrew, 27',
+          text: 'Two years ago Andrew left Leeds with a backpack, planning to reach Japan by land and sea. So far he has crossed eleven countries by bus, train and boat, and Tokyo is still a long way off. He doesn’t post about his adventures on social media; instead he keeps a paper diary that nobody else is allowed to read. “The slower I go, the more I see,” he explains, adding that he is in no hurry to arrive.',
           answer: 7,
           why: 'Planning to reach Japan, Tokyo is still a long way off (Токіо ще далеко): він ще в дорозі, H. Пастка F прямо заперечена: doesn’t post on social media, paper diary that nobody else is allowed to read.',
-          hint: 'Куди Андрій прямує і чи вже дістався туди?',
+          hint: 'Куди Ендрю прямує і чи вже дістався туди?',
         },
         {
           name: 'Sofia, 41',
@@ -120,11 +120,11 @@ export const VARIANT_18: MockVariant = {
           hint: 'Хто їде разом із Софією в будинку на колесах?',
         },
         {
-          name: 'Lena, 19',
-          text: 'Lena is a student, and her budget is tiny. She has nothing against planes; in fact, she loves the moment of take-off. But a bus ticket to Prague costs a fraction of the cheapest flight, so she happily sits for twenty hours with a book and a pillow. Unlike many young travellers, she never posts her trips online. “My photos are just for me,” she says. “And the long ride gives me time to think.”',
+          name: 'Lucy, 19',
+          text: 'Lucy is a student, and her budget is tiny. She has nothing against planes; in fact, she loves the moment of take-off. But a bus ticket to Prague costs a fraction of the cheapest flight, so she happily sits for twenty hours with a book and a pillow. Unlike many young travellers, she never posts her trips online. “My photos are just for me,” she says. “And the long ride gives me time to think.”',
           answer: 6,
           why: 'Budget is tiny (бюджет мізерний), a bus ticket costs a fraction of the cheapest flight (квиток коштує дрібку від найдешевшого перельоту): обирає дешевше, G. Пастки: has nothing against planes, loves take-off (C не підходить), never posts online (F не підходить).',
-          hint: 'Порівняй ціну автобусного квитка і перельоту. Що Лена каже про літаки?',
+          hint: 'Порівняй ціну автобусного квитка і перельоту. Що Люсі каже про літаки?',
         },
         {
           name: 'Helen, 52',
@@ -134,18 +134,18 @@ export const VARIANT_18: MockVariant = {
           hint: 'Що відчуває Гелен від самої думки про літак?',
         },
         {
-          name: 'Dmytro, 30',
-          text: 'Dmytro was travelling on his own on a ferry from Italy to Greece when a storm kept all the passengers inside for hours. He ended up playing cards with a young woman from Canada. Five years later they are married and live in Odesa with their little son. Since then, Dmytro has avoided planes whenever he can. “Flying is fast,” he jokes, “but nobody ever talks to you on a plane.”',
+          name: 'David, 30',
+          text: 'David was travelling on his own on a ferry from Italy to Greece when a storm kept all the passengers inside for hours. He ended up playing cards with a young woman from Canada. Five years later they are married and live in Bristol with their little son. Since then, David has avoided planes whenever he can. “Flying is fast,” he jokes, “but nobody ever talks to you on a plane.”',
           answer: 4,
           why: 'Playing cards with a young woman from Canada, five years later they are married (через п’ять років вони одружені): у дорозі зустрів важливу людину, E. Пастка D: тоді він подорожував on his own (сам).',
-          hint: 'З ким Дмитро грав у карти на поромі і ким вона стала для нього?',
+          hint: 'З ким Девід грав у карти на поромі і ким вона стала для нього?',
         },
       ],
     },
     {
       kind: 'gapped',
       title: 'The Story of the Paralympic Games',
-      text: 'Every four years, shortly after the Olympic Games, the same stadiums host another great sporting event: the Paralympic Games. The flags, the medals and the excitement are the same. {0}, athletes with disabilities compete in sports from swimming to wheelchair basketball. For many fans, these competitions are just as exciting as the Olympics themselves.\n\nThe story began in England with a doctor named Ludwig Guttmann, {1}. He believed that sport could help patients with spinal injuries become stronger and regain their confidence. At that time, this was an unusual idea, because most doctors simply told such patients to rest in bed.\n\nIn 1948 Guttmann organised an archery competition for patients in wheelchairs, {2}. It was a small event with only a handful of competitors, but it was repeated every year and slowly grew into an international one. Teams from other countries soon began to arrive, and new sports were added to the programme.\n\nThe first Games {3} were held in Rome in 1960. Athletes from many different countries took part, and the event showed the world how much people with disabilities could achieve. Many spectators came simply out of curiosity and left full of admiration.\n\nThe Winter Paralympics were added in 1976, and since 1988 {4}. This means that athletes use the same stadiums, pools and villages as Olympic competitors. Tickets are often sold out, and the competitions are shown on television around the world.\n\nThe name is often explained as “parallel to the Olympics”, {5}. Ukrainian athletes have often been among the most successful at the Games, and their victories are celebrated across the country. For millions of people, the Games are a reminder that real strength comes in many different forms.',
+      text: 'Every four years, shortly after the Olympic Games, the same stadiums host another great sporting event: the Paralympic Games. The flags, the medals and the excitement are the same. {0}, athletes with disabilities compete in sports from swimming to wheelchair basketball. For many fans, these competitions are just as exciting as the Olympics themselves.\n\nThe story began in England with a doctor named Ludwig Guttmann, {1}. He believed that sport could help patients with spinal injuries become stronger and regain their confidence. At that time, this was an unusual idea, because most doctors simply told such patients to rest in bed.\n\nIn 1948 Guttmann organised an archery competition for patients in wheelchairs, {2}. It was a small event with only a handful of competitors, but it was repeated every year and slowly grew into an international one. Teams from other countries soon began to arrive, and new sports were added to the programme.\n\nThe first Games {3} were held in Rome in 1960. Athletes from many different countries took part, and the event showed the world how much people with disabilities could achieve. Many spectators came simply out of curiosity and left full of admiration.\n\nThe Winter Paralympics were added in 1976, and since 1988 {4}. This means that athletes use the same stadiums, pools and villages as Olympic competitors. Tickets are often sold out, and the competitions are shown on television around the world.\n\nThe name is often explained as “parallel to the Olympics”, {5}. British athletes have often been among the most successful at the Games, and their victories are celebrated across the country. For millions of people, the Games are a reminder that real strength comes in many different forms.',
       options: ['which took place on the same day as the opening of the London Olympics', 'Held for the first time only a few years ago', 'who worked at Stoke Mandeville Hospital', 'the Summer Games have taken place in the same city as the Olympics', 'that were open only to Italian athletes', 'Watched by millions of fans around the world', 'showing that the two events stand side by side', 'that are now known as the Paralympics'],
       items: [
         { answer: 5, why: 'Watched by millions of fans around the world (за якими стежать мільйони вболівальників у світі) описує Паралімпійські ігри перед головним реченням. Пастка B (held for the first time only a few years ago) граматично підходить, але суперечить тексту: перші ігри відбулися ще в 1960 році.', hint: 'Пропуск на початку речення, далі кома і підмет athletes. Яка фраза описує популярність Ігор?' },
