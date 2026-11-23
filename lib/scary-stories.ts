@@ -550,18 +550,18 @@ export const STORIES: Story[] = [
     level: 'B2',
     minutes: 5,
     teaser: {
-      uk: 'Іван живе той самий вівторок знову і знову, і щоразу зі школи зникає ще одна дрібниця.',
-      ru: 'Иван проживает тот же вторник снова и снова, и каждый раз из школы исчезает ещё одна мелочь.',
-      en: 'Ivan lives the same Tuesday again and again, and each time one more small thing disappears from his school.',
+      uk: 'Ітан живе той самий вівторок знову і знову, і щоразу зі школи зникає ще одна дрібниця.',
+      ru: 'Итан проживает тот же вторник снова и снова, и каждый раз из школы исчезает ещё одна мелочь.',
+      en: 'Ethan lives the same Tuesday again and again, and each time one more small thing disappears from his school.',
     },
     paragraphs: [
-      'The first time Ivan noticed, it was only a feeling. The maths teacher dropped her keys at 9:14, and Ivan knew, a second before it happened, that they would slide under the radiator. The second time, he knew the whole lesson by heart. By the fifth Tuesday, he was certain: he was living the same day again, and every night, at exactly midnight, the world rewound like an old video.',
-      'At first it was almost fun. He answered every question correctly. He caught the falling keys. He beat everyone at table tennis because he already knew where the ball would go. But after a few weeks of identical Tuesdays, Ivan began to notice something that frightened him far more than the loop itself.',
+      'The first time Ethan noticed, it was only a feeling. The maths teacher dropped her keys at 9:14, and Ethan knew, a second before it happened, that they would slide under the radiator. The second time, he knew the whole lesson by heart. By the fifth Tuesday, he was certain: he was living the same day again, and every night, at exactly midnight, the world rewound like an old video.',
+      'At first it was almost fun. He answered every question correctly. He caught the falling keys. He beat everyone at table tennis because he already knew where the ball would go. But after a few weeks of identical Tuesdays, Ethan began to notice something that frightened him far more than the loop itself.',
       'Each Tuesday, something small was missing. A poster of the solar system vanished from the science corridor. Then the clock above the library door. Then the third window in the canteen, replaced by smooth, blank wall. Nobody else saw the gaps. When he pointed at the empty place where the clock had been, his friends looked at him with polite worry.',
       'Nobody except Nina. She sat by herself at the back of the history room, a quiet girl with a long grey scarf, and on the twelfth Tuesday she caught his eye and mouthed a single word: "Window." From then on, they met every lunchtime behind the gym and compared lists. Nina had been counting much longer than he had. She would not say how long.',
-      'Together, they worked out a theory. The loop seemed to feed on repetition. Every time they followed the same routine, the school got a little emptier. So the next Tuesday they did everything differently. Ivan told his best friend a secret he had kept for two years. Nina put her hand up in history and, for the first time, said what she really thought. It felt terrifying and ridiculous, like jumping into cold water.',
-      'Ivan woke up on Wednesday. The poster was back, the clock was ticking, and the canteen had three windows again. He ran to the history room, grinning, to find Nina. Her desk at the back was empty. The teacher read the register, and her name was not on it. None of his classmates had ever heard of a girl with a long grey scarf.',
-      'When Ivan opened his bag, he found a folded note in neat, old-fashioned handwriting. "Thank you for the company. Seventeen thousand Tuesdays is a very long time to be alone. Enjoy your Wednesday. N."',
+      'Together, they worked out a theory. The loop seemed to feed on repetition. Every time they followed the same routine, the school got a little emptier. So the next Tuesday they did everything differently. Ethan told his best friend a secret he had kept for two years. Nina put her hand up in history and, for the first time, said what she really thought. It felt terrifying and ridiculous, like jumping into cold water.',
+      'Ethan woke up on Wednesday. The poster was back, the clock was ticking, and the canteen had three windows again. He ran to the history room, grinning, to find Nina. Her desk at the back was empty. The teacher read the register, and her name was not on it. None of his classmates had ever heard of a girl with a long grey scarf.',
+      'When Ethan opened his bag, he found a folded note in neat, old-fashioned handwriting. "Thank you for the company. Seventeen thousand Tuesdays is a very long time to be alone. Enjoy your Wednesday. N."',
     ],
     glossary: [
       { en: 'to know by heart', uk: 'знати напам’ять', ru: 'знать наизусть' },
@@ -579,7 +579,7 @@ export const STORIES: Story[] = [
     ],
     questions: [
       {
-        q: 'How did Ivan first realise he was in a time loop?',
+        q: 'How did Ethan first realise he was in a time loop?',
         options: [
           'Nina told him about it.',
           'He knew what would happen before it happened.',
@@ -588,7 +588,7 @@ export const STORIES: Story[] = [
         answer: 1,
       },
       {
-        q: 'What frightened Ivan more than the loop itself?',
+        q: 'What frightened Ethan more than the loop itself?',
         options: [
           'Small parts of the school were disappearing.',
           'His friends stopped talking to him.',
@@ -606,7 +606,7 @@ export const STORIES: Story[] = [
         answer: 2,
       },
       {
-        q: 'How did Ivan and Nina break the loop?',
+        q: 'How did Ethan and Nina break the loop?',
         options: [
           'By staying awake past midnight',
           'By doing things differently and being honest',
@@ -618,15 +618,15 @@ export const STORIES: Story[] = [
         q: 'What does Nina’s note suggest about her?',
         options: [
           'She moved to another school on Wednesday.',
-          'She was playing a long joke on Ivan.',
-          'She had been trapped in the loop far longer than Ivan, perhaps for decades.',
+          'She was playing a long joke on Ethan.',
+          'She had been trapped in the loop far longer than Ethan, perhaps for decades.',
         ],
         answer: 2,
       },
     ],
     discuss: [
       'If you had to live the same day again and again, which day would you choose and why?',
-      'Nina and Ivan escaped by doing something brave and new. What is one small brave thing you could do this week?',
+      'Nina and Ethan escaped by doing something brave and new. What is one small brave thing you could do this week?',
     ],
     kit: 'st-cat-please',
     color: 'tomato',
@@ -727,23 +727,23 @@ export const STORIES: Story[] = [
     level: 'B2',
     minutes: 5,
     teaser: {
-      uk: 'Літня робота в бюро знахідок на вокзалі здається Романові нудною, доки літній чоловік не просить повернути парасольку, яку загубив у 1987 році.',
-      ru: 'Летняя работа в бюро находок на вокзале кажется Роману скучной, пока пожилой мужчина не просит вернуть зонт, который потерял в 1987 году.',
-      en: 'Roman’s summer job at the station’s lost property office seems boring, until an old man asks for an umbrella he lost in 1987.',
+      uk: 'Літня робота в бюро знахідок на вокзалі здається Раяну нудною, доки літній чоловік не просить повернути парасольку, яку загубив у 1987 році.',
+      ru: 'Летняя работа в бюро находок на вокзале кажется Райану скучной, пока пожилой мужчина не просит вернуть зонт, который потерял в 1987 году.',
+      en: 'Ryan’s summer job at the station’s lost property office seems boring, until an old man asks for an umbrella he lost in 1987.',
     },
     paragraphs: [
       '## The summer job',
       'The summer I turned seventeen, my uncle found me a job in the lost property office at the central railway station. It was a narrow room behind the ticket hall, with metal shelves from floor to ceiling and a smell of old paper and damp umbrellas. If my uncle hadn’t been friends with the station manager, I would have spent that summer selling ice cream, and I would never have met the man in the grey hat.',
-      'He came in on a hot Tuesday afternoon, five minutes before closing. He was very polite and very old, and his coat was far too warm for July. "I’m sorry to trouble you," he said. "I left a black umbrella on the 6:15 train to Lviv. It has a wooden handle with a small silver bird on it."',
+      'He came in on a hot Tuesday afternoon, five minutes before closing. He was very polite and very old, and his coat was far too warm for July. "I’m sorry to trouble you," he said. "I left a black umbrella on the 6:15 train to York. It has a wooden handle with a small silver bird on it."',
       'I asked him when he had lost it. He thought for a moment. "On the twelfth of October," he said. "1987."',
       '## The red book',
       'I nearly laughed, but something in his face stopped me. Anything left on a train in 1987 would have been thrown away decades ago. Still, to be polite, I went into the back room, where the old record books were kept. They were heavy and red, and nobody had opened them for years.',
-      'October 1987 was easy to find. The handwriting changed every few pages, as different clerks had taken their shifts. And there it was, on the twelfth: "Umbrella, black, wooden handle, silver bird. Train 6:15 to Lviv. Kept on shelf 9."',
+      'October 1987 was easy to find. The handwriting changed every few pages, as different clerks had taken their shifts. And there it was, on the twelfth: "Umbrella, black, wooden handle, silver bird. Train 6:15 to York. Kept on shelf 9."',
       'Shelf 9 was the oldest shelf in the room, the one I had never bothered to look at properly. Behind a box of single gloves, I found it: a black umbrella with a wooden handle and a tiny silver bird. Everything around it was grey with dust, yet the umbrella was spotless, as if someone had put it there that morning.',
       '## The signature',
       'The old man’s eyes filled with tears when I handed it to him. "My wife gave me this," he said. "I have been looking for it for a very long time." He signed the form, thanked me twice and walked out into the evening heat. I watched him cross the ticket hall until the crowd swallowed him.',
-      'Only when I went to put the red book back did I notice the last column of the 1987 entry. It said "Collected", with the same date: the twelfth of October, 1987. Next to it was a signature I recognised from the form he had just signed. And under "Clerk on duty", in neat blue ink, was a name: R. Koval.',
-      'My name is Roman Koval. I had never seen that book before that afternoon, and yet the handwriting was unmistakably mine.',
+      'Only when I went to put the red book back did I notice the last column of the 1987 entry. It said "Collected", with the same date: the twelfth of October, 1987. Next to it was a signature I recognised from the form he had just signed. And under "Clerk on duty", in neat blue ink, was a name: R. Cole.',
+      'My name is Ryan Cole. I had never seen that book before that afternoon, and yet the handwriting was unmistakably mine.',
       'I have thought about it many times since. If I had closed the office five minutes early, I would never have met him. If I hadn’t opened the red book, I might have decided he was simply confused. I still work at the station on summer weekends, and every year on the twelfth of October I check shelf 9. So far it has always been empty. But I always keep a blue pen in my pocket, just in case.',
     ],
     glossary: [
@@ -762,7 +762,7 @@ export const STORIES: Story[] = [
     ],
     questions: [
       {
-        q: 'How did Roman get the job at the station?',
+        q: 'How did Ryan get the job at the station?',
         options: [
           'He answered an advert in the newspaper.',
           'His uncle was friends with the station manager.',
@@ -773,9 +773,9 @@ export const STORIES: Story[] = [
       {
         q: '"If I hadn’t opened the red book, I might have decided he was simply confused." What does this sentence mean?',
         options: [
-          'Roman opened the book, so he did not think the man was simply confused.',
-          'Roman did not open the book and thought the man was confused.',
-          'Roman plans to open the book in the future.',
+          'Ryan opened the book, so he did not think the man was simply confused.',
+          'Ryan did not open the book and thought the man was confused.',
+          'Ryan plans to open the book in the future.',
         ],
         answer: 0,
       },
@@ -794,7 +794,7 @@ export const STORIES: Story[] = [
         answer: 0,
       },
       {
-        q: 'Why does Roman always keep a blue pen in his pocket?',
+        q: 'Why does Ryan always keep a blue pen in his pocket?',
         options: [
           'He needs it to sign forms for his manager.',
           'He thinks he may one day have to write the 1987 entry himself.',
