@@ -6,6 +6,7 @@ import SiteNav from '@/components/SiteNav';
 import SiteFooter from '@/components/SiteFooter';
 import MockTest from '@/components/mock/MockTest';
 import { getMock, FREE } from '@/lib/mock';
+import { localizeMock } from '@/lib/mock/ru';
 import { tr } from '@/lib/i18n-server';
 
 export function generateMetadata({ params }: { params: { id: string } }): Metadata {
@@ -27,7 +28,7 @@ export default function MockPage({ params }: { params: { id: string } }) {
       <main className="mu-container" style={{ padding: '28px 0 60px' }}>
         <p className="muted" style={{ margin: '0 0 6px' }}><Link href="/nmt/mock">{t({ uk: 'Пробний НМТ', ru: 'Пробный НМТ', en: 'Mock NMT' })}</Link> / {t({ uk: `Варіант ${v.id}`, ru: `Вариант ${v.id}`, en: `Test ${v.id}` })}</p>
         <h1 style={{ margin: '0 0 16px', fontSize: 'clamp(28px, 4vw, 44px)' }}>{t({ uk: `Пробний НМТ з англійської, варіант ${v.id}`, ru: `Пробный НМТ по английскому, вариант ${v.id}`, en: `NMT English mock test ${v.id}` })}</h1>
-        <MockTest v={v} />
+        <MockTest v={localizeMock(v, t.lang)} />
       </main>
       <SiteFooter />
     </>
