@@ -15,7 +15,7 @@ const TOP: { href: string; label: T }[] = [
   { href: '/#students', label: { uk: 'Учням', ru: 'Ученикам', en: 'Students' } },
   { href: '/for-teachers', label: { uk: 'Вчителям', ru: 'Учителям', en: 'Teachers' } },
   { href: '/for-parents', label: { uk: 'Батькам', ru: 'Родителям', en: 'Parents' } },
-  { href: '/nmt', label: { uk: 'НМТ', ru: 'НМТ', en: 'NMT exam' } },
+  { href: '/nmt/mock', label: { uk: 'НМТ', ru: 'НМТ', en: 'NMT exam' } },
   { href: '/games', label: { uk: 'Ігри', ru: 'Игры', en: 'Games' } },
 ];
 
@@ -37,9 +37,8 @@ const MENU: { title: T; items: { href: string; icon: string; label: T; text: T; 
   {
     title: { uk: 'НМТ', ru: 'НМТ', en: 'NMT exam' },
     items: [
-      { href: '/nmt', icon: 'e-trophy', label: { uk: 'НМТ з англійської', ru: 'НМТ по английскому', en: 'NMT English exam' }, text: { uk: 'Квізи у форматі іспиту', ru: 'Квизы в формате экзамена', en: 'Quizzes in the exam format' } },
-      { href: '/nmt/mock', icon: 'e-board', label: { uk: 'Пробний НМТ', ru: 'Пробный НМТ', en: 'Mock NMT test' }, text: { uk: 'З поясненнями «Чому так?»', ru: 'С объяснениями «Почему так?»', en: 'With «Why?» explanations' } },
-      { href: '/bonus/nmt-checklist', icon: 'e-pencil', label: { uk: 'НМТ-батл і вправи', ru: 'НМТ-батл и упражнения', en: 'NMT battle and drills' }, text: { uk: 'Безкоштовно: сталі вирази, хибні друзі', ru: 'Бесплатно: устойчивые выражения, ложные друзья', en: 'Free: collocations, false friends' } },
+      { href: '/nmt/mock', icon: 'e-trophy', label: { uk: 'Пробні НМТ', ru: 'Пробные НМТ', en: 'Mock NMT tests' }, text: { uk: '20 тестів як на іспиті, з розбором «Чому так?»', ru: '20 тестов как на экзамене, с разбором «Почему так?»', en: '20 exam-style tests with «Why?» explanations' } },
+      { href: '/bonus/nmt-checklist', icon: 'e-pencil', label: { uk: 'НМТ: чек-листи', ru: 'НМТ: чек-листы', en: 'NMT checklists' }, text: { uk: 'План підготовки і безкоштовні вправи', ru: 'План подготовки и бесплатные упражнения', en: 'A prep plan and free drills' } },
     ],
   },
   {
