@@ -172,12 +172,12 @@ export const NMT_WORDS: NmtWordTopic[] = [
    {
     "w": "destination",
     "uk": "місце призначення",
-    "ex": "Lviv is a popular destination for tourists."
+    "ex": "Edinburgh is a popular destination for tourists."
    },
    {
     "w": "journey",
     "uk": "поїздка, подорож",
-    "ex": "The journey from Kyiv to Odesa takes about seven hours."
+    "ex": "The journey from London to Manchester takes about two hours."
    },
    {
     "w": "luggage",
@@ -554,7 +554,7 @@ export const NMT_WORDS: NmtWordTopic[] = [
 ];
 export const NMT_BATTLE: { q: string; a: string; wrong: string[]; why: string }[] = [
  {
-  "q": "She ___ in Kyiv since 2020.",
+  "q": "She ___ in London since 2020.",
   "a": "has lived",
   "wrong": [
    "lived",
@@ -784,7 +784,7 @@ export const NMT_BATTLE: { q: string; a: string; wrong: string[]; why: string }[
   "why": "Фото в англійській беруть: take a photo."
  },
  {
-  "q": "Kyiv is ___ capital of Ukraine.",
+  "q": "London is ___ capital of the UK.",
   "a": "the",
   "wrong": [
    "a",
