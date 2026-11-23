@@ -48,8 +48,8 @@ const LESSONS: Lesson[] = [
     },
     grammar: "Present Perfect for experience (Have you ever...?) vs Past Simple",
     warm: {
-      uk: "«Two truths and a lie». Кожен учень каже три речення про свої поїздки (наприклад, «I have been to Lviv three times»), одне з них вигадане. Інші ставлять по одному уточнювальному питанню й вгадують, де неправда.",
-      ru: "«Two truths and a lie». Каждый ученик говорит три предложения о своих поездках (например, «I have been to Lviv three times»), одно из них выдуманное. Остальные задают по одному уточняющему вопросу и угадывают, где неправда.",
+      uk: "«Two truths and a lie». Кожен учень каже три речення про свої поїздки (наприклад, «I have been to London three times»), одне з них вигадане. Інші ставлять по одному уточнювальному питанню й вгадують, де неправда.",
+      ru: "«Two truths and a lie». Каждый ученик говорит три предложения о своих поездках (например, «I have been to London three times»), одно из них выдуманное. Остальные задают по одному уточняющему вопросу и угадывают, где неправда.",
     },
     questions: [
       "Where did you go on your last trip? Who did you go with?",
@@ -107,7 +107,7 @@ const LESSONS: Lesson[] = [
       "What did you have for breakfast today?",
       "What is your favourite dish? Can you describe how it tastes?",
       "Do you like cooking? What can you cook well?",
-      "Which Ukrainian dish would you recommend to a foreign friend and why?",
+      "Which dish from your country would you recommend to a foreign friend and why?",
       "Do you prefer eating at home or eating out?",
       "Is there any food you hated as a child but love now?",
       "Is fast food always bad? Why or why not?",

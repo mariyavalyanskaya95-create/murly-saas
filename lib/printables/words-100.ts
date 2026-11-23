@@ -80,7 +80,7 @@ const TOPICS: Topic[] = [
     uk: 'Подорожі та транспорт',
     ru: 'Путешествия и транспорт',
     words: [
-      ['journey', 'поїздка, подорож', 'поездка, путешествие', 'The journey from Lviv to Odesa takes about twelve hours by train.'],
+      ['journey', 'поїздка, подорож', 'поездка, путешествие', 'The journey from London to Edinburgh takes about four and a half hours by train.'],
       ['to book', 'бронювати', 'бронировать', 'We booked our tickets two months in advance.'],
       ['destination', 'пункт призначення', 'пункт назначения', 'Paris is a popular destination for school trips.'],
       ['to set off', 'вирушати', 'отправляться', 'We set off early to avoid traffic.'],
@@ -138,7 +138,7 @@ const TOPICS: Topic[] = [
       ['receipt', 'чек', 'чек', 'Keep the receipt in case you want to return the shoes.'],
       ['to return', 'повертати', 'возвращать', 'I returned the jacket because it was too small.'],
       ['to borrow', 'позичати (у когось)', 'одалживать (у кого-то)', 'Can I borrow your calculator for a minute?'],
-      ['to lend', 'позичати (комусь)', 'одалживать (кому-то)', 'My friend lent me fifty hryvnias for the ticket.'],
+      ['to lend', 'позичати (комусь)', 'одалживать (кому-то)', 'My friend lent me ten pounds for the ticket.'],
       ['bargain', 'вигідна покупка', 'выгодная покупка', 'This coat was a real bargain at half price.'],
       ['to be worth', 'бути вартим', 'стоить того', 'The museum is worth visiting, the guide is great.'],
     ],

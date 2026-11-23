@@ -31,7 +31,7 @@ const T: Tense[] = [
   {
     name: 'Past Simple', pos: 'I worked / I went', neg: 'I didn’t work / go', q: 'Did you work / go?',
     when: L('Завершена дія в минулому, час відомий', 'Завершенное действие в прошлом, время известно'),
-    markers: 'yesterday, last week, ago, in 2020, when', ex: 'We visited Kyiv two years ago.',
+    markers: 'yesterday, last week, ago, in 2020, when', ex: 'We visited London two years ago.',
   },
   {
     name: 'Past Continuous', pos: 'I was / they were working', neg: 'I wasn’t / they weren’t working', q: 'Were you working?',
@@ -137,7 +137,7 @@ const PV60: PV[] = [
   ['to check in', 'зареєструватися (в готелі, аеропорту)', 'зарегистрироваться (в отеле, аэропорту)', 'We checked in at the hotel at three.'],
   ['to cheer up', 'підбадьорити, повеселішати', 'подбодрить, повеселеть', 'A funny video always cheers me up.'],
   ['to come across', 'випадково натрапити', 'случайно наткнуться', 'I came across an old photo of my mum.'],
-  ['to come up with', 'придумати', 'придумать', 'Ira came up with a great name for our band.'],
+  ['to come up with', 'придумати', 'придумать', 'Amy came up with a great name for our band.'],
   ['to count on', 'розраховувати на', 'рассчитывать на', 'You can count on me, I will be there.'],
   ['to cut down on', 'скоротити (споживання)', 'сократить (потребление)', 'I am trying to cut down on sugar.'],
   ['to drop out of', 'кинути (навчання, курс)', 'бросить (учебу, курс)', 'He dropped out of the course after a month.'],
@@ -246,7 +246,7 @@ const PHRASAL: PrintDoc = {
           '14. I want to ___ the swimming club this autumn.',
           '15. Max ___ late again, the lesson had already started.',
           '16. Stop ___ your project, the deadline is tomorrow!',
-          '17. My parents ___ in a village, but now they live in Kyiv.',
+          '17. My parents ___ in a village, but now they live in London.',
           '18. Who ___ this crazy idea?',
           '19. We need to ___ all these old boxes in the garage.',
           '20. She ___ her sister and they didn’t talk for a week.',
@@ -307,12 +307,12 @@ const WRITING: PrintDoc = {
     { h: L('Зразок листа', 'Образец письма') },
     {
       p: L(
-        'Завдання: твій друг Sam з Канади запитує, як ти проводиш вихідні, і просить порадити, що подивитися в Україні влітку. Напиши відповідь (100-150 слів).',
-        'Задание: твой друг Sam из Канады спрашивает, как ты проводишь выходные, и просит посоветовать, что посмотреть в Украине летом. Напиши ответ (100-150 слов).',
+        'Завдання: твій друг Sam зі США запитує, як ти проводиш вихідні, і просить порадити, що подивитися у твоїй країні влітку. Ось зразок відповіді від Emily з Шотландії. Напиши відповідь (100-150 слів).',
+        'Задание: твой друг Sam из США спрашивает, как ты проводишь выходные, и просит посоветовать, что посмотреть в твоей стране летом. Вот образец ответа от Emily из Шотландии. Напиши ответ (100-150 слов).',
       ),
     },
     {
-      p: 'Hi Sam, Thanks for your email! It was great to hear that you are coming to Ukraine in July. You asked me about my weekends. On Saturdays I usually have a long breakfast with my family and then meet my friends in the park. We play volleyball or just hang out and chat. On Sundays I try to read something in English and get ready for the new week. As for your trip, I would definitely recommend Lviv. The old town is beautiful, and there are lots of cosy cafés. If you like nature, why don’t you visit the Carpathians? The mountain views are amazing and the air is so fresh. By the way, would you like to go hiking together? Write back soon and tell me your plans! Best wishes, Olena',
+      p: 'Hi Sam, Thanks for your email! It was great to hear that you are coming to Scotland in July. You asked me about my weekends. On Saturdays I usually have a long breakfast with my family and then meet my friends in the park. We play volleyball or just hang out and chat. On Sundays I try to read something in English and get ready for the new week. As for your trip, I would definitely recommend Edinburgh. The old town is beautiful, and there are lots of cosy cafés. If you like nature, why don’t you visit the Highlands? The mountain views are amazing and the air is so fresh. By the way, would you like to go hiking together? Write back soon and tell me your plans! Best wishes, Emily',
     },
     { pagebreak: true },
     { h: L('2. Абзац-думка (opinion paragraph): структура', '2. Абзац-мнение (opinion paragraph): структура') },
