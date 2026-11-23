@@ -149,8 +149,8 @@
     const teacher = document.body.classList.contains('mk-teacher');
     let pop = null;
     const close = () => { if (pop) { pop.remove(); pop = null; } };
-    document.addEventListener('click', (e) => { if (pop && !pop.contains(e.target) && !e.target.closest('.mk-vadd')) close(); });
-    const save = async (c, sid, btn) => {
+    document.addEventListener('click', (e) => { if (pop && !pop.contains(e.target) && !e.target.closest('.mk-vadd') && !e.target.closest('.mk-vall')) close(); });
+    const save = async (c, sid, btn, quiet) => {
       const en = c.querySelector('b').textContent.trim(); const tr = (c.querySelector('span') || {}).textContent || ''; const ex = (c.querySelector('em') || {}).textContent || '';
       if (!tr.trim()) { toastMk(T('У картки немає перекладу.', 'У карточки нет перевода.')); return; }
       let ok = false;
@@ -159,6 +159,7 @@
         else { const r = await fetch('/api/student', { method: 'POST', credentials: 'same-origin', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ op: 'addWord', en, uk: tr.trim(), example: ex.trim() || undefined }) });
           if (r.status === 401) { toastMk(T('Увійдіть у кабінет учня, щоб зберігати слова.', 'Войдите в кабинет ученика, чтобы сохранять слова.')); return; } ok = r.ok; }
       } catch (e) { ok = false; }
+      if (quiet) { if (ok && btn) { btn.classList.add('done'); btn.innerHTML = '&#10003;'; } return ok; }
       if (ok) { btn.classList.add('done'); btn.innerHTML = '&#10003;'; const st = teacher && D && D.students.find((x) => x.id === sid);
         toastMk(teacher ? T(`«${en}» додано у словник: ${esc(st ? st.name : '')}`, `«${en}» добавлено в словарь: ${esc(st ? st.name : '')}`) : T(`«${en}» додано у твій словник`, `«${en}» добавлено в твой словарь`)); }
       else toastMk(T('Не вийшло зберегти, спробуйте ще раз.', 'Не получилось сохранить, попробуйте ещё раз.'));
@@ -181,6 +182,35 @@
         c.appendChild(pop);
       };
       c.appendChild(b);
+    });
+    // кнопка «усі слова в словник» над кожним блоком слів
+    document.querySelectorAll('.voc').forEach((v) => {
+      if (v.previousElementSibling && v.previousElementSibling.classList.contains('mk-vall')) return;
+      const own = [...v.children].filter((c) => c.querySelector('b'));
+      if (own.length < 2) return;
+      const wrap = document.createElement('div'); wrap.className = 'mk-vall';
+      const btn = document.createElement('button'); btn.type = 'button';
+      btn.textContent = T(`+ Усі слова в словник (${own.length})`, `+ Все слова в словарь (${own.length})`);
+      const run = async (sid) => {
+        btn.disabled = true; let n = 0;
+        for (const c of own) { const b1 = c.querySelector('.mk-vadd'); if (await save(c, sid, b1, true)) n++; }
+        btn.disabled = false;
+        const st = teacher && D && D.students.find((x) => x.id === sid);
+        toastMk(n ? (teacher ? T(`Додано ${n} слів у словник: ${esc(st ? st.name : '')}`, `Добавлено ${n} слов в словарь: ${esc(st ? st.name : '')}`) : T(`Додано ${n} слів у твій словник`, `Добавлено ${n} слов в твой словарь`)) : T('Не вийшло зберегти, спробуйте ще раз.', 'Не получилось сохранить, попробуйте ещё раз.'));
+      };
+      btn.onclick = (e) => {
+        e.stopPropagation(); close();
+        if (!teacher) { run(null); return; }
+        const list = (D && D.students) || [];
+        if (!list.length || SID === 'local') { toastMk(T('Додайте учнів у кабінеті, щоб зберігати їм слова.', 'Добавьте учеников в кабинете, чтобы сохранять им слова.')); return; }
+        const cur = student();
+        pop = document.createElement('div'); pop.className = 'mk-vpop';
+        pop.innerHTML = `<b>${T('Усі слова в словник', 'Все слова в словарь')}</b><select>${list.map((x) => `<option value="${esc(x.id)}"${cur && cur.id === x.id ? ' selected' : ''}>${esc(x.name)}</option>`).join('')}</select><button type="button">${T('Додати', 'Добавить')}</button>`;
+        pop.addEventListener('click', (ev) => ev.stopPropagation());
+        pop.querySelector('button').onclick = () => { const sid = pop.querySelector('select').value; close(); run(sid); };
+        wrap.appendChild(pop);
+      };
+      wrap.appendChild(btn); v.before(wrap);
     });
   }
 
