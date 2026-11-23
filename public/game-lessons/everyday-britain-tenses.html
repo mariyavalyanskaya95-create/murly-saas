@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Everyday Britain: four tenses + British phrases (A2-B1) | Murly</title>
+<link rel="icon" href="/favicon.svg">
+<meta name="description" content="Review of Present Simple, Present Continuous, Past Simple and Past Continuous with 18 everyday British phrases, a big Russian-English translation text, picture talk and role-plays.">
+<link rel="canonical" href="https://murly.com.ua/game-lessons/everyday-britain-tenses.html">
+<style>
+:root{--paper:#F3F0EA;--ink:#17181C;--violet:#3D4A7A;--lav:#D9D3C7;--pink:#E9C9BC;--green:#D4E2CF;--white:#fff;--muted:#62646B;--accent:#B5482F}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+/* hero */
+.hero{background:linear-gradient(rgba(16,17,22,.5),rgba(16,17,22,.72)),url("https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=1400&q=70&auto=format&fit=crop");color:#fff;padding:70px 18px 56px;text-align:center;position:relative;overflow:hidden}
+.hero .kicker{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#E9C9BC;font-weight:700}
+.hero .cr{position:absolute;right:12px;bottom:8px;font-size:11px;color:rgba(255,255,255,.6)}
+.hero h1{margin:8px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(36px,6vw,64px);letter-spacing:-.5px;font-weight:700}
+.hero h1 span{color:var(--pink);font-style:italic}
+.hero p{margin:12px 0 0;font-size:17px;color:#e6e2da}
+.hero .flags{display:flex;justify-content:center;gap:12px;margin-top:22px;flex-wrap:wrap}
+.hero .flags svg{width:40px;height:26px;border-radius:3px;opacity:.9}
+/* sections */
+section{margin-top:30px;background:var(--white);border-radius:18px;padding:28px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.05)}
+section h2{margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tag{font-family:"Segoe UI",system-ui,sans-serif;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--paper);color:var(--accent);text-transform:uppercase;letter-spacing:1px}
+.lk-n{display:inline-grid;place-items:center;width:42px;height:42px;background:var(--violet);color:#fff;border-radius:50%;font-size:21px;flex:none}
+.lk-mode{font-size:13px;font-weight:700;border:2px dashed var(--lav);color:var(--muted);padding:2px 10px;border-radius:999px}
+.lk-ins{font-size:17px;background:var(--paper);border-radius:12px;padding:10px 14px;margin:6px 0 18px}
+.lk-sub{margin:24px 0 10px;font-size:19px}
+.btn{font:inherit;font-weight:700;border:0;border-radius:999px;background:var(--ink);color:#fff;padding:10px 20px;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+.btn.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+/* teacher */
+.lk-tbtn{position:fixed;right:16px;top:70px;z-index:45;font:inherit;font-weight:800;border:2px solid var(--ink);background:var(--pink);padding:8px 14px;border-radius:12px;cursor:pointer}
+body.teacher .lk-tbtn{background:var(--green)}
+.lk-ans,.lk-tnote{display:none}
+body.teacher .lk-ans{display:block;margin-top:8px;font-weight:700;color:#1d5a12;background:var(--green);border-left:5px solid #5aa845;padding:6px 10px;font-size:15px;border-radius:6px}
+body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff3f7;border-left:5px solid #d9789a;padding:8px 12px;font-size:15px;border-radius:6px}
+/* overview */
+.lk-overview ul{font-size:17px;line-height:1.7;margin:6px 0 16px}
+.lk-stages{display:flex;flex-wrap:wrap;gap:8px}
+.lk-stages a{display:grid;border-radius:14px;padding:8px 12px;text-decoration:none;color:var(--ink);background:var(--paper);font-weight:700;min-width:100px}
+.lk-stages a span{text-transform:capitalize}
+.lk-stages a b{font-size:20px;color:var(--violet)}
+.lk-stages a small{font-weight:600;color:var(--muted)}
+/* warm-up */
+.taxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tax{background:var(--paper);border-radius:18px;padding:16px;display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center}
+.tax svg{width:56px;height:56px}
+.tax b{display:block;font-size:17px}
+.tax small{color:var(--muted);font-size:14px}
+.qs{display:grid;gap:10px;margin-top:18px}
+.qs div{background:var(--green);border-radius:14px;padding:10px 16px;font-size:18px;font-weight:600}
+.phr{background:#fff7e8;border-radius:14px;padding:12px 16px;margin-top:16px;font-size:15px}
+.phr ul{margin:6px 0 0;padding-left:18px}
+.fic{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:16px}
+.fic .c{background:#fff;border:2px solid #1B2140;border-radius:16px;padding:14px 16px;box-shadow:3px 3px 0 #1B2140}
+.fic .c b{display:block;font-size:18px;line-height:1.35;margin-bottom:8px}
+.fic .c .k{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.fic .c .k span{font-size:13px;background:#eef1fb;border-radius:999px;padding:3px 10px}
+.fic .c details{margin-top:8px;font-size:15px;color:#3b4160}
+.fic .c summary{cursor:pointer;font-weight:700;color:#534AB7}
+.fi-n{display:inline-flex;width:28px;height:28px;border-radius:50%;background:#2F4BA0;color:#fff;align-items:center;justify-content:center;font-size:14px;margin-right:6px}
+/* vocab */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:12px}
+.vc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:2px solid transparent;transition:border-color .2s,transform .2s}
+.vc:hover{border-color:var(--violet);transform:translateY(-2px)}
+.vc b{font-size:18px;display:flex;align-items:center;gap:8px}
+.vc b svg{width:20px;height:20px;flex:none;color:var(--violet)}
+.vc p{margin:6px 0 0;font-size:14px;color:var(--muted)}
+.vc em{display:block;margin-top:6px;font-size:14px;color:var(--violet);font-style:normal;font-weight:600}
+.vc.played{background:#e6ecfb}
+/* grammar */
+.gram{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.gb{border-radius:18px;padding:16px}
+.gb h3{margin:0 0 6px;font-size:19px}
+.gb .f{display:inline-block;background:#fff;border-radius:8px;padding:3px 10px;font-weight:800;margin:4px 0;font-family:Consolas,monospace;font-size:15px}
+.gb p{margin:6px 0 0;font-size:15px}
+.g1{background:var(--pink)}.g2{background:var(--lav)}.g3{background:var(--green)}.g4{background:#fbe7c6}
+.warn{margin-top:14px;background:var(--ink);color:#fff;border-radius:14px;padding:12px 16px;font-size:16px}
+.warn b{color:var(--pink)}
+.q{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:2px dashed var(--paper);font-size:18px}
+.q:last-child{border-bottom:0}
+.q .n{width:32px;height:32px;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;border-radius:50%;font-weight:800;font-size:15px}
+.opt{font:inherit;font-size:16px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:10px;padding:4px 12px;cursor:pointer;margin:0 2px}
+.opt.ok{background:var(--green);border-color:#5aa845}
+.opt.bad{background:var(--pink);animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+/* tour */
+.tour{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.law{border-radius:22px;overflow:hidden;background:var(--paper);display:flex;flex-direction:column}
+.law .pic{height:150px;display:grid;place-items:center;position:relative}
+.law .pic svg.ill{width:130px;height:130px}
+.law .pic svg.fl{position:absolute;left:14px;top:14px;width:46px;height:30px;border-radius:5px;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.law .pic .no{position:absolute;right:14px;top:14px;background:var(--ink);color:#fff;font-weight:800;border-radius:999px;padding:2px 10px;font-size:13px}
+.law .body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.law h3{margin:0;font-size:20px}
+.law .where{font-size:13px;font-weight:800;color:var(--violet);text-transform:uppercase;letter-spacing:1px}
+.law p{margin:0;font-size:16px}
+.law .why{font-size:14px;color:var(--muted)}
+.law .dq{margin-top:auto;background:#fff;border-radius:12px;padding:8px 12px;font-weight:700;font-size:15px}
+.law .lsn{font:inherit;font-size:13px;font-weight:700;background:none;border:0;color:var(--violet);cursor:pointer;padding:0;text-align:left}
+/* game */
+.game{max-width:720px;margin:0 auto;text-align:center}
+.score{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.score span{background:var(--paper);border-radius:999px;padding:6px 16px;font-weight:800}
+.stmt{background:var(--ink);color:#fff;border-radius:22px;padding:28px 24px;min-height:150px;display:grid;place-items:center;font-size:23px;font-weight:700;position:relative}
+.stmt small{position:absolute;top:12px;left:18px;font-size:13px;color:var(--lav);font-weight:700}
+.choose{display:flex;justify-content:center;gap:14px;margin:18px 0}
+.choose button{font:inherit;font-size:18px;font-weight:700;border:2px solid var(--ink);border-radius:999px;padding:12px 28px;cursor:pointer}
+.choose .bl{background:var(--green)}.choose .bm{background:var(--pink)}
+.choose button:disabled{opacity:.5;cursor:default}
+.verdict{min-height:70px;font-size:17px;background:var(--paper);border-radius:16px;padding:12px 16px;text-align:left}
+.verdict b.r{color:#2d7a1d}.verdict b.w{color:#b23a62}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.dots i{width:14px;height:14px;border-radius:50%;background:var(--paper)}
+.dots i.r{background:#7cc663}.dots i.w{background:#e47b9f}.dots i.c{outline:3px solid var(--violet)}
+.final{font-size:22px;font-weight:800;color:var(--violet)}
+/* invent */
+.inv{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.frames{display:grid;gap:10px}
+.frames label{font-size:14px;font-weight:700;color:var(--muted)}
+.frames select,.frames input{font:inherit;width:100%;padding:8px 10px;border:2px solid var(--lav);border-radius:10px;background:#fff}
+.poster{background:var(--paper);border:3px solid var(--ink);border-radius:20px;padding:22px;text-align:center;min-height:260px;display:flex;flex-direction:column;gap:10px;justify-content:center}
+.poster .seal{width:70px;height:70px;margin:0 auto}
+.poster h3{margin:0;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--violet)}
+.poster .rule{font-size:22px;font-weight:800}
+.poster .pen{font-size:16px;color:var(--muted)}
+.ideas{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ideas span{background:var(--pink);border-radius:999px;padding:5px 12px;font-size:14px;font-weight:600}
+/* roleplay */
+.rp{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.role{border-radius:20px;padding:18px}
+.role h3{margin:0 0 6px;display:flex;align-items:center;gap:10px}
+.role h3 svg{width:42px;height:42px}
+.role ul{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.r1{background:var(--lav)}.r2{background:var(--green)}
+.scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:16px}
+.sc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:3px solid transparent}
+.sc.on{border-color:var(--violet);background:#fff}
+.sc b{display:block;font-size:17px;margin-bottom:4px}
+.sc p{margin:0;font-size:15px}
+.timer{font-size:40px;font-weight:800;text-align:center;margin:14px 0 6px;color:var(--violet)}
+.ctr{text-align:center}
+/* homework */
+.hwb{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hwc{background:var(--paper);border-radius:18px;padding:18px}
+.hwc h3{margin:0 0 8px}
+.hwc ol,.hwc ul{margin:6px 0 0;padding-left:20px;line-height:1.7}
+.hwc textarea{width:100%;min-height:150px;font:inherit;border:2px solid var(--lav);border-radius:12px;padding:10px;margin-top:10px}
+.end{text-align:center;background:var(--ink);color:#fff;box-shadow:none}
+.end h2{justify-content:center}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(140px);background:var(--ink);color:#fff;font-weight:800;padding:12px 22px;border-radius:14px;transition:transform .3s;z-index:50}
+.toast.show{transform:translateX(-50%) translateY(0)}
+/* photos */
+.ph{margin:0}
+.ph img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;background:var(--paper)}
+.ph figcaption{font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.2px}
+.tax{grid-template-columns:1fr !important;padding:12px !important}
+.law .pic{height:auto !important;display:block !important;padding:0;position:relative}
+.law .pic .ph img{border-radius:0;aspect-ratio:16/10;transition:filter .5s}
+.law .pic .ph figcaption{padding:4px 12px 0}
+.law.hide .pic .ph img{filter:blur(10px) grayscale(.6)}
+.law.hide .reveal-body,.law.hide .fl,.law.hide .where{visibility:hidden}
+.law .clue{font-size:15px;font-style:italic;color:var(--ink)}
+.law .gc{display:flex;flex-wrap:wrap;gap:6px}
+.law .gc button{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:4px 12px;cursor:pointer}
+.law .gc button.ok{background:var(--green)}.law .gc button.bad{background:var(--pink)}
+.law:not(.hide) .guess{display:none}
+.fair{display:grid;gap:4px;background:#fff;border-radius:12px;padding:8px 12px}
+.fair .ends{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.fair input{width:100%;accent-color:var(--accent)}
+.fair output{font-size:14px;font-weight:700;color:var(--accent)}
+.gph{max-width:720px;margin:0 auto 12px}
+.gph img{aspect-ratio:21/9}
+.fine{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.fq{background:var(--paper);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.fq h3{margin:0;font-size:18px}
+.fq .opts{display:flex;flex-wrap:wrap;gap:6px}
+.fq .opts button{font:inherit;font-size:14px;font-weight:700;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 12px;cursor:pointer}
+.fq .opts button.ok{background:var(--green)}.fq .opts button.bad{background:var(--pink)}
+.fq .res{font-size:15px;min-height:22px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{position:relative;aspect-ratio:16/9;background:#111}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;cursor:pointer;background:#111 center/cover;display:grid;place-items:center}
+.vid .play span{background:rgba(0,0,0,.7);color:#fff;font-weight:700;border-radius:999px;padding:10px 20px;font-size:15px;letter-spacing:1px}
+.vid .info{padding:14px 16px}
+.vid .info h3{margin:0 0 2px;font-size:18px}
+.vid .info small{color:var(--muted)}
+.vid .info ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+@media(max-width:760px){.inv,.rp,.hwb{grid-template-columns:1fr}.lk-tbtn{top:auto;bottom:70px}}
+
+.pr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.pb{border-radius:18px;padding:16px 18px}
+.pb h3{margin:0;font-family:Georgia,serif;font-size:30px}
+.pb .m{font-size:15px;color:var(--muted);margin:2px 0 8px}
+.pb .chips{display:flex;flex-wrap:wrap;gap:6px}
+.pb .chips span{background:#fff;border-radius:999px;padding:4px 11px;font-size:14px;font-weight:600}
+.pb ul{margin:10px 0 0;padding-left:18px;font-size:15px}
+.p-in{background:#DCE6F5}.p-at{background:#F3D9CF}.p-on{background:#D4E2CF}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-size:15px;margin-top:10px}
+.ex div{background:var(--paper);border-radius:10px;padding:8px 12px}
+.ex b{color:var(--accent)}
+.q{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.q .n{font-weight:800;color:var(--violet);min-width:24px}
+.q .gap{display:inline-block;min-width:44px;border-bottom:2px solid var(--ink);text-align:center;font-weight:800}
+.q .opts{margin-left:auto;display:flex;gap:6px}
+.q .opts button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 14px;cursor:pointer}
+.q.ok{background:#DDEED7}.q.ok .gap{color:#2F7A3B}
+.q.bad{background:#F6DAD3}
+.score{font-weight:800;margin-top:12px}
+.text{font-size:18px;line-height:1.75;background:var(--paper);border-radius:16px;padding:18px 22px}
+.text h3{margin:0 0 6px;font-family:Georgia,serif;font-size:24px}
+.text p{margin:0 0 12px}
+.text.hl mark{background:#F3D9CF;border-radius:4px;padding:0 3px;font-weight:700}
+.tf{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:9px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.tf .opts{margin-left:auto;display:flex;gap:6px}
+.tf button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.tf.ok{background:#DDEED7}.tf.bad{background:#F6DAD3}
+.disc{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px;margin-top:6px}
+.disc div{background:var(--green);border-radius:14px;padding:12px 16px;font-size:17px;font-weight:600}
+.disc div i{font-style:normal;color:var(--violet);margin-right:6px}
+.spin{text-align:center;margin-top:16px}
+.spin .card{display:inline-block;min-height:80px;min-width:min(560px,100%);background:var(--ink);color:#fff;border-radius:18px;padding:20px 24px;font-size:22px;font-weight:700;margin-bottom:12px}
+@media(max-width:700px){.ex{grid-template-columns:1fr}}
+
+.hero{background-size:cover!important;background-position:center!important}
+.voc{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.voc div{background:var(--paper);border-radius:14px;padding:10px 14px;cursor:pointer;border:2px solid transparent}
+.voc div:hover{border-color:var(--violet)}
+.voc b{display:block;font-size:18px}.voc span{display:block;color:var(--accent);font-weight:700;font-size:15px}.voc em{display:block;font-size:14px;color:var(--muted);margin-top:3px}
+.mt{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:10px}
+.mt button{font:inherit;font-size:16px;text-align:left;border:2px solid var(--ink);background:#fff;border-radius:14px;padding:9px 14px;cursor:pointer}
+.mt button.sel{background:#FFE7A8}.mt button.done{background:#CDE8C6;border-color:#4C9A5B;cursor:default}
+.ch{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ch .n{font-weight:800;color:var(--violet);min-width:24px}
+.ch .o{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.ch .o button{font:inherit;font-size:15px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.ch.ok{background:#DDEED7}.ch.bad{background:#F6DAD3}
+.ty{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ty input{font:inherit;border:2px solid var(--ink);border-radius:10px;padding:4px 10px;width:220px}
+.ty.ok{background:#DDEED7}.ty.bad{background:#F6DAD3}
+.ty small{color:var(--muted)}
+.photo{width:100%;height:300px;object-fit:cover;border-radius:16px;display:block}
+.cap{font-size:11px;color:var(--muted);margin:4px 0 12px}
+.pics{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.pics figure{margin:0;background:var(--paper);border-radius:16px;overflow:hidden}
+.pics img{width:100%;height:170px;object-fit:cover;display:block}
+.pics figcaption{padding:8px 12px;font-weight:700}
+.pics small{display:block;font-weight:400;font-size:10px;color:var(--muted)}
+.lis{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:8px 0 14px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{aspect-ratio:16/9;background:#000;position:relative}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;background-size:cover;background-position:center;cursor:pointer;display:grid;place-items:center}
+.vid .play span{background:#E5484D;color:#fff;font-weight:800;border-radius:12px;padding:10px 20px}
+.vid .info{padding:12px 16px}.vid h3{margin:0;font-size:18px}.vid small{color:var(--muted)}
+.vid ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th,.tbl td{border:1px solid #ddd;padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--paper)}
+@media(max-width:700px){.mt{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="kit.css">
+</head>
+<body>
+<header class="hero">
+  <div class="kicker">A2-B1 · grammar review</div>
+  <h1>Everyday <span>Britain</span></h1>
+  <p>4 tenses review · 18 British phrases · big translation · role-plays · 75 min</p>
+  <span class="cr">Photo: Unsplash</span>
+</header>
+<button class="lk-tbtn" id="teacherBtn" type="button">Teacher version</button>
+<div class="wrap">
+  <section class="lk-overview">
+    <h2>In this lesson you will:</h2>
+    <ul><li>Learn 18 phrases people really use in the UK.</li><li>Review Present Simple, Present Continuous, Past Simple and Past Continuous.</li><li>Practise with 30 sentences.</li><li>Translate a whole story from Russian into English.</li><li>Describe photos and act out real British situations.</li></ul>
+    <div class="lk-stages" id="stages"></div>
+  </section>
+  <section id="s1" data-stage="warm-up" data-min="7">
+    <h2><span class="lk-n">1</span>Warm-up: your life in four tenses <span class="tag">warm-up</span><span class="lk-mode">teacher + student</span></h2>
+
+    <img class="photo" src="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=900&q=70&auto=format&fit=crop" alt="A busy city street" loading="lazy" style="height:250px"><div class="cap">Photo: Unsplash</div>
+    <div class="spin"><div class="card" id="wCard">Click "Random question"</div><br><button class="btn" type="button" data-spin="[&quot;What do you usually do on a Monday morning?&quot;, &quot;What are you doing these days at work?&quot;, &quot;What did you do last weekend?&quot;, &quot;What were you doing at 8 pm yesterday?&quot;, &quot;How often do you drink tea or coffee?&quot;, &quot;Are you reading anything interesting at the moment?&quot;, &quot;Where did you go on your last holiday?&quot;, &quot;What were you doing when you heard some good news recently?&quot;, &quot;What do you never do on Sundays?&quot;, &quot;Is anything changing in your life right now?&quot;, &quot;What did you have for breakfast today?&quot;, &quot;What were you thinking about on the way here?&quot;]" data-target="wCard">Random question</button></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Цель:&lt;/b&gt; быстро «разогреть» 4 времени. На каждый ответ задавайте ещё один уточняющий вопрос в том же времени. Не исправляйте сразу, записывайте 3-4 ошибки и вернитесь к ним после правил.&lt;br&gt;&lt;b&gt;Образцы:&lt;/b&gt; «I usually check my emails and have a coffee.» / «These days I&amp;#39;m working on a new project.» / «Last weekend I visited my parents.» / «At 8 pm I was cooking dinner.»"><b>Мета:</b> швидко «прогріти» 4 часи. На кожну відповідь питайте ще одне уточнення в тому самому часі. Не виправляйте одразу, записуйте 3-4 помилки і поверніться до них після правил.<br><b>Зразки:</b> «I usually check my emails and have a coffee.» / «These days I&#39;m working on a new project.» / «Last weekend I visited my parents.» / «At 8 pm I was cooking dinner.»</p>
+  </section>
+  <section id="s2" data-stage="vocabulary" data-min="14">
+    <h2><span class="lk-n">2</span>Everyday Britain: 18 phrases you will really hear <span class="tag">vocabulary</span><span class="lk-mode">teacher + student</span></h2>
+
+    <img class="photo" src="https://images.unsplash.com/photo-1667981663831-c395f9505e1d?w=900&q=70&auto=format&fit=crop" alt="People walking in the rain with umbrellas" loading="lazy" style="height:230px"><div class="cap">Photo: Unsplash</div>
+    <p class="lk-ins">These phrases are everywhere in the UK: in shops, cafés, on the tube and at work. Click a card to hear it.</p>
+    <div class="voc"><div data-say="Cheers!. Here&amp;#39;s your coffee. Cheers!"><b>Cheers!</b><span><span data-tr-uk="Дякую! / Будьмо!" data-tr-ru="Спасибо! / Будем!">Дякую! / Будьмо!</span></span><em>Here&#39;s your coffee. Cheers!</em></div>
+<div data-say="Fancy a cuppa?. You look tired. Fancy a cuppa?"><b>Fancy a cuppa?</b><span><span data-tr-uk="Будеш чай?" data-tr-ru="Будешь чаю?">Будеш чай?</span></span><em>You look tired. Fancy a cuppa?</em></div>
+<div data-say="I&amp;#39;m knackered. I worked twelve hours. I&amp;#39;m knackered."><b>I&#39;m knackered</b><span><span data-tr-uk="я страшенно втомився" data-tr-ru="я вымотан">я страшенно втомився</span></span><em>I worked twelve hours. I&#39;m knackered.</em></div>
+<div data-say="It&amp;#39;s chucking it down. Take an umbrella, it&amp;#39;s chucking it down."><b>It&#39;s chucking it down</b><span><span data-tr-uk="ллє як з відра" data-tr-ru="льёт как из ведра">ллє як з відра</span></span><em>Take an umbrella, it&#39;s chucking it down.</em></div>
+<div data-say="to queue. The British love to queue."><b>to queue</b><span><span data-tr-uk="стояти в черзі" data-tr-ru="стоять в очереди">стояти в черзі</span></span><em>The British love to queue.</em></div>
+<div data-say="Sorted!. I&amp;#39;ve booked the tickets. Sorted!"><b>Sorted!</b><span><span data-tr-uk="Готово! Вирішено!" data-tr-ru="Готово! Решено!">Готово! Вирішено!</span></span><em>I&#39;ve booked the tickets. Sorted!</em></div>
+<div data-say="No worries. &quot;Sorry I&amp;#39;m late.&quot; &quot;No worries.&quot;"><b>No worries</b><span><span data-tr-uk="нічого страшного" data-tr-ru="ничего страшного">нічого страшного</span></span><em>"Sorry I&#39;m late." "No worries."</em></div>
+<div data-say="to pop in / to pop out. I&amp;#39;m just popping out to the shop."><b>to pop in / to pop out</b><span><span data-tr-uk="заскочити / вискочити ненадовго" data-tr-ru="заскочить / выскочить ненадолго">заскочити / вискочити ненадовго</span></span><em>I&#39;m just popping out to the shop.</em></div>
+<div data-say="I&amp;#39;m skint. I can&amp;#39;t go out tonight, I&amp;#39;m skint."><b>I&#39;m skint</b><span><span data-tr-uk="я на мілині" data-tr-ru="я на мели, без денег">я на мілині</span></span><em>I can&#39;t go out tonight, I&#39;m skint.</em></div>
+<div data-say="a quid. It only cost five quid."><b>a quid</b><span><span data-tr-uk="фунт (розмовне)" data-tr-ru="фунт (разговорное)">фунт (розмовне)</span></span><em>It only cost five quid.</em></div>
+<div data-say="a fortnight. I&amp;#39;m going on holiday for a fortnight."><b>a fortnight</b><span><span data-tr-uk="два тижні" data-tr-ru="две недели">два тижні</span></span><em>I&#39;m going on holiday for a fortnight.</em></div>
+<div data-say="I can&amp;#39;t be bothered. I can&amp;#39;t be bothered to cook tonight."><b>I can&#39;t be bothered</b><span><span data-tr-uk="мені ліньки" data-tr-ru="мне лень">мені ліньки</span></span><em>I can&#39;t be bothered to cook tonight.</em></div>
+<div data-say="the tube. I take the tube to work every day."><b>the tube</b><span><span data-tr-uk="метро в Лондоні" data-tr-ru="метро в Лондоне">метро в Лондоні</span></span><em>I take the tube to work every day.</em></div>
+<div data-say="to top up. I need to top up my Oyster card."><b>to top up</b><span><span data-tr-uk="поповнити (картку, рахунок)" data-tr-ru="пополнить (карту, счёт)">поповнити (картку, рахунок)</span></span><em>I need to top up my Oyster card.</em></div>
+<div data-say="a takeaway. Let&amp;#39;s just get a takeaway tonight."><b>a takeaway</b><span><span data-tr-uk="їжа на виніс" data-tr-ru="еда навынос">їжа на виніс</span></span><em>Let&#39;s just get a takeaway tonight.</em></div>
+<div data-say="Mind the gap. Mind the gap between the train and the platform."><b>Mind the gap</b><span><span data-tr-uk="обережно, зазор (у метро)" data-tr-ru="осторожно, зазор (в метро)">обережно, зазор (у метро)</span></span><em>Mind the gap between the train and the platform.</em></div>
+<div data-say="brilliant / rubbish. The film was brilliant, but the food was rubbish."><b>brilliant / rubbish</b><span><span data-tr-uk="чудово / жахливо (сміття)" data-tr-ru="отлично / отстой (мусор)">чудово / жахливо (сміття)</span></span><em>The film was brilliant, but the food was rubbish.</em></div>
+<div data-say="to have a lie-in. On Sundays I always have a lie-in."><b>to have a lie-in</b><span><span data-tr-uk="поспати довше" data-tr-ru="поспать подольше">поспати довше</span></span><em>On Sundays I always have a lie-in.</em></div></div>
+    <h3 class="lk-sub">Match the phrase and the meaning</h3>
+    <div class="mt" data-mt="m1" data-pairs="[[&quot;I&amp;#39;m knackered&quot;, &quot;I&amp;#39;m very tired&quot;], [&quot;I&amp;#39;m skint&quot;, &quot;I have no money&quot;], [&quot;a fortnight&quot;, &quot;two weeks&quot;], [&quot;a quid&quot;, &quot;one pound&quot;], [&quot;Fancy a cuppa?&quot;, &quot;Would you like some tea?&quot;], [&quot;It&amp;#39;s chucking it down&quot;, &quot;It&amp;#39;s raining very hard&quot;], [&quot;to have a lie-in&quot;, &quot;to stay in bed longer&quot;], [&quot;I can&amp;#39;t be bothered&quot;, &quot;I&amp;#39;m too lazy to do it&quot;]]"></div><div class="score" data-mtres="m1"></div>
+    <h3 class="lk-sub">Choose the right phrase</h3>
+    <div class="ch" data-a="No worries"><span class="n">1</span><span class="s">"Thanks for the help!" "___"</span><span class="o"><button type="button">No worries</button><button type="button">I&#39;m skint</button></span></div>
+<div class="ch" data-a="top up"><span class="n">2</span><span class="s">I need to ___ my Oyster card before I take the tube.</span><span class="o"><button type="button">top up</button><button type="button">pop in</button></span></div>
+<div class="ch" data-a="popping out"><span class="n">3</span><span class="s">I&#39;m just ___ to the shop. Back in five minutes!</span><span class="o"><button type="button">popping out</button><button type="button">queuing</button></span></div>
+<div class="ch" data-a="brilliant"><span class="n">4</span><span class="s">The concert was ___! Best night ever.</span><span class="o"><button type="button">brilliant</button><button type="button">rubbish</button></span></div>
+<div class="ch" data-a="skint"><span class="n">5</span><span class="s">I can&#39;t buy a new phone this month. I&#39;m ___.</span><span class="o"><button type="button">skint</button><button type="button">knackered</button></span></div>
+<div class="ch" data-a="queuing"><span class="n">6</span><span class="s">Everyone was ___ outside the bakery at 7 am.</span><span class="o"><button type="button">queuing</button><button type="button">topping up</button></span></div>
+<div class="ch" data-a="have a lie-in"><span class="n">7</span><span class="s">It&#39;s Saturday. I&#39;m going to ___ and get up at eleven.</span><span class="o"><button type="button">have a lie-in</button><button type="button">mind the gap</button></span></div>
+<div class="ch" data-a="quid"><span class="n">8</span><span class="s">The tickets were only ten ___.</span><span class="o"><button type="button">quid</button><button type="button">fortnight</button></span></div>
+<div class="ch" data-a="Sorted"><span class="n">9</span><span class="s">I&#39;ve paid the bill and booked a taxi. ___!</span><span class="o"><button type="button">Sorted</button><button type="button">Cheers</button></span></div>
+<div class="ch" data-a="takeaway"><span class="n">10</span><span class="s">I&#39;m too tired to cook. Let&#39;s order a ___.</span><span class="o"><button type="button">takeaway</button><button type="button">cuppa</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Культурная заметка:&lt;/b&gt; британцы говорят «Cheers» вместо «Thank you» постоянно: в автобусе, в кафе, в магазине. «Sorry» говорят даже тогда, когда наступили на ногу ИМ. Очередь (queue) почти священна: влезть без очереди очень плохо.&lt;br&gt;&lt;b&gt;Вопросы ученику:&lt;/b&gt; Which phrases do you know already? Which one is your favourite? When are you knackered? What do you do when you can&amp;#39;t be bothered to cook?&lt;br&gt;&lt;b&gt;Ответы:&lt;/b&gt; No worries · top up · popping out · brilliant · skint · queuing · have a lie-in · quid · Sorted · takeaway."><b>Культурна нотатка:</b> британці кажуть «Cheers» замість «Thank you» постійно: в автобусі, в кафе, в магазині. «Sorry» кажуть навіть тоді, коли наступили на ногу ЇМ. Черга (queue) майже священна: пролізти без черги дуже погано.<br><b>Питання учню:</b> Which phrases do you know already? Which one is your favourite? When are you knackered? What do you do when you can&#39;t be bothered to cook?<br><b>Відповіді:</b> No worries · top up · popping out · brilliant · skint · queuing · have a lie-in · quid · Sorted · takeaway.</p>
+  </section>
+  <section id="s3" data-stage="grammar" data-min="10">
+    <h2><span class="lk-n">3</span>The big four: quick review <span class="tag">grammar</span><span class="lk-mode">teacher + student</span></h2>
+
+    <div class="gram">
+      <div class="gb g1"><h3>Present Simple</h3><span class="f">V / V+s · do / does</span><p>Habits, facts, timetables.<br>I <b>work</b> in an office. He <b>takes</b> the tube.<br>She <b>doesn&#39;t drink</b> coffee. <b>Do</b> you <b>like</b> tea?<br><i>always, usually, often, never, every day</i></p></div>
+      <div class="gb g2"><h3>Present Continuous</h3><span class="f">am / is / are + -ing</span><p>Now, these days, temporary situations, plans.<br>I<b>&#39;m reading</b> a great book at the moment.<br>We<b>&#39;re meeting</b> Tom on Friday.<br><i>now, right now, at the moment, these days, this week</i></p></div>
+      <div class="gb g3"><h3>Past Simple</h3><span class="f">V2 / V-ed · did / didn&#39;t</span><p>Finished actions, one after another.<br>I <b>moved</b> to Leeds in 2020. We <b>went</b> to a pub.<br>I <b>didn&#39;t see</b> him. <b>Did</b> you <b>enjoy</b> it?<br><i>yesterday, last week, ago, in 2020</i></p></div>
+      <div class="gb g1"><h3>Past Continuous</h3><span class="f">was / were + -ing</span><p>The background, an action in progress.<br>It <b>was raining</b> when I <b>left</b> home.<br>While I <b>was waiting</b> for the bus, I <b>met</b> Anna.<br><i>while, when, at 8 pm yesterday, all evening</i></p></div>
+    </div>
+    <div class="warn"><b>State verbs</b> (know, like, want, need, believe, understand) usually don&#39;t take -ing: I <b>know</b> him (not I&#39;m knowing).</div>
+    <h3 class="lk-sub">Which tense? Choose</h3>
+    <div class="ch" data-a="go"><span class="n">1</span><span class="s">I ___ to work by bus every day.</span><span class="o"><button type="button">go</button><button type="button">am going</button></span></div>
+<div class="ch" data-a="is raining"><span class="n">2</span><span class="s">Look! It ___ again.</span><span class="o"><button type="button">rains</button><button type="button">is raining</button></span></div>
+<div class="ch" data-a="went"><span class="n">3</span><span class="s">We ___ to Brighton last summer.</span><span class="o"><button type="button">went</button><button type="button">were going</button></span></div>
+<div class="ch" data-a="was watching"><span class="n">4</span><span class="s">I ___ TV when the phone rang.</span><span class="o"><button type="button">watched</button><button type="button">was watching</button></span></div>
+<div class="ch" data-a="doesn&#x27;t like"><span class="n">5</span><span class="s">She ___ tea, she prefers coffee.</span><span class="o"><button type="button">doesn&#39;t like</button><button type="button">isn&#39;t liking</button></span></div>
+<div class="ch" data-a="is working"><span class="n">6</span><span class="s">These days he ___ from home.</span><span class="o"><button type="button">works</button><button type="button">is working</button></span></div>
+<div class="ch" data-a="were having"><span class="n">7</span><span class="s">When I arrived, they ___ dinner.</span><span class="o"><button type="button">had</button><button type="button">were having</button></span></div>
+<div class="ch" data-a="does"><span class="n">8</span><span class="s">What time ___ the shop close on Sundays?</span><span class="o"><button type="button">does</button><button type="button">is</button></span></div>
+<div class="ch" data-a="saw"><span class="n">9</span><span class="s">I ___ him two days ago.</span><span class="o"><button type="button">saw</button><button type="button">was seeing</button></span></div>
+<div class="ch" data-a="were standing"><span class="n">10</span><span class="s">While we ___ in the queue, it started to rain.</span><span class="o"><button type="button">stood</button><button type="button">were standing</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Простое объяснение:&lt;/b&gt;&lt;br&gt;&lt;b&gt;Present Simple&lt;/b&gt; = привычка, факт, расписание: «я работаю в офисе», «поезд в 7:15».&lt;br&gt;&lt;b&gt;Present Continuous&lt;/b&gt; = сейчас или «в этот период», а ещё планы: «сейчас я читаю», «на этой неделе я работаю из дома», «в пятницу мы встречаемся с Томом».&lt;br&gt;&lt;b&gt;Past Simple&lt;/b&gt; = законченное действие в прошлом, события по очереди: «я переехал в 2020», «мы пошли в паб».&lt;br&gt;&lt;b&gt;Past Continuous&lt;/b&gt; = процесс в прошлом, фон для истории: «шёл дождь, когда я вышел».&lt;br&gt;&lt;b&gt;Главное правило для историй:&lt;/b&gt; фон = Past Continuous, события = Past Simple.&lt;br&gt;&lt;b&gt;Подсказка для перевода:&lt;/b&gt; русский прошедший несовершенного вида («шёл, ждал, смотрел») часто = Past Continuous, совершенного вида («пришёл, увидел, купил») = Past Simple.&lt;br&gt;&lt;b&gt;Ответы:&lt;/b&gt; go · is raining · went · was watching · doesn&amp;#39;t like · is working · were having · does · saw · were standing."><b>Просте пояснення:</b><br><b>Present Simple</b> = звичка, факт, розклад: «я працюю в офісі», «потяг о 7:15».<br><b>Present Continuous</b> = зараз або «у цей період», а ще плани: «зараз я читаю», «цього тижня я працюю з дому», «у п&#39;ятницю ми зустрічаємося з Томом».<br><b>Past Simple</b> = закінчена дія в минулому, події по черзі: «я переїхав у 2020», «ми пішли в паб».<br><b>Past Continuous</b> = процес у минулому, фон для історії: «йшов дощ, коли я вийшов».<br><b>Головне правило для історій:</b> фон = Past Continuous, події = Past Simple.<br><b>Відповіді:</b> go · is raining · went · was watching · doesn&#39;t like · is working · were having · does · saw · were standing.</p>
+  </section>
+  <section id="s4" data-stage="grammar" data-min="15">
+    <h2><span class="lk-n">4</span>Workout: mixed tenses <span class="tag">grammar</span><span class="lk-mode">teacher + student</span></h2>
+
+    <h3 class="lk-sub">A. Put the verbs into the correct tense (20)</h3>
+    <div class="ty" data-a="lives"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>My brother ___ (live) in Manchester.</span><input type="text" autocomplete="off" spellcheck="false" style="width:240px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="is looking"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Right now he ___ (look) for a new flat.</span><input type="text" autocomplete="off" spellcheck="false" style="width:240px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="found"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Last year he ___ (find) a job in a bank.</span><input type="text" autocomplete="off" spellcheck="false" style="width:240px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="arrived was raining|arrived, was raining"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>When he ___ (arrive), it ___ (rain).</span><input type="text" autocomplete="off" spellcheck="false" style="width:240px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="don&#x27;t have|do not have"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>I usually ___ (not / have) breakfast.</span><input type="text" autocomplete="off" spellcheck="false" style="width:240px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Did enjoy|Did, enjoy"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>___ you ___ (enjoy) the party last night?</span><input type="text" autocomplete="off" spellcheck="false" style="width:240px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="is sleeping"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>Shh! The baby ___ (sleep).</span><input type="text" autocomplete="off" spellcheck="false" style="width:240px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="were walking saw|were walking, saw"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>We ___ (walk) home when we ___ (see) the accident.</span><input type="text" autocomplete="off" spellcheck="false" style="width:240px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="never drinks"><span class="n" style="font-weight:800;color:var(--violet)">9</span><span>She ___ (never / drink) coffee after 6 pm.</span><input type="text" autocomplete="off" spellcheck="false" style="width:240px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="am working|&#x27;m working"><span class="n" style="font-weight:800;color:var(--violet)">10</span><span>This week I ___ (work) from home.</span><input type="text" autocomplete="off" spellcheck="false" style="width:240px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="didn&#x27;t hear were listening|did not hear were listening|didn&#x27;t hear, were listening"><span class="n" style="font-weight:800;color:var(--violet)">11</span><span>They ___ (not / hear) the doorbell because they ___ (listen) to music.</span><input type="text" autocomplete="off" spellcheck="false" style="width:240px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="does go|does, go"><span class="n" style="font-weight:800;color:var(--violet)">12</span><span>How often ___ he ___ (go) to the gym?</span><input type="text" autocomplete="off" spellcheck="false" style="width:240px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="lost"><span class="n" style="font-weight:800;color:var(--violet)">13</span><span>I ___ (lose) my keys yesterday.</span><input type="text" autocomplete="off" spellcheck="false" style="width:240px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="were doing|were, doing"><span class="n" style="font-weight:800;color:var(--violet)">14</span><span>What ___ you ___ (do) at 10 last night?</span><input type="text" autocomplete="off" spellcheck="false" style="width:240px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="closes"><span class="n" style="font-weight:800;color:var(--violet)">15</span><span>The shop ___ (close) at 9 pm on weekdays.</span><input type="text" autocomplete="off" spellcheck="false" style="width:240px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="are queuing|are queueing"><span class="n" style="font-weight:800;color:var(--violet)">16</span><span>Look, they ___ (queue) outside the bakery again!</span><input type="text" autocomplete="off" spellcheck="false" style="width:240px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="was cooking called|was cooking, called"><span class="n" style="font-weight:800;color:var(--violet)">17</span><span>While I ___ (cook), my wife ___ (call).</span><input type="text" autocomplete="off" spellcheck="false" style="width:240px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="don&#x27;t understand|do not understand"><span class="n" style="font-weight:800;color:var(--violet)">18</span><span>I ___ (not / understand) this word.</span><input type="text" autocomplete="off" spellcheck="false" style="width:240px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="are meeting|&#x27;re meeting"><span class="n" style="font-weight:800;color:var(--violet)">19</span><span>We ___ (meet) Tom on Friday, it&#39;s all sorted.</span><input type="text" autocomplete="off" spellcheck="false" style="width:240px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="bought went|bought, went"><span class="n" style="font-weight:800;color:var(--violet)">20</span><span>He ___ (buy) a takeaway and ___ (go) home.</span><input type="text" autocomplete="off" spellcheck="false" style="width:240px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+    <h3 class="lk-sub">B. Fix the mistake</h3>
+    <div class="ty" data-a="I have known him for years|I know him"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>I am knowing him for years.</span><input type="text" autocomplete="off" spellcheck="false" style="width:340px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="She doesn&#x27;t like tea"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>She don&#39;t like tea.</span><input type="text" autocomplete="off" spellcheck="false" style="width:340px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Yesterday I went to the shop"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Yesterday I was go to the shop.</span><input type="text" autocomplete="off" spellcheck="false" style="width:340px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Where do you live"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Where you live?</span><input type="text" autocomplete="off" spellcheck="false" style="width:340px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="I was watching TV when he called"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>I was watching TV when he was calling.</span><input type="text" autocomplete="off" spellcheck="false" style="width:340px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Did you see the match"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Did you saw the match?</span><input type="text" autocomplete="off" spellcheck="false" style="width:340px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Look! It&#x27;s raining|Look! It is raining|Look, it&#x27;s raining"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>Look! It rains.</span><input type="text" autocomplete="off" spellcheck="false" style="width:340px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="He works in London"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>He work in London.</span><input type="text" autocomplete="off" spellcheck="false" style="width:340px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;A:&lt;/b&gt; lives · is looking · found · arrived, was raining · don&amp;#39;t have · Did enjoy · is sleeping · were walking, saw · never drinks · am working · didn&amp;#39;t hear, were listening · does go · lost · were doing · closes · are queuing · was cooking, called · don&amp;#39;t understand · are meeting · bought, went.&lt;br&gt;&lt;b&gt;B:&lt;/b&gt; про know: можно «I know him» или уже Present Perfect «I have known him for years» (если ученик не знает, просто I know him). Остальные: doesn&amp;#39;t like · went · do you live · called · see · is raining · works.&lt;br&gt;&lt;b&gt;Совет:&lt;/b&gt; на каждое предложение спрашивайте «почему это время?» Пусть объясняет словами-подсказками."><b>A:</b> lives · is looking · found · arrived, was raining · don&#39;t have · Did enjoy · is sleeping · were walking, saw · never drinks · am working · didn&#39;t hear, were listening · does go · lost · were doing · closes · are queuing · was cooking, called · don&#39;t understand · are meeting · bought, went.<br><b>B:</b> про know: можна «I know him» або вже Present Perfect «I have known him for years» (якщо учень не знає, просто I know him). Інші: doesn&#39;t like · went · do you live · called · see · is raining · works.<br><b>Порада:</b> на кожне речення питайте «чому цей час?» Нехай пояснює словами-підказками.</p>
+  </section>
+  <section id="s5" data-stage="translation" data-min="25">
+    <h2><span class="lk-n">5</span>Big translation: a weekend in London <span class="tag">translation</span><span class="lk-mode">teacher + student</span></h2>
+
+    <div class="pics"><figure><img src="https://images.unsplash.com/photo-1519692933481-e162a57d6721?w=600&q=70&auto=format&fit=crop" alt="It was chucking it down" loading="lazy"><figcaption>It was chucking it down<small>Photo: Unsplash</small></figcaption></figure><figure><img src="https://images.unsplash.com/photo-1777372307632-e5a1db376415?w=600&q=70&auto=format&fit=crop" alt="Fancy a cuppa?" loading="lazy"><figcaption>Fancy a cuppa?<small>Photo: Unsplash</small></figcaption></figure><figure><img src="https://images.unsplash.com/photo-1773227059334-38d10a9075f2?w=600&q=70&auto=format&fit=crop" alt="A cosy evening" loading="lazy"><figcaption>A cosy evening<small>Photo: Unsplash</small></figcaption></figure></div>
+    <p class="lk-ins">Read the whole text first. Then translate it into English <b>sentence by sentence</b>. Think: habit (Present Simple), now or these days (Present Continuous), finished event (Past Simple) or background (Past Continuous)? Use the British phrases from today!</p>
+    <div class="text"><h3>Выходные в Лондоне</h3><p><span data-tr-uk="Мій друг Том живе в Лондоні вже кілька років. Він працює в банку і щодня їздить на роботу на метро. Зазвичай він встає о сьомій і п&amp;#39;є чай. Але цього тижня він працює з дому, бо в його офісі ремонт. Минулої суботи я приїхав до нього в гості. Коли мій потяг прибув, лило як з відра. Том чекав мене на платформі з парасолькою. Ми зайшли в маленьке кафе, і він сказав: «Будеш чай?» Поки ми стояли в черзі, Том розповідав мені про свою нову роботу. Він сказав, що страшенно втомився, бо працює по дванадцять годин. Увечері нам було ліньки готувати, тому ми замовили їжу на виніс. Поки ми їли, Том показував мені фото зі своєї відпустки. У неділю ми поспали довше, а потім поїхали в центр на метро. Я забув поповнити свою картку, і Том заплатив за мене. Я сказав: «Дякую! Я поверну тобі п&amp;#39;ять фунтів». Він відповів: «Нічого страшного». Зараз я сиджу вдома і пишу йому повідомлення. Наступного місяця він приїжджає до мене на два тижні." data-tr-ru="Мой друг Том живёт в Лондоне уже несколько лет. Он работает в банке и каждый день ездит на работу на метро. Обычно он встаёт в семь и пьёт чай. Но на этой неделе он работает из дома, потому что в его офисе ремонт. В прошлую субботу я приехал к нему в гости. Когда мой поезд прибыл, лило как из ведра. Том ждал меня на платформе с зонтом. Мы зашли в маленькое кафе, и он сказал: «Будешь чай?» Пока мы стояли в очереди, Том рассказывал мне о своей новой работе. Он сказал, что вымотан, потому что работает по двенадцать часов. Вечером нам было лень готовить, поэтому мы заказали еду навынос. Пока мы ели, Том показывал мне фото со своего отпуска. В воскресенье мы поспали подольше, а потом поехали в центр на метро. Я забыл пополнить свою карту, и Том заплатил за меня. Я сказал: «Спасибо! Я верну тебе пять фунтов». Он ответил: «Ничего страшного». Сейчас я сижу дома и пишу ему сообщение. В следующем месяце он приезжает ко мне на две недели.">Мій друг Том живе в Лондоні вже кілька років. Він працює в банку і щодня їздить на роботу на метро. Зазвичай він встає о сьомій і п&#39;є чай. Але цього тижня він працює з дому, бо в його офісі ремонт. Минулої суботи я приїхав до нього в гості. Коли мій потяг прибув, лило як з відра. Том чекав мене на платформі з парасолькою. Ми зайшли в маленьке кафе, і він сказав: «Будеш чай?» Поки ми стояли в черзі, Том розповідав мені про свою нову роботу. Він сказав, що страшенно втомився, бо працює по дванадцять годин. Увечері нам було ліньки готувати, тому ми замовили їжу на виніс. Поки ми їли, Том показував мені фото зі своєї відпустки. У неділю ми поспали довше, а потім поїхали в центр на метро. Я забув поповнити свою картку, і Том заплатив за мене. Я сказав: «Дякую! Я поверну тобі п&#39;ять фунтів». Він відповів: «Нічого страшного». Зараз я сиджу вдома і пишу йому повідомлення. Наступного місяця він приїжджає до мене на два тижні.</span></p></div>
+    <h3 class="lk-sub">Translate sentence by sentence</h3>
+    <div class="ty" data-a="My friend Tom lives in London|My friend Tom has lived in London for a few years|My friend Tom has been living in London for a few years|My friend Tom has lived in London for several years"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span style="flex:1 1 100%"><span data-tr-uk="Мій друг Том живе в Лондоні вже кілька років." data-tr-ru="Мой друг Том живёт в Лондоне уже несколько лет.">Мій друг Том живе в Лондоні вже кілька років.</span></span><input type="text" autocomplete="off" spellcheck="false" style="width:min(440px,100%)" placeholder="In English..."><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="He works in a bank and takes the tube to work every day|He works at a bank and takes the tube to work every day|He works in a bank and goes to work by tube every day|He works at a bank and goes to work by tube every day"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span style="flex:1 1 100%"><span data-tr-uk="Він працює в банку і щодня їздить на роботу на метро." data-tr-ru="Он работает в банке и каждый день ездит на работу на метро.">Він працює в банку і щодня їздить на роботу на метро.</span></span><input type="text" autocomplete="off" spellcheck="false" style="width:min(440px,100%)" placeholder="In English..."><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="He usually gets up at seven and drinks tea|He usually gets up at seven and has a cup of tea|He usually gets up at 7 and drinks tea|Usually he gets up at seven and drinks tea|He usually gets up at seven and has tea"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span style="flex:1 1 100%"><span data-tr-uk="Зазвичай він встає о сьомій і п&amp;#39;є чай." data-tr-ru="Обычно он встаёт в семь и пьёт чай.">Зазвичай він встає о сьомій і п&#39;є чай.</span></span><input type="text" autocomplete="off" spellcheck="false" style="width:min(440px,100%)" placeholder="In English..."><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="But this week he&#x27;s working from home because they&#x27;re repairing his office|But this week he is working from home because his office is being repaired|But this week he&#x27;s working from home because his office is being renovated|But this week he is working from home because they are renovating his office|But this week he&#x27;s working from home because his office is under renovation"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span style="flex:1 1 100%"><span data-tr-uk="Але цього тижня він працює з дому, бо в його офісі ремонт." data-tr-ru="Но на этой неделе он работает из дома, потому что в его офисе ремонт.">Але цього тижня він працює з дому, бо в його офісі ремонт.</span></span><input type="text" autocomplete="off" spellcheck="false" style="width:min(440px,100%)" placeholder="In English..."><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Last Saturday I came to visit him|Last Saturday I visited him|Last Saturday I went to visit him|Last Saturday I went to see him"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span style="flex:1 1 100%"><span data-tr-uk="Минулої суботи я приїхав до нього в гості." data-tr-ru="В прошлую субботу я приехал к нему в гости.">Минулої суботи я приїхав до нього в гості.</span></span><input type="text" autocomplete="off" spellcheck="false" style="width:min(440px,100%)" placeholder="In English..."><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="When my train arrived, it was chucking it down|When my train arrived it was chucking it down|When my train arrived, it was raining cats and dogs|When my train arrived, it was pouring"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span style="flex:1 1 100%"><span data-tr-uk="Коли мій потяг прибув, лило як з відра." data-tr-ru="Когда мой поезд прибыл, лило как из ведра.">Коли мій потяг прибув, лило як з відра.</span></span><input type="text" autocomplete="off" spellcheck="false" style="width:min(440px,100%)" placeholder="In English..."><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Tom was waiting for me on the platform with an umbrella"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span style="flex:1 1 100%"><span data-tr-uk="Том чекав мене на платформі з парасолькою." data-tr-ru="Том ждал меня на платформе с зонтом.">Том чекав мене на платформі з парасолькою.</span></span><input type="text" autocomplete="off" spellcheck="false" style="width:min(440px,100%)" placeholder="In English..."><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="We popped into a small cafe and he said, &quot;Fancy a cuppa?&quot;|We popped into a little cafe and he said &quot;Fancy a cuppa?&quot;|We went into a small cafe and he said, &quot;Fancy a cuppa?&quot;|We popped into a small café and he said, &quot;Fancy a cuppa?&quot;"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span style="flex:1 1 100%"><span data-tr-uk="Ми зайшли в маленьке кафе, і він сказав: «Будеш чай?»" data-tr-ru="Мы зашли в маленькое кафе, и он сказал: «Будешь чай?»">Ми зайшли в маленьке кафе, і він сказав: «Будеш чай?»</span></span><input type="text" autocomplete="off" spellcheck="false" style="width:min(440px,100%)" placeholder="In English..."><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="While we were queuing, Tom was telling me about his new job|While we were standing in the queue, Tom was telling me about his new job|While we were queueing, Tom was telling me about his new job"><span class="n" style="font-weight:800;color:var(--violet)">9</span><span style="flex:1 1 100%"><span data-tr-uk="Поки ми стояли в черзі, Том розповідав мені про свою нову роботу." data-tr-ru="Пока мы стояли в очереди, Том рассказывал мне о своей новой работе.">Поки ми стояли в черзі, Том розповідав мені про свою нову роботу.</span></span><input type="text" autocomplete="off" spellcheck="false" style="width:min(440px,100%)" placeholder="In English..."><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="He said he was knackered because he works twelve hours a day|He said that he was knackered because he was working twelve hours a day|He said he was knackered because he works twelve-hour days|He said he was knackered because he was working twelve hours a day"><span class="n" style="font-weight:800;color:var(--violet)">10</span><span style="flex:1 1 100%"><span data-tr-uk="Він сказав, що страшенно втомився, бо працює по дванадцять годин." data-tr-ru="Он сказал, что вымотан, потому что работает по двенадцать часов.">Він сказав, що страшенно втомився, бо працює по дванадцять годин.</span></span><input type="text" autocomplete="off" spellcheck="false" style="width:min(440px,100%)" placeholder="In English..."><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="In the evening we couldn&#x27;t be bothered to cook, so we ordered a takeaway|In the evening we couldn&#x27;t be bothered to cook so we got a takeaway|In the evening we couldn&#x27;t be bothered to cook, so we got a takeaway"><span class="n" style="font-weight:800;color:var(--violet)">11</span><span style="flex:1 1 100%"><span data-tr-uk="Увечері нам було ліньки готувати, тому ми замовили їжу на виніс." data-tr-ru="Вечером нам было лень готовить, поэтому мы заказали еду навынос.">Увечері нам було ліньки готувати, тому ми замовили їжу на виніс.</span></span><input type="text" autocomplete="off" spellcheck="false" style="width:min(440px,100%)" placeholder="In English..."><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="While we were eating, Tom was showing me photos from his holiday|While we were eating Tom was showing me photos from his holiday|While we were eating, Tom showed me photos from his holiday"><span class="n" style="font-weight:800;color:var(--violet)">12</span><span style="flex:1 1 100%"><span data-tr-uk="Поки ми їли, Том показував мені фото зі своєї відпустки." data-tr-ru="Пока мы ели, Том показывал мне фото со своего отпуска.">Поки ми їли, Том показував мені фото зі своєї відпустки.</span></span><input type="text" autocomplete="off" spellcheck="false" style="width:min(440px,100%)" placeholder="In English..."><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="On Sunday we had a lie-in and then took the tube to the centre|On Sunday we had a lie-in and then went to the centre by tube|On Sunday we had a lie-in, then took the tube to the centre|On Sunday we had a lie-in and then took the tube into town"><span class="n" style="font-weight:800;color:var(--violet)">13</span><span style="flex:1 1 100%"><span data-tr-uk="У неділю ми поспали довше, а потім поїхали в центр на метро." data-tr-ru="В воскресенье мы поспали подольше, а потом поехали в центр на метро.">У неділю ми поспали довше, а потім поїхали в центр на метро.</span></span><input type="text" autocomplete="off" spellcheck="false" style="width:min(440px,100%)" placeholder="In English..."><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="I forgot to top up my card and Tom paid for me|I forgot to top up my card, and Tom paid for me|I forgot to top up my Oyster card and Tom paid for me"><span class="n" style="font-weight:800;color:var(--violet)">14</span><span style="flex:1 1 100%"><span data-tr-uk="Я забув поповнити свою картку, і Том заплатив за мене." data-tr-ru="Я забыл пополнить свою карту, и Том заплатил за меня.">Я забув поповнити свою картку, і Том заплатив за мене.</span></span><input type="text" autocomplete="off" spellcheck="false" style="width:min(440px,100%)" placeholder="In English..."><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="I said, &quot;Cheers! I&#x27;ll pay you back five quid.&quot;|I said &quot;Cheers! I&#x27;ll pay you back five quid&quot;|I said, &quot;Cheers! I&#x27;ll give you back five quid.&quot;|I said, &quot;Cheers! I&#x27;ll pay you back five pounds.&quot;|I said &quot;Cheers, I&#x27;ll pay you back five quid&quot;"><span class="n" style="font-weight:800;color:var(--violet)">15</span><span style="flex:1 1 100%"><span data-tr-uk="Я сказав: «Дякую! Я поверну тобі п&amp;#39;ять фунтів»." data-tr-ru="Я сказал: «Спасибо! Я верну тебе пять фунтов».">Я сказав: «Дякую! Я поверну тобі п&#39;ять фунтів».</span></span><input type="text" autocomplete="off" spellcheck="false" style="width:min(440px,100%)" placeholder="In English..."><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="He said, &quot;No worries.&quot;|He answered, &quot;No worries.&quot;|He replied, &quot;No worries.&quot;|He said &quot;No worries&quot;"><span class="n" style="font-weight:800;color:var(--violet)">16</span><span style="flex:1 1 100%"><span data-tr-uk="Він відповів: «Нічого страшного»." data-tr-ru="Он ответил: «Ничего страшного».">Він відповів: «Нічого страшного».</span></span><input type="text" autocomplete="off" spellcheck="false" style="width:min(440px,100%)" placeholder="In English..."><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Now I&#x27;m sitting at home and writing him a message|Right now I&#x27;m sitting at home and writing him a message|Now I am sitting at home and writing a message to him|Now I&#x27;m sitting at home and texting him"><span class="n" style="font-weight:800;color:var(--violet)">17</span><span style="flex:1 1 100%"><span data-tr-uk="Зараз я сиджу вдома і пишу йому повідомлення." data-tr-ru="Сейчас я сижу дома и пишу ему сообщение.">Зараз я сиджу вдома і пишу йому повідомлення.</span></span><input type="text" autocomplete="off" spellcheck="false" style="width:min(440px,100%)" placeholder="In English..."><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Next month he&#x27;s coming to visit me for a fortnight|Next month he is coming to see me for a fortnight|Next month he&#x27;s coming to stay with me for a fortnight|Next month he&#x27;s coming to me for a fortnight|Next month he&#x27;s coming to visit me for two weeks"><span class="n" style="font-weight:800;color:var(--violet)">18</span><span style="flex:1 1 100%"><span data-tr-uk="Наступного місяця він приїжджає до мене на два тижні." data-tr-ru="В следующем месяце он приезжает ко мне на две недели.">Наступного місяця він приїжджає до мене на два тижні.</span></span><input type="text" autocomplete="off" spellcheck="false" style="width:min(440px,100%)" placeholder="In English..."><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Как работать:&lt;/b&gt; ученик сначала читает весь текст и называет, какие времена видит. Потом переводит по предложению устно, а сложные пишет. После каждого предложения спрашивайте: «Почему это время?»&lt;br&gt;&lt;b&gt;Подсказки по предложениям:&lt;/b&gt; 1 «живёт уже несколько лет» можно Present Simple или Present Perfect. 4 «на этой неделе работает» = Present Continuous (временно). 6 «лило» = фон, Past Continuous. 7 «ждал» = процесс. 9 и 12 «пока...» = while + Past Continuous. 15 «пять фунтов» = five quid. 18 «приезжает в следующем месяце» = план, Present Continuous.&lt;br&gt;&lt;b&gt;Образец полного перевода:&lt;/b&gt;&lt;br&gt;My friend Tom has lived in London for a few years. He works in a bank and takes the tube to work every day. He usually gets up at seven and has a cup of tea. But this week he&amp;#39;s working from home because his office is being repaired. Last Saturday I went to visit him. When my train arrived, it was chucking it down. Tom was waiting for me on the platform with an umbrella. We popped into a small café and he said, &amp;ldquo;Fancy a cuppa?&amp;rdquo; While we were queuing, Tom was telling me about his new job. He said he was knackered because he was working twelve hours a day. In the evening we couldn&amp;#39;t be bothered to cook, so we ordered a takeaway. While we were eating, Tom was showing me photos from his holiday. On Sunday we had a lie-in and then took the tube to the centre. I forgot to top up my card, so Tom paid for me. I said, &amp;ldquo;Cheers! I&amp;#39;ll pay you back five quid.&amp;rdquo; He said, &amp;ldquo;No worries.&amp;rdquo; Now I&amp;#39;m sitting at home and writing him a message. Next month he&amp;#39;s coming to visit me for a fortnight."><b>Як працювати:</b> учень спочатку читає весь текст і називає, які часи бачить. Потім перекладає по реченню усно, а складні пише. Після кожного речення питайте: «Чому цей час?»<br><b>Підказки по реченнях:</b> 1 «живе вже кілька років» можна Present Simple або Present Perfect. 4 «цього тижня працює» = Present Continuous (тимчасово). 6 «лило» = фон, Past Continuous. 7 «чекав» = процес. 9 і 12 «поки...» = while + Past Continuous. 15 «п&#39;ять фунтів» = five quid. 18 «приїжджає наступного місяця» = план, Present Continuous.<br><b>Зразок повного перекладу:</b><br>My friend Tom has lived in London for a few years. He works in a bank and takes the tube to work every day. He usually gets up at seven and has a cup of tea. But this week he&#39;s working from home because his office is being repaired. Last Saturday I went to visit him. When my train arrived, it was chucking it down. Tom was waiting for me on the platform with an umbrella. We popped into a small café and he said, &ldquo;Fancy a cuppa?&rdquo; While we were queuing, Tom was telling me about his new job. He said he was knackered because he was working twelve hours a day. In the evening we couldn&#39;t be bothered to cook, so we ordered a takeaway. While we were eating, Tom was showing me photos from his holiday. On Sunday we had a lie-in and then took the tube to the centre. I forgot to top up my card, so Tom paid for me. I said, &ldquo;Cheers! I&#39;ll pay you back five quid.&rdquo; He said, &ldquo;No worries.&rdquo; Now I&#39;m sitting at home and writing him a message. Next month he&#39;s coming to visit me for a fortnight.</p>
+  </section>
+  <section id="s6" data-stage="speaking" data-min="10">
+    <h2><span class="lk-n">6</span>Picture talk: life in the UK <span class="tag">speaking</span><span class="lk-mode">teacher + student</span></h2>
+
+    <p class="lk-ins">Describe each photo with <b>all four tenses</b>: What usually happens here? What is happening now? What happened before? What was happening when the photo was taken?</p>
+    <div class="pics"><figure><img src="https://images.unsplash.com/photo-1667981663831-c395f9505e1d?w=600&q=70&auto=format&fit=crop" alt="Photo 1: a rainy street" loading="lazy"><figcaption>Photo 1: a rainy street<small>Photo: Unsplash</small></figcaption></figure><figure><img src="https://images.unsplash.com/photo-1777372307632-e5a1db376415?w=600&q=70&auto=format&fit=crop" alt="Photo 2: a coffee shop" loading="lazy"><figcaption>Photo 2: a coffee shop<small>Photo: Unsplash</small></figcaption></figure><figure><img src="https://images.unsplash.com/photo-1554123168-b400f9c806ca?w=600&q=70&auto=format&fit=crop" alt="Photo 3: at the airport" loading="lazy"><figcaption>Photo 3: at the airport<small>Photo: Unsplash</small></figcaption></figure><figure><img src="https://images.unsplash.com/photo-1622352496174-9e1d969b1945?w=600&q=70&auto=format&fit=crop" alt="Photo 4: friends having fun" loading="lazy"><figcaption>Photo 4: friends having fun<small>Photo: Unsplash</small></figcaption></figure><figure><img src="https://images.unsplash.com/photo-1758874573615-a4fa078b1980?w=600&q=70&auto=format&fit=crop" alt="Photo 5: knackered at work" loading="lazy"><figcaption>Photo 5: knackered at work<small>Photo: Unsplash</small></figcaption></figure><figure><img src="https://images.unsplash.com/photo-1495654794940-1c0cd2aeedc1?w=600&q=70&auto=format&fit=crop" alt="Photo 6: a message" loading="lazy"><figcaption>Photo 6: a message<small>Photo: Unsplash</small></figcaption></figure></div>
+    <div class="phr"><b>Use these</b><ul><li>People usually... / It often...</li><li>Right now they&#39;re... / At the moment...</li><li>Ten minutes ago she...</li><li>When the photo was taken, it was...</li><li>British phrase: It&#39;s chucking it down / I&#39;m knackered / Fancy a cuppa?</li></ul></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Образец к фото 1:&lt;/b&gt; «It often rains in London. Right now it&amp;#39;s chucking it down and people are walking with umbrellas. Ten minutes ago they left work. When the photo was taken, they were hurrying to the tube.»&lt;br&gt;&lt;b&gt;Образец к фото 5:&lt;/b&gt; «She usually works till six. Now she&amp;#39;s sleeping at her desk, she&amp;#39;s knackered! Yesterday she worked twelve hours. While she was writing a report, she fell asleep.»"><b>Зразок до фото 1:</b> «It often rains in London. Right now it&#39;s chucking it down and people are walking with umbrellas. Ten minutes ago they left work. When the photo was taken, they were hurrying to the tube.»<br><b>Зразок до фото 5:</b> «She usually works till six. Now she&#39;s sleeping at her desk, she&#39;s knackered! Yesterday she worked twelve hours. While she was writing a report, she fell asleep.»</p>
+  </section>
+  <section id="s7" data-stage="speaking" data-min="10">
+    <h2><span class="lk-n">7</span>Role-play: real British situations <span class="tag">speaking</span><span class="lk-mode">teacher + student</span></h2>
+
+    <p class="lk-ins">Act out the situation with your teacher. Use at least <b>3 British phrases</b>. Then swap roles.</p>
+    <div class="spin"><div class="card" id="rCard">Click "Random situation"</div><br><button class="btn" type="button" data-spin="[&quot;At a café: order tea and a sandwich, the card machine isn&amp;#39;t working.&quot;, &quot;On the tube: a tourist asks you how to get to Oxford Circus.&quot;, &quot;Phone call: your friend asks what you are doing this weekend.&quot;, &quot;At work: your colleague asks why you were late this morning.&quot;, &quot;Meeting a friend: tell them what happened last weekend.&quot;, &quot;In a shop queue: someone tries to jump the queue.&quot;]" data-target="rCard">Random situation</button></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Как вести:&lt;/b&gt; вы играете вторую роль. Подталкивайте к разным временам: «What do you usually order? What happened this morning? What were you doing when...?»&lt;br&gt;&lt;b&gt;Пример (кафе):&lt;/b&gt; «Hi, can I get a cup of tea and a cheese sandwich, please?» / «Sorry, the card machine isn&amp;#39;t working.» / «Oh no, I&amp;#39;ve only got five quid.» / «No worries, that&amp;#39;s enough.» / «Brilliant, cheers!»"><b>Як вести:</b> ви граєте другу роль. Підштовхуйте до різних часів: «What do you usually order? What happened this morning? What were you doing when...?»<br><b>Приклад (кафе):</b> «Hi, can I get a cup of tea and a cheese sandwich, please?» / «Sorry, the card machine isn&#39;t working.» / «Oh no, I&#39;ve only got five quid.» / «No worries, that&#39;s enough.» / «Brilliant, cheers!»</p>
+  </section>
+  <section id="s8" data-stage="homework" data-min="0">
+    <h2><span class="lk-n">8</span>Homework <span class="tag">homework</span><span class="lk-mode">teacher + student</span></h2>
+
+    <div class="hwb">
+      <div class="hwc"><h3>My weekend</h3><p>Write <b>100-120 words</b> about your last weekend and your plans for this week. Use <b>all four tenses</b> and <b>5 British phrases</b> from the lesson.</p><textarea id="hwText" placeholder="I usually... Last Saturday I... While I was... This week I'm..."></textarea></div>
+      <div class="hwc"><h3>Bonus</h3><p>Finish translating the London text if you didn&#39;t finish it in class.</p></div>
+    </div>
+  </section>
+  <section class="end"><h2>Great job!</h2><p>See you next lesson.</p></section>
+</div>
+<div class="toast" id="toast"></div>
+<script>window.MURLY_LESSON={"id": "everyday-britain-tenses", "title": "Everyday Britain: four tenses review", "homework": ["s4", "s8"], "hw": {"s4": [{"type": "gap", "instruction": "Put the verbs into the correct tense.", "text": "My brother [lives] (live) in Manchester.\nRight now he [is looking] (look) for a new flat.\nLast year he [found] (find) a job in a bank.\nShh! The baby [is sleeping] (sleep).\nShe [never drinks] (never / drink) coffee after 6 pm.\nI [lost] (lose) my keys yesterday.\nWhat [were you doing] (you / do) at 10 last night?\nThe shop [closes] (close) at 9 pm on weekdays."}, {"type": "choice", "instruction": "Choose the correct option.", "text": "I {go|am going|went} to work by bus every day.\nLook! It {is raining|rains|was raining} again.\nI {was watching|watched|am watching} TV when the phone rang.\nI'm so tired. I'm {knackered|skint|sorted}.\nI need to {top up|pop in|queue} my Oyster card.\nTwo weeks = a {fortnight|quid|cuppa}."}], "s8": [{"type": "open", "instruction": "Write 100-120 words about your last weekend and your plans for this week. Use all four tenses and 5 British phrases from the lesson.", "text": "I usually ..."}]}};</script>
+<script>
+(function(){var l=(document.cookie.match(/(?:^|; )murly_lang=(\w+)/)||[])[1];try{l=l||localStorage.getItem('murly:tlang')}catch(e){}l=l==='ru'?'ru':'uk';document.querySelectorAll('[data-pairs-'+l+']').forEach(function(b){b.dataset.pairs=b.getAttribute('data-pairs-'+l)});})();
+</script>
+<script>
+const $ = (id) => document.getElementById(id);
+const LIS = {};
+function say(w, rate) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; const v = speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang) && /Google|Natural|Libby|Sonia|Daniel/.test(x.name)) || speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang)); if (v) u.voice = v; u.rate = rate || .95; speechSynthesis.speak(u); } catch (e) { } }
+const sh = (a) => a.map((x) => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map((x) => x[1]);
+document.querySelectorAll('.voc div').forEach((d) => d.onclick = () => say(d.dataset.say));
+document.querySelectorAll('[data-play]').forEach((b) => b.onclick = () => say(LIS[b.dataset.play], b.dataset.slow ? .75 : .95));
+document.querySelectorAll('[data-stop]').forEach((b) => b.onclick = () => { try { speechSynthesis.cancel(); } catch (e) { } });
+document.querySelectorAll('.ch').forEach((q) => q.querySelectorAll('button').forEach((b) => b.onclick = () => { if (q.classList.contains('ok')) return; const ok = b.textContent === q.dataset.a; q.classList.toggle('ok', ok); q.classList.toggle('bad', !ok); if (ok) { const s = q.querySelector('.s'); if (s && s.textContent.includes('___')) { s.textContent = s.textContent.replace('___', q.dataset.a); } } }));
+const norm = (x) => x.toLowerCase().replace(/[’']/g, "'").replace(/[,;:"“”«»]/g, ' ').replace(/\s+/g, ' ').replace(/[.!?]$/, '').trim();
+document.querySelectorAll('.ty').forEach((r) => { const inp = r.querySelector('input'); const chk = () => { const ok = r.dataset.a.split('|').some((a) => norm(a) === norm(inp.value)); r.classList.toggle('ok', ok); r.classList.toggle('bad', !ok && inp.value.trim() !== ''); }; r.querySelector('button').onclick = chk; inp.onkeydown = (e) => { if (e.key === 'Enter') chk(); }; });
+document.querySelectorAll('[data-mt]').forEach((box) => { const pairs = JSON.parse(box.dataset.pairs); const L = sh(pairs.map((p) => p[0])), R = sh(pairs.map((p) => p[1])); let sel = null, done = 0, err = 0; box.innerHTML = L.map((w, i) => `<button type="button" data-w="${w}">${w}</button><button type="button" data-d="${R[i]}">${R[i]}</button>`).join('');
+  box.querySelectorAll('button').forEach((b) => b.onclick = () => { if (b.classList.contains('done')) return; if (!sel || (sel.dataset.w && b.dataset.w) || (sel.dataset.d && b.dataset.d)) { if (sel) sel.classList.remove('sel'); sel = b; b.classList.add('sel'); return; } const w = sel.dataset.w || b.dataset.w, d = sel.dataset.d || b.dataset.d; if (pairs.some((p) => p[0] === w && p[1] === d)) { sel.classList.add('done'); b.classList.add('done'); done++; say(w); if (done === pairs.length) document.querySelector(`[data-mtres="${box.dataset.mt}"]`).textContent = err ? `Done! Mistakes: ${err}` : 'Perfect!'; } else err++; sel.classList.remove('sel'); sel = null; }); });
+document.querySelectorAll('[data-vids]').forEach((box) => JSON.parse(box.dataset.vids).forEach(([id, title, ch, qs]) => { const d = document.createElement('div'); d.className = 'vid'; d.innerHTML = `<div class="frame"><button class="play" type="button" style="background-image:url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)"><span>PLAY</span></button></div><div class="info"><h3>${title}</h3><small>YouTube · ${ch}</small><ol>${qs.map((q) => `<li>${q}</li>`).join('')}</ol></div>`; d.querySelector('.play').onclick = (e) => { e.currentTarget.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&cc_load_policy=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${title}"></iframe>`; }; box.appendChild(d); }));
+document.querySelectorAll('[data-spin]').forEach((b) => { const list = JSON.parse(b.dataset.spin); let last = -1; b.onclick = () => { let i; do { i = Math.floor(Math.random() * list.length); } while (i === last && list.length > 1); last = i; document.getElementById(b.dataset.target).textContent = list[i]; }; });
+try { const k = 'murly:' + (window.MURLY_LESSON ? MURLY_LESSON.id : 'x') + ':hw'; const t = $('hwText'); if (t) { t.value = localStorage.getItem(k) || ''; t.oninput = () => localStorage.setItem(k, t.value); } } catch (e) { }
+const STAGES = [...document.querySelectorAll('.wrap > section[id]')];
+$('stages').innerHTML = STAGES.map((s) => `<a href="#${s.id}"><b>${s.querySelector('.lk-n').textContent}</b><span>${s.dataset.stage}</span><small>${s.dataset.min !== '0' ? s.dataset.min + ' min' : 'at home'}</small></a>`).join('');
+$('teacherBtn').onclick = (e) => { const on = document.body.classList.toggle('teacher'); e.currentTarget.textContent = on ? 'Student version' : 'Teacher version'; };
+</script>
+<script src="kit.js" defer></script>
+</body>
+</html>
