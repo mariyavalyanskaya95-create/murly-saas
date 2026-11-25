@@ -6,11 +6,11 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { useAuth } from '@clerk/nextjs';
 import { say, sfx } from '@/lib/worlds/sound';
-import { CAFE_DRINK, CAFE_FOOD, FRUIT, FUR, SHOP, START, cafeOrder, deliveryTask, fruitOrder, single, type Addr, type Cat, type Save, type ShopItem } from '@/lib/worlds/island-data';
+import { CAFE_DRINK, CAFE_FOOD, FRUIT, FUR, SHOP, START, TALKS, cafeOrder, deliveryTask, fruitOrder, single, type Addr, type Cat, type Save, type ShopItem } from '@/lib/worlds/island-data';
 import type { IslandScene } from '@/lib/worlds/island-scene';
 import type { Spot } from '@/lib/worlds/island-data';
 
-type Panel = null | 'post' | 'cafe' | 'market' | 'store' | 'home' | 'help';
+type Panel = null | 'post' | 'cafe' | 'market' | 'store' | 'home' | 'help' | 'npc' | 'jobs';
 const LS = 'murly-island-v1';
 const GUEST_COINS = 60;
 
@@ -33,7 +33,14 @@ export default function IslandGame() {
   const [tab, setTab] = useState<Cat>('Clothes');
   const [capped, setCapped] = useState(false);
   const guest = isLoaded && !isSignedIn;
+  const [touch, setTouch] = useState(false);
+  const [runOn, setRunOn] = useState(false);
+  const [talk, setTalk] = useState<{ who: string; q: string; opts: string[]; right: string; picked?: string } | null>(null);
+  const [starCount, setStarCount] = useState(0);
+  const mini = useRef<HTMLCanvasElement>(null);
+  useEffect(() => { setTouch(navigator.maxTouchPoints > 0 || 'ontouchstart' in window); }, []);
 
+  const onStarRef = useRef<(id: string) => void>(() => {});
   const flash = (text: string, good = true) => { setToast({ text, good }); window.setTimeout(() => setToast((t) => (t?.text === text ? null : t)), 3200); };
 
   // ---- сцена ----
@@ -41,7 +48,7 @@ export default function IslandGame() {
     let alive = true;
     void import('@/lib/worlds/island-scene').then(({ IslandScene }) => {
       if (!alive || !box.current) return;
-      sc.current = new IslandScene(box.current, { onNear: (s) => setNear(s) });
+      sc.current = new IslandScene(box.current, { onNear: (s) => setNear(s), onStar: (id) => onStarRef.current(id) });
       setReady(true);
     });
     return () => { alive = false; sc.current?.dispose(); sc.current = null; };
@@ -72,6 +79,7 @@ export default function IslandGame() {
     s.setOutfit(save.outfit); s.setRide(save.ride); s.setPet(save.pet);
     if (s.houseLevel !== save.house) void s.setHouse(save.house);
     if (s.yardList.join() !== save.yard.join()) void s.setYard(save.yard);
+    s.setGot(save.stars ?? []); setStarCount((save.stars ?? []).length);
   }, [save, ready]);
 
   // ---- монетки ----
@@ -98,9 +106,57 @@ export default function IslandGame() {
     return true;
   };
 
+  onStarRef.current = (id: string) => {
+    const s = saveRef.current; if ((s.stars ?? []).includes(id)) return;
+    const stars = [...(s.stars ?? []), id]; sfx.coin(); setStarCount(stars.length);
+    const all = stars.length >= 10 && !s.starBonus;
+    persist({ ...s, stars, starBonus: s.starBonus || all });
+    if (all) { say('Amazing! You found all ten stars!'); void earn(10, 'All 10 stars found!'); } else flash(`You found a star! ${stars.length} / 10`);
+  };
+  // мінікарта
+  useEffect(() => {
+    if (!ready) return;
+    const id = window.setInterval(() => {
+      const c = mini.current, s = sc.current; if (!c || !s) return;
+      const x = c.getContext('2d')!; const W = c.width, k = W / 2 / 80;
+      x.clearRect(0, 0, W, W);
+      x.fillStyle = '#58B9E8'; x.beginPath(); x.arc(W / 2, W / 2, W / 2, 0, Math.PI * 2); x.fill();
+      x.fillStyle = '#F3DFA7'; x.beginPath(); x.arc(W / 2, W / 2, 78 * k, 0, Math.PI * 2); x.fill();
+      x.fillStyle = '#8BCB62'; x.beginPath(); x.arc(W / 2, W / 2, 68 * k, 0, Math.PI * 2); x.fill();
+      const P = (px: number, pz: number) => [W / 2 + px * k, W / 2 + pz * k] as const;
+      const dot = (px: number, pz: number, col: string, r = 3) => { const [a, b] = P(px, pz); x.fillStyle = col; x.beginPath(); x.arc(a, b, r, 0, Math.PI * 2); x.fill(); };
+      const COL: Record<string, string> = { post: '#E5484D', cafe: '#F76AA8', store: '#7C66DC', market: '#F5862D', home: '#FFC53D' };
+      s.spots.forEach((sp) => { if (COL[sp.id]) dot(sp.x, sp.z, COL[sp.id], 4); });
+      if (s.markerOn) dot(s.marker.position.x, s.marker.position.z, '#FFC53D', 6);
+      s.npcs.forEach((n) => dot(n.rig.root.position.x, n.rig.root.position.z, '#FFFFFF', 2));
+      const [hx, hz] = P(s.heroPos.x, s.heroPos.z);
+      x.save(); x.translate(hx, hz); x.rotate(-s.heroRot); x.fillStyle = '#1A1A1A'; x.beginPath(); x.moveTo(0, 6); x.lineTo(-4, -4); x.lineTo(4, -4); x.closePath(); x.fill(); x.restore();
+    }, 250);
+    return () => window.clearInterval(id);
+  }, [ready]);
+  const startTalk = (who: string) => {
+    const t = TALKS[Math.floor(Math.random() * TALKS.length)];
+    setTalk({ who, q: t.q, right: t.a[0], opts: [...t.a].sort(() => Math.random() - 0.5) }); say(t.q); setPanel('npc');
+  };
+  const answerTalk = (o: string) => {
+    if (!talk || talk.picked) return;
+    setTalk({ ...talk, picked: o });
+    if (o === talk.right) { say(o); const n = (saveRef.current.talks ?? 0) + 1; persist({ ...saveRef.current, talks: n }); if (n % 3 === 0) void earn(2, 'Great chats!'); else sfx.coin(); }
+    else sfx.bad();
+  };
+  const JOBS = [
+    { id: 'post', en: 'Post Office', what: 'Deliver parcels to the right address.' },
+    { id: 'cafe', en: 'Cat Cafe', what: 'Make sandwiches and drinks for customers.' },
+    { id: 'market', en: 'Fruit Market', what: 'Give customers the right number of fruit.' },
+    { id: 'store', en: 'Murly Store', what: 'Buy clothes, a house, rides and pets.' },
+    { id: 'home', en: 'My home', what: 'Your house and yard.' },
+  ];
+  const showWay = (id: string) => { const p = sc.current?.spotPos(id); if (p) { sc.current?.setMarker(p.x, p.z); sc.current?.walkTo(p.x, p.z); } setPanel(null); };
+
   // ---- взаємодія ----
   const act = useCallback(() => {
     const s = near; if (!s) return;
+    if (s.id.startsWith('npc-')) { startTalk(s.label); return; }
     if (s.id.startsWith('door-')) {
       if (!delivery) { flash(`This is number ${s.label}. Get a parcel at the Post Office first!`, false); return; }
       if (`door-${delivery.addr.id}` === s.id) {
@@ -112,6 +168,7 @@ export default function IslandGame() {
       } else { sfx.bad(); flash(`Oops! This is ${s.label}. Read the address again.`, false); }
       return;
     }
+    if (['post', 'cafe', 'market', 'store', 'home'].includes(s.id) && sc.current?.markerOn && !delivery) sc.current.setMarker(null);
     if (s.id === 'post') { if (!delivery) { const d = deliveryTask(); setDelivery({ ...d, at: Date.now(), hint: false }); say(d.text); } setPanel('post'); }
     if (s.id === 'cafe') { if (!cafe) { const o = cafeOrder(saveRef.current.jobs.cafe ?? 0); setCafe(o); setPlate([]); say(o.text); } setPanel('cafe'); }
     if (s.id === 'market') { if (!fruit) { const o = fruitOrder(saveRef.current.jobs.market ?? 0); setFruit(o); setBasket({}); say(o.text); } setPanel('market'); }
@@ -119,7 +176,7 @@ export default function IslandGame() {
     if (s.id === 'home') setPanel('home');
   }, [near, delivery, cafe, fruit]); // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => {
-    const k = (e: KeyboardEvent) => { if (e.code === 'KeyE' || e.code === 'Enter') { if (!panel) act(); } if (e.code === 'Escape') setPanel(null); };
+    const k = (e: KeyboardEvent) => { if (e.code === 'KeyQ' && !panel) sc.current?.dance(); if (e.code === 'KeyM') setPanel((p) => (p === 'jobs' ? null : 'jobs')); if (e.code === 'KeyE' || e.code === 'Enter') { if (!panel) act(); } if (e.code === 'Escape') setPanel(null); };
     window.addEventListener('keydown', k); return () => window.removeEventListener('keydown', k);
   }, [act, panel]);
 
@@ -157,29 +214,32 @@ export default function IslandGame() {
   const joy = useRef<{ id: number; x: number; y: number } | null>(null);
   const [knob, setKnob] = useState({ x: 0, y: 0 });
   const jDown = (e: React.PointerEvent) => { (e.target as HTMLElement).setPointerCapture(e.pointerId); joy.current = { id: e.pointerId, x: e.clientX, y: e.clientY }; };
-  const jMove = (e: React.PointerEvent) => { const j = joy.current; if (!j || j.id !== e.pointerId) return; let dx = e.clientX - j.x, dy = e.clientY - j.y; const L = Math.hypot(dx, dy), M = 50; if (L > M) { dx *= M / L; dy *= M / L; } setKnob({ x: dx, y: dy }); sc.current?.setJoy(dx / M, -dy / M); if (sc.current) sc.current.run = L > M * 0.95; };
-  const jUp = () => { joy.current = null; setKnob({ x: 0, y: 0 }); sc.current?.setJoy(0, 0); if (sc.current) sc.current.run = false; };
+  const jMove = (e: React.PointerEvent) => { const j = joy.current; if (!j || j.id !== e.pointerId) return; let dx = e.clientX - j.x, dy = e.clientY - j.y; const L = Math.hypot(dx, dy), M = 50; if (L > M) { dx *= M / L; dy *= M / L; } setKnob({ x: dx, y: dy }); sc.current?.setJoy(dx / M, -dy / M); if (sc.current) sc.current.run = runOn || L > M * 0.95; };
+  const jUp = () => { joy.current = null; setKnob({ x: 0, y: 0 }); sc.current?.setJoy(0, 0); if (sc.current) sc.current.run = runOn; };
 
-  const nearText = near ? (near.id.startsWith('door-') ? `Deliver to ${near.label}` : near.id === 'home' ? 'My home' : `Enter: ${near.label.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase())}`) : '';
+  const nearText = near ? (near.id.startsWith('npc-') ? `Talk to ${near.label}` : near.id.startsWith('door-') ? `Deliver to ${near.label}` : near.id === 'home' ? 'My home' : `Enter: ${near.label.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase())}`) : '';
   const furOwned = FUR.filter((f) => save.owned.includes(f.id) || f.price === 0);
 
   return (
-    <div className="il">
+    <div className={`il ${touch ? 'is-touch' : ''}`}>
       <div className="il-canvas" ref={box} />
       {!ready && <div className="il-load">Loading the island…</div>}
 
       <div className="il-hud">
         <Link href="/games" className="il-chip">← Games</Link>
         <span className="il-coins" title="Murly coins"><i className="il-coin" /> {coins ?? '…'}</span>
+        <span className="il-chip il-stars" title="Stars found"><i className="il-star" /> {starCount}/10</span>
         {guest && <Link href="/sign-in?redirect_url=/play/island" className="il-chip il-chip--y">Sign in to use your Murly coins</Link>}
       </div>
       <div className="il-hud il-hud--r">
+        <button type="button" className="il-chip" onClick={() => setPanel('jobs')}>Map</button>
         <button type="button" className="il-chip" onClick={() => setPanel('store')}>Shop</button>
         <button type="button" className="il-chip" onClick={() => setPanel('home')}>My stuff</button>
         <button type="button" className="il-chip" onClick={() => { sc.current?.teleportHome(); }}>Go home</button>
         <button type="button" className="il-chip" onClick={() => setPanel('help')}>?</button>
       </div>
 
+      <canvas ref={mini} className="il-mini-map" width={150} height={150} onClick={() => setPanel('jobs')} aria-label="Map" />
       {delivery && !panel && (
         <div className="il-task"><b>Parcel for:</b> {delivery.text} <button type="button" className="il-mini" onClick={() => say(delivery.text)}>Listen</button>{!delivery.hint && <button type="button" className="il-mini" onClick={hint}>Show me (fewer coins)</button>}</div>
       )}
@@ -190,6 +250,8 @@ export default function IslandGame() {
       <div className="il-joy" onPointerDown={jDown} onPointerMove={jMove} onPointerUp={jUp} onPointerCancel={jUp}><span style={{ transform: `translate(${knob.x}px, ${knob.y}px)` }} /></div>
       <div className="il-btns">
         <button type="button" onPointerDown={() => sc.current?.jump()}>Jump</button>
+        <button type="button" className={runOn ? 'is-on' : ''} onPointerDown={() => { const v = !runOn; setRunOn(v); if (sc.current) sc.current.run = v; }}>Run</button>
+        <button type="button" onPointerDown={() => sc.current?.dance()}>Dance</button>
         {near && <button type="button" className="is-y" onClick={act}>Go!</button>}
       </div>
 
@@ -202,13 +264,32 @@ export default function IslandGame() {
               <h2>Welcome to Murly Island!</h2>
               <p>Walk around, do jobs in English and earn Murly coins. Spend them in the shop on clothes, a house, cool rides and pets.</p>
               <ul className="il-list">
-                <li><b>Move:</b> W A S D or arrows, or the joystick. <b>Run:</b> Shift. <b>Jump:</b> Space.</li>
+                <li><b>Computer:</b> W A S D or arrows to walk, Shift to run, Space to jump, Q to dance, M for the map. Or click on the ground to walk there.</li>
+                <li><b>Tablet and phone:</b> move with the joystick on the left, or tap on the ground to walk there. Swipe to turn the camera.</li>
                 <li><b>Camera:</b> drag the screen. <b>Zoom:</b> mouse wheel.</li>
+                <li><b>Explore:</b> find 10 golden stars and chat with the cats who live on the island.</li>
                 <li><b>Jobs:</b> Post Office (deliver parcels), Cat Cafe (make sandwiches), Fruit Market (count fruit).</li>
                 <li><b>Talk:</b> walk to a coloured mat and press E or tap the yellow button.</li>
               </ul>
               {capped && <p className="il-note">You have earned all your coins for today. You can still play and shop!</p>}
               <button type="button" className="il-go" onClick={() => setPanel(null)}>Let&apos;s play!</button>
+            </>}
+
+            {panel === 'npc' && talk && <>
+              <h2>{talk.who}</h2>
+              <p className="il-say">&ldquo;{talk.q}&rdquo; <button type="button" className="il-mini" onClick={() => say(talk.q)}>Listen</button></p>
+              <p className="il-sub">Choose your answer</p>
+              <div className="il-grid il-grid--col">{talk.opts.map((o) => <button key={o} type="button" className={`il-pick ${talk.picked ? (o === talk.right ? 'on' : o === talk.picked ? 'bad' : '') : ''}`} onClick={() => answerTalk(o)}>{o}</button>)}</div>
+              {talk.picked && <p className="il-note">{talk.picked === talk.right ? 'Nice chat! Every 3 good chats give you 2 coins.' : `A better answer: ${talk.right}`}</p>}
+              {talk.picked && <button type="button" className="il-go" onClick={() => setPanel(null)}>Bye!</button>}
+            </>}
+
+            {panel === 'jobs' && <>
+              <h2>Island map</h2>
+              <p className="il-note">Choose a place and your cat will walk there.</p>
+              <div className="il-jobs">{JOBS.map((j) => (
+                <div key={j.id}><b>{j.en}</b><span>{j.what}</span><button type="button" className="il-mini" onClick={() => showWay(j.id)}>Go there</button></div>))}</div>
+              <p className="il-note">Stars found: {starCount} / 10. Find them all for 10 coins!</p>
             </>}
 
             {panel === 'post' && delivery && <>
