@@ -25,7 +25,13 @@ async function model(p: string, name: string, size: number): Promise<THREE.Group
   inner.scale.setScalar(k);
   const b2 = new THREE.Box3().setFromObject(inner); const c = b2.getCenter(new THREE.Vector3());
   inner.position.set(-c.x, -b2.min.y, -c.z);
-  wrap.traverse((o) => { const m = o as THREE.Mesh; if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
+  wrap.traverse((o) => {
+    const m = o as THREE.Mesh;
+    if (!m.isMesh) return;
+    m.castShadow = true; m.receiveShadow = true;
+    // без карти оточення металеві матеріали виходять чорними: робимо їх матовими
+    (Array.isArray(m.material) ? m.material : [m.material]).forEach((mt) => { const st = mt as THREE.MeshStandardMaterial; if (st.metalness !== undefined) { st.metalness = Math.min(st.metalness, 0.2); st.roughness = Math.max(st.roughness ?? 1, 0.6); } });
+  });
   return wrap;
 }
 
