@@ -4653,3 +4653,60 @@ textarea.t-parent__url { width: 300px; font: inherit; font-size: 13px; }
 /* коли малюємо, бокова панель стилю Excalidraw не заважає */
 .bd.no-props .excalidraw .App-menu__left { display: none !important; }
 @media (max-width: 700px) { .bd-tb { padding: 4px 8px; font-size: 12px; } .bd-sep { display: none; } }
+/* Дошка на планшеті: жести не прокручують сторінку, кнопки під палець */
+.bd-canvas { touch-action: none; overscroll-behavior: contain; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+@media (pointer: coarse) { .bd-tb { padding: 9px 14px; font-size: 14px; } .bd-sw { width: 30px; height: 30px; } .bd-w { width: 36px; height: 30px; } .bd-tools { gap: 8px; } }
+/* ---------- Murly Island ---------- */
+.il { position: fixed; inset: 0; overflow: hidden; background: #9ED8F7; font-family: inherit; touch-action: none; user-select: none; -webkit-user-select: none; }
+.il-canvas { position: absolute; inset: 0; }
+.il-canvas canvas { display: block; width: 100%; height: 100%; }
+.il-load { position: absolute; inset: 0; display: grid; place-items: center; font-size: 22px; font-weight: 800; color: #1A1A1A; }
+.il-hud { position: absolute; top: 12px; left: 12px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; z-index: 5; }
+.il-hud--r { left: auto; right: 12px; }
+.il-chip { font: inherit; font-size: 14px; font-weight: 700; padding: 8px 14px; border: 2.5px solid #1A1A1A; border-radius: 99px; background: #fff; color: #1A1A1A; cursor: pointer; box-shadow: 0 3px 0 #1A1A1A; text-decoration: none; }
+.il-chip:active { transform: translateY(2px); box-shadow: 0 1px 0 #1A1A1A; }
+.il-chip--y { background: #FFE08A; }
+.il-coins { display: inline-flex; align-items: center; gap: 6px; font-size: 18px; font-weight: 800; padding: 6px 16px; border: 2.5px solid #1A1A1A; border-radius: 99px; background: #FFE08A; box-shadow: 0 3px 0 #1A1A1A; }
+.il-coin { display: inline-block; width: 18px; height: 18px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #FFF3B0, #FFC53D 55%, #D99A00); border: 2px solid #8A5A00; vertical-align: -3px; }
+.il-task { position: absolute; top: 64px; left: 50%; transform: translateX(-50%); max-width: min(640px, 92vw); background: #fff; border: 2.5px solid #1A1A1A; border-radius: 16px; padding: 10px 14px; font-size: 15px; box-shadow: 0 4px 0 #1A1A1A; z-index: 4; }
+.il-mini { font: inherit; font-size: 13px; font-weight: 700; margin-left: 6px; padding: 4px 10px; border: 2px solid #1A1A1A; border-radius: 99px; background: #DCE9B5; cursor: pointer; }
+.il-act { position: absolute; bottom: 130px; left: 50%; transform: translateX(-50%); font: inherit; font-size: 17px; font-weight: 800; padding: 12px 22px; border: 3px solid #1A1A1A; border-radius: 99px; background: #FFC53D; box-shadow: 0 4px 0 #1A1A1A; cursor: pointer; z-index: 4; animation: il-bob 1.2s ease-in-out infinite; }
+.il-act kbd { font: inherit; font-size: 12px; margin-left: 6px; padding: 1px 7px; border: 2px solid #1A1A1A; border-radius: 6px; background: #fff; }
+@keyframes il-bob { 50% { transform: translate(-50%, -4px); } }
+.il-toast { position: absolute; top: 120px; left: 50%; transform: translateX(-50%); padding: 10px 18px; font-weight: 800; font-size: 16px; border: 2.5px solid #1A1A1A; border-radius: 99px; background: #BDE5C4; z-index: 6; box-shadow: 0 3px 0 #1A1A1A; max-width: 90vw; text-align: center; }
+.il-toast.is-bad { background: #F7B7AE; }
+.il-joy { position: absolute; left: 24px; bottom: 24px; width: 130px; height: 130px; border-radius: 50%; background: rgba(255,255,255,.35); border: 3px solid rgba(26,26,26,.5); display: none; place-items: center; z-index: 4; touch-action: none; }
+.il-joy span { width: 56px; height: 56px; border-radius: 50%; background: #fff; border: 3px solid #1A1A1A; pointer-events: none; }
+.il-btns { position: absolute; right: 24px; bottom: 30px; display: none; flex-direction: column; gap: 12px; z-index: 4; }
+.il-btns button { font: inherit; font-weight: 800; font-size: 16px; width: 88px; height: 88px; border-radius: 50%; border: 3px solid #1A1A1A; background: #fff; box-shadow: 0 4px 0 #1A1A1A; touch-action: none; }
+.il-btns button.is-y { background: #FFC53D; }
+@media (pointer: coarse) { .il-joy { display: grid; } .il-btns { display: flex; } .il-act { bottom: 170px; } .il-act kbd { display: none; } }
+.il-modal { position: absolute; inset: 0; background: rgba(26,26,26,.35); display: grid; place-items: center; z-index: 10; padding: 16px; }
+.il-card { position: relative; width: min(680px, 100%); max-height: 88vh; overflow-y: auto; background: #FFFDF6; border: 3px solid #1A1A1A; border-radius: 24px; padding: 22px 24px 24px; box-shadow: 0 6px 0 #1A1A1A; user-select: text; }
+.il-card h2 { margin: 0 0 10px; font-size: 26px; }
+.il-x { position: absolute; top: 12px; right: 12px; width: 38px; height: 38px; border-radius: 50%; border: 2.5px solid #1A1A1A; background: #fff; font-size: 16px; cursor: pointer; }
+.il-list { margin: 8px 0 14px; padding-left: 20px; line-height: 1.6; }
+.il-note { color: #55606E; font-size: 14px; }
+.il-who { margin: 4px 0 2px; font-weight: 700; color: #55606E; }
+.il-say { font-size: 19px; font-weight: 700; background: #fff; border: 2px solid #1A1A1A; border-radius: 16px; padding: 12px 14px; margin: 0 0 10px; }
+.il-sub { margin: 12px 0 6px; font-weight: 800; text-transform: uppercase; font-size: 13px; letter-spacing: .05em; color: #55606E; }
+.il-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+.il-pick { font: inherit; font-size: 15px; font-weight: 700; padding: 9px 14px; border: 2.5px solid #1A1A1A; border-radius: 14px; background: #fff; cursor: pointer; }
+.il-pick.on { background: #BDE5C4; }
+.il-go { display: block; margin-top: 16px; font: inherit; font-size: 18px; font-weight: 800; padding: 12px 26px; border: 3px solid #1A1A1A; border-radius: 99px; background: #FFC53D; box-shadow: 0 4px 0 #1A1A1A; cursor: pointer; }
+.il-go:disabled { opacity: .5; }
+.il-fruit { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 8px; }
+.il-fruit div { display: flex; align-items: center; gap: 8px; padding: 8px 10px; border: 2px solid #1A1A1A; border-radius: 14px; background: #fff; }
+.il-fruit span { flex: 1; font-weight: 700; }
+.il-fruit button { width: 34px; height: 34px; border-radius: 50%; border: 2px solid #1A1A1A; background: #DCE9B5; font-size: 18px; font-weight: 800; cursor: pointer; }
+.il-fruit b { min-width: 18px; text-align: center; font-size: 18px; }
+.il-tabs { display: flex; gap: 6px; flex-wrap: wrap; margin: 8px 0; }
+.il-tabs button { font: inherit; font-weight: 800; padding: 8px 16px; border: 2.5px solid #1A1A1A; border-radius: 99px; background: #fff; cursor: pointer; }
+.il-tabs button.on { background: #1A1A1A; color: #fff; }
+.il-shop { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; margin-bottom: 8px; }
+.il-item { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 10px; border: 2.5px solid #1A1A1A; border-radius: 16px; background: #fff; text-align: center; }
+.il-item.on { background: #E8F6D8; }
+.il-item i { width: 46px; height: 46px; border-radius: 50%; border: 2px solid #1A1A1A; display: grid; place-items: center; font-style: normal; font-weight: 800; color: #1A1A1A; }
+.il-item span { font-weight: 700; font-size: 14px; }
+.il-item button { font: inherit; font-size: 13px; font-weight: 800; padding: 6px 12px; border: 2px solid #1A1A1A; border-radius: 99px; background: #fff; cursor: pointer; }
+.il-item button.buy { background: #FFE08A; }
