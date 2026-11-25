@@ -4,7 +4,7 @@ import { db, dbReady } from '@/lib/db';
 
 export const dynamic = 'force-dynamic';
 const enc = encodeURIComponent;
-const GAMES = new Set(['town']);
+const GAMES = new Set(['town', 'island']);
 
 // збереження ігор у хмарі: учень може грати з будь-якого пристрою
 export async function GET(req: Request) {
