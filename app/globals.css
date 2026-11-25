@@ -4743,3 +4743,8 @@ textarea.t-parent__url { width: 300px; font: inherit; font-size: 13px; }
 .il-jobs { display: grid; gap: 8px; }
 .il-jobs div { display: grid; grid-template-columns: 140px 1fr auto; gap: 10px; align-items: center; padding: 10px 12px; border: 2px solid #1A1A1A; border-radius: 14px; background: #fff; }
 @media (max-width: 640px) { .il-mini-map { width: 96px; height: 96px; top: 60px; } .il-hud--r { top: auto; bottom: auto; } .il-jobs div { grid-template-columns: 1fr; } .il-hud { gap: 5px; } .il-chip { padding: 6px 10px; font-size: 12px; } .il-joy { width: 120px; height: 120px; left: 16px; bottom: 16px; } .il-btns { right: 14px; bottom: 16px; gap: 8px; } .il-btns button { width: 62px; height: 62px; font-size: 12px; } }
+/* Вхід однією кнопкою на запам'ятованому пристрої */
+.remember-card { display: grid; gap: 10px; justify-items: center; padding: 20px; margin-bottom: 18px; border: 2.5px solid var(--mu-ink); border-radius: var(--mu-radius, 20px); background: var(--mu-lime, #DCE9B5); text-align: center; }
+.remember-card__hi { margin: 0; font-size: 22px; font-weight: 800; }
+.remember-card__go { font-size: 18px; padding: 12px 28px; }
+.remember-card__not { font: inherit; font-size: 14px; background: none; border: 0; text-decoration: underline; cursor: pointer; color: var(--mu-ink-muted); }
