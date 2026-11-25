@@ -176,7 +176,10 @@ function makePet(id: string): THREE.Group {
 }
 
 // ---------- сцена ----------
-export type IslandEvents = { onNear: (spot: Spot | null) => void; onFps?: (low: boolean) => void };
+export type IslandEvents = { onNear: (spot: Spot | null) => void; onFps?: (low: boolean) => void; onStar?: (id: string) => void };
+// зірки, які можна знайти на острові
+export const STARS: [number, number][] = [[-60, 20], [55, 30], [10, -55], [-35, -45], [62, -5], [-8, 48], [40, -40], [-58, -22], [25, 55], [-22, 2]];
+const NPC_NAMES = ['Mr Fluff', 'Lily', 'Captain Paws', 'Grandma Whiskers', 'Tom', 'Daisy', 'Professor Meow', 'Ruby'];
 export class IslandScene {
   renderer: THREE.WebGLRenderer; scene = new THREE.Scene(); cam: THREE.PerspectiveCamera;
   clock = new THREE.Clock(); raf = 0; disposed = false;
@@ -193,6 +196,9 @@ export class IslandScene {
   clouds: THREE.Group[] = []; tramp: THREE.Vector3 | null = null;
   ev: IslandEvents; el: HTMLElement; wob = { lean: 0, leanV: 0, sq: 1, sqV: 0 };
   ro: ResizeObserver;
+  goal: THREE.Vector3 | null = null; goalRing: THREE.Mesh | null = null; danceT = 0;
+  stars: { id: string; obj: THREE.Group }[] = []; got = new Set<string>();
+  ray = new THREE.Raycaster(); ground = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
 
   constructor(el: HTMLElement, ev: IslandEvents) {
     this.el = el; this.ev = ev;
@@ -346,6 +352,13 @@ export class IslandScene {
       rig.root.position.copy(home); this.scene.add(rig.root);
       this.npcs.push({ rig, home, t: rnd(0, 4), goal: home.clone() });
     }
+    // зірки для збирання
+    STARS.forEach(([x, z], i) => {
+      const g = new THREE.Group();
+      const shape = new THREE.Shape(); for (let k = 0; k < 10; k++) { const a = (k / 10) * Math.PI * 2 - Math.PI / 2; const r = k % 2 ? 0.22 : 0.5; k ? shape.lineTo(Math.cos(a) * r, Math.sin(a) * r) : shape.moveTo(Math.cos(a) * r, Math.sin(a) * r); }
+      const m = mesh(new THREE.ExtrudeGeometry(shape, { depth: 0.15, bevelEnabled: true, bevelSize: 0.04, bevelThickness: 0.04, bevelSegments: 2 }), toon('#FFC53D', 0.5)); m.position.z = -0.07; g.add(m);
+      g.position.set(x, 1, z); g.visible = !this.got.has(`s${i}`); this.scene.add(g); this.stars.push({ id: `s${i}`, obj: g });
+    });
     // твій ділянка
     const plot = mesh(new THREE.PlaneGeometry(18, 16), toon('#A6D97F'), false); plot.rotation.x = -Math.PI / 2; plot.position.set(HOME.x, 0.03, HOME.z); this.scene.add(plot);
     this.spots.push({ id: 'home', x: HOME.x, z: HOME.z - 7, r: 3, label: 'MY HOME' });
@@ -425,6 +438,8 @@ export class IslandScene {
     if (id) { this.pet = makePet(id); this.petPos.copy(this.heroPos).add(new THREE.Vector3(1.5, 0, -1.5)); this.pet.position.copy(this.petPos); this.scene.add(this.pet); }
   }
   setCarry(on: boolean) { this.carry.visible = on; }
+  setGot(ids: string[]) { ids.forEach((id) => this.got.add(id)); this.stars.forEach((s) => { s.obj.visible = !this.got.has(s.id); }); }
+  npcName(i: number) { return NPC_NAMES[i % NPC_NAMES.length]; }
   setMarker(x: number | null, z = 0) { this.markerOn = x !== null; this.marker.visible = this.markerOn; if (x !== null) this.marker.position.set(x, 0, z); }
   spotPos(id: string) { return this.spots.find((s) => s.id === id); }
   teleportHome() { this.heroPos.set(HOME.x, 0, HOME.z - 9); }
@@ -433,9 +448,27 @@ export class IslandScene {
   kd = (e: KeyboardEvent) => { if ((e.target as HTMLElement)?.tagName === 'INPUT') return; this.keys.add(e.code); if (e.code === 'Space') { e.preventDefault(); this.jump(); } };
   ku = (e: KeyboardEvent) => { this.keys.delete(e.code); };
   drag: { id: number; x: number; y: number } | null = null;
-  pd = (e: PointerEvent) => { this.drag = { id: e.pointerId, x: e.clientX, y: e.clientY }; };
+  downAt = { x: 0, y: 0, t: 0 };
+  pd = (e: PointerEvent) => { this.drag = { id: e.pointerId, x: e.clientX, y: e.clientY }; this.downAt = { x: e.clientX, y: e.clientY, t: performance.now() }; };
   pm = (e: PointerEvent) => { if (!this.drag || e.pointerId !== this.drag.id) return; const dx = e.clientX - this.drag.x, dy = e.clientY - this.drag.y; this.drag.x = e.clientX; this.drag.y = e.clientY; this.camYaw -= dx * 0.006; this.camPitch = THREE.MathUtils.clamp(this.camPitch + dy * 0.004, 0.12, 1.2); };
-  pu = (e: PointerEvent) => { if (this.drag?.id === e.pointerId) this.drag = null; };
+  pu = (e: PointerEvent) => {
+    if (this.drag?.id !== e.pointerId) return;
+    this.drag = null;
+    // короткий дотик або клік без руху: іти в цю точку
+    if (Math.hypot(e.clientX - this.downAt.x, e.clientY - this.downAt.y) < 8 && performance.now() - this.downAt.t < 400) {
+      const r = this.renderer.domElement.getBoundingClientRect();
+      const v = new THREE.Vector2(((e.clientX - r.left) / r.width) * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1);
+      this.ray.setFromCamera(v, this.cam);
+      const hit = new THREE.Vector3();
+      if (this.ray.ray.intersectPlane(this.ground, hit) && Math.hypot(hit.x, hit.z) < 73) this.walkTo(hit.x, hit.z);
+    }
+  };
+  walkTo(x: number, z: number) {
+    this.goal = new THREE.Vector3(x, 0, z);
+    if (!this.goalRing) { this.goalRing = mesh(new THREE.RingGeometry(0.35, 0.55, 24), new THREE.MeshBasicMaterial({ color: '#FFFFFF', transparent: true, opacity: 0.85 }), false); this.goalRing.rotation.x = -Math.PI / 2; this.scene.add(this.goalRing); }
+    this.goalRing.position.set(x, 0.06, z); this.goalRing.visible = true;
+  }
+  dance() { this.danceT = 2.4; }
   wh = (e: WheelEvent) => { this.camDist = THREE.MathUtils.clamp(this.camDist + e.deltaY * 0.01, 4.5, 18); };
   jump() { if (this.onGround) { this.vy = this.rideId === 'ride-ufo' ? 9 : 7.5; this.onGround = false; this.wob.sqV -= 3; } }
   setJoy(x: number, y: number) { this.joy.x = x; this.joy.y = y; }
@@ -455,13 +488,16 @@ export class IslandScene {
     const k = this.keys;
     let ix = (k.has('KeyD') || k.has('ArrowRight') ? 1 : 0) - (k.has('KeyA') || k.has('ArrowLeft') ? 1 : 0) + this.joy.x;
     let iz = (k.has('KeyW') || k.has('ArrowUp') ? 1 : 0) - (k.has('KeyS') || k.has('ArrowDown') ? 1 : 0) + this.joy.y;
+    if (Math.hypot(ix, iz) > 0.05 && this.goal) { this.goal = null; if (this.goalRing) this.goalRing.visible = false; }
+    let goalDir: THREE.Vector3 | null = null;
+    if (this.goal) { const d = this.goal.clone().sub(this.heroPos); d.y = 0; if (d.length() < 0.5) { this.goal = null; if (this.goalRing) this.goalRing.visible = false; } else goalDir = d.normalize(); }
     const len = Math.hypot(ix, iz); if (len > 1) { ix /= len; iz /= len; }
     const running = k.has('ShiftLeft') || k.has('ShiftRight') || this.run;
     const base = 5.2 * (this.rideId ? SPEED[this.rideId] ?? 1 : running ? 1.6 : 1);
     // напрям відносно камери
     const fwd = new THREE.Vector3(-Math.sin(this.camYaw), 0, -Math.cos(this.camYaw));
     const right = new THREE.Vector3(-fwd.z, 0, fwd.x);
-    const want = fwd.multiplyScalar(iz).add(right.multiplyScalar(ix)).multiplyScalar(base);
+    const want = goalDir ? goalDir.multiplyScalar(base) : fwd.multiplyScalar(iz).add(right.multiplyScalar(ix)).multiplyScalar(base);
     const acc = this.onGround ? 10 : 4;
     const prevV = this.vel.clone();
     this.vel.lerp(want, 1 - Math.exp(-acc * dt));
@@ -501,6 +537,9 @@ export class IslandScene {
     h.legL.position.z = walk ? Math.sin(ph) * 0.18 : 0; h.legR.position.z = walk ? -Math.sin(ph) * 0.18 : 0;
     h.legL.visible = h.legR.visible = this.rideId !== 'ride-car' && this.rideId !== 'ride-ufo';
     h.tail.rotation.y = Math.sin(t * 3) * 0.4; h.tail.rotation.x = -W.lean;
+    if (this.danceT > 0) { this.danceT -= dt; h.armL.rotation.z = -2.4 + Math.sin(t * 12) * 0.5; h.armR.rotation.z = 2.4 + Math.sin(t * 12 + 1) * 0.5; h.body.rotation.y = Math.sin(t * 6) * 0.5; h.body.position.y += Math.abs(Math.sin(t * 12)) * 0.15; } else h.body.rotation.y = 0;
+    // зірки: обертаються і збираються
+    for (const st of this.stars) { if (this.got.has(st.id)) continue; st.obj.rotation.y = t * 2; st.obj.position.y = 1 + Math.sin(t * 3 + st.obj.position.x) * 0.2; if (Math.hypot(st.obj.position.x - this.heroPos.x, st.obj.position.z - this.heroPos.z) < 1.3) { this.got.add(st.id); st.obj.visible = false; this.ev.onStar?.(st.id); } }
     const cape = h.slots.bag.getObjectByName('cape'); if (cape) cape.rotation.x = 0.15 + Math.min(speed, 10) * 0.08 + Math.sin(t * 8) * 0.05;
     h.slots.bag.children.forEach((c) => { if (c.name === 'flame') { c.visible = !this.onGround; c.scale.y = 0.8 + Math.random() * 0.5; } });
     if (this.ride) { this.ride.position.y = this.rideId === 'ride-ufo' ? Math.sin(t * 3) * 0.1 : 0; this.ride.rotation.y = this.rideId === 'ride-ufo' ? t * 2 : 0; }
@@ -539,6 +578,7 @@ export class IslandScene {
     // що поруч
     let near: Spot | null = null;
     for (const s of this.spots) if (Math.hypot(s.x - this.heroPos.x, s.z - this.heroPos.z) < s.r) { near = s; break; }
+    if (!near) this.npcs.forEach((n, i) => { const p = n.rig.root.position; if (!near && Math.hypot(p.x - this.heroPos.x, p.z - this.heroPos.z) < 2.2) { near = { id: `npc-${i}`, x: p.x, z: p.z, r: 2.2, label: NPC_NAMES[i % NPC_NAMES.length] }; n.t = 2; n.goal.copy(p); n.rig.root.lookAt(this.heroPos.x, 0, this.heroPos.z); } });
     if (near?.id !== this.near?.id) { this.near = near; this.ev.onNear(near); }
   }
 

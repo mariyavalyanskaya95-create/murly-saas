@@ -62,7 +62,7 @@ export const SHOP: ShopItem[] = [
 export const SPEED: Record<string, number> = { 'ride-skate': 1.6, 'ride-bike': 2.0, 'ride-scooter': 2.4, 'ride-car': 3.0, 'ride-ufo': 3.4 };
 
 export type Outfit = { fur: string; hat?: string; glasses?: string; scarf?: string; bag?: string };
-export type Save = { v: 1; owned: string[]; outfit: Outfit; ride: string | null; pet: string | null; house: number; yard: string[]; jobs: Record<string, number>; name?: string; localCoins?: number };
+export type Save = { v: 1; owned: string[]; outfit: Outfit; ride: string | null; pet: string | null; house: number; yard: string[]; jobs: Record<string, number>; name?: string; localCoins?: number; stars?: string[]; starBonus?: boolean; talks?: number };
 export const START: Save = { v: 1, owned: ['fur-ginger'], outfit: { fur: 'fur-ginger' }, ride: null, pet: null, house: 0, yard: [], jobs: {} };
 
 // ---------- карта ----------
@@ -124,3 +124,19 @@ export function deliveryTask(): { addr: Addr; text: string; who: string } {
   ];
   return { addr: a, text: pick(forms), who: 'Postmaster Pepper' };
 }
+
+// короткі розмови з жителями: питання і три відповіді, перша правильна (порядок перемішується в грі)
+export const TALKS: { q: string; a: string[] }[] = [
+  { q: 'Hi! How are you today?', a: ['I’m fine, thanks. And you?', 'I’m twelve years old.', 'Yes, I do.'] },
+  { q: 'What a lovely day! Do you like sunny weather?', a: ['Yes, I love it!', 'It’s Monday.', 'No, I haven’t.'] },
+  { q: 'Excuse me, where is the Cat Cafe?', a: ['It’s over there, near the fountain.', 'It’s a cat.', 'I’m from London.'] },
+  { q: 'Have you ever been to the lighthouse?', a: ['No, I haven’t. Is it far?', 'Yes, I do.', 'I’m going yesterday.'] },
+  { q: 'What’s your favourite food?', a: ['Pizza! I love it.', 'Blue.', 'At seven o’clock.'] },
+  { q: 'I’ve lost my keys! Can you help me?', a: ['Of course! Where did you see them last?', 'No, thanks, I’m full.', 'They are tall.'] },
+  { q: 'What are you doing on the island?', a: ['I’m working at the post office.', 'I work yesterday.', 'It’s eleven o’clock.'] },
+  { q: 'Nice hat! Where did you buy it?', a: ['Thanks! At the Murly Store.', 'It’s very hot.', 'Twice a week.'] },
+  { q: 'Would you like a cup of tea?', a: ['Yes, please. That’s very kind.', 'Yes, I would like it yesterday.', 'I’m a cat.'] },
+  { q: 'What time is it, please?', a: ['It’s half past three.', 'It’s Tuesday.', 'It’s a clock.'] },
+  { q: 'Can you swim?', a: ['Yes, I can. I swim every summer.', 'Yes, I am.', 'No, I don’t can.'] },
+  { q: 'What did you do yesterday?', a: ['I delivered three parcels.', 'I deliver tomorrow.', 'I am delivering yesterday.'] },
+];
