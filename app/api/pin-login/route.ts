@@ -3,6 +3,7 @@ import { NextResponse } from 'next/server';
 import { clerkClient } from '@clerk/nextjs/server';
 import { db, dbReady } from '@/lib/db';
 import { normPhone, validPhone } from '@/lib/pin-login';
+import { rememberDevice } from '@/lib/device-login';
 
 export const dynamic = 'force-dynamic';
 const MAX_FAILS = 5;
@@ -16,7 +17,7 @@ export async function POST(req: Request) {
   const pin = String(body.pin ?? '').trim();
   if (!validPhone(phone) || !pin) return NextResponse.json({ error: 'wrong' }, { status: 400 });
 
-  const rows = await db.query(`students?login_phone=eq.${phone}&select=id,user_id,login_pin,pin_fails,pin_locked_until`);
+  const rows = await db.query(`students?login_phone=eq.${phone}&select=id,user_id,name,login_pin,pin_fails,pin_locked_until`);
   if (!rows.length) return NextResponse.json({ error: 'wrong' }, { status: 401 });
   const now = Date.now();
   if (rows.some((r) => r.pin_locked_until && new Date(String(r.pin_locked_until)).getTime() > now)) {
@@ -33,5 +34,6 @@ export async function POST(req: Request) {
   }
   await db.patchWhere(`students?login_phone=eq.${phone}`, { pin_fails: 0, pin_locked_until: null }).catch(() => null);
   const token = await (await clerkClient()).signInTokens.createSignInToken({ userId: String(hit.user_id), expiresInSeconds: 300 });
-  return NextResponse.json({ ok: true, ticket: token.token });
+  // запам'ятовуємо пристрій: наступного разу одна кнопка «Увійти як ...»
+  return rememberDevice(NextResponse.json({ ok: true, ticket: token.token }), String(hit.user_id), String(hit.name ?? '').split(' ')[0]).catch(() => NextResponse.json({ ok: true, ticket: token.token }));
 }
