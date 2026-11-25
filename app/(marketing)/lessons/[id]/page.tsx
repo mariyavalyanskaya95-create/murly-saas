@@ -18,6 +18,8 @@ import { BATCH_9 } from '@/lib/lessons/batch-9';
 import { localizeLesson } from '@/lib/content/lessons';
 import { getLang } from '@/lib/i18n-server';
 import { isTeacher } from '@/lib/student-data';
+import SeoGuide from '@/components/SeoGuide';
+import { guideFor } from '@/lib/seo-guides';
 
 export const dynamic = 'force-dynamic';
 const LESSONS = [...BATCH_1, ...BATCH_2, ...BATCH_3, ...BATCH_4, ...BATCH_5, ...BATCH_6, ...BATCH_7, ...BATCH_8, ...BATCH_9];
@@ -85,7 +87,7 @@ export default async function LessonPage({ params }: { params: { id: string } })
   return (
     <>
       <SiteNav />
-      <main className="mu-container lp-wrap">{SEO[params.id] && <p className="lp-seo-intro">{(() => { const l = getLang(); const x = SEO[params.id].intro; return l === 'ru' ? x.ru : l === 'en' ? x.en : x.uk; })()}</p>}<LessonPublic plan={plan} isTeacher={teacher} signedIn={!!userId} /></main>
+      <main className="mu-container lp-wrap">{SEO[params.id] && <p className="lp-seo-intro">{(() => { const l = getLang(); const x = SEO[params.id].intro; return l === 'ru' ? x.ru : l === 'en' ? x.en : x.uk; })()}</p>}<LessonPublic plan={plan} isTeacher={teacher} signedIn={!!userId} />{(() => { const l = getLang(); const g = guideFor(`lesson:${params.id}`, l); return g ? <SeoGuide g={g} lang={l} /> : null; })()}</main>
       <SiteFooter />
       <Stickers />
     </>
