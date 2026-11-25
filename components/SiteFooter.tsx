@@ -38,7 +38,6 @@ export default function SiteFooter() {
             <ul>
               <li><Link href="/nmt/mock">{t({ uk: 'Пробні НМТ', ru: 'Пробные НМТ', en: 'Mock NMT tests' })}</Link></li>
               <li><Link href="/nmt/calculator">{t({ uk: 'Калькулятор балів НМТ', ru: 'Калькулятор баллов НМТ', en: 'NMT score calculator' })}</Link></li>
-              <li><Link href="/nmt/mock">{t({ uk: '20 пробних НМТ', ru: '20 пробных НМТ', en: '20 NMT mock tests' })}</Link></li>
               <li><Link href="/bonus/nmt-checklist">{t({ uk: 'НМТ: чек-листи', ru: 'НМТ: чек-листы', en: 'NMT checklists' })}</Link></li>
               <li><Link href="/bonus/100-words">{t({ uk: '100 слів для НМТ', ru: '100 слов для НМТ', en: '100 NMT words' })}</Link></li>
             </ul>
@@ -48,6 +47,8 @@ export default function SiteFooter() {
             <ul>
               <li><Link href="/level-test">{t({ uk: 'Тест на рівень', ru: 'Тест на уровень', en: 'Level test' })}</Link></li>
               <li><Link href="/grammar">{t({ uk: 'Граматика', ru: 'Грамматика', en: 'Grammar' })}</Link></li>
+              <li><Link href="/grammar-book/beginner/am-is-are">{t({ uk: 'Am, is, are: правило', ru: 'Am, is, are: правило', en: 'Am, is, are rule' })}</Link></li>
+              <li><Link href="/lessons/gr-have-you-ever">{t({ uk: 'Have you ever: приклади', ru: 'Have you ever: примеры', en: 'Have you ever examples' })}</Link></li>
               <li><Link href="/grammar/trainer">{t({ uk: 'Тренажери граматики', ru: 'Тренажёры грамматики', en: 'Grammar trainers' })}</Link></li>
               <li><Link href="/irregular-verbs">{t({ uk: 'Таблиця неправильних дієслів', ru: 'Таблица неправильных глаголов', en: 'Irregular verbs table' })}</Link></li>
               <li><Link href="/bonus/verbs-30">{t({ uk: 'Дієслова за 30 днів', ru: 'Глаголы за 30 дней', en: 'Verbs in 30 days' })}</Link></li>
@@ -60,6 +61,7 @@ export default function SiteFooter() {
             <h4>{t({ uk: 'Для уроку', ru: 'Для урока', en: 'For lessons' })}</h4>
             <ul>
               <li><Link href="/activities">{t({ uk: 'Розмовні activities', ru: 'Разговорные activities', en: 'Speaking activities' })}</Link></li>
+              <li><Link href="/blog/temy-dlya-rozmovy-anglijskoyu">{t({ uk: 'Розмовні теми з англійської', ru: 'Темы для разговора на английском', en: 'Speaking topics' })}</Link></li>
               <li><Link href="/lessons">{t({ uk: 'Готові уроки', ru: 'Готовые уроки', en: 'Ready lessons' })}</Link></li>
               <li><Link href="/tongue-twisters">{t({ uk: 'Скоромовки', ru: 'Скороговорки', en: 'Tongue twisters' })}</Link></li>
             </ul>
