@@ -4715,3 +4715,31 @@ textarea.t-parent__url { width: 300px; font: inherit; font-size: 13px; }
 .ex-slot > textarea.ex-input { flex: 1 1 100%; min-height: 3em; white-space: pre-wrap; }
 .ex-line input.ex-input { max-width: 100%; }
 .il-item i.il-coin, .il-coins i.il-coin { width: 16px; height: 16px; border: 2px solid #8A5A00; border-radius: 50%; display: inline-block; vertical-align: -3px; }
+/* SEO-пояснення під уроком / розділом граматики */
+.sg { max-width: 860px; margin: 32px auto 8px; padding: 24px clamp(16px, 3vw, 32px); background: var(--mu-card, #fff); border: 2px solid var(--mu-ink); border-radius: var(--mu-radius, 20px); }
+.sg-title { margin-top: 0; }
+.sg-quiz { margin: 18px 0; padding: 14px 18px; border: 1.5px dashed var(--mu-ink); border-radius: 16px; background: #FFFBEA; }
+.sg-quiz h3 { margin: 0 0 8px; }
+.sg-quiz ol { margin: 0; padding-left: 22px; }
+.sg-quiz li { margin: 6px 0; }
+.sg-quiz details { display: inline; }
+.sg-quiz summary { display: inline-block; cursor: pointer; padding: 0 8px; border: 1.5px solid var(--mu-ink); border-radius: 99px; font-size: 12px; margin-left: 6px; list-style: none; }
+.sg-quiz summary::-webkit-details-marker { display: none; }
+.sg-quiz details[open] summary { background: var(--mu-lime); }
+.sg-quiz details b { margin-left: 8px; color: #1F7A3A; }
+.sg-links { display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 20px; padding-top: 14px; border-top: 1.5px solid var(--mu-paper-dark); }
+.il.is-touch .il-joy { display: grid; }
+.il.is-touch .il-btns { display: flex; }
+.il.is-touch .il-act { bottom: 170px; }
+.il.is-touch .il-act kbd { display: none; }
+.il-btns button.is-on { background: #BDE5C4; }
+.il-btns { max-height: calc(100vh - 140px); }
+.il-btns button { width: 72px; height: 72px; font-size: 14px; }
+.il-stars { display: inline-flex; align-items: center; gap: 6px; cursor: default; }
+.il-star { display: inline-block; width: 16px; height: 16px; background: #FFC53D; clip-path: polygon(50% 0, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); }
+.il-mini-map { position: absolute; top: 64px; right: 12px; width: 150px; height: 150px; border-radius: 50%; border: 3px solid #1A1A1A; box-shadow: 0 3px 0 #1A1A1A; z-index: 4; cursor: pointer; background: #58B9E8; }
+.il-grid--col { flex-direction: column; align-items: stretch; }
+.il-pick.bad { background: #F7B7AE; }
+.il-jobs { display: grid; gap: 8px; }
+.il-jobs div { display: grid; grid-template-columns: 140px 1fr auto; gap: 10px; align-items: center; padding: 10px 12px; border: 2px solid #1A1A1A; border-radius: 14px; background: #fff; }
+@media (max-width: 640px) { .il-mini-map { width: 96px; height: 96px; top: 60px; } .il-hud--r { top: auto; bottom: auto; } .il-jobs div { grid-template-columns: 1fr; } .il-hud { gap: 5px; } .il-chip { padding: 6px 10px; font-size: 12px; } .il-joy { width: 120px; height: 120px; left: 16px; bottom: 16px; } .il-btns { right: 14px; bottom: 16px; gap: 8px; } .il-btns button { width: 62px; height: 62px; font-size: 12px; } }
