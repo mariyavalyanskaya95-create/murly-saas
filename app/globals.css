@@ -4714,3 +4714,4 @@ textarea.t-parent__url { width: 300px; font: inherit; font-size: 13px; }
 .ex-slot:has(> textarea) { display: flex; width: 100%; flex-wrap: wrap; align-items: flex-start; gap: 6px; margin: 6px 0; }
 .ex-slot > textarea.ex-input { flex: 1 1 100%; min-height: 3em; white-space: pre-wrap; }
 .ex-line input.ex-input { max-width: 100%; }
+.il-item i.il-coin, .il-coins i.il-coin { width: 16px; height: 16px; border: 2px solid #8A5A00; border-radius: 50%; display: inline-block; vertical-align: -3px; }
