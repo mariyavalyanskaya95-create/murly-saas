@@ -93,8 +93,14 @@ export default function ExerciseView({ sections: raw, answers, onChange, marks, 
                       if (p.t === 'text') return <span key={pi}>{p.v}</span>;
                       if (p.t === 'gap') return (
                         <span key={pi} className="ex-slot">
-                          <input className={`ex-input ${cls(k)}`} readOnly={ro} value={answers[k] ?? ''} size={12}
+                          {ro && (answers[k] ?? '').length > 28 ? (
+                            // довга відповідь (твір, кілька речень): показуємо повністю, з переносами
+                            <textarea className={`ex-input ex-input--wide ex-grow ${cls(k)}`} rows={2} readOnly value={answers[k] ?? ''} ref={grow}
+                              aria-label={tx({ uk: 'Відповідь', ru: 'Ответ', en: 'Answer' })} autoCapitalize="sentences" spellCheck={false} />
+                          ) : (
+                          <input className={`ex-input ${cls(k)}`} readOnly={ro} value={answers[k] ?? ''} size={Math.min(60, Math.max(12, (answers[k] ?? '').length + 2))}
                             onChange={(e) => onChange?.(k, e.target.value)} aria-label={tx({ uk: 'Відповідь', ru: 'Ответ', en: 'Answer' })} autoCapitalize="off" autoComplete="off" spellCheck={false} />
+                          )}
                           {showFix(k) && <span className="ex-correct">{p.answers[0]}</span>}
                           {ov(k, !p.answers.length)}
                         </span>
