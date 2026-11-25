@@ -21,7 +21,8 @@ export default function CoinsCard() {
         <b>{bal ?? '…'}</b>
         <p className="t-muted">{t({ uk: 'Заробляй за навчання, витрачай у Murly Town.', ru: 'Зарабатывай за учёбу, трать в Murly Town.', en: 'Earn by learning, spend in Murly Town.' })}</p>
       </div>
-      <Link href="/play/town" className="mu-btn mu-btn--lime">{t({ uk: 'Грати в Murly Town', ru: 'Играть в Murly Town', en: 'Play Murly Town' })}</Link>
+      <Link href="/play/island" className="mu-btn mu-btn--lime">{t({ uk: 'Витратити на острові Murly', ru: 'Потратить на острове Murly', en: 'Spend on Murly Island' })}</Link>
+      <Link href="/play/town" className="mu-btn">{t({ uk: 'Грати в Murly Town', ru: 'Играть в Murly Town', en: 'Play Murly Town' })}</Link>
     </section>
   );
 }
