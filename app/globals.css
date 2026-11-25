@@ -4638,3 +4638,18 @@ textarea.t-parent__url { width: 300px; font: inherit; font-size: 13px; }
   .wg-pop .mu-btn, .wg-pop .g-chip { min-height: 40px; }
   .wg-copy input { font-size: 16px; }
 }
+/* Дошка: своя панель інструментів (як у Miro) */
+.bd-tools { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.bd-tb { font: inherit; font-size: 13px; padding: 5px 11px; border: 1.5px solid var(--mu-ink); border-radius: 99px; background: #fff; cursor: pointer; }
+.bd-tb:hover { background: var(--mu-paper-dark); }
+.bd-tb.on { background: var(--mu-lime); font-weight: 700; }
+.bd-sep { width: 1px; height: 22px; background: var(--mu-paper-dark); margin: 0 2px; }
+.bd-pal { display: inline-flex; align-items: center; gap: 5px; padding: 3px 8px; border: 1.5px solid var(--mu-paper-dark); border-radius: 99px; background: #fff; }
+.bd-sw { width: 22px; height: 22px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 0 0 1.5px var(--mu-paper-dark); cursor: pointer; padding: 0; }
+.bd-sw.on { box-shadow: 0 0 0 2.5px var(--mu-ink); }
+.bd-w { width: 28px; height: 22px; display: inline-grid; place-items: center; border: 1.5px solid transparent; border-radius: 8px; background: none; cursor: pointer; padding: 0; }
+.bd-w i { display: block; width: 16px; background: var(--mu-ink); border-radius: 4px; }
+.bd-w.on { border-color: var(--mu-ink); }
+/* коли малюємо, бокова панель стилю Excalidraw не заважає */
+.bd.no-props .excalidraw .App-menu__left { display: none !important; }
+@media (max-width: 700px) { .bd-tb { padding: 4px 8px; font-size: 12px; } .bd-sep { display: none; } }
