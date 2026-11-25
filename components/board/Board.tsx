@@ -382,6 +382,16 @@ export default function Board({ studentId, plans = [], library = [], words = [],
     insert([{ type: 'rectangle', x: cx - 100 + Math.random() * 40, y: cy - 100 + Math.random() * 40, width: 200, height: 200, backgroundColor: bg, fillStyle: 'solid', strokeColor: '#1E1E1E', strokeWidth: 1, roundness: { type: 3 }, label: { text: ' ', fontSize: 20 } }]);
     api.setActiveTool({ type: 'selection' });
   };
+  // Планшет: Apple Pencil малює, пальцем рухаємо й масштабуємо дошку (як у Miro і Notes)
+  const [fingerDraw, setFingerDraw] = useState(false);
+  const [touch, setTouch] = useState(false);
+  useEffect(() => { setTouch(typeof window !== 'undefined' && (navigator.maxTouchPoints > 0 || 'ontouchstart' in window)); }, []);
+  useEffect(() => { if (api) api.updateScene({ appState: { penMode: touch && !fingerDraw }, captureUpdate: CaptureUpdateAction.NEVER }); }, [api, touch, fingerDraw]);
+  const onPenDown = (e: React.PointerEvent) => {
+    if (e.pointerType !== 'pen' || !api) return;
+    // стилус торкнувся дошки: вмикаємо режим пера (палець рухає, стилус малює), якщо учитель не обрав «пальцем малюю»
+    if (!fingerDraw && !api.getAppState().penMode) api.updateScene({ appState: { penMode: true }, captureUpdate: CaptureUpdateAction.NEVER });
+  };
   const hideProps = !showProps && !hasSel && ['freedraw', 'eraser', 'laser', 'hand'].includes(tool);
   const addWords = () => {
     if (!words.length) return;
@@ -443,10 +453,11 @@ export default function Board({ studentId, plans = [], library = [], words = [],
           </span>
         )}
         <span className="bd-sep" />
+        {touch && <button type="button" className={`bd-tb ${fingerDraw ? 'on' : ''}`} onClick={() => setFingerDraw(!fingerDraw)} title={t({ uk: 'Коли вимкнено: пальцем рухаєш дошку, малюєш стилусом', ru: 'Когда выключено: пальцем двигаешь доску, рисуешь стилусом', en: 'Off: finger moves the board, stylus draws' })}>{fingerDraw ? t({ uk: 'Пальцем: малюю', ru: 'Пальцем: рисую', en: 'Finger: draw' }) : t({ uk: 'Пальцем: рухаю', ru: 'Пальцем: двигаю', en: 'Finger: move' })}</button>}
         <button type="button" className={`bd-tb ${showProps ? 'on' : ''}`} onClick={() => setShowProps(!showProps)}>{t({ uk: 'Панель стилю', ru: 'Панель стиля', en: 'Style panel' })}</button>
       </div>
       <div className="bd-body">
-        <div className="bd-canvas" onDropCapture={onDrop} onDragOverCapture={(e) => { if (e.dataTransfer.types.includes('application/x-murly') || e.dataTransfer.types.includes('Files')) e.preventDefault(); }}>
+        <div className="bd-canvas" onPointerDownCapture={onPenDown} onDropCapture={onDrop} onDragOverCapture={(e) => { if (e.dataTransfer.types.includes('application/x-murly') || e.dataTransfer.types.includes('Files')) e.preventDefault(); }}>
           <Excalidraw excalidrawAPI={(a: any) => setApi(a)} onChange={onChange} onPointerUpdate={onPointer} isCollaborating validateEmbeddable={allowEmbed} langCode={LANG[t.lang] ?? 'en'}
             initialData={{ appState: { viewBackgroundColor: '#FFFDF8', currentItemFontFamily: 2 } }}
             UIOptions={{ canvasActions: { loadScene: false, saveToActiveFile: false, export: { saveFileToDisk: true } } }}>
