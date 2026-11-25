@@ -70,7 +70,8 @@ export default function Board({ studentId, plans = [], library = [], words = [],
     const changed = els.filter((e) => (sent.current.get(e.id) ?? -1) < e.version);
     const files = api.getFiles() as Record<string, any>;
     const newFiles: Record<string, unknown> = {};
-    Object.values(files).forEach((f: any) => { if (!sentFiles.current.has(f.id)) newFiles[f.id] = f; });
+    let size = 0; // запит на Vercel не більше ~4,5 МБ: картинки відправляємо порціями
+    Object.values(files).forEach((f: any) => { if (sentFiles.current.has(f.id)) return; const n = String(f.dataURL ?? '').length; if (size && size + n > 3_000_000) return; size += n; newFiles[f.id] = f; });
     if (!changed.length && !Object.keys(newFiles).length) return;
     pushing.current = true;
     try {
@@ -120,7 +121,11 @@ export default function Board({ studentId, plans = [], library = [], words = [],
     return () => { clearInterval(send); clearInterval(get); };
   }, [api, studentId, me]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const onChange = useCallback(() => {
+  const [tool, setTool] = useState('selection');
+  const [hasSel, setHasSel] = useState(false);
+  const [showProps, setShowProps] = useState(false);
+  const onChange = useCallback((_els: unknown, st: any) => {
+    if (st) { setTool(st.activeTool?.type ?? 'selection'); setHasSel(Object.keys(st.selectedElementIds ?? {}).length > 0); }
     if (timer.current) clearTimeout(timer.current);
     timer.current = setTimeout(() => { push(); }, 350);
   }, [push]);
@@ -218,6 +223,34 @@ export default function Board({ studentId, plans = [], library = [], words = [],
     api.addFiles([{ id: fileId, dataURL, mimeType: mime, created: Date.now() }]);
     await insert([{ type: 'image', x: at.x, y: at.y, width: w, height: h, fileId }]);
   };
+  // PDF → сторінки-картинки: поверх них можна малювати, як у Miro. Сторінки закріплені, щоб не з’їжджали
+  const addPdf = async (data: ArrayBuffer, at: { x: number; y: number }) => {
+    const V = '4.10.38';
+    const lib: any = await import(/* webpackIgnore: true */ `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${V}/pdf.min.mjs`);
+    lib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${V}/pdf.worker.min.mjs`;
+    const doc = await lib.getDocument({ data }).promise;
+    const n = Math.min(doc.numPages, 30);
+    const W = 900; let y = at.y; const sk: any[] = [];
+    for (let i = 1; i <= n; i++) {
+      const page = await doc.getPage(i);
+      const vp0 = page.getViewport({ scale: 1 });
+      const scale = 1400 / vp0.width;
+      const vp = page.getViewport({ scale });
+      const c = document.createElement('canvas'); c.width = Math.round(vp.width); c.height = Math.round(vp.height);
+      const ctx = c.getContext('2d')!; ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, c.width, c.height);
+      await page.render({ canvasContext: ctx, viewport: vp }).promise;
+      const dataURL = c.toDataURL('image/jpeg', 0.82);
+      const fileId = `pdf${Math.random().toString(36).slice(2, 12)}`;
+      api.addFiles([{ id: fileId, dataURL, mimeType: 'image/jpeg', created: Date.now() }]);
+      const h = Math.round((vp.height / vp.width) * W);
+      sk.push({ type: 'image', x: at.x, y, width: W, height: h, fileId });
+      y += h + 30;
+    }
+    const add = (convertToExcalidrawElements(sk, { regenerateIds: true }) as any[]).map((e) => ({ ...e, locked: true }));
+    api.updateScene({ elements: [...api.getSceneElementsIncludingDeleted(), ...add], captureUpdate: CaptureUpdateAction.IMMEDIATELY });
+    api.scrollToContent(add.slice(0, 1), { animate: true });
+    push();
+  };
   const addDoc = async (file: File, at = scenePoint()) => {
     if (!api) return;
     setUpErr(''); setBusy(true);
@@ -225,7 +258,10 @@ export default function Board({ studentId, plans = [], library = [], words = [],
       if (file.type.startsWith('image/')) {
         const dataURL: string = await new Promise((res) => { const fr = new FileReader(); fr.onload = () => res(String(fr.result)); fr.readAsDataURL(file); });
         await addImage(dataURL, file.type, at);
+      } else if (file.type === 'application/pdf' || /\.pdf$/i.test(file.name)) {
+        await addPdf(await file.arrayBuffer(), at);
       } else {
+        if (/\.(docx?|pptx?|xlsx?|html?)$/i.test(file.name)) setUpErr(t({ uk: 'Порада: щоб малювати поверх документа, збережи його як PDF і завантаж ще раз.', ru: 'Совет: чтобы рисовать поверх документа, сохрани его как PDF и загрузи ещё раз.', en: 'Tip: to draw on top of a document, save it as PDF and upload again.' }));
         const type = /\.html?$/i.test(file.name) ? 'text/html' : file.type;
         const up = await uploadFile(type === file.type ? file : new File([file], file.name, { type }));
         if ('error' in up) { setUpErr(up.error); return; }
@@ -287,6 +323,7 @@ export default function Board({ studentId, plans = [], library = [], words = [],
       return;
     }
     if (!m.href) return;
+    if (m.kind === 'file' && /\.pdf(\?|$)/i.test(m.href)) { setBusy(true); try { await addPdf(await fetch(m.href).then((r) => r.arrayBuffer()), at); } catch { embed(m.href, at); } finally { setBusy(false); } return; }
     if (m.kind === 'file' && /\.(png|jpe?g|webp|gif)(\?|$)/i.test(m.href)) { setBusy(true); try { await addImageFromUrl(m.href, at); } finally { setBusy(false); } return; }
     embed(m.kind === 'page' ? `${location.origin}${m.href}` : viewLink(m.href, m.title), at, m.kind === 'page' ? 1100 : 960, m.kind === 'page' ? 760 : 680);
   };
@@ -318,6 +355,34 @@ export default function Board({ studentId, plans = [], library = [], words = [],
     else setFull((f) => !f); // iPhone: без Fullscreen API, просто на все вікно
   };
 
+  // ---- Панель інструментів як у Miro: назад/вперед, ручка з кольорами, маркер, гумка, стікер ----
+  const COLORS = ['#1E1E1E', '#E03131', '#1971C2', '#2F9E44', '#F08C00', '#9C36B5'];
+  const [pen, setPen] = useState({ color: '#1E1E1E', width: 2, hl: false });
+  const usePen = (p: { color?: string; width?: number; hl?: boolean }) => {
+    if (!api) return;
+    const n = { ...pen, ...p };
+    setPen(n);
+    api.updateScene({ appState: { currentItemStrokeColor: n.hl ? '#FFD43B' : n.color, currentItemStrokeWidth: n.hl ? 12 : n.width, currentItemOpacity: n.hl ? 40 : 100 }, captureUpdate: CaptureUpdateAction.NEVER });
+    api.setActiveTool({ type: 'freedraw' });
+  };
+  const setToolType = (type: string) => { if (!api) return; if (type !== 'freedraw') api.updateScene({ appState: { currentItemOpacity: 100 }, captureUpdate: CaptureUpdateAction.NEVER }); api.setActiveTool({ type }); };
+  const isMac = typeof navigator !== 'undefined' && /Mac|iPhone|iPad/.test(navigator.platform);
+  const history = (redo: boolean) => {
+    const box = wrapRef.current?.querySelector('.excalidraw') as HTMLElement | null;
+    const btns = wrapRef.current?.querySelectorAll('.undo-redo-buttons button');
+    if (btns && btns.length >= 2) { (btns[redo ? 1 : 0] as HTMLButtonElement).click(); return; }
+    box?.dispatchEvent(new KeyboardEvent('keydown', { key: redo ? 'Z' : 'z', code: 'KeyZ', ctrlKey: !isMac, metaKey: isMac, shiftKey: redo, bubbles: true }));
+  };
+  const sticky = () => {
+    if (!api) return;
+    const st = api.getAppState(); const z = st.zoom?.value ?? 1;
+    const cx = -st.scrollX + st.width / 2 / z; const cy = -st.scrollY + st.height / 2 / z;
+    const n = Math.floor(Math.random() * 4);
+    const bg = ['#FFF3B0', '#FFD8E4', '#D3F9D8', '#D0EBFF'][n];
+    insert([{ type: 'rectangle', x: cx - 100 + Math.random() * 40, y: cy - 100 + Math.random() * 40, width: 200, height: 200, backgroundColor: bg, fillStyle: 'solid', strokeColor: '#1E1E1E', strokeWidth: 1, roundness: { type: 3 }, label: { text: ' ', fontSize: 20 } }]);
+    api.setActiveTool({ type: 'selection' });
+  };
+  const hideProps = !showProps && !hasSel && ['freedraw', 'eraser', 'laser', 'hand'].includes(tool);
   const addWords = () => {
     if (!words.length) return;
     const y = bottom();
@@ -349,7 +414,7 @@ export default function Board({ studentId, plans = [], library = [], words = [],
   const groups = Array.from(new Set(shown.map((m) => m.group)));
 
   return (
-    <div className={`bd ${full ? 'is-full' : ''}`} ref={wrapRef}>
+    <div className={`bd ${full ? 'is-full' : ''} ${hideProps ? 'no-props' : ''}`} ref={wrapRef}>
       <div className="bd-bar">
         {title && <b className="bd-title">{title}</b>}
         {online && <span className="bd-online">{teacher ? t({ uk: 'Учень на дошці', ru: 'Ученик на доске', en: 'Student is here' }) : t({ uk: 'Учитель на дошці', ru: 'Учитель на доске', en: 'Teacher is here' })}</span>}
@@ -360,6 +425,25 @@ export default function Board({ studentId, plans = [], library = [], words = [],
         <button type="button" className="mu-btn t-btn-sm bd-full" onClick={toggleFull}>{full ? t({ uk: 'Згорнути', ru: 'Свернуть', en: 'Exit full screen' }) : t({ uk: 'На весь екран', ru: 'На весь экран', en: 'Full screen' })}</button>
         {upErr && <span className="t-neg" style={{ fontSize: 13 }}>{upErr}</span>}
         <span className="bd-tip">{t({ uk: 'Перетягни файли з папки прямо на дошку. Двічі клікни по документу, щоб працювати всередині.', ru: 'Перетащи файлы из папки прямо на доску. Дважды кликни по документу, чтобы работать внутри.', en: 'Drag files from a folder onto the board. Double-click a document to work inside it.' })}</span>
+      </div>
+      <div className="bd-tools" role="toolbar" aria-label={t({ uk: 'Інструменти', ru: 'Инструменты', en: 'Tools' })}>
+        <button type="button" className="bd-tb" onClick={() => history(false)} title={isMac ? '⌘Z' : 'Ctrl+Z'}>↶ {t({ uk: 'Назад', ru: 'Назад', en: 'Undo' })}</button>
+        <button type="button" className="bd-tb" onClick={() => history(true)} title={isMac ? '⌘⇧Z' : 'Ctrl+Shift+Z'}>↷ {t({ uk: 'Вперед', ru: 'Вперёд', en: 'Redo' })}</button>
+        <span className="bd-sep" />
+        <button type="button" className={`bd-tb ${tool === 'selection' ? 'on' : ''}`} onClick={() => setToolType('selection')}>{t({ uk: 'Вибрати', ru: 'Выбрать', en: 'Select' })}</button>
+        <button type="button" className={`bd-tb ${tool === 'freedraw' && !pen.hl ? 'on' : ''}`} onClick={() => usePen({ hl: false })}>{t({ uk: 'Ручка', ru: 'Ручка', en: 'Pen' })}</button>
+        <button type="button" className={`bd-tb ${tool === 'freedraw' && pen.hl ? 'on' : ''}`} onClick={() => usePen({ hl: true })}>{t({ uk: 'Маркер', ru: 'Маркер', en: 'Highlighter' })}</button>
+        <button type="button" className={`bd-tb ${tool === 'eraser' ? 'on' : ''}`} onClick={() => setToolType('eraser')}>{t({ uk: 'Гумка', ru: 'Ластик', en: 'Eraser' })}</button>
+        <button type="button" className={`bd-tb ${tool === 'text' ? 'on' : ''}`} onClick={() => setToolType('text')}>{t({ uk: 'Текст', ru: 'Текст', en: 'Text' })}</button>
+        <button type="button" className="bd-tb" onClick={sticky}>{t({ uk: 'Стікер', ru: 'Стикер', en: 'Sticky note' })}</button>
+        {tool === 'freedraw' && !pen.hl && (
+          <span className="bd-pal">
+            {COLORS.map((c) => <button key={c} type="button" className={`bd-sw ${pen.color === c ? 'on' : ''}`} style={{ background: c }} onClick={() => usePen({ color: c, hl: false })} aria-label={c} />)}
+            {[1, 2, 4].map((w) => <button key={w} type="button" className={`bd-w ${pen.width === w ? 'on' : ''}`} onClick={() => usePen({ width: w, hl: false })} aria-label={`${w}`}><i style={{ height: w + 1 }} /></button>)}
+          </span>
+        )}
+        <span className="bd-sep" />
+        <button type="button" className={`bd-tb ${showProps ? 'on' : ''}`} onClick={() => setShowProps(!showProps)}>{t({ uk: 'Панель стилю', ru: 'Панель стиля', en: 'Style panel' })}</button>
       </div>
       <div className="bd-body">
         <div className="bd-canvas" onDropCapture={onDrop} onDragOverCapture={(e) => { if (e.dataTransfer.types.includes('application/x-murly') || e.dataTransfer.types.includes('Files')) e.preventDefault(); }}>
