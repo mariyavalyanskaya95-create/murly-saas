@@ -4710,3 +4710,7 @@ textarea.t-parent__url { width: 300px; font: inherit; font-size: 13px; }
 .il-item span { font-weight: 700; font-size: 14px; }
 .il-item button { font: inherit; font-size: 13px; font-weight: 800; padding: 6px 12px; border: 2px solid #1A1A1A; border-radius: 99px; background: #fff; cursor: pointer; }
 .il-item button.buy { background: #FFE08A; }
+/* довга відповідь у пропуску (перевірка домашки): на всю ширину, повністю */
+.ex-slot:has(> textarea) { display: flex; width: 100%; flex-wrap: wrap; align-items: flex-start; gap: 6px; margin: 6px 0; }
+.ex-slot > textarea.ex-input { flex: 1 1 100%; min-height: 3em; white-space: pre-wrap; }
+.ex-line input.ex-input { max-width: 100%; }
