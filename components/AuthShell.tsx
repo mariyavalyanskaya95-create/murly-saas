@@ -3,6 +3,7 @@ import Icon from './Icon';
 import { LangSwitch } from './LangProvider';
 import Kit from '@/components/Kit';
 import { tr } from '@/lib/i18n-server';
+import RememberedLogin from './RememberedLogin';
 
 // Вхід і реєстрація на весь екран: ліворуч яскрава панель Murly, праворуч форма
 export default function AuthShell({ title, lead, points, aside, children, pinLink = true }: {
@@ -29,6 +30,7 @@ export default function AuthShell({ title, lead, points, aside, children, pinLin
       <main className="auth-split__main">
         <div className="auth-split__top"><LangSwitch /></div>
         <div className="auth-split__form">
+          <RememberedLogin />
           {pinLink && <Link href="/login" className="pin-login__cta">{t({ uk: 'Учень? Увійти за номером телефону і PIN', ru: 'Ученик? Войти по номеру телефона и PIN', en: 'Student? Log in with a phone number and PIN' })} →</Link>}
           {children}
         </div>
