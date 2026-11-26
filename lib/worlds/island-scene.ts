@@ -3,7 +3,7 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js';
-import { ADDRS, CARS, DISHES, FUR, HOME, HOUSES, PLACES, PRODUCTS, SHELVES, SHOP, SPEED, type Outfit, type RoomItem, type Spot } from './island-data';
+import { ADDRS, CARS, DISHES, FUR, HOME, HOME_SIZE, HOUSES, PLACES, PRODUCTS, SHELVES, SHOP, SPEED, type Outfit, type RoomItem, type Spot } from './island-data';
 import { chalkTex, graffitiTex, neonTex, posterTex, wallpaperTex } from './island-art';
 
 const loader = new GLTFLoader();
@@ -322,6 +322,11 @@ async function thumbObj(id: string): Promise<THREE.Object3D | null> {
   if (id.startsWith('ride-')) { const g = makeRide(id); const glb: Record<string, string> = { 'ride-hatch': 'car_hatchback', 'ride-sedan': 'car_sedan', 'ride-wagon': 'car_stationwagon', 'ride-yellow': 'car_taxi', 'ride-police': 'car_police' }; if (glb[id]) { const m = await model('city', glb[id], 2.6); const b = new THREE.Box3().setFromObject(m).getSize(new THREE.Vector3()); if (b.x > b.z) m.rotation.y = Math.PI / 2; g.add(m); } return g; }
   if (id.startsWith('pet-')) return makePet(id);
   if (id.startsWith('house-')) return model('sub', HOUSES[Number(id.split('-')[1])], 7);
+  if (id.startsWith('wall-') || id.startsWith('floor-')) {
+    const it = SHOP.find((x) => x.id === id); const c = it?.color ?? '#F3E7D3';
+    const kind = id.split('-')[1]; const t = id.startsWith('wall-') ? wallpaperTex((['stripes', 'dots', 'checks', 'waves', 'stars', 'hearts', 'bricks'].includes(kind) ? kind : 'stripes') as 'stripes', '#FFFFFF', c) : wallpaperTex('checks', c, new THREE.Color(c).multiplyScalar(0.9).getStyle());
+    t.repeat.set(1.5, 1.5); const pl = new THREE.Mesh(new THREE.BoxGeometry(1.6, id.startsWith('wall-') ? 1.6 : 0.1, id.startsWith('wall-') ? 0.1 : 1.6), new THREE.MeshBasicMaterial({ map: t })); if (!id.startsWith('wall-')) pl.rotation.x = 0.5; return pl;
+  }
   if (id.startsWith('yard-')) return yardItem(id);
   if (id.startsWith('x-')) return codeItem(id);
   const it = SHOP.find((x) => x.id === id);
@@ -827,7 +832,6 @@ export class IslandScene {
   // ---- інші гравці по мережі ----
   others = new Map<string, { rig: Rig; tx: number; tz: number; tr: number; last: number; tag: THREE.Sprite | null; name: string; key: string; bub: THREE.Sprite | null; ride: THREE.Group | null; rideId: string | null; danceT: number }>();
   upsertOther(p: { id: string; n: string; x: number; z: number; r: number; room?: string | null; o?: Record<string, string | undefined>; ride?: string | null }) {
-    if (p.room === 'home') { this.removeOther(p.id); return; }
     let o = this.others.get(p.id);
     if (!o) { const rig = makeCat(FUR[0].color); rig.root.position.set(p.x, 0, p.z); this.scene.add(rig.root); o = { rig, tx: p.x, tz: p.z, tr: p.r, last: 0, tag: null, name: '', key: '', bub: null, ride: null, rideId: null, danceT: 0 }; this.others.set(p.id, o); }
     o.tx = p.x; o.tz = p.z; o.tr = p.r; o.last = performance.now();
@@ -982,10 +986,41 @@ export class IslandScene {
     this.spots.push({ id: 'room-exit', x: o.x - W / 2 + 1.3, z: o.z + 3, r: 1.6, label: 'EXIT' });
     for (let i = 0; i < 10; i++) { const a = (i / 10) * Math.PI * 2; const b = sph(1 + Math.random(), '#6FB64C', 12); b.position.set(Math.cos(a) * 16, 0.4, Math.sin(a) * 14); g.add(b); }
   }
+  guestGroup = new THREE.Group();
+  // дім іншого гравця, до якого прийшли в гості
+  async buildGuestHome(d: { room: RoomItem[]; level: number; wall: string; floor: string }) {
+    const o = { x: ROOM.x - 160, z: ROOM.z }; this.origins.guesthome = o;
+    const g = this.guestGroup; g.clear(); g.position.set(o.x, 0, o.z); if (!g.parent) this.scene.add(g);
+    this.spots = this.spots.filter((sp) => !(sp.id === 'room-exit' && Math.abs(sp.x - o.x) < 15 && Math.abs(sp.z - o.z) < 15));
+    const [W, D] = HOME_SIZE[Math.max(1, d.level)] ?? [ROOM.w, ROOM.d]; this.sizes.guesthome = { w: W, d: D };
+    const FL: Record<string, [string, string]> = { 'floor-light': ['#D9B38C', '#CFA67C'], 'floor-dark': ['#8B5E34', '#7A5230'], 'floor-tiles': ['#F4F1E8', '#E0DCD0'], 'floor-carpet': ['#8EC9F5', '#86BFEA'], 'floor-pink': ['#F7B7C8', '#F0AABD'] };
+    const fl = FL[d.floor] ?? FL['floor-light']; const keep = this.homeWall; this.homeWall = d.wall;
+    this.buildShell(g, o, fl[0], fl[1], '#F3E7D3', undefined, W, D); this.dressRoom('home', g, W, D); this.homeWall = keep;
+    const scenes = await pack('furn'); const cols: { x: number; z: number; r: number }[] = []; this.roomCols.guesthome = cols;
+    (d.room ?? []).slice(0, 80).forEach((it) => {
+      const src = it.f.startsWith('x-') ? null : scenes.get(it.f); if (!src && !it.f.startsWith('x-')) return;
+      const gg = new THREE.Group(); const inner = new THREE.Group(); if (src) { src.children.forEach((c) => inner.add(c.clone(true))); inner.scale.setScalar(FK); } else inner.add(codeItem(it.f)); gg.add(inner);
+      const b = new THREE.Box3().setFromObject(inner); const c = b.getCenter(new THREE.Vector3()); inner.position.set(-c.x, -b.min.y, -c.z);
+      gg.position.set(Math.max(-W / 2 + 0.5, Math.min(W / 2 - 0.5, it.x)), 0, Math.max(-D / 2 + 0.5, Math.min(D / 2 - 0.5, it.z))); gg.rotation.y = it.r; g.add(gg);
+      const sz = b.getSize(new THREE.Vector3()); if (!/^rug/.test(it.f) && sz.y > 0.4) cols.push({ x: o.x + gg.position.x, z: o.z + gg.position.z, r: Math.max(0.2, Math.min(sz.x, sz.z) / 2 * 0.9) });
+    });
+  }
+  homeKey = ''; homeWall = '';
+  // мій дім усередині: розмір залежить від будинку, шпалери й підлога купуються в магазині
+  setHome(level: number, wall: string, floor: string) {
+    const key = `${level}|${wall}|${floor}`; if (key === this.homeKey) return; this.homeKey = key; this.homeWall = wall;
+    const g = this.roomGroup; [...g.children].forEach((c) => { if (c !== this.roomItems) g.remove(c); });
+    this.spots = this.spots.filter((sp) => !(sp.id === 'room-exit' && Math.abs(sp.x - ROOM.x) < 15 && Math.abs(sp.z - ROOM.z) < 15));
+    const [W, D] = HOME_SIZE[Math.max(1, level)] ?? [ROOM.w, ROOM.d]; this.sizes.home = { w: W, d: D };
+    if (this.roomId === 'home') { this.curW = W; this.curD = D; }
+    const FL: Record<string, [string, string]> = { 'floor-light': ['#D9B38C', '#CFA67C'], 'floor-dark': ['#8B5E34', '#7A5230'], 'floor-tiles': ['#F4F1E8', '#E0DCD0'], 'floor-carpet': ['#8EC9F5', '#86BFEA'], 'floor-pink': ['#F7B7C8', '#F0AABD'] };
+    const fl = FL[floor] ?? FL['floor-light'];
+    this.buildShell(g, ROOM, fl[0], fl[1], '#F3E7D3', undefined, W, D);
+    this.dressRoom('home', g, W, D);
+  }
   buildRoom() {
     const g = this.roomGroup; g.position.set(ROOM.x, 0, ROOM.z); this.scene.add(g); g.add(this.roomItems); this.scene.add(this.propsGroup);
-    this.buildShell(g, ROOM, '#D9B38C', '#CFA67C', '#F3E7D3');
-    this.dressRoom("home", g);
+    this.setHome(1, '', 'floor-light');
     this.origins.home = { x: ROOM.x, z: ROOM.z };
     [...INTERIORS, ...HOUSE_DEFS].forEach((d, i) => { const o = { x: ROOM.x, z: ROOM.z + 150 * (i + 1) }; this.origins[d.id] = o; void this.buildInterior(d, o); });
   }
@@ -1145,7 +1180,8 @@ export class IslandScene {
       this.art(g, posterTex({ title: 'NIGHT SKY', lines: ['Look at the stars!'], bg: '#1E2A4A', fg: '#FFFFFF', icons: [['star', '#FFC53D'], ['star', '#FFFFFF'], ['star', '#FFC53D']] }), 1.5, 2.0, LX, 2.0, -2.2, R);
     }
     if (id === 'home') {
-      this.wallpaper(g, wallpaperTex('stars', '#FFF3DA', '#FFD36E'), W, D);
+      const WP: Record<string, ['stripes' | 'dots' | 'checks' | 'waves' | 'stars' | 'hearts' | 'bricks', string, string]> = { 'wall-stripes': ['stripes', '#FFD6D1', '#FFB3AA'], 'wall-dots': ['dots', '#E3F0FA', '#8EC9F5'], 'wall-stars': ['stars', '#FFF3DA', '#FFD36E'], 'wall-hearts': ['hearts', '#FFF0F5', '#FF9CC2'], 'wall-checks': ['checks', '#E2F7EA', '#A8EBCB'], 'wall-waves': ['waves', '#E3F0FA', '#8EC9F5'], 'wall-bricks': ['bricks', '#E07A5F', '#F4EEE2'] };
+      const wp = WP[this.homeWall]; if (wp) this.wallpaper(g, wallpaperTex(wp[0], wp[1], wp[2]), W, D);
       this.art(g, posterTex({ title: 'MY HOME', bg: '#FFE08A', icons: [['heart', '#E5484D'], ['star', '#FFFFFF']], w: 512, h: 256 }), 2, 1, 0, 3.0, BZ);
     }
   }
@@ -1244,7 +1280,7 @@ export class IslandScene {
       const p = cyl(0.08, 0.08, 1.6, '#6B4F2A'); p.position.set(HOME.x, 0.8, HOME.z); this.homeGroup.add(p);
       return;
     }
-    const h = await model('sub', HOUSES[level], 7 + level * 1.2);
+    const h = await model('sub', HOUSES[level], [0, 6, 7.5, 9, 10.5][level] ?? 9);
     h.position.set(HOME.x, 0, HOME.z + 1); this.homeGroup.add(h);
     const s = sign('MY HOME', '#FFC53D', '#1A1A1A', 3.4); s.position.set(HOME.x, new THREE.Box3().setFromObject(h).max.y + 1.2, HOME.z + 1); this.homeGroup.add(s);
     this.colliders.push(Object.assign({ x: HOME.x, z: HOME.z + 1, r: 3.8 + level * 0.4 }, { home: true }));
@@ -1252,8 +1288,18 @@ export class IslandScene {
   async setYard(list: string[]) {
     this.yardList = list; this.yardGroup.clear(); this.tramp = null; this.clearUses('yard'); this.spots = this.spots.filter((x) => x.label !== 'MY TENT');
     const slot = (i: number) => { const a = [[-7, -5], [7, -5], [-7, 5], [7, 5], [-4, -6.5], [4, -6.5], [-8, 0], [8, 0], [0, 7]][i % 9]; return { x: HOME.x + a[0], z: HOME.z + a[1] }; };
-    for (let i = 0; i < list.length; i++) {
-      const id = list[i]; const { x, z } = slot(i);
+    const around = ['yard-fenceall', 'yard-hedge', 'yard-path', 'yard-planters'];
+    const slotList = list.filter((x) => !around.includes(x));
+    if (list.includes('yard-fenceall') || list.includes('yard-hedge')) {
+      const hedge = !list.includes('yard-fenceall'); const x0 = HOME.x - 9, x1 = HOME.x + 9, z0 = HOME.z - 8, z1 = HOME.z + 8;
+      const seg = async (x: number, z: number, rot: number) => { let g: THREE.Object3D; if (hedge) { const h = new THREE.Group(); const b = box(2, 1.1, 0.7, '#4E9A3E'); b.position.y = 0.55; h.add(b); for (let k = 0; k < 3; k++) { const sp = sph(0.45, '#5DAA48', 10); sp.position.set(-0.65 + k * 0.65, 1.05, 0); h.add(sp); } g = h; } else g = await model('sub', 'fence', 2); g.position.set(x, 0, z); g.rotation.y = rot; this.yardGroup.add(g); };
+      for (let x = x0 + 1; x < x1; x += 2) { await seg(x, z1, 0); if (Math.abs(x - HOME.x) > 2.2) await seg(x, z0, 0); }
+      for (let z = z0 + 1; z < z1; z += 2) { await seg(x0, z, Math.PI / 2); await seg(x1, z, Math.PI / 2); }
+    }
+    if (list.includes('yard-path')) for (let k = 0; k < 4; k++) { const st = await model('sub', 'path-stones-short', 1.6); st.position.set(HOME.x, 0.02, HOME.z - 7.6 + k * 1.5); this.yardGroup.add(st); }
+    if (list.includes('yard-planters')) for (const dx of [-3.4, 3.4]) { const pl = await model('sub', 'planter', 1.8); pl.position.set(HOME.x + dx, 0, HOME.z - 4.6); this.yardGroup.add(pl); }
+    for (let i = 0; i < slotList.length; i++) {
+      const id = slotList[i]; const { x, z } = slot(i);
       const g = await yardItem(id); if (id === 'yard-tramp') this.tramp = new THREE.Vector3(x, 0, z);
       if (!g) continue;
       g.position.set(x, 0, z); this.yardGroup.add(g);
@@ -1312,7 +1358,7 @@ export class IslandScene {
       }
       if (this.inside && this.decorate) {
         if (!this.placing) { const hits = this.ray.intersectObject(this.roomItems, true); const h0 = hits.find((h) => h.object.userData.idx !== undefined); if (h0) { this.ev.onPick?.(h0.object.userData.idx as number); return; } }
-        if (this.placing && this.ray.ray.intersectPlane(this.ground, hit)) { const lx = THREE.MathUtils.clamp(hit.x - this.cur.x, -ROOM.w / 2 + 0.8, ROOM.w / 2 - 0.8), lz = THREE.MathUtils.clamp(hit.z - this.cur.z, -ROOM.d / 2 + 0.8, ROOM.d / 2 - 0.8); this.ev.onPlace?.(lx, lz); }
+        if (this.placing && this.ray.ray.intersectPlane(this.ground, hit)) { const lx = THREE.MathUtils.clamp(hit.x - this.cur.x, -this.curW / 2 + 0.8, this.curW / 2 - 0.8), lz = THREE.MathUtils.clamp(hit.z - this.cur.z, -this.curD / 2 + 0.8, this.curD / 2 - 0.8); this.ev.onPlace?.(lx, lz); }
         return;
       }
       if (this.ray.ray.intersectPlane(this.ground, hit) && (this.inside ? Math.abs(hit.x - this.cur.x) < this.curW / 2 && Math.abs(hit.z - this.cur.z) < this.curD / 2 : Math.hypot(hit.x, hit.z) < 73 || (Math.abs(hit.x) < 1.5 && hit.z < -70 && hit.z > -86))) this.walkTo(hit.x, hit.z);
