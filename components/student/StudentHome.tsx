@@ -6,6 +6,7 @@ import GameHub from '../games/GameHub';
 import HomeworkList from './HomeworkList';
 import WordReview from './WordReview';
 import CoinsCard from './CoinsCard';
+import IslandCard from './IslandCard';
 import { GameFinishContext } from '../games/finish';
 import type { Enrollment } from '@/lib/student-data';
 import { useT } from '@/components/LangProvider';
@@ -96,6 +97,7 @@ export default function StudentHome({ enrollments, name }: { enrollments: Enroll
       <Progress e={e} />
 
       {!e.adult && <CoinsCard />}
+      {!e.adult && <IslandCard />}
 
       <section className="t-card" id="words">
         <div className="t-card__head">
