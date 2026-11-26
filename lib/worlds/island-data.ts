@@ -72,7 +72,7 @@ export type RoomItem = { f: string; x: number; z: number; r: number };
 export type Daily = { date: string; ids: string[]; prog: Record<string, number>; paid?: boolean };
 export type Save = { v: 1; owned: string[]; outfit: Outfit; ride: string | null; pet: string | null; house: number; yard: string[]; jobs: Record<string, number>; name?: string; localCoins?: number; stars?: string[]; starBonus?: boolean; talks?: number;
   furn?: string[]; room?: RoomItem[]; daily?: Daily; fish?: Record<string, number>; badges?: string[];
-  prof?: string; friends?: Record<string, number>; dialogs?: string[]; pos?: { x: number; z: number; room?: string | null }; tasks?: Record<string, unknown>; last?: { at: string; place: string; doing?: string } };
+  prof?: string; friends?: Record<string, number>; needs?: { food: number; energy: number; fun: number }; bag?: Record<string, number>; hero?: string; dialogs?: string[]; pos?: { x: number; z: number; room?: string | null }; tasks?: Record<string, unknown>; last?: { at: string; place: string; doing?: string } };
 export const START: Save = { v: 1, owned: ['fur-ginger'], outfit: { fur: 'fur-ginger' }, ride: null, pet: null, house: 0, yard: [], jobs: {} };
 
 // ---------- карта ----------
@@ -423,3 +423,58 @@ export const PROFS: Prof[] = [
 ];
 export const PROF_LEVELS = [{ n: 0, en: 'Trainee' }, { n: 5, en: 'Junior' }, { n: 15, en: 'Senior' }, { n: 30, en: 'Master' }, { n: 60, en: 'Legend' }];
 export function profLevel(count: number) { let l = PROF_LEVELS[0], i = 0; PROF_LEVELS.forEach((x, k) => { if (count >= x.n) { l = x; i = k; } }); return { ...l, i, next: PROF_LEVELS[i + 1] }; }
+
+
+// ---------- як у Sims: потреби, їжа, рецепти, дружба ----------
+export const FOODS: { id: string; en: string; a: string; food: number; c: string }[] = [
+  { id: 'apple', en: 'apple', a: 'an', food: 12, c: '#E5484D' }, { id: 'banana', en: 'banana', a: 'a', food: 12, c: '#FFD84D' },
+  { id: 'yogurt', en: 'yogurt', a: 'a', food: 15, c: '#FFFFFF' }, { id: 'cheese', en: 'piece of cheese', a: 'a', food: 15, c: '#FFC53D' },
+  { id: 'milk', en: 'glass of milk', a: 'a', food: 10, c: '#F4F1E8' }, { id: 'juice', en: 'glass of orange juice', a: 'a', food: 10, c: '#F5862D' },
+  { id: 'carrot', en: 'carrot', a: 'a', food: 10, c: '#F5862D' }, { id: 'cake', en: 'slice of cake', a: 'a', food: 20, c: '#F7A1B5' },
+  { id: 'sandwich', en: 'sandwich', a: 'a', food: 30, c: '#E8B46A' }, { id: 'cookie', en: 'cookie', a: 'a', food: 8, c: '#C68A4A' },
+];
+export const FRIDGE = ['apple', 'banana', 'yogurt', 'cheese', 'milk', 'juice', 'carrot', 'cake'];
+export const INGREDIENTS = ['flour', 'eggs', 'milk', 'sugar', 'cheese', 'tomato', 'salt', 'water', 'carrots', 'potatoes', 'onion', 'dough', 'tomato sauce', 'ham', 'lettuce', 'cucumber', 'olive oil', 'apple', 'banana', 'strawberries', 'bread', 'butter', 'chocolate', 'rice', 'chicken', 'pepper'];
+export const RECIPES: { id: string; en: string; need: string[]; food: number; fun: number; c: string; how: string }[] = [
+  { id: 'pancakes', en: 'pancakes', need: ['flour', 'eggs', 'milk', 'sugar'], food: 45, fun: 10, c: '#E8B46A', how: 'Mix the flour, eggs, milk and sugar. Fry them in a pan.' },
+  { id: 'omelette', en: 'an omelette', need: ['eggs', 'cheese', 'tomato', 'salt'], food: 40, fun: 5, c: '#FFE36B', how: 'Break the eggs, add cheese, tomato and a little salt.' },
+  { id: 'soup', en: 'vegetable soup', need: ['water', 'carrots', 'potatoes', 'onion'], food: 45, fun: 5, c: '#F5862D', how: 'Boil the water, then add carrots, potatoes and an onion.' },
+  { id: 'pizza', en: 'a pizza', need: ['dough', 'tomato sauce', 'cheese', 'ham'], food: 55, fun: 15, c: '#E5484D', how: 'Put tomato sauce on the dough, then cheese and ham. Bake it.' },
+  { id: 'salad', en: 'a green salad', need: ['lettuce', 'tomato', 'cucumber', 'olive oil'], food: 30, fun: 5, c: '#30A46C', how: 'Cut the lettuce, tomato and cucumber. Add some olive oil.' },
+  { id: 'fruitsalad', en: 'a fruit salad', need: ['apple', 'banana', 'strawberries', 'sugar'], food: 30, fun: 10, c: '#F76AA8', how: 'Cut the apple, banana and strawberries. Add a little sugar.' },
+  { id: 'toastie', en: 'a cheese toastie', need: ['bread', 'butter', 'cheese', 'ham'], food: 40, fun: 5, c: '#C68A4A', how: 'Butter the bread, add cheese and ham, and toast it.' },
+  { id: 'chickenrice', en: 'chicken and rice', need: ['chicken', 'rice', 'onion', 'pepper'], food: 55, fun: 5, c: '#FFF1C9', how: 'Cook the rice. Fry the chicken with an onion and a pepper.' },
+  { id: 'cocoa', en: 'hot chocolate', need: ['milk', 'chocolate', 'sugar'], food: 15, fun: 15, c: '#7A4E25', how: 'Warm the milk and add chocolate and sugar.' },
+];
+export const FRIEND_LEVELS = [{ n: 0, en: 'Stranger' }, { n: 3, en: 'Neighbour' }, { n: 6, en: 'Friend' }, { n: 10, en: 'Good friend' }, { n: 15, en: 'Best friend' }];
+export function friendLevel(p: number) { let i = 0; FRIEND_LEVELS.forEach((x, k) => { if (p >= x.n) i = k; }); return { ...FRIEND_LEVELS[i], i, next: FRIEND_LEVELS[i + 1] }; }
+// що відбувається під час дії: англійське речення, зміна потреб
+export const ACT: Record<string, { say: string; pose: 'sit' | 'sleep' | 'use' | 'swim' | 'swing'; secs: number; food?: number; energy?: number; fun?: number; bubble: string }> = {
+  sit: { say: "I'm sitting down and having a rest.", pose: 'sit', secs: 0, energy: 0, bubble: 'Ahh!' },
+  sleep: { say: "I'm sleeping. Good night!", pose: 'sleep', secs: 6, energy: 100, bubble: 'Zzz...' },
+  tv: { say: "I'm watching my favourite cartoon on TV.", pose: 'use', secs: 5, fun: 30, energy: -3, bubble: 'Ha ha!' },
+  read: { say: "I'm reading a book about pirates.", pose: 'use', secs: 5, fun: 20, bubble: 'Hmm...' },
+  music: { say: "I'm listening to music and dancing!", pose: 'use', secs: 5, fun: 25, energy: -3, bubble: 'La la la!' },
+  bath: { say: "I'm having a bubble bath.", pose: 'use', secs: 5, fun: 15, energy: 5, bubble: 'Splash!' },
+  shower: { say: "I'm having a quick shower.", pose: 'use', secs: 4, fun: 10, energy: 5, bubble: 'So fresh!' },
+  wash: { say: "I'm washing my hands with soap.", pose: 'use', secs: 3, fun: 3, bubble: 'Clean!' },
+  computer: { say: "I'm playing a computer game.", pose: 'use', secs: 5, fun: 30, energy: -4, bubble: 'I won!' },
+  homework: { say: "I'm doing my English homework.", pose: 'use', secs: 5, fun: 5, energy: -3, bubble: 'Done!' },
+  coffee: { say: "I'm making a cup of hot chocolate.", pose: 'use', secs: 4, food: 10, fun: 8, bubble: 'Yum!' },
+  toast: { say: "I'm making toast for breakfast.", pose: 'use', secs: 4, food: 18, bubble: 'Crunchy!' },
+  micro: { say: "I'm heating up some soup.", pose: 'use', secs: 4, food: 25, bubble: 'Yum!' },
+  washer: { say: "I'm washing my clothes.", pose: 'use', secs: 4, fun: 3, bubble: 'Whirr!' },
+  plant: { say: "I'm watering the plant. It's growing!", pose: 'use', secs: 3, fun: 8, bubble: 'Grow!' },
+  hug: { say: "I'm hugging my teddy bear.", pose: 'use', secs: 3, fun: 15, bubble: 'Aww!' },
+  marsh: { say: "I'm roasting marshmallows on the campfire.", pose: 'use', secs: 5, food: 15, fun: 20, bubble: 'Yummy!' },
+  swing: { say: "I'm swinging high!", pose: 'swing', secs: 0, fun: 0, bubble: 'Wheee!' },
+  swim: { say: "I'm swimming in the pool.", pose: 'swim', secs: 6, fun: 30, energy: -6, bubble: 'Splash!' },
+  wish: { say: "I'm throwing a coin into the fountain and making a wish.", pose: 'use', secs: 3, fun: 10, bubble: 'Wish!' },
+  lamp: { say: "I'm turning on the lamp.", pose: 'use', secs: 1, bubble: 'Click!' },
+};
+export const EMOTES: { id: string; en: string; bubble: string; say: string }[] = [
+  { id: 'wave', en: 'Wave', bubble: 'Hi!', say: "I'm waving hello." }, { id: 'dance', en: 'Dance', bubble: 'Yeah!', say: "I'm dancing." },
+  { id: 'laugh', en: 'Laugh', bubble: 'Ha ha ha!', say: "I'm laughing." }, { id: 'think', en: 'Think', bubble: 'Hmm...', say: "I'm thinking." },
+  { id: 'love', en: 'Love', bubble: 'I love it!', say: 'I love this island!' }, { id: 'sad', en: 'Sad', bubble: 'Oh no...', say: "I'm a bit sad." },
+  { id: 'sit', en: 'Sit down', bubble: 'Phew!', say: "I'm sitting on the ground." }, { id: 'sleepy', en: 'Yawn', bubble: 'Yaaawn!', say: "I'm sleepy." },
+];

@@ -301,8 +301,41 @@ async function renderThumb(id: string) {
 }
 
 // ---------- сцена ----------
-export type IslandEvents = { onNear: (spot: Spot | null) => void; onFps?: (low: boolean) => void; onStar?: (id: string) => void; onClock?: (hour: number, rain: boolean) => void; onPlace?: (x: number, z: number) => void; onPick?: (i: number) => void; onPickup?: () => void };
+export type IslandEvents = { onPoseEnd?: () => void; onNear: (spot: Spot | null) => void; onFps?: (low: boolean) => void; onStar?: (id: string) => void; onClock?: (hour: number, rain: boolean) => void; onPlace?: (x: number, z: number) => void; onPick?: (i: number) => void; onPickup?: () => void };
 export const ROOM = { x: 400, z: 0, w: 14, d: 11 };
+// що можна робити з предметом
+export const USE: Record<string, string> = {
+  sit: 'Sit down', sleep: 'Go to sleep', fridge: 'Open the fridge', cook: 'Cook something', tv: 'Watch TV', read: 'Read a book', music: 'Play some music',
+  bath: 'Have a bath', shower: 'Have a shower', wash: 'Wash your hands', computer: 'Play a computer game', homework: 'Do your homework', coffee: 'Make hot chocolate',
+  toast: 'Make toast', micro: 'Heat up some food', washer: 'Wash your clothes', plant: 'Water the plant', hug: 'Hug the teddy bear', mirror: 'Look in the mirror',
+  wardrobe: 'Try on clothes', marsh: 'Roast marshmallows', swing: 'Swing', swim: 'Go for a swim', wish: 'Make a wish', lamp: 'Turn on the lamp',
+};
+export function useKind(f: string): string | null {
+  if (/^(chair|stoolBar|loungeSofa|loungeChair|loungeDesign|bench|chairDesk)/.test(f)) return 'sit';
+  if (/^bed(Single|Double|Bunk)/.test(f)) return 'sleep';
+  if (/^kitchenFridge/.test(f)) return 'fridge';
+  if (/^kitchenStove/.test(f)) return 'cook';
+  if (/^television/.test(f)) return 'tv';
+  if (/^(bookcase|books)/.test(f)) return 'read';
+  if (/^(radio|speaker)/.test(f)) return 'music';
+  if (f === 'bathtub') return 'bath';
+  if (/^shower/.test(f)) return 'shower';
+  if (/^(bathroomSink|kitchenSink)/.test(f)) return 'wash';
+  if (/^(computerScreen|laptop)/.test(f)) return 'computer';
+  if (/^desk/.test(f)) return 'homework';
+  if (f === 'kitchenCoffeeMachine') return 'coffee';
+  if (f === 'toaster') return 'toast';
+  if (f === 'kitchenMicrowave') return 'micro';
+  if (/^washer/.test(f)) return 'washer';
+  if (f === 'pottedPlant') return 'plant';
+  if (f === 'bear') return 'hug';
+  if (f === 'bathroomMirror') return 'mirror';
+  if (/^coatRack/.test(f)) return 'wardrobe';
+  if (/^lamp/.test(f)) return 'lamp';
+  return null;
+}
+export type UseMeta = { kind: string; x: number; z: number; y: number; rot: number; room: string };
+export type Pose = { kind: 'sit' | 'sleep' | 'use' | 'swim' | 'swing' | 'ground'; x: number; z: number; y: number; rot: number };
 // інтер'єри будівель: [файл меблів, x, z, поворот, на чому стоїть (індекс)]
 type IItem = [string, number, number, number, number?];
 type IDef = { id: string; job: string; title?: string; floor: [string, string]; wall: string; items: IItem[]; npc?: [string, string, number, number, string?]; spot: [number, number] };
@@ -325,6 +358,8 @@ export const INTERIORS: IDef[] = [
   { id: 'house', job: 'guest', floor: ['#D9B38C', '#CFA67C'], wall: '#EAF2F8', npc: ['Grandma Rose', '#F7F3EA', 2, -1.6, 'glasses-round'], spot: [2, -0.3],
     items: [['loungeSofa', -1, -4.9, 0], ['tableCoffee', -1, -3.4, 0], ['loungeChair', 1.6, -4.4, -0.5], ['rugRound', -1, -3.2, 0], ['bookcaseOpen', 4.4, -4.95, 0], ['lampRoundFloor', -3.4, -4.9, 0], ['pottedPlant', 6.2, -4.6, 0],
       ['cabinetTelevision', -1, 3.2, 3.14], ['televisionModern', -1, 3.2, 3.14, 7], ['kitchenFridge', 6.1, 1.5, -1.57]] },
+  { id: 'tent', job: 'campbook', title: 'CAMP MURLY', floor: ['#B7D98A', '#A6CC78'], wall: '#E9E2C3', spot: [3.6, 1.2],
+    items: [['bedSingle', -3.4, -3.6, 0], ['bedSingle', -1.2, -3.6, 0], ['lampRoundFloor', 1.6, -4.8, 0], ['cardboardBoxOpen', 4.2, -4.4, 0.3], ['rugRound', -2.2, 0.4, 0], ['radio', 5.2, -2.2, -1.57], ['chair', 3.6, 0, 3.14]] },
   { id: 'lighthouse', job: 'keeper', title: 'LIGHTHOUSE', floor: ['#E1E6EC', '#D3DAE2'], wall: '#FFFFFF', npc: ['Captain Ted', '#3A3A44', 0, -2, 'hat-beanie'], spot: [0, -0.7],
     items: [['desk', 3, -4.85, 0], ['radio', 3, -4.85, 0, 0], ['chair', 3, -3.8, 3.14], ['bedSingle', -4.8, -3.6, 0], ['bookcaseOpen', 5.6, -4.95, 0], ['lampRoundFloor', -2.8, -4.9, 0], ['rugRound', 0, -1, 0], ['pottedPlant', 6.2, 4.4, 0]] },
 ];
@@ -362,6 +397,8 @@ export class IslandScene {
   inside = false; roomId: string | null = null; cur = { x: ROOM.x, z: ROOM.z }; origins: Record<string, { x: number; z: number }> = {}; roomCols: Record<string, { x: number; z: number; r: number }[]> = {}; keepers: Rig[] = [];
   outPos = new THREE.Vector3(); roomGroup = new THREE.Group(); roomItems = new THREE.Group(); roomCol: { x: number; z: number; r: number }[] = [];
   portrait = false; portraitShift = 1.2;
+  pose: Pose | null = null; useMeta: Record<string, UseMeta> = {}; useN = 0; bubbleObj: THREE.Sprite | null = null; bubbleT = 0; nameTag: THREE.Sprite | null = null;
+  followers = new Set<number>(); npcDanceT: number[] = []; npcBubbles: (THREE.Sprite | null)[] = [];
   placing: string | null = null; decorate = false; roomList: RoomItem[] = []; roomSeq = 0;
   stars: { id: string; obj: THREE.Group }[] = []; got = new Set<string>();
   ray = new THREE.Raycaster(); ground = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
@@ -485,7 +522,7 @@ export class IslandScene {
       this.colliders.push({ x: T.x - 1.2, z: T.z - 1, r: 1.3 });
       this.spots.push({ id: 'taxi', x: T.x + 0.4, z: T.z + 1.8, r: 2.4, label: 'TAXI' }); }
     this.buildPier();
-    this.buildIceCream(); this.buildBoard();
+    this.buildIceCream(); this.buildBoard(); this.buildCampsite(48, 18);
     this.mural('MURLY ISLAND', ['#F76AA8', '#FFC53D', '#3E7BFA', '#30A46C'], -6, 24); this.mural('BE KIND', ['#7C66DC', '#F5862D', '#E5484D'], 24, -50); this.mural('HELLO!', ['#30A46C', '#3E7BFA', '#FFC53D'], -48, -32);
     // фруктовий ринок: власний ларьок
     this.buildStall(-18, 16); this.spots.push({ id: 'market', x: -18, z: 11.5, r: 2.6, label: 'FRUIT MARKET' });
@@ -522,7 +559,8 @@ export class IslandScene {
     // машини, лавки, ліхтарі
     for (const [x, z, r] of [[-3, -24, 0], [3, 22, Math.PI], [-26, 2.6, Math.PI / 2]] as const) void add('city', ['car_taxi', 'car_sedan', 'car_hatchback'][Math.abs(x) % 3], x, z, 2.6, r, 1.3);
     for (const [x, z] of [[-6, -9], [6, -9], [-6, 9], [6, 9], [-20, -24], [20, -24], [-22, 22], [24, 22], [-36, 0], [36, 0], [0, -40], [0, 40]]) void add('city', 'streetlight', x, z, 1.2, 0, 0.3).then((m) => { const h = new THREE.Box3().setFromObject(m).max.y; this.glow(x, h - 0.15, z, 0.35); });
-    for (const [x, z, r] of [[-9.5, 0, Math.PI / 2], [9.5, 0, -Math.PI / 2]]) void add('city', 'bench', x, z, 2, r, 0.8);
+    for (const [x, z, r] of [[-9.5, 0, Math.PI / 2], [9.5, 0, -Math.PI / 2]]) { void add('city', 'bench', x, z, 2, r, 0.8); this.addUse('sit', x, z, 0.45, r, 'out', 1.4); }
+    this.addUse('wish', 0, 4.4, 0, Math.PI, 'out', 1.4);
     // хмари
     for (let i = 0; i < 14; i++) {
       const c = new THREE.Group();
@@ -565,6 +603,7 @@ export class IslandScene {
     [-1, 1].forEach((s) => { const p = cyl(0.07, 0.07, 2.6, '#E5484D'); p.position.set(x + 3 + s * 1.3, 1.3, z); p.rotation.z = 0.15 * s; this.scene.add(p); });
     const bar = cyl(0.07, 0.07, 2.7, '#E5484D'); bar.rotation.z = Math.PI / 2; bar.position.set(x + 3, 2.55, z); this.scene.add(bar);
     const seat = box(0.6, 0.06, 0.3, '#30A46C'); seat.position.set(x + 3, 0.6, z); this.scene.add(seat);
+    this.addUse('swing', x + 3, z, 0.45, 0, 'out', 1.6);
     this.colliders.push({ x, z, r: 1 }, { x: x + 3, z, r: 1.4 });
   }
   buildLighthouse(x: number, z: number) {
@@ -680,6 +719,20 @@ export class IslandScene {
     }
   }
 
+  flames: THREE.Mesh[] = [];
+  buildCampsite(x: number, z: number) {
+    void model('nature', 'tent_detailedOpen', 4).then((m) => { m.position.set(x, 0, z - 3); m.rotation.y = 0; this.scene.add(m); });
+    this.colliders.push({ x, z: z - 3, r: 2 });
+    void model('nature', 'campfire_stones', 1.6).then((m) => { m.position.set(x, 0, z + 2); this.scene.add(m); });
+    for (let i = 0; i < 3; i++) { const f = mesh(new THREE.ConeGeometry(0.28 - i * 0.07, 0.8 - i * 0.15, 8), new THREE.MeshBasicMaterial({ color: ['#FF7A1A', '#FFB224', '#FFE680'][i] }), false); f.position.set(x, 0.45, z + 2); this.scene.add(f); this.flames.push(f); }
+    this.glow(x, 0.6, z + 2, 0.9);
+    this.colliders.push({ x, z: z + 2, r: 0.8 });
+    [[-2, 0.5, Math.PI / 2 + 0.5], [2, 0.5, -Math.PI / 2 - 0.5], [0, 4.2, Math.PI]].forEach(([dx, dz, r]) => { const lg = cyl(0.28, 0.28, 1.6, '#8B5E34', 10); lg.rotation.z = Math.PI / 2; lg.rotation.y = r + Math.PI / 2; lg.position.set(x + dx, 0.28, z + 2 + dz); this.scene.add(lg); this.addUse('sit', x + dx, z + 2 + dz, 0.45, Math.atan2(-dx, -dz), 'out', 1.3); });
+    this.addUse('marsh', x + 1.2, z + 3.4, 0, Math.atan2(-1.2, -1.4), 'out', 1.1);
+    const sg = sign('CAMPSITE', '#30A46C', '#FFFFFF', 3.4); sg.position.set(x + 3.5, 2.6, z - 1); this.scene.add(sg); const p = cyl(0.07, 0.07, 2.2, '#6B4F2A'); p.position.set(x + 3.5, 1.1, z - 1); this.scene.add(p);
+    this.spots.push({ id: 'enter-tent', x, z: z - 0.6, r: 1.6, label: 'CAMP TENT' });
+  }
+
   // ---- кімнати всередині будівель ----
   // оболонка кімнати: підлога, дві стіни з вікнами, двері, вихід
   buildShell(g: THREE.Group, o: { x: number; z: number }, floorA: string, floorB: string, wall: string, title?: string) {
@@ -715,6 +768,7 @@ export class IslandScene {
     this.buildShell(g, o, d.floor[0], d.floor[1], d.wall, d.title);
     this.dressRoom(d.id, g);
     const cols: { x: number; z: number; r: number }[] = []; this.roomCols[d.id] = cols;
+    this.spots.push({ id: d.job, x: o.x + d.spot[0], z: o.z + d.spot[1], r: 1.8, label: d.npc ? d.npc[0] : d.title ?? '' });
     const scenes = await pack('furn');
     const tops: number[] = [];
     d.items.forEach(([f, x, z, r, on]) => {
@@ -725,6 +779,12 @@ export class IslandScene {
       const sz = b.getSize(new THREE.Vector3());
       const y = on !== undefined ? tops[on] ?? 0 : 0;
       it.position.set(x, y, z); it.rotation.y = r; g.add(it); tops.push(y + sz.y);
+      const kind = useKind(f);
+      if (kind && !(d.id !== 'house' && d.id !== 'tent' && d.id !== 'lighthouse' && kind === 'sit' && Math.hypot(x - d.spot[0], z - d.spot[1]) < 1.2)) {
+        const seatY = kind === 'sit' ? y + sz.y * (/^(loungeSofa|loungeChair|loungeDesign)/.test(f) ? 0.38 : /^stoolBar/.test(f) ? 0.85 : 0.42) : y + sz.y;
+        const front = kind === 'sit' || kind === 'sleep' ? 0 : 0.9;
+        this.addUse(kind, o.x + x + Math.sin(r) * front, o.z + z + Math.cos(r) * front, seatY, kind === 'sit' || kind === 'sleep' ? r : r + Math.PI, d.id, kind === 'sit' ? 1.0 : 1.3);
+      }
       if (on === undefined && !/^rug/.test(f) && sz.y > 0.4) cols.push({ x: o.x + x, z: o.z + z, r: Math.max(0.3, Math.min(sz.x, sz.z) / 2 * 0.95) });
     });
     // господар за прилавком
@@ -732,7 +792,6 @@ export class IslandScene {
       const rig = makeCat(d.npc[1], 0.9); rig.root.position.set(d.npc[2], 0, d.npc[3]); g.add(rig.root); this.keepers.push(rig);
       if (d.npc[4]) wearHat(rig, d.npc[4]);
     }
-    this.spots.push({ id: d.job, x: o.x + d.spot[0], z: o.z + d.spot[1], r: 1.8, label: d.npc ? d.npc[0] : d.title ?? '' });
   }
   // ---- оформлення кімнат ----
   art(g: THREE.Group, t: THREE.Texture, w: number, h: number, x: number, y: number, z: number, ry = 0, back = false) {
@@ -826,11 +885,69 @@ export class IslandScene {
       this.art(g, graffitiTex('AHOY!', ['#3E7BFA', '#E5484D', '#FFFFFF']), 5.2, 1.95, LX, 2.3, -2.4, R);
       const wheel = new THREE.Group(); wheel.add(mesh(new THREE.TorusGeometry(0.5, 0.06, 8, 24), toon('#8B5E34'))); for (let i = 0; i < 8; i++) { const sp = box(0.05, 1.3, 0.05, '#8B5E34'); sp.rotation.z = (i / 8) * Math.PI; wheel.add(sp); } wheel.position.set(LX + 0.1, 1.6, 1); wheel.rotation.y = R; g.add(wheel);
     }
+    if (id === 'tent') {
+      this.wallpaper(g, wallpaperTex('stripes', '#E9E2C3', '#C8DB8F'));
+      this.art(g, graffitiTex('CAMP MURLY', ['#30A46C', '#F5862D', '#FFC53D']), 5.6, 1.9, 0.5, 2.3, BZ);
+      this.art(g, posterTex({ title: 'NIGHT SKY', lines: ['Look at the stars!'], bg: '#1E2A4A', fg: '#FFFFFF', icons: [['star', '#FFC53D'], ['star', '#FFFFFF'], ['star', '#FFC53D']] }), 1.5, 2.0, LX, 2.0, -2.2, R);
+    }
     if (id === 'home') {
       this.wallpaper(g, wallpaperTex('stars', '#FFF3DA', '#FFD36E'));
       this.art(g, posterTex({ title: 'MY HOME', bg: '#FFE08A', icons: [['heart', '#E5484D'], ['star', '#FFFFFF']], w: 512, h: 256 }), 2, 1, 0, 3.0, BZ);
     }
   }
+  // ---- предмети, якими можна користуватися ----
+  addUse(kind: string, x: number, z: number, y: number, rot: number, room: string, r = 1.3) {
+    const id = `use:${this.useN++}`; this.useMeta[id] = { kind, x, z, y, rot, room };
+    this.spots.push({ id, x, z, r, label: USE[kind] ?? kind }); return id;
+  }
+  clearUses(room: string) { const ids = Object.keys(this.useMeta).filter((k) => this.useMeta[k].room === room); ids.forEach((k) => delete this.useMeta[k]); this.spots = this.spots.filter((s) => !ids.includes(s.id)); }
+  setPose(kind: Pose['kind'] | null, m?: { x: number; z: number; y: number; rot: number }) {
+    if (!kind || !m) { this.endPose(); return; }
+    this.pose = { kind, ...m }; this.goal = null; if (this.goalRing) this.goalRing.visible = false; this.vel.set(0, 0, 0);
+  }
+  endPose() {
+    if (!this.pose) return; this.pose = null; const h = this.hero;
+    h.root.rotation.set(0, this.heroRot, 0); h.legL.rotation.x = h.legR.rotation.x = 0; h.legL.position.y = h.legR.position.y = 0.14; h.body.rotation.set(0, 0, 0);
+    this.ev.onPoseEnd?.();
+  }
+  applyPose(t: number) {
+    const p = this.pose!; const h = this.hero;
+    if (p.kind === 'sit' || p.kind === 'ground' || p.kind === 'swing') {
+      const sw = p.kind === 'swing' ? Math.sin(t * 2.4) * 0.5 : 0;
+      h.root.position.set(p.x + Math.sin(p.rot) * sw, p.y + (p.kind === 'swing' ? Math.abs(sw) * 0.3 : 0), p.z + Math.cos(p.rot) * sw);
+      h.legL.rotation.x = h.legR.rotation.x = -1.4; h.legL.position.y = h.legR.position.y = 0.3; h.legL.position.z = h.legR.position.z = 0.15;
+      h.body.position.y = 0; h.body.rotation.x = p.kind === 'swing' ? -sw * 0.3 : 0; h.body.scale.set(1, 1, 1);
+      h.armL.rotation.x = h.armR.rotation.x = p.kind === 'swing' ? -2.4 : -0.3; h.armL.rotation.z = -0.35; h.armR.rotation.z = 0.35;
+    }
+    if (p.kind === 'sleep') { h.root.position.set(p.x, p.y + 0.45, p.z); h.root.rotation.set(0, p.rot, Math.PI / 2 * 0.92); h.body.rotation.set(0, 0, 0); h.body.position.y = Math.sin(t * 1.5) * 0.02; h.armL.rotation.x = h.armR.rotation.x = 0; }
+    if (p.kind === 'use') { h.root.position.set(p.x, 0, p.z); h.armR.rotation.x = -1.1 + Math.sin(t * 7) * 0.35; h.armL.rotation.x = -0.9 + Math.cos(t * 7) * 0.3; h.body.rotation.z = Math.sin(t * 3) * 0.04; }
+    if (p.kind === 'swim') { h.root.position.set(p.x + Math.sin(t * 0.8) * 0.6, p.y - 0.35 + Math.sin(t * 3) * 0.05, p.z); h.armL.rotation.x = Math.sin(t * 6) * 1.6; h.armR.rotation.x = -Math.sin(t * 6) * 1.6; h.armL.rotation.z = -1.2; h.armR.rotation.z = 1.2; }
+  }
+  // хмаринка над головою
+  speechTex(text: string, bg = '#FFFFFF') {
+    const cv = document.createElement('canvas'); cv.width = 384; cv.height = 160; const x = cv.getContext('2d')!;
+    x.fillStyle = bg; x.strokeStyle = '#1A1A1A'; x.lineWidth = 8; x.beginPath(); x.roundRect(8, 8, 368, 110, 40); x.fill(); x.stroke();
+    x.beginPath(); x.moveTo(170, 114); x.lineTo(192, 150); x.lineTo(214, 114); x.fill(); x.stroke(); x.fillStyle = bg; x.fillRect(172, 106, 40, 12);
+    x.fillStyle = '#1A1A1A'; x.font = '800 56px system-ui, sans-serif'; x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText(text, 192, 64, 340);
+    const t = new THREE.CanvasTexture(cv); t.colorSpace = THREE.SRGBColorSpace; return t;
+  }
+  bubble(text: string, secs = 2.5, bg = '#FFFFFF') {
+    if (this.bubbleObj) { this.hero.root.remove(this.bubbleObj); this.bubbleObj = null; }
+    const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: this.speechTex(text, bg), depthTest: false })); sp.scale.set(1.9, 0.8, 1); sp.position.y = 2.75; sp.renderOrder = 10;
+    this.hero.root.add(sp); this.bubbleObj = sp; this.bubbleT = secs;
+  }
+  npcBubble(i: number, text: string, bg = '#FFE0EA') {
+    const n = this.npcs[i]; if (!n) return; const old = this.npcBubbles[i]; if (old) n.rig.root.remove(old);
+    const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: this.speechTex(text, bg), depthTest: false })); sp.scale.set(1.9, 0.8, 1); sp.position.y = 2.6; n.rig.root.add(sp); this.npcBubbles[i] = sp;
+    window.setTimeout(() => { if (this.npcBubbles[i] === sp) { n.rig.root.remove(sp); this.npcBubbles[i] = null; } }, 2600);
+  }
+  setName(name: string) {
+    if (this.nameTag) { this.hero.root.remove(this.nameTag); this.nameTag = null; }
+    if (!name) return; const sp = sign(name, '#1A1A1A', '#FFFFFF', 1.6); sp.position.y = 2.25; (sp.material as THREE.SpriteMaterial).depthTest = false; sp.renderOrder = 9; this.hero.root.add(sp); this.nameTag = sp;
+  }
+  npcDance(i: number) { this.npcDanceT[i] = 3; }
+  toggleFollow(i: number) { if (this.followers.has(i)) this.followers.delete(i); else this.followers.add(i); return this.followers.has(i); }
+  skipToMorning() { this.dayP = 0.02; }
   enterRoom(id: string) {
     const o = this.origins[id]; if (!o || this.inside) return;
     this.outPos.copy(this.heroPos); this.inside = true; this.roomId = id; this.cur = o;
@@ -847,7 +964,7 @@ export class IslandScene {
     const seq = ++this.roomSeq; this.roomList = list;
     const scenes = await pack('furn');
     if (seq !== this.roomSeq) return;
-    this.roomItems.clear(); this.roomCol = [];
+    this.roomItems.clear(); this.roomCol = []; this.clearUses('home');
     list.forEach((it, i) => {
       const src = scenes.get(it.f); if (!src) return;
       // справжній масштаб Kenney: 1 одиниця ≈ 1/FK нашого світу
@@ -855,6 +972,8 @@ export class IslandScene {
       const b = new THREE.Box3().setFromObject(inner); const c = b.getCenter(new THREE.Vector3()); inner.position.set(-c.x, -b.min.y, -c.z);
       g.traverse((o) => { const m = o as THREE.Mesh; if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; m.userData.idx = i; (Array.isArray(m.material) ? m.material : [m.material]).forEach((mt) => { const st = mt as THREE.MeshStandardMaterial; if (st.metalness !== undefined) { st.metalness = Math.min(st.metalness, 0.2); st.roughness = Math.max(st.roughness ?? 1, 0.6); } }); } });
       g.position.set(it.x, 0, it.z); g.rotation.y = it.r; g.userData.idx = i; this.roomItems.add(g);
+      { const kind = useKind(it.f); const hb = new THREE.Box3().setFromObject(inner); const hh = hb.max.y - hb.min.y;
+        if (kind) { const front = kind === 'sit' || kind === 'sleep' ? 0 : 0.9; this.addUse(kind, ROOM.x + it.x + Math.sin(it.r) * front, ROOM.z + it.z + Math.cos(it.r) * front, kind === 'sit' ? hh * (/^lounge/.test(it.f) ? 0.38 : 0.42) : hh, kind === 'sit' || kind === 'sleep' ? it.r : it.r + Math.PI, 'home', kind === 'sit' ? 1.0 : 1.3); } }
       const sz = b.getSize(new THREE.Vector3()); const r = Math.min(sz.x, sz.z) / 2;
       if (!/^rug/.test(it.f) && sz.y > 0.4) this.roomCol.push({ x: ROOM.x + it.x, z: ROOM.z + it.z, r: Math.max(0.2, r * 0.9) });
     });
@@ -877,13 +996,17 @@ export class IslandScene {
     this.colliders.push(Object.assign({ x: HOME.x, z: HOME.z + 1, r: 3.8 + level * 0.4 }, { home: true }));
   }
   async setYard(list: string[]) {
-    this.yardList = list; this.yardGroup.clear(); this.tramp = null;
+    this.yardList = list; this.yardGroup.clear(); this.tramp = null; this.clearUses('yard'); this.spots = this.spots.filter((x) => x.label !== 'MY TENT');
     const slot = (i: number) => { const a = [[-7, -5], [7, -5], [-7, 5], [7, 5], [-4, -6.5], [4, -6.5], [-8, 0], [8, 0], [0, 7]][i % 9]; return { x: HOME.x + a[0], z: HOME.z + a[1] }; };
     for (let i = 0; i < list.length; i++) {
       const id = list[i]; const { x, z } = slot(i);
       const g = await yardItem(id); if (id === 'yard-tramp') this.tramp = new THREE.Vector3(x, 0, z);
       if (!g) continue;
       g.position.set(x, 0, z); this.yardGroup.add(g);
+      if (id === 'yard-bench') this.addUse('sit', x, z, 0.45, 0, 'yard', 1.3);
+      if (id === 'yard-fire') this.addUse('marsh', x, z + 1.2, 0, Math.PI, 'yard', 1.3);
+      if (id === 'yard-pool') this.addUse('swim', x, z, 0.4, 0, 'yard', 2.2);
+      if (id === 'yard-tent') this.spots.push({ id: 'enter-tent', x, z: z + 1.8, r: 1.6, label: 'MY TENT' });
     }
   }
 
@@ -942,7 +1065,7 @@ export class IslandScene {
   }
   dance() { this.danceT = 2.4; }
   wh = (e: WheelEvent) => { this.camDist = THREE.MathUtils.clamp(this.camDist + e.deltaY * 0.01, 4.5, 18); };
-  jump() { if (this.onGround) { this.vy = this.rideId === 'ride-ufo' ? 9 : 7.5; this.onGround = false; this.wob.sqV -= 3; } }
+  jump() { if (this.pose) { this.endPose(); return; } if (this.onGround) { this.vy = this.rideId === 'ride-ufo' ? 9 : 7.5; this.onGround = false; this.wob.sqV -= 3; } }
   setJoy(x: number, y: number) { this.joy.x = x; this.joy.y = y; }
 
   // ---- цикл ----
@@ -976,6 +1099,7 @@ export class IslandScene {
       }
     } }
     const len = Math.hypot(ix, iz); if (len > 1) { ix /= len; iz /= len; }
+    if (this.pose && (len > 0.1 || this.goal)) this.endPose();
     const running = k.has('ShiftLeft') || k.has('ShiftRight') || this.run;
     const base = 5.2 * (this.rideId ? SPEED[this.rideId] ?? 1 : running ? 1.6 : 1);
     // напрям відносно камери
@@ -1008,6 +1132,7 @@ export class IslandScene {
       if (onPier) { if (this.heroPos.z < -71) this.heroPos.x = THREE.MathUtils.clamp(this.heroPos.x, -1.3, 1.3); this.heroPos.z = Math.max(this.heroPos.z, -85.6); }
       else if (dc > R) { this.heroPos.x *= R / dc; this.heroPos.z *= R / dc; }
     }
+    if (this.pose) { this.heroPos.set(this.pose.x, 0, this.pose.z); this.heroRot = this.pose.rot; this.vel.set(0, 0, 0); this.vy = 0; }
     const speed = Math.hypot(this.vel.x, this.vel.z);
     if (speed > 0.3) { const tr = Math.atan2(this.vel.x, this.vel.z); let d = tr - this.heroRot; d = Math.atan2(Math.sin(d), Math.cos(d)); this.heroRot += d * (1 - Math.exp(-10 * dt)); }
     // «желейна» хода: нахил від прискорення, пружинне стискання
@@ -1036,6 +1161,8 @@ export class IslandScene {
       const sp = this.lostObj.getObjectByName('spark'); if (sp) sp.scale.setScalar(1 + Math.sin(t * 5) * 0.25);
       if (Math.hypot(this.lostObj.position.x - this.heroPos.x, this.lostObj.position.z - this.heroPos.z) < 1.4) { this.setLost(null); this.ev.onPickup?.(); }
     }
+    if (this.pose) this.applyPose(t);
+    if (this.bubbleObj) { this.bubbleT -= dt; if (this.bubbleT <= 0) { this.hero.root.remove(this.bubbleObj); this.bubbleObj = null; } }
     const cape = h.slots.bag.getObjectByName('cape'); if (cape) cape.rotation.x = 0.15 + Math.min(speed, 10) * 0.08 + Math.sin(t * 8) * 0.05;
     h.slots.bag.children.forEach((c) => { if (c.name === 'flame') { c.visible = !this.onGround; c.scale.y = 0.8 + Math.random() * 0.5; } });
     if (this.ride) { this.ride.position.y = this.rideId === 'ride-ufo' ? Math.sin(t * 3) * 0.1 : 0; this.ride.rotation.y = this.rideId === 'ride-ufo' ? t * 2 : 0; }
@@ -1051,7 +1178,16 @@ export class IslandScene {
       this.pet.children.forEach((c) => { if (c.name === 'wag') c.rotation.z = Math.sin(t * 14) * 0.6; if (c.name === 'wing') c.rotation.x = Math.sin(t * 12) * 0.5; });
     }
     // жителі гуляють
-    for (const n of this.npcs) {
+    for (const [ni, n] of this.npcs.entries()) {
+      if (this.followers.has(ni) && !this.inside) {
+        const k = [...this.followers].indexOf(ni); const back = new THREE.Vector3(Math.sin(this.heroRot + 2.5 + k * 0.6) * (2 + k * 0.6), 0, Math.cos(this.heroRot + 2.5 + k * 0.6) * (2 + k * 0.6));
+        n.goal.copy(this.heroPos).add(back); n.goal.y = 0; n.t = 1; const p = n.rig.root.position; const dv = n.goal.clone().sub(p); const dd = dv.length();
+        if (dd > 25) p.copy(n.goal);
+        if (dd > 0.4) { dv.normalize(); p.addScaledVector(dv, Math.min(dd, (dd > 4 ? 9 : 5) * dt)); n.rig.root.rotation.y = Math.atan2(dv.x, dv.z); const q = t * 11; n.rig.body.position.y = Math.abs(Math.sin(q)) * 0.1; n.rig.armL.rotation.x = Math.sin(q) * 0.8; n.rig.armR.rotation.x = -Math.sin(q) * 0.8; }
+        else { n.rig.body.position.y = 0; n.rig.root.lookAt(this.heroPos.x, 0, this.heroPos.z); }
+        continue;
+      }
+      if ((this.npcDanceT[ni] ?? 0) > 0) { this.npcDanceT[ni] -= dt; n.rig.armL.rotation.z = -2.4 + Math.sin(t * 12) * 0.5; n.rig.armR.rotation.z = 2.4 + Math.sin(t * 12 + 1) * 0.5; n.rig.body.rotation.y = Math.sin(t * 6) * 0.5; n.rig.body.position.y = Math.abs(Math.sin(t * 12)) * 0.15; if (this.npcDanceT[ni] <= 0) { n.rig.armL.rotation.z = -0.35; n.rig.armR.rotation.z = 0.35; n.rig.body.rotation.y = 0; } continue; }
       n.t -= dt;
       if (n.t < 0) { n.t = 3 + Math.random() * 5; n.goal.set(n.home.x + (Math.random() - 0.5) * 14, 0, n.home.z + (Math.random() - 0.5) * 14); }
       const p = n.rig.root.position; const dv = n.goal.clone().sub(p); const dd = dv.length();
@@ -1108,6 +1244,7 @@ export class IslandScene {
     this.sun.color.set('#FFF4DD').lerp(new THREE.Color('#FFB27A'), dusk * 0.7);
     this.cloudMat.color.set('#FFFFFF').lerp(new THREE.Color('#56617E'), 1 - day).lerp(new THREE.Color('#9AA3AE'), this.rain * 0.6);
     const night = 1 - day;
+    this.flames.forEach((f, i) => { f.scale.set(1 + Math.sin(t * 9 + i) * 0.12, 1 + Math.sin(t * 13 + i * 2) * 0.2, 1 + Math.cos(t * 9 + i) * 0.12); });
     this.glows.forEach((g) => { (g.material as THREE.MeshBasicMaterial).opacity = night * 0.85; g.visible = night > 0.05; });
     if (this.beam) { (this.beam.material as THREE.MeshBasicMaterial).opacity = night * 0.22; this.beam.visible = night > 0.05; this.beam.rotation.y = t * 0.8; }
     if (this.skyStars) { (this.skyStars.material as THREE.PointsMaterial).opacity = night * (1 - this.rain); this.skyStars.position.set(this.heroPos.x, 0, this.heroPos.z); }
