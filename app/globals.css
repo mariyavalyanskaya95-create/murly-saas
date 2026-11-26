@@ -4866,3 +4866,10 @@ textarea.t-parent__url { width: 300px; font: inherit; font-size: 13px; }
 .il-dot-on { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #C9C2B2; margin-right: 6px; border: 1.5px solid #1A1A1A; vertical-align: 0; }
 .il-dot-on.on { background: #30A46C; }
 .il-badge-f { margin-left: 6px; font-size: 11px; font-weight: 800; padding: 2px 8px; border-radius: 99px; background: #FFE0EA; border: 1.5px solid #1A1A1A; }
+.il-chatbox { display: grid; gap: 4px; max-height: 240px; overflow-y: auto; padding: 10px; border: 2px solid #1A1A1A; border-radius: 14px; background: #fff; font-size: 14px; margin-bottom: 8px; }
+.il-chatbox .me { color: #7C66DC; }
+.il-report { font: inherit; font-size: 11px; margin-left: 6px; padding: 1px 6px; border: 1px solid #C9C2B2; border-radius: 99px; background: #fff; color: #55606E; cursor: pointer; }
+.il-chatform { display: flex; gap: 8px; align-items: center; }
+.il-chatform input { flex: 1; font: inherit; font-size: 16px; padding: 10px 12px; border: 2.5px solid #1A1A1A; border-radius: 14px; }
+.il-chatform .il-go { margin-top: 0; }
+.il-chaterr { color: #E5484D; font-weight: 700; font-size: 14px; }
