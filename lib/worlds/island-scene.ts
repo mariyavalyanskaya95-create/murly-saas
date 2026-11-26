@@ -186,6 +186,36 @@ function makePet(id: string): THREE.Group {
 // ---------- сцена ----------
 export type IslandEvents = { onNear: (spot: Spot | null) => void; onFps?: (low: boolean) => void; onStar?: (id: string) => void; onClock?: (hour: number, rain: boolean) => void; onPlace?: (x: number, z: number) => void; onPick?: (i: number) => void };
 export const ROOM = { x: 400, z: 0, w: 14, d: 11 };
+// інтер'єри будівель: [файл меблів, x, z, поворот, на чому стоїть (індекс)]
+type IItem = [string, number, number, number, number?];
+type IDef = { id: string; job: string; title?: string; floor: [string, string]; wall: string; items: IItem[]; npc?: [string, string, number, number, string?]; spot: [number, number] };
+const BAR = (z = -2.6, n = 4): IItem[] => Array.from({ length: n }, (_, i) => ['kitchenBar', (i - (n - 1) / 2) * 1.03, z, 0] as IItem);
+export const INTERIORS: IDef[] = [
+  { id: 'post', job: 'post', title: 'POST OFFICE', floor: ['#E9DCC3', '#DCCDB0'], wall: '#F7D9D6', npc: ['Postmaster Pepper', '#9AA3AE', 0, -3.7, 'hat-cap'], spot: [0, -1.3],
+    items: [...BAR(), ['cardboardBoxClosed', -1.5, -2.6, 0.3, 0], ['cardboardBoxOpen', 1.5, -2.6, 0, 3], ['bookcaseClosedWide', -4.2, -4.95, 0], ['bookcaseClosedWide', 3.6, -4.95, 0], ['cardboardBoxClosed', 5, -2, 0.4], ['cardboardBoxClosed', 5.6, -1.4, 0], ['cardboardBoxClosed', 5, -2, 0.2, 8], ['pottedPlant', 6.2, 4.4, 0], ['rugRound', 0, 1.2, 0], ['chair', -5.6, -1, 1.57]] },
+  { id: 'cafe', job: 'cafe', title: 'CAT CAFE', floor: ['#F7E1EA', '#EFD0DD'], wall: '#FFF1F6', npc: ['Chef Mia', '#F7F3EA', 0, -3.7, 'hat-chef'], spot: [0, -1.3],
+    items: [...BAR(), ['kitchenCoffeeMachine', -0.5, -2.6, 0, 1], ['toaster', 0.6, -2.6, 0, 2], ['kitchenFridge', -3.4, -4.95, 0], ['kitchenCabinet', -2.3, -4.95, 0],
+      ['tableRound', -3.6, 1.6, 0], ['chair', -4.7, 1.6, 1.57], ['chair', -2.5, 1.6, -1.57], ['tableRound', 1.4, 2.2, 0], ['chair', 0.3, 2.2, 1.57], ['chair', 2.5, 2.2, -1.57], ['tableRound', 4.8, 0, 0], ['chair', 4.8, 1.1, 3.14], ['chair', 4.8, -1.1, 0], ['pottedPlant', 6.2, -4.6, 0]] },
+  { id: 'store', job: 'store', title: 'MURLY STORE', floor: ['#E7E2F7', '#DAD3F0'], wall: '#F3F0FF', npc: ['Mr Button', '#B79CF0', 0, -3.7, 'glasses-round'], spot: [0, -1.3],
+    items: [...BAR(), ['bookcaseOpen', -5.8, -4.95, 0], ['bookcaseOpen', -4.8, -4.95, 0], ['bookcaseOpen', -3.8, -4.95, 0], ['cabinetTelevision', 3.4, -4.95, 0], ['televisionModern', 3.4, -4.95, 0, 7], ['speaker', 5.2, -4.95, 0], ['speaker', 1.8, -4.95, 0],
+      ['cardboardBoxClosed', 5.2, 1.2, 0.3], ['cardboardBoxOpen', 5.8, 2, 0], ['rugRound', 0, 1.3, 0], ['lampRoundFloor', 6.2, -2.5, 0], ['loungeChair', -4.5, 2, 1.57]] },
+  { id: 'bakery', job: 'bakery', title: 'BAKERY', floor: ['#F3E2C8', '#E8D3B2'], wall: '#FFF6E8', npc: ['Baker Bob', '#F4A340', 0, -3.7, 'hat-chef'], spot: [0, -1.3],
+    items: [...BAR(), ['toaster', -1.5, -2.6, 0, 0], ['kitchenStove', -4.6, -4.8, 0], ['kitchenStove', -3.5, -4.8, 0], ['kitchenCabinet', -2.4, -4.8, 0], ['kitchenFridgeLarge', 4.6, -4.8, 0], ['kitchenCabinet', 3.4, -4.8, 0], ['kitchenCoffeeMachine', 3.4, -4.8, 0, 9],
+      ['tableCloth', 3.2, 2.2, 0], ['chair', 2.1, 2.2, 1.57], ['chair', 4.3, 2.2, -1.57], ['pottedPlant', -5.6, 4.4, 0]] },
+  { id: 'boutique', job: 'boutique', title: 'BOUTIQUE', floor: ['#DDF0E4', '#CCE7D6'], wall: '#F2FBF5', npc: ['Miss Silk', '#F7A8C8', 0, -3.7, 'hat-flower'], spot: [0, -1.3],
+    items: [...BAR(-2.6, 2), ['coatRackStanding', -4.8, -4.6, 0], ['coatRackStanding', -3.6, -4.6, 0], ['coatRackStanding', -2.4, -4.6, 0], ['coatRackStanding', 3.4, -4.6, 0], ['coatRackStanding', 4.6, -4.6, 0], ['coatRackStanding', 5.4, 0.4, 0],
+      ['loungeSofa', -2.4, 3.9, 3.14], ['rugRound', 1.2, 1.6, 0], ['bookcaseClosedWide', 1.8, -4.95, 0], ['pottedPlant', 6.2, -4.6, 0]] },
+  { id: 'house', job: 'guest', floor: ['#D9B38C', '#CFA67C'], wall: '#EAF2F8', npc: ['Grandma Rose', '#F7F3EA', 2, -1.6, 'glasses-round'], spot: [2, -0.3],
+    items: [['loungeSofa', -1, -4.9, 0], ['tableCoffee', -1, -3.4, 0], ['loungeChair', 1.6, -4.4, -0.5], ['rugRound', -1, -3.2, 0], ['bookcaseOpen', 4.4, -4.95, 0], ['lampRoundFloor', -3.4, -4.9, 0], ['pottedPlant', 6.2, -4.6, 0],
+      ['cabinetTelevision', -1, 3.2, 3.14], ['televisionModern', -1, 3.2, 3.14, 7], ['kitchenFridge', 6.1, 1.5, -1.57]] },
+  { id: 'lighthouse', job: 'keeper', title: 'LIGHTHOUSE', floor: ['#E1E6EC', '#D3DAE2'], wall: '#FFFFFF', npc: ['Captain Ted', '#3A3A44', 0, -2, 'hat-beanie'], spot: [0, -0.7],
+    items: [['desk', 3, -4.85, 0], ['radio', 3, -4.85, 0, 0], ['chair', 3, -3.8, 3.14], ['bedSingle', -4.8, -3.6, 0], ['bookcaseOpen', 5.6, -4.95, 0], ['lampRoundFloor', -2.8, -4.9, 0], ['rugRound', 0, -1, 0], ['pottedPlant', 6.2, 4.4, 0]] },
+];
+function wearHat(rig: Rig, item: string) {
+  const cols = rig.fur.map((m) => m.color.clone());
+  const slot = SHOP.find((x) => x.id === item)?.sub ?? 'hat';
+  wear(rig, { fur: 'fur-ginger', [slot]: item } as Outfit); rig.fur.forEach((m, i) => m.color.copy(cols[i]));
+}
 const FK = 2.4;
 // зірки, які можна знайти на острові
 export const STARS: [number, number][] = [[-60, 20], [55, 30], [10, -55], [-35, -45], [62, -5], [-8, 48], [40, -40], [-58, -22], [25, 55], [-22, 2]];
@@ -212,7 +242,8 @@ export class IslandScene {
   glows: THREE.Mesh[] = []; beam: THREE.Mesh | null = null; skyStars: THREE.Points | null = null; moon: THREE.Mesh | null = null;
   flies: { g: THREE.Group; c: THREE.Vector3; ph: number; glow: boolean }[] = []; birds: { g: THREE.Group; r: number; h: number; ph: number; v: number }[] = [];
   boats: { g: THREE.Group; r: number; ph: number; v: number }[] = []; lastHour = -1;
-  inside = false; outPos = new THREE.Vector3(); roomGroup = new THREE.Group(); roomItems = new THREE.Group(); roomCol: { x: number; z: number; r: number }[] = [];
+  inside = false; roomId: string | null = null; cur = { x: ROOM.x, z: ROOM.z }; origins: Record<string, { x: number; z: number }> = {}; roomCols: Record<string, { x: number; z: number; r: number }[]> = {}; keepers: Rig[] = [];
+  outPos = new THREE.Vector3(); roomGroup = new THREE.Group(); roomItems = new THREE.Group(); roomCol: { x: number; z: number; r: number }[] = [];
   placing: string | null = null; decorate = false; roomList: RoomItem[] = []; roomSeq = 0;
   stars: { id: string; obj: THREE.Group }[] = []; got = new Set<string>();
   ray = new THREE.Raycaster(); ground = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
@@ -317,7 +348,7 @@ export class IslandScene {
       const h = new THREE.Box3().setFromObject(m).max.y;
       const s = sign(label, bg, '#FFFFFF', 6); s.position.set(x, h + 1.4, z); this.scene.add(s);
       const dz = z + (rot ? -5.6 : 5.6);
-      this.spots.push({ id, x, z: dz, r: 2.6, label });
+      this.spots.push({ id: `enter-${id}`, x, z: dz, r: 2.6, label });
       const mat = mesh(new THREE.CircleGeometry(1.3, 24), toon(bg), false); mat.rotation.x = -Math.PI / 2; mat.position.set(x, 0.04, dz); this.scene.add(mat);
     }
     // пекарня і бутик
@@ -325,7 +356,7 @@ export class IslandScene {
       const P = PLACES[id]; const m = await add('city', file, P.x, P.z, 9, 0, 5.2);
       const h = new THREE.Box3().setFromObject(m).max.y;
       const sg = sign(P.label, P.color, '#FFFFFF', 6); sg.position.set(P.x, h + 1.4, P.z); this.scene.add(sg);
-      this.spots.push({ id, x: P.x, z: P.z + 5.6, r: 2.6, label: P.label });
+      this.spots.push({ id: `enter-${id}`, x: P.x, z: P.z + 5.6, r: 2.6, label: P.label });
       const mat = mesh(new THREE.CircleGeometry(1.3, 24), toon(P.color), false); mat.rotation.x = -Math.PI / 2; mat.position.set(P.x, 0.04, P.z + 5.6); this.scene.add(mat);
     }
     this.buildBakeryDeco(PLACES.bakery.x, PLACES.bakery.z + 4.4);
@@ -424,6 +455,8 @@ export class IslandScene {
     const beam = new THREE.Mesh(bg, new THREE.MeshBasicMaterial({ color: '#FFF3A6', transparent: true, opacity: 0, depthWrite: false, side: THREE.DoubleSide, blending: THREE.AdditiveBlending }));
     beam.position.set(x, 10.6, z); this.scene.add(beam); this.beam = beam; this.glow(x, 10.6, z, 1.1);
     this.colliders.push({ x, z, r: 2 });
+    const dr = box(1, 1.8, 0.2, '#8B5E34'); dr.position.set(x, 0.9, z + 1.7); this.scene.add(dr);
+    this.spots.push({ id: 'enter-lighthouse', x, z: z + 3.2, r: 2, label: 'LIGHTHOUSE' });
   }
 
   glow(x: number, y: number, z: number, r: number) {
@@ -486,32 +519,70 @@ export class IslandScene {
     }
   }
 
-  // ---- кімната всередині дому ----
-  buildRoom() {
-    const g = this.roomGroup; g.position.set(ROOM.x, 0, ROOM.z); this.scene.add(g); g.add(this.roomItems);
-    const yard = mesh(new THREE.CircleGeometry(60, 40), toon('#8BCB62'), false); yard.rotation.x = -Math.PI / 2; yard.position.y = -0.02; g.add(yard);
+  // ---- кімнати всередині будівель ----
+  // оболонка кімнати: підлога, дві стіни з вікнами, двері, вихід
+  buildShell(g: THREE.Group, o: { x: number; z: number }, floorA: string, floorB: string, wall: string, title?: string) {
+    const yard = mesh(new THREE.CircleGeometry(40, 40), toon('#8BCB62'), false); yard.rotation.x = -Math.PI / 2; yard.position.y = -0.02; g.add(yard);
     const cv = document.createElement('canvas'); cv.width = 256; cv.height = 256; const x = cv.getContext('2d')!;
-    for (let i = 0; i < 8; i++) { x.fillStyle = i % 2 ? '#D9B38C' : '#CFA67C'; x.fillRect(0, i * 32, 256, 32); x.fillStyle = '#B8865A'; x.fillRect(0, i * 32 + 31, 256, 1); x.fillRect(((i * 97) % 200) + 20, i * 32, 1, 32); }
+    for (let i = 0; i < 8; i++) { x.fillStyle = i % 2 ? floorA : floorB; x.fillRect(0, i * 32, 256, 32); x.fillStyle = 'rgba(0,0,0,.18)'; x.fillRect(0, i * 32 + 31, 256, 1); x.fillRect(((i * 97) % 200) + 20, i * 32, 1, 32); }
     const tx = new THREE.CanvasTexture(cv); tx.colorSpace = THREE.SRGBColorSpace; tx.wrapS = tx.wrapT = THREE.RepeatWrapping; tx.repeat.set(3, 3);
     const floor = new THREE.Mesh(new THREE.PlaneGeometry(ROOM.w, ROOM.d), new THREE.MeshToonMaterial({ map: tx, gradientMap: toon('#fff').gradientMap })); floor.rotation.x = -Math.PI / 2; floor.position.y = 0.01; floor.receiveShadow = true; floor.name = 'floor'; g.add(floor);
-    const wallM = toon('#F3E7D3'); const H = 3.6;
+    const wallM = toon(wall); const H = 3.6;
     const back = mesh(new THREE.BoxGeometry(ROOM.w, H, 0.3), wallM); back.position.set(0, H / 2, -ROOM.d / 2); g.add(back);
     const left = mesh(new THREE.BoxGeometry(0.3, H, ROOM.d), wallM); left.position.set(-ROOM.w / 2, H / 2, 0); g.add(left);
     const low = toon('#E3D2B8');
     const right = mesh(new THREE.BoxGeometry(0.3, 0.4, ROOM.d), low); right.position.set(ROOM.w / 2, 0.2, 0); g.add(right);
     const front = mesh(new THREE.BoxGeometry(ROOM.w, 0.4, 0.3), low); front.position.set(0, 0.2, ROOM.d / 2); g.add(front);
-    [-3.4, 3.4].forEach((wx) => { const w = mesh(new THREE.PlaneGeometry(2.2, 1.6), new THREE.MeshBasicMaterial({ color: '#BFE6FA' }), false); w.position.set(wx, 2.1, -ROOM.d / 2 + 0.16); g.add(w); const fr = box(2.4, 0.12, 0.1, '#FFFFFF'); fr.position.set(wx, 2.1, -ROOM.d / 2 + 0.18); g.add(fr); const fv = box(0.12, 1.7, 0.1, '#FFFFFF'); fv.position.set(wx, 2.1, -ROOM.d / 2 + 0.18); g.add(fv); });
-    const pic = box(1.4, 1, 0.08, '#FFC53D'); pic.position.set(-ROOM.w / 2 + 0.2, 2.2, -2); pic.rotation.y = Math.PI / 2; g.add(pic);
-    const pin = box(1.2, 0.8, 0.09, '#8EC9F5'); pin.position.set(-ROOM.w / 2 + 0.21, 2.2, -2); pin.rotation.y = Math.PI / 2; g.add(pin);
+    [-4.4, 4.4].forEach((wx) => { const w = mesh(new THREE.PlaneGeometry(2.2, 1.6), new THREE.MeshBasicMaterial({ color: '#BFE6FA' }), false); w.position.set(wx, 2.1, -ROOM.d / 2 + 0.16); g.add(w); const fr = box(2.4, 0.12, 0.1, '#FFFFFF'); fr.position.set(wx, 2.1, -ROOM.d / 2 + 0.18); g.add(fr); const fv = box(0.12, 1.7, 0.1, '#FFFFFF'); fv.position.set(wx, 2.1, -ROOM.d / 2 + 0.18); g.add(fv); });
+    if (title) { const sg = sign(title, '#1A1A1A', '#FFFFFF', 4.4); sg.position.set(0, 3, -ROOM.d / 2 + 0.3); g.add(sg); }
+    else { const pic = box(1.4, 1, 0.08, '#FFC53D'); pic.position.set(-ROOM.w / 2 + 0.2, 2.2, -2); pic.rotation.y = Math.PI / 2; g.add(pic); const pin = box(1.2, 0.8, 0.09, '#8EC9F5'); pin.position.set(-ROOM.w / 2 + 0.21, 2.2, -2); pin.rotation.y = Math.PI / 2; g.add(pin); }
     const door = box(0.12, 2.4, 1.4, '#8B5E34'); door.position.set(-ROOM.w / 2 + 0.2, 1.2, 3); g.add(door);
     const knob = sph(0.08, '#FFC53D', 8); knob.position.set(-ROOM.w / 2 + 0.3, 1.2, 2.5); g.add(knob);
     const mat = mesh(new THREE.CircleGeometry(1, 24), toon('#FFC53D'), false); mat.rotation.x = -Math.PI / 2; mat.position.set(-ROOM.w / 2 + 1.3, 0.03, 3); g.add(mat);
-    this.spots.push({ id: 'room-exit', x: ROOM.x - ROOM.w / 2 + 1.3, z: ROOM.z + 3, r: 1.6, label: 'EXIT' });
-    // кущі довкола
-    for (let i = 0; i < 16; i++) { const a = (i / 16) * Math.PI * 2; const b = sph(1 + Math.random(), '#6FB64C', 12); b.position.set(Math.cos(a) * 16, 0.4, Math.sin(a) * 14); g.add(b); }
+    this.spots.push({ id: 'room-exit', x: o.x - ROOM.w / 2 + 1.3, z: o.z + 3, r: 1.6, label: 'EXIT' });
+    for (let i = 0; i < 10; i++) { const a = (i / 10) * Math.PI * 2; const b = sph(1 + Math.random(), '#6FB64C', 12); b.position.set(Math.cos(a) * 16, 0.4, Math.sin(a) * 14); g.add(b); }
   }
-  enterHome() { if (this.inside) return; this.outPos.copy(this.heroPos); this.inside = true; this.heroPos.set(ROOM.x - ROOM.w / 2 + 2.2, 0, ROOM.z + 3); this.vel.set(0, 0, 0); this.camYaw = 0.35; this.camPitch = 0.75; this.camDist = 12; this.cam.position.set(ROOM.x, 10, ROOM.z + 14); if (this.pet) this.petPos.copy(this.heroPos); this.goal = null; }
-  exitHome() { if (!this.inside) return; this.inside = false; this.decorate = false; this.placing = null; this.heroPos.set(HOME.x, 0, HOME.z - 9); this.vel.set(0, 0, 0); this.camYaw = Math.PI; this.camPitch = 0.42; this.camDist = 9; this.cam.position.set(HOME.x, 6, HOME.z - 18); if (this.pet) this.petPos.copy(this.heroPos); this.goal = null; }
+  buildRoom() {
+    const g = this.roomGroup; g.position.set(ROOM.x, 0, ROOM.z); this.scene.add(g); g.add(this.roomItems);
+    this.buildShell(g, ROOM, '#D9B38C', '#CFA67C', '#F3E7D3');
+    this.origins.home = { x: ROOM.x, z: ROOM.z };
+    INTERIORS.forEach((d, i) => { const o = { x: ROOM.x, z: ROOM.z + 150 * (i + 1) }; this.origins[d.id] = o; void this.buildInterior(d, o); });
+  }
+  async buildInterior(d: IDef, o: { x: number; z: number }) {
+    const g = new THREE.Group(); g.position.set(o.x, 0, o.z); this.scene.add(g);
+    this.buildShell(g, o, d.floor[0], d.floor[1], d.wall, d.title);
+    const cols: { x: number; z: number; r: number }[] = []; this.roomCols[d.id] = cols;
+    const scenes = await pack('furn');
+    const tops: number[] = [];
+    d.items.forEach(([f, x, z, r, on]) => {
+      const src = scenes.get(f); if (!src) { tops.push(0); return; }
+      const it = new THREE.Group(); const inner = new THREE.Group(); src.children.forEach((c) => inner.add(c.clone(true))); inner.scale.setScalar(FK); it.add(inner);
+      const b = new THREE.Box3().setFromObject(inner); const c = b.getCenter(new THREE.Vector3()); inner.position.set(-c.x, -b.min.y, -c.z);
+      it.traverse((q) => { const m = q as THREE.Mesh; if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; (Array.isArray(m.material) ? m.material : [m.material]).forEach((mt) => { const st = mt as THREE.MeshStandardMaterial; if (st.metalness !== undefined) { st.metalness = Math.min(st.metalness, 0.2); st.roughness = Math.max(st.roughness ?? 1, 0.6); } }); } });
+      const sz = b.getSize(new THREE.Vector3());
+      const y = on !== undefined ? tops[on] ?? 0 : 0;
+      it.position.set(x, y, z); it.rotation.y = r; g.add(it); tops.push(y + sz.y);
+      if (on === undefined && !/^rug/.test(f) && sz.y > 0.4) cols.push({ x: o.x + x, z: o.z + z, r: Math.max(0.3, Math.min(sz.x, sz.z) / 2 * 0.95) });
+    });
+    // господар за прилавком
+    if (d.npc) {
+      const rig = makeCat(d.npc[1], 0.9); rig.root.position.set(d.npc[2], 0, d.npc[3]); g.add(rig.root); this.keepers.push(rig);
+      if (d.npc[4]) wearHat(rig, d.npc[4]);
+    }
+    this.spots.push({ id: d.job, x: o.x + d.spot[0], z: o.z + d.spot[1], r: 1.8, label: d.npc ? d.npc[0] : d.title ?? '' });
+  }
+  enterRoom(id: string) {
+    const o = this.origins[id]; if (!o || this.inside) return;
+    this.outPos.copy(this.heroPos); this.inside = true; this.roomId = id; this.cur = o;
+    this.heroPos.set(o.x - ROOM.w / 2 + 2.2, 0, o.z + 3); this.vel.set(0, 0, 0); this.camYaw = 0.35; this.camPitch = 0.75; this.camDist = 12; this.cam.position.set(o.x, 10, o.z + 14);
+    if (this.pet) this.petPos.copy(this.heroPos); this.goal = null; if (this.goalRing) this.goalRing.visible = false;
+  }
+  enterHome() { this.enterRoom('home'); }
+  exitHome() {
+    if (!this.inside) return; this.inside = false; this.roomId = null; this.decorate = false; this.placing = null;
+    this.heroPos.copy(this.outPos); this.heroPos.y = 0; this.vel.set(0, 0, 0); this.camYaw = this.heroRot + Math.PI; this.camPitch = 0.42; this.camDist = 9;
+    this.cam.position.set(this.heroPos.x, 6, this.heroPos.z + 9); if (this.pet) this.petPos.copy(this.heroPos); this.goal = null;
+  }
   async setRoom(list: RoomItem[]) {
     const seq = ++this.roomSeq; this.roomList = list;
     const scenes = await pack('furn');
@@ -602,10 +673,10 @@ export class IslandScene {
       const hit = new THREE.Vector3();
       if (this.inside && this.decorate) {
         if (!this.placing) { const hits = this.ray.intersectObject(this.roomItems, true); const h0 = hits.find((h) => h.object.userData.idx !== undefined); if (h0) { this.ev.onPick?.(h0.object.userData.idx as number); return; } }
-        if (this.placing && this.ray.ray.intersectPlane(this.ground, hit)) { const lx = THREE.MathUtils.clamp(hit.x - ROOM.x, -ROOM.w / 2 + 0.8, ROOM.w / 2 - 0.8), lz = THREE.MathUtils.clamp(hit.z - ROOM.z, -ROOM.d / 2 + 0.8, ROOM.d / 2 - 0.8); this.ev.onPlace?.(lx, lz); }
+        if (this.placing && this.ray.ray.intersectPlane(this.ground, hit)) { const lx = THREE.MathUtils.clamp(hit.x - this.cur.x, -ROOM.w / 2 + 0.8, ROOM.w / 2 - 0.8), lz = THREE.MathUtils.clamp(hit.z - this.cur.z, -ROOM.d / 2 + 0.8, ROOM.d / 2 - 0.8); this.ev.onPlace?.(lx, lz); }
         return;
       }
-      if (this.ray.ray.intersectPlane(this.ground, hit) && (this.inside ? Math.abs(hit.x - ROOM.x) < ROOM.w / 2 && Math.abs(hit.z - ROOM.z) < ROOM.d / 2 : Math.hypot(hit.x, hit.z) < 73 || (Math.abs(hit.x) < 1.5 && hit.z < -70 && hit.z > -86))) this.walkTo(hit.x, hit.z);
+      if (this.ray.ray.intersectPlane(this.ground, hit) && (this.inside ? Math.abs(hit.x - this.cur.x) < ROOM.w / 2 && Math.abs(hit.z - this.cur.z) < ROOM.d / 2 : Math.hypot(hit.x, hit.z) < 73 || (Math.abs(hit.x) < 1.5 && hit.z < -70 && hit.z > -86))) this.walkTo(hit.x, hit.z);
     }
   };
   walkTo(x: number, z: number) {
@@ -635,7 +706,19 @@ export class IslandScene {
     let iz = (k.has('KeyW') || k.has('ArrowUp') ? 1 : 0) - (k.has('KeyS') || k.has('ArrowDown') ? 1 : 0) + this.joy.y;
     if (Math.hypot(ix, iz) > 0.05 && this.goal) { this.goal = null; if (this.goalRing) this.goalRing.visible = false; }
     let goalDir: THREE.Vector3 | null = null;
-    if (this.goal) { const d = this.goal.clone().sub(this.heroPos); d.y = 0; if (d.length() < 0.5) { this.goal = null; if (this.goalRing) this.goalRing.visible = false; } else goalDir = d.normalize(); }
+    if (this.goal) { const d = this.goal.clone().sub(this.heroPos); d.y = 0; if (d.length() < 0.5) { this.goal = null; if (this.goalRing) this.goalRing.visible = false; } else {
+      goalDir = d.normalize();
+      // обхід перешкод: якщо будинок попереду, ідемо по дотичній
+      for (const c of this.inside ? (this.roomId === 'home' ? this.roomCol : this.roomCols[this.roomId ?? ''] ?? []) : this.colliders) {
+        const tx = c.x - this.heroPos.x, tz = c.z - this.heroPos.z; const dist = Math.hypot(tx, tz);
+        const along = tx * goalDir.x + tz * goalDir.z;
+        if (along <= 0 || dist > c.r + 2.5 || along > d.length() + 0.5) continue;
+        if (Math.abs(tx * goalDir.z - tz * goalDir.x) < c.r + 0.7) {
+          const t1 = new THREE.Vector3(tz, 0, -tx).normalize(), t2 = t1.clone().negate();
+          goalDir = (t1.dot(goalDir) > t2.dot(goalDir) ? t1 : t2).lerp(goalDir, 0.15).normalize(); break;
+        }
+      }
+    } }
     const len = Math.hypot(ix, iz); if (len > 1) { ix /= len; iz /= len; }
     const running = k.has('ShiftLeft') || k.has('ShiftRight') || this.run;
     const base = 5.2 * (this.rideId ? SPEED[this.rideId] ?? 1 : running ? 1.6 : 1);
@@ -658,11 +741,11 @@ export class IslandScene {
       if (this.tramp && Math.hypot(this.heroPos.x - this.tramp.x, this.heroPos.z - this.tramp.z) < 1.4) { this.vy = 13; this.onGround = false; this.wob.sqV -= 4; }
     }
     // зіткнення з будинками й межею острова
-    for (const c of this.inside ? this.roomCol : this.colliders) {
+    for (const c of this.inside ? (this.roomId === 'home' ? this.roomCol : this.roomCols[this.roomId ?? ''] ?? []) : this.colliders) {
       const dx = this.heroPos.x - c.x, dz = this.heroPos.z - c.z; const d = Math.hypot(dx, dz); const r = c.r + 0.45;
       if (d < r && d > 0.0001) { this.heroPos.x = c.x + (dx / d) * r; this.heroPos.z = c.z + (dz / d) * r; }
     }
-    if (this.inside) { this.heroPos.x = THREE.MathUtils.clamp(this.heroPos.x, ROOM.x - ROOM.w / 2 + 0.6, ROOM.x + ROOM.w / 2 - 0.6); this.heroPos.z = THREE.MathUtils.clamp(this.heroPos.z, ROOM.z - ROOM.d / 2 + 0.6, ROOM.z + ROOM.d / 2 - 0.6); }
+    if (this.inside) { this.heroPos.x = THREE.MathUtils.clamp(this.heroPos.x, this.cur.x - ROOM.w / 2 + 0.6, this.cur.x + ROOM.w / 2 - 0.6); this.heroPos.z = THREE.MathUtils.clamp(this.heroPos.z, this.cur.z - ROOM.d / 2 + 0.6, this.cur.z + ROOM.d / 2 - 0.6); }
     else {
       const onPier = Math.abs(this.heroPos.x) < 1.6 && this.heroPos.z < -69 && this.heroPos.z > -86.5;
       const R = 73; const dc = Math.hypot(this.heroPos.x, this.heroPos.z);
@@ -720,7 +803,7 @@ export class IslandScene {
     if (this.frames % 2 === 0) { for (let i = 0; i < wp.count; i++) { const x = wp.getX(i), z = wp.getZ(i); wp.setY(i, Math.sin(x * 0.12 + t * 1.2) * 0.18 + Math.cos(z * 0.1 + t) * 0.15); } wp.needsUpdate = true; this.water.geometry.computeVertexNormals(); }
     this.clouds.forEach((c) => { c.position.x += c.userData.v * dt; if (c.position.x > 170) c.position.x = -170; });
     if (this.markerOn) { const a = this.marker.getObjectByName('arrow')!; a.position.y = 4.2 + Math.sin(t * 3) * 0.4; a.rotation.y = t * 2; }
-    this.stepWorld(dt, t);
+    this.stepWorld(dt, t); if (this.inside) this.stepKeepers(t);
     // камера позаду героя
     if (this.inside) this.camYaw = THREE.MathUtils.clamp(this.camYaw, -0.25, 1.25);
     else if (speed > 1 && !this.drag && (Math.abs(this.joy.x) + Math.abs(this.joy.y) > 0 || k.size)) { let d = (this.heroRot + Math.PI) - this.camYaw; d = Math.atan2(Math.sin(d), Math.cos(d)); this.camYaw += d * (1 - Math.exp(-1.2 * dt)); }
@@ -752,6 +835,7 @@ export class IslandScene {
     (this.scene.fog as THREE.Fog).color.copy(sky).lerp(new THREE.Color('#FFFFFF'), 0.15 * day);
     this.hemi.intensity = (0.32 + 0.95 * day) * (1 - this.rain * 0.25);
     this.sun.intensity = (0.12 + 2.2 * day) * (1 - this.rain * 0.55);
+    if (this.inside) { this.hemi.intensity = Math.max(this.hemi.intensity, 1.1); this.sun.intensity = Math.max(this.sun.intensity, 1.4); }
     this.sun.color.set('#FFF4DD').lerp(new THREE.Color('#FFB27A'), dusk * 0.7);
     this.cloudMat.color.set('#FFFFFF').lerp(new THREE.Color('#56617E'), 1 - day).lerp(new THREE.Color('#9AA3AE'), this.rain * 0.6);
     const night = 1 - day;
@@ -778,6 +862,8 @@ export class IslandScene {
     }
     for (const b of this.boats) { const a = t * b.v + b.ph; b.g.position.set(Math.cos(a) * b.r, -0.1 + Math.sin(t * 1.4 + b.ph) * 0.15, Math.sin(a) * b.r); b.g.rotation.y = -a; b.g.rotation.z = Math.sin(t * 1.1 + b.ph) * 0.05; }
   }
+  // господарі в кімнатах ледь погойдуються
+  stepKeepers(t: number) { this.keepers.forEach((k, i) => { k.body.rotation.z = Math.sin(t * 1.5 + i) * 0.05; k.armR.rotation.z = 0.35 + Math.max(0, Math.sin(t * 2 + i)) * 0.8; }); }
   setDecor(on: boolean, placing: string | null) { this.decorate = on; this.placing = placing; }
 
   dispose() {
