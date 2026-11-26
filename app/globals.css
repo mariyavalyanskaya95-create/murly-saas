@@ -4935,3 +4935,6 @@ textarea.t-parent__url { width: 300px; font: inherit; font-size: 13px; }
 .il.is-touch .il-mini-map { top: 84px; }
 @media (pointer: coarse) { .il-dock { top: 10px; bottom: auto; right: 10px; } .il-pop { bottom: auto; top: calc(100% + 8px); } .il-mini-map { top: 84px; } }
 @media (max-width: 640px) { .il-dk span { display: none; } .il-dk { width: 40px; } .il-mini-map { top: 70px; } }
+.il-item button.il-place { background: #FFE08A; border-color: #1A1A1A; animation: il-pulse 1.2s ease-in-out infinite; }
+@keyframes il-pulse { 50% { transform: scale(1.06); } }
+@media (prefers-reduced-motion: reduce) { .il-item button.il-place { animation: none; } }
