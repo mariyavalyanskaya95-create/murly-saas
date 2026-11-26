@@ -7,6 +7,8 @@ import Link from 'next/link';
 import { useAuth } from '@clerk/nextjs';
 import { say, sfx } from '@/lib/worlds/sound';
 import { DIALOGS, nextDialog, type Dialog } from '@/lib/worlds/island-dialogs';
+import { CHAT, IslandNet, type NetPlayer } from '@/lib/worlds/island-net';
+import { GRAMMAR, LISTEN_WORDS, LOST_PLACES, treasureHunt } from '@/lib/worlds/island-data';
 import { ACT, EMOTES, FOODS, FRIDGE, INGREDIENTS, RECIPES, friendLevel, CHOICES, MELODIES, SKILLS, SKILL_OF, skillLevel, CROPS, cropProgress, JOKES, COMPLIMENTS, RPS, FURN_ALL, FURN_CATS } from '@/lib/worlds/island-data';
 import { ADDRS, DESTS, HAIR_COLOURS, PROFS, STARTER, STYLE, STYLE_COLOURS, profLevel, type StylePart } from '@/lib/worlds/island-data';
 import { ICE, ICE_TOP, errandTask, iceOrder, keeperQuestion, lostTask, timeWords, type LostTask } from '@/lib/worlds/island-data';
@@ -14,7 +16,7 @@ import { BADGES, CAFE_DRINK, CAFE_FOOD, CLOTHES, COLOURS, FISH, FLAVOURS, FRUIT,
 import type { IslandScene } from '@/lib/worlds/island-scene';
 import type { Spot } from '@/lib/worlds/island-data';
 
-type Panel = null | 'post' | 'cafe' | 'market' | 'store' | 'home' | 'help' | 'npc' | 'jobs' | 'bakery' | 'boutique' | 'taxi' | 'pier' | 'today' | 'icecream' | 'board' | 'errand' | 'keeper' | 'style' | 'career' | 'dialog' | 'fridge' | 'cook' | 'bag' | 'friend' | 'acts' | 'choose' | 'book' | 'wordgame' | 'garden' | 'skills' | 'joke' | 'nice' | 'rps';
+type Panel = null | 'post' | 'cafe' | 'market' | 'store' | 'home' | 'help' | 'npc' | 'jobs' | 'bakery' | 'boutique' | 'taxi' | 'pier' | 'today' | 'icecream' | 'board' | 'errand' | 'keeper' | 'style' | 'career' | 'dialog' | 'fridge' | 'cook' | 'bag' | 'friend' | 'acts' | 'choose' | 'book' | 'wordgame' | 'garden' | 'skills' | 'joke' | 'nice' | 'rps' | 'school' | 'online' | 'chat';
 type Tab = Cat | 'Furniture';
 const LS = 'murly-island-v1';
 const GUEST_COINS = 60;
@@ -75,6 +77,19 @@ export default function IslandGame() {
   const [rps, setRps] = useState<{ me: string; them: string; res: string } | null>(null);
   const [fcat, setFcat] = useState('living');
   const actx = useRef<AudioContext | null>(null);
+  // школа, скарби, човен, хованки
+  const [lessonQ, setLessonQ] = useState<{ kind: string; q: string; a: string; opts: string[]; picked?: string; n: number; right: number; speak?: string } | null>(null);
+  const [treasure, setTreasure] = useState<{ steps: { x: number; z: number; text: string }[]; i: number; chest: boolean } | null>(null);
+  const [boating, setBoating] = useState(false);
+  const [seek, setSeek] = useState<{ i: number; name: string; text: string } | null>(null);
+  // гра по мережі
+  const net = useRef<IslandNet | null>(null);
+  const [online, setOnline] = useState<Record<string, NetPlayer & { last: number }>>({});
+  const [netOk, setNetOk] = useState(false);
+  const [chatLog, setChatLog] = useState<{ n: string; t: string; me?: boolean }[]>([]);
+  const [reqs, setReqs] = useState<{ id: string; n: string }[]>([]);
+  const [chatCat, setChatCat] = useState('Hello');
+  const muted = useRef<Set<string>>(new Set());
   // 3D-мініатюри речей
   const wantThumbs = useCallback((ids: string[]) => {
     void import('@/lib/worlds/island-scene').then(async ({ thumbFor }) => {
@@ -257,6 +272,9 @@ export default function IslandGame() {
     if (s.id.startsWith('npc-')) { setNpcI(Number(s.id.slice(4))); setGiveMode(false); setPanel('friend'); return; }
     if (s.id.startsWith('use:')) { if (sc.current?.pose) { sc.current.setPose(null); setCaption(null); setActing(null); return; } const m = sc.current?.useMeta[s.id]; if (m) doUse(m.kind, m); return; }
     if (s.id === 'campbook') { doUse('read'); return; }
+    if (s.id === 'school') { setLessonQ(null); setPanel('school'); return; }
+    if (s.id === 'boat') { sc.current?.startBoat(); setBoating(true); tell("I'm sailing a boat around the island! Steer with the arrows or the joystick."); return; }
+    if (s.id === 'boat-dock') { if (sc.current?.boating) { sc.current.stopBoat(); setBoating(false); tell("I'm back on the pier."); } return; }
     if (s.id.startsWith('enter-')) { const id = s.id.slice(6); if (sc.current?.markerOn && !delivery && !taxi?.hint) sc.current.setMarker(null); sc.current?.enterRoom(id); setInside(id); return; }
     if (errand?.stage === 'get' && s.id === errand.at) { setErrand({ ...errand, stage: 'bring' }); say(`Here you are! ${errand.item}.`); flash(`You got ${errand.item}. Take it to Grandma Rose!`); return; }
     if (s.id === 'guest') {
@@ -268,7 +286,6 @@ export default function IslandGame() {
     if (s.id === 'icecream') { if (!ice) { const o = iceOrder(saveRef.current.jobs.icecream ?? 0); setIce(o); setCup({ scoops: [] }); say(o.text); } setPanel('icecream'); return; }
     if (s.id === 'board') {
       if (lost?.found) { say('You found it! Thank you so much!'); setLost(null); done('lost', 5, `You returned the ${lost.thing.en}.`); return; }
-      if (!lost) { const l = lostTask(); setLost({ ...l, found: false }); sc.current?.setLost(l.place.x, l.place.z, l.thing.id, l.thing.c); say(l.text); }
       setPanel('board'); return;
     }
     if (s.id === 'room-exit') { sc.current?.exitHome(); setInside(null); setDecor({ on: false, placing: null, picked: null }); return; }
@@ -356,7 +373,7 @@ export default function IslandGame() {
       done('fish', f.rare >= 2 ? 4 : 2, f.rare >= 2 ? `A rare ${f.en}!` : `You caught a ${f.en}.`, { fish });
     } else { sfx.bad(); setFishQ({ ...fishQ, picked: o }); }
   };
-  onPickupRef.current = () => { if (!lost) return; sfx.coin(); setLost({ ...lost, found: true }); say(`You found the ${lost.thing.en}!`); flash(`You found the ${lost.thing.en}! Take it back to the notice board.`); };
+  onPickupRef.current = () => { if (treasure?.chest) { setTreasure(null); sfx.coin(); say('You found the treasure! Golden coins!'); tell('I found the treasure chest! It is full of golden coins!'); done('treasure', 10, 'Treasure found!'); return; } if (!lost) return; sfx.coin(); setLost({ ...lost, found: true }); say(`You found the ${lost.thing.en}!`); flash(`You found the ${lost.thing.en}! Take it back to the notice board.`); };
   const sellIce = () => {
     if (!ice) return;
     const ok = [...cup.scoops].sort().join('|') === ice.scoops.join('|') && cup.cone === ice.cone && cup.top === ice.top;
@@ -536,13 +553,81 @@ export default function IslandGame() {
   };
   const emote = (id: string) => {
     const e = EMOTES.find((x) => x.id === id); const sx = sc.current; if (!e || !sx) return;
-    sx.bubble(e.bubble); tell(e.say);
-    if (id === 'dance') sx.dance();
+    sx.bubble(e.bubble); tell(e.say); net.current?.send('say', { text: e.bubble });
+    if (id === 'dance') { sx.dance(); net.current?.send('dance', {}); }
     if (id === 'sit') sx.setPose('sit', { x: sx.heroPos.x, z: sx.heroPos.z, y: 0.12, rot: sx.heroRot });
     if (id === 'wave' || id === 'love') sx.jump();
     setPanel(null);
   };
   useEffect(() => { if (ready) sc.current?.setName(save.hero ?? ''); }, [ready, save.hero]);
+  // ---- школа: урок з 5 питань ----
+  const lessonQuestion = (n: number, right: number) => {
+    const k = ['words', 'grammar', 'listen', 'grammar', 'words'][n];
+    if (k === 'grammar') { const g = GRAMMAR[Math.floor(Math.random() * GRAMMAR.length)]; setLessonQ({ kind: k, q: 'Which sentence is correct?', a: g.right, opts: [g.right, ...g.wrong].sort(() => Math.random() - 0.5), n, right }); return; }
+    if (k === 'listen') { const w = LISTEN_WORDS[Math.floor(Math.random() * LISTEN_WORDS.length)]; const o = [w, ...LISTEN_WORDS.filter((x) => x !== w).sort(() => Math.random() - 0.5).slice(0, 3)].sort(() => Math.random() - 0.5); setLessonQ({ kind: k, q: 'Listen and choose the word you hear.', a: w, opts: o, n, right, speak: w }); window.setTimeout(() => say(w), 300); return; }
+    const mine = words.filter((w) => w.en.split(' ').length <= 3);
+    if (mine.length >= 4 && Math.random() < 0.6) { const w = mine[Math.floor(Math.random() * mine.length)]; const wrong = mine.filter((x) => x.en !== w.en).sort(() => Math.random() - 0.5).slice(0, 3).map((x) => x.en); setLessonQ({ kind: k, q: `How do you say "${w.uk}" in English?`, a: w.en, opts: [w.en, ...wrong].sort(() => Math.random() - 0.5), n, right }); return; }
+    const r = RIDDLES[Math.floor(Math.random() * RIDDLES.length)]; setLessonQ({ kind: k, q: r.q, a: r.a, opts: [r.a, ...r.wrong].sort(() => Math.random() - 0.5), n, right });
+  };
+  const answerLesson = (o: string) => { if (!lessonQ || lessonQ.picked) return; const ok = o === lessonQ.a; setLessonQ({ ...lessonQ, picked: o, right: lessonQ.right + (ok ? 1 : 0) }); if (ok) { sfx.coin(); say('Well done!'); } else sfx.bad(); };
+  const endLesson = () => { if (!lessonQ) return; const r = lessonQ.right; setPanel(null); setLessonQ(null); addSkill('read'); say(`Miss Apple says: ${r >= 4 ? 'Excellent work!' : r >= 2 ? 'Good job!' : 'Keep practising!'}`); done('school', Math.max(1, r), `School lesson: ${r} / 5`); };
+  // ---- скарби й хованки: перевірка, чи котик поруч ----
+  useEffect(() => {
+    if (!treasure && !seek) return;
+    const id = window.setInterval(() => {
+      const sx = sc.current; if (!sx || sx.inside) return;
+      if (treasure && !treasure.chest) { const st = treasure.steps[treasure.i]; if (Math.hypot(st.x - sx.heroPos.x, st.z - sx.heroPos.z) < 3) {
+        if (treasure.i < treasure.steps.length - 1) { sfx.coin(); const nx = treasure.i + 1; setTreasure({ ...treasure, i: nx }); say(`You found clue ${nx}! ${treasure.steps[nx].text}`); flash(`Clue ${nx} found! Read the next clue.`); }
+        else { setTreasure({ ...treasure, chest: true }); sx.setLost(st.x + 1.5, st.z, 'chest', '#8B5E34'); say('Look! A treasure chest! Open it!'); } } }
+      if (seek) { const p = sx.npcPos(seek.i); if (p && Math.hypot(p.x - sx.heroPos.x, p.z - sx.heroPos.z) < 2.6) { sx.npcBubble(seek.i, 'You found me!'); say('You found me!'); addFriend(seek.name, 2, `You found ${seek.name}!`); addNeeds({ fun: 20 }); addSkill('friend'); setSeek(null); } }
+    }, 500);
+    return () => window.clearInterval(id);
+  }, [treasure, seek]); // eslint-disable-line react-hooks/exhaustive-deps
+  const startTreasure = () => { if (lost) { flash('Find the lost thing first!', false); return; } const steps = treasureHunt(); setTreasure({ steps, i: 0, chest: false }); setPanel(null); say(steps[0].text); tell(`Treasure hunt! ${steps[0].text}`); };
+  const startSeek = () => { if (npcI === null) return; const pl = LOST_PLACES[Math.floor(Math.random() * LOST_PLACES.length)]; sc.current?.hideNpc(npcI, pl.x, pl.z); const text = `Ready or not! I'm hiding ${pl.en}. Come and find me!`; setSeek({ i: npcI, name: npcName, text }); say(text); setPanel(null); };
+  // ---- фейерверки: у п'ятницю й суботу ввечері, іноді й в інші дні ----
+  useEffect(() => {
+    const sx = sc.current; if (!sx) return; const d = new Date(); const party = d.getDay() === 5 || d.getDay() === 6 || (d.getDate() % 3 === 0);
+    const on = party && (clock.hour >= 20.5 || clock.hour < 2); if (on && !sx.fireworksOn) flash('Look up! Fireworks over the sea!'); sx.fireworksOn = on;
+  }, [clock.hour]);
+  // ---- гра по мережі ----
+  const netId = useRef('');
+  useEffect(() => {
+    if (!ready || !isSignedIn) return;
+    if (!netId.current) { try { netId.current = localStorage.getItem('murly-net-id') || ''; if (!netId.current) { netId.current = Math.random().toString(36).slice(2, 10); localStorage.setItem('murly-net-id', netId.current); } } catch { netId.current = Math.random().toString(36).slice(2, 10); } }
+    const n = new IslandNet(netId.current, {
+      onStatus: setNetOk,
+      onPlayer: (p) => { if (muted.current.has(p.id)) return; sc.current?.upsertOther(p); setOnline((o) => ({ ...o, [p.id]: { ...p, last: Date.now() } })); },
+      onLeave: (id) => { sc.current?.removeOther(id); setOnline((o) => { const c = { ...o }; delete c[id]; return c; }); },
+      onSay: (id, text) => { if (muted.current.has(id)) return; sc.current?.otherSay(id, text); setOnline((o) => { const nm = o[id]?.n ?? 'Cat'; setChatLog((l) => [...l.slice(-19), { n: nm, t: text }]); return o; }); },
+      onEvent: (id, ev, data) => {
+        if (muted.current.has(id)) return;
+        if (ev === 'hello') sendPos(true);
+        if (ev === 'dance') sc.current?.otherDance(id);
+        if (ev === 'friendreq' && data.to === netId.current) { const nm = String(data.n ?? 'Cat'); setReqs((r) => (r.some((x) => x.id === id) ? r : [...r, { id, n: nm }])); flash(`${nm} wants to be your friend! Open Online to say yes.`); say(`${nm} wants to be your friend!`); }
+        if (ev === 'friendok' && data.to === netId.current) { const nm = String(data.n ?? 'Cat'); addNetFriend(id, nm); flash(`${nm} is your friend now!`); }
+      },
+    });
+    net.current = n;
+    const clean = window.setInterval(() => setOnline((o) => { const c: typeof o = {}; Object.entries(o).forEach(([k, v]) => { if (Date.now() - v.last < 12000) c[k] = v; }); return c; }), 5000);
+    return () => { n.close(); net.current = null; window.clearInterval(clean); };
+  }, [ready, isSignedIn]); // eslint-disable-line react-hooks/exhaustive-deps
+  const lastSent = useRef({ x: 0, z: 0, r: 0, t: 0 });
+  const myName = () => (saveRef.current.hero || `Cat ${netId.current.slice(0, 3).toUpperCase()}`).slice(0, 14);
+  const sendPos = (force = false) => {
+    const sx = sc.current; const n = net.current; if (!sx || !n) return;
+    const L = lastSent.current; const now = Date.now();
+    const pos = { x: Math.round(sx.heroPos.x * 10) / 10, z: Math.round(sx.heroPos.z * 10) / 10, r: Math.round(sx.heroRot * 100) / 100 };
+    if (!force && Math.abs(pos.x - L.x) + Math.abs(pos.z - L.z) + Math.abs(pos.r - L.r) < 0.05 && now - L.t < 3000) return;
+    lastSent.current = { ...pos, t: now };
+    const s0 = saveRef.current; const pr = PROFS.find((p) => p.id === s0.prof);
+    n.send('pos', { n: myName(), ...pos, room: sx.inside ? sx.roomId : null, o: s0.outfit as unknown as Record<string, string>, ride: sx.boating ? null : sx.rideId, prof: pr?.en ?? '', lv: pr ? profLevel(s0.jobs[pr.job] ?? 0).en : '' });
+  };
+  useEffect(() => { if (!netOk) return; const id = window.setInterval(() => sendPos(), 200); return () => window.clearInterval(id); }, [netOk]); // eslint-disable-line react-hooks/exhaustive-deps
+  const sayNet = (text: string) => { net.current?.send('say', { text }); sc.current?.bubble(text.length > 18 ? text.slice(0, 17) + '…' : text, 3); setChatLog((l) => [...l.slice(-19), { n: myName(), t: text, me: true }]); say(text); };
+  const addNetFriend = (id: string, n: string) => { const s0 = saveRef.current; const nf = { ...((s0 as unknown as { netFriends?: Record<string, string> }).netFriends ?? {}), [id]: n }; persist({ ...s0, netFriends: nf } as Save); };
+  const netFriends = ((save as unknown as { netFriends?: Record<string, string> }).netFriends ?? {});
+  const onlineList = Object.values(online).filter((p) => !muted.current.has(p.id));
   // ---- дім всередині ----
   const furnOwned = FURN_ALL.filter((f) => save.owned.includes(`furn-${f.f}`));
   const room = save.room ?? [];
@@ -627,7 +712,7 @@ export default function IslandGame() {
   const jMove = (e: React.PointerEvent) => { const j = joy.current; if (!j || j.id !== e.pointerId) return; let dx = e.clientX - j.x, dy = e.clientY - j.y; const L = Math.hypot(dx, dy), M = 50; if (L > M) { dx *= M / L; dy *= M / L; } setKnob({ x: dx, y: dy }); sc.current?.setJoy(dx / M, -dy / M); if (sc.current) sc.current.run = runOn || L > M * 0.95; };
   const jUp = () => { joy.current = null; setKnob({ x: 0, y: 0 }); sc.current?.setJoy(0, 0); if (sc.current) sc.current.run = runOn; };
 
-  const nearText = near ? (near.id.startsWith('use:') ? (sc.current?.pose ? 'Stand up' : near.label) : near.id === 'enter-tent' ? 'Go into the tent' : near.id === 'campbook' ? 'Read the camp book' : near.id === 'taxi-drop' ? `Drop off at ${near.label}` : near.id === 'room-exit' ? 'Go outside' : near.id === 'pier' ? 'Go fishing' : near.id === 'icecream' ? 'Sell ice cream' : near.id === 'board' ? (lost?.found ? 'Give back the lost thing' : 'Read the notice board') : errand?.stage === 'get' && near.id === errand.at ? `Get ${errand.item}` : near.id.startsWith('enter-') ? `Go into the ${near.label.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase())}` : inside && !near.id.startsWith('npc-') ? `Talk to ${near.label}` : near.id.startsWith('door-') && !delivery ? `Visit number ${near.label}` : near.id === 'home' && save.house > 0 ? 'Go inside my home' : near.id.startsWith('npc-') ? `Talk to ${near.label}` : near.id.startsWith('door-') ? `Deliver to ${near.label}` : near.id === 'home' ? 'My home' : `Enter: ${near.label.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase())}`) : '';
+  const nearText = near ? (near.id === 'boat' ? 'Take a boat' : near.id === 'boat-dock' ? 'Back to the pier' : near.id === 'school' ? 'Have a lesson with Miss Apple' : near.id.startsWith('use:') ? (sc.current?.pose ? 'Stand up' : near.label) : near.id === 'enter-tent' ? 'Go into the tent' : near.id === 'campbook' ? 'Read the camp book' : near.id === 'taxi-drop' ? `Drop off at ${near.label}` : near.id === 'room-exit' ? 'Go outside' : near.id === 'pier' ? 'Go fishing' : near.id === 'icecream' ? 'Sell ice cream' : near.id === 'board' ? (lost?.found ? 'Give back the lost thing' : 'Read the notice board') : errand?.stage === 'get' && near.id === errand.at ? `Get ${errand.item}` : near.id.startsWith('enter-') ? `Go into the ${near.label.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase())}` : inside && !near.id.startsWith('npc-') ? `Talk to ${near.label}` : near.id.startsWith('door-') && !delivery ? `Visit number ${near.label}` : near.id === 'home' && save.house > 0 ? 'Go inside my home' : near.id.startsWith('npc-') ? `Talk to ${near.label}` : near.id.startsWith('door-') ? `Deliver to ${near.label}` : near.id === 'home' ? 'My home' : `Enter: ${near.label.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase())}`) : '';
   const furOwned = FUR.filter((f) => save.owned.includes(f.id) || f.price === 0);
 
   return (
@@ -639,7 +724,7 @@ export default function IslandGame() {
         <Link href="/games" className="il-chip">← Games</Link>
         <span className="il-coins" title="Murly coins"><i className="il-coin" /> {coins ?? '…'}</span>
         <span className="il-chip il-stars" title="Stars found"><i className="il-star" /> {starCount}/10</span>
-        <span className="il-chip" title="Time and weather">{fmtHour(clock.hour)} · {clock.rain ? 'rainy' : clock.hour >= 20 || clock.hour < 6 ? 'clear night' : 'sunny'}</span>
+        <span className="il-chip" title="Time and weather">{fmtHour(clock.hour)} · {clock.rain ? (sc.current?.winter ? 'snowy' : 'rainy') : clock.hour >= 20 || clock.hour < 6 ? 'clear night' : 'sunny'}</span>
         <button type="button" className={`il-chip ${dailyDone === 3 ? 'il-chip--y' : ''}`} onClick={() => setPanel('today')}>Today {dailyDone}/3</button>
         {guest && <Link href="/sign-in?redirect_url=/play/island" className="il-chip il-chip--y">Sign in to use your Murly coins</Link>}
       </div>
@@ -650,6 +735,8 @@ export default function IslandGame() {
         <button type="button" className="il-chip il-chip--y" onClick={() => setPanel('style')}>My look</button>
         <button type="button" className="il-chip" onClick={() => { setGiveMode(false); setPanel('bag'); }}>Bag</button>
         <button type="button" className="il-chip" onClick={() => setPanel('acts')}>Actions</button>
+        {isSignedIn && <button type="button" className={`il-chip ${reqs.length ? 'il-chip--y' : ''}`} onClick={() => setPanel('online')}><i className={`il-dot-on ${netOk ? 'on' : ''}`} />Online {onlineList.length}</button>}
+        {isSignedIn && onlineList.length > 0 && <button type="button" className="il-chip" onClick={() => setPanel('chat')}>Chat</button>}
         <button type="button" className="il-chip" onClick={() => setPanel('career')}>{PROFS.find((p) => p.id === save.prof)?.en ?? 'Choose a job'}</button>
         {inside ? <>
           {inside === 'home' && <button type="button" className={`il-chip ${decor.on ? 'il-chip--y' : ''}`} onClick={() => setDecor(decor.on ? { on: false, placing: null, picked: null } : { on: true, placing: null, picked: null })}>{decor.on ? 'Done' : 'Decorate'}</button>}
@@ -681,6 +768,12 @@ export default function IslandGame() {
             </>}
         </div>
       )}
+      {chatLog.length > 0 && !panel && <div className="il-chatlog">{chatLog.slice(-5).map((m, i) => <div key={i} className={m.me ? 'me' : ''}><b>{m.n}:</b> {m.t}</div>)}</div>}
+      {!panel && (treasure || seek || boating) && <div className="il-tasks il-tasks--low">
+        {treasure && <div className="il-task"><b>Treasure hunt:</b> {treasure.chest ? 'Open the treasure chest!' : `Clue ${treasure.i + 1}/3: ${treasure.steps[treasure.i].text}`} <button type="button" className="il-mini" onClick={() => say(treasure.steps[treasure.i].text)}>Listen</button></div>}
+        {seek && <div className="il-task"><b>Hide and seek:</b> {seek.name} says: &ldquo;{seek.text}&rdquo;</div>}
+        {boating && <div className="il-task"><b>Boat:</b> sail around the island. Come back to the pier and press the yellow button to get off.</div>}
+      </div>}
       {!panel && (delivery || taxi?.driving || lost || errand) && <div className="il-tasks">
       {lost && <div className="il-task"><b>{lost.found ? 'Take it back:' : 'Lost:'}</b> {lost.found ? `Bring the ${lost.thing.en} to the notice board near the fountain.` : `${lost.thing.en}, ${lost.place.en}.`} <button type="button" className="il-mini" onClick={() => say(lost.found ? `Bring the ${lost.thing.en} to the notice board.` : `${lost.thing.en}, ${lost.place.en}.`)}>Listen</button></div>}
       {errand && <div className="il-task"><b>Grandma Rose:</b> {errand.stage === 'get' ? `Get ${errand.item} at the ${errand.place}.` : `Take ${errand.item} to Grandma Rose (any house).`}</div>}
@@ -743,6 +836,7 @@ export default function IslandGame() {
                 <li><b>Camera:</b> drag the screen. <b>Zoom:</b> mouse wheel.</li>
                 <li><b>Explore:</b> find 10 golden stars and chat with the cats who live on the island.</li>
                 <li><b>Jobs:</b> Post Office (deliver parcels), Cat Cafe (make sandwiches), Fruit Market (count fruit), Bakery (bake cakes), Boutique (find clothes), Taxi (drive passengers), Fishing pier (word riddles).</li>
+                <li><b>Play together:</b> press Online to see other Murly students on the island. Say hi, chat with ready English phrases, make friends and play together.</li>
                 <li><b>Live like a real cat:</b> watch Food, Energy and Fun. Sit on chairs, sleep in beds and tents, open fridges, cook from recipes, watch TV, read, swim and swing. Make friends with the cats: talk, give presents, dance and walk together.</li>
                 <li><b>Your cat:</b> press My look to choose hair, clothes, shoes and something to hold. Press Choose a job to pick your profession.</li>
                 <li><b>Talk:</b> every cat on the island has their own stories. Choose your answers and make friends!</li>
@@ -882,6 +976,13 @@ export default function IslandGame() {
               <button type="button" className="il-go" onClick={sellIce} disabled={!cup.scoops.length || cup.cone === undefined || !cup.top}>Give the ice cream</button>
             </>}
 
+            {panel === 'board' && !lost && <>
+              <h2>Notice board</h2>
+              <div className="il-grid il-grid--col">
+                <button type="button" className="il-pick" onClick={() => { const l = lostTask(); setLost({ ...l, found: false }); sc.current?.setLost(l.place.x, l.place.z, l.thing.id, l.thing.c); say(l.text); }}>Help someone find a lost thing</button>
+                <button type="button" className="il-pick" onClick={startTreasure} disabled={!!treasure}>{treasure ? 'You are on a treasure hunt' : 'Start a treasure hunt'}</button>
+              </div>
+            </>}
             {panel === 'board' && lost && <>
               <h2>Lost &amp; Found</h2>
               <div className="il-note-paper">{lost.text} <button type="button" className="il-mini" onClick={() => say(lost.text)}>Listen</button></div>
@@ -961,6 +1062,44 @@ export default function IslandGame() {
               {rps && <p className="il-say">You: {rps.me}. {npcName}: {rps.them}. <b>{rps.res}</b></p>}
             </>}
 
+            {panel === 'school' && <>
+              <h2>Miss Apple&apos;s lesson</h2>
+              {!lessonQ ? <>
+                <p className="il-say">&ldquo;Hello, class! Today we have five questions: words, grammar and listening. Are you ready?&rdquo;</p>
+                <button type="button" className="il-go" onClick={() => lessonQuestion(0, 0)}>Start the lesson</button>
+              </> : <>
+                <p className="il-note">Question {lessonQ.n + 1} / 5 · {lessonQ.kind === 'grammar' ? 'Grammar' : lessonQ.kind === 'listen' ? 'Listening' : 'Words'}</p>
+                <p className="il-say">{lessonQ.q} {lessonQ.speak && <button type="button" className="il-mini" onClick={() => say(lessonQ.speak!)}>Listen again</button>}</p>
+                <div className="il-grid il-grid--col">{lessonQ.opts.map((o) => <button key={o} type="button" className={`il-pick ${lessonQ.picked ? (o === lessonQ.a ? 'on' : o === lessonQ.picked ? 'bad' : '') : ''}`} onClick={() => answerLesson(o)}>{o}</button>)}</div>
+                {lessonQ.picked && (lessonQ.n < 4 ? <button type="button" className="il-go" onClick={() => lessonQuestion(lessonQ.n + 1, lessonQ.right)}>Next question</button> : <button type="button" className="il-go" onClick={endLesson}>Finish: {lessonQ.right} / 5</button>)}
+              </>}
+            </>}
+
+            {panel === 'online' && <>
+              <h2>Players on the island</h2>
+              <p className="il-note">{netOk ? `You are online as ${myName()}. ` : 'Connecting… '}Chat uses ready English phrases. Never tell anyone your real name, school or address.</p>
+              {reqs.length > 0 && <><p className="il-sub">Friend requests</p>{reqs.map((r) => <div key={r.id} className="il-player"><b>{r.n}</b> wants to be your friend.
+                <button type="button" className="il-mini" onClick={() => { addNetFriend(r.id, r.n); net.current?.send('friendok', { to: r.id, n: myName() }); setReqs((x) => x.filter((y) => y.id !== r.id)); flash(`${r.n} is your friend now!`); }}>Yes!</button>
+                <button type="button" className="il-mini" onClick={() => setReqs((x) => x.filter((y) => y.id !== r.id))}>No, thanks</button></div>)}</>}
+              {!onlineList.length && <p className="il-note">Nobody else is here right now. Ask your friends from Murly to join you!</p>}
+              {onlineList.map((p) => <div key={p.id} className="il-player">
+                <b>{p.n}</b>{netFriends[p.id] && <span className="il-badge-f">friend</span>} <span className="t-muted">{p.prof ? `${p.lv} ${p.prof}` : 'Explorer'}{p.room ? ` · in the ${p.room}` : ''}</span>
+                <div className="il-grid">
+                  <button type="button" className="il-mini" onClick={() => { sayNet(`Hi, ${p.n}!`); }}>Say hi</button>
+                  <button type="button" className="il-mini" onClick={() => { if (!p.room && !sc.current?.inside) { sc.current?.walkTo(p.x, p.z); sc.current?.setMarker(p.x, p.z); } else flash(`${p.n} is inside a building. Go there to meet!`, false); setPanel(null); }}>Go to {p.n}</button>
+                  {!netFriends[p.id] && <button type="button" className="il-mini" onClick={() => { net.current?.send('friendreq', { to: p.id, n: myName() }); flash(`You asked ${p.n} to be friends.`); }}>Be friends</button>}
+                  <button type="button" className="il-mini" onClick={() => { muted.current.add(p.id); sc.current?.removeOther(p.id); setOnline((o) => { const c = { ...o }; delete c[p.id]; return c; }); }}>Hide</button>
+                </div></div>)}
+              {Object.keys(netFriends).length > 0 && <><p className="il-sub">My island friends</p><p className="il-note">{Object.values(netFriends).join(', ')}</p></>}
+            </>}
+
+            {panel === 'chat' && <>
+              <h2>Chat</h2>
+              <div className="il-tabs il-tabs--sm">{CHAT.map((c) => <button key={c.cat} type="button" className={chatCat === c.cat ? 'on' : ''} onClick={() => setChatCat(c.cat)}>{c.cat}</button>)}</div>
+              <div className="il-grid">{CHAT.find((c) => c.cat === chatCat)!.items.map((t) => <button key={t} type="button" className="il-pick" onClick={() => { sayNet(t); setPanel(null); }}>{t}</button>)}</div>
+              {chatLog.length > 0 && <><p className="il-sub">Last messages</p><div className="il-chatlog il-chatlog--in">{chatLog.slice(-10).map((m, i) => <div key={i} className={m.me ? 'me' : ''}><b>{m.n}:</b> {m.t}</div>)}</div></>}
+            </>}
+
             {panel === 'fridge' && <>
               <h2>The fridge</h2>
               <p className="il-note">Choose something to eat now or take it in your bag.</p>
@@ -1004,6 +1143,7 @@ export default function IslandGame() {
                 <button type="button" className="il-pick" onClick={() => friendAct('dance')}>Dance together</button>
                 <button type="button" className="il-pick" onClick={() => friendAct('five')}>High five</button>
                 <button type="button" className="il-pick" onClick={tellJoke}>Tell a joke</button>
+                {fl.i >= 1 && <button type="button" className="il-pick" onClick={startSeek} disabled={!!seek}>Play hide and seek</button>}
                 <button type="button" className="il-pick" onClick={() => { if (socialOk('nice')) setPanel('nice'); }}>Say something nice</button>
                 <button type="button" className="il-pick" onClick={() => { setRps(null); setPanel('rps'); }}>Play rock, paper, scissors</button>
                 {fl.i >= 1 && <button type="button" className="il-pick" onClick={() => friendAct('hug')}>Give a hug</button>}
@@ -1015,6 +1155,7 @@ export default function IslandGame() {
               <h2>Actions</h2>
               <div className="il-grid">{EMOTES.map((e) => <button key={e.id} type="button" className="il-pick" onClick={() => emote(e.id)}>{e.en}</button>)}
                 {save.outfit.hold === 'hold-guitar' && <button type="button" className="il-pick" onClick={() => { setPanel(null); playNotes([67, 67, 64, 65, 67, 0, 72, 71, 69, 67], 'triangle', 0.3); runAct('guitar', undefined, "I'm playing a song on my guitar."); }}>Play the guitar</button>}</div>
+              {sc.current?.winter && !inside && <button type="button" className="il-go" onClick={() => { sc.current?.buildSnowman(); setPanel(null); tell("I'm building a snowman with a carrot nose and a red scarf!"); addNeeds({ fun: 20 }); addSkill('sand'); }}>Build a snowman</button>}
               {save.pet && <><p className="il-sub">My pet</p>
                 <label className="il-name">Pet&apos;s name <input maxLength={12} value={save.petName ?? ''} placeholder="Type a name" onChange={(e) => setSave({ ...save, petName: e.target.value.replace(/[^\p{L}\p{N} '-]/gu, '') })} onBlur={() => persist({ ...saveRef.current })} /></label>
                 <div className="il-grid"><button type="button" className="il-pick" onClick={() => petAct('pet')}>Stroke my pet</button><button type="button" className="il-pick" onClick={() => petAct('feed')}>Feed my pet</button><button type="button" className="il-pick" onClick={() => petAct('ball')}>Play ball</button></div></>}
