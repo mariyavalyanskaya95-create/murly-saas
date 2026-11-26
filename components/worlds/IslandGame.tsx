@@ -60,7 +60,7 @@ export default function IslandGame() {
   const [thumbs, setThumbs] = useState<Record<string, string>>({});
   const [stab, setStab] = useState<StylePart | 'acc' | 'fur'>('hair');
   const [dlg, setDlg] = useState<{ d: Dialog; node: string; react?: string; said?: string } | null>(null);
-  const [menu, setMenu] = useState<null | 'me' | 'friends'>(null);
+  const [menu, setMenu] = useState<null | 'me' | 'friends'>(null); const [justBought, setJustBought] = useState<string | null>(null);
   const restored = useRef(false); const loaded = useRef(false); const [loadedN, setLoadedN] = useState(0);
   const [needs, setNeeds] = useState({ food: 80, energy: 80, fun: 80 });
   const needsRef = useRef(needs); needsRef.current = needs;
@@ -758,6 +758,16 @@ export default function IslandGame() {
   };
   // ---- дім всередині ----
   const furnOwned = FURN_ALL.filter((f) => save.owned.includes(`furn-${f.f}`));
+  // поставити меблі: переносимо додому й одразу вмикаємо розстановку
+  const placeFurn = (f: string) => {
+    const sx = sc.current; if (!sx) return;
+    if (inside && inside !== 'home') { sx.exitHome(); setInside(null); }
+    if (inside !== 'home') { sx.enterHome(); setInside('home'); }
+    setPanel(null); setMenu(null);
+    const idx = (saveRef.current.room ?? []).findIndex((r) => r.f === f);
+    if (idx >= 0) { setDecor({ on: true, placing: null, picked: idx }); flash(`Turn or move the ${furnName(f)}.`); }
+    else { setDecor({ on: true, placing: f, picked: null }); flash(`Tap the floor to put the ${furnName(f)} there.`); }
+  };
   const room = save.room ?? [];
   const unplaced = furnOwned.filter((f) => !room.some((r) => r.f === f.f));
   onPlaceRef.current = (x, z) => {
@@ -773,7 +783,7 @@ export default function IslandGame() {
     if (panel === 'store') wantThumbs(tab === 'Clothes' ? [...FUR.map((f) => f.id), ...SHOP.filter((x) => x.cat === 'Clothes').map((x) => x.id)] : SHOP.filter((x) => x.cat === tab).map((x) => x.id));
     if (panel === 'store' && tab === 'Furniture' && fcat === 'special') wantThumbs(FURN_ALL.filter((f) => f.f.startsWith('x-')).map((f) => f.f));
     if (decor.on) wantThumbs(FURN_ALL.filter((f) => f.f.startsWith('x-')).map((f) => f.f));
-    if (panel === 'home') wantThumbs(SHOP.filter((x) => save.owned.includes(x.id)).map((x) => x.id));
+    if (panel === 'home') wantThumbs([...SHOP.filter((x) => save.owned.includes(x.id)).map((x) => x.id), ...FURN_ALL.filter((f) => f.f.startsWith('x-') && save.owned.includes(`furn-${f.f}`)).map((f) => f.f)]);
     if (panel === 'style') wantThumbs(stab === 'acc' ? SHOP.filter((x) => x.cat === 'Clothes').map((x) => x.id) : stab === 'fur' ? FUR.map((f) => f.id) : STYLE.filter((x) => x.part === stab).map((x) => x.id));
   }, [panel, tab, stab, fcat, decor.on]); // eslint-disable-line react-hooks/exhaustive-deps
   // ---- де зупинився: позиція, кімната, завдання ----
@@ -1410,7 +1420,7 @@ export default function IslandGame() {
                 <div className="il-tabs il-tabs--sm">{FURN_CATS.map(([k, l]) => <button key={k} type="button" className={fcat === k ? 'on' : ''} onClick={() => setFcat(k)}>{l}</button>)}</div>
                 <div className="il-shop">{FURN_ALL.filter((f) => f.cat === fcat).map((f) => { const id = `furn-${f.f}`; return (
                   <div key={id} className="il-item">{f.f.startsWith('x-') ? (thumbs[f.f] ? <img className="il-thumb" src={thumbs[f.f]} alt="" /> : <i className="il-thumb-wait" />) : <img className="il-thumb" src={`/worlds/kenney/t/${f.f}.png`} alt="" />}<span>{f.en}</span>
-                    {owned(id) ? <button type="button" disabled>Bought</button> : <><button type="button" className="buy" onClick={() => buy({ id, price: f.price, en: f.en })}><i className="il-coin" /> {f.price}</button>{(coins ?? 0) < f.price && <button type="button" className="il-save" onClick={() => setGoal({ id, en: f.en, price: f.price })}>{save.goal?.id === id ? 'Saving' : 'Save for it'}</button>}</>}
+                    {owned(id) ? <button type="button" className={justBought === f.f ? "il-place" : ""} onClick={() => { setJustBought(null); placeFurn(f.f); }}>{(save.room ?? []).some((r) => r.f === f.f) ? "In my home" : "Put it in my home"}</button> : <><button type="button" className="buy" onClick={async () => { if (await buy({ id, price: f.price, en: f.en })) setJustBought(f.f); }}><i className="il-coin" /> {f.price}</button>{(coins ?? 0) < f.price && <button type="button" className="il-save" onClick={() => setGoal({ id, en: f.en, price: f.price })}>{save.goal?.id === id ? 'Saving' : 'Save for it'}</button>}</>}
                   </div>); })}</div></>}
               {tab === 'Clothes' && <><p className="il-sub">Fur colour</p>
                 <div className="il-shop">{FUR.map((f) => (
@@ -1427,7 +1437,10 @@ export default function IslandGame() {
 
             {panel === 'home' && <>
               <h2>My stuff</h2>
-              {!save.owned.some((id) => SHOP.find((s) => s.id === id)) && furOwned.length < 2 && <p className="il-note">Nothing here yet. Do jobs, earn coins and visit the Murly Store!</p>}
+              {!save.owned.some((id) => SHOP.find((s) => s.id === id)) && !furnOwned.length && furOwned.length < 2 && <p className="il-note">Nothing here yet. Do jobs, earn coins and visit the Murly Store!</p>}
+              {furnOwned.length > 0 && <div><p className="il-sub">Furniture</p><div className="il-shop">{furnOwned.map((f) => { const placed = (save.room ?? []).some((r) => r.f === f.f); return (
+                <div key={f.f} className={`il-item ${placed ? 'on' : ''}`}><img className="il-thumb" src={f.f.startsWith('x-') ? thumbs[f.f] ?? '' : `/worlds/kenney/t/${f.f}.png`} alt="" /><span>{f.en}</span>
+                  <button type="button" onClick={() => placeFurn(f.f)}>{placed ? 'Move it' : 'Put it in my home'}</button></div>); })}</div></div>}
               {(['Clothes', 'Home', 'Transport', 'Pets'] as Cat[]).map((c) => {
                 const mine = SHOP.filter((s) => s.cat === c && owned(s.id)); if (!mine.length) return null;
                 return <div key={c}><p className="il-sub">{c}</p><div className="il-shop">{mine.map((it) => (
