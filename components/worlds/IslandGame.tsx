@@ -6,11 +6,12 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { useAuth } from '@clerk/nextjs';
 import { say, sfx } from '@/lib/worlds/sound';
+import { ICE, ICE_TOP, errandTask, iceOrder, keeperQuestion, lostTask, timeWords, type LostTask } from '@/lib/worlds/island-data';
 import { BADGES, CAFE_DRINK, CAFE_FOOD, CLOTHES, COLOURS, FISH, FLAVOURS, FRUIT, FUR, FURN, MISSIONS, RIDDLES, SHOP, START, TALKS, TOPPINGS, cafeOrder, cakeOrder, catchFish, dailyFor, deliveryTask, dressOrder, fruitOrder, single, taxiTask, todayKey, type Addr, type Cat, type Save, type ShopItem } from '@/lib/worlds/island-data';
 import type { IslandScene } from '@/lib/worlds/island-scene';
 import type { Spot } from '@/lib/worlds/island-data';
 
-type Panel = null | 'post' | 'cafe' | 'market' | 'store' | 'home' | 'help' | 'npc' | 'jobs' | 'bakery' | 'boutique' | 'taxi' | 'pier' | 'today';
+type Panel = null | 'post' | 'cafe' | 'market' | 'store' | 'home' | 'help' | 'npc' | 'jobs' | 'bakery' | 'boutique' | 'taxi' | 'pier' | 'today' | 'icecream' | 'board' | 'errand' | 'keeper';
 type Tab = Cat | 'Furniture';
 const LS = 'murly-island-v1';
 const GUEST_COINS = 60;
@@ -43,6 +44,12 @@ export default function IslandGame() {
   const [inside, setInside] = useState<string | null>(null);
   const [decor, setDecor] = useState<{ on: boolean; placing: string | null; picked: number | null }>({ on: false, placing: null, picked: null });
   const [words, setWords] = useState<{ en: string; uk: string }[]>([]);
+  const [ice, setIce] = useState<ReturnType<typeof iceOrder> | null>(null);
+  const [cup, setCup] = useState<{ scoops: string[]; cone?: boolean; top?: string }>({ scoops: [] });
+  const [lost, setLost] = useState<(LostTask & { found: boolean }) | null>(null);
+  const [errand, setErrand] = useState<(ReturnType<typeof errandTask> & { stage: 'get' | 'bring' }) | null>(null);
+  const [kq, setKq] = useState<(ReturnType<typeof keeperQuestion> & { picked?: string }) | null>(null);
+  const onPickupRef = useRef<() => void>(() => {});
   const coinsRef = useRef(coins); coinsRef.current = coins;
   const onPlaceRef = useRef<(x: number, z: number) => void>(() => {});
   const onPickRef = useRef<(i: number) => void>(() => {});
@@ -63,7 +70,7 @@ export default function IslandGame() {
     let alive = true;
     void import('@/lib/worlds/island-scene').then(({ IslandScene }) => {
       if (!alive || !box.current) return;
-      sc.current = new IslandScene(box.current, { onNear: (s) => setNear(s), onStar: (id) => onStarRef.current(id), onClock: (hour, rain) => setClock({ hour, rain }), onPlace: (x, z) => onPlaceRef.current(x, z), onPick: (i) => onPickRef.current(i) });
+      sc.current = new IslandScene(box.current, { onNear: (s) => setNear(s), onStar: (id) => onStarRef.current(id), onClock: (hour, rain) => setClock({ hour, rain }), onPlace: (x, z) => onPlaceRef.current(x, z), onPick: (i) => onPickRef.current(i), onPickup: () => onPickupRef.current() });
       setReady(true);
     });
     return () => { alive = false; sc.current?.dispose(); sc.current = null; };
@@ -165,7 +172,7 @@ export default function IslandGame() {
       x.fillStyle = '#8BCB62'; x.beginPath(); x.arc(W / 2, W / 2, 68 * k, 0, Math.PI * 2); x.fill();
       const P = (px: number, pz: number) => [W / 2 + px * k, W / 2 + pz * k] as const;
       const dot = (px: number, pz: number, col: string, r = 3) => { const [a, b] = P(px, pz); x.fillStyle = col; x.beginPath(); x.arc(a, b, r, 0, Math.PI * 2); x.fill(); };
-      const COL: Record<string, string> = { post: '#E5484D', cafe: '#F76AA8', store: '#7C66DC', market: '#F5862D', home: '#FFC53D', bakery: '#C8925A', boutique: '#30A46C', taxi: '#FFE08A', pier: '#3E7BFA' };
+      const COL: Record<string, string> = { post: '#E5484D', cafe: '#F76AA8', store: '#7C66DC', market: '#F5862D', home: '#FFC53D', bakery: '#C8925A', boutique: '#30A46C', taxi: '#FFE08A', pier: '#3E7BFA', icecream: '#F76AA8', board: '#8B5E34' };
       x.fillStyle = '#B8865A'; const [p1, p2] = P(-1.5, -66); x.fillRect(p1, p2, 3 * k, 20 * k);
       s.spots.forEach((sp) => { const k2 = sp.id.replace('enter-', ''); if (COL[k2] && Math.hypot(sp.x, sp.z) < 90) dot(sp.x, sp.z, COL[k2], 4); });
       if (s.markerOn) dot(s.marker.position.x, s.marker.position.z, '#FFC53D', 6);
@@ -193,17 +200,33 @@ export default function IslandGame() {
     { id: 'boutique', en: 'Boutique', what: 'Find the clothes and colours people ask for.' },
     { id: 'taxi', en: 'Taxi', what: 'Drive passengers to the right place.' },
     { id: 'pier', en: 'Fishing pier', what: 'Solve word riddles and catch fish.' },
+    { id: 'icecream', en: 'Ice cream stand', what: 'Make ice creams on the beach.' },
+    { id: 'board', en: 'Lost & Found board', what: 'Find lost things around the island.' },
+    { id: 'grandma', en: 'Grandma Rose', what: 'Visit any house and help Grandma Rose.' },
+    { id: 'lighthouse', en: 'Lighthouse', what: 'Answer Captain Ted’s questions about time and weather.' },
     { id: 'store', en: 'Murly Store', what: 'Buy clothes, furniture, a house, rides and pets.' },
     { id: 'home', en: 'My home', what: 'Your house and yard.' },
   ];
-  const showWay = (id: string) => { if (sc.current?.inside) { sc.current.exitHome(); setInside(null); } const p = sc.current?.spotPos(`enter-${id}`) ?? sc.current?.spotPos(id); if (p) { sc.current?.setMarker(p.x, p.z); sc.current?.walkTo(p.x, p.z); } setPanel(null); };
+  const showWay = (id: string) => { if (sc.current?.inside) { sc.current.exitHome(); setInside(null); } const p = id === 'grandma' ? sc.current?.spotPos('door-a2') : sc.current?.spotPos(`enter-${id}`) ?? sc.current?.spotPos(id); if (p) { sc.current?.setMarker(p.x, p.z); sc.current?.walkTo(p.x, p.z); } setPanel(null); };
 
   // ---- взаємодія ----
   const act = useCallback(() => {
     const s = near; if (!s) return;
     if (s.id.startsWith('npc-')) { startTalk(s.label); return; }
     if (s.id.startsWith('enter-')) { const id = s.id.slice(6); if (sc.current?.markerOn && !delivery && !taxi?.hint) sc.current.setMarker(null); sc.current?.enterRoom(id); setInside(id); return; }
-    if (s.id === 'guest' || s.id === 'keeper') { startTalk(s.label); return; }
+    if (errand?.stage === 'get' && s.id === errand.at) { setErrand({ ...errand, stage: 'bring' }); say(`Here you are! ${errand.item}.`); flash(`You got ${errand.item}. Take it to Grandma Rose!`); return; }
+    if (s.id === 'guest') {
+      if (errand?.stage === 'bring') { say('Oh, thank you, dear! You are so kind!'); setErrand(null); done('errand', 5, 'Grandma Rose is happy.'); return; }
+      if (!errand) { const e = errandTask(); setErrand({ ...e, stage: 'get' }); say(e.text); }
+      setPanel('errand'); return;
+    }
+    if (s.id === 'keeper') { setKq(keeperQuestion(clock.hour, clock.rain)); setPanel('keeper'); return; }
+    if (s.id === 'icecream') { if (!ice) { const o = iceOrder(saveRef.current.jobs.icecream ?? 0); setIce(o); setCup({ scoops: [] }); say(o.text); } setPanel('icecream'); return; }
+    if (s.id === 'board') {
+      if (lost?.found) { say('You found it! Thank you so much!'); setLost(null); done('lost', 5, `You returned the ${lost.thing.en}.`); return; }
+      if (!lost) { const l = lostTask(); setLost({ ...l, found: false }); sc.current?.setLost(l.place.x, l.place.z, l.thing.id, l.thing.c); say(l.text); }
+      setPanel('board'); return;
+    }
     if (s.id === 'room-exit') { sc.current?.exitHome(); setInside(null); setDecor({ on: false, placing: null, picked: null }); return; }
     if (s.id === 'taxi-drop' && taxi) {
       const fast = Date.now() - taxi.at < 90_000 && !taxi.hint;
@@ -232,7 +255,7 @@ export default function IslandGame() {
     if (s.id === 'market') { if (!fruit) { const o = fruitOrder(saveRef.current.jobs.market ?? 0); setFruit(o); setBasket({}); say(o.text); } setPanel('market'); }
     if (s.id === 'store') setPanel('store');
     if (s.id === 'home') setPanel('home');
-  }, [near, delivery, cafe, fruit, cake, dress, taxi, words]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [near, delivery, cafe, fruit, cake, dress, taxi, words, errand, lost, ice, clock]); // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => {
     const k = (e: KeyboardEvent) => { if (e.code === 'KeyQ' && !panel) sc.current?.dance(); if (e.code === 'KeyM') setPanel((p) => (p === 'jobs' ? null : 'jobs')); if (e.code === 'KeyE' || e.code === 'Enter') { if (!panel) act(); } if (e.code === 'Escape') setPanel(null); };
     window.addEventListener('keydown', k); return () => window.removeEventListener('keydown', k);
@@ -289,6 +312,17 @@ export default function IslandGame() {
       done('fish', f.rare >= 2 ? 4 : 2, f.rare >= 2 ? `A rare ${f.en}!` : `You caught a ${f.en}.`, { fish });
     } else { sfx.bad(); setFishQ({ ...fishQ, picked: o }); }
   };
+  onPickupRef.current = () => { if (!lost) return; sfx.coin(); setLost({ ...lost, found: true }); say(`You found the ${lost.thing.en}!`); flash(`You found the ${lost.thing.en}! Take it back to the notice board.`); };
+  const sellIce = () => {
+    if (!ice) return;
+    const ok = [...cup.scoops].sort().join('|') === ice.scoops.join('|') && cup.cone === ice.cone && cup.top === ice.top;
+    if (ok) { say('Mmm, delicious! Thank you!'); setIce(null); setCup({ scoops: [] }); setPanel(null); done('icecream', 4, 'Happy customer.'); }
+    else { sfx.bad(); const miss = [...cup.scoops].sort().join('|') !== ice.scoops.join('|') ? 'the scoops' : cup.cone !== ice.cone ? 'cone or cup' : 'the topping'; flash(`Check ${miss}. Listen again!`, false); }
+  };
+  const answerKeeper = (o: string) => {
+    if (!kq || kq.picked) return; setKq({ ...kq, picked: o });
+    if (o === kq.a) { say(o); done('keeper', 2, 'Good answer, sailor!'); } else sfx.bad();
+  };
   // ---- дім всередині ----
   const furnOwned = FURN.filter((f) => save.owned.includes(`furn-${f.f}`));
   const room = save.room ?? [];
@@ -329,7 +363,7 @@ export default function IslandGame() {
   const jMove = (e: React.PointerEvent) => { const j = joy.current; if (!j || j.id !== e.pointerId) return; let dx = e.clientX - j.x, dy = e.clientY - j.y; const L = Math.hypot(dx, dy), M = 50; if (L > M) { dx *= M / L; dy *= M / L; } setKnob({ x: dx, y: dy }); sc.current?.setJoy(dx / M, -dy / M); if (sc.current) sc.current.run = runOn || L > M * 0.95; };
   const jUp = () => { joy.current = null; setKnob({ x: 0, y: 0 }); sc.current?.setJoy(0, 0); if (sc.current) sc.current.run = runOn; };
 
-  const nearText = near ? (near.id === 'taxi-drop' ? `Drop off at ${near.label}` : near.id === 'room-exit' ? 'Go outside' : near.id === 'pier' ? 'Go fishing' : near.id.startsWith('enter-') ? `Go into the ${near.label.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase())}` : inside && !near.id.startsWith('npc-') ? `Talk to ${near.label}` : near.id.startsWith('door-') && !delivery ? `Visit number ${near.label}` : near.id === 'home' && save.house > 0 ? 'Go inside my home' : near.id.startsWith('npc-') ? `Talk to ${near.label}` : near.id.startsWith('door-') ? `Deliver to ${near.label}` : near.id === 'home' ? 'My home' : `Enter: ${near.label.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase())}`) : '';
+  const nearText = near ? (near.id === 'taxi-drop' ? `Drop off at ${near.label}` : near.id === 'room-exit' ? 'Go outside' : near.id === 'pier' ? 'Go fishing' : near.id === 'icecream' ? 'Sell ice cream' : near.id === 'board' ? (lost?.found ? 'Give back the lost thing' : 'Read the notice board') : errand?.stage === 'get' && near.id === errand.at ? `Get ${errand.item}` : near.id.startsWith('enter-') ? `Go into the ${near.label.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase())}` : inside && !near.id.startsWith('npc-') ? `Talk to ${near.label}` : near.id.startsWith('door-') && !delivery ? `Visit number ${near.label}` : near.id === 'home' && save.house > 0 ? 'Go inside my home' : near.id.startsWith('npc-') ? `Talk to ${near.label}` : near.id.startsWith('door-') ? `Deliver to ${near.label}` : near.id === 'home' ? 'My home' : `Enter: ${near.label.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase())}`) : '';
   const furOwned = FUR.filter((f) => save.owned.includes(f.id) || f.price === 0);
 
   return (
@@ -358,9 +392,6 @@ export default function IslandGame() {
 
       {!inside && <canvas ref={mini} className="il-mini-map" width={150} height={150} onClick={() => setPanel('jobs')} aria-label="Map" />}
       {!panel && !inside && !delivery && !taxi?.driving && <div className="il-today" onClick={() => setPanel('today')}>{daily.ids.map((id) => { const m = MISSIONS.find((x) => x.id === id)!; const n = Math.min(daily.prog[id] ?? 0, m.n); return <div key={id} className={n >= m.n ? 'on' : ''}>{m.en.replace('{n}', String(m.n))} <b>{n}/{m.n}</b></div>; })}</div>}
-      {taxi?.driving && !panel && (
-        <div className="il-task"><b>Passenger:</b> {taxi.text} <button type="button" className="il-mini" onClick={() => say(taxi.text)}>Listen</button>{!taxi.hint && <button type="button" className="il-mini" onClick={taxiHint}>Show me (fewer coins)</button>}</div>
-      )}
       {inside === 'home' && decor.on && !panel && (
         <div className="il-tray">
           {decor.picked !== null && room[decor.picked] ? <>
@@ -377,9 +408,16 @@ export default function IslandGame() {
             </>}
         </div>
       )}
-      {delivery && !panel && (
+      {!panel && (delivery || taxi?.driving || lost || errand) && <div className="il-tasks">
+      {lost && <div className="il-task"><b>{lost.found ? 'Take it back:' : 'Lost:'}</b> {lost.found ? `Bring the ${lost.thing.en} to the notice board near the fountain.` : `${lost.thing.en}, ${lost.place.en}.`} <button type="button" className="il-mini" onClick={() => say(lost.found ? `Bring the ${lost.thing.en} to the notice board.` : `${lost.thing.en}, ${lost.place.en}.`)}>Listen</button></div>}
+      {errand && <div className="il-task"><b>Grandma Rose:</b> {errand.stage === 'get' ? `Get ${errand.item} at the ${errand.place}.` : `Take ${errand.item} to Grandma Rose (any house).`}</div>}
+      {delivery && (
         <div className="il-task"><b>Parcel for:</b> {delivery.text} <button type="button" className="il-mini" onClick={() => say(delivery.text)}>Listen</button>{!delivery.hint && <button type="button" className="il-mini" onClick={hint}>Show me (fewer coins)</button>}</div>
       )}
+      {taxi?.driving && (
+        <div className="il-task"><b>Passenger:</b> {taxi.text} <button type="button" className="il-mini" onClick={() => say(taxi.text)}>Listen</button>{!taxi.hint && <button type="button" className="il-mini" onClick={taxiHint}>Show me (fewer coins)</button>}</div>
+      )}
+      </div>}
       {near && !panel && <button type="button" className="il-act" onClick={act}>{nearText} <kbd>E</kbd></button>}
       {toast && <div className={`il-toast ${toast.good ? '' : 'is-bad'}`}>{toast.text}</div>}
 
@@ -406,6 +444,7 @@ export default function IslandGame() {
                 <li><b>Camera:</b> drag the screen. <b>Zoom:</b> mouse wheel.</li>
                 <li><b>Explore:</b> find 10 golden stars and chat with the cats who live on the island.</li>
                 <li><b>Jobs:</b> Post Office (deliver parcels), Cat Cafe (make sandwiches), Fruit Market (count fruit), Bakery (bake cakes), Boutique (find clothes), Taxi (drive passengers), Fishing pier (word riddles).</li>
+                <li><b>More jobs:</b> sell ice cream on the beach, find lost things from the notice board near the fountain, help Grandma Rose in any house, and answer Captain Ted’s questions in the lighthouse.</li>
                 <li><b>Every day:</b> three new missions. Finish all three for 10 bonus coins. Win badges for your jobs.</li>
                 <li><b>Buildings:</b> you can go into every building: the shops, the cafe, the post office, the lighthouse and the houses. The jobs are at the counters inside.</li>
                 <li><b>Your home:</b> buy a house, go inside and decorate it with furniture from the shop.</li>
@@ -519,6 +558,45 @@ export default function IslandGame() {
               {fishQ.picked && <button type="button" className="il-go" onClick={newRiddle}>Fish again</button>}
               <p className="il-sub">My fish album</p>
               <div className="il-album">{FISH.map((f) => { const n = save.fish?.[f.id] ?? 0; return <div key={f.id} className={n ? 'on' : ''}><span className="il-fish" style={{ background: n ? f.color : '#D5D9DE' }} /><span>{n ? f.en : '?'}</span>{n > 0 && <b>{n}</b>}</div>; })}</div>
+            </>}
+
+            {panel === 'icecream' && ice && <>
+              <h2>Ice cream stand</h2>
+              <p className="il-who">{ice.who} says:</p>
+              <p className="il-say">&ldquo;{ice.text}&rdquo; <button type="button" className="il-mini" onClick={() => say(ice.text)}>Listen</button></p>
+              <div className="il-ice">{[...cup.scoops].reverse().map((f, i) => <span key={i} style={{ background: ICE.find((x) => x.id === f)?.c }} />)}{cup.cone !== undefined && <i className={cup.cone ? 'cone' : 'cup'} />}<em>{cup.top && cup.top !== 'nothing on top' ? cup.top : ''}</em></div>
+              <p className="il-sub">Scoops ({cup.scoops.length} / 3)</p>
+              <div className="il-grid">{ICE.map((f) => <button key={f.id} type="button" className="il-pick" disabled={cup.scoops.length >= 3} onClick={() => { sfx.pick(); setCup({ ...cup, scoops: [...cup.scoops, f.id] }); }}><i className="il-dot" style={{ background: f.c }} />{f.id}</button>)}
+                {cup.scoops.length > 0 && <button type="button" className="il-pick" onClick={() => setCup({ ...cup, scoops: cup.scoops.slice(0, -1) })}>take one off</button>}</div>
+              <p className="il-sub">Cone or cup</p>
+              <div className="il-grid">{[true, false].map((c) => <button key={String(c)} type="button" className={`il-pick ${cup.cone === c ? 'on' : ''}`} onClick={() => setCup({ ...cup, cone: c })}>{c ? 'cone' : 'cup'}</button>)}</div>
+              <p className="il-sub">On top</p>
+              <div className="il-grid">{ICE_TOP.map((t) => <button key={t} type="button" className={`il-pick ${cup.top === t ? 'on' : ''}`} onClick={() => setCup({ ...cup, top: t })}>{t}</button>)}</div>
+              <button type="button" className="il-go" onClick={sellIce} disabled={!cup.scoops.length || cup.cone === undefined || !cup.top}>Give the ice cream</button>
+            </>}
+
+            {panel === 'board' && lost && <>
+              <h2>Lost &amp; Found</h2>
+              <div className="il-note-paper">{lost.text} <button type="button" className="il-mini" onClick={() => say(lost.text)}>Listen</button></div>
+              <p className="il-note">Read where it is. <b>under</b> = below, <b>behind</b> = at the back, <b>next to</b> = very near, <b>in front of</b> = before the door. Go there and walk to the shiny thing.</p>
+              <button type="button" className="il-go" onClick={() => setPanel(null)}>I&apos;ll find it!</button>
+            </>}
+
+            {panel === 'errand' && errand && <>
+              <h2>Grandma Rose</h2>
+              <p className="il-say">&ldquo;{errand.text}&rdquo; <button type="button" className="il-mini" onClick={() => say(errand.text)}>Listen</button></p>
+              <p className="il-note">{errand.stage === 'get' ? `Go to the ${errand.place}, get it at the counter and come back to any house.` : 'You have it! Give it to Grandma Rose.'}</p>
+              <button type="button" className="il-go" onClick={() => setPanel(null)}>OK, I&apos;ll go!</button>
+              <button type="button" className="il-mini" onClick={() => startTalk('Grandma Rose')}>Just chat</button>
+            </>}
+
+            {panel === 'keeper' && kq && <>
+              <h2>Captain Ted</h2>
+              <p className="il-say">&ldquo;{kq.q}&rdquo; <button type="button" className="il-mini" onClick={() => say(kq.q)}>Listen</button></p>
+              <div className="il-grid il-grid--col">{kq.opts.map((o) => <button key={o} type="button" className={`il-pick ${kq.picked ? (o === kq.a ? 'on' : o === kq.picked ? 'bad' : '') : ''}`} onClick={() => answerKeeper(o)}>{o}</button>)}</div>
+              {kq.picked && <p className="il-note">{kq.picked === kq.a ? 'Well done, sailor!' : `The answer is: ${kq.a}`}</p>}
+              {kq.picked && <button type="button" className="il-go" onClick={() => setKq(keeperQuestion(clock.hour, clock.rain))}>Next question</button>}
+              <p className="il-note">Now: {timeWords(clock.hour)}</p>
             </>}
 
             {panel === 'store' && <>
