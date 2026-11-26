@@ -4873,3 +4873,18 @@ textarea.t-parent__url { width: 300px; font: inherit; font-size: 13px; }
 .il-chatform input { flex: 1; font: inherit; font-size: 16px; padding: 10px 12px; border: 2.5px solid #1A1A1A; border-radius: 14px; }
 .il-chatform .il-go { margin-top: 0; }
 .il-chaterr { color: #E5484D; font-weight: 700; font-size: 14px; }
+.il-pan { display: grid; place-items: center; min-height: 90px; margin: 6px 0 10px; border-radius: 50%; background: radial-gradient(circle, #55606E 0 55%, #2B2B2B 56% 62%, transparent 63%); }
+.il-pan-in { display: flex; flex-wrap: wrap; gap: 4px; justify-content: center; max-width: 70%; color: #fff; font-weight: 700; font-size: 13px; text-align: center; }
+.il-pan-in em { font-style: normal; background: #FFC53D; color: #1A1A1A; border-radius: 99px; padding: 2px 8px; }
+.il-shop--sm { grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); }
+.il-item--btn { cursor: pointer; font: inherit; }
+.il-item--btn .il-thumb { width: 56px !important; height: 56px !important; }
+.il-recipes { display: grid; gap: 3px; font-size: 13px; color: #55606E; }
+.il-qty { display: flex; align-items: center; gap: 8px; }
+.il-qty button { width: 30px; height: 30px; border-radius: 50%; border: 2px solid #1A1A1A; background: #DCE9B5; font-size: 18px; font-weight: 800; cursor: pointer; padding: 0; }
+.il-receipt { display: grid; gap: 4px; padding: 12px 14px; background: #fff; border: 2px dashed #1A1A1A; border-radius: 10px; font-family: ui-monospace, monospace; font-size: 14px; }
+.il-receipt div { display: flex; justify-content: space-between; }
+.il-receipt .tot { border-top: 2px solid #1A1A1A; padding-top: 4px; font-weight: 800; }
+.il-held { position: absolute; left: 50%; bottom: 70px; transform: translateX(-50%); z-index: 5; display: flex; flex-wrap: wrap; align-items: center; gap: 6px; padding: 8px 12px; background: #FFF3C4; border: 2.5px solid #1A1A1A; border-radius: 14px; font-size: 14px; box-shadow: 0 3px 0 #1A1A1A; }
+.il-basket { font-weight: 800; margin-left: 6px; }
+.il.is-touch .il-held { bottom: 230px; }
