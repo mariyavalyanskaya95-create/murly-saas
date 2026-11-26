@@ -1,10 +1,17 @@
 import { NextResponse } from 'next/server';
 import { auth } from '@clerk/nextjs/server';
-import { addOwnWord, reviewWord, saveHomeworkNote, setHomeworkFiles, setOwnPin, setStudentTz, submitHomework, useHomeworkPass } from '@/lib/student-data';
+import { addOwnWord, myWords, reviewWord, saveHomeworkNote, setHomeworkFiles, setOwnPin, setStudentTz, submitHomework, useHomeworkPass } from '@/lib/student-data';
 import { validTz } from '@/lib/tz';
 import { normPhone, validPhone, validPin } from '@/lib/pin-login';
 
 export const dynamic = 'force-dynamic';
+
+export async function GET() {
+  const { userId } = await auth();
+  if (!userId) return NextResponse.json({ words: [] });
+  const words = await myWords(userId).catch(() => []);
+  return NextResponse.json({ words });
+}
 
 export async function POST(req: Request) {
   const { userId } = await auth();
