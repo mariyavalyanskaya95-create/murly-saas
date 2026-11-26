@@ -184,7 +184,7 @@ function makePet(id: string): THREE.Group {
 }
 
 // ---------- сцена ----------
-export type IslandEvents = { onNear: (spot: Spot | null) => void; onFps?: (low: boolean) => void; onStar?: (id: string) => void; onClock?: (hour: number, rain: boolean) => void; onPlace?: (x: number, z: number) => void; onPick?: (i: number) => void };
+export type IslandEvents = { onNear: (spot: Spot | null) => void; onFps?: (low: boolean) => void; onStar?: (id: string) => void; onClock?: (hour: number, rain: boolean) => void; onPlace?: (x: number, z: number) => void; onPick?: (i: number) => void; onPickup?: () => void };
 export const ROOM = { x: 400, z: 0, w: 14, d: 11 };
 // інтер'єри будівель: [файл меблів, x, z, поворот, на чому стоїть (індекс)]
 type IItem = [string, number, number, number, number?];
@@ -367,6 +367,7 @@ export class IslandScene {
       this.colliders.push({ x: T.x - 1.2, z: T.z - 1, r: 1.3 });
       this.spots.push({ id: 'taxi', x: T.x + 0.4, z: T.z + 1.8, r: 2.4, label: 'TAXI' }); }
     this.buildPier();
+    this.buildIceCream(); this.buildBoard();
     // фруктовий ринок: власний ларьок
     this.buildStall(-18, 16); this.spots.push({ id: 'market', x: -18, z: 11.5, r: 2.6, label: 'FRUIT MARKET' });
     // будинки для доставки з номерами
@@ -478,6 +479,47 @@ export class IslandScene {
     const sg = sign(P.label, P.color, '#FFFFFF', 5); sg.position.set(0, 3, -66); this.scene.add(sg);
     this.spots.push({ id: 'pier', x: 0, z: -82, r: 2.6, label: P.label });
   }
+  buildIceCream() {
+    const P = PLACES.icecream; const g = new THREE.Group(); g.position.set(P.x, 0, P.z);
+    const cart = box(2.4, 1.2, 1.3, '#F7A8C8'); cart.position.y = 0.9; g.add(cart);
+    const top = box(2.5, 0.12, 1.4, '#FFFFFF'); top.position.y = 1.56; g.add(top);
+    [-0.8, 0.8].forEach((x) => { const w = cyl(0.3, 0.3, 0.16, '#2B2B2B'); w.rotation.x = Math.PI / 2; w.position.set(x, 0.3, 0.68); g.add(w); });
+    ['#7A4E25', '#F7A1B5', '#A8EBCB'].forEach((c, i) => { const sc = sph(0.2, c, 12); sc.position.set(-0.6 + i * 0.6, 1.78, 0); g.add(sc); });
+    const pole = cyl(0.05, 0.05, 2.6, '#FFFFFF', 8); pole.position.set(0, 2.2, -0.3); g.add(pole);
+    for (let i = 0; i < 8; i++) { const seg = mesh(new THREE.ConeGeometry(1.8, 0.8, 8, 1, true, (i / 8) * Math.PI * 2, Math.PI / 4), new THREE.MeshToonMaterial({ color: i % 2 ? '#FFFFFF' : '#F76AA8', side: THREE.DoubleSide })); seg.position.set(0, 3.7, -0.3); g.add(seg); }
+    const cone = mesh(new THREE.ConeGeometry(0.35, 1, 12), toon('#E8B46A')); cone.rotation.x = Math.PI; cone.position.set(1.6, 2.1, 0); g.add(cone);
+    const ball = sph(0.4, '#F7A1B5', 14); ball.position.set(1.6, 2.75, 0); g.add(ball);
+    const sg = sign(P.label, P.color, '#FFFFFF', 4); sg.position.set(0, 4.6, -0.3); g.add(sg);
+    const vendor = makeCat('#FFF1C9', 0.85); vendor.root.position.set(0, 0, -1.1); g.add(vendor.root); wearHat(vendor, 'hat-cap');
+    this.scene.add(g); this.colliders.push({ x: P.x, z: P.z, r: 1.6 });
+    this.spots.push({ id: 'icecream', x: P.x, z: P.z + 2.6, r: 2.2, label: P.label });
+  }
+  buildBoard() {
+    const P = PLACES.board; const g = new THREE.Group(); g.position.set(P.x, 0, P.z); g.rotation.y = Math.PI / 4;
+    [-0.9, 0.9].forEach((x) => { const p = cyl(0.07, 0.07, 2.2, '#6B4F2A', 8); p.position.set(x, 1.1, 0); g.add(p); });
+    const b = box(2.2, 1.3, 0.1, '#C8925A'); b.position.y = 1.6; g.add(b);
+    [[-0.6, 1.8, '#FFFFFF'], [0.1, 1.5, '#FFF3A6'], [0.65, 1.85, '#DCE9F7'], [-0.3, 1.3, '#FFE0EA']].forEach(([x, y, c]) => { const n = mesh(new THREE.PlaneGeometry(0.5, 0.42), new THREE.MeshBasicMaterial({ color: c as string }), false); n.position.set(x as number, y as number, 0.06); n.rotation.z = (Math.random() - 0.5) * 0.2; g.add(n); });
+    const sg = sign('LOST & FOUND', '#8B5E34', '#FFFFFF', 2.8); sg.position.set(0, 2.7, 0); g.add(sg);
+    this.scene.add(g); this.colliders.push({ x: P.x, z: P.z, r: 0.7 });
+    this.spots.push({ id: 'board', x: P.x + 1.1, z: P.z + 1.1, r: 2, label: P.label });
+  }
+  // загублена річ на острові: блищить, поки її не знайдуть
+  lostObj: THREE.Group | null = null;
+  setLost(x: number | null, z = 0, kind = 'ball', color = '#3E7BFA') {
+    if (this.lostObj) { this.scene.remove(this.lostObj); this.lostObj = null; }
+    if (x === null) return;
+    const g = new THREE.Group();
+    if (kind === 'umbrella') { const c = mesh(new THREE.ConeGeometry(0.6, 0.35, 10), toon(color)); c.position.y = 0.7; g.add(c); const h = cyl(0.03, 0.03, 0.7, '#2B2B2B', 6); h.position.y = 0.35; g.add(h); }
+    else if (kind === 'bear') { const b = sph(0.25, color); b.position.y = 0.25; g.add(b); const hd = sph(0.18, color); hd.position.y = 0.6; g.add(hd); [-1, 1].forEach((sd) => { const e = sph(0.07, color, 8); e.position.set(0.13 * sd, 0.75, 0); g.add(e); }); }
+    else if (kind === 'kite') { const k = mesh(new THREE.OctahedronGeometry(0.4, 0), toon(color)); k.scale.set(1, 1.3, 0.15); k.position.y = 0.5; g.add(k); }
+    else if (kind === 'hat') { const r = cyl(0.4, 0.4, 0.04, color, 16); r.position.y = 0.05; g.add(r); const t = cyl(0.25, 0.27, 0.3, color, 16); t.position.y = 0.22; g.add(t); }
+    else if (kind === 'bag') { const b = box(0.5, 0.4, 0.2, color); b.position.y = 0.2; g.add(b); const h = mesh(new THREE.TorusGeometry(0.15, 0.03, 6, 12, Math.PI), toon(color)); h.position.y = 0.4; g.add(h); }
+    else { const b = sph(0.3, color, 16); b.position.y = 0.3; g.add(b); }
+    const spark = new THREE.Mesh(new THREE.SphereGeometry(0.7, 12, 8), new THREE.MeshBasicMaterial({ color: '#FFF3A6', transparent: true, opacity: 0.25, depthWrite: false, blending: THREE.AdditiveBlending }));
+    spark.position.y = 0.4; spark.name = 'spark'; g.add(spark);
+    g.position.set(x, 0, z); this.scene.add(g); this.lostObj = g;
+  }
+
   // небо: зорі вночі, місяць, дощ
   buildSky() {
     const n = 500; const pos = new Float32Array(n * 3);
@@ -775,6 +817,10 @@ export class IslandScene {
     if (this.danceT > 0) { this.danceT -= dt; h.armL.rotation.z = -2.4 + Math.sin(t * 12) * 0.5; h.armR.rotation.z = 2.4 + Math.sin(t * 12 + 1) * 0.5; h.body.rotation.y = Math.sin(t * 6) * 0.5; h.body.position.y += Math.abs(Math.sin(t * 12)) * 0.15; } else h.body.rotation.y = 0;
     // зірки: обертаються і збираються
     for (const st of this.stars) { if (this.got.has(st.id)) continue; st.obj.rotation.y = t * 2; st.obj.position.y = 1 + Math.sin(t * 3 + st.obj.position.x) * 0.2; if (Math.hypot(st.obj.position.x - this.heroPos.x, st.obj.position.z - this.heroPos.z) < 1.3) { this.got.add(st.id); st.obj.visible = false; this.ev.onStar?.(st.id); } }
+    if (this.lostObj && !this.inside) {
+      const sp = this.lostObj.getObjectByName('spark'); if (sp) sp.scale.setScalar(1 + Math.sin(t * 5) * 0.25);
+      if (Math.hypot(this.lostObj.position.x - this.heroPos.x, this.lostObj.position.z - this.heroPos.z) < 1.4) { this.setLost(null); this.ev.onPickup?.(); }
+    }
     const cape = h.slots.bag.getObjectByName('cape'); if (cape) cape.rotation.x = 0.15 + Math.min(speed, 10) * 0.08 + Math.sin(t * 8) * 0.05;
     h.slots.bag.children.forEach((c) => { if (c.name === 'flame') { c.visible = !this.onGround; c.scale.y = 0.8 + Math.random() * 0.5; } });
     if (this.ride) { this.ride.position.y = this.rideId === 'ride-ufo' ? Math.sin(t * 3) * 0.1 : 0; this.ride.rotation.y = this.rideId === 'ride-ufo' ? t * 2 : 0; }

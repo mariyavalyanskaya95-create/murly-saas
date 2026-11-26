@@ -151,6 +151,8 @@ export const PLACES = {
   boutique: { x: 30, z: -34, label: 'BOUTIQUE', color: '#30A46C' },
   taxi: { x: 13, z: -10, label: 'TAXI', color: '#FFC53D' },
   pier: { x: 0, z: -80, label: 'FISHING PIER', color: '#3E7BFA' },
+  icecream: { x: -18, z: -62, label: 'ICE CREAM', color: '#F76AA8' },
+  board: { x: -9, z: -6, label: 'NOTICE BOARD', color: '#8B5E34' },
 };
 
 // ---------- пекарня: торт за замовленням ----------
@@ -265,6 +267,8 @@ export const MISSIONS: { id: string; en: string; n: number }[] = [
   { id: 'market', en: 'Help {n} customers at the Fruit Market', n: 2 }, { id: 'bakery', en: 'Bake {n} cakes', n: 2 },
   { id: 'boutique', en: 'Dress {n} customers at the Boutique', n: 2 }, { id: 'taxi', en: 'Drive {n} passengers in the taxi', n: 2 },
   { id: 'fish', en: 'Catch {n} fish at the pier', n: 3 }, { id: 'chat', en: 'Have {n} good chats with cats', n: 3 },
+  { id: 'icecream', en: 'Sell {n} ice creams on the beach', n: 2 }, { id: 'lost', en: 'Find {n} lost things', n: 2 },
+  { id: 'errand', en: 'Help Grandma Rose {n} times', n: 2 }, { id: 'keeper', en: 'Answer {n} questions at the lighthouse', n: 3 },
 ];
 export function todayKey() { const d = new Date(); return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`; }
 export function dailyFor(date: string): Daily {
@@ -288,5 +292,88 @@ export const BADGES: Badge[] = [
   { id: 'b-album', en: 'Collector', what: 'Catch every kind of fish', need: 8, of: (s) => Object.keys(s.fish ?? {}).length },
   { id: 'b-stars', en: 'Star hunter', what: 'Find all 10 stars', need: 10, of: (s) => (s.stars ?? []).length },
   { id: 'b-chat', en: 'Chatterbox', what: 'Have 15 good chats', need: 15, of: (s) => s.talks ?? 0 },
+  { id: 'b-ice', en: 'Ice cream king', what: 'Sell 10 ice creams', need: 10, of: (s) => s.jobs.icecream ?? 0 },
+  { id: 'b-lost', en: 'Detective', what: 'Find 10 lost things', need: 10, of: (s) => s.jobs.lost ?? 0 },
+  { id: 'b-errand', en: 'Good neighbour', what: 'Help Grandma Rose 10 times', need: 10, of: (s) => s.jobs.errand ?? 0 },
+  { id: 'b-keeper', en: 'Weather expert', what: 'Answer 15 lighthouse questions', need: 15, of: (s) => s.jobs.keeper ?? 0 },
   { id: 'b-home', en: 'Home designer', what: 'Put 8 things in your room', need: 8, of: (s) => (s.room ?? []).length },
 ];
+
+
+// ---------- морозиво ----------
+export const ICE = [
+  { id: 'chocolate', c: '#7A4E25' }, { id: 'vanilla', c: '#FFF1C9' }, { id: 'strawberry', c: '#F7A1B5' },
+  { id: 'mint', c: '#A8EBCB' }, { id: 'lemon', c: '#FFE36B' }, { id: 'banana', c: '#FFF3A6' },
+];
+export const ICE_TOP = ['sprinkles', 'chocolate sauce', 'a cherry', 'nothing on top'];
+export type IceOrder = { who: string; text: string; scoops: string[]; cone: boolean; top: string };
+export function iceOrder(level: number): IceOrder {
+  const n = 1 + Math.floor(Math.random() * (level < 2 ? 2 : 3));
+  const scoops = Array.from({ length: n }, () => pick(ICE).id);
+  const cone = Math.random() < 0.5; const top = pick(ICE_TOP);
+  const cnt: Record<string, number> = {}; scoops.forEach((x) => { cnt[x] = (cnt[x] ?? 0) + 1; });
+  const parts = Object.entries(cnt).map(([k, v]) => `${NUM[v]} ${k}`);
+  const fl = parts.length === 1 ? `${parts[0]}` : parts.length === 2 ? `${parts[0]} and ${parts[1]}` : `${parts[0]}, ${parts[1]} and ${parts[2]}`;
+  const sc = n === 1 ? 'scoop' : 'scoops';
+  const topT = top === 'nothing on top' ? 'with nothing on top' : `with ${top}`;
+  const forms = [
+    `Hi! Can I have ${fl} ${sc} in a ${cone ? 'cone' : 'cup'} ${topT}, please?`,
+    `It's so hot today! I'd like ${fl} ${sc}, in a ${cone ? 'cone' : 'cup'}, ${topT}.`,
+    `Hello! ${fl[0].toUpperCase()}${fl.slice(1)} ${sc} please. A ${cone ? 'cone' : 'cup'}, ${topT}.`,
+  ];
+  return { who: pick(NAMES), text: pick(forms), scoops: [...scoops].sort(), cone, top };
+}
+
+// ---------- бюро знахідок: предлоги місця ----------
+export const LOST_THINGS = [
+  { id: 'umbrella', en: 'red umbrella', c: '#E5484D' }, { id: 'bear', en: 'teddy bear', c: '#C68A4A' }, { id: 'ball', en: 'blue ball', c: '#3E7BFA' },
+  { id: 'kite', en: 'yellow kite', c: '#FFC53D' }, { id: 'hat', en: 'green hat', c: '#30A46C' }, { id: 'bag', en: 'pink bag', c: '#F76AA8' },
+];
+export const LOST_PLACES = [
+  { x: -29, z: 13, en: 'under the slide at the playground' }, { x: 4.4, z: 2.4, en: 'next to the fountain' },
+  { x: -18, z: 19.8, en: 'behind the Fruit Market' }, { x: 51, z: -38, en: 'near the lighthouse' },
+  { x: 3.2, z: -67, en: 'on the beach, next to the pier' }, { x: -44, z: -12, en: 'under the big oak tree' },
+  { x: 9.5, z: 1.8, en: 'next to the bench near the fountain' }, { x: -26.5, z: -23, en: 'in front of the Bakery' },
+  { x: 18, z: 22.5, en: 'behind the Murly Store' }, { x: 16.5, z: -7, en: 'near the taxi stand' },
+  { x: -15, z: -58, en: 'next to the ice cream stand' }, { x: 27, z: -27, en: 'in front of the Boutique' },
+];
+export type LostTask = { who: string; text: string; thing: (typeof LOST_THINGS)[number]; place: (typeof LOST_PLACES)[number] };
+export function lostTask(): LostTask {
+  const thing = pick(LOST_THINGS), place = pick(LOST_PLACES); const who = pick(NAMES);
+  const forms = [`LOST: my ${thing.en}! I think I left it ${place.en}. Please bring it to this board. ${who}`,
+    `Help! I can't find my ${thing.en}. I was ${place.en} this morning. Can you look for it? ${who}`,
+    `Has anyone seen my ${thing.en}? Maybe it's ${place.en}. Thank you! ${who}`];
+  return { who, text: pick(forms), thing, place };
+}
+
+// ---------- доручення бабусі Роуз ----------
+export const ERRANDS = [
+  { at: 'market', place: 'Fruit Market', item: 'three apples' }, { at: 'market', place: 'Fruit Market', item: 'some bananas' },
+  { at: 'bakery', place: 'Bakery', item: 'a loaf of bread' }, { at: 'bakery', place: 'Bakery', item: 'a chocolate cake' },
+  { at: 'cafe', place: 'Cat Cafe', item: 'a cup of hot tea' }, { at: 'cafe', place: 'Cat Cafe', item: 'a cheese sandwich' },
+  { at: 'post', place: 'Post Office', item: 'my letters' }, { at: 'store', place: 'Murly Store', item: 'new batteries for my radio' },
+  { at: 'boutique', place: 'Boutique', item: 'a warm scarf' }, { at: 'icecream', place: 'ice cream stand', item: 'a vanilla ice cream' },
+];
+export function errandTask() {
+  const e = pick(ERRANDS);
+  const forms = [`Hello, dear! Could you go to the ${e.place} and get me ${e.item}, please?`, `Oh, I'm so tired today. Can you bring me ${e.item} from the ${e.place}?`, `Would you be a darling and fetch ${e.item} from the ${e.place} for me?`];
+  return { ...e, text: pick(forms) };
+}
+
+// ---------- питання на маяку: час, погода, що навколо ----------
+const W = ['twelve', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven'];
+export function timeWords(h: number) { const hh = Math.floor(h) % 12; return h % 1 ? `It's half past ${W[hh]}.` : `It's ${W[hh]} o'clock.`; }
+export function keeperQuestion(hour: number, rain: boolean): { q: string; a: string; opts: string[] } {
+  const night = hour >= 20 || hour < 6;
+  const qs = [
+    () => { const a = timeWords(hour); const o = [a, timeWords((hour + 1.5) % 24), timeWords((hour + 3) % 24), timeWords((hour + 22.5) % 24)]; return { q: 'Look at the clock at the top of the screen. What time is it now?', a, opts: o }; },
+    () => { const a = rain ? "It's raining." : night ? "It's a clear night." : "It's sunny."; return { q: "What's the weather like now?", a, opts: [a, ...["It's snowing.", "It's very foggy.", rain ? "It's sunny." : "It's raining."]] }; },
+    () => { const a = night ? "It's night-time." : hour < 12 ? "It's morning." : hour < 17 ? "It's afternoon." : "It's evening."; return { q: 'Is it morning, afternoon, evening or night now?', a, opts: [...new Set([a, "It's morning.", "It's afternoon.", "It's evening.", "It's night-time."])].slice(0, 4) }; },
+    () => ({ q: 'How many sailboats can you see on the sea around the island?', a: 'Three.', opts: ['Three.', 'One.', 'Five.', 'Ten.'] }),
+    () => ({ q: 'What colour is my lighthouse?', a: 'Red and white.', opts: ['Red and white.', 'Blue and green.', 'Black.', 'Yellow and pink.'] }),
+    () => ({ q: 'Ships need my light at night. When do I turn it on?', a: 'When it gets dark.', opts: ['When it gets dark.', 'At breakfast.', 'When it is sunny.', 'Never.'] }),
+    () => ({ q: night ? 'What can you see in the sky now?' : 'What can you see in the sky during the day?', a: night ? 'The moon and the stars.' : 'The sun and clouds.', opts: ['The moon and the stars.', 'The sun and clouds.', 'A rainbow and snow.', 'Fish and boats.'] }),
+    () => ({ q: 'What do you need when it rains?', a: 'An umbrella.', opts: ['An umbrella.', 'Sunglasses.', 'A swimsuit.', 'Sun cream.'] }),
+  ];
+  const r = pick(qs)(); r.opts = [...new Set(r.opts)].sort(() => Math.random() - 0.5); return r;
+}
