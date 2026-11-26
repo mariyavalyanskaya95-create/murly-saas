@@ -62,7 +62,7 @@ export const SHOP: ShopItem[] = [
   { id: 'yard-tree', en: 'palm tree', cat: 'Home', sub: 'yard', price: 20 },
   { id: 'yard-fence', en: 'fence', cat: 'Home', sub: 'yard', price: 25 },
   { id: 'yard-garden', en: 'vegetable garden', cat: 'Home', sub: 'yard', price: 30 },
-  { id: 'yard-fenceall', en: 'white fence around my garden', cat: 'Home', sub: 'yard', price: 40 },
+  { id: 'yard-fenceall', en: 'wooden fence around my garden', cat: 'Home', sub: 'yard', price: 40 },
   { id: 'yard-hedge', en: 'green hedge around my garden', cat: 'Home', sub: 'yard', price: 50 },
   { id: 'yard-path', en: 'stone path to my door', cat: 'Home', sub: 'yard', price: 20 },
   { id: 'yard-planters', en: 'flower planters', cat: 'Home', sub: 'yard', price: 20 },
