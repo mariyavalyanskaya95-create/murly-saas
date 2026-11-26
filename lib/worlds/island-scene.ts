@@ -1734,7 +1734,7 @@ export class IslandScene {
     }
     // вода й хмари
     const wp = this.water.geometry.attributes.position as THREE.BufferAttribute;
-    if (this.frames % 2 === 0) { for (let i = 0; i < wp.count; i++) { const x = wp.getX(i), z = wp.getZ(i); wp.setY(i, Math.sin(x * 0.12 + t * 1.2) * 0.18 + Math.cos(z * 0.1 + t) * 0.15); } wp.needsUpdate = true; this.water.geometry.computeVertexNormals(); }
+    if (this.frames % 2 === 0) { for (let i = 0; i < wp.count; i++) { const x = wp.getX(i), z = wp.getZ(i); const r = Math.hypot(x, z); const k = THREE.MathUtils.clamp((r - 78) / 6, 0, 1); wp.setY(i, k > 0 ? (Math.sin(x * 0.12 + t * 1.2) * 0.18 + Math.cos(z * 0.1 + t) * 0.15) * k - (1 - k) * 0.6 : -0.6); } wp.needsUpdate = true; this.water.geometry.computeVertexNormals(); }
     this.clouds.forEach((c) => { c.userData.a += (c.userData.v * dt) / c.userData.rr; c.position.x = Math.cos(c.userData.a) * c.userData.rr; c.position.z = Math.sin(c.userData.a) * c.userData.rr; });
     if (this.markerOn) { const a = this.marker.getObjectByName('arrow')!; a.position.y = 4.2 + Math.sin(t * 3) * 0.4; a.rotation.y = t * 2; }
     this.stepWorld(dt, t); if (this.inside) this.stepKeepers(t); this.stepOthers(dt, t);
