@@ -6,11 +6,12 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { useAuth } from '@clerk/nextjs';
 import { say, sfx } from '@/lib/worlds/sound';
-import { CAFE_DRINK, CAFE_FOOD, FRUIT, FUR, SHOP, START, TALKS, cafeOrder, deliveryTask, fruitOrder, single, type Addr, type Cat, type Save, type ShopItem } from '@/lib/worlds/island-data';
+import { BADGES, CAFE_DRINK, CAFE_FOOD, CLOTHES, COLOURS, FISH, FLAVOURS, FRUIT, FUR, FURN, MISSIONS, RIDDLES, SHOP, START, TALKS, TOPPINGS, cafeOrder, cakeOrder, catchFish, dailyFor, deliveryTask, dressOrder, fruitOrder, single, taxiTask, todayKey, type Addr, type Cat, type Save, type ShopItem } from '@/lib/worlds/island-data';
 import type { IslandScene } from '@/lib/worlds/island-scene';
 import type { Spot } from '@/lib/worlds/island-data';
 
-type Panel = null | 'post' | 'cafe' | 'market' | 'store' | 'home' | 'help' | 'npc' | 'jobs';
+type Panel = null | 'post' | 'cafe' | 'market' | 'store' | 'home' | 'help' | 'npc' | 'jobs' | 'bakery' | 'boutique' | 'taxi' | 'pier' | 'today';
+type Tab = Cat | 'Furniture';
 const LS = 'murly-island-v1';
 const GUEST_COINS = 60;
 
@@ -30,7 +31,21 @@ export default function IslandGame() {
   const [plate, setPlate] = useState<string[]>([]);
   const [fruit, setFruit] = useState<ReturnType<typeof fruitOrder> | null>(null);
   const [basket, setBasket] = useState<Record<string, number>>({});
-  const [tab, setTab] = useState<Cat>('Clothes');
+  const [tab, setTab] = useState<Tab>('Clothes');
+  const [cake, setCake] = useState<ReturnType<typeof cakeOrder> | null>(null);
+  const [cakeSel, setCakeSel] = useState<{ flavour?: string; layers?: number; topping?: string }>({});
+  const [dress, setDress] = useState<ReturnType<typeof dressOrder> | null>(null);
+  const [rack, setRack] = useState<string[]>([]);
+  const [colour, setColour] = useState('red');
+  const [taxi, setTaxi] = useState<(ReturnType<typeof taxiTask> & { at: number; hint: boolean; driving: boolean }) | null>(null);
+  const [fishQ, setFishQ] = useState<{ q: string; a: string; opts: string[]; picked?: string; got?: (typeof FISH)[number] } | null>(null);
+  const [clock, setClock] = useState<{ hour: number; rain: boolean }>({ hour: 8.5, rain: false });
+  const [inside, setInside] = useState(false);
+  const [decor, setDecor] = useState<{ on: boolean; placing: string | null; picked: number | null }>({ on: false, placing: null, picked: null });
+  const [words, setWords] = useState<{ en: string; uk: string }[]>([]);
+  const coinsRef = useRef(coins); coinsRef.current = coins;
+  const onPlaceRef = useRef<(x: number, z: number) => void>(() => {});
+  const onPickRef = useRef<(i: number) => void>(() => {});
   const [capped, setCapped] = useState(false);
   const guest = isLoaded && !isSignedIn;
   const [touch, setTouch] = useState(false);
@@ -48,7 +63,7 @@ export default function IslandGame() {
     let alive = true;
     void import('@/lib/worlds/island-scene').then(({ IslandScene }) => {
       if (!alive || !box.current) return;
-      sc.current = new IslandScene(box.current, { onNear: (s) => setNear(s), onStar: (id) => onStarRef.current(id) });
+      sc.current = new IslandScene(box.current, { onNear: (s) => setNear(s), onStar: (id) => onStarRef.current(id), onClock: (hour, rain) => setClock({ hour, rain }), onPlace: (x, z) => onPlaceRef.current(x, z), onPick: (i) => onPickRef.current(i) });
       setReady(true);
     });
     return () => { alive = false; sc.current?.dispose(); sc.current = null; };
@@ -61,6 +76,7 @@ export default function IslandGame() {
     if (isSignedIn) {
       fetch('/api/game?game=island').then((r) => r.json()).then((d) => setSave({ ...START, ...(d.data ?? local ?? {}) })).catch(() => local && setSave({ ...START, ...local }));
       fetch('/api/coins').then((r) => r.json()).then((d) => setCoins(Number(d.balance ?? 0))).catch(() => setCoins(0));
+      fetch('/api/student').then((r) => r.json()).then((d) => setWords(Array.isArray(d.words) ? d.words : [])).catch(() => {});
     } else {
       const s = { ...START, ...(local ?? {}) }; setSave(s); setCoins(s.localCoins ?? GUEST_COINS);
     }
@@ -76,16 +92,17 @@ export default function IslandGame() {
   // зовнішній вигляд у сцені
   useEffect(() => {
     const s = sc.current; if (!s || !ready) return;
-    s.setOutfit(save.outfit); s.setRide(save.ride); s.setPet(save.pet);
+    s.setOutfit(save.outfit); s.setRide(taxi?.driving ? 'ride-taxi' : save.ride); s.setPet(save.pet);
+    if (JSON.stringify(s.roomList) !== JSON.stringify(save.room ?? [])) void s.setRoom(save.room ?? []);
     if (s.houseLevel !== save.house) void s.setHouse(save.house);
     if (s.yardList.join() !== save.yard.join()) void s.setYard(save.yard);
     s.setGot(save.stars ?? []); setStarCount((save.stars ?? []).length);
-  }, [save, ready]);
+  }, [save, ready, taxi?.driving]);
 
   // ---- монетки ----
   const earn = async (n: number, why: string) => {
     sfx.coin();
-    if (guest) { const c = (coins ?? 0) + n; setCoins(c); persist({ ...saveRef.current, localCoins: c }); flash(`+${n} coins! ${why}`); return; }
+    if (guest) { const c = (coinsRef.current ?? 0) + n; coinsRef.current = c; setCoins(c); persist({ ...saveRef.current, localCoins: c }); flash(`+${n} coins! ${why}`); return; }
     const r = await fetch('/api/coins', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ op: 'earn', amount: n, reason: `Murly Island: ${why}`, source: 'game' }) }).catch(() => null);
     const d = r ? await r.json().catch(() => ({})) : {};
     if (d.capped) { setCapped(true); flash('Great job! You have earned all your coins for today. Come back tomorrow!'); }
@@ -94,7 +111,7 @@ export default function IslandGame() {
   };
   const buy = async (it: { id: string; price: number; en: string }) => {
     if ((coins ?? 0) < it.price) { sfx.bad(); flash(`You need ${it.price - (coins ?? 0)} more coins. Do a job to earn them!`, false); return false; }
-    if (guest) { const c = (coins ?? 0) - it.price; setCoins(c); persist({ ...saveRef.current, localCoins: c, owned: [...saveRef.current.owned, it.id] }); }
+    if (guest) { const c = (coinsRef.current ?? 0) - it.price; coinsRef.current = c; setCoins(c); persist({ ...saveRef.current, localCoins: c, owned: [...saveRef.current.owned, it.id] }); }
     else {
       const r = await fetch('/api/coins', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ op: 'spend', amount: it.price, reason: `Murly Island: ${it.en}` }) }).catch(() => null);
       const d = r ? await r.json().catch(() => ({})) : {};
@@ -105,6 +122,29 @@ export default function IslandGame() {
     sfx.coin(); say(`You bought a ${it.en}!`); flash(`You bought: ${it.en}!`);
     return true;
   };
+
+  // робота виконана: лічильник, щоденне завдання, монетки
+  const done = (job: string, n: number, why: string, extra: Partial<Save> = {}) => {
+    const s = saveRef.current; const jobs = { ...s.jobs, [job]: (s.jobs[job] ?? 0) + 1 };
+    let d = s.daily?.date === todayKey() ? { ...s.daily } : dailyFor(todayKey());
+    let bonus = false;
+    if (d.ids.includes(job)) {
+      d = { ...d, prog: { ...d.prog, [job]: (d.prog[job] ?? 0) + 1 } };
+      if (!d.paid && d.ids.every((id) => (d.prog[id] ?? 0) >= (MISSIONS.find((m) => m.id === id)?.n ?? 2))) { d.paid = true; bonus = true; }
+    }
+    persist({ ...s, ...extra, jobs, daily: d });
+    void (n > 0 ? earn(n, why) : Promise.resolve()).then(() => { if (bonus) { say('Well done! You finished all your missions for today!'); void earn(10, 'All daily missions done!'); } });
+  };
+  const daily = save.daily?.date === todayKey() ? save.daily : dailyFor(todayKey());
+  const dailyDone = daily.ids.filter((id) => (daily.prog[id] ?? 0) >= (MISSIONS.find((m) => m.id === id)?.n ?? 2)).length;
+  // нові нагороди
+  useEffect(() => {
+    if (!isLoaded) return;
+    const have = save.badges ?? []; const fresh = BADGES.filter((b) => !have.includes(b.id) && b.of(save) >= b.need);
+    if (!fresh.length) return;
+    persist({ ...save, badges: [...have, ...fresh.map((b) => b.id)] });
+    say(`New badge: ${fresh[0].en}!`); void earn(5 * fresh.length, `New badge: ${fresh.map((b) => b.en).join(', ')}`);
+  }, [save]); // eslint-disable-line react-hooks/exhaustive-deps
 
   onStarRef.current = (id: string) => {
     const s = saveRef.current; if ((s.stars ?? []).includes(id)) return;
@@ -125,7 +165,8 @@ export default function IslandGame() {
       x.fillStyle = '#8BCB62'; x.beginPath(); x.arc(W / 2, W / 2, 68 * k, 0, Math.PI * 2); x.fill();
       const P = (px: number, pz: number) => [W / 2 + px * k, W / 2 + pz * k] as const;
       const dot = (px: number, pz: number, col: string, r = 3) => { const [a, b] = P(px, pz); x.fillStyle = col; x.beginPath(); x.arc(a, b, r, 0, Math.PI * 2); x.fill(); };
-      const COL: Record<string, string> = { post: '#E5484D', cafe: '#F76AA8', store: '#7C66DC', market: '#F5862D', home: '#FFC53D' };
+      const COL: Record<string, string> = { post: '#E5484D', cafe: '#F76AA8', store: '#7C66DC', market: '#F5862D', home: '#FFC53D', bakery: '#C8925A', boutique: '#30A46C', taxi: '#FFE08A', pier: '#3E7BFA' };
+      x.fillStyle = '#B8865A'; const [p1, p2] = P(-1.5, -66); x.fillRect(p1, p2, 3 * k, 20 * k);
       s.spots.forEach((sp) => { if (COL[sp.id]) dot(sp.x, sp.z, COL[sp.id], 4); });
       if (s.markerOn) dot(s.marker.position.x, s.marker.position.z, '#FFC53D', 6);
       s.npcs.forEach((n) => dot(n.rig.root.position.x, n.rig.root.position.z, '#FFFFFF', 2));
@@ -141,30 +182,45 @@ export default function IslandGame() {
   const answerTalk = (o: string) => {
     if (!talk || talk.picked) return;
     setTalk({ ...talk, picked: o });
-    if (o === talk.right) { say(o); const n = (saveRef.current.talks ?? 0) + 1; persist({ ...saveRef.current, talks: n }); if (n % 3 === 0) void earn(2, 'Great chats!'); else sfx.coin(); }
+    if (o === talk.right) { say(o); const n = (saveRef.current.talks ?? 0) + 1; if (n % 3 !== 0) sfx.coin(); done('chat', n % 3 === 0 ? 2 : 0, 'Great chats!', { talks: n }); }
     else sfx.bad();
   };
   const JOBS = [
     { id: 'post', en: 'Post Office', what: 'Deliver parcels to the right address.' },
     { id: 'cafe', en: 'Cat Cafe', what: 'Make sandwiches and drinks for customers.' },
     { id: 'market', en: 'Fruit Market', what: 'Give customers the right number of fruit.' },
-    { id: 'store', en: 'Murly Store', what: 'Buy clothes, a house, rides and pets.' },
+    { id: 'bakery', en: 'Bakery', what: 'Bake the cake the customer wants.' },
+    { id: 'boutique', en: 'Boutique', what: 'Find the clothes and colours people ask for.' },
+    { id: 'taxi', en: 'Taxi', what: 'Drive passengers to the right place.' },
+    { id: 'pier', en: 'Fishing pier', what: 'Solve word riddles and catch fish.' },
+    { id: 'store', en: 'Murly Store', what: 'Buy clothes, furniture, a house, rides and pets.' },
     { id: 'home', en: 'My home', what: 'Your house and yard.' },
   ];
-  const showWay = (id: string) => { const p = sc.current?.spotPos(id); if (p) { sc.current?.setMarker(p.x, p.z); sc.current?.walkTo(p.x, p.z); } setPanel(null); };
+  const showWay = (id: string) => { if (sc.current?.inside) { sc.current.exitHome(); setInside(false); } const p = sc.current?.spotPos(id); if (p) { sc.current?.setMarker(p.x, p.z); sc.current?.walkTo(p.x, p.z); } setPanel(null); };
 
   // ---- взаємодія ----
   const act = useCallback(() => {
     const s = near; if (!s) return;
     if (s.id.startsWith('npc-')) { startTalk(s.label); return; }
+    if (s.id === 'room-exit') { sc.current?.exitHome(); setInside(false); setDecor({ on: false, placing: null, picked: null }); return; }
+    if (s.id === 'taxi-drop' && taxi) {
+      const fast = Date.now() - taxi.at < 90_000 && !taxi.hint;
+      if (sc.current) sc.current.spots = sc.current.spots.filter((x) => x.id !== 'taxi-drop');
+      sc.current?.setMarker(null); setTaxi(null); say('Here we are! Thank you, driver!');
+      done('taxi', fast ? 6 : 4, fast ? 'Fast ride!' : 'Passenger delivered.'); return;
+    }
+    if (s.id === 'home' && saveRef.current.house > 0) { sc.current?.enterHome(); setInside(true); say('Welcome home!'); return; }
+    if (s.id === 'bakery') { if (!cake) { const o = cakeOrder(saveRef.current.jobs.bakery ?? 0); setCake(o); setCakeSel({}); say(o.text); } setPanel('bakery'); return; }
+    if (s.id === 'boutique') { if (!dress) { const o = dressOrder(saveRef.current.jobs.boutique ?? 0); setDress(o); setRack([]); say(o.text); } setPanel('boutique'); return; }
+    if (s.id === 'taxi') { if (taxi?.driving) { flash(`Your passenger wants to go to ${taxi.dest.name}.`, false); return; } if (!taxi) { const o = taxiTask(saveRef.current.jobs.taxi ?? 0); setTaxi({ ...o, at: 0, hint: false, driving: false }); say(o.text); } setPanel('taxi'); return; }
+    if (s.id === 'pier') { newRiddle(); setPanel('pier'); return; }
     if (s.id.startsWith('door-')) {
       if (!delivery) { flash(`This is number ${s.label}. Get a parcel at the Post Office first!`, false); return; }
       if (`door-${delivery.addr.id}` === s.id) {
         sc.current?.setCarry(false); sc.current?.setMarker(null);
         const fast = Date.now() - delivery.at < 90_000 && !delivery.hint;
         setDelivery(null); say('Thank you very much!');
-        void earn(fast ? 6 : 4, fast ? 'Fast delivery!' : 'Parcel delivered.');
-        persist({ ...saveRef.current, jobs: { ...saveRef.current.jobs, post: (saveRef.current.jobs.post ?? 0) + 1 } });
+        done('post', fast ? 6 : 4, fast ? 'Fast delivery!' : 'Parcel delivered.');
       } else { sfx.bad(); flash(`Oops! This is ${s.label}. Read the address again.`, false); }
       return;
     }
@@ -174,7 +230,7 @@ export default function IslandGame() {
     if (s.id === 'market') { if (!fruit) { const o = fruitOrder(saveRef.current.jobs.market ?? 0); setFruit(o); setBasket({}); say(o.text); } setPanel('market'); }
     if (s.id === 'store') setPanel('store');
     if (s.id === 'home') setPanel('home');
-  }, [near, delivery, cafe, fruit]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [near, delivery, cafe, fruit, cake, dress, taxi, words]); // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => {
     const k = (e: KeyboardEvent) => { if (e.code === 'KeyQ' && !panel) sc.current?.dance(); if (e.code === 'KeyM') setPanel((p) => (p === 'jobs' ? null : 'jobs')); if (e.code === 'KeyE' || e.code === 'Enter') { if (!panel) act(); } if (e.code === 'Escape') setPanel(null); };
     window.addEventListener('keydown', k); return () => window.removeEventListener('keydown', k);
@@ -183,18 +239,72 @@ export default function IslandGame() {
   const serveCafe = () => {
     if (!cafe) return;
     const ok = [...plate].sort().join('|') === cafe.items.join('|');
-    if (ok) { say('Yummy! Thank you!'); setCafe(null); setPlate([]); setPanel(null); void earn(5, 'Happy customer.'); persist({ ...saveRef.current, jobs: { ...saveRef.current.jobs, cafe: (saveRef.current.jobs.cafe ?? 0) + 1 } }); }
+    if (ok) { say('Yummy! Thank you!'); setCafe(null); setPlate([]); setPanel(null); done('cafe', 5, 'Happy customer.'); }
     else { sfx.bad(); say('Hmm, that is not what I ordered.'); flash('That is not the order. Listen again!', false); }
   };
   const giveFruit = () => {
     if (!fruit) return;
     const keys = new Set([...Object.keys(fruit.want), ...Object.keys(basket).filter((k) => basket[k])]);
     const ok = [...keys].every((k) => (fruit.want[k] ?? 0) === (basket[k] ?? 0));
-    if (ok) { say('Perfect, thank you!'); setFruit(null); setBasket({}); setPanel(null); void earn(4, 'Correct order.'); persist({ ...saveRef.current, jobs: { ...saveRef.current.jobs, market: (saveRef.current.jobs.market ?? 0) + 1 } }); }
+    if (ok) { say('Perfect, thank you!'); setFruit(null); setBasket({}); setPanel(null); done('market', 4, 'Correct order.'); }
     else { sfx.bad(); flash('Count again! Check the numbers.', false); }
   };
   const startDelivery = () => { sc.current?.setCarry(true); setPanel(null); say('Good luck!'); };
   const hint = () => { if (!delivery) return; const p = sc.current?.spotPos(`door-${delivery.addr.id}`); if (p) sc.current?.setMarker(p.x, p.z); setDelivery({ ...delivery, hint: true }); setPanel(null); };
+
+  const bakeCake = () => {
+    if (!cake) return;
+    const ok = cakeSel.flavour === cake.flavour && cakeSel.layers === cake.layers && cakeSel.topping === cake.topping;
+    if (ok) { say('Wow, it looks delicious! Thank you!'); setCake(null); setCakeSel({}); setPanel(null); done('bakery', 5, 'Perfect cake!'); }
+    else { sfx.bad(); const miss = cakeSel.flavour !== cake.flavour ? 'the flavour' : cakeSel.layers !== cake.layers ? 'the number of layers' : 'the topping'; flash(`Check ${miss}. Listen again!`, false); }
+  };
+  const checkDress = () => {
+    if (!dress) return;
+    if ([...rack].sort().join('|') === dress.items.join('|')) { say('I love it! Thank you so much!'); setDress(null); setRack([]); setPanel(null); done('boutique', 5, 'Happy shopper.'); }
+    else { sfx.bad(); flash('Not quite. Check the colours and the clothes.', false); }
+  };
+  const startTaxi = () => {
+    if (!taxi || !sc.current) return;
+    const d = taxi.dest; sc.current.spots = [{ id: 'taxi-drop', x: d.x, z: d.z, r: 4, label: d.name }, ...sc.current.spots.filter((x) => x.id !== 'taxi-drop')];
+    setTaxi({ ...taxi, at: Date.now(), driving: true }); setPanel(null); say('Let’s go!');
+  };
+  const taxiHint = () => { if (!taxi) return; sc.current?.setMarker(taxi.dest.x, taxi.dest.z); setTaxi({ ...taxi, hint: true }); };
+  const newRiddle = () => {
+    const mine = words.filter((w) => w.en.split(' ').length <= 3);
+    if (mine.length >= 4 && Math.random() < 0.45) {
+      const w = mine[Math.floor(Math.random() * mine.length)];
+      const wrong = mine.filter((x) => x.en.toLowerCase() !== w.en.toLowerCase()).sort(() => Math.random() - 0.5).slice(0, 3).map((x) => x.en);
+      setFishQ({ q: `A word from your dictionary: how do you say “${w.uk}” in English?`, a: w.en, opts: [w.en, ...wrong].sort(() => Math.random() - 0.5) }); return;
+    }
+    const r = RIDDLES[Math.floor(Math.random() * RIDDLES.length)];
+    setFishQ({ q: r.q, a: r.a, opts: [r.a, ...r.wrong].sort(() => Math.random() - 0.5) }); say(r.q);
+  };
+  const answerFish = (o: string) => {
+    if (!fishQ || fishQ.picked) return;
+    if (o === fishQ.a) {
+      const f = catchFish(); setFishQ({ ...fishQ, picked: o, got: f }); say(`You caught a ${f.en}!`);
+      const fish = { ...(saveRef.current.fish ?? {}) }; fish[f.id] = (fish[f.id] ?? 0) + 1;
+      done('fish', f.rare >= 2 ? 4 : 2, f.rare >= 2 ? `A rare ${f.en}!` : `You caught a ${f.en}.`, { fish });
+    } else { sfx.bad(); setFishQ({ ...fishQ, picked: o }); }
+  };
+  // ---- дім всередині ----
+  const furnOwned = FURN.filter((f) => save.owned.includes(`furn-${f.f}`));
+  const room = save.room ?? [];
+  const unplaced = furnOwned.filter((f) => !room.some((r) => r.f === f.f));
+  onPlaceRef.current = (x, z) => {
+    const f = decor.placing; if (!f) return;
+    sfx.pick(); persist({ ...saveRef.current, room: [...(saveRef.current.room ?? []), { f, x: Math.round(x * 4) / 4, z: Math.round(z * 4) / 4, r: 0 }] });
+    setDecor({ on: true, placing: null, picked: null });
+  };
+  onPickRef.current = (i) => { sfx.pick(); setDecor({ on: true, placing: null, picked: i }); };
+  useEffect(() => { sc.current?.setDecor(decor.on, decor.placing); }, [decor]);
+  const roomEdit = (op: 'turn' | 'move' | 'away') => {
+    const i = decor.picked; if (i === null) return; const list = [...room]; const it = list[i]; if (!it) return;
+    if (op === 'turn') { list[i] = { ...it, r: (it.r + Math.PI / 2) % (Math.PI * 2) }; persist({ ...saveRef.current, room: list }); return; }
+    list.splice(i, 1); persist({ ...saveRef.current, room: list });
+    setDecor({ on: true, placing: op === 'move' ? it.f : null, picked: null });
+  };
+  const furnName = (f: string) => FURN.find((x) => x.f === f)?.en ?? f;
 
   // ---- магазин ----
   const owned = (id: string) => save.owned.includes(id);
@@ -217,7 +327,7 @@ export default function IslandGame() {
   const jMove = (e: React.PointerEvent) => { const j = joy.current; if (!j || j.id !== e.pointerId) return; let dx = e.clientX - j.x, dy = e.clientY - j.y; const L = Math.hypot(dx, dy), M = 50; if (L > M) { dx *= M / L; dy *= M / L; } setKnob({ x: dx, y: dy }); sc.current?.setJoy(dx / M, -dy / M); if (sc.current) sc.current.run = runOn || L > M * 0.95; };
   const jUp = () => { joy.current = null; setKnob({ x: 0, y: 0 }); sc.current?.setJoy(0, 0); if (sc.current) sc.current.run = runOn; };
 
-  const nearText = near ? (near.id.startsWith('npc-') ? `Talk to ${near.label}` : near.id.startsWith('door-') ? `Deliver to ${near.label}` : near.id === 'home' ? 'My home' : `Enter: ${near.label.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase())}`) : '';
+  const nearText = near ? (near.id === 'taxi-drop' ? `Drop off at ${near.label}` : near.id === 'room-exit' ? 'Go outside' : near.id === 'pier' ? 'Go fishing' : near.id === 'home' && save.house > 0 ? 'Go inside my home' : near.id.startsWith('npc-') ? `Talk to ${near.label}` : near.id.startsWith('door-') ? `Deliver to ${near.label}` : near.id === 'home' ? 'My home' : `Enter: ${near.label.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase())}`) : '';
   const furOwned = FUR.filter((f) => save.owned.includes(f.id) || f.price === 0);
 
   return (
@@ -229,17 +339,42 @@ export default function IslandGame() {
         <Link href="/games" className="il-chip">← Games</Link>
         <span className="il-coins" title="Murly coins"><i className="il-coin" /> {coins ?? '…'}</span>
         <span className="il-chip il-stars" title="Stars found"><i className="il-star" /> {starCount}/10</span>
+        <span className="il-chip" title="Time and weather">{fmtHour(clock.hour)} · {clock.rain ? 'rainy' : clock.hour >= 20 || clock.hour < 6 ? 'clear night' : 'sunny'}</span>
+        <button type="button" className={`il-chip ${dailyDone === 3 ? 'il-chip--y' : ''}`} onClick={() => setPanel('today')}>Today {dailyDone}/3</button>
         {guest && <Link href="/sign-in?redirect_url=/play/island" className="il-chip il-chip--y">Sign in to use your Murly coins</Link>}
       </div>
       <div className="il-hud il-hud--r">
         <button type="button" className="il-chip" onClick={() => setPanel('jobs')}>Map</button>
         <button type="button" className="il-chip" onClick={() => setPanel('store')}>Shop</button>
         <button type="button" className="il-chip" onClick={() => setPanel('home')}>My stuff</button>
-        <button type="button" className="il-chip" onClick={() => { sc.current?.teleportHome(); }}>Go home</button>
+        {inside ? <>
+          <button type="button" className={`il-chip ${decor.on ? 'il-chip--y' : ''}`} onClick={() => setDecor(decor.on ? { on: false, placing: null, picked: null } : { on: true, placing: null, picked: null })}>{decor.on ? 'Done' : 'Decorate'}</button>
+          <button type="button" className="il-chip" onClick={() => { sc.current?.exitHome(); setInside(false); setDecor({ on: false, placing: null, picked: null }); }}>Go outside</button>
+        </> : <button type="button" className="il-chip" onClick={() => { sc.current?.teleportHome(); }}>Go home</button>}
         <button type="button" className="il-chip" onClick={() => setPanel('help')}>?</button>
       </div>
 
-      <canvas ref={mini} className="il-mini-map" width={150} height={150} onClick={() => setPanel('jobs')} aria-label="Map" />
+      {!inside && <canvas ref={mini} className="il-mini-map" width={150} height={150} onClick={() => setPanel('jobs')} aria-label="Map" />}
+      {!panel && !inside && !delivery && !taxi?.driving && <div className="il-today" onClick={() => setPanel('today')}>{daily.ids.map((id) => { const m = MISSIONS.find((x) => x.id === id)!; const n = Math.min(daily.prog[id] ?? 0, m.n); return <div key={id} className={n >= m.n ? 'on' : ''}>{m.en.replace('{n}', String(m.n))} <b>{n}/{m.n}</b></div>; })}</div>}
+      {taxi?.driving && !panel && (
+        <div className="il-task"><b>Passenger:</b> {taxi.text} <button type="button" className="il-mini" onClick={() => say(taxi.text)}>Listen</button>{!taxi.hint && <button type="button" className="il-mini" onClick={taxiHint}>Show me (fewer coins)</button>}</div>
+      )}
+      {inside && decor.on && !panel && (
+        <div className="il-tray">
+          {decor.picked !== null && room[decor.picked] ? <>
+            <b>{furnName(room[decor.picked].f)}</b>
+            <button type="button" className="il-mini" onClick={() => roomEdit('turn')}>Turn</button>
+            <button type="button" className="il-mini" onClick={() => roomEdit('move')}>Move</button>
+            <button type="button" className="il-mini" onClick={() => roomEdit('away')}>Put away</button>
+            <button type="button" className="il-mini" onClick={() => setDecor({ on: true, placing: null, picked: null })}>OK</button>
+          </> : decor.placing ? <><b>Tap the floor to put the {furnName(decor.placing)} there.</b><button type="button" className="il-mini" onClick={() => setDecor({ on: true, placing: null, picked: null })}>Cancel</button></>
+            : <>
+              <span className="il-tray-t">{unplaced.length ? 'Choose a thing, then tap the floor. Tap a thing in the room to turn or move it.' : furnOwned.length ? 'Everything is in the room. Tap a thing to turn or move it.' : 'You have no furniture yet. Buy some in the Murly Store!'}</span>
+              <div className="il-tray-row">{unplaced.map((f) => <button key={f.f} type="button" className="il-tray-it" onClick={() => setDecor({ on: true, placing: f.f, picked: null })}><img src={`/worlds/kenney/t/${f.f}.png`} alt="" />{f.en}</button>)}</div>
+              {!furnOwned.length && <button type="button" className="il-mini" onClick={() => { setTab('Furniture'); setPanel('store'); }}>Open the shop</button>}
+            </>}
+        </div>
+      )}
       {delivery && !panel && (
         <div className="il-task"><b>Parcel for:</b> {delivery.text} <button type="button" className="il-mini" onClick={() => say(delivery.text)}>Listen</button>{!delivery.hint && <button type="button" className="il-mini" onClick={hint}>Show me (fewer coins)</button>}</div>
       )}
@@ -268,7 +403,10 @@ export default function IslandGame() {
                 <li><b>Tablet and phone:</b> move with the joystick on the left, or tap on the ground to walk there. Swipe to turn the camera.</li>
                 <li><b>Camera:</b> drag the screen. <b>Zoom:</b> mouse wheel.</li>
                 <li><b>Explore:</b> find 10 golden stars and chat with the cats who live on the island.</li>
-                <li><b>Jobs:</b> Post Office (deliver parcels), Cat Cafe (make sandwiches), Fruit Market (count fruit).</li>
+                <li><b>Jobs:</b> Post Office (deliver parcels), Cat Cafe (make sandwiches), Fruit Market (count fruit), Bakery (bake cakes), Boutique (find clothes), Taxi (drive passengers), Fishing pier (word riddles).</li>
+                <li><b>Every day:</b> three new missions. Finish all three for 10 bonus coins. Win badges for your jobs.</li>
+                <li><b>Your home:</b> buy a house, go inside and decorate it with furniture from the shop.</li>
+                <li><b>Day and night:</b> one day on the island is 8 minutes. Look for fireflies at night and boats on the sea!</li>
                 <li><b>Talk:</b> walk to a coloured mat and press E or tap the yellow button.</li>
               </ul>
               {capped && <p className="il-note">You have earned all your coins for today. You can still play and shop!</p>}
@@ -324,10 +462,71 @@ export default function IslandGame() {
               <button type="button" className="il-go" onClick={giveFruit}>Give the bag</button>
             </>}
 
+            {panel === 'today' && <>
+              <h2>Today&apos;s missions</h2>
+              <div className="il-jobs">{daily.ids.map((id) => { const m = MISSIONS.find((x) => x.id === id)!; const n = Math.min(daily.prog[id] ?? 0, m.n); return (
+                <div key={id}><b>{m.en.replace('{n}', String(m.n))}</b><span className="il-bar"><i style={{ width: `${(n / m.n) * 100}%` }} /></span><span>{n} / {m.n}</span></div>); })}</div>
+              <p className="il-note">{daily.paid ? 'All done for today! Come back tomorrow for new missions.' : 'Finish all three missions to get 10 bonus coins.'}</p>
+              <p className="il-sub">Badges</p>
+              <div className="il-badges">{BADGES.map((b) => { const v = Math.min(b.of(save), b.need); const on = (save.badges ?? []).includes(b.id); return <div key={b.id} className={on ? 'on' : ''}>{on ? <i className="il-star" /> : <i />}<b>{b.en}</b><span>{b.what}</span><span className="il-bar"><i style={{ width: `${(v / b.need) * 100}%` }} /></span></div>; })}</div>
+            </>}
+
+            {panel === 'bakery' && cake && <>
+              <h2>Bakery</h2>
+              <p className="il-who">{cake.who} says:</p>
+              <p className="il-say">&ldquo;{cake.text}&rdquo; <button type="button" className="il-mini" onClick={() => say(cake.text)}>Listen</button></p>
+              <div className="il-cake">{Array.from({ length: cakeSel.layers ?? 1 }).map((_, i) => <span key={i} style={{ background: FLAVOURS.find((f) => f.id === cakeSel.flavour)?.color ?? '#EDE6D6', width: `${120 - i * 22}px` }} />)}<em>{cakeSel.topping ?? ''}</em></div>
+              <p className="il-sub">Flavour</p>
+              <div className="il-grid">{FLAVOURS.map((f) => <button key={f.id} type="button" className={`il-pick ${cakeSel.flavour === f.id ? 'on' : ''}`} onClick={() => { sfx.pick(); setCakeSel({ ...cakeSel, flavour: f.id }); }}><i className="il-dot" style={{ background: f.color }} />{f.id}</button>)}</div>
+              <p className="il-sub">Layers</p>
+              <div className="il-grid">{[1, 2, 3].map((n) => <button key={n} type="button" className={`il-pick ${cakeSel.layers === n ? 'on' : ''}`} onClick={() => { sfx.pick(); setCakeSel({ ...cakeSel, layers: n }); }}>{['one', 'two', 'three'][n - 1]}</button>)}</div>
+              <p className="il-sub">On top</p>
+              <div className="il-grid">{TOPPINGS.map((t) => <button key={t} type="button" className={`il-pick ${cakeSel.topping === t ? 'on' : ''}`} onClick={() => { sfx.pick(); setCakeSel({ ...cakeSel, topping: t }); }}>{t}</button>)}</div>
+              <button type="button" className="il-go" onClick={bakeCake} disabled={!cakeSel.flavour || !cakeSel.layers || !cakeSel.topping}>Bake it!</button>
+            </>}
+
+            {panel === 'boutique' && dress && <>
+              <h2>Boutique</h2>
+              <p className="il-who">{dress.who} says:</p>
+              <p className="il-say">&ldquo;{dress.text}&rdquo; <button type="button" className="il-mini" onClick={() => say(dress.text)}>Listen</button></p>
+              <p className="il-sub">1. Choose a colour</p>
+              <div className="il-grid">{COLOURS.map((c) => <button key={c.id} type="button" className={`il-pick ${colour === c.id ? 'on' : ''}`} onClick={() => setColour(c.id)}><i className="il-dot" style={{ background: c.c }} />{c.id}</button>)}</div>
+              <p className="il-sub">2. Add clothes in this colour</p>
+              <div className="il-grid">{CLOTHES.map((c) => <button key={c} type="button" className="il-pick" onClick={() => { sfx.pick(); const it = `${colour} ${c}`; setRack((r) => (r.includes(it) ? r : [...r.filter((x) => !x.endsWith(` ${c}`)), it])); }}>{c}</button>)}</div>
+              <p className="il-sub">On the counter</p>
+              <div className="il-grid">{rack.length ? rack.map((r) => <button key={r} type="button" className="il-pick on" onClick={() => setRack(rack.filter((x) => x !== r))}><i className="il-dot" style={{ background: COLOURS.find((c) => r.startsWith(c.id + ' '))?.c }} />{r} ✕</button>) : <span className="il-note">Nothing yet</span>}</div>
+              <button type="button" className="il-go" onClick={checkDress} disabled={!rack.length}>Give the clothes</button>
+            </>}
+
+            {panel === 'taxi' && taxi && <>
+              <h2>Taxi</h2>
+              <p className="il-who">{taxi.who} says:</p>
+              <p className="il-say">&ldquo;{taxi.text}&rdquo; <button type="button" className="il-mini" onClick={() => say(taxi.text)}>Listen</button></p>
+              <p className="il-note">Drive to the right place and press the yellow button when you are there. Use the map if you get lost.</p>
+              <button type="button" className="il-go" onClick={startTaxi}>Get in and drive</button>
+            </>}
+
+            {panel === 'pier' && fishQ && <>
+              <h2>Fishing pier</h2>
+              <p className="il-note">Answer the riddle to catch a fish.</p>
+              <p className="il-say">{fishQ.q} {!fishQ.q.startsWith('A word') && <button type="button" className="il-mini" onClick={() => say(fishQ.q)}>Listen</button>}</p>
+              <div className="il-grid il-grid--col">{fishQ.opts.map((o) => <button key={o} type="button" className={`il-pick ${fishQ.picked ? (o === fishQ.a ? 'on' : o === fishQ.picked ? 'bad' : '') : ''}`} onClick={() => answerFish(o)}>{o}</button>)}</div>
+              {fishQ.got && <div className="il-catch"><span className="il-fish" style={{ background: fishQ.got.color }} /><b>You caught a {fishQ.got.en}!</b>{fishQ.got.rare >= 2 && <em> Rare!</em>}</div>}
+              {fishQ.picked && !fishQ.got && <p className="il-note">Splash! The fish swam away. The answer is: <b>{fishQ.a}</b></p>}
+              {fishQ.picked && <button type="button" className="il-go" onClick={newRiddle}>Fish again</button>}
+              <p className="il-sub">My fish album</p>
+              <div className="il-album">{FISH.map((f) => { const n = save.fish?.[f.id] ?? 0; return <div key={f.id} className={n ? 'on' : ''}><span className="il-fish" style={{ background: n ? f.color : '#D5D9DE' }} /><span>{n ? f.en : '?'}</span>{n > 0 && <b>{n}</b>}</div>; })}</div>
+            </>}
+
             {panel === 'store' && <>
               <h2>Murly Store</h2>
               <p className="il-note">You have <b>{coins ?? 0}</b> coins.</p>
-              <div className="il-tabs">{(['Clothes', 'Home', 'Transport', 'Pets'] as Cat[]).map((c) => <button key={c} type="button" className={tab === c ? 'on' : ''} onClick={() => setTab(c)}>{c}</button>)}</div>
+              <div className="il-tabs">{(['Clothes', 'Home', 'Furniture', 'Transport', 'Pets'] as Tab[]).map((c) => <button key={c} type="button" className={tab === c ? 'on' : ''} onClick={() => setTab(c)}>{c}</button>)}</div>
+              {tab === 'Furniture' && <><p className="il-note">{save.house ? 'Things for inside your home. Go inside and press Decorate to place them.' : 'Buy a house first (the Home tab), then you can put furniture inside.'}</p>
+                <div className="il-shop">{FURN.map((f) => { const id = `furn-${f.f}`; return (
+                  <div key={id} className="il-item"><img className="il-thumb" src={`/worlds/kenney/t/${f.f}.png`} alt="" /><span>{f.en}</span>
+                    {owned(id) ? <button type="button" disabled>Bought</button> : <button type="button" className="buy" onClick={() => buy({ id, price: f.price, en: f.en })}><i className="il-coin" /> {f.price}</button>}
+                  </div>); })}</div></>}
               {tab === 'Clothes' && <><p className="il-sub">Fur colour</p>
                 <div className="il-shop">{FUR.map((f) => (
                   <div key={f.id} className={`il-item ${save.outfit.fur === f.id ? 'on' : ''}`}><i style={{ background: f.color }} /><span>{f.en}</span>
@@ -351,7 +550,9 @@ export default function IslandGame() {
                     <button type="button" onClick={() => equip(it)}>{it.sub === 'house' || it.sub === 'yard' ? (worn(it) ? 'Placed' : 'Place') : worn(it) ? 'Take off' : 'Use'}</button></div>))}</div></div>;
               })}
               {save.yard.length > 0 && <button type="button" className="il-mini" onClick={() => persist({ ...save, yard: [] })}>Clear my yard</button>}
-              <button type="button" className="il-go" onClick={() => { sc.current?.teleportHome(); setPanel(null); }}>Go to my home</button>
+              {furnOwned.length > 0 && <p className="il-note">Furniture: {furnOwned.map((f) => f.en).join(', ')}. Go inside your home and press Decorate.</p>}
+              <button type="button" className="il-mini" onClick={() => setPanel('today')}>Missions and badges</button>
+              <button type="button" className="il-go" onClick={() => { if (inside) { setPanel(null); return; } sc.current?.teleportHome(); setPanel(null); }}>Go to my home</button>
             </>}
           </div>
         </div>
@@ -359,4 +560,5 @@ export default function IslandGame() {
     </div>
   );
 }
+function fmtHour(h: number) { const hh = Math.floor(h); const m = h % 1 ? '30' : '00'; return `${((hh + 11) % 12) + 1}:${m} ${hh < 12 ? 'am' : 'pm'}`; }
 const ICON: Record<string, string> = { hat: 'H', glasses: 'G', scarf: 'S', bag: 'B', house: 'H', yard: 'Y', ride: 'R', pet: 'P' };
