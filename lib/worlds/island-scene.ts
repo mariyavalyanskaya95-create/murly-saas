@@ -1301,24 +1301,35 @@ export class IslandScene {
   backdrop = new THREE.Group();
   buildBackdrop(o: { x: number; z: number }, W: number, D: number) {
     this.backdrop.clear(); if (!this.backdrop.parent) this.scene.add(this.backdrop);
-    const at = this.outPos.clone(); const R = 46; const bb = new THREE.Box3(); const sz = new THREE.Vector3(); const c = new THREE.Vector3();
-    const room = new THREE.Box3(new THREE.Vector3(o.x - W / 2 - 1.2, -1, o.z - D / 2 - 1.2), new THREE.Vector3(o.x + W / 2 + 1.2, 50, o.z + D / 2 + 1.2));
+    const R = 48; const out = this.outPos.clone();
     const skip = (x: THREE.Object3D) => x.userData.rig || x.userData.cloud || (x as THREE.Light).isLight || x === this.backdrop || x === this.roomGroup || x === this.guestGroup || x === this.propsGroup || x === this.water;
-    let n = 0;
+    // 1) збираємо речі міста поруч
+    const items: { obj: THREE.Object3D; c: THREE.Vector3; s: THREE.Vector3; bb: THREE.Box3 }[] = [];
     const visit = (obj: THREE.Object3D, depth: number) => {
-      if (n > 420 || skip(obj) || !obj.visible) return;
-      bb.setFromObject(obj); if (bb.isEmpty()) return; bb.getSize(sz); bb.getCenter(c);
-      if (c.x > 250) return; // інші кімнати
+      if (items.length > 600 || skip(obj) || !obj.visible) return;
+      const bb = new THREE.Box3().setFromObject(obj); if (bb.isEmpty()) return; const sz = bb.getSize(new THREE.Vector3()); const c = bb.getCenter(new THREE.Vector3());
+      if (c.x > 250) return;
       if (sz.x > 40 || sz.z > 40) { if (depth < 3) obj.children.forEach((ch) => visit(ch, depth + 1)); return; }
-      if (Math.hypot(c.x - at.x, c.z - at.z) > R) return;
-      const flat = sz.y < 0.35; const dx = o.x - at.x, dz = o.z - at.z;
-      if (!flat && Math.hypot(c.x - at.x, c.z - at.z) < 9) return; // будівля, в яку ми зайшли
-      const moved = bb.clone().translate(new THREE.Vector3(dx, 0, dz)); if (!flat && moved.intersectsBox(room)) return;
-      obj.updateWorldMatrix(true, false); const cl = obj.clone(true); cl.matrixAutoUpdate = true;
-      obj.matrixWorld.decompose(cl.position, cl.quaternion, cl.scale); cl.position.x += dx; cl.position.z += dz; cl.position.y -= flat ? 0.04 : 0.02;
-      this.backdrop.add(cl); n++;
+      if (Math.hypot(c.x - out.x, c.z - out.z) > R + 12) return;
+      items.push({ obj, c, s: sz, bb });
     };
     this.scene.children.slice().forEach((ch) => visit(ch, 0));
+    // 2) будівля, в яку ми зайшли: найбільша поруч із дверима; кімната стає на її місце
+    let me: (typeof items)[number] | null = null;
+    for (const it of items) { if (it.s.y < 2.5) continue; const d = Math.hypot(it.c.x - out.x, it.c.z - out.z); if (d > 13) continue; if (!me || it.s.x * it.s.y * it.s.z > me.s.x * me.s.y * me.s.z) me = it; }
+    const at = me ? me.c.clone() : out;
+    const dx = o.x - at.x, dz = o.z - at.z;
+    const room = new THREE.Box3(new THREE.Vector3(o.x - W / 2 - 1.2, -1, o.z - D / 2 - 1.2), new THREE.Vector3(o.x + W / 2 + 1.2, 60, o.z + D / 2 + 1.2));
+    for (const it of items) {
+      if (it === me) continue;
+      if (Math.hypot(it.c.x - at.x, it.c.z - at.z) > R) continue;
+      const flat = it.s.y < 0.35;
+      if (me && !flat && Math.abs(it.c.x - at.x) < me.s.x / 2 + 0.5 && Math.abs(it.c.z - at.z) < me.s.z / 2 + 0.5) continue; // вивіска й декор самої будівлі
+      const moved = it.bb.clone().translate(new THREE.Vector3(dx, 0, dz)); if (!flat && moved.intersectsBox(room)) continue;
+      it.obj.updateWorldMatrix(true, false); const cl = it.obj.clone(true);
+      it.obj.matrixWorld.decompose(cl.position, cl.quaternion, cl.scale); cl.position.x += dx; cl.position.z += dz; cl.position.y -= flat ? 0.04 : 0.02;
+      this.backdrop.add(cl);
+    }
   }
   exitHome() {
     if (!this.inside) return; this.inside = false; this.roomId = null; this.decorate = false; this.placing = null; this.backdrop.clear();
