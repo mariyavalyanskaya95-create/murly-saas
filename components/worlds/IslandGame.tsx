@@ -9,7 +9,7 @@ import { say, sfx } from '@/lib/worlds/sound';
 import { DIALOGS, nextDialog, type Dialog } from '@/lib/worlds/island-dialogs';
 import { CHAT, IslandNet, type NetPlayer } from '@/lib/worlds/island-net';
 import { checkChat, FILTER_MSG } from '@/lib/chat-filter';
-import { GRAMMAR, LISTEN_WORDS, LOST_PLACES, treasureHunt } from '@/lib/worlds/island-data';
+import { GRAMMAR, LISTEN_WORDS, LOST_PLACES, treasureHunt, PRODUCTS, SHELVES, DISHES, STARTER_PANTRY, cookResult, productOf } from '@/lib/worlds/island-data';
 import { ACT, EMOTES, FOODS, FRIDGE, INGREDIENTS, RECIPES, friendLevel, CHOICES, MELODIES, SKILLS, SKILL_OF, skillLevel, CROPS, cropProgress, JOKES, COMPLIMENTS, RPS, FURN_ALL, FURN_CATS } from '@/lib/worlds/island-data';
 import { ADDRS, DESTS, HAIR_COLOURS, PROFS, STARTER, STYLE, STYLE_COLOURS, profLevel, type StylePart } from '@/lib/worlds/island-data';
 import { ICE, ICE_TOP, errandTask, iceOrder, keeperQuestion, lostTask, timeWords, type LostTask } from '@/lib/worlds/island-data';
@@ -17,7 +17,7 @@ import { BADGES, CAFE_DRINK, CAFE_FOOD, CLOTHES, COLOURS, FISH, FLAVOURS, FRUIT,
 import type { IslandScene } from '@/lib/worlds/island-scene';
 import type { Spot } from '@/lib/worlds/island-data';
 
-type Panel = null | 'post' | 'cafe' | 'market' | 'store' | 'home' | 'help' | 'npc' | 'jobs' | 'bakery' | 'boutique' | 'taxi' | 'pier' | 'today' | 'icecream' | 'board' | 'errand' | 'keeper' | 'style' | 'career' | 'dialog' | 'fridge' | 'cook' | 'bag' | 'friend' | 'acts' | 'choose' | 'book' | 'wordgame' | 'garden' | 'skills' | 'joke' | 'nice' | 'rps' | 'school' | 'online' | 'chat';
+type Panel = null | 'post' | 'cafe' | 'market' | 'store' | 'home' | 'help' | 'npc' | 'jobs' | 'bakery' | 'boutique' | 'taxi' | 'pier' | 'today' | 'icecream' | 'board' | 'errand' | 'keeper' | 'style' | 'career' | 'dialog' | 'fridge' | 'cook' | 'bag' | 'friend' | 'acts' | 'choose' | 'book' | 'wordgame' | 'garden' | 'skills' | 'joke' | 'nice' | 'rps' | 'school' | 'online' | 'chat' | 'shelf' | 'checkout';
 type Tab = Cat | 'Furniture';
 const LS = 'murly-island-v1';
 const GUEST_COINS = 60;
@@ -93,6 +93,13 @@ export default function IslandGame() {
   const [reqs, setReqs] = useState<{ id: string; n: string }[]>([]);
   const [chatCat, setChatCat] = useState('Hello');
   const muted = useRef<Set<string>>(new Set());
+  // супермаркет, кладовая, сковорідка, предмет у лапах
+  const [shelf, setShelf] = useState<string | null>(null);
+  const [cart, setBasket2] = useState<Record<string, number>>({});
+  const [held, setHeld] = useState<string | null>(null);
+  const [pan, setPan] = useState<string[]>([]);
+  const onPropRef = useRef<(i: number) => void>(() => {});
+  const onPutRef = useRef<(x: number, y: number, z: number) => void>(() => {});
   // 3D-мініатюри речей
   const wantThumbs = useCallback((ids: string[]) => {
     void import('@/lib/worlds/island-scene').then(async ({ thumbFor }) => {
@@ -120,7 +127,7 @@ export default function IslandGame() {
     let alive = true;
     void import('@/lib/worlds/island-scene').then(({ IslandScene }) => {
       if (!alive || !box.current) return;
-      sc.current = new IslandScene(box.current, { onNear: (s) => setNear(s), onStar: (id) => onStarRef.current(id), onClock: (hour, rain) => setClock({ hour, rain }), onPlace: (x, z) => onPlaceRef.current(x, z), onPick: (i) => onPickRef.current(i), onPickup: () => onPickupRef.current() });
+      sc.current = new IslandScene(box.current, { onNear: (s) => setNear(s), onStar: (id) => onStarRef.current(id), onClock: (hour, rain) => setClock({ hour, rain }), onPlace: (x, z) => onPlaceRef.current(x, z), onPick: (i) => onPickRef.current(i), onPickup: () => onPickupRef.current(), onProp: (i) => onPropRef.current(i), onPut: (x, y, z) => onPutRef.current(x, y, z) });
       setReady(true);
     });
     return () => { alive = false; sc.current?.dispose(); sc.current = null; };
@@ -230,7 +237,7 @@ export default function IslandGame() {
       x.fillStyle = '#8BCB62'; x.beginPath(); x.arc(W / 2, W / 2, 68 * k, 0, Math.PI * 2); x.fill();
       const P = (px: number, pz: number) => [W / 2 + px * k, W / 2 + pz * k] as const;
       const dot = (px: number, pz: number, col: string, r = 3) => { const [a, b] = P(px, pz); x.fillStyle = col; x.beginPath(); x.arc(a, b, r, 0, Math.PI * 2); x.fill(); };
-      const COL: Record<string, string> = { post: '#E5484D', cafe: '#F76AA8', store: '#7C66DC', market: '#F5862D', home: '#FFC53D', bakery: '#C8925A', boutique: '#30A46C', taxi: '#FFE08A', pier: '#3E7BFA', icecream: '#F76AA8', board: '#8B5E34' };
+      const COL: Record<string, string> = { post: '#E5484D', cafe: '#F76AA8', store: '#7C66DC', market: '#F5862D', home: '#FFC53D', supermarket: '#E5484D', bakery: '#C8925A', boutique: '#30A46C', taxi: '#FFE08A', pier: '#3E7BFA', icecream: '#F76AA8', board: '#8B5E34' };
       x.fillStyle = '#B8865A'; const [p1, p2] = P(-1.5, -66); x.fillRect(p1, p2, 3 * k, 20 * k);
       s.spots.forEach((sp) => { const k2 = sp.id.replace('enter-', ''); if (COL[k2] && Math.hypot(sp.x, sp.z) < 90) dot(sp.x, sp.z, COL[k2], 4); });
       if (s.markerOn) dot(s.marker.position.x, s.marker.position.z, '#FFC53D', 6);
@@ -261,6 +268,7 @@ export default function IslandGame() {
     { id: 'taxi', en: 'Taxi', what: 'Drive passengers to the right place.' },
     { id: 'pier', en: 'Fishing pier', what: 'Solve word riddles and catch fish.' },
     { id: 'icecream', en: 'Ice cream stand', what: 'Make ice creams on the beach.' },
+    { id: 'supermarket', en: 'Supermarket', what: 'Buy food for your kitchen and cook at home.' },
     { id: 'board', en: 'Lost & Found board', what: 'Find lost things around the island.' },
     { id: 'grandma', en: 'Grandma Rose', what: 'Visit any house and help Grandma Rose.' },
     { id: 'lighthouse', en: 'Lighthouse', what: 'Answer Captain Ted’s questions about time and weather.' },
@@ -276,10 +284,13 @@ export default function IslandGame() {
     if (s.id.startsWith('use:')) { if (sc.current?.pose) { sc.current.setPose(null); setCaption(null); setActing(null); return; } const m = sc.current?.useMeta[s.id]; if (m) doUse(m.kind, m); return; }
     if (s.id === 'campbook') { doUse('read'); return; }
     if (s.id === 'school') { setLessonQ(null); setPanel('school'); return; }
+    if (s.id.startsWith('shelf:')) { const cat = s.id.slice(6); setShelf(cat); const p0 = sc.current?.shelfPos[cat]; if (p0 && sc.current) sc.current.focus = { x: p0.x, y: 1.2, z: p0.z }; setPanel('shelf'); say(SHELVES.find((x) => x.id === cat)?.en ?? ''); return; }
+    if (s.id === 'checkout') { setPanel('checkout'); const tot = Object.entries(cart).reduce((a, [k, n]) => a + (productOf(k)?.price ?? 1) * n, 0); say(tot ? `Hello! That's ${tot} coins, please.` : 'Hello! Your basket is empty.'); return; }
     if (s.id === 'boat') { sc.current?.startBoat(); setBoating(true); tell("I'm sailing a boat around the island! Steer with the arrows or the joystick."); return; }
     if (s.id === 'boat-dock') { if (sc.current?.boating) { sc.current.stopBoat(); setBoating(false); tell("I'm back on the pier."); } return; }
     if (s.id.startsWith('enter-')) { const id = s.id.slice(6); if (sc.current?.markerOn && !delivery && !taxi?.hint) sc.current.setMarker(null); sc.current?.enterRoom(id); setInside(id); return; }
     if (errand?.stage === 'get' && s.id === errand.at) { setErrand({ ...errand, stage: 'bring' }); say(`Here you are! ${errand.item}.`); flash(`You got ${errand.item}. Take it to Grandma Rose!`); return; }
+    if (s.id === 'visit') { startTalk(s.label); return; }
     if (s.id === 'guest') {
       if (errand?.stage === 'bring') { say('Oh, thank you, dear! You are so kind!'); setErrand(null); done('errand', 5, 'Grandma Rose is happy.'); return; }
       if (!errand) { const e = errandTask(); setErrand({ ...e, stage: 'get' }); say(e.text); }
@@ -304,7 +315,7 @@ export default function IslandGame() {
     if (s.id === 'taxi') { if (taxi?.driving) { flash(`Your passenger wants to go to ${taxi.dest.name}.`, false); return; } if (!taxi) { const o = taxiTask(saveRef.current.jobs.taxi ?? 0); setTaxi({ ...o, at: 0, hint: false, driving: false }); say(o.text); } setPanel('taxi'); return; }
     if (s.id === 'pier') { newRiddle(); setPanel('pier'); return; }
     if (s.id.startsWith('door-')) {
-      if (!delivery) { sc.current?.enterRoom('house'); setInside('house'); say('Come in! Nice to see you!'); return; }
+      if (!delivery) { const hid = `house-${s.id.slice(5)}`; sc.current?.enterRoom(hid); setInside(hid); say('Come in! Nice to see you!'); return; }
       if (`door-${delivery.addr.id}` === s.id) {
         sc.current?.setCarry(false); sc.current?.setMarker(null);
         const fast = Date.now() - delivery.at < 90_000 && !delivery.hint;
@@ -415,7 +426,7 @@ export default function IslandGame() {
   const doUse = (kind: string, m?: { x: number; z: number; y: number; rot: number }) => {
     const a = ACT[kind]; const sx = sc.current;
     if (kind === 'fridge') { setPanel('fridge'); tell("Let's see what's in the fridge."); return; }
-    if (kind === 'cook') { setRecipe(null); setPicked([]); setDish(null); setPanel('cook'); return; }
+    if (kind === 'cook') { setDish(null); setPanel('cook'); tell("Let's cook! Put food in the pan."); return; }
     if (kind === 'mirror' || kind === 'wardrobe') { setPanel('style'); return; }
     if (CHOICES[kind] && !(kind === 'telescope')) { setChoose({ kind, m }); setPanel('choose'); return; }
     if (kind === 'computer' || kind === 'arcade') { if (kind === 'computer') { newWord(0, 0); setPanel('wordgame'); return; } }
@@ -509,7 +520,12 @@ export default function IslandGame() {
     return () => window.clearInterval(id);
   }, [ready]); // eslint-disable-line react-hooks/exhaustive-deps
   const mood = (() => { const n = needs; if (n.food < 25) return 'Hungry'; if (n.energy < 25) return 'Tired'; if (n.fun < 25) return 'Bored'; const avg = (n.food + n.energy + n.fun) / 3; return avg > 70 ? 'Happy' : avg > 45 ? 'OK' : 'Grumpy'; })();
-  const foodOf = (id: string) => { if (id.startsWith('dish:')) { const r = RECIPES.find((x) => `dish:${x.id}` === id); return r ? { en: r.en, a: '', food: r.food, fun: r.fun, c: r.c } : null; } const f = FOODS.find((x) => x.id === id); return f ? { en: f.en, a: f.a, food: f.food, fun: 0, c: f.c } : null; };
+  const foodOf = (id: string): { en: string; a: string; food: number; fun: number; c: string } | null => {
+    if (id.startsWith('dish:')) { const d0 = DISHES.find((x) => `dish:${x.id}` === id); if (d0) return { en: d0.en.replace(/^an? /, ''), a: /^an? /.test(d0.en) ? d0.en.split(' ')[0] : '', food: d0.food, fun: d0.fun, c: d0.c }; }
+    { const pr = productOf(id); if (pr) return { en: pr.en, a: pr.a, food: pr.food || 5, fun: 0, c: pr.c }; }
+    return foodOf0(id);
+  };
+  const foodOf0 = (id: string) => { if (id.startsWith('dish:')) { const r = RECIPES.find((x) => `dish:${x.id}` === id); return r ? { en: r.en, a: '', food: r.food, fun: r.fun, c: r.c } : null; } const f = FOODS.find((x) => x.id === id); return f ? { en: f.en, a: f.a, food: f.food, fun: 0, c: f.c } : null; };
   const eat = (id: string, fromBag = false) => {
     const f = foodOf(id); if (!f) return;
     if (fromBag) { const b = { ...(saveRef.current.bag ?? {}) }; if (!b[id]) return; b[id] -= 1; if (!b[id]) delete b[id]; persist({ ...saveRef.current, bag: b }); }
@@ -643,6 +659,46 @@ export default function IslandGame() {
   const addNetFriend = (id: string, n: string) => { const s0 = saveRef.current; const nf = { ...((s0 as unknown as { netFriends?: Record<string, string> }).netFriends ?? {}), [id]: n }; persist({ ...s0, netFriends: nf } as Save); };
   const netFriends = ((save as unknown as { netFriends?: Record<string, string> }).netFriends ?? {});
   const onlineList = Object.values(online).filter((p) => !muted.current.has(p.id));
+  // ---- супермаркет і кухня як у Toca Boca ----
+  useEffect(() => { if (panel !== 'shelf' && sc.current) sc.current.focus = null; }, [panel]);
+  useEffect(() => { if (panel === 'shelf' && shelf) wantThumbs(PRODUCTS.filter((p) => p.cat === shelf).map((p) => p.id)); if (panel === 'fridge' || panel === 'cook' || panel === 'checkout') wantThumbs(Object.keys(pantry).concat(Object.keys(cart))); }, [panel, shelf]); // eslint-disable-line react-hooks/exhaustive-deps
+  const pantry = save.pantry ?? STARTER_PANTRY;
+  const basketCount = Object.values(cart).reduce((a, b) => a + b, 0);
+  const basketTotal = Object.entries(cart).reduce((a, [k, n]) => a + (productOf(k)?.price ?? 1) * n, 0);
+  const addBasket = (id: string, d: number) => { setBasket2((b) => { const c = { ...b, [id]: Math.max(0, (b[id] ?? 0) + d) }; if (!c[id]) delete c[id]; return c; }); if (d > 0) { sfx.pick(); const pr = productOf(id); if (pr) say(`${pr.a ? pr.a + ' ' : ''}${pr.en}`); } };
+  const payBasket = async () => {
+    if (!basketCount) return;
+    if (await buy({ id: `groceries-${Date.now()}`, price: basketTotal, en: 'groceries' })) {
+      const s0 = saveRef.current; const pt = { ...(s0.pantry ?? STARTER_PANTRY) }; Object.entries(cart).forEach(([k, n]) => { pt[k] = (pt[k] ?? 0) + n; });
+      persist({ ...s0, owned: s0.owned.filter((x) => !x.startsWith('groceries-')), pantry: pt }); setBasket2({}); setPanel(null);
+      say('Thank you! Have a nice day!'); tell(`I bought ${basketCount} things at the supermarket. They are in my fridge at home now.`); addSkill('cook');
+    }
+  };
+  const setPantry = (pt: Record<string, number>) => persist({ ...saveRef.current, pantry: pt });
+  const takeFromPantry = (id: string) => { const pt = { ...pantry }; if (!pt[id]) return false; pt[id] -= 1; if (!pt[id]) delete pt[id]; setPantry(pt); return true; };
+  const holdItem = (id: string | null) => { setHeld(id); void sc.current?.setHeld(id); if (id) { const f = foodOf(id); tell(`I'm holding ${f?.a ? f.a + ' ' : ''}${f?.en ?? id}. Tap a table or the floor to put it down.`); } };
+  const putInPan = (id: string) => { if (pan.length >= 6) { flash('The pan is full!', false); return; } if (takeFromPantry(id)) { setPan((p) => [...p, id]); sfx.pick(); } };
+  const cookPan = () => {
+    if (!pan.length) return; const r = cookResult(pan); const sx = sc.current;
+    if (sx) { sx.setPose('use', { x: sx.heroPos.x, z: sx.heroPos.z, y: 0, rot: sx.heroRot }); sx.bubble('Sizzle!'); }
+    tell(`I'm cooking ${r.en}!`); setPanel(null); const used = pan; setPan([]);
+    window.setTimeout(() => { sc.current?.setPose(null); sc.current?.bubble('Ready!'); holdItem(`dish:${r.id}`); tell(`I made ${r.en} with ${used.map((u) => productOf(u)?.en ?? u).join(', ')}. Yum!`); addSkill('cook'); if (r.id !== 'mystery') { const n = (saveRef.current.jobs.cook ?? 0) + 1; persist({ ...saveRef.current, jobs: { ...saveRef.current.jobs, cook: n } }); if (n <= 30) void earn(1, `You cooked ${r.en}!`); } }, 3500);
+  };
+  const eatHeld = () => { if (!held) return; const f = foodOf(held); if (!f) return; addNeeds({ food: f.food, fun: f.fun }); sc.current?.bubble('Yum!'); tell(`I'm eating ${f.a ? f.a + ' ' : ''}${f.en}. Delicious!`); holdItem(null); };
+  const heldToBag = () => { if (!held) return; toBag(held); holdItem(null); };
+  const heldToFridge = () => { if (!held) return; const pt = { ...pantry, [held]: (pantry[held] ?? 0) + 1 }; setPantry(pt); tell("I'm putting it in the fridge."); holdItem(null); };
+  const roomKey = () => (sc.current?.inside ? sc.current.roomId ?? 'out' : 'out');
+  const props = save.props ?? [];
+  useEffect(() => { if (ready) void sc.current?.setProps(props); }, [ready, save.props]); // eslint-disable-line react-hooks/exhaustive-deps
+  onPropRef.current = (i) => {
+    const p0 = props[i]; const sx = sc.current; if (!p0 || !sx) return;
+    if (Math.hypot(p0.x - sx.heroPos.x, p0.z - sx.heroPos.z) > 3.5) { sx.walkTo(p0.x, p0.z); flash('Walk closer and tap it again.'); return; }
+    const list = props.filter((_, k) => k !== i); persist({ ...saveRef.current, props: list }); sfx.pick(); holdItem(p0.f);
+  };
+  onPutRef.current = (x, y, z) => {
+    if (!held) return; const list = [...props, { f: held, x, y, z, room: roomKey() }].slice(-60); persist({ ...saveRef.current, props: list }); sfx.pick();
+    const f = foodOf(held); tell(`I'm putting the ${f?.en ?? 'thing'} ${y > 0.3 ? 'on the table' : 'on the floor'}.`); holdItem(null);
+  };
   // ---- дім всередині ----
   const furnOwned = FURN_ALL.filter((f) => save.owned.includes(`furn-${f.f}`));
   const room = save.room ?? [];
@@ -666,7 +722,7 @@ export default function IslandGame() {
   // ---- де зупинився: позиція, кімната, завдання ----
   const placeName = () => {
     const sx = sc.current; if (!sx) return '';
-    if (sx.inside) return sx.roomId === 'home' ? 'at home' : `in the ${sx.roomId === 'house' ? 'house of Grandma Rose' : sx.roomId}`;
+    if (sx.inside) return sx.roomId === 'home' ? 'at home' : `in the ${sx.roomId?.startsWith('house') ? 'house of a neighbour' : sx.roomId}`;
     let best = DESTS[0], bd = 1e9; DESTS.forEach((d) => { const k = Math.hypot(d.x - sx.heroPos.x, d.z - sx.heroPos.z); if (k < bd) { bd = k; best = d; } });
     return `near ${best.name}`;
   };
@@ -764,6 +820,10 @@ export default function IslandGame() {
         <b>{mood}</b>
         {([['food', 'Food', '#F5862D'], ['energy', 'Energy', '#3E7BFA'], ['fun', 'Fun', '#F76AA8']] as const).map(([k, l, c]) => <div key={k}><span>{l}</span><i><em style={{ width: `${needs[k]}%`, background: needs[k] < 25 ? '#E5484D' : c }} /></i></div>)}
       </div>
+      {(held || basketCount > 0) && !panel && <div className="il-held">
+        {held && <><b>In my paws:</b> {foodOf(held)?.en} {(foodOf(held)?.food ?? 0) > 0 && <button type="button" className="il-mini" onClick={eatHeld}>Eat</button>}<button type="button" className="il-mini" onClick={heldToBag}>Put in bag</button><button type="button" className="il-mini" onClick={() => { const sx = sc.current; if (sx) onPutRef.current(sx.heroPos.x + Math.sin(sx.heroRot) * 0.8, 0.02, sx.heroPos.z + Math.cos(sx.heroRot) * 0.8); }}>Put down</button></>}
+        {basketCount > 0 && <span className="il-basket">Basket: {basketCount} · {basketTotal} coins</span>}
+      </div>}
       {caption && !panel && <div className="il-caption">{caption} <button type="button" className="il-mini" onClick={() => say(caption)}>Listen</button>{acting && <span className="il-acting" />}<button type="button" className="il-mini" onClick={() => { setCaption(null); if (sc.current?.pose) sc.current.setPose(null); setActing(null); }}>OK</button></div>}
       {!inside && <canvas ref={mini} className="il-mini-map" width={150} height={150} onClick={() => setPanel('jobs')} aria-label="Map" />}
       {!panel && !inside && !delivery && !taxi?.driving && <div className="il-today" onClick={() => setPanel('today')}>{daily.ids.map((id) => { const m = MISSIONS.find((x) => x.id === id)!; const n = Math.min(daily.prog[id] ?? 0, m.n); return <div key={id} className={n >= m.n ? 'on' : ''}>{m.en.replace('{n}', String(m.n))} <b>{n}/{m.n}</b></div>; })}</div>}
@@ -1124,28 +1184,43 @@ export default function IslandGame() {
 
             {panel === 'fridge' && <>
               <h2>The fridge</h2>
-              <p className="il-note">Choose something to eat now or take it in your bag.</p>
-              <div className="il-shop">{FRIDGE.map((id) => { const f = FOODS.find((x) => x.id === id)!; return (
-                <div key={id} className="il-item"><i className="il-food" style={{ background: f.c }} /><span>{f.a} {f.en}</span>
-                  <button type="button" onClick={() => { eat(id); setPanel(null); }}>Eat</button><button type="button" onClick={() => toBag(id)}>Take</button></div>); })}</div>
+              {held && <button type="button" className="il-go" onClick={heldToFridge}>Put the {foodOf(held)?.en} in the fridge</button>}
+              <p className="il-note">Buy more food at the supermarket. Tap Eat, or Take to hold it in your paws.</p>
+              {!Object.keys(pantry).length && <p className="il-note">The fridge is empty! Go shopping at the supermarket.</p>}
+              <div className="il-shop">{Object.entries(pantry).map(([id, n]) => { const f = foodOf(id); if (!f) return null; return (
+                <div key={id} className="il-item">{thumbs[id] ? <img className="il-thumb" src={thumbs[id]} alt="" /> : <i className="il-food" style={{ background: f.c }} />}<span>{f.en} <b>x{n}</b></span>
+                  {(productOf(id)?.food ?? 1) > 0 && <button type="button" onClick={() => { if (takeFromPantry(id)) { addNeeds({ food: f.food }); sc.current?.bubble('Yum!'); tell(`I'm eating ${f.a ? f.a + ' ' : ''}${f.en}.`); setPanel(null); } }}>Eat</button>}
+                  <button type="button" onClick={() => { if (takeFromPantry(id)) { holdItem(id); setPanel(null); } }}>Take</button></div>); })}</div>
             </>}
 
             {panel === 'cook' && <>
               <h2>Let&apos;s cook!</h2>
-              {dish ? (() => { const r = RECIPES.find((x) => x.id === dish)!; return <>
-                <div className="il-catch"><span className="il-dish" style={{ background: r.c }} /><b>Your {r.en.replace(/^an? /, '')} {r.id === 'pancakes' ? 'are' : 'is'} ready!</b></div>
-                <button type="button" className="il-go" onClick={() => { eat(`dish:${r.id}`); setDish(null); setPanel(null); }}>Eat it now</button>
-                <button type="button" className="il-mini" onClick={() => { toBag(`dish:${r.id}`); setDish(null); setPanel(null); }}>Put it in my bag (a present for a friend!)</button>
-              </>; })() : !recipe ? <>
-                <p className="il-note">Choose a recipe.</p>
-                <div className="il-grid">{RECIPES.map((r) => <button key={r.id} type="button" className="il-pick" onClick={() => { setRecipe(r.id); setPicked([]); say(`Let's make ${r.en}!`); }}><i className="il-dot" style={{ background: r.c }} />{r.en}</button>)}</div>
-              </> : (() => { const r = RECIPES.find((x) => x.id === recipe)!; return <>
-                <div className="il-note-paper"><b>Recipe: {r.en}</b><br />You need: {r.need.join(', ')}.<br />{r.how} <button type="button" className="il-mini" onClick={() => say(`You need ${r.need.join(', ')}. ${r.how}`)}>Listen</button></div>
-                <p className="il-sub">Take the things you need</p>
-                <div className="il-grid">{INGREDIENTS.map((g) => <button key={g} type="button" className={`il-pick ${picked.includes(g) ? 'on' : ''}`} onClick={() => { sfx.pick(); setPicked((p) => (p.includes(g) ? p.filter((x) => x !== g) : [...p, g])); }}>{g}</button>)}</div>
-                <button type="button" className="il-go" onClick={cookIt} disabled={!picked.length}>Cook it!</button>
-                <button type="button" className="il-mini" onClick={() => setRecipe(null)}>Other recipes</button>
-              </>; })()}
+              <div className="il-pan"><span className="il-pan-in">{pan.length ? pan.map((p, i) => <em key={i}>{productOf(p)?.en ?? p}</em>) : 'The pan is empty. Put some food in it!'}</span></div>
+              <div className="il-grid"><button type="button" className="il-go" onClick={cookPan} disabled={!pan.length}>Cook it!</button>{pan.length > 0 && <button type="button" className="il-mini" onClick={() => { const pt = { ...pantry }; pan.forEach((p) => { pt[p] = (pt[p] ?? 0) + 1; }); setPantry(pt); setPan([]); }}>Take it all out</button>}</div>
+              <p className="il-sub">From your fridge</p>
+              <div className="il-shop il-shop--sm">{Object.entries(pantry).map(([id, n]) => { const f = foodOf(id); if (!f) return null; return (
+                <button key={id} type="button" className="il-item il-item--btn" onClick={() => putInPan(id)}>{thumbs[id] ? <img className="il-thumb" src={thumbs[id]} alt="" /> : <i className="il-food" style={{ background: f.c }} />}<span>{f.en} x{n}</span></button>); })}</div>
+              <p className="il-sub">Ideas</p>
+              <div className="il-recipes">{DISHES.map((d) => <div key={d.id}><b>{d.en}</b>: {d.need.map((n) => productOf(n)?.en ?? n).join(' + ')}</div>)}</div>
+            </>}
+
+            {panel === 'shelf' && shelf && <>
+              <h2>{SHELVES.find((x) => x.id === shelf)?.en}</h2>
+              <p className="il-note">Take as many as you want. Pay at the till. Basket: <b>{basketCount}</b> things, <b>{basketTotal}</b> coins.</p>
+              <div className="il-shop">{PRODUCTS.filter((p) => p.cat === shelf).map((p) => (
+                <div key={p.id} className={`il-item ${cart[p.id] ? 'on' : ''}`}>{thumbs[p.id] ? <img className="il-thumb" src={thumbs[p.id]} alt="" /> : <i className="il-thumb-wait" />}<span>{p.en}</span><small className="t-muted"><i className="il-coin" /> {p.price}</small>
+                  <div className="il-qty"><button type="button" onClick={() => addBasket(p.id, -1)}>−</button><b>{cart[p.id] ?? 0}</b><button type="button" onClick={() => addBasket(p.id, 1)}>+</button></div></div>))}</div>
+              <div className="il-grid">{SHELVES.filter((x) => x.id !== shelf).map((x) => <button key={x.id} type="button" className="il-mini" onClick={() => { setShelf(x.id); const p0 = sc.current?.shelfPos[x.id]; if (p0 && sc.current) sc.current.focus = { x: p0.x, y: 1.2, z: p0.z }; }}>{x.en}</button>)}</div>
+            </>}
+
+            {panel === 'checkout' && <>
+              <h2>Checkout</h2>
+              {!basketCount ? <p className="il-say">&ldquo;Your basket is empty. Take some food from the shelves!&rdquo;</p> : <>
+                <div className="il-receipt">{Object.entries(cart).map(([k, n]) => <div key={k}><span>{n} × {productOf(k)?.en}</span><b>{(productOf(k)?.price ?? 1) * n}</b></div>)}<div className="tot"><span>Total</span><b>{basketTotal} coins</b></div></div>
+                <p className="il-note">You have {coins ?? 0} coins. The food goes to the fridge in your home.</p>
+                <button type="button" className="il-go" onClick={() => void payBasket()}>Pay {basketTotal} coins</button>
+                <button type="button" className="il-mini" onClick={() => setBasket2({})}>Empty the basket</button>
+              </>}
             </>}
 
             {panel === 'bag' && <>
