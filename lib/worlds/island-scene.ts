@@ -1362,7 +1362,7 @@ export class IslandScene {
     }
     if (id === 'supermarket') {
       // візки біля входу
-      for (let i = 0; i < 3; i++) { const c0 = new THREE.Group(); const bs = box(0.8, 0.5, 0.55, '#C9CED6'); bs.position.y = 0.75; c0.add(bs); const in0 = box(0.72, 0.45, 0.47, '#E5484D'); in0.position.y = 0.8; c0.add(in0); const hd = cyl(0.03, 0.03, 0.6, '#3E7BFA', 6); hd.rotation.x = R; hd.position.set(-0.45, 1.1, 0); c0.add(hd); [[-0.3, -0.2], [0.3, -0.2], [-0.3, 0.2], [0.3, 0.2]].forEach(([x, z]) => { const wh = cyl(0.07, 0.07, 0.05, '#1A1A1A', 10); wh.rotation.x = R; wh.position.set(x, 0.08, z); c0.add(wh); }); put(c0, -W / 2 + 2.6 + i * 0.4, 0, D / 2 - 0.8, 0.2); }
+      for (let i = 0; i < 3; i++) { const c0 = new THREE.Group(); const bs = box(0.8, 0.5, 0.55, '#C9CED6'); bs.position.y = 0.75; c0.add(bs); const in0 = box(0.72, 0.45, 0.47, '#E5484D'); in0.position.y = 0.8; c0.add(in0); const hd = cyl(0.03, 0.03, 0.6, '#3E7BFA', 6); hd.rotation.x = R; hd.position.set(-0.45, 1.1, 0); c0.add(hd); [[-0.3, -0.2], [0.3, -0.2], [-0.3, 0.2], [0.3, 0.2]].forEach(([x, z]) => { const wh = cyl(0.07, 0.07, 0.05, '#1A1A1A', 10); wh.rotation.x = R; wh.position.set(x, 0.08, z); c0.add(wh); }); put(c0, -W / 2 + 3.2 + i * 0.45, 0, D / 2 - 1.9, 0.2); }
     }
     if (id === 'lighthouse') {
       const ring = new THREE.Group(); const t = mesh(new THREE.TorusGeometry(0.45, 0.14, 10, 24), toon('#FFFFFF')); ring.add(t); for (let i = 0; i < 4; i++) { const s0 = mesh(new THREE.TorusGeometry(0.45, 0.145, 10, 4, 0.5), toon('#E5484D')); s0.rotation.z = i * R; ring.add(s0); } put(ring, 2.5, 2.1, BZ + 0.1);
