@@ -7,14 +7,14 @@ import Link from 'next/link';
 import { useAuth } from '@clerk/nextjs';
 import { say, sfx } from '@/lib/worlds/sound';
 import { DIALOGS, nextDialog, type Dialog } from '@/lib/worlds/island-dialogs';
-import { ACT, EMOTES, FOODS, FRIDGE, INGREDIENTS, RECIPES, friendLevel } from '@/lib/worlds/island-data';
+import { ACT, EMOTES, FOODS, FRIDGE, INGREDIENTS, RECIPES, friendLevel, CHOICES, MELODIES, SKILLS, SKILL_OF, skillLevel, CROPS, cropProgress, JOKES, COMPLIMENTS, RPS, FURN_ALL, FURN_CATS } from '@/lib/worlds/island-data';
 import { ADDRS, DESTS, HAIR_COLOURS, PROFS, STARTER, STYLE, STYLE_COLOURS, profLevel, type StylePart } from '@/lib/worlds/island-data';
 import { ICE, ICE_TOP, errandTask, iceOrder, keeperQuestion, lostTask, timeWords, type LostTask } from '@/lib/worlds/island-data';
 import { BADGES, CAFE_DRINK, CAFE_FOOD, CLOTHES, COLOURS, FISH, FLAVOURS, FRUIT, FUR, FURN, MISSIONS, RIDDLES, SHOP, START, TALKS, TOPPINGS, cafeOrder, cakeOrder, catchFish, dailyFor, deliveryTask, dressOrder, fruitOrder, single, taxiTask, todayKey, type Addr, type Cat, type Save, type ShopItem } from '@/lib/worlds/island-data';
 import type { IslandScene } from '@/lib/worlds/island-scene';
 import type { Spot } from '@/lib/worlds/island-data';
 
-type Panel = null | 'post' | 'cafe' | 'market' | 'store' | 'home' | 'help' | 'npc' | 'jobs' | 'bakery' | 'boutique' | 'taxi' | 'pier' | 'today' | 'icecream' | 'board' | 'errand' | 'keeper' | 'style' | 'career' | 'dialog' | 'fridge' | 'cook' | 'bag' | 'friend' | 'acts';
+type Panel = null | 'post' | 'cafe' | 'market' | 'store' | 'home' | 'help' | 'npc' | 'jobs' | 'bakery' | 'boutique' | 'taxi' | 'pier' | 'today' | 'icecream' | 'board' | 'errand' | 'keeper' | 'style' | 'career' | 'dialog' | 'fridge' | 'cook' | 'bag' | 'friend' | 'acts' | 'choose' | 'book' | 'wordgame' | 'garden' | 'skills' | 'joke' | 'nice' | 'rps';
 type Tab = Cat | 'Furniture';
 const LS = 'murly-island-v1';
 const GUEST_COINS = 60;
@@ -68,6 +68,13 @@ export default function IslandGame() {
   const [giveMode, setGiveMode] = useState(false);
   const cool = useRef<Record<string, number>>({});
   const warned = useRef<Record<string, boolean>>({});
+  const [choose, setChoose] = useState<{ kind: string; m?: { x: number; z: number; y: number; rot: number } } | null>(null);
+  const [book, setBook] = useState<{ t: string; text: string } | null>(null);
+  const [wg, setWg] = useState<{ q: string; a: string; opts: string[]; picked?: string; n: number; right: number } | null>(null);
+  const [joke, setJoke] = useState<{ q: string; a: string; shown: boolean } | null>(null);
+  const [rps, setRps] = useState<{ me: string; them: string; res: string } | null>(null);
+  const [fcat, setFcat] = useState('living');
+  const actx = useRef<AudioContext | null>(null);
   // 3D-мініатюри речей
   const wantThumbs = useCallback((ids: string[]) => {
     void import('@/lib/worlds/island-scene').then(async ({ thumbFor }) => {
@@ -369,6 +376,7 @@ export default function IslandGame() {
     const s = saveRef.current; const who = dlg.d.npc;
     const friends = { ...(s.friends ?? {}), [who]: (s.friends?.[who] ?? 0) + 3 };
     setDlg({ ...dlg, node: '__end', said: o.t });
+    window.setTimeout(() => addSkill('dialog'), 100);
     done('chat', 3, `Great talk with ${who}!`, { dialogs: [...(s.dialogs ?? []), dlg.d.id], friends, talks: (s.talks ?? 0) + 1 });
   };
   const chooseProf = (id: string) => {
@@ -389,11 +397,71 @@ export default function IslandGame() {
     if (kind === 'fridge') { setPanel('fridge'); tell("Let's see what's in the fridge."); return; }
     if (kind === 'cook') { setRecipe(null); setPicked([]); setDish(null); setPanel('cook'); return; }
     if (kind === 'mirror' || kind === 'wardrobe') { setPanel('style'); return; }
+    if (CHOICES[kind] && !(kind === 'telescope')) { setChoose({ kind, m }); setPanel('choose'); return; }
+    if (kind === 'computer' || kind === 'arcade') { if (kind === 'computer') { newWord(0, 0); setPanel('wordgame'); return; } }
+    if (kind === 'garden') { setPanel('garden'); return; }
+    if (kind === 'telescope') { const night = clock.hour >= 20 || clock.hour < 6; const t = night ? 'I can see the moon and lots of stars. That bright one is a planet!' : 'I can see three sailboats and some seagulls over the sea.'; runAct('telescope', m, t); return; }
+    if (kind === 'drums') playDrums();
+    if (kind === 'sand') window.setTimeout(() => sc.current?.buildSandcastle(), 4800);
     if (!a || !sx) return;
     const pos = m ?? { x: sx.heroPos.x, z: sx.heroPos.z, y: 0, rot: sx.heroRot };
     sx.setPose(a.pose, pos); sx.bubble(a.bubble); tell(a.say);
     if (a.secs > 0) setActing({ kind, say: a.say, until: Date.now() + a.secs * 1000 });
     else setActing(null);
+  };
+  const runAct = (kind: string, m: { x: number; z: number; y: number; rot: number } | undefined, text: string) => {
+    const a = ACT[kind]; const sx = sc.current; if (!a || !sx) return;
+    const pos = m ?? { x: sx.heroPos.x, z: sx.heroPos.z, y: 0, rot: sx.heroRot };
+    sx.setPose(a.pose, pos); sx.bubble(a.bubble); tell(text);
+    setActing({ kind, say: text, until: Date.now() + Math.max(2, a.secs) * 1000 });
+  };
+  // навички
+  const addSkill = (kind: string) => {
+    const sk = SKILL_OF[kind]; if (!sk) return; const [id, xp] = sk; const s0 = saveRef.current; const old = s0.skills?.[id] ?? 0; const nv = old + xp;
+    persist({ ...s0, skills: { ...(s0.skills ?? {}), [id]: nv } });
+    const a = skillLevel(old).l, b = skillLevel(nv).l;
+    if (b > a) { const n = SKILLS.find((x) => x.id === id)?.en ?? id; say(`Your ${n.toLowerCase()} skill is now level ${b}!`); flash(`${n} skill: level ${b}!`); void earn(2, `${n} level ${b}`); }
+  };
+  // звук: мелодії на піаніно й гітарі, барабани
+  const ac = () => { if (!actx.current) actx.current = new (window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext)(); return actx.current; };
+  const playNotes = (notes: number[], type: OscillatorType = 'triangle', step = 0.36) => {
+    try { const c = ac(); const t0 = c.currentTime + 0.05; notes.forEach((n, i) => { if (!n) return; const o = c.createOscillator(); const g = c.createGain(); o.type = type; o.frequency.value = 440 * Math.pow(2, (n - 69) / 12); g.gain.setValueAtTime(0.0001, t0 + i * step); g.gain.exponentialRampToValueAtTime(0.25, t0 + i * step + 0.02); g.gain.exponentialRampToValueAtTime(0.0001, t0 + i * step + step * 0.95); o.connect(g).connect(c.destination); o.start(t0 + i * step); o.stop(t0 + i * step + step); }); } catch { /* */ }
+  };
+  const playDrums = () => {
+    try { const c = ac(); const t0 = c.currentTime + 0.05; for (let i = 0; i < 16; i++) { const t = t0 + i * 0.25; if (i % 2 === 0) { const o = c.createOscillator(); const g = c.createGain(); o.frequency.setValueAtTime(140, t); o.frequency.exponentialRampToValueAtTime(40, t + 0.15); g.gain.setValueAtTime(0.5, t); g.gain.exponentialRampToValueAtTime(0.001, t + 0.2); o.connect(g).connect(c.destination); o.start(t); o.stop(t + 0.2); } if (i % 4 === 2) { const b = c.createBuffer(1, 4000, c.sampleRate); const d = b.getChannelData(0); for (let k = 0; k < d.length; k++) d[k] = (Math.random() * 2 - 1) * (1 - k / d.length); const sn = c.createBufferSource(); sn.buffer = b; const g = c.createGain(); g.gain.value = 0.3; sn.connect(g).connect(c.destination); sn.start(t); } } } catch { /* */ }
+  };
+  const pickChoice = (o: { t: string; say: string; text?: string }) => {
+    if (!choose) return; const k = choose.kind;
+    if (k === 'read' && o.text) { setBook({ t: o.t, text: o.text }); setPanel('book'); return; }
+    setPanel(null);
+    if (k === 'piano' && MELODIES[o.t]) playNotes(MELODIES[o.t]);
+    if (k === 'music') playNotes([60, 64, 67, 72, 67, 64, 60, 0, 62, 65, 69, 74, 69, 65, 62], o.t === 'Rock' ? 'sawtooth' : o.t === 'Classical' ? 'sine' : 'triangle', 0.28);
+    runAct(k, choose.m, o.say);
+  };
+  // словесна гра на комп'ютері
+  const newWord = (n: number, right: number) => {
+    const mine = words.filter((w) => w.en.split(' ').length <= 3);
+    if (mine.length >= 4 && Math.random() < 0.5) { const w = mine[Math.floor(Math.random() * mine.length)]; const wrong = mine.filter((x) => x.en !== w.en).sort(() => Math.random() - 0.5).slice(0, 3).map((x) => x.en); setWg({ q: `How do you say "${w.uk}" in English?`, a: w.en, opts: [w.en, ...wrong].sort(() => Math.random() - 0.5), n, right }); return; }
+    const r = RIDDLES[Math.floor(Math.random() * RIDDLES.length)]; setWg({ q: r.q, a: r.a, opts: [r.a, ...r.wrong].sort(() => Math.random() - 0.5), n, right });
+  };
+  const answerWord = (o: string) => {
+    if (!wg || wg.picked) return; const ok = o === wg.a; setWg({ ...wg, picked: o, right: wg.right + (ok ? 1 : 0) });
+    if (ok) { sfx.coin(); addNeeds({ fun: 8 }); } else sfx.bad();
+  };
+  const endWordGame = () => { if (!wg) return; const r = wg.right; setPanel(null); addSkill('computer'); if (r > 0) void earn(Math.min(3, r), `Word game: ${r} / 5`); tell(`I played a word game and got ${r} out of 5!`); setWg(null); };
+  // город
+  const plots = (save.garden ?? [null, null, null]).concat([null, null, null]).slice(0, 3);
+  useEffect(() => {
+    if (!ready) return;
+    const upd = () => sc.current?.setGarden((saveRef.current.garden ?? []).map((p) => (p ? { crop: p.crop, p: cropProgress(p) } : null)));
+    upd(); const id = window.setInterval(upd, 10000); return () => window.clearInterval(id);
+  }, [ready, save.garden, save.yard]);
+  const gardenDo = (i: number, op: 'plant' | 'water' | 'harvest', crop?: string) => {
+    const g = [...plots]; const p = g[i];
+    if (op === 'plant' && crop) { g[i] = { crop, at: Date.now() }; tell(`I'm planting ${CROPS.find((c) => c.id === crop)?.en} seeds.`); sc.current?.bubble('Grow!'); }
+    if (op === 'water' && p) { g[i] = { ...p, water: true }; tell("I'm watering the plants. Now they will grow faster!"); sc.current?.bubble('Splash!'); }
+    if (op === 'harvest' && p) { g[i] = null; const b = { ...(saveRef.current.bag ?? {}) }; b[p.crop] = (b[p.crop] ?? 0) + 2; persist({ ...saveRef.current, garden: g, bag: b }); addSkill('garden'); sfx.coin(); tell(`I'm picking ${CROPS.find((c) => c.id === p.crop)?.en}. They are in my bag!`); return; }
+    persist({ ...saveRef.current, garden: g }); addSkill('plant');
   };
   useEffect(() => {
     if (!acting) return;
@@ -401,6 +469,7 @@ export default function IslandGame() {
       const a = ACT[acting.kind]; const sx = sc.current; if (!a) return;
       if (acting.kind === 'sleep') { if (clock.hour >= 20 || clock.hour < 6) { sx?.skipToMorning(); tell('Good morning! I slept very well.'); } else tell('That was a nice nap!'); setNeeds((n) => ({ ...n, energy: 100 })); }
       else { addNeeds({ food: a.food, energy: a.energy, fun: a.fun }); if (acting.kind === 'homework') void earn(1, 'Homework done!'); }
+      addSkill(acting.kind);
       sx?.setPose(null); sx?.bubble(acting.kind === 'sleep' ? 'Good morning!' : 'Done!'); setActing(null);
     }, Math.max(0, acting.until - Date.now()));
     return () => window.clearTimeout(t);
@@ -433,7 +502,7 @@ export default function IslandGame() {
     if ([...picked].sort().join('|') !== [...r.need].sort().join('|')) { sfx.bad(); const miss = r.need.filter((x) => !picked.includes(x)); flash(miss.length ? `You need ${miss.join(', ')}. Read the recipe again!` : 'Too many things! Take out what you don’t need.', false); return; }
     const sx = sc.current; if (sx) { sx.setPose('use', { x: sx.heroPos.x, z: sx.heroPos.z, y: 0, rot: sx.heroRot }); sx.bubble('Cooking...'); }
     tell(`I'm cooking ${r.en}. ${r.how}`); setPanel(null);
-    window.setTimeout(() => { sc.current?.setPose(null); sc.current?.bubble('Ready!'); setDish(r.id); setPanel('cook'); const n = (saveRef.current.jobs.cook ?? 0) + 1; persist({ ...saveRef.current, jobs: { ...saveRef.current.jobs, cook: n } }); if (n <= 20) void earn(1, `You cooked ${r.en}!`); }, 4000);
+    window.setTimeout(() => { sc.current?.setPose(null); sc.current?.bubble('Ready!'); setDish(r.id); setPanel('cook'); const n = (saveRef.current.jobs.cook ?? 0) + 1; persist({ ...saveRef.current, jobs: { ...saveRef.current.jobs, cook: n } }); addSkill('cook'); if (n <= 20) void earn(1, `You cooked ${r.en}!`); }, 4000);
   };
   // дружба з котиками
   const npcName = npcI !== null ? sc.current?.npcName(npcI) ?? '' : '';
@@ -449,10 +518,17 @@ export default function IslandGame() {
     const wait = (cool.current[key] ?? 0) - Date.now(); if (wait > 0) { flash(`${who} wants to do something else now. Try again in ${Math.ceil(wait / 1000)} seconds.`, false); return; }
     cool.current[key] = Date.now() + 60000;
     if (kind === 'dance') { sx?.npcDance(npcI); sx?.dance(); sx?.npcBubble(npcI, 'Yeah!'); tell(`We're dancing together!`); addNeeds({ fun: 15 }); addFriend(who, 1, `${who} loves dancing with you!`); }
+    addSkill('friend');
     if (kind === 'five') { sx?.npcBubble(npcI, 'High five!'); sx?.bubble('High five!'); tell('High five!'); addFriend(who, 1, `${who} gave you a high five!`); }
     if (kind === 'hug') { sx?.npcBubble(npcI, 'Aww!'); sx?.bubble('Hug!'); tell(`I'm giving ${who} a big hug.`); addNeeds({ fun: 10 }); addFriend(who, 1, `${who} is happy!`); }
     setPanel(null);
   };
+  const socialOk = (kind: string) => { const key = `${npcName}:${kind}`; const wait = (cool.current[key] ?? 0) - Date.now(); if (wait > 0) { flash(`${npcName} wants to do something else now. Try again in ${Math.ceil(wait / 1000)} seconds.`, false); return false; } cool.current[key] = Date.now() + 60000; return true; };
+  const tellJoke = () => { if (!socialOk('joke')) return; const j = JOKES[Math.floor(Math.random() * JOKES.length)]; setJoke({ ...j, shown: false }); say(j.q); setPanel('joke'); };
+  const jokeDone = () => { if (!joke || npcI === null) return; setJoke({ ...joke, shown: true }); say(joke.a); sc.current?.npcBubble(npcI, 'Ha ha ha!'); addFriend(npcName, 1, `${npcName} is laughing!`); addSkill('friend'); addNeeds({ fun: 10 }); };
+  const saySomethingNice = (c: string) => { if (npcI === null) return; say(c); sc.current?.bubble(c.length > 16 ? 'You are great!' : c); sc.current?.npcBubble(npcI, 'Thank you!'); addFriend(npcName, 1, `${npcName} smiles at you.`); addSkill('friend'); setPanel(null); };
+  const playRps = (me: string) => { if (npcI === null) return; const them = RPS[Math.floor(Math.random() * 3)]; const win = (me === 'rock' && them === 'scissors') || (me === 'paper' && them === 'rock') || (me === 'scissors' && them === 'paper'); const res = me === them ? "It's a draw!" : win ? 'You win!' : `${npcName} wins!`; setRps({ me, them, res }); say(`Rock, paper, scissors! ${res}`); sc.current?.npcBubble(npcI, them[0].toUpperCase() + them.slice(1) + '!'); addNeeds({ fun: 8 }); if (!rps) { addFriend(npcName, 1, `You played a game with ${npcName}.`); addSkill('friend'); } };
+  const petAct = (kind: 'pet' | 'feed' | 'ball') => { const sx = sc.current; if (!sx || !save.pet) return; const nm = save.petName || 'my pet'; sx.petTrick(); sx.bubble(kind === 'pet' ? 'Good boy!' : kind === 'feed' ? 'Yummy!' : 'Fetch!'); tell(kind === 'pet' ? `I'm stroking ${nm}. ${nm === 'my pet' ? 'It' : nm} looks so happy!` : kind === 'feed' ? `I'm feeding ${nm}.` : `I'm playing ball with ${nm}. Fetch!`); addNeeds({ fun: kind === 'ball' ? 20 : 10 }); setPanel(null); };
   const giveGift = (id: string) => {
     if (npcI === null) return; const f = foodOf(id); const b = { ...(saveRef.current.bag ?? {}) }; if (!b[id] || !f) return; b[id] -= 1; if (!b[id]) delete b[id];
     persist({ ...saveRef.current, bag: b }); sc.current?.npcBubble(npcI, 'Thank you!'); tell(`I'm giving ${npcName} ${f.a ? `${f.a} ${f.en}` : f.en}.`);
@@ -468,7 +544,7 @@ export default function IslandGame() {
   };
   useEffect(() => { if (ready) sc.current?.setName(save.hero ?? ''); }, [ready, save.hero]);
   // ---- дім всередині ----
-  const furnOwned = FURN.filter((f) => save.owned.includes(`furn-${f.f}`));
+  const furnOwned = FURN_ALL.filter((f) => save.owned.includes(`furn-${f.f}`));
   const room = save.room ?? [];
   const unplaced = furnOwned.filter((f) => !room.some((r) => r.f === f.f));
   onPlaceRef.current = (x, z) => {
@@ -482,9 +558,11 @@ export default function IslandGame() {
   // мініатюри для відкритої вкладки
   useEffect(() => {
     if (panel === 'store') wantThumbs(tab === 'Clothes' ? [...FUR.map((f) => f.id), ...SHOP.filter((x) => x.cat === 'Clothes').map((x) => x.id)] : SHOP.filter((x) => x.cat === tab).map((x) => x.id));
+    if (panel === 'store' && tab === 'Furniture' && fcat === 'special') wantThumbs(FURN_ALL.filter((f) => f.f.startsWith('x-')).map((f) => f.f));
+    if (decor.on) wantThumbs(FURN_ALL.filter((f) => f.f.startsWith('x-')).map((f) => f.f));
     if (panel === 'home') wantThumbs(SHOP.filter((x) => save.owned.includes(x.id)).map((x) => x.id));
     if (panel === 'style') wantThumbs(stab === 'acc' ? SHOP.filter((x) => x.cat === 'Clothes').map((x) => x.id) : stab === 'fur' ? FUR.map((f) => f.id) : STYLE.filter((x) => x.part === stab).map((x) => x.id));
-  }, [panel, tab, stab]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [panel, tab, stab, fcat, decor.on]); // eslint-disable-line react-hooks/exhaustive-deps
   // ---- де зупинився: позиція, кімната, завдання ----
   const placeName = () => {
     const sx = sc.current; if (!sx) return '';
@@ -526,7 +604,7 @@ export default function IslandGame() {
     list.splice(i, 1); persist({ ...saveRef.current, room: list });
     setDecor({ on: true, placing: op === 'move' ? it.f : null, picked: null });
   };
-  const furnName = (f: string) => FURN.find((x) => x.f === f)?.en ?? f;
+  const furnName = (f: string) => FURN_ALL.find((x) => x.f === f)?.en ?? f;
 
   // ---- магазин ----
   const owned = (id: string) => save.owned.includes(id);
@@ -598,7 +676,7 @@ export default function IslandGame() {
           </> : decor.placing ? <><b>Tap the floor to put the {furnName(decor.placing)} there.</b><button type="button" className="il-mini" onClick={() => setDecor({ on: true, placing: null, picked: null })}>Cancel</button></>
             : <>
               <span className="il-tray-t">{unplaced.length ? 'Choose a thing, then tap the floor. Tap a thing in the room to turn or move it.' : furnOwned.length ? 'Everything is in the room. Tap a thing to turn or move it.' : 'You have no furniture yet. Buy some in the Murly Store!'}</span>
-              <div className="il-tray-row">{unplaced.map((f) => <button key={f.f} type="button" className="il-tray-it" onClick={() => setDecor({ on: true, placing: f.f, picked: null })}><img src={`/worlds/kenney/t/${f.f}.png`} alt="" />{f.en}</button>)}</div>
+              <div className="il-tray-row">{unplaced.map((f) => <button key={f.f} type="button" className="il-tray-it" onClick={() => setDecor({ on: true, placing: f.f, picked: null })}><img src={f.f.startsWith('x-') ? thumbs[f.f] ?? '' : `/worlds/kenney/t/${f.f}.png`} alt="" />{f.en}</button>)}</div>
               {!furnOwned.length && <button type="button" className="il-mini" onClick={() => { setTab('Furniture'); setPanel('store'); }}>Open the shop</button>}
             </>}
         </div>
@@ -828,6 +906,61 @@ export default function IslandGame() {
               <p className="il-note">Now: {timeWords(clock.hour)}</p>
             </>}
 
+            {panel === 'choose' && choose && <>
+              <h2>{choose.kind === 'tv' ? 'What do you want to watch?' : choose.kind === 'read' ? 'Choose a book' : choose.kind === 'music' ? 'What music do you like?' : choose.kind === 'paint' ? 'What do you want to paint?' : 'Choose a song'}</h2>
+              <div className="il-grid il-grid--col">{CHOICES[choose.kind].map((o) => <button key={o.t} type="button" className="il-pick" onClick={() => pickChoice(o)}>{o.t}</button>)}</div>
+            </>}
+
+            {panel === 'book' && book && <>
+              <h2>{book.t}</h2>
+              <div className="il-note-paper il-book">{book.text} <button type="button" className="il-mini" onClick={() => say(book.text)}>Listen</button></div>
+              <button type="button" className="il-go" onClick={() => { setPanel(null); runAct('read', choose?.m, `I'm reading "${book.t}". It's a great book!`); }}>I finished reading</button>
+            </>}
+
+            {panel === 'wordgame' && wg && <>
+              <h2>Word game {wg.n + 1} / 5</h2>
+              <p className="il-say">{wg.q}</p>
+              <div className="il-grid il-grid--col">{wg.opts.map((o) => <button key={o} type="button" className={`il-pick ${wg.picked ? (o === wg.a ? 'on' : o === wg.picked ? 'bad' : '') : ''}`} onClick={() => answerWord(o)}>{o}</button>)}</div>
+              {wg.picked && (wg.n < 4 ? <button type="button" className="il-go" onClick={() => newWord(wg.n + 1, wg.right)}>Next</button> : <button type="button" className="il-go" onClick={endWordGame}>Finish: {wg.right} / 5</button>)}
+            </>}
+
+            {panel === 'garden' && <>
+              <h2>My vegetable garden</h2>
+              <p className="il-note">Plant seeds, water them and wait. Watered plants grow faster. Then pick the vegetables and eat them or give them as presents.</p>
+              <div className="il-plots">{plots.map((p, i) => { const pr = p ? cropProgress(p) : 0; const c = p ? CROPS.find((x) => x.id === p.crop) : null; return (
+                <div key={i}><b>Bed {i + 1}</b>
+                  {!p ? <><span>Empty. Plant:</span><div className="il-grid">{CROPS.map((cr) => <button key={cr.id} type="button" className="il-pick" onClick={() => gardenDo(i, 'plant', cr.id)}><i className="il-dot" style={{ background: cr.c }} />{cr.en}</button>)}</div></>
+                    : <><span>{c?.en}: {pr >= 1 ? 'ready!' : `${Math.round(pr * 100)}%`}{p.water ? ' (watered)' : ''}</span><span className="il-bar"><i style={{ width: `${pr * 100}%` }} /></span>
+                      {pr >= 1 ? <button type="button" className="il-go" onClick={() => gardenDo(i, 'harvest')}>Pick them</button> : !p.water && <button type="button" className="il-mini" onClick={() => gardenDo(i, 'water')}>Water</button>}</>}
+                </div>); })}</div>
+            </>}
+
+            {panel === 'skills' && <>
+              <h2>My skills</h2>
+              <p className="il-note">Every activity makes your cat better at something. Each new level gives you 2 coins.</p>
+              <div className="il-profs">{SKILLS.map((k) => { const xp = save.skills?.[k.id] ?? 0; const lv = skillLevel(xp); return (
+                <div key={k.id}><b>{k.en}</b><span className="il-lv">Level {lv.l}</span><span className="il-bar"><i style={{ width: `${Math.min(100, ((xp - lv.from) / Math.max(1, lv.to - lv.from)) * 100)}%` }} /></span></div>); })}</div>
+            </>}
+
+            {panel === 'joke' && joke && <>
+              <h2>Tell a joke</h2>
+              <p className="il-say">&ldquo;{joke.q}&rdquo; <button type="button" className="il-mini" onClick={() => say(joke.q)}>Listen</button></p>
+              {joke.shown ? <><p className="il-me">{joke.a}</p><p className="il-note">{npcName} is laughing! Ha ha ha!</p><button type="button" className="il-go" onClick={() => setPanel(null)}>Bye!</button></>
+                : <button type="button" className="il-go" onClick={jokeDone}>Tell the answer</button>}
+            </>}
+
+            {panel === 'nice' && <>
+              <h2>Say something nice to {npcName}</h2>
+              <div className="il-grid il-grid--col">{COMPLIMENTS.map((c) => <button key={c} type="button" className="il-pick" onClick={() => saySomethingNice(c)}>{c}</button>)}</div>
+            </>}
+
+            {panel === 'rps' && <>
+              <h2>Rock, paper, scissors</h2>
+              <p className="il-note">Rock beats scissors. Scissors beat paper. Paper beats rock.</p>
+              <div className="il-grid">{RPS.map((r) => <button key={r} type="button" className="il-pick" onClick={() => playRps(r)}>{r}</button>)}</div>
+              {rps && <p className="il-say">You: {rps.me}. {npcName}: {rps.them}. <b>{rps.res}</b></p>}
+            </>}
+
             {panel === 'fridge' && <>
               <h2>The fridge</h2>
               <p className="il-note">Choose something to eat now or take it in your bag.</p>
@@ -870,6 +1003,9 @@ export default function IslandGame() {
                 <button type="button" className="il-pick" onClick={() => { setGiveMode(true); setPanel('bag'); }}>Give a present</button>
                 <button type="button" className="il-pick" onClick={() => friendAct('dance')}>Dance together</button>
                 <button type="button" className="il-pick" onClick={() => friendAct('five')}>High five</button>
+                <button type="button" className="il-pick" onClick={tellJoke}>Tell a joke</button>
+                <button type="button" className="il-pick" onClick={() => { if (socialOk('nice')) setPanel('nice'); }}>Say something nice</button>
+                <button type="button" className="il-pick" onClick={() => { setRps(null); setPanel('rps'); }}>Play rock, paper, scissors</button>
                 {fl.i >= 1 && <button type="button" className="il-pick" onClick={() => friendAct('hug')}>Give a hug</button>}
                 {fl.i >= 2 ? <button type="button" className="il-pick" onClick={() => friendAct('follow')}>{sc.current?.followers.has(npcI) ? 'Go home now' : 'Walk with me!'}</button> : <p className="il-note">When you are friends, {npcName} can walk with you around the island.</p>}
               </div>
@@ -877,7 +1013,12 @@ export default function IslandGame() {
 
             {panel === 'acts' && <>
               <h2>Actions</h2>
-              <div className="il-grid">{EMOTES.map((e) => <button key={e.id} type="button" className="il-pick" onClick={() => emote(e.id)}>{e.en}</button>)}</div>
+              <div className="il-grid">{EMOTES.map((e) => <button key={e.id} type="button" className="il-pick" onClick={() => emote(e.id)}>{e.en}</button>)}
+                {save.outfit.hold === 'hold-guitar' && <button type="button" className="il-pick" onClick={() => { setPanel(null); playNotes([67, 67, 64, 65, 67, 0, 72, 71, 69, 67], 'triangle', 0.3); runAct('guitar', undefined, "I'm playing a song on my guitar."); }}>Play the guitar</button>}</div>
+              {save.pet && <><p className="il-sub">My pet</p>
+                <label className="il-name">Pet&apos;s name <input maxLength={12} value={save.petName ?? ''} placeholder="Type a name" onChange={(e) => setSave({ ...save, petName: e.target.value.replace(/[^\p{L}\p{N} '-]/gu, '') })} onBlur={() => persist({ ...saveRef.current })} /></label>
+                <div className="il-grid"><button type="button" className="il-pick" onClick={() => petAct('pet')}>Stroke my pet</button><button type="button" className="il-pick" onClick={() => petAct('feed')}>Feed my pet</button><button type="button" className="il-pick" onClick={() => petAct('ball')}>Play ball</button></div></>}
+              <button type="button" className="il-mini" onClick={() => setPanel('skills')}>My skills</button>
               <p className="il-note">Look for things you can use: chairs, beds, the fridge, the cooker, the TV, books, the radio, the bath, the swing, the campfire and more. Walk close and press the yellow button.</p>
             </>}
 
@@ -913,8 +1054,9 @@ export default function IslandGame() {
               <p className="il-note">You have <b>{coins ?? 0}</b> coins.</p>
               <div className="il-tabs">{(['Clothes', 'Home', 'Furniture', 'Transport', 'Pets'] as Tab[]).map((c) => <button key={c} type="button" className={tab === c ? 'on' : ''} onClick={() => setTab(c)}>{c}</button>)}</div>
               {tab === 'Furniture' && <><p className="il-note">{save.house ? 'Things for inside your home. Go inside and press Decorate to place them.' : 'Buy a house first (the Home tab), then you can put furniture inside.'}</p>
-                <div className="il-shop">{FURN.map((f) => { const id = `furn-${f.f}`; return (
-                  <div key={id} className="il-item"><img className="il-thumb" src={`/worlds/kenney/t/${f.f}.png`} alt="" /><span>{f.en}</span>
+                <div className="il-tabs il-tabs--sm">{FURN_CATS.map(([k, l]) => <button key={k} type="button" className={fcat === k ? 'on' : ''} onClick={() => setFcat(k)}>{l}</button>)}</div>
+                <div className="il-shop">{FURN_ALL.filter((f) => f.cat === fcat).map((f) => { const id = `furn-${f.f}`; return (
+                  <div key={id} className="il-item">{f.f.startsWith('x-') ? (thumbs[f.f] ? <img className="il-thumb" src={thumbs[f.f]} alt="" /> : <i className="il-thumb-wait" />) : <img className="il-thumb" src={`/worlds/kenney/t/${f.f}.png`} alt="" />}<span>{f.en}</span>
                     {owned(id) ? <button type="button" disabled>Bought</button> : <button type="button" className="buy" onClick={() => buy({ id, price: f.price, en: f.en })}><i className="il-coin" /> {f.price}</button>}
                   </div>); })}</div></>}
               {tab === 'Clothes' && <><p className="il-sub">Fur colour</p>
