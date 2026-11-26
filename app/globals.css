@@ -4908,3 +4908,30 @@ textarea.t-parent__url { width: 300px; font: inherit; font-size: 13px; }
 .il-plan--4 { grid-template: 1fr 1fr / 1fr 1fr; }
 .il-roomrow { display: flex; flex-direction: column; gap: 6px; padding: 10px 0; border-top: 1px dashed #D9CFBF; }
 .il-roomrow .il-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+/* Murly Island: меню як у Sims */
+.il-dock { position: absolute; right: 12px; bottom: 14px; z-index: 7; display: flex; align-items: flex-end; gap: 6px; padding: 8px; background: rgba(255,253,246,.96); border: 2.5px solid #1A1A1A; border-radius: 22px; box-shadow: 0 4px 0 #1A1A1A; }
+.il-dk { position: relative; display: flex; flex-direction: column; align-items: center; gap: 2px; width: 62px; padding: 6px 2px 5px; border: 0; border-radius: 14px; background: transparent; color: #1A1A1A; font: inherit; font-size: 12px; font-weight: 800; cursor: pointer; }
+.il-dk:hover { background: #F3EAD6; }
+.il-dk.on { background: #FFE08A; }
+.il-dk--go { background: #FFE08A; border: 2px solid #1A1A1A; }
+.il-dk--go:hover { background: #FFD45C; }
+.il-ico { width: 26px; height: 26px; flex: none; }
+.il-dk-sep { align-self: stretch; width: 2px; margin: 4px 2px; background: #E3D7BF; border-radius: 2px; }
+.il-dk .il-dot-on { position: absolute; top: 5px; left: 12px; margin: 0; }
+.il-badge { position: absolute; top: 2px; right: 8px; min-width: 18px; height: 18px; padding: 0 4px; border-radius: 99px; background: #E5484D; color: #fff; font-size: 11px; font-style: normal; font-weight: 800; line-height: 18px; text-align: center; }
+.il-pop .il-badge { position: static; margin-left: auto; }
+.il-pop { position: absolute; right: 0; bottom: calc(100% + 10px); display: grid; gap: 2px; min-width: 230px; padding: 8px; background: #FFFDF6; border: 2.5px solid #1A1A1A; border-radius: 18px; box-shadow: 0 4px 0 #1A1A1A; }
+.il-pop button { display: flex; align-items: center; gap: 10px; padding: 9px 10px; border: 0; border-radius: 12px; background: transparent; font: inherit; font-size: 15px; font-weight: 700; color: #1A1A1A; text-align: left; cursor: pointer; }
+.il-pop button:hover { background: #F3EAD6; }
+.il-pop .il-ico { width: 22px; height: 22px; }
+.il-menu-veil { position: absolute; inset: 0; z-index: 6; }
+.il-mini-map { top: 12px; }
+.il-tray { right: auto; }
+@media (max-width: 1200px) { .il-tray { left: 12px; transform: none; width: min(640px, calc(100vw - 480px)); bottom: 120px; } }
+.il.is-touch .il-dock { top: 10px; bottom: auto; right: 10px; padding: 5px; gap: 2px; border-radius: 18px; }
+.il.is-touch .il-dk { width: 48px; font-size: 10px; padding: 4px 1px; }
+.il.is-touch .il-ico { width: 22px; height: 22px; }
+.il.is-touch .il-pop { bottom: auto; top: calc(100% + 8px); }
+.il.is-touch .il-mini-map { top: 84px; }
+@media (pointer: coarse) { .il-dock { top: 10px; bottom: auto; right: 10px; } .il-pop { bottom: auto; top: calc(100% + 8px); } .il-mini-map { top: 84px; } }
+@media (max-width: 640px) { .il-dk span { display: none; } .il-dk { width: 40px; } .il-mini-map { top: 70px; } }
