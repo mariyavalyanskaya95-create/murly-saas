@@ -534,7 +534,7 @@ export class IslandScene {
     const right = mesh(new THREE.BoxGeometry(0.3, 0.4, ROOM.d), low); right.position.set(ROOM.w / 2, 0.2, 0); g.add(right);
     const front = mesh(new THREE.BoxGeometry(ROOM.w, 0.4, 0.3), low); front.position.set(0, 0.2, ROOM.d / 2); g.add(front);
     [-4.4, 4.4].forEach((wx) => { const w = mesh(new THREE.PlaneGeometry(2.2, 1.6), new THREE.MeshBasicMaterial({ color: '#BFE6FA' }), false); w.position.set(wx, 2.1, -ROOM.d / 2 + 0.16); g.add(w); const fr = box(2.4, 0.12, 0.1, '#FFFFFF'); fr.position.set(wx, 2.1, -ROOM.d / 2 + 0.18); g.add(fr); const fv = box(0.12, 1.7, 0.1, '#FFFFFF'); fv.position.set(wx, 2.1, -ROOM.d / 2 + 0.18); g.add(fv); });
-    if (title) { const sg = sign(title, '#1A1A1A', '#FFFFFF', 4.4); sg.position.set(0, 3, -ROOM.d / 2 + 0.3); g.add(sg); }
+    if (title) { const sg = sign(title, '#1A1A1A', '#FFFFFF', 4.4); sg.position.set(0, 3.15, -ROOM.d / 2 + 1.1); g.add(sg); }
     else { const pic = box(1.4, 1, 0.08, '#FFC53D'); pic.position.set(-ROOM.w / 2 + 0.2, 2.2, -2); pic.rotation.y = Math.PI / 2; g.add(pic); const pin = box(1.2, 0.8, 0.09, '#8EC9F5'); pin.position.set(-ROOM.w / 2 + 0.21, 2.2, -2); pin.rotation.y = Math.PI / 2; g.add(pin); }
     const door = box(0.12, 2.4, 1.4, '#8B5E34'); door.position.set(-ROOM.w / 2 + 0.2, 1.2, 3); g.add(door);
     const knob = sph(0.08, '#FFC53D', 8); knob.position.set(-ROOM.w / 2 + 0.3, 1.2, 2.5); g.add(knob);
