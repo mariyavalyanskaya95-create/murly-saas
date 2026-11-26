@@ -156,7 +156,7 @@ export default function IslandGame() {
   }, [isLoaded, isSignedIn]);
   const timer = useRef<number | null>(null);
   const persist = useCallback((s: Save) => {
-    setSave(s);
+    saveRef.current = s; setSave(s);
     try { localStorage.setItem(LS, JSON.stringify(s)); } catch { /* */ }
     if (timer.current) window.clearTimeout(timer.current);
     if (isSignedIn) timer.current = window.setTimeout(() => { void fetch('/api/game', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ game: 'island', data: s }) }).catch(() => {}); }, 800);
