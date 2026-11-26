@@ -839,7 +839,7 @@ export default function IslandGame() {
             {panel === 'cook' && <>
               <h2>Let&apos;s cook!</h2>
               {dish ? (() => { const r = RECIPES.find((x) => x.id === dish)!; return <>
-                <div className="il-catch"><span className="il-dish" style={{ background: r.c }} /><b>Your {r.en.replace(/^an? /, '')} is ready!</b></div>
+                <div className="il-catch"><span className="il-dish" style={{ background: r.c }} /><b>Your {r.en.replace(/^an? /, '')} {r.id === 'pancakes' ? 'are' : 'is'} ready!</b></div>
                 <button type="button" className="il-go" onClick={() => { eat(`dish:${r.id}`); setDish(null); setPanel(null); }}>Eat it now</button>
                 <button type="button" className="il-mini" onClick={() => { toBag(`dish:${r.id}`); setDish(null); setPanel(null); }}>Put it in my bag (a present for a friend!)</button>
               </>; })() : !recipe ? <>
