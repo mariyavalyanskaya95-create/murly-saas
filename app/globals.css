@@ -4856,3 +4856,13 @@ textarea.t-parent__url { width: 300px; font: inherit; font-size: 13px; }
 .il-plots > div { display: grid; gap: 6px; align-content: start; padding: 10px; border: 2px solid #1A1A1A; border-radius: 14px; background: #F4EBDD; }
 .il-plots .il-pick { padding: 5px 9px; font-size: 13px; }
 .il-book { font-size: 17px; line-height: 1.55; font-weight: 600; transform: none; }
+.il-tasks--low { top: auto; bottom: 90px; }
+.il.is-touch .il-tasks--low { bottom: 240px; }
+.il-chatlog { position: absolute; right: 12px; bottom: 16px; z-index: 4; width: min(300px, 60vw); display: grid; gap: 3px; padding: 8px 10px; background: rgba(255,253,246,.92); border: 2.5px solid #1A1A1A; border-radius: 14px; font-size: 13px; }
+.il-chatlog .me { color: #7C66DC; }
+.il-chatlog--in { position: static; width: auto; }
+.il.is-touch .il-chatlog { bottom: auto; top: 230px; }
+.il-player { display: grid; gap: 6px; padding: 10px 12px; border: 2px solid #1A1A1A; border-radius: 14px; background: #fff; margin-bottom: 8px; }
+.il-dot-on { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #C9C2B2; margin-right: 6px; border: 1.5px solid #1A1A1A; vertical-align: 0; }
+.il-dot-on.on { background: #30A46C; }
+.il-badge-f { margin-left: 6px; font-size: 11px; font-weight: 800; padding: 2px 8px; border-radius: 99px; background: #FFE0EA; border: 1.5px solid #1A1A1A; }
