@@ -315,13 +315,13 @@ export const INTERIORS: IDef[] = [
       ['tableRound', -3.6, 1.6, 0], ['chair', -4.7, 1.6, 1.57], ['chair', -2.5, 1.6, -1.57], ['tableRound', 1.4, 2.2, 0], ['chair', 0.3, 2.2, 1.57], ['chair', 2.5, 2.2, -1.57], ['tableRound', 4.8, 0, 0], ['chair', 4.8, 1.1, 3.14], ['chair', 4.8, -1.1, 0], ['pottedPlant', 6.2, -4.6, 0]] },
   { id: 'store', job: 'store', title: 'MURLY STORE', floor: ['#E7E2F7', '#DAD3F0'], wall: '#F3F0FF', npc: ['Mr Button', '#B79CF0', 0, -3.7, 'glasses-round'], spot: [0, -1.3],
     items: [...BAR(), ['bookcaseOpen', -5.8, -4.95, 0], ['bookcaseOpen', -4.8, -4.95, 0], ['bookcaseOpen', -3.8, -4.95, 0], ['cabinetTelevision', 3.4, -4.95, 0], ['televisionModern', 3.4, -4.95, 0, 7], ['speaker', 5.2, -4.95, 0], ['speaker', 1.8, -4.95, 0],
-      ['cardboardBoxClosed', 5.2, 1.2, 0.3], ['cardboardBoxOpen', 5.8, 2, 0], ['rugRound', 0, 1.3, 0], ['lampRoundFloor', 6.2, -2.5, 0], ['loungeChair', -4.5, 2, 1.57]] },
+      ['cardboardBoxClosed', 5.2, 1.2, 0.3], ['cardboardBoxOpen', 5.8, 2, 0], ['rugRound', 0, 1.3, 0], ['lampRoundFloor', 6.2, -2.5, 0], ['loungeChair', -4.8, -1.2, 1.57]] },
   { id: 'bakery', job: 'bakery', title: 'BAKERY', floor: ['#F3E2C8', '#E8D3B2'], wall: '#FFF6E8', npc: ['Baker Bob', '#F4A340', 0, -3.7, 'hat-chef'], spot: [0, -1.3],
     items: [...BAR(), ['toaster', -1.5, -2.6, 0, 0], ['kitchenStove', -4.6, -4.8, 0], ['kitchenStove', -3.5, -4.8, 0], ['kitchenCabinet', -2.4, -4.8, 0], ['kitchenFridgeLarge', 4.6, -4.8, 0], ['kitchenCabinet', 3.4, -4.8, 0], ['kitchenCoffeeMachine', 3.4, -4.8, 0, 9],
       ['tableCloth', 3.2, 2.2, 0], ['chair', 2.1, 2.2, 1.57], ['chair', 4.3, 2.2, -1.57], ['pottedPlant', -5.6, 4.4, 0]] },
   { id: 'boutique', job: 'boutique', title: 'BOUTIQUE', floor: ['#DDF0E4', '#CCE7D6'], wall: '#F2FBF5', npc: ['Miss Silk', '#F7A8C8', 0, -3.7, 'hat-flower'], spot: [0, -1.3],
     items: [...BAR(-2.6, 2), ['coatRackStanding', -4.8, -4.6, 0], ['coatRackStanding', -3.6, -4.6, 0], ['coatRackStanding', -2.4, -4.6, 0], ['coatRackStanding', 3.4, -4.6, 0], ['coatRackStanding', 4.6, -4.6, 0], ['coatRackStanding', 5.4, 0.4, 0],
-      ['loungeSofa', -2.4, 3.9, 3.14], ['rugRound', 1.2, 1.6, 0], ['bookcaseClosedWide', 1.8, -4.95, 0], ['pottedPlant', 6.2, -4.6, 0]] },
+      ['loungeSofa', -2.4, 3.9, 3.14], ['rugRound', 1.5, 2.0, 0], ['bookcaseClosedWide', 1.8, -4.95, 0], ['pottedPlant', 6.2, -4.6, 0]] },
   { id: 'house', job: 'guest', floor: ['#D9B38C', '#CFA67C'], wall: '#EAF2F8', npc: ['Grandma Rose', '#F7F3EA', 2, -1.6, 'glasses-round'], spot: [2, -0.3],
     items: [['loungeSofa', -1, -4.9, 0], ['tableCoffee', -1, -3.4, 0], ['loungeChair', 1.6, -4.4, -0.5], ['rugRound', -1, -3.2, 0], ['bookcaseOpen', 4.4, -4.95, 0], ['lampRoundFloor', -3.4, -4.9, 0], ['pottedPlant', 6.2, -4.6, 0],
       ['cabinetTelevision', -1, 3.2, 3.14], ['televisionModern', -1, 3.2, 3.14, 7], ['kitchenFridge', 6.1, 1.5, -1.57]] },
@@ -763,77 +763,85 @@ export class IslandScene {
   }
   dressRoom(id: string, g: THREE.Group) {
     const BZ = -ROOM.d / 2 + 0.17, LX = -ROOM.w / 2 + 0.17, R = Math.PI / 2;
+    const flagC = ['#E5484D', '#FFC53D', '#30A46C', '#3E7BFA', '#F76AA8', '#7C66DC'];
+    // гірлянда з прапорців через усю кімнату
+    [[-6.8, -5.2, 6.8, 4.5], [-6.8, 4.5, 6.8, -5.2]].forEach(([x0, z0, x1, z1], k) => { const n = 18; for (let i = 0; i < n; i++) { const t = (i + 0.5) / n; const x = x0 + (x1 - x0) * t, z = z0 + (z1 - z0) * t; const y = 3.45 - Math.sin(t * Math.PI) * 0.5; const sh = new THREE.Shape(); sh.moveTo(-0.18, 0); sh.lineTo(0.18, 0); sh.lineTo(0, -0.38); sh.closePath(); const f = new THREE.Mesh(new THREE.ShapeGeometry(sh), new THREE.MeshBasicMaterial({ color: flagC[(i + k) % flagC.length], side: THREE.DoubleSide })); f.position.set(x, y, z); f.rotation.y = Math.atan2(x1 - x0, z1 - z0) + Math.PI / 2; g.add(f); } });
+    // кульки в кутку
+    [[6.2, 4.3], [-6.2, -4.6]].forEach(([bx, bz], k) => { for (let i = 0; i < 3; i++) { const b = sph(0.28, flagC[(i + k * 2) % flagC.length], 14); b.scale.y = 1.15; b.position.set(bx + (i - 1) * 0.35, 2.4 + (i % 2) * 0.35, bz); g.add(b); const st = cyl(0.006, 0.006, 2.2, '#FFFFFF', 4); st.position.set(bx + (i - 1) * 0.2, 1.2, bz); g.add(st); } });
+    // великий кольоровий килим
+    const cv = document.createElement('canvas'); cv.width = 256; cv.height = 256; const x2 = cv.getContext('2d')!; flagC.forEach((c, i) => { x2.fillStyle = c; x2.beginPath(); x2.arc(128, 128, 128 - i * 20, 0, Math.PI * 2); x2.fill(); }); const rt = new THREE.CanvasTexture(cv); rt.colorSpace = THREE.SRGBColorSpace;
+    if (id !== 'home') { const rug = new THREE.Mesh(new THREE.CircleGeometry(1.6, 40), new THREE.MeshBasicMaterial({ map: rt })); rug.rotation.x = -Math.PI / 2; rug.position.set(2.5, 0.025, 2.2); g.add(rug); }
     if (id === 'post') {
-      this.wallpaper(g, wallpaperTex('stripes', '#F7D9D6', '#F2C6C0'));
-      this.art(g, posterTex({ title: 'SEND A SMILE', lines: ['Letters', 'Parcels', 'Postcards'], bg: '#FFF3A6', icons: [['envelope', '#FFFFFF'], ['heart', '#E5484D']] }), 1.2, 1.6, -2.2, 2.0, BZ);
-      this.art(g, posterTex({ title: 'ISLAND MAP', lines: ['Sunny Street', 'Oak Street', 'Beach Road'], bg: '#BFE6FA', icons: [['star', '#FFC53D'], ['fish', '#F5862D'], ['sun', '#FFC53D']] }), 1.2, 1.6, 2.2, 2.0, BZ);
-      this.art(g, graffitiTex('POST!', ['#E5484D', '#FFC53D', '#3E7BFA']), 3.6, 1.35, LX, 2.1, -1.6, R);
+      this.wallpaper(g, wallpaperTex('stripes', '#FFD6D1', '#FFB3AA'));
+      this.art(g, posterTex({ title: 'SEND A SMILE', lines: ['Letters', 'Parcels', 'Postcards'], bg: '#FFF3A6', icons: [['envelope', '#FFFFFF'], ['heart', '#E5484D']] }), 1.5, 2.0, -2.2, 2.0, BZ);
+      this.art(g, posterTex({ title: 'ISLAND MAP', lines: ['Sunny Street', 'Oak Street', 'Beach Road'], bg: '#BFE6FA', icons: [['star', '#FFC53D'], ['fish', '#F5862D'], ['sun', '#FFC53D']] }), 1.5, 2.0, 2.2, 2.0, BZ);
+      this.art(g, graffitiTex('POST!', ['#E5484D', '#FFC53D', '#3E7BFA']), 5.2, 1.95, LX, 2.3, -1.6, R);
       const mb = box(0.7, 1.1, 0.6, '#E5484D'); mb.position.set(6.2, 0.55, -3.2); g.add(mb); const top = cyl(0.35, 0.35, 0.6, '#E5484D', 14); top.rotation.z = R; top.position.set(6.2, 1.1, -3.2); g.add(top);
       this.lamps(g, [-1.5, 1.5], -2.6, '#E5484D');
     }
     if (id === 'cafe') {
-      this.wallpaper(g, wallpaperTex('dots', '#FFF1F6', '#F7B7C8'));
+      this.wallpaper(g, wallpaperTex('dots', '#FFE3EE', '#FF8FB8'));
       this.art(g, chalkTex('MENU', ['Sandwich|3', 'Hot chocolate|2', 'Lemonade|2', 'Tea|1', 'Cookie|1']), 2.2, 1.65, -2.3, 2.05, BZ);
-      this.art(g, posterTex({ title: 'CAT CAFE', lines: ['Fresh every day'], bg: '#FFE0EA', icons: [['cup', '#FFFFFF'], ['cat', '#F4A340']] }), 1.2, 1.6, 2.3, 2.0, BZ);
-      this.art(g, neonTex('COFFEE', '#FF7EB6'), 2.6, 0.8, LX, 2.5, -1.4, R);
-      this.art(g, graffitiTex('YUM!', ['#F76AA8', '#FFC53D', '#30A46C']), 2.4, 0.9, LX, 1.3, -1.4, R);
+      this.art(g, posterTex({ title: 'CAT CAFE', lines: ['Fresh every day'], bg: '#FFE0EA', icons: [['cup', '#FFFFFF'], ['cat', '#F4A340']] }), 1.5, 2.0, 2.3, 2.0, BZ);
+      this.art(g, neonTex('COFFEE', '#FF7EB6'), 1.9, 0.6, LX, 3.05, 3.0, R);
+      this.art(g, graffitiTex('YUM!', ['#F76AA8', '#FFC53D', '#30A46C']), 5.2, 1.95, LX, 2.3, -1.4, R);
       [[-3.6, 1.6], [1.4, 2.2], [4.8, 0]].forEach(([x, z]) => { const c = cyl(0.08, 0.06, 0.14, '#FFFFFF', 10); c.position.set(x + 0.15, 0.97, z); g.add(c); const cake = sph(0.1, '#F7A1B5', 8); cake.position.set(x - 0.2, 0.97, z + 0.1); g.add(cake); });
       this.lamps(g, [-1.5, 0, 1.5], -2.6, '#F76AA8');
     }
     if (id === 'store') {
-      this.wallpaper(g, wallpaperTex('checks', '#F3F0FF', '#E6DEFF'));
-      this.art(g, posterTex({ title: 'BIG SALE!', lines: ['Bikes', 'Toys', 'Pets'], bg: '#E5484D', fg: '#FFFFFF', icons: [['star', '#FFC53D'], ['star', '#FFFFFF']] }), 1.2, 1.6, -2.2, 2.0, BZ);
-      this.art(g, posterTex({ title: 'NEW TOYS', lines: ['Fun for everyone'], bg: '#FFF3A6', icons: [['balloon', '#3E7BFA'], ['balloon', '#F76AA8'], ['star', '#30A46C']] }), 1.2, 1.6, 0.4, 2.0, BZ);
-      this.art(g, graffitiTex('MURLY', ['#7C66DC', '#F76AA8', '#FFC53D']), 3.8, 1.4, LX, 2.1, -1.4, R);
+      this.wallpaper(g, wallpaperTex('checks', '#ECE6FF', '#C9B8FF'));
+      this.art(g, posterTex({ title: 'BIG SALE!', lines: ['Bikes', 'Toys', 'Pets'], bg: '#E5484D', fg: '#FFFFFF', icons: [['star', '#FFC53D'], ['star', '#FFFFFF']] }), 1.5, 2.0, -2.2, 2.0, BZ);
+      this.art(g, posterTex({ title: 'NEW TOYS', lines: ['Fun for everyone'], bg: '#FFF3A6', icons: [['balloon', '#3E7BFA'], ['balloon', '#F76AA8'], ['star', '#30A46C']] }), 1.5, 2.0, 0.4, 2.0, BZ);
+      this.art(g, graffitiTex('MURLY', ['#7C66DC', '#F76AA8', '#FFC53D']), 5.2, 1.95, LX, 2.3, -1.4, R);
       this.goods(g, -6.15, -3.5, -4.85, [0.45, 1.05, 1.65], ['#E5484D', '#FFC53D', '#3E7BFA', '#30A46C', '#F76AA8', '#7C66DC']);
       this.lamps(g, [-1.5, 1.5], -2.6, '#7C66DC');
     }
     if (id === 'bakery') {
-      this.wallpaper(g, wallpaperTex('stripes', '#FFF6E8', '#FFE4A8'));
-      this.art(g, posterTex({ title: 'FRESH BREAD', lines: ['Every morning'], bg: '#F3D27A', icons: [['bread', '#C68A4A'], ['bread', '#E8B46A']] }), 1.2, 1.6, -1.1, 2.0, BZ);
+      this.wallpaper(g, wallpaperTex('stripes', '#FFF1CC', '#FFD36E'));
+      this.art(g, posterTex({ title: 'FRESH BREAD', lines: ['Every morning'], bg: '#F3D27A', icons: [['bread', '#C68A4A'], ['bread', '#E8B46A']] }), 1.5, 2.0, -1.1, 2.0, BZ);
       this.art(g, chalkTex('TODAY', ['Chocolate cake|5', 'Cupcake|2', 'Bread|1', 'Cookies|1']), 2.0, 1.5, 1.6, 2.05, BZ);
-      this.art(g, graffitiTex('YUMMY', ['#F5862D', '#F76AA8', '#7A4E25']), 3.6, 1.35, LX, 2.1, -1.4, R);
+      this.art(g, graffitiTex('YUMMY', ['#F5862D', '#F76AA8', '#7A4E25']), 5.2, 1.95, LX, 2.3, -1.4, R);
       this.goods(g, 2.6, 4.2, -4.85, [1.15], ['#C68A4A', '#E8B46A', '#8B5E34'], 'bread');
       this.goods(g, -1.9, 1.9, -2.6, [1.07], ['#C68A4A', '#E8B46A'], 'bread');
       this.lamps(g, [-1.5, 1.5], -2.6, '#F5862D');
     }
     if (id === 'boutique') {
-      this.wallpaper(g, wallpaperTex('hearts', '#F2FBF5', '#BDE5C4'));
-      this.art(g, posterTex({ title: 'NEW STYLE', lines: ['Spring collection'], bg: '#F7B7C8', icons: [['shirt', '#3E7BFA'], ['shirt', '#FFC53D'], ['shirt', '#30A46C']] }), 1.2, 1.6, 0.2, 2.0, BZ);
-      this.art(g, graffitiTex('FASHION', ['#F76AA8', '#7C66DC', '#30A46C']), 3.8, 1.3, LX, 2.3, -2.6, R);
+      this.wallpaper(g, wallpaperTex('hearts', '#E2F7EA', '#FF9CC2'));
+      this.art(g, posterTex({ title: 'NEW STYLE', lines: ['Spring collection'], bg: '#F7B7C8', icons: [['shirt', '#3E7BFA'], ['shirt', '#FFC53D'], ['shirt', '#30A46C']] }), 1.5, 2.0, 0.2, 2.0, BZ);
+      this.art(g, graffitiTex('FASHION', ['#F76AA8', '#7C66DC', '#30A46C']), 5.2, 1.95, LX, 2.3, -2.6, R);
       const mir = new THREE.Mesh(new THREE.PlaneGeometry(1, 1.9), new THREE.MeshStandardMaterial({ color: '#DCEFFA', roughness: 0.05, metalness: 0.3 })); mir.position.set(LX + 0.02, 1.2, 0.6); mir.rotation.y = R; g.add(mir);
       const fr = box(0.06, 2.05, 1.15, '#FFC53D'); fr.position.set(LX - 0.01, 1.2, 0.6); g.add(fr);
       [[-4.8, -4.6], [-3.6, -4.6], [-2.4, -4.6], [3.4, -4.6], [4.6, -4.6], [5.4, 0.4]].forEach(([x, z], i) => { const sh = box(0.32, 0.4, 0.06, ['#F76AA8', '#3E7BFA', '#FFC53D', '#30A46C', '#7C66DC', '#E5484D'][i]); sh.position.set(x, 1.25, z + 0.2); g.add(sh); });
       this.lamps(g, [-1, 1], -2.6, '#30A46C');
     }
     if (id === 'house') {
-      this.wallpaper(g, wallpaperTex('waves', '#EAF2F8', '#D3E4F2'));
+      this.wallpaper(g, wallpaperTex('waves', '#E3F0FA', '#A9CDEB'));
       this.art(g, posterTex({ title: 'HOME SWEET HOME', bg: '#FFF8D6', icons: [['heart', '#E5484D'], ['cat', '#F7F3EA'], ['heart', '#F76AA8']], w: 512, h: 256 }), 2, 1, -1, 2.6, BZ);
       [[-5, 1.9, '#F4A340'], [-5, 0.5, '#9AA3AE']].forEach(([z, y, c]) => this.art(g, posterTex({ title: '', bg: '#FFFFFF', icons: [['cat', c as string]], w: 256, h: 256, frame: '#8B5E34' }), 0.7, 0.7, LX, y as number + 0.2, z as number + 3, R));
       const clock = cyl(0.35, 0.35, 0.06, '#FFFFFF', 24); clock.rotation.x = R; clock.position.set(2.8, 2.6, BZ); g.add(clock); const hand1 = box(0.03, 0.22, 0.02, '#1A1A1A'); hand1.position.set(2.8, 2.7, BZ + 0.05); g.add(hand1); const hand2 = box(0.16, 0.03, 0.02, '#1A1A1A'); hand2.position.set(2.87, 2.6, BZ + 0.05); g.add(hand2);
     }
     if (id === 'lighthouse') {
-      this.wallpaper(g, wallpaperTex('waves', '#FFFFFF', '#DCE9F7'));
-      this.art(g, posterTex({ title: 'KEEP THE LIGHT ON', lines: ['Ships need us'], bg: '#BFE6FA', icons: [['anchor', '#3E7BFA'], ['fish', '#F5862D']] }), 1.2, 1.6, -1.2, 2.0, BZ);
-      this.art(g, graffitiTex('AHOY!', ['#3E7BFA', '#E5484D', '#FFFFFF']), 3.2, 1.2, LX, 2.4, -2.4, R);
+      this.wallpaper(g, wallpaperTex('waves', '#EAF5FF', '#8EC9F5'));
+      this.art(g, posterTex({ title: 'KEEP THE LIGHT ON', lines: ['Ships need us'], bg: '#BFE6FA', icons: [['anchor', '#3E7BFA'], ['fish', '#F5862D']] }), 1.5, 2.0, -1.2, 2.0, BZ);
+      this.art(g, graffitiTex('AHOY!', ['#3E7BFA', '#E5484D', '#FFFFFF']), 5.2, 1.95, LX, 2.3, -2.4, R);
       const wheel = new THREE.Group(); wheel.add(mesh(new THREE.TorusGeometry(0.5, 0.06, 8, 24), toon('#8B5E34'))); for (let i = 0; i < 8; i++) { const sp = box(0.05, 1.3, 0.05, '#8B5E34'); sp.rotation.z = (i / 8) * Math.PI; wheel.add(sp); } wheel.position.set(LX + 0.1, 1.6, 1); wheel.rotation.y = R; g.add(wheel);
     }
     if (id === 'home') {
-      this.wallpaper(g, wallpaperTex('stars', '#F3E7D3', '#EBD9BC'));
+      this.wallpaper(g, wallpaperTex('stars', '#FFF3DA', '#FFD36E'));
       this.art(g, posterTex({ title: 'MY HOME', bg: '#FFE08A', icons: [['heart', '#E5484D'], ['star', '#FFFFFF']], w: 512, h: 256 }), 2, 1, 0, 3.0, BZ);
     }
   }
   enterRoom(id: string) {
     const o = this.origins[id]; if (!o || this.inside) return;
     this.outPos.copy(this.heroPos); this.inside = true; this.roomId = id; this.cur = o;
-    this.heroPos.set(o.x - ROOM.w / 2 + 2.2, 0, o.z + 3); this.vel.set(0, 0, 0); this.camYaw = 0.35; this.camPitch = 0.75; this.camDist = 12; this.cam.position.set(o.x, 10, o.z + 14);
+    this.heroPos.set(o.x - ROOM.w / 2 + 2.2, 0, o.z + 3); this.vel.set(0, 0, 0); this.camYaw = 0.3; this.camPitch = 0.62; this.camDist = 8.5; this.cam.position.set(o.x, 8, o.z + 11);
     if (this.pet) this.petPos.copy(this.heroPos); this.goal = null; if (this.goalRing) this.goalRing.visible = false;
   }
   enterHome() { this.enterRoom('home'); }
   exitHome() {
     if (!this.inside) return; this.inside = false; this.roomId = null; this.decorate = false; this.placing = null;
     this.heroPos.copy(this.outPos); this.heroPos.y = 0; this.vel.set(0, 0, 0); this.camYaw = this.heroRot + Math.PI; this.camPitch = 0.42; this.camDist = 9;
-    this.cam.position.set(this.heroPos.x, 6, this.heroPos.z + 9); if (this.pet) this.petPos.copy(this.heroPos); this.goal = null;
+    this.cam.position.set(this.heroPos.x + Math.sin(this.camYaw) * 9, 5, this.heroPos.z + Math.cos(this.camYaw) * 9); if (this.pet) this.petPos.copy(this.heroPos); this.goal = null;
   }
   async setRoom(list: RoomItem[]) {
     const seq = ++this.roomSeq; this.roomList = list;
@@ -1062,8 +1070,8 @@ export class IslandScene {
     else if (speed > 1 && !this.drag && (Math.abs(this.joy.x) + Math.abs(this.joy.y) > 0 || k.size)) { let d = (this.heroRot + Math.PI) - this.camYaw; d = Math.atan2(Math.sin(d), Math.cos(d)); this.camYaw += d * (1 - Math.exp(-1.2 * dt)); }
     if (this.portrait) {
       const f = new THREE.Vector3(Math.sin(this.heroRot), 0, Math.cos(this.heroRot)); const rgt = new THREE.Vector3(Math.cos(this.heroRot), 0, -Math.sin(this.heroRot));
-      const tg = this.heroPos.clone().add(new THREE.Vector3(0, 1.0, 0)).addScaledVector(rgt, -this.portraitShift);
-      const cp = this.heroPos.clone().addScaledVector(f, 4.2).add(new THREE.Vector3(0, 1.6, 0)).addScaledVector(rgt, -this.portraitShift);
+      const tg = this.heroPos.clone().add(new THREE.Vector3(0, 1.0, 0)).addScaledVector(rgt, this.portraitShift);
+      const cp = this.heroPos.clone().addScaledVector(f, 4.2).add(new THREE.Vector3(0, 1.6, 0)).addScaledVector(rgt, this.portraitShift);
       this.cam.position.lerp(cp, 1 - Math.exp(-6 * dt)); this.cam.lookAt(tg);
       this.hero.root.rotation.y = this.heroRot + Math.sin(t * 0.8) * 0.5;
     } else {
