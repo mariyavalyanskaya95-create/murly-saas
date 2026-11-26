@@ -1,4 +1,5 @@
 'use client';
+import { HwFileList, HwUpload, type HwFile } from '../HwFiles';
 import { useMemo, useState } from 'react';
 import Icon from '../Icon';
 import QuizGame from '../games/QuizGame';
@@ -62,7 +63,7 @@ function HomeworkRow({ h, words, open, onToggle, onPatch, passOk = false }: {
   const [err, setErr] = useState(false);
   const overdue = h.status === 'assigned' && h.due && new Date(h.due) < new Date();
 
-  const items = useMemo(() => words.map((w) => (h.direction === 'uk' ? { q: w.uk, a: w.en } : { q: w.en, a: w.uk })), [words, h.direction]);
+  const items = useMemo(() => (h.wordList?.length ? h.wordList : words).map((w) => (h.direction === 'uk' ? { q: w.uk, a: w.en } : { q: w.en, a: w.uk })), [words, h.direction]);
   const onFinish = async (score: number, total: number) => {
     onPatch({ score, total, status: h.status === 'checked' ? 'checked' : 'done' });
     gainXp(`hw:${h.id}:game`, Math.max(10, Math.min(50, Math.round(total ? (score / total) * 50 : 20))), 'homework', 'homework');
@@ -92,6 +93,7 @@ function HomeworkRow({ h, words, open, onToggle, onPatch, passOk = false }: {
       {open && (
         <div className="s-hw__body">
           {h.instructions && <p className="t-hw__text">{h.instructions.split(/(https:\/\/murly\.com\.ua\/[^\s]+)/).map((x, i) => (i % 2 ? <a key={i} href={x} target="_blank" rel="noopener">{x.replace('https://murly.com.ua', 'murly.com.ua')}</a> : x))}</p>}
+          {h.files?.length ? <HwFileList files={h.files} /> : null}
           {passOk && h.status === 'assigned' && !h.passUsed && <PassButton h={h} onPatch={onPatch} />}
           {h.feedback && <div className="s-hw__fb"><small>{t({ uk: 'Коментар учителя', ru: 'Комментарий учителя', en: 'Teacher’s comment' })}</small><p>{h.feedback}</p></div>}
           {h.kind === 'game' && isQuest(h.game) && (
@@ -128,6 +130,7 @@ function HomeworkRow({ h, words, open, onToggle, onPatch, passOk = false }: {
               <button className="mu-btn mu-btn--lime" type="submit" disabled={saving}>{saving ? t({ uk: 'Надсилаю…', ru: 'Отправляю…', en: 'Sending…' }) : h.answer ? t({ uk: 'Оновити відповідь', ru: 'Обновить ответ', en: 'Update answer' }) : t({ uk: 'Здати', ru: 'Сдать', en: 'Hand in' })}</button>
             </form>
           )}
+          {h.kind !== 'game' && h.kind !== 'mock' && <StudentFiles h={h} onPatch={onPatch} />}
           <HomeworkNote h={h} onPatch={onPatch} />
           {err && <p className="t-neg">{t({ uk: 'Не вдалося зберегти. Перевір інтернет і спробуй ще раз.', ru: 'Не удалось сохранить. Проверь интернет и попробуй ещё раз.', en: 'Could not save. Check your internet and try again.' })}</p>}
         </div>
@@ -235,6 +238,29 @@ function PassButton({ h, onPatch }: { h: StudentHomework; onPatch: (p: Partial<S
     <div className="s-pass">
       <button type="button" className="mu-textlink" disabled={state === 'busy'} onClick={() => setState('ask')}>{t({ uk: 'Не встигаю: +1 день за 30 монеток', ru: 'Не успеваю: +1 день за 30 монеток', en: 'Need more time: +1 day for 30 coins' })}</button>
       {state !== 'idle' && state !== 'busy' && <small className="t-muted">{state}</small>}
+    </div>
+  );
+}
+
+// Фото чи файли від учня: сфотографував зошит, прикріпив документ. Зберігається одразу
+function StudentFiles({ h, onPatch }: { h: StudentHomework; onPatch: (p: Partial<StudentHomework>) => void }) {
+  const t = useT();
+  const [err, setErr] = useState(false);
+  const save = async (files: HwFile[]) => {
+    setErr(false);
+    const r = await fetch('/api/student', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ op: 'homeworkFiles', id: h.id, files }) }).catch(() => null);
+    const d = r ? await r.json().catch(() => ({})) : {};
+    if (!r?.ok) { setErr(true); return; }
+    onPatch({ studentFiles: d.files, status: d.status ?? h.status });
+  };
+  const list = h.studentFiles ?? [];
+  return (
+    <div className="hw-attach hw-attach--student">
+      <b>{t({ uk: 'Фото чи файл з відповіддю', ru: 'Фото или файл с ответом', en: 'Photo or file with your answer' })}</b>
+      <span className="t-muted">{t({ uk: 'Писав у зошиті? Сфотографуй і додай сюди, учитель побачить.', ru: 'Писал в тетради? Сфотографируй и добавь сюда, учитель увидит.', en: 'Wrote it in your notebook? Take a photo and add it here, your teacher will see it.' })}</span>
+      <HwFileList files={list} onRemove={(i) => void save(list.filter((_, k) => k !== i))} />
+      <HwUpload count={list.length} onAdd={(f) => void save([...list, ...f])} />
+      {err && <p className="t-neg">{t({ uk: 'Не вдалося зберегти. Спробуй ще раз.', ru: 'Не удалось сохранить. Попробуй ещё раз.', en: 'Could not save. Please try again.' })}</p>}
     </div>
   );
 }
