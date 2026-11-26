@@ -4830,3 +4830,24 @@ textarea.t-parent__url { width: 300px; font: inherit; font-size: 13px; }
 .s-island__stats { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 0; }
 .s-island__stats li { padding: 6px 10px; border: 1.5px solid var(--mu-ink); border-radius: 12px; background: #fff; font-size: 14px; }
 .s-island .mu-btn { justify-self: start; }
+.il-needs { position: absolute; left: 12px; bottom: 16px; z-index: 4; background: rgba(255,253,246,.94); border: 2.5px solid #1A1A1A; border-radius: 14px; padding: 8px 10px; display: grid; gap: 4px; width: 170px; font-size: 12px; font-weight: 800; }
+.il-needs > b { font-size: 14px; }
+.il-needs div { display: grid; grid-template-columns: 46px 1fr; align-items: center; gap: 6px; }
+.il-needs i { display: block; height: 9px; border: 2px solid #1A1A1A; border-radius: 99px; background: #fff; overflow: hidden; }
+.il-needs em { display: block; height: 100%; transition: width .6s; }
+.il.is-touch .il-needs { bottom: auto; top: 112px; left: 12px; width: 140px; }
+.il-caption { position: absolute; left: 50%; bottom: 18px; transform: translateX(-50%); z-index: 5; max-width: min(620px, 70vw); background: #fff; border: 2.5px solid #1A1A1A; border-radius: 16px; padding: 8px 12px; font-weight: 700; font-size: 15px; box-shadow: 0 3px 0 #1A1A1A; }
+.il.is-touch .il-caption { bottom: 180px; }
+.il-acting { display: inline-block; width: 14px; height: 14px; margin-left: 8px; border: 3px solid #FFC53D; border-top-color: transparent; border-radius: 50%; animation: ilspin 0.8s linear infinite; vertical-align: -2px; }
+@keyframes ilspin { to { transform: rotate(360deg); } }
+.il-food { width: 46px; height: 46px; border-radius: 50% !important; }
+.il-dish { display: inline-block; width: 54px; height: 32px; border-radius: 50% / 40% !important; border: 2.5px solid #1A1A1A; box-shadow: inset 0 -8px 0 rgba(255,255,255,.6); }
+.il-snacks { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 12px; padding-top: 10px; border-top: 2px dashed #C9C2B2; font-size: 13px; font-weight: 700; }
+.il-snacks button { font: inherit; padding: 5px 10px; border: 2px solid #1A1A1A; border-radius: 99px; background: #FFF3C4; cursor: pointer; }
+.il-snacks .il-coin { width: 14px; height: 14px; vertical-align: -2px; }
+.il-hearts { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+.il-hearts i { width: 22px; height: 20px; background: #D5D9DE; clip-path: path('M11 19 C-6 8 3 -3 11 4 C19 -3 28 8 11 19Z'); }
+.il-hearts i.on { background: #E5484D; }
+.il-name { display: grid; gap: 4px; font-weight: 800; font-size: 13px; margin-bottom: 8px; }
+.il-name input { font: inherit; font-size: 16px; padding: 8px 12px; border: 2.5px solid #1A1A1A; border-radius: 12px; }
+@media (max-width: 720px) { .il-hud--r .il-chip { padding: 6px 10px; font-size: 12px; } }
