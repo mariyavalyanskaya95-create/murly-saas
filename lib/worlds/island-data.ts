@@ -268,9 +268,10 @@ export const MISSIONS: { id: string; en: string; n: number }[] = [
 ];
 export function todayKey() { const d = new Date(); return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`; }
 export function dailyFor(date: string): Daily {
-  let h = 0; for (const ch of date) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
-  const ids: string[] = []; const pool = MISSIONS.map((m) => m.id);
-  while (ids.length < 3) { h = (h * 1103515245 + 12345) >>> 0; const id = pool[h % pool.length]; if (!ids.includes(id)) ids.push(id); }
+  let h = 7; for (const ch of date) h = (Math.imul(h, 31) + ch.charCodeAt(0)) >>> 0;
+  const pool = MISSIONS.map((m) => m.id); const ids: string[] = [];
+  // детермінований вибір трьох різних завдань без нескінченного циклу
+  for (let i = 0; i < 3; i++) { h = (Math.imul(h, 1103515245) + 12345) >>> 0; const rest = pool.filter((x) => !ids.includes(x)); ids.push(rest[(h >>> 8) % rest.length]); }
   return { date, ids, prog: {} };
 }
 
