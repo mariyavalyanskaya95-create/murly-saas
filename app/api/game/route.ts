@@ -30,6 +30,18 @@ export async function POST(req: Request) {
   if (!b.game || !GAMES.has(b.game) || typeof b.data !== 'object') return NextResponse.json({ error: 'bad_request' }, { status: 400 });
   try {
     const now = new Date().toISOString();
+    // острів: куплені речі ніколи не зникають, навіть якщо стара вкладка надішле старе збереження
+    if (b.game === 'island') {
+      const d = b.data as { owned?: unknown; house?: unknown };
+      const prev = await db.query(`game_saves?user_id=eq.${enc(userId)}&game=eq.island&select=data`).catch(() => []);
+      const old = (prev[0]?.data ?? null) as { owned?: unknown; house?: unknown } | null;
+      if (old) {
+        const a = Array.isArray(old.owned) ? old.owned.filter((x): x is string => typeof x === 'string') : [];
+        const c = Array.isArray(d.owned) ? d.owned.filter((x): x is string => typeof x === 'string') : [];
+        d.owned = [...new Set([...c, ...a])];
+        d.house = Math.max(Number(d.house) || 0, Number(old.house) || 0);
+      }
+    }
     await db.upsert('game_saves', [{ user_id: userId, game: b.game, data: b.data, updated_at: now }]);
     return NextResponse.json({ ok: true, updatedAt: now });
   } catch (e) { console.error(e); return NextResponse.json({ error: 'db_error' }, { status: 500 }); }
