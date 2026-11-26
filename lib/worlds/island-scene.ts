@@ -244,7 +244,20 @@ function makePet(id: string): THREE.Group {
   return g;
 }
 
+// свої речі для дому, намальовані кодом
+function codeItem(f: string): THREE.Group {
+  const g = new THREE.Group();
+  if (f === 'x-piano') { const b = box(2, 1.1, 0.8, '#2B2B2B'); b.position.y = 0.75; g.add(b); const top = box(2, 0.9, 0.25, '#2B2B2B'); top.position.set(0, 1.7, -0.28); g.add(top); const keys = box(1.8, 0.06, 0.3, '#FFFFFF'); keys.position.set(0, 1.33, 0.28); g.add(keys); for (let i = 0; i < 9; i++) { const k = box(0.08, 0.05, 0.17, '#111'); k.position.set(-0.8 + i * 0.2, 1.37, 0.2); g.add(k); } [-0.9, 0.9].forEach((x) => { const l = box(0.12, 0.4, 0.12, '#2B2B2B'); l.position.set(x, 0.2, 0.25); g.add(l); }); const st = box(0.9, 0.5, 0.4, '#6B4F2A'); st.position.set(0, 0.25, 0.9); g.add(st); }
+  if (f === 'x-easel') { [-0.35, 0.35].forEach((x) => { const l = cyl(0.04, 0.04, 2, '#8B5E34', 6); l.position.set(x, 1, 0); l.rotation.z = x > 0 ? -0.12 : 0.12; g.add(l); }); const bl = cyl(0.04, 0.04, 1.9, '#8B5E34', 6); bl.position.set(0, 0.95, -0.35); bl.rotation.x = 0.3; g.add(bl); const cv = box(1, 0.8, 0.05, '#FFFFFF'); cv.position.set(0, 1.35, 0.05); cv.rotation.x = -0.12; g.add(cv); ['#E5484D', '#FFC53D', '#3E7BFA', '#30A46C'].forEach((c, i) => { const d = sph(0.08, c, 8); d.scale.z = 0.3; d.position.set(-0.3 + i * 0.2, 1.4 - (i % 2) * 0.15, 0.1); g.add(d); }); }
+  if (f === 'x-aquarium') { const st = box(1.6, 0.7, 0.7, '#8B5E34'); st.position.y = 0.35; g.add(st); const gl = mesh(new THREE.BoxGeometry(1.5, 0.9, 0.6), new THREE.MeshPhysicalMaterial({ color: '#8EE0F5', transparent: true, opacity: 0.45, roughness: 0.05 }), false); gl.position.y = 1.15; g.add(gl); const sand = box(1.45, 0.08, 0.55, '#F3DFA7'); sand.position.y = 0.75; g.add(sand); ['#F5862D', '#FFC53D', '#3E7BFA'].forEach((c, i) => { const fi = sph(0.08, c, 8); fi.scale.set(1.5, 1, 0.6); fi.position.set(-0.4 + i * 0.4, 1.0 + (i % 2) * 0.2, 0); fi.name = 'fishy'; g.add(fi); }); const pl = mesh(new THREE.ConeGeometry(0.08, 0.5, 5), toon('#30A46C')); pl.position.set(0.55, 1.0, 0); g.add(pl); }
+  if (f === 'x-drums') { const bd = cyl(0.45, 0.45, 0.5, '#E5484D', 18); bd.rotation.x = Math.PI / 2; bd.position.set(0, 0.45, 0); g.add(bd); [[-0.55, 0.75], [0.55, 0.75]].forEach(([x, y]) => { const t = cyl(0.22, 0.22, 0.25, '#E5484D', 14); t.position.set(x, y, 0.2); g.add(t); const sk = cyl(0.21, 0.21, 0.02, '#FFFFFF', 14); sk.position.set(x, y + 0.13, 0.2); g.add(sk); }); const cy = cyl(0.3, 0.3, 0.02, '#FFC53D', 16); cy.position.set(0.8, 1.3, -0.2); g.add(cy); const cp = cyl(0.02, 0.02, 1.3, '#B8C2CC', 6); cp.position.set(0.8, 0.65, -0.2); g.add(cp); const sto = cyl(0.2, 0.2, 0.45, '#2B2B2B', 12); sto.position.set(0, 0.22, 0.8); g.add(sto); }
+  if (f === 'x-arcade') { const b = box(0.9, 1.9, 0.8, '#7C66DC'); b.position.y = 0.95; g.add(b); const sc = box(0.7, 0.55, 0.05, '#1E2A4A'); sc.position.set(0, 1.45, 0.41); g.add(sc); const glow = box(0.62, 0.45, 0.02, '#30A46C'); glow.position.set(0, 1.45, 0.44); (glow.material as THREE.MeshToonMaterial).emissive = new THREE.Color('#30A46C'); g.add(glow); const pnl = box(0.9, 0.1, 0.4, '#2B2B2B'); pnl.position.set(0, 1.0, 0.5); g.add(pnl); const st = sph(0.06, '#E5484D', 8); st.position.set(-0.2, 1.1, 0.5); g.add(st); [0.1, 0.25].forEach((x) => { const bt = sph(0.05, '#FFC53D', 8); bt.position.set(x, 1.07, 0.55); g.add(bt); }); }
+  if (f === 'x-telescope') { [-1, 0, 1].forEach((k) => { const l = cyl(0.03, 0.03, 1.2, '#55606E', 6); const a = (k / 3) * Math.PI * 2; l.position.set(Math.sin(a) * 0.25, 0.55, Math.cos(a) * 0.25); l.rotation.set(Math.cos(a) * 0.25, 0, -Math.sin(a) * 0.25); g.add(l); }); const tb = cyl(0.12, 0.18, 1.3, '#3E7BFA', 14); tb.position.set(0, 1.35, 0.1); tb.rotation.x = 1.0; g.add(tb); }
+  return g;
+}
+
 async function yardItem(id: string): Promise<THREE.Object3D | null> {
+  if (id === 'yard-garden') { const g = new THREE.Group(); [-1.4, 0, 1.4].forEach((x, i) => { const b = box(1.1, 0.3, 2.4, '#8B5E34'); b.position.set(x, 0.15, 0); g.add(b); const soil = box(0.95, 0.05, 2.25, '#5A3E22'); soil.position.set(x, 0.31, 0); soil.name = `bed${i}`; g.add(soil); }); return g; }
   let g: THREE.Object3D | null = null;
       if (id === 'yard-bench') g = await model('city', 'bench', 2);
   if (id === 'yard-lamp') g = await model('city', 'streetlight', 1.2);
@@ -273,6 +286,7 @@ async function thumbObj(id: string): Promise<THREE.Object3D | null> {
   if (id.startsWith('pet-')) return makePet(id);
   if (id.startsWith('house-')) return model('sub', HOUSES[Number(id.split('-')[1])], 7);
   if (id.startsWith('yard-')) return yardItem(id);
+  if (id.startsWith('x-')) return codeItem(id);
   const it = SHOP.find((x) => x.id === id);
   const part = id.split('-')[0];
   const o: Outfit = { fur: 'fur-ginger' };
@@ -309,8 +323,12 @@ export const USE: Record<string, string> = {
   bath: 'Have a bath', shower: 'Have a shower', wash: 'Wash your hands', computer: 'Play a computer game', homework: 'Do your homework', coffee: 'Make hot chocolate',
   toast: 'Make toast', micro: 'Heat up some food', washer: 'Wash your clothes', plant: 'Water the plant', hug: 'Hug the teddy bear', mirror: 'Look in the mirror',
   wardrobe: 'Try on clothes', marsh: 'Roast marshmallows', swing: 'Swing', swim: 'Go for a swim', wish: 'Make a wish', lamp: 'Turn on the lamp',
+  piano: 'Play the piano', paint: 'Paint a picture', aquarium: 'Feed the fish', drums: 'Play the drums', arcade: 'Play the arcade game', telescope: 'Look through the telescope',
+  hoops: 'Shoot some hoops', sunbathe: 'Lie in the sun', sand: 'Build a sandcastle', picnic: 'Have a picnic', garden: 'Look after the garden', table: 'Sit and have a snack',
 };
 export function useKind(f: string): string | null {
+  const X: Record<string, string> = { 'x-piano': 'piano', 'x-easel': 'paint', 'x-aquarium': 'aquarium', 'x-drums': 'drums', 'x-arcade': 'arcade', 'x-telescope': 'telescope' };
+  if (X[f]) return X[f];
   if (/^(chair|stoolBar|loungeSofa|loungeChair|loungeDesign|bench|chairDesk)/.test(f)) return 'sit';
   if (/^bed(Single|Double|Bunk)/.test(f)) return 'sleep';
   if (/^kitchenFridge/.test(f)) return 'fridge';
@@ -361,7 +379,7 @@ export const INTERIORS: IDef[] = [
   { id: 'tent', job: 'campbook', title: 'CAMP MURLY', floor: ['#B7D98A', '#A6CC78'], wall: '#E9E2C3', spot: [3.6, 1.2],
     items: [['bedSingle', -3.4, -3.6, 0], ['bedSingle', -1.2, -3.6, 0], ['lampRoundFloor', 1.6, -4.8, 0], ['cardboardBoxOpen', 4.2, -4.4, 0.3], ['rugRound', -2.2, 0.4, 0], ['radio', 5.2, -2.2, -1.57], ['chair', 3.6, 0, 3.14]] },
   { id: 'lighthouse', job: 'keeper', title: 'LIGHTHOUSE', floor: ['#E1E6EC', '#D3DAE2'], wall: '#FFFFFF', npc: ['Captain Ted', '#3A3A44', 0, -2, 'hat-beanie'], spot: [0, -0.7],
-    items: [['desk', 3, -4.85, 0], ['radio', 3, -4.85, 0, 0], ['chair', 3, -3.8, 3.14], ['bedSingle', -4.8, -3.6, 0], ['bookcaseOpen', 5.6, -4.95, 0], ['lampRoundFloor', -2.8, -4.9, 0], ['rugRound', 0, -1, 0], ['pottedPlant', 6.2, 4.4, 0]] },
+    items: [['desk', 3, -4.85, 0], ['radio', 3, -4.85, 0, 0], ['chair', 3, -3.8, 3.14], ['bedSingle', -4.8, -3.6, 0], ['bookcaseOpen', 5.6, -4.95, 0], ['x-telescope', -1.8, -4.2, 0], ['lampRoundFloor', -2.8, -4.9, 0], ['rugRound', 0, -1, 0], ['pottedPlant', 6.2, 4.4, 0]] },
 ];
 function wearHat(rig: Rig, item: string) {
   const cols = rig.fur.map((m) => m.color.clone());
@@ -522,7 +540,7 @@ export class IslandScene {
       this.colliders.push({ x: T.x - 1.2, z: T.z - 1, r: 1.3 });
       this.spots.push({ id: 'taxi', x: T.x + 0.4, z: T.z + 1.8, r: 2.4, label: 'TAXI' }); }
     this.buildPier();
-    this.buildIceCream(); this.buildBoard(); this.buildCampsite(48, 18);
+    this.buildIceCream(); this.buildBoard(); this.buildCampsite(48, 18); this.buildFun();
     this.mural('MURLY ISLAND', ['#F76AA8', '#FFC53D', '#3E7BFA', '#30A46C'], -6, 24); this.mural('BE KIND', ['#7C66DC', '#F5862D', '#E5484D'], 24, -50); this.mural('HELLO!', ['#30A46C', '#3E7BFA', '#FFC53D'], -48, -32);
     // фруктовий ринок: власний ларьок
     this.buildStall(-18, 16); this.spots.push({ id: 'market', x: -18, z: 11.5, r: 2.6, label: 'FRUIT MARKET' });
@@ -720,6 +738,46 @@ export class IslandScene {
   }
 
   flames: THREE.Mesh[] = [];
+  gardenObj: THREE.Group | null = null; gardenPlots: ({ crop: string; p: number } | null)[] = [];
+  setGarden(plots: ({ crop: string; p: number } | null)[]) {
+    this.gardenPlots = plots; const g = this.gardenObj; if (!g) return;
+    g.children.filter((c) => c.name === 'crop').forEach((c) => g.remove(c));
+    const col: Record<string, string> = { lettuce: '#7BC86C', carrot: '#F5862D', tomato: '#E5484D', strawberry: '#F7465E', corn: '#FFD84D', pumpkin: '#F5862D' };
+    plots.forEach((pl, i) => { if (!pl) return; const x = -1.4 + i * 1.4; for (let k = 0; k < 3; k++) { const z = -0.7 + k * 0.7; const s0 = 0.25 + pl.p * 0.75; const leaf = mesh(new THREE.ConeGeometry(0.18 * s0, 0.5 * s0, 6), toon('#30A46C')); leaf.position.set(x, 0.33 + 0.25 * s0, z); leaf.name = 'crop'; g.add(leaf); if (pl.p >= 1) { const fr = sph(pl.crop === 'pumpkin' ? 0.28 : 0.11, col[pl.crop] ?? '#E5484D', 10); fr.position.set(x + 0.12, 0.45, z); fr.name = 'crop'; g.add(fr); } } });
+  }
+  buildFun() {
+    // баскетбольне кільце біля майданчика
+    const hx = -24, hz = 18; const pole = cyl(0.1, 0.1, 3.4, '#55606E', 8); pole.position.set(hx, 1.7, hz - 1); this.scene.add(pole);
+    const bb = box(1.6, 1.1, 0.08, '#FFFFFF'); bb.position.set(hx, 3.2, hz - 0.95); this.scene.add(bb); const sq = box(0.6, 0.45, 0.09, '#E5484D'); sq.position.set(hx, 3.1, hz - 0.92); this.scene.add(sq);
+    const ring = mesh(new THREE.TorusGeometry(0.3, 0.04, 6, 16), toon('#F5862D')); ring.rotation.x = Math.PI / 2; ring.position.set(hx, 2.85, hz - 0.55); this.scene.add(ring);
+    const ball = sph(0.18, '#F5862D', 12); ball.position.set(hx + 0.8, 0.18, hz + 1.2); this.scene.add(ball); this.colliders.push({ x: hx, z: hz - 1, r: 0.4 });
+    this.addUse('hoops', hx, hz + 1.6, 0, Math.PI, 'out', 1.6);
+    // шезлонги з парасольками на пляжі
+    [[10, -68], [14, -66.6], [18, -64.6]].forEach(([x, z], i) => {
+      const a = Math.atan2(-x, -z); const g = new THREE.Group(); g.position.set(x, 0, z); g.rotation.y = a;
+      const bed = box(0.8, 0.12, 2, ['#F76AA8', '#3E7BFA', '#FFC53D'][i]); bed.position.y = 0.4; g.add(bed); const back = box(0.8, 0.1, 0.8, ['#F76AA8', '#3E7BFA', '#FFC53D'][i]); back.position.set(0, 0.7, -0.9); back.rotation.x = -0.9; g.add(back);
+      [[-0.35, -0.8], [0.35, -0.8], [-0.35, 0.8], [0.35, 0.8]].forEach(([lx, lz]) => { const l = box(0.06, 0.4, 0.06, '#FFFFFF'); l.position.set(lx, 0.2, lz); g.add(l); });
+      const pp = cyl(0.04, 0.04, 2.6, '#FFFFFF', 6); pp.position.set(0.8, 1.3, 0); g.add(pp);
+      for (let k = 0; k < 8; k++) { const seg = mesh(new THREE.ConeGeometry(1.3, 0.5, 8, 1, true, (k / 8) * Math.PI * 2, Math.PI / 4), new THREE.MeshToonMaterial({ color: k % 2 ? '#FFFFFF' : ['#F76AA8', '#3E7BFA', '#FFC53D'][i], side: THREE.DoubleSide })); seg.position.set(0.8, 2.6, 0); g.add(seg); }
+      this.scene.add(g); this.addUse('sunbathe', x, z, 0.5, a, 'out', 1.4);
+    });
+    // місце для піщаного замку
+    const sx = 4, sz = -71; const pail = cyl(0.18, 0.13, 0.3, '#3E7BFA', 10); pail.position.set(sx + 0.8, 0.15, sz); this.scene.add(pail); const spade = box(0.1, 0.5, 0.04, '#E5484D'); spade.position.set(sx + 1.1, 0.25, sz); spade.rotation.z = 0.5; this.scene.add(spade);
+    this.addUse('sand', sx, sz, 0, 0, 'out', 1.5);
+    // пікнік у парку
+    const px = -12, pz = 6; const cv = document.createElement('canvas'); cv.width = 64; cv.height = 64; const x2 = cv.getContext('2d')!; for (let i = 0; i < 4; i++) for (let j = 0; j < 4; j++) { x2.fillStyle = (i + j) % 2 ? '#FFFFFF' : '#E5484D'; x2.fillRect(i * 16, j * 16, 16, 16); } const tx = new THREE.CanvasTexture(cv); tx.colorSpace = THREE.SRGBColorSpace;
+    const bl = new THREE.Mesh(new THREE.PlaneGeometry(2.6, 2.6), new THREE.MeshToonMaterial({ map: tx, gradientMap: grad! })); bl.rotation.x = -Math.PI / 2; bl.position.set(px, 0.03, pz); bl.receiveShadow = true; this.scene.add(bl);
+    const bk = box(0.6, 0.4, 0.4, '#C8925A'); bk.position.set(px + 0.7, 0.2, pz - 0.6); this.scene.add(bk); const ap = sph(0.1, '#E5484D', 8); ap.position.set(px - 0.5, 0.1, pz + 0.4); this.scene.add(ap);
+    this.addUse('picnic', px, pz, 0.12, 0, 'out', 1.6);
+  }
+  sandcastles: THREE.Group[] = [];
+  buildSandcastle() {
+    const g = new THREE.Group(); const x = 4 + (Math.random() - 0.5) * 2, z = -72 - Math.random() * 1.5; g.position.set(x, 0, z);
+    const base = cyl(0.55, 0.65, 0.4, '#E8CF8F', 12); base.position.y = 0.2; g.add(base); [[-0.4, -0.4], [0.4, -0.4], [-0.4, 0.4], [0.4, 0.4]].forEach(([a, b]) => { const t = cyl(0.16, 0.18, 0.5, '#E8CF8F', 8); t.position.set(a, 0.45, b); g.add(t); const r = mesh(new THREE.ConeGeometry(0.18, 0.25, 8), toon('#E8CF8F')); r.position.set(a, 0.82, b); g.add(r); }); const fl = box(0.2, 0.12, 0.01, '#E5484D'); fl.position.set(0.1, 1.0, 0); g.add(fl); const fp = cyl(0.01, 0.01, 0.4, '#FFFFFF', 4); fp.position.set(0, 0.85, 0); g.add(fp);
+    this.scene.add(g); this.sandcastles.push(g); if (this.sandcastles.length > 3) this.scene.remove(this.sandcastles.shift()!);
+  }
+  petTrick() { this.petTrickT = 2; }
+  petTrickT = 0;
   buildCampsite(x: number, z: number) {
     void model('nature', 'tent_detailedOpen', 4).then((m) => { m.position.set(x, 0, z - 3); m.rotation.y = 0; this.scene.add(m); });
     this.colliders.push({ x, z: z - 3, r: 2 });
@@ -772,8 +830,8 @@ export class IslandScene {
     const scenes = await pack('furn');
     const tops: number[] = [];
     d.items.forEach(([f, x, z, r, on]) => {
-      const src = scenes.get(f); if (!src) { tops.push(0); return; }
-      const it = new THREE.Group(); const inner = new THREE.Group(); src.children.forEach((c) => inner.add(c.clone(true))); inner.scale.setScalar(FK); it.add(inner);
+      const src = f.startsWith('x-') ? null : scenes.get(f); if (!src && !f.startsWith('x-')) { tops.push(0); return; }
+      const it = new THREE.Group(); const inner = new THREE.Group(); if (src) { src.children.forEach((c) => inner.add(c.clone(true))); inner.scale.setScalar(FK); } else inner.add(codeItem(f)); it.add(inner);
       const b = new THREE.Box3().setFromObject(inner); const c = b.getCenter(new THREE.Vector3()); inner.position.set(-c.x, -b.min.y, -c.z);
       it.traverse((q) => { const m = q as THREE.Mesh; if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; (Array.isArray(m.material) ? m.material : [m.material]).forEach((mt) => { const st = mt as THREE.MeshStandardMaterial; if (st.metalness !== undefined) { st.metalness = Math.min(st.metalness, 0.2); st.roughness = Math.max(st.roughness ?? 1, 0.6); } }); } });
       const sz = b.getSize(new THREE.Vector3());
@@ -966,9 +1024,9 @@ export class IslandScene {
     if (seq !== this.roomSeq) return;
     this.roomItems.clear(); this.roomCol = []; this.clearUses('home');
     list.forEach((it, i) => {
-      const src = scenes.get(it.f); if (!src) return;
+      const src = it.f.startsWith('x-') ? null : scenes.get(it.f); if (!src && !it.f.startsWith('x-')) return;
       // справжній масштаб Kenney: 1 одиниця ≈ 1/FK нашого світу
-      const g = new THREE.Group(); const inner = new THREE.Group(); src.children.forEach((c) => inner.add(c.clone(true))); inner.scale.setScalar(FK); g.add(inner);
+      const g = new THREE.Group(); const inner = new THREE.Group(); if (src) { src.children.forEach((c) => inner.add(c.clone(true))); inner.scale.setScalar(FK); } else inner.add(codeItem(it.f)); g.add(inner);
       const b = new THREE.Box3().setFromObject(inner); const c = b.getCenter(new THREE.Vector3()); inner.position.set(-c.x, -b.min.y, -c.z);
       g.traverse((o) => { const m = o as THREE.Mesh; if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; m.userData.idx = i; (Array.isArray(m.material) ? m.material : [m.material]).forEach((mt) => { const st = mt as THREE.MeshStandardMaterial; if (st.metalness !== undefined) { st.metalness = Math.min(st.metalness, 0.2); st.roughness = Math.max(st.roughness ?? 1, 0.6); } }); } });
       g.position.set(it.x, 0, it.z); g.rotation.y = it.r; g.userData.idx = i; this.roomItems.add(g);
@@ -1007,6 +1065,7 @@ export class IslandScene {
       if (id === 'yard-fire') this.addUse('marsh', x, z + 1.2, 0, Math.PI, 'yard', 1.3);
       if (id === 'yard-pool') this.addUse('swim', x, z, 0.4, 0, 'yard', 2.2);
       if (id === 'yard-tent') this.spots.push({ id: 'enter-tent', x, z: z + 1.8, r: 1.6, label: 'MY TENT' });
+      if (id === 'yard-garden') { this.addUse('garden', x, z + 1.8, 0, Math.PI, 'yard', 1.8); this.gardenObj = g as THREE.Group; this.setGarden(this.gardenPlots); }
     }
   }
 
@@ -1175,6 +1234,7 @@ export class IslandScene {
       const fly = this.petId === 'pet-dragon';
       this.pet.position.set(this.petPos.x, (fly ? 1.2 + Math.sin(t * 4) * 0.2 : Math.abs(Math.sin(t * 9)) * (d > 0.6 ? 0.2 : 0.02)), this.petPos.z);
       this.pet.lookAt(this.heroPos.x, this.pet.position.y, this.heroPos.z);
+      if (this.petTrickT > 0) { this.petTrickT -= dt; this.pet.position.y += Math.abs(Math.sin(this.petTrickT * 6)) * 0.8; this.pet.rotation.y += (2 - this.petTrickT) * Math.PI * 2; }
       this.pet.children.forEach((c) => { if (c.name === 'wag') c.rotation.z = Math.sin(t * 14) * 0.6; if (c.name === 'wing') c.rotation.x = Math.sin(t * 12) * 0.5; });
     }
     // жителі гуляють

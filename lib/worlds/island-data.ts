@@ -1,3 +1,4 @@
+import { HOME_ITEMS } from './home-items';
 // «Murly Island»: власна гра Murly у жанрі «живи на острові й працюй». Усе в грі англійською.
 // Персонаж, тварини, транспорт і частина речей малюються кодом; будинки й дерева з наборів CC0 (Kenney, KayKit).
 
@@ -47,6 +48,7 @@ export const SHOP: ShopItem[] = [
   { id: 'yard-pool', en: 'swimming pool', cat: 'Home', sub: 'yard', price: 120 },
   { id: 'yard-tree', en: 'palm tree', cat: 'Home', sub: 'yard', price: 20 },
   { id: 'yard-fence', en: 'fence', cat: 'Home', sub: 'yard', price: 25 },
+  { id: 'yard-garden', en: 'vegetable garden', cat: 'Home', sub: 'yard', price: 30 },
   // транспорт
   { id: 'ride-skate', en: 'skateboard', cat: 'Transport', sub: 'ride', price: 40 },
   { id: 'ride-bike', en: 'bicycle', cat: 'Transport', sub: 'ride', price: 90 },
@@ -72,7 +74,7 @@ export type RoomItem = { f: string; x: number; z: number; r: number };
 export type Daily = { date: string; ids: string[]; prog: Record<string, number>; paid?: boolean };
 export type Save = { v: 1; owned: string[]; outfit: Outfit; ride: string | null; pet: string | null; house: number; yard: string[]; jobs: Record<string, number>; name?: string; localCoins?: number; stars?: string[]; starBonus?: boolean; talks?: number;
   furn?: string[]; room?: RoomItem[]; daily?: Daily; fish?: Record<string, number>; badges?: string[];
-  prof?: string; friends?: Record<string, number>; needs?: { food: number; energy: number; fun: number }; bag?: Record<string, number>; hero?: string; dialogs?: string[]; pos?: { x: number; z: number; room?: string | null }; tasks?: Record<string, unknown>; last?: { at: string; place: string; doing?: string } };
+  prof?: string; friends?: Record<string, number>; needs?: { food: number; energy: number; fun: number }; bag?: Record<string, number>; hero?: string; skills?: Record<string, number>; garden?: ({ crop: string; at: number; water?: boolean } | null)[]; petName?: string; dialogs?: string[]; pos?: { x: number; z: number; room?: string | null }; tasks?: Record<string, unknown>; last?: { at: string; place: string; doing?: string } };
 export const START: Save = { v: 1, owned: ['fur-ginger'], outfit: { fur: 'fur-ginger' }, ride: null, pet: null, house: 0, yard: [], jobs: {} };
 
 // ---------- карта ----------
@@ -458,7 +460,6 @@ export const ACT: Record<string, { say: string; pose: 'sit' | 'sleep' | 'use' | 
   bath: { say: "I'm having a bubble bath.", pose: 'use', secs: 5, fun: 15, energy: 5, bubble: 'Splash!' },
   shower: { say: "I'm having a quick shower.", pose: 'use', secs: 4, fun: 10, energy: 5, bubble: 'So fresh!' },
   wash: { say: "I'm washing my hands with soap.", pose: 'use', secs: 3, fun: 3, bubble: 'Clean!' },
-  computer: { say: "I'm playing a computer game.", pose: 'use', secs: 5, fun: 30, energy: -4, bubble: 'I won!' },
   homework: { say: "I'm doing my English homework.", pose: 'use', secs: 5, fun: 5, energy: -3, bubble: 'Done!' },
   coffee: { say: "I'm making a cup of hot chocolate.", pose: 'use', secs: 4, food: 10, fun: 8, bubble: 'Yum!' },
   toast: { say: "I'm making toast for breakfast.", pose: 'use', secs: 4, food: 18, bubble: 'Crunchy!' },
@@ -471,6 +472,18 @@ export const ACT: Record<string, { say: string; pose: 'sit' | 'sleep' | 'use' | 
   swim: { say: "I'm swimming in the pool.", pose: 'swim', secs: 6, fun: 30, energy: -6, bubble: 'Splash!' },
   wish: { say: "I'm throwing a coin into the fountain and making a wish.", pose: 'use', secs: 3, fun: 10, bubble: 'Wish!' },
   lamp: { say: "I'm turning on the lamp.", pose: 'use', secs: 1, bubble: 'Click!' },
+  piano: { say: "I'm playing the piano.", pose: 'use', secs: 6, fun: 25, bubble: 'Do re mi!' },
+  drums: { say: "I'm playing the drums. Boom, boom, crash!", pose: 'use', secs: 5, fun: 25, energy: -4, bubble: 'Boom!' },
+  aquarium: { say: "I'm feeding the fish. They swim to the top to eat.", pose: 'use', secs: 3, fun: 10, bubble: 'Hello, fish!' },
+  arcade: { say: "I'm playing an arcade game.", pose: 'use', secs: 4, fun: 30, bubble: 'High score!' },
+  telescope: { say: "I'm looking through the telescope.", pose: 'use', secs: 4, fun: 15, bubble: 'Wow!' },
+  hoops: { say: "I'm playing basketball. I scored three baskets!", pose: 'use', secs: 5, fun: 25, energy: -8, bubble: 'Score!' },
+  sunbathe: { say: "I'm lying in the sun on the beach. It's so warm!", pose: 'sleep', secs: 6, energy: 25, fun: 10, bubble: 'Ahh, sunny!' },
+  sand: { say: "I'm building a sandcastle with four towers.", pose: 'use', secs: 5, fun: 25, bubble: 'My castle!' },
+  picnic: { say: "I'm having a picnic: sandwiches, apples and juice.", pose: 'sit', secs: 5, food: 30, fun: 10, bubble: 'Yummy!' },
+  paint: { say: "I'm painting a picture.", pose: 'use', secs: 6, fun: 25, bubble: 'Art!' },
+  guitar: { say: "I'm playing the guitar.", pose: 'use', secs: 5, fun: 20, bubble: 'Strum!' },
+  computer: { say: "I'm playing a word game on the computer.", pose: 'use', secs: 0, fun: 0, bubble: 'Click!' },
 };
 export const EMOTES: { id: string; en: string; bubble: string; say: string }[] = [
   { id: 'wave', en: 'Wave', bubble: 'Hi!', say: "I'm waving hello." }, { id: 'dance', en: 'Dance', bubble: 'Yeah!', say: "I'm dancing." },
@@ -478,3 +491,101 @@ export const EMOTES: { id: string; en: string; bubble: string; say: string }[] =
   { id: 'love', en: 'Love', bubble: 'I love it!', say: 'I love this island!' }, { id: 'sad', en: 'Sad', bubble: 'Oh no...', say: "I'm a bit sad." },
   { id: 'sit', en: 'Sit down', bubble: 'Phew!', say: "I'm sitting on the ground." }, { id: 'sleepy', en: 'Yawn', bubble: 'Yaaawn!', say: "I'm sleepy." },
 ];
+
+
+// ---------- каталог меблів: усе з набору + свої речі ----------
+export const CODE_FURN = [
+  { f: 'x-piano', en: 'piano', price: 60, cat: 'special' }, { f: 'x-easel', en: 'easel for painting', price: 30, cat: 'special' },
+  { f: 'x-aquarium', en: 'aquarium', price: 45, cat: 'special' }, { f: 'x-drums', en: 'drum kit', price: 55, cat: 'special' },
+  { f: 'x-arcade', en: 'arcade game', price: 70, cat: 'special' }, { f: 'x-telescope', en: 'telescope', price: 50, cat: 'special' },
+];
+const FCAT: Record<string, string> = Object.fromEntries(HOME_ITEMS.map((h) => [h.file, h.cat]));
+export const FURN_ALL: { f: string; en: string; price: number; cat: string }[] = [
+  ...FURN.map((x) => ({ ...x, cat: FCAT[x.f] ?? 'decor' })),
+  ...HOME_ITEMS.filter((h) => !h.wall && !h.pack && !FURN.some((x) => x.f === h.file)).map((h) => ({ f: h.file, en: h.en, price: h.price || (h.small ? 6 : h.rug ? 8 : 15), cat: h.cat })),
+  ...CODE_FURN,
+];
+export const FURN_CATS = [['living', 'Living room'], ['bedroom', 'Bedroom'], ['kitchen', 'Kitchen'], ['bathroom', 'Bathroom'], ['study', 'Study'], ['decor', 'Decor'], ['special', 'Special']];
+
+// ---------- навички ----------
+export const SKILLS = [
+  { id: 'cooking', en: 'Cooking' }, { id: 'music', en: 'Music' }, { id: 'reading', en: 'Reading' }, { id: 'art', en: 'Art' },
+  { id: 'fitness', en: 'Fitness' }, { id: 'gardening', en: 'Gardening' }, { id: 'social', en: 'Friendship' }, { id: 'games', en: 'Games' },
+];
+const SK_N = [0, 10, 25, 45, 70, 100, 140, 190, 250, 320];
+export function skillLevel(xp: number) { let l = 1; SK_N.forEach((n, i) => { if (xp >= n) l = i + 1; }); return { l, from: SK_N[l - 1], to: SK_N[l] ?? SK_N[SK_N.length - 1] + 100 }; }
+export const SKILL_OF: Record<string, [string, number]> = {
+  cook: ['cooking', 6], toast: ['cooking', 2], micro: ['cooking', 1], coffee: ['cooking', 2], marsh: ['cooking', 2], picnic: ['cooking', 2],
+  music: ['music', 3], piano: ['music', 6], drums: ['music', 5], guitar: ['music', 5],
+  read: ['reading', 5], homework: ['reading', 4], telescope: ['reading', 3],
+  paint: ['art', 6], sand: ['art', 4],
+  hoops: ['fitness', 5], swim: ['fitness', 5], swing: ['fitness', 1], sunbathe: ['fitness', 1],
+  garden: ['gardening', 5], plant: ['gardening', 2], aquarium: ['gardening', 2],
+  friend: ['social', 3], dialog: ['social', 6],
+  computer: ['games', 4], arcade: ['games', 5], tv: ['games', 1],
+};
+
+// ---------- вибір усередині дій ----------
+export const CHOICES: Record<string, { t: string; say: string; text?: string }[]> = {
+  tv: [
+    { t: 'Cartoons', say: "I'm watching a funny cartoon about a clumsy dog." },
+    { t: 'Nature', say: "I'm watching a nature programme about whales. They are the biggest animals in the world!" },
+    { t: 'News', say: "I'm watching the news. The weather will be sunny tomorrow." },
+    { t: 'Cooking show', say: "I'm watching a cooking show. They are making a chocolate cake." },
+    { t: 'Sport', say: "I'm watching a football match. What a goal!" },
+    { t: 'Quiz show', say: "I'm watching a quiz show. I know all the answers!" },
+  ],
+  read: [
+    { t: 'The Lost Treasure', say: "I'm reading an adventure story.", text: 'Captain Paws opened the old map. "Look! The treasure is under the big oak tree," he said. The friends ran to the tree with a spade. They dug and dug, and they found a box full of golden coins!' },
+    { t: 'Space Cats', say: "I'm reading a story about cats in space.", text: 'Luna the cat looked out of the rocket window. She could see the Earth. It was blue and green and very small. "Next stop: the Moon!" said the captain. Luna was excited.' },
+    { t: 'The Big Book of Animals', say: "I'm reading about animals.", text: 'Elephants are the biggest land animals. They can live for seventy years. They eat leaves, grass and fruit, and they drink a lot of water every day. Baby elephants stay with their mothers for many years.' },
+    { t: 'The Funny Joke Book', say: "I'm reading a joke book.", text: 'Why did the cat sit on the computer? Because it wanted to keep an eye on the mouse! What do cats eat for breakfast? Mice Krispies!' },
+    { t: 'The Mystery of the Missing Cake', say: "I'm reading a mystery story.", text: 'The chocolate cake was on the table at six o\'clock. At seven o\'clock, it was gone! There were crumbs on the floor and on the sofa. And who had chocolate on his whiskers? Tom!' },
+  ],
+  music: [
+    { t: 'Pop', say: "I'm listening to pop music and singing along." }, { t: 'Rock', say: "I'm listening to loud rock music!" },
+    { t: 'Classical', say: "I'm listening to calm classical music." }, { t: 'Jazz', say: "I'm listening to jazz. It's so relaxing." },
+    { t: 'Dance', say: "I'm listening to dance music and dancing!" },
+  ],
+  paint: [
+    { t: 'a sunset', say: "I'm painting a beautiful orange sunset over the sea." }, { t: 'my cat', say: "I'm painting a picture of my cat." },
+    { t: 'flowers', say: "I'm painting a vase of red and yellow flowers." }, { t: 'the lighthouse', say: "I'm painting the red and white lighthouse." },
+    { t: 'a rainbow', say: "I'm painting a rainbow with seven colours." }, { t: 'my friends', say: "I'm painting a picture of my friends." },
+  ],
+  piano: [
+    { t: 'Twinkle, Twinkle, Little Star', say: "I'm playing Twinkle, Twinkle, Little Star on the piano." },
+    { t: 'Ode to Joy', say: "I'm playing Ode to Joy on the piano." },
+    { t: 'Mary Had a Little Lamb', say: "I'm playing Mary Had a Little Lamb on the piano." },
+  ],
+  telescope: [
+    { t: 'The sky', say: '' }, { t: 'The sea', say: '' },
+  ],
+};
+export const MELODIES: Record<string, number[]> = {
+  'Twinkle, Twinkle, Little Star': [60, 60, 67, 67, 69, 69, 67, 0, 65, 65, 64, 64, 62, 62, 60],
+  'Ode to Joy': [64, 64, 65, 67, 67, 65, 64, 62, 60, 60, 62, 64, 64, 62, 62],
+  'Mary Had a Little Lamb': [64, 62, 60, 62, 64, 64, 64, 0, 62, 62, 62, 0, 64, 67, 67],
+};
+
+// ---------- город ----------
+export const CROPS = [
+  { id: 'lettuce', en: 'lettuce', mins: 2, c: '#7BC86C' }, { id: 'carrot', en: 'carrots', mins: 3, c: '#F5862D' },
+  { id: 'tomato', en: 'tomatoes', mins: 4, c: '#E5484D' }, { id: 'strawberry', en: 'strawberries', mins: 5, c: '#F7465E' },
+  { id: 'corn', en: 'corn', mins: 6, c: '#FFD84D' }, { id: 'pumpkin', en: 'a pumpkin', mins: 8, c: '#F5862D' },
+];
+FOODS.push({ id: 'lettuce', en: 'lettuce leaf', a: 'a', food: 6, c: '#7BC86C' }, { id: 'tomato', en: 'tomato', a: 'a', food: 8, c: '#E5484D' }, { id: 'strawberry', en: 'bowl of strawberries', a: 'a', food: 12, c: '#F7465E' }, { id: 'corn', en: 'corn on the cob', a: 'a', food: 15, c: '#FFD84D' }, { id: 'pumpkin', en: 'bowl of pumpkin soup', a: 'a', food: 30, c: '#F5862D' }, { id: 'pizza', en: 'slice of pizza', a: 'a', food: 25, c: '#E5484D' }, { id: 'icecream', en: 'ice cream', a: 'an', food: 12, c: '#F7A1B5' });
+export function cropProgress(p: { crop: string; at: number; water?: boolean }, now = Date.now()) { const c = CROPS.find((x) => x.id === p.crop); if (!c) return 1; const need = c.mins * 60000 * (p.water ? 0.6 : 1); return Math.min(1, (now - p.at) / need); }
+
+// ---------- спілкування ----------
+export const JOKES = [
+  { q: 'What do you call a cat that likes to bowl?', a: 'An alley cat!' },
+  { q: 'Why was the cat so good at video games?', a: 'Because it had nine lives!' },
+  { q: 'What do you call a fish without an eye?', a: 'A fsh!' },
+  { q: 'Why did the teddy bear say no to dessert?', a: 'Because it was already stuffed!' },
+  { q: 'What do you call a sleeping dinosaur?', a: 'A dino-snore!' },
+  { q: 'Why did the student eat his homework?', a: 'Because the teacher said it was a piece of cake!' },
+  { q: 'What has hands but cannot clap?', a: 'A clock!' },
+  { q: 'Why are fish so smart?', a: 'Because they live in schools!' },
+];
+export const COMPLIMENTS = ['I like your hat!', 'You are really funny!', 'You are a great friend.', 'Your fur is so soft and shiny!', 'You are very kind.', 'You have a lovely smile!', 'You are so clever!', 'You are a brilliant dancer!'];
+export const RPS = ['rock', 'paper', 'scissors'];
