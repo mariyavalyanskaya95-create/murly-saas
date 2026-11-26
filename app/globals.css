@@ -4888,3 +4888,7 @@ textarea.t-parent__url { width: 300px; font: inherit; font-size: 13px; }
 .il-held { position: absolute; left: 50%; bottom: 70px; transform: translateX(-50%); z-index: 5; display: flex; flex-wrap: wrap; align-items: center; gap: 6px; padding: 8px 12px; background: #FFF3C4; border: 2.5px solid #1A1A1A; border-radius: 14px; font-size: 14px; box-shadow: 0 3px 0 #1A1A1A; }
 .il-basket { font-weight: 800; margin-left: 6px; }
 .il.is-touch .il-held { bottom: 230px; }
+.il-save { font: inherit; font-size: 11px !important; padding: 3px 8px !important; border: 1.5px dashed #1A1A1A !important; border-radius: 99px; background: #fff !important; cursor: pointer; }
+.il-goal { display: inline-flex; align-items: center; gap: 6px; }
+.il-goalbar { display: inline-block; width: 60px; height: 8px; border: 1.5px solid #1A1A1A; border-radius: 99px; overflow: hidden; background: #fff; }
+.il-goalbar em { display: block; height: 100%; background: #30A46C; }
