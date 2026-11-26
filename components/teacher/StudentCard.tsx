@@ -15,6 +15,7 @@ import LessonRow from './LessonRow';
 import { LessonForm } from './forms';
 import ExerciseEditor from '../exercise/ExerciseEditor';
 import ExerciseView from '../exercise/ExerciseView';
+import { HwFileList, HwUpload, type HwFile } from '../HwFiles';
 import { grade, manualKeys, type Section } from '@/lib/exercise';
 import { lessonSections, type Block } from '@/lib/lesson';
 import { balanceOf, fmtDate, fmtMoney, plural, useTeacher } from '@/lib/teacher-store';
@@ -765,6 +766,10 @@ export function HomeworkForm({ studentIds, groupId, onDone }: { studentIds: stri
   const [instructions, setInstructions] = useState('');
   const [due, setDue] = useState(defaultDue());
   const [formKey, setFormKey] = useState(0);
+  const [files, setFiles] = useState<HwFile[]>([]);
+  // слова для гри: учитель обирає конкретні слова зі словника учня (порожньо = усі слова)
+  const pool = studentIds.length === 1 ? data.words.filter((w) => w.studentId === studentIds[0]) : [];
+  const [picked, setPicked] = useState<string[]>([]);
   // «Задати ще й іншим»: та сама домашка кільком учням без повторного набору
   const [extra, setExtra] = useState<string[]>([]);
   const others = groupId ? [] : data.students.filter((x) => !studentIds.includes(x.id));
@@ -787,12 +792,14 @@ export function HomeworkForm({ studentIds, groupId, onDone }: { studentIds: stri
       instructions: instructions.trim() || undefined,
       game: kind === 'quest' ? quest : kind === 'game' ? game : kind === 'mock' ? mock : undefined,
       direction: kind === 'game' ? direction : undefined,
+      files: files.length ? files : undefined,
+      wordList: kind === 'game' && picked.length >= 2 ? pool.filter((w) => picked.includes(w.id)).map((w) => ({ en: w.en, uk: w.uk })) : undefined,
       due: due ? new Date(due).toISOString() : undefined,
       groupId,
     } as const;
     targets.forEach((sid) => addHomework({ ...base, studentId: sid, toParent: parentOn && kids.some((k) => k.id === sid) ? true : undefined }));
     setExtra([]);
-    setTitle(''); setInstructions(''); setDue(defaultDue()); setSections([]); setFormKey((k) => k + 1);
+    setTitle(''); setInstructions(''); setDue(defaultDue()); setSections([]); setFormKey((k) => k + 1); setFiles([]); setPicked([]);
     onDone?.();
   };
 
@@ -828,6 +835,31 @@ export function HomeworkForm({ studentIds, groupId, onDone }: { studentIds: stri
         </div>
       )}
       {kind === 'exercise' && <ExerciseEditor key={formKey} onChange={setSections} />}
+      {kind === 'game' && pool.length >= 4 && (
+        <div className="hw-pick">
+          <div className="hw-pick__head">
+            <b>{t({ uk: 'Які слова в гру', ru: 'Какие слова в игру', en: 'Which words go into the game' })}</b>
+            <span className="t-muted">{picked.length ? t({ uk: `Обрано: ${picked.length}`, ru: `Выбрано: ${picked.length}`, en: `Selected: ${picked.length}` }) : t({ uk: 'Нічого не обрано = усі слова словника', ru: 'Ничего не выбрано = все слова словаря', en: 'Nothing selected = all words' })}</span>
+            <button type="button" className="g-chip" onClick={() => setPicked(pool.slice(0, 10).map((w) => w.id))}>{t({ uk: 'Останні 10', ru: 'Последние 10', en: 'Last 10' })}</button>
+            <button type="button" className="g-chip" onClick={() => setPicked(pool.slice(0, 20).map((w) => w.id))}>{t({ uk: 'Останні 20', ru: 'Последние 20', en: 'Last 20' })}</button>
+            <button type="button" className="g-chip" onClick={() => setPicked([])}>{t({ uk: 'Усі', ru: 'Все', en: 'All' })}</button>
+          </div>
+          <div className="hw-pick__list">
+            {pool.map((w) => (
+              <label key={w.id} className={picked.includes(w.id) ? 'on' : ''}><input type="checkbox" checked={picked.includes(w.id)} onChange={(e) => setPicked((p) => (e.target.checked ? [...p, w.id] : p.filter((x) => x !== w.id)))} /><b>{w.en}</b><span>{w.uk}</span></label>
+            ))}
+          </div>
+          {picked.length > 0 && picked.length < 4 && <p className="t-neg" style={{ fontSize: 13 }}>{t({ uk: 'Для гри потрібно хоча б 4 слова.', ru: 'Для игры нужно хотя бы 4 слова.', en: 'A game needs at least 4 words.' })}</p>}
+        </div>
+      )}
+      {kind !== 'mock' && kind !== 'quest' && (
+        <div className="hw-attach">
+          <b>{t({ uk: 'Картинки й файли до завдання', ru: 'Картинки и файлы к заданию', en: 'Pictures and files for the task' })}</b>
+          <span className="t-muted">{t({ uk: 'Напр. картинка, яку треба описати, або PDF з текстом', ru: 'Напр. картинка, которую нужно описать, или PDF с текстом', en: 'e.g. a picture to describe or a PDF with a text' })}</span>
+          <HwFileList files={files} onRemove={(i) => setFiles((f) => f.filter((_, k) => k !== i))} />
+          <HwUpload count={files.length} onAdd={(f) => setFiles((x) => [...x, ...f])} />
+        </div>
+      )}
       <div className="t-form">
         <label>{t({ uk: 'Назва', ru: 'Название', en: 'Title' })}<input value={title} onChange={(e) => setTitle(e.target.value)} placeholder={kind === 'game' ? t({ uk: 'Напр. Слова з Unit 5', ru: 'Напр. Слова из Unit 5', en: 'e.g. Words from Unit 5' }) : kind === 'exercise' ? t({ uk: 'Напр. Past Simple, Unit 3', ru: 'Напр. Past Simple, Unit 3', en: 'e.g. Past Simple, Unit 3' }) : t({ uk: 'Напр. Твір про літо', ru: 'Напр. Сочинение о лете', en: 'e.g. Essay about summer' })} /></label>
         <label>{t({ uk: 'Здати до', ru: 'Сдать до', en: 'Due' })}<input type="datetime-local" value={due} onChange={(e) => setDue(e.target.value)} /></label>
@@ -844,7 +876,7 @@ export function HomeworkForm({ studentIds, groupId, onDone }: { studentIds: stri
           </div>
         )}
         {kids.length > 0 && <ParentToggle on={parentOn} set={setToParent} kids={kids} />}
-        <div className="t-form__actions"><button className="mu-btn mu-btn--lime" type="submit" disabled={!targets.length || (kind === 'game' && words < 4) || (kind === 'exercise' && !sections.length)}>{group ? t({ uk: `Задати всім (${targets.length})`, ru: `Задать всем (${targets.length})`, en: `Assign to all (${targets.length})` }) : t({ uk: 'Задати', ru: 'Задать', en: 'Assign' })}</button></div>
+        <div className="t-form__actions"><button className="mu-btn mu-btn--lime" type="submit" disabled={!targets.length || (kind === 'game' && words < 4) || (kind === 'game' && picked.length > 0 && picked.length < 4) || (kind === 'exercise' && !sections.length)}>{group ? t({ uk: `Задати всім (${targets.length})`, ru: `Задать всем (${targets.length})`, en: `Assign to all (${targets.length})` }) : t({ uk: 'Задати', ru: 'Задать', en: 'Assign' })}</button></div>
       </div>
     </form>
   );
@@ -894,6 +926,9 @@ export function HomeworkItem({ hwId, showStudent }: { hwId: string; showStudent?
       )}
       {h.passUsed && <p className="t-muted" style={{ fontSize: 13 }}>{t({ uk: 'Учень узяв пропуск за монетки: +1 день.', ru: 'Ученик взял пропуск за монетки: +1 день.', en: 'The student used a coin pass: +1 day.' })}</p>}
       {h.instructions && <p className="t-hw__text">{h.instructions}</p>}
+      {h.files?.length ? <HwFileList files={h.files} /> : null}
+      {h.wordList?.length ? <p className="t-muted" style={{ fontSize: 13 }}>{t({ uk: 'Слова в грі', ru: 'Слова в игре', en: 'Words in the game' })}: {h.wordList.map((w) => w.en).join(', ')}</p> : null}
+      {h.studentFiles?.length ? <div className="t-hw__answer"><small>{t({ uk: 'Фото й файли від учня', ru: 'Фото и файлы от ученика', en: 'Photos and files from the student' })}</small><HwFileList files={h.studentFiles} /></div> : null}
       {h.kind !== 'text' && h.score != null && (() => {
         // для вправ рахуємо наживо: враховує ✓ / ✕ вчителя
         const live = (h.kind === 'exercise' || h.kind === 'lesson') && h.items && h.answers ? grade(h.kind === 'lesson' ? lessonSections(h.items as Block[]) : (h.items as Section[]), h.answers, h.overrides) : null;
