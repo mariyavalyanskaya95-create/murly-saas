@@ -64,6 +64,10 @@ export const SHOP: ShopItem[] = [
   { id: 'pet-chick', en: 'chick', cat: 'Pets', sub: 'pet', price: 50 },
   { id: 'pet-bunny', en: 'bunny', cat: 'Pets', sub: 'pet', price: 80 },
   { id: 'pet-puppy', en: 'puppy', cat: 'Pets', sub: 'pet', price: 120 },
+  { id: 'pet-hamster', en: 'hamster', cat: 'Pets', sub: 'pet', price: 60 },
+  { id: 'pet-turtle', en: 'turtle', cat: 'Pets', sub: 'pet', price: 70 },
+  { id: 'pet-kitten', en: 'kitten', cat: 'Pets', sub: 'pet', price: 100 },
+  { id: 'pet-parrot', en: 'parrot', cat: 'Pets', sub: 'pet', price: 140 },
   { id: 'pet-dragon', en: 'baby dragon', cat: 'Pets', sub: 'pet', price: 250 },
 ];
 export const SPEED: Record<string, number> = { 'ride-skate': 1.6, 'ride-bike': 2.0, 'ride-scooter': 2.4, 'ride-car': 3.0, 'ride-hatch': 3.0, 'ride-sedan': 3.1, 'ride-wagon': 3.1, 'ride-yellow': 3.2, 'ride-taxi': 3.0, 'ride-police': 3.3, 'ride-ufo': 3.4 };
@@ -162,6 +166,7 @@ export const PLACES = {
   pier: { x: 0, z: -80, label: 'FISHING PIER', color: '#3E7BFA' },
   icecream: { x: -18, z: -62, label: 'ICE CREAM', color: '#F76AA8' },
   board: { x: -9, z: -6, label: 'NOTICE BOARD', color: '#8B5E34' },
+  school: { x: -26, z: -48, label: 'MURLY SCHOOL', color: '#7C66DC' },
 };
 
 // ---------- пекарня: торт за замовленням ----------
@@ -217,6 +222,7 @@ export const DESTS: Dest[] = [
   { id: 'boutique', x: 30, z: -28.4, name: 'the Boutique', desc: 'the shop where you can buy a dress or a jacket' },
   { id: 'store', x: 18, z: 10.4, name: 'the Murly Store', desc: 'the shop where you can buy a bike, a house or a pet' },
   { id: 'pier', x: 0, z: -70, name: 'the fishing pier', desc: 'the place on the beach where cats catch fish' },
+  { id: 'school', x: -26, z: -42.4, name: 'Murly School', desc: 'the place where young cats learn English with Miss Apple' },
 ];
 export function taxiTask(level: number): { who: string; text: string; dest: Dest } {
   const d = pick(DESTS);
@@ -278,6 +284,7 @@ export const MISSIONS: { id: string; en: string; n: number }[] = [
   { id: 'fish', en: 'Catch {n} fish at the pier', n: 3 }, { id: 'chat', en: 'Have {n} good chats with cats', n: 3 },
   { id: 'icecream', en: 'Sell {n} ice creams on the beach', n: 2 }, { id: 'lost', en: 'Find {n} lost things', n: 2 },
   { id: 'errand', en: 'Help Grandma Rose {n} times', n: 2 }, { id: 'keeper', en: 'Answer {n} questions at the lighthouse', n: 3 },
+  { id: 'school', en: 'Have {n} lessons at Murly School', n: 1 }, { id: 'treasure', en: 'Find {n} treasure chest', n: 1 },
 ];
 export function todayKey() { const d = new Date(); return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`; }
 export function dailyFor(date: string): Daily {
@@ -305,6 +312,8 @@ export const BADGES: Badge[] = [
   { id: 'b-lost', en: 'Detective', what: 'Find 10 lost things', need: 10, of: (s) => s.jobs.lost ?? 0 },
   { id: 'b-errand', en: 'Good neighbour', what: 'Help Grandma Rose 10 times', need: 10, of: (s) => s.jobs.errand ?? 0 },
   { id: 'b-keeper', en: 'Weather expert', what: 'Answer 15 lighthouse questions', need: 15, of: (s) => s.jobs.keeper ?? 0 },
+  { id: 'b-school', en: 'Top student', what: 'Have 10 lessons at school', need: 10, of: (s) => s.jobs.school ?? 0 },
+  { id: 'b-treasure', en: 'Treasure hunter', what: 'Find 5 treasure chests', need: 5, of: (s) => s.jobs.treasure ?? 0 },
   { id: 'b-home', en: 'Home designer', what: 'Put 8 things in your room', need: 8, of: (s) => (s.room ?? []).length },
 ];
 
@@ -589,3 +598,32 @@ export const JOKES = [
 ];
 export const COMPLIMENTS = ['I like your hat!', 'You are really funny!', 'You are a great friend.', 'Your fur is so soft and shiny!', 'You are very kind.', 'You have a lovely smile!', 'You are so clever!', 'You are a brilliant dancer!'];
 export const RPS = ['rock', 'paper', 'scissors'];
+
+
+// ---------- школа: граматика й аудіювання ----------
+export const GRAMMAR: { right: string; wrong: string[] }[] = [
+  { right: 'She goes to school every day.', wrong: ['She go to school every day.', 'She going to school every day.'] },
+  { right: 'I am eating an apple now.', wrong: ['I eating an apple now.', 'I am eat an apple now.'] },
+  { right: 'We went to the beach yesterday.', wrong: ['We go to the beach yesterday.', 'We goed to the beach yesterday.'] },
+  { right: 'There are three cats in the garden.', wrong: ['There is three cats in the garden.', 'There be three cats in the garden.'] },
+  { right: 'He has got a red bike.', wrong: ['He have got a red bike.', 'He has get a red bike.'] },
+  { right: 'Can you swim?', wrong: ['Do you can swim?', 'Can you to swim?'] },
+  { right: 'I have never been to London.', wrong: ['I have never went to London.', 'I never have been to London.'] },
+  { right: 'My sister is taller than me.', wrong: ['My sister is more tall than me.', 'My sister is taller that me.'] },
+  { right: 'Where do you live?', wrong: ['Where you live?', 'Where does you live?'] },
+  { right: "They didn't watch TV last night.", wrong: ["They didn't watched TV last night.", "They don't watched TV last night."] },
+  { right: 'This is the best cake in the world!', wrong: ['This is the goodest cake in the world!', 'This is the most good cake in the world!'] },
+  { right: 'I will help you tomorrow.', wrong: ['I will helping you tomorrow.', 'I helps you tomorrow.'] },
+  { right: 'How much water do you drink?', wrong: ['How many water do you drink?', 'How much waters do you drink?'] },
+  { right: 'The children are playing football.', wrong: ['The childrens are playing football.', 'The children is playing football.'] },
+  { right: 'Look! It is raining.', wrong: ['Look! It rains now.', 'Look! It raining.'] },
+  { right: 'Was she at home on Monday?', wrong: ['Were she at home on Monday?', 'Did she at home on Monday?'] },
+];
+export const LISTEN_WORDS = ['lighthouse', 'bakery', 'umbrella', 'strawberry', 'butterfly', 'kitchen', 'grandmother', 'sandwich', 'beautiful', 'island', 'pocket', 'rainbow', 'dolphin', 'sunglasses', 'library', 'pumpkin', 'weather', 'breakfast', 'scissors', 'telescope'];
+
+// ---------- полювання за скарбами ----------
+export function treasureHunt() {
+  const pool = [...LOST_PLACES].sort(() => Math.random() - 0.5).slice(0, 3);
+  const lines = ['The first clue is', 'The next clue is', 'The treasure is'];
+  return pool.map((p, i) => ({ x: p.x, z: p.z, text: `${lines[i]} ${p.en}.` }));
+}

@@ -240,6 +240,10 @@ function makePet(id: string): THREE.Group {
   if (id === 'pet-chick') { const b = sph(0.25, '#FFD84D'); b.position.y = 0.28; g.add(b); const h = sph(0.17, '#FFD84D'); h.position.set(0, 0.55, 0.08); g.add(h); const bk = mesh(new THREE.ConeGeometry(0.05, 0.12, 6), toon('#F5862D')); bk.rotation.x = Math.PI / 2; bk.position.set(0, 0.54, 0.26); g.add(bk); [-1, 1].forEach((s) => { const e = sph(0.03, '#1A1A1A', 8); e.position.set(0.07 * s, 0.6, 0.22); g.add(e); }); }
   if (id === 'pet-bunny') { const b = sph(0.27, '#FFFFFF'); b.scale.y = 0.9; b.position.y = 0.27; g.add(b); const h = sph(0.2, '#FFFFFF'); h.position.set(0, 0.56, 0.12); g.add(h); [-1, 1].forEach((s) => { const e = mesh(new THREE.CapsuleGeometry(0.05, 0.25, 4, 8), toon('#FFFFFF')); e.position.set(0.08 * s, 0.85, 0.08); e.rotation.z = -0.15 * s; g.add(e); const ey = sph(0.03, '#1A1A1A', 8); ey.position.set(0.08 * s, 0.6, 0.3); g.add(ey); }); const t = sph(0.08, '#FFFFFF', 8); t.position.set(0, 0.25, -0.27); g.add(t); }
   if (id === 'pet-puppy') { const b = sph(0.3, '#C68A4A'); b.scale.set(0.9, 0.8, 1.2); b.position.y = 0.32; g.add(b); const h = sph(0.22, '#C68A4A'); h.position.set(0, 0.6, 0.3); g.add(h); const sn = sph(0.1, '#F3D9B1'); sn.position.set(0, 0.55, 0.48); g.add(sn); const no = sph(0.04, '#1A1A1A', 8); no.position.set(0, 0.6, 0.57); g.add(no); [-1, 1].forEach((s) => { const e = sph(0.1, '#7A4E25'); e.scale.set(0.5, 1, 0.4); e.position.set(0.2 * s, 0.6, 0.28); g.add(e); const ey = sph(0.03, '#1A1A1A', 8); ey.position.set(0.08 * s, 0.67, 0.48); g.add(ey); }); const t = mesh(new THREE.CapsuleGeometry(0.04, 0.2, 4, 8), toon('#C68A4A')); t.position.set(0, 0.5, -0.35); t.rotation.x = -0.7; t.name = 'wag'; g.add(t); }
+  if (id === 'pet-kitten') { const b = sph(0.22, '#9AA3AE'); b.scale.set(0.9, 0.85, 1.2); b.position.y = 0.24; g.add(b); const h = sph(0.17, '#9AA3AE'); h.position.set(0, 0.45, 0.2); g.add(h); [-1, 1].forEach((s) => { const e = mesh(new THREE.ConeGeometry(0.06, 0.12, 4), toon('#9AA3AE')); e.position.set(0.09 * s, 0.6, 0.2); g.add(e); const ey = sph(0.03, '#1A1A1A', 8); ey.position.set(0.06 * s, 0.48, 0.35); g.add(ey); }); const t = mesh(new THREE.CapsuleGeometry(0.03, 0.3, 4, 8), toon('#9AA3AE')); t.position.set(0, 0.4, -0.3); t.rotation.x = -0.6; t.name = 'wag'; g.add(t); }
+  if (id === 'pet-parrot') { const b = sph(0.18, '#30A46C'); b.scale.y = 1.3; b.position.y = 1.3; g.add(b); const h = sph(0.13, '#E5484D'); h.position.set(0, 1.62, 0.05); g.add(h); const bk = mesh(new THREE.ConeGeometry(0.04, 0.12, 6), toon('#FFC53D')); bk.rotation.x = Math.PI / 2; bk.position.set(0, 1.6, 0.18); g.add(bk); [-1, 1].forEach((s) => { const w = mesh(new THREE.ConeGeometry(0.1, 0.35, 3), toon('#3E7BFA')); w.rotation.z = (Math.PI / 2.2) * s; w.position.set(0.16 * s, 1.3, 0); w.name = 'wing'; g.add(w); const ey = sph(0.025, '#1A1A1A', 8); ey.position.set(0.06 * s, 1.66, 0.12); g.add(ey); }); }
+  if (id === 'pet-turtle') { const sh = sph(0.3, '#30A46C', 14); sh.scale.set(1, 0.55, 1.2); sh.position.y = 0.18; g.add(sh); const hd = sph(0.11, '#9ACD4C'); hd.position.set(0, 0.18, 0.42); g.add(hd); [[-0.2, 0.25], [0.2, 0.25], [-0.2, -0.25], [0.2, -0.25]].forEach(([x, z]) => { const l = sph(0.07, '#9ACD4C', 8); l.position.set(x, 0.06, z); g.add(l); }); [-1, 1].forEach((s) => { const ey = sph(0.02, '#1A1A1A', 6); ey.position.set(0.05 * s, 0.22, 0.51); g.add(ey); }); }
+  if (id === 'pet-hamster') { const b = sph(0.2, '#E8B46A'); b.scale.set(1, 0.85, 1.1); b.position.y = 0.18; g.add(b); const bel = sph(0.13, '#FFF1C9'); bel.position.set(0, 0.15, 0.12); g.add(bel); [-1, 1].forEach((s) => { const e = sph(0.05, '#E8B46A', 8); e.position.set(0.1 * s, 0.34, 0.05); g.add(e); const ey = sph(0.025, '#1A1A1A', 6); ey.position.set(0.07 * s, 0.24, 0.19); g.add(ey); }); }
   if (id === 'pet-dragon') { const b = sph(0.3, '#30A46C'); b.position.y = 0.4; g.add(b); const h = sph(0.22, '#30A46C'); h.position.set(0, 0.75, 0.15); g.add(h); [-1, 1].forEach((s) => { const w = mesh(new THREE.ConeGeometry(0.2, 0.45, 3), toon('#8EE0B0')); w.rotation.z = (Math.PI / 2.4) * s; w.position.set(0.32 * s, 0.6, -0.05); w.name = 'wing'; g.add(w); const ey = sph(0.04, '#1A1A1A', 8); ey.position.set(0.09 * s, 0.82, 0.33); g.add(ey); const hr = mesh(new THREE.ConeGeometry(0.04, 0.14, 6), toon('#FFE08A')); hr.position.set(0.1 * s, 0.98, 0.1); g.add(hr); }); }
   return g;
 }
@@ -378,6 +382,9 @@ export const INTERIORS: IDef[] = [
       ['cabinetTelevision', -1, 3.2, 3.14], ['televisionModern', -1, 3.2, 3.14, 7], ['kitchenFridge', 6.1, 1.5, -1.57]] },
   { id: 'tent', job: 'campbook', title: 'CAMP MURLY', floor: ['#B7D98A', '#A6CC78'], wall: '#E9E2C3', spot: [3.6, 1.2],
     items: [['bedSingle', -3.4, -3.6, 0], ['bedSingle', -1.2, -3.6, 0], ['lampRoundFloor', 1.6, -4.8, 0], ['cardboardBoxOpen', 4.2, -4.4, 0.3], ['rugRound', -2.2, 0.4, 0], ['radio', 5.2, -2.2, -1.57], ['chair', 3.6, 0, 3.14]] },
+  { id: 'school', job: 'school', title: 'MURLY SCHOOL', floor: ['#E7E2F7', '#DAD3F0'], wall: '#FFF8E1', npc: ['Miss Apple', '#F7F3EA', 0, -4.2, 'glasses-round'], spot: [0, -2.8],
+    items: [['desk', -3.6, -0.6, 3.14], ['chair', -3.6, 0.3, 3.14], ['desk', -1.2, -0.6, 3.14], ['chair', -1.2, 0.3, 3.14], ['desk', 1.2, -0.6, 3.14], ['chair', 1.2, 0.3, 3.14], ['desk', 3.6, -0.6, 3.14], ['chair', 3.6, 0.3, 3.14],
+      ['desk', -2.4, 2.4, 3.14], ['chair', -2.4, 3.3, 3.14], ['desk', 2.4, 2.4, 3.14], ['chair', 2.4, 3.3, 3.14], ['bookcaseOpen', 5.8, -4.95, 0], ['bookcaseOpen', 4.8, -4.95, 0], ['pottedPlant', -6.2, -4.6, 0], ['books', -3.6, -0.6, 0, 0], ['laptop', 3.6, -0.6, 3.14, 6]] },
   { id: 'lighthouse', job: 'keeper', title: 'LIGHTHOUSE', floor: ['#E1E6EC', '#D3DAE2'], wall: '#FFFFFF', npc: ['Captain Ted', '#3A3A44', 0, -2, 'hat-beanie'], spot: [0, -0.7],
     items: [['desk', 3, -4.85, 0], ['radio', 3, -4.85, 0, 0], ['chair', 3, -3.8, 3.14], ['bedSingle', -4.8, -3.6, 0], ['bookcaseOpen', 5.6, -4.95, 0], ['x-telescope', -1.8, -4.2, 0], ['lampRoundFloor', -2.8, -4.9, 0], ['rugRound', 0, -1, 0], ['pottedPlant', 6.2, 4.4, 0]] },
 ];
@@ -525,7 +532,7 @@ export class IslandScene {
       const mat = mesh(new THREE.CircleGeometry(1.3, 24), toon(bg), false); mat.rotation.x = -Math.PI / 2; mat.position.set(x, 0.04, dz); this.scene.add(mat);
     }
     // пекарня і бутик
-    for (const [id, file] of [['bakery', 'building_D'], ['boutique', 'building_E']] as const) {
+    for (const [id, file] of [['bakery', 'building_D'], ['boutique', 'building_E'], ['school', 'building_F']] as const) {
       const P = PLACES[id]; const m = await add('city', file, P.x, P.z, 9, 0, 5.2);
       const h = new THREE.Box3().setFromObject(m).max.y;
       const sg = sign(P.label, P.color, '#FFFFFF', 6); sg.position.set(P.x, h + 1.4, P.z); this.scene.add(sg);
@@ -653,7 +660,10 @@ export class IslandScene {
     const hut = box(1.2, 1.4, 1.2, '#3E7BFA'); hut.position.set(1.0, 1.0, -85); this.scene.add(hut);
     const rod = cyl(0.03, 0.03, 2.6, '#6B4F2A', 6); rod.position.set(-0.9, 1.4, -85.5); rod.rotation.x = -0.6; this.scene.add(rod);
     const sg = sign(P.label, P.color, '#FFFFFF', 5); sg.position.set(0, 3, -66); this.scene.add(sg);
-    this.spots.push({ id: 'pier', x: 0, z: -82, r: 2.6, label: P.label });
+    this.spots.push({ id: 'pier', x: 0, z: -82, r: 2.2, label: P.label });
+    this.spots.push({ id: 'boat', x: 0, z: -85.5, r: 1.4, label: 'BOAT' });
+    const bt = box(1.4, 0.5, 2.6, '#FFFFFF'); bt.position.set(2.8, -0.1, -85); this.scene.add(bt); const bs = box(1.45, 0.1, 2.65, '#3E7BFA'); bs.position.set(2.8, 0.05, -85); this.scene.add(bs);
+    this.spots.push({ id: 'boat-dock', x: 0, z: -92, r: 4, label: 'PIER' });
   }
   buildIceCream() {
     const P = PLACES.icecream; const g = new THREE.Group(); g.position.set(P.x, 0, P.z);
@@ -690,11 +700,85 @@ export class IslandScene {
     else if (kind === 'kite') { const k = mesh(new THREE.OctahedronGeometry(0.4, 0), toon(color)); k.scale.set(1, 1.3, 0.15); k.position.y = 0.5; g.add(k); }
     else if (kind === 'hat') { const r = cyl(0.4, 0.4, 0.04, color, 16); r.position.y = 0.05; g.add(r); const t = cyl(0.25, 0.27, 0.3, color, 16); t.position.y = 0.22; g.add(t); }
     else if (kind === 'bag') { const b = box(0.5, 0.4, 0.2, color); b.position.y = 0.2; g.add(b); const h = mesh(new THREE.TorusGeometry(0.15, 0.03, 6, 12, Math.PI), toon(color)); h.position.y = 0.4; g.add(h); }
+    else if (kind === 'chest') { const b = box(0.9, 0.5, 0.6, '#8B5E34'); b.position.y = 0.25; g.add(b); const lid = cyl(0.3, 0.3, 0.9, '#8B5E34', 12, ); lid.rotation.z = Math.PI / 2; lid.scale.set(1, 1, 1); lid.position.y = 0.5; g.add(lid); const band = box(0.95, 0.08, 0.65, '#FFC53D'); band.position.y = 0.48; g.add(band); const lock = box(0.15, 0.18, 0.05, '#FFC53D'); lock.position.set(0, 0.4, 0.32); g.add(lock); }
     else { const b = sph(0.3, color, 16); b.position.y = 0.3; g.add(b); }
     const spark = new THREE.Mesh(new THREE.SphereGeometry(0.7, 12, 8), new THREE.MeshBasicMaterial({ color: '#FFF3A6', transparent: true, opacity: 0.25, depthWrite: false, blending: THREE.AdditiveBlending }));
     spark.position.y = 0.4; spark.name = 'spark'; g.add(spark);
     g.position.set(x, 0, z); this.scene.add(g); this.lostObj = g;
   }
+
+  // ---- човен ----
+  boating = false; boat: THREE.Group | null = null;
+  startBoat() {
+    if (this.boating) return; this.boating = true; this.setRide(null);
+    const b = new THREE.Group(); const hull = box(1.6, 0.6, 3.2, '#FFFFFF'); hull.position.y = 0.05; b.add(hull); const stripe = box(1.65, 0.12, 3.25, '#3E7BFA'); stripe.position.y = 0.2; b.add(stripe);
+    const bow = mesh(new THREE.ConeGeometry(0.8, 1.2, 4), toon('#FFFFFF')); bow.rotation.x = Math.PI / 2; bow.rotation.y = Math.PI / 4; bow.scale.set(1, 1, 0.4); bow.position.set(0, 0.05, 2.1); b.add(bow);
+    const mast = cyl(0.05, 0.05, 3, '#6B4F2A', 6); mast.position.set(0, 1.8, -0.2); b.add(mast);
+    const sh = new THREE.Shape(); sh.moveTo(0, 0); sh.lineTo(0, 2.6); sh.lineTo(1.6, 0); sh.closePath(); const sail = new THREE.Mesh(new THREE.ShapeGeometry(sh), new THREE.MeshToonMaterial({ color: '#F76AA8', side: THREE.DoubleSide })); sail.rotation.y = -Math.PI / 2; sail.position.set(0, 0.6, 0); b.add(sail);
+    this.hero.root.add(b); this.boat = b; this.heroPos.set(0, 0, -92); this.vel.set(0, 0, 0); this.heroRot = Math.PI;
+  }
+  stopBoat() { if (!this.boating) return; this.boating = false; if (this.boat) this.hero.root.remove(this.boat); this.boat = null; this.heroPos.set(0, 0, -82); this.vel.set(0, 0, 0); this.setRide(this.rideId); }
+  // ---- зима: сніг і сніговики ----
+  winter = (() => { const d = new Date(); const m = d.getMonth(); return m === 11 || m === 0 || m === 1 || (m === 10 && d.getDate() >= 25); })();
+  snowObj: THREE.Points | null = null;
+  buildSnowman() {
+    const g = new THREE.Group(); const f = new THREE.Vector3(Math.sin(this.heroRot), 0, Math.cos(this.heroRot)).multiplyScalar(1.8); g.position.copy(this.heroPos).add(f); g.position.y = 0;
+    [[0.55, 0.5], [0.4, 1.25], [0.28, 1.8]].forEach(([r, y]) => { const b = sph(r, '#FFFFFF', 16); b.position.y = y; g.add(b); });
+    const nose = mesh(new THREE.ConeGeometry(0.05, 0.25, 8), toon('#F5862D')); nose.rotation.x = Math.PI / 2; nose.position.set(0, 1.8, 0.3); g.add(nose);
+    [-1, 1].forEach((s) => { const e = sph(0.04, '#1A1A1A', 6); e.position.set(0.09 * s, 1.88, 0.24); g.add(e); const arm = cyl(0.02, 0.02, 0.6, '#6B4F2A', 4); arm.rotation.z = (Math.PI / 2.6) * s; arm.position.set(0.55 * s, 1.35, 0); g.add(arm); });
+    const hat = cyl(0.2, 0.2, 0.3, '#1A1A1A', 12); hat.position.y = 2.15; g.add(hat); const brim = cyl(0.3, 0.3, 0.03, '#1A1A1A', 12); brim.position.y = 2.01; g.add(brim);
+    const sc = mesh(new THREE.TorusGeometry(0.33, 0.07, 6, 16), toon('#E5484D')); sc.rotation.x = Math.PI / 2; sc.position.y = 1.55; g.add(sc);
+    g.lookAt(this.heroPos.x, 0, this.heroPos.z); this.scene.add(g); this.snowmen.push(g); if (this.snowmen.length > 4) this.scene.remove(this.snowmen.shift()!);
+  }
+  snowmen: THREE.Group[] = [];
+  // ---- феєрверки ----
+  fireworksOn = false; fwT = 0; fws: { p: THREE.Points; v: Float32Array; t: number }[] = [];
+  burst() {
+    const n = 120; const pos = new Float32Array(n * 3); const v = new Float32Array(n * 3); const a = Math.random() * Math.PI * 2; const d = 95 + Math.random() * 20;
+    const cx = Math.cos(a) * d, cy = 30 + Math.random() * 15, cz = Math.sin(a) * d;
+    for (let i = 0; i < n; i++) { pos.set([cx, cy, cz], i * 3); const th = Math.random() * Math.PI * 2, ph = Math.acos(2 * Math.random() - 1); const sp = 9 + Math.random() * 4; v.set([Math.sin(ph) * Math.cos(th) * sp, Math.cos(ph) * sp, Math.sin(ph) * Math.sin(th) * sp], i * 3); }
+    const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+    const p = new THREE.Points(g, new THREE.PointsMaterial({ color: ['#FF5C8A', '#FFC53D', '#5CC8FF', '#7CFF9B', '#C79CFF'][Math.floor(Math.random() * 5)], size: 1.4, transparent: true, opacity: 1, fog: false, depthWrite: false, blending: THREE.AdditiveBlending }));
+    this.scene.add(p); this.fws.push({ p, v, t: 0 });
+  }
+  // ---- інші гравці по мережі ----
+  others = new Map<string, { rig: Rig; tx: number; tz: number; tr: number; last: number; tag: THREE.Sprite | null; name: string; key: string; bub: THREE.Sprite | null; ride: THREE.Group | null; rideId: string | null; danceT: number }>();
+  upsertOther(p: { id: string; n: string; x: number; z: number; r: number; room?: string | null; o?: Record<string, string | undefined>; ride?: string | null }) {
+    if (p.room === 'home') { this.removeOther(p.id); return; }
+    let o = this.others.get(p.id);
+    if (!o) { const rig = makeCat(FUR[0].color); rig.root.position.set(p.x, 0, p.z); this.scene.add(rig.root); o = { rig, tx: p.x, tz: p.z, tr: p.r, last: 0, tag: null, name: '', key: '', bub: null, ride: null, rideId: null, danceT: 0 }; this.others.set(p.id, o); }
+    o.tx = p.x; o.tz = p.z; o.tr = p.r; o.last = performance.now();
+    const key = JSON.stringify(p.o ?? {});
+    if (p.o && key !== o.key) { o.key = key; wear(o.rig, p.o as unknown as Outfit); }
+    if ((p.ride ?? null) !== o.rideId) { if (o.ride) o.rig.root.remove(o.ride); o.rideId = p.ride ?? null; o.ride = o.rideId ? makeRide(o.rideId) : null; if (o.ride) o.rig.root.add(o.ride); }
+    if (p.n !== o.name) { o.name = p.n; if (o.tag) o.rig.root.remove(o.tag); const t = sign(p.n || 'Cat', '#7C66DC', '#FFFFFF', 1.6); t.position.y = 2.25; (t.material as THREE.SpriteMaterial).depthTest = false; o.rig.root.add(t); o.tag = t; }
+  }
+  removeOther(id: string) { const o = this.others.get(id); if (!o) return; this.scene.remove(o.rig.root); this.others.delete(id); }
+  otherSay(id: string, text: string) {
+    const o = this.others.get(id); if (!o) return; if (o.bub) o.rig.root.remove(o.bub);
+    const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: this.speechTex(text.length > 22 ? text.slice(0, 21) + '…' : text, '#E8F6FF'), depthTest: false })); sp.scale.set(2.2, 0.92, 1); sp.position.y = 2.95; o.rig.root.add(sp); o.bub = sp;
+    window.setTimeout(() => { if (o.bub === sp) { o.rig.root.remove(sp); o.bub = null; } }, 4000);
+  }
+  otherDance(id: string) { const o = this.others.get(id); if (o) o.danceT = 2.4; }
+  stepOthers(dt: number, t: number) {
+    const now = performance.now();
+    for (const [id, o] of this.others) {
+      if (now - o.last > 12000) { this.removeOther(id); continue; }
+      const p = o.rig.root.position; const dx = o.tx - p.x, dz = o.tz - p.z; const d = Math.hypot(dx, dz);
+      if (d > 30) p.set(o.tx, 0, o.tz); else { p.x += dx * Math.min(1, dt * 8); p.z += dz * Math.min(1, dt * 8); }
+      let dr = o.tr - o.rig.root.rotation.y; dr = Math.atan2(Math.sin(dr), Math.cos(dr)); o.rig.root.rotation.y += dr * Math.min(1, dt * 10);
+      const moving = d > 0.05 && !o.rideId; const q = t * 10 + p.x;
+      o.rig.body.position.y = (o.rideId ? (CARS.includes(o.rideId) ? 0.55 : 0.25) : 0) + (moving ? Math.abs(Math.sin(q)) * 0.1 : 0);
+      o.rig.armL.rotation.x = moving ? Math.sin(q) * 0.8 : 0; o.rig.armR.rotation.x = moving ? -Math.sin(q) * 0.8 : 0;
+      o.rig.legL.position.z = moving ? Math.sin(q) * 0.18 : 0; o.rig.legR.position.z = moving ? -Math.sin(q) * 0.18 : 0;
+      o.rig.legL.visible = o.rig.legR.visible = !CARS.includes(o.rideId ?? '');
+      if (o.danceT > 0) { o.danceT -= dt; o.rig.armL.rotation.z = -2.4 + Math.sin(t * 12) * 0.5; o.rig.armR.rotation.z = 2.4 + Math.sin(t * 12 + 1) * 0.5; o.rig.body.rotation.y = Math.sin(t * 6) * 0.5; } else { o.rig.armL.rotation.z = -0.35; o.rig.armR.rotation.z = 0.35; o.rig.body.rotation.y = 0; }
+    }
+  }
+
+  // ---- хованки ----
+  hideNpc(i: number, x: number, z: number) { const n = this.npcs[i]; if (!n) return; this.followers.delete(i); n.rig.root.position.set(x, 0, z); n.home.set(x, 0, z); n.goal.set(x, 0, z); n.t = 999; }
+  npcPos(i: number) { return this.npcs[i]?.rig.root.position; }
 
   // небо: зорі вночі, місяць, дощ
   buildSky() {
@@ -707,6 +791,7 @@ export class IslandScene {
     const m = 1400; const rp = new Float32Array(m * 6);
     for (let i = 0; i < m; i++) { const x = (Math.random() - 0.5) * 50, y = Math.random() * 26, z = (Math.random() - 0.5) * 50; rp.set([x, y, z, x, y - 0.7, z], i * 6); }
     const rg = new THREE.BufferGeometry(); rg.setAttribute('position', new THREE.BufferAttribute(rp, 3));
+    { const k = 1500; const sp = new Float32Array(k * 3); for (let i = 0; i < k; i++) sp.set([(Math.random() - 0.5) * 50, Math.random() * 26, (Math.random() - 0.5) * 50], i * 3); const sg = new THREE.BufferGeometry(); sg.setAttribute('position', new THREE.BufferAttribute(sp, 3)); this.snowObj = new THREE.Points(sg, new THREE.PointsMaterial({ color: '#FFFFFF', size: 0.18, transparent: true, opacity: 0.9, depthWrite: false })); this.snowObj.visible = false; this.snowObj.frustumCulled = false; this.scene.add(this.snowObj); }
     this.rainObj = new THREE.LineSegments(rg, new THREE.LineBasicMaterial({ color: '#CFE3F5', transparent: true, opacity: 0.55, depthWrite: false })); this.rainObj.visible = false; this.rainObj.frustumCulled = false; this.scene.add(this.rainObj);
   }
   // метелики, світлячки, птахи, човни
@@ -943,6 +1028,12 @@ export class IslandScene {
       this.art(g, graffitiTex('AHOY!', ['#3E7BFA', '#E5484D', '#FFFFFF']), 5.2, 1.95, LX, 2.3, -2.4, R);
       const wheel = new THREE.Group(); wheel.add(mesh(new THREE.TorusGeometry(0.5, 0.06, 8, 24), toon('#8B5E34'))); for (let i = 0; i < 8; i++) { const sp = box(0.05, 1.3, 0.05, '#8B5E34'); sp.rotation.z = (i / 8) * Math.PI; wheel.add(sp); } wheel.position.set(LX + 0.1, 1.6, 1); wheel.rotation.y = R; g.add(wheel);
     }
+    if (id === 'school') {
+      this.wallpaper(g, wallpaperTex('stars', '#FFF8E1', '#FFE08A'));
+      this.art(g, chalkTex('TODAY: ENGLISH', ['Hello! = Привіт!', 'I am a cat.', 'She is happy.', 'We like books!']), 4.2, 2.0, -1.2, 2.2, BZ);
+      this.art(g, posterTex({ title: 'A B C', lines: ['apple  ball  cat', 'dog  egg  fish'], bg: '#BDE5C4', icons: [['star', '#FFC53D'], ['cat', '#F4A340'], ['fish', '#3E7BFA']] }), 1.5, 2.0, 2.8, 2.0, BZ);
+      this.art(g, graffitiTex('LEARN & PLAY', ['#7C66DC', '#30A46C', '#F5862D']), 5.2, 1.9, LX, 2.3, -1.6, R);
+    }
     if (id === 'tent') {
       this.wallpaper(g, wallpaperTex('stripes', '#E9E2C3', '#C8DB8F'));
       this.art(g, graffitiTex('CAMP MURLY', ['#30A46C', '#F5862D', '#FFC53D']), 5.6, 1.9, 0.5, 2.3, BZ);
@@ -1147,7 +1238,7 @@ export class IslandScene {
     if (this.goal) { const d = this.goal.clone().sub(this.heroPos); d.y = 0; if (d.length() < 0.5) { this.goal = null; if (this.goalRing) this.goalRing.visible = false; } else {
       goalDir = d.normalize();
       // обхід перешкод: якщо будинок попереду, ідемо по дотичній
-      for (const c of this.inside ? (this.roomId === 'home' ? this.roomCol : this.roomCols[this.roomId ?? ''] ?? []) : this.colliders) {
+      for (const c of this.boating ? [] : this.inside ? (this.roomId === 'home' ? this.roomCol : this.roomCols[this.roomId ?? ''] ?? []) : this.colliders) {
         const tx = c.x - this.heroPos.x, tz = c.z - this.heroPos.z; const dist = Math.hypot(tx, tz);
         const along = tx * goalDir.x + tz * goalDir.z;
         if (along <= 0 || dist > c.r + 2.5 || along > d.length() + 0.5) continue;
@@ -1160,7 +1251,7 @@ export class IslandScene {
     const len = Math.hypot(ix, iz); if (len > 1) { ix /= len; iz /= len; }
     if (this.pose && (len > 0.1 || this.goal)) this.endPose();
     const running = k.has('ShiftLeft') || k.has('ShiftRight') || this.run;
-    const base = 5.2 * (this.rideId ? SPEED[this.rideId] ?? 1 : running ? 1.6 : 1);
+    const base = 5.2 * (this.boating ? 2.6 : this.rideId ? SPEED[this.rideId] ?? 1 : running ? 1.6 : 1);
     // напрям відносно камери
     const fwd = new THREE.Vector3(-Math.sin(this.camYaw), 0, -Math.cos(this.camYaw));
     const right = new THREE.Vector3(-fwd.z, 0, fwd.x);
@@ -1186,10 +1277,11 @@ export class IslandScene {
     }
     if (this.inside) { this.heroPos.x = THREE.MathUtils.clamp(this.heroPos.x, this.cur.x - ROOM.w / 2 + 0.6, this.cur.x + ROOM.w / 2 - 0.6); this.heroPos.z = THREE.MathUtils.clamp(this.heroPos.z, this.cur.z - ROOM.d / 2 + 0.6, this.cur.z + ROOM.d / 2 - 0.6); }
     else {
-      const onPier = Math.abs(this.heroPos.x) < 1.6 && this.heroPos.z < -69 && this.heroPos.z > -86.5;
+      if (this.boating) { const d0 = Math.hypot(this.heroPos.x, this.heroPos.z); const k0 = THREE.MathUtils.clamp(d0, 84, 170) / Math.max(d0, 0.001); this.heroPos.x *= k0; this.heroPos.z *= k0; }
+      const onPier = !this.boating && Math.abs(this.heroPos.x) < 1.6 && this.heroPos.z < -69 && this.heroPos.z > -86.5;
       const R = 73; const dc = Math.hypot(this.heroPos.x, this.heroPos.z);
       if (onPier) { if (this.heroPos.z < -71) this.heroPos.x = THREE.MathUtils.clamp(this.heroPos.x, -1.3, 1.3); this.heroPos.z = Math.max(this.heroPos.z, -85.6); }
-      else if (dc > R) { this.heroPos.x *= R / dc; this.heroPos.z *= R / dc; }
+      else if (dc > R && !this.boating) { this.heroPos.x *= R / dc; this.heroPos.z *= R / dc; }
     }
     if (this.pose) { this.heroPos.set(this.pose.x, 0, this.pose.z); this.heroRot = this.pose.rot; this.vel.set(0, 0, 0); this.vy = 0; }
     const speed = Math.hypot(this.vel.x, this.vel.z);
@@ -1221,6 +1313,7 @@ export class IslandScene {
       if (Math.hypot(this.lostObj.position.x - this.heroPos.x, this.lostObj.position.z - this.heroPos.z) < 1.4) { this.setLost(null); this.ev.onPickup?.(); }
     }
     if (this.pose) this.applyPose(t);
+    if (this.boating) { h.root.position.y = -0.1 + Math.sin(t * 1.6) * 0.12; h.root.rotation.z = Math.sin(t * 1.1) * 0.05; h.body.position.y = 0.45; h.legL.visible = h.legR.visible = false; }
     if (this.bubbleObj) { this.bubbleT -= dt; if (this.bubbleT <= 0) { this.hero.root.remove(this.bubbleObj); this.bubbleObj = null; } }
     const cape = h.slots.bag.getObjectByName('cape'); if (cape) cape.rotation.x = 0.15 + Math.min(speed, 10) * 0.08 + Math.sin(t * 8) * 0.05;
     h.slots.bag.children.forEach((c) => { if (c.name === 'flame') { c.visible = !this.onGround; c.scale.y = 0.8 + Math.random() * 0.5; } });
@@ -1231,7 +1324,7 @@ export class IslandScene {
       const goal = this.heroPos.clone().add(behind); goal.y = 0;
       const d = goal.distanceTo(this.petPos);
       if (d > 0.4) this.petPos.lerp(goal, 1 - Math.exp(-(d > 8 ? 6 : 3) * dt));
-      const fly = this.petId === 'pet-dragon';
+      const fly = this.petId === 'pet-dragon' || this.petId === 'pet-parrot';
       this.pet.position.set(this.petPos.x, (fly ? 1.2 + Math.sin(t * 4) * 0.2 : Math.abs(Math.sin(t * 9)) * (d > 0.6 ? 0.2 : 0.02)), this.petPos.z);
       this.pet.lookAt(this.heroPos.x, this.pet.position.y, this.heroPos.z);
       if (this.petTrickT > 0) { this.petTrickT -= dt; this.pet.position.y += Math.abs(Math.sin(this.petTrickT * 6)) * 0.8; this.pet.rotation.y += (2 - this.petTrickT) * Math.PI * 2; }
@@ -1260,7 +1353,7 @@ export class IslandScene {
     if (this.frames % 2 === 0) { for (let i = 0; i < wp.count; i++) { const x = wp.getX(i), z = wp.getZ(i); wp.setY(i, Math.sin(x * 0.12 + t * 1.2) * 0.18 + Math.cos(z * 0.1 + t) * 0.15); } wp.needsUpdate = true; this.water.geometry.computeVertexNormals(); }
     this.clouds.forEach((c) => { c.position.x += c.userData.v * dt; if (c.position.x > 170) c.position.x = -170; });
     if (this.markerOn) { const a = this.marker.getObjectByName('arrow')!; a.position.y = 4.2 + Math.sin(t * 3) * 0.4; a.rotation.y = t * 2; }
-    this.stepWorld(dt, t); if (this.inside) this.stepKeepers(t);
+    this.stepWorld(dt, t); if (this.inside) this.stepKeepers(t); this.stepOthers(dt, t);
     // камера позаду героя
     if (this.inside) this.camYaw = THREE.MathUtils.clamp(this.camYaw, -0.25, 1.25);
     else if (speed > 1 && !this.drag && (Math.abs(this.joy.x) + Math.abs(this.joy.y) > 0 || k.size)) { let d = (this.heroRot + Math.PI) - this.camYaw; d = Math.atan2(Math.sin(d), Math.cos(d)); this.camYaw += d * (1 - Math.exp(-1.2 * dt)); }
@@ -1309,7 +1402,11 @@ export class IslandScene {
     if (this.beam) { (this.beam.material as THREE.MeshBasicMaterial).opacity = night * 0.22; this.beam.visible = night > 0.05; this.beam.rotation.y = t * 0.8; }
     if (this.skyStars) { (this.skyStars.material as THREE.PointsMaterial).opacity = night * (1 - this.rain); this.skyStars.position.set(this.heroPos.x, 0, this.heroPos.z); }
     if (this.moon) { const a = this.dayP * Math.PI * 2; this.moon.position.set(this.heroPos.x - Math.cos(a) * 200, Math.max(-40, -e * 180 + 10), this.heroPos.z - 120); (this.moon.material as THREE.MeshBasicMaterial).opacity = night * (1 - this.rain * 0.8); }
-    if (this.rainObj) { this.rainObj.visible = this.rain > 0.03; if (this.rainObj.visible) { (this.rainObj.material as THREE.LineBasicMaterial).opacity = 0.55 * this.rain; this.rainObj.position.set(this.heroPos.x, ((-t * 24) % 26 + 26) % 26 - 6, this.heroPos.z); } }
+    if (this.snowObj) { this.snowObj.visible = this.winter && this.rain > 0.03; if (this.snowObj.visible) { this.snowObj.position.set(this.heroPos.x + Math.sin(t * 0.5) * 2, ((-t * 3) % 26 + 26) % 26 - 6, this.heroPos.z); (this.snowObj.material as THREE.PointsMaterial).opacity = 0.9 * this.rain; } }
+    // феєрверки вночі
+    if (this.fireworksOn && night > 0.6 && !this.inside) { this.fwT -= dt; if (this.fwT < 0) { this.burst(); this.fwT = 0.7 + Math.random() * 1.2; } }
+    for (let i = this.fws.length - 1; i >= 0; i--) { const f = this.fws[i]; f.t += dt; const pa = f.p.geometry.attributes.position as THREE.BufferAttribute; for (let k = 0; k < pa.count; k++) { f.v[k * 3 + 1] -= 6 * dt; pa.setXYZ(k, pa.getX(k) + f.v[k * 3] * dt, pa.getY(k) + f.v[k * 3 + 1] * dt, pa.getZ(k) + f.v[k * 3 + 2] * dt); } pa.needsUpdate = true; (f.p.material as THREE.PointsMaterial).opacity = Math.max(0, 1 - f.t / 1.8); if (f.t > 1.8) { this.scene.remove(f.p); f.p.geometry.dispose(); this.fws.splice(i, 1); } }
+    if (this.rainObj) { this.rainObj.visible = !this.winter && this.rain > 0.03; if (this.rainObj.visible) { (this.rainObj.material as THREE.LineBasicMaterial).opacity = 0.55 * this.rain; this.rainObj.position.set(this.heroPos.x, ((-t * 24) % 26 + 26) % 26 - 6, this.heroPos.z); } }
     const hour = Math.floor((this.dayP * 24 + 6) % 24 * 2) / 2;
     if (hour !== this.lastHour) { this.lastHour = hour; this.ev.onClock?.(hour, this.raining); }
     // метелики вдень, світлячки вночі
