@@ -4769,3 +4769,32 @@ textarea.t-parent__url { width: 300px; font: inherit; font-size: 13px; }
 .ex-ed__img { display: flex; align-items: center; gap: 10px; margin: 6px 0; }
 .ex-ed__img img { width: 120px; height: 90px; object-fit: cover; border-radius: 10px; border: 2px solid var(--mu-ink); }
 .t-pay-until { margin: 4px 0 0; padding: 8px 12px; border-radius: 12px; background: var(--mu-lime, #DCE9B5); font-weight: 700; font-size: 14px; }
+/* Murly Island: місії, дім, нові роботи */
+.il-today { position: absolute; top: 64px; left: 12px; z-index: 4; display: grid; gap: 4px; padding: 8px 12px; background: rgba(255,253,246,.92); border: 2.5px solid #1A1A1A; border-radius: 14px; font-size: 13px; font-weight: 700; cursor: pointer; max-width: 260px; }
+.il-today div { display: flex; justify-content: space-between; gap: 10px; }
+.il-today div.on { color: #30A46C; text-decoration: line-through; }
+@media (max-width: 720px) { .il-today { display: none; } }
+.il-bar { display: block; height: 10px; border: 2px solid #1A1A1A; border-radius: 99px; background: #fff; overflow: hidden; min-width: 80px; }
+.il-bar i { display: block; height: 100%; background: #30A46C; }
+.il-badges { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
+.il-badges div { display: grid; gap: 4px; padding: 10px; border: 2px solid #1A1A1A; border-radius: 14px; background: #fff; font-size: 13px; opacity: .7; }
+.il-badges div.on { opacity: 1; background: #FFF3C4; }
+.il-badges div > i { width: 22px; height: 22px; }
+.il-badges span { color: #55606E; }
+.il-cake { display: flex; flex-direction: column-reverse; align-items: center; min-height: 96px; justify-content: flex-start; margin: 8px 0; position: relative; }
+.il-cake span { height: 26px; border: 2.5px solid #1A1A1A; border-radius: 10px; margin-top: -2px; }
+.il-cake em { font-style: normal; font-weight: 800; font-size: 13px; color: #E5484D; margin-bottom: 4px; }
+.il-dot { display: inline-block; width: 14px; height: 14px; border-radius: 50%; border: 2px solid #1A1A1A; margin-right: 6px; vertical-align: -2px; }
+.il-catch { display: flex; align-items: center; gap: 12px; padding: 12px; margin-top: 10px; border: 2.5px solid #1A1A1A; border-radius: 16px; background: #E8F6FF; font-size: 18px; }
+.il-catch em { font-style: normal; color: #E5484D; font-weight: 800; }
+.il-fish { display: inline-block; width: 46px; height: 24px; border: 2.5px solid #1A1A1A; border-radius: 50% 40% 40% 50%; position: relative; flex: none; }
+.il-fish::after { content: ''; position: absolute; right: -12px; top: 2px; border-left: 12px solid #1A1A1A; border-top: 8px solid transparent; border-bottom: 8px solid transparent; }
+.il-album { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 8px; }
+.il-album div { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 8px; border: 2px solid #1A1A1A; border-radius: 12px; background: #fff; font-size: 13px; font-weight: 700; }
+.il-thumb { width: 64px; height: 64px; object-fit: contain; }
+.il-tray { position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); z-index: 6; width: min(820px, 94vw); background: #FFFDF6; border: 3px solid #1A1A1A; border-radius: 20px; padding: 10px 12px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; box-shadow: 0 4px 0 #1A1A1A; }
+.il-tray-t { font-size: 14px; font-weight: 700; color: #55606E; width: 100%; }
+.il-tray-row { display: flex; gap: 8px; overflow-x: auto; width: 100%; padding-bottom: 4px; }
+.il-tray-it { flex: none; display: flex; flex-direction: column; align-items: center; gap: 2px; width: 92px; font: inherit; font-size: 12px; font-weight: 700; padding: 6px; border: 2px solid #1A1A1A; border-radius: 12px; background: #fff; cursor: pointer; }
+.il-tray-it img { width: 56px; height: 56px; object-fit: contain; }
+.il.is-touch .il-tray { bottom: 170px; }
