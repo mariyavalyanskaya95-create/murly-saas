@@ -95,7 +95,7 @@ export type RoomItem = { f: string; x: number; z: number; r: number };
 export type Daily = { date: string; ids: string[]; prog: Record<string, number>; paid?: boolean };
 export type Save = { v: number; owned: string[]; outfit: Outfit; ride: string | null; pet: string | null; house: number; yard: string[]; jobs: Record<string, number>; name?: string; localCoins?: number; stars?: string[]; starBonus?: boolean; talks?: number;
   furn?: string[]; room?: RoomItem[]; daily?: Daily; fish?: Record<string, number>; badges?: string[];
-  prof?: string; friends?: Record<string, number>; needs?: { food: number; energy: number; fun: number }; bag?: Record<string, number>; hero?: string; skills?: Record<string, number>; pantry?: Record<string, number>; homeWall?: string; homeFloor?: string; goal?: { id: string; en: string; price: number } | null; props?: { f: string; x: number; y: number; z: number; room: string }[]; garden?: ({ crop: string; at: number; water?: boolean } | null)[]; petName?: string; dialogs?: string[]; pos?: { x: number; z: number; room?: string | null }; tasks?: Record<string, unknown>; last?: { at: string; place: string; doing?: string } };
+  prof?: string; friends?: Record<string, number>; needs?: { food: number; energy: number; fun: number }; bag?: Record<string, number>; hero?: string; skills?: Record<string, number>; pantry?: Record<string, number>; homeWall?: string; homeFloor?: string; rooms?: HomeRooms; goal?: { id: string; en: string; price: number } | null; props?: { f: string; x: number; y: number; z: number; room: string }[]; garden?: ({ crop: string; at: number; water?: boolean } | null)[]; petName?: string; dialogs?: string[]; pos?: { x: number; z: number; room?: string | null }; tasks?: Record<string, unknown>; last?: { at: string; place: string; doing?: string } };
 export const START: Save = { v: 2, owned: ['fur-ginger', 'house-1', 'floor-light'], outfit: { fur: 'fur-ginger' }, ride: null, pet: null, house: 1, yard: [], jobs: {} };
 
 // ---------- карта ----------
@@ -728,3 +728,23 @@ export function npcTrade(name: string, date: string): { want: string; give: { ki
   if ((h >>> 4) % 3 === 0) { const pool = [...STYLE.filter((x) => x.price > 0 && x.price <= 15), ...FURN_ALL.filter((x) => x.price <= 12).map((x) => ({ id: `furn-${x.f}`, en: x.en }))]; const it = pool[(h >>> 8) % pool.length]; return { want, give: { kind: 'item', id: it.id, en: it.en } }; }
   return { want, give: { kind: 'coins', n: 5 + ((h >>> 8) % 8) } };
 }
+
+// ---- кімнати в домі: планування і тип кожної кімнати ----
+export type HomeRooms = { layout: number; types: string[] };
+export const ROOM_TYPES: { id: string; en: string; a: string; tip: string }[] = [
+  { id: 'living', en: 'living room', a: 'a', tip: 'We watch TV and play games in the living room.' },
+  { id: 'kitchen', en: 'kitchen', a: 'a', tip: 'We cook and eat in the kitchen.' },
+  { id: 'bedroom', en: 'bedroom', a: 'a', tip: 'We sleep in the bedroom.' },
+  { id: 'bathroom', en: 'bathroom', a: 'a', tip: 'We wash and brush our teeth in the bathroom.' },
+  { id: 'playroom', en: 'playroom', a: 'a', tip: 'We play with toys in the playroom.' },
+  { id: 'study', en: 'study', a: 'a', tip: 'We read and do homework in the study.' },
+];
+// планування: скільки кімнат і з якого будинку доступне
+export const LAYOUTS: { id: number; en: string; n: number; minHouse: number }[] = [
+  { id: 0, en: 'One big room', n: 1, minHouse: 1 },
+  { id: 1, en: 'Two rooms, side by side', n: 2, minHouse: 1 },
+  { id: 2, en: 'Two rooms, front and back', n: 2, minHouse: 1 },
+  { id: 3, en: 'Three rooms', n: 3, minHouse: 2 },
+  { id: 4, en: 'Four rooms', n: 4, minHouse: 3 },
+];
+export const DEFAULT_TYPES = ['living', 'bedroom', 'kitchen', 'bathroom'];

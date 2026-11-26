@@ -3,7 +3,7 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js';
-import { ADDRS, CARS, DISHES, FUR, HOME, HOME_SIZE, HOUSES, PLACES, PRODUCTS, SHELVES, SHOP, SPEED, type Outfit, type RoomItem, type Spot } from './island-data';
+import { ADDRS, CARS, DISHES, FUR, HOME, HOME_SIZE, HOUSES, PLACES, PRODUCTS, SHELVES, SHOP, SPEED, type HomeRooms, type Outfit, type RoomItem, type Spot, ROOM_TYPES } from './island-data';
 import { chalkTex, graffitiTex, neonTex, posterTex, wallpaperTex } from './island-art';
 
 const loader = new GLTFLoader();
@@ -311,6 +311,51 @@ async function yardItem(id: string): Promise<THREE.Object3D | null> {
   return g;
 }
 
+
+// ---- кімнати в домі: стіни з проходами, підлога й табличка для кожної кімнати ----
+type Rect = { x0: number; x1: number; z0: number; z1: number };
+function roomPlan(layout: number, W: number, D: number): { rects: Rect[]; walls: { a: [number, number]; b: [number, number]; gap: number | null }[] } {
+  const L = -W / 2, R = W / 2, B = -D / 2, F = D / 2;
+  if (layout === 1) return { rects: [{ x0: L, x1: 0, z0: B, z1: F }, { x0: 0, x1: R, z0: B, z1: F }], walls: [{ a: [0, B], b: [0, F], gap: D * 0.15 }] };
+  if (layout === 2) return { rects: [{ x0: L, x1: R, z0: B, z1: 0 }, { x0: L, x1: R, z0: 0, z1: F }], walls: [{ a: [L, 0], b: [R, 0], gap: W * 0.22 }] };
+  if (layout === 3) return { rects: [{ x0: L, x1: 0, z0: B, z1: 0 }, { x0: 0, x1: R, z0: B, z1: 0 }, { x0: L, x1: R, z0: 0, z1: F }], walls: [{ a: [L, 0], b: [0, 0], gap: -W / 4 }, { a: [0, 0], b: [R, 0], gap: W / 4 }, { a: [0, B], b: [0, 0], gap: null }] };
+  if (layout === 4) return { rects: [{ x0: L, x1: 0, z0: B, z1: 0 }, { x0: 0, x1: R, z0: B, z1: 0 }, { x0: L, x1: 0, z0: 0, z1: F }, { x0: 0, x1: R, z0: 0, z1: F }], walls: [{ a: [L, 0], b: [0, 0], gap: -W / 4 }, { a: [0, 0], b: [R, 0], gap: W / 4 }, { a: [0, B], b: [0, 0], gap: -D / 4 }, { a: [0, 0], b: [0, F], gap: D / 4 }] };
+  return { rects: [{ x0: L, x1: R, z0: B, z1: F }], walls: [] };
+}
+function roomFloorTex(type: string): THREE.Texture | null {
+  if (type === 'living') return null;
+  const cv = document.createElement('canvas'); cv.width = 256; cv.height = 256; const x = cv.getContext('2d')!;
+  if (type === 'kitchen') { for (let i = 0; i < 8; i++) for (let j = 0; j < 8; j++) { x.fillStyle = (i + j) % 2 ? '#F4F1E8' : '#3C4A5C'; x.fillRect(i * 32, j * 32, 32, 32); } }
+  else if (type === 'bathroom') { x.fillStyle = '#DDF0FA'; x.fillRect(0, 0, 256, 256); x.strokeStyle = '#A9D3EA'; x.lineWidth = 3; for (let i = 0; i <= 8; i++) { x.beginPath(); x.moveTo(i * 32, 0); x.lineTo(i * 32, 256); x.stroke(); x.beginPath(); x.moveTo(0, i * 32); x.lineTo(256, i * 32); x.stroke(); } }
+  else if (type === 'bedroom') { x.fillStyle = '#D9CCF2'; x.fillRect(0, 0, 256, 256); x.fillStyle = 'rgba(255,255,255,.35)'; for (let i = 0; i < 60; i++) { x.beginPath(); x.arc((i * 73) % 256, (i * 151) % 256, 3, 0, Math.PI * 2); x.fill(); } }
+  else if (type === 'playroom') { const c = ['#FF8FB8', '#FFD36E', '#8EDBA8', '#8EC9F5', '#B79CF0']; for (let i = 0; i < 8; i++) { x.fillStyle = c[i % c.length]; x.fillRect(i * 32, 0, 32, 256); } }
+  else if (type === 'study') { for (let i = 0; i < 8; i++) { x.fillStyle = i % 2 ? '#8B5E34' : '#7A5230'; x.fillRect(0, i * 32, 256, 32); } }
+  const t = new THREE.CanvasTexture(cv); t.colorSpace = THREE.SRGBColorSpace; t.wrapS = t.wrapT = THREE.RepeatWrapping; return t;
+}
+function buildRoomParts(g: THREE.Group, o: { x: number; z: number }, rooms: HomeRooms | undefined, W: number, D: number, cols: { x: number; z: number; r: number }[]) {
+  const layout = rooms?.layout ?? 0; const plan = roomPlan(layout, W, D);
+  const wallM = toon('#F4EEE2'); const trim = toon('#C9B79C');
+  plan.walls.forEach(({ a, b, gap }) => {
+    const horiz = a[1] === b[1]; const lo = horiz ? a[0] : a[1], hi = horiz ? b[0] : b[1];
+    const parts: [number, number][] = gap === null ? [[lo, hi]] : [[lo, gap - 1.05], [gap + 1.05, hi]];
+    parts.forEach(([p0, p1]) => {
+      const len = p1 - p0; if (len < 0.1) return; const mid = (p0 + p1) / 2;
+      const w = mesh(new THREE.BoxGeometry(horiz ? len : 0.22, 1.15, horiz ? 0.22 : len), wallM); w.position.set(horiz ? mid : a[0], 0.575, horiz ? a[1] : mid); g.add(w);
+      const t = mesh(new THREE.BoxGeometry(horiz ? len + 0.04 : 0.3, 0.08, horiz ? 0.3 : len + 0.04), trim); t.position.set(horiz ? mid : a[0], 1.19, horiz ? a[1] : mid); g.add(t);
+      for (let p = p0 + 0.2; p <= p1 - 0.15; p += 0.4) cols.push({ x: o.x + (horiz ? p : a[0]), z: o.z + (horiz ? a[1] : p), r: 0.15 });
+    });
+  });
+  if (layout === 0) return;
+  plan.rects.forEach((r, i) => {
+    const type = rooms?.types?.[i] ?? 'living'; const rt = ROOM_TYPES.find((x) => x.id === type) ?? ROOM_TYPES[0];
+    const tex = roomFloorTex(type);
+    if (tex) { const w = r.x1 - r.x0, d = r.z1 - r.z0; tex.repeat.set(w / 3, d / 3); const f = new THREE.Mesh(new THREE.PlaneGeometry(w - 0.1, d - 0.1), new THREE.MeshToonMaterial({ map: tex, gradientMap: toon('#fff').gradientMap })); f.rotation.x = -Math.PI / 2; f.position.set((r.x0 + r.x1) / 2, 0.016, (r.z0 + r.z1) / 2); f.receiveShadow = true; g.add(f); }
+    const label = rt.en.charAt(0).toUpperCase() + rt.en.slice(1);
+    const sg = sign(label, '#FFFFFF', '#1A1A1A', 2.2); const cx = (r.x0 + r.x1) / 2;
+    if (r.z0 <= -D / 2 + 0.01) sg.position.set(cx, 3.05, -D / 2 + 0.3); else sg.position.set(cx, 1.65, r.z0 + 0.1);
+    g.add(sg);
+  });
+}
 // ---------- мініатюри речей для магазину: малюємо справжню 3D-модель у маленьку картинку ----------
 let tR: THREE.WebGLRenderer | null = null; let tS: THREE.Scene; let tC: THREE.PerspectiveCamera;
 const thumbCache = new Map<string, string>(); let tq: Promise<unknown> = Promise.resolve();
@@ -992,7 +1037,7 @@ export class IslandScene {
   }
   guestGroup = new THREE.Group();
   // дім іншого гравця, до якого прийшли в гості
-  async buildGuestHome(d: { room: RoomItem[]; level: number; wall: string; floor: string }) {
+  async buildGuestHome(d: { room: RoomItem[]; level: number; wall: string; floor: string; rooms?: HomeRooms }) {
     const o = { x: ROOM.x - 160, z: ROOM.z }; this.origins.guesthome = o;
     const g = this.guestGroup; g.clear(); g.position.set(o.x, 0, o.z); if (!g.parent) this.scene.add(g);
     this.spots = this.spots.filter((sp) => !(sp.id === 'room-exit' && Math.abs(sp.x - o.x) < 15 && Math.abs(sp.z - o.z) < 15));
@@ -1000,7 +1045,7 @@ export class IslandScene {
     const FL: Record<string, [string, string]> = { 'floor-light': ['#D9B38C', '#CFA67C'], 'floor-dark': ['#8B5E34', '#7A5230'], 'floor-tiles': ['#F4F1E8', '#E0DCD0'], 'floor-carpet': ['#8EC9F5', '#86BFEA'], 'floor-pink': ['#F7B7C8', '#F0AABD'] };
     const fl = FL[d.floor] ?? FL['floor-light']; const keep = this.homeWall; this.homeWall = d.wall;
     this.buildShell(g, o, fl[0], fl[1], '#F3E7D3', undefined, W, D); this.dressRoom('home', g, W, D); this.homeWall = keep;
-    const scenes = await pack('furn'); const cols: { x: number; z: number; r: number }[] = []; this.roomCols.guesthome = cols;
+    const scenes = await pack('furn'); const cols: { x: number; z: number; r: number }[] = []; this.roomCols.guesthome = cols; buildRoomParts(g, o, d.rooms, W, D, cols);
     (d.room ?? []).slice(0, 80).forEach((it) => {
       const src = it.f.startsWith('x-') ? null : scenes.get(it.f); if (!src && !it.f.startsWith('x-')) return;
       const gg = new THREE.Group(); const inner = new THREE.Group(); if (src) { src.children.forEach((c) => inner.add(c.clone(true))); inner.scale.setScalar(FK); } else inner.add(codeItem(it.f)); gg.add(inner);
@@ -1009,10 +1054,10 @@ export class IslandScene {
       const sz = b.getSize(new THREE.Vector3()); if (!/^rug/.test(it.f) && sz.y > 0.4) cols.push({ x: o.x + gg.position.x, z: o.z + gg.position.z, r: Math.max(0.2, Math.min(sz.x, sz.z) / 2 * 0.9) });
     });
   }
-  homeKey = ''; homeWall = '';
+  homeKey = ''; homeWall = ''; homeRooms: HomeRooms | undefined; partCol: { x: number; z: number; r: number }[] = [];
   // мій дім усередині: розмір залежить від будинку, шпалери й підлога купуються в магазині
-  setHome(level: number, wall: string, floor: string) {
-    const key = `${level}|${wall}|${floor}`; if (key === this.homeKey) return; this.homeKey = key; this.homeWall = wall;
+  setHome(level: number, wall: string, floor: string, rooms?: HomeRooms) {
+    const key = `${level}|${wall}|${floor}|${JSON.stringify(rooms ?? null)}`; if (key === this.homeKey) return; this.homeKey = key; this.homeWall = wall; this.homeRooms = rooms;
     const g = this.roomGroup; [...g.children].forEach((c) => { if (c !== this.roomItems) g.remove(c); });
     this.spots = this.spots.filter((sp) => !(sp.id === 'room-exit' && Math.abs(sp.x - ROOM.x) < 15 && Math.abs(sp.z - ROOM.z) < 15));
     const [W, D] = HOME_SIZE[Math.max(1, level)] ?? [ROOM.w, ROOM.d]; this.sizes.home = { w: W, d: D };
@@ -1021,6 +1066,7 @@ export class IslandScene {
     const fl = FL[floor] ?? FL['floor-light'];
     this.buildShell(g, ROOM, fl[0], fl[1], '#F3E7D3', undefined, W, D);
     this.dressRoom('home', g, W, D);
+    this.partCol = []; buildRoomParts(g, ROOM, rooms, W, D, this.partCol);
   }
   buildRoom() {
     const g = this.roomGroup; g.position.set(ROOM.x, 0, ROOM.z); this.scene.add(g); g.add(this.roomItems); this.scene.add(this.propsGroup);
@@ -1398,7 +1444,7 @@ export class IslandScene {
     if (this.goal) { const d = this.goal.clone().sub(this.heroPos); d.y = 0; if (d.length() < 0.5) { this.goal = null; if (this.goalRing) this.goalRing.visible = false; } else {
       goalDir = d.normalize();
       // обхід перешкод: якщо будинок попереду, ідемо по дотичній
-      for (const c of this.boating ? [] : this.inside ? (this.roomId === 'home' ? this.roomCol : [...(this.roomCols[this.roomId ?? ''] ?? []), ...this.roomColsExtra.filter((x) => x.room === this.roomId)]) : this.colliders) {
+      for (const c of this.boating ? [] : this.inside ? (this.roomId === 'home' ? [...this.roomCol, ...this.partCol] : [...(this.roomCols[this.roomId ?? ''] ?? []), ...this.roomColsExtra.filter((x) => x.room === this.roomId)]) : this.colliders) {
         const tx = c.x - this.heroPos.x, tz = c.z - this.heroPos.z; const dist = Math.hypot(tx, tz);
         const along = tx * goalDir.x + tz * goalDir.z;
         if (along <= 0 || dist > c.r + 2.5 || along > d.length() + 0.5) continue;
@@ -1431,7 +1477,7 @@ export class IslandScene {
       if (this.tramp && Math.hypot(this.heroPos.x - this.tramp.x, this.heroPos.z - this.tramp.z) < 1.4) { this.vy = 13; this.onGround = false; this.wob.sqV -= 4; }
     }
     // зіткнення з будинками й межею острова
-    for (const c of this.inside ? (this.roomId === 'home' ? this.roomCol : this.roomCols[this.roomId ?? ''] ?? []) : this.colliders) {
+    for (const c of this.inside ? (this.roomId === 'home' ? [...this.roomCol, ...this.partCol] : this.roomCols[this.roomId ?? ''] ?? []) : this.colliders) {
       const dx = this.heroPos.x - c.x, dz = this.heroPos.z - c.z; const d = Math.hypot(dx, dz); const r = c.r + 0.45;
       if (d < r && d > 0.0001) { this.heroPos.x = c.x + (dx / d) * r; this.heroPos.z = c.z + (dz / d) * r; }
     }
