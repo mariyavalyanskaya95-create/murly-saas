@@ -15,6 +15,7 @@ import LessonRow from './LessonRow';
 import { LessonForm } from './forms';
 import ExerciseEditor from '../exercise/ExerciseEditor';
 import ExerciseView from '../exercise/ExerciseView';
+import { billedUnits } from '@/lib/billing';
 import { HwFileList, HwUpload, type HwFile } from '../HwFiles';
 import { grade, manualKeys, type Section } from '@/lib/exercise';
 import { lessonSections, type Block } from '@/lib/lesson';
@@ -505,6 +506,18 @@ function NotesTab({ id }: { id: string }) {
   );
 }
 
+// До якої дати оплачено: ідемо по запланованих заняттях, поки вистачає балансу (короткий урок рахується частково)
+function paidUntil(data: ReturnType<typeof useTeacher>['data'], id: string, extra = 0) {
+  const s = data.students.find((x) => x.id === id); if (!s || !s.price) return null;
+  let left = balanceOf(data, id) + extra; if (left < s.price / 2) return null;
+  const now = Date.now();
+  const next = data.lessons.filter((l) => l.studentId === id && l.status === 'planned' && new Date(l.start).getTime() > now && l.trial !== 'free').sort((a, b) => a.start.localeCompare(b.start));
+  let last: string | null = null; let n = 0;
+  for (const l of next) { const cost = billedUnits([l]) * s.price; if (left + 0.01 < cost) break; left -= cost; last = l.start; n++; }
+  const more = Math.floor(left / s.price); // оплачено більше, ніж є в розкладі
+  return { until: last, n, more };
+}
+
 function PayTab({ id }: { id: string }) {
   const t = useT();
   const { data, addPayment, removePayment, updateStudent } = useTeacher();
@@ -524,13 +537,14 @@ function PayTab({ id }: { id: string }) {
       <div className="t-stats">
         <div className="t-stat t-stat--lime"><b>{fmtMoney(paid, t.lang)}</b><span>{t({ uk: 'оплачено', ru: 'оплачено', en: 'paid' })}</span></div>
         <div className="t-stat t-stat--sky"><b>{done}</b><span>{t({ uk: 'проведено занять', ru: 'проведено занятий', en: 'lessons taught' })}</span></div>
+        {(() => { const pu = paidUntil(data, id); return pu?.until ? <div className="t-stat t-stat--lime"><b>{fmtDate(pu.until, t.lang)}</b><span>{t({ uk: 'оплачено до', ru: 'оплачено до', en: 'paid until' })}</span></div> : null; })()}
         <div className={`t-stat ${b < 0 ? 't-stat--tomato' : 't-stat--mustard'}`}>
           <b>{fmtMoney(Math.abs(b), t.lang)}</b><span>{b < 0 ? (post ? t({ uk: `до оплати${s.price ? `, ${Math.round(-b / s.price)} зан.` : ''}`, ru: `к оплате${s.price ? `, ${Math.round(-b / s.price)} зан.` : ''}`, en: `to pay${s.price ? `, ${Math.round(-b / s.price)} lessons` : ''}` }) : t({ uk: 'борг', ru: 'долг', en: 'owes' })) : lessonsLeft > 0 ? t({ uk: `аванс, ще ${lessonsLeft} зан.`, ru: `аванс, ещё ${lessonsLeft} зан.`, en: `prepaid, ${lessonsLeft} more ${lessonsLeft === 1 ? 'lesson' : 'lessons'}` }) : t({ uk: 'баланс', ru: 'баланс', en: 'balance' })}</span>
         </div>
       </div>
       <div className="t-card">
         <h2>{t({ uk: 'Записати оплату', ru: 'Записать оплату', en: 'Record a payment' })}</h2>
-        <form className="t-form" onSubmit={(e) => { e.preventDefault(); const n = Number(amount); if (n > 0) { addPayment(id, n, note.trim() || undefined); setNote(''); } }}>
+        <form className="t-form" onSubmit={(e) => { e.preventDefault(); const n = Number(amount); if (n > 0) { const pu = paidUntil(data, id, n); const tail = pu?.until ? `${t({ uk: 'оплачено до', ru: 'оплачено до', en: 'paid until' })} ${fmtDate(pu.until, t.lang)}` : ''; addPayment(id, n, [note.trim(), tail].filter(Boolean).join(' · ') || undefined); setNote(''); } }}>
           <label>{t({ uk: 'Сума, ₴', ru: 'Сумма, ₴', en: 'Amount, ₴' })}<input type="number" min="1" value={amount} onChange={(e) => setAmount(e.target.value)} /></label>
           <label>{t({ uk: 'Коментар', ru: 'Комментарий', en: 'Comment' })}<input value={note} onChange={(e) => setNote(e.target.value)} placeholder={t({ uk: 'Напр. пакет 4 заняття, карткою', ru: 'Напр. пакет 4 занятия, картой', en: 'e.g. 4-lesson pack, by card' })} /></label>
           <div className="t-form__actions">
@@ -542,6 +556,7 @@ function PayTab({ id }: { id: string }) {
             <button className="mu-btn mu-btn--lime" type="submit">{t({ uk: 'Записати', ru: 'Записать', en: 'Record' })}</button>
           </div>
         </form>
+        {(() => { const n = Number(amount); const pu = n > 0 ? paidUntil(data, id, n) : null; return pu ? <p className="t-pay-until">{pu.until ? t({ uk: `Після цієї оплати: оплачено до ${fmtDate(pu.until, t.lang)} (${pu.n} зан. за розкладом)`, ru: `После этой оплаты: оплачено до ${fmtDate(pu.until, t.lang)} (${pu.n} зан. по расписанию)`, en: `After this payment: paid until ${fmtDate(pu.until, t.lang)} (${pu.n} scheduled lessons)` }) : ''}{pu.more > 0 ? t({ uk: ` Ще ${pu.more} зан. понад розклад.`, ru: ` Ещё ${pu.more} зан. сверх расписания.`, en: ` Plus ${pu.more} more lessons beyond the schedule.` }) : ''}</p> : null; })()}
         <p className="t-muted">{t({ uk: 'Оплати мінус проведені заняття.', ru: 'Оплаты минус проведённые занятия.', en: 'Payments minus lessons held.' })}</p>
       </div>
       <label className="t-card t-remind">
