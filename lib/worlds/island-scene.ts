@@ -2,6 +2,7 @@
 // транспорт, улюбленці, свій будинок і двір. Будинки й дерева з наборів CC0, усе інше малюється кодом.
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js';
 import { ADDRS, CARS, FUR, HOME, HOUSES, PLACES, SHOP, SPEED, type Outfit, type RoomItem, type Spot } from './island-data';
 import { chalkTex, graffitiTex, neonTex, posterTex, wallpaperTex } from './island-art';
 
@@ -31,7 +32,7 @@ async function model(p: string, name: string, size: number): Promise<THREE.Group
     if (!m.isMesh) return;
     m.castShadow = true; m.receiveShadow = true;
     // без карти оточення металеві матеріали виходять чорними: робимо їх матовими
-    (Array.isArray(m.material) ? m.material : [m.material]).forEach((mt) => { const st = mt as THREE.MeshStandardMaterial; if (st.metalness !== undefined) { st.metalness = Math.min(st.metalness, 0.2); st.roughness = Math.max(st.roughness ?? 1, 0.6); } });
+    (Array.isArray(m.material) ? m.material : [m.material]).forEach((mt) => { const st = mt as THREE.MeshStandardMaterial; if (st.metalness !== undefined) { st.metalness = Math.min(st.metalness, 0.15); st.roughness = Math.max(st.roughness ?? 1, 0.45); if (st.map) st.map.anisotropy = 8; } });
   });
   return wrap;
 }
@@ -431,19 +432,21 @@ export class IslandScene {
   constructor(el: HTMLElement, ev: IslandEvents) {
     this.el = el; this.ev = ev;
     const low = /Android|iPhone|iPad/i.test(navigator.userAgent) && (navigator.hardwareConcurrency ?? 4) <= 4;
-    this.renderer = new THREE.WebGLRenderer({ antialias: !low, powerPreference: 'high-performance' });
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, low ? 1.25 : 1.75));
+    this.renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, low ? 1.5 : 2));
     this.renderer.shadowMap.enabled = true; this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     this.renderer.toneMapping = THREE.NeutralToneMapping; this.renderer.toneMappingExposure = 1.05;
     this.renderer.outputColorSpace = THREE.SRGBColorSpace;
     el.appendChild(this.renderer.domElement);
+    // м'яке світло оточення: моделі виглядають об'ємно й чисто, як у Sims
+    { const pm = new THREE.PMREMGenerator(this.renderer); this.scene.environment = pm.fromScene(new RoomEnvironment(), 0.04).texture; pm.dispose(); (this.scene as THREE.Scene & { environmentIntensity?: number }).environmentIntensity = 0.45; }
     this.cam = new THREE.PerspectiveCamera(55, 1, 0.1, 600);
     this.scene.background = new THREE.Color('#9ED8F7');
     this.scene.fog = new THREE.Fog('#BFE6FA', 70, 220);
 
     const hemi = new THREE.HemisphereLight('#E8F6FF', '#9BC97A', 1.25); this.scene.add(hemi); this.hemi = hemi; this.cloudMat.gradientMap = toon('#fff').gradientMap;
     const sun = new THREE.DirectionalLight('#FFF4DD', 2.3); sun.position.set(40, 60, 25); sun.castShadow = true;
-    sun.shadow.mapSize.set(low ? 1024 : 2048, low ? 1024 : 2048);
+    sun.shadow.mapSize.set(low ? 1024 : 4096, low ? 1024 : 4096); sun.shadow.radius = 3;
     const sc = sun.shadow.camera as THREE.OrthographicCamera; sc.left = -40; sc.right = 40; sc.top = 40; sc.bottom = -40; sc.far = 160; sun.shadow.bias = -0.0005; sun.shadow.normalBias = 0.03;
     this.scene.add(sun, sun.target); this.sun = sun;
 
@@ -918,7 +921,7 @@ export class IslandScene {
       const src = f.startsWith('x-') ? null : scenes.get(f); if (!src && !f.startsWith('x-')) { tops.push(0); return; }
       const it = new THREE.Group(); const inner = new THREE.Group(); if (src) { src.children.forEach((c) => inner.add(c.clone(true))); inner.scale.setScalar(FK); } else inner.add(codeItem(f)); it.add(inner);
       const b = new THREE.Box3().setFromObject(inner); const c = b.getCenter(new THREE.Vector3()); inner.position.set(-c.x, -b.min.y, -c.z);
-      it.traverse((q) => { const m = q as THREE.Mesh; if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; (Array.isArray(m.material) ? m.material : [m.material]).forEach((mt) => { const st = mt as THREE.MeshStandardMaterial; if (st.metalness !== undefined) { st.metalness = Math.min(st.metalness, 0.2); st.roughness = Math.max(st.roughness ?? 1, 0.6); } }); } });
+      it.traverse((q) => { const m = q as THREE.Mesh; if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; (Array.isArray(m.material) ? m.material : [m.material]).forEach((mt) => { const st = mt as THREE.MeshStandardMaterial; if (st.metalness !== undefined) { st.metalness = Math.min(st.metalness, 0.15); st.roughness = Math.max(st.roughness ?? 1, 0.45); if (st.map) st.map.anisotropy = 8; } }); } });
       const sz = b.getSize(new THREE.Vector3());
       const y = on !== undefined ? tops[on] ?? 0 : 0;
       it.position.set(x, y, z); it.rotation.y = r; g.add(it); tops.push(y + sz.y);
@@ -1119,7 +1122,7 @@ export class IslandScene {
       // справжній масштаб Kenney: 1 одиниця ≈ 1/FK нашого світу
       const g = new THREE.Group(); const inner = new THREE.Group(); if (src) { src.children.forEach((c) => inner.add(c.clone(true))); inner.scale.setScalar(FK); } else inner.add(codeItem(it.f)); g.add(inner);
       const b = new THREE.Box3().setFromObject(inner); const c = b.getCenter(new THREE.Vector3()); inner.position.set(-c.x, -b.min.y, -c.z);
-      g.traverse((o) => { const m = o as THREE.Mesh; if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; m.userData.idx = i; (Array.isArray(m.material) ? m.material : [m.material]).forEach((mt) => { const st = mt as THREE.MeshStandardMaterial; if (st.metalness !== undefined) { st.metalness = Math.min(st.metalness, 0.2); st.roughness = Math.max(st.roughness ?? 1, 0.6); } }); } });
+      g.traverse((o) => { const m = o as THREE.Mesh; if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; m.userData.idx = i; (Array.isArray(m.material) ? m.material : [m.material]).forEach((mt) => { const st = mt as THREE.MeshStandardMaterial; if (st.metalness !== undefined) { st.metalness = Math.min(st.metalness, 0.15); st.roughness = Math.max(st.roughness ?? 1, 0.45); if (st.map) st.map.anisotropy = 8; } }); } });
       g.position.set(it.x, 0, it.z); g.rotation.y = it.r; g.userData.idx = i; this.roomItems.add(g);
       { const kind = useKind(it.f); const hb = new THREE.Box3().setFromObject(inner); const hh = hb.max.y - hb.min.y;
         if (kind) { const front = kind === 'sit' || kind === 'sleep' ? 0 : 0.9; this.addUse(kind, ROOM.x + it.x + Math.sin(it.r) * front, ROOM.z + it.z + Math.cos(it.r) * front, kind === 'sit' ? hh * (/^lounge/.test(it.f) ? 0.38 : 0.42) : hh, kind === 'sit' || kind === 'sleep' ? it.r : it.r + Math.PI, 'home', kind === 'sit' ? 1.0 : 1.3); } }
