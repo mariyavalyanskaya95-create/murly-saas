@@ -4851,3 +4851,8 @@ textarea.t-parent__url { width: 300px; font: inherit; font-size: 13px; }
 .il-name { display: grid; gap: 4px; font-weight: 800; font-size: 13px; margin-bottom: 8px; }
 .il-name input { font: inherit; font-size: 16px; padding: 8px 12px; border: 2.5px solid #1A1A1A; border-radius: 12px; }
 @media (max-width: 720px) { .il-hud--r .il-chip { padding: 6px 10px; font-size: 12px; } }
+.il-tabs--sm button { padding: 5px 11px; font-size: 13px; }
+.il-plots { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 8px; }
+.il-plots > div { display: grid; gap: 6px; align-content: start; padding: 10px; border: 2px solid #1A1A1A; border-radius: 14px; background: #F4EBDD; }
+.il-plots .il-pick { padding: 5px 9px; font-size: 13px; }
+.il-book { font-size: 17px; line-height: 1.55; font-weight: 600; transform: none; }
