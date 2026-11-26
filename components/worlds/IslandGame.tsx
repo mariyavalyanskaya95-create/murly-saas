@@ -9,7 +9,7 @@ import { say, sfx } from '@/lib/worlds/sound';
 import { DIALOGS, nextDialog, type Dialog } from '@/lib/worlds/island-dialogs';
 import { CHAT, IslandNet, type NetPlayer } from '@/lib/worlds/island-net';
 import { checkChat, FILTER_MSG } from '@/lib/chat-filter';
-import { migrateSave, npcTrade, TRADE_WANTS } from '@/lib/worlds/island-data';
+import { migrateSave, npcTrade, TRADE_WANTS, ROOM_TYPES, LAYOUTS, DEFAULT_TYPES, type HomeRooms } from '@/lib/worlds/island-data';
 import { GRAMMAR, LISTEN_WORDS, LOST_PLACES, treasureHunt, PRODUCTS, SHELVES, DISHES, STARTER_PANTRY, cookResult, productOf } from '@/lib/worlds/island-data';
 import { ACT, EMOTES, FOODS, FRIDGE, INGREDIENTS, RECIPES, friendLevel, CHOICES, MELODIES, SKILLS, SKILL_OF, skillLevel, CROPS, cropProgress, JOKES, COMPLIMENTS, RPS, FURN_ALL, FURN_CATS } from '@/lib/worlds/island-data';
 import { ADDRS, DESTS, HAIR_COLOURS, PROFS, STARTER, STYLE, STYLE_COLOURS, profLevel, type StylePart } from '@/lib/worlds/island-data';
@@ -18,7 +18,7 @@ import { BADGES, CAFE_DRINK, CAFE_FOOD, CLOTHES, COLOURS, FISH, FLAVOURS, FRUIT,
 import type { IslandScene } from '@/lib/worlds/island-scene';
 import type { Spot } from '@/lib/worlds/island-data';
 
-type Panel = null | 'post' | 'cafe' | 'market' | 'store' | 'home' | 'help' | 'npc' | 'jobs' | 'bakery' | 'boutique' | 'taxi' | 'pier' | 'today' | 'icecream' | 'board' | 'errand' | 'keeper' | 'style' | 'career' | 'dialog' | 'fridge' | 'cook' | 'bag' | 'friend' | 'acts' | 'choose' | 'book' | 'wordgame' | 'garden' | 'skills' | 'joke' | 'nice' | 'rps' | 'school' | 'online' | 'chat' | 'shelf' | 'checkout' | 'tradenpc' | 'tradeplayer';
+type Panel = null | 'post' | 'cafe' | 'market' | 'store' | 'home' | 'help' | 'npc' | 'jobs' | 'bakery' | 'boutique' | 'taxi' | 'pier' | 'today' | 'icecream' | 'board' | 'errand' | 'keeper' | 'style' | 'career' | 'dialog' | 'fridge' | 'cook' | 'bag' | 'friend' | 'acts' | 'choose' | 'book' | 'wordgame' | 'garden' | 'skills' | 'joke' | 'nice' | 'rps' | 'school' | 'online' | 'chat' | 'shelf' | 'checkout' | 'tradenpc' | 'tradeplayer' | 'rooms';
 type Tab = Cat | 'Furniture';
 const LS = 'murly-island-v1';
 const GUEST_COINS = 60;
@@ -60,7 +60,7 @@ export default function IslandGame() {
   const [thumbs, setThumbs] = useState<Record<string, string>>({});
   const [stab, setStab] = useState<StylePart | 'acc' | 'fur'>('hair');
   const [dlg, setDlg] = useState<{ d: Dialog; node: string; react?: string; said?: string } | null>(null);
-  const restored = useRef(false);
+  const restored = useRef(false); const loaded = useRef(false); const [loadedN, setLoadedN] = useState(0);
   const [needs, setNeeds] = useState({ food: 80, energy: 80, fun: 80 });
   const needsRef = useRef(needs); needsRef.current = needs;
   const [acting, setActing] = useState<{ kind: string; say: string; until: number } | null>(null);
@@ -147,11 +147,11 @@ export default function IslandGame() {
     if (!isLoaded) return;
     const local = (() => { try { return JSON.parse(localStorage.getItem(LS) || 'null') as Save | null; } catch { return null; } })();
     if (isSignedIn) {
-      fetch('/api/game?game=island').then((r) => r.json()).then((d) => setSave(migrateSave({ ...START, ...(d.data ?? local ?? {}), v: (d.data ?? local)?.v ?? (d.data || local ? 1 : 2) } as Save))).catch(() => local && setSave(migrateSave({ ...START, ...local, v: local.v ?? 1 } as Save)));
+      fetch('/api/game?game=island').then((r) => r.json()).then((d) => { const s = migrateSave({ ...START, ...(d.data ?? local ?? {}), v: (d.data ?? local)?.v ?? (d.data || local ? 1 : 2) } as Save); saveRef.current = s; setSave(s); loaded.current = true; setLoadedN((n) => n + 1); }).catch(() => { if (local) { const s = migrateSave({ ...START, ...local, v: local.v ?? 1 } as Save); saveRef.current = s; setSave(s); } loaded.current = true; setLoadedN((n) => n + 1); });
       fetch('/api/coins').then((r) => r.json()).then((d) => setCoins(Number(d.balance ?? 0))).catch(() => setCoins(0));
       fetch('/api/student').then((r) => r.json()).then((d) => setWords(Array.isArray(d.words) ? d.words : [])).catch(() => {});
     } else {
-      const s = migrateSave({ ...START, ...(local ?? {}), v: local ? local.v ?? 1 : 2 } as Save); setSave(s); setCoins(s.localCoins ?? GUEST_COINS);
+      const s = migrateSave({ ...START, ...(local ?? {}), v: local ? local.v ?? 1 : 2 } as Save); saveRef.current = s; setSave(s); setCoins(s.localCoins ?? GUEST_COINS); loaded.current = true; setLoadedN((n) => n + 1);
     }
   }, [isLoaded, isSignedIn]);
   const timer = useRef<number | null>(null);
@@ -159,7 +159,7 @@ export default function IslandGame() {
     saveRef.current = s; setSave(s);
     try { localStorage.setItem(LS, JSON.stringify(s)); } catch { /* */ }
     if (timer.current) window.clearTimeout(timer.current);
-    if (isSignedIn) timer.current = window.setTimeout(() => { void fetch('/api/game', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ game: 'island', data: s }) }).catch(() => {}); }, 800);
+    if (isSignedIn && loaded.current) timer.current = window.setTimeout(() => { void fetch('/api/game', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ game: 'island', data: s }) }).catch(() => {}); }, 800);
   }, [isSignedIn]);
 
   // зовнішній вигляд у сцені
@@ -168,7 +168,7 @@ export default function IslandGame() {
     s.setOutfit(save.outfit); s.setRide(taxi?.driving ? 'ride-taxi' : save.ride); s.setPet(save.pet);
     if (JSON.stringify(s.roomList) !== JSON.stringify(save.room ?? [])) void s.setRoom(save.room ?? []);
     if (s.houseLevel !== save.house) void s.setHouse(save.house);
-    s.setHome(Math.max(1, save.house), save.homeWall ?? '', save.homeFloor ?? 'floor-light');
+    s.setHome(Math.max(1, save.house), save.homeWall ?? '', save.homeFloor ?? 'floor-light', save.rooms);
     if (s.yardList.join() !== save.yard.join()) void s.setYard(save.yard);
     s.setGot(save.stars ?? []); setStarCount((save.stars ?? []).length);
   }, [save, ready, taxi?.driving]);
@@ -650,8 +650,8 @@ export default function IslandGame() {
         if (ev === 'dance') sc.current?.otherDance(id);
         if (ev === 'chat') { const t = String(data.text ?? ''); const c = checkChat(t); if (!c.ok) return; sc.current?.otherSay(id, c.text); setChatLog((l) => [...l.slice(-29), { n: String(data.n ?? 'Cat'), t: c.text, mid: Number(data.mid ?? 0) }]); }
         if (ev === 'friendreq' && data.to === netId.current) { const nm = String(data.n ?? 'Cat'); setReqs((r) => (r.some((x) => x.id === id) ? r : [...r, { id, n: nm }])); flash(`${nm} wants to be your friend! Open Online to say yes.`); say(`${nm} wants to be your friend!`); }
-        if (ev === 'homereq' && data.to === netId.current) { const s0 = saveRef.current; net.current?.send('homedata', { to: id, room: s0.room ?? [], level: s0.house || 1, wall: s0.homeWall ?? '', floor: s0.homeFloor ?? 'floor-light', n: myName() }); flash(`${String(data.n ?? 'A friend')} is coming to visit your home!`); say('Someone is coming to visit you!'); }
-        if (ev === 'homedata' && data.to === netId.current) { const nm = String(data.n ?? 'Cat'); void sc.current?.buildGuestHome({ room: (data.room as RoomItem[]) ?? [], level: Number(data.level ?? 1), wall: String(data.wall ?? ''), floor: String(data.floor ?? '') }).then(() => { if (sc.current?.inside) sc.current.exitHome(); sc.current?.enterRoom('guesthome'); setInside('guesthome'); setVisitHost({ id, n: nm }); tell(`I'm visiting ${nm}'s home. What a nice place!`); }); }
+        if (ev === 'homereq' && data.to === netId.current) { const s0 = saveRef.current; net.current?.send('homedata', { to: id, room: s0.room ?? [], level: s0.house || 1, wall: s0.homeWall ?? '', floor: s0.homeFloor ?? 'floor-light', rooms: s0.rooms ?? null, n: myName() }); flash(`${String(data.n ?? 'A friend')} is coming to visit your home!`); say('Someone is coming to visit you!'); }
+        if (ev === 'homedata' && data.to === netId.current) { const nm = String(data.n ?? 'Cat'); void sc.current?.buildGuestHome({ room: (data.room as RoomItem[]) ?? [], level: Number(data.level ?? 1), wall: String(data.wall ?? ''), floor: String(data.floor ?? ''), rooms: (data.rooms as HomeRooms | null) ?? undefined }).then(() => { if (sc.current?.inside) sc.current.exitHome(); sc.current?.enterRoom('guesthome'); setInside('guesthome'); setVisitHost({ id, n: nm }); tell(`I'm visiting ${nm}'s home. What a nice place!`); }); }
         if (ev === 'tradeoffer' && data.to === netId.current) { const o0 = { from: id, n: String(data.n ?? 'Cat'), give: String(data.give ?? ''), want: String(data.want ?? ''), tid: String(data.tid ?? '') }; if (!productOf(o0.give) && !o0.give.startsWith('dish:') && !foodOf(o0.give)) return; setOffers((x) => [...x.filter((y) => y.from !== id), o0]); flash(`${o0.n} wants to swap! Open Online to see.`); }
         if (ev === 'tradeok' && data.to === netId.current) { const t = pendingTrade.current[String(data.tid ?? '')]; if (t) { delete pendingTrade.current[String(data.tid)]; const b = { ...(saveRef.current.bag ?? {}) }; b[t.want] = (b[t.want] ?? 0) + 1; persist({ ...saveRef.current, bag: b }); flash(`Swap done! You got ${foodOf(t.want)?.en ?? t.want}.`); sfx.coin(); } }
         if (ev === 'tradeno' && data.to === netId.current) { const t = pendingTrade.current[String(data.tid ?? '')]; if (t) { delete pendingTrade.current[String(data.tid)]; addItem(t.give); flash('They said no thanks. Your thing is back in your bag.'); } }
@@ -793,12 +793,12 @@ export default function IslandGame() {
   useEffect(() => {
     if (!ready) return;
     const id = window.setInterval(() => { if (restored.current) persist(snapRef.current()); }, 15000);
-    const bye = () => { if (!restored.current) return; const s = snapRef.current(); try { localStorage.setItem(LS, JSON.stringify(s)); } catch { /* */ } if (isSignedIn) navigator.sendBeacon?.('/api/game', new Blob([JSON.stringify({ game: 'island', data: s })], { type: 'application/json' })); };
+    const bye = () => { if (!restored.current || !loaded.current) return; const s = snapRef.current(); try { localStorage.setItem(LS, JSON.stringify(s)); } catch { /* */ } if (isSignedIn) navigator.sendBeacon?.('/api/game', new Blob([JSON.stringify({ game: 'island', data: s })], { type: 'application/json' })); };
     window.addEventListener('pagehide', bye); return () => { window.clearInterval(id); window.removeEventListener('pagehide', bye); };
   }, [ready, isSignedIn, persist]);
   // відновити, де учень зупинився
   useEffect(() => {
-    if (!ready || restored.current || !isLoaded) return;
+    if (!ready || restored.current || !isLoaded || !loaded.current) return;
     const t = window.setTimeout(() => {
       const s = saveRef.current; const sx = sc.current; restored.current = true; if (!sx) return;
       if (s.pos && Math.hypot(s.pos.x, s.pos.z) < 90) { sx.setHeroPos(s.pos.x, s.pos.z); if (s.pos.room) { sx.enterRoom(s.pos.room); setInside(s.pos.room); } }
@@ -810,7 +810,7 @@ export default function IslandGame() {
       if (s.last?.place) flash(`Welcome back! You were ${s.last.place}.`);
     }, 1500);
     return () => window.clearTimeout(t);
-  }, [ready, isLoaded]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [ready, isLoaded, loadedN]); // eslint-disable-line react-hooks/exhaustive-deps
   const roomEdit = (op: 'turn' | 'move' | 'away') => {
     const i = decor.picked; if (i === null) return; const list = [...room]; const it = list[i]; if (!it) return;
     if (op === 'turn') { list[i] = { ...it, r: (it.r + Math.PI / 2) % (Math.PI * 2) }; persist({ ...saveRef.current, room: list }); return; }
@@ -901,6 +901,7 @@ export default function IslandGame() {
               <span className="il-tray-t">{unplaced.length ? 'Choose a thing, then tap the floor. Tap a thing in the room to turn or move it.' : furnOwned.length ? 'Everything is in the room. Tap a thing to turn or move it.' : 'You have no furniture yet. Buy some in the Murly Store!'}</span>
               <div className="il-tray-row">{unplaced.map((f) => <button key={f.f} type="button" className="il-tray-it" onClick={() => setDecor({ on: true, placing: f.f, picked: null })}><img src={f.f.startsWith('x-') ? thumbs[f.f] ?? '' : `/worlds/kenney/t/${f.f}.png`} alt="" />{f.en}</button>)}</div>
               {!furnOwned.length && <button type="button" className="il-mini" onClick={() => { setTab('Furniture'); setPanel('store'); }}>Open the shop</button>}
+              <button type="button" className="il-mini" onClick={() => setPanel('rooms')}>Rooms</button>
             </>}
         </div>
       )}
@@ -1270,6 +1271,25 @@ export default function IslandGame() {
               <p className="il-sub">Ideas</p>
               <div className="il-recipes">{DISHES.map((d) => <div key={d.id}><b>{d.en}</b>: {d.need.map((n) => productOf(n)?.en ?? n).join(' + ')}</div>)}</div>
             </>}
+
+            {panel === 'rooms' && (() => { const r = save.rooms ?? { layout: 0, types: [...DEFAULT_TYPES] }; const L = LAYOUTS.find((x) => x.id === r.layout) ?? LAYOUTS[0]; const setR = (n: HomeRooms) => persist({ ...saveRef.current, rooms: n }); return <>
+              <h2>Rooms in my home</h2>
+              <p className="il-sub">1. How many rooms?</p>
+              <div className="il-layouts">{LAYOUTS.map((l) => { const ok = Math.max(1, save.house) >= l.minHouse; return (
+                <button key={l.id} type="button" className={`il-layout ${l.id === r.layout ? 'on' : ''}`} disabled={!ok} onClick={() => { setR({ layout: l.id, types: r.types.length >= l.n ? r.types : [...r.types, ...DEFAULT_TYPES].slice(0, Math.max(l.n, r.types.length)) }); sfx.pop(); }}>
+                  <span className={`il-plan il-plan--${l.id}`}>{Array.from({ length: l.n }).map((_, i) => <i key={i} />)}</span>
+                  {l.en}{!ok && <small>{l.minHouse === 2 ? 'Get a cottage first' : 'Get a family house first'}</small>}
+                </button>); })}</div>
+              {L.n > 1 && <>
+                <p className="il-sub">2. What is each room?</p>
+                {Array.from({ length: L.n }).map((_, i) => { const cur = r.types[i] ?? 'living'; return (
+                  <div key={i} className="il-roomrow"><b>{['Room 1', 'Room 2', 'Room 3', 'Room 4'][i]}</b>
+                    <div className="il-chips">{ROOM_TYPES.map((t) => <button key={t.id} type="button" className={`il-chip ${cur === t.id ? 'il-chip--y' : ''}`} onClick={() => { const ty = [...r.types]; while (ty.length < L.n) ty.push('living'); ty[i] = t.id; setR({ layout: r.layout, types: ty }); say(`This is ${t.a} ${t.en}. ${t.tip}`); }}>{t.en}</button>)}</div>
+                  </div>); })}
+                <p className="il-note">My home has {L.n} rooms: {r.types.slice(0, L.n).map((t) => ROOM_TYPES.find((x) => x.id === t)?.en).join(', ')}. <button type="button" className="il-mini" onClick={() => say(`My home has ${L.n} rooms: ${r.types.slice(0, L.n).map((t) => { const x = ROOM_TYPES.find((y) => y.id === t)!; return `${x.a} ${x.en}`; }).join(', ')}.`)}>Listen</button></p>
+              </>}
+              <button type="button" className="il-go" onClick={() => setPanel(null)}>Done</button>
+            </>; })()}
 
             {panel === 'tradenpc' && npcI !== null && (() => { const t = npcTrade(npcName, todayKey()); const done0 = (save.dialogs ?? []).includes(`trade:${npcName}:${todayKey()}`); return <>
               <h2>Swap with {npcName}</h2>
