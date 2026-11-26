@@ -60,6 +60,7 @@ export default function IslandGame() {
   const [thumbs, setThumbs] = useState<Record<string, string>>({});
   const [stab, setStab] = useState<StylePart | 'acc' | 'fur'>('hair');
   const [dlg, setDlg] = useState<{ d: Dialog; node: string; react?: string; said?: string } | null>(null);
+  const [menu, setMenu] = useState<null | 'me' | 'friends'>(null);
   const restored = useRef(false); const loaded = useRef(false); const [loadedN, setLoadedN] = useState(0);
   const [needs, setNeeds] = useState({ food: 80, energy: 80, fun: 80 });
   const needsRef = useRef(needs); needsRef.current = needs;
@@ -578,8 +579,7 @@ export default function IslandGame() {
   const playRps = (me: string) => { if (npcI === null) return; const them = RPS[Math.floor(Math.random() * 3)]; const win = (me === 'rock' && them === 'scissors') || (me === 'paper' && them === 'rock') || (me === 'scissors' && them === 'paper'); const res = me === them ? "It's a draw!" : win ? 'You win!' : `${npcName} wins!`; setRps({ me, them, res }); say(`Rock, paper, scissors! ${res}`); sc.current?.npcBubble(npcI, them[0].toUpperCase() + them.slice(1) + '!'); addNeeds({ fun: 8 }); if (!rps) { addFriend(npcName, 1, `You played a game with ${npcName}.`); addSkill('friend'); } };
   const petAct = (kind: 'pet' | 'feed' | 'ball') => { const sx = sc.current; if (!sx || !save.pet) return; const nm = save.petName || 'my pet'; sx.petTrick(); sx.bubble(kind === 'pet' ? 'Good boy!' : kind === 'feed' ? 'Yummy!' : 'Fetch!'); tell(kind === 'pet' ? `I'm stroking ${nm}. ${nm === 'my pet' ? 'It' : nm} looks so happy!` : kind === 'feed' ? `I'm feeding ${nm}.` : `I'm playing ball with ${nm}. Fetch!`); addNeeds({ fun: kind === 'ball' ? 20 : 10 }); setPanel(null); };
   const giveGift = (id: string) => {
-    if (npcI === null) return; const f = foodOf(id); const b = { ...(saveRef.current.bag ?? {}) }; if (!b[id] || !f) return; b[id] -= 1; if (!b[id]) delete b[id];
-    persist({ ...saveRef.current, bag: b }); sc.current?.npcBubble(npcI, 'Thank you!'); tell(`I'm giving ${npcName} ${f.a ? `${f.a} ${f.en}` : f.en}.`);
+    if (npcI === null) return; const f = foodOf(id); if (!f || !takeItem(id)) return; sc.current?.npcBubble(npcI, 'Thank you!'); tell(`I'm giving ${npcName} ${f.a ? `${f.a} ${f.en}` : f.en}.`);
     setTimeout(() => addFriend(npcName, 2, `${npcName} loves your present!`), 50); setGiveMode(false); setPanel(null);
   };
   const emote = (id: string) => {
@@ -692,7 +692,7 @@ export default function IslandGame() {
   const onlineList = Object.values(online).filter((p) => !muted.current.has(p.id));
   // ---- супермаркет і кухня як у Toca Boca ----
   useEffect(() => { if (panel !== 'shelf' && sc.current) sc.current.focus = null; }, [panel]);
-  useEffect(() => { if (panel === 'shelf' && shelf) wantThumbs(PRODUCTS.filter((p) => p.cat === shelf).map((p) => p.id)); if (panel === 'fridge' || panel === 'cook' || panel === 'checkout') wantThumbs(Object.keys(pantry).concat(Object.keys(cart))); }, [panel, shelf]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => { if (panel === 'shelf' && shelf) wantThumbs(PRODUCTS.filter((p) => p.cat === shelf).map((p) => p.id)); if (panel === 'bag') wantThumbs(Object.keys(myItems())); if (panel === 'fridge' || panel === 'cook' || panel === 'checkout') wantThumbs(Object.keys(myItems()).concat(Object.keys(cart))); }, [panel, shelf]); // eslint-disable-line react-hooks/exhaustive-deps
   const pantry = save.pantry ?? STARTER_PANTRY;
   const basketCount = Object.values(cart).reduce((a, b) => a + b, 0);
   const basketTotal = Object.entries(cart).reduce((a, [k, n]) => a + (productOf(k)?.price ?? 1) * n, 0);
@@ -860,22 +860,30 @@ export default function IslandGame() {
         <button type="button" className={`il-chip ${dailyDone === 3 ? 'il-chip--y' : ''}`} onClick={() => setPanel('today')}>Today {dailyDone}/3</button>
         {guest && <Link href="/sign-in?redirect_url=/play/island" className="il-chip il-chip--y">Sign in to use your Murly coins</Link>}
       </div>
-      <div className="il-hud il-hud--r">
-        <button type="button" className="il-chip" onClick={() => setPanel('jobs')}>Map</button>
-        <button type="button" className="il-chip" onClick={() => setPanel('store')}>Shop</button>
-        <button type="button" className="il-chip" onClick={() => setPanel('home')}>My stuff</button>
-        <button type="button" className="il-chip il-chip--y" onClick={() => setPanel('style')}>My look</button>
-        <button type="button" className="il-chip" onClick={() => { setGiveMode(false); setPanel('bag'); }}>Bag</button>
-        <button type="button" className="il-chip" onClick={() => setPanel('acts')}>Actions</button>
-        {isSignedIn && <button type="button" className={`il-chip ${reqs.length ? 'il-chip--y' : ''}`} onClick={() => setPanel('online')}><i className={`il-dot-on ${netOk ? 'on' : ''}`} />Online {onlineList.length}</button>}
-        {isSignedIn && <button type="button" className="il-chip" onClick={() => setPanel('chat')}>Chat</button>}
-        <button type="button" className="il-chip" onClick={() => setPanel('career')}>{PROFS.find((p) => p.id === save.prof)?.en ?? 'Choose a job'}</button>
-        {inside ? <>
-          {inside === 'home' && <button type="button" className={`il-chip ${decor.on ? 'il-chip--y' : ''}`} onClick={() => setDecor(decor.on ? { on: false, placing: null, picked: null } : { on: true, placing: null, picked: null })}>{decor.on ? 'Done' : 'Decorate'}</button>}
-          <button type="button" className="il-chip" onClick={() => { sc.current?.exitHome(); setInside(null); setDecor({ on: false, placing: null, picked: null }); }}>Go outside</button>
-        </> : <button type="button" className="il-chip" onClick={() => { sc.current?.teleportHome(); }}>Go home</button>}
-        <button type="button" className="il-chip" onClick={() => setPanel('help')}>?</button>
-      </div>
+      {/* меню як у Sims: док з іконками внизу праворуч, рідкісне сховано в підменю */}
+      {menu && <div className="il-menu-veil" onClick={() => setMenu(null)} />}
+      <nav className="il-dock" aria-label="Game menu">
+        {menu === 'me' && <div className="il-pop">
+          <button type="button" onClick={() => { setMenu(null); setPanel('style'); }}><Ico n="shirt" />My look</button>
+          <button type="button" onClick={() => { setMenu(null); setGiveMode(false); setPanel('bag'); }}><Ico n="bag" />My bag</button>
+          <button type="button" onClick={() => { setMenu(null); setPanel('home'); }}><Ico n="box" />My things</button>
+          <button type="button" onClick={() => { setMenu(null); setPanel('career'); }}><Ico n="star" />My job: {PROFS.find((p) => p.id === save.prof)?.en ?? 'choose one'}</button>
+          <button type="button" onClick={() => { setMenu(null); setPanel('help'); }}><Ico n="help" />How to play</button>
+        </div>}
+        {menu === 'friends' && isSignedIn && <div className="il-pop">
+          <button type="button" onClick={() => { setMenu(null); setPanel('online'); }}><Ico n="people" />Players online: {onlineList.length}{reqs.length > 0 && <em className="il-badge">{reqs.length}</em>}</button>
+          <button type="button" onClick={() => { setMenu(null); setPanel('chat'); }}><Ico n="chat" />Island chat</button>
+        </div>}
+        <button type="button" className="il-dk" onClick={() => { setMenu(null); setPanel('jobs'); }}><Ico n="map" /><span>Map</span></button>
+        <button type="button" className="il-dk" onClick={() => { setMenu(null); setPanel('store'); }}><Ico n="shop" /><span>Shop</span></button>
+        <button type="button" className={`il-dk ${menu === 'me' ? 'on' : ''}`} onClick={() => setMenu(menu === 'me' ? null : 'me')}><Ico n="cat" /><span>Me</span></button>
+        <button type="button" className="il-dk" onClick={() => { setMenu(null); setPanel('acts'); }}><Ico n="hand" /><span>Do</span></button>
+        {isSignedIn && <button type="button" className={`il-dk ${menu === 'friends' ? 'on' : ''}`} onClick={() => setMenu(menu === 'friends' ? null : 'friends')}><Ico n="people" /><span>Friends</span><i className={`il-dot-on ${netOk ? 'on' : ''}`} />{(reqs.length > 0 || onlineList.length > 0) && <em className="il-badge">{reqs.length || onlineList.length}</em>}</button>}
+        <i className="il-dk-sep" />
+        {inside === 'home' && <button type="button" className={`il-dk ${decor.on ? 'on' : ''}`} onClick={() => { setMenu(null); setDecor(decor.on ? { on: false, placing: null, picked: null } : { on: true, placing: null, picked: null }); }}><Ico n="hammer" /><span>{decor.on ? 'Done' : 'Build'}</span></button>}
+        {inside ? <button type="button" className="il-dk il-dk--go" onClick={() => { setMenu(null); sc.current?.exitHome(); setInside(null); setDecor({ on: false, placing: null, picked: null }); }}><Ico n="door" /><span>Outside</span></button>
+          : <button type="button" className="il-dk il-dk--go" onClick={() => { setMenu(null); sc.current?.teleportHome(); }}><Ico n="house" /><span>Home</span></button>}
+      </nav>
 
       <div className="il-needs" title="How your cat feels">
         <b>{mood}</b>
@@ -1254,11 +1262,11 @@ export default function IslandGame() {
               <h2>The fridge</h2>
               {held && <button type="button" className="il-go" onClick={heldToFridge}>Put the {foodOf(held)?.en} in the fridge</button>}
               <p className="il-note">Buy more food at the supermarket. Tap Eat, or Take to hold it in your paws.</p>
-              {!Object.keys(pantry).length && <p className="il-note">The fridge is empty! Go shopping at the supermarket.</p>}
-              <div className="il-shop">{Object.entries(pantry).map(([id, n]) => { const f = foodOf(id); if (!f) return null; return (
+              {!Object.keys(myItems()).length && <p className="il-note">The fridge is empty! Go shopping at the supermarket.</p>}
+              <div className="il-shop">{Object.entries(myItems()).map(([id, n]) => { const f = foodOf(id); if (!f) return null; return (
                 <div key={id} className="il-item">{thumbs[id] ? <img className="il-thumb" src={thumbs[id]} alt="" /> : <i className="il-food" style={{ background: f.c }} />}<span>{f.en} <b>x{n}</b></span>
-                  {(productOf(id)?.food ?? 1) > 0 && <button type="button" onClick={() => { if (takeFromPantry(id)) { addNeeds({ food: f.food }); sc.current?.bubble('Yum!'); tell(`I'm eating ${f.a ? f.a + ' ' : ''}${f.en}.`); setPanel(null); } }}>Eat</button>}
-                  <button type="button" onClick={() => { if (takeFromPantry(id)) { holdItem(id); setPanel(null); } }}>Take</button></div>); })}</div>
+                  {(productOf(id)?.food ?? 1) > 0 && <button type="button" onClick={() => { if (takeItem(id)) { addNeeds({ food: f.food }); sc.current?.bubble('Yum!'); tell(`I'm eating ${f.a ? f.a + ' ' : ''}${f.en}.`); setPanel(null); } }}>Eat</button>}
+                  <button type="button" onClick={() => { if (takeItem(id)) { holdItem(id); setPanel(null); } }}>Take</button></div>); })}</div>
             </>}
 
             {panel === 'cook' && <>
@@ -1330,10 +1338,11 @@ export default function IslandGame() {
 
             {panel === 'bag' && <>
               <h2>{giveMode ? `A present for ${npcName}` : 'My bag'}</h2>
-              {!Object.keys(save.bag ?? {}).length && <p className="il-note">Your bag is empty. Take food from a fridge, cook something, or buy snacks at the cafe, bakery and market.</p>}
-              <div className="il-shop">{Object.entries(save.bag ?? {}).map(([id, n]) => { const f = foodOf(id); if (!f) return null; return (
-                <div key={id} className="il-item"><i className={id.startsWith('dish:') ? 'il-dish' : 'il-food'} style={{ background: f.c }} /><span>{f.en} <b>x{n}</b></span>
-                  {giveMode ? <button type="button" onClick={() => giveGift(id)}>Give</button> : <button type="button" onClick={() => { eat(id, true); setPanel(null); }}>Eat</button>}</div>); })}</div>
+              <p className="il-note">Food you buy is in your bag and in your fridge at home: it is the same food, so you can eat it anywhere.</p>
+              {!Object.keys(myItems()).length && <p className="il-note">Your bag is empty. Buy food at the supermarket, cook something, or buy snacks at the cafe, bakery and market.</p>}
+              <div className="il-shop">{Object.entries(myItems()).map(([id, n]) => { const f = foodOf(id); if (!f) return null; return (
+                <div key={id} className="il-item">{thumbs[id] ? <img className="il-thumb" src={thumbs[id]} alt="" /> : <i className={id.startsWith('dish:') ? 'il-dish' : 'il-food'} style={{ background: f.c }} />}<span>{f.en} <b>x{n}</b></span>
+                  {giveMode ? <button type="button" onClick={() => giveGift(id)}>Give</button> : <button type="button" onClick={() => { if (takeItem(id)) { eat(id); setPanel(null); } }}>Eat</button>}</div>); })}</div>
             </>}
 
             {panel === 'friend' && npcI !== null && <>
@@ -1439,3 +1448,24 @@ export default function IslandGame() {
   );
 }
 function fmtHour(h: number) { const hh = Math.floor(h); const m = h % 1 ? '30' : '00'; return `${((hh + 11) % 12) + 1}:${m} ${hh < 12 ? 'am' : 'pm'}`; }
+
+// прості лінійні іконки для меню
+function Ico({ n }: { n: string }) {
+  const P: Record<string, JSX.Element> = {
+    map: <><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z" /><path d="M9 4v14M15 6v14" /></>,
+    shop: <><path d="M5 8h14l-1 12H6z" /><path d="M9 8V6a3 3 0 016 0v2" /></>,
+    cat: <><path d="M5 20c0-5 3-8 7-8s7 3 7 8z" /><path d="M7 12V5l3 3h4l3-3v7" /><circle cx="10" cy="10" r=".6" /><circle cx="14" cy="10" r=".6" /></>,
+    hand: <><path d="M8 13V5.5a1.5 1.5 0 013 0V11" /><path d="M11 10.5V4.5a1.5 1.5 0 013 0V11" /><path d="M14 10.5V6a1.5 1.5 0 013 0v7a7 7 0 01-7 7 6 6 0 01-5-3l-2-4a1.5 1.5 0 012.6-1.5L8 14" /></>,
+    people: <><circle cx="9" cy="8" r="3" /><path d="M3 20c0-4 3-6 6-6s6 2 6 6" /><circle cx="17" cy="9" r="2.4" /><path d="M16 14c3 0 5 2 5 5" /></>,
+    hammer: <><path d="M14 6l4 4-2 2-4-4z" /><path d="M12 8l-8 8 2 2 8-8" /><path d="M14 6l2-2 4 4" /></>,
+    door: <><path d="M6 21V4h10v17" /><path d="M3 21h18" /><circle cx="13" cy="12" r=".8" /></>,
+    house: <><path d="M3 11l9-7 9 7" /><path d="M5 10v10h14V10" /><path d="M10 20v-6h4v6" /></>,
+    shirt: <><path d="M8 4l-5 3 2 4 3-1v10h8V10l3 1 2-4-5-3a4 4 0 01-8 0z" /></>,
+    bag: <><path d="M5 9h14v11H5z" /><path d="M9 9V7a3 3 0 016 0v2" /></>,
+    box: <><path d="M3 8l9-4 9 4v9l-9 4-9-4z" /><path d="M3 8l9 4 9-4M12 12v9" /></>,
+    star: <><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z" /></>,
+    chat: <><path d="M4 5h16v11H9l-5 4z" /></>,
+    help: <><circle cx="12" cy="12" r="9" /><path d="M9.5 9.5a2.5 2.5 0 015 0c0 2-2.5 2-2.5 4" /><circle cx="12" cy="17" r=".6" /></>,
+  };
+  return <svg className="il-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{P[n]}</svg>;
+}
