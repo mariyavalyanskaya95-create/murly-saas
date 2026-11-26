@@ -2,11 +2,11 @@
 // транспорт, улюбленці, свій будинок і двір. Будинки й дерева з наборів CC0, усе інше малюється кодом.
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-import { ADDRS, FUR, HOME, HOUSES, SHOP, SPEED, type Outfit, type Spot } from './island-data';
+import { ADDRS, FUR, HOME, HOUSES, PLACES, SHOP, SPEED, type Outfit, type RoomItem, type Spot } from './island-data';
 
 const loader = new GLTFLoader();
 const packs = new Map<string, Promise<Map<string, THREE.Object3D>>>();
-const PACK: Record<string, string> = { city: '/worlds/kaykit-city.glb', sub: '/worlds/kenney-suburban.glb', nature: '/worlds/kenney-nature.glb' };
+const PACK: Record<string, string> = { city: '/worlds/kaykit-city.glb', sub: '/worlds/kenney-suburban.glb', nature: '/worlds/kenney-nature.glb', furn: '/worlds/kenney-all.glb' };
 function pack(name: string) {
   if (!packs.has(name)) packs.set(name, loader.loadAsync(PACK[name]).then((g) => new Map(g.scenes.map((sc) => [sc.name, sc as THREE.Object3D]))));
   return packs.get(name)!;
@@ -159,6 +159,14 @@ function makeRide(id: string): THREE.Group {
     [[-0.6, 0.6], [0.6, 0.6], [-0.6, -0.6], [0.6, -0.6]].forEach(([x, z]) => { const w = cyl(0.25, 0.25, 0.2, '#2B2B2B'); w.rotation.z = Math.PI / 2; w.position.set(x, 0.25, z); g.add(w); });
     [-0.35, 0.35].forEach((x) => { const l = sph(0.1, '#FFFFFF'); l.position.set(x, 0.55, 0.96); g.add(l); });
   }
+  if (id === 'ride-taxi') {
+    const bd = box(1.3, 0.55, 2.1, '#FFC53D'); bd.position.y = 0.5; g.add(bd);
+    const top = box(1.1, 0.45, 1.0, '#FFE08A'); top.position.set(0, 1.0, -0.2); g.add(top);
+    const sg = box(0.6, 0.22, 0.3, '#1A1A1A'); sg.position.set(0, 1.34, -0.2); g.add(sg);
+    for (let i = 0; i < 6; i++) { const c = box(0.2, 0.08, 0.02, i % 2 ? '#1A1A1A' : '#FFFFFF'); c.position.set(-0.5 + i * 0.2, 0.5, 1.06); g.add(c); }
+    [[-0.65, 0.65], [0.65, 0.65], [-0.65, -0.65], [0.65, -0.65]].forEach(([x, z]) => { const w = cyl(0.26, 0.26, 0.2, '#2B2B2B'); w.rotation.z = Math.PI / 2; w.position.set(x, 0.26, z); g.add(w); });
+    const pas = makeCat('#B79CF0', 0.55); pas.root.position.set(0.3, 0.75, -0.5); g.add(pas.root);
+  }
   if (id === 'ride-ufo') {
     const d = mesh(new THREE.SphereGeometry(1.1, 28, 12), toon('#B8C2CC')); d.scale.y = 0.25; d.position.y = 0.6; g.add(d);
     const dome = mesh(new THREE.SphereGeometry(0.55, 20, 14, 0, Math.PI * 2, 0, Math.PI / 2), new THREE.MeshPhysicalMaterial({ color: '#9FE7F5', transparent: true, opacity: 0.4 }), false); dome.position.y = 0.75; g.add(dome);
@@ -176,7 +184,9 @@ function makePet(id: string): THREE.Group {
 }
 
 // ---------- сцена ----------
-export type IslandEvents = { onNear: (spot: Spot | null) => void; onFps?: (low: boolean) => void; onStar?: (id: string) => void };
+export type IslandEvents = { onNear: (spot: Spot | null) => void; onFps?: (low: boolean) => void; onStar?: (id: string) => void; onClock?: (hour: number, rain: boolean) => void; onPlace?: (x: number, z: number) => void; onPick?: (i: number) => void };
+export const ROOM = { x: 400, z: 0, w: 14, d: 11 };
+const FK = 2.4;
 // зірки, які можна знайти на острові
 export const STARS: [number, number][] = [[-60, 20], [55, 30], [10, -55], [-35, -45], [62, -5], [-8, 48], [40, -40], [-58, -22], [25, 55], [-22, 2]];
 const NPC_NAMES = ['Mr Fluff', 'Lily', 'Captain Paws', 'Grandma Whiskers', 'Tom', 'Daisy', 'Professor Meow', 'Ruby'];
@@ -197,6 +207,13 @@ export class IslandScene {
   ev: IslandEvents; el: HTMLElement; wob = { lean: 0, leanV: 0, sq: 1, sqV: 0 };
   ro: ResizeObserver;
   goal: THREE.Vector3 | null = null; goalRing: THREE.Mesh | null = null; danceT = 0;
+  hemi!: THREE.HemisphereLight; cloudMat = new THREE.MeshToonMaterial({ color: '#FFFFFF' });
+  dayP = 0.1; rain = 0; raining = false; weatherT = 70; rainObj: THREE.LineSegments | null = null;
+  glows: THREE.Mesh[] = []; beam: THREE.Mesh | null = null; skyStars: THREE.Points | null = null; moon: THREE.Mesh | null = null;
+  flies: { g: THREE.Group; c: THREE.Vector3; ph: number; glow: boolean }[] = []; birds: { g: THREE.Group; r: number; h: number; ph: number; v: number }[] = [];
+  boats: { g: THREE.Group; r: number; ph: number; v: number }[] = []; lastHour = -1;
+  inside = false; outPos = new THREE.Vector3(); roomGroup = new THREE.Group(); roomItems = new THREE.Group(); roomCol: { x: number; z: number; r: number }[] = [];
+  placing: string | null = null; decorate = false; roomList: RoomItem[] = []; roomSeq = 0;
   stars: { id: string; obj: THREE.Group }[] = []; got = new Set<string>();
   ray = new THREE.Raycaster(); ground = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
 
@@ -213,7 +230,7 @@ export class IslandScene {
     this.scene.background = new THREE.Color('#9ED8F7');
     this.scene.fog = new THREE.Fog('#BFE6FA', 70, 220);
 
-    const hemi = new THREE.HemisphereLight('#E8F6FF', '#9BC97A', 1.25); this.scene.add(hemi);
+    const hemi = new THREE.HemisphereLight('#E8F6FF', '#9BC97A', 1.25); this.scene.add(hemi); this.hemi = hemi; this.cloudMat.gradientMap = toon('#fff').gradientMap;
     const sun = new THREE.DirectionalLight('#FFF4DD', 2.3); sun.position.set(40, 60, 25); sun.castShadow = true;
     sun.shadow.mapSize.set(low ? 1024 : 2048, low ? 1024 : 2048);
     const sc = sun.shadow.camera as THREE.OrthographicCamera; sc.left = -40; sc.right = 40; sc.top = 40; sc.bottom = -40; sc.far = 160; sun.shadow.bias = -0.0005; sun.shadow.normalBias = 0.03;
@@ -228,6 +245,7 @@ export class IslandScene {
     this.marker = this.buildMarker();
     this.scene.add(this.homeGroup, this.yardGroup);
     void this.buildTown();
+    this.buildSky(); this.buildLife(); this.buildRoom();
 
     const resize = () => { const w = el.clientWidth || 1, h = el.clientHeight || 1; this.renderer.setSize(w, h); this.cam.aspect = w / h; this.cam.updateProjectionMatrix(); };
     this.ro = new ResizeObserver(resize); this.ro.observe(el); resize();
@@ -302,6 +320,22 @@ export class IslandScene {
       this.spots.push({ id, x, z: dz, r: 2.6, label });
       const mat = mesh(new THREE.CircleGeometry(1.3, 24), toon(bg), false); mat.rotation.x = -Math.PI / 2; mat.position.set(x, 0.04, dz); this.scene.add(mat);
     }
+    // пекарня і бутик
+    for (const [id, file] of [['bakery', 'building_D'], ['boutique', 'building_E']] as const) {
+      const P = PLACES[id]; const m = await add('city', file, P.x, P.z, 9, 0, 5.2);
+      const h = new THREE.Box3().setFromObject(m).max.y;
+      const sg = sign(P.label, P.color, '#FFFFFF', 6); sg.position.set(P.x, h + 1.4, P.z); this.scene.add(sg);
+      this.spots.push({ id, x: P.x, z: P.z + 5.6, r: 2.6, label: P.label });
+      const mat = mesh(new THREE.CircleGeometry(1.3, 24), toon(P.color), false); mat.rotation.x = -Math.PI / 2; mat.position.set(P.x, 0.04, P.z + 5.6); this.scene.add(mat);
+    }
+    this.buildBakeryDeco(PLACES.bakery.x, PLACES.bakery.z + 4.4);
+    // стоянка таксі
+    { const T = PLACES.taxi; const pole = cyl(0.08, 0.08, 3, '#55606E'); pole.position.set(T.x + 1.6, 1.5, T.z); this.scene.add(pole);
+      const sg = sign('TAXI', '#FFC53D', '#1A1A1A', 2.6); sg.position.set(T.x + 1.6, 3.4, T.z); this.scene.add(sg);
+      const car = makeRide('ride-taxi'); car.children.slice(-1)[0].visible = false; car.position.set(T.x - 1.2, 0, T.z - 1); car.rotation.y = Math.PI / 2; this.scene.add(car);
+      this.colliders.push({ x: T.x - 1.2, z: T.z - 1, r: 1.3 });
+      this.spots.push({ id: 'taxi', x: T.x + 0.4, z: T.z + 1.8, r: 2.4, label: 'TAXI' }); }
+    this.buildPier();
     // фруктовий ринок: власний ларьок
     this.buildStall(-18, 16); this.spots.push({ id: 'market', x: -18, z: 11.5, r: 2.6, label: 'FRUIT MARKET' });
     // будинки для доставки з номерами
@@ -336,12 +370,12 @@ export class IslandScene {
     for (let i = 0; i < 90; i++) { const a = Math.random() * Math.PI * 2, d = rnd(10, 64); const x = Math.cos(a) * d, z = Math.sin(a) * d; if (free(x, z)) void add('nature', flowers[i % flowers.length], x, z, rnd(0.6, 1.4), rnd(0, 6)); }
     // машини, лавки, ліхтарі
     for (const [x, z, r] of [[-3, -24, 0], [3, 22, Math.PI], [-26, 2.6, Math.PI / 2]] as const) void add('city', ['car_taxi', 'car_sedan', 'car_hatchback'][Math.abs(x) % 3], x, z, 2.6, r, 1.3);
-    for (const [x, z] of [[-6, -9], [6, -9], [-6, 9], [6, 9]]) void add('city', 'streetlight', x, z, 1.2, 0, 0.3);
+    for (const [x, z] of [[-6, -9], [6, -9], [-6, 9], [6, 9], [-20, -24], [20, -24], [-22, 22], [24, 22], [-36, 0], [36, 0], [0, -40], [0, 40]]) void add('city', 'streetlight', x, z, 1.2, 0, 0.3).then((m) => { const h = new THREE.Box3().setFromObject(m).max.y; this.glow(x, h - 0.15, z, 0.35); });
     for (const [x, z, r] of [[-9.5, 0, Math.PI / 2], [9.5, 0, -Math.PI / 2]]) void add('city', 'bench', x, z, 2, r, 0.8);
     // хмари
     for (let i = 0; i < 14; i++) {
       const c = new THREE.Group();
-      for (let k = 0; k < 5; k++) { const s = mesh(new THREE.SphereGeometry(rnd(2.5, 4.5), 14, 10), new THREE.MeshToonMaterial({ color: '#FFFFFF', gradientMap: grad! }), false); s.position.set(k * 3 - 6, rnd(-0.6, 1), rnd(-1.5, 1.5)); c.add(s); }
+      for (let k = 0; k < 5; k++) { const s = mesh(new THREE.SphereGeometry(rnd(2.5, 4.5), 14, 10), this.cloudMat, false); s.position.set(k * 3 - 6, rnd(-0.6, 1), rnd(-1.5, 1.5)); c.add(s); }
       c.position.set(rnd(-150, 150), rnd(38, 55), rnd(-150, 150)); c.userData.v = rnd(0.6, 1.4); this.scene.add(c); this.clouds.push(c);
     }
     // жителі-котики
@@ -386,7 +420,113 @@ export class IslandScene {
     for (let i = 0; i < 5; i++) { const s = cyl(1.6 - i * 0.18, 1.78 - i * 0.18, 2, i % 2 ? '#E5484D' : '#FFFFFF', 24); s.position.set(x, 1 + i * 2, z); this.scene.add(s); }
     const lamp = cyl(0.8, 0.8, 1.2, '#FFF3A6', 16); lamp.material = toon('#FFF3A6', 0.8); lamp.position.set(x, 10.6, z); this.scene.add(lamp);
     const roof = mesh(new THREE.ConeGeometry(1.1, 1.2, 16), toon('#E5484D')); roof.position.set(x, 11.8, z); this.scene.add(roof);
+    const bg = new THREE.ConeGeometry(3, 34, 20, 1, true); bg.translate(0, -17, 0); bg.rotateZ(Math.PI / 2);
+    const beam = new THREE.Mesh(bg, new THREE.MeshBasicMaterial({ color: '#FFF3A6', transparent: true, opacity: 0, depthWrite: false, side: THREE.DoubleSide, blending: THREE.AdditiveBlending }));
+    beam.position.set(x, 10.6, z); this.scene.add(beam); this.beam = beam; this.glow(x, 10.6, z, 1.1);
     this.colliders.push({ x, z, r: 2 });
+  }
+
+  glow(x: number, y: number, z: number, r: number) {
+    const m = new THREE.Mesh(new THREE.SphereGeometry(r, 12, 8), new THREE.MeshBasicMaterial({ color: '#FFE9A8', transparent: true, opacity: 0, depthWrite: false, blending: THREE.AdditiveBlending }));
+    m.position.set(x, y, z); this.scene.add(m); this.glows.push(m);
+  }
+  buildBakeryDeco(x: number, z: number) {
+    // вітрина з тортами перед пекарнею
+    const t = box(3, 0.9, 1, '#FFFFFF'); t.position.set(x + 3.4, 0.45, z); this.scene.add(t);
+    [['#7A4E25', 0], ['#F7A1B5', 1], ['#FFE36B', 2]].forEach(([c, i]) => { const k = cyl(0.32, 0.32, 0.4, c as string, 16); k.position.set(x + 2.4 + (i as number) * 1, 1.1, z); this.scene.add(k); const ch = sph(0.08, '#E5484D', 8); ch.position.set(x + 2.4 + (i as number) * 1, 1.36, z); this.scene.add(ch); });
+    this.colliders.push({ x: x + 3.4, z, r: 1.5 });
+  }
+  buildPier() {
+    const wood = toon('#B8865A'); const P = PLACES.pier;
+    for (let i = 0; i < 12; i++) { const pl = mesh(new THREE.BoxGeometry(3, 0.18, 1.5), wood); pl.position.set(0, 0.25, -66 - i * 1.6); this.scene.add(pl); }
+    for (let i = 0; i < 7; i++) [-1.4, 1.4].forEach((x) => { const po = cyl(0.14, 0.14, 2, '#8B5E34', 8); po.position.set(x, -0.3, -67 - i * 3); this.scene.add(po); });
+    const hut = box(1.2, 1.4, 1.2, '#3E7BFA'); hut.position.set(1.0, 1.0, -85); this.scene.add(hut);
+    const rod = cyl(0.03, 0.03, 2.6, '#6B4F2A', 6); rod.position.set(-0.9, 1.4, -85.5); rod.rotation.x = -0.6; this.scene.add(rod);
+    const sg = sign(P.label, P.color, '#FFFFFF', 5); sg.position.set(0, 3, -66); this.scene.add(sg);
+    this.spots.push({ id: 'pier', x: 0, z: -82, r: 2.6, label: P.label });
+  }
+  // небо: зорі вночі, місяць, дощ
+  buildSky() {
+    const n = 500; const pos = new Float32Array(n * 3);
+    for (let i = 0; i < n; i++) { const a = Math.random() * Math.PI * 2, b = Math.random() * 1.2 + 0.15; pos[i * 3] = Math.cos(a) * Math.cos(b) * 260; pos[i * 3 + 1] = Math.sin(b) * 260; pos[i * 3 + 2] = Math.sin(a) * Math.cos(b) * 260; }
+    const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+    this.skyStars = new THREE.Points(g, new THREE.PointsMaterial({ color: '#FFFFFF', size: 1.6, sizeAttenuation: false, transparent: true, opacity: 0, fog: false, depthWrite: false }));
+    this.scene.add(this.skyStars);
+    this.moon = new THREE.Mesh(new THREE.SphereGeometry(9, 20, 14), new THREE.MeshBasicMaterial({ color: '#FFF6D8', fog: false, transparent: true, opacity: 0 })); this.scene.add(this.moon);
+    const m = 1400; const rp = new Float32Array(m * 6);
+    for (let i = 0; i < m; i++) { const x = (Math.random() - 0.5) * 50, y = Math.random() * 26, z = (Math.random() - 0.5) * 50; rp.set([x, y, z, x, y - 0.7, z], i * 6); }
+    const rg = new THREE.BufferGeometry(); rg.setAttribute('position', new THREE.BufferAttribute(rp, 3));
+    this.rainObj = new THREE.LineSegments(rg, new THREE.LineBasicMaterial({ color: '#CFE3F5', transparent: true, opacity: 0.55, depthWrite: false })); this.rainObj.visible = false; this.rainObj.frustumCulled = false; this.scene.add(this.rainObj);
+  }
+  // метелики, світлячки, птахи, човни
+  buildLife() {
+    const wingC = ['#F76AA8', '#FFC53D', '#8EC9F5', '#B79CF0', '#F5862D'];
+    for (let i = 0; i < 26; i++) {
+      const glow = i >= 14; const g = new THREE.Group();
+      if (glow) { g.add(new THREE.Mesh(new THREE.SphereGeometry(0.08, 8, 6), new THREE.MeshBasicMaterial({ color: '#E9FF8A', transparent: true, opacity: 0.9, blending: THREE.AdditiveBlending, depthWrite: false }))); }
+      else [-1, 1].forEach((sd) => { const wg = new THREE.PlaneGeometry(0.34, 0.26); wg.translate(0.17 * sd, 0, 0); const w = new THREE.Mesh(wg, new THREE.MeshBasicMaterial({ color: wingC[i % wingC.length], side: THREE.DoubleSide })); w.name = sd < 0 ? 'wl' : 'wr'; g.add(w); });
+      const a = Math.random() * Math.PI * 2, d = 10 + Math.random() * 50;
+      const c = new THREE.Vector3(Math.cos(a) * d, 0, Math.sin(a) * d); g.position.copy(c); this.scene.add(g);
+      this.flies.push({ g, c, ph: Math.random() * 10, glow });
+    }
+    for (let i = 0; i < 8; i++) {
+      const g = new THREE.Group(); const m = toon('#2B2B2B');
+      [-1, 1].forEach((sd) => { const w = mesh(new THREE.BoxGeometry(0.9, 0.05, 0.25), m, false); w.position.x = 0.45 * sd; w.name = sd < 0 ? 'wl' : 'wr'; const pv = new THREE.Group(); pv.add(w); pv.name = sd < 0 ? 'pl' : 'pr'; g.add(pv); });
+      this.scene.add(g); this.birds.push({ g, r: 25 + Math.random() * 40, h: 24 + Math.random() * 12, ph: Math.random() * 6, v: 0.12 + Math.random() * 0.1 });
+    }
+    const sails = ['#FFFFFF', '#E5484D', '#FFC53D'];
+    for (let i = 0; i < 3; i++) {
+      const g = new THREE.Group();
+      const hull = box(1.8, 0.8, 5, ['#3E7BFA', '#FFFFFF', '#30A46C'][i]); hull.position.y = 0.2; g.add(hull);
+      const bow = mesh(new THREE.ConeGeometry(0.9, 1.6, 4), toon(['#3E7BFA', '#FFFFFF', '#30A46C'][i])); bow.rotation.x = Math.PI / 2; bow.rotation.y = Math.PI / 4; bow.scale.set(1, 1, 0.5); bow.position.set(0, 0.2, 3.2); g.add(bow);
+      const mast = cyl(0.08, 0.08, 5, '#6B4F2A', 6); mast.position.y = 2.8; g.add(mast);
+      const sh = new THREE.Shape(); sh.moveTo(0, 0); sh.lineTo(0, 4.2); sh.lineTo(2.6, 0); sh.closePath();
+      const sail = new THREE.Mesh(new THREE.ShapeGeometry(sh), new THREE.MeshToonMaterial({ color: sails[i], side: THREE.DoubleSide })); sail.rotation.y = -Math.PI / 2; sail.position.set(0, 0.8, 0.1); g.add(sail);
+      this.scene.add(g); this.boats.push({ g, r: 92 + i * 14, ph: (i / 3) * Math.PI * 2, v: 0.012 + i * 0.004 });
+    }
+  }
+
+  // ---- кімната всередині дому ----
+  buildRoom() {
+    const g = this.roomGroup; g.position.set(ROOM.x, 0, ROOM.z); this.scene.add(g); g.add(this.roomItems);
+    const yard = mesh(new THREE.CircleGeometry(60, 40), toon('#8BCB62'), false); yard.rotation.x = -Math.PI / 2; yard.position.y = -0.02; g.add(yard);
+    const cv = document.createElement('canvas'); cv.width = 256; cv.height = 256; const x = cv.getContext('2d')!;
+    for (let i = 0; i < 8; i++) { x.fillStyle = i % 2 ? '#D9B38C' : '#CFA67C'; x.fillRect(0, i * 32, 256, 32); x.fillStyle = '#B8865A'; x.fillRect(0, i * 32 + 31, 256, 1); x.fillRect(((i * 97) % 200) + 20, i * 32, 1, 32); }
+    const tx = new THREE.CanvasTexture(cv); tx.colorSpace = THREE.SRGBColorSpace; tx.wrapS = tx.wrapT = THREE.RepeatWrapping; tx.repeat.set(3, 3);
+    const floor = new THREE.Mesh(new THREE.PlaneGeometry(ROOM.w, ROOM.d), new THREE.MeshToonMaterial({ map: tx, gradientMap: toon('#fff').gradientMap })); floor.rotation.x = -Math.PI / 2; floor.position.y = 0.01; floor.receiveShadow = true; floor.name = 'floor'; g.add(floor);
+    const wallM = toon('#F3E7D3'); const H = 3.6;
+    const back = mesh(new THREE.BoxGeometry(ROOM.w, H, 0.3), wallM); back.position.set(0, H / 2, -ROOM.d / 2); g.add(back);
+    const left = mesh(new THREE.BoxGeometry(0.3, H, ROOM.d), wallM); left.position.set(-ROOM.w / 2, H / 2, 0); g.add(left);
+    const low = toon('#E3D2B8');
+    const right = mesh(new THREE.BoxGeometry(0.3, 0.4, ROOM.d), low); right.position.set(ROOM.w / 2, 0.2, 0); g.add(right);
+    const front = mesh(new THREE.BoxGeometry(ROOM.w, 0.4, 0.3), low); front.position.set(0, 0.2, ROOM.d / 2); g.add(front);
+    [-3.4, 3.4].forEach((wx) => { const w = mesh(new THREE.PlaneGeometry(2.2, 1.6), new THREE.MeshBasicMaterial({ color: '#BFE6FA' }), false); w.position.set(wx, 2.1, -ROOM.d / 2 + 0.16); g.add(w); const fr = box(2.4, 0.12, 0.1, '#FFFFFF'); fr.position.set(wx, 2.1, -ROOM.d / 2 + 0.18); g.add(fr); const fv = box(0.12, 1.7, 0.1, '#FFFFFF'); fv.position.set(wx, 2.1, -ROOM.d / 2 + 0.18); g.add(fv); });
+    const pic = box(1.4, 1, 0.08, '#FFC53D'); pic.position.set(-ROOM.w / 2 + 0.2, 2.2, -2); pic.rotation.y = Math.PI / 2; g.add(pic);
+    const pin = box(1.2, 0.8, 0.09, '#8EC9F5'); pin.position.set(-ROOM.w / 2 + 0.21, 2.2, -2); pin.rotation.y = Math.PI / 2; g.add(pin);
+    const door = box(0.12, 2.4, 1.4, '#8B5E34'); door.position.set(-ROOM.w / 2 + 0.2, 1.2, 3); g.add(door);
+    const knob = sph(0.08, '#FFC53D', 8); knob.position.set(-ROOM.w / 2 + 0.3, 1.2, 2.5); g.add(knob);
+    const mat = mesh(new THREE.CircleGeometry(1, 24), toon('#FFC53D'), false); mat.rotation.x = -Math.PI / 2; mat.position.set(-ROOM.w / 2 + 1.3, 0.03, 3); g.add(mat);
+    this.spots.push({ id: 'room-exit', x: ROOM.x - ROOM.w / 2 + 1.3, z: ROOM.z + 3, r: 1.6, label: 'EXIT' });
+    // кущі довкола
+    for (let i = 0; i < 16; i++) { const a = (i / 16) * Math.PI * 2; const b = sph(1 + Math.random(), '#6FB64C', 12); b.position.set(Math.cos(a) * 16, 0.4, Math.sin(a) * 14); g.add(b); }
+  }
+  enterHome() { if (this.inside) return; this.outPos.copy(this.heroPos); this.inside = true; this.heroPos.set(ROOM.x - ROOM.w / 2 + 2.2, 0, ROOM.z + 3); this.vel.set(0, 0, 0); this.camYaw = 0.35; this.camPitch = 0.75; this.camDist = 12; this.cam.position.set(ROOM.x, 10, ROOM.z + 14); if (this.pet) this.petPos.copy(this.heroPos); this.goal = null; }
+  exitHome() { if (!this.inside) return; this.inside = false; this.decorate = false; this.placing = null; this.heroPos.set(HOME.x, 0, HOME.z - 9); this.vel.set(0, 0, 0); this.camYaw = Math.PI; this.camPitch = 0.42; this.camDist = 9; this.cam.position.set(HOME.x, 6, HOME.z - 18); if (this.pet) this.petPos.copy(this.heroPos); this.goal = null; }
+  async setRoom(list: RoomItem[]) {
+    const seq = ++this.roomSeq; this.roomList = list;
+    const scenes = await pack('furn');
+    if (seq !== this.roomSeq) return;
+    this.roomItems.clear(); this.roomCol = [];
+    list.forEach((it, i) => {
+      const src = scenes.get(it.f); if (!src) return;
+      // справжній масштаб Kenney: 1 одиниця ≈ 1/FK нашого світу
+      const g = new THREE.Group(); const inner = new THREE.Group(); src.children.forEach((c) => inner.add(c.clone(true))); inner.scale.setScalar(FK); g.add(inner);
+      const b = new THREE.Box3().setFromObject(inner); const c = b.getCenter(new THREE.Vector3()); inner.position.set(-c.x, -b.min.y, -c.z);
+      g.traverse((o) => { const m = o as THREE.Mesh; if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; m.userData.idx = i; (Array.isArray(m.material) ? m.material : [m.material]).forEach((mt) => { const st = mt as THREE.MeshStandardMaterial; if (st.metalness !== undefined) { st.metalness = Math.min(st.metalness, 0.2); st.roughness = Math.max(st.roughness ?? 1, 0.6); } }); } });
+      g.position.set(it.x, 0, it.z); g.rotation.y = it.r; g.userData.idx = i; this.roomItems.add(g);
+      const sz = b.getSize(new THREE.Vector3()); const r = Math.min(sz.x, sz.z) / 2;
+      if (!/^rug/.test(it.f) && sz.y > 0.4) this.roomCol.push({ x: ROOM.x + it.x, z: ROOM.z + it.z, r: Math.max(0.2, r * 0.9) });
+    });
   }
 
   // ---- мій дім ----
@@ -460,7 +600,12 @@ export class IslandScene {
       const v = new THREE.Vector2(((e.clientX - r.left) / r.width) * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1);
       this.ray.setFromCamera(v, this.cam);
       const hit = new THREE.Vector3();
-      if (this.ray.ray.intersectPlane(this.ground, hit) && Math.hypot(hit.x, hit.z) < 73) this.walkTo(hit.x, hit.z);
+      if (this.inside && this.decorate) {
+        if (!this.placing) { const hits = this.ray.intersectObject(this.roomItems, true); const h0 = hits.find((h) => h.object.userData.idx !== undefined); if (h0) { this.ev.onPick?.(h0.object.userData.idx as number); return; } }
+        if (this.placing && this.ray.ray.intersectPlane(this.ground, hit)) { const lx = THREE.MathUtils.clamp(hit.x - ROOM.x, -ROOM.w / 2 + 0.8, ROOM.w / 2 - 0.8), lz = THREE.MathUtils.clamp(hit.z - ROOM.z, -ROOM.d / 2 + 0.8, ROOM.d / 2 - 0.8); this.ev.onPlace?.(lx, lz); }
+        return;
+      }
+      if (this.ray.ray.intersectPlane(this.ground, hit) && (this.inside ? Math.abs(hit.x - ROOM.x) < ROOM.w / 2 && Math.abs(hit.z - ROOM.z) < ROOM.d / 2 : Math.hypot(hit.x, hit.z) < 73 || (Math.abs(hit.x) < 1.5 && hit.z < -70 && hit.z > -86))) this.walkTo(hit.x, hit.z);
     }
   };
   walkTo(x: number, z: number) {
@@ -505,18 +650,25 @@ export class IslandScene {
     // стрибки й гравітація (батут підкидає вище)
     const fly = this.rideId === 'ride-ufo';
     this.vy -= (fly ? 9 : 22) * dt; this.heroPos.y += this.vy * dt;
-    const groundY = fly && len > 0.1 ? 1.2 : 0;
+    const onDeck = !this.inside && Math.abs(this.heroPos.x) < 1.6 && this.heroPos.z < -66;
+    const groundY = fly && len > 0.1 ? 1.2 : onDeck ? 0.34 : 0;
     if (this.heroPos.y <= groundY) {
       if (!this.onGround && this.vy < -6) this.wob.sqV += this.vy * 0.25;
       this.heroPos.y = groundY; this.vy = 0; this.onGround = true;
       if (this.tramp && Math.hypot(this.heroPos.x - this.tramp.x, this.heroPos.z - this.tramp.z) < 1.4) { this.vy = 13; this.onGround = false; this.wob.sqV -= 4; }
     }
     // зіткнення з будинками й межею острова
-    for (const c of this.colliders) {
+    for (const c of this.inside ? this.roomCol : this.colliders) {
       const dx = this.heroPos.x - c.x, dz = this.heroPos.z - c.z; const d = Math.hypot(dx, dz); const r = c.r + 0.45;
       if (d < r && d > 0.0001) { this.heroPos.x = c.x + (dx / d) * r; this.heroPos.z = c.z + (dz / d) * r; }
     }
-    const R = 73; const dc = Math.hypot(this.heroPos.x, this.heroPos.z); if (dc > R) { this.heroPos.x *= R / dc; this.heroPos.z *= R / dc; }
+    if (this.inside) { this.heroPos.x = THREE.MathUtils.clamp(this.heroPos.x, ROOM.x - ROOM.w / 2 + 0.6, ROOM.x + ROOM.w / 2 - 0.6); this.heroPos.z = THREE.MathUtils.clamp(this.heroPos.z, ROOM.z - ROOM.d / 2 + 0.6, ROOM.z + ROOM.d / 2 - 0.6); }
+    else {
+      const onPier = Math.abs(this.heroPos.x) < 1.6 && this.heroPos.z < -69 && this.heroPos.z > -86.5;
+      const R = 73; const dc = Math.hypot(this.heroPos.x, this.heroPos.z);
+      if (onPier) { if (this.heroPos.z < -71) this.heroPos.x = THREE.MathUtils.clamp(this.heroPos.x, -1.3, 1.3); this.heroPos.z = Math.max(this.heroPos.z, -85.6); }
+      else if (dc > R) { this.heroPos.x *= R / dc; this.heroPos.z *= R / dc; }
+    }
     const speed = Math.hypot(this.vel.x, this.vel.z);
     if (speed > 0.3) { const tr = Math.atan2(this.vel.x, this.vel.z); let d = tr - this.heroRot; d = Math.atan2(Math.sin(d), Math.cos(d)); this.heroRot += d * (1 - Math.exp(-10 * dt)); }
     // «желейна» хода: нахил від прискорення, пружинне стискання
@@ -568,8 +720,10 @@ export class IslandScene {
     if (this.frames % 2 === 0) { for (let i = 0; i < wp.count; i++) { const x = wp.getX(i), z = wp.getZ(i); wp.setY(i, Math.sin(x * 0.12 + t * 1.2) * 0.18 + Math.cos(z * 0.1 + t) * 0.15); } wp.needsUpdate = true; this.water.geometry.computeVertexNormals(); }
     this.clouds.forEach((c) => { c.position.x += c.userData.v * dt; if (c.position.x > 170) c.position.x = -170; });
     if (this.markerOn) { const a = this.marker.getObjectByName('arrow')!; a.position.y = 4.2 + Math.sin(t * 3) * 0.4; a.rotation.y = t * 2; }
+    this.stepWorld(dt, t);
     // камера позаду героя
-    if (speed > 1 && !this.drag && (Math.abs(this.joy.x) + Math.abs(this.joy.y) > 0 || k.size)) { let d = (this.heroRot + Math.PI) - this.camYaw; d = Math.atan2(Math.sin(d), Math.cos(d)); this.camYaw += d * (1 - Math.exp(-1.2 * dt)); }
+    if (this.inside) this.camYaw = THREE.MathUtils.clamp(this.camYaw, -0.25, 1.25);
+    else if (speed > 1 && !this.drag && (Math.abs(this.joy.x) + Math.abs(this.joy.y) > 0 || k.size)) { let d = (this.heroRot + Math.PI) - this.camYaw; d = Math.atan2(Math.sin(d), Math.cos(d)); this.camYaw += d * (1 - Math.exp(-1.2 * dt)); }
     const target = this.heroPos.clone().add(new THREE.Vector3(0, 1.4, 0));
     const camPos = target.clone().add(new THREE.Vector3(Math.sin(this.camYaw) * Math.cos(this.camPitch), Math.sin(this.camPitch), Math.cos(this.camYaw) * Math.cos(this.camPitch)).multiplyScalar(this.camDist));
     camPos.y = Math.max(camPos.y, 0.8);
@@ -581,6 +735,50 @@ export class IslandScene {
     if (!near) this.npcs.forEach((n, i) => { const p = n.rig.root.position; if (!near && Math.hypot(p.x - this.heroPos.x, p.z - this.heroPos.z) < 2.2) { near = { id: `npc-${i}`, x: p.x, z: p.z, r: 2.2, label: NPC_NAMES[i % NPC_NAMES.length] }; n.t = 2; n.goal.copy(p); n.rig.root.lookAt(this.heroPos.x, 0, this.heroPos.z); } });
     if (near?.id !== this.near?.id) { this.near = near; this.ev.onNear(near); }
   }
+
+  // день і ніч (8 хвилин на добу), дощ, живність
+  stepWorld(dt: number, t: number) {
+    this.dayP = (this.dayP + dt / 480) % 1;
+    const e = Math.sin(this.dayP * Math.PI * 2);
+    const day = THREE.MathUtils.smoothstep(e, -0.18, 0.28);
+    // погода: іноді дощ
+    this.weatherT -= dt;
+    if (this.weatherT < 0) { this.raining = this.raining ? false : Math.random() < 0.3; this.weatherT = this.raining ? 45 + Math.random() * 40 : 80 + Math.random() * 60; }
+    this.rain += ((this.raining && !this.inside ? 1 : 0) - this.rain) * Math.min(1, dt * 0.5);
+    const sky = new THREE.Color('#141E3C').lerp(new THREE.Color('#9ED8F7'), day);
+    const dusk = Math.max(0, 1 - Math.abs(e) / 0.22) * (e > -0.2 ? 1 : 0);
+    sky.lerp(new THREE.Color('#F4A27A'), dusk * 0.55).lerp(new THREE.Color(day > 0.5 ? '#8E9BA8' : '#2A3242'), this.rain * 0.65);
+    (this.scene.background as THREE.Color).copy(sky);
+    (this.scene.fog as THREE.Fog).color.copy(sky).lerp(new THREE.Color('#FFFFFF'), 0.15 * day);
+    this.hemi.intensity = (0.32 + 0.95 * day) * (1 - this.rain * 0.25);
+    this.sun.intensity = (0.12 + 2.2 * day) * (1 - this.rain * 0.55);
+    this.sun.color.set('#FFF4DD').lerp(new THREE.Color('#FFB27A'), dusk * 0.7);
+    this.cloudMat.color.set('#FFFFFF').lerp(new THREE.Color('#56617E'), 1 - day).lerp(new THREE.Color('#9AA3AE'), this.rain * 0.6);
+    const night = 1 - day;
+    this.glows.forEach((g) => { (g.material as THREE.MeshBasicMaterial).opacity = night * 0.85; g.visible = night > 0.05; });
+    if (this.beam) { (this.beam.material as THREE.MeshBasicMaterial).opacity = night * 0.22; this.beam.visible = night > 0.05; this.beam.rotation.y = t * 0.8; }
+    if (this.skyStars) { (this.skyStars.material as THREE.PointsMaterial).opacity = night * (1 - this.rain); this.skyStars.position.set(this.heroPos.x, 0, this.heroPos.z); }
+    if (this.moon) { const a = this.dayP * Math.PI * 2; this.moon.position.set(this.heroPos.x - Math.cos(a) * 200, Math.max(-40, -e * 180 + 10), this.heroPos.z - 120); (this.moon.material as THREE.MeshBasicMaterial).opacity = night * (1 - this.rain * 0.8); }
+    if (this.rainObj) { this.rainObj.visible = this.rain > 0.03; if (this.rainObj.visible) { (this.rainObj.material as THREE.LineBasicMaterial).opacity = 0.55 * this.rain; this.rainObj.position.set(this.heroPos.x, ((-t * 24) % 26 + 26) % 26 - 6, this.heroPos.z); } }
+    const hour = Math.floor((this.dayP * 24 + 6) % 24 * 2) / 2;
+    if (hour !== this.lastHour) { this.lastHour = hour; this.ev.onClock?.(hour, this.raining); }
+    // метелики вдень, світлячки вночі
+    for (const f of this.flies) {
+      const on = f.glow ? night > 0.5 : day > 0.4 && this.rain < 0.3;
+      f.g.visible = on; if (!on) continue;
+      const k = t * 0.4 + f.ph;
+      f.g.position.set(f.c.x + Math.sin(k) * 3 + Math.sin(k * 2.3) * 0.8, (f.glow ? 0.8 : 0.7) + Math.sin(k * 3.1) * 0.4 + 0.4, f.c.z + Math.cos(k * 0.8) * 3);
+      if (!f.glow) { const fl = Math.sin(t * 22 + f.ph) * 1.1; f.g.children.forEach((w) => { w.rotation.y = w.name === 'wl' ? fl : -fl; }); f.g.rotation.y = -k; }
+      else (f.g.children[0] as THREE.Mesh).scale.setScalar(0.7 + Math.sin(t * 5 + f.ph) * 0.4);
+    }
+    for (const b of this.birds) {
+      b.g.visible = day > 0.3 && this.rain < 0.5; const a = t * b.v + b.ph;
+      b.g.position.set(Math.cos(a) * b.r, b.h + Math.sin(t + b.ph) * 1.5, Math.sin(a) * b.r); b.g.rotation.y = -a;
+      const fl = Math.sin(t * 9 + b.ph) * 0.5; b.g.children.forEach((p) => { p.rotation.z = p.name === 'pl' ? -fl : fl; });
+    }
+    for (const b of this.boats) { const a = t * b.v + b.ph; b.g.position.set(Math.cos(a) * b.r, -0.1 + Math.sin(t * 1.4 + b.ph) * 0.15, Math.sin(a) * b.r); b.g.rotation.y = -a; b.g.rotation.z = Math.sin(t * 1.1 + b.ph) * 0.05; }
+  }
+  setDecor(on: boolean, placing: string | null) { this.decorate = on; this.placing = placing; }
 
   dispose() {
     this.disposed = true; cancelAnimationFrame(this.raf); this.ro.disconnect();
