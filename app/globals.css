@@ -4768,3 +4768,4 @@ textarea.t-parent__url { width: 300px; font: inherit; font-size: 13px; }
 .ex-sec__img img { display: block; max-width: min(520px, 100%); max-height: 380px; border: 2px solid var(--mu-ink); border-radius: 14px; margin: 8px 0 12px; }
 .ex-ed__img { display: flex; align-items: center; gap: 10px; margin: 6px 0; }
 .ex-ed__img img { width: 120px; height: 90px; object-fit: cover; border-radius: 10px; border: 2px solid var(--mu-ink); }
+.t-pay-until { margin: 4px 0 0; padding: 8px 12px; border-radius: 12px; background: var(--mu-lime, #DCE9B5); font-weight: 700; font-size: 14px; }
