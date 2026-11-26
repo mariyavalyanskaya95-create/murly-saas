@@ -4798,3 +4798,11 @@ textarea.t-parent__url { width: 300px; font: inherit; font-size: 13px; }
 .il-tray-it { flex: none; display: flex; flex-direction: column; align-items: center; gap: 2px; width: 92px; font: inherit; font-size: 12px; font-weight: 700; padding: 6px; border: 2px solid #1A1A1A; border-radius: 12px; background: #fff; cursor: pointer; }
 .il-tray-it img { width: 56px; height: 56px; object-fit: contain; }
 .il.is-touch .il-tray { bottom: 170px; }
+.il-tasks { position: absolute; top: 64px; left: 50%; transform: translateX(-50%); width: min(640px, 92vw); display: grid; gap: 6px; z-index: 5; }
+.il-tasks .il-task { position: static; transform: none; max-width: none; }
+.il-ice { display: flex; flex-direction: column; align-items: center; min-height: 110px; justify-content: flex-end; margin: 8px 0; }
+.il-ice span { width: 46px; height: 40px; border-radius: 50%; border: 2.5px solid #1A1A1A; margin-bottom: -12px; position: relative; }
+.il-ice i.cone { width: 0; height: 0; border-left: 26px solid transparent; border-right: 26px solid transparent; border-top: 56px solid #E8B46A; margin-top: 8px; }
+.il-ice i.cup { width: 56px; height: 36px; background: #F76AA8; border: 2.5px solid #1A1A1A; border-radius: 0 0 14px 14px; margin-top: 8px; }
+.il-ice em { font-style: normal; font-weight: 800; font-size: 13px; color: #E5484D; margin-top: 6px; }
+.il-note-paper { background: #FFF8D6; border: 2px solid #1A1A1A; border-radius: 6px; padding: 14px 16px; font-size: 18px; font-weight: 700; transform: rotate(-1deg); box-shadow: 3px 3px 0 #1A1A1A; margin: 6px 0 12px; }
