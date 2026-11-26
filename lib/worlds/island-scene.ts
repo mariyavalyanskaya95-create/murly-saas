@@ -111,6 +111,7 @@ export function makeCat(furColor: string, scale = 1): Rig {
   slots.hand.position.set(0, -0.5, 0.08); slots.held.position.set(0, -0.5, 0.08);
   slots.scarf.position.y = 1.0; slots.bag.position.set(0, 0.7, -0.42);
   root.scale.setScalar(scale);
+  root.userData.rig = true;
   return { root, body, head, armL, armR, legL, legR, tail, fur, slots };
 }
 
@@ -727,7 +728,7 @@ export class IslandScene {
     for (let i = 0; i < 14; i++) {
       const c = new THREE.Group();
       for (let k = 0; k < 5; k++) { const s = mesh(new THREE.SphereGeometry(rnd(2.5, 4.5), 14, 10), this.cloudMat, false); s.position.set(k * 3 - 6, rnd(-0.6, 1), rnd(-1.5, 1.5)); c.add(s); }
-      c.position.set(rnd(-150, 150), rnd(38, 55), rnd(-150, 150)); c.userData.v = rnd(0.6, 1.4); this.scene.add(c); this.clouds.push(c);
+      const a = rnd(0, Math.PI * 2), rr = rnd(175, 240); c.position.set(Math.cos(a) * rr, rnd(30, 52), Math.sin(a) * rr); c.userData.v = rnd(0.6, 1.4); c.userData.a = a; c.userData.rr = rr; c.userData.cloud = true; this.scene.add(c); this.clouds.push(c);
     }
     // жителі-котики
     const cols = ['#9AA3AE', '#F7F3EA', '#3A3A44', '#F4A340', '#B79CF0', '#8FE3C4'];
@@ -1015,7 +1016,7 @@ export class IslandScene {
   // ---- кімнати всередині будівель ----
   // оболонка кімнати: підлога, дві стіни з вікнами, двері, вихід
   buildShell(g: THREE.Group, o: { x: number; z: number }, floorA: string, floorB: string, wall: string, title?: string, W = ROOM.w, D = ROOM.d) {
-    const yard = mesh(new THREE.CircleGeometry(40, 40), toon('#8BCB62'), false); yard.rotation.x = -Math.PI / 2; yard.position.y = -0.02; g.add(yard);
+    const yard = mesh(new THREE.CircleGeometry(60, 48), toon('#8BCB62'), false); yard.rotation.x = -Math.PI / 2; yard.position.y = -0.09; g.add(yard);
     const cv = document.createElement('canvas'); cv.width = 256; cv.height = 256; const x = cv.getContext('2d')!;
     for (let i = 0; i < 8; i++) { x.fillStyle = i % 2 ? floorA : floorB; x.fillRect(0, i * 32, 256, 32); x.fillStyle = 'rgba(0,0,0,.18)'; x.fillRect(0, i * 32 + 31, 256, 1); x.fillRect(((i * 97) % 200) + 20, i * 32, 1, 32); }
     const tx = new THREE.CanvasTexture(cv); tx.colorSpace = THREE.SRGBColorSpace; tx.wrapS = tx.wrapT = THREE.RepeatWrapping; tx.repeat.set(3, 3);
@@ -1293,10 +1294,34 @@ export class IslandScene {
     this.outPos.copy(this.heroPos); this.inside = true; this.roomId = id; this.cur = o; this.curW = this.sizes[id]?.w ?? ROOM.w; this.curD = this.sizes[id]?.d ?? ROOM.d;
     this.heroPos.set(o.x - this.curW / 2 + 2.2, 0, o.z + 3); this.vel.set(0, 0, 0); this.camYaw = 0.3; this.camPitch = 0.62; this.camDist = 8.5; this.cam.position.set(o.x, 8, o.z + 11);
     if (this.pet) this.petPos.copy(this.heroPos); this.goal = null; if (this.goalRing) this.goalRing.visible = false;
+    try { this.buildBackdrop(o, this.curW, this.curD); } catch { /* */ }
   }
   enterHome() { this.enterRoom('home'); }
+  // вид з вікна: навколо кімнати ставимо копії справжніх сусідніх будинків, доріг і ліхтарів з міста
+  backdrop = new THREE.Group();
+  buildBackdrop(o: { x: number; z: number }, W: number, D: number) {
+    this.backdrop.clear(); if (!this.backdrop.parent) this.scene.add(this.backdrop);
+    const at = this.outPos.clone(); const R = 46; const bb = new THREE.Box3(); const sz = new THREE.Vector3(); const c = new THREE.Vector3();
+    const room = new THREE.Box3(new THREE.Vector3(o.x - W / 2 - 1.2, -1, o.z - D / 2 - 1.2), new THREE.Vector3(o.x + W / 2 + 1.2, 50, o.z + D / 2 + 1.2));
+    const skip = (x: THREE.Object3D) => x.userData.rig || x.userData.cloud || (x as THREE.Light).isLight || x === this.backdrop || x === this.roomGroup || x === this.guestGroup || x === this.propsGroup || x === this.water;
+    let n = 0;
+    const visit = (obj: THREE.Object3D, depth: number) => {
+      if (n > 420 || skip(obj) || !obj.visible) return;
+      bb.setFromObject(obj); if (bb.isEmpty()) return; bb.getSize(sz); bb.getCenter(c);
+      if (c.x > 250) return; // інші кімнати
+      if (sz.x > 40 || sz.z > 40) { if (depth < 3) obj.children.forEach((ch) => visit(ch, depth + 1)); return; }
+      if (Math.hypot(c.x - at.x, c.z - at.z) > R) return;
+      const flat = sz.y < 0.35; const dx = o.x - at.x, dz = o.z - at.z;
+      if (!flat && Math.hypot(c.x - at.x, c.z - at.z) < 9) return; // будівля, в яку ми зайшли
+      const moved = bb.clone().translate(new THREE.Vector3(dx, 0, dz)); if (!flat && moved.intersectsBox(room)) return;
+      obj.updateWorldMatrix(true, false); const cl = obj.clone(true); cl.matrixAutoUpdate = true;
+      obj.matrixWorld.decompose(cl.position, cl.quaternion, cl.scale); cl.position.x += dx; cl.position.z += dz; cl.position.y -= flat ? 0.04 : 0.02;
+      this.backdrop.add(cl); n++;
+    };
+    this.scene.children.slice().forEach((ch) => visit(ch, 0));
+  }
   exitHome() {
-    if (!this.inside) return; this.inside = false; this.roomId = null; this.decorate = false; this.placing = null;
+    if (!this.inside) return; this.inside = false; this.roomId = null; this.decorate = false; this.placing = null; this.backdrop.clear();
     this.heroPos.copy(this.outPos); this.heroPos.y = 0; this.vel.set(0, 0, 0); this.camYaw = this.heroRot + Math.PI; this.camPitch = 0.42; this.camDist = 9;
     this.cam.position.set(this.heroPos.x + Math.sin(this.camYaw) * 9, 5, this.heroPos.z + Math.cos(this.camYaw) * 9); if (this.pet) this.petPos.copy(this.heroPos); this.goal = null;
   }
@@ -1557,7 +1582,7 @@ export class IslandScene {
     // вода й хмари
     const wp = this.water.geometry.attributes.position as THREE.BufferAttribute;
     if (this.frames % 2 === 0) { for (let i = 0; i < wp.count; i++) { const x = wp.getX(i), z = wp.getZ(i); wp.setY(i, Math.sin(x * 0.12 + t * 1.2) * 0.18 + Math.cos(z * 0.1 + t) * 0.15); } wp.needsUpdate = true; this.water.geometry.computeVertexNormals(); }
-    this.clouds.forEach((c) => { c.position.x += c.userData.v * dt; if (c.position.x > 170) c.position.x = -170; });
+    this.clouds.forEach((c) => { c.userData.a += (c.userData.v * dt) / c.userData.rr; c.position.x = Math.cos(c.userData.a) * c.userData.rr; c.position.z = Math.sin(c.userData.a) * c.userData.rr; });
     if (this.markerOn) { const a = this.marker.getObjectByName('arrow')!; a.position.y = 4.2 + Math.sin(t * 3) * 0.4; a.rotation.y = t * 2; }
     this.stepWorld(dt, t); if (this.inside) this.stepKeepers(t); this.stepOthers(dt, t);
     // камера позаду героя
