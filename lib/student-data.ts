@@ -252,6 +252,16 @@ export async function useHomeworkPass(userId: string, id: string): Promise<{ ok:
   return { ok: true, due, coins: left };
 }
 
+// Слова зі словника учня для ігор (Murly Island): лише англійське слово й переклад
+export async function myWords(userId: string, limit = 60) {
+  if (!dbReady()) return [];
+  const st = await db.query(`students?user_id=eq.${enc(userId)}&select=id`);
+  if (!st.length) return [];
+  const ids = st.map((r: Row) => enc(String(r.id))).join(',');
+  const w = await db.query(`words?student_id=in.(${ids})&order=at.desc&limit=${limit}&select=en,uk`).catch(() => []);
+  return w.map((r: Row) => ({ en: String(r.en), uk: String(r.uk) })).filter((x: { en: string; uk: string }) => x.en && x.uk && x.en.length <= 30);
+}
+
 // Учень сам додає слово чи фразу у свій словник (з пісень, текстів). Повтор слова не дублюємо.
 export async function addOwnWord(userId: string, w: { en: string; uk: string; example?: string }) {
   if (!dbReady()) return { error: 'db' } as const;
