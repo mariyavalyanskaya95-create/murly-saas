@@ -8,6 +8,7 @@ import { useAuth } from '@clerk/nextjs';
 import { say, sfx } from '@/lib/worlds/sound';
 import { DIALOGS, nextDialog, type Dialog } from '@/lib/worlds/island-dialogs';
 import { CHAT, IslandNet, type NetPlayer } from '@/lib/worlds/island-net';
+import { checkChat, FILTER_MSG } from '@/lib/chat-filter';
 import { GRAMMAR, LISTEN_WORDS, LOST_PLACES, treasureHunt } from '@/lib/worlds/island-data';
 import { ACT, EMOTES, FOODS, FRIDGE, INGREDIENTS, RECIPES, friendLevel, CHOICES, MELODIES, SKILLS, SKILL_OF, skillLevel, CROPS, cropProgress, JOKES, COMPLIMENTS, RPS, FURN_ALL, FURN_CATS } from '@/lib/worlds/island-data';
 import { ADDRS, DESTS, HAIR_COLOURS, PROFS, STARTER, STYLE, STYLE_COLOURS, profLevel, type StylePart } from '@/lib/worlds/island-data';
@@ -86,7 +87,9 @@ export default function IslandGame() {
   const net = useRef<IslandNet | null>(null);
   const [online, setOnline] = useState<Record<string, NetPlayer & { last: number }>>({});
   const [netOk, setNetOk] = useState(false);
-  const [chatLog, setChatLog] = useState<{ n: string; t: string; me?: boolean }[]>([]);
+  const [chatLog, setChatLog] = useState<{ n: string; t: string; me?: boolean; mid?: number }[]>([]);
+  const [chatText, setChatText] = useState('');
+  const [chatErr, setChatErr] = useState('');
   const [reqs, setReqs] = useState<{ id: string; n: string }[]>([]);
   const [chatCat, setChatCat] = useState('Hello');
   const muted = useRef<Set<string>>(new Set());
@@ -604,6 +607,7 @@ export default function IslandGame() {
         if (muted.current.has(id)) return;
         if (ev === 'hello') sendPos(true);
         if (ev === 'dance') sc.current?.otherDance(id);
+        if (ev === 'chat') { const t = String(data.text ?? ''); const c = checkChat(t); if (!c.ok) return; sc.current?.otherSay(id, c.text); setChatLog((l) => [...l.slice(-29), { n: String(data.n ?? 'Cat'), t: c.text, mid: Number(data.mid ?? 0) }]); }
         if (ev === 'friendreq' && data.to === netId.current) { const nm = String(data.n ?? 'Cat'); setReqs((r) => (r.some((x) => x.id === id) ? r : [...r, { id, n: nm }])); flash(`${nm} wants to be your friend! Open Online to say yes.`); say(`${nm} wants to be your friend!`); }
         if (ev === 'friendok' && data.to === netId.current) { const nm = String(data.n ?? 'Cat'); addNetFriend(id, nm); flash(`${nm} is your friend now!`); }
       },
@@ -625,6 +629,17 @@ export default function IslandGame() {
   };
   useEffect(() => { if (!netOk) return; const id = window.setInterval(() => sendPos(), 200); return () => window.clearInterval(id); }, [netOk]); // eslint-disable-line react-hooks/exhaustive-deps
   const sayNet = (text: string) => { net.current?.send('say', { text }); sc.current?.bubble(text.length > 18 ? text.slice(0, 17) + '…' : text, 3); setChatLog((l) => [...l.slice(-19), { n: myName(), t: text, me: true }]); say(text); };
+  const sendChat = async () => {
+    const t = chatText.trim(); if (!t) return;
+    const c = checkChat(t); if (!c.ok) { setChatErr(FILTER_MSG[c.reason]); sfx.bad(); return; }
+    setChatErr('');
+    const r = await fetch('/api/island-chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ text: c.text, name: myName(), id: netId.current }) }).catch(() => null);
+    const d = r ? await r.json().catch(() => ({})) : {};
+    if (!d.ok) { setChatErr(d.reason === 'slow' ? 'Slow down a little! Wait a few seconds.' : FILTER_MSG[d.reason as keyof typeof FILTER_MSG] ?? 'The message was not sent.'); sfx.bad(); return; }
+    setChatText(''); sc.current?.bubble(c.text.length > 18 ? c.text.slice(0, 17) + '…' : c.text, 3); setChatLog((l) => [...l.slice(-29), { n: myName(), t: c.text, me: true, mid: d.msg?.mid }]);
+  };
+  const reportMsg = (mid?: number) => { if (!mid) return; void fetch('/api/island-chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ op: 'report', msg: mid }) }); flash('Thank you! A teacher will check this message.'); };
+  useEffect(() => { if (panel !== 'chat' || chatLog.length) return; fetch('/api/island-chat').then((r) => r.json()).then((d) => { const m = (d.messages ?? []) as { mid: number; n: string; text: string }[]; if (m.length) setChatLog(m.map((x) => ({ n: x.n, t: x.text, mid: x.mid }))); }).catch(() => {}); }, [panel]); // eslint-disable-line react-hooks/exhaustive-deps
   const addNetFriend = (id: string, n: string) => { const s0 = saveRef.current; const nf = { ...((s0 as unknown as { netFriends?: Record<string, string> }).netFriends ?? {}), [id]: n }; persist({ ...s0, netFriends: nf } as Save); };
   const netFriends = ((save as unknown as { netFriends?: Record<string, string> }).netFriends ?? {});
   const onlineList = Object.values(online).filter((p) => !muted.current.has(p.id));
@@ -736,7 +751,7 @@ export default function IslandGame() {
         <button type="button" className="il-chip" onClick={() => { setGiveMode(false); setPanel('bag'); }}>Bag</button>
         <button type="button" className="il-chip" onClick={() => setPanel('acts')}>Actions</button>
         {isSignedIn && <button type="button" className={`il-chip ${reqs.length ? 'il-chip--y' : ''}`} onClick={() => setPanel('online')}><i className={`il-dot-on ${netOk ? 'on' : ''}`} />Online {onlineList.length}</button>}
-        {isSignedIn && onlineList.length > 0 && <button type="button" className="il-chip" onClick={() => setPanel('chat')}>Chat</button>}
+        {isSignedIn && <button type="button" className="il-chip" onClick={() => setPanel('chat')}>Chat</button>}
         <button type="button" className="il-chip" onClick={() => setPanel('career')}>{PROFS.find((p) => p.id === save.prof)?.en ?? 'Choose a job'}</button>
         {inside ? <>
           {inside === 'home' && <button type="button" className={`il-chip ${decor.on ? 'il-chip--y' : ''}`} onClick={() => setDecor(decor.on ? { on: false, placing: null, picked: null } : { on: true, placing: null, picked: null })}>{decor.on ? 'Done' : 'Decorate'}</button>}
@@ -1094,10 +1109,17 @@ export default function IslandGame() {
             </>}
 
             {panel === 'chat' && <>
-              <h2>Chat</h2>
+              <h2>Island chat</h2>
+              <div className="il-chatbox">{chatLog.slice(-30).map((m, i) => <div key={i} className={m.me ? 'me' : ''}><b>{m.n}:</b> {m.t}{!m.me && m.mid ? <button type="button" className="il-report" title="Report this message" onClick={() => reportMsg(m.mid)}>Report</button> : null}</div>)}{!chatLog.length && <span className="t-muted">No messages yet. Say hello!</span>}</div>
+              <form className="il-chatform" onSubmit={(e) => { e.preventDefault(); void sendChat(); }}>
+                <input value={chatText} maxLength={120} placeholder="Write in English…" onChange={(e) => { setChatText(e.target.value); setChatErr(''); }} />
+                <button type="submit" className="il-go">Send</button>
+              </form>
+              {chatErr && <p className="il-chaterr">{chatErr}</p>}
+              <p className="il-note">Write only in English. Be kind. Never share your real name, phone, address, school or social media. Rude messages are blocked.</p>
+              <p className="il-sub">Or choose a ready phrase</p>
               <div className="il-tabs il-tabs--sm">{CHAT.map((c) => <button key={c.cat} type="button" className={chatCat === c.cat ? 'on' : ''} onClick={() => setChatCat(c.cat)}>{c.cat}</button>)}</div>
               <div className="il-grid">{CHAT.find((c) => c.cat === chatCat)!.items.map((t) => <button key={t} type="button" className="il-pick" onClick={() => { sayNet(t); setPanel(null); }}>{t}</button>)}</div>
-              {chatLog.length > 0 && <><p className="il-sub">Last messages</p><div className="il-chatlog il-chatlog--in">{chatLog.slice(-10).map((m, i) => <div key={i} className={m.me ? 'me' : ''}><b>{m.n}:</b> {m.t}</div>)}</div></>}
             </>}
 
             {panel === 'fridge' && <>
