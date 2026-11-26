@@ -58,6 +58,7 @@ export default function ExerciseView({ sections: raw, answers, onChange, marks, 
       {sections.map((s, i0) => { const si = i0 + offset; return (
         <div key={i0} className="ex-sec">
           {s.instruction && <div className="ex-sec__title">{numbered ? `${i0 + 1}. ` : ''}{s.instruction}</div>}
+          {s.image && <a href={s.image} target="_blank" rel="noopener" className="ex-sec__img"><img src={s.image} alt="" loading="lazy" /></a>}
           <ol className="ex-list">
             {s.tasks.map((t, ti) => (
               <li key={ti} className="ex-task">

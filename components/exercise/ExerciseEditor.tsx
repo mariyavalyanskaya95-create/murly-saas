@@ -1,11 +1,12 @@
 'use client';
 import { useMemo, useState } from 'react';
+import { HwUpload } from '../HwFiles';
 import ExerciseView from './ExerciseView';
 import { SECTION_TYPES, Section, SectionType, maxScore, normalizeSections, parseSection, sectionToText } from '@/lib/exercise';
 import { useT } from '@/components/LangProvider';
 import { pick, type Lang, type T } from '@/lib/i18n';
 
-type Draft = { type: SectionType; instruction: string; text: string };
+type Draft = { type: SectionType; instruction: string; text: string; image?: string };
 const meta = (type: SectionType) => SECTION_TYPES.find((x) => x.id === type)!;
 const newDraft = (lang: Lang, type: SectionType = 'gap'): Draft => ({ type, instruction: pick(meta(type).instruction, lang), text: '' });
 // стандартна інструкція будь-якою мовою (щоб не затерти те, що вчитель написав сам)
@@ -22,16 +23,19 @@ const TASKS: Forms = { uk: ['завдання', 'завдання', 'завда�
 const POINTS: Forms = { uk: ['бал', 'бали', 'балів'], ru: ['балл', 'балла', 'баллов'], en: ['point', 'points'] };
 
 // Редактор вправи: кілька блоків, кожен свого типу. Повертає розібрані секції через onChange
+// блок з картинкою: картинку кладемо в секцію
+const build = (ds: Draft[]) => ds.map((d) => ({ ...parseSection(d.type, d.instruction, d.text), ...(d.image ? { image: d.image } : {}) })).filter((s) => s.tasks.length);
+
 export default function ExerciseEditor({ onChange, initial, compact }: { onChange: (sections: Section[]) => void; initial?: Section[]; compact?: boolean }) {
   const t = useT();
-  const [drafts, setDrafts] = useState<Draft[]>(() => (initial?.length ? initial.map((s) => ({ type: s.type, instruction: s.instruction, text: sectionToText(s) })) : [newDraft(t.lang)]));
+  const [drafts, setDrafts] = useState<Draft[]>(() => (initial?.length ? initial.map((s) => ({ type: s.type, instruction: s.instruction, text: sectionToText(s), image: s.image })) : [newDraft(t.lang)]));
   const [preview, setPreview] = useState(true);
-  const sections = useMemo(() => drafts.map((d) => parseSection(d.type, d.instruction, d.text)).filter((s) => s.tasks.length), [drafts]);
+  const sections = useMemo(() => build(drafts), [drafts]);
 
   const set = (i: number, patch: Partial<Draft>) => {
     const next = drafts.map((d, k) => (k === i ? { ...d, ...patch } : d));
     setDrafts(next);
-    onChange(next.map((d) => parseSection(d.type, d.instruction, d.text)).filter((s) => s.tasks.length));
+    onChange(build(next));
   };
   const setType = (i: number, type: SectionType) => {
     const old = meta(drafts[i].type);
@@ -41,7 +45,7 @@ export default function ExerciseEditor({ onChange, initial, compact }: { onChang
   const remove = (i: number) => {
     const next = drafts.filter((_, k) => k !== i);
     setDrafts(next.length ? next : [newDraft(t.lang)]);
-    onChange(next.map((d) => parseSection(d.type, d.instruction, d.text)).filter((s) => s.tasks.length));
+    onChange(build(next));
   };
 
   const tasks = sections.reduce((n, s) => n + s.tasks.length, 0);
@@ -66,6 +70,10 @@ export default function ExerciseEditor({ onChange, initial, compact }: { onChang
               <label className="t-form__wide">{t({ uk: 'Завдання, кожне з нового рядка', ru: 'Задания, каждое с новой строки', en: 'Tasks, one per line' })}
                 <textarea rows={5} value={d.text} onChange={(e) => set(i, { text: e.target.value })} placeholder={t(m.example)} spellCheck={false} />
               </label>
+            </div>
+            <div className="ex-ed__img">
+              {d.image ? <><img src={d.image} alt="" /><button type="button" className="t-link-btn" onClick={() => set(i, { image: undefined })}>{t({ uk: 'Прибрати картинку', ru: 'Убрать картинку', en: 'Remove picture' })}</button></>
+                : <HwUpload label={t({ uk: '+ Картинка до завдання', ru: '+ Картинка к заданию', en: '+ Picture for the task' })} max={1} onAdd={(f) => set(i, { image: f[0]?.url })} />}
             </div>
             <p className="t-muted ex-ed__hint">{t(m.hint)}</p>
             {(() => {
