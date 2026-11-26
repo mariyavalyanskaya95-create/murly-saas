@@ -1,7 +1,7 @@
 // «Murly Island»: власна гра Murly у жанрі «живи на острові й працюй». Усе в грі англійською.
 // Персонаж, тварини, транспорт і частина речей малюються кодом; будинки й дерева з наборів CC0 (Kenney, KayKit).
 
-export type Cat = 'Clothes' | 'Home' | 'Transport' | 'Pets';
+export type Cat = 'Clothes' | 'Home' | 'Transport' | 'Pets' | 'Style';
 export type ShopItem = { id: string; en: string; cat: Cat; sub: string; price: number; color?: string };
 
 // кольори шерсті котика (безкоштовний перший, решта за монетки)
@@ -52,6 +52,11 @@ export const SHOP: ShopItem[] = [
   { id: 'ride-bike', en: 'bicycle', cat: 'Transport', sub: 'ride', price: 90 },
   { id: 'ride-scooter', en: 'scooter', cat: 'Transport', sub: 'ride', price: 160 },
   { id: 'ride-car', en: 'little car', cat: 'Transport', sub: 'ride', price: 300 },
+  { id: 'ride-hatch', en: 'red hatchback', cat: 'Transport', sub: 'ride', price: 220 },
+  { id: 'ride-sedan', en: 'family car', cat: 'Transport', sub: 'ride', price: 260 },
+  { id: 'ride-wagon', en: 'big estate car', cat: 'Transport', sub: 'ride', price: 320 },
+  { id: 'ride-yellow', en: 'yellow taxi', cat: 'Transport', sub: 'ride', price: 350 },
+  { id: 'ride-police', en: 'police car', cat: 'Transport', sub: 'ride', price: 450 },
   { id: 'ride-ufo', en: 'flying saucer', cat: 'Transport', sub: 'ride', price: 600 },
   // улюбленці
   { id: 'pet-chick', en: 'chick', cat: 'Pets', sub: 'pet', price: 50 },
@@ -59,13 +64,15 @@ export const SHOP: ShopItem[] = [
   { id: 'pet-puppy', en: 'puppy', cat: 'Pets', sub: 'pet', price: 120 },
   { id: 'pet-dragon', en: 'baby dragon', cat: 'Pets', sub: 'pet', price: 250 },
 ];
-export const SPEED: Record<string, number> = { 'ride-skate': 1.6, 'ride-bike': 2.0, 'ride-scooter': 2.4, 'ride-car': 3.0, 'ride-ufo': 3.4 };
+export const SPEED: Record<string, number> = { 'ride-skate': 1.6, 'ride-bike': 2.0, 'ride-scooter': 2.4, 'ride-car': 3.0, 'ride-hatch': 3.0, 'ride-sedan': 3.1, 'ride-wagon': 3.1, 'ride-yellow': 3.2, 'ride-taxi': 3.0, 'ride-police': 3.3, 'ride-ufo': 3.4 };
+export const CARS = ['ride-car', 'ride-hatch', 'ride-sedan', 'ride-wagon', 'ride-yellow', 'ride-taxi', 'ride-police', 'ride-ufo'];
 
-export type Outfit = { fur: string; hat?: string; glasses?: string; scarf?: string; bag?: string };
+export type Outfit = { fur: string; hat?: string; glasses?: string; scarf?: string; bag?: string; hair?: string; hairC?: string; top?: string; topC?: string; bottom?: string; bottomC?: string; shoes?: string; shoesC?: string; hold?: string };
 export type RoomItem = { f: string; x: number; z: number; r: number };
 export type Daily = { date: string; ids: string[]; prog: Record<string, number>; paid?: boolean };
 export type Save = { v: 1; owned: string[]; outfit: Outfit; ride: string | null; pet: string | null; house: number; yard: string[]; jobs: Record<string, number>; name?: string; localCoins?: number; stars?: string[]; starBonus?: boolean; talks?: number;
-  furn?: string[]; room?: RoomItem[]; daily?: Daily; fish?: Record<string, number>; badges?: string[] };
+  furn?: string[]; room?: RoomItem[]; daily?: Daily; fish?: Record<string, number>; badges?: string[];
+  prof?: string; friends?: Record<string, number>; dialogs?: string[]; pos?: { x: number; z: number; room?: string | null }; tasks?: Record<string, unknown>; last?: { at: string; place: string; doing?: string } };
 export const START: Save = { v: 1, owned: ['fur-ginger'], outfit: { fur: 'fur-ginger' }, ride: null, pet: null, house: 0, yard: [], jobs: {} };
 
 // ---------- карта ----------
@@ -377,3 +384,42 @@ export function keeperQuestion(hour: number, rain: boolean): { q: string; a: str
   ];
   const r = pick(qs)(); r.opts = [...new Set(r.opts)].sort(() => Math.random() - 0.5); return r;
 }
+
+
+// ---------- зовнішність: зачіски, одяг, взуття, речі в лапках ----------
+export type StylePart = 'hair' | 'top' | 'bottom' | 'shoes' | 'hold';
+export const STYLE: { id: string; part: StylePart; en: string; price: number }[] = [
+  { id: 'hair-none', part: 'hair', en: 'no hair', price: 0 }, { id: 'hair-short', part: 'hair', en: 'short hair', price: 0 }, { id: 'hair-spiky', part: 'hair', en: 'spiky hair', price: 0 },
+  { id: 'hair-curly', part: 'hair', en: 'curly hair', price: 10 }, { id: 'hair-bob', part: 'hair', en: 'bob', price: 10 }, { id: 'hair-pony', part: 'hair', en: 'ponytail', price: 10 },
+  { id: 'hair-bun', part: 'hair', en: 'bun', price: 10 }, { id: 'hair-pigtails', part: 'hair', en: 'pigtails', price: 15 }, { id: 'hair-mohawk', part: 'hair', en: 'mohawk', price: 20 }, { id: 'hair-long', part: 'hair', en: 'long hair', price: 15 },
+  { id: 'top-none', part: 'top', en: 'no top', price: 0 }, { id: 'top-tshirt', part: 'top', en: 'T-shirt', price: 0 }, { id: 'top-jumper', part: 'top', en: 'jumper', price: 15 },
+  { id: 'top-hoodie', part: 'top', en: 'hoodie', price: 20 }, { id: 'top-jacket', part: 'top', en: 'jacket', price: 25 }, { id: 'top-dress', part: 'top', en: 'dress', price: 25 },
+  { id: 'top-stripes', part: 'top', en: 'striped T-shirt', price: 15 }, { id: 'top-overalls', part: 'top', en: 'overalls', price: 20 },
+  { id: 'bottom-none', part: 'bottom', en: 'no trousers', price: 0 }, { id: 'bottom-shorts', part: 'bottom', en: 'shorts', price: 0 }, { id: 'bottom-jeans', part: 'bottom', en: 'jeans', price: 15 },
+  { id: 'bottom-trousers', part: 'bottom', en: 'trousers', price: 15 }, { id: 'bottom-skirt', part: 'bottom', en: 'skirt', price: 15 },
+  { id: 'shoes-none', part: 'shoes', en: 'bare paws', price: 0 }, { id: 'shoes-trainers', part: 'shoes', en: 'trainers', price: 0 }, { id: 'shoes-boots', part: 'shoes', en: 'boots', price: 15 },
+  { id: 'shoes-sandals', part: 'shoes', en: 'sandals', price: 10 }, { id: 'shoes-wellies', part: 'shoes', en: 'wellies', price: 15 },
+  { id: 'hold-none', part: 'hold', en: 'empty paws', price: 0 }, { id: 'hold-balloon', part: 'hold', en: 'balloon', price: 10 }, { id: 'hold-icecream', part: 'hold', en: 'ice cream', price: 8 },
+  { id: 'hold-flower', part: 'hold', en: 'flower', price: 8 }, { id: 'hold-book', part: 'hold', en: 'book', price: 10 }, { id: 'hold-phone', part: 'hold', en: 'phone', price: 20 },
+  { id: 'hold-wand', part: 'hold', en: 'magic wand', price: 30 }, { id: 'hold-guitar', part: 'hold', en: 'guitar', price: 40 }, { id: 'hold-umbrella', part: 'hold', en: 'umbrella', price: 15 },
+  { id: 'hold-rod', part: 'hold', en: 'fishing rod', price: 20 }, { id: 'hold-cupcake', part: 'hold', en: 'cupcake', price: 8 }, { id: 'hold-teddy', part: 'hold', en: 'teddy bear', price: 15 },
+];
+export const STYLE_COLOURS = ['#E5484D', '#F5862D', '#FFC53D', '#30A46C', '#3E7BFA', '#7C66DC', '#F76AA8', '#FFFFFF', '#2B2B2B', '#8B5E34', '#55606E', '#8EC9F5'];
+export const HAIR_COLOURS = ['#2B2B2B', '#6B4F2A', '#C68A4A', '#F3D27A', '#E5484D', '#F7A8C8', '#8EC9F5', '#B79CF0', '#FFFFFF', '#30A46C'];
+export const STARTER = ['hair-none', 'hair-short', 'hair-spiky', 'top-none', 'top-tshirt', 'bottom-none', 'bottom-shorts', 'shoes-none', 'shoes-trainers', 'hold-none'];
+
+// ---------- професії ----------
+export type Prof = { id: string; en: string; job: string; uniform: Partial<Outfit>; what: string };
+export const PROFS: Prof[] = [
+  { id: 'postman', en: 'Postman', job: 'post', uniform: { hat: 'hat-cap', top: 'top-jacket', topC: '#3E7BFA' }, what: 'Deliver parcels and letters.' },
+  { id: 'chef', en: 'Chef', job: 'cafe', uniform: { hat: 'hat-chef', top: 'top-jacket', topC: '#FFFFFF' }, what: 'Make sandwiches at the Cat Cafe.' },
+  { id: 'baker', en: 'Baker', job: 'bakery', uniform: { hat: 'hat-chef', top: 'top-tshirt', topC: '#F3D27A' }, what: 'Bake cakes at the Bakery.' },
+  { id: 'designer', en: 'Fashion designer', job: 'boutique', uniform: { glasses: 'glasses-star', top: 'top-dress', topC: '#F76AA8' }, what: 'Dress customers at the Boutique.' },
+  { id: 'driver', en: 'Taxi driver', job: 'taxi', uniform: { hat: 'hat-cap', top: 'top-tshirt', topC: '#FFC53D' }, what: 'Drive passengers around the island.' },
+  { id: 'fisher', en: 'Fisher', job: 'fish', uniform: { hat: 'hat-beanie', top: 'top-overalls', topC: '#30A46C', hold: 'hold-rod' }, what: 'Catch fish at the pier.' },
+  { id: 'seller', en: 'Ice cream seller', job: 'icecream', uniform: { hat: 'hat-cap', top: 'top-stripes', topC: '#F76AA8' }, what: 'Sell ice cream on the beach.' },
+  { id: 'detective', en: 'Detective', job: 'lost', uniform: { hat: 'hat-top', top: 'top-jacket', topC: '#8B5E34', glasses: 'glasses-round' }, what: 'Find lost things.' },
+  { id: 'farmer', en: 'Market seller', job: 'market', uniform: { hat: 'hat-flower', top: 'top-overalls', topC: '#F5862D' }, what: 'Sell fruit at the market.' },
+];
+export const PROF_LEVELS = [{ n: 0, en: 'Trainee' }, { n: 5, en: 'Junior' }, { n: 15, en: 'Senior' }, { n: 30, en: 'Master' }, { n: 60, en: 'Legend' }];
+export function profLevel(count: number) { let l = PROF_LEVELS[0], i = 0; PROF_LEVELS.forEach((x, k) => { if (count >= x.n) { l = x; i = k; } }); return { ...l, i, next: PROF_LEVELS[i + 1] }; }

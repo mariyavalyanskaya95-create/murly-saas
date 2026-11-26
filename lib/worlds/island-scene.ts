@@ -2,7 +2,8 @@
 // транспорт, улюбленці, свій будинок і двір. Будинки й дерева з наборів CC0, усе інше малюється кодом.
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-import { ADDRS, FUR, HOME, HOUSES, PLACES, SHOP, SPEED, type Outfit, type RoomItem, type Spot } from './island-data';
+import { ADDRS, CARS, FUR, HOME, HOUSES, PLACES, SHOP, SPEED, type Outfit, type RoomItem, type Spot } from './island-data';
+import { chalkTex, graffitiTex, neonTex, posterTex, wallpaperTex } from './island-art';
 
 const loader = new GLTFLoader();
 const packs = new Map<string, Promise<Map<string, THREE.Object3D>>>();
@@ -96,7 +97,9 @@ export function makeCat(furColor: string, scale = 1): Rig {
   const curve = new THREE.CatmullRomCurve3([new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 0.15, -0.25), new THREE.Vector3(0, 0.5, -0.32), new THREE.Vector3(0.05, 0.75, -0.2)]);
   tail.add(mesh(new THREE.TubeGeometry(curve, 16, 0.07, 8), furMat()));
   const slots: Record<string, THREE.Group> = {};
-  (['hat', 'glasses', 'scarf', 'bag'] as const).forEach((k) => { const g = new THREE.Group(); slots[k] = g; (k === 'hat' || k === 'glasses' ? head : body).add(g); });
+  (['hat', 'glasses', 'scarf', 'bag', 'hair', 'top'] as const).forEach((k) => { const g = new THREE.Group(); slots[k] = g; (k === 'hat' || k === 'glasses' || k === 'hair' ? head : body).add(g); });
+  [['sleeveL', armL], ['sleeveR', armR], ['hand', armR], ['legL', legL], ['legR', legR]].forEach(([k, par]) => { const g = new THREE.Group(); slots[k as string] = g; (par as THREE.Object3D).add(g); });
+  slots.hand.position.set(0, -0.5, 0.08);
   slots.scarf.position.y = 1.0; slots.bag.position.set(0, 0.7, -0.42);
   root.scale.setScalar(scale);
   return { root, body, head, armL, armR, legL, legR, tail, fur, slots };
@@ -133,12 +136,70 @@ function wear(rig: Rig, o: Outfit) {
     if (sc.id === 'bow-pink') { [-1, 1].forEach((s) => { const w = mesh(new THREE.ConeGeometry(0.1, 0.16, 8), toon(sc.color!)); w.rotation.z = (Math.PI / 2) * s; w.position.set(0.08 * s, 0, 0.42); S.add(w); }); const k = sph(0.045, sc.color!); k.position.set(0, 0, 0.44); S.add(k); }
     else { const r = mesh(new THREE.TorusGeometry(0.36, 0.08, 8, 24), toon(sc.color!)); r.rotation.x = Math.PI / 2; S.add(r); const t = box(0.14, 0.34, 0.06, sc.color!); t.position.set(0.16, -0.16, 0.33); t.rotation.z = 0.2; S.add(t); }
   }
+  wearStyle(rig, o);
   const b = it(o.bag); const B = rig.slots.bag;
   if (b) {
     if (b.id === 'bag-jetpack') { [-1, 1].forEach((s) => { const t = cyl(0.12, 0.12, 0.5, '#B8C2CC'); t.position.set(0.14 * s, 0, -0.05); B.add(t); const fl = mesh(new THREE.ConeGeometry(0.1, 0.25, 10), new THREE.MeshBasicMaterial({ color: '#FFB224' }), false); fl.rotation.x = Math.PI; fl.position.set(0.14 * s, -0.38, -0.05); fl.name = 'flame'; B.add(fl); }); }
     else if (b.id === 'cape-hero') { const c = mesh(new THREE.PlaneGeometry(0.8, 0.9, 4, 6), new THREE.MeshToonMaterial({ color: b.color, side: THREE.DoubleSide, gradientMap: grad! })); c.position.set(0, -0.15, -0.02); c.rotation.x = 0.15; c.name = 'cape'; B.add(c); }
     else { const p = box(0.5, 0.55, 0.25, b.color!); B.add(p); const f = box(0.36, 0.22, 0.08, '#FFFFFF'); f.position.set(0, -0.08, -0.15); B.add(f); }
   }
+}
+
+// зачіски, одяг, взуття і речі в лапках
+function wearStyle(rig: Rig, o: Outfit) {
+  const S = rig.slots; ['hair', 'top', 'sleeveL', 'sleeveR', 'hand', 'legL', 'legR'].forEach((k) => S[k]?.clear());
+  const hc = o.hairC ?? '#6B4F2A', tc = o.topC ?? '#3E7BFA', bc = o.bottomC ?? '#2B4A7A', sc2 = o.shoesC ?? '#E5484D';
+  const H = S.hair; const hair = o.hair ?? 'hair-none';
+  const cap = () => { const c = sph(0.475, hc, 22); c.scale.set(1.12, 0.55, 1.06); c.position.set(0, 0.17, -0.03); H.add(c); };
+  if (hair === 'hair-short') cap();
+  if (hair === 'hair-spiky') { cap(); for (let i = 0; i < 7; i++) { const sp = mesh(new THREE.ConeGeometry(0.09, 0.28, 6), toon(hc)); const a = -1.2 + i * 0.4; sp.position.set(Math.sin(a) * 0.3, 0.42, Math.cos(a) * 0.1 - 0.05); sp.rotation.z = -a * 0.4; H.add(sp); } }
+  if (hair === 'hair-curly') { cap(); for (let i = 0; i < 12; i++) { const a = (i / 12) * Math.PI * 2; const c = sph(0.13, hc, 10); c.position.set(Math.cos(a) * 0.38, 0.28 + Math.sin(i) * 0.05, Math.sin(a) * 0.34 - 0.05); H.add(c); } }
+  if (hair === 'hair-bob') { cap(); [-1, 1].forEach((d) => { const sd = sph(0.2, hc, 12); sd.scale.set(0.7, 1.4, 1.1); sd.position.set(0.44 * d, -0.06, -0.06); H.add(sd); }); const bk = sph(0.42, hc, 16); bk.scale.set(1.1, 0.9, 0.6); bk.position.set(0, 0.02, -0.25); H.add(bk); }
+  if (hair === 'hair-pony') { cap(); const t = sph(0.12, hc, 10); t.position.set(0, 0.25, -0.5); H.add(t); const pt = mesh(new THREE.CapsuleGeometry(0.11, 0.35, 6, 10), toon(hc)); pt.position.set(0, -0.05, -0.6); pt.rotation.x = 0.3; H.add(pt); }
+  if (hair === 'hair-bun') { cap(); const b = sph(0.19, hc, 12); b.position.set(0, 0.55, -0.12); H.add(b); }
+  if (hair === 'hair-pigtails') { cap(); [-1, 1].forEach((d) => { const p = mesh(new THREE.CapsuleGeometry(0.1, 0.25, 6, 10), toon(hc)); p.position.set(0.52 * d, 0.02, -0.12); p.rotation.z = 0.5 * d; H.add(p); const bw = sph(0.06, '#F76AA8', 8); bw.position.set(0.47 * d, 0.16, -0.12); H.add(bw); }); }
+  if (hair === 'hair-mohawk') { for (let i = 0; i < 6; i++) { const m = box(0.08, 0.26 - Math.abs(i - 2.5) * 0.03, 0.14, hc); m.position.set(0, 0.5, 0.22 - i * 0.12); H.add(m); } }
+  if (hair === 'hair-long') { cap(); const bk = sph(0.45, hc, 16); bk.scale.set(1.05, 1.35, 0.45); bk.position.set(0, -0.15, -0.3); H.add(bk); }
+  const T = S.top; const top = o.top ?? 'top-none';
+  if (top !== 'top-none') {
+    let mat = toon(tc);
+    if (top === 'top-stripes') { const cv = document.createElement('canvas'); cv.width = 16; cv.height = 64; const x = cv.getContext('2d')!; for (let i = 0; i < 8; i++) { x.fillStyle = i % 2 ? '#FFFFFF' : tc; x.fillRect(0, i * 8, 16, 8); } const t = new THREE.CanvasTexture(cv); t.colorSpace = THREE.SRGBColorSpace; mat = new THREE.MeshToonMaterial({ map: t, gradientMap: grad! }); }
+    const shirt = mesh(new THREE.SphereGeometry(0.515, 24, 18), mat); shirt.scale.set(1, top === 'top-dress' ? 0.8 : 0.85, 0.95); shirt.position.y = 0.74; T.add(shirt);
+    const long = top === 'top-jumper' || top === 'top-hoodie' || top === 'top-jacket';
+    [S.sleeveL, S.sleeveR].forEach((sl) => { const c = mesh(new THREE.CapsuleGeometry(0.125, long ? 0.3 : 0.06, 6, 10), mat); c.position.y = long ? -0.22 : -0.08; sl.add(c); });
+    if (top === 'top-hoodie') { const hd = mesh(new THREE.TorusGeometry(0.25, 0.1, 8, 16), toon(tc)); hd.position.set(0, 1.02, -0.28); hd.rotation.x = 0.6; T.add(hd); }
+    if (top === 'top-jacket') { const col = mesh(new THREE.TorusGeometry(0.3, 0.06, 6, 18), toon('#FFFFFF')); col.rotation.x = Math.PI / 2; col.position.y = 1.0; T.add(col); [0.85, 0.7, 0.55].forEach((y) => { const bt = sph(0.035, '#FFC53D', 8); bt.position.set(0, y, 0.48); T.add(bt); }); }
+    if (top === 'top-dress') { const sk = mesh(new THREE.CylinderGeometry(0.42, 0.68, 0.55, 20, 1, true), new THREE.MeshToonMaterial({ color: tc, gradientMap: grad!, side: THREE.DoubleSide })); sk.position.y = 0.3; T.add(sk); }
+    if (top === 'top-overalls') { const low = sph(0.52, tc, 20); low.scale.set(1.02, 0.55, 0.96); low.position.y = 0.4; T.add(low); const bib = box(0.36, 0.3, 0.06, tc); bib.position.set(0, 0.72, 0.42); T.add(bib); [-0.14, 0.14].forEach((x) => { const st = box(0.06, 0.4, 0.04, tc); st.position.set(x, 0.92, 0.36); st.rotation.x = -0.3; T.add(st); const bt = sph(0.035, '#FFC53D', 8); bt.position.set(x, 0.84, 0.46); T.add(bt); }); shirt.material = toon('#FFFFFF'); }
+  }
+  const bottom = o.bottom ?? 'bottom-none';
+  if (bottom !== 'bottom-none' && top !== 'top-dress' && top !== 'top-overalls') {
+    const c = bottom === 'bottom-jeans' ? (o.bottomC ?? '#3D5A99') : bc;
+    if (bottom === 'bottom-skirt') { const sk = mesh(new THREE.CylinderGeometry(0.46, 0.64, 0.38, 20, 1, true), new THREE.MeshToonMaterial({ color: c, gradientMap: grad!, side: THREE.DoubleSide })); sk.position.y = 0.32; T.add(sk); }
+    else {
+      const hip = sph(0.515, c, 20); hip.scale.set(1.01, 0.42, 0.95); hip.position.y = 0.33; T.add(hip);
+      if (bottom !== 'bottom-shorts') [S.legL, S.legR].forEach((lg) => { const l = mesh(new THREE.CapsuleGeometry(0.145, 0.12, 6, 10), toon(c)); lg.add(l); });
+    }
+  }
+  const shoes = o.shoes ?? 'shoes-none';
+  if (shoes !== 'shoes-none') [S.legL, S.legR].forEach((lg) => {
+    if (shoes === 'shoes-boots' || shoes === 'shoes-wellies') { const b = cyl(0.16, 0.17, 0.26, shoes === 'shoes-wellies' ? (o.shoesC ?? '#FFC53D') : (o.shoesC ?? '#6B4F2A'), 12); b.position.y = -0.08; lg.add(b); const toe = box(0.3, 0.12, 0.2, shoes === 'shoes-wellies' ? (o.shoesC ?? '#FFC53D') : (o.shoesC ?? '#6B4F2A')); toe.position.set(0, -0.15, 0.12); lg.add(toe); }
+    else if (shoes === 'shoes-sandals') { const s0 = box(0.26, 0.04, 0.36, '#8B5E34'); s0.position.set(0, -0.2, 0.05); lg.add(s0); const st = box(0.27, 0.04, 0.05, sc2); st.position.set(0, -0.15, 0.08); lg.add(st); }
+    else { const s0 = box(0.28, 0.13, 0.36, sc2); s0.position.set(0, -0.15, 0.06); lg.add(s0); const sole = box(0.29, 0.04, 0.37, '#FFFFFF'); sole.position.set(0, -0.21, 0.06); lg.add(sole); }
+  });
+  const Hd = S.hand; const hold = o.hold ?? 'hold-none';
+  if (hold === 'hold-balloon') { const st = cyl(0.008, 0.008, 1.3, '#FFFFFF', 4); st.position.y = 0.6; Hd.add(st); const bl = sph(0.32, '#E5484D', 16); bl.scale.y = 1.15; bl.position.y = 1.4; Hd.add(bl); }
+  if (hold === 'hold-icecream') { const c = mesh(new THREE.ConeGeometry(0.1, 0.3, 10), toon('#E8B46A')); c.rotation.x = Math.PI; c.position.y = 0.05; Hd.add(c); const sp = sph(0.12, '#F7A1B5', 10); sp.position.y = 0.24; Hd.add(sp); }
+  if (hold === 'hold-flower') { const st = cyl(0.015, 0.015, 0.45, '#30A46C', 6); st.position.y = 0.18; Hd.add(st); for (let i = 0; i < 6; i++) { const a = (i / 6) * Math.PI * 2; const pe = sph(0.06, '#F76AA8', 8); pe.position.set(Math.cos(a) * 0.08, 0.42, Math.sin(a) * 0.08); Hd.add(pe); } const ce = sph(0.05, '#FFC53D', 8); ce.position.y = 0.42; Hd.add(ce); }
+  if (hold === 'hold-book') { const b = box(0.32, 0.42, 0.08, '#7C66DC'); b.position.set(0, 0.05, 0.08); Hd.add(b); }
+  if (hold === 'hold-phone') { const b = box(0.16, 0.28, 0.03, '#2B2B2B'); b.position.set(0, 0.05, 0.08); Hd.add(b); const sc3 = box(0.13, 0.22, 0.01, '#8EC9F5'); sc3.position.set(0, 0.05, 0.1); Hd.add(sc3); }
+  if (hold === 'hold-wand') { const w = cyl(0.02, 0.02, 0.55, '#1A1A1A', 6); w.position.y = 0.22; Hd.add(w); const st = mesh(new THREE.OctahedronGeometry(0.09), toon('#FFC53D', 0.5)); st.position.y = 0.52; Hd.add(st); }
+  if (hold === 'hold-guitar') { const g = new THREE.Group(); const b1 = sph(0.22, '#C68A4A', 14); b1.scale.z = 0.35; g.add(b1); const b2 = sph(0.16, '#C68A4A', 14); b2.scale.z = 0.35; b2.position.y = 0.25; g.add(b2); const nk = box(0.06, 0.55, 0.04, '#6B4F2A'); nk.position.y = 0.6; g.add(nk); const hole = sph(0.06, '#1A1A1A', 8); hole.scale.z = 0.2; hole.position.set(0, 0.12, 0.08); g.add(hole); g.rotation.z = 0.6; g.position.set(0.1, 0.1, 0.12); Hd.add(g); }
+  if (hold === 'hold-umbrella') { const p = cyl(0.015, 0.015, 1.1, '#2B2B2B', 6); p.position.y = 0.5; Hd.add(p); const c = mesh(new THREE.ConeGeometry(0.75, 0.35, 10), toon('#3E7BFA')); c.position.y = 1.1; Hd.add(c); }
+  if (hold === 'hold-rod') { const r = cyl(0.02, 0.025, 1.6, '#6B4F2A', 6); r.position.set(0, 0.6, 0.3); r.rotation.x = 0.6; Hd.add(r); const ln = cyl(0.004, 0.004, 1, '#FFFFFF', 4); ln.position.set(0, 0.85, 1.2); Hd.add(ln); }
+  if (hold === 'hold-cupcake') { const c = cyl(0.1, 0.07, 0.12, '#F7A1B5', 10); Hd.add(c); const t = sph(0.11, '#FFFFFF', 10); t.position.y = 0.1; Hd.add(t); const ch = sph(0.03, '#E5484D', 6); ch.position.y = 0.2; Hd.add(ch); }
+  if (hold === 'hold-teddy') { const b = sph(0.14, '#C68A4A', 10); b.position.y = 0.05; Hd.add(b); const hd = sph(0.1, '#C68A4A', 10); hd.position.y = 0.24; Hd.add(hd); [-1, 1].forEach((d) => { const e = sph(0.04, '#C68A4A', 6); e.position.set(0.08 * d, 0.32, 0); Hd.add(e); }); }
+  rig.root.userData.holding = hold !== 'hold-none';
 }
 
 // ---------- транспорт і улюбленці ----------
@@ -181,6 +242,62 @@ function makePet(id: string): THREE.Group {
   if (id === 'pet-puppy') { const b = sph(0.3, '#C68A4A'); b.scale.set(0.9, 0.8, 1.2); b.position.y = 0.32; g.add(b); const h = sph(0.22, '#C68A4A'); h.position.set(0, 0.6, 0.3); g.add(h); const sn = sph(0.1, '#F3D9B1'); sn.position.set(0, 0.55, 0.48); g.add(sn); const no = sph(0.04, '#1A1A1A', 8); no.position.set(0, 0.6, 0.57); g.add(no); [-1, 1].forEach((s) => { const e = sph(0.1, '#7A4E25'); e.scale.set(0.5, 1, 0.4); e.position.set(0.2 * s, 0.6, 0.28); g.add(e); const ey = sph(0.03, '#1A1A1A', 8); ey.position.set(0.08 * s, 0.67, 0.48); g.add(ey); }); const t = mesh(new THREE.CapsuleGeometry(0.04, 0.2, 4, 8), toon('#C68A4A')); t.position.set(0, 0.5, -0.35); t.rotation.x = -0.7; t.name = 'wag'; g.add(t); }
   if (id === 'pet-dragon') { const b = sph(0.3, '#30A46C'); b.position.y = 0.4; g.add(b); const h = sph(0.22, '#30A46C'); h.position.set(0, 0.75, 0.15); g.add(h); [-1, 1].forEach((s) => { const w = mesh(new THREE.ConeGeometry(0.2, 0.45, 3), toon('#8EE0B0')); w.rotation.z = (Math.PI / 2.4) * s; w.position.set(0.32 * s, 0.6, -0.05); w.name = 'wing'; g.add(w); const ey = sph(0.04, '#1A1A1A', 8); ey.position.set(0.09 * s, 0.82, 0.33); g.add(ey); const hr = mesh(new THREE.ConeGeometry(0.04, 0.14, 6), toon('#FFE08A')); hr.position.set(0.1 * s, 0.98, 0.1); g.add(hr); }); }
   return g;
+}
+
+async function yardItem(id: string): Promise<THREE.Object3D | null> {
+  let g: THREE.Object3D | null = null;
+      if (id === 'yard-bench') g = await model('city', 'bench', 2);
+  if (id === 'yard-lamp') g = await model('city', 'streetlight', 1.2);
+  if (id === 'yard-fire') g = await model('nature', 'campfire_stones', 1.4);
+  if (id === 'yard-tent') g = await model('nature', 'tent_detailedOpen', 2.6);
+  if (id === 'yard-tree') g = await model('nature', 'tree_palm', 3.6);
+  if (id === 'yard-flowers') { const f = new THREE.Group(); const bed = box(2.4, 0.3, 1, '#8B5E34'); bed.position.y = 0.15; f.add(bed); for (let k = 0; k < 8; k++) { const fl = sph(0.14, ['#F76AA8', '#FFC53D', '#E5484D', '#B79CF0'][k % 4], 8); fl.position.set(-1 + (k % 4) * 0.66, 0.5, k < 4 ? -0.2 : 0.2); f.add(fl); } g = f; }
+  if (id === 'yard-fence') { const f = new THREE.Group(); for (let k = 0; k < 6; k++) { const p = box(0.18, 1, 0.12, '#FFFFFF'); p.position.set(-1.5 + k * 0.6, 0.5, 0); f.add(p); } const r = box(3.4, 0.12, 0.08, '#FFFFFF'); r.position.y = 0.7; f.add(r); g = f; }
+  if (id === 'yard-tramp') { const f = new THREE.Group(); const mat = cyl(1.4, 1.4, 0.08, '#2B2B2B', 28); mat.position.y = 0.7; f.add(mat); const rim = mesh(new THREE.TorusGeometry(1.45, 0.12, 8, 32), toon('#3E7BFA')); rim.rotation.x = Math.PI / 2; rim.position.y = 0.72; f.add(rim); for (let k = 0; k < 4; k++) { const l = cyl(0.05, 0.05, 0.7, '#55606E'); const a = (k / 4) * Math.PI * 2; l.position.set(Math.sin(a) * 1.3, 0.35, Math.cos(a) * 1.3); f.add(l); } g = f; }
+  if (id === 'yard-pool') { const f = new THREE.Group(); const b = box(4, 0.4, 2.6, '#FFFFFF'); b.position.y = 0.2; f.add(b); const w = mesh(new THREE.PlaneGeometry(3.6, 2.2), new THREE.MeshStandardMaterial({ color: '#58B9E8', roughness: 0.1 }), false); w.rotation.x = -Math.PI / 2; w.position.y = 0.41; f.add(w); const duck = sph(0.2, '#FFD84D', 10); duck.position.set(0.8, 0.5, 0.3); f.add(duck); g = f; }
+  return g;
+}
+
+// ---------- мініатюри речей для магазину: малюємо справжню 3D-модель у маленьку картинку ----------
+let tR: THREE.WebGLRenderer | null = null; let tS: THREE.Scene; let tC: THREE.PerspectiveCamera;
+const thumbCache = new Map<string, string>(); let tq: Promise<unknown> = Promise.resolve();
+export function thumbFor(id: string): Promise<string> {
+  const c = thumbCache.get(id); if (c) return Promise.resolve(c);
+  const job = tq.then(() => renderThumb(id)).then((u) => { if (u) thumbCache.set(id, u); return u; });
+  tq = job.catch(() => ''); return job.catch(() => '');
+}
+async function thumbObj(id: string): Promise<THREE.Object3D | null> {
+  const furOf = FUR.find((f) => f.id === id);
+  if (furOf) return makeCat(furOf.color).root;
+  if (id.startsWith('ride-')) { const g = makeRide(id); const glb: Record<string, string> = { 'ride-hatch': 'car_hatchback', 'ride-sedan': 'car_sedan', 'ride-wagon': 'car_stationwagon', 'ride-yellow': 'car_taxi', 'ride-police': 'car_police' }; if (glb[id]) { const m = await model('city', glb[id], 2.6); const b = new THREE.Box3().setFromObject(m).getSize(new THREE.Vector3()); if (b.x > b.z) m.rotation.y = Math.PI / 2; g.add(m); } return g; }
+  if (id.startsWith('pet-')) return makePet(id);
+  if (id.startsWith('house-')) return model('sub', HOUSES[Number(id.split('-')[1])], 7);
+  if (id.startsWith('yard-')) return yardItem(id);
+  const it = SHOP.find((x) => x.id === id);
+  const part = id.split('-')[0];
+  const o: Outfit = { fur: 'fur-ginger' };
+  if (it) (o as Record<string, string>)[it.sub] = id;
+  else if (['hair', 'top', 'bottom', 'shoes', 'hold'].includes(part)) { (o as Record<string, string>)[part] = id; if (part === 'bottom' || part === 'shoes') o.top = 'top-none'; }
+  else return null;
+  const rig = makeCat(FUR[0].color); wear(rig, o);
+  if (it?.sub === 'bag') rig.root.rotation.y = Math.PI * 0.8;
+  if (part === 'hold') { rig.armR.rotation.x = -0.7; rig.armR.rotation.z = 0.25; }
+  rig.root.updateMatrixWorld(true);
+  return rig.root;
+}
+async function renderThumb(id: string) {
+  if (!tR) {
+    tR = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true }); tR.setSize(160, 160); tR.setPixelRatio(1); tR.outputColorSpace = THREE.SRGBColorSpace;
+    tS = new THREE.Scene(); tS.add(new THREE.HemisphereLight('#FFFFFF', '#9BC97A', 1.6)); const d = new THREE.DirectionalLight('#FFF4DD', 2); d.position.set(3, 5, 4); tS.add(d);
+    tC = new THREE.PerspectiveCamera(30, 1, 0.05, 200);
+  }
+  const obj = await thumbObj(id); if (!obj) return '';
+  tS.add(obj); obj.updateMatrixWorld(true);
+  const b = new THREE.Box3().setFromObject(obj); const c = b.getCenter(new THREE.Vector3()); const sz = b.getSize(new THREE.Vector3());
+  const r = Math.max(sz.x, sz.y, sz.z) * 0.62; const dist = r / Math.tan((15 * Math.PI) / 180);
+  tC.position.set(c.x + dist * 0.45, c.y + dist * 0.3, c.z + dist * 0.85); tC.lookAt(c); tC.updateProjectionMatrix();
+  tR.render(tS, tC); const url = tR.domElement.toDataURL('image/png');
+  tS.remove(obj); return url;
 }
 
 // ---------- сцена ----------
@@ -244,6 +361,7 @@ export class IslandScene {
   boats: { g: THREE.Group; r: number; ph: number; v: number }[] = []; lastHour = -1;
   inside = false; roomId: string | null = null; cur = { x: ROOM.x, z: ROOM.z }; origins: Record<string, { x: number; z: number }> = {}; roomCols: Record<string, { x: number; z: number; r: number }[]> = {}; keepers: Rig[] = [];
   outPos = new THREE.Vector3(); roomGroup = new THREE.Group(); roomItems = new THREE.Group(); roomCol: { x: number; z: number; r: number }[] = [];
+  portrait = false; portraitShift = 1.2;
   placing: string | null = null; decorate = false; roomList: RoomItem[] = []; roomSeq = 0;
   stars: { id: string; obj: THREE.Group }[] = []; got = new Set<string>();
   ray = new THREE.Raycaster(); ground = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
@@ -368,6 +486,7 @@ export class IslandScene {
       this.spots.push({ id: 'taxi', x: T.x + 0.4, z: T.z + 1.8, r: 2.4, label: 'TAXI' }); }
     this.buildPier();
     this.buildIceCream(); this.buildBoard();
+    this.mural('MURLY ISLAND', ['#F76AA8', '#FFC53D', '#3E7BFA', '#30A46C'], -6, 24); this.mural('BE KIND', ['#7C66DC', '#F5862D', '#E5484D'], 24, -50); this.mural('HELLO!', ['#30A46C', '#3E7BFA', '#FFC53D'], -48, -32);
     // фруктовий ринок: власний ларьок
     this.buildStall(-18, 16); this.spots.push({ id: 'market', x: -18, z: 11.5, r: 2.6, label: 'FRUIT MARKET' });
     // будинки для доставки з номерами
@@ -587,12 +706,14 @@ export class IslandScene {
   buildRoom() {
     const g = this.roomGroup; g.position.set(ROOM.x, 0, ROOM.z); this.scene.add(g); g.add(this.roomItems);
     this.buildShell(g, ROOM, '#D9B38C', '#CFA67C', '#F3E7D3');
+    this.dressRoom("home", g);
     this.origins.home = { x: ROOM.x, z: ROOM.z };
     INTERIORS.forEach((d, i) => { const o = { x: ROOM.x, z: ROOM.z + 150 * (i + 1) }; this.origins[d.id] = o; void this.buildInterior(d, o); });
   }
   async buildInterior(d: IDef, o: { x: number; z: number }) {
     const g = new THREE.Group(); g.position.set(o.x, 0, o.z); this.scene.add(g);
     this.buildShell(g, o, d.floor[0], d.floor[1], d.wall, d.title);
+    this.dressRoom(d.id, g);
     const cols: { x: number; z: number; r: number }[] = []; this.roomCols[d.id] = cols;
     const scenes = await pack('furn');
     const tops: number[] = [];
@@ -612,6 +733,95 @@ export class IslandScene {
       if (d.npc[4]) wearHat(rig, d.npc[4]);
     }
     this.spots.push({ id: d.job, x: o.x + d.spot[0], z: o.z + d.spot[1], r: 1.8, label: d.npc ? d.npc[0] : d.title ?? '' });
+  }
+  // ---- оформлення кімнат ----
+  art(g: THREE.Group, t: THREE.Texture, w: number, h: number, x: number, y: number, z: number, ry = 0, back = false) {
+    const m = new THREE.MeshBasicMaterial({ map: t, transparent: true, polygonOffset: back, polygonOffsetFactor: back ? 1 : 0, polygonOffsetUnits: back ? 1 : 0 });
+    const p = new THREE.Mesh(new THREE.PlaneGeometry(w, h), m); p.position.set(x, y, z); p.rotation.y = ry; g.add(p); return p;
+  }
+  wallpaper(g: THREE.Group, t: THREE.Texture) {
+    t.repeat.set(5, 1.3); const b = this.art(g, t, ROOM.w, 3.6, 0, 1.8, -ROOM.d / 2 + 0.152, 0, true); b.material.transparent = false;
+    const t2 = t.clone(); t2.needsUpdate = true; t2.repeat.set(4, 1.3); const l = this.art(g, t2, ROOM.d, 3.6, -ROOM.w / 2 + 0.152, 1.8, 0, Math.PI / 2, true); l.material.transparent = false;
+  }
+  lamps(g: THREE.Group, xs: number[], z: number, c: string) {
+    xs.forEach((x) => { const cord = cyl(0.01, 0.01, 0.8, '#2B2B2B', 4); cord.position.set(x, 3.2, z); g.add(cord); const sh = mesh(new THREE.ConeGeometry(0.32, 0.3, 14, 1, true), new THREE.MeshToonMaterial({ color: c, side: THREE.DoubleSide, gradientMap: grad! }), false); sh.position.set(x, 2.7, z); g.add(sh); const bulb = new THREE.Mesh(new THREE.SphereGeometry(0.09, 10, 8), new THREE.MeshBasicMaterial({ color: '#FFF3C2' })); bulb.position.set(x, 2.6, z); g.add(bulb); });
+  }
+  goods(g: THREE.Group, x0: number, x1: number, z: number, ys: number[], colors: string[], kind: 'box' | 'bread' | 'ball' | 'shirt' = 'box') {
+    let k = 0;
+    ys.forEach((y) => { for (let x = x0; x <= x1; x += 0.28) { const c = colors[k++ % colors.length]; let o: THREE.Mesh;
+      if (kind === 'bread') { o = mesh(new THREE.CapsuleGeometry(0.08, 0.14, 4, 8), toon(c)); o.rotation.z = Math.PI / 2; }
+      else if (kind === 'ball') o = sph(0.1, c, 10);
+      else if (kind === 'shirt') { o = box(0.28, 0.34, 0.06, c); }
+      else o = box(0.18, 0.22 + (k % 3) * 0.05, 0.14, c);
+      o.position.set(x, y, z); g.add(o); } });
+  }
+  mural(text: string, colors: string[], x: number, z: number) {
+    const g = new THREE.Group(); g.position.set(x, 0, z); g.rotation.y = Math.atan2(-x, -z);
+    const w = box(7.4, 2.8, 0.4, '#E9DCC3'); w.position.y = 1.4; g.add(w);
+    const t = graffitiTex(text, colors, '#F4EEE2'); this.art(g, t, 7.2, 2.6, 0, 1.4, 0.21); const t2 = graffitiTex(text, [...colors].reverse(), '#F4EEE2'); this.art(g, t2, 7.2, 2.6, 0, 1.4, -0.21, Math.PI);
+    this.scene.add(g); this.colliders.push({ x: x + Math.sin(g.rotation.y + Math.PI / 2) * 2.4, z: z + Math.cos(g.rotation.y + Math.PI / 2) * 2.4, r: 1.3 }, { x, z, r: 1.3 }, { x: x - Math.sin(g.rotation.y + Math.PI / 2) * 2.4, z: z - Math.cos(g.rotation.y + Math.PI / 2) * 2.4, r: 1.3 });
+  }
+  dressRoom(id: string, g: THREE.Group) {
+    const BZ = -ROOM.d / 2 + 0.17, LX = -ROOM.w / 2 + 0.17, R = Math.PI / 2;
+    if (id === 'post') {
+      this.wallpaper(g, wallpaperTex('stripes', '#F7D9D6', '#F2C6C0'));
+      this.art(g, posterTex({ title: 'SEND A SMILE', lines: ['Letters', 'Parcels', 'Postcards'], bg: '#FFF3A6', icons: [['envelope', '#FFFFFF'], ['heart', '#E5484D']] }), 1.2, 1.6, -2.2, 2.0, BZ);
+      this.art(g, posterTex({ title: 'ISLAND MAP', lines: ['Sunny Street', 'Oak Street', 'Beach Road'], bg: '#BFE6FA', icons: [['star', '#FFC53D'], ['fish', '#F5862D'], ['sun', '#FFC53D']] }), 1.2, 1.6, 2.2, 2.0, BZ);
+      this.art(g, graffitiTex('POST!', ['#E5484D', '#FFC53D', '#3E7BFA']), 3.6, 1.35, LX, 2.1, -1.6, R);
+      const mb = box(0.7, 1.1, 0.6, '#E5484D'); mb.position.set(6.2, 0.55, -3.2); g.add(mb); const top = cyl(0.35, 0.35, 0.6, '#E5484D', 14); top.rotation.z = R; top.position.set(6.2, 1.1, -3.2); g.add(top);
+      this.lamps(g, [-1.5, 1.5], -2.6, '#E5484D');
+    }
+    if (id === 'cafe') {
+      this.wallpaper(g, wallpaperTex('dots', '#FFF1F6', '#F7B7C8'));
+      this.art(g, chalkTex('MENU', ['Sandwich|3', 'Hot chocolate|2', 'Lemonade|2', 'Tea|1', 'Cookie|1']), 2.2, 1.65, -2.3, 2.05, BZ);
+      this.art(g, posterTex({ title: 'CAT CAFE', lines: ['Fresh every day'], bg: '#FFE0EA', icons: [['cup', '#FFFFFF'], ['cat', '#F4A340']] }), 1.2, 1.6, 2.3, 2.0, BZ);
+      this.art(g, neonTex('COFFEE', '#FF7EB6'), 2.6, 0.8, LX, 2.5, -1.4, R);
+      this.art(g, graffitiTex('YUM!', ['#F76AA8', '#FFC53D', '#30A46C']), 2.4, 0.9, LX, 1.3, -1.4, R);
+      [[-3.6, 1.6], [1.4, 2.2], [4.8, 0]].forEach(([x, z]) => { const c = cyl(0.08, 0.06, 0.14, '#FFFFFF', 10); c.position.set(x + 0.15, 0.97, z); g.add(c); const cake = sph(0.1, '#F7A1B5', 8); cake.position.set(x - 0.2, 0.97, z + 0.1); g.add(cake); });
+      this.lamps(g, [-1.5, 0, 1.5], -2.6, '#F76AA8');
+    }
+    if (id === 'store') {
+      this.wallpaper(g, wallpaperTex('checks', '#F3F0FF', '#E6DEFF'));
+      this.art(g, posterTex({ title: 'BIG SALE!', lines: ['Bikes', 'Toys', 'Pets'], bg: '#E5484D', fg: '#FFFFFF', icons: [['star', '#FFC53D'], ['star', '#FFFFFF']] }), 1.2, 1.6, -2.2, 2.0, BZ);
+      this.art(g, posterTex({ title: 'NEW TOYS', lines: ['Fun for everyone'], bg: '#FFF3A6', icons: [['balloon', '#3E7BFA'], ['balloon', '#F76AA8'], ['star', '#30A46C']] }), 1.2, 1.6, 0.4, 2.0, BZ);
+      this.art(g, graffitiTex('MURLY', ['#7C66DC', '#F76AA8', '#FFC53D']), 3.8, 1.4, LX, 2.1, -1.4, R);
+      this.goods(g, -6.15, -3.5, -4.85, [0.45, 1.05, 1.65], ['#E5484D', '#FFC53D', '#3E7BFA', '#30A46C', '#F76AA8', '#7C66DC']);
+      this.lamps(g, [-1.5, 1.5], -2.6, '#7C66DC');
+    }
+    if (id === 'bakery') {
+      this.wallpaper(g, wallpaperTex('stripes', '#FFF6E8', '#FFE4A8'));
+      this.art(g, posterTex({ title: 'FRESH BREAD', lines: ['Every morning'], bg: '#F3D27A', icons: [['bread', '#C68A4A'], ['bread', '#E8B46A']] }), 1.2, 1.6, -1.1, 2.0, BZ);
+      this.art(g, chalkTex('TODAY', ['Chocolate cake|5', 'Cupcake|2', 'Bread|1', 'Cookies|1']), 2.0, 1.5, 1.6, 2.05, BZ);
+      this.art(g, graffitiTex('YUMMY', ['#F5862D', '#F76AA8', '#7A4E25']), 3.6, 1.35, LX, 2.1, -1.4, R);
+      this.goods(g, 2.6, 4.2, -4.85, [1.15], ['#C68A4A', '#E8B46A', '#8B5E34'], 'bread');
+      this.goods(g, -1.9, 1.9, -2.6, [1.07], ['#C68A4A', '#E8B46A'], 'bread');
+      this.lamps(g, [-1.5, 1.5], -2.6, '#F5862D');
+    }
+    if (id === 'boutique') {
+      this.wallpaper(g, wallpaperTex('hearts', '#F2FBF5', '#BDE5C4'));
+      this.art(g, posterTex({ title: 'NEW STYLE', lines: ['Spring collection'], bg: '#F7B7C8', icons: [['shirt', '#3E7BFA'], ['shirt', '#FFC53D'], ['shirt', '#30A46C']] }), 1.2, 1.6, 0.2, 2.0, BZ);
+      this.art(g, graffitiTex('FASHION', ['#F76AA8', '#7C66DC', '#30A46C']), 3.8, 1.3, LX, 2.3, -2.6, R);
+      const mir = new THREE.Mesh(new THREE.PlaneGeometry(1, 1.9), new THREE.MeshStandardMaterial({ color: '#DCEFFA', roughness: 0.05, metalness: 0.3 })); mir.position.set(LX + 0.02, 1.2, 0.6); mir.rotation.y = R; g.add(mir);
+      const fr = box(0.06, 2.05, 1.15, '#FFC53D'); fr.position.set(LX - 0.01, 1.2, 0.6); g.add(fr);
+      [[-4.8, -4.6], [-3.6, -4.6], [-2.4, -4.6], [3.4, -4.6], [4.6, -4.6], [5.4, 0.4]].forEach(([x, z], i) => { const sh = box(0.32, 0.4, 0.06, ['#F76AA8', '#3E7BFA', '#FFC53D', '#30A46C', '#7C66DC', '#E5484D'][i]); sh.position.set(x, 1.25, z + 0.2); g.add(sh); });
+      this.lamps(g, [-1, 1], -2.6, '#30A46C');
+    }
+    if (id === 'house') {
+      this.wallpaper(g, wallpaperTex('waves', '#EAF2F8', '#D3E4F2'));
+      this.art(g, posterTex({ title: 'HOME SWEET HOME', bg: '#FFF8D6', icons: [['heart', '#E5484D'], ['cat', '#F7F3EA'], ['heart', '#F76AA8']], w: 512, h: 256 }), 2, 1, -1, 2.6, BZ);
+      [[-5, 1.9, '#F4A340'], [-5, 0.5, '#9AA3AE']].forEach(([z, y, c]) => this.art(g, posterTex({ title: '', bg: '#FFFFFF', icons: [['cat', c as string]], w: 256, h: 256, frame: '#8B5E34' }), 0.7, 0.7, LX, y as number + 0.2, z as number + 3, R));
+      const clock = cyl(0.35, 0.35, 0.06, '#FFFFFF', 24); clock.rotation.x = R; clock.position.set(2.8, 2.6, BZ); g.add(clock); const hand1 = box(0.03, 0.22, 0.02, '#1A1A1A'); hand1.position.set(2.8, 2.7, BZ + 0.05); g.add(hand1); const hand2 = box(0.16, 0.03, 0.02, '#1A1A1A'); hand2.position.set(2.87, 2.6, BZ + 0.05); g.add(hand2);
+    }
+    if (id === 'lighthouse') {
+      this.wallpaper(g, wallpaperTex('waves', '#FFFFFF', '#DCE9F7'));
+      this.art(g, posterTex({ title: 'KEEP THE LIGHT ON', lines: ['Ships need us'], bg: '#BFE6FA', icons: [['anchor', '#3E7BFA'], ['fish', '#F5862D']] }), 1.2, 1.6, -1.2, 2.0, BZ);
+      this.art(g, graffitiTex('AHOY!', ['#3E7BFA', '#E5484D', '#FFFFFF']), 3.2, 1.2, LX, 2.4, -2.4, R);
+      const wheel = new THREE.Group(); wheel.add(mesh(new THREE.TorusGeometry(0.5, 0.06, 8, 24), toon('#8B5E34'))); for (let i = 0; i < 8; i++) { const sp = box(0.05, 1.3, 0.05, '#8B5E34'); sp.rotation.z = (i / 8) * Math.PI; wheel.add(sp); } wheel.position.set(LX + 0.1, 1.6, 1); wheel.rotation.y = R; g.add(wheel);
+    }
+    if (id === 'home') {
+      this.wallpaper(g, wallpaperTex('stars', '#F3E7D3', '#EBD9BC'));
+      this.art(g, posterTex({ title: 'MY HOME', bg: '#FFE08A', icons: [['heart', '#E5484D'], ['star', '#FFFFFF']], w: 512, h: 256 }), 2, 1, 0, 3.0, BZ);
+    }
   }
   enterRoom(id: string) {
     const o = this.origins[id]; if (!o || this.inside) return;
@@ -663,16 +873,7 @@ export class IslandScene {
     const slot = (i: number) => { const a = [[-7, -5], [7, -5], [-7, 5], [7, 5], [-4, -6.5], [4, -6.5], [-8, 0], [8, 0], [0, 7]][i % 9]; return { x: HOME.x + a[0], z: HOME.z + a[1] }; };
     for (let i = 0; i < list.length; i++) {
       const id = list[i]; const { x, z } = slot(i);
-      let g: THREE.Object3D | null = null;
-      if (id === 'yard-bench') g = await model('city', 'bench', 2);
-      if (id === 'yard-lamp') g = await model('city', 'streetlight', 1.2);
-      if (id === 'yard-fire') g = await model('nature', 'campfire_stones', 1.4);
-      if (id === 'yard-tent') g = await model('nature', 'tent_detailedOpen', 2.6);
-      if (id === 'yard-tree') g = await model('nature', 'tree_palm', 3.6);
-      if (id === 'yard-flowers') { const f = new THREE.Group(); const bed = box(2.4, 0.3, 1, '#8B5E34'); bed.position.y = 0.15; f.add(bed); for (let k = 0; k < 8; k++) { const fl = sph(0.14, ['#F76AA8', '#FFC53D', '#E5484D', '#B79CF0'][k % 4], 8); fl.position.set(-1 + (k % 4) * 0.66, 0.5, k < 4 ? -0.2 : 0.2); f.add(fl); } g = f; }
-      if (id === 'yard-fence') { const f = new THREE.Group(); for (let k = 0; k < 6; k++) { const p = box(0.18, 1, 0.12, '#FFFFFF'); p.position.set(-1.5 + k * 0.6, 0.5, 0); f.add(p); } const r = box(3.4, 0.12, 0.08, '#FFFFFF'); r.position.y = 0.7; f.add(r); g = f; }
-      if (id === 'yard-tramp') { const f = new THREE.Group(); const mat = cyl(1.4, 1.4, 0.08, '#2B2B2B', 28); mat.position.y = 0.7; f.add(mat); const rim = mesh(new THREE.TorusGeometry(1.45, 0.12, 8, 32), toon('#3E7BFA')); rim.rotation.x = Math.PI / 2; rim.position.y = 0.72; f.add(rim); for (let k = 0; k < 4; k++) { const l = cyl(0.05, 0.05, 0.7, '#55606E'); const a = (k / 4) * Math.PI * 2; l.position.set(Math.sin(a) * 1.3, 0.35, Math.cos(a) * 1.3); f.add(l); } g = f; this.tramp = new THREE.Vector3(x, 0, z); }
-      if (id === 'yard-pool') { const f = new THREE.Group(); const b = box(4, 0.4, 2.6, '#FFFFFF'); b.position.y = 0.2; f.add(b); const w = mesh(new THREE.PlaneGeometry(3.6, 2.2), new THREE.MeshStandardMaterial({ color: '#58B9E8', roughness: 0.1 }), false); w.rotation.x = -Math.PI / 2; w.position.y = 0.41; f.add(w); const duck = sph(0.2, '#FFD84D', 10); duck.position.set(0.8, 0.5, 0.3); f.add(duck); g = f; }
+      const g = await yardItem(id); if (id === 'yard-tramp') this.tramp = new THREE.Vector3(x, 0, z);
       if (!g) continue;
       g.position.set(x, 0, z); this.yardGroup.add(g);
     }
@@ -683,7 +884,11 @@ export class IslandScene {
   setRide(id: string | null) {
     if (this.ride) { this.hero.root.remove(this.ride); this.ride = null; }
     this.rideId = id;
-    if (id) { this.ride = makeRide(id); this.hero.root.add(this.ride); }
+    if (id) {
+      this.ride = makeRide(id); this.hero.root.add(this.ride);
+      const glb: Record<string, string> = { 'ride-hatch': 'car_hatchback', 'ride-sedan': 'car_sedan', 'ride-wagon': 'car_stationwagon', 'ride-yellow': 'car_taxi', 'ride-police': 'car_police' };
+      if (glb[id]) { const holder = this.ride; void model('city', glb[id], 2.6).then((m) => { const b = new THREE.Box3().setFromObject(m).getSize(new THREE.Vector3()); if (b.x > b.z) m.rotation.y = Math.PI / 2; m.position.y = 0.05; holder.add(m); }); }
+    }
   }
   setPet(id: string | null) {
     if (this.pet) { this.scene.remove(this.pet); this.pet = null; }
@@ -695,6 +900,7 @@ export class IslandScene {
   npcName(i: number) { return NPC_NAMES[i % NPC_NAMES.length]; }
   setMarker(x: number | null, z = 0) { this.markerOn = x !== null; this.marker.visible = this.markerOn; if (x !== null) this.marker.position.set(x, 0, z); }
   spotPos(id: string) { return this.spots.find((s) => s.id === id); }
+  setHeroPos(x: number, z: number) { this.heroPos.set(x, 0, z); this.vel.set(0, 0, 0); this.cam.position.set(x, 6, z + 9); if (this.pet) this.petPos.set(x + 1, 0, z); }
   teleportHome() { this.heroPos.set(HOME.x, 0, HOME.z - 9); }
 
   // ---- керування ----
@@ -804,7 +1010,7 @@ export class IslandScene {
     const h = this.hero; const ride = !!this.rideId;
     h.root.position.copy(this.heroPos); h.root.rotation.y = this.heroRot;
     const walk = !ride && this.onGround && speed > 0.4; const ph = t * (running ? 14 : 10);
-    h.body.position.y = (ride ? (this.rideId === 'ride-car' || this.rideId === 'ride-ufo' ? 0.55 : 0.25) : 0) + (walk ? Math.abs(Math.sin(ph)) * 0.12 : Math.sin(t * 2) * 0.02);
+    h.body.position.y = (ride ? (CARS.includes(this.rideId!) ? 0.55 : 0.25) : 0) + (walk ? Math.abs(Math.sin(ph)) * 0.12 : Math.sin(t * 2) * 0.02);
     h.body.rotation.x = W.lean + (walk ? 0 : 0); h.body.rotation.z = walk ? Math.sin(ph) * 0.12 : Math.sin(t * 1.3) * 0.03;
     h.body.scale.set(1 / Math.sqrt(W.sq), W.sq, 1 / Math.sqrt(W.sq));
     h.head.rotation.z = Math.sin(t * 1.7) * 0.05 - h.body.rotation.z * 0.6; h.head.rotation.x = -W.lean * 0.5;
@@ -812,8 +1018,9 @@ export class IslandScene {
     h.armL.rotation.x = walk ? Math.sin(ph) * 0.9 : Math.sin(t * 2) * 0.08; h.armR.rotation.x = walk ? -Math.sin(ph) * 0.9 : -Math.sin(t * 2) * 0.08;
     h.armL.rotation.z = -0.35 - flail * (1.6 + Math.sin(t * 18) * 0.4) - (ride ? 0.6 : 0); h.armR.rotation.z = 0.35 + flail * (1.6 + Math.sin(t * 18 + 1) * 0.4) + (ride ? 0.6 : 0);
     h.legL.position.z = walk ? Math.sin(ph) * 0.18 : 0; h.legR.position.z = walk ? -Math.sin(ph) * 0.18 : 0;
-    h.legL.visible = h.legR.visible = this.rideId !== 'ride-car' && this.rideId !== 'ride-ufo';
+    h.legL.visible = h.legR.visible = !CARS.includes(this.rideId ?? '');
     h.tail.rotation.y = Math.sin(t * 3) * 0.4; h.tail.rotation.x = -W.lean;
+    if (h.root.userData.holding && this.danceT <= 0) { h.armR.rotation.x = -0.7; h.armR.rotation.z = 0.25; }
     if (this.danceT > 0) { this.danceT -= dt; h.armL.rotation.z = -2.4 + Math.sin(t * 12) * 0.5; h.armR.rotation.z = 2.4 + Math.sin(t * 12 + 1) * 0.5; h.body.rotation.y = Math.sin(t * 6) * 0.5; h.body.position.y += Math.abs(Math.sin(t * 12)) * 0.15; } else h.body.rotation.y = 0;
     // зірки: обертаються і збираються
     for (const st of this.stars) { if (this.got.has(st.id)) continue; st.obj.rotation.y = t * 2; st.obj.position.y = 1 + Math.sin(t * 3 + st.obj.position.x) * 0.2; if (Math.hypot(st.obj.position.x - this.heroPos.x, st.obj.position.z - this.heroPos.z) < 1.3) { this.got.add(st.id); st.obj.visible = false; this.ev.onStar?.(st.id); } }
@@ -853,10 +1060,18 @@ export class IslandScene {
     // камера позаду героя
     if (this.inside) this.camYaw = THREE.MathUtils.clamp(this.camYaw, -0.25, 1.25);
     else if (speed > 1 && !this.drag && (Math.abs(this.joy.x) + Math.abs(this.joy.y) > 0 || k.size)) { let d = (this.heroRot + Math.PI) - this.camYaw; d = Math.atan2(Math.sin(d), Math.cos(d)); this.camYaw += d * (1 - Math.exp(-1.2 * dt)); }
+    if (this.portrait) {
+      const f = new THREE.Vector3(Math.sin(this.heroRot), 0, Math.cos(this.heroRot)); const rgt = new THREE.Vector3(Math.cos(this.heroRot), 0, -Math.sin(this.heroRot));
+      const tg = this.heroPos.clone().add(new THREE.Vector3(0, 1.0, 0)).addScaledVector(rgt, -this.portraitShift);
+      const cp = this.heroPos.clone().addScaledVector(f, 4.2).add(new THREE.Vector3(0, 1.6, 0)).addScaledVector(rgt, -this.portraitShift);
+      this.cam.position.lerp(cp, 1 - Math.exp(-6 * dt)); this.cam.lookAt(tg);
+      this.hero.root.rotation.y = this.heroRot + Math.sin(t * 0.8) * 0.5;
+    } else {
     const target = this.heroPos.clone().add(new THREE.Vector3(0, 1.4, 0));
     const camPos = target.clone().add(new THREE.Vector3(Math.sin(this.camYaw) * Math.cos(this.camPitch), Math.sin(this.camPitch), Math.cos(this.camYaw) * Math.cos(this.camPitch)).multiplyScalar(this.camDist));
     camPos.y = Math.max(camPos.y, 0.8);
     this.cam.position.lerp(camPos, 1 - Math.exp(-8 * dt)); this.cam.lookAt(target);
+    }
     this.sun.position.set(this.heroPos.x + 40, 60, this.heroPos.z + 25); this.sun.target.position.copy(this.heroPos);
     // що поруч
     let near: Spot | null = null;
