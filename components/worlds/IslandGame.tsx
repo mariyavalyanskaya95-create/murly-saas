@@ -6,12 +6,14 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { useAuth } from '@clerk/nextjs';
 import { say, sfx } from '@/lib/worlds/sound';
+import { DIALOGS, nextDialog, type Dialog } from '@/lib/worlds/island-dialogs';
+import { ADDRS, DESTS, HAIR_COLOURS, PROFS, STARTER, STYLE, STYLE_COLOURS, profLevel, type StylePart } from '@/lib/worlds/island-data';
 import { ICE, ICE_TOP, errandTask, iceOrder, keeperQuestion, lostTask, timeWords, type LostTask } from '@/lib/worlds/island-data';
 import { BADGES, CAFE_DRINK, CAFE_FOOD, CLOTHES, COLOURS, FISH, FLAVOURS, FRUIT, FUR, FURN, MISSIONS, RIDDLES, SHOP, START, TALKS, TOPPINGS, cafeOrder, cakeOrder, catchFish, dailyFor, deliveryTask, dressOrder, fruitOrder, single, taxiTask, todayKey, type Addr, type Cat, type Save, type ShopItem } from '@/lib/worlds/island-data';
 import type { IslandScene } from '@/lib/worlds/island-scene';
 import type { Spot } from '@/lib/worlds/island-data';
 
-type Panel = null | 'post' | 'cafe' | 'market' | 'store' | 'home' | 'help' | 'npc' | 'jobs' | 'bakery' | 'boutique' | 'taxi' | 'pier' | 'today' | 'icecream' | 'board' | 'errand' | 'keeper';
+type Panel = null | 'post' | 'cafe' | 'market' | 'store' | 'home' | 'help' | 'npc' | 'jobs' | 'bakery' | 'boutique' | 'taxi' | 'pier' | 'today' | 'icecream' | 'board' | 'errand' | 'keeper' | 'style' | 'career' | 'dialog';
 type Tab = Cat | 'Furniture';
 const LS = 'murly-island-v1';
 const GUEST_COINS = 60;
@@ -50,6 +52,17 @@ export default function IslandGame() {
   const [errand, setErrand] = useState<(ReturnType<typeof errandTask> & { stage: 'get' | 'bring' }) | null>(null);
   const [kq, setKq] = useState<(ReturnType<typeof keeperQuestion> & { picked?: string }) | null>(null);
   const onPickupRef = useRef<() => void>(() => {});
+  const [thumbs, setThumbs] = useState<Record<string, string>>({});
+  const [stab, setStab] = useState<StylePart | 'acc' | 'fur'>('hair');
+  const [dlg, setDlg] = useState<{ d: Dialog; node: string; react?: string; said?: string } | null>(null);
+  const restored = useRef(false);
+  // 3D-мініатюри речей
+  const wantThumbs = useCallback((ids: string[]) => {
+    void import('@/lib/worlds/island-scene').then(async ({ thumbFor }) => {
+      for (const id of ids) { if (thumbsRef.current[id]) continue; const u = await thumbFor(id); if (u) { thumbsRef.current = { ...thumbsRef.current, [id]: u }; setThumbs(thumbsRef.current); } }
+    });
+  }, []);
+  const thumbsRef = useRef<Record<string, string>>({});
   const coinsRef = useRef(coins); coinsRef.current = coins;
   const onPlaceRef = useRef<(x: number, z: number) => void>(() => {});
   const onPickRef = useRef<(i: number) => void>(() => {});
@@ -140,7 +153,15 @@ export default function IslandGame() {
       if (!d.paid && d.ids.every((id) => (d.prog[id] ?? 0) >= (MISSIONS.find((m) => m.id === id)?.n ?? 2))) { d.paid = true; bonus = true; }
     }
     persist({ ...s, ...extra, jobs, daily: d });
-    void (n > 0 ? earn(n, why) : Promise.resolve()).then(() => { if (bonus) { say('Well done! You finished all your missions for today!'); void earn(10, 'All daily missions done!'); } });
+    const prof = PROFS.find((p) => p.id === s.prof);
+    let lvlUp: string | null = null;
+    if (prof && prof.job === job && n > 0) {
+      n += 2; why = `${why} (+2 ${prof.en} bonus)`;
+      const a = profLevel(s.jobs[job] ?? 0), b = profLevel(jobs[job]);
+      if (b.i > a.i) lvlUp = `${b.en} ${prof.en}`;
+    }
+    void (n > 0 ? earn(n, why) : Promise.resolve()).then(() => {
+      if (lvlUp) { say(`Congratulations! You are now a ${lvlUp}!`); flash(`Promotion! You are now a ${lvlUp}!`); void earn(10, 'Promotion!'); } if (bonus) { say('Well done! You finished all your missions for today!'); void earn(10, 'All daily missions done!'); } });
   };
   const daily = save.daily?.date === todayKey() ? save.daily : dailyFor(todayKey());
   const dailyDone = daily.ids.filter((id) => (daily.prog[id] ?? 0) >= (MISSIONS.find((m) => m.id === id)?.n ?? 2)).length;
@@ -183,6 +204,8 @@ export default function IslandGame() {
     return () => window.clearInterval(id);
   }, [ready]);
   const startTalk = (who: string) => {
+    const nd = nextDialog(who, saveRef.current.dialogs ?? []);
+    if (nd) { setDlg({ d: nd, node: 'start' }); say(nd.nodes.start.say); setPanel('dialog'); return; }
     const t = TALKS[Math.floor(Math.random() * TALKS.length)];
     setTalk({ who, q: t.q, right: t.a[0], opts: [...t.a].sort(() => Math.random() - 0.5) }); say(t.q); setPanel('npc');
   };
@@ -323,6 +346,26 @@ export default function IslandGame() {
     if (!kq || kq.picked) return; setKq({ ...kq, picked: o });
     if (o === kq.a) { say(o); done('keeper', 2, 'Good answer, sailor!'); } else sfx.bad();
   };
+  const pickDialog = (o: { t: string; to?: string; bad?: string }) => {
+    if (!dlg) return;
+    if (o.bad) { sfx.bad(); setDlg({ ...dlg, react: o.bad, said: o.t }); say(o.bad); return; }
+    sfx.pick();
+    if (o.to) { const n = dlg.d.nodes[o.to]; setDlg({ d: dlg.d, node: o.to, said: o.t }); say(n.say); return; }
+    // кінець розмови: новий друг
+    const s = saveRef.current; const who = dlg.d.npc;
+    const friends = { ...(s.friends ?? {}), [who]: (s.friends?.[who] ?? 0) + 1 };
+    setDlg({ ...dlg, node: '__end', said: o.t });
+    done('chat', 3, `Great talk with ${who}!`, { dialogs: [...(s.dialogs ?? []), dlg.d.id], friends, talks: (s.talks ?? 0) + 1 });
+  };
+  const chooseProf = (id: string) => {
+    const p = PROFS.find((x) => x.id === id); if (!p) return;
+    const s = saveRef.current; const uni = Object.values(p.uniform).filter((v) => typeof v === 'string' && /^(hat|glasses|scarf|bag|cape|bow|top|hold)-/.test(v as string)) as string[];
+    persist({ ...s, prof: id, owned: [...new Set([...s.owned, ...uni])], outfit: { ...s.outfit, ...p.uniform } });
+    say(`You are a ${p.en} now!`); flash(`New job: ${p.en}! You get +2 coins for every ${p.en.toLowerCase()} job.`);
+  };
+  const styleOwned = (id: string) => STARTER.includes(id) || save.owned.includes(id) || (STYLE.find((x) => x.id === id)?.price ?? 1) === 0;
+  const wearStyle = (id: string) => { const part = id.split('-')[0] as StylePart; persist({ ...saveRef.current, outfit: { ...saveRef.current.outfit, [part]: id } }); };
+  const colourKey: Record<string, keyof Save['outfit']> = { hair: 'hairC', top: 'topC', bottom: 'bottomC', shoes: 'shoesC' };
   // ---- дім всередині ----
   const furnOwned = FURN.filter((f) => save.owned.includes(`furn-${f.f}`));
   const room = save.room ?? [];
@@ -334,6 +377,47 @@ export default function IslandGame() {
   };
   onPickRef.current = (i) => { sfx.pick(); setDecor({ on: true, placing: null, picked: i }); };
   useEffect(() => { sc.current?.setDecor(decor.on, decor.placing); }, [decor]);
+  useEffect(() => { if (sc.current) { sc.current.portrait = panel === 'style'; sc.current.portraitShift = window.innerWidth < 640 ? 0 : 1.2; } }, [panel]);
+  // мініатюри для відкритої вкладки
+  useEffect(() => {
+    if (panel === 'store') wantThumbs(tab === 'Clothes' ? [...FUR.map((f) => f.id), ...SHOP.filter((x) => x.cat === 'Clothes').map((x) => x.id)] : SHOP.filter((x) => x.cat === tab).map((x) => x.id));
+    if (panel === 'home') wantThumbs(SHOP.filter((x) => save.owned.includes(x.id)).map((x) => x.id));
+    if (panel === 'style') wantThumbs(stab === 'acc' ? SHOP.filter((x) => x.cat === 'Clothes').map((x) => x.id) : stab === 'fur' ? FUR.map((f) => f.id) : STYLE.filter((x) => x.part === stab).map((x) => x.id));
+  }, [panel, tab, stab]); // eslint-disable-line react-hooks/exhaustive-deps
+  // ---- де зупинився: позиція, кімната, завдання ----
+  const placeName = () => {
+    const sx = sc.current; if (!sx) return '';
+    if (sx.inside) return sx.roomId === 'home' ? 'at home' : `in the ${sx.roomId === 'house' ? 'house of Grandma Rose' : sx.roomId}`;
+    let best = DESTS[0], bd = 1e9; DESTS.forEach((d) => { const k = Math.hypot(d.x - sx.heroPos.x, d.z - sx.heroPos.z); if (k < bd) { bd = k; best = d; } });
+    return `near ${best.name}`;
+  };
+  const doingText = () => delivery ? `delivering a parcel to ${delivery.addr.no} ${delivery.addr.street}` : taxi?.driving ? `driving a passenger to ${taxi.dest.name}` : lost ? `looking for a ${lost.thing.en}` : errand ? `helping Grandma Rose: ${errand.item}` : '';
+  const snapRef = useRef<() => Save>(() => saveRef.current);
+  snapRef.current = () => {
+    const sx = sc.current; const s = saveRef.current; if (!sx) return s;
+    const pos = sx.inside ? { x: sx.outPos.x, z: sx.outPos.z, room: sx.roomId } : { x: sx.heroPos.x, z: sx.heroPos.z, room: null };
+    return { ...s, pos, tasks: { delivery: delivery ? { a: delivery.addr.id, text: delivery.text } : null, lost: lost ? { ...lost } : null, errand: errand ?? null }, last: { at: new Date().toISOString(), place: placeName(), doing: doingText() } };
+  };
+  useEffect(() => {
+    if (!ready) return;
+    const id = window.setInterval(() => { if (restored.current) persist(snapRef.current()); }, 15000);
+    const bye = () => { if (!restored.current) return; const s = snapRef.current(); try { localStorage.setItem(LS, JSON.stringify(s)); } catch { /* */ } if (isSignedIn) navigator.sendBeacon?.('/api/game', new Blob([JSON.stringify({ game: 'island', data: s })], { type: 'application/json' })); };
+    window.addEventListener('pagehide', bye); return () => { window.clearInterval(id); window.removeEventListener('pagehide', bye); };
+  }, [ready, isSignedIn, persist]);
+  // відновити, де учень зупинився
+  useEffect(() => {
+    if (!ready || restored.current || !isLoaded) return;
+    const t = window.setTimeout(() => {
+      const s = saveRef.current; const sx = sc.current; restored.current = true; if (!sx) return;
+      if (s.pos && Math.hypot(s.pos.x, s.pos.z) < 90) { sx.setHeroPos(s.pos.x, s.pos.z); if (s.pos.room) { sx.enterRoom(s.pos.room); setInside(s.pos.room); } }
+      const tk = (s.tasks ?? {}) as { delivery?: { a: string; text: string } | null; lost?: (LostTask & { found: boolean }) | null; errand?: (ReturnType<typeof errandTask> & { stage: 'get' | 'bring' }) | null };
+      if (tk.delivery) { const a = ADDRS.find((x) => x.id === tk.delivery!.a); if (a) { setDelivery({ addr: a, text: tk.delivery.text, at: Date.now(), hint: true }); sx.setCarry(true); } }
+      if (tk.lost) { setLost(tk.lost); if (!tk.lost.found) sx.setLost(tk.lost.place.x, tk.lost.place.z, tk.lost.thing.id, tk.lost.thing.c); }
+      if (tk.errand) setErrand(tk.errand);
+      if (s.last?.place) flash(`Welcome back! You were ${s.last.place}.`);
+    }, 1500);
+    return () => window.clearTimeout(t);
+  }, [ready, isLoaded]); // eslint-disable-line react-hooks/exhaustive-deps
   const roomEdit = (op: 'turn' | 'move' | 'away') => {
     const i = decor.picked; if (i === null) return; const list = [...room]; const it = list[i]; if (!it) return;
     if (op === 'turn') { list[i] = { ...it, r: (it.r + Math.PI / 2) % (Math.PI * 2) }; persist({ ...saveRef.current, room: list }); return; }
@@ -383,6 +467,8 @@ export default function IslandGame() {
         <button type="button" className="il-chip" onClick={() => setPanel('jobs')}>Map</button>
         <button type="button" className="il-chip" onClick={() => setPanel('store')}>Shop</button>
         <button type="button" className="il-chip" onClick={() => setPanel('home')}>My stuff</button>
+        <button type="button" className="il-chip il-chip--y" onClick={() => setPanel('style')}>My look</button>
+        <button type="button" className="il-chip" onClick={() => setPanel('career')}>{PROFS.find((p) => p.id === save.prof)?.en ?? 'Choose a job'}</button>
         {inside ? <>
           {inside === 'home' && <button type="button" className={`il-chip ${decor.on ? 'il-chip--y' : ''}`} onClick={() => setDecor(decor.on ? { on: false, placing: null, picked: null } : { on: true, placing: null, picked: null })}>{decor.on ? 'Done' : 'Decorate'}</button>}
           <button type="button" className="il-chip" onClick={() => { sc.current?.exitHome(); setInside(null); setDecor({ on: false, placing: null, picked: null }); }}>Go outside</button>
@@ -430,7 +516,32 @@ export default function IslandGame() {
         {near && <button type="button" className="is-y" onClick={act}>Go!</button>}
       </div>
 
-      {panel && (
+      {panel === 'style' && (
+        <div className="il-side">
+          <button type="button" className="il-x" onClick={() => setPanel(null)} aria-label="Close">✕</button>
+          <h2>My look</h2>
+          <p className="il-note">You have <b>{coins ?? 0}</b> coins. Basic things are free.</p>
+          <div className="il-tabs">{([['hair', 'Hair'], ['top', 'Tops'], ['bottom', 'Trousers'], ['shoes', 'Shoes'], ['hold', 'In my paw'], ['acc', 'Hats & more'], ['fur', 'Fur']] as [typeof stab, string][]).map(([k, l]) => <button key={k} type="button" className={stab === k ? 'on' : ''} onClick={() => setStab(k)}>{l}</button>)}</div>
+          {colourKey[stab] && <div className="il-swatches">{(stab === 'hair' ? HAIR_COLOURS : STYLE_COLOURS).map((c) => <button key={c} type="button" aria-label={c} className={save.outfit[colourKey[stab]] === c ? 'on' : ''} style={{ background: c }} onClick={() => persist({ ...saveRef.current, outfit: { ...saveRef.current.outfit, [colourKey[stab]]: c } })} />)}</div>}
+          <div className="il-shop il-shop--side">
+            {stab !== 'acc' && stab !== 'fur' && STYLE.filter((x) => x.part === stab).map((it) => { const on = (save.outfit as Record<string, string | undefined>)[it.part] === it.id || (!(save.outfit as Record<string, string | undefined>)[it.part] && it.id.endsWith('-none')); return (
+              <div key={it.id} className={`il-item ${on ? 'on' : ''}`}>{thumbs[it.id] ? <img className="il-thumb" src={thumbs[it.id]} alt="" /> : <i className="il-thumb-wait" />}<span>{it.en}</span>
+                {styleOwned(it.id) ? <button type="button" onClick={() => wearStyle(it.id)}>{on ? 'Wearing' : 'Wear'}</button>
+                  : <button type="button" className="buy" onClick={async () => { if (await buy({ id: it.id, price: it.price, en: it.en })) wearStyle(it.id); }}><i className="il-coin" /> {it.price}</button>}
+              </div>); })}
+            {stab === 'acc' && SHOP.filter((x) => x.cat === 'Clothes').map((it) => (
+              <div key={it.id} className={`il-item ${worn(it) ? 'on' : ''}`}>{thumbs[it.id] ? <img className="il-thumb" src={thumbs[it.id]} alt="" /> : <i className="il-thumb-wait" />}<span>{it.en}</span>
+                {owned(it.id) ? <button type="button" onClick={() => equip(it)}>{worn(it) ? 'Take off' : 'Wear'}</button> : <button type="button" className="buy" onClick={() => onBuy(it)}><i className="il-coin" /> {it.price}</button>}
+              </div>))}
+            {stab === 'fur' && FUR.map((f) => (
+              <div key={f.id} className={`il-item ${save.outfit.fur === f.id ? 'on' : ''}`}>{thumbs[f.id] ? <img className="il-thumb" src={thumbs[f.id]} alt="" /> : <i style={{ background: f.color }} />}<span>{f.en}</span>
+                {owned(f.id) || !f.price ? <button type="button" onClick={() => persist({ ...save, outfit: { ...save.outfit, fur: f.id } })}>{save.outfit.fur === f.id ? 'Wearing' : 'Wear'}</button>
+                  : <button type="button" className="buy" onClick={async () => { if (await buy(f)) persist({ ...saveRef.current, outfit: { ...saveRef.current.outfit, fur: f.id } }); }}><i className="il-coin" /> {f.price}</button>}
+              </div>))}
+          </div>
+        </div>
+      )}
+      {panel && panel !== 'style' && (
         <div className="il-modal" role="dialog" onClick={(e) => { if (e.target === e.currentTarget) setPanel(null); }}>
           <div className="il-card">
             <button type="button" className="il-x" onClick={() => setPanel(null)} aria-label="Close">✕</button>
@@ -444,6 +555,9 @@ export default function IslandGame() {
                 <li><b>Camera:</b> drag the screen. <b>Zoom:</b> mouse wheel.</li>
                 <li><b>Explore:</b> find 10 golden stars and chat with the cats who live on the island.</li>
                 <li><b>Jobs:</b> Post Office (deliver parcels), Cat Cafe (make sandwiches), Fruit Market (count fruit), Bakery (bake cakes), Boutique (find clothes), Taxi (drive passengers), Fishing pier (word riddles).</li>
+                <li><b>Your cat:</b> press My look to choose hair, clothes, shoes and something to hold. Press Choose a job to pick your profession.</li>
+                <li><b>Talk:</b> every cat on the island has their own stories. Choose your answers and make friends!</li>
+                <li><b>Saving:</b> the game remembers where you stopped.</li>
                 <li><b>More jobs:</b> sell ice cream on the beach, find lost things from the notice board near the fountain, help Grandma Rose in any house, and answer Captain Ted’s questions in the lighthouse.</li>
                 <li><b>Every day:</b> three new missions. Finish all three for 10 bonus coins. Win badges for your jobs.</li>
                 <li><b>Buildings:</b> you can go into every building: the shops, the cafe, the post office, the lighthouse and the houses. The jobs are at the counters inside.</li>
@@ -538,6 +652,7 @@ export default function IslandGame() {
               <p className="il-sub">On the counter</p>
               <div className="il-grid">{rack.length ? rack.map((r) => <button key={r} type="button" className="il-pick on" onClick={() => setRack(rack.filter((x) => x !== r))}><i className="il-dot" style={{ background: COLOURS.find((c) => r.startsWith(c.id + ' '))?.c }} />{r} ✕</button>) : <span className="il-note">Nothing yet</span>}</div>
               <button type="button" className="il-go" onClick={checkDress} disabled={!rack.length}>Give the clothes</button>
+              <button type="button" className="il-mini" onClick={() => setPanel('style')}>Shop for my own clothes</button>
             </>}
 
             {panel === 'taxi' && taxi && <>
@@ -599,6 +714,33 @@ export default function IslandGame() {
               <p className="il-note">Now: {timeWords(clock.hour)}</p>
             </>}
 
+            {panel === 'dialog' && dlg && <>
+              <h2>{dlg.d.npc}</h2>
+              <p className="il-note">{dlg.d.title}</p>
+              {dlg.said && <p className="il-me">{dlg.said}</p>}
+              {dlg.node === '__end' ? <>
+                <p className="il-note">You made a friend! {dlg.d.npc} likes you more now. Talk again later for a new story.</p>
+                <button type="button" className="il-go" onClick={() => { setDlg(null); setPanel(null); }}>Bye!</button>
+              </> : <>
+                <p className="il-say">&ldquo;{dlg.react ?? dlg.d.nodes[dlg.node].say}&rdquo; <button type="button" className="il-mini" onClick={() => say(dlg.react ?? dlg.d.nodes[dlg.node].say)}>Listen</button></p>
+                {dlg.react && <p className="il-note">Try another answer.</p>}
+                <p className="il-sub">Your answer</p>
+                <div className="il-grid il-grid--col">{dlg.d.nodes[dlg.node].opts.map((o) => <button key={o.t} type="button" className="il-pick" onClick={() => pickDialog(o)}>{o.t}</button>)}</div>
+              </>}
+            </>}
+
+            {panel === 'career' && <>
+              <h2>Choose your job</h2>
+              <p className="il-note">You can do every job, but your own job gives you <b>+2 coins</b> each time, a uniform and promotions: Trainee, Junior, Senior, Master, Legend.</p>
+              <div className="il-profs">{PROFS.map((p) => { const n = save.jobs[p.job] ?? 0; const lv = profLevel(n); const mine = save.prof === p.id; return (
+                <div key={p.id} className={mine ? 'on' : ''}>
+                  <b>{p.en}</b><span>{p.what}</span>
+                  <span className="il-lv">{lv.en}{lv.next ? ` · ${n}/${lv.next.n} jobs to ${lv.next.en}` : ''}</span>
+                  <span className="il-bar"><i style={{ width: `${lv.next ? Math.min(100, ((n - lv.n) / (lv.next.n - lv.n)) * 100) : 100}%` }} /></span>
+                  {mine ? <button type="button" disabled>My job</button> : <button type="button" onClick={() => chooseProf(p.id)}>Choose</button>}
+                </div>); })}</div>
+            </>}
+
             {panel === 'store' && <>
               <h2>Murly Store</h2>
               <p className="il-note">You have <b>{coins ?? 0}</b> coins.</p>
@@ -610,12 +752,12 @@ export default function IslandGame() {
                   </div>); })}</div></>}
               {tab === 'Clothes' && <><p className="il-sub">Fur colour</p>
                 <div className="il-shop">{FUR.map((f) => (
-                  <div key={f.id} className={`il-item ${save.outfit.fur === f.id ? 'on' : ''}`}><i style={{ background: f.color }} /><span>{f.en}</span>
+                  <div key={f.id} className={`il-item ${save.outfit.fur === f.id ? 'on' : ''}`}>{thumbs[f.id] ? <img className="il-thumb" src={thumbs[f.id]} alt="" /> : <i style={{ background: f.color }} />}<span>{f.en}</span>
                     {owned(f.id) || !f.price ? <button type="button" onClick={() => persist({ ...save, outfit: { ...save.outfit, fur: f.id } })}>{save.outfit.fur === f.id ? 'Wearing' : 'Wear'}</button>
                       : <button type="button" className="buy" onClick={async () => { if (await buy(f)) persist({ ...saveRef.current, outfit: { ...saveRef.current.outfit, fur: f.id } }); }}><i className="il-coin" /> {f.price}</button>}
                   </div>))}</div></>}
               <div className="il-shop">{SHOP.filter((s) => s.cat === tab).map((it) => (
-                <div key={it.id} className={`il-item ${worn(it) ? 'on' : ''}`}><i style={{ background: it.color ?? '#EDE6D6' }}>{ICON[it.sub]}</i><span>{it.en}</span>
+                <div key={it.id} className={`il-item ${worn(it) ? 'on' : ''}`}>{thumbs[it.id] ? <img className="il-thumb" src={thumbs[it.id]} alt="" /> : <i className="il-thumb-wait" />}<span>{it.en}</span>
                   {owned(it.id) ? <button type="button" onClick={() => equip(it)}>{it.sub === 'house' || it.sub === 'yard' ? (worn(it) ? 'Placed' : 'Place') : worn(it) ? 'Take off' : 'Use'}</button>
                     : <button type="button" className="buy" onClick={() => onBuy(it)}><i className="il-coin" /> {it.price}</button>}
                 </div>))}</div>
@@ -627,11 +769,13 @@ export default function IslandGame() {
               {(['Clothes', 'Home', 'Transport', 'Pets'] as Cat[]).map((c) => {
                 const mine = SHOP.filter((s) => s.cat === c && owned(s.id)); if (!mine.length) return null;
                 return <div key={c}><p className="il-sub">{c}</p><div className="il-shop">{mine.map((it) => (
-                  <div key={it.id} className={`il-item ${worn(it) ? 'on' : ''}`}><i style={{ background: it.color ?? '#EDE6D6' }}>{ICON[it.sub]}</i><span>{it.en}</span>
+                  <div key={it.id} className={`il-item ${worn(it) ? 'on' : ''}`}>{thumbs[it.id] ? <img className="il-thumb" src={thumbs[it.id]} alt="" /> : <i className="il-thumb-wait" />}<span>{it.en}</span>
                     <button type="button" onClick={() => equip(it)}>{it.sub === 'house' || it.sub === 'yard' ? (worn(it) ? 'Placed' : 'Place') : worn(it) ? 'Take off' : 'Use'}</button></div>))}</div></div>;
               })}
               {save.yard.length > 0 && <button type="button" className="il-mini" onClick={() => persist({ ...save, yard: [] })}>Clear my yard</button>}
               {furnOwned.length > 0 && <p className="il-note">Furniture: {furnOwned.map((f) => f.en).join(', ')}. Go inside your home and press Decorate.</p>}
+              {Object.keys(save.friends ?? {}).length > 0 && <><p className="il-sub">My friends</p><p className="il-note">{Object.entries(save.friends ?? {}).map(([n, v]) => `${n} (${v})`).join(', ')}</p></>}
+              <p className="il-note">Stories heard: {(save.dialogs ?? []).length} / {DIALOGS.length}</p>
               <button type="button" className="il-mini" onClick={() => setPanel('today')}>Missions and badges</button>
               <button type="button" className="il-go" onClick={() => { if (inside) { setPanel(null); return; } sc.current?.teleportHome(); setPanel(null); }}>Go to my home</button>
             </>}
@@ -642,4 +786,3 @@ export default function IslandGame() {
   );
 }
 function fmtHour(h: number) { const hh = Math.floor(h); const m = h % 1 ? '30' : '00'; return `${((hh + 11) % 12) + 1}:${m} ${hh < 12 ? 'am' : 'pm'}`; }
-const ICON: Record<string, string> = { hat: 'H', glasses: 'G', scarf: 'S', bag: 'B', house: 'H', yard: 'Y', ride: 'R', pet: 'P' };
