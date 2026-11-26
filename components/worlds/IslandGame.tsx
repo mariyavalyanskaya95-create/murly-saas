@@ -9,15 +9,16 @@ import { say, sfx } from '@/lib/worlds/sound';
 import { DIALOGS, nextDialog, type Dialog } from '@/lib/worlds/island-dialogs';
 import { CHAT, IslandNet, type NetPlayer } from '@/lib/worlds/island-net';
 import { checkChat, FILTER_MSG } from '@/lib/chat-filter';
+import { migrateSave, npcTrade, TRADE_WANTS } from '@/lib/worlds/island-data';
 import { GRAMMAR, LISTEN_WORDS, LOST_PLACES, treasureHunt, PRODUCTS, SHELVES, DISHES, STARTER_PANTRY, cookResult, productOf } from '@/lib/worlds/island-data';
 import { ACT, EMOTES, FOODS, FRIDGE, INGREDIENTS, RECIPES, friendLevel, CHOICES, MELODIES, SKILLS, SKILL_OF, skillLevel, CROPS, cropProgress, JOKES, COMPLIMENTS, RPS, FURN_ALL, FURN_CATS } from '@/lib/worlds/island-data';
 import { ADDRS, DESTS, HAIR_COLOURS, PROFS, STARTER, STYLE, STYLE_COLOURS, profLevel, type StylePart } from '@/lib/worlds/island-data';
 import { ICE, ICE_TOP, errandTask, iceOrder, keeperQuestion, lostTask, timeWords, type LostTask } from '@/lib/worlds/island-data';
-import { BADGES, CAFE_DRINK, CAFE_FOOD, CLOTHES, COLOURS, FISH, FLAVOURS, FRUIT, FUR, FURN, MISSIONS, RIDDLES, SHOP, START, TALKS, TOPPINGS, cafeOrder, cakeOrder, catchFish, dailyFor, deliveryTask, dressOrder, fruitOrder, single, taxiTask, todayKey, type Addr, type Cat, type Save, type ShopItem } from '@/lib/worlds/island-data';
+import { BADGES, CAFE_DRINK, CAFE_FOOD, CLOTHES, COLOURS, FISH, FLAVOURS, FRUIT, FUR, FURN, MISSIONS, RIDDLES, SHOP, START, TALKS, TOPPINGS, cafeOrder, cakeOrder, catchFish, dailyFor, deliveryTask, dressOrder, fruitOrder, single, taxiTask, todayKey, type Addr, type Cat, type RoomItem, type Save, type ShopItem } from '@/lib/worlds/island-data';
 import type { IslandScene } from '@/lib/worlds/island-scene';
 import type { Spot } from '@/lib/worlds/island-data';
 
-type Panel = null | 'post' | 'cafe' | 'market' | 'store' | 'home' | 'help' | 'npc' | 'jobs' | 'bakery' | 'boutique' | 'taxi' | 'pier' | 'today' | 'icecream' | 'board' | 'errand' | 'keeper' | 'style' | 'career' | 'dialog' | 'fridge' | 'cook' | 'bag' | 'friend' | 'acts' | 'choose' | 'book' | 'wordgame' | 'garden' | 'skills' | 'joke' | 'nice' | 'rps' | 'school' | 'online' | 'chat' | 'shelf' | 'checkout';
+type Panel = null | 'post' | 'cafe' | 'market' | 'store' | 'home' | 'help' | 'npc' | 'jobs' | 'bakery' | 'boutique' | 'taxi' | 'pier' | 'today' | 'icecream' | 'board' | 'errand' | 'keeper' | 'style' | 'career' | 'dialog' | 'fridge' | 'cook' | 'bag' | 'friend' | 'acts' | 'choose' | 'book' | 'wordgame' | 'garden' | 'skills' | 'joke' | 'nice' | 'rps' | 'school' | 'online' | 'chat' | 'shelf' | 'checkout' | 'tradenpc' | 'tradeplayer';
 type Tab = Cat | 'Furniture';
 const LS = 'murly-island-v1';
 const GUEST_COINS = 60;
@@ -99,6 +100,14 @@ export default function IslandGame() {
   const [held, setHeld] = useState<string | null>(null);
   const [pan, setPan] = useState<string[]>([]);
   const onPropRef = useRef<(i: number) => void>(() => {});
+  // обмін і гості
+  const [visitHost, setVisitHost] = useState<{ id: string; n: string } | null>(null);
+  const visitRef = useRef<{ id: string; n: string } | null>(null); visitRef.current = visitHost;
+  const insideRef = useRef<string | null>(null);
+  const [offers, setOffers] = useState<{ from: string; n: string; give: string; want: string; tid: string }[]>([]);
+  const [tradeTo, setTradeTo] = useState<{ id: string; n: string } | null>(null);
+  const [tGive, setTGive] = useState(''); const [tWant, setTWant] = useState('');
+  const pendingTrade = useRef<Record<string, { give: string; want: string }>>({});
   const onPutRef = useRef<(x: number, y: number, z: number) => void>(() => {});
   // 3D-мініатюри речей
   const wantThumbs = useCallback((ids: string[]) => {
@@ -138,11 +147,11 @@ export default function IslandGame() {
     if (!isLoaded) return;
     const local = (() => { try { return JSON.parse(localStorage.getItem(LS) || 'null') as Save | null; } catch { return null; } })();
     if (isSignedIn) {
-      fetch('/api/game?game=island').then((r) => r.json()).then((d) => setSave({ ...START, ...(d.data ?? local ?? {}) })).catch(() => local && setSave({ ...START, ...local }));
+      fetch('/api/game?game=island').then((r) => r.json()).then((d) => setSave(migrateSave({ ...START, ...(d.data ?? local ?? {}), v: (d.data ?? local)?.v ?? (d.data || local ? 1 : 2) } as Save))).catch(() => local && setSave(migrateSave({ ...START, ...local, v: local.v ?? 1 } as Save)));
       fetch('/api/coins').then((r) => r.json()).then((d) => setCoins(Number(d.balance ?? 0))).catch(() => setCoins(0));
       fetch('/api/student').then((r) => r.json()).then((d) => setWords(Array.isArray(d.words) ? d.words : [])).catch(() => {});
     } else {
-      const s = { ...START, ...(local ?? {}) }; setSave(s); setCoins(s.localCoins ?? GUEST_COINS);
+      const s = migrateSave({ ...START, ...(local ?? {}), v: local ? local.v ?? 1 : 2 } as Save); setSave(s); setCoins(s.localCoins ?? GUEST_COINS);
     }
   }, [isLoaded, isSignedIn]);
   const timer = useRef<number | null>(null);
@@ -159,6 +168,7 @@ export default function IslandGame() {
     s.setOutfit(save.outfit); s.setRide(taxi?.driving ? 'ride-taxi' : save.ride); s.setPet(save.pet);
     if (JSON.stringify(s.roomList) !== JSON.stringify(save.room ?? [])) void s.setRoom(save.room ?? []);
     if (s.houseLevel !== save.house) void s.setHouse(save.house);
+    s.setHome(Math.max(1, save.house), save.homeWall ?? '', save.homeFloor ?? 'floor-light');
     if (s.yardList.join() !== save.yard.join()) void s.setYard(save.yard);
     s.setGot(save.stars ?? []); setStarCount((save.stars ?? []).length);
   }, [save, ready, taxi?.driving]);
@@ -184,6 +194,7 @@ export default function IslandGame() {
       persist({ ...saveRef.current, owned: [...saveRef.current.owned, it.id] });
     }
     sfx.coin(); say(`You bought a ${it.en}!`); flash(`You bought: ${it.en}!`);
+    if (saveRef.current.goal?.id === it.id) window.setTimeout(() => persist({ ...saveRef.current, goal: null }), 50);
     return true;
   };
 
@@ -197,6 +208,7 @@ export default function IslandGame() {
       if (!d.paid && d.ids.every((id) => (d.prog[id] ?? 0) >= (MISSIONS.find((m) => m.id === id)?.n ?? 2))) { d.paid = true; bonus = true; }
     }
     persist({ ...s, ...extra, jobs, daily: d });
+    n = Math.min(15, Math.round(n * 1.5));
     const prof = PROFS.find((p) => p.id === s.prof);
     let lvlUp: string | null = null;
     if (prof && prof.job === job && n > 0) {
@@ -616,7 +628,20 @@ export default function IslandGame() {
     if (!netId.current) { try { netId.current = localStorage.getItem('murly-net-id') || ''; if (!netId.current) { netId.current = Math.random().toString(36).slice(2, 10); localStorage.setItem('murly-net-id', netId.current); } } catch { netId.current = Math.random().toString(36).slice(2, 10); } }
     const n = new IslandNet(netId.current, {
       onStatus: setNetOk,
-      onPlayer: (p) => { if (muted.current.has(p.id)) return; sc.current?.upsertOther(p); setOnline((o) => ({ ...o, [p.id]: { ...p, last: Date.now() } })); },
+      onPlayer: (p) => {
+        if (muted.current.has(p.id)) return;
+        const sx = sc.current; const pr = p as NetPlayer & { rx?: number; rz?: number };
+        let world: { x: number; z: number } | null = { x: p.x, z: p.z };
+        if (p.room && sx) {
+          let o: { x: number; z: number } | null | undefined = null;
+          if (p.room === 'home') o = visitRef.current?.id === p.id && insideRef.current === 'guesthome' ? sx.origins.guesthome : null;
+          else if (p.room.startsWith('guest:')) { const host = p.room.slice(6); o = host === netId.current && insideRef.current === 'home' ? sx.origins.home : visitRef.current?.id === host && insideRef.current === 'guesthome' ? sx.origins.guesthome : null; }
+          else o = sx.origins[p.room];
+          world = o && pr.rx !== undefined ? { x: o.x + pr.rx, z: o.z + (pr.rz ?? 0) } : null;
+        }
+        if (world) sx?.upsertOther({ ...p, ...world, room: null }); else sx?.removeOther(p.id);
+        setOnline((o) => ({ ...o, [p.id]: { ...p, last: Date.now() } }));
+      },
       onLeave: (id) => { sc.current?.removeOther(id); setOnline((o) => { const c = { ...o }; delete c[id]; return c; }); },
       onSay: (id, text) => { if (muted.current.has(id)) return; sc.current?.otherSay(id, text); setOnline((o) => { const nm = o[id]?.n ?? 'Cat'; setChatLog((l) => [...l.slice(-19), { n: nm, t: text }]); return o; }); },
       onEvent: (id, ev, data) => {
@@ -625,6 +650,11 @@ export default function IslandGame() {
         if (ev === 'dance') sc.current?.otherDance(id);
         if (ev === 'chat') { const t = String(data.text ?? ''); const c = checkChat(t); if (!c.ok) return; sc.current?.otherSay(id, c.text); setChatLog((l) => [...l.slice(-29), { n: String(data.n ?? 'Cat'), t: c.text, mid: Number(data.mid ?? 0) }]); }
         if (ev === 'friendreq' && data.to === netId.current) { const nm = String(data.n ?? 'Cat'); setReqs((r) => (r.some((x) => x.id === id) ? r : [...r, { id, n: nm }])); flash(`${nm} wants to be your friend! Open Online to say yes.`); say(`${nm} wants to be your friend!`); }
+        if (ev === 'homereq' && data.to === netId.current) { const s0 = saveRef.current; net.current?.send('homedata', { to: id, room: s0.room ?? [], level: s0.house || 1, wall: s0.homeWall ?? '', floor: s0.homeFloor ?? 'floor-light', n: myName() }); flash(`${String(data.n ?? 'A friend')} is coming to visit your home!`); say('Someone is coming to visit you!'); }
+        if (ev === 'homedata' && data.to === netId.current) { const nm = String(data.n ?? 'Cat'); void sc.current?.buildGuestHome({ room: (data.room as RoomItem[]) ?? [], level: Number(data.level ?? 1), wall: String(data.wall ?? ''), floor: String(data.floor ?? '') }).then(() => { if (sc.current?.inside) sc.current.exitHome(); sc.current?.enterRoom('guesthome'); setInside('guesthome'); setVisitHost({ id, n: nm }); tell(`I'm visiting ${nm}'s home. What a nice place!`); }); }
+        if (ev === 'tradeoffer' && data.to === netId.current) { const o0 = { from: id, n: String(data.n ?? 'Cat'), give: String(data.give ?? ''), want: String(data.want ?? ''), tid: String(data.tid ?? '') }; if (!productOf(o0.give) && !o0.give.startsWith('dish:') && !foodOf(o0.give)) return; setOffers((x) => [...x.filter((y) => y.from !== id), o0]); flash(`${o0.n} wants to swap! Open Online to see.`); }
+        if (ev === 'tradeok' && data.to === netId.current) { const t = pendingTrade.current[String(data.tid ?? '')]; if (t) { delete pendingTrade.current[String(data.tid)]; const b = { ...(saveRef.current.bag ?? {}) }; b[t.want] = (b[t.want] ?? 0) + 1; persist({ ...saveRef.current, bag: b }); flash(`Swap done! You got ${foodOf(t.want)?.en ?? t.want}.`); sfx.coin(); } }
+        if (ev === 'tradeno' && data.to === netId.current) { const t = pendingTrade.current[String(data.tid ?? '')]; if (t) { delete pendingTrade.current[String(data.tid)]; addItem(t.give); flash('They said no thanks. Your thing is back in your bag.'); } }
         if (ev === 'friendok' && data.to === netId.current) { const nm = String(data.n ?? 'Cat'); addNetFriend(id, nm); flash(`${nm} is your friend now!`); }
       },
     });
@@ -641,7 +671,8 @@ export default function IslandGame() {
     if (!force && Math.abs(pos.x - L.x) + Math.abs(pos.z - L.z) + Math.abs(pos.r - L.r) < 0.05 && now - L.t < 3000) return;
     lastSent.current = { ...pos, t: now };
     const s0 = saveRef.current; const pr = PROFS.find((p) => p.id === s0.prof);
-    n.send('pos', { n: myName(), ...pos, room: sx.inside ? sx.roomId : null, o: s0.outfit as unknown as Record<string, string>, ride: sx.boating ? null : sx.rideId, prof: pr?.en ?? '', lv: pr ? profLevel(s0.jobs[pr.job] ?? 0).en : '' });
+    const rel = sx.inside ? { rx: Math.round((sx.heroPos.x - sx.cur.x) * 10) / 10, rz: Math.round((sx.heroPos.z - sx.cur.z) * 10) / 10 } : {};
+    n.send('pos', { n: myName(), ...pos, ...rel, room: sx.inside ? (sx.roomId === 'guesthome' ? `guest:${visitRef.current?.id ?? ''}` : sx.roomId) : null, o: s0.outfit as unknown as Record<string, string>, ride: sx.boating ? null : sx.rideId, prof: pr?.en ?? '', lv: pr ? profLevel(s0.jobs[pr.job] ?? 0).en : '' });
   };
   useEffect(() => { if (!netOk) return; const id = window.setInterval(() => sendPos(), 200); return () => window.clearInterval(id); }, [netOk]); // eslint-disable-line react-hooks/exhaustive-deps
   const sayNet = (text: string) => { net.current?.send('say', { text }); sc.current?.bubble(text.length > 18 ? text.slice(0, 17) + '…' : text, 3); setChatLog((l) => [...l.slice(-19), { n: myName(), t: text, me: true }]); say(text); };
@@ -699,6 +730,32 @@ export default function IslandGame() {
     if (!held) return; const list = [...props, { f: held, x, y, z, room: roomKey() }].slice(-60); persist({ ...saveRef.current, props: list }); sfx.pick();
     const f = foodOf(held); tell(`I'm putting the ${f?.en ?? 'thing'} ${y > 0.3 ? 'on the table' : 'on the floor'}.`); holdItem(null);
   };
+  // ---- обмін ----
+  useEffect(() => { insideRef.current = inside; if (inside !== 'guesthome' && visitHost) setVisitHost(null); }, [inside]); // eslint-disable-line react-hooks/exhaustive-deps
+  const haveItem = (id: string) => (saveRef.current.bag?.[id] ?? 0) + (saveRef.current.pantry?.[id] ?? 0) > 0;
+  const takeItem = (id: string) => { const s0 = saveRef.current; const b = { ...(s0.bag ?? {}) }; const pt = { ...(s0.pantry ?? {}) }; if (b[id]) { b[id] -= 1; if (!b[id]) delete b[id]; } else if (pt[id]) { pt[id] -= 1; if (!pt[id]) delete pt[id]; } else return false; persist({ ...s0, bag: b, pantry: pt }); return true; };
+  const addItem = (id: string) => { const s0 = saveRef.current; const b = { ...(s0.bag ?? {}) }; b[id] = (b[id] ?? 0) + 1; persist({ ...s0, bag: b }); };
+  const myItems = () => { const all: Record<string, number> = {}; Object.entries(saveRef.current.bag ?? {}).forEach(([k, n]) => { all[k] = (all[k] ?? 0) + n; }); Object.entries(saveRef.current.pantry ?? {}).forEach(([k, n]) => { all[k] = (all[k] ?? 0) + n; }); return all; };
+  const npcSwap = () => {
+    if (npcI === null) return; const t = npcTrade(npcName, todayKey()); const key = `trade:${npcName}:${todayKey()}`;
+    if ((saveRef.current.dialogs ?? []).includes(key)) { flash(`${npcName} has no more swaps today. Come back tomorrow!`, false); return; }
+    if (!takeItem(t.want)) { flash(`You need ${foodOf(t.want)?.en ?? t.want}. Buy it at the supermarket!`, false); return; }
+    const s0 = saveRef.current; persist({ ...s0, dialogs: [...(s0.dialogs ?? []), key] });
+    if (t.give.kind === 'coins') void earn(t.give.n, `Swap with ${npcName}`); else { const g = t.give; window.setTimeout(() => persist({ ...saveRef.current, owned: [...new Set([...saveRef.current.owned, g.id])] }), 60); flash(`You got: ${g.en}!`); }
+    sc.current?.npcBubble(npcI, 'Thank you!'); tell(`I gave ${npcName} ${foodOf(t.want)?.a ? foodOf(t.want)!.a + ' ' : ''}${foodOf(t.want)?.en ?? t.want}. Fair swap!`); addFriend(npcName, 1, `${npcName} likes swapping with you!`); setPanel(null);
+  };
+  const sendOffer = () => {
+    if (!tradeTo || !tGive || !tWant) return; if (!takeItem(tGive)) return; const tid = Math.random().toString(36).slice(2, 9);
+    pendingTrade.current[tid] = { give: tGive, want: tWant }; net.current?.send('tradeoffer', { to: tradeTo.id, n: myName(), give: tGive, want: tWant, tid });
+    flash(`You offered ${foodOf(tGive)?.en} for ${foodOf(tWant)?.en}. Wait for ${tradeTo.n}'s answer.`); setPanel(null);
+    window.setTimeout(() => { if (pendingTrade.current[tid]) { delete pendingTrade.current[tid]; addItem(tGive); } }, 120000);
+  };
+  const answerOffer = (o0: { from: string; n: string; give: string; want: string; tid: string }, yes: boolean) => {
+    setOffers((x) => x.filter((y) => y.tid !== o0.tid));
+    if (!yes) { net.current?.send('tradeno', { to: o0.from, tid: o0.tid }); return; }
+    if (!takeItem(o0.want)) { flash(`You don't have ${foodOf(o0.want)?.en ?? o0.want}.`, false); net.current?.send('tradeno', { to: o0.from, tid: o0.tid }); return; }
+    window.setTimeout(() => addItem(o0.give), 60); net.current?.send('tradeok', { to: o0.from, tid: o0.tid }); flash(`Swap done! You got ${foodOf(o0.give)?.en}.`); sfx.coin();
+  };
   // ---- дім всередині ----
   const furnOwned = FURN_ALL.filter((f) => save.owned.includes(`furn-${f.f}`));
   const room = save.room ?? [];
@@ -722,7 +779,7 @@ export default function IslandGame() {
   // ---- де зупинився: позиція, кімната, завдання ----
   const placeName = () => {
     const sx = sc.current; if (!sx) return '';
-    if (sx.inside) return sx.roomId === 'home' ? 'at home' : `in the ${sx.roomId?.startsWith('house') ? 'house of a neighbour' : sx.roomId}`;
+    if (sx.inside) return sx.roomId === 'home' ? 'at home' : sx.roomId === 'guesthome' ? 'visiting a friend' : `in the ${sx.roomId?.startsWith('house') ? 'house of a neighbour' : sx.roomId}`;
     let best = DESTS[0], bd = 1e9; DESTS.forEach((d) => { const k = Math.hypot(d.x - sx.heroPos.x, d.z - sx.heroPos.z); if (k < bd) { bd = k; best = d; } });
     return `near ${best.name}`;
   };
@@ -730,7 +787,7 @@ export default function IslandGame() {
   const snapRef = useRef<() => Save>(() => saveRef.current);
   snapRef.current = () => {
     const sx = sc.current; const s = saveRef.current; if (!sx) return s;
-    const pos = sx.inside ? { x: sx.outPos.x, z: sx.outPos.z, room: sx.roomId } : { x: sx.heroPos.x, z: sx.heroPos.z, room: null };
+    const pos = sx.inside ? { x: sx.outPos.x, z: sx.outPos.z, room: sx.roomId === 'guesthome' ? null : sx.roomId } : { x: sx.heroPos.x, z: sx.heroPos.z, room: null };
     return { ...s, needs: needsRef.current, pos, tasks: { delivery: delivery ? { a: delivery.addr.id, text: delivery.text } : null, lost: lost ? { ...lost } : null, errand: errand ?? null }, last: { at: new Date().toISOString(), place: placeName(), doing: doingText() } };
   };
   useEffect(() => {
@@ -763,9 +820,12 @@ export default function IslandGame() {
   const furnName = (f: string) => FURN_ALL.find((x) => x.f === f)?.en ?? f;
 
   // ---- магазин ----
-  const owned = (id: string) => save.owned.includes(id);
+  const owned = (id: string) => save.owned.includes(id) || SHOP.find((x) => x.id === id)?.price === 0;
+  const setGoal = (g: { id: string; en: string; price: number } | null) => { persist({ ...saveRef.current, goal: g }); if (g) { flash(`Saving for: ${g.en}. Do jobs to earn ${Math.max(0, g.price - (coins ?? 0))} more coins!`); say(`I'm saving for a ${g.en}!`); } };
   const equip = (it: ShopItem) => {
     const s = saveRef.current;
+    if (it.sub === 'wall') { persist({ ...s, homeWall: s.homeWall === it.id ? '' : it.id }); return; }
+    if (it.sub === 'floor') { persist({ ...s, homeFloor: it.id }); return; }
     if (it.sub === 'house') { const lvl = Number(it.id.split('-')[1]); persist({ ...s, house: Math.max(s.house, lvl) }); return; }
     if (it.sub === 'yard') { if (!s.yard.includes(it.id)) persist({ ...s, yard: [...s.yard, it.id] }); return; }
     if (it.sub === 'ride') { persist({ ...s, ride: s.ride === it.id ? null : it.id }); return; }
@@ -773,7 +833,7 @@ export default function IslandGame() {
     const key = it.sub as 'hat' | 'glasses' | 'scarf' | 'bag';
     persist({ ...s, outfit: { ...s.outfit, [key]: s.outfit[key] === it.id ? undefined : it.id } });
   };
-  const worn = (it: ShopItem) => it.sub === 'ride' ? save.ride === it.id : it.sub === 'pet' ? save.pet === it.id : it.sub === 'house' ? save.house >= Number(it.id.split('-')[1]) : it.sub === 'yard' ? save.yard.includes(it.id) : (save.outfit as Record<string, string | undefined>)[it.sub] === it.id;
+  const worn = (it: ShopItem) => it.sub === 'wall' ? save.homeWall === it.id : it.sub === 'floor' ? (save.homeFloor ?? 'floor-light') === it.id : it.sub === 'ride' ? save.ride === it.id : it.sub === 'pet' ? save.pet === it.id : it.sub === 'house' ? save.house >= Number(it.id.split('-')[1]) : it.sub === 'yard' ? save.yard.includes(it.id) : (save.outfit as Record<string, string | undefined>)[it.sub] === it.id;
   const onBuy = async (it: ShopItem) => { if (await buy(it)) equip(it); };
 
   // ---- джойстик ----
@@ -794,6 +854,7 @@ export default function IslandGame() {
       <div className="il-hud">
         <Link href="/games" className="il-chip">← Games</Link>
         <span className="il-coins" title="Murly coins"><i className="il-coin" /> {coins ?? '…'}</span>
+        {save.goal && <button type="button" className={`il-chip il-goal ${(coins ?? 0) >= save.goal.price ? 'il-chip--y' : ''}`} onClick={() => setPanel('store')} title="My piggy bank">{(coins ?? 0) >= save.goal.price ? `You can buy the ${save.goal.en}!` : <>Piggy bank: {save.goal.en} <b>{coins ?? 0}/{save.goal.price}</b><i className="il-goalbar"><em style={{ width: `${Math.min(100, ((coins ?? 0) / save.goal.price) * 100)}%` }} /></i></>}</button>}
         <span className="il-chip il-stars" title="Stars found"><i className="il-star" /> {starCount}/10</span>
         <span className="il-chip" title="Time and weather">{fmtHour(clock.hour)} · {clock.rain ? (sc.current?.winter ? 'snowy' : 'rainy') : clock.hour >= 20 || clock.hour < 6 ? 'clear night' : 'sunny'}</span>
         <button type="button" className={`il-chip ${dailyDone === 3 ? 'il-chip--y' : ''}`} onClick={() => setPanel('today')}>Today {dailyDone}/3</button>
@@ -911,6 +972,8 @@ export default function IslandGame() {
                 <li><b>Camera:</b> drag the screen. <b>Zoom:</b> mouse wheel.</li>
                 <li><b>Explore:</b> find 10 golden stars and chat with the cats who live on the island.</li>
                 <li><b>Jobs:</b> Post Office (deliver parcels), Cat Cafe (make sandwiches), Fruit Market (count fruit), Bakery (bake cakes), Boutique (find clothes), Taxi (drive passengers), Fishing pier (word riddles).</li>
+                <li><b>Your house:</b> you start with a tiny house. Earn coins, save them in your piggy bank and buy a bigger house, wallpaper, floors, furniture and a fence for your garden.</li>
+                <li><b>Swap:</b> cats on the island want different things every day. Swap food for coins or presents. You can swap with other players too and visit their homes.</li>
                 <li><b>Play together:</b> press Online to see other Murly students on the island. Say hi, chat with ready English phrases, make friends and play together.</li>
                 <li><b>Live like a real cat:</b> watch Food, Energy and Fun. Sit on chairs, sleep in beds and tents, open fridges, cook from recipes, watch TV, read, swim and swing. Make friends with the cats: talk, give presents, dance and walk together.</li>
                 <li><b>Your cat:</b> press My look to choose hair, clothes, shoes and something to hold. Press Choose a job to pick your profession.</li>
@@ -1156,6 +1219,8 @@ export default function IslandGame() {
               {reqs.length > 0 && <><p className="il-sub">Friend requests</p>{reqs.map((r) => <div key={r.id} className="il-player"><b>{r.n}</b> wants to be your friend.
                 <button type="button" className="il-mini" onClick={() => { addNetFriend(r.id, r.n); net.current?.send('friendok', { to: r.id, n: myName() }); setReqs((x) => x.filter((y) => y.id !== r.id)); flash(`${r.n} is your friend now!`); }}>Yes!</button>
                 <button type="button" className="il-mini" onClick={() => setReqs((x) => x.filter((y) => y.id !== r.id))}>No, thanks</button></div>)}</>}
+              {offers.length > 0 && <><p className="il-sub">Swap offers</p>{offers.map((o0) => <div key={o0.tid} className="il-player"><span><b>{o0.n}</b> gives you <b>{foodOf(o0.give)?.en}</b> and wants <b>{foodOf(o0.want)?.en}</b>. {haveItem(o0.want) ? '' : "(You don't have it.)"}</span>
+                <div className="il-grid"><button type="button" className="il-mini" disabled={!haveItem(o0.want)} onClick={() => answerOffer(o0, true)}>Yes, swap!</button><button type="button" className="il-mini" onClick={() => answerOffer(o0, false)}>No, thanks</button></div></div>)}</>}
               {!onlineList.length && <p className="il-note">Nobody else is here right now. Ask your friends from Murly to join you!</p>}
               {onlineList.map((p) => <div key={p.id} className="il-player">
                 <b>{p.n}</b>{netFriends[p.id] && <span className="il-badge-f">friend</span>} <span className="t-muted">{p.prof ? `${p.lv} ${p.prof}` : 'Explorer'}{p.room ? ` · in the ${p.room}` : ''}</span>
@@ -1163,6 +1228,8 @@ export default function IslandGame() {
                   <button type="button" className="il-mini" onClick={() => { sayNet(`Hi, ${p.n}!`); }}>Say hi</button>
                   <button type="button" className="il-mini" onClick={() => { if (!p.room && !sc.current?.inside) { sc.current?.walkTo(p.x, p.z); sc.current?.setMarker(p.x, p.z); } else flash(`${p.n} is inside a building. Go there to meet!`, false); setPanel(null); }}>Go to {p.n}</button>
                   {!netFriends[p.id] && <button type="button" className="il-mini" onClick={() => { net.current?.send('friendreq', { to: p.id, n: myName() }); flash(`You asked ${p.n} to be friends.`); }}>Be friends</button>}
+                  <button type="button" className="il-mini" onClick={() => { net.current?.send('homereq', { to: p.id, n: myName() }); flash(`Knocking on ${p.n}'s door…`); setPanel(null); }}>Visit home</button>
+                  <button type="button" className="il-mini" onClick={() => { setTradeTo({ id: p.id, n: p.n }); setTGive(''); setTWant(''); setPanel('tradeplayer'); }}>Swap</button>
                   <button type="button" className="il-mini" onClick={() => { muted.current.add(p.id); sc.current?.removeOther(p.id); setOnline((o) => { const c = { ...o }; delete c[p.id]; return c; }); }}>Hide</button>
                 </div></div>)}
               {Object.keys(netFriends).length > 0 && <><p className="il-sub">My island friends</p><p className="il-note">{Object.values(netFriends).join(', ')}</p></>}
@@ -1204,6 +1271,24 @@ export default function IslandGame() {
               <div className="il-recipes">{DISHES.map((d) => <div key={d.id}><b>{d.en}</b>: {d.need.map((n) => productOf(n)?.en ?? n).join(' + ')}</div>)}</div>
             </>}
 
+            {panel === 'tradenpc' && npcI !== null && (() => { const t = npcTrade(npcName, todayKey()); const done0 = (save.dialogs ?? []).includes(`trade:${npcName}:${todayKey()}`); return <>
+              <h2>Swap with {npcName}</h2>
+              {done0 ? <p className="il-say">&ldquo;Thanks for today&apos;s swap! Come back tomorrow.&rdquo;</p> : <>
+                <p className="il-say">&ldquo;I&apos;d love {foodOf(t.want)?.a ? foodOf(t.want)!.a + ' ' : 'some '}{foodOf(t.want)?.en}. I can give you {t.give.kind === 'coins' ? `${t.give.n} coins` : `a ${t.give.en}`} for it!&rdquo; <button type="button" className="il-mini" onClick={() => say(`I'd love ${foodOf(t.want)?.en}. I can give you ${t.give.kind === 'coins' ? `${t.give.n} coins` : `a ${t.give.en}`} for it!`)}>Listen</button></p>
+                <p className="il-note">{haveItem(t.want) ? 'You have it in your bag or fridge.' : 'You don’t have it yet. Buy it at the supermarket or grow it in your garden.'}</p>
+                <button type="button" className="il-go" disabled={!haveItem(t.want)} onClick={npcSwap}>Swap!</button>
+              </>}
+            </>; })()}
+
+            {panel === 'tradeplayer' && tradeTo && <>
+              <h2>Swap with {tradeTo.n}</h2>
+              <p className="il-sub">1. What do you give?</p>
+              <div className="il-grid">{Object.entries(myItems()).map(([k, n]) => <button key={k} type="button" className={`il-pick ${tGive === k ? 'on' : ''}`} onClick={() => setTGive(k)}>{foodOf(k)?.en ?? k} x{n}</button>)}{!Object.keys(myItems()).length && <span className="il-note">Your bag and fridge are empty.</span>}</div>
+              <p className="il-sub">2. What do you want?</p>
+              <div className="il-grid">{TRADE_WANTS.map((k) => <button key={k} type="button" className={`il-pick ${tWant === k ? 'on' : ''}`} onClick={() => setTWant(k)}>{foodOf(k)?.en ?? k}</button>)}</div>
+              <button type="button" className="il-go" disabled={!tGive || !tWant} onClick={sendOffer}>Send the offer</button>
+            </>}
+
             {panel === 'shelf' && shelf && <>
               <h2>{SHELVES.find((x) => x.id === shelf)?.en}</h2>
               <p className="il-note">Take as many as you want. Pay at the till. Basket: <b>{basketCount}</b> things, <b>{basketTotal}</b> coins.</p>
@@ -1239,6 +1324,7 @@ export default function IslandGame() {
                 <button type="button" className="il-pick" onClick={() => { setGiveMode(true); setPanel('bag'); }}>Give a present</button>
                 <button type="button" className="il-pick" onClick={() => friendAct('dance')}>Dance together</button>
                 <button type="button" className="il-pick" onClick={() => friendAct('five')}>High five</button>
+                <button type="button" className="il-pick" onClick={() => setPanel('tradenpc')}>Swap things</button>
                 <button type="button" className="il-pick" onClick={tellJoke}>Tell a joke</button>
                 {fl.i >= 1 && <button type="button" className="il-pick" onClick={startSeek} disabled={!!seek}>Play hide and seek</button>}
                 <button type="button" className="il-pick" onClick={() => { if (socialOk('nice')) setPanel('nice'); }}>Say something nice</button>
@@ -1295,7 +1381,7 @@ export default function IslandGame() {
                 <div className="il-tabs il-tabs--sm">{FURN_CATS.map(([k, l]) => <button key={k} type="button" className={fcat === k ? 'on' : ''} onClick={() => setFcat(k)}>{l}</button>)}</div>
                 <div className="il-shop">{FURN_ALL.filter((f) => f.cat === fcat).map((f) => { const id = `furn-${f.f}`; return (
                   <div key={id} className="il-item">{f.f.startsWith('x-') ? (thumbs[f.f] ? <img className="il-thumb" src={thumbs[f.f]} alt="" /> : <i className="il-thumb-wait" />) : <img className="il-thumb" src={`/worlds/kenney/t/${f.f}.png`} alt="" />}<span>{f.en}</span>
-                    {owned(id) ? <button type="button" disabled>Bought</button> : <button type="button" className="buy" onClick={() => buy({ id, price: f.price, en: f.en })}><i className="il-coin" /> {f.price}</button>}
+                    {owned(id) ? <button type="button" disabled>Bought</button> : <><button type="button" className="buy" onClick={() => buy({ id, price: f.price, en: f.en })}><i className="il-coin" /> {f.price}</button>{(coins ?? 0) < f.price && <button type="button" className="il-save" onClick={() => setGoal({ id, en: f.en, price: f.price })}>{save.goal?.id === id ? 'Saving' : 'Save for it'}</button>}</>}
                   </div>); })}</div></>}
               {tab === 'Clothes' && <><p className="il-sub">Fur colour</p>
                 <div className="il-shop">{FUR.map((f) => (
@@ -1305,8 +1391,8 @@ export default function IslandGame() {
                   </div>))}</div></>}
               <div className="il-shop">{SHOP.filter((s) => s.cat === tab).map((it) => (
                 <div key={it.id} className={`il-item ${worn(it) ? 'on' : ''}`}>{thumbs[it.id] ? <img className="il-thumb" src={thumbs[it.id]} alt="" /> : <i className="il-thumb-wait" />}<span>{it.en}</span>
-                  {owned(it.id) ? <button type="button" onClick={() => equip(it)}>{it.sub === 'house' || it.sub === 'yard' ? (worn(it) ? 'Placed' : 'Place') : worn(it) ? 'Take off' : 'Use'}</button>
-                    : <button type="button" className="buy" onClick={() => onBuy(it)}><i className="il-coin" /> {it.price}</button>}
+                  {owned(it.id) ? <button type="button" onClick={() => equip(it)}>{it.sub === 'house' ? (save.house === Number(it.id.split('-')[1]) ? 'My house' : worn(it) ? 'Got it' : 'Move in') : it.sub === 'yard' ? (worn(it) ? 'Placed' : 'Place') : it.sub === 'wall' || it.sub === 'floor' ? (worn(it) ? 'In my home' : 'Use') : worn(it) ? 'Take off' : 'Use'}</button>
+                    : <><button type="button" className="buy" onClick={() => onBuy(it)}><i className="il-coin" /> {it.price}</button>{(coins ?? 0) < it.price && <button type="button" className="il-save" onClick={() => setGoal({ id: it.id, en: it.en, price: it.price })}>{save.goal?.id === it.id ? 'Saving' : 'Save for it'}</button>}</>}
                 </div>))}</div>
             </>}
 
@@ -1317,7 +1403,7 @@ export default function IslandGame() {
                 const mine = SHOP.filter((s) => s.cat === c && owned(s.id)); if (!mine.length) return null;
                 return <div key={c}><p className="il-sub">{c}</p><div className="il-shop">{mine.map((it) => (
                   <div key={it.id} className={`il-item ${worn(it) ? 'on' : ''}`}>{thumbs[it.id] ? <img className="il-thumb" src={thumbs[it.id]} alt="" /> : <i className="il-thumb-wait" />}<span>{it.en}</span>
-                    <button type="button" onClick={() => equip(it)}>{it.sub === 'house' || it.sub === 'yard' ? (worn(it) ? 'Placed' : 'Place') : worn(it) ? 'Take off' : 'Use'}</button></div>))}</div></div>;
+                    <button type="button" onClick={() => equip(it)}>{it.sub === 'house' ? (save.house === Number(it.id.split('-')[1]) ? 'My house' : worn(it) ? 'Got it' : 'Move in') : it.sub === 'yard' ? (worn(it) ? 'Placed' : 'Place') : it.sub === 'wall' || it.sub === 'floor' ? (worn(it) ? 'In my home' : 'Use') : worn(it) ? 'Take off' : 'Use'}</button></div>))}</div></div>;
               })}
               {save.yard.length > 0 && <button type="button" className="il-mini" onClick={() => persist({ ...save, yard: [] })}>Clear my yard</button>}
               {furnOwned.length > 0 && <p className="il-note">Furniture: {furnOwned.map((f) => f.en).join(', ')}. Go inside your home and press Decorate.</p>}
