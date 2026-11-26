@@ -25,4 +25,4 @@ export async function earnedToday(userId: string, source: CoinSource): Promise<n
   const r = await db.query(`coin_log?user_id=eq.${enc(userId)}&source=eq.${source}&amount=gt.0&created_at=gte.${enc(since.toISOString())}&select=amount`);
   return r.reduce((a, x) => a + Number(x.amount ?? 0), 0);
 }
-export const DAILY_CAP: Partial<Record<CoinSource, number>> = { game: 100, words: 40 };
+export const DAILY_CAP: Partial<Record<CoinSource, number>> = { game: 250, words: 40 };
