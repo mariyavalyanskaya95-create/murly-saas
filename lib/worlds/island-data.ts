@@ -78,7 +78,7 @@ export type RoomItem = { f: string; x: number; z: number; r: number };
 export type Daily = { date: string; ids: string[]; prog: Record<string, number>; paid?: boolean };
 export type Save = { v: 1; owned: string[]; outfit: Outfit; ride: string | null; pet: string | null; house: number; yard: string[]; jobs: Record<string, number>; name?: string; localCoins?: number; stars?: string[]; starBonus?: boolean; talks?: number;
   furn?: string[]; room?: RoomItem[]; daily?: Daily; fish?: Record<string, number>; badges?: string[];
-  prof?: string; friends?: Record<string, number>; needs?: { food: number; energy: number; fun: number }; bag?: Record<string, number>; hero?: string; skills?: Record<string, number>; garden?: ({ crop: string; at: number; water?: boolean } | null)[]; petName?: string; dialogs?: string[]; pos?: { x: number; z: number; room?: string | null }; tasks?: Record<string, unknown>; last?: { at: string; place: string; doing?: string } };
+  prof?: string; friends?: Record<string, number>; needs?: { food: number; energy: number; fun: number }; bag?: Record<string, number>; hero?: string; skills?: Record<string, number>; pantry?: Record<string, number>; props?: { f: string; x: number; y: number; z: number; room: string }[]; garden?: ({ crop: string; at: number; water?: boolean } | null)[]; petName?: string; dialogs?: string[]; pos?: { x: number; z: number; room?: string | null }; tasks?: Record<string, unknown>; last?: { at: string; place: string; doing?: string } };
 export const START: Save = { v: 1, owned: ['fur-ginger'], outfit: { fur: 'fur-ginger' }, ride: null, pet: null, house: 0, yard: [], jobs: {} };
 
 // ---------- карта ----------
@@ -167,6 +167,7 @@ export const PLACES = {
   icecream: { x: -18, z: -62, label: 'ICE CREAM', color: '#F76AA8' },
   board: { x: -9, z: -6, label: 'NOTICE BOARD', color: '#8B5E34' },
   school: { x: -26, z: -48, label: 'MURLY SCHOOL', color: '#7C66DC' },
+  supermarket: { x: 36, z: 46, label: 'SUPERMARKET', color: '#E5484D' },
 };
 
 // ---------- пекарня: торт за замовленням ----------
@@ -222,6 +223,7 @@ export const DESTS: Dest[] = [
   { id: 'boutique', x: 30, z: -28.4, name: 'the Boutique', desc: 'the shop where you can buy a dress or a jacket' },
   { id: 'store', x: 18, z: 10.4, name: 'the Murly Store', desc: 'the shop where you can buy a bike, a house or a pet' },
   { id: 'pier', x: 0, z: -70, name: 'the fishing pier', desc: 'the place on the beach where cats catch fish' },
+  { id: 'supermarket', x: 36, z: 40.4, name: 'the supermarket', desc: 'the big shop where you can buy food for your kitchen' },
   { id: 'school', x: -26, z: -42.4, name: 'Murly School', desc: 'the place where young cats learn English with Miss Apple' },
 ];
 export function taxiTask(level: number): { who: string; text: string; dest: Dest } {
@@ -626,4 +628,70 @@ export function treasureHunt() {
   const pool = [...LOST_PLACES].sort(() => Math.random() - 0.5).slice(0, 3);
   const lines = ['The first clue is', 'The next clue is', 'The treasure is'];
   return pool.map((p, i) => ({ x: p.x, z: p.z, text: `${lines[i]} ${p.en}.` }));
+}
+
+
+// ---------- супермаркет і продукти ----------
+// m: модель з наборів (pack:name) або намальована кодом; c: колір; cat: полиця
+export type Product = { id: string; en: string; a: string; price: number; cat: string; c: string; m?: string; food: number };
+export const SHELVES: { id: string; en: string; c: string }[] = [
+  { id: 'veg', en: 'Fruit and vegetables', c: '#30A46C' }, { id: 'bakery', en: 'Bread and cakes', c: '#C68A4A' },
+  { id: 'dairy', en: 'Milk, cheese and eggs', c: '#3E7BFA' }, { id: 'meat', en: 'Meat and fish', c: '#E5484D' },
+  { id: 'pantry', en: 'Flour, rice and pasta', c: '#F5862D' }, { id: 'drinks', en: 'Drinks', c: '#8EC9F5' },
+  { id: 'snacks', en: 'Snacks and sweets', c: '#F76AA8' }, { id: 'frozen', en: 'Frozen food', c: '#B8E3F5' },
+];
+export const PRODUCTS: Product[] = [
+  { id: 'apple', en: 'apple', a: 'an', price: 1, cat: 'veg', c: '#E5484D', food: 12 }, { id: 'banana', en: 'banana', a: 'a', price: 1, cat: 'veg', c: '#FFD84D', food: 12 },
+  { id: 'orange', en: 'orange', a: 'an', price: 1, cat: 'veg', c: '#F5862D', food: 12 }, { id: 'strawberries', en: 'strawberries', a: '', price: 2, cat: 'veg', c: '#F7465E', food: 12 },
+  { id: 'tomato', en: 'tomato', a: 'a', price: 1, cat: 'veg', c: '#E5484D', m: 'food:food_ingredient_tomato', food: 8 }, { id: 'cucumber', en: 'cucumber', a: 'a', price: 1, cat: 'veg', c: '#30A46C', food: 6 },
+  { id: 'lettuce', en: 'lettuce', a: 'a', price: 1, cat: 'veg', c: '#7BC86C', m: 'food:food_ingredient_lettuce', food: 5 }, { id: 'carrots', en: 'carrot', a: 'a', price: 1, cat: 'veg', c: '#F5862D', m: 'food:food_ingredient_carrot', food: 8 },
+  { id: 'potatoes', en: 'potato', a: 'a', price: 1, cat: 'veg', c: '#C8925A', m: 'food:food_ingredient_potato', food: 0 }, { id: 'onion', en: 'onion', a: 'an', price: 1, cat: 'veg', c: '#E8C4A0', m: 'food:food_ingredient_onion', food: 0 },
+  { id: 'pepper', en: 'pepper', a: 'a', price: 1, cat: 'veg', c: '#E5484D', food: 5 },
+  { id: 'bread', en: 'loaf of bread', a: 'a', price: 1, cat: 'bakery', c: '#C68A4A', food: 15 }, { id: 'bun', en: 'bun', a: 'a', price: 1, cat: 'bakery', c: '#E8B46A', m: 'food:food_ingredient_bun', food: 12 },
+  { id: 'croissant', en: 'croissant', a: 'a', price: 2, cat: 'bakery', c: '#E8B46A', food: 15 }, { id: 'cake', en: 'slice of cake', a: 'a', price: 2, cat: 'bakery', c: '#F7A1B5', food: 20 },
+  { id: 'cookie', en: 'cookie', a: 'a', price: 1, cat: 'bakery', c: '#C68A4A', m: 'holiday:cookie', food: 8 }, { id: 'dough', en: 'pizza dough', a: '', price: 1, cat: 'bakery', c: '#F3E2C8', food: 0 },
+  { id: 'milk', en: 'bottle of milk', a: 'a', price: 1, cat: 'dairy', c: '#FFFFFF', m: 'holiday:milk', food: 10 }, { id: 'cheese', en: 'piece of cheese', a: 'a', price: 1, cat: 'dairy', c: '#FFC53D', m: 'food:food_ingredient_cheese', food: 15 },
+  { id: 'butter', en: 'butter', a: '', price: 1, cat: 'dairy', c: '#FFE36B', food: 0 }, { id: 'eggs', en: 'box of eggs', a: 'a', price: 1, cat: 'dairy', c: '#FFF1C9', food: 0 },
+  { id: 'yogurt', en: 'yogurt', a: 'a', price: 1, cat: 'dairy', c: '#F7A1B5', food: 15 },
+  { id: 'chicken', en: 'chicken', a: '', price: 2, cat: 'meat', c: '#F3D9B1', food: 0 }, { id: 'ham', en: 'ham', a: '', price: 2, cat: 'meat', c: '#F7A1B5', m: 'food:food_ingredient_ham', food: 15 },
+  { id: 'steak', en: 'steak', a: 'a', price: 3, cat: 'meat', c: '#B5453A', m: 'food:food_ingredient_steak', food: 0 }, { id: 'fish', en: 'fish', a: 'a', price: 2, cat: 'meat', c: '#8EC9F5', food: 0 },
+  { id: 'sausages', en: 'sausages', a: '', price: 2, cat: 'meat', c: '#C8603A', food: 0 },
+  { id: 'flour', en: 'bag of flour', a: 'a', price: 1, cat: 'pantry', c: '#FFFFFF', food: 0 }, { id: 'sugar', en: 'bag of sugar', a: 'a', price: 1, cat: 'pantry', c: '#F4F1E8', food: 0 },
+  { id: 'salt', en: 'salt', a: '', price: 1, cat: 'pantry', c: '#DCE9F7', food: 0 }, { id: 'rice', en: 'bag of rice', a: 'a', price: 1, cat: 'pantry', c: '#F4F1E8', food: 0 },
+  { id: 'pasta', en: 'pasta', a: '', price: 1, cat: 'pantry', c: '#FFD84D', food: 0 }, { id: 'olive oil', en: 'bottle of olive oil', a: 'a', price: 1, cat: 'pantry', c: '#9ACD4C', food: 0 },
+  { id: 'chocolate', en: 'bar of chocolate', a: 'a', price: 1, cat: 'pantry', c: '#7A4E25', food: 10 }, { id: 'tomato sauce', en: 'tomato sauce', a: '', price: 1, cat: 'pantry', c: '#E5484D', m: 'food:ketchup', food: 0 },
+  { id: 'water', en: 'bottle of water', a: 'a', price: 1, cat: 'drinks', c: '#8EC9F5', food: 3 }, { id: 'juice', en: 'orange juice', a: '', price: 1, cat: 'drinks', c: '#F5862D', food: 10 },
+  { id: 'lemonade', en: 'lemonade', a: '', price: 1, cat: 'drinks', c: '#FFF3A6', food: 8 }, { id: 'cocoa', en: 'hot chocolate', a: '', price: 2, cat: 'drinks', c: '#7A4E25', m: 'holiday:hot_chocolate_decorated', food: 15 },
+  { id: 'crisps', en: 'bag of crisps', a: 'a', price: 1, cat: 'snacks', c: '#FFC53D', food: 10 }, { id: 'sweets', en: 'bag of sweets', a: 'a', price: 1, cat: 'snacks', c: '#F76AA8', food: 8 },
+  { id: 'gingerbread', en: 'gingerbread man', a: 'a', price: 2, cat: 'snacks', c: '#C68A4A', m: 'holiday:gingerbread_man', food: 12 }, { id: 'candy cane', en: 'candy cane', a: 'a', price: 1, cat: 'snacks', c: '#E5484D', m: 'holiday:candycane_small', food: 5 },
+  { id: 'icecream', en: 'ice cream', a: 'an', price: 2, cat: 'frozen', c: '#F7A1B5', food: 12 }, { id: 'frozen pizza', en: 'frozen pizza', a: 'a', price: 3, cat: 'frozen', c: '#E5484D', food: 0 },
+  { id: 'peas', en: 'frozen peas', a: '', price: 1, cat: 'frozen', c: '#30A46C', food: 0 },
+];
+export const productOf = (id: string) => PRODUCTS.find((p) => p.id === id);
+// стартові продукти в холодильнику, щоб одразу можна було готувати
+export const STARTER_PANTRY: Record<string, number> = { eggs: 2, milk: 2, flour: 2, cheese: 2, tomato: 2, bread: 2, butter: 1, apple: 2, sugar: 1, potatoes: 2, carrots: 2, onion: 1 };
+
+// ---------- страви, які виходять на сковорідці (як у Toca Boca) ----------
+export const DISHES: { id: string; en: string; need: string[]; food: number; fun: number; m?: string; c: string }[] = [
+  { id: 'burger', en: 'a burger', need: ['bun', 'steak', 'cheese', 'lettuce', 'tomato'], food: 60, fun: 15, m: 'food:food_burger', c: '#C68A4A' },
+  { id: 'vegburger', en: 'a veggie burger', need: ['bun', 'lettuce', 'tomato', 'cheese'], food: 45, fun: 10, m: 'food:food_vegetableburger', c: '#7BC86C' },
+  { id: 'steakdinner', en: 'steak with potatoes', need: ['steak', 'potatoes'], food: 60, fun: 10, m: 'food:food_dinner', c: '#B5453A' },
+  { id: 'stew', en: 'a vegetable stew', need: ['potatoes', 'carrots', 'onion'], food: 50, fun: 5, m: 'food:food_stew', c: '#F5862D' },
+  { id: 'pancakes', en: 'pancakes', need: ['flour', 'eggs', 'milk'], food: 45, fun: 10, c: '#E8B46A' },
+  { id: 'omelette', en: 'an omelette', need: ['eggs', 'cheese'], food: 35, fun: 5, c: '#FFE36B' },
+  { id: 'friedegg', en: 'a fried egg', need: ['eggs'], food: 20, fun: 3, c: '#FFF1C9' },
+  { id: 'pizza', en: 'a pizza', need: ['dough', 'tomato sauce', 'cheese'], food: 55, fun: 15, c: '#E5484D' },
+  { id: 'pasta', en: 'pasta with tomato sauce', need: ['pasta', 'tomato sauce'], food: 50, fun: 5, c: '#FFD84D' },
+  { id: 'chips', en: 'chips', need: ['potatoes', 'olive oil'], food: 35, fun: 10, c: '#FFD84D' },
+  { id: 'toastie', en: 'a cheese toastie', need: ['bread', 'cheese'], food: 35, fun: 5, c: '#C68A4A' },
+  { id: 'grilledfish', en: 'grilled fish', need: ['fish'], food: 40, fun: 5, c: '#8EC9F5' },
+  { id: 'chickenrice', en: 'chicken and rice', need: ['chicken', 'rice'], food: 55, fun: 5, c: '#F3D9B1' },
+  { id: 'sausagemash', en: 'sausages and mash', need: ['sausages', 'potatoes'], food: 55, fun: 5, c: '#C8603A' },
+  { id: 'fruitsalad', en: 'a fruit salad', need: ['apple', 'banana'], food: 30, fun: 10, c: '#F76AA8' },
+  { id: 'hotpizza', en: 'a hot pizza', need: ['frozen pizza'], food: 50, fun: 10, c: '#E5484D' },
+];
+export function cookResult(pan: string[]) {
+  const set = new Set(pan);
+  const ok = DISHES.filter((d) => d.need.every((n) => set.has(n))).sort((a, b) => b.need.length - a.need.length);
+  return ok[0] ?? { id: 'mystery', en: 'a mystery soup', need: [], food: 25, fun: 15, c: '#9ACD4C' };
 }
