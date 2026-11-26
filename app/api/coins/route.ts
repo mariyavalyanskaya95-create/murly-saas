@@ -36,7 +36,7 @@ export async function POST(req: Request) {
     if (b.op === 'earn') {
       // ігри: невеликі суми і денний ліміт
       const source = (b.source === 'words' ? 'words' : 'game') as CoinSource;
-      if (amount < 1 || amount > 10) return NextResponse.json({ error: 'bad_amount' }, { status: 400 });
+      if (amount < 1 || amount > 15) return NextResponse.json({ error: 'bad_amount' }, { status: 400 });
       const cap = DAILY_CAP[source] ?? 100;
       const today = await earnedToday(userId, source);
       if (today >= cap) return NextResponse.json({ balance: await balanceOf(userId), capped: true });
