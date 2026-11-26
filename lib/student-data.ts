@@ -18,6 +18,7 @@ export type StudentHomework = {
   due?: string; status: 'assigned' | 'done' | 'checked'; score?: number; total?: number; answer?: string; feedback?: string;
   note?: string; // заметки й питання учня до вчителя
   passUsed?: boolean; // учень уже взяв +1 день за монетки
+  files?: { name: string; url: string }[]; studentFiles?: { name: string; url: string }[]; wordList?: { en: string; uk: string }[];
 };
 export type Enrollment = {
   studentId: string; name: string; level: string; teacherName: string;
@@ -102,6 +103,7 @@ export async function getEnrollments(userId: string, lang = 'uk'): Promise<Enrol
         id: String(h.id), title: String(h.title), kind: h.kind === 'text' ? 'text' : h.kind === 'exercise' ? 'exercise' : h.kind === 'lesson' ? 'lesson' : h.kind === 'mock' ? 'mock' : 'game',
         items: h.kind === 'exercise' ? normalizeSections(h.items as Section[] | null) : (h.items as Section[] | Block[] | null) ?? undefined, answers: (h.answers as Answers | null) ?? undefined, overrides: (h.overrides as Record<string, boolean> | null) ?? undefined,
         instructions: h.instructions ? String(h.instructions) : undefined,
+        files: (h.files as StudentHomework['files'] | null) ?? undefined, studentFiles: (h.student_files as StudentHomework['files'] | null) ?? undefined, wordList: (h.word_list as StudentHomework['wordList'] | null) ?? undefined,
         game: (h.game as StudentHomework['game']) ?? undefined, direction: (h.direction as StudentHomework['direction']) ?? undefined,
         due: h.due ? String(h.due) : undefined, status: h.status as StudentHomework['status'],
         score: h.score == null ? undefined : Number(h.score), total: h.total == null ? undefined : Number(h.total),
@@ -128,7 +130,7 @@ export async function submitHomework(userId: string, id: string, p: { score?: nu
   // Вправу перевіряємо на сервері, бал від клієнта не приймаємо
   if ((hw[0].kind === 'exercise' || hw[0].kind === 'lesson') && p.answers && typeof p.answers === 'object') {
     const clean: Answers = {};
-    Object.entries(p.answers).slice(0, 500).forEach(([k, v]) => { if (/^\d+\.\d+\.\d+$/.test(k)) clean[k] = String(v).slice(0, 500); });
+    Object.entries(p.answers).slice(0, 500).forEach(([k, v]) => { if (/^\d+\.\d+\.\d+$/.test(k)) clean[k] = String(v).slice(0, 4000); });
     // ручні зарахування вчителя зберігаємо лише для відповідей, які не змінились
     const prevA = (hw[0].answers as Answers | null) ?? {};
     const ov: Record<string, boolean> = {};
@@ -261,4 +263,25 @@ export async function addOwnWord(userId: string, w: { en: string; uk: string; ex
   if (dup[0]) return { ok: true, dup: true } as const;
   await db.insert('words', [{ teacher_id: String(st[0].teacher_id), student_id: String(st[0].id), en, uk, example: (w.example || '').slice(0, 300) || null, srs_due: new Date().toISOString() }]);
   return { ok: true } as const;
+}
+
+// Учень прикріплює фото чи файли до домашки (сфотографував зошит, документ): зберігаємо і, якщо ще не здано, здаємо
+export async function setHomeworkFiles(userId: string, id: string, files: unknown) {
+  if (!dbReady() || !Array.isArray(files)) return false;
+  const base = `${process.env.SUPABASE_URL}/storage/v1/object/public/`;
+  const clean = files.slice(0, 10).map((f) => f as { name?: unknown; url?: unknown })
+    .filter((f) => typeof f.url === 'string' && f.url.startsWith(base))
+    .map((f) => ({ name: String(f.name ?? 'file').slice(0, 80), url: String(f.url) }));
+  const hw = await db.query(`homework?id=eq.${enc(id)}&select=id,student_id,teacher_id,title,status,done_at`);
+  if (!hw[0]) return false;
+  const st = await db.query(`students?id=eq.${enc(String(hw[0].student_id))}&user_id=eq.${enc(userId)}&select=id,name`);
+  if (!st[0]) return false;
+  const patch: Record<string, unknown> = { student_files: clean };
+  const first = clean.length && hw[0].status === 'assigned';
+  if (first) { patch.status = 'done'; if (!hw[0].done_at) patch.done_at = new Date().toISOString(); }
+  await db.patchWhere(`homework?id=eq.${enc(id)}`, patch);
+  if (first && !hw[0].done_at) await notifyTeacher(String(hw[0].teacher_id), (l) =>
+    `${esc(String(st[0].name))} ${L(l, { uk: 'прикріпив(ла) фото чи файл до домашки', ru: 'прикрепил(а) фото или файл к домашке', en: 'attached a photo or file to the homework' })}: <b>${esc(String(hw[0].title || ''))}</b>`,
+    (l) => ({ text: L(l, { uk: 'Перевірити', ru: 'Проверить', en: 'Review' }), url: `${SITE}/teacher/review` })).catch(() => null);
+  return { files: clean, status: patch.status ?? hw[0].status };
 }

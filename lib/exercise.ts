@@ -10,7 +10,7 @@ import type { T } from './i18n';
 export type SectionType = 'gap' | 'choice' | 'truefalse' | 'match' | 'sort' | 'translate' | 'open' | 'scale' | 'voice';
 export type Part = { t: 'text'; v: string } | { t: 'gap'; answers: string[] } | { t: 'choice'; options: string[] };
 export type Task = { parts?: Part[]; prompt?: string; answers?: string[] };
-export type Section = { type: SectionType; instruction: string; tasks: Task[] };
+export type Section = { type: SectionType; instruction: string; tasks: Task[]; image?: string }; // image: картинка до блоку (опиши, дай відповідь)
 export type Answers = Record<string, string>; // ключ "секція.завдання.слот"
 export type Overrides = Record<string, boolean>; // відповіді, які вчитель зарахував вручну
 

@@ -48,6 +48,7 @@ export type Homework = {
   toParent?: boolean; // лише сигнал серверу: надіслати батькам у Telegram
   note?: string; // заметки й питання учня
   passUsed?: boolean; // учень узяв +1 день за монетки
+ files?: { name: string; url: string }[]; studentFiles?: { name: string; url: string }[]; wordList?: { en: string; uk: string }[];
 };
 export type Settings = { name: string; link: string; linkKind: 'zoom' | 'meet' | 'other'; ai?: boolean; tz?: string; payInfo?: string };
 
