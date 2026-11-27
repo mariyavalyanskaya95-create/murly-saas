@@ -4987,3 +4987,8 @@ textarea.t-parent__url { width: 300px; font: inherit; font-size: 13px; }
 .t-card.le-view { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
 /* наліпки: стрічка вибору прокручується всередині, сторінка не роз'їжджається на телефоні */
 .sr-tray{min-width:0;max-width:100%}.sr-tray__list{max-width:100%}
+
+/* перший екран нового вчителя: один великий крок */
+.t-first{border-width:3px;background:#f4ffe9;text-align:center;padding:28px 22px}
+.t-first h2{font-size:28px;margin:0 0 10px}.t-first p{max-width:560px;margin:0 auto 16px;font-size:17px;line-height:1.5}
+.t-first__go{font-size:19px;padding:14px 28px}.t-first__alt{margin-top:14px!important;font-size:15px!important;color:var(--mu-ink-muted)}.t-first__alt a{text-decoration:underline}
