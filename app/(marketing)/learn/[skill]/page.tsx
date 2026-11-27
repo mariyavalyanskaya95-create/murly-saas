@@ -15,6 +15,16 @@ export function generateMetadata({ params, searchParams }: { params: { skill: st
   if (!s) return {};
   const t = tr();
   const lv = LEVELS_ALL.includes(searchParams.level as Level) ? ` ${searchParams.level}` : '';
+  // аудіювання за рівнем: окрема сторінка під запити «listening a1/a2/b1» (заголовок, опис, canonical з рівнем)
+  if (s.id === 'listening' && lv) {
+    const L = lv.trim();
+    const n = catalog(t.lang).filter((x) => x.skill === 'listening' && (x.level === L || x.level === 'all')).length;
+    return {
+      title: t({ uk: `Listening ${L} онлайн: ${n} аудіо з завданнями і відповідями, безкоштовно | Murly`, ru: `Listening ${L} онлайн: ${n} аудио с заданиями и ответами, бесплатно | Murly`, en: `Listening ${L} practice online: ${n} free audio tasks with answers | Murly` }),
+      description: t({ uk: `Аудіювання англійською рівня ${L}: діалоги й оголошення з озвучкою, скрипт, завдання з автоперевіркою і перекладом. Слухайте онлайн без реєстрації.`, ru: `Аудирование на английском уровня ${L}: диалоги и объявления с озвучкой, скрипт, задания с автопроверкой и переводом. Слушайте онлайн без регистрации.`, en: `English listening practice at ${L}: dialogues and announcements with audio, scripts and auto-checked tasks. Listen online, no sign-up.` }),
+      alternates: alt(`/learn/listening?level=${L}`),
+    };
+  }
   return {
     title: `${t(s.label)}${lv}: ${t({ uk: 'англійська онлайн', ru: 'английский онлайн', en: 'English online' })} | Murly`,
     description: t(s.text),
