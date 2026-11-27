@@ -59,6 +59,7 @@
           const right = clean(el.dataset.a || ''); const opts = [...el.querySelectorAll('.o button')].map((b) => clean(b.textContent)).filter(Boolean);
           if (!right || !opts.includes(right)) return;
           const all = [right, ...opts.filter((o) => o !== right)].join('|'); const st = txt(el.querySelector('.s'));
+          if ((st.match(/_{3,}/g) || []).length === 2 && right.includes(' / ')) { const ord = [right, ...opts.filter((o) => o !== right)].map((o) => o.split(' / ')); push('choice', st.replace(/_{3,}/, '{' + ord.map((o) => o[0]).join('|') + '}').replace(/_{3,}/, '{' + ord.map((o) => o[1] || '').join('|') + '}')); return; }
           push('choice', /_{3,}/.test(st) ? st.replace(/_{3,}/, '{' + all + '}').replace(/_{3,}/g, '( )') : `${st} {${all}}`);
           return;
         }
