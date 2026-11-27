@@ -60,6 +60,7 @@ export default function IslandGame() {
   const [thumbs, setThumbs] = useState<Record<string, string>>({});
   const [stab, setStab] = useState<StylePart | 'acc' | 'fur' | 'body'>('hair');
   const [dlg, setDlg] = useState<{ d: Dialog; node: string; react?: string; said?: string } | null>(null);
+  const [order, setOrder] = useState<null | { q: string; opts: string[]; ok: string; tip: string; done: string; run: () => void; wrong: string | null }>(null);
   const [menu, setMenu] = useState<null | 'me' | 'friends'>(null); const [justBought, setJustBought] = useState<string | null>(null);
   const restored = useRef(false); const loaded = useRef(false); const [loadedN, setLoadedN] = useState(0);
   const [needs, setNeeds] = useState({ food: 80, energy: 80, fun: 80 });
@@ -554,10 +555,30 @@ export default function IslandGame() {
       <p className="il-sub">{title}</p>
       <div className="il-shop il-shop--sm">{CAFE_MENU.filter((m) => kinds.includes(m.kind)).map((m) => (
         <div key={m.id} className="il-item">{thumbs[m.id] ? <img className="il-thumb" src={thumbs[m.id]} alt="" /> : <i className="il-thumb-wait" />}<span>{m.en}</span>
-          <button type="button" className="buy" onClick={() => { void buySnack(m.id, m.price); say(`Can I have ${m.a} ${m.en}, please?`); }}><i className="il-coin" /> {m.price}</button></div>))}</div>
+          <button type="button" className="buy" onClick={() => askOrder('food', m.en, m.a, m.price, () => { void buySnack(m.id, m.price); })}><i className="il-coin" /> {m.price}</button></div>))}</div>
     </div>
   );
   const buySnack = async (id: string, price: number) => { const f = foodOf(id); if (!f) return; if (await buy({ id: `snack-${id}-${Date.now()}`, price, en: f.en })) { const s0 = saveRef.current; persist({ ...s0, owned: s0.owned.filter((x) => !x.startsWith('snack-')), bag: { ...(s0.bag ?? {}), [id]: (s0.bag?.[id] ?? 0) + 1 } }); } };
+  // покупка через діалог: продавець питає, дитина обирає ввічливу правильну фразу
+  const mix = (a: string[]) => a.map((x) => [Math.random(), x] as const).sort((x, y) => x[0] - y[0]).map((x) => x[1]);
+  const askOrder = (kind: 'food' | 'clothes' | 'hair', en: string, a: string, price: number, run: () => void) => {
+    const thing = a ? `${a} ${en}` : en;
+    if (kind === 'food') {
+      const ok = `Can I have ${thing}, please?`;
+      setOrder({ q: 'Hi there! What can I get you?', ok, opts: mix([ok, `Give me ${en}!`, `Can I has ${thing}, please?`, `I have ${thing}, please?`]), tip: 'Be polite: Can I have ... , please?', done: `Here you are! That's ${price} coins. Enjoy!`, run, wrong: null });
+    } else {
+      const hair = kind === 'hair';
+      const ok = hair ? `Can I have this hairstyle, please?` : `Can I try on the ${en}, please?`;
+      const opts = hair ? [ok, 'Cut my hair now!', 'Can I has this hairstyle?', 'I have this hairstyle, please?'] : [ok, `I want the ${en}. Give!`, `Can I tries on the ${en}?`, `Can I try in the ${en}, please?`];
+      setOrder({ q: hair ? 'Hi! What would you like today?' : 'Hello! Can I help you?', ok, opts: mix(opts), tip: hair ? 'Be polite: Can I have ... , please?' : 'We say: Can I try on ... , please?', done: hair ? `Lovely! It really suits you. That's ${price} coins.` : `Sure! It looks great on you. That's ${price} coins.`, run, wrong: null });
+    }
+    sc.current?.bubble('?');
+  };
+  const pickOrder = (o: string) => {
+    if (!order) return;
+    if (o !== order.ok) { sfx.bad(); setOrder({ ...order, wrong: o }); return; }
+    say(o); const r = order.run; const d = order.done; setOrder(null); flash(d); window.setTimeout(r, 600);
+  };
   const cookIt = () => {
     const r = RECIPES.find((x) => x.id === recipe); if (!r) return;
     if ([...picked].sort().join('|') !== [...r.need].sort().join('|')) { sfx.bad(); const miss = r.need.filter((x) => !picked.includes(x)); flash(miss.length ? `You need ${miss.join(', ')}. Read the recipe again!` : 'Too many things! Take out what you don’t need.', false); return; }
@@ -977,6 +998,13 @@ export default function IslandGame() {
       )}
       </div>}
       {near && !panel && <button type="button" className="il-act" onClick={act}>{nearText} <kbd>E</kbd></button>}
+      {order && <div className="il-order" role="dialog" aria-label="Talk to the shop assistant">
+        <p className="il-order__q"><b>Shop assistant:</b> {order.q}</p>
+        <p className="il-order__h">What do you say?</p>
+        <div className="il-order__opts">{order.opts.map((o) => <button key={o} type="button" className={order.wrong === o ? 'is-bad' : ''} onClick={() => pickOrder(o)}>{o}</button>)}</div>
+        {order.wrong && <p className="il-order__tip">Not quite. {order.tip}</p>}
+        <button type="button" className="il-order__x" onClick={() => setOrder(null)}>Not now</button>
+      </div>}
       {toast && <div className={`il-toast ${toast.good ? '' : 'is-bad'}`}>{toast.text}</div>}
 
       {/* керування на планшеті й телефоні */}
@@ -1006,7 +1034,7 @@ export default function IslandGame() {
             {stab !== 'acc' && stab !== 'fur' && STYLE.filter((x) => x.part === stab).map((it) => { const on = (save.outfit as Record<string, string | undefined>)[it.part] === it.id || (!(save.outfit as Record<string, string | undefined>)[it.part] && it.id.endsWith('-none')); return (
               <div key={it.id} className={`il-item ${on ? 'on' : ''}`}>{thumbs[it.id] ? <img className="il-thumb" src={thumbs[it.id]} alt="" /> : <i className="il-thumb-wait" />}<span>{it.en}</span>
                 {styleOwned(it.id) ? <button type="button" onClick={() => wearStyle(it.id)}>{on ? 'Wearing' : 'Wear'}</button>
-                  : <button type="button" className="buy" onClick={async () => { if (await buy({ id: it.id, price: it.price, en: it.en })) wearStyle(it.id); }}><i className="il-coin" /> {it.price}</button>}
+                  : <button type="button" className="buy" onClick={() => askOrder(it.part === 'hair' ? 'hair' : 'clothes', it.en, '', it.price, async () => { if (await buy({ id: it.id, price: it.price, en: it.en })) wearStyle(it.id); })}><i className="il-coin" /> {it.price}</button>}
               </div>); })}
             {stab === 'acc' && SHOP.filter((x) => x.cat === 'Clothes').map((it) => (
               <div key={it.id} className={`il-item ${worn(it) ? 'on' : ''}`}>{thumbs[it.id] ? <img className="il-thumb" src={thumbs[it.id]} alt="" /> : <i className="il-thumb-wait" />}<span>{it.en}</span>
