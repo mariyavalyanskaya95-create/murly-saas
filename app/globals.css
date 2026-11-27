@@ -4938,3 +4938,21 @@ textarea.t-parent__url { width: 300px; font: inherit; font-size: 13px; }
 .il-item button.il-place { background: #FFE08A; border-color: #1A1A1A; animation: il-pulse 1.2s ease-in-out infinite; }
 @keyframes il-pulse { 50% { transform: scale(1.06); } }
 @media (prefers-reduced-motion: reduce) { .il-item button.il-place { animation: none; } }
+/* Murly Island: перші кроки */
+.il-guide { position: absolute; top: 64px; left: 12px; z-index: 5; width: 270px; display: grid; gap: 4px; padding: 10px 12px; background: #FFF6D0; border: 2.5px solid #1A1A1A; border-radius: 16px; box-shadow: 0 3px 0 #1A1A1A; font-size: 13px; }
+.il-guide b { font-size: 12px; text-transform: uppercase; letter-spacing: .04em; color: #8A6A10; }
+.il-guide span { font-size: 15px; font-weight: 800; line-height: 1.25; }
+.il-guide small { font-size: 12.5px; color: #4A4A4A; line-height: 1.35; }
+.il-guide div { display: flex; gap: 6px; margin-top: 4px; }
+.il-mini--ghost { background: transparent; }
+.il-today--low { top: 196px; }
+@media (max-width: 720px) { .il-guide { width: 220px; top: 58px; } }
+.il.is-touch .il-guide { top: 64px; }
+.il:has(.il-guide).is-touch .il-needs { top: 232px; }
+.il-howto { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; margin: 10px 0 14px; }
+.il-howto div { display: grid; grid-template-columns: 34px 1fr; grid-template-rows: auto auto; column-gap: 10px; align-items: center; padding: 12px; background: #FFFDF6; border: 2px solid #1A1A1A; border-radius: 16px; }
+.il-howto .il-ico { grid-row: span 2; width: 30px; height: 30px; }
+.il-howto b { font-size: 15px; }
+.il-howto span { font-size: 13.5px; line-height: 1.35; color: #3A3A3A; }
+.il-more { margin: 4px 0 12px; }
+.il-more summary { cursor: pointer; font-weight: 800; padding: 6px 0; }
