@@ -663,7 +663,7 @@ export class IslandScene {
     const tape = box(0.62, 0.08, 0.2, '#F3D9B1'); tape.position.y = 0.2; this.carry.add(tape);
     this.marker = this.buildMarker();
     this.scene.add(this.homeGroup, this.yardGroup);
-    void this.buildTown();
+    void this.buildTown().then(() => { if (!low) this.scatterGrass(); });
     this.buildSky(); this.buildLife(); this.buildRoom();
 
     const resize = () => { const w = el.clientWidth || 1, h = el.clientHeight || 1; this.renderer.setSize(w, h); this.cam.aspect = w / h; this.cam.updateProjectionMatrix(); };
@@ -704,6 +704,49 @@ export class IslandScene {
     const top = cyl(1.1, 0.4, 0.3, '#D8CBB0', 24); top.position.y = 2.4; this.scene.add(top);
     const fishy = makeCat('#F4A340', 0.7); fishy.root.position.y = 2.55; fishy.armL.rotation.z = -2.6; fishy.armR.rotation.z = 2.6; this.scene.add(fishy.root);
     this.colliders.push({ x: 0, z: 0, r: 3.6 });
+  }
+  // кущики трави й дрібні квіти: оминаємо дороги, площу і будинки
+  scatterGrass() {
+    const ok = (x: number, z: number) => {
+      const r = Math.hypot(x, z);
+      if (r > 54 || r < 10.5) return false;
+      if (Math.abs(x) < 4 || Math.abs(z) < 4) return false;
+      if (r > 29 && r < 36) return false;
+      for (const c of this.colliders) if (Math.hypot(x - c.x, z - c.z) < c.r + 1.5) return false;
+      return true;
+    };
+    let seed = 7; const rnd = () => { seed = (Math.imul(seed, 1103515245) + 12345) >>> 0; return seed / 4294967296; };
+    const blade = new THREE.ConeGeometry(0.06, 0.42, 3); blade.translate(0, 0.21, 0);
+    const parts: THREE.BufferGeometry[] = [];
+    [[0, 0, 0], [0.08, 0.3, 0.05], [-0.07, -0.35, -0.04], [0.02, 0.15, -0.09]].forEach(([dx, tilt, dz]) => { const b = blade.clone(); b.rotateZ(tilt); b.translate(dx, 0, dz); parts.push(b); });
+    // ручне злиття геометрій (без додаткових імпортів)
+    const merged = new THREE.BufferGeometry(); const posArr: number[] = []; const norArr: number[] = [];
+    parts.forEach((pg) => { const ng = pg.toNonIndexed(); ng.computeVertexNormals(); posArr.push(...(ng.attributes.position.array as Float32Array)); norArr.push(...(ng.attributes.normal.array as Float32Array)); });
+    merged.setAttribute('position', new THREE.Float32BufferAttribute(posArr, 3)); merged.setAttribute('normal', new THREE.Float32BufferAttribute(norArr, 3));
+    const N = 2600; const grass = new THREE.InstancedMesh(merged, toon('#FFFFFF'), N); grass.receiveShadow = true;
+    const m = new THREE.Matrix4(); const q = new THREE.Quaternion(); const sc = new THREE.Vector3(); const pos = new THREE.Vector3(); const col = new THREE.Color();
+    const greens = ['#6FB84A', '#7CC456', '#5DA83E', '#8BCB62', '#69B04B'];
+    let n = 0;
+    for (let tries = 0; tries < N * 4 && n < N; tries++) {
+      const a = rnd() * Math.PI * 2, r = Math.sqrt(rnd()) * 54; const x = Math.cos(a) * r, z = Math.sin(a) * r;
+      if (!ok(x, z)) continue;
+      q.setFromAxisAngle(new THREE.Vector3(0, 1, 0), rnd() * 6.28); const k = 0.7 + rnd() * 0.8; sc.set(k, k * (0.8 + rnd() * 0.6), k); pos.set(x, 0, z);
+      m.compose(pos, q, sc); grass.setMatrixAt(n, m); grass.setColorAt(n, col.set(greens[n % greens.length])); n++;
+    }
+    grass.count = n; grass.instanceMatrix.needsUpdate = true; if (grass.instanceColor) grass.instanceColor.needsUpdate = true; this.scene.add(grass);
+    // квіти: кругла голівка на тонкому стеблі
+    const flowerG = new THREE.SphereGeometry(0.09, 8, 6); flowerG.scale(1, 0.7, 1); flowerG.translate(0, 0.34, 0);
+    const stemG = new THREE.CylinderGeometry(0.012, 0.012, 0.32, 4); stemG.translate(0, 0.16, 0);
+    const F = 420; const heads = new THREE.InstancedMesh(flowerG, toon('#FFFFFF'), F); const stems = new THREE.InstancedMesh(stemG, toon('#4E9A3E'), F);
+    const fc = ['#FFFFFF', '#FFD84D', '#F76AA8', '#B79CF0', '#FF8A5C'];
+    let f = 0;
+    for (let tries = 0; tries < F * 6 && f < F; tries++) {
+      // квіти купками
+      const a = rnd() * Math.PI * 2, r = Math.sqrt(rnd()) * 54; const cx = Math.cos(a) * r, cz = Math.sin(a) * r; const cc = fc[Math.floor(rnd() * fc.length)];
+      for (let j = 0; j < 6 && f < F; j++) { const x = cx + (rnd() - 0.5) * 1.6, z = cz + (rnd() - 0.5) * 1.6; if (!ok(x, z)) continue; const k = 0.8 + rnd() * 0.5; m.compose(pos.set(x, 0, z), q.identity(), sc.set(k, k, k)); heads.setMatrixAt(f, m); stems.setMatrixAt(f, m); heads.setColorAt(f, col.set(cc)); f++; }
+    }
+    heads.count = f; stems.count = f; heads.instanceMatrix.needsUpdate = true; stems.instanceMatrix.needsUpdate = true; if (heads.instanceColor) heads.instanceColor.needsUpdate = true;
+    this.scene.add(heads, stems);
   }
   buildWater(): THREE.Mesh {
     const g = new THREE.PlaneGeometry(600, 600, 120, 120); g.rotateX(-Math.PI / 2);
