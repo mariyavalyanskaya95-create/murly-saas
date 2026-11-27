@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Must, can’t, might: deduction (present and past): 100 tasks (B1) | Murly</title>
+<link rel="icon" href="/favicon.svg">
+<meta name="description" content="Повторимо правило: Припущення: must, can’t, might (теперішнє і минуле)
+100 завдань від простого до складного
+Розберемо головні пастки">
+<link rel="canonical" href="https://murly.com.ua/game-lessons/lib-drill-modals-deduction.html">
+<style>
+:root{--paper:#F3F0EA;--ink:#17181C;--violet:#3D4A7A;--lav:#D9D3C7;--pink:#E9C9BC;--green:#D4E2CF;--white:#fff;--muted:#62646B;--accent:#B5482F}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+/* hero */
+.hero{background:linear-gradient(rgba(16,17,22,.5),rgba(16,17,22,.72)),url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1400&q=70&auto=format&fit=crop");color:#fff;padding:70px 18px 56px;text-align:center;position:relative;overflow:hidden}
+.hero .kicker{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#E9C9BC;font-weight:700}
+.hero .cr{position:absolute;right:12px;bottom:8px;font-size:11px;color:rgba(255,255,255,.6)}
+.hero h1{margin:8px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(36px,6vw,64px);letter-spacing:-.5px;font-weight:700}
+.hero h1 span{color:var(--pink);font-style:italic}
+.hero p{margin:12px 0 0;font-size:17px;color:#e6e2da}
+.hero .flags{display:flex;justify-content:center;gap:12px;margin-top:22px;flex-wrap:wrap}
+.hero .flags svg{width:40px;height:26px;border-radius:3px;opacity:.9}
+/* sections */
+section{margin-top:30px;background:var(--white);border-radius:18px;padding:28px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.05)}
+section h2{margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tag{font-family:"Segoe UI",system-ui,sans-serif;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--paper);color:var(--accent);text-transform:uppercase;letter-spacing:1px}
+.lk-n{display:inline-grid;place-items:center;width:42px;height:42px;background:var(--violet);color:#fff;border-radius:50%;font-size:21px;flex:none}
+.lk-mode{font-size:13px;font-weight:700;border:2px dashed var(--lav);color:var(--muted);padding:2px 10px;border-radius:999px}
+.lk-ins{font-size:17px;background:var(--paper);border-radius:12px;padding:10px 14px;margin:6px 0 18px}
+.lk-sub{margin:24px 0 10px;font-size:19px}
+.btn{font:inherit;font-weight:700;border:0;border-radius:999px;background:var(--ink);color:#fff;padding:10px 20px;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+.btn.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+/* teacher */
+.lk-tbtn{position:fixed;right:16px;top:70px;z-index:45;font:inherit;font-weight:800;border:2px solid var(--ink);background:var(--pink);padding:8px 14px;border-radius:12px;cursor:pointer}
+body.teacher .lk-tbtn{background:var(--green)}
+.lk-ans,.lk-tnote{display:none}
+body.teacher .lk-ans{display:block;margin-top:8px;font-weight:700;color:#1d5a12;background:var(--green);border-left:5px solid #5aa845;padding:6px 10px;font-size:15px;border-radius:6px}
+body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff3f7;border-left:5px solid #d9789a;padding:8px 12px;font-size:15px;border-radius:6px}
+/* overview */
+.lk-overview ul{font-size:17px;line-height:1.7;margin:6px 0 16px}
+.lk-stages{display:flex;flex-wrap:wrap;gap:8px}
+.lk-stages a{display:grid;border-radius:14px;padding:8px 12px;text-decoration:none;color:var(--ink);background:var(--paper);font-weight:700;min-width:100px}
+.lk-stages a span{text-transform:capitalize}
+.lk-stages a b{font-size:20px;color:var(--violet)}
+.lk-stages a small{font-weight:600;color:var(--muted)}
+/* warm-up */
+.taxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tax{background:var(--paper);border-radius:18px;padding:16px;display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center}
+.tax svg{width:56px;height:56px}
+.tax b{display:block;font-size:17px}
+.tax small{color:var(--muted);font-size:14px}
+.qs{display:grid;gap:10px;margin-top:18px}
+.qs div{background:var(--green);border-radius:14px;padding:10px 16px;font-size:18px;font-weight:600}
+.phr{background:#fff7e8;border-radius:14px;padding:12px 16px;margin-top:16px;font-size:15px}
+.phr ul{margin:6px 0 0;padding-left:18px}
+.fic{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:16px}
+.fic .c{background:#fff;border:2px solid #1B2140;border-radius:16px;padding:14px 16px;box-shadow:3px 3px 0 #1B2140}
+.fic .c b{display:block;font-size:18px;line-height:1.35;margin-bottom:8px}
+.fic .c .k{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.fic .c .k span{font-size:13px;background:#eef1fb;border-radius:999px;padding:3px 10px}
+.fic .c details{margin-top:8px;font-size:15px;color:#3b4160}
+.fic .c summary{cursor:pointer;font-weight:700;color:#534AB7}
+.fi-n{display:inline-flex;width:28px;height:28px;border-radius:50%;background:#2F4BA0;color:#fff;align-items:center;justify-content:center;font-size:14px;margin-right:6px}
+/* vocab */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:12px}
+.vc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:2px solid transparent;transition:border-color .2s,transform .2s}
+.vc:hover{border-color:var(--violet);transform:translateY(-2px)}
+.vc b{font-size:18px;display:flex;align-items:center;gap:8px}
+.vc b svg{width:20px;height:20px;flex:none;color:var(--violet)}
+.vc p{margin:6px 0 0;font-size:14px;color:var(--muted)}
+.vc em{display:block;margin-top:6px;font-size:14px;color:var(--violet);font-style:normal;font-weight:600}
+.vc.played{background:#e6ecfb}
+/* grammar */
+.gram{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.gb{border-radius:18px;padding:16px}
+.gb h3{margin:0 0 6px;font-size:19px}
+.gb .f{display:inline-block;background:#fff;border-radius:8px;padding:3px 10px;font-weight:800;margin:4px 0;font-family:Consolas,monospace;font-size:15px}
+.gb p{margin:6px 0 0;font-size:15px}
+.g1{background:var(--pink)}.g2{background:var(--lav)}.g3{background:var(--green)}.g4{background:#fbe7c6}
+.warn{margin-top:14px;background:var(--ink);color:#fff;border-radius:14px;padding:12px 16px;font-size:16px}
+.warn b{color:var(--pink)}
+.q{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:2px dashed var(--paper);font-size:18px}
+.q:last-child{border-bottom:0}
+.q .n{width:32px;height:32px;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;border-radius:50%;font-weight:800;font-size:15px}
+.opt{font:inherit;font-size:16px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:10px;padding:4px 12px;cursor:pointer;margin:0 2px}
+.opt.ok{background:var(--green);border-color:#5aa845}
+.opt.bad{background:var(--pink);animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+/* tour */
+.tour{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.law{border-radius:22px;overflow:hidden;background:var(--paper);display:flex;flex-direction:column}
+.law .pic{height:150px;display:grid;place-items:center;position:relative}
+.law .pic svg.ill{width:130px;height:130px}
+.law .pic svg.fl{position:absolute;left:14px;top:14px;width:46px;height:30px;border-radius:5px;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.law .pic .no{position:absolute;right:14px;top:14px;background:var(--ink);color:#fff;font-weight:800;border-radius:999px;padding:2px 10px;font-size:13px}
+.law .body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.law h3{margin:0;font-size:20px}
+.law .where{font-size:13px;font-weight:800;color:var(--violet);text-transform:uppercase;letter-spacing:1px}
+.law p{margin:0;font-size:16px}
+.law .why{font-size:14px;color:var(--muted)}
+.law .dq{margin-top:auto;background:#fff;border-radius:12px;padding:8px 12px;font-weight:700;font-size:15px}
+.law .lsn{font:inherit;font-size:13px;font-weight:700;background:none;border:0;color:var(--violet);cursor:pointer;padding:0;text-align:left}
+/* game */
+.game{max-width:720px;margin:0 auto;text-align:center}
+.score{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.score span{background:var(--paper);border-radius:999px;padding:6px 16px;font-weight:800}
+.stmt{background:var(--ink);color:#fff;border-radius:22px;padding:28px 24px;min-height:150px;display:grid;place-items:center;font-size:23px;font-weight:700;position:relative}
+.stmt small{position:absolute;top:12px;left:18px;font-size:13px;color:var(--lav);font-weight:700}
+.choose{display:flex;justify-content:center;gap:14px;margin:18px 0}
+.choose button{font:inherit;font-size:18px;font-weight:700;border:2px solid var(--ink);border-radius:999px;padding:12px 28px;cursor:pointer}
+.choose .bl{background:var(--green)}.choose .bm{background:var(--pink)}
+.choose button:disabled{opacity:.5;cursor:default}
+.verdict{min-height:70px;font-size:17px;background:var(--paper);border-radius:16px;padding:12px 16px;text-align:left}
+.verdict b.r{color:#2d7a1d}.verdict b.w{color:#b23a62}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.dots i{width:14px;height:14px;border-radius:50%;background:var(--paper)}
+.dots i.r{background:#7cc663}.dots i.w{background:#e47b9f}.dots i.c{outline:3px solid var(--violet)}
+.final{font-size:22px;font-weight:800;color:var(--violet)}
+/* invent */
+.inv{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.frames{display:grid;gap:10px}
+.frames label{font-size:14px;font-weight:700;color:var(--muted)}
+.frames select,.frames input{font:inherit;width:100%;padding:8px 10px;border:2px solid var(--lav);border-radius:10px;background:#fff}
+.poster{background:var(--paper);border:3px solid var(--ink);border-radius:20px;padding:22px;text-align:center;min-height:260px;display:flex;flex-direction:column;gap:10px;justify-content:center}
+.poster .seal{width:70px;height:70px;margin:0 auto}
+.poster h3{margin:0;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--violet)}
+.poster .rule{font-size:22px;font-weight:800}
+.poster .pen{font-size:16px;color:var(--muted)}
+.ideas{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ideas span{background:var(--pink);border-radius:999px;padding:5px 12px;font-size:14px;font-weight:600}
+/* roleplay */
+.rp{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.role{border-radius:20px;padding:18px}
+.role h3{margin:0 0 6px;display:flex;align-items:center;gap:10px}
+.role h3 svg{width:42px;height:42px}
+.role ul{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.r1{background:var(--lav)}.r2{background:var(--green)}
+.scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:16px}
+.sc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:3px solid transparent}
+.sc.on{border-color:var(--violet);background:#fff}
+.sc b{display:block;font-size:17px;margin-bottom:4px}
+.sc p{margin:0;font-size:15px}
+.timer{font-size:40px;font-weight:800;text-align:center;margin:14px 0 6px;color:var(--violet)}
+.ctr{text-align:center}
+/* homework */
+.hwb{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hwc{background:var(--paper);border-radius:18px;padding:18px}
+.hwc h3{margin:0 0 8px}
+.hwc ol,.hwc ul{margin:6px 0 0;padding-left:20px;line-height:1.7}
+.hwc textarea{width:100%;min-height:150px;font:inherit;border:2px solid var(--lav);border-radius:12px;padding:10px;margin-top:10px}
+.end{text-align:center;background:var(--ink);color:#fff;box-shadow:none}
+.end h2{justify-content:center}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(140px);background:var(--ink);color:#fff;font-weight:800;padding:12px 22px;border-radius:14px;transition:transform .3s;z-index:50}
+.toast.show{transform:translateX(-50%) translateY(0)}
+/* photos */
+.ph{margin:0}
+.ph img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;background:var(--paper)}
+.ph figcaption{font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.2px}
+.tax{grid-template-columns:1fr !important;padding:12px !important}
+.law .pic{height:auto !important;display:block !important;padding:0;position:relative}
+.law .pic .ph img{border-radius:0;aspect-ratio:16/10;transition:filter .5s}
+.law .pic .ph figcaption{padding:4px 12px 0}
+.law.hide .pic .ph img{filter:blur(10px) grayscale(.6)}
+.law.hide .reveal-body,.law.hide .fl,.law.hide .where{visibility:hidden}
+.law .clue{font-size:15px;font-style:italic;color:var(--ink)}
+.law .gc{display:flex;flex-wrap:wrap;gap:6px}
+.law .gc button{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:4px 12px;cursor:pointer}
+.law .gc button.ok{background:var(--green)}.law .gc button.bad{background:var(--pink)}
+.law:not(.hide) .guess{display:none}
+.fair{display:grid;gap:4px;background:#fff;border-radius:12px;padding:8px 12px}
+.fair .ends{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.fair input{width:100%;accent-color:var(--accent)}
+.fair output{font-size:14px;font-weight:700;color:var(--accent)}
+.gph{max-width:720px;margin:0 auto 12px}
+.gph img{aspect-ratio:21/9}
+.fine{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.fq{background:var(--paper);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.fq h3{margin:0;font-size:18px}
+.fq .opts{display:flex;flex-wrap:wrap;gap:6px}
+.fq .opts button{font:inherit;font-size:14px;font-weight:700;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 12px;cursor:pointer}
+.fq .opts button.ok{background:var(--green)}.fq .opts button.bad{background:var(--pink)}
+.fq .res{font-size:15px;min-height:22px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{position:relative;aspect-ratio:16/9;background:#111}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;cursor:pointer;background:#111 center/cover;display:grid;place-items:center}
+.vid .play span{background:rgba(0,0,0,.7);color:#fff;font-weight:700;border-radius:999px;padding:10px 20px;font-size:15px;letter-spacing:1px}
+.vid .info{padding:14px 16px}
+.vid .info h3{margin:0 0 2px;font-size:18px}
+.vid .info small{color:var(--muted)}
+.vid .info ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+@media(max-width:760px){.inv,.rp,.hwb{grid-template-columns:1fr}.lk-tbtn{top:auto;bottom:70px}}
+
+.pr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.pb{border-radius:18px;padding:16px 18px}
+.pb h3{margin:0;font-family:Georgia,serif;font-size:30px}
+.pb .m{font-size:15px;color:var(--muted);margin:2px 0 8px}
+.pb .chips{display:flex;flex-wrap:wrap;gap:6px}
+.pb .chips span{background:#fff;border-radius:999px;padding:4px 11px;font-size:14px;font-weight:600}
+.pb ul{margin:10px 0 0;padding-left:18px;font-size:15px}
+.p-in{background:#DCE6F5}.p-at{background:#F3D9CF}.p-on{background:#D4E2CF}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-size:15px;margin-top:10px}
+.ex div{background:var(--paper);border-radius:10px;padding:8px 12px}
+.ex b{color:var(--accent)}
+.q{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.q .n{font-weight:800;color:var(--violet);min-width:24px}
+.q .gap{display:inline-block;min-width:44px;border-bottom:2px solid var(--ink);text-align:center;font-weight:800}
+.q .opts{margin-left:auto;display:flex;gap:6px}
+.q .opts button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 14px;cursor:pointer}
+.q.ok{background:#DDEED7}.q.ok .gap{color:#2F7A3B}
+.q.bad{background:#F6DAD3}
+.score{font-weight:800;margin-top:12px}
+.text{font-size:18px;line-height:1.75;background:var(--paper);border-radius:16px;padding:18px 22px}
+.text h3{margin:0 0 6px;font-family:Georgia,serif;font-size:24px}
+.text p{margin:0 0 12px}
+.text.hl mark{background:#F3D9CF;border-radius:4px;padding:0 3px;font-weight:700}
+.tf{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:9px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.tf .opts{margin-left:auto;display:flex;gap:6px}
+.tf button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.tf.ok{background:#DDEED7}.tf.bad{background:#F6DAD3}
+.disc{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px;margin-top:6px}
+.disc div{background:var(--green);border-radius:14px;padding:12px 16px;font-size:17px;font-weight:600}
+.disc div i{font-style:normal;color:var(--violet);margin-right:6px}
+.spin{text-align:center;margin-top:16px}
+.spin .card{display:inline-block;min-height:80px;min-width:min(560px,100%);background:var(--ink);color:#fff;border-radius:18px;padding:20px 24px;font-size:22px;font-weight:700;margin-bottom:12px}
+@media(max-width:700px){.ex{grid-template-columns:1fr}}
+
+.hero{background-size:cover!important;background-position:center!important}
+.voc{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.voc div{background:var(--paper);border-radius:14px;padding:10px 14px;cursor:pointer;border:2px solid transparent}
+.voc div:hover{border-color:var(--violet)}
+.voc b{display:block;font-size:18px}.voc span{display:block;color:var(--accent);font-weight:700;font-size:15px}.voc em{display:block;font-size:14px;color:var(--muted);margin-top:3px}
+.mt{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:10px}
+.mt button{font:inherit;font-size:16px;text-align:left;border:2px solid var(--ink);background:#fff;border-radius:14px;padding:9px 14px;cursor:pointer}
+.mt button.sel{background:#FFE7A8}.mt button.done{background:#CDE8C6;border-color:#4C9A5B;cursor:default}
+.ch{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ch .n{font-weight:800;color:var(--violet);min-width:24px}
+.ch .o{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.ch .o button{font:inherit;font-size:15px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.ch.ok{background:#DDEED7}.ch.bad{background:#F6DAD3}
+.ty{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ty input{font:inherit;border:2px solid var(--ink);border-radius:10px;padding:4px 10px;width:220px}
+.ty.ok{background:#DDEED7}.ty.bad{background:#F6DAD3}
+.ty small{color:var(--muted)}
+.photo{width:100%;height:300px;object-fit:cover;border-radius:16px;display:block}
+.cap{font-size:11px;color:var(--muted);margin:4px 0 12px}
+.pics{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.pics figure{margin:0;background:var(--paper);border-radius:16px;overflow:hidden}
+.pics img{width:100%;height:170px;object-fit:cover;display:block}
+.pics figcaption{padding:8px 12px;font-weight:700}
+.pics small{display:block;font-weight:400;font-size:10px;color:var(--muted)}
+.lis{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:8px 0 14px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{aspect-ratio:16/9;background:#000;position:relative}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;background-size:cover;background-position:center;cursor:pointer;display:grid;place-items:center}
+.vid .play span{background:#E5484D;color:#fff;font-weight:800;border-radius:12px;padding:10px 20px}
+.vid .info{padding:12px 16px}.vid h3{margin:0;font-size:18px}.vid small{color:var(--muted)}
+.vid ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th,.tbl td{border:1px solid #ddd;padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--paper)}
+@media(max-width:700px){.mt{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="/game-lessons/kit.css">
+</head>
+<body>
+<header class="hero">
+  <div class="kicker">B1 · teens · Граматика: тренажер Припущення: must, can’t, might (теперішнє і минуле)</div>
+  <h1>Must, can’t, might: deduction (present and past): 100 tasks</h1>
+  <p>B1 · 6 parts · 60 min</p>
+  <span class="cr">Photo: Unsplash</span>
+</header>
+<button class="lk-tbtn" id="teacherBtn" type="button">Teacher version</button>
+<div class="wrap">
+  <section class="lk-overview">
+    <h2>In this lesson you will:</h2>
+    <ul><li>Повторимо правило: Припущення: must, can’t, might (теперішнє і минуле)
+100 завдань від простого до складного
+Розберемо головні пастки</li></ul>
+    <div class="lk-stages" id="stages"></div>
+  </section>
+  <section id="s1" data-stage="practice" data-min="10">
+    <h2><span class="lk-n">1</span>Теорія <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<div class="warn"><p><b>Коли вживаємо</b></p><p>Впевнені, що так: must be: Sophie’s bike is outside. She must be at home. (Велосипед Софі надворі. Вона, напевно, вдома.)</p><p>Впевнені, що ні: can’t be: That can’t be Max. He’s in London today. (Це не може бути Макс. Він сьогодні в Лондоні.)</p><p>Можливо, але не впевнені: might / may / could be: Lily isn’t answering. She might be asleep. (Лілі не відповідає. Можливо, вона спить.)</p><p>Висновок про минуле: must have + V3: The road is wet. It must have rained. (Дорога мокра. Мабуть, був дощ.)</p><p>Минуле: точно ні або можливо: can’t have / might have + V3: Dan can’t have seen us. He was looking the other way. (Ден не міг нас бачити. Він дивився в інший бік.)</p></div>
+    <div class="warn"><p><b>Форми</b></p><p>+  must / might / may / could + V (без to, без -s): висновок або припущення про теперішнє. Приклад: He must be tired. She might know the answer.</p><p>−  can’t / couldn’t + V: точно ні; might not / may not + V: можливо, ні. Приклад: It can’t be true. He might not know.</p><p>?  Could / Can + підмет + V? Must у таких питаннях не вживаємо.. Приклад: Could it be Kate? Where can he be?</p><p>зараз  must / can’t / might + be + V-ing: що відбувається саме зараз. Приклад: She must be sleeping.</p><p>минуле  must / can’t / couldn’t / might / may / could + have + V3. Приклад: They must have left. He can’t have known.</p></div>
+    <div class="warn"><p><b>Головна пастка</b></p><p>mustn’t чи can’t. mustn’t зазвичай означає заборону («не можна»). Коли ми впевнені, що щось неправда, кажемо can’t.</p><p>✗ Lily mustn’t be at school. It’s Sunday.</p><p>✓ Lily can’t be at school. It’s Sunday.</p><p>must have went. Після have завжди третя форма дієслова (V3): must have gone, might have seen. Друга форма (went, saw) тут помилка.</p><p>✗ He must have went home.</p><p>✓ He must have gone home.</p><p>maybe чи may be. maybe (одним словом) = «можливо», стоїть окремо, зазвичай на початку речення. may be (двома словами) = модальне + дієслово: «може бути».</p><p>✗ She maybe at home.</p><p>✓ She may be at home. / Maybe she’s at home.</p></div>
+    <div class="warn"><p><b>Маркери:</b> напевно, точно → must, не може бути → can’t, можливо → might / may / could, I’m sure, perhaps / maybe, by now, yesterday / last night → have + V3, I bet</p></div>
+    <div class="warn"><p><b>Шкала впевненості</b></p><p>Чим вище в таблиці, тим більше ми впевнені, що це правда. Таблиця: модальне, наскільки впевнені, про теперішнє, про минуле.</p><p>must · майже точно так · She must be at home. · She must have been at home.</p><p>may / might / could · можливо · He might be busy. · He might have been busy.</p><p>may not / might not · можливо, ні · They may not know. · They may not have known.</p><p>can’t / couldn’t · майже точно ні · It can’t be true. · It can’t have been true.</p></div>
+    <p class="lk-tnote" data-ru="Тренажер на 100 завдань: 5 раундів по 20. На уроці можна пройти 1-2 раунди, решту задати додому. Пояснення до кожної відповіді учень бачить у тренажері на сайті (розділ «Граматика»).&lt;br&gt;">Тренажер на 100 завдань: 5 раундів по 20. На уроці можна пройти 1-2 раунди, решту задати додому. Пояснення до кожної відповіді учень бачить у тренажері на сайті (розділ «Граматика»).<br></p>
+  </section>
+  <section id="s2" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">2</span>Раунд 1. Форми: must be і must have done <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="must be"><span class="n">1</span><span class="s">Lily has been studying for ten hours. She ___ exhausted.</span><span class="o"><button type="button">musts be</button><button type="button">must to be</button><button type="button">must being</button><button type="button">must be</button></span></div>
+<div class="ch" data-a="can’t be"><span class="n">2</span><span class="s">That ___ Tom’s car. Tom doesn’t even have a car!</span><span class="o"><button type="button">can’t be</button><button type="button">must be</button><button type="button">might be</button><button type="button">must have been</button></span></div>
+<div class="ch" data-a="must be"><span class="n">3</span><span class="s">Sophie ___ at home: her bike is outside.</span><span class="o"><button type="button">is must be</button><button type="button">must to be</button><button type="button">musts be</button><button type="button">must be</button></span></div>
+<div class="ch" data-a="may be"><span class="n">4</span><span class="s">I’m not sure where Dan is. He ___ at the gym.</span><span class="o"><button type="button">mays be</button><button type="button">may to be</button><button type="button">is may</button><button type="button">may be</button></span></div>
+<div class="ch" data-a="must have gone"><span class="n">5</span><span class="s">The lights are off. They ___ to bed already.</span><span class="o"><button type="button">must go</button><button type="button">must went</button><button type="button">must have went</button><button type="button">must have gone</button></span></div>
+<div class="ch" data-a="might not have read"><span class="n">6</span><span class="s">Emma ___ my email. She hasn’t replied yet.</span><span class="o"><button type="button">not might have read</button><button type="button">might have not reading</button><button type="button">might not have read</button><button type="button">might not read</button></span></div>
+<div class="ch" data-a="can’t have lost"><span class="n">7</span><span class="s">Max ___ his phone: he’s still texting me.</span><span class="o"><button type="button">can’t have lost</button><button type="button">can’t lose</button><button type="button">can’t have lose</button><button type="button">can’t lost</button></span></div>
+<div class="ch" data-a="must be playing"><span class="n">8</span><span class="s">Listen! Someone ___ the piano next door.</span><span class="o"><button type="button">must play</button><button type="button">must be playing</button><button type="button">must playing</button><button type="button">must to play</button></span></div>
+<div class="ch" data-a="can’t be"><span class="n">9</span><span class="s">You ___ serious! A cat can’t drive a car.</span><span class="o"><button type="button">can’t to be</button><button type="button">can’t be</button><button type="button">not can be</button><button type="button">don’t must be</button></span></div>
+<div class="ch" data-a="must have eaten"><span class="n">10</span><span class="s">The cake is gone. The kids ___ it all!</span><span class="o"><button type="button">must have ate</button><button type="button">must ate</button><button type="button">must eaten</button><button type="button">must have eaten</button></span></div>
+<div class="ch" data-a="may have left"><span class="n">11</span><span class="s">Where’s my umbrella? I ___ it on the bus.</span><span class="o"><button type="button">may leave</button><button type="button">may left</button><button type="button">may have left</button><button type="button">may have leave</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; must be · can’t be · must be · may be · must have gone · might not have read · can’t have lost · must be playing · can’t be · must have eaten · may have left"><b>Відповіді:</b> must be · can’t be · must be · may be · must have gone · might not have read · can’t have lost · must be playing · can’t be · must have eaten · may have left</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="might be"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Max isn’t answering his phone. He ___ (might, be) in the shower.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="must hurt"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>You’ve been walking all day. Your feet ___ (must, hurt).</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="must have"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Kate ___ (must, have) a lot of money: she travels every month.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="must have rained|must’ve rained"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>The ground is wet. It ___ (must, rain) in the night.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="might have left|might’ve left"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>I can’t find my keys. I ___ (might, leave) them at school.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="could be"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Lily isn’t in class today. She ___ (could, be) ill.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="must have passed|must’ve passed"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>Dan looks really happy. He ___ (must, pass) his driving test.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="can’t be|cannot be|can not be"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>Emma ___ (can’t, be) at the office. She’s on holiday this week.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="may start"><span class="n" style="font-weight:800;color:var(--violet)">9</span><span>I’m not sure, but the match ___ (may, start) at six.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; might be · must hurt · must have · must have rained · might have left · could be · must have passed · can’t be · may start"><b>Відповіді:</b> might be · must hurt · must have · must have rained · might have left · could be · must have passed · can’t be · may start</p>
+  </section>
+  <section id="s3" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">3</span>Раунд 2. Заперечення і питання: can’t, might not, could ...? <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="can’t be"><span class="n">1</span><span class="s">Lily ___ hungry. She’s just had a huge pizza.</span><span class="o"><button type="button">can’t be</button><button type="button">doesn’t must be</button><button type="button">isn’t can</button><button type="button">not can be</button></span></div>
+<div class="ch" data-a="may not have got"><span class="n">2</span><span class="s">Dan ___ my message. He usually replies in minutes.</span><span class="o"><button type="button">not may have got</button><button type="button">may not have got</button><button type="button">may not got</button><button type="button">may not have get</button></span></div>
+<div class="ch" data-a="be"><span class="n">3</span><span class="s">Could this ___ Sophie’s bag? It has a cat keyring.</span><span class="o"><button type="button">is</button><button type="button">be</button><button type="button">to be</button><button type="button">being</button></span></div>
+<div class="ch" data-a="can’t be"><span class="n">4</span><span class="s">The shop ___ open yet. It’s only seven in the morning.</span><span class="o"><button type="button">might not to be</button><button type="button">doesn’t must be</button><button type="button">can’t be</button><button type="button">isn’t can be</button></span></div>
+<div class="ch" data-a="can’t have missed"><span class="n">5</span><span class="s">Tom ___ the bus. He’s already here.</span><span class="o"><button type="button">can’t have missed</button><button type="button">must missed</button><button type="button">must have missed</button><button type="button">might have missed</button></span></div>
+<div class="ch" data-a="Could"><span class="n">6</span><span class="s">___ Max have forgotten about the meeting?</span><span class="o"><button type="button">Has</button><button type="button">Could</button><button type="button">Is</button><button type="button">Does</button></span></div>
+<div class="ch" data-a="can’t be"><span class="n">7</span><span class="s">You ___ tired already! We’ve only walked a kilometre.</span><span class="o"><button type="button">can’t to be</button><button type="button">aren’t can</button><button type="button">can’t be</button><button type="button">don’t can be</button></span></div>
+<div class="ch" data-a="can"><span class="n">8</span><span class="s">Where ___ Lily be? She’s never late.</span><span class="o"><button type="button">does</button><button type="button">must</button><button type="button">is</button><button type="button">can</button></span></div>
+<div class="ch" data-a="might not"><span class="n">9</span><span class="s">Dan ___ like the soup. He left most of it.</span><span class="o"><button type="button">might not to</button><button type="button">doesn’t might</button><button type="button">not might</button><button type="button">might not</button></span></div>
+<div class="ch" data-a="may not have lost"><span class="n">10</span><span class="s">Sophie ___ her keys. Maybe they’re in her other bag.</span><span class="o"><button type="button">may not have lost</button><button type="button">may not lost</button><button type="button">may have not lose</button><button type="button">not may have lost</button></span></div>
+<div class="ch" data-a="Could"><span class="n">11</span><span class="s">Why is Max so quiet? ___ he be upset about the game?</span><span class="o"><button type="button">Could</button><button type="button">Is</button><button type="button">Does</button><button type="button">Has</button></span></div>
+<div class="ch" data-a="can’t have"><span class="n">12</span><span class="s">The film ___ finished yet. I can still hear the music.</span><span class="o"><button type="button">can’t have</button><button type="button">couldn’t had</button><button type="button">don’t can have</button><button type="button">can’t has</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; can’t be · may not have got · be · can’t be · can’t have missed · Could · can’t be · can · might not · may not have lost · Could · can’t have"><b>Відповіді:</b> can’t be · may not have got · be · can’t be · can’t have missed · Could · can’t be · can · might not · may not have lost · Could · can’t have</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="might not be|mightn’t be"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Max ___ (might, not, be) at home. Let’s call first.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="can’t have seen|cannot have seen|can not have seen"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Kate ___ (can’t, see) us. She walked right past us.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Can"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>___ (can) it really be Lily on the phone? She’s in Japan!</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="might not have heard|mightn’t have heard"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Emma ___ (might, not, hear) the doorbell. She had headphones on.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="couldn’t have known|could not have known"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>They ___ (couldn’t, know) about the party. It was a secret.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="can’t be|cannot be|can not be"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>This ___ (can’t, be) the right address. There’s no house here.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="may not have finished"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>Don’t worry. Kate ___ (may, not, finish) her project yet.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="might not want|mightn’t want"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>Lily ___ (might, not, want) to come. She hates horror films.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; might not be · can’t have seen · Can · might not have heard · couldn’t have known · can’t be · may not have finished · might not want"><b>Відповіді:</b> might not be · can’t have seen · Can · might not have heard · couldn’t have known · can’t be · may not have finished · might not want</p>
+  </section>
+  <section id="s4" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">4</span>Раунд 3. Зараз чи в минулому? <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="must be chatting"><span class="n">1</span><span class="s">Emma keeps looking at her phone and smiling. She ___ with someone.</span><span class="o"><button type="button">must chat</button><button type="button">must have chatted</button><button type="button">must be chatting</button><button type="button">can’t be chatting</button></span></div>
+<div class="ch" data-a="can’t be"><span class="n">2</span><span class="s">There are no lights on in the house. They ___ at home.</span><span class="o"><button type="button">can’t to be</button><button type="button">can’t be</button><button type="button">must have</button><button type="button">must be</button></span></div>
+<div class="ch" data-a="must have lived"><span class="n">3</span><span class="s">Sophie speaks perfect French. She ___ in France for years.</span><span class="o"><button type="button">can’t have lived</button><button type="button">must live</button><button type="button">must have lived</button><button type="button">might not live</button></span></div>
+<div class="ch" data-a="could be"><span class="n">4</span><span class="s">I’m not sure who’s at the door. It ___ the pizza guy.</span><span class="o"><button type="button">must have been</button><button type="button">must</button><button type="button">could be</button><button type="button">can’t have</button></span></div>
+<div class="ch" data-a="can’t have been"><span class="n">5</span><span class="s">Max got 100% on yesterday’s test. The test ___ too difficult for him.</span><span class="o"><button type="button">must have been</button><button type="button">can’t have been</button><button type="button">can’t be</button><button type="button">must be</button></span></div>
+<div class="ch" data-a="might have been"><span class="n">6</span><span class="s">I don’t know why Dan didn’t reply yesterday. He ___ busy.</span><span class="o"><button type="button">might have been</button><button type="button">might be been</button><button type="button">must be being</button><button type="button">can’t be</button></span></div>
+<div class="ch" data-a="must be"><span class="n">7</span><span class="s">Someone’s knocking. That ___ Emma: she said she’d come at five, and it’s five now.</span><span class="o"><button type="button">might not be</button><button type="button">must be</button><button type="button">must have been</button><button type="button">can’t be</button></span></div>
+<div class="ch" data-a="may be"><span class="n">8</span><span class="s">Lily isn’t answering. She ___ at the cinema: she always turns her phone off there.</span><span class="o"><button type="button">may have</button><button type="button">must have</button><button type="button">may be</button><button type="button">can’t be</button></span></div>
+<div class="ch" data-a="can’t be"><span class="n">9</span><span class="s">You ___ hungry. You’ve just had lunch!</span><span class="o"><button type="button">could be</button><button type="button">might be</button><button type="button">must be</button><button type="button">can’t be</button></span></div>
+<div class="ch" data-a="must have been"><span class="n">10</span><span class="s">Kate passed her exam without studying? She ___ really lucky!</span><span class="o"><button type="button">must have been</button><button type="button">can’t have been</button><button type="button">must had been</button><button type="button">might not have been</button></span></div>
+<div class="ch" data-a="might have"><span class="n">11</span><span class="s">Dan is wearing a suit today. He ___ a job interview.</span><span class="o"><button type="button">might has</button><button type="button">might have</button><button type="button">mights have</button><button type="button">might having</button></span></div>
+<div class="ch" data-a="can’t have known"><span class="n">12</span><span class="s">Max ___ the answer. He looked confused when the teacher asked him.</span><span class="o"><button type="button">must know</button><button type="button">can know</button><button type="button">must have known</button><button type="button">can’t have known</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; must be chatting · can’t be · must have lived · could be · can’t have been · might have been · must be · may be · can’t be · must have been · might have · can’t have known"><b>Відповіді:</b> must be chatting · can’t be · must have lived · could be · can’t have been · might have been · must be · may be · can’t be · must have been · might have · can’t have known</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="must have broken|must’ve broken"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Dan has a cast on his arm. He ___ (must, break) it.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="might have been|might’ve been"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Lily didn’t come to the party. She ___ (might, be) ill last night.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="must have gone|must’ve gone"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Look at all those bags! Kate ___ (must, go) shopping.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="must be"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Our cat has been asleep all day. She ___ (must, be) tired after her night walk.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="must have arrived|must’ve arrived"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Tom left an hour ago. He ___ (must, arrive) home by now.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="must have hit|must’ve hit"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>The window is broken. A ball ___ (must, hit) it.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="must have taken|must’ve taken"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>Sophie’s phone was on the table a minute ago. Someone ___ (must, take) it.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="may have left|may’ve left"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>I’m not sure, but I think I ___ (may, leave) the oven on this morning!</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; must have broken · might have been · must have gone · must be · must have arrived · must have hit · must have taken · may have left"><b>Відповіді:</b> must have broken · might have been · must have gone · must be · must have arrived · must have hit · must have taken · may have left</p>
+  </section>
+  <section id="s5" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">5</span>Раунд 4. Пастки: mustn’t, went, maybe <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="She must be at home."><span class="n">1</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">She must to be at home.</button><button type="button">She must being at home.</button><button type="button">She must be at home.</button><button type="button">She musts be at home.</button></span></div>
+<div class="ch" data-a="He must have gone out."><span class="n">2</span><span class="s">Яке речення правильне?: ___</span><span class="o"><button type="button">He must have gone out.</button><button type="button">He must went out.</button><button type="button">He must gone out.</button><button type="button">He must have went out.</button></span></div>
+<div class="ch" data-a="It might rain later."><span class="n">3</span><span class="s">Знайди речення без помилки: ___</span><span class="o"><button type="button">It might rain later.</button><button type="button">It might to rain later.</button><button type="button">It mights rain later.</button><button type="button">It might raining later.</button></span></div>
+<div class="ch" data-a="may be"><span class="n">4</span><span class="s">Lily ___ late. Her train is delayed.</span><span class="o"><button type="button">may be</button><button type="button">mays be</button><button type="button">may to be</button><button type="button">maybe</button></span></div>
+<div class="ch" data-a="She can’t have seen me."><span class="n">5</span><span class="s">Де немає помилки?: ___</span><span class="o"><button type="button">She can’t have saw me.</button><button type="button">She can’t has seen me.</button><button type="button">She can’t saw me.</button><button type="button">She can’t have seen me.</button></span></div>
+<div class="ch" data-a="can’t"><span class="n">6</span><span class="s">“Is that Kate’s brother?” “It ___ be. She doesn’t have a brother.”</span><span class="o"><button type="button">may</button><button type="button">can’t</button><button type="button">isn’t</button><button type="button">don’t</button></span></div>
+<div class="ch" data-a="can’t"><span class="n">7</span><span class="s">Tom ___ have heard the bad news. He’s so calm and cheerful.</span><span class="o"><button type="button">doesn’t</button><button type="button">can’t to</button><button type="button">can’t</button><button type="button">not must</button></span></div>
+<div class="ch" data-a="They might have forgotten."><span class="n">8</span><span class="s">Обери речення без помилки: ___</span><span class="o"><button type="button">They might forgotten.</button><button type="button">They might have forgot.</button><button type="button">They might has forgotten.</button><button type="button">They might have forgotten.</button></span></div>
+<div class="ch" data-a="can’t"><span class="n">9</span><span class="s">Emma ___ be in Paris now. I saw her in town ten minutes ago!</span><span class="o"><button type="button">can’t</button><button type="button">could</button><button type="button">might</button><button type="button">must</button></span></div>
+<div class="ch" data-a="He might not have noticed."><span class="n">10</span><span class="s">Яке речення звучить правильно?: ___</span><span class="o"><button type="button">He might not has noticed.</button><button type="button">He not might have noticed.</button><button type="button">He mightn’t noticed.</button><button type="button">He might not have noticed.</button></span></div>
+<div class="ch" data-a="must have gone"><span class="n">11</span><span class="s">The door is locked. They ___ out.</span><span class="o"><button type="button">must went</button><button type="button">must go</button><button type="button">must going</button><button type="button">must have gone</button></span></div>
+<div class="ch" data-a="must have"><span class="n">12</span><span class="s">Dan won the race? He ___ trained a lot!</span><span class="o"><button type="button">must</button><button type="button">must have</button><button type="button">must had</button><button type="button">must has</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; She must be at home. · He must have gone out. · It might rain later. · may be · She can’t have seen me. · can’t · can’t · They might have forgotten. · can’t · He might not have noticed. · must have gone · must have"><b>Відповіді:</b> She must be at home. · He must have gone out. · It might rain later. · may be · She can’t have seen me. · can’t · can’t · They might have forgotten. · can’t · He might not have noticed. · must have gone · must have</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="can’t be|cannot be|can not be"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>It’s Sunday. Max ___ (can’t, be) at school.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="can’t have eaten|cannot have eaten|can not have eaten"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Dan ___ (can’t, eat) all the cookies. He was asleep.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Maybe"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>___ (maybe / may be) Sophie is at the library.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="must be"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Kate ___ (must, be) at work. Her car is in the office car park.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="must have worked|must’ve worked|must have been working|must’ve been working"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Max sounds tired. He ___ (must, work) late last night.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="could be"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>I ___ (could, be) wrong, but I think the shop closes at six.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="might be sleeping"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>Sophie isn’t answering. She ___ (might, be, sleep) right now.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="couldn’t have taken|could not have taken"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>Lily ___ (couldn’t, take) your pen. She wasn’t here.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; can’t be · can’t have eaten · Maybe · must be · must have worked · could be · might be sleeping · couldn’t have taken"><b>Відповіді:</b> can’t be · can’t have eaten · Maybe · must be · must have worked · could be · might be sleeping · couldn’t have taken</p>
+  </section>
+  <section id="s6" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">6</span>Раунд 5. Фінальний бос: детектив <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="must have been crying"><span class="n">1</span><span class="s">Kate’s eyes are red and she’s holding a tissue. She ___.</span><span class="o"><button type="button">must have been crying</button><button type="button">must cry</button><button type="button">must have cry</button><button type="button">can’t have cried</button></span></div>
+<div class="ch" data-a="must have worked"><span class="n">2</span><span class="s">Max knows everything about engines. He ___ as a mechanic before.</span><span class="o"><button type="button">can’t have worked</button><button type="button">must worked</button><button type="button">must have worked</button><button type="button">must work</button></span></div>
+<div class="ch" data-a="can’t have"><span class="n">3</span><span class="s">Lily talked about the trip all morning. She ___ forgotten about it.</span><span class="o"><button type="button">could have</button><button type="button">might have</button><button type="button">must have</button><button type="button">can’t have</button></span></div>
+<div class="ch" data-a="might be"><span class="n">4</span><span class="s">Dan isn’t at the café yet. I’m not sure why. He ___ stuck in traffic.</span><span class="o"><button type="button">must be</button><button type="button">might have</button><button type="button">can’t be</button><button type="button">might be</button></span></div>
+<div class="ch" data-a="must have eaten"><span class="n">5</span><span class="s">The fridge is empty. My brothers ___ everything.</span><span class="o"><button type="button">can’t have eaten</button><button type="button">must eat</button><button type="button">must have eaten</button><button type="button">might not eat</button></span></div>
+<div class="ch" data-a="must be"><span class="n">6</span><span class="s">Someone is calling. It ___ my mum: she always calls at this time.</span><span class="o"><button type="button">must have been</button><button type="button">might not be</button><button type="button">can’t be</button><button type="button">must be</button></span></div>
+<div class="ch" data-a="might have been"><span class="n">7</span><span class="s">I didn’t see Tom at the concert. He ___ there, but it was very crowded.</span><span class="o"><button type="button">might have been</button><button type="button">must have</button><button type="button">can’t have been</button><button type="button">must be</button></span></div>
+<div class="ch" data-a="can’t be"><span class="n">8</span><span class="s">This painting ___ very old. It looks brand new.</span><span class="o"><button type="button">can’t be</button><button type="button">must have been</button><button type="button">might be</button><button type="button">must be</button></span></div>
+<div class="ch" data-a="must have bought"><span class="n">9</span><span class="s">Lily and Max have the same new trainers. They ___ them in the same shop.</span><span class="o"><button type="button">can’t have bought</button><button type="button">must bought</button><button type="button">must buy</button><button type="button">must have bought</button></span></div>
+<div class="ch" data-a="can’t have"><span class="n">10</span><span class="s">Dan’s bag is still here. He ___ gone far.</span><span class="o"><button type="button">must have</button><button type="button">can’t have</button><button type="button">might has</button><button type="button">must not to</button></span></div>
+<div class="ch" data-a="might be"><span class="n">11</span><span class="s">The baby is crying again. She ___ hungry.</span><span class="o"><button type="button">might to be</button><button type="button">might been</button><button type="button">might be</button><button type="button">mights be</button></span></div>
+<div class="ch" data-a="can’t have written"><span class="n">12</span><span class="s">Tom wrote this essay in ten minutes? It’s perfect! He ___ it himself.</span><span class="o"><button type="button">can’t have written</button><button type="button">could have write</button><button type="button">must have written</button><button type="button">must write</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; must have been crying · must have worked · can’t have · might be · must have eaten · must be · might have been · can’t be · must have bought · can’t have · might be · can’t have written"><b>Відповіді:</b> must have been crying · must have worked · can’t have · might be · must have eaten · must be · might have been · can’t be · must have bought · can’t have · might be · can’t have written</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="might have died|might’ve died"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Tom’s phone goes straight to voicemail. His battery ___ (might, die).</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="must have left|must’ve left"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>There’s a cat on our sofa. Somebody ___ (must, leave) the window open.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="must have got|must’ve got|must have gotten|must’ve gotten"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Sophie looks so happy. She ___ (must, get) some good news.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="can’t have seen|cannot have seen|can not have seen"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Emma wasn’t at the party, so you ___ (can’t, see) her there.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="may not have got|may not have gotten"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Kate didn’t answer my letter. She ___ (may, not, get) it.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="must be"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>You ___ (must, be) Sophie’s sister. You look just like her!</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="might have rained|might’ve rained"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>The streets are wet, but I didn’t hear any rain. It ___ (might, rain) while we were asleep.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="could be"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>Our teacher isn’t here today. She ___ (could, be) at a conference.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; might have died · must have left · must have got · can’t have seen · may not have got · must be · might have rained · could be"><b>Відповіді:</b> might have died · must have left · must have got · can’t have seen · may not have got · must be · might have rained · could be</p>
+  </section>
+  <section class="end"><h2>Great job!</h2><p>See you next lesson.</p></section>
+</div>
+<div class="toast" id="toast"></div>
+<script>window.MURLY_LESSON={"id": "lib-drill-modals-deduction", "title": "Must, can’t, might: deduction (present and past): 100 tasks", "homework": ["s2", "s3", "s4", "s5", "s6"], "hw": {"s2": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Lily has been studying for ten hours. She {must be|must to be|musts be|must being} exhausted.\nThat {can’t be|must be|might be|must have been} Tom’s car. Tom doesn’t even have a car!\nSophie {must be|must to be|is must be|musts be} at home: her bike is outside.\nI’m not sure where Dan is. He {may be|may to be|mays be|is may} at the gym.\nThe lights are off. They {must have gone|must go|must went|must have went} to bed already.\nEmma {might not have read|might not read|might have not reading|not might have read} my email. She hasn’t replied yet.\nMax {can’t have lost|can’t lose|can’t have lose|can’t lost} his phone: he’s still texting me.\nListen! Someone {must be playing|must play|must playing|must to play} the piano next door.\nYou {can’t be|don’t must be|not can be|can’t to be} serious! A cat can’t drive a car.\nThe cake is gone. The kids {must have eaten|must eaten|must have ate|must ate} it all!\nWhere’s my umbrella? I {may have left|may leave|may have leave|may left} it on the bus."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "Max isn’t answering his phone. He [might be] (might, be) in the shower.\nYou’ve been walking all day. Your feet [must hurt] (must, hurt).\nKate [must have] (must, have) a lot of money: she travels every month.\nThe ground is wet. It [must have rained/must’ve rained] (must, rain) in the night.\nI can’t find my keys. I [might have left/might’ve left] (might, leave) them at school.\nLily isn’t in class today. She [could be] (could, be) ill.\nDan looks really happy. He [must have passed/must’ve passed] (must, pass) his driving test.\nEmma [can’t be/cannot be/can not be] (can’t, be) at the office. She’s on holiday this week.\nI’m not sure, but the match [may start] (may, start) at six."}], "s3": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Lily {can’t be|not can be|doesn’t must be|isn’t can} hungry. She’s just had a huge pizza.\nDan {may not have got|may not got|may not have get|not may have got} my message. He usually replies in minutes.\nCould this {be|to be|being|is} Sophie’s bag? It has a cat keyring.\nThe shop {can’t be|might not to be|isn’t can be|doesn’t must be} open yet. It’s only seven in the morning.\nTom {can’t have missed|must have missed|might have missed|must missed} the bus. He’s already here.\n{Could|Does|Is|Has} Max have forgotten about the meeting?\nYou {can’t be|don’t can be|can’t to be|aren’t can} tired already! We’ve only walked a kilometre.\nWhere {can|does|is|must} Lily be? She’s never late.\nDan {might not|might not to|doesn’t might|not might} like the soup. He left most of it.\nSophie {may not have lost|may not lost|may have not lose|not may have lost} her keys. Maybe they’re in her other bag.\nWhy is Max so quiet? {Could|Does|Has|Is} he be upset about the game?\nThe film {can’t have|can’t has|couldn’t had|don’t can have} finished yet. I can still hear the music."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "Max [might not be/mightn’t be] (might, not, be) at home. Let’s call first.\nKate [can’t have seen/cannot have seen/can not have seen] (can’t, see) us. She walked right past us.\n[Can] (can) it really be Lily on the phone? She’s in Japan!\nEmma [might not have heard/mightn’t have heard] (might, not, hear) the doorbell. She had headphones on.\nThey [couldn’t have known/could not have known] (couldn’t, know) about the party. It was a secret.\nThis [can’t be/cannot be/can not be] (can’t, be) the right address. There’s no house here.\nDon’t worry. Kate [may not have finished] (may, not, finish) her project yet.\nLily [might not want/mightn’t want] (might, not, want) to come. She hates horror films."}], "s4": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Emma keeps looking at her phone and smiling. She {must be chatting|must have chatted|can’t be chatting|must chat} with someone.\nThere are no lights on in the house. They {can’t be|must be|must have|can’t to be} at home.\nSophie speaks perfect French. She {must have lived|must live|can’t have lived|might not live} in France for years.\nI’m not sure who’s at the door. It {could be|must have been|can’t have|must} the pizza guy.\nMax got 100% on yesterday’s test. The test {can’t have been|can’t be|must be|must have been} too difficult for him.\nI don’t know why Dan didn’t reply yesterday. He {might have been|must be being|might be been|can’t be} busy.\nSomeone’s knocking. That {must be|can’t be|must have been|might not be} Emma: she said she’d come at five, and it’s five now.\nLily isn’t answering. She {may be|must have|can’t be|may have} at the cinema: she always turns her phone off there.\nYou {can’t be|must be|might be|could be} hungry. You’ve just had lunch!\nKate passed her exam without studying? She {must have been|can’t have been|might not have been|must had been} really lucky!\nDan is wearing a suit today. He {might have|might has|might having|mights have} a job interview.\nMax {can’t have known|can know|must have known|must know} the answer. He looked confused when the teacher asked him."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "Dan has a cast on his arm. He [must have broken/must’ve broken] (must, break) it.\nLily didn’t come to the party. She [might have been/might’ve been] (might, be) ill last night.\nLook at all those bags! Kate [must have gone/must’ve gone] (must, go) shopping.\nOur cat has been asleep all day. She [must be] (must, be) tired after her night walk.\nTom left an hour ago. He [must have arrived/must’ve arrived] (must, arrive) home by now.\nThe window is broken. A ball [must have hit/must’ve hit] (must, hit) it.\nSophie’s phone was on the table a minute ago. Someone [must have taken/must’ve taken] (must, take) it.\nI’m not sure, but I think I [may have left/may’ve left] (may, leave) the oven on this morning!"}], "s5": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Обери правильне речення: {She must be at home.|She must to be at home.|She musts be at home.|She must being at home.}\nЯке речення правильне?: {He must have gone out.|He must have went out.|He must went out.|He must gone out.}\nЗнайди речення без помилки: {It might rain later.|It might to rain later.|It mights rain later.|It might raining later.}\nLily {may be|maybe|may to be|mays be} late. Her train is delayed.\nДе немає помилки?: {She can’t have seen me.|She can’t have saw me.|She can’t saw me.|She can’t has seen me.}\n“Is that Kate’s brother?” “It {can’t|don’t|isn’t|may} be. She doesn’t have a brother.”\nTom {can’t|not must|doesn’t|can’t to} have heard the bad news. He’s so calm and cheerful.\nОбери речення без помилки: {They might have forgotten.|They might have forgot.|They might forgotten.|They might has forgotten.}\nEmma {can’t|might|must|could} be in Paris now. I saw her in town ten minutes ago!\nЯке речення звучить правильно?: {He might not have noticed.|He mightn’t noticed.|He not might have noticed.|He might not has noticed.}\nThe door is locked. They {must have gone|must going|must go|must went} out.\nDan won the race? He {must have|must|must had|must has} trained a lot!"}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "It’s Sunday. Max [can’t be/cannot be/can not be] (can’t, be) at school.\nDan [can’t have eaten/cannot have eaten/can not have eaten] (can’t, eat) all the cookies. He was asleep.\n[Maybe] (maybe / may be) Sophie is at the library.\nKate [must be] (must, be) at work. Her car is in the office car park.\nMax sounds tired. He [must have worked/must’ve worked/must have been working/must’ve been working] (must, work) late last night.\nI [could be] (could, be) wrong, but I think the shop closes at six.\nSophie isn’t answering. She [might be sleeping] (might, be, sleep) right now.\nLily [couldn’t have taken/could not have taken] (couldn’t, take) your pen. She wasn’t here."}], "s6": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Kate’s eyes are red and she’s holding a tissue. She {must have been crying|must cry|can’t have cried|must have cry}.\nMax knows everything about engines. He {must have worked|must work|can’t have worked|must worked} as a mechanic before.\nLily talked about the trip all morning. She {can’t have|must have|might have|could have} forgotten about it.\nDan isn’t at the café yet. I’m not sure why. He {might be|must be|can’t be|might have} stuck in traffic.\nThe fridge is empty. My brothers {must have eaten|can’t have eaten|might not eat|must eat} everything.\nSomeone is calling. It {must be|can’t be|must have been|might not be} my mum: she always calls at this time.\nI didn’t see Tom at the concert. He {might have been|can’t have been|must be|must have} there, but it was very crowded.\nThis painting {can’t be|must be|might be|must have been} very old. It looks brand new.\nLily and Max have the same new trainers. They {must have bought|must buy|can’t have bought|must bought} them in the same shop.\nDan’s bag is still here. He {can’t have|must have|might has|must not to} gone far.\nThe baby is crying again. She {might be|might to be|might been|mights be} hungry.\nTom wrote this essay in ten minutes? It’s perfect! He {can’t have written|must have written|could have write|must write} it himself."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "Tom’s phone goes straight to voicemail. His battery [might have died/might’ve died] (might, die).\nThere’s a cat on our sofa. Somebody [must have left/must’ve left] (must, leave) the window open.\nSophie looks so happy. She [must have got/must’ve got/must have gotten/must’ve gotten] (must, get) some good news.\nEmma wasn’t at the party, so you [can’t have seen/cannot have seen/can not have seen] (can’t, see) her there.\nKate didn’t answer my letter. She [may not have got/may not have gotten] (may, not, get) it.\nYou [must be] (must, be) Sophie’s sister. You look just like her!\nThe streets are wet, but I didn’t hear any rain. It [might have rained/might’ve rained] (might, rain) while we were asleep.\nOur teacher isn’t here today. She [could be] (could, be) at a conference."}]}};</script>
+<script>
+(function(){var l=(document.cookie.match(/(?:^|; )murly_lang=(\w+)/)||[])[1];try{l=l||localStorage.getItem('murly:tlang')}catch(e){}l=l==='ru'?'ru':'uk';document.querySelectorAll('[data-pairs-'+l+']').forEach(function(b){b.dataset.pairs=b.getAttribute('data-pairs-'+l)});})();
+</script>
+<script>
+const $ = (id) => document.getElementById(id);
+const LIS = {};
+function say(w, rate) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; const v = speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang) && /Google|Natural|Libby|Sonia|Daniel/.test(x.name)) || speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang)); if (v) u.voice = v; u.rate = rate || .95; speechSynthesis.speak(u); } catch (e) { } }
+const sh = (a) => a.map((x) => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map((x) => x[1]);
+document.querySelectorAll('.voc div').forEach((d) => d.onclick = () => say(d.dataset.say));
+document.querySelectorAll('[data-play]').forEach((b) => b.onclick = () => say(LIS[b.dataset.play], b.dataset.slow ? .75 : .95));
+document.querySelectorAll('[data-stop]').forEach((b) => b.onclick = () => { try { speechSynthesis.cancel(); } catch (e) { } });
+document.querySelectorAll('.ch').forEach((q) => q.querySelectorAll('button').forEach((b) => b.onclick = () => { if (q.classList.contains('ok')) return; const ok = b.textContent === q.dataset.a; q.classList.toggle('ok', ok); q.classList.toggle('bad', !ok); if (ok) { const s = q.querySelector('.s'); if (s && s.textContent.includes('___')) { s.textContent = s.textContent.replace('___', q.dataset.a); } } }));
+const norm = (x) => x.toLowerCase().replace(/[’']/g, "'").replace(/[,;:"“”«»]/g, ' ').replace(/\s+/g, ' ').replace(/[.!?]$/, '').trim();
+document.querySelectorAll('.ty').forEach((r) => { const inp = r.querySelector('input'); const chk = () => { const ok = r.dataset.a.split('|').some((a) => norm(a) === norm(inp.value)); r.classList.toggle('ok', ok); r.classList.toggle('bad', !ok && inp.value.trim() !== ''); }; r.querySelector('button').onclick = chk; inp.onkeydown = (e) => { if (e.key === 'Enter') chk(); }; });
+document.querySelectorAll('[data-mt]').forEach((box) => { const pairs = JSON.parse(box.dataset.pairs); const L = sh(pairs.map((p) => p[0])), R = sh(pairs.map((p) => p[1])); let sel = null, done = 0, err = 0; box.innerHTML = L.map((w, i) => `<button type="button" data-w="${w}">${w}</button><button type="button" data-d="${R[i]}">${R[i]}</button>`).join('');
+  box.querySelectorAll('button').forEach((b) => b.onclick = () => { if (b.classList.contains('done')) return; if (!sel || (sel.dataset.w && b.dataset.w) || (sel.dataset.d && b.dataset.d)) { if (sel) sel.classList.remove('sel'); sel = b; b.classList.add('sel'); return; } const w = sel.dataset.w || b.dataset.w, d = sel.dataset.d || b.dataset.d; if (pairs.some((p) => p[0] === w && p[1] === d)) { sel.classList.add('done'); b.classList.add('done'); done++; say(w); if (done === pairs.length) document.querySelector(`[data-mtres="${box.dataset.mt}"]`).textContent = err ? `Done! Mistakes: ${err}` : 'Perfect!'; } else err++; sel.classList.remove('sel'); sel = null; }); });
+document.querySelectorAll('[data-vids]').forEach((box) => JSON.parse(box.dataset.vids).forEach(([id, title, ch, qs]) => { const d = document.createElement('div'); d.className = 'vid'; d.innerHTML = `<div class="frame"><button class="play" type="button" style="background-image:url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)"><span>PLAY</span></button></div><div class="info"><h3>${title}</h3><small>YouTube · ${ch}</small><ol>${qs.map((q) => `<li>${q}</li>`).join('')}</ol></div>`; d.querySelector('.play').onclick = (e) => { e.currentTarget.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&cc_load_policy=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${title}"></iframe>`; }; box.appendChild(d); }));
+document.querySelectorAll('[data-spin]').forEach((b) => { const list = JSON.parse(b.dataset.spin); let last = -1; b.onclick = () => { let i; do { i = Math.floor(Math.random() * list.length); } while (i === last && list.length > 1); last = i; document.getElementById(b.dataset.target).textContent = list[i]; }; });
+try { const k = 'murly:' + (window.MURLY_LESSON ? MURLY_LESSON.id : 'x') + ':hw'; const t = $('hwText'); if (t) { t.value = localStorage.getItem(k) || ''; t.oninput = () => localStorage.setItem(k, t.value); } } catch (e) { }
+const STAGES = [...document.querySelectorAll('.wrap > section[id]')];
+$('stages').innerHTML = STAGES.map((s) => `<a href="#${s.id}"><b>${s.querySelector('.lk-n').textContent}</b><span>${s.dataset.stage}</span><small>${s.dataset.min !== '0' ? s.dataset.min + ' min' : 'at home'}</small></a>`).join('');
+$('teacherBtn').onclick = (e) => { const on = document.body.classList.toggle('teacher'); e.currentTarget.textContent = on ? 'Student version' : 'Teacher version'; };
+</script>
+<script src="/game-lessons/kit.js" defer></script>
+</body>
+</html>

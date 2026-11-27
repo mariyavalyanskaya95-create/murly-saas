@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Used to, would, be used to, get used to: 100 tasks (B1) | Murly</title>
+<link rel="icon" href="/favicon.svg">
+<meta name="description" content="Повторимо правило: Used to, would, be used to, get used to
+100 завдань від простого до складного
+Розберемо головні пастки">
+<link rel="canonical" href="https://murly.com.ua/game-lessons/lib-drill-used-to.html">
+<style>
+:root{--paper:#F3F0EA;--ink:#17181C;--violet:#3D4A7A;--lav:#D9D3C7;--pink:#E9C9BC;--green:#D4E2CF;--white:#fff;--muted:#62646B;--accent:#B5482F}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+/* hero */
+.hero{background:linear-gradient(rgba(16,17,22,.5),rgba(16,17,22,.72)),url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1400&q=70&auto=format&fit=crop");color:#fff;padding:70px 18px 56px;text-align:center;position:relative;overflow:hidden}
+.hero .kicker{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#E9C9BC;font-weight:700}
+.hero .cr{position:absolute;right:12px;bottom:8px;font-size:11px;color:rgba(255,255,255,.6)}
+.hero h1{margin:8px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(36px,6vw,64px);letter-spacing:-.5px;font-weight:700}
+.hero h1 span{color:var(--pink);font-style:italic}
+.hero p{margin:12px 0 0;font-size:17px;color:#e6e2da}
+.hero .flags{display:flex;justify-content:center;gap:12px;margin-top:22px;flex-wrap:wrap}
+.hero .flags svg{width:40px;height:26px;border-radius:3px;opacity:.9}
+/* sections */
+section{margin-top:30px;background:var(--white);border-radius:18px;padding:28px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.05)}
+section h2{margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tag{font-family:"Segoe UI",system-ui,sans-serif;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--paper);color:var(--accent);text-transform:uppercase;letter-spacing:1px}
+.lk-n{display:inline-grid;place-items:center;width:42px;height:42px;background:var(--violet);color:#fff;border-radius:50%;font-size:21px;flex:none}
+.lk-mode{font-size:13px;font-weight:700;border:2px dashed var(--lav);color:var(--muted);padding:2px 10px;border-radius:999px}
+.lk-ins{font-size:17px;background:var(--paper);border-radius:12px;padding:10px 14px;margin:6px 0 18px}
+.lk-sub{margin:24px 0 10px;font-size:19px}
+.btn{font:inherit;font-weight:700;border:0;border-radius:999px;background:var(--ink);color:#fff;padding:10px 20px;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+.btn.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+/* teacher */
+.lk-tbtn{position:fixed;right:16px;top:70px;z-index:45;font:inherit;font-weight:800;border:2px solid var(--ink);background:var(--pink);padding:8px 14px;border-radius:12px;cursor:pointer}
+body.teacher .lk-tbtn{background:var(--green)}
+.lk-ans,.lk-tnote{display:none}
+body.teacher .lk-ans{display:block;margin-top:8px;font-weight:700;color:#1d5a12;background:var(--green);border-left:5px solid #5aa845;padding:6px 10px;font-size:15px;border-radius:6px}
+body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff3f7;border-left:5px solid #d9789a;padding:8px 12px;font-size:15px;border-radius:6px}
+/* overview */
+.lk-overview ul{font-size:17px;line-height:1.7;margin:6px 0 16px}
+.lk-stages{display:flex;flex-wrap:wrap;gap:8px}
+.lk-stages a{display:grid;border-radius:14px;padding:8px 12px;text-decoration:none;color:var(--ink);background:var(--paper);font-weight:700;min-width:100px}
+.lk-stages a span{text-transform:capitalize}
+.lk-stages a b{font-size:20px;color:var(--violet)}
+.lk-stages a small{font-weight:600;color:var(--muted)}
+/* warm-up */
+.taxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tax{background:var(--paper);border-radius:18px;padding:16px;display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center}
+.tax svg{width:56px;height:56px}
+.tax b{display:block;font-size:17px}
+.tax small{color:var(--muted);font-size:14px}
+.qs{display:grid;gap:10px;margin-top:18px}
+.qs div{background:var(--green);border-radius:14px;padding:10px 16px;font-size:18px;font-weight:600}
+.phr{background:#fff7e8;border-radius:14px;padding:12px 16px;margin-top:16px;font-size:15px}
+.phr ul{margin:6px 0 0;padding-left:18px}
+.fic{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:16px}
+.fic .c{background:#fff;border:2px solid #1B2140;border-radius:16px;padding:14px 16px;box-shadow:3px 3px 0 #1B2140}
+.fic .c b{display:block;font-size:18px;line-height:1.35;margin-bottom:8px}
+.fic .c .k{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.fic .c .k span{font-size:13px;background:#eef1fb;border-radius:999px;padding:3px 10px}
+.fic .c details{margin-top:8px;font-size:15px;color:#3b4160}
+.fic .c summary{cursor:pointer;font-weight:700;color:#534AB7}
+.fi-n{display:inline-flex;width:28px;height:28px;border-radius:50%;background:#2F4BA0;color:#fff;align-items:center;justify-content:center;font-size:14px;margin-right:6px}
+/* vocab */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:12px}
+.vc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:2px solid transparent;transition:border-color .2s,transform .2s}
+.vc:hover{border-color:var(--violet);transform:translateY(-2px)}
+.vc b{font-size:18px;display:flex;align-items:center;gap:8px}
+.vc b svg{width:20px;height:20px;flex:none;color:var(--violet)}
+.vc p{margin:6px 0 0;font-size:14px;color:var(--muted)}
+.vc em{display:block;margin-top:6px;font-size:14px;color:var(--violet);font-style:normal;font-weight:600}
+.vc.played{background:#e6ecfb}
+/* grammar */
+.gram{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.gb{border-radius:18px;padding:16px}
+.gb h3{margin:0 0 6px;font-size:19px}
+.gb .f{display:inline-block;background:#fff;border-radius:8px;padding:3px 10px;font-weight:800;margin:4px 0;font-family:Consolas,monospace;font-size:15px}
+.gb p{margin:6px 0 0;font-size:15px}
+.g1{background:var(--pink)}.g2{background:var(--lav)}.g3{background:var(--green)}.g4{background:#fbe7c6}
+.warn{margin-top:14px;background:var(--ink);color:#fff;border-radius:14px;padding:12px 16px;font-size:16px}
+.warn b{color:var(--pink)}
+.q{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:2px dashed var(--paper);font-size:18px}
+.q:last-child{border-bottom:0}
+.q .n{width:32px;height:32px;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;border-radius:50%;font-weight:800;font-size:15px}
+.opt{font:inherit;font-size:16px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:10px;padding:4px 12px;cursor:pointer;margin:0 2px}
+.opt.ok{background:var(--green);border-color:#5aa845}
+.opt.bad{background:var(--pink);animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+/* tour */
+.tour{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.law{border-radius:22px;overflow:hidden;background:var(--paper);display:flex;flex-direction:column}
+.law .pic{height:150px;display:grid;place-items:center;position:relative}
+.law .pic svg.ill{width:130px;height:130px}
+.law .pic svg.fl{position:absolute;left:14px;top:14px;width:46px;height:30px;border-radius:5px;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.law .pic .no{position:absolute;right:14px;top:14px;background:var(--ink);color:#fff;font-weight:800;border-radius:999px;padding:2px 10px;font-size:13px}
+.law .body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.law h3{margin:0;font-size:20px}
+.law .where{font-size:13px;font-weight:800;color:var(--violet);text-transform:uppercase;letter-spacing:1px}
+.law p{margin:0;font-size:16px}
+.law .why{font-size:14px;color:var(--muted)}
+.law .dq{margin-top:auto;background:#fff;border-radius:12px;padding:8px 12px;font-weight:700;font-size:15px}
+.law .lsn{font:inherit;font-size:13px;font-weight:700;background:none;border:0;color:var(--violet);cursor:pointer;padding:0;text-align:left}
+/* game */
+.game{max-width:720px;margin:0 auto;text-align:center}
+.score{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.score span{background:var(--paper);border-radius:999px;padding:6px 16px;font-weight:800}
+.stmt{background:var(--ink);color:#fff;border-radius:22px;padding:28px 24px;min-height:150px;display:grid;place-items:center;font-size:23px;font-weight:700;position:relative}
+.stmt small{position:absolute;top:12px;left:18px;font-size:13px;color:var(--lav);font-weight:700}
+.choose{display:flex;justify-content:center;gap:14px;margin:18px 0}
+.choose button{font:inherit;font-size:18px;font-weight:700;border:2px solid var(--ink);border-radius:999px;padding:12px 28px;cursor:pointer}
+.choose .bl{background:var(--green)}.choose .bm{background:var(--pink)}
+.choose button:disabled{opacity:.5;cursor:default}
+.verdict{min-height:70px;font-size:17px;background:var(--paper);border-radius:16px;padding:12px 16px;text-align:left}
+.verdict b.r{color:#2d7a1d}.verdict b.w{color:#b23a62}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.dots i{width:14px;height:14px;border-radius:50%;background:var(--paper)}
+.dots i.r{background:#7cc663}.dots i.w{background:#e47b9f}.dots i.c{outline:3px solid var(--violet)}
+.final{font-size:22px;font-weight:800;color:var(--violet)}
+/* invent */
+.inv{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.frames{display:grid;gap:10px}
+.frames label{font-size:14px;font-weight:700;color:var(--muted)}
+.frames select,.frames input{font:inherit;width:100%;padding:8px 10px;border:2px solid var(--lav);border-radius:10px;background:#fff}
+.poster{background:var(--paper);border:3px solid var(--ink);border-radius:20px;padding:22px;text-align:center;min-height:260px;display:flex;flex-direction:column;gap:10px;justify-content:center}
+.poster .seal{width:70px;height:70px;margin:0 auto}
+.poster h3{margin:0;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--violet)}
+.poster .rule{font-size:22px;font-weight:800}
+.poster .pen{font-size:16px;color:var(--muted)}
+.ideas{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ideas span{background:var(--pink);border-radius:999px;padding:5px 12px;font-size:14px;font-weight:600}
+/* roleplay */
+.rp{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.role{border-radius:20px;padding:18px}
+.role h3{margin:0 0 6px;display:flex;align-items:center;gap:10px}
+.role h3 svg{width:42px;height:42px}
+.role ul{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.r1{background:var(--lav)}.r2{background:var(--green)}
+.scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:16px}
+.sc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:3px solid transparent}
+.sc.on{border-color:var(--violet);background:#fff}
+.sc b{display:block;font-size:17px;margin-bottom:4px}
+.sc p{margin:0;font-size:15px}
+.timer{font-size:40px;font-weight:800;text-align:center;margin:14px 0 6px;color:var(--violet)}
+.ctr{text-align:center}
+/* homework */
+.hwb{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hwc{background:var(--paper);border-radius:18px;padding:18px}
+.hwc h3{margin:0 0 8px}
+.hwc ol,.hwc ul{margin:6px 0 0;padding-left:20px;line-height:1.7}
+.hwc textarea{width:100%;min-height:150px;font:inherit;border:2px solid var(--lav);border-radius:12px;padding:10px;margin-top:10px}
+.end{text-align:center;background:var(--ink);color:#fff;box-shadow:none}
+.end h2{justify-content:center}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(140px);background:var(--ink);color:#fff;font-weight:800;padding:12px 22px;border-radius:14px;transition:transform .3s;z-index:50}
+.toast.show{transform:translateX(-50%) translateY(0)}
+/* photos */
+.ph{margin:0}
+.ph img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;background:var(--paper)}
+.ph figcaption{font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.2px}
+.tax{grid-template-columns:1fr !important;padding:12px !important}
+.law .pic{height:auto !important;display:block !important;padding:0;position:relative}
+.law .pic .ph img{border-radius:0;aspect-ratio:16/10;transition:filter .5s}
+.law .pic .ph figcaption{padding:4px 12px 0}
+.law.hide .pic .ph img{filter:blur(10px) grayscale(.6)}
+.law.hide .reveal-body,.law.hide .fl,.law.hide .where{visibility:hidden}
+.law .clue{font-size:15px;font-style:italic;color:var(--ink)}
+.law .gc{display:flex;flex-wrap:wrap;gap:6px}
+.law .gc button{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:4px 12px;cursor:pointer}
+.law .gc button.ok{background:var(--green)}.law .gc button.bad{background:var(--pink)}
+.law:not(.hide) .guess{display:none}
+.fair{display:grid;gap:4px;background:#fff;border-radius:12px;padding:8px 12px}
+.fair .ends{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.fair input{width:100%;accent-color:var(--accent)}
+.fair output{font-size:14px;font-weight:700;color:var(--accent)}
+.gph{max-width:720px;margin:0 auto 12px}
+.gph img{aspect-ratio:21/9}
+.fine{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.fq{background:var(--paper);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.fq h3{margin:0;font-size:18px}
+.fq .opts{display:flex;flex-wrap:wrap;gap:6px}
+.fq .opts button{font:inherit;font-size:14px;font-weight:700;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 12px;cursor:pointer}
+.fq .opts button.ok{background:var(--green)}.fq .opts button.bad{background:var(--pink)}
+.fq .res{font-size:15px;min-height:22px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{position:relative;aspect-ratio:16/9;background:#111}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;cursor:pointer;background:#111 center/cover;display:grid;place-items:center}
+.vid .play span{background:rgba(0,0,0,.7);color:#fff;font-weight:700;border-radius:999px;padding:10px 20px;font-size:15px;letter-spacing:1px}
+.vid .info{padding:14px 16px}
+.vid .info h3{margin:0 0 2px;font-size:18px}
+.vid .info small{color:var(--muted)}
+.vid .info ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+@media(max-width:760px){.inv,.rp,.hwb{grid-template-columns:1fr}.lk-tbtn{top:auto;bottom:70px}}
+
+.pr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.pb{border-radius:18px;padding:16px 18px}
+.pb h3{margin:0;font-family:Georgia,serif;font-size:30px}
+.pb .m{font-size:15px;color:var(--muted);margin:2px 0 8px}
+.pb .chips{display:flex;flex-wrap:wrap;gap:6px}
+.pb .chips span{background:#fff;border-radius:999px;padding:4px 11px;font-size:14px;font-weight:600}
+.pb ul{margin:10px 0 0;padding-left:18px;font-size:15px}
+.p-in{background:#DCE6F5}.p-at{background:#F3D9CF}.p-on{background:#D4E2CF}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-size:15px;margin-top:10px}
+.ex div{background:var(--paper);border-radius:10px;padding:8px 12px}
+.ex b{color:var(--accent)}
+.q{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.q .n{font-weight:800;color:var(--violet);min-width:24px}
+.q .gap{display:inline-block;min-width:44px;border-bottom:2px solid var(--ink);text-align:center;font-weight:800}
+.q .opts{margin-left:auto;display:flex;gap:6px}
+.q .opts button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 14px;cursor:pointer}
+.q.ok{background:#DDEED7}.q.ok .gap{color:#2F7A3B}
+.q.bad{background:#F6DAD3}
+.score{font-weight:800;margin-top:12px}
+.text{font-size:18px;line-height:1.75;background:var(--paper);border-radius:16px;padding:18px 22px}
+.text h3{margin:0 0 6px;font-family:Georgia,serif;font-size:24px}
+.text p{margin:0 0 12px}
+.text.hl mark{background:#F3D9CF;border-radius:4px;padding:0 3px;font-weight:700}
+.tf{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:9px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.tf .opts{margin-left:auto;display:flex;gap:6px}
+.tf button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.tf.ok{background:#DDEED7}.tf.bad{background:#F6DAD3}
+.disc{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px;margin-top:6px}
+.disc div{background:var(--green);border-radius:14px;padding:12px 16px;font-size:17px;font-weight:600}
+.disc div i{font-style:normal;color:var(--violet);margin-right:6px}
+.spin{text-align:center;margin-top:16px}
+.spin .card{display:inline-block;min-height:80px;min-width:min(560px,100%);background:var(--ink);color:#fff;border-radius:18px;padding:20px 24px;font-size:22px;font-weight:700;margin-bottom:12px}
+@media(max-width:700px){.ex{grid-template-columns:1fr}}
+
+.hero{background-size:cover!important;background-position:center!important}
+.voc{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.voc div{background:var(--paper);border-radius:14px;padding:10px 14px;cursor:pointer;border:2px solid transparent}
+.voc div:hover{border-color:var(--violet)}
+.voc b{display:block;font-size:18px}.voc span{display:block;color:var(--accent);font-weight:700;font-size:15px}.voc em{display:block;font-size:14px;color:var(--muted);margin-top:3px}
+.mt{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:10px}
+.mt button{font:inherit;font-size:16px;text-align:left;border:2px solid var(--ink);background:#fff;border-radius:14px;padding:9px 14px;cursor:pointer}
+.mt button.sel{background:#FFE7A8}.mt button.done{background:#CDE8C6;border-color:#4C9A5B;cursor:default}
+.ch{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ch .n{font-weight:800;color:var(--violet);min-width:24px}
+.ch .o{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.ch .o button{font:inherit;font-size:15px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.ch.ok{background:#DDEED7}.ch.bad{background:#F6DAD3}
+.ty{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ty input{font:inherit;border:2px solid var(--ink);border-radius:10px;padding:4px 10px;width:220px}
+.ty.ok{background:#DDEED7}.ty.bad{background:#F6DAD3}
+.ty small{color:var(--muted)}
+.photo{width:100%;height:300px;object-fit:cover;border-radius:16px;display:block}
+.cap{font-size:11px;color:var(--muted);margin:4px 0 12px}
+.pics{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.pics figure{margin:0;background:var(--paper);border-radius:16px;overflow:hidden}
+.pics img{width:100%;height:170px;object-fit:cover;display:block}
+.pics figcaption{padding:8px 12px;font-weight:700}
+.pics small{display:block;font-weight:400;font-size:10px;color:var(--muted)}
+.lis{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:8px 0 14px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{aspect-ratio:16/9;background:#000;position:relative}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;background-size:cover;background-position:center;cursor:pointer;display:grid;place-items:center}
+.vid .play span{background:#E5484D;color:#fff;font-weight:800;border-radius:12px;padding:10px 20px}
+.vid .info{padding:12px 16px}.vid h3{margin:0;font-size:18px}.vid small{color:var(--muted)}
+.vid ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th,.tbl td{border:1px solid #ddd;padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--paper)}
+@media(max-width:700px){.mt{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="/game-lessons/kit.css">
+</head>
+<body>
+<header class="hero">
+  <div class="kicker">B1 · teens · Граматика: тренажер Used to, would, be used to, get used to</div>
+  <h1>Used to, would, be used to, get used to: 100 tasks</h1>
+  <p>B1 · 6 parts · 60 min</p>
+  <span class="cr">Photo: Unsplash</span>
+</header>
+<button class="lk-tbtn" id="teacherBtn" type="button">Teacher version</button>
+<div class="wrap">
+  <section class="lk-overview">
+    <h2>In this lesson you will:</h2>
+    <ul><li>Повторимо правило: Used to, would, be used to, get used to
+100 завдань від простого до складного
+Розберемо головні пастки</li></ul>
+    <div class="lk-stages" id="stages"></div>
+  </section>
+  <section id="s1" data-stage="practice" data-min="10">
+    <h2><span class="lk-n">1</span>Теорія <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<div class="warn"><p><b>Коли вживаємо</b></p><p>Звички й стани в минулому, яких тепер немає: used to + V: I used to play the violin. (Колись я грав на скрипці (а тепер ні).)</p><p>Те, що змінилося: there used to be: There used to be a cinema here. (Колись тут був кінотеатр.)</p><p>Повторювані дії в минулому: would + V (тільки дії, не стани): Every summer Grandma would bake cherry pies. (Щоліта бабуся пекла пироги з вишнями.)</p><p>Ти вже звик: be used to + іменник / V-ing: Lily is used to getting up early. (Лілі звикла рано вставати.)</p><p>Процес звикання: get used to + іменник / V-ing: Max is getting used to his new school. (Макс звикає до нової школи.)</p></div>
+    <div class="warn"><p><b>Форми</b></p><p>+  used to + V1 (однаково для всіх осіб). Приклад: We used to live in Brighton.</p><p>−  didn’t use to + V1 (після didn’t без -d). Приклад: Tom didn’t use to like cats.</p><p>?  Did + підмет + use to + V1?. Приклад: Did you use to wear glasses?</p><p>would  would (’d) + V1: тільки дії, що повторювалися в минулому. Приклад: On Sundays we would go fishing.</p><p>be used to  am / is / are (was / were) used to + іменник або V-ing. Приклад: I’m used to the noise. She isn’t used to driving.</p><p>get used to  get / got / will get used to + іменник або V-ing. Приклад: Don’t worry, you’ll get used to it.</p></div>
+    <div class="warn"><p><b>Головна пастка</b></p><p>didn’t use to, а не didn’t used to. Після did / didn’t дієслово в базовій формі, тому use без -d. У ствердженні пишемо used to.</p><p>✗ I didn’t used to like tea.</p><p>✓ I didn’t use to like tea.</p><p>be used to + V-ing, а не + V1. У be used to і get used to слово to є прийменником, тому після нього іменник або V-ing. Порівняй: I used to get up early (колись вставав) і I’m used to getting up early (звик вставати).</p><p>✗ I’m used to get up at six.</p><p>✓ I’m used to getting up at six.</p><p>would не для станів. would вживаємо тільки з діями, що повторювалися. Для станів (be, have, live, like, know) підходить лише used to.</p><p>✗ When I was little, we would live in a small flat.</p><p>✓ When I was little, we used to live in a small flat.</p></div>
+    <div class="warn"><p><b>Маркери:</b> when I was a kid, when I was little, years ago, in the past, any more / anymore, no longer, every summer, at first, still, now</p></div>
+    <div class="warn"><p><b>Чотири схожі конструкції</b></p><p>used to + V1: колись було, тепер ні. would + V1: повторювалося в минулому. be used to + V-ing: уже звик. get used to + V-ing: звикаю або звикну. Для звичок у теперішньому used to не вживаємо: кажемо usually + Present Simple.</p><p>used to + V1 · I used to swim every day. · колись я щодня плавав (тепер ні)</p><p>didn’t use to + V1 · She didn’t use to eat fish. · раніше вона не їла рибу</p><p>would + V1 · We would play outside till dark. · ми, бувало, гралися надворі до темряви</p><p>be used to + V-ing · I’m used to working late. · я звик працювати допізна</p><p>get used to + V-ing · I’m getting used to working late. · я звикаю працювати допізна</p><p>get used to + іменник · You’ll get used to the cold. · ти звикнеш до холоду</p><p>usually + V1 (зараз) · I usually walk to school. · зазвичай я ходжу до школи пішки</p></div>
+    <p class="lk-tnote" data-ru="Тренажер на 100 завдань: 5 раундів по 20. На уроці можна пройти 1-2 раунди, решту задати додому. Пояснення до кожної відповіді учень бачить у тренажері на сайті (розділ «Граматика»).&lt;br&gt;">Тренажер на 100 завдань: 5 раундів по 20. На уроці можна пройти 1-2 раунди, решту задати додому. Пояснення до кожної відповіді учень бачить у тренажері на сайті (розділ «Граматика»).<br></p>
+  </section>
+  <section id="s2" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">2</span>Раунд 1. Форми: used to і didn’t use to <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="used"><span class="n">1</span><span class="s">When I was ten, I ___ to play the drums.</span><span class="o"><button type="button">using</button><button type="button">use</button><button type="button">uses</button><button type="button">used</button></span></div>
+<div class="ch" data-a="used to"><span class="n">2</span><span class="s">Sophie ___ have long hair, but now it’s short.</span><span class="o"><button type="button">uses to</button><button type="button">use to</button><button type="button">used to</button><button type="button">was used to</button></span></div>
+<div class="ch" data-a="Did"><span class="n">3</span><span class="s">___ you use to watch cartoons in the morning?</span><span class="o"><button type="button">Do</button><button type="button">Did</button><button type="button">Were</button><button type="button">Had</button></span></div>
+<div class="ch" data-a="used to"><span class="n">4</span><span class="s">There ___ be a big park here, but now there’s a mall.</span><span class="o"><button type="button">used to</button><button type="button">use to</button><button type="button">was used to</button><button type="button">uses to</button></span></div>
+<div class="ch" data-a="sing"><span class="n">5</span><span class="s">Lily used to ___ in a choir.</span><span class="o"><button type="button">sings</button><button type="button">sing</button><button type="button">singing</button><button type="button">sang</button></span></div>
+<div class="ch" data-a="sleep"><span class="n">6</span><span class="s">My cat used to ___ on the windowsill all day.</span><span class="o"><button type="button">slept</button><button type="button">sleeping</button><button type="button">sleep</button><button type="button">sleeps</button></span></div>
+<div class="ch" data-a="didn’t"><span class="n">7</span><span class="s">I ___ use to drink coffee, but now I love it.</span><span class="o"><button type="button">haven’t</button><button type="button">don’t</button><button type="button">wasn’t</button><button type="button">didn’t</button></span></div>
+<div class="ch" data-a="used"><span class="n">8</span><span class="s">Kate and Dan ___ to be best friends.</span><span class="o"><button type="button">use</button><button type="button">uses</button><button type="button">using</button><button type="button">used</button></span></div>
+<div class="ch" data-a="sell"><span class="n">9</span><span class="s">This café used to ___ the best pancakes in town.</span><span class="o"><button type="button">selling</button><button type="button">sell</button><button type="button">sells</button><button type="button">sold</button></span></div>
+<div class="ch" data-a="use"><span class="n">10</span><span class="s">Dan didn’t ___ to enjoy reading, but now he loves it.</span><span class="o"><button type="button">uses</button><button type="button">use</button><button type="button">used</button><button type="button">using</button></span></div>
+<div class="ch" data-a="used"><span class="n">11</span><span class="s">My sister ___ to wear braces.</span><span class="o"><button type="button">use</button><button type="button">is used</button><button type="button">used</button><button type="button">was use</button></span></div>
+<div class="ch" data-a="used"><span class="n">12</span><span class="s">We ___ to have a dog called Biscuit.</span><span class="o"><button type="button">were used</button><button type="button">use</button><button type="button">are used</button><button type="button">used</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; used · used to · Did · used to · sing · sleep · didn’t · used · sell · use · used · used"><b>Відповіді:</b> used · used to · Did · used to · sing · sleep · didn’t · used · sell · use · used · used</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="used"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>My grandad ___ (use) to work on a farm.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="use"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Tom didn’t ___ (use) to like vegetables.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="use"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Did your parents ___ (use) to live in the country?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="go"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>We used to ___ (go) camping every summer.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="didn’t|did not"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Max ___ (not) use to be so shy.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="be"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Emma used to ___ (be) afraid of dogs.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="have"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>Did you use to ___ (have) a pet when you were little?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="used"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>My dad ___ (use) to ride a motorbike when he was young.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; used · use · use · go · didn’t · be · have · used"><b>Відповіді:</b> used · use · use · go · didn’t · be · have · used</p>
+  </section>
+  <section id="s3" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">3</span>Раунд 2. Заперечення і питання <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="Did"><span class="n">1</span><span class="s">___ Lily use to play tennis?</span><span class="o"><button type="button">Was</button><button type="button">Used</button><button type="button">Does</button><button type="button">Did</button></span></div>
+<div class="ch" data-a="use"><span class="n">2</span><span class="s">Did you ___ to walk to school?</span><span class="o"><button type="button">used</button><button type="button">uses</button><button type="button">use</button><button type="button">using</button></span></div>
+<div class="ch" data-a="did you use to"><span class="n">3</span><span class="s">Where ___ live before you moved here?</span><span class="o"><button type="button">you used to</button><button type="button">did you use to</button><button type="button">used you to</button><button type="button">did you used to</button></span></div>
+<div class="ch" data-a="to"><span class="n">4</span><span class="s">I’m not used ___ so much homework.</span><span class="o"><button type="button">for</button><button type="button">to</button><button type="button">with</button><button type="button">of</button></span></div>
+<div class="ch" data-a="taking"><span class="n">5</span><span class="s">Is Max used to ___ the bus every day?</span><span class="o"><button type="button">take</button><button type="button">took</button><button type="button">taking</button><button type="button">takes</button></span></div>
+<div class="ch" data-a="be"><span class="n">6</span><span class="s">Did they use to ___ in the same class?</span><span class="o"><button type="button">be</button><button type="button">being</button><button type="button">were</button><button type="button">been</button></span></div>
+<div class="ch" data-a="couldn’t"><span class="n">7</span><span class="s">Lily ___ get used to her new glasses. They felt strange for weeks.</span><span class="o"><button type="button">wasn’t</button><button type="button">isn’t</button><button type="button">didn’t used to</button><button type="button">couldn’t</button></span></div>
+<div class="ch" data-a="your"><span class="n">8</span><span class="s">Have you got used to ___ new phone yet?</span><span class="o"><button type="button">you</button><button type="button">your</button><button type="button">yourself</button><button type="button">yours</button></span></div>
+<div class="ch" data-a="didn’t"><span class="n">9</span><span class="s">There ___ use to be so many cars here.</span><span class="o"><button type="button">weren’t</button><button type="button">wasn’t</button><button type="button">don’t</button><button type="button">didn’t</button></span></div>
+<div class="ch" data-a="live"><span class="n">10</span><span class="s">Didn’t you use to ___ next to the station?</span><span class="o"><button type="button">lived</button><button type="button">live</button><button type="button">lives</button><button type="button">living</button></span></div>
+<div class="ch" data-a="did"><span class="n">11</span><span class="s">“Did you use to play video games a lot?” “Yes, I ___.”</span><span class="o"><button type="button">used</button><button type="button">use</button><button type="button">was</button><button type="button">did</button></span></div>
+<div class="ch" data-a="getting"><span class="n">12</span><span class="s">My parents aren’t used to ___ messages with emojis.</span><span class="o"><button type="button">get</button><button type="button">getting</button><button type="button">gets</button><button type="button">got</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; Did · use · did you use to · to · taking · be · couldn’t · your · didn’t · live · did · getting"><b>Відповіді:</b> Did · use · did you use to · to · taking · be · couldn’t · your · didn’t · live · did · getting</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="didn’t|did not"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>I ___ (not) use to like spicy food.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Did|did"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>___ (do) your brother use to have long hair?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="wearing"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Are you used to ___ (wear) a uniform yet?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="isn’t|is not"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Sophie moved to Norway last month. She still ___ (be, not) used to the cold.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="living"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>How long did it take you to get used to ___ (live) in a big city?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="use"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>What did you ___ (use) to do after school?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="cooking"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>Tom isn’t used to ___ (cook) for himself.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="getting up"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>I’ll never get used to ___ (get up) at 5 a.m.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; didn’t · Did · wearing · isn’t · living · use · cooking · getting up"><b>Відповіді:</b> didn’t · Did · wearing · isn’t · living · use · cooking · getting up</p>
+  </section>
+  <section id="s4" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">4</span>Раунд 3. Коли вживати: used to, would, be / get used to <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="would tell"><span class="n">1</span><span class="s">When we were kids, Grandma ___ us stories every night.</span><span class="o"><button type="button">would told</button><button type="button">would tell</button><button type="button">gets used to telling</button><button type="button">is used to telling</button></span></div>
+<div class="ch" data-a="used to have"><span class="n">2</span><span class="s">I ___ a blue bike when I was eight.</span><span class="o"><button type="button">would had</button><button type="button">am used to having</button><button type="button">used to have</button><button type="button">would have</button></span></div>
+<div class="ch" data-a="used to live"><span class="n">3</span><span class="s">Lily ___ in Brighton, but now she lives in Edinburgh.</span><span class="o"><button type="button">would live</button><button type="button">used to live</button><button type="button">gets used to live</button><button type="button">is used to living</button></span></div>
+<div class="ch" data-a="got used to"><span class="n">4</span><span class="s">At first the new job was hard, but Dan soon ___ it.</span><span class="o"><button type="button">used to</button><button type="button">would</button><button type="button">got used to</button><button type="button">was use to</button></span></div>
+<div class="ch" data-a="am used to"><span class="n">5</span><span class="s">I don’t mind the noise. I ___ it.</span><span class="o"><button type="button">use to</button><button type="button">would</button><button type="button">used to</button><button type="button">am used to</button></span></div>
+<div class="ch" data-a="would make"><span class="n">6</span><span class="s">Every Saturday my dad ___ pancakes for the whole family.</span><span class="o"><button type="button">is used to make</button><button type="button">gets used to make</button><button type="button">would make</button><button type="button">would made</button></span></div>
+<div class="ch" data-a="didn’t use to"><span class="n">7</span><span class="s">Sophie ___ know how to swim, but now she’s in the school team.</span><span class="o"><button type="button">wouldn’t</button><button type="button">didn’t get used to</button><button type="button">isn’t used to</button><button type="button">didn’t use to</button></span></div>
+<div class="ch" data-a="used to"><span class="n">8</span><span class="s">We ___ love that band, but their new songs are boring.</span><span class="o"><button type="button">would</button><button type="button">got used to</button><button type="button">are used to</button><button type="button">used to</button></span></div>
+<div class="ch" data-a="walk"><span class="n">9</span><span class="s">I usually ___ to school, but today I took the bus.</span><span class="o"><button type="button">use to walk</button><button type="button">walk</button><button type="button">used to walk</button><button type="button">am used to walk</button></span></div>
+<div class="ch" data-a="is used to"><span class="n">10</span><span class="s">Emma has lived in Canada for years, so she ___ the snow.</span><span class="o"><button type="button">uses to</button><button type="button">would</button><button type="button">is used to</button><button type="button">used to</button></span></div>
+<div class="ch" data-a="didn’t use"><span class="n">11</span><span class="s">I ___ to like olives, but now I can’t get enough of them.</span><span class="o"><button type="button">didn’t get used</button><button type="button">wasn’t used</button><button type="button">didn’t use</button><button type="button">don’t use</button></span></div>
+<div class="ch" data-a="didn’t use to have"><span class="n">12</span><span class="s">Our school ___ a swimming pool. They built it last year.</span><span class="o"><button type="button">didn’t use to have</button><button type="button">isn’t used to having</button><button type="button">wouldn’t have</button><button type="button">didn’t get used to have</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; would tell · used to have · used to live · got used to · am used to · would make · didn’t use to · used to · walk · is used to · didn’t use · didn’t use to have"><b>Відповіді:</b> would tell · used to have · used to live · got used to · am used to · would make · didn’t use to · used to · walk · is used to · didn’t use · didn’t use to have</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="driving"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>I moved to London a year ago, so now I’m used to ___ (drive) on the left.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="used"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Max ___ (use) to be really short, but now he’s the tallest in class.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="wearing"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Don’t worry, you’ll get used to ___ (wear) contact lenses.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="working"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Kate is a nurse, so she’s used to ___ (work) at night.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="used"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>It took me ages to get ___ (use) to the new keyboard.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="to"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Tom still isn’t used ___ (to / for) the time difference.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="used"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>In the past people ___ (use) to write letters by hand.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="hide"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>When I was little, I would ___ (hide) under the table during storms.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; driving · used · wearing · working · used · to · used · hide"><b>Відповіді:</b> driving · used · wearing · working · used · to · used · hide</p>
+  </section>
+  <section id="s5" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">5</span>Раунд 4. Пастки: didn’t used to і used to get <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="I didn’t use to like tea."><span class="n">1</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">I don’t used to like tea.</button><button type="button">I didn’t use to like tea.</button><button type="button">I wasn’t use to like tea.</button><button type="button">I didn’t used to like tea.</button></span></div>
+<div class="ch" data-a="I’m used to getting up at six."><span class="n">2</span><span class="s">Яке речення правильне?: ___</span><span class="o"><button type="button">I used to getting up at six.</button><button type="button">I’m use to getting up at six.</button><button type="button">I’m used to get up at six.</button><button type="button">I’m used to getting up at six.</button></span></div>
+<div class="ch" data-a="We used to live in a small flat years ago."><span class="n">3</span><span class="s">Знайди речення без помилки: ___</span><span class="o"><button type="button">We were used to live in a small flat years ago.</button><button type="button">We would live in a small flat years ago.</button><button type="button">We use to live in a small flat years ago.</button><button type="button">We used to live in a small flat years ago.</button></span></div>
+<div class="ch" data-a="usually"><span class="n">4</span><span class="s">Now I ___ go to the gym on Mondays and Thursdays.</span><span class="o"><button type="button">usually</button><button type="button">am used to</button><button type="button">use to</button><button type="button">used to</button></span></div>
+<div class="ch" data-a="Max used to be very shy as a child."><span class="n">5</span><span class="s">Де немає помилки?: ___</span><span class="o"><button type="button">Max was used to be very shy as a child.</button><button type="button">Max used to be very shy as a child.</button><button type="button">Max use to be very shy as a child.</button><button type="button">Max would be very shy as a child.</button></span></div>
+<div class="ch" data-a="Lily is used to the noise of the city."><span class="n">6</span><span class="s">Обери речення без помилки: ___</span><span class="o"><button type="button">Lily is use to the noise.</button><button type="button">Lily is used to hear the noise.</button><button type="button">Lily is used to the noise of the city.</button><button type="button">Lily used to the noise of the city.</button></span></div>
+<div class="ch" data-a="get used to"><span class="n">7</span><span class="s">You’ll soon ___ the new timetable.</span><span class="o"><button type="button">be use to</button><button type="button">used to</button><button type="button">get used to</button><button type="button">use to</button></span></div>
+<div class="ch" data-a="would go"><span class="n">8</span><span class="s">My grandparents ___ to the country every summer.</span><span class="o"><button type="button">got used to go</button><button type="button">would go</button><button type="button">would went</button><button type="button">are used to go</button></span></div>
+<div class="ch" data-a="I usually drink tea in the morning."><span class="n">9</span><span class="s">Яке речення про теперішню звичку правильне?: ___</span><span class="o"><button type="button">I usually drink tea in the morning.</button><button type="button">I am use to drink tea in the morning.</button><button type="button">I used to drinking tea in the morning.</button><button type="button">I use to drink tea in the morning.</button></span></div>
+<div class="ch" data-a="getting up"><span class="n">10</span><span class="s">I wasn’t used to ___ so early, so I was tired all week.</span><span class="o"><button type="button">got up</button><button type="button">gets up</button><button type="button">get up</button><button type="button">getting up</button></span></div>
+<div class="ch" data-a="got used to"><span class="n">11</span><span class="s">At first it was weird, but I ___ my new haircut.</span><span class="o"><button type="button">am use to</button><button type="button">got used to</button><button type="button">would</button><button type="button">used to</button></span></div>
+<div class="ch" data-a="She would have a flute when she was ten."><span class="n">12</span><span class="s">Яке речення неправильне?: ___</span><span class="o"><button type="button">She would play the flute every evening.</button><button type="button">She is used to playing the flute.</button><button type="button">She would have a flute when she was ten.</button><button type="button">She used to play the flute.</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; I didn’t use to like tea. · I’m used to getting up at six. · We used to live in a small flat years ago. · usually · Max used to be very shy as a child. · Lily is used to the noise of the city. · get used to · would go · I usually drink tea in the morning. · getting up · got used to · She would have a flute when she was ten."><b>Відповіді:</b> I didn’t use to like tea. · I’m used to getting up at six. · We used to live in a small flat years ago. · usually · Max used to be very shy as a child. · Lily is used to the noise of the city. · get used to · would go · I usually drink tea in the morning. · getting up · got used to · She would have a flute when she was ten.</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="sleeping"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>She’s used to ___ (sleep) with the window open.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="use"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Did you ___ (use / used) to have a nickname at school?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="used"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>He ___ (use / used) to be a vegetarian, but now he eats meat.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="not having"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>I can’t get used to ___ (not have) a car.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="use"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Kate didn’t ___ (use / used) to wear glasses.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="living"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Are you getting used to ___ (live) on your own?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="used"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>There ___ (use) to be a bookshop on this corner.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="used to"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>When I was a kid, I ___ (would / used to) have a pet rabbit.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; sleeping · use · used · not having · use · living · used · used to"><b>Відповіді:</b> sleeping · use · used · not having · use · living · used · used to</p>
+  </section>
+  <section id="s6" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">6</span>Раунд 5. Фінальний бос <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="used to play"><span class="n">1</span><span class="s">Lily: “Do you still play the piano?” Max: “No, but I ___ every day when I was a kid.”</span><span class="o"><button type="button">got used to playing</button><button type="button">used to play</button><button type="button">use to play</button><button type="button">am used to play</button></span></div>
+<div class="ch" data-a="used to"><span class="n">2</span><span class="s">My mum ___ dance a lot. She was in a dance group when she was young.</span><span class="o"><button type="button">gets used to</button><button type="button">use to</button><button type="button">used to</button><button type="button">is used to</button></span></div>
+<div class="ch" data-a="having"><span class="n">3</span><span class="s">When I started uni, I wasn’t used to ___ so much freedom.</span><span class="o"><button type="button">has</button><button type="button">having</button><button type="button">have</button><button type="button">had</button></span></div>
+<div class="ch" data-a="would"><span class="n">4</span><span class="s">Before smartphones, people ___ use paper maps.</span><span class="o"><button type="button">would</button><button type="button">are used to</button><button type="button">got used to</button><button type="button">use to</button></span></div>
+<div class="ch" data-a="get used to"><span class="n">5</span><span class="s">Moving abroad is hard, but you’ll ___ it after a few months.</span><span class="o"><button type="button">be use to</button><button type="button">get used to</button><button type="button">would</button><button type="button">used to</button></span></div>
+<div class="ch" data-a="is used to"><span class="n">6</span><span class="s">Kate is a vet, so she ___ working with big animals.</span><span class="o"><button type="button">used to</button><button type="button">would</button><button type="button">uses to</button><button type="button">is used to</button></span></div>
+<div class="ch" data-a="would"><span class="n">7</span><span class="s">On rainy days, we ___ stay inside and play board games.</span><span class="o"><button type="button">are used to</button><button type="button">was used to</button><button type="button">would</button><button type="button">got used to</button></span></div>
+<div class="ch" data-a="didn’t use to"><span class="n">8</span><span class="s">Max ___ like rap, but now he listens to it all the time.</span><span class="o"><button type="button">wouldn’t</button><button type="button">didn’t use to</button><button type="button">isn’t used to</button><button type="button">wasn’t used to</button></span></div>
+<div class="ch" data-a="carrying"><span class="n">9</span><span class="s">I’m so used to ___ my phone with me that I panic without it.</span><span class="o"><button type="button">carried</button><button type="button">carries</button><button type="button">carry</button><button type="button">carrying</button></span></div>
+<div class="ch" data-a="didn’t"><span class="n">10</span><span class="s">“Did Kate use to wear glasses?” “No, she ___.”</span><span class="o"><button type="button">used</button><button type="button">didn’t</button><button type="button">wasn’t</button><button type="button">doesn’t</button></span></div>
+<div class="ch" data-a="didn’t use to be"><span class="n">11</span><span class="s">There ___ any traffic lights in our village, but now there are three.</span><span class="o"><button type="button">used to be</button><button type="button">didn’t use to be</button><button type="button">wasn’t used to being</button><button type="button">wouldn’t be</button></span></div>
+<div class="ch" data-a="is used"><span class="n">12</span><span class="s">Tom grew up in Norway, so he ___ to cold winters.</span><span class="o"><button type="button">would</button><button type="button">used</button><button type="button">is used</button><button type="button">was use</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; used to play · used to · having · would · get used to · is used to · would · didn’t use to · carrying · didn’t · didn’t use to be · is used"><b>Відповіді:</b> used to play · used to · having · would · get used to · is used to · would · didn’t use to · carrying · didn’t · didn’t use to be · is used</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="sleeping"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Tom has worked nights for years, so he’s used to ___ (sleep) during the day.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="did"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>“Did you use to have a pet?” “Yes, I ___ (do). We had a cat called Bean.”</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="sharing"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>My little brother is slowly getting used to ___ (share) a room with me.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="didn’t|did not"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Dan ___ (not) use to eat breakfast, but now he never skips it.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="used"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>This shop ___ (use) to be a bakery. I miss their bread!</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="speaking"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Emma still can’t get used to ___ (speak) English at work.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="used to"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>When Grandpa was young, he ___ (would / used to) live by the sea.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="used"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>Lily found the new city strange at first, but she soon got ___ (use) to it.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; sleeping · did · sharing · didn’t · used · speaking · used to · used"><b>Відповіді:</b> sleeping · did · sharing · didn’t · used · speaking · used to · used</p>
+  </section>
+  <section class="end"><h2>Great job!</h2><p>See you next lesson.</p></section>
+</div>
+<div class="toast" id="toast"></div>
+<script>window.MURLY_LESSON={"id": "lib-drill-used-to", "title": "Used to, would, be used to, get used to: 100 tasks", "homework": ["s2", "s3", "s4", "s5", "s6"], "hw": {"s2": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "When I was ten, I {used|use|using|uses} to play the drums.\nSophie {used to|use to|was used to|uses to} have long hair, but now it’s short.\n{Did|Do|Were|Had} you use to watch cartoons in the morning?\nThere {used to|use to|was used to|uses to} be a big park here, but now there’s a mall.\nLily used to {sing|singing|sang|sings} in a choir.\nMy cat used to {sleep|sleeps|slept|sleeping} on the windowsill all day.\nI {didn’t|don’t|wasn’t|haven’t} use to drink coffee, but now I love it.\nKate and Dan {used|use|uses|using} to be best friends.\nThis café used to {sell|sold|selling|sells} the best pancakes in town.\nDan didn’t {use|used|using|uses} to enjoy reading, but now he loves it.\nMy sister {used|use|was use|is used} to wear braces.\nWe {used|use|were used|are used} to have a dog called Biscuit."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "My grandad [used] (use) to work on a farm.\nTom didn’t [use] (use) to like vegetables.\nDid your parents [use] (use) to live in the country?\nWe used to [go] (go) camping every summer.\nMax [didn’t/did not] (not) use to be so shy.\nEmma used to [be] (be) afraid of dogs.\nDid you use to [have] (have) a pet when you were little?\nMy dad [used] (use) to ride a motorbike when he was young."}], "s3": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "{Did|Does|Was|Used} Lily use to play tennis?\nDid you {use|used|using|uses} to walk to school?\nWhere {did you use to|you used to|did you used to|used you to} live before you moved here?\nI’m not used {to|for|with|of} so much homework.\nIs Max used to {taking|take|took|takes} the bus every day?\nDid they use to {be|being|been|were} in the same class?\nLily {couldn’t|didn’t used to|wasn’t|isn’t} get used to her new glasses. They felt strange for weeks.\nHave you got used to {your|you|yours|yourself} new phone yet?\nThere {didn’t|wasn’t|weren’t|don’t} use to be so many cars here.\nDidn’t you use to {live|living|lived|lives} next to the station?\n“Did you use to play video games a lot?” “Yes, I {did|used|was|use}.”\nMy parents aren’t used to {getting|get|got|gets} messages with emojis."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "I [didn’t/did not] (not) use to like spicy food.\n[Did/did] (do) your brother use to have long hair?\nAre you used to [wearing] (wear) a uniform yet?\nSophie moved to Norway last month. She still [isn’t/is not] (be, not) used to the cold.\nHow long did it take you to get used to [living] (live) in a big city?\nWhat did you [use] (use) to do after school?\nTom isn’t used to [cooking] (cook) for himself.\nI’ll never get used to [getting up] (get up) at 5 a.m."}], "s4": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "When we were kids, Grandma {would tell|is used to telling|gets used to telling|would told} us stories every night.\nI {used to have|would have|am used to having|would had} a blue bike when I was eight.\nLily {used to live|would live|is used to living|gets used to live} in Brighton, but now she lives in Edinburgh.\nAt first the new job was hard, but Dan soon {got used to|used to|would|was use to} it.\nI don’t mind the noise. I {am used to|used to|would|use to} it.\nEvery Saturday my dad {would make|would made|is used to make|gets used to make} pancakes for the whole family.\nSophie {didn’t use to|wouldn’t|isn’t used to|didn’t get used to} know how to swim, but now she’s in the school team.\nWe {used to|would|are used to|got used to} love that band, but their new songs are boring.\nI usually {walk|use to walk|used to walk|am used to walk} to school, but today I took the bus.\nEmma has lived in Canada for years, so she {is used to|used to|would|uses to} the snow.\nI {didn’t use|wasn’t used|don’t use|didn’t get used} to like olives, but now I can’t get enough of them.\nOur school {didn’t use to have|wouldn’t have|isn’t used to having|didn’t get used to have} a swimming pool. They built it last year."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "I moved to London a year ago, so now I’m used to [driving] (drive) on the left.\nMax [used] (use) to be really short, but now he’s the tallest in class.\nDon’t worry, you’ll get used to [wearing] (wear) contact lenses.\nKate is a nurse, so she’s used to [working] (work) at night.\nIt took me ages to get [used] (use) to the new keyboard.\nTom still isn’t used [to] (to / for) the time difference.\nIn the past people [used] (use) to write letters by hand.\nWhen I was little, I would [hide] (hide) under the table during storms."}], "s5": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Обери правильне речення: {I didn’t use to like tea.|I didn’t used to like tea.|I don’t used to like tea.|I wasn’t use to like tea.}\nЯке речення правильне?: {I’m used to getting up at six.|I’m used to get up at six.|I’m use to getting up at six.|I used to getting up at six.}\nЗнайди речення без помилки: {We used to live in a small flat years ago.|We would live in a small flat years ago.|We were used to live in a small flat years ago.|We use to live in a small flat years ago.}\nNow I {usually|use to|used to|am used to} go to the gym on Mondays and Thursdays.\nДе немає помилки?: {Max used to be very shy as a child.|Max would be very shy as a child.|Max was used to be very shy as a child.|Max use to be very shy as a child.}\nОбери речення без помилки: {Lily is used to the noise of the city.|Lily used to the noise of the city.|Lily is used to hear the noise.|Lily is use to the noise.}\nYou’ll soon {get used to|used to|use to|be use to} the new timetable.\nMy grandparents {would go|are used to go|would went|got used to go} to the country every summer.\nЯке речення про теперішню звичку правильне?: {I usually drink tea in the morning.|I use to drink tea in the morning.|I used to drinking tea in the morning.|I am use to drink tea in the morning.}\nI wasn’t used to {getting up|get up|got up|gets up} so early, so I was tired all week.\nAt first it was weird, but I {got used to|used to|would|am use to} my new haircut.\nЯке речення неправильне?: {She would have a flute when she was ten.|She used to play the flute.|She would play the flute every evening.|She is used to playing the flute.}"}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "She’s used to [sleeping] (sleep) with the window open.\nDid you [use] (use / used) to have a nickname at school?\nHe [used] (use / used) to be a vegetarian, but now he eats meat.\nI can’t get used to [not having] (not have) a car.\nKate didn’t [use] (use / used) to wear glasses.\nAre you getting used to [living] (live) on your own?\nThere [used] (use) to be a bookshop on this corner.\nWhen I was a kid, I [used to] (would / used to) have a pet rabbit."}], "s6": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Lily: “Do you still play the piano?” Max: “No, but I {used to play|use to play|am used to play|got used to playing} every day when I was a kid.”\nMy mum {used to|is used to|gets used to|use to} dance a lot. She was in a dance group when she was young.\nWhen I started uni, I wasn’t used to {having|have|had|has} so much freedom.\nBefore smartphones, people {would|are used to|got used to|use to} use paper maps.\nMoving abroad is hard, but you’ll {get used to|used to|would|be use to} it after a few months.\nKate is a vet, so she {is used to|used to|would|uses to} working with big animals.\nOn rainy days, we {would|are used to|got used to|was used to} stay inside and play board games.\nMax {didn’t use to|wasn’t used to|wouldn’t|isn’t used to} like rap, but now he listens to it all the time.\nI’m so used to {carrying|carry|carried|carries} my phone with me that I panic without it.\n“Did Kate use to wear glasses?” “No, she {didn’t|wasn’t|doesn’t|used}.”\nThere {didn’t use to be|wouldn’t be|wasn’t used to being|used to be} any traffic lights in our village, but now there are three.\nTom grew up in Norway, so he {is used|used|would|was use} to cold winters."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "Tom has worked nights for years, so he’s used to [sleeping] (sleep) during the day.\n“Did you use to have a pet?” “Yes, I [did] (do). We had a cat called Bean.”\nMy little brother is slowly getting used to [sharing] (share) a room with me.\nDan [didn’t/did not] (not) use to eat breakfast, but now he never skips it.\nThis shop [used] (use) to be a bakery. I miss their bread!\nEmma still can’t get used to [speaking] (speak) English at work.\nWhen Grandpa was young, he [used to] (would / used to) live by the sea.\nLily found the new city strange at first, but she soon got [used] (use) to it."}]}};</script>
+<script>
+(function(){var l=(document.cookie.match(/(?:^|; )murly_lang=(\w+)/)||[])[1];try{l=l||localStorage.getItem('murly:tlang')}catch(e){}l=l==='ru'?'ru':'uk';document.querySelectorAll('[data-pairs-'+l+']').forEach(function(b){b.dataset.pairs=b.getAttribute('data-pairs-'+l)});})();
+</script>
+<script>
+const $ = (id) => document.getElementById(id);
+const LIS = {};
+function say(w, rate) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; const v = speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang) && /Google|Natural|Libby|Sonia|Daniel/.test(x.name)) || speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang)); if (v) u.voice = v; u.rate = rate || .95; speechSynthesis.speak(u); } catch (e) { } }
+const sh = (a) => a.map((x) => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map((x) => x[1]);
+document.querySelectorAll('.voc div').forEach((d) => d.onclick = () => say(d.dataset.say));
+document.querySelectorAll('[data-play]').forEach((b) => b.onclick = () => say(LIS[b.dataset.play], b.dataset.slow ? .75 : .95));
+document.querySelectorAll('[data-stop]').forEach((b) => b.onclick = () => { try { speechSynthesis.cancel(); } catch (e) { } });
+document.querySelectorAll('.ch').forEach((q) => q.querySelectorAll('button').forEach((b) => b.onclick = () => { if (q.classList.contains('ok')) return; const ok = b.textContent === q.dataset.a; q.classList.toggle('ok', ok); q.classList.toggle('bad', !ok); if (ok) { const s = q.querySelector('.s'); if (s && s.textContent.includes('___')) { s.textContent = s.textContent.replace('___', q.dataset.a); } } }));
+const norm = (x) => x.toLowerCase().replace(/[’']/g, "'").replace(/[,;:"“”«»]/g, ' ').replace(/\s+/g, ' ').replace(/[.!?]$/, '').trim();
+document.querySelectorAll('.ty').forEach((r) => { const inp = r.querySelector('input'); const chk = () => { const ok = r.dataset.a.split('|').some((a) => norm(a) === norm(inp.value)); r.classList.toggle('ok', ok); r.classList.toggle('bad', !ok && inp.value.trim() !== ''); }; r.querySelector('button').onclick = chk; inp.onkeydown = (e) => { if (e.key === 'Enter') chk(); }; });
+document.querySelectorAll('[data-mt]').forEach((box) => { const pairs = JSON.parse(box.dataset.pairs); const L = sh(pairs.map((p) => p[0])), R = sh(pairs.map((p) => p[1])); let sel = null, done = 0, err = 0; box.innerHTML = L.map((w, i) => `<button type="button" data-w="${w}">${w}</button><button type="button" data-d="${R[i]}">${R[i]}</button>`).join('');
+  box.querySelectorAll('button').forEach((b) => b.onclick = () => { if (b.classList.contains('done')) return; if (!sel || (sel.dataset.w && b.dataset.w) || (sel.dataset.d && b.dataset.d)) { if (sel) sel.classList.remove('sel'); sel = b; b.classList.add('sel'); return; } const w = sel.dataset.w || b.dataset.w, d = sel.dataset.d || b.dataset.d; if (pairs.some((p) => p[0] === w && p[1] === d)) { sel.classList.add('done'); b.classList.add('done'); done++; say(w); if (done === pairs.length) document.querySelector(`[data-mtres="${box.dataset.mt}"]`).textContent = err ? `Done! Mistakes: ${err}` : 'Perfect!'; } else err++; sel.classList.remove('sel'); sel = null; }); });
+document.querySelectorAll('[data-vids]').forEach((box) => JSON.parse(box.dataset.vids).forEach(([id, title, ch, qs]) => { const d = document.createElement('div'); d.className = 'vid'; d.innerHTML = `<div class="frame"><button class="play" type="button" style="background-image:url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)"><span>PLAY</span></button></div><div class="info"><h3>${title}</h3><small>YouTube · ${ch}</small><ol>${qs.map((q) => `<li>${q}</li>`).join('')}</ol></div>`; d.querySelector('.play').onclick = (e) => { e.currentTarget.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&cc_load_policy=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${title}"></iframe>`; }; box.appendChild(d); }));
+document.querySelectorAll('[data-spin]').forEach((b) => { const list = JSON.parse(b.dataset.spin); let last = -1; b.onclick = () => { let i; do { i = Math.floor(Math.random() * list.length); } while (i === last && list.length > 1); last = i; document.getElementById(b.dataset.target).textContent = list[i]; }; });
+try { const k = 'murly:' + (window.MURLY_LESSON ? MURLY_LESSON.id : 'x') + ':hw'; const t = $('hwText'); if (t) { t.value = localStorage.getItem(k) || ''; t.oninput = () => localStorage.setItem(k, t.value); } } catch (e) { }
+const STAGES = [...document.querySelectorAll('.wrap > section[id]')];
+$('stages').innerHTML = STAGES.map((s) => `<a href="#${s.id}"><b>${s.querySelector('.lk-n').textContent}</b><span>${s.dataset.stage}</span><small>${s.dataset.min !== '0' ? s.dataset.min + ' min' : 'at home'}</small></a>`).join('');
+$('teacherBtn').onclick = (e) => { const on = document.body.classList.toggle('teacher'); e.currentTarget.textContent = on ? 'Student version' : 'Teacher version'; };
+</script>
+<script src="/game-lessons/kit.js" defer></script>
+</body>
+</html>

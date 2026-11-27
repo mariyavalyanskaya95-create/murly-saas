@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Was / were: 100 tasks (A1) | Murly</title>
+<link rel="icon" href="/favicon.svg">
+<meta name="description" content="Повторимо правило: Минулий час to be: was і were
+100 завдань від простого до складного
+Розберемо головні пастки">
+<link rel="canonical" href="https://murly.com.ua/game-lessons/lib-drill-was-were.html">
+<style>
+:root{--paper:#F3F0EA;--ink:#17181C;--violet:#3D4A7A;--lav:#D9D3C7;--pink:#E9C9BC;--green:#D4E2CF;--white:#fff;--muted:#62646B;--accent:#B5482F}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+/* hero */
+.hero{background:linear-gradient(rgba(16,17,22,.5),rgba(16,17,22,.72)),url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1400&q=70&auto=format&fit=crop");color:#fff;padding:70px 18px 56px;text-align:center;position:relative;overflow:hidden}
+.hero .kicker{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#E9C9BC;font-weight:700}
+.hero .cr{position:absolute;right:12px;bottom:8px;font-size:11px;color:rgba(255,255,255,.6)}
+.hero h1{margin:8px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(36px,6vw,64px);letter-spacing:-.5px;font-weight:700}
+.hero h1 span{color:var(--pink);font-style:italic}
+.hero p{margin:12px 0 0;font-size:17px;color:#e6e2da}
+.hero .flags{display:flex;justify-content:center;gap:12px;margin-top:22px;flex-wrap:wrap}
+.hero .flags svg{width:40px;height:26px;border-radius:3px;opacity:.9}
+/* sections */
+section{margin-top:30px;background:var(--white);border-radius:18px;padding:28px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.05)}
+section h2{margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tag{font-family:"Segoe UI",system-ui,sans-serif;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--paper);color:var(--accent);text-transform:uppercase;letter-spacing:1px}
+.lk-n{display:inline-grid;place-items:center;width:42px;height:42px;background:var(--violet);color:#fff;border-radius:50%;font-size:21px;flex:none}
+.lk-mode{font-size:13px;font-weight:700;border:2px dashed var(--lav);color:var(--muted);padding:2px 10px;border-radius:999px}
+.lk-ins{font-size:17px;background:var(--paper);border-radius:12px;padding:10px 14px;margin:6px 0 18px}
+.lk-sub{margin:24px 0 10px;font-size:19px}
+.btn{font:inherit;font-weight:700;border:0;border-radius:999px;background:var(--ink);color:#fff;padding:10px 20px;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+.btn.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+/* teacher */
+.lk-tbtn{position:fixed;right:16px;top:70px;z-index:45;font:inherit;font-weight:800;border:2px solid var(--ink);background:var(--pink);padding:8px 14px;border-radius:12px;cursor:pointer}
+body.teacher .lk-tbtn{background:var(--green)}
+.lk-ans,.lk-tnote{display:none}
+body.teacher .lk-ans{display:block;margin-top:8px;font-weight:700;color:#1d5a12;background:var(--green);border-left:5px solid #5aa845;padding:6px 10px;font-size:15px;border-radius:6px}
+body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff3f7;border-left:5px solid #d9789a;padding:8px 12px;font-size:15px;border-radius:6px}
+/* overview */
+.lk-overview ul{font-size:17px;line-height:1.7;margin:6px 0 16px}
+.lk-stages{display:flex;flex-wrap:wrap;gap:8px}
+.lk-stages a{display:grid;border-radius:14px;padding:8px 12px;text-decoration:none;color:var(--ink);background:var(--paper);font-weight:700;min-width:100px}
+.lk-stages a span{text-transform:capitalize}
+.lk-stages a b{font-size:20px;color:var(--violet)}
+.lk-stages a small{font-weight:600;color:var(--muted)}
+/* warm-up */
+.taxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tax{background:var(--paper);border-radius:18px;padding:16px;display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center}
+.tax svg{width:56px;height:56px}
+.tax b{display:block;font-size:17px}
+.tax small{color:var(--muted);font-size:14px}
+.qs{display:grid;gap:10px;margin-top:18px}
+.qs div{background:var(--green);border-radius:14px;padding:10px 16px;font-size:18px;font-weight:600}
+.phr{background:#fff7e8;border-radius:14px;padding:12px 16px;margin-top:16px;font-size:15px}
+.phr ul{margin:6px 0 0;padding-left:18px}
+.fic{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:16px}
+.fic .c{background:#fff;border:2px solid #1B2140;border-radius:16px;padding:14px 16px;box-shadow:3px 3px 0 #1B2140}
+.fic .c b{display:block;font-size:18px;line-height:1.35;margin-bottom:8px}
+.fic .c .k{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.fic .c .k span{font-size:13px;background:#eef1fb;border-radius:999px;padding:3px 10px}
+.fic .c details{margin-top:8px;font-size:15px;color:#3b4160}
+.fic .c summary{cursor:pointer;font-weight:700;color:#534AB7}
+.fi-n{display:inline-flex;width:28px;height:28px;border-radius:50%;background:#2F4BA0;color:#fff;align-items:center;justify-content:center;font-size:14px;margin-right:6px}
+/* vocab */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:12px}
+.vc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:2px solid transparent;transition:border-color .2s,transform .2s}
+.vc:hover{border-color:var(--violet);transform:translateY(-2px)}
+.vc b{font-size:18px;display:flex;align-items:center;gap:8px}
+.vc b svg{width:20px;height:20px;flex:none;color:var(--violet)}
+.vc p{margin:6px 0 0;font-size:14px;color:var(--muted)}
+.vc em{display:block;margin-top:6px;font-size:14px;color:var(--violet);font-style:normal;font-weight:600}
+.vc.played{background:#e6ecfb}
+/* grammar */
+.gram{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.gb{border-radius:18px;padding:16px}
+.gb h3{margin:0 0 6px;font-size:19px}
+.gb .f{display:inline-block;background:#fff;border-radius:8px;padding:3px 10px;font-weight:800;margin:4px 0;font-family:Consolas,monospace;font-size:15px}
+.gb p{margin:6px 0 0;font-size:15px}
+.g1{background:var(--pink)}.g2{background:var(--lav)}.g3{background:var(--green)}.g4{background:#fbe7c6}
+.warn{margin-top:14px;background:var(--ink);color:#fff;border-radius:14px;padding:12px 16px;font-size:16px}
+.warn b{color:var(--pink)}
+.q{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:2px dashed var(--paper);font-size:18px}
+.q:last-child{border-bottom:0}
+.q .n{width:32px;height:32px;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;border-radius:50%;font-weight:800;font-size:15px}
+.opt{font:inherit;font-size:16px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:10px;padding:4px 12px;cursor:pointer;margin:0 2px}
+.opt.ok{background:var(--green);border-color:#5aa845}
+.opt.bad{background:var(--pink);animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+/* tour */
+.tour{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.law{border-radius:22px;overflow:hidden;background:var(--paper);display:flex;flex-direction:column}
+.law .pic{height:150px;display:grid;place-items:center;position:relative}
+.law .pic svg.ill{width:130px;height:130px}
+.law .pic svg.fl{position:absolute;left:14px;top:14px;width:46px;height:30px;border-radius:5px;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.law .pic .no{position:absolute;right:14px;top:14px;background:var(--ink);color:#fff;font-weight:800;border-radius:999px;padding:2px 10px;font-size:13px}
+.law .body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.law h3{margin:0;font-size:20px}
+.law .where{font-size:13px;font-weight:800;color:var(--violet);text-transform:uppercase;letter-spacing:1px}
+.law p{margin:0;font-size:16px}
+.law .why{font-size:14px;color:var(--muted)}
+.law .dq{margin-top:auto;background:#fff;border-radius:12px;padding:8px 12px;font-weight:700;font-size:15px}
+.law .lsn{font:inherit;font-size:13px;font-weight:700;background:none;border:0;color:var(--violet);cursor:pointer;padding:0;text-align:left}
+/* game */
+.game{max-width:720px;margin:0 auto;text-align:center}
+.score{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.score span{background:var(--paper);border-radius:999px;padding:6px 16px;font-weight:800}
+.stmt{background:var(--ink);color:#fff;border-radius:22px;padding:28px 24px;min-height:150px;display:grid;place-items:center;font-size:23px;font-weight:700;position:relative}
+.stmt small{position:absolute;top:12px;left:18px;font-size:13px;color:var(--lav);font-weight:700}
+.choose{display:flex;justify-content:center;gap:14px;margin:18px 0}
+.choose button{font:inherit;font-size:18px;font-weight:700;border:2px solid var(--ink);border-radius:999px;padding:12px 28px;cursor:pointer}
+.choose .bl{background:var(--green)}.choose .bm{background:var(--pink)}
+.choose button:disabled{opacity:.5;cursor:default}
+.verdict{min-height:70px;font-size:17px;background:var(--paper);border-radius:16px;padding:12px 16px;text-align:left}
+.verdict b.r{color:#2d7a1d}.verdict b.w{color:#b23a62}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.dots i{width:14px;height:14px;border-radius:50%;background:var(--paper)}
+.dots i.r{background:#7cc663}.dots i.w{background:#e47b9f}.dots i.c{outline:3px solid var(--violet)}
+.final{font-size:22px;font-weight:800;color:var(--violet)}
+/* invent */
+.inv{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.frames{display:grid;gap:10px}
+.frames label{font-size:14px;font-weight:700;color:var(--muted)}
+.frames select,.frames input{font:inherit;width:100%;padding:8px 10px;border:2px solid var(--lav);border-radius:10px;background:#fff}
+.poster{background:var(--paper);border:3px solid var(--ink);border-radius:20px;padding:22px;text-align:center;min-height:260px;display:flex;flex-direction:column;gap:10px;justify-content:center}
+.poster .seal{width:70px;height:70px;margin:0 auto}
+.poster h3{margin:0;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--violet)}
+.poster .rule{font-size:22px;font-weight:800}
+.poster .pen{font-size:16px;color:var(--muted)}
+.ideas{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ideas span{background:var(--pink);border-radius:999px;padding:5px 12px;font-size:14px;font-weight:600}
+/* roleplay */
+.rp{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.role{border-radius:20px;padding:18px}
+.role h3{margin:0 0 6px;display:flex;align-items:center;gap:10px}
+.role h3 svg{width:42px;height:42px}
+.role ul{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.r1{background:var(--lav)}.r2{background:var(--green)}
+.scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:16px}
+.sc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:3px solid transparent}
+.sc.on{border-color:var(--violet);background:#fff}
+.sc b{display:block;font-size:17px;margin-bottom:4px}
+.sc p{margin:0;font-size:15px}
+.timer{font-size:40px;font-weight:800;text-align:center;margin:14px 0 6px;color:var(--violet)}
+.ctr{text-align:center}
+/* homework */
+.hwb{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hwc{background:var(--paper);border-radius:18px;padding:18px}
+.hwc h3{margin:0 0 8px}
+.hwc ol,.hwc ul{margin:6px 0 0;padding-left:20px;line-height:1.7}
+.hwc textarea{width:100%;min-height:150px;font:inherit;border:2px solid var(--lav);border-radius:12px;padding:10px;margin-top:10px}
+.end{text-align:center;background:var(--ink);color:#fff;box-shadow:none}
+.end h2{justify-content:center}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(140px);background:var(--ink);color:#fff;font-weight:800;padding:12px 22px;border-radius:14px;transition:transform .3s;z-index:50}
+.toast.show{transform:translateX(-50%) translateY(0)}
+/* photos */
+.ph{margin:0}
+.ph img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;background:var(--paper)}
+.ph figcaption{font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.2px}
+.tax{grid-template-columns:1fr !important;padding:12px !important}
+.law .pic{height:auto !important;display:block !important;padding:0;position:relative}
+.law .pic .ph img{border-radius:0;aspect-ratio:16/10;transition:filter .5s}
+.law .pic .ph figcaption{padding:4px 12px 0}
+.law.hide .pic .ph img{filter:blur(10px) grayscale(.6)}
+.law.hide .reveal-body,.law.hide .fl,.law.hide .where{visibility:hidden}
+.law .clue{font-size:15px;font-style:italic;color:var(--ink)}
+.law .gc{display:flex;flex-wrap:wrap;gap:6px}
+.law .gc button{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:4px 12px;cursor:pointer}
+.law .gc button.ok{background:var(--green)}.law .gc button.bad{background:var(--pink)}
+.law:not(.hide) .guess{display:none}
+.fair{display:grid;gap:4px;background:#fff;border-radius:12px;padding:8px 12px}
+.fair .ends{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.fair input{width:100%;accent-color:var(--accent)}
+.fair output{font-size:14px;font-weight:700;color:var(--accent)}
+.gph{max-width:720px;margin:0 auto 12px}
+.gph img{aspect-ratio:21/9}
+.fine{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.fq{background:var(--paper);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.fq h3{margin:0;font-size:18px}
+.fq .opts{display:flex;flex-wrap:wrap;gap:6px}
+.fq .opts button{font:inherit;font-size:14px;font-weight:700;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 12px;cursor:pointer}
+.fq .opts button.ok{background:var(--green)}.fq .opts button.bad{background:var(--pink)}
+.fq .res{font-size:15px;min-height:22px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{position:relative;aspect-ratio:16/9;background:#111}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;cursor:pointer;background:#111 center/cover;display:grid;place-items:center}
+.vid .play span{background:rgba(0,0,0,.7);color:#fff;font-weight:700;border-radius:999px;padding:10px 20px;font-size:15px;letter-spacing:1px}
+.vid .info{padding:14px 16px}
+.vid .info h3{margin:0 0 2px;font-size:18px}
+.vid .info small{color:var(--muted)}
+.vid .info ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+@media(max-width:760px){.inv,.rp,.hwb{grid-template-columns:1fr}.lk-tbtn{top:auto;bottom:70px}}
+
+.pr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.pb{border-radius:18px;padding:16px 18px}
+.pb h3{margin:0;font-family:Georgia,serif;font-size:30px}
+.pb .m{font-size:15px;color:var(--muted);margin:2px 0 8px}
+.pb .chips{display:flex;flex-wrap:wrap;gap:6px}
+.pb .chips span{background:#fff;border-radius:999px;padding:4px 11px;font-size:14px;font-weight:600}
+.pb ul{margin:10px 0 0;padding-left:18px;font-size:15px}
+.p-in{background:#DCE6F5}.p-at{background:#F3D9CF}.p-on{background:#D4E2CF}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-size:15px;margin-top:10px}
+.ex div{background:var(--paper);border-radius:10px;padding:8px 12px}
+.ex b{color:var(--accent)}
+.q{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.q .n{font-weight:800;color:var(--violet);min-width:24px}
+.q .gap{display:inline-block;min-width:44px;border-bottom:2px solid var(--ink);text-align:center;font-weight:800}
+.q .opts{margin-left:auto;display:flex;gap:6px}
+.q .opts button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 14px;cursor:pointer}
+.q.ok{background:#DDEED7}.q.ok .gap{color:#2F7A3B}
+.q.bad{background:#F6DAD3}
+.score{font-weight:800;margin-top:12px}
+.text{font-size:18px;line-height:1.75;background:var(--paper);border-radius:16px;padding:18px 22px}
+.text h3{margin:0 0 6px;font-family:Georgia,serif;font-size:24px}
+.text p{margin:0 0 12px}
+.text.hl mark{background:#F3D9CF;border-radius:4px;padding:0 3px;font-weight:700}
+.tf{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:9px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.tf .opts{margin-left:auto;display:flex;gap:6px}
+.tf button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.tf.ok{background:#DDEED7}.tf.bad{background:#F6DAD3}
+.disc{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px;margin-top:6px}
+.disc div{background:var(--green);border-radius:14px;padding:12px 16px;font-size:17px;font-weight:600}
+.disc div i{font-style:normal;color:var(--violet);margin-right:6px}
+.spin{text-align:center;margin-top:16px}
+.spin .card{display:inline-block;min-height:80px;min-width:min(560px,100%);background:var(--ink);color:#fff;border-radius:18px;padding:20px 24px;font-size:22px;font-weight:700;margin-bottom:12px}
+@media(max-width:700px){.ex{grid-template-columns:1fr}}
+
+.hero{background-size:cover!important;background-position:center!important}
+.voc{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.voc div{background:var(--paper);border-radius:14px;padding:10px 14px;cursor:pointer;border:2px solid transparent}
+.voc div:hover{border-color:var(--violet)}
+.voc b{display:block;font-size:18px}.voc span{display:block;color:var(--accent);font-weight:700;font-size:15px}.voc em{display:block;font-size:14px;color:var(--muted);margin-top:3px}
+.mt{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:10px}
+.mt button{font:inherit;font-size:16px;text-align:left;border:2px solid var(--ink);background:#fff;border-radius:14px;padding:9px 14px;cursor:pointer}
+.mt button.sel{background:#FFE7A8}.mt button.done{background:#CDE8C6;border-color:#4C9A5B;cursor:default}
+.ch{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ch .n{font-weight:800;color:var(--violet);min-width:24px}
+.ch .o{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.ch .o button{font:inherit;font-size:15px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.ch.ok{background:#DDEED7}.ch.bad{background:#F6DAD3}
+.ty{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ty input{font:inherit;border:2px solid var(--ink);border-radius:10px;padding:4px 10px;width:220px}
+.ty.ok{background:#DDEED7}.ty.bad{background:#F6DAD3}
+.ty small{color:var(--muted)}
+.photo{width:100%;height:300px;object-fit:cover;border-radius:16px;display:block}
+.cap{font-size:11px;color:var(--muted);margin:4px 0 12px}
+.pics{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.pics figure{margin:0;background:var(--paper);border-radius:16px;overflow:hidden}
+.pics img{width:100%;height:170px;object-fit:cover;display:block}
+.pics figcaption{padding:8px 12px;font-weight:700}
+.pics small{display:block;font-weight:400;font-size:10px;color:var(--muted)}
+.lis{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:8px 0 14px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{aspect-ratio:16/9;background:#000;position:relative}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;background-size:cover;background-position:center;cursor:pointer;display:grid;place-items:center}
+.vid .play span{background:#E5484D;color:#fff;font-weight:800;border-radius:12px;padding:10px 20px}
+.vid .info{padding:12px 16px}.vid h3{margin:0;font-size:18px}.vid small{color:var(--muted)}
+.vid ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th,.tbl td{border:1px solid #ddd;padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--paper)}
+@media(max-width:700px){.mt{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="/game-lessons/kit.css">
+</head>
+<body>
+<header class="hero">
+  <div class="kicker">A1 · teens · Граматика: тренажер Минулий час to be: was і were</div>
+  <h1>Was / were: 100 tasks</h1>
+  <p>A1 · 6 parts · 60 min</p>
+  <span class="cr">Photo: Unsplash</span>
+</header>
+<button class="lk-tbtn" id="teacherBtn" type="button">Teacher version</button>
+<div class="wrap">
+  <section class="lk-overview">
+    <h2>In this lesson you will:</h2>
+    <ul><li>Повторимо правило: Минулий час to be: was і were
+100 завдань від простого до складного
+Розберемо головні пастки</li></ul>
+    <div class="lk-stages" id="stages"></div>
+  </section>
+  <section id="s1" data-stage="practice" data-min="10">
+    <h2><span class="lk-n">1</span>Теорія <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<div class="warn"><p><b>Коли вживаємо</b></p><p>Де хтось був або яким був у минулому: I was at home yesterday evening. (Учора ввечері я був удома.)</p><p>Опис минулого: погода, настрій, враження: The weather was awful, but the concert was great. (Погода була жахлива, але концерт був класний.)</p><p>Вік, професія, ким або яким був раніше: My grandma was a nurse when she was young. (Моя бабуся була медсестрою, коли була молодою.)</p><p>Що було або чого не було десь: there was / there were: There were lots of people at the party. (На вечірці було багато людей.)</p><p>Питаємо про минуле: Where were you? Was it fun?: Where were you on Saturday? (Де ти був у суботу?)</p></div>
+    <div class="warn"><p><b>Форми</b></p><p>+  I / he / she / it + was; you / we / they + were. Приклад: Max was tired. We were hungry.</p><p>−  wasn’t (was not) / weren’t (were not). Приклад: The test wasn’t hard. They weren’t at school.</p><p>?  Was / Were + підмет + ...? Питальне слово ставимо на початок: Where were ...?. Приклад: Was the film good? Where were you?</p><p>коротка відповідь  Yes, I was. / No, they weren’t. У відповіді «так» не скорочуємо.. Приклад: Were you at home? Yes, I was.</p><p>there was / were  there was + однина або незлічуване; there were + множина. Приклад: There was a cat in the garden. There were two dogs.</p></div>
+    <div class="warn"><p><b>Головна пастка</b></p><p>You завжди з were. Навіть коли you означає одну людину, потрібне were: you were, were you?</p><p>✗ You was right, Lily.</p><p>✓ You were right, Lily.</p><p>Без did у реченнях з was / were. Was і were самі утворюють заперечення і питання. Did і didn’t тут не потрібні.</p><p>✗ He didn’t was at the party.</p><p>✓ He wasn’t at the party.</p><p>Двоє і більше = were. Якщо підмет означає кількох (Max and Lily, my parents, the kids, my friends and I), потрібне were.</p><p>✗ Max and Lily was at the cinema.</p><p>✓ Max and Lily were at the cinema.</p></div>
+    <div class="warn"><p><b>Маркери:</b> yesterday, last night, last week, last summer, two days ago, in 2020, when I was a child, this morning, on Saturday, at 8 o’clock yesterday</p></div>
+    <div class="warn"><p><b>Шпаргалка: was / were і скорочення</b></p><p>Was для I, he, she, it та однини (my cat, the film, everybody, the news). Were для you, we, they та множини (my parents, the kids, jeans, people). У запереченні зазвичай скорочуємо: wasn’t, weren’t.</p><p>I · I was · I wasn’t · Was I?</p><p>you · you were · you weren’t · Were you?</p><p>he / she / it · she was · she wasn’t · Was she?</p><p>we · we were · we weren’t · Were we?</p><p>they · they were · they weren’t · Were they?</p><p>there + однина · there was · there wasn’t · Was there?</p><p>there + множина · there were · there weren’t · Were there?</p></div>
+    <p class="lk-tnote" data-ru="Тренажер на 100 завдань: 5 раундів по 20. На уроці можна пройти 1-2 раунди, решту задати додому. Пояснення до кожної відповіді учень бачить у тренажері на сайті (розділ «Граматика»).&lt;br&gt;">Тренажер на 100 завдань: 5 раундів по 20. На уроці можна пройти 1-2 раунди, решту задати додому. Пояснення до кожної відповіді учень бачить у тренажері на сайті (розділ «Граматика»).<br></p>
+  </section>
+  <section id="s2" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">2</span>Раунд 1. Форми: was чи were <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="was"><span class="n">1</span><span class="s">I ___ at the cinema last night.</span><span class="o"><button type="button">was</button><button type="button">be</button><button type="button">were</button><button type="button">am</button></span></div>
+<div class="ch" data-a="was"><span class="n">2</span><span class="s">The pizza at Dan’s party ___ really good.</span><span class="o"><button type="button">been</button><button type="button">be</button><button type="button">were</button><button type="button">was</button></span></div>
+<div class="ch" data-a="were"><span class="n">3</span><span class="s">We ___ tired after the long match.</span><span class="o"><button type="button">was</button><button type="button">been</button><button type="button">is</button><button type="button">were</button></span></div>
+<div class="ch" data-a="was"><span class="n">4</span><span class="s">It ___ cold and windy last weekend.</span><span class="o"><button type="button">were</button><button type="button">be</button><button type="button">been</button><button type="button">was</button></span></div>
+<div class="ch" data-a="were"><span class="n">5</span><span class="s">Sophie’s parents ___ in Italy last summer.</span><span class="o"><button type="button">did</button><button type="button">were</button><button type="button">was</button><button type="button">been</button></span></div>
+<div class="ch" data-a="was"><span class="n">6</span><span class="s">He ___ at football training on Monday.</span><span class="o"><button type="button">were</button><button type="button">was</button><button type="button">been</button><button type="button">be</button></span></div>
+<div class="ch" data-a="were"><span class="n">7</span><span class="s">My friends and I ___ at the beach all day yesterday.</span><span class="o"><button type="button">was</button><button type="button">am</button><button type="button">be</button><button type="button">were</button></span></div>
+<div class="ch" data-a="were"><span class="n">8</span><span class="s">Your test results last term ___ great!</span><span class="o"><button type="button">be</button><button type="button">was</button><button type="button">been</button><button type="button">were</button></span></div>
+<div class="ch" data-a="were"><span class="n">9</span><span class="s">The kittens ___ very small in May.</span><span class="o"><button type="button">was</button><button type="button">been</button><button type="button">be</button><button type="button">were</button></span></div>
+<div class="ch" data-a="was"><span class="n">10</span><span class="s">The film ___ too long, so I fell asleep.</span><span class="o"><button type="button">were</button><button type="button">been</button><button type="button">is being</button><button type="button">was</button></span></div>
+<div class="ch" data-a="were"><span class="n">11</span><span class="s">The questions in the test ___ easy.</span><span class="o"><button type="button">be</button><button type="button">were</button><button type="button">was</button><button type="button">been</button></span></div>
+<div class="ch" data-a="was"><span class="n">12</span><span class="s">Everybody ___ happy at the end of the party.</span><span class="o"><button type="button">were</button><button type="button">are</button><button type="button">was</button><button type="button">been</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; was · was · were · was · were · was · were · were · were · was · were · was"><b>Відповіді:</b> was · was · were · was · were · was · were · were · were · was · were · was</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="were"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Lily and Max ___ (be) at the park yesterday afternoon.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="was"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Yesterday my cat ___ (be) on the sofa all morning.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="were"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>You ___ (be) late for the lesson yesterday, Tom.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="was"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>The concert ___ (be) amazing last night!</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="were"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>The streets ___ (be) empty early last Sunday.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="was"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Emma ___ (be) in London two days ago.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="were"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>Dan and his brother ___ (be) at a gaming club on Saturday.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="was"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>I ___ (be) really hungry after school yesterday.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; were · was · were · was · were · was · were · was"><b>Відповіді:</b> were · was · were · was · were · was · were · was</p>
+  </section>
+  <section id="s3" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">3</span>Раунд 2. Заперечення, питання, короткі відповіді <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="Were"><span class="n">1</span><span class="s">___ you at the party on Friday?</span><span class="o"><button type="button">Were</button><button type="button">Are</button><button type="button">Did</button><button type="button">Was</button></span></div>
+<div class="ch" data-a="wasn’t"><span class="n">2</span><span class="s">The museum ___ open yesterday, so we went to the zoo.</span><span class="o"><button type="button">not was</button><button type="button">weren’t</button><button type="button">didn’t</button><button type="button">wasn’t</button></span></div>
+<div class="ch" data-a="Was"><span class="n">3</span><span class="s">___ the maths test difficult yesterday?</span><span class="o"><button type="button">Was</button><button type="button">Does</button><button type="button">Were</button><button type="button">Did</button></span></div>
+<div class="ch" data-a="was"><span class="n">4</span><span class="s">Were you at the gym this morning? Yes, I ___.</span><span class="o"><button type="button">was</button><button type="button">did</button><button type="button">am</button><button type="button">were</button></span></div>
+<div class="ch" data-a="weren’t"><span class="n">5</span><span class="s">Were the kids scared of the dog? No, they ___.</span><span class="o"><button type="button">wasn’t</button><button type="button">weren’t</button><button type="button">aren’t</button><button type="button">didn’t</button></span></div>
+<div class="ch" data-a="wasn’t"><span class="n">6</span><span class="s">Why ___ Lily at the meeting yesterday?</span><span class="o"><button type="button">didn’t</button><button type="button">weren’t</button><button type="button">isn’t</button><button type="button">wasn’t</button></span></div>
+<div class="ch" data-a="weren’t"><span class="n">7</span><span class="s">We ___ at the lesson because we were ill.</span><span class="o"><button type="button">wasn’t</button><button type="button">weren’t</button><button type="button">not were</button><button type="button">didn’t</button></span></div>
+<div class="ch" data-a="was"><span class="n">8</span><span class="s">Was it sunny in Brighton? Yes, it ___.</span><span class="o"><button type="button">were</button><button type="button">did</button><button type="button">is</button><button type="button">was</button></span></div>
+<div class="ch" data-a="Were"><span class="n">9</span><span class="s">___ there many people at the concert?</span><span class="o"><button type="button">Were</button><button type="button">Was</button><button type="button">Did</button><button type="button">Had</button></span></div>
+<div class="ch" data-a="Were you tired after the trip?"><span class="n">10</span><span class="s">Обери правильне питання про поїздку: ___</span><span class="o"><button type="button">Did you were tired after the trip?</button><button type="button">Were tired you after the trip?</button><button type="button">Were you tired after the trip?</button><button type="button">Was you tired after the trip?</button></span></div>
+<div class="ch" data-a="was"><span class="n">11</span><span class="s">Who ___ that girl in the red jacket at the party?</span><span class="o"><button type="button">been</button><button type="button">did</button><button type="button">was</button><button type="button">were</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; Were · wasn’t · Was · was · weren’t · wasn’t · weren’t · was · Were · Were you tired after the trip? · was"><b>Відповіді:</b> Were · wasn’t · Was · was · weren’t · wasn’t · weren’t · was · Were · Were you tired after the trip? · was</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="wasn’t|was not"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>I ___ (not be) at home when you called.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="weren’t|were not"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Last night my parents ___ (not be) angry about the broken cup.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="wasn’t|was not"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Was Tom at school on Monday? No, he ___ (not be).</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="were"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Where ___ (be) you at eight o’clock last night?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Were|were"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>___ (be) the shops busy on Saturday?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="was"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>How ___ (be) your holiday in Spain last month?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="wasn’t|was not"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>At first Sophie ___ (not be) happy with her holiday photos.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="weren’t|were not"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>The tickets ___ (not be) expensive last time, only five euros.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Was|was"><span class="n" style="font-weight:800;color:var(--violet)">9</span><span>___ (be) Max late for practice again yesterday?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; wasn’t · weren’t · wasn’t · were · Were · was · wasn’t · weren’t · Was"><b>Відповіді:</b> wasn’t · weren’t · wasn’t · were · Were · was · wasn’t · weren’t · Was</p>
+  </section>
+  <section id="s4" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">4</span>Раунд 3. There was / there were і минуле <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="was"><span class="n">1</span><span class="s">There ___ a strange noise in the kitchen last night.</span><span class="o"><button type="button">was</button><button type="button">be</button><button type="button">were</button><button type="button">is</button></span></div>
+<div class="ch" data-a="wasn’t"><span class="n">2</span><span class="s">There ___ any milk in the fridge yesterday, so I had black tea.</span><span class="o"><button type="button">weren’t</button><button type="button">isn’t</button><button type="button">wasn’t</button><button type="button">didn’t</button></span></div>
+<div class="ch" data-a="was"><span class="n">3</span><span class="s">Now Max is at home, but an hour ago he ___ at the shop.</span><span class="o"><button type="button">were</button><button type="button">was</button><button type="button">is</button><button type="button">has</button></span></div>
+<div class="ch" data-a="Was"><span class="n">4</span><span class="s">___ there a good café near your hotel?</span><span class="o"><button type="button">Did</button><button type="button">Were</button><button type="button">Had</button><button type="button">Was</button></span></div>
+<div class="ch" data-a="was"><span class="n">5</span><span class="s">My phone ___ in my bag a minute ago, and now it’s gone!</span><span class="o"><button type="button">was</button><button type="button">is</button><button type="button">been</button><button type="button">were</button></span></div>
+<div class="ch" data-a="were"><span class="n">6</span><span class="s">There ___ lots of fun games at the school fair last year.</span><span class="o"><button type="button">were</button><button type="button">had</button><button type="button">was</button><button type="button">are</button></span></div>
+<div class="ch" data-a="was"><span class="n">7</span><span class="s">Where is Dan now? He ___ in the garden ten minutes ago.</span><span class="o"><button type="button">was</button><button type="button">be</button><button type="button">is</button><button type="button">were</button></span></div>
+<div class="ch" data-a="were"><span class="n">8</span><span class="s">This café is quiet now, but there ___ a lot of people here at lunchtime today.</span><span class="o"><button type="button">been</button><button type="button">were</button><button type="button">was</button><button type="button">is</button></span></div>
+<div class="ch" data-a="was"><span class="n">9</span><span class="s">In 2015 Emma ___ a student, but now she’s a doctor.</span><span class="o"><button type="button">were</button><button type="button">has been</button><button type="button">was</button><button type="button">is</button></span></div>
+<div class="ch" data-a="were"><span class="n">10</span><span class="s">How many people ___ at the wedding last Saturday?</span><span class="o"><button type="button">did</button><button type="button">had</button><button type="button">were</button><button type="button">was</button></span></div>
+<div class="ch" data-a="was"><span class="n">11</span><span class="s">The match ___ yesterday at five, not today.</span><span class="o"><button type="button">was</button><button type="button">were</button><button type="button">be</button><button type="button">is</button></span></div>
+<div class="ch" data-a="was"><span class="n">12</span><span class="s">Tom is tall now, but as a child he ___ quite short.</span><span class="o"><button type="button">has</button><button type="button">were</button><button type="button">was</button><button type="button">is</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; was · wasn’t · was · Was · was · were · was · were · was · were · was · was"><b>Відповіді:</b> was · wasn’t · was · Was · was · were · was · were · was · were · was · was</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="were"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>There ___ (be) three cats on our balcony yesterday morning.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="weren’t|were not"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>There ___ (not be) many students in the library on Sunday.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="was"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Today the sky is grey, but yesterday it ___ (be) blue.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="was"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>When I ___ (be) six, I had a pet rabbit.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="were"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>My grandparents ___ (be) teachers before they retired.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="was"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>There ___ (be) a long queue at the cinema yesterday.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="wasn’t|was not"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>It ___ (not be) warm on our trip, so we bought hats.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="were"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>There ___ (be) no seats left, so we stood at the back.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; were · weren’t · was · was · were · was · wasn’t · were"><b>Відповіді:</b> were · weren’t · was · was · were · was · wasn’t · were</p>
+  </section>
+  <section id="s5" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">5</span>Раунд 4. Пастки <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="You were right about the film."><span class="n">1</span><span class="s">Обери правильне речення про фільм: ___</span><span class="o"><button type="button">You wasn’t right about the film.</button><button type="button">You did be right about the film.</button><button type="button">You was right about the film.</button><button type="button">You were right about the film.</button></span></div>
+<div class="ch" data-a="Were you at Lily’s party?"><span class="n">2</span><span class="s">Обери правильне питання про вечірку: ___</span><span class="o"><button type="button">Were you at Lily’s party?</button><button type="button">Were at Lily’s party you?</button><button type="button">Did you be at Lily’s party?</button><button type="button">Was you at Lily’s party?</button></span></div>
+<div class="ch" data-a="was"><span class="n">3</span><span class="s">Everyone in my class ___ excited about the trip.</span><span class="o"><button type="button">were</button><button type="button">are</button><button type="button">was</button><button type="button">been</button></span></div>
+<div class="ch" data-a="were"><span class="n">4</span><span class="s">There ___ two pizzas and a salad on the table.</span><span class="o"><button type="button">is</button><button type="button">were</button><button type="button">was</button><button type="button">be</button></span></div>
+<div class="ch" data-a="were"><span class="n">5</span><span class="s">My jeans ___ dirty after the hike.</span><span class="o"><button type="button">been</button><button type="button">is</button><button type="button">was</button><button type="button">were</button></span></div>
+<div class="ch" data-a="wasn’t"><span class="n">6</span><span class="s">I ___ at school yesterday because I was ill.</span><span class="o"><button type="button">didn’t</button><button type="button">not was</button><button type="button">wasn’t</button><button type="button">weren’t</button></span></div>
+<div class="ch" data-a="It was very hot last week."><span class="n">7</span><span class="s">Обери правильне речення про погоду: ___</span><span class="o"><button type="button">It was very hot last week.</button><button type="button">It is very hot last week.</button><button type="button">It were very hot last week.</button><button type="button">Was very hot last week.</button></span></div>
+<div class="ch" data-a="I was"><span class="n">8</span><span class="s">Were you at home last night? Yes, ___.</span><span class="o"><button type="button">I were</button><button type="button">was I</button><button type="button">I did</button><button type="button">I was</button></span></div>
+<div class="ch" data-a="was"><span class="n">9</span><span class="s">Mum ___ angry because I was late.</span><span class="o"><button type="button">were</button><button type="button">been</button><button type="button">did be</button><button type="button">was</button></span></div>
+<div class="ch" data-a="was"><span class="n">10</span><span class="s">There ___ a lot of snow last winter.</span><span class="o"><button type="button">were</button><button type="button">had</button><button type="button">is</button><button type="button">was</button></span></div>
+<div class="ch" data-a="There were a lot of people at the cinema."><span class="n">11</span><span class="s">Обери правильне речення про кіно: ___</span><span class="o"><button type="button">There was a lot of people at the cinema.</button><button type="button">They were a lot of people at the cinema.</button><button type="button">There were a lot of people at the cinema.</button><button type="button">It was a lot of people at the cinema.</button></span></div>
+<div class="ch" data-a="were"><span class="n">12</span><span class="s">Tom and I ___ in the same class last year.</span><span class="o"><button type="button">were</button><button type="button">been</button><button type="button">am</button><button type="button">was</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; You were right about the film. · Were you at Lily’s party? · was · were · were · wasn’t · It was very hot last week. · I was · was · was · There were a lot of people at the cinema. · were"><b>Відповіді:</b> You were right about the film. · Were you at Lily’s party? · was · were · were · wasn’t · It was very hot last week. · I was · was · was · There were a lot of people at the cinema. · were</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="wasn’t|was not"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>He ___ (not be) at the gym yesterday, he was at home.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="were"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Yesterday Max and his dog ___ (be) in the park all evening.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="was"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>The news ___ (be) good yesterday: we won the school quiz!</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="were"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Lily, why ___ (be) you so quiet at lunch yesterday?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="were"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>The people at the hotel ___ (be) really friendly last summer.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="weren’t|were not"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>My keys ___ (not be) in my bag, so I couldn’t open the door.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="was"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>Where ___ (be) your sister last night?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Was|was"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>___ (be) your teacher strict when you were at primary school?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; wasn’t · were · was · were · were · weren’t · was · Was"><b>Відповіді:</b> wasn’t · were · was · were · were · weren’t · was · Was</p>
+  </section>
+  <section id="s6" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">6</span>Раунд 5. Фінальний бос <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="were"><span class="n">1</span><span class="s">I called you at nine, but you didn’t answer. Where ___ you?</span><span class="o"><button type="button">are</button><button type="button">was</button><button type="button">did</button><button type="button">were</button></span></div>
+<div class="ch" data-a="were"><span class="n">2</span><span class="s">The party was fun. There ___ lots of games and a huge cake.</span><span class="o"><button type="button">was</button><button type="button">is</button><button type="button">were</button><button type="button">are</button></span></div>
+<div class="ch" data-a="was"><span class="n">3</span><span class="s">Sorry I’m late! The bus ___ really slow today.</span><span class="o"><button type="button">were</button><button type="button">was</button><button type="button">did</button><button type="button">been</button></span></div>
+<div class="ch" data-a="Was"><span class="n">4</span><span class="s">“___ your exam hard?” “Not really, I think I passed.”</span><span class="o"><button type="button">Was</button><button type="button">Is</button><button type="button">Did</button><button type="button">Were</button></span></div>
+<div class="ch" data-a="were"><span class="n">5</span><span class="s">I didn’t buy the shoes. They ___ too expensive.</span><span class="o"><button type="button">been</button><button type="button">did</button><button type="button">was</button><button type="button">were</button></span></div>
+<div class="ch" data-a="was"><span class="n">6</span><span class="s">It’s my first day here. Yesterday I ___ in London.</span><span class="o"><button type="button">was</button><button type="button">am</button><button type="button">were</button><button type="button">have</button></span></div>
+<div class="ch" data-a="wasn’t"><span class="n">7</span><span class="s">We were at the café, but Lily ___. She was busy.</span><span class="o"><button type="button">didn’t</button><button type="button">wasn’t</button><button type="button">isn’t</button><button type="button">weren’t</button></span></div>
+<div class="ch" data-a="weren’t"><span class="n">8</span><span class="s">There ___ any free tables, so we ate in the park.</span><span class="o"><button type="button">weren’t</button><button type="button">wasn’t</button><button type="button">didn’t</button><button type="button">aren’t</button></span></div>
+<div class="ch" data-a="was"><span class="n">9</span><span class="s">“Was the bus full?” “Yes, it ___. I stood all the way.”</span><span class="o"><button type="button">was</button><button type="button">were</button><button type="button">is</button><button type="button">did</button></span></div>
+<div class="ch" data-a="was"><span class="n">10</span><span class="s">Last year Tom ___ afraid of dogs. Now he has a puppy!</span><span class="o"><button type="button">is</button><button type="button">was</button><button type="button">were</button><button type="button">has</button></span></div>
+<div class="ch" data-a="was"><span class="n">11</span><span class="s">My brother ___ born in 2010, and I was born in 2013.</span><span class="o"><button type="button">was</button><button type="button">were</button><button type="button">has</button><button type="button">is</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; were · were · was · Was · were · was · wasn’t · weren’t · was · was · was"><b>Відповіді:</b> were · were · was · Was · were · was · wasn’t · weren’t · was · was · was</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="was"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Max wasn’t at the match. He ___ (be) at his grandma’s birthday.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="wasn’t|was not"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>“Were you scared?” “No, I ___ (not be). The film was funny.”</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="was"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>We went to the new pool. The water ___ (be) cold, but we swam anyway.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="weren’t|were not"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Emma and Sophie ___ (not be) at the lesson. They were at the dentist.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="was"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>“How ___ (be) your trip to the mountains last week?” “Great, but tiring.”</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="were"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>My first phone was old. Its buttons ___ (be) tiny and the screen was small.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Were|were"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>“___ (be) there any calls for me while I was out?” “Yes, two from Dan.”</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="were"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>The museum was closed, and the shops ___ (be) closed too. What a day!</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="were"><span class="n" style="font-weight:800;color:var(--violet)">9</span><span>“Why ___ (be) you so happy yesterday?” “I got a new kitten!”</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; was · wasn’t · was · weren’t · was · were · Were · were · were"><b>Відповіді:</b> was · wasn’t · was · weren’t · was · were · Were · were · were</p>
+  </section>
+  <section class="end"><h2>Great job!</h2><p>See you next lesson.</p></section>
+</div>
+<div class="toast" id="toast"></div>
+<script>window.MURLY_LESSON={"id": "lib-drill-was-were", "title": "Was / were: 100 tasks", "homework": ["s2", "s3", "s4", "s5", "s6"], "hw": {"s2": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "I {was|were|am|be} at the cinema last night.\nThe pizza at Dan’s party {was|were|been|be} really good.\nWe {were|was|been|is} tired after the long match.\nIt {was|were|been|be} cold and windy last weekend.\nSophie’s parents {were|was|did|been} in Italy last summer.\nHe {was|were|been|be} at football training on Monday.\nMy friends and I {were|was|am|be} at the beach all day yesterday.\nYour test results last term {were|was|been|be} great!\nThe kittens {were|was|be|been} very small in May.\nThe film {was|were|is being|been} too long, so I fell asleep.\nThe questions in the test {were|was|been|be} easy.\nEverybody {was|were|are|been} happy at the end of the party."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "Lily and Max [were] (be) at the park yesterday afternoon.\nYesterday my cat [was] (be) on the sofa all morning.\nYou [were] (be) late for the lesson yesterday, Tom.\nThe concert [was] (be) amazing last night!\nThe streets [were] (be) empty early last Sunday.\nEmma [was] (be) in London two days ago.\nDan and his brother [were] (be) at a gaming club on Saturday.\nI [was] (be) really hungry after school yesterday."}], "s3": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "{Were|Was|Did|Are} you at the party on Friday?\nThe museum {wasn’t|weren’t|didn’t|not was} open yesterday, so we went to the zoo.\n{Was|Were|Did|Does} the maths test difficult yesterday?\nWere you at the gym this morning? Yes, I {was|were|did|am}.\nWere the kids scared of the dog? No, they {weren’t|wasn’t|didn’t|aren’t}.\nWhy {wasn’t|weren’t|didn’t|isn’t} Lily at the meeting yesterday?\nWe {weren’t|wasn’t|didn’t|not were} at the lesson because we were ill.\nWas it sunny in Brighton? Yes, it {was|is|did|were}.\n{Were|Was|Did|Had} there many people at the concert?\nОбери правильне питання про поїздку: {Were you tired after the trip?|Did you were tired after the trip?|Was you tired after the trip?|Were tired you after the trip?}\nWho {was|were|did|been} that girl in the red jacket at the party?"}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "I [wasn’t/was not] (not be) at home when you called.\nLast night my parents [weren’t/were not] (not be) angry about the broken cup.\nWas Tom at school on Monday? No, he [wasn’t/was not] (not be).\nWhere [were] (be) you at eight o’clock last night?\n[Were/were] (be) the shops busy on Saturday?\nHow [was] (be) your holiday in Spain last month?\nAt first Sophie [wasn’t/was not] (not be) happy with her holiday photos.\nThe tickets [weren’t/were not] (not be) expensive last time, only five euros.\n[Was/was] (be) Max late for practice again yesterday?"}], "s4": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "There {was|were|is|be} a strange noise in the kitchen last night.\nThere {wasn’t|weren’t|isn’t|didn’t} any milk in the fridge yesterday, so I had black tea.\nNow Max is at home, but an hour ago he {was|is|were|has} at the shop.\n{Was|Were|Did|Had} there a good café near your hotel?\nMy phone {was|is|were|been} in my bag a minute ago, and now it’s gone!\nThere {were|was|are|had} lots of fun games at the school fair last year.\nWhere is Dan now? He {was|is|were|be} in the garden ten minutes ago.\nThis café is quiet now, but there {were|was|is|been} a lot of people here at lunchtime today.\nIn 2015 Emma {was|is|were|has been} a student, but now she’s a doctor.\nHow many people {were|was|did|had} at the wedding last Saturday?\nThe match {was|is|were|be} yesterday at five, not today.\nTom is tall now, but as a child he {was|is|were|has} quite short."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "There [were] (be) three cats on our balcony yesterday morning.\nThere [weren’t/were not] (not be) many students in the library on Sunday.\nToday the sky is grey, but yesterday it [was] (be) blue.\nWhen I [was] (be) six, I had a pet rabbit.\nMy grandparents [were] (be) teachers before they retired.\nThere [was] (be) a long queue at the cinema yesterday.\nIt [wasn’t/was not] (not be) warm on our trip, so we bought hats.\nThere [were] (be) no seats left, so we stood at the back."}], "s5": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Обери правильне речення про фільм: {You were right about the film.|You was right about the film.|You wasn’t right about the film.|You did be right about the film.}\nОбери правильне питання про вечірку: {Were you at Lily’s party?|Did you be at Lily’s party?|Was you at Lily’s party?|Were at Lily’s party you?}\nEveryone in my class {was|were|are|been} excited about the trip.\nThere {were|was|is|be} two pizzas and a salad on the table.\nMy jeans {were|was|is|been} dirty after the hike.\nI {wasn’t|didn’t|weren’t|not was} at school yesterday because I was ill.\nОбери правильне речення про погоду: {It was very hot last week.|It were very hot last week.|Was very hot last week.|It is very hot last week.}\nWere you at home last night? Yes, {I was|I were|I did|was I}.\nMum {was|were|did be|been} angry because I was late.\nThere {was|were|is|had} a lot of snow last winter.\nОбери правильне речення про кіно: {There were a lot of people at the cinema.|There was a lot of people at the cinema.|It was a lot of people at the cinema.|They were a lot of people at the cinema.}\nTom and I {were|was|am|been} in the same class last year."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "He [wasn’t/was not] (not be) at the gym yesterday, he was at home.\nYesterday Max and his dog [were] (be) in the park all evening.\nThe news [was] (be) good yesterday: we won the school quiz!\nLily, why [were] (be) you so quiet at lunch yesterday?\nThe people at the hotel [were] (be) really friendly last summer.\nMy keys [weren’t/were not] (not be) in my bag, so I couldn’t open the door.\nWhere [was] (be) your sister last night?\n[Was/was] (be) your teacher strict when you were at primary school?"}], "s6": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "I called you at nine, but you didn’t answer. Where {were|was|did|are} you?\nThe party was fun. There {were|was|is|are} lots of games and a huge cake.\nSorry I’m late! The bus {was|were|did|been} really slow today.\n“{Was|Were|Did|Is} your exam hard?” “Not really, I think I passed.”\nI didn’t buy the shoes. They {were|was|did|been} too expensive.\nIt’s my first day here. Yesterday I {was|am|were|have} in London.\nWe were at the café, but Lily {wasn’t|weren’t|didn’t|isn’t}. She was busy.\nThere {weren’t|wasn’t|aren’t|didn’t} any free tables, so we ate in the park.\n“Was the bus full?” “Yes, it {was|did|were|is}. I stood all the way.”\nLast year Tom {was|is|were|has} afraid of dogs. Now he has a puppy!\nMy brother {was|is|were|has} born in 2010, and I was born in 2013."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "Max wasn’t at the match. He [was] (be) at his grandma’s birthday.\n“Were you scared?” “No, I [wasn’t/was not] (not be). The film was funny.”\nWe went to the new pool. The water [was] (be) cold, but we swam anyway.\nEmma and Sophie [weren’t/were not] (not be) at the lesson. They were at the dentist.\n“How [was] (be) your trip to the mountains last week?” “Great, but tiring.”\nMy first phone was old. Its buttons [were] (be) tiny and the screen was small.\n“[Were/were] (be) there any calls for me while I was out?” “Yes, two from Dan.”\nThe museum was closed, and the shops [were] (be) closed too. What a day!\n“Why [were] (be) you so happy yesterday?” “I got a new kitten!”"}]}};</script>
+<script>
+(function(){var l=(document.cookie.match(/(?:^|; )murly_lang=(\w+)/)||[])[1];try{l=l||localStorage.getItem('murly:tlang')}catch(e){}l=l==='ru'?'ru':'uk';document.querySelectorAll('[data-pairs-'+l+']').forEach(function(b){b.dataset.pairs=b.getAttribute('data-pairs-'+l)});})();
+</script>
+<script>
+const $ = (id) => document.getElementById(id);
+const LIS = {};
+function say(w, rate) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; const v = speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang) && /Google|Natural|Libby|Sonia|Daniel/.test(x.name)) || speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang)); if (v) u.voice = v; u.rate = rate || .95; speechSynthesis.speak(u); } catch (e) { } }
+const sh = (a) => a.map((x) => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map((x) => x[1]);
+document.querySelectorAll('.voc div').forEach((d) => d.onclick = () => say(d.dataset.say));
+document.querySelectorAll('[data-play]').forEach((b) => b.onclick = () => say(LIS[b.dataset.play], b.dataset.slow ? .75 : .95));
+document.querySelectorAll('[data-stop]').forEach((b) => b.onclick = () => { try { speechSynthesis.cancel(); } catch (e) { } });
+document.querySelectorAll('.ch').forEach((q) => q.querySelectorAll('button').forEach((b) => b.onclick = () => { if (q.classList.contains('ok')) return; const ok = b.textContent === q.dataset.a; q.classList.toggle('ok', ok); q.classList.toggle('bad', !ok); if (ok) { const s = q.querySelector('.s'); if (s && s.textContent.includes('___')) { s.textContent = s.textContent.replace('___', q.dataset.a); } } }));
+const norm = (x) => x.toLowerCase().replace(/[’']/g, "'").replace(/[,;:"“”«»]/g, ' ').replace(/\s+/g, ' ').replace(/[.!?]$/, '').trim();
+document.querySelectorAll('.ty').forEach((r) => { const inp = r.querySelector('input'); const chk = () => { const ok = r.dataset.a.split('|').some((a) => norm(a) === norm(inp.value)); r.classList.toggle('ok', ok); r.classList.toggle('bad', !ok && inp.value.trim() !== ''); }; r.querySelector('button').onclick = chk; inp.onkeydown = (e) => { if (e.key === 'Enter') chk(); }; });
+document.querySelectorAll('[data-mt]').forEach((box) => { const pairs = JSON.parse(box.dataset.pairs); const L = sh(pairs.map((p) => p[0])), R = sh(pairs.map((p) => p[1])); let sel = null, done = 0, err = 0; box.innerHTML = L.map((w, i) => `<button type="button" data-w="${w}">${w}</button><button type="button" data-d="${R[i]}">${R[i]}</button>`).join('');
+  box.querySelectorAll('button').forEach((b) => b.onclick = () => { if (b.classList.contains('done')) return; if (!sel || (sel.dataset.w && b.dataset.w) || (sel.dataset.d && b.dataset.d)) { if (sel) sel.classList.remove('sel'); sel = b; b.classList.add('sel'); return; } const w = sel.dataset.w || b.dataset.w, d = sel.dataset.d || b.dataset.d; if (pairs.some((p) => p[0] === w && p[1] === d)) { sel.classList.add('done'); b.classList.add('done'); done++; say(w); if (done === pairs.length) document.querySelector(`[data-mtres="${box.dataset.mt}"]`).textContent = err ? `Done! Mistakes: ${err}` : 'Perfect!'; } else err++; sel.classList.remove('sel'); sel = null; }); });
+document.querySelectorAll('[data-vids]').forEach((box) => JSON.parse(box.dataset.vids).forEach(([id, title, ch, qs]) => { const d = document.createElement('div'); d.className = 'vid'; d.innerHTML = `<div class="frame"><button class="play" type="button" style="background-image:url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)"><span>PLAY</span></button></div><div class="info"><h3>${title}</h3><small>YouTube · ${ch}</small><ol>${qs.map((q) => `<li>${q}</li>`).join('')}</ol></div>`; d.querySelector('.play').onclick = (e) => { e.currentTarget.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&cc_load_policy=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${title}"></iframe>`; }; box.appendChild(d); }));
+document.querySelectorAll('[data-spin]').forEach((b) => { const list = JSON.parse(b.dataset.spin); let last = -1; b.onclick = () => { let i; do { i = Math.floor(Math.random() * list.length); } while (i === last && list.length > 1); last = i; document.getElementById(b.dataset.target).textContent = list[i]; }; });
+try { const k = 'murly:' + (window.MURLY_LESSON ? MURLY_LESSON.id : 'x') + ':hw'; const t = $('hwText'); if (t) { t.value = localStorage.getItem(k) || ''; t.oninput = () => localStorage.setItem(k, t.value); } } catch (e) { }
+const STAGES = [...document.querySelectorAll('.wrap > section[id]')];
+$('stages').innerHTML = STAGES.map((s) => `<a href="#${s.id}"><b>${s.querySelector('.lk-n').textContent}</b><span>${s.dataset.stage}</span><small>${s.dataset.min !== '0' ? s.dataset.min + ' min' : 'at home'}</small></a>`).join('');
+$('teacherBtn').onclick = (e) => { const on = document.body.classList.toggle('teacher'); e.currentTarget.textContent = on ? 'Student version' : 'Teacher version'; };
+</script>
+<script src="/game-lessons/kit.js" defer></script>
+</body>
+</html>

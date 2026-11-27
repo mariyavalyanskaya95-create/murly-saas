@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Possessive ’s and of: 100 tasks (A2) | Murly</title>
+<link rel="icon" href="/favicon.svg">
+<meta name="description" content="Повторимо правило: Присвійний відмінок: ’s і of
+100 завдань від простого до складного
+Розберемо головні пастки">
+<link rel="canonical" href="https://murly.com.ua/game-lessons/lib-drill-possessive-s.html">
+<style>
+:root{--paper:#F3F0EA;--ink:#17181C;--violet:#3D4A7A;--lav:#D9D3C7;--pink:#E9C9BC;--green:#D4E2CF;--white:#fff;--muted:#62646B;--accent:#B5482F}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+/* hero */
+.hero{background:linear-gradient(rgba(16,17,22,.5),rgba(16,17,22,.72)),url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1400&q=70&auto=format&fit=crop");color:#fff;padding:70px 18px 56px;text-align:center;position:relative;overflow:hidden}
+.hero .kicker{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#E9C9BC;font-weight:700}
+.hero .cr{position:absolute;right:12px;bottom:8px;font-size:11px;color:rgba(255,255,255,.6)}
+.hero h1{margin:8px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(36px,6vw,64px);letter-spacing:-.5px;font-weight:700}
+.hero h1 span{color:var(--pink);font-style:italic}
+.hero p{margin:12px 0 0;font-size:17px;color:#e6e2da}
+.hero .flags{display:flex;justify-content:center;gap:12px;margin-top:22px;flex-wrap:wrap}
+.hero .flags svg{width:40px;height:26px;border-radius:3px;opacity:.9}
+/* sections */
+section{margin-top:30px;background:var(--white);border-radius:18px;padding:28px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.05)}
+section h2{margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tag{font-family:"Segoe UI",system-ui,sans-serif;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--paper);color:var(--accent);text-transform:uppercase;letter-spacing:1px}
+.lk-n{display:inline-grid;place-items:center;width:42px;height:42px;background:var(--violet);color:#fff;border-radius:50%;font-size:21px;flex:none}
+.lk-mode{font-size:13px;font-weight:700;border:2px dashed var(--lav);color:var(--muted);padding:2px 10px;border-radius:999px}
+.lk-ins{font-size:17px;background:var(--paper);border-radius:12px;padding:10px 14px;margin:6px 0 18px}
+.lk-sub{margin:24px 0 10px;font-size:19px}
+.btn{font:inherit;font-weight:700;border:0;border-radius:999px;background:var(--ink);color:#fff;padding:10px 20px;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+.btn.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+/* teacher */
+.lk-tbtn{position:fixed;right:16px;top:70px;z-index:45;font:inherit;font-weight:800;border:2px solid var(--ink);background:var(--pink);padding:8px 14px;border-radius:12px;cursor:pointer}
+body.teacher .lk-tbtn{background:var(--green)}
+.lk-ans,.lk-tnote{display:none}
+body.teacher .lk-ans{display:block;margin-top:8px;font-weight:700;color:#1d5a12;background:var(--green);border-left:5px solid #5aa845;padding:6px 10px;font-size:15px;border-radius:6px}
+body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff3f7;border-left:5px solid #d9789a;padding:8px 12px;font-size:15px;border-radius:6px}
+/* overview */
+.lk-overview ul{font-size:17px;line-height:1.7;margin:6px 0 16px}
+.lk-stages{display:flex;flex-wrap:wrap;gap:8px}
+.lk-stages a{display:grid;border-radius:14px;padding:8px 12px;text-decoration:none;color:var(--ink);background:var(--paper);font-weight:700;min-width:100px}
+.lk-stages a span{text-transform:capitalize}
+.lk-stages a b{font-size:20px;color:var(--violet)}
+.lk-stages a small{font-weight:600;color:var(--muted)}
+/* warm-up */
+.taxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tax{background:var(--paper);border-radius:18px;padding:16px;display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center}
+.tax svg{width:56px;height:56px}
+.tax b{display:block;font-size:17px}
+.tax small{color:var(--muted);font-size:14px}
+.qs{display:grid;gap:10px;margin-top:18px}
+.qs div{background:var(--green);border-radius:14px;padding:10px 16px;font-size:18px;font-weight:600}
+.phr{background:#fff7e8;border-radius:14px;padding:12px 16px;margin-top:16px;font-size:15px}
+.phr ul{margin:6px 0 0;padding-left:18px}
+.fic{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:16px}
+.fic .c{background:#fff;border:2px solid #1B2140;border-radius:16px;padding:14px 16px;box-shadow:3px 3px 0 #1B2140}
+.fic .c b{display:block;font-size:18px;line-height:1.35;margin-bottom:8px}
+.fic .c .k{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.fic .c .k span{font-size:13px;background:#eef1fb;border-radius:999px;padding:3px 10px}
+.fic .c details{margin-top:8px;font-size:15px;color:#3b4160}
+.fic .c summary{cursor:pointer;font-weight:700;color:#534AB7}
+.fi-n{display:inline-flex;width:28px;height:28px;border-radius:50%;background:#2F4BA0;color:#fff;align-items:center;justify-content:center;font-size:14px;margin-right:6px}
+/* vocab */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:12px}
+.vc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:2px solid transparent;transition:border-color .2s,transform .2s}
+.vc:hover{border-color:var(--violet);transform:translateY(-2px)}
+.vc b{font-size:18px;display:flex;align-items:center;gap:8px}
+.vc b svg{width:20px;height:20px;flex:none;color:var(--violet)}
+.vc p{margin:6px 0 0;font-size:14px;color:var(--muted)}
+.vc em{display:block;margin-top:6px;font-size:14px;color:var(--violet);font-style:normal;font-weight:600}
+.vc.played{background:#e6ecfb}
+/* grammar */
+.gram{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.gb{border-radius:18px;padding:16px}
+.gb h3{margin:0 0 6px;font-size:19px}
+.gb .f{display:inline-block;background:#fff;border-radius:8px;padding:3px 10px;font-weight:800;margin:4px 0;font-family:Consolas,monospace;font-size:15px}
+.gb p{margin:6px 0 0;font-size:15px}
+.g1{background:var(--pink)}.g2{background:var(--lav)}.g3{background:var(--green)}.g4{background:#fbe7c6}
+.warn{margin-top:14px;background:var(--ink);color:#fff;border-radius:14px;padding:12px 16px;font-size:16px}
+.warn b{color:var(--pink)}
+.q{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:2px dashed var(--paper);font-size:18px}
+.q:last-child{border-bottom:0}
+.q .n{width:32px;height:32px;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;border-radius:50%;font-weight:800;font-size:15px}
+.opt{font:inherit;font-size:16px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:10px;padding:4px 12px;cursor:pointer;margin:0 2px}
+.opt.ok{background:var(--green);border-color:#5aa845}
+.opt.bad{background:var(--pink);animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+/* tour */
+.tour{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.law{border-radius:22px;overflow:hidden;background:var(--paper);display:flex;flex-direction:column}
+.law .pic{height:150px;display:grid;place-items:center;position:relative}
+.law .pic svg.ill{width:130px;height:130px}
+.law .pic svg.fl{position:absolute;left:14px;top:14px;width:46px;height:30px;border-radius:5px;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.law .pic .no{position:absolute;right:14px;top:14px;background:var(--ink);color:#fff;font-weight:800;border-radius:999px;padding:2px 10px;font-size:13px}
+.law .body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.law h3{margin:0;font-size:20px}
+.law .where{font-size:13px;font-weight:800;color:var(--violet);text-transform:uppercase;letter-spacing:1px}
+.law p{margin:0;font-size:16px}
+.law .why{font-size:14px;color:var(--muted)}
+.law .dq{margin-top:auto;background:#fff;border-radius:12px;padding:8px 12px;font-weight:700;font-size:15px}
+.law .lsn{font:inherit;font-size:13px;font-weight:700;background:none;border:0;color:var(--violet);cursor:pointer;padding:0;text-align:left}
+/* game */
+.game{max-width:720px;margin:0 auto;text-align:center}
+.score{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.score span{background:var(--paper);border-radius:999px;padding:6px 16px;font-weight:800}
+.stmt{background:var(--ink);color:#fff;border-radius:22px;padding:28px 24px;min-height:150px;display:grid;place-items:center;font-size:23px;font-weight:700;position:relative}
+.stmt small{position:absolute;top:12px;left:18px;font-size:13px;color:var(--lav);font-weight:700}
+.choose{display:flex;justify-content:center;gap:14px;margin:18px 0}
+.choose button{font:inherit;font-size:18px;font-weight:700;border:2px solid var(--ink);border-radius:999px;padding:12px 28px;cursor:pointer}
+.choose .bl{background:var(--green)}.choose .bm{background:var(--pink)}
+.choose button:disabled{opacity:.5;cursor:default}
+.verdict{min-height:70px;font-size:17px;background:var(--paper);border-radius:16px;padding:12px 16px;text-align:left}
+.verdict b.r{color:#2d7a1d}.verdict b.w{color:#b23a62}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.dots i{width:14px;height:14px;border-radius:50%;background:var(--paper)}
+.dots i.r{background:#7cc663}.dots i.w{background:#e47b9f}.dots i.c{outline:3px solid var(--violet)}
+.final{font-size:22px;font-weight:800;color:var(--violet)}
+/* invent */
+.inv{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.frames{display:grid;gap:10px}
+.frames label{font-size:14px;font-weight:700;color:var(--muted)}
+.frames select,.frames input{font:inherit;width:100%;padding:8px 10px;border:2px solid var(--lav);border-radius:10px;background:#fff}
+.poster{background:var(--paper);border:3px solid var(--ink);border-radius:20px;padding:22px;text-align:center;min-height:260px;display:flex;flex-direction:column;gap:10px;justify-content:center}
+.poster .seal{width:70px;height:70px;margin:0 auto}
+.poster h3{margin:0;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--violet)}
+.poster .rule{font-size:22px;font-weight:800}
+.poster .pen{font-size:16px;color:var(--muted)}
+.ideas{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ideas span{background:var(--pink);border-radius:999px;padding:5px 12px;font-size:14px;font-weight:600}
+/* roleplay */
+.rp{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.role{border-radius:20px;padding:18px}
+.role h3{margin:0 0 6px;display:flex;align-items:center;gap:10px}
+.role h3 svg{width:42px;height:42px}
+.role ul{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.r1{background:var(--lav)}.r2{background:var(--green)}
+.scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:16px}
+.sc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:3px solid transparent}
+.sc.on{border-color:var(--violet);background:#fff}
+.sc b{display:block;font-size:17px;margin-bottom:4px}
+.sc p{margin:0;font-size:15px}
+.timer{font-size:40px;font-weight:800;text-align:center;margin:14px 0 6px;color:var(--violet)}
+.ctr{text-align:center}
+/* homework */
+.hwb{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hwc{background:var(--paper);border-radius:18px;padding:18px}
+.hwc h3{margin:0 0 8px}
+.hwc ol,.hwc ul{margin:6px 0 0;padding-left:20px;line-height:1.7}
+.hwc textarea{width:100%;min-height:150px;font:inherit;border:2px solid var(--lav);border-radius:12px;padding:10px;margin-top:10px}
+.end{text-align:center;background:var(--ink);color:#fff;box-shadow:none}
+.end h2{justify-content:center}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(140px);background:var(--ink);color:#fff;font-weight:800;padding:12px 22px;border-radius:14px;transition:transform .3s;z-index:50}
+.toast.show{transform:translateX(-50%) translateY(0)}
+/* photos */
+.ph{margin:0}
+.ph img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;background:var(--paper)}
+.ph figcaption{font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.2px}
+.tax{grid-template-columns:1fr !important;padding:12px !important}
+.law .pic{height:auto !important;display:block !important;padding:0;position:relative}
+.law .pic .ph img{border-radius:0;aspect-ratio:16/10;transition:filter .5s}
+.law .pic .ph figcaption{padding:4px 12px 0}
+.law.hide .pic .ph img{filter:blur(10px) grayscale(.6)}
+.law.hide .reveal-body,.law.hide .fl,.law.hide .where{visibility:hidden}
+.law .clue{font-size:15px;font-style:italic;color:var(--ink)}
+.law .gc{display:flex;flex-wrap:wrap;gap:6px}
+.law .gc button{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:4px 12px;cursor:pointer}
+.law .gc button.ok{background:var(--green)}.law .gc button.bad{background:var(--pink)}
+.law:not(.hide) .guess{display:none}
+.fair{display:grid;gap:4px;background:#fff;border-radius:12px;padding:8px 12px}
+.fair .ends{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.fair input{width:100%;accent-color:var(--accent)}
+.fair output{font-size:14px;font-weight:700;color:var(--accent)}
+.gph{max-width:720px;margin:0 auto 12px}
+.gph img{aspect-ratio:21/9}
+.fine{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.fq{background:var(--paper);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.fq h3{margin:0;font-size:18px}
+.fq .opts{display:flex;flex-wrap:wrap;gap:6px}
+.fq .opts button{font:inherit;font-size:14px;font-weight:700;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 12px;cursor:pointer}
+.fq .opts button.ok{background:var(--green)}.fq .opts button.bad{background:var(--pink)}
+.fq .res{font-size:15px;min-height:22px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{position:relative;aspect-ratio:16/9;background:#111}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;cursor:pointer;background:#111 center/cover;display:grid;place-items:center}
+.vid .play span{background:rgba(0,0,0,.7);color:#fff;font-weight:700;border-radius:999px;padding:10px 20px;font-size:15px;letter-spacing:1px}
+.vid .info{padding:14px 16px}
+.vid .info h3{margin:0 0 2px;font-size:18px}
+.vid .info small{color:var(--muted)}
+.vid .info ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+@media(max-width:760px){.inv,.rp,.hwb{grid-template-columns:1fr}.lk-tbtn{top:auto;bottom:70px}}
+
+.pr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.pb{border-radius:18px;padding:16px 18px}
+.pb h3{margin:0;font-family:Georgia,serif;font-size:30px}
+.pb .m{font-size:15px;color:var(--muted);margin:2px 0 8px}
+.pb .chips{display:flex;flex-wrap:wrap;gap:6px}
+.pb .chips span{background:#fff;border-radius:999px;padding:4px 11px;font-size:14px;font-weight:600}
+.pb ul{margin:10px 0 0;padding-left:18px;font-size:15px}
+.p-in{background:#DCE6F5}.p-at{background:#F3D9CF}.p-on{background:#D4E2CF}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-size:15px;margin-top:10px}
+.ex div{background:var(--paper);border-radius:10px;padding:8px 12px}
+.ex b{color:var(--accent)}
+.q{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.q .n{font-weight:800;color:var(--violet);min-width:24px}
+.q .gap{display:inline-block;min-width:44px;border-bottom:2px solid var(--ink);text-align:center;font-weight:800}
+.q .opts{margin-left:auto;display:flex;gap:6px}
+.q .opts button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 14px;cursor:pointer}
+.q.ok{background:#DDEED7}.q.ok .gap{color:#2F7A3B}
+.q.bad{background:#F6DAD3}
+.score{font-weight:800;margin-top:12px}
+.text{font-size:18px;line-height:1.75;background:var(--paper);border-radius:16px;padding:18px 22px}
+.text h3{margin:0 0 6px;font-family:Georgia,serif;font-size:24px}
+.text p{margin:0 0 12px}
+.text.hl mark{background:#F3D9CF;border-radius:4px;padding:0 3px;font-weight:700}
+.tf{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:9px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.tf .opts{margin-left:auto;display:flex;gap:6px}
+.tf button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.tf.ok{background:#DDEED7}.tf.bad{background:#F6DAD3}
+.disc{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px;margin-top:6px}
+.disc div{background:var(--green);border-radius:14px;padding:12px 16px;font-size:17px;font-weight:600}
+.disc div i{font-style:normal;color:var(--violet);margin-right:6px}
+.spin{text-align:center;margin-top:16px}
+.spin .card{display:inline-block;min-height:80px;min-width:min(560px,100%);background:var(--ink);color:#fff;border-radius:18px;padding:20px 24px;font-size:22px;font-weight:700;margin-bottom:12px}
+@media(max-width:700px){.ex{grid-template-columns:1fr}}
+
+.hero{background-size:cover!important;background-position:center!important}
+.voc{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.voc div{background:var(--paper);border-radius:14px;padding:10px 14px;cursor:pointer;border:2px solid transparent}
+.voc div:hover{border-color:var(--violet)}
+.voc b{display:block;font-size:18px}.voc span{display:block;color:var(--accent);font-weight:700;font-size:15px}.voc em{display:block;font-size:14px;color:var(--muted);margin-top:3px}
+.mt{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:10px}
+.mt button{font:inherit;font-size:16px;text-align:left;border:2px solid var(--ink);background:#fff;border-radius:14px;padding:9px 14px;cursor:pointer}
+.mt button.sel{background:#FFE7A8}.mt button.done{background:#CDE8C6;border-color:#4C9A5B;cursor:default}
+.ch{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ch .n{font-weight:800;color:var(--violet);min-width:24px}
+.ch .o{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.ch .o button{font:inherit;font-size:15px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.ch.ok{background:#DDEED7}.ch.bad{background:#F6DAD3}
+.ty{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ty input{font:inherit;border:2px solid var(--ink);border-radius:10px;padding:4px 10px;width:220px}
+.ty.ok{background:#DDEED7}.ty.bad{background:#F6DAD3}
+.ty small{color:var(--muted)}
+.photo{width:100%;height:300px;object-fit:cover;border-radius:16px;display:block}
+.cap{font-size:11px;color:var(--muted);margin:4px 0 12px}
+.pics{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.pics figure{margin:0;background:var(--paper);border-radius:16px;overflow:hidden}
+.pics img{width:100%;height:170px;object-fit:cover;display:block}
+.pics figcaption{padding:8px 12px;font-weight:700}
+.pics small{display:block;font-weight:400;font-size:10px;color:var(--muted)}
+.lis{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:8px 0 14px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{aspect-ratio:16/9;background:#000;position:relative}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;background-size:cover;background-position:center;cursor:pointer;display:grid;place-items:center}
+.vid .play span{background:#E5484D;color:#fff;font-weight:800;border-radius:12px;padding:10px 20px}
+.vid .info{padding:12px 16px}.vid h3{margin:0;font-size:18px}.vid small{color:var(--muted)}
+.vid ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th,.tbl td{border:1px solid #ddd;padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--paper)}
+@media(max-width:700px){.mt{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="/game-lessons/kit.css">
+</head>
+<body>
+<header class="hero">
+  <div class="kicker">A2 · teens · Граматика: тренажер Присвійний відмінок: ’s і of</div>
+  <h1>Possessive ’s and of: 100 tasks</h1>
+  <p>A2 · 6 parts · 60 min</p>
+  <span class="cr">Photo: Unsplash</span>
+</header>
+<button class="lk-tbtn" id="teacherBtn" type="button">Teacher version</button>
+<div class="wrap">
+  <section class="lk-overview">
+    <h2>In this lesson you will:</h2>
+    <ul><li>Повторимо правило: Присвійний відмінок: ’s і of
+100 завдань від простого до складного
+Розберемо головні пастки</li></ul>
+    <div class="lk-stages" id="stages"></div>
+  </section>
+  <section id="s1" data-stage="practice" data-min="10">
+    <h2><span class="lk-n">1</span>Теорія <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<div class="warn"><p><b>Коли вживаємо</b></p><p>Щось належить людині або тварині: ’s: This is Kate’s phone, and that’s the cat’s bowl. (Це телефон Кейт, а то миска кота.)</p><p>Власників кілька, слово закінчується на -s: тільки апостроф: My parents’ car is in the garage. (Машина моїх батьків у гаражі.)</p><p>Множина без -s (children, women, people): ’s: The children’s books are on the bottom shelf. (Дитячі книжки на нижній полиці.)</p><p>Частина речі або місця: of: We missed the end of the film. (Ми пропустили кінець фільму.)</p><p>Питаємо, чиє це: Whose ...?: Whose jacket is this? It’s Max’s. (Чия це куртка? Макса.)</p></div>
+    <div class="warn"><p><b>Форми</b></p><p>’s  власник в однині + ’s + річ. Так само з іменами на -s: James’s або James’.. Приклад: Tom’s bike, my sister’s room, the dog’s ball</p><p>s’  власників кілька, слово вже має -s у кінці: ставимо тільки апостроф після s. Приклад: the girls’ room, my friends’ party</p><p>’s  неправильна множина без -s: children, men, women, people + ’s. Приклад: the children’s toys, women’s shoes</p><p>of  для речей і частин: the + частина + of + річ. Приклад: the end of the lesson, the top of the page</p><p>?  Whose + річ + is / are ...? Відповідь: It’s Lily’s. Іменник після ’s можна не повторювати.. Приклад: Whose keys are these? They’re Dan’s.</p><p>+  спільне на двох: ’s тільки в останнього імені. Також at Granny’s = у бабусі вдома, today’s = сьогоднішній.. Приклад: Ann and Tom’s flat, at Granny’s, today’s news</p></div>
+    <div class="warn"><p><b>Головна пастка</b></p><p>Порядок слів як в українській. В українській спочатку річ, потім власник: «велосипед Тома». В англійській навпаки: спочатку власник з ’s, потім річ. Конструкцію the bike of Tom англійці не вживають.</p><p>✗ This is the bike of Tom.</p><p>✓ This is Tom’s bike.</p><p>Whose чи Who’s. Whose = «чий, чия». Who’s = who is або who has. Звучать однаково, але пишуться по-різному.</p><p>✗ Who’s phone is ringing?</p><p>✓ Whose phone is ringing?</p><p>Its чи it’s. Its = «його, її» (про тварину чи річ), без апострофа. It’s = it is або it has. Тут апостроф означає скорочення, а не власника.</p><p>✗ The kitten is chasing it’s tail.</p><p>✓ The kitten is chasing its tail.</p></div>
+    <div class="warn"><p><b>Маркери:</b> ’s, s’, of, Whose ...?, its, children’s / men’s / women’s / people’s, at Granny’s / at the dentist’s, today’s / yesterday’s, the end of / the top of / the middle of</p></div>
+    <div class="warn"><p><b>’s чи тільки апостроф: шпаргалка</b></p><p>Дивимося на слово-власника. Один власник: ’s. Кілька власників і слово закінчується на -s: тільки ’. Множина без -s: знову ’s. Таблиця: власник, форма, приклад, переклад.</p><p>Kate · Kate’s · Kate’s hoodie · худі Кейт</p><p>my brother · my brother’s · my brother’s room · кімната мого брата</p><p>my brothers · my brothers’ · my brothers’ room · кімната моїх братів</p><p>the cat · the cat’s · the cat’s bowl · миска кота</p><p>the cats · the cats’ · the cats’ bowls · миски котів</p><p>the teacher · the teacher’s · the teacher’s desk · стіл учителя</p><p>the teachers · the teachers’ · the teachers’ room · учительська</p><p>children · children’s · children’s games · дитячі ігри</p><p>women · women’s · women’s football · жіночий футбол</p><p>people · people’s · people’s opinions · думки людей</p><p>James · James’s / James’ · James’s guitar · гітара Джеймса</p><p>Ann and Tom · Ann and Tom’s · Ann and Tom’s flat · спільна квартира Енн і Тома</p></div>
+    <p class="lk-tnote" data-ru="Тренажер на 100 завдань: 5 раундів по 20. На уроці можна пройти 1-2 раунди, решту задати додому. Пояснення до кожної відповіді учень бачить у тренажері на сайті (розділ «Граматика»).&lt;br&gt;">Тренажер на 100 завдань: 5 раундів по 20. На уроці можна пройти 1-2 раунди, решту задати додому. Пояснення до кожної відповіді учень бачить у тренажері на сайті (розділ «Граматика»).<br></p>
+  </section>
+  <section id="s2" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">2</span>Раунд 1. Форми: ’s і s’ <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="Dan’s"><span class="n">1</span><span class="s">That’s ___ guitar.</span><span class="o"><button type="button">Dans</button><button type="button">Dan</button><button type="button">Dan’s</button><button type="button">Dans’</button></span></div>
+<div class="ch" data-a="twins’"><span class="n">2</span><span class="s">The twins are here. The ___ bedroom is upstairs.</span><span class="o"><button type="button">twins</button><button type="button">twins’</button><button type="button">twin’s</button><button type="button">twins’s</button></span></div>
+<div class="ch" data-a="sisters’"><span class="n">3</span><span class="s">My ___ names are Lily and Emma.</span><span class="o"><button type="button">sisters’</button><button type="button">sisters’s</button><button type="button">sister’s</button><button type="button">sisters</button></span></div>
+<div class="ch" data-a="children’s"><span class="n">4</span><span class="s">The ___ toys are all over the floor.</span><span class="o"><button type="button">childs’</button><button type="button">children’s</button><button type="button">childrens</button><button type="button">childrens’</button></span></div>
+<div class="ch" data-a="men’s"><span class="n">5</span><span class="s">This is the ___ shoes section.</span><span class="o"><button type="button">men’s</button><button type="button">mans’</button><button type="button">mens</button><button type="button">mens’</button></span></div>
+<div class="ch" data-a="dog’s"><span class="n">6</span><span class="s">My cat likes the ___ blanket more than its own.</span><span class="o"><button type="button">dogs’s</button><button type="button">dogs</button><button type="button">dog</button><button type="button">dog’s</button></span></div>
+<div class="ch" data-a="people’s"><span class="n">7</span><span class="s">Social media changes ___ habits.</span><span class="o"><button type="button">people</button><button type="button">people’s</button><button type="button">peoples</button><button type="button">peoples’</button></span></div>
+<div class="ch" data-a="Tom’s"><span class="n">8</span><span class="s">Have you met ___ girlfriend?</span><span class="o"><button type="button">Tom’s</button><button type="button">Tom</button><button type="button">Toms’</button><button type="button">Toms</button></span></div>
+<div class="ch" data-a="brother’s"><span class="n">9</span><span class="s">It was my ___ idea to get a kitten.</span><span class="o"><button type="button">brothers’s</button><button type="button">brother</button><button type="button">brother’s</button><button type="button">brothers</button></span></div>
+<div class="ch" data-a="teachers’"><span class="n">10</span><span class="s">The ___ room is where our teachers have lunch.</span><span class="o"><button type="button">teacher</button><button type="button">teacher’s</button><button type="button">teachers</button><button type="button">teachers’</button></span></div>
+<div class="ch" data-a="team’s"><span class="n">11</span><span class="s">Our football ___ new kit is blue and yellow.</span><span class="o"><button type="button">teams</button><button type="button">team</button><button type="button">teams’s</button><button type="button">team’s</button></span></div>
+<div class="ch" data-a="grandma’s"><span class="n">12</span><span class="s">This is my ___ house. She lives in a village.</span><span class="o"><button type="button">grandma</button><button type="button">grandmas</button><button type="button">grandmas’</button><button type="button">grandma’s</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; Dan’s · twins’ · sisters’ · children’s · men’s · dog’s · people’s · Tom’s · brother’s · teachers’ · team’s · grandma’s"><b>Відповіді:</b> Dan’s · twins’ · sisters’ · children’s · men’s · dog’s · people’s · Tom’s · brother’s · teachers’ · team’s · grandma’s</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="Max’s"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>This is ___ (Max) skateboard.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="sister’s"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>My ___ (sister) room is bigger than mine.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="children’s"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>The ___ (children) playground is next to the school.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="parents’"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>We had dinner at my ___ (parents) flat.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Sophie’s"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>I borrowed ___ (Sophie) charger.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="dog’s"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>The ___ (dog) bowl is empty again.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="women’s"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>This shop sells ___ (women) shoes.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="James’s|James’"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>Have you seen ___ (James) new haircut?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; Max’s · sister’s · children’s · parents’ · Sophie’s · dog’s · women’s · James’s"><b>Відповіді:</b> Max’s · sister’s · children’s · parents’ · Sophie’s · dog’s · women’s · James’s</p>
+  </section>
+  <section id="s3" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">3</span>Раунд 2. Питання Whose? і відповіді <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="Whose"><span class="n">1</span><span class="s">___ headphones are these?</span><span class="o"><button type="button">Whose</button><button type="button">Who</button><button type="button">Who’s</button><button type="button">Whom</button></span></div>
+<div class="ch" data-a="It’s Emma’s."><span class="n">2</span><span class="s">“Whose bag is this?” “___”</span><span class="o"><button type="button">It’s Emmas.</button><button type="button">It’s Emma.</button><button type="button">It’s Emma’s.</button><button type="button">It’s of Emma.</button></span></div>
+<div class="ch" data-a="Whose phone is this?"><span class="n">3</span><span class="s">Обери правильне питання: ___</span><span class="o"><button type="button">Whose is phone this?</button><button type="button">Who phone is this?</button><button type="button">Whose phone is this?</button><button type="button">Who’s phone is this?</button></span></div>
+<div class="ch" data-a="Dan’s"><span class="n">4</span><span class="s">Is this ___ laptop or yours?</span><span class="o"><button type="button">Dan</button><button type="button">Dans</button><button type="button">Dan’s</button><button type="button">of Dan</button></span></div>
+<div class="ch" data-a="my friend’s"><span class="n">5</span><span class="s">I didn’t see ___ message until the evening.</span><span class="o"><button type="button">the friend of me</button><button type="button">my friend</button><button type="button">my friend’s</button><button type="button">my friends</button></span></div>
+<div class="ch" data-a="Whose"><span class="n">6</span><span class="s">___ dog keeps barking at night?</span><span class="o"><button type="button">Whose</button><button type="button">Who’s</button><button type="button">Who</button><button type="button">Whos</button></span></div>
+<div class="ch" data-a="brother’s"><span class="n">7</span><span class="s">These aren’t my shoes. They’re my ___.</span><span class="o"><button type="button">brother’s</button><button type="button">brothers</button><button type="button">brother</button><button type="button">of brother</button></span></div>
+<div class="ch" data-a="It’s Tom’s."><span class="n">8</span><span class="s">Обери правильну відповідь на «Whose turn is it?»: ___</span><span class="o"><button type="button">It’s Tom’s.</button><button type="button">It’s of Tom.</button><button type="button">It’s Tom turn.</button><button type="button">It’s Toms.</button></span></div>
+<div class="ch" data-a="whose"><span class="n">9</span><span class="s">Do you know ___ car this is?</span><span class="o"><button type="button">whose</button><button type="button">whom</button><button type="button">who</button><button type="button">who’s</button></span></div>
+<div class="ch" data-a="Kate’s"><span class="n">10</span><span class="s">We didn’t go to ___ party because we were ill.</span><span class="o"><button type="button">Kate</button><button type="button">Kate’s</button><button type="button">Kates’</button><button type="button">Kates</button></span></div>
+<div class="ch" data-a="cousin’s"><span class="n">11</span><span class="s">Isn’t that your ___ house over there?</span><span class="o"><button type="button">cousin of</button><button type="button">cousin’s</button><button type="button">cousins’s</button><button type="button">cousin</button></span></div>
+<div class="ch" data-a="Sam’s"><span class="n">12</span><span class="s">“Whose are these trainers?” “They’re ___.”</span><span class="o"><button type="button">Sams</button><button type="button">of Sam</button><button type="button">Sam’s</button><button type="button">Sam</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; Whose · It’s Emma’s. · Whose phone is this? · Dan’s · my friend’s · Whose · brother’s · It’s Tom’s. · whose · Kate’s · cousin’s · Sam’s"><b>Відповіді:</b> Whose · It’s Emma’s. · Whose phone is this? · Dan’s · my friend’s · Whose · brother’s · It’s Tom’s. · whose · Kate’s · cousin’s · Sam’s</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="Whose"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>___ (who) jacket is this?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Max’s"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>“Whose keys are these?” “They’re ___ (Max).”</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="neighbours’|neighbors’"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>“Whose cat is that?” “It’s our ___ (neighbours).”</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Whose"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>___ (who) turn is it to wash the dishes?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Lily’s"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>That isn’t my pen. It’s ___ (Lily).</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="your brother’s"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Is this ___ (your brother) bike?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Mia’s"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>“Whose idea was the picnic?” “It was ___ (Mia).”</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="aunt’s"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>We aren’t staying at a hotel. We’re staying at my ___ (aunt).</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; Whose · Max’s · neighbours’ · Whose · Lily’s · your brother’s · Mia’s · aunt’s"><b>Відповіді:</b> Whose · Max’s · neighbours’ · Whose · Lily’s · your brother’s · Mia’s · aunt’s</p>
+  </section>
+  <section id="s4" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">4</span>Раунд 3. ’s чи of <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="my dad’s new car"><span class="n">1</span><span class="s">Have you seen ___? It’s red.</span><span class="o"><button type="button">the dad’s my new car</button><button type="button">my dad new car</button><button type="button">my dad’s new car</button><button type="button">my dads new car</button></span></div>
+<div class="ch" data-a="the end of the book"><span class="n">2</span><span class="s">I didn’t like ___. It was too sad.</span><span class="o"><button type="button">the end’s book</button><button type="button">the book of the end</button><button type="button">the end book</button><button type="button">the end of the book</button></span></div>
+<div class="ch" data-a="The legs of the table are wobbly."><span class="n">3</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">The legs of the table are wobbly.</button><button type="button">The legs the table are wobbly.</button><button type="button">The legs of the table is wobbly.</button><button type="button">The table’s of legs are wobbly.</button></span></div>
+<div class="ch" data-a="Yesterday’s"><span class="n">4</span><span class="s">___ match was really exciting.</span><span class="o"><button type="button">Of yesterday</button><button type="button">Yesterday</button><button type="button">Yesterdays</button><button type="button">Yesterday’s</button></span></div>
+<div class="ch" data-a="my friend’s cat"><span class="n">5</span><span class="s">This is ___.</span><span class="o"><button type="button">my friend’s cat</button><button type="button">the cat my friend</button><button type="button">my friend cat</button><button type="button">cat’s my friend</button></span></div>
+<div class="ch" data-a="the colour of your hair"><span class="n">6</span><span class="s">I love ___.</span><span class="o"><button type="button">the colour’s your hair</button><button type="button">your hair of colour</button><button type="button">the colour your hair’s</button><button type="button">the colour of your hair</button></span></div>
+<div class="ch" data-a="fox’s"><span class="n">7</span><span class="s">The ___ tail is very fluffy.</span><span class="o"><button type="button">foxs</button><button type="button">fox’s</button><button type="button">of fox</button><button type="button">fox</button></span></div>
+<div class="ch" data-a="The window of the bus is dirty."><span class="n">8</span><span class="s">Яке речення правильне?: ___</span><span class="o"><button type="button">The of bus window is dirty.</button><button type="button">The window of the bus is dirty.</button><button type="button">The bus of the window is dirty.</button><button type="button">The window’s of the bus is dirty.</button></span></div>
+<div class="ch" data-a="of"><span class="n">9</span><span class="s">What’s the title ___ this film?</span><span class="o"><button type="button">’s</button><button type="button">of</button><button type="button">by</button><button type="button">at</button></span></div>
+<div class="ch" data-a="uncle’s"><span class="n">10</span><span class="s">Max is my ___ son, so he’s my cousin.</span><span class="o"><button type="button">uncle</button><button type="button">of uncle</button><button type="button">uncle’s</button><button type="button">uncles</button></span></div>
+<div class="ch" data-a="Lily’s brother’s"><span class="n">11</span><span class="s">This is ___ cat.</span><span class="o"><button type="button">Lily’s brother’s</button><button type="button">Lily brother’s</button><button type="button">Lily’s brother</button><button type="button">brother’s Lily’s</button></span></div>
+<div class="ch" data-a="corner of the street"><span class="n">12</span><span class="s">There’s a coffee shop on the ___.</span><span class="o"><button type="button">corner of the street</button><button type="button">corner the street</button><button type="button">street’s of corner</button><button type="button">corner’s street</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; my dad’s new car · the end of the book · The legs of the table are wobbly. · Yesterday’s · my friend’s cat · the colour of your hair · fox’s · The window of the bus is dirty. · of · uncle’s · Lily’s brother’s · corner of the street"><b>Відповіді:</b> my dad’s new car · the end of the book · The legs of the table are wobbly. · Yesterday’s · my friend’s cat · the colour of your hair · fox’s · The window of the bus is dirty. · of · uncle’s · Lily’s brother’s · corner of the street</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="end of the concert"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>We left before the ___ (end / the concert).</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="top of the page"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Write your name at the ___ (top / the page).</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="name of this song"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>What’s the ___ (name / this song)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="cat’s"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>My ___ (cat) favourite place is the windowsill.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="middle of the night"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>I woke up in the ___ (middle / the night).</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="today’s"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Did you read ___ (today) news?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="colour of the walls|color of the walls"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>The ___ (colour / the walls) is too dark.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Emma’s"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>We met at ___ (Emma) birthday party.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; end of the concert · top of the page · name of this song · cat’s · middle of the night · today’s · colour of the walls · Emma’s"><b>Відповіді:</b> end of the concert · top of the page · name of this song · cat’s · middle of the night · today’s · colour of the walls · Emma’s</p>
+  </section>
+  <section id="s5" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">5</span>Раунд 4. Пастки: its, who’s, s’ <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="This is Tom’s bike."><span class="n">1</span><span class="s">Знайди речення без помилки: ___</span><span class="o"><button type="button">This is the bike of Tom.</button><button type="button">This is Tom’s bike.</button><button type="button">This is Toms bike.</button><button type="button">This is bike Tom’s.</button></span></div>
+<div class="ch" data-a="its"><span class="n">2</span><span class="s">The dog wagged ___ tail.</span><span class="o"><button type="button">its’</button><button type="button">its</button><button type="button">it</button><button type="button">it’s</button></span></div>
+<div class="ch" data-a="Who’s"><span class="n">3</span><span class="s">___ coming to the cinema tonight?</span><span class="o"><button type="button">Who’s</button><button type="button">Whos</button><button type="button">Whose</button><button type="button">Who</button></span></div>
+<div class="ch" data-a="My sisters’"><span class="n">4</span><span class="s">My two sisters share a room. ___ room is always messy.</span><span class="o"><button type="button">My sister’s</button><button type="button">My sisters’s</button><button type="button">My sisters’</button><button type="button">My sisters</button></span></div>
+<div class="ch" data-a="men’s"><span class="n">5</span><span class="s">All the ___ coats are in the hall.</span><span class="o"><button type="button">men’s</button><button type="button">mens</button><button type="button">mens’</button><button type="button">mans</button></span></div>
+<div class="ch" data-a="It’s my mum and dad’s car."><span class="n">6</span><span class="s">Де немає помилки?: ___</span><span class="o"><button type="button">It’s my mum and dads car.</button><button type="button">It’s the car of my mum and dad’s.</button><button type="button">It’s my mum and dad’s car.</button><button type="button">It’s my mum’s and dad car.</button></span></div>
+<div class="ch" data-a="Granny’s"><span class="n">7</span><span class="s">We spent the weekend at ___.</span><span class="o"><button type="button">Granny’s</button><button type="button">Granny</button><button type="button">Grannys’</button><button type="button">the Granny’s</button></span></div>
+<div class="ch" data-a="Whose dog is that?"><span class="n">8</span><span class="s">Яке речення звучить правильно?: ___</span><span class="o"><button type="button">Whose is dog that?</button><button type="button">Whose dog is that?</button><button type="button">Who dog is that?</button><button type="button">Who’s dog is that?</button></span></div>
+<div class="ch" data-a="kids’"><span class="n">9</span><span class="s">All three kids are home. The ___ shoes are everywhere.</span><span class="o"><button type="button">kids’</button><button type="button">kid’s</button><button type="button">kids</button><button type="button">kids’s</button></span></div>
+<div class="ch" data-a="The café changed its logo."><span class="n">10</span><span class="s">Де все правильно?: ___</span><span class="o"><button type="button">The café changed it’s logo.</button><button type="button">The café changed it logo.</button><button type="button">The café changed its’ logo.</button><button type="button">The café changed its logo.</button></span></div>
+<div class="ch" data-a="boss’s"><span class="n">11</span><span class="s">My ___ office is on the tenth floor.</span><span class="o"><button type="button">bosses</button><button type="button">boss</button><button type="button">bosse’s</button><button type="button">boss’s</button></span></div>
+<div class="ch" data-a="My best friend’s name is Lev."><span class="n">12</span><span class="s">Обери речення без помилки: ___</span><span class="o"><button type="button">My best friend’s name is Lev.</button><button type="button">My best’s friend name is Lev.</button><button type="button">The name of my best friend’s is Lev.</button><button type="button">My best friends name is Lev.</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; This is Tom’s bike. · its · Who’s · My sisters’ · men’s · It’s my mum and dad’s car. · Granny’s · Whose dog is that? · kids’ · The café changed its logo. · boss’s · My best friend’s name is Lev."><b>Відповіді:</b> This is Tom’s bike. · its · Who’s · My sisters’ · men’s · It’s my mum and dad’s car. · Granny’s · Whose dog is that? · kids’ · The café changed its logo. · boss’s · My best friend’s name is Lev.</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="its"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>The cat is washing ___ (it) face.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Who’s|Who is"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>___ (who + is) at the door?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Whose"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>___ (who) socks are on the sofa?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="actors’"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>The ___ (actors) dressing room is behind the stage.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="its"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>My phone fell, and ___ (it) screen cracked.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="people’s"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>The band won the ___ (people) choice award.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="somebody’s"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>I found ___ (somebody) wallet in the park.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="mice’s"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>The ___ (mice) nest was behind the fridge.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; its · Who’s · Whose · actors’ · its · people’s · somebody’s · mice’s"><b>Відповіді:</b> its · Who’s · Whose · actors’ · its · people’s · somebody’s · mice’s</p>
+  </section>
+  <section id="s6" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">6</span>Раунд 5. Фінальний бос <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="dogs’"><span class="n">1</span><span class="s">Mia has two dogs. The ___ beds are in the kitchen.</span><span class="o"><button type="button">dogs’s</button><button type="button">dogs</button><button type="button">dog’s</button><button type="button">dogs’</button></span></div>
+<div class="ch" data-a="her mum’s"><span class="n">2</span><span class="s">Emma’s phone was dead, so she used ___.</span><span class="o"><button type="button">her mum’s</button><button type="button">her mums</button><button type="button">of her mum</button><button type="button">her mum</button></span></div>
+<div class="ch" data-a="beginning of the video"><span class="n">3</span><span class="s">I can’t find the ___. Can you help me?</span><span class="o"><button type="button">beginning the video</button><button type="button">beginning’s video</button><button type="button">video’s of beginning</button><button type="button">beginning of the video</button></span></div>
+<div class="ch" data-a="Whose is the red scooter?"><span class="n">4</span><span class="s">Знайди правильний варіант: ___</span><span class="o"><button type="button">Whose the red scooter is?</button><button type="button">Who is the red scooter’s?</button><button type="button">Who’s is the red scooter?</button><button type="button">Whose is the red scooter?</button></span></div>
+<div class="ch" data-a="Max’s"><span class="n">5</span><span class="s">“Who’s that girl?” “She’s ___ new classmate.”</span><span class="o"><button type="button">Maxs</button><button type="button">Max</button><button type="button">of Max</button><button type="button">Max’s</button></span></div>
+<div class="ch" data-a="women’s"><span class="n">6</span><span class="s">The ___ changing room is closed today.</span><span class="o"><button type="button">womens’</button><button type="button">woman’s</button><button type="button">women’s</button><button type="button">womens</button></span></div>
+<div class="ch" data-a="my cousin’s"><span class="n">7</span><span class="s">It’s ___ birthday on Sunday. She’s turning 15.</span><span class="o"><button type="button">my cousin’s</button><button type="button">my cousins</button><button type="button">my cousin</button><button type="button">the cousin of me</button></span></div>
+<div class="ch" data-a="its"><span class="n">8</span><span class="s">The kitten is playing with ___ toy mouse.</span><span class="o"><button type="button">its’</button><button type="button">it is</button><button type="button">its</button><button type="button">it’s</button></span></div>
+<div class="ch" data-a="last night’s"><span class="n">9</span><span class="s">I watched ___ match online.</span><span class="o"><button type="button">last night’s</button><button type="button">last nights</button><button type="button">last night</button><button type="button">of last night</button></span></div>
+<div class="ch" data-a="Sophie and Mark’s"><span class="n">10</span><span class="s">Sophie and Mark are married. ___ new flat is lovely.</span><span class="o"><button type="button">Sophie and Marks</button><button type="button">Sophie’s and Mark</button><button type="button">Sophie and Mark’s</button><button type="button">Of Sophie and Mark</button></span></div>
+<div class="ch" data-a="door of the shed"><span class="n">11</span><span class="s">Who’s got the key to the ___?</span><span class="o"><button type="button">door of the shed</button><button type="button">door the shed</button><button type="button">door’s shed</button><button type="button">shed’s of door</button></span></div>
+<div class="ch" data-a="hamsters’"><span class="n">12</span><span class="s">My ___ names are Bim and Bom.</span><span class="o"><button type="button">hamster’s</button><button type="button">hamsters’</button><button type="button">hamsters</button><button type="button">hamsters’s</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; dogs’ · her mum’s · beginning of the video · Whose is the red scooter? · Max’s · women’s · my cousin’s · its · last night’s · Sophie and Mark’s · door of the shed · hamsters’"><b>Відповіді:</b> dogs’ · her mum’s · beginning of the video · Whose is the red scooter? · Max’s · women’s · my cousin’s · its · last night’s · Sophie and Mark’s · door of the shed · hamsters’</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="Ann and Kate’s"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Ann and Kate are sisters. ___ (Ann and Kate) mum is a vet.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="cousins’"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Both my cousins live in London. My ___ (cousins) flat is near the river.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Its"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Look at that bird. ___ (it) feathers are bright blue.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Lev’s"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Can I stay at ___ (Lev) tonight?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="middle of the lesson"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>We arrived in the ___ (middle / the lesson).</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Whose"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>“___ (who) song is this?” “It’s by Adele.”</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="students’"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>The ___ (students) projects were on the wall.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Dan’s"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>Tom left his bag at ___ (Dan) house after the party.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; Ann and Kate’s · cousins’ · Its · Lev’s · middle of the lesson · Whose · students’ · Dan’s"><b>Відповіді:</b> Ann and Kate’s · cousins’ · Its · Lev’s · middle of the lesson · Whose · students’ · Dan’s</p>
+  </section>
+  <section class="end"><h2>Great job!</h2><p>See you next lesson.</p></section>
+</div>
+<div class="toast" id="toast"></div>
+<script>window.MURLY_LESSON={"id": "lib-drill-possessive-s", "title": "Possessive ’s and of: 100 tasks", "homework": ["s2", "s3", "s4", "s5", "s6"], "hw": {"s2": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "That’s {Dan’s|Dans|Dan|Dans’} guitar.\nThe twins are here. The {twins’|twins|twins’s|twin’s} bedroom is upstairs.\nMy {sisters’|sisters’s|sister’s|sisters} names are Lily and Emma.\nThe {children’s|childs’|childrens’|childrens} toys are all over the floor.\nThis is the {men’s|mans’|mens’|mens} shoes section.\nMy cat likes the {dog’s|dogs’s|dogs|dog} blanket more than its own.\nSocial media changes {people’s|peoples’|peoples|people} habits.\nHave you met {Tom’s|Toms|Tom|Toms’} girlfriend?\nIt was my {brother’s|brothers’s|brothers|brother} idea to get a kitten.\nThe {teachers’|teacher’s|teacher|teachers} room is where our teachers have lunch.\nOur football {team’s|teams|team|teams’s} new kit is blue and yellow.\nThis is my {grandma’s|grandmas|grandma|grandmas’} house. She lives in a village."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "This is [Max’s] (Max) skateboard.\nMy [sister’s] (sister) room is bigger than mine.\nThe [children’s] (children) playground is next to the school.\nWe had dinner at my [parents’] (parents) flat.\nI borrowed [Sophie’s] (Sophie) charger.\nThe [dog’s] (dog) bowl is empty again.\nThis shop sells [women’s] (women) shoes.\nHave you seen [James’s/James’] (James) new haircut?"}], "s3": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "{Whose|Whom|Who|Who’s} headphones are these?\n“Whose bag is this?” “{It’s Emma’s.|It’s Emma.|It’s Emmas.|It’s of Emma.}”\nОбери правильне питання: {Whose phone is this?|Who phone is this?|Who’s phone is this?|Whose is phone this?}\nIs this {Dan’s|Dan|of Dan|Dans} laptop or yours?\nI didn’t see {my friend’s|my friends|the friend of me|my friend} message until the evening.\n{Whose|Who|Whos|Who’s} dog keeps barking at night?\nThese aren’t my shoes. They’re my {brother’s|brothers|brother|of brother}.\nОбери правильну відповідь на «Whose turn is it?»: {It’s Tom’s.|It’s Toms.|It’s of Tom.|It’s Tom turn.}\nDo you know {whose|who’s|who|whom} car this is?\nWe didn’t go to {Kate’s|Kates’|Kate|Kates} party because we were ill.\nIsn’t that your {cousin’s|cousin|cousin of|cousins’s} house over there?\n“Whose are these trainers?” “They’re {Sam’s|of Sam|Sam|Sams}.”"}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "[Whose] (who) jacket is this?\n“Whose keys are these?” “They’re [Max’s] (Max).”\n“Whose cat is that?” “It’s our [neighbours’/neighbors’] (neighbours).”\n[Whose] (who) turn is it to wash the dishes?\nThat isn’t my pen. It’s [Lily’s] (Lily).\nIs this [your brother’s] (your brother) bike?\n“Whose idea was the picnic?” “It was [Mia’s] (Mia).”\nWe aren’t staying at a hotel. We’re staying at my [aunt’s] (aunt)."}], "s4": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Have you seen {my dad’s new car|the dad’s my new car|my dad new car|my dads new car}? It’s red.\nI didn’t like {the end of the book|the end’s book|the book of the end|the end book}. It was too sad.\nОбери правильне речення: {The legs of the table are wobbly.|The legs the table are wobbly.|The legs of the table is wobbly.|The table’s of legs are wobbly.}\n{Yesterday’s|Of yesterday|Yesterdays|Yesterday} match was really exciting.\nThis is {my friend’s cat|my friend cat|cat’s my friend|the cat my friend}.\nI love {the colour of your hair|the colour’s your hair|the colour your hair’s|your hair of colour}.\nThe {fox’s|fox|of fox|foxs} tail is very fluffy.\nЯке речення правильне?: {The window of the bus is dirty.|The of bus window is dirty.|The bus of the window is dirty.|The window’s of the bus is dirty.}\nWhat’s the title {of|at|’s|by} this film?\nMax is my {uncle’s|uncle|uncles|of uncle} son, so he’s my cousin.\nThis is {Lily’s brother’s|Lily brother’s|brother’s Lily’s|Lily’s brother} cat.\nThere’s a coffee shop on the {corner of the street|corner’s street|street’s of corner|corner the street}."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "We left before the [end of the concert] (end / the concert).\nWrite your name at the [top of the page] (top / the page).\nWhat’s the [name of this song] (name / this song)?\nMy [cat’s] (cat) favourite place is the windowsill.\nI woke up in the [middle of the night] (middle / the night).\nDid you read [today’s] (today) news?\nThe [colour of the walls/color of the walls] (colour / the walls) is too dark.\nWe met at [Emma’s] (Emma) birthday party."}], "s5": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Знайди речення без помилки: {This is Tom’s bike.|This is Toms bike.|This is bike Tom’s.|This is the bike of Tom.}\nThe dog wagged {its|it’s|it|its’} tail.\n{Who’s|Who|Whos|Whose} coming to the cinema tonight?\nMy two sisters share a room. {My sisters’|My sister’s|My sisters|My sisters’s} room is always messy.\nAll the {men’s|mens|mens’|mans} coats are in the hall.\nДе немає помилки?: {It’s my mum and dad’s car.|It’s the car of my mum and dad’s.|It’s my mum’s and dad car.|It’s my mum and dads car.}\nWe spent the weekend at {Granny’s|Granny|Grannys’|the Granny’s}.\nЯке речення звучить правильно?: {Whose dog is that?|Who dog is that?|Who’s dog is that?|Whose is dog that?}\nAll three kids are home. The {kids’|kids|kid’s|kids’s} shoes are everywhere.\nДе все правильно?: {The café changed its logo.|The café changed its’ logo.|The café changed it’s logo.|The café changed it logo.}\nMy {boss’s|bosse’s|bosses|boss} office is on the tenth floor.\nОбери речення без помилки: {My best friend’s name is Lev.|My best’s friend name is Lev.|The name of my best friend’s is Lev.|My best friends name is Lev.}"}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "The cat is washing [its] (it) face.\n[Who’s/Who is] (who + is) at the door?\n[Whose] (who) socks are on the sofa?\nThe [actors’] (actors) dressing room is behind the stage.\nMy phone fell, and [its] (it) screen cracked.\nThe band won the [people’s] (people) choice award.\nI found [somebody’s] (somebody) wallet in the park.\nThe [mice’s] (mice) nest was behind the fridge."}], "s6": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Mia has two dogs. The {dogs’|dog’s|dogs|dogs’s} beds are in the kitchen.\nEmma’s phone was dead, so she used {her mum’s|of her mum|her mums|her mum}.\nI can’t find the {beginning of the video|beginning’s video|video’s of beginning|beginning the video}. Can you help me?\nЗнайди правильний варіант: {Whose is the red scooter?|Who is the red scooter’s?|Who’s is the red scooter?|Whose the red scooter is?}\n“Who’s that girl?” “She’s {Max’s|of Max|Maxs|Max} new classmate.”\nThe {women’s|womens|woman’s|womens’} changing room is closed today.\nIt’s {my cousin’s|my cousin|my cousins|the cousin of me} birthday on Sunday. She’s turning 15.\nThe kitten is playing with {its|it is|it’s|its’} toy mouse.\nI watched {last night’s|of last night|last nights|last night} match online.\nSophie and Mark are married. {Sophie and Mark’s|Sophie and Marks|Sophie’s and Mark|Of Sophie and Mark} new flat is lovely.\nWho’s got the key to the {door of the shed|door the shed|door’s shed|shed’s of door}?\nMy {hamsters’|hamster’s|hamsters’s|hamsters} names are Bim and Bom."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "Ann and Kate are sisters. [Ann and Kate’s] (Ann and Kate) mum is a vet.\nBoth my cousins live in London. My [cousins’] (cousins) flat is near the river.\nLook at that bird. [Its] (it) feathers are bright blue.\nCan I stay at [Lev’s] (Lev) tonight?\nWe arrived in the [middle of the lesson] (middle / the lesson).\n“[Whose] (who) song is this?” “It’s by Adele.”\nThe [students’] (students) projects were on the wall.\nTom left his bag at [Dan’s] (Dan) house after the party."}]}};</script>
+<script>
+(function(){var l=(document.cookie.match(/(?:^|; )murly_lang=(\w+)/)||[])[1];try{l=l||localStorage.getItem('murly:tlang')}catch(e){}l=l==='ru'?'ru':'uk';document.querySelectorAll('[data-pairs-'+l+']').forEach(function(b){b.dataset.pairs=b.getAttribute('data-pairs-'+l)});})();
+</script>
+<script>
+const $ = (id) => document.getElementById(id);
+const LIS = {};
+function say(w, rate) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; const v = speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang) && /Google|Natural|Libby|Sonia|Daniel/.test(x.name)) || speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang)); if (v) u.voice = v; u.rate = rate || .95; speechSynthesis.speak(u); } catch (e) { } }
+const sh = (a) => a.map((x) => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map((x) => x[1]);
+document.querySelectorAll('.voc div').forEach((d) => d.onclick = () => say(d.dataset.say));
+document.querySelectorAll('[data-play]').forEach((b) => b.onclick = () => say(LIS[b.dataset.play], b.dataset.slow ? .75 : .95));
+document.querySelectorAll('[data-stop]').forEach((b) => b.onclick = () => { try { speechSynthesis.cancel(); } catch (e) { } });
+document.querySelectorAll('.ch').forEach((q) => q.querySelectorAll('button').forEach((b) => b.onclick = () => { if (q.classList.contains('ok')) return; const ok = b.textContent === q.dataset.a; q.classList.toggle('ok', ok); q.classList.toggle('bad', !ok); if (ok) { const s = q.querySelector('.s'); if (s && s.textContent.includes('___')) { s.textContent = s.textContent.replace('___', q.dataset.a); } } }));
+const norm = (x) => x.toLowerCase().replace(/[’']/g, "'").replace(/[,;:"“”«»]/g, ' ').replace(/\s+/g, ' ').replace(/[.!?]$/, '').trim();
+document.querySelectorAll('.ty').forEach((r) => { const inp = r.querySelector('input'); const chk = () => { const ok = r.dataset.a.split('|').some((a) => norm(a) === norm(inp.value)); r.classList.toggle('ok', ok); r.classList.toggle('bad', !ok && inp.value.trim() !== ''); }; r.querySelector('button').onclick = chk; inp.onkeydown = (e) => { if (e.key === 'Enter') chk(); }; });
+document.querySelectorAll('[data-mt]').forEach((box) => { const pairs = JSON.parse(box.dataset.pairs); const L = sh(pairs.map((p) => p[0])), R = sh(pairs.map((p) => p[1])); let sel = null, done = 0, err = 0; box.innerHTML = L.map((w, i) => `<button type="button" data-w="${w}">${w}</button><button type="button" data-d="${R[i]}">${R[i]}</button>`).join('');
+  box.querySelectorAll('button').forEach((b) => b.onclick = () => { if (b.classList.contains('done')) return; if (!sel || (sel.dataset.w && b.dataset.w) || (sel.dataset.d && b.dataset.d)) { if (sel) sel.classList.remove('sel'); sel = b; b.classList.add('sel'); return; } const w = sel.dataset.w || b.dataset.w, d = sel.dataset.d || b.dataset.d; if (pairs.some((p) => p[0] === w && p[1] === d)) { sel.classList.add('done'); b.classList.add('done'); done++; say(w); if (done === pairs.length) document.querySelector(`[data-mtres="${box.dataset.mt}"]`).textContent = err ? `Done! Mistakes: ${err}` : 'Perfect!'; } else err++; sel.classList.remove('sel'); sel = null; }); });
+document.querySelectorAll('[data-vids]').forEach((box) => JSON.parse(box.dataset.vids).forEach(([id, title, ch, qs]) => { const d = document.createElement('div'); d.className = 'vid'; d.innerHTML = `<div class="frame"><button class="play" type="button" style="background-image:url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)"><span>PLAY</span></button></div><div class="info"><h3>${title}</h3><small>YouTube · ${ch}</small><ol>${qs.map((q) => `<li>${q}</li>`).join('')}</ol></div>`; d.querySelector('.play').onclick = (e) => { e.currentTarget.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&cc_load_policy=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${title}"></iframe>`; }; box.appendChild(d); }));
+document.querySelectorAll('[data-spin]').forEach((b) => { const list = JSON.parse(b.dataset.spin); let last = -1; b.onclick = () => { let i; do { i = Math.floor(Math.random() * list.length); } while (i === last && list.length > 1); last = i; document.getElementById(b.dataset.target).textContent = list[i]; }; });
+try { const k = 'murly:' + (window.MURLY_LESSON ? MURLY_LESSON.id : 'x') + ':hw'; const t = $('hwText'); if (t) { t.value = localStorage.getItem(k) || ''; t.oninput = () => localStorage.setItem(k, t.value); } } catch (e) { }
+const STAGES = [...document.querySelectorAll('.wrap > section[id]')];
+$('stages').innerHTML = STAGES.map((s) => `<a href="#${s.id}"><b>${s.querySelector('.lk-n').textContent}</b><span>${s.dataset.stage}</span><small>${s.dataset.min !== '0' ? s.dataset.min + ' min' : 'at home'}</small></a>`).join('');
+$('teacherBtn').onclick = (e) => { const on = document.body.classList.toggle('teacher'); e.currentTarget.textContent = on ? 'Student version' : 'Teacher version'; };
+</script>
+<script src="/game-lessons/kit.js" defer></script>
+</body>
+</html>

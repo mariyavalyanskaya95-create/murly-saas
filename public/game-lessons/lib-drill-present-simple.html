@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Present Simple: 100 tasks (A1) | Murly</title>
+<link rel="icon" href="/favicon.svg">
+<meta name="description" content="Повторимо правило: Теперішній простий час
+100 завдань від простого до складного
+Розберемо головні пастки">
+<link rel="canonical" href="https://murly.com.ua/game-lessons/lib-drill-present-simple.html">
+<style>
+:root{--paper:#F3F0EA;--ink:#17181C;--violet:#3D4A7A;--lav:#D9D3C7;--pink:#E9C9BC;--green:#D4E2CF;--white:#fff;--muted:#62646B;--accent:#B5482F}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+/* hero */
+.hero{background:linear-gradient(rgba(16,17,22,.5),rgba(16,17,22,.72)),url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1400&q=70&auto=format&fit=crop");color:#fff;padding:70px 18px 56px;text-align:center;position:relative;overflow:hidden}
+.hero .kicker{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#E9C9BC;font-weight:700}
+.hero .cr{position:absolute;right:12px;bottom:8px;font-size:11px;color:rgba(255,255,255,.6)}
+.hero h1{margin:8px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(36px,6vw,64px);letter-spacing:-.5px;font-weight:700}
+.hero h1 span{color:var(--pink);font-style:italic}
+.hero p{margin:12px 0 0;font-size:17px;color:#e6e2da}
+.hero .flags{display:flex;justify-content:center;gap:12px;margin-top:22px;flex-wrap:wrap}
+.hero .flags svg{width:40px;height:26px;border-radius:3px;opacity:.9}
+/* sections */
+section{margin-top:30px;background:var(--white);border-radius:18px;padding:28px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.05)}
+section h2{margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tag{font-family:"Segoe UI",system-ui,sans-serif;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--paper);color:var(--accent);text-transform:uppercase;letter-spacing:1px}
+.lk-n{display:inline-grid;place-items:center;width:42px;height:42px;background:var(--violet);color:#fff;border-radius:50%;font-size:21px;flex:none}
+.lk-mode{font-size:13px;font-weight:700;border:2px dashed var(--lav);color:var(--muted);padding:2px 10px;border-radius:999px}
+.lk-ins{font-size:17px;background:var(--paper);border-radius:12px;padding:10px 14px;margin:6px 0 18px}
+.lk-sub{margin:24px 0 10px;font-size:19px}
+.btn{font:inherit;font-weight:700;border:0;border-radius:999px;background:var(--ink);color:#fff;padding:10px 20px;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+.btn.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+/* teacher */
+.lk-tbtn{position:fixed;right:16px;top:70px;z-index:45;font:inherit;font-weight:800;border:2px solid var(--ink);background:var(--pink);padding:8px 14px;border-radius:12px;cursor:pointer}
+body.teacher .lk-tbtn{background:var(--green)}
+.lk-ans,.lk-tnote{display:none}
+body.teacher .lk-ans{display:block;margin-top:8px;font-weight:700;color:#1d5a12;background:var(--green);border-left:5px solid #5aa845;padding:6px 10px;font-size:15px;border-radius:6px}
+body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff3f7;border-left:5px solid #d9789a;padding:8px 12px;font-size:15px;border-radius:6px}
+/* overview */
+.lk-overview ul{font-size:17px;line-height:1.7;margin:6px 0 16px}
+.lk-stages{display:flex;flex-wrap:wrap;gap:8px}
+.lk-stages a{display:grid;border-radius:14px;padding:8px 12px;text-decoration:none;color:var(--ink);background:var(--paper);font-weight:700;min-width:100px}
+.lk-stages a span{text-transform:capitalize}
+.lk-stages a b{font-size:20px;color:var(--violet)}
+.lk-stages a small{font-weight:600;color:var(--muted)}
+/* warm-up */
+.taxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tax{background:var(--paper);border-radius:18px;padding:16px;display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center}
+.tax svg{width:56px;height:56px}
+.tax b{display:block;font-size:17px}
+.tax small{color:var(--muted);font-size:14px}
+.qs{display:grid;gap:10px;margin-top:18px}
+.qs div{background:var(--green);border-radius:14px;padding:10px 16px;font-size:18px;font-weight:600}
+.phr{background:#fff7e8;border-radius:14px;padding:12px 16px;margin-top:16px;font-size:15px}
+.phr ul{margin:6px 0 0;padding-left:18px}
+.fic{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:16px}
+.fic .c{background:#fff;border:2px solid #1B2140;border-radius:16px;padding:14px 16px;box-shadow:3px 3px 0 #1B2140}
+.fic .c b{display:block;font-size:18px;line-height:1.35;margin-bottom:8px}
+.fic .c .k{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.fic .c .k span{font-size:13px;background:#eef1fb;border-radius:999px;padding:3px 10px}
+.fic .c details{margin-top:8px;font-size:15px;color:#3b4160}
+.fic .c summary{cursor:pointer;font-weight:700;color:#534AB7}
+.fi-n{display:inline-flex;width:28px;height:28px;border-radius:50%;background:#2F4BA0;color:#fff;align-items:center;justify-content:center;font-size:14px;margin-right:6px}
+/* vocab */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:12px}
+.vc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:2px solid transparent;transition:border-color .2s,transform .2s}
+.vc:hover{border-color:var(--violet);transform:translateY(-2px)}
+.vc b{font-size:18px;display:flex;align-items:center;gap:8px}
+.vc b svg{width:20px;height:20px;flex:none;color:var(--violet)}
+.vc p{margin:6px 0 0;font-size:14px;color:var(--muted)}
+.vc em{display:block;margin-top:6px;font-size:14px;color:var(--violet);font-style:normal;font-weight:600}
+.vc.played{background:#e6ecfb}
+/* grammar */
+.gram{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.gb{border-radius:18px;padding:16px}
+.gb h3{margin:0 0 6px;font-size:19px}
+.gb .f{display:inline-block;background:#fff;border-radius:8px;padding:3px 10px;font-weight:800;margin:4px 0;font-family:Consolas,monospace;font-size:15px}
+.gb p{margin:6px 0 0;font-size:15px}
+.g1{background:var(--pink)}.g2{background:var(--lav)}.g3{background:var(--green)}.g4{background:#fbe7c6}
+.warn{margin-top:14px;background:var(--ink);color:#fff;border-radius:14px;padding:12px 16px;font-size:16px}
+.warn b{color:var(--pink)}
+.q{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:2px dashed var(--paper);font-size:18px}
+.q:last-child{border-bottom:0}
+.q .n{width:32px;height:32px;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;border-radius:50%;font-weight:800;font-size:15px}
+.opt{font:inherit;font-size:16px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:10px;padding:4px 12px;cursor:pointer;margin:0 2px}
+.opt.ok{background:var(--green);border-color:#5aa845}
+.opt.bad{background:var(--pink);animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+/* tour */
+.tour{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.law{border-radius:22px;overflow:hidden;background:var(--paper);display:flex;flex-direction:column}
+.law .pic{height:150px;display:grid;place-items:center;position:relative}
+.law .pic svg.ill{width:130px;height:130px}
+.law .pic svg.fl{position:absolute;left:14px;top:14px;width:46px;height:30px;border-radius:5px;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.law .pic .no{position:absolute;right:14px;top:14px;background:var(--ink);color:#fff;font-weight:800;border-radius:999px;padding:2px 10px;font-size:13px}
+.law .body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.law h3{margin:0;font-size:20px}
+.law .where{font-size:13px;font-weight:800;color:var(--violet);text-transform:uppercase;letter-spacing:1px}
+.law p{margin:0;font-size:16px}
+.law .why{font-size:14px;color:var(--muted)}
+.law .dq{margin-top:auto;background:#fff;border-radius:12px;padding:8px 12px;font-weight:700;font-size:15px}
+.law .lsn{font:inherit;font-size:13px;font-weight:700;background:none;border:0;color:var(--violet);cursor:pointer;padding:0;text-align:left}
+/* game */
+.game{max-width:720px;margin:0 auto;text-align:center}
+.score{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.score span{background:var(--paper);border-radius:999px;padding:6px 16px;font-weight:800}
+.stmt{background:var(--ink);color:#fff;border-radius:22px;padding:28px 24px;min-height:150px;display:grid;place-items:center;font-size:23px;font-weight:700;position:relative}
+.stmt small{position:absolute;top:12px;left:18px;font-size:13px;color:var(--lav);font-weight:700}
+.choose{display:flex;justify-content:center;gap:14px;margin:18px 0}
+.choose button{font:inherit;font-size:18px;font-weight:700;border:2px solid var(--ink);border-radius:999px;padding:12px 28px;cursor:pointer}
+.choose .bl{background:var(--green)}.choose .bm{background:var(--pink)}
+.choose button:disabled{opacity:.5;cursor:default}
+.verdict{min-height:70px;font-size:17px;background:var(--paper);border-radius:16px;padding:12px 16px;text-align:left}
+.verdict b.r{color:#2d7a1d}.verdict b.w{color:#b23a62}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.dots i{width:14px;height:14px;border-radius:50%;background:var(--paper)}
+.dots i.r{background:#7cc663}.dots i.w{background:#e47b9f}.dots i.c{outline:3px solid var(--violet)}
+.final{font-size:22px;font-weight:800;color:var(--violet)}
+/* invent */
+.inv{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.frames{display:grid;gap:10px}
+.frames label{font-size:14px;font-weight:700;color:var(--muted)}
+.frames select,.frames input{font:inherit;width:100%;padding:8px 10px;border:2px solid var(--lav);border-radius:10px;background:#fff}
+.poster{background:var(--paper);border:3px solid var(--ink);border-radius:20px;padding:22px;text-align:center;min-height:260px;display:flex;flex-direction:column;gap:10px;justify-content:center}
+.poster .seal{width:70px;height:70px;margin:0 auto}
+.poster h3{margin:0;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--violet)}
+.poster .rule{font-size:22px;font-weight:800}
+.poster .pen{font-size:16px;color:var(--muted)}
+.ideas{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ideas span{background:var(--pink);border-radius:999px;padding:5px 12px;font-size:14px;font-weight:600}
+/* roleplay */
+.rp{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.role{border-radius:20px;padding:18px}
+.role h3{margin:0 0 6px;display:flex;align-items:center;gap:10px}
+.role h3 svg{width:42px;height:42px}
+.role ul{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.r1{background:var(--lav)}.r2{background:var(--green)}
+.scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:16px}
+.sc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:3px solid transparent}
+.sc.on{border-color:var(--violet);background:#fff}
+.sc b{display:block;font-size:17px;margin-bottom:4px}
+.sc p{margin:0;font-size:15px}
+.timer{font-size:40px;font-weight:800;text-align:center;margin:14px 0 6px;color:var(--violet)}
+.ctr{text-align:center}
+/* homework */
+.hwb{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hwc{background:var(--paper);border-radius:18px;padding:18px}
+.hwc h3{margin:0 0 8px}
+.hwc ol,.hwc ul{margin:6px 0 0;padding-left:20px;line-height:1.7}
+.hwc textarea{width:100%;min-height:150px;font:inherit;border:2px solid var(--lav);border-radius:12px;padding:10px;margin-top:10px}
+.end{text-align:center;background:var(--ink);color:#fff;box-shadow:none}
+.end h2{justify-content:center}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(140px);background:var(--ink);color:#fff;font-weight:800;padding:12px 22px;border-radius:14px;transition:transform .3s;z-index:50}
+.toast.show{transform:translateX(-50%) translateY(0)}
+/* photos */
+.ph{margin:0}
+.ph img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;background:var(--paper)}
+.ph figcaption{font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.2px}
+.tax{grid-template-columns:1fr !important;padding:12px !important}
+.law .pic{height:auto !important;display:block !important;padding:0;position:relative}
+.law .pic .ph img{border-radius:0;aspect-ratio:16/10;transition:filter .5s}
+.law .pic .ph figcaption{padding:4px 12px 0}
+.law.hide .pic .ph img{filter:blur(10px) grayscale(.6)}
+.law.hide .reveal-body,.law.hide .fl,.law.hide .where{visibility:hidden}
+.law .clue{font-size:15px;font-style:italic;color:var(--ink)}
+.law .gc{display:flex;flex-wrap:wrap;gap:6px}
+.law .gc button{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:4px 12px;cursor:pointer}
+.law .gc button.ok{background:var(--green)}.law .gc button.bad{background:var(--pink)}
+.law:not(.hide) .guess{display:none}
+.fair{display:grid;gap:4px;background:#fff;border-radius:12px;padding:8px 12px}
+.fair .ends{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.fair input{width:100%;accent-color:var(--accent)}
+.fair output{font-size:14px;font-weight:700;color:var(--accent)}
+.gph{max-width:720px;margin:0 auto 12px}
+.gph img{aspect-ratio:21/9}
+.fine{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.fq{background:var(--paper);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.fq h3{margin:0;font-size:18px}
+.fq .opts{display:flex;flex-wrap:wrap;gap:6px}
+.fq .opts button{font:inherit;font-size:14px;font-weight:700;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 12px;cursor:pointer}
+.fq .opts button.ok{background:var(--green)}.fq .opts button.bad{background:var(--pink)}
+.fq .res{font-size:15px;min-height:22px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{position:relative;aspect-ratio:16/9;background:#111}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;cursor:pointer;background:#111 center/cover;display:grid;place-items:center}
+.vid .play span{background:rgba(0,0,0,.7);color:#fff;font-weight:700;border-radius:999px;padding:10px 20px;font-size:15px;letter-spacing:1px}
+.vid .info{padding:14px 16px}
+.vid .info h3{margin:0 0 2px;font-size:18px}
+.vid .info small{color:var(--muted)}
+.vid .info ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+@media(max-width:760px){.inv,.rp,.hwb{grid-template-columns:1fr}.lk-tbtn{top:auto;bottom:70px}}
+
+.pr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.pb{border-radius:18px;padding:16px 18px}
+.pb h3{margin:0;font-family:Georgia,serif;font-size:30px}
+.pb .m{font-size:15px;color:var(--muted);margin:2px 0 8px}
+.pb .chips{display:flex;flex-wrap:wrap;gap:6px}
+.pb .chips span{background:#fff;border-radius:999px;padding:4px 11px;font-size:14px;font-weight:600}
+.pb ul{margin:10px 0 0;padding-left:18px;font-size:15px}
+.p-in{background:#DCE6F5}.p-at{background:#F3D9CF}.p-on{background:#D4E2CF}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-size:15px;margin-top:10px}
+.ex div{background:var(--paper);border-radius:10px;padding:8px 12px}
+.ex b{color:var(--accent)}
+.q{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.q .n{font-weight:800;color:var(--violet);min-width:24px}
+.q .gap{display:inline-block;min-width:44px;border-bottom:2px solid var(--ink);text-align:center;font-weight:800}
+.q .opts{margin-left:auto;display:flex;gap:6px}
+.q .opts button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 14px;cursor:pointer}
+.q.ok{background:#DDEED7}.q.ok .gap{color:#2F7A3B}
+.q.bad{background:#F6DAD3}
+.score{font-weight:800;margin-top:12px}
+.text{font-size:18px;line-height:1.75;background:var(--paper);border-radius:16px;padding:18px 22px}
+.text h3{margin:0 0 6px;font-family:Georgia,serif;font-size:24px}
+.text p{margin:0 0 12px}
+.text.hl mark{background:#F3D9CF;border-radius:4px;padding:0 3px;font-weight:700}
+.tf{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:9px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.tf .opts{margin-left:auto;display:flex;gap:6px}
+.tf button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.tf.ok{background:#DDEED7}.tf.bad{background:#F6DAD3}
+.disc{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px;margin-top:6px}
+.disc div{background:var(--green);border-radius:14px;padding:12px 16px;font-size:17px;font-weight:600}
+.disc div i{font-style:normal;color:var(--violet);margin-right:6px}
+.spin{text-align:center;margin-top:16px}
+.spin .card{display:inline-block;min-height:80px;min-width:min(560px,100%);background:var(--ink);color:#fff;border-radius:18px;padding:20px 24px;font-size:22px;font-weight:700;margin-bottom:12px}
+@media(max-width:700px){.ex{grid-template-columns:1fr}}
+
+.hero{background-size:cover!important;background-position:center!important}
+.voc{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.voc div{background:var(--paper);border-radius:14px;padding:10px 14px;cursor:pointer;border:2px solid transparent}
+.voc div:hover{border-color:var(--violet)}
+.voc b{display:block;font-size:18px}.voc span{display:block;color:var(--accent);font-weight:700;font-size:15px}.voc em{display:block;font-size:14px;color:var(--muted);margin-top:3px}
+.mt{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:10px}
+.mt button{font:inherit;font-size:16px;text-align:left;border:2px solid var(--ink);background:#fff;border-radius:14px;padding:9px 14px;cursor:pointer}
+.mt button.sel{background:#FFE7A8}.mt button.done{background:#CDE8C6;border-color:#4C9A5B;cursor:default}
+.ch{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ch .n{font-weight:800;color:var(--violet);min-width:24px}
+.ch .o{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.ch .o button{font:inherit;font-size:15px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.ch.ok{background:#DDEED7}.ch.bad{background:#F6DAD3}
+.ty{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ty input{font:inherit;border:2px solid var(--ink);border-radius:10px;padding:4px 10px;width:220px}
+.ty.ok{background:#DDEED7}.ty.bad{background:#F6DAD3}
+.ty small{color:var(--muted)}
+.photo{width:100%;height:300px;object-fit:cover;border-radius:16px;display:block}
+.cap{font-size:11px;color:var(--muted);margin:4px 0 12px}
+.pics{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.pics figure{margin:0;background:var(--paper);border-radius:16px;overflow:hidden}
+.pics img{width:100%;height:170px;object-fit:cover;display:block}
+.pics figcaption{padding:8px 12px;font-weight:700}
+.pics small{display:block;font-weight:400;font-size:10px;color:var(--muted)}
+.lis{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:8px 0 14px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{aspect-ratio:16/9;background:#000;position:relative}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;background-size:cover;background-position:center;cursor:pointer;display:grid;place-items:center}
+.vid .play span{background:#E5484D;color:#fff;font-weight:800;border-radius:12px;padding:10px 20px}
+.vid .info{padding:12px 16px}.vid h3{margin:0;font-size:18px}.vid small{color:var(--muted)}
+.vid ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th,.tbl td{border:1px solid #ddd;padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--paper)}
+@media(max-width:700px){.mt{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="/game-lessons/kit.css">
+</head>
+<body>
+<header class="hero">
+  <div class="kicker">A1 · teens · Граматика: тренажер Теперішній простий час</div>
+  <h1>Present Simple: 100 tasks</h1>
+  <p>A1 · 6 parts · 60 min</p>
+  <span class="cr">Photo: Unsplash</span>
+</header>
+<button class="lk-tbtn" id="teacherBtn" type="button">Teacher version</button>
+<div class="wrap">
+  <section class="lk-overview">
+    <h2>In this lesson you will:</h2>
+    <ul><li>Повторимо правило: Теперішній простий час
+100 завдань від простого до складного
+Розберемо головні пастки</li></ul>
+    <div class="lk-stages" id="stages"></div>
+  </section>
+  <section id="s1" data-stage="practice" data-min="10">
+    <h2><span class="lk-n">1</span>Теорія <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<div class="warn"><p><b>Коли вживаємо</b></p><p>Звички і регулярні дії: Max checks his phone every ten minutes. (Макс перевіряє телефон кожні десять хвилин.)</p><p>Факти і загальні істини: Cats see well in the dark. (Коти добре бачать у темряві.)</p><p>Розклади: Our school bus leaves at 7:45. (Наш шкільний автобус відправляється о 7:45.)</p><p>Постійні стани: де живемо, що любимо, що знаємо: Sophie lives in Manchester and loves rock music. (Софі живе в Манчестері й любить рок-музику.)</p></div>
+    <div class="warn"><p><b>Форми</b></p><p>+  I / you / we / they + V; he / she / it + V-s (-es, -ies). Приклад: Lily draws comics.</p><p>−  don’t / doesn’t + V (без -s). Приклад: Tom doesn’t drink milk.</p><p>?  Do / Does + підмет + V (без -s)?. Приклад: Does your cat like fish?</p><p>коротко  Yes, I do. / No, I don’t. Yes, she does. / No, she doesn’t.. Приклад: Do you skate? Yes, I do.</p></div>
+    <div class="warn"><p><b>Головна пастка</b></p><p>-s для he / she / it. В українській «я граю, він грає» звучать по-різному, а в англійській -s легко забути. Для he, she, it і будь-якого одного предмета чи людини (my mum, the dog, Emma) дієслово отримує -s.</p><p>✗ My sister play the drums.</p><p>✓ My sister plays the drums.</p><p>Does + дієслово без -s. -s буває лише один раз: або в дієслові (works), або в does. Після does і doesn’t дієслово стоїть у початковій формі.</p><p>✗ Does he works on Sundays?</p><p>✓ Does he work on Sundays?</p><p>Без am / is / are перед дієсловом. Не став am / is / are перед звичайним дієсловом. «Я люблю» це просто I like.</p><p>✗ I am like football.</p><p>✓ I like football.</p></div>
+    <div class="warn"><p><b>Маркери:</b> always, usually, often, sometimes, rarely, never, every day, every week, on Fridays, once a month, twice a year, at the weekend</p></div>
+    <div class="warn"><p><b>Як писати -s, -es, -ies</b></p><p>Більшість дієслів: + s (read → reads). Після -s, -ss, -sh, -ch, -x і -o: + es (miss → misses, wash → washes, go → goes). Приголосна + y: y змінюється на -ies (study → studies). Голосна + y: просто -s (play → plays). Виняток: have → has.</p><p>work · works · + s · працювати</p><p>read · reads · + s · читати</p><p>play · plays · голосна + y: + s · грати</p><p>buy · buys · голосна + y: + s · купувати</p><p>watch · watches · -ch: + es · дивитися</p><p>wash · washes · -sh: + es · мити</p><p>miss · misses · -ss: + es · сумувати</p><p>fix · fixes · -x: + es · лагодити</p><p>go · goes · -o: + es · йти, їхати</p><p>do · does · -o: + es · робити</p><p>study · studies · приголосна + y: -ies · вчитися</p><p>fly · flies · приголосна + y: -ies · літати</p><p>have · has · виняток · мати</p></div>
+    <p class="lk-tnote" data-ru="Тренажер на 100 завдань: 5 раундів по 20. На уроці можна пройти 1-2 раунди, решту задати додому. Пояснення до кожної відповіді учень бачить у тренажері на сайті (розділ «Граматика»).&lt;br&gt;">Тренажер на 100 завдань: 5 раундів по 20. На уроці можна пройти 1-2 раунди, решту задати додому. Пояснення до кожної відповіді учень бачить у тренажері на сайті (розділ «Граматика»).<br></p>
+  </section>
+  <section id="s2" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">2</span>Раунд 1. Форми: розминка <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="sleeps"><span class="n">1</span><span class="s">My cat ___ on my bed every night.</span><span class="o"><button type="button">sleeping</button><button type="button">sleeps</button><button type="button">sleep</button><button type="button">sleepes</button></span></div>
+<div class="ch" data-a="eat"><span class="n">2</span><span class="s">We ___ pizza on Fridays.</span><span class="o"><button type="button">eats</button><button type="button">eat</button><button type="button">eating</button></span></div>
+<div class="ch" data-a="brushes"><span class="n">3</span><span class="s">Dan ___ his teeth twice a day.</span><span class="o"><button type="button">brush</button><button type="button">brushs</button><button type="button">brushes</button><button type="button">brushies</button></span></div>
+<div class="ch" data-a="studies"><span class="n">4</span><span class="s">Sophie ___ English and Spanish.</span><span class="o"><button type="button">studys</button><button type="button">studies</button><button type="button">study</button><button type="button">studyes</button></span></div>
+<div class="ch" data-a="opens"><span class="n">5</span><span class="s">The shop ___ at 8 a.m.</span><span class="o"><button type="button">opens</button><button type="button">opening</button><button type="button">open</button></span></div>
+<div class="ch" data-a="live"><span class="n">6</span><span class="s">They ___ in a small flat near the park.</span><span class="o"><button type="button">live</button><button type="button">living</button><button type="button">is live</button><button type="button">lives</button></span></div>
+<div class="ch" data-a="does"><span class="n">7</span><span class="s">Max ___ his homework in the evening.</span><span class="o"><button type="button">does</button><button type="button">doing</button><button type="button">dos</button><button type="button">do</button></span></div>
+<div class="ch" data-a="charges"><span class="n">8</span><span class="s">My phone ___ really fast.</span><span class="o"><button type="button">charge</button><button type="button">charges</button><button type="button">chargies</button></span></div>
+<div class="ch" data-a="drink"><span class="n">9</span><span class="s">I ___ coffee in the morning.</span><span class="o"><button type="button">drinks</button><button type="button">drinking</button><button type="button">drink</button><button type="button">am drink</button></span></div>
+<div class="ch" data-a="cries"><span class="n">10</span><span class="s">The baby ___ a lot at night.</span><span class="o"><button type="button">cry</button><button type="button">cries</button><button type="button">crys</button><button type="button">cryes</button></span></div>
+<div class="ch" data-a="type"><span class="n">11</span><span class="s">You ___ very fast on your laptop!</span><span class="o"><button type="button">types</button><button type="button">type</button><button type="button">typing</button></span></div>
+<div class="ch" data-a="reads"><span class="n">12</span><span class="s">My dad ___ the news every morning.</span><span class="o"><button type="button">read</button><button type="button">reads</button><button type="button">reades</button></span></div>
+<div class="ch" data-a="plays"><span class="n">13</span><span class="s">He ___ games on his laptop.</span><span class="o"><button type="button">plays</button><button type="button">plaies</button><button type="button">play</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; sleeps · eat · brushes · studies · opens · live · does · charges · drink · cries · type · reads · plays"><b>Відповіді:</b> sleeps · eat · brushes · studies · opens · live · does · charges · drink · cries · type · reads · plays</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="plays"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Emma ___ (play) the piano after school.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="watches"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>My brother ___ (watch) cartoons on Saturday mornings.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="flies"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>My aunt ___ (fly) to Edinburgh twice a year.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="goes"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Tom ___ (go) to the gym on Mondays.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="has"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Our teacher ___ (have) a big black dog.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="fixes"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Anna ___ (fix) old bikes in her free time.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="stops"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>The bus ___ (stop) right outside my school.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; plays · watches · flies · goes · has · fixes · stops"><b>Відповіді:</b> plays · watches · flies · goes · has · fixes · stops</p>
+  </section>
+  <section id="s3" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">3</span>Раунд 2. Заперечення і питання <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="doesn’t"><span class="n">1</span><span class="s">Max ___ like horror films.</span><span class="o"><button type="button">don’t</button><button type="button">doesn’t</button><button type="button">isn’t</button><button type="button">not</button></span></div>
+<div class="ch" data-a="Does"><span class="n">2</span><span class="s">___ your sister speak French?</span><span class="o"><button type="button">Has</button><button type="button">Is</button><button type="button">Do</button><button type="button">Does</button></span></div>
+<div class="ch" data-a="do"><span class="n">3</span><span class="s">Where ___ you buy your sneakers?</span><span class="o"><button type="button">are</button><button type="button">does</button><button type="button">do</button></span></div>
+<div class="ch" data-a="like"><span class="n">4</span><span class="s">She doesn’t ___ spicy food.</span><span class="o"><button type="button">liking</button><button type="button">like</button><button type="button">likes</button><button type="button">liked</button></span></div>
+<div class="ch" data-a="Do"><span class="n">5</span><span class="s">___ they walk to school?</span><span class="o"><button type="button">Does</button><button type="button">Are</button><button type="button">Do</button></span></div>
+<div class="ch" data-a="go"><span class="n">6</span><span class="s">Does your dad ___ to work by car?</span><span class="o"><button type="button">go</button><button type="button">going</button><button type="button">goes</button></span></div>
+<div class="ch" data-a="don’t"><span class="n">7</span><span class="s">A: Do you like jazz? B: No, I ___.</span><span class="o"><button type="button">don’t</button><button type="button">not</button><button type="button">doesn’t</button><button type="button">am not</button></span></div>
+<div class="ch" data-a="does"><span class="n">8</span><span class="s">A: Does Lily play the guitar? B: Yes, she ___.</span><span class="o"><button type="button">do</button><button type="button">does</button><button type="button">plays</button><button type="button">is</button></span></div>
+<div class="ch" data-a="does"><span class="n">9</span><span class="s">How often ___ your brother clean his room?</span><span class="o"><button type="button">do</button><button type="button">does</button><button type="button">is</button></span></div>
+<div class="ch" data-a="Does she work here?"><span class="n">10</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">Does she work here?</button><button type="button">Does she works here?</button><button type="button">Do she work here?</button><button type="button">She does works here?</button></span></div>
+<div class="ch" data-a="doesn’t"><span class="n">11</span><span class="s">Our cat ___ eat dry food.</span><span class="o"><button type="button">doesn’t</button><button type="button">isn’t</button><button type="button">not</button><button type="button">don’t</button></span></div>
+<div class="ch" data-a="don’t"><span class="n">12</span><span class="s">We ___ have lessons on Saturday.</span><span class="o"><button type="button">don’t</button><button type="button">doesn’t</button><button type="button">aren’t</button></span></div>
+<div class="ch" data-a="Do"><span class="n">13</span><span class="s">___ Max and Tom play basketball after school?</span><span class="o"><button type="button">Are</button><button type="button">Does</button><button type="button">Do</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; doesn’t · Does · do · like · Do · go · don’t · does · does · Does she work here? · doesn’t · don’t · Do"><b>Відповіді:</b> doesn’t · Does · do · like · Do · go · don’t · does · does · Does she work here? · doesn’t · don’t · Do</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="don’t eat|do not eat"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>I ___ (not / eat) breakfast on school days.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="doesn’t play|does not play"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Sophie ___ (not / play) video games.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="does Tom get up"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>What time ___ (Tom / get up) on Sundays?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="don’t watch|do not watch"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>My parents ___ (not / watch) TV at all.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="doesn’t know|does not know"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Dan ___ (not / know) the answer.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="does Lily take"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Which bus ___ (Lily / take) to school?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="doesn’t work|does not work"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>This app ___ (not / work) without the internet.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; don’t eat · doesn’t play · does Tom get up · don’t watch · doesn’t know · does Lily take · doesn’t work"><b>Відповіді:</b> don’t eat · doesn’t play · does Tom get up · don’t watch · doesn’t know · does Lily take · doesn’t work</p>
+  </section>
+  <section id="s4" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">4</span>Раунд 3. Коли вживати <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="goes"><span class="n">1</span><span class="s">Emma usually ___ to school by bus.</span><span class="o"><button type="button">go</button><button type="button">goes</button><button type="button">is going</button></span></div>
+<div class="ch" data-a="I am always late for maths."><span class="n">2</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">I am always late for maths.</button><button type="button">Always I am late for maths.</button><button type="button">I always am late for maths.</button></span></div>
+<div class="ch" data-a="starts"><span class="n">3</span><span class="s">The film ___ at 7:30 tonight, so don’t be late.</span><span class="o"><button type="button">is start</button><button type="button">start</button><button type="button">starts</button></span></div>
+<div class="ch" data-a="is sitting"><span class="n">4</span><span class="s">Look! Our cat ___ on the roof.</span><span class="o"><button type="button">is sitting</button><button type="button">sit</button><button type="button">sits</button></span></div>
+<div class="ch" data-a="plays"><span class="n">5</span><span class="s">Tom ___ football every Saturday.</span><span class="o"><button type="button">play</button><button type="button">plays</button><button type="button">is playing</button></span></div>
+<div class="ch" data-a="He often plays chess with his grandpa."><span class="n">6</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">He often plays chess with his grandpa.</button><button type="button">He plays often chess with his grandpa.</button><button type="button">He chess often plays with his grandpa.</button></span></div>
+<div class="ch" data-a="live"><span class="n">7</span><span class="s">Cats usually ___ for about 15 years.</span><span class="o"><button type="button">are living</button><button type="button">lives</button><button type="button">live</button></span></div>
+<div class="ch" data-a="visit"><span class="n">8</span><span class="s">I ___ my grandparents once a month.</span><span class="o"><button type="button">am visiting</button><button type="button">visit</button><button type="button">visits</button></span></div>
+<div class="ch" data-a="doesn’t open"><span class="n">9</span><span class="s">The museum ___ on Mondays.</span><span class="o"><button type="button">doesn’t open</button><button type="button">don’t open</button><button type="button">not opens</button></span></div>
+<div class="ch" data-a="do"><span class="n">10</span><span class="s">What ___ you usually do at the weekend?</span><span class="o"><button type="button">are</button><button type="button">do</button><button type="button">does</button></span></div>
+<div class="ch" data-a="melts"><span class="n">11</span><span class="s">Ice ___ when it gets warm.</span><span class="o"><button type="button">is melt</button><button type="button">melt</button><button type="button">melts</button></span></div>
+<div class="ch" data-a="often works"><span class="n">12</span><span class="s">My dad is a nurse. He ___ night shifts.</span><span class="o"><button type="button">often works</button><button type="button">works often</button><button type="button">often work</button></span></div>
+<div class="ch" data-a="is doing"><span class="n">13</span><span class="s">Right now Max ___ his homework.</span><span class="o"><button type="button">is doing</button><button type="button">does</button><button type="button">do</button></span></div>
+<div class="ch" data-a="listens"><span class="n">14</span><span class="s">Sophie ___ to music when she runs.</span><span class="o"><button type="button">listen</button><button type="button">listens</button><button type="button">is listen</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; goes · I am always late for maths. · starts · is sitting · plays · He often plays chess with his grandpa. · live · visit · doesn’t open · do · melts · often works · is doing · listens"><b>Відповіді:</b> goes · I am always late for maths. · starts · is sitting · plays · He often plays chess with his grandpa. · live · visit · doesn’t open · do · melts · often works · is doing · listens</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="rises"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>The sun ___ (rise) in the east.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="make"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Bees ___ (make) honey.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="do you go"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>How often ___ (you / go) to the cinema?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="never eats"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Lily ___ (never / eat) fast food.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="begins"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Our English lesson ___ (begin) at 9:00 every Tuesday.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="don’t like|do not like"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Most dogs ___ (not / like) loud noises.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; rises · make · do you go · never eats · begins · don’t like"><b>Відповіді:</b> rises · make · do you go · never eats · begins · don’t like</p>
+  </section>
+  <section id="s5" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">5</span>Раунд 4. Пастки: не попадись <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="He doesn’t play chess."><span class="n">1</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">He doesn’t play chess.</button><button type="button">He don’t play chess.</button><button type="button">He doesn’t plays chess.</button><button type="button">He not play chess.</button></span></div>
+<div class="ch" data-a="Does Tom like pizza?"><span class="n">2</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">Does Tom like pizza?</button><button type="button">Do Tom like pizza?</button><button type="button">Does Tom likes pizza?</button></span></div>
+<div class="ch" data-a="speaks"><span class="n">3</span><span class="s">My best friend ___ three languages.</span><span class="o"><button type="button">speak</button><button type="button">does speaks</button><button type="button">speaks</button><button type="button">speakes</button></span></div>
+<div class="ch" data-a="She has two cats."><span class="n">4</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">She have two cats.</button><button type="button">She has two cats.</button><button type="button">She haves two cats.</button></span></div>
+<div class="ch" data-a="My friends play in a band."><span class="n">5</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">My friends are play in a band.</button><button type="button">My friends play in a band.</button><button type="button">My friends plays in a band.</button></span></div>
+<div class="ch" data-a="is"><span class="n">6</span><span class="s">Max ___ fifteen years old.</span><span class="o"><button type="button">has</button><button type="button">is</button><button type="button">have</button><button type="button">does</button></span></div>
+<div class="ch" data-a="I agree with you."><span class="n">7</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">I agree with you.</button><button type="button">I am agree with you.</button><button type="button">I agrees with you.</button></span></div>
+<div class="ch" data-a="Where does she live?"><span class="n">8</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">Where does she lives?</button><button type="button">Where does she live?</button><button type="button">Where she lives?</button></span></div>
+<div class="ch" data-a="carries"><span class="n">9</span><span class="s">Dan ___ his phone everywhere.</span><span class="o"><button type="button">carry</button><button type="button">carrys</button><button type="button">carries</button></span></div>
+<div class="ch" data-a="They don’t have a car."><span class="n">10</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">They don’t have a car.</button><button type="button">They doesn’t have a car.</button><button type="button">They don’t has a car.</button></span></div>
+<div class="ch" data-a="I live in Brighton."><span class="n">11</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">I live in Brighton.</button><button type="button">I am live in Brighton.</button><button type="button">I lives in Brighton.</button></span></div>
+<div class="ch" data-a="do"><span class="n">12</span><span class="s">A: Do you play tennis? B: Yes, I ___.</span><span class="o"><button type="button">am</button><button type="button">do</button><button type="button">play</button><button type="button">does</button></span></div>
+<div class="ch" data-a="Does your mum work on Saturdays?"><span class="n">13</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">Does your mum works on Saturdays?</button><button type="button">Does your mum work on Saturdays?</button><button type="button">Do your mum works on Saturdays?</button></span></div>
+<div class="ch" data-a="buys"><span class="n">14</span><span class="s">My uncle ___ old cars and repairs them.</span><span class="o"><button type="button">buys</button><button type="button">buyes</button><button type="button">buy</button><button type="button">buies</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; He doesn’t play chess. · Does Tom like pizza? · speaks · She has two cats. · My friends play in a band. · is · I agree with you. · Where does she live? · carries · They don’t have a car. · I live in Brighton. · do · Does your mum work on Saturdays? · buys"><b>Відповіді:</b> He doesn’t play chess. · Does Tom like pizza? · speaks · She has two cats. · My friends play in a band. · is · I agree with you. · Where does she live? · carries · They don’t have a car. · I live in Brighton. · do · Does your mum work on Saturdays? · buys</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="washes"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>My little sister ___ (wash) the dishes after dinner.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="studies"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Lucy ___ (study) biology at university.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="enjoys"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>He ___ (enjoy) cooking for his friends.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="misses"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Kate ___ (miss) her friends from her old school.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="catches"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Every morning Lily ___ (catch) the 8:10 train.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="doesn’t eat|does not eat"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>A tiger ___ (not / eat) grass.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; washes · studies · enjoys · misses · catches · doesn’t eat"><b>Відповіді:</b> washes · studies · enjoys · misses · catches · doesn’t eat</p>
+  </section>
+  <section id="s6" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">6</span>Раунд 5. Фінальний бос <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="doesn’t eat"><span class="n">1</span><span class="s">Tom is a vegetarian. He ___ meat.</span><span class="o"><button type="button">don’t eat</button><button type="button">doesn’t eats</button><button type="button">doesn’t eat</button><button type="button">isn’t eat</button></span></div>
+<div class="ch" data-a="goes"><span class="n">2</span><span class="s">Lily loves music. She ___ to concerts every month.</span><span class="o"><button type="button">gos</button><button type="button">is go</button><button type="button">goes</button><button type="button">go</button></span></div>
+<div class="ch" data-a="Does"><span class="n">3</span><span class="s">A: ___ your brother play any sports? B: Yes, he plays volleyball.</span><span class="o"><button type="button">Is</button><button type="button">Do</button><button type="button">Does</button></span></div>
+<div class="ch" data-a="starts"><span class="n">4</span><span class="s">I’m busy on Thursdays. My piano lesson ___ at 4:30.</span><span class="o"><button type="button">start</button><button type="button">is start</button><button type="button">starts</button></span></div>
+<div class="ch" data-a="My parents don’t let me play at night."><span class="n">5</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">My parents doesn’t let me play at night.</button><button type="button">My parents don’t lets me play at night.</button><button type="button">My parents don’t let me play at night.</button></span></div>
+<div class="ch" data-a="helps"><span class="n">6</span><span class="s">Sophie is a vet. She ___ sick animals.</span><span class="o"><button type="button">helps</button><button type="button">is help</button><button type="button">help</button><button type="button">helpes</button></span></div>
+<div class="ch" data-a="works"><span class="n">7</span><span class="s">A: What does your mum do? B: She ___ in a bank.</span><span class="o"><button type="button">working</button><button type="button">work</button><button type="button">works</button><button type="button">is work</button></span></div>
+<div class="ch" data-a="isn’t"><span class="n">8</span><span class="s">Max never does his homework on time. His teacher ___ happy about it.</span><span class="o"><button type="button">don’t</button><button type="button">doesn’t</button><button type="button">isn’t</button><button type="button">aren’t</button></span></div>
+<div class="ch" data-a="bring"><span class="n">9</span><span class="s">We love our new neighbours. They often ___ us cookies.</span><span class="o"><button type="button">are bring</button><button type="button">bring</button><button type="button">brings</button></span></div>
+<div class="ch" data-a="How often do you go swimming?"><span class="n">10</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">How often you go swimming?</button><button type="button">How often does you go swimming?</button><button type="button">How often do you go swimming?</button></span></div>
+<div class="ch" data-a="don’t"><span class="n">11</span><span class="s">Kate and her sister are twins, but they ___ look alike.</span><span class="o"><button type="button">doesn’t</button><button type="button">aren’t</button><button type="button">don’t</button></span></div>
+<div class="ch" data-a="don’t"><span class="n">12</span><span class="s">A: Do your friends live near you? B: No, they ___.</span><span class="o"><button type="button">not</button><button type="button">doesn’t</button><button type="button">aren’t</button><button type="button">don’t</button></span></div>
+<div class="ch" data-a="works"><span class="n">13</span><span class="s">Emma has a part-time job. She ___ at a café on Saturdays.</span><span class="o"><button type="button">works</button><button type="button">is work</button><button type="button">work</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; doesn’t eat · goes · Does · starts · My parents don’t let me play at night. · helps · works · isn’t · bring · How often do you go swimming? · don’t · don’t · works"><b>Відповіді:</b> doesn’t eat · goes · Does · starts · My parents don’t let me play at night. · helps · works · isn’t · bring · How often do you go swimming? · don’t · don’t · works</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="sleeps"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>My cat is very lazy. She ___ (sleep) about sixteen hours a day.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="doesn’t need|does not need"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Dan works from home. He ___ (not / need) to get up early.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="doesn’t like|does not like"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>A: Does Emma like tea? B: No, she ___ (not / like) it. She prefers juice.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="dies"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>My phone is old. The battery ___ (die) very quickly.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="does this T-shirt cost"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>How much ___ (this T-shirt / cost)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="teaches"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Our coach ___ (teach) us a new trick every week.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="happens"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>It’s a quiet town. Nothing much ___ (happen) here.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; sleeps · doesn’t need · doesn’t like · dies · does this T-shirt cost · teaches · happens"><b>Відповіді:</b> sleeps · doesn’t need · doesn’t like · dies · does this T-shirt cost · teaches · happens</p>
+  </section>
+  <section class="end"><h2>Great job!</h2><p>See you next lesson.</p></section>
+</div>
+<div class="toast" id="toast"></div>
+<script>window.MURLY_LESSON={"id": "lib-drill-present-simple", "title": "Present Simple: 100 tasks", "homework": ["s2", "s3", "s4", "s5", "s6"], "hw": {"s2": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "My cat {sleeps|sleep|sleepes|sleeping} on my bed every night.\nWe {eat|eats|eating} pizza on Fridays.\nDan {brushes|brushs|brush|brushies} his teeth twice a day.\nSophie {studies|studys|study|studyes} English and Spanish.\nThe shop {opens|open|opening} at 8 a.m.\nThey {live|lives|is live|living} in a small flat near the park.\nMax {does|do|dos|doing} his homework in the evening.\nMy phone {charges|charge|chargies} really fast.\nI {drink|drinks|drinking|am drink} coffee in the morning.\nThe baby {cries|crys|cry|cryes} a lot at night.\nYou {type|types|typing} very fast on your laptop!\nMy dad {reads|read|reades} the news every morning.\nHe {plays|plaies|play} games on his laptop."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "Emma [plays] (play) the piano after school.\nMy brother [watches] (watch) cartoons on Saturday mornings.\nMy aunt [flies] (fly) to Edinburgh twice a year.\nTom [goes] (go) to the gym on Mondays.\nOur teacher [has] (have) a big black dog.\nAnna [fixes] (fix) old bikes in her free time.\nThe bus [stops] (stop) right outside my school."}], "s3": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Max {doesn’t|don’t|isn’t|not} like horror films.\n{Does|Do|Is|Has} your sister speak French?\nWhere {do|does|are} you buy your sneakers?\nShe doesn’t {like|likes|liking|liked} spicy food.\n{Do|Does|Are} they walk to school?\nDoes your dad {go|goes|going} to work by car?\nA: Do you like jazz? B: No, I {don’t|doesn’t|not|am not}.\nA: Does Lily play the guitar? B: Yes, she {does|do|plays|is}.\nHow often {does|do|is} your brother clean his room?\nОбери правильне речення: {Does she work here?|Does she works here?|Do she work here?|She does works here?}\nOur cat {doesn’t|don’t|not|isn’t} eat dry food.\nWe {don’t|doesn’t|aren’t} have lessons on Saturday.\n{Do|Does|Are} Max and Tom play basketball after school?"}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "I [don’t eat/do not eat] (not / eat) breakfast on school days.\nSophie [doesn’t play/does not play] (not / play) video games.\nWhat time [does Tom get up] (Tom / get up) on Sundays?\nMy parents [don’t watch/do not watch] (not / watch) TV at all.\nDan [doesn’t know/does not know] (not / know) the answer.\nWhich bus [does Lily take] (Lily / take) to school?\nThis app [doesn’t work/does not work] (not / work) without the internet."}], "s4": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Emma usually {goes|is going|go} to school by bus.\nОбери правильне речення: {I am always late for maths.|I always am late for maths.|Always I am late for maths.}\nThe film {starts|is start|start} at 7:30 tonight, so don’t be late.\nLook! Our cat {is sitting|sits|sit} on the roof.\nTom {plays|is playing|play} football every Saturday.\nОбери правильне речення: {He often plays chess with his grandpa.|He plays often chess with his grandpa.|He chess often plays with his grandpa.}\nCats usually {live|lives|are living} for about 15 years.\nI {visit|am visiting|visits} my grandparents once a month.\nThe museum {doesn’t open|don’t open|not opens} on Mondays.\nWhat {do|are|does} you usually do at the weekend?\nIce {melts|melt|is melt} when it gets warm.\nMy dad is a nurse. He {often works|often work|works often} night shifts.\nRight now Max {is doing|does|do} his homework.\nSophie {listens|listen|is listen} to music when she runs."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "The sun [rises] (rise) in the east.\nBees [make] (make) honey.\nHow often [do you go] (you / go) to the cinema?\nLily [never eats] (never / eat) fast food.\nOur English lesson [begins] (begin) at 9:00 every Tuesday.\nMost dogs [don’t like/do not like] (not / like) loud noises."}], "s5": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Обери правильне речення: {He doesn’t play chess.|He doesn’t plays chess.|He don’t play chess.|He not play chess.}\nОбери правильне речення: {Does Tom like pizza?|Does Tom likes pizza?|Do Tom like pizza?}\nMy best friend {speaks|speak|does speaks|speakes} three languages.\nОбери правильне речення: {She has two cats.|She haves two cats.|She have two cats.}\nОбери правильне речення: {My friends play in a band.|My friends plays in a band.|My friends are play in a band.}\nMax {is|has|have|does} fifteen years old.\nОбери правильне речення: {I agree with you.|I am agree with you.|I agrees with you.}\nОбери правильне речення: {Where does she live?|Where she lives?|Where does she lives?}\nDan {carries|carrys|carry} his phone everywhere.\nОбери правильне речення: {They don’t have a car.|They doesn’t have a car.|They don’t has a car.}\nОбери правильне речення: {I live in Brighton.|I am live in Brighton.|I lives in Brighton.}\nA: Do you play tennis? B: Yes, I {do|play|am|does}.\nОбери правильне речення: {Does your mum work on Saturdays?|Do your mum works on Saturdays?|Does your mum works on Saturdays?}\nMy uncle {buys|buyes|buies|buy} old cars and repairs them."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "My little sister [washes] (wash) the dishes after dinner.\nLucy [studies] (study) biology at university.\nHe [enjoys] (enjoy) cooking for his friends.\nKate [misses] (miss) her friends from her old school.\nEvery morning Lily [catches] (catch) the 8:10 train.\nA tiger [doesn’t eat/does not eat] (not / eat) grass."}], "s6": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Tom is a vegetarian. He {doesn’t eat|don’t eat|isn’t eat|doesn’t eats} meat.\nLily loves music. She {goes|go|is go|gos} to concerts every month.\nA: {Does|Do|Is} your brother play any sports? B: Yes, he plays volleyball.\nI’m busy on Thursdays. My piano lesson {starts|start|is start} at 4:30.\nОбери правильне речення: {My parents don’t let me play at night.|My parents doesn’t let me play at night.|My parents don’t lets me play at night.}\nSophie is a vet. She {helps|help|helpes|is help} sick animals.\nA: What does your mum do? B: She {works|work|is work|working} in a bank.\nMax never does his homework on time. His teacher {isn’t|doesn’t|don’t|aren’t} happy about it.\nWe love our new neighbours. They often {bring|brings|are bring} us cookies.\nОбери правильне речення: {How often do you go swimming?|How often you go swimming?|How often does you go swimming?}\nKate and her sister are twins, but they {don’t|doesn’t|aren’t} look alike.\nA: Do your friends live near you? B: No, they {don’t|doesn’t|aren’t|not}.\nEmma has a part-time job. She {works|work|is work} at a café on Saturdays."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "My cat is very lazy. She [sleeps] (sleep) about sixteen hours a day.\nDan works from home. He [doesn’t need/does not need] (not / need) to get up early.\nA: Does Emma like tea? B: No, she [doesn’t like/does not like] (not / like) it. She prefers juice.\nMy phone is old. The battery [dies] (die) very quickly.\nHow much [does this T-shirt cost] (this T-shirt / cost)?\nOur coach [teaches] (teach) us a new trick every week.\nIt’s a quiet town. Nothing much [happens] (happen) here."}]}};</script>
+<script>
+(function(){var l=(document.cookie.match(/(?:^|; )murly_lang=(\w+)/)||[])[1];try{l=l||localStorage.getItem('murly:tlang')}catch(e){}l=l==='ru'?'ru':'uk';document.querySelectorAll('[data-pairs-'+l+']').forEach(function(b){b.dataset.pairs=b.getAttribute('data-pairs-'+l)});})();
+</script>
+<script>
+const $ = (id) => document.getElementById(id);
+const LIS = {};
+function say(w, rate) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; const v = speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang) && /Google|Natural|Libby|Sonia|Daniel/.test(x.name)) || speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang)); if (v) u.voice = v; u.rate = rate || .95; speechSynthesis.speak(u); } catch (e) { } }
+const sh = (a) => a.map((x) => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map((x) => x[1]);
+document.querySelectorAll('.voc div').forEach((d) => d.onclick = () => say(d.dataset.say));
+document.querySelectorAll('[data-play]').forEach((b) => b.onclick = () => say(LIS[b.dataset.play], b.dataset.slow ? .75 : .95));
+document.querySelectorAll('[data-stop]').forEach((b) => b.onclick = () => { try { speechSynthesis.cancel(); } catch (e) { } });
+document.querySelectorAll('.ch').forEach((q) => q.querySelectorAll('button').forEach((b) => b.onclick = () => { if (q.classList.contains('ok')) return; const ok = b.textContent === q.dataset.a; q.classList.toggle('ok', ok); q.classList.toggle('bad', !ok); if (ok) { const s = q.querySelector('.s'); if (s && s.textContent.includes('___')) { s.textContent = s.textContent.replace('___', q.dataset.a); } } }));
+const norm = (x) => x.toLowerCase().replace(/[’']/g, "'").replace(/[,;:"“”«»]/g, ' ').replace(/\s+/g, ' ').replace(/[.!?]$/, '').trim();
+document.querySelectorAll('.ty').forEach((r) => { const inp = r.querySelector('input'); const chk = () => { const ok = r.dataset.a.split('|').some((a) => norm(a) === norm(inp.value)); r.classList.toggle('ok', ok); r.classList.toggle('bad', !ok && inp.value.trim() !== ''); }; r.querySelector('button').onclick = chk; inp.onkeydown = (e) => { if (e.key === 'Enter') chk(); }; });
+document.querySelectorAll('[data-mt]').forEach((box) => { const pairs = JSON.parse(box.dataset.pairs); const L = sh(pairs.map((p) => p[0])), R = sh(pairs.map((p) => p[1])); let sel = null, done = 0, err = 0; box.innerHTML = L.map((w, i) => `<button type="button" data-w="${w}">${w}</button><button type="button" data-d="${R[i]}">${R[i]}</button>`).join('');
+  box.querySelectorAll('button').forEach((b) => b.onclick = () => { if (b.classList.contains('done')) return; if (!sel || (sel.dataset.w && b.dataset.w) || (sel.dataset.d && b.dataset.d)) { if (sel) sel.classList.remove('sel'); sel = b; b.classList.add('sel'); return; } const w = sel.dataset.w || b.dataset.w, d = sel.dataset.d || b.dataset.d; if (pairs.some((p) => p[0] === w && p[1] === d)) { sel.classList.add('done'); b.classList.add('done'); done++; say(w); if (done === pairs.length) document.querySelector(`[data-mtres="${box.dataset.mt}"]`).textContent = err ? `Done! Mistakes: ${err}` : 'Perfect!'; } else err++; sel.classList.remove('sel'); sel = null; }); });
+document.querySelectorAll('[data-vids]').forEach((box) => JSON.parse(box.dataset.vids).forEach(([id, title, ch, qs]) => { const d = document.createElement('div'); d.className = 'vid'; d.innerHTML = `<div class="frame"><button class="play" type="button" style="background-image:url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)"><span>PLAY</span></button></div><div class="info"><h3>${title}</h3><small>YouTube · ${ch}</small><ol>${qs.map((q) => `<li>${q}</li>`).join('')}</ol></div>`; d.querySelector('.play').onclick = (e) => { e.currentTarget.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&cc_load_policy=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${title}"></iframe>`; }; box.appendChild(d); }));
+document.querySelectorAll('[data-spin]').forEach((b) => { const list = JSON.parse(b.dataset.spin); let last = -1; b.onclick = () => { let i; do { i = Math.floor(Math.random() * list.length); } while (i === last && list.length > 1); last = i; document.getElementById(b.dataset.target).textContent = list[i]; }; });
+try { const k = 'murly:' + (window.MURLY_LESSON ? MURLY_LESSON.id : 'x') + ':hw'; const t = $('hwText'); if (t) { t.value = localStorage.getItem(k) || ''; t.oninput = () => localStorage.setItem(k, t.value); } } catch (e) { }
+const STAGES = [...document.querySelectorAll('.wrap > section[id]')];
+$('stages').innerHTML = STAGES.map((s) => `<a href="#${s.id}"><b>${s.querySelector('.lk-n').textContent}</b><span>${s.dataset.stage}</span><small>${s.dataset.min !== '0' ? s.dataset.min + ' min' : 'at home'}</small></a>`).join('');
+$('teacherBtn').onclick = (e) => { const on = document.body.classList.toggle('teacher'); e.currentTarget.textContent = on ? 'Student version' : 'Teacher version'; };
+</script>
+<script src="/game-lessons/kit.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Have something done, get something done: 100 tasks (B1) | Murly</title>
+<link rel="icon" href="/favicon.svg">
+<meta name="description" content="Повторимо правило: Have something done: коли робить хтось інший
+100 завдань від простого до складного
+Розберемо головні пастки">
+<link rel="canonical" href="https://murly.com.ua/game-lessons/lib-drill-causative-have.html">
+<style>
+:root{--paper:#F3F0EA;--ink:#17181C;--violet:#3D4A7A;--lav:#D9D3C7;--pink:#E9C9BC;--green:#D4E2CF;--white:#fff;--muted:#62646B;--accent:#B5482F}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+/* hero */
+.hero{background:linear-gradient(rgba(16,17,22,.5),rgba(16,17,22,.72)),url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1400&q=70&auto=format&fit=crop");color:#fff;padding:70px 18px 56px;text-align:center;position:relative;overflow:hidden}
+.hero .kicker{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#E9C9BC;font-weight:700}
+.hero .cr{position:absolute;right:12px;bottom:8px;font-size:11px;color:rgba(255,255,255,.6)}
+.hero h1{margin:8px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(36px,6vw,64px);letter-spacing:-.5px;font-weight:700}
+.hero h1 span{color:var(--pink);font-style:italic}
+.hero p{margin:12px 0 0;font-size:17px;color:#e6e2da}
+.hero .flags{display:flex;justify-content:center;gap:12px;margin-top:22px;flex-wrap:wrap}
+.hero .flags svg{width:40px;height:26px;border-radius:3px;opacity:.9}
+/* sections */
+section{margin-top:30px;background:var(--white);border-radius:18px;padding:28px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.05)}
+section h2{margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tag{font-family:"Segoe UI",system-ui,sans-serif;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--paper);color:var(--accent);text-transform:uppercase;letter-spacing:1px}
+.lk-n{display:inline-grid;place-items:center;width:42px;height:42px;background:var(--violet);color:#fff;border-radius:50%;font-size:21px;flex:none}
+.lk-mode{font-size:13px;font-weight:700;border:2px dashed var(--lav);color:var(--muted);padding:2px 10px;border-radius:999px}
+.lk-ins{font-size:17px;background:var(--paper);border-radius:12px;padding:10px 14px;margin:6px 0 18px}
+.lk-sub{margin:24px 0 10px;font-size:19px}
+.btn{font:inherit;font-weight:700;border:0;border-radius:999px;background:var(--ink);color:#fff;padding:10px 20px;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+.btn.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+/* teacher */
+.lk-tbtn{position:fixed;right:16px;top:70px;z-index:45;font:inherit;font-weight:800;border:2px solid var(--ink);background:var(--pink);padding:8px 14px;border-radius:12px;cursor:pointer}
+body.teacher .lk-tbtn{background:var(--green)}
+.lk-ans,.lk-tnote{display:none}
+body.teacher .lk-ans{display:block;margin-top:8px;font-weight:700;color:#1d5a12;background:var(--green);border-left:5px solid #5aa845;padding:6px 10px;font-size:15px;border-radius:6px}
+body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff3f7;border-left:5px solid #d9789a;padding:8px 12px;font-size:15px;border-radius:6px}
+/* overview */
+.lk-overview ul{font-size:17px;line-height:1.7;margin:6px 0 16px}
+.lk-stages{display:flex;flex-wrap:wrap;gap:8px}
+.lk-stages a{display:grid;border-radius:14px;padding:8px 12px;text-decoration:none;color:var(--ink);background:var(--paper);font-weight:700;min-width:100px}
+.lk-stages a span{text-transform:capitalize}
+.lk-stages a b{font-size:20px;color:var(--violet)}
+.lk-stages a small{font-weight:600;color:var(--muted)}
+/* warm-up */
+.taxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tax{background:var(--paper);border-radius:18px;padding:16px;display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center}
+.tax svg{width:56px;height:56px}
+.tax b{display:block;font-size:17px}
+.tax small{color:var(--muted);font-size:14px}
+.qs{display:grid;gap:10px;margin-top:18px}
+.qs div{background:var(--green);border-radius:14px;padding:10px 16px;font-size:18px;font-weight:600}
+.phr{background:#fff7e8;border-radius:14px;padding:12px 16px;margin-top:16px;font-size:15px}
+.phr ul{margin:6px 0 0;padding-left:18px}
+.fic{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:16px}
+.fic .c{background:#fff;border:2px solid #1B2140;border-radius:16px;padding:14px 16px;box-shadow:3px 3px 0 #1B2140}
+.fic .c b{display:block;font-size:18px;line-height:1.35;margin-bottom:8px}
+.fic .c .k{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.fic .c .k span{font-size:13px;background:#eef1fb;border-radius:999px;padding:3px 10px}
+.fic .c details{margin-top:8px;font-size:15px;color:#3b4160}
+.fic .c summary{cursor:pointer;font-weight:700;color:#534AB7}
+.fi-n{display:inline-flex;width:28px;height:28px;border-radius:50%;background:#2F4BA0;color:#fff;align-items:center;justify-content:center;font-size:14px;margin-right:6px}
+/* vocab */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:12px}
+.vc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:2px solid transparent;transition:border-color .2s,transform .2s}
+.vc:hover{border-color:var(--violet);transform:translateY(-2px)}
+.vc b{font-size:18px;display:flex;align-items:center;gap:8px}
+.vc b svg{width:20px;height:20px;flex:none;color:var(--violet)}
+.vc p{margin:6px 0 0;font-size:14px;color:var(--muted)}
+.vc em{display:block;margin-top:6px;font-size:14px;color:var(--violet);font-style:normal;font-weight:600}
+.vc.played{background:#e6ecfb}
+/* grammar */
+.gram{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.gb{border-radius:18px;padding:16px}
+.gb h3{margin:0 0 6px;font-size:19px}
+.gb .f{display:inline-block;background:#fff;border-radius:8px;padding:3px 10px;font-weight:800;margin:4px 0;font-family:Consolas,monospace;font-size:15px}
+.gb p{margin:6px 0 0;font-size:15px}
+.g1{background:var(--pink)}.g2{background:var(--lav)}.g3{background:var(--green)}.g4{background:#fbe7c6}
+.warn{margin-top:14px;background:var(--ink);color:#fff;border-radius:14px;padding:12px 16px;font-size:16px}
+.warn b{color:var(--pink)}
+.q{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:2px dashed var(--paper);font-size:18px}
+.q:last-child{border-bottom:0}
+.q .n{width:32px;height:32px;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;border-radius:50%;font-weight:800;font-size:15px}
+.opt{font:inherit;font-size:16px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:10px;padding:4px 12px;cursor:pointer;margin:0 2px}
+.opt.ok{background:var(--green);border-color:#5aa845}
+.opt.bad{background:var(--pink);animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+/* tour */
+.tour{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.law{border-radius:22px;overflow:hidden;background:var(--paper);display:flex;flex-direction:column}
+.law .pic{height:150px;display:grid;place-items:center;position:relative}
+.law .pic svg.ill{width:130px;height:130px}
+.law .pic svg.fl{position:absolute;left:14px;top:14px;width:46px;height:30px;border-radius:5px;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.law .pic .no{position:absolute;right:14px;top:14px;background:var(--ink);color:#fff;font-weight:800;border-radius:999px;padding:2px 10px;font-size:13px}
+.law .body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.law h3{margin:0;font-size:20px}
+.law .where{font-size:13px;font-weight:800;color:var(--violet);text-transform:uppercase;letter-spacing:1px}
+.law p{margin:0;font-size:16px}
+.law .why{font-size:14px;color:var(--muted)}
+.law .dq{margin-top:auto;background:#fff;border-radius:12px;padding:8px 12px;font-weight:700;font-size:15px}
+.law .lsn{font:inherit;font-size:13px;font-weight:700;background:none;border:0;color:var(--violet);cursor:pointer;padding:0;text-align:left}
+/* game */
+.game{max-width:720px;margin:0 auto;text-align:center}
+.score{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.score span{background:var(--paper);border-radius:999px;padding:6px 16px;font-weight:800}
+.stmt{background:var(--ink);color:#fff;border-radius:22px;padding:28px 24px;min-height:150px;display:grid;place-items:center;font-size:23px;font-weight:700;position:relative}
+.stmt small{position:absolute;top:12px;left:18px;font-size:13px;color:var(--lav);font-weight:700}
+.choose{display:flex;justify-content:center;gap:14px;margin:18px 0}
+.choose button{font:inherit;font-size:18px;font-weight:700;border:2px solid var(--ink);border-radius:999px;padding:12px 28px;cursor:pointer}
+.choose .bl{background:var(--green)}.choose .bm{background:var(--pink)}
+.choose button:disabled{opacity:.5;cursor:default}
+.verdict{min-height:70px;font-size:17px;background:var(--paper);border-radius:16px;padding:12px 16px;text-align:left}
+.verdict b.r{color:#2d7a1d}.verdict b.w{color:#b23a62}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.dots i{width:14px;height:14px;border-radius:50%;background:var(--paper)}
+.dots i.r{background:#7cc663}.dots i.w{background:#e47b9f}.dots i.c{outline:3px solid var(--violet)}
+.final{font-size:22px;font-weight:800;color:var(--violet)}
+/* invent */
+.inv{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.frames{display:grid;gap:10px}
+.frames label{font-size:14px;font-weight:700;color:var(--muted)}
+.frames select,.frames input{font:inherit;width:100%;padding:8px 10px;border:2px solid var(--lav);border-radius:10px;background:#fff}
+.poster{background:var(--paper);border:3px solid var(--ink);border-radius:20px;padding:22px;text-align:center;min-height:260px;display:flex;flex-direction:column;gap:10px;justify-content:center}
+.poster .seal{width:70px;height:70px;margin:0 auto}
+.poster h3{margin:0;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--violet)}
+.poster .rule{font-size:22px;font-weight:800}
+.poster .pen{font-size:16px;color:var(--muted)}
+.ideas{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ideas span{background:var(--pink);border-radius:999px;padding:5px 12px;font-size:14px;font-weight:600}
+/* roleplay */
+.rp{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.role{border-radius:20px;padding:18px}
+.role h3{margin:0 0 6px;display:flex;align-items:center;gap:10px}
+.role h3 svg{width:42px;height:42px}
+.role ul{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.r1{background:var(--lav)}.r2{background:var(--green)}
+.scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:16px}
+.sc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:3px solid transparent}
+.sc.on{border-color:var(--violet);background:#fff}
+.sc b{display:block;font-size:17px;margin-bottom:4px}
+.sc p{margin:0;font-size:15px}
+.timer{font-size:40px;font-weight:800;text-align:center;margin:14px 0 6px;color:var(--violet)}
+.ctr{text-align:center}
+/* homework */
+.hwb{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hwc{background:var(--paper);border-radius:18px;padding:18px}
+.hwc h3{margin:0 0 8px}
+.hwc ol,.hwc ul{margin:6px 0 0;padding-left:20px;line-height:1.7}
+.hwc textarea{width:100%;min-height:150px;font:inherit;border:2px solid var(--lav);border-radius:12px;padding:10px;margin-top:10px}
+.end{text-align:center;background:var(--ink);color:#fff;box-shadow:none}
+.end h2{justify-content:center}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(140px);background:var(--ink);color:#fff;font-weight:800;padding:12px 22px;border-radius:14px;transition:transform .3s;z-index:50}
+.toast.show{transform:translateX(-50%) translateY(0)}
+/* photos */
+.ph{margin:0}
+.ph img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;background:var(--paper)}
+.ph figcaption{font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.2px}
+.tax{grid-template-columns:1fr !important;padding:12px !important}
+.law .pic{height:auto !important;display:block !important;padding:0;position:relative}
+.law .pic .ph img{border-radius:0;aspect-ratio:16/10;transition:filter .5s}
+.law .pic .ph figcaption{padding:4px 12px 0}
+.law.hide .pic .ph img{filter:blur(10px) grayscale(.6)}
+.law.hide .reveal-body,.law.hide .fl,.law.hide .where{visibility:hidden}
+.law .clue{font-size:15px;font-style:italic;color:var(--ink)}
+.law .gc{display:flex;flex-wrap:wrap;gap:6px}
+.law .gc button{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:4px 12px;cursor:pointer}
+.law .gc button.ok{background:var(--green)}.law .gc button.bad{background:var(--pink)}
+.law:not(.hide) .guess{display:none}
+.fair{display:grid;gap:4px;background:#fff;border-radius:12px;padding:8px 12px}
+.fair .ends{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.fair input{width:100%;accent-color:var(--accent)}
+.fair output{font-size:14px;font-weight:700;color:var(--accent)}
+.gph{max-width:720px;margin:0 auto 12px}
+.gph img{aspect-ratio:21/9}
+.fine{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.fq{background:var(--paper);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.fq h3{margin:0;font-size:18px}
+.fq .opts{display:flex;flex-wrap:wrap;gap:6px}
+.fq .opts button{font:inherit;font-size:14px;font-weight:700;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 12px;cursor:pointer}
+.fq .opts button.ok{background:var(--green)}.fq .opts button.bad{background:var(--pink)}
+.fq .res{font-size:15px;min-height:22px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{position:relative;aspect-ratio:16/9;background:#111}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;cursor:pointer;background:#111 center/cover;display:grid;place-items:center}
+.vid .play span{background:rgba(0,0,0,.7);color:#fff;font-weight:700;border-radius:999px;padding:10px 20px;font-size:15px;letter-spacing:1px}
+.vid .info{padding:14px 16px}
+.vid .info h3{margin:0 0 2px;font-size:18px}
+.vid .info small{color:var(--muted)}
+.vid .info ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+@media(max-width:760px){.inv,.rp,.hwb{grid-template-columns:1fr}.lk-tbtn{top:auto;bottom:70px}}
+
+.pr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.pb{border-radius:18px;padding:16px 18px}
+.pb h3{margin:0;font-family:Georgia,serif;font-size:30px}
+.pb .m{font-size:15px;color:var(--muted);margin:2px 0 8px}
+.pb .chips{display:flex;flex-wrap:wrap;gap:6px}
+.pb .chips span{background:#fff;border-radius:999px;padding:4px 11px;font-size:14px;font-weight:600}
+.pb ul{margin:10px 0 0;padding-left:18px;font-size:15px}
+.p-in{background:#DCE6F5}.p-at{background:#F3D9CF}.p-on{background:#D4E2CF}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-size:15px;margin-top:10px}
+.ex div{background:var(--paper);border-radius:10px;padding:8px 12px}
+.ex b{color:var(--accent)}
+.q{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.q .n{font-weight:800;color:var(--violet);min-width:24px}
+.q .gap{display:inline-block;min-width:44px;border-bottom:2px solid var(--ink);text-align:center;font-weight:800}
+.q .opts{margin-left:auto;display:flex;gap:6px}
+.q .opts button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 14px;cursor:pointer}
+.q.ok{background:#DDEED7}.q.ok .gap{color:#2F7A3B}
+.q.bad{background:#F6DAD3}
+.score{font-weight:800;margin-top:12px}
+.text{font-size:18px;line-height:1.75;background:var(--paper);border-radius:16px;padding:18px 22px}
+.text h3{margin:0 0 6px;font-family:Georgia,serif;font-size:24px}
+.text p{margin:0 0 12px}
+.text.hl mark{background:#F3D9CF;border-radius:4px;padding:0 3px;font-weight:700}
+.tf{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:9px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.tf .opts{margin-left:auto;display:flex;gap:6px}
+.tf button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.tf.ok{background:#DDEED7}.tf.bad{background:#F6DAD3}
+.disc{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px;margin-top:6px}
+.disc div{background:var(--green);border-radius:14px;padding:12px 16px;font-size:17px;font-weight:600}
+.disc div i{font-style:normal;color:var(--violet);margin-right:6px}
+.spin{text-align:center;margin-top:16px}
+.spin .card{display:inline-block;min-height:80px;min-width:min(560px,100%);background:var(--ink);color:#fff;border-radius:18px;padding:20px 24px;font-size:22px;font-weight:700;margin-bottom:12px}
+@media(max-width:700px){.ex{grid-template-columns:1fr}}
+
+.hero{background-size:cover!important;background-position:center!important}
+.voc{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.voc div{background:var(--paper);border-radius:14px;padding:10px 14px;cursor:pointer;border:2px solid transparent}
+.voc div:hover{border-color:var(--violet)}
+.voc b{display:block;font-size:18px}.voc span{display:block;color:var(--accent);font-weight:700;font-size:15px}.voc em{display:block;font-size:14px;color:var(--muted);margin-top:3px}
+.mt{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:10px}
+.mt button{font:inherit;font-size:16px;text-align:left;border:2px solid var(--ink);background:#fff;border-radius:14px;padding:9px 14px;cursor:pointer}
+.mt button.sel{background:#FFE7A8}.mt button.done{background:#CDE8C6;border-color:#4C9A5B;cursor:default}
+.ch{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ch .n{font-weight:800;color:var(--violet);min-width:24px}
+.ch .o{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.ch .o button{font:inherit;font-size:15px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.ch.ok{background:#DDEED7}.ch.bad{background:#F6DAD3}
+.ty{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ty input{font:inherit;border:2px solid var(--ink);border-radius:10px;padding:4px 10px;width:220px}
+.ty.ok{background:#DDEED7}.ty.bad{background:#F6DAD3}
+.ty small{color:var(--muted)}
+.photo{width:100%;height:300px;object-fit:cover;border-radius:16px;display:block}
+.cap{font-size:11px;color:var(--muted);margin:4px 0 12px}
+.pics{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.pics figure{margin:0;background:var(--paper);border-radius:16px;overflow:hidden}
+.pics img{width:100%;height:170px;object-fit:cover;display:block}
+.pics figcaption{padding:8px 12px;font-weight:700}
+.pics small{display:block;font-weight:400;font-size:10px;color:var(--muted)}
+.lis{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:8px 0 14px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{aspect-ratio:16/9;background:#000;position:relative}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;background-size:cover;background-position:center;cursor:pointer;display:grid;place-items:center}
+.vid .play span{background:#E5484D;color:#fff;font-weight:800;border-radius:12px;padding:10px 20px}
+.vid .info{padding:12px 16px}.vid h3{margin:0;font-size:18px}.vid small{color:var(--muted)}
+.vid ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th,.tbl td{border:1px solid #ddd;padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--paper)}
+@media(max-width:700px){.mt{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="/game-lessons/kit.css">
+</head>
+<body>
+<header class="hero">
+  <div class="kicker">B1 · teens · Граматика: тренажер Have something done: коли робить хтось інший</div>
+  <h1>Have something done, get something done: 100 tasks</h1>
+  <p>B1 · 6 parts · 60 min</p>
+  <span class="cr">Photo: Unsplash</span>
+</header>
+<button class="lk-tbtn" id="teacherBtn" type="button">Teacher version</button>
+<div class="wrap">
+  <section class="lk-overview">
+    <h2>In this lesson you will:</h2>
+    <ul><li>Повторимо правило: Have something done: коли робить хтось інший
+100 завдань від простого до складного
+Розберемо головні пастки</li></ul>
+    <div class="lk-stages" id="stages"></div>
+  </section>
+  <section id="s1" data-stage="practice" data-min="10">
+    <h2><span class="lk-n">1</span>Теорія <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<div class="warn"><p><b>Коли вживаємо</b></p><p>Послуга: хтось робить це для нас, часто за гроші: I had my hair cut on Monday. (У понеділок я підстригся (мене підстригли в перукарні).)</p><p>Плани і домовленості: be having / be going to have: We’re having the kitchen painted next week. (Наступного тижня нам фарбуватимуть кухню.)</p><p>Get something done: те саме, але розмовніше: Max got his bike fixed at the shop. (Максові полагодили велосипед у майстерні.)</p><p>Неприємність, яка з нами сталася: Emma had her phone stolen on the train. (В Емми вкрали телефон у поїзді.)</p><p>Треба віддати комусь зробити: need to have / get: I need to get my glasses repaired. (Мені треба віддати окуляри в ремонт.)</p></div>
+    <div class="warn"><p><b>Форми</b></p><p>+  have / get + що + V3. Приклад: She has her nails done every month.</p><p>час  Змінюється тільки have: has, had, is having, will have, has had. Що + V3 лишаються як є.. Приклад: We’ve had the roof repaired.</p><p>−  don’t / doesn’t / didn’t have + що + V3, haven’t had + що + V3. Приклад: I didn’t have my coat cleaned.</p><p>?  Do / Does / Did + підмет + have + що + V3? Have тут звичайне дієслово, тому питання через do.. Приклад: Where do you have your hair cut?</p><p>by  Виконавця додаємо з by, тільки якщо це важливо.. Приклад: We had the cake made by a famous baker.</p><p>порядок  have + предмет + V3. Інший порядок (had + V3 + предмет) дає Past Perfect, тобто зробив сам.. Приклад: I had my watch repaired. ≠ I had repaired my watch.</p></div>
+    <div class="warn"><p><b>Головна пастка</b></p><p>Порядок слів змінює зміст. I had my bike repaired: хтось полагодив його для мене. I had repaired my bike: я сам полагодив його раніше (Past Perfect). Предмет стоїть між have і V3.</p><p>✗ I had cut my hair at a new salon.</p><p>✓ I had my hair cut at a new salon.</p><p>Після предмета тільки V3. Українською кажемо «помити машину», і хочеться поставити базову форму. Але після предмета завжди третя форма: washed, cut, done.</p><p>✗ We had the car wash.</p><p>✓ We had the car washed.</p><p>Питання і заперечення через do. Have тут звичайне дієслово, тому в Present і Past Simple потрібні do / does / did. Had you ...? і hadn’t my ... неправильні.</p><p>✗ Had you your phone fixed?</p><p>✓ Did you have your phone fixed?</p></div>
+    <div class="warn"><p><b>Маркери:</b> have + що + V3, get + що + V3, at the hairdresser’s, at the garage, at the repair shop, my hair cut, my nails done, my car washed, my bike fixed, my eyes tested, my teeth checked, need to have / get ..., by + хто (виконавець), stolen, broken into (неприємність)</p></div>
+    <div class="warn"><p><b>Шпаргалка: have у різних часах</b></p><p>Час показує тільки have (або get). Частина «що + V3» не змінюється ніколи. Таблиця: час, форма, приклад.</p><p>Present Simple · have / has + що + V3 · She has her car washed every week.</p><p>Present Continuous · am / is / are having + що + V3 · I’m having my room repainted.</p><p>Past Simple · had + що + V3 · They had the fridge delivered.</p><p>Present Perfect · have / has had + що + V3 · We’ve just had the heating fixed.</p><p>will · will have + що + V3 · I’ll have the curtains shortened.</p><p>be going to · am / is / are going to have + що + V3 · He’s going to have his tooth pulled out.</p><p>need to · need to have / get + що + V3 · You need to get your bike checked.</p><p>V3 · cut → cut, do → done, take → taken · steal → stolen, fix → fixed, paint → painted</p></div>
+    <p class="lk-tnote" data-ru="Тренажер на 100 завдань: 5 раундів по 20. На уроці можна пройти 1-2 раунди, решту задати додому. Пояснення до кожної відповіді учень бачить у тренажері на сайті (розділ «Граматика»).&lt;br&gt;">Тренажер на 100 завдань: 5 раундів по 20. На уроці можна пройти 1-2 раунди, решту задати додому. Пояснення до кожної відповіді учень бачить у тренажері на сайті (розділ «Граматика»).<br></p>
+  </section>
+  <section id="s2" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">2</span>Раунд 1. Форми: have + що + V3 <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="painted"><span class="n">1</span><span class="s">We’re having our flat ___ next week.</span><span class="o"><button type="button">painting</button><button type="button">paint</button><button type="button">painted</button><button type="button">to paint</button></span></div>
+<div class="ch" data-a="has"><span class="n">2</span><span class="s">My mum ___ her car washed every Saturday.</span><span class="o"><button type="button">having</button><button type="button">is have</button><button type="button">has</button><button type="button">have</button></span></div>
+<div class="ch" data-a="had"><span class="n">3</span><span class="s">Sophie ___ her nails done for the party yesterday.</span><span class="o"><button type="button">having</button><button type="button">had</button><button type="button">have</button><button type="button">has</button></span></div>
+<div class="ch" data-a="delivered"><span class="n">4</span><span class="s">They had the pizza ___ to their door.</span><span class="o"><button type="button">delivers</button><button type="button">delivered</button><button type="button">delivering</button><button type="button">deliver</button></span></div>
+<div class="ch" data-a="shortened"><span class="n">5</span><span class="s">Emma is going to have her dress ___ because it’s too long.</span><span class="o"><button type="button">shortened</button><button type="button">shorten</button><button type="button">to shorten</button><button type="button">shortening</button></span></div>
+<div class="ch" data-a="had"><span class="n">6</span><span class="s">Our neighbours ___ a swimming pool built in their garden last summer.</span><span class="o"><button type="button">having</button><button type="button">had</button><button type="button">has had</button><button type="button">have</button></span></div>
+<div class="ch" data-a="checked"><span class="n">7</span><span class="s">I’m going to get my teeth ___ tomorrow.</span><span class="o"><button type="button">checking</button><button type="button">check</button><button type="button">to check</button><button type="button">checked</button></span></div>
+<div class="ch" data-a="have"><span class="n">8</span><span class="s">We ___ the windows cleaned twice a year.</span><span class="o"><button type="button">have</button><button type="button">having</button><button type="button">has</button><button type="button">are have</button></span></div>
+<div class="ch" data-a="made"><span class="n">9</span><span class="s">Lily had the cake ___ by her aunt, who is a baker.</span><span class="o"><button type="button">makes</button><button type="button">make</button><button type="button">made</button><button type="button">making</button></span></div>
+<div class="ch" data-a="had"><span class="n">10</span><span class="s">Max ___ his old jacket repaired instead of buying a new one.</span><span class="o"><button type="button">did</button><button type="button">made</button><button type="button">was</button><button type="button">had</button></span></div>
+<div class="ch" data-a="painted"><span class="n">11</span><span class="s">Have you ever had your portrait ___?</span><span class="o"><button type="button">to paint</button><button type="button">painting</button><button type="button">paint</button><button type="button">painted</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; painted · has · had · delivered · shortened · had · checked · have · made · had · painted"><b>Відповіді:</b> painted · has · had · delivered · shortened · had · checked · have · made · had · painted</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="cut"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Lily had her hair ___ (cut) at the new salon.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="fixed"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Max got his bike ___ (fix) at the shop.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="put"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>We had a new door ___ (put) in last month.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="tested"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>I need to have my eyes ___ (test).</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="had"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Dan ___ (have) his photo taken for his new passport last week.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="repaired"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Tom has just had his phone screen ___ (repair).</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="got"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>Kate ___ (get) her laptop cleaned last month, and now it works faster.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="brought"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>My grandparents have their groceries ___ (bring) to the house.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="installed"><span class="n" style="font-weight:800;color:var(--violet)">9</span><span>They’re having a new kitchen ___ (install).</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; cut · fixed · put · tested · had · repaired · got · brought · installed"><b>Відповіді:</b> cut · fixed · put · tested · had · repaired · got · brought · installed</p>
+  </section>
+  <section id="s3" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">3</span>Раунд 2. Заперечення і питання <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="do you have"><span class="n">1</span><span class="s">Where ___ your hair cut?</span><span class="o"><button type="button">you have</button><button type="button">have you</button><button type="button">do you have</button><button type="button">are you have</button></span></div>
+<div class="ch" data-a="Did"><span class="n">2</span><span class="s">___ you have your phone fixed yesterday?</span><span class="o"><button type="button">Were</button><button type="button">Did</button><button type="button">Have</button><button type="button">Had</button></span></div>
+<div class="ch" data-a="aren’t having"><span class="n">3</span><span class="s">We ___ the house painted this year. It’s too expensive.</span><span class="o"><button type="button">aren’t having</button><button type="button">haven’t</button><button type="button">don’t having</button><button type="button">not have</button></span></div>
+<div class="ch" data-a="cleaned"><span class="n">4</span><span class="s">Why didn’t you get the jacket ___?</span><span class="o"><button type="button">clean</button><button type="button">to clean</button><button type="button">cleaning</button><button type="button">cleaned</button></span></div>
+<div class="ch" data-a="have"><span class="n">5</span><span class="s">How often does Emma ___ her eyes tested?</span><span class="o"><button type="button">has</button><button type="button">have</button><button type="button">had</button><button type="button">having</button></span></div>
+<div class="ch" data-a="had"><span class="n">6</span><span class="s">Has Tom ___ his tooth checked yet?</span><span class="o"><button type="button">had</button><button type="button">have</button><button type="button">has</button><button type="button">having</button></span></div>
+<div class="ch" data-a="have"><span class="n">7</span><span class="s">Are you going to ___ the wall painted blue?</span><span class="o"><button type="button">has</button><button type="button">having</button><button type="button">had</button><button type="button">have</button></span></div>
+<div class="ch" data-a="didn’t have"><span class="n">8</span><span class="s">I ___ my laptop repaired. I fixed it myself!</span><span class="o"><button type="button">don’t had</button><button type="button">didn’t had</button><button type="button">didn’t have</button><button type="button">haven’t</button></span></div>
+<div class="ch" data-a="Did you have your hair cut?"><span class="n">9</span><span class="s">Обери правильне питання: ___</span><span class="o"><button type="button">Had you your hair cut?</button><button type="button">Did you had your hair cut?</button><button type="button">Did you have your hair cut?</button><button type="button">Did you have cut your hair?</button></span></div>
+<div class="ch" data-a="delivered"><span class="n">10</span><span class="s">When are you having your new sofa ___?</span><span class="o"><button type="button">deliver</button><button type="button">delivered</button><button type="button">delivering</button><button type="button">to deliver</button></span></div>
+<div class="ch" data-a="did you have"><span class="n">11</span><span class="s">Why ___ the locks changed? Did someone lose a key?</span><span class="o"><button type="button">had you</button><button type="button">did you have</button><button type="button">you had</button><button type="button">have you</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; do you have · Did · aren’t having · cleaned · have · had · have · didn’t have · Did you have your hair cut? · delivered · did you have"><b>Відповіді:</b> do you have · Did · aren’t having · cleaned · have · had · have · didn’t have · Did you have your hair cut? · delivered · did you have</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="didn’t have|did not have"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>I ___ (not / have) my bike checked before the trip, and the brakes failed.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="doesn’t get|does not get"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Sophie ___ (not / get) her nails done very often.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Do you have"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>___ (you / have) your car serviced every year?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="hasn’t had|has not had"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Max ___ (not / have) his hair cut for months. It’s very long now.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="get"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Did you ___ (get) the tickets printed?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="delivered"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>They didn’t have the pizza ___ (deliver), they picked it up themselves.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="did Lily have"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>Where ___ (Lily / have) her dress made last year?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="haven’t had|have not had"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>We ___ (not / have) the carpet cleaned since last spring.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="ironed"><span class="n" style="font-weight:800;color:var(--violet)">9</span><span>Does Dan get his shirts ___ (iron) at the dry cleaner’s?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; didn’t have · doesn’t get · Do you have · hasn’t had · get · delivered · did Lily have · haven’t had · ironed"><b>Відповіді:</b> didn’t have · doesn’t get · Do you have · hasn’t had · get · delivered · did Lily have · haven’t had · ironed</p>
+  </section>
+  <section id="s4" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">4</span>Раунд 3. Коли вживати: сам чи хтось інший? <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="has his hair cut"><span class="n">1</span><span class="s">Max can’t cut hair, so he ___ at the barber’s.</span><span class="o"><button type="button">has his hair cut</button><button type="button">cuts his hair</button><button type="button">has cut his hair</button><button type="button">his hair has cut</button></span></div>
+<div class="ch" data-a="repairs his car"><span class="n">2</span><span class="s">Dan is a mechanic, so he ___ himself.</span><span class="o"><button type="button">gets his car repaired</button><button type="button">repairs his car</button><button type="button">has his car repaired</button><button type="button">is repaired his car</button></span></div>
+<div class="ch" data-a="had it checked"><span class="n">3</span><span class="s">Sophie’s tooth hurt, so she ___ by the dentist.</span><span class="o"><button type="button">had it checked</button><button type="button">checked it</button><button type="button">had checked it</button><button type="button">has it checking</button></span></div>
+<div class="ch" data-a="makes"><span class="n">4</span><span class="s">Lily loves baking, so she always ___ her own birthday cake.</span><span class="o"><button type="button">has made</button><button type="button">gets made</button><button type="button">has it made</button><button type="button">makes</button></span></div>
+<div class="ch" data-a="have it cut"><span class="n">5</span><span class="s">My hair is too long. I’m going to ___ tomorrow.</span><span class="o"><button type="button">have cut it</button><button type="button">have it cut</button><button type="button">cut it by someone</button><button type="button">be cut it</button></span></div>
+<div class="ch" data-a="get your eyes tested"><span class="n">6</span><span class="s">Why don’t you ___? You can’t see the board.</span><span class="o"><button type="button">get tested your eyes</button><button type="button">have tested your eyes</button><button type="button">get your eyes tested</button><button type="button">test your eyes</button></span></div>
+<div class="ch" data-a="had it written"><span class="n">7</span><span class="s">Emma didn’t write the song herself. She ___ by a friend.</span><span class="o"><button type="button">wrote it</button><button type="button">had it written</button><button type="button">got written it</button><button type="button">had written it</button></span></div>
+<div class="ch" data-a="has had his hair cut"><span class="n">8</span><span class="s">Look at Max’s new haircut! He ___ at a fancy salon.</span><span class="o"><button type="button">has cut his hair</button><button type="button">has cut by someone</button><button type="button">has his hair cutting</button><button type="button">has had his hair cut</button></span></div>
+<div class="ch" data-a="have them ironed"><span class="n">9</span><span class="s">I don’t iron my shirts myself. I ___ at the laundry.</span><span class="o"><button type="button">am ironed them</button><button type="button">iron them</button><button type="button">have ironed them</button><button type="button">have them ironed</button></span></div>
+<div class="ch" data-a="had"><span class="n">10</span><span class="s">Dan ___ his car window smashed last night.</span><span class="o"><button type="button">has</button><button type="button">was</button><button type="button">had</button><button type="button">did</button></span></div>
+<div class="ch" data-a="has"><span class="n">11</span><span class="s">Sophie isn’t a hairdresser, so she ___ her hair dyed at a salon.</span><span class="o"><button type="button">is</button><button type="button">does</button><button type="button">has</button><button type="button">dyes</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; has his hair cut · repairs his car · had it checked · makes · have it cut · get your eyes tested · had it written · has had his hair cut · have them ironed · had · has"><b>Відповіді:</b> has his hair cut · repairs his car · had it checked · makes · have it cut · get your eyes tested · had it written · has had his hair cut · have them ironed · had · has</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="had it painted"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>I didn’t paint the room myself. I ___ (have / it / paint).</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="had her bag stolen"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Emma ___ (have / her bag / steal) on the bus yesterday.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="get it fixed"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Our roof is leaking. We need to ___ (get / it / fix).</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="had it replaced"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>The kids broke the window, so we ___ (have / it / replace) the next day.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="got his wallet stolen"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Tom ___ (get / his wallet / steal) at the stadium last Saturday.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="have it repaired"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>I can’t fix this laptop myself. I’ll ___ (have / it / repair) at the shop.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="had it checked"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>Dan’s car was making a strange noise, so he ___ (have / it / check).</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="having our class photo taken"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>We’re ___ (have / our class photo / take) tomorrow.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="had it delivered"><span class="n" style="font-weight:800;color:var(--violet)">9</span><span>Kate didn’t want to carry the new sofa home, so she ___ (have / it / deliver).</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; had it painted · had her bag stolen · get it fixed · had it replaced · got his wallet stolen · have it repaired · had it checked · having our class photo taken · had it delivered"><b>Відповіді:</b> had it painted · had her bag stolen · get it fixed · had it replaced · got his wallet stolen · have it repaired · had it checked · having our class photo taken · had it delivered</p>
+  </section>
+  <section id="s5" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">5</span>Раунд 4. Пастки: порядок слів і V3 <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="I had my bike repaired last week."><span class="n">1</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">I have my bike repaired last week.</button><button type="button">I had my bike repair last week.</button><button type="button">I had my bike repaired last week.</button><button type="button">I had repaired my bike by a mechanic.</button></span></div>
+<div class="ch" data-a="We had the fence painted."><span class="n">2</span><span class="s">Яке речення означає, що хтось інший пофарбував паркан?: ___</span><span class="o"><button type="button">We had the fence painted.</button><button type="button">We had painted the fence.</button><button type="button">We painted the fence.</button><button type="button">We have painted the fence.</button></span></div>
+<div class="ch" data-a="had"><span class="n">3</span><span class="s">Sophie ___ her hair dyed pink last summer.</span><span class="o"><button type="button">have</button><button type="button">had</button><button type="button">has</button><button type="button">is having</button></span></div>
+<div class="ch" data-a="He gets his hair cut every month."><span class="n">4</span><span class="s">Знайди речення без помилки: ___</span><span class="o"><button type="button">He gets his hair cutting every month.</button><button type="button">He gets his hair cut every month.</button><button type="button">He get his hair cut every month.</button><button type="button">He gets cut his hair every month.</button></span></div>
+<div class="ch" data-a="taken"><span class="n">5</span><span class="s">I had my tooth ___ out because it hurt so much.</span><span class="o"><button type="button">taken</button><button type="button">took</button><button type="button">taking</button><button type="button">take</button></span></div>
+<div class="ch" data-a="cut"><span class="n">6</span><span class="s">We are going to have the old tree ___ down.</span><span class="o"><button type="button">cut</button><button type="button">to cut</button><button type="button">cutting</button><button type="button">cutted</button></span></div>
+<div class="ch" data-a="painted"><span class="n">7</span><span class="s">Where did you get your bike ___? It looks great.</span><span class="o"><button type="button">paint</button><button type="button">to paint</button><button type="button">painted</button><button type="button">painting</button></span></div>
+<div class="ch" data-a="did her hair"><span class="n">8</span><span class="s">Emma did it herself, without a hairdresser: she ___.</span><span class="o"><button type="button">had her hair done</button><button type="button">has her hair done</button><button type="button">got her hair done</button><button type="button">did her hair</button></span></div>
+<div class="ch" data-a="broken into"><span class="n">9</span><span class="s">They had their house ___ while they were on holiday.</span><span class="o"><button type="button">break into</button><button type="button">broken into</button><button type="button">breaking into</button><button type="button">broke into</button></span></div>
+<div class="ch" data-a="have my hair cut"><span class="n">10</span><span class="s">I don’t want to ___. I like it long.</span><span class="o"><button type="button">having my hair cut</button><button type="button">have my hair cutting</button><button type="button">have my hair cut</button><button type="button">have cut my hair</button></span></div>
+<div class="ch" data-a="had"><span class="n">11</span><span class="s">We’ve just ___ the heating fixed, so the flat is warm again.</span><span class="o"><button type="button">had</button><button type="button">having</button><button type="button">have</button><button type="button">has</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; I had my bike repaired last week. · We had the fence painted. · had · He gets his hair cut every month. · taken · cut · painted · did her hair · broken into · have my hair cut · had"><b>Відповіді:</b> I had my bike repaired last week. · We had the fence painted. · had · He gets his hair cut every month. · taken · cut · painted · did her hair · broken into · have my hair cut · had</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="washed"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>We had the car ___ (wash) before the trip.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="pierced"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Lily is having her ears ___ (pierce) on Saturday.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Have you had"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>___ (you / have) your photo taken for the school ID yet?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="gets"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>My sister always ___ (get) her nails painted before a holiday.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="had"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Dan ___ (have) his car stolen last night.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="checked"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>The teacher had the essays ___ (check) by a colleague.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="have"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>I’ll ___ (have) the documents sent to your email.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="had"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>Max has ___ (have) his glasses repaired three times this year.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="get"><span class="n" style="font-weight:800;color:var(--violet)">9</span><span>You should ___ (get) that cut on your hand looked at by a doctor.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; washed · pierced · Have you had · gets · had · checked · have · had · get"><b>Відповіді:</b> washed · pierced · Have you had · gets · had · checked · have · had · get</p>
+  </section>
+  <section id="s6" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">6</span>Раунд 5. Фінальний бос <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="have it repaired"><span class="n">1</span><span class="s">My phone screen cracked. I can’t fix it myself, so I’m going to ___.</span><span class="o"><button type="button">repair it</button><button type="button">be repaired it</button><button type="button">have it repaired</button><button type="button">have repaired it</button></span></div>
+<div class="ch" data-a="had"><span class="n">2</span><span class="s">Dan’s car broke down. He ___ it towed to the garage.</span><span class="o"><button type="button">has got to</button><button type="button">did</button><button type="button">had</button><button type="button">was</button></span></div>
+<div class="ch" data-a="are having"><span class="n">3</span><span class="s">We can’t use the kitchen today because we ___ it repainted right now.</span><span class="o"><button type="button">have had</button><button type="button">are having</button><button type="button">having</button><button type="button">had</button></span></div>
+<div class="ch" data-a="cleaned"><span class="n">4</span><span class="s">Max wants to look smart for the interview, so he’s going to get his suit ___.</span><span class="o"><button type="button">cleaning</button><button type="button">cleans</button><button type="button">cleaned</button><button type="button">clean</button></span></div>
+<div class="ch" data-a="hasn’t had"><span class="n">5</span><span class="s">Sophie can’t see well. She ___ her eyes tested since last year.</span><span class="o"><button type="button">doesn’t have</button><button type="button">isn’t having</button><button type="button">didn’t have</button><button type="button">hasn’t had</button></span></div>
+<div class="ch" data-a="had her checked"><span class="n">6</span><span class="s">Our cat was sick, so we ___ by the vet.</span><span class="o"><button type="button">had her checked</button><button type="button">had checked her</button><button type="button">have her checking</button><button type="button">checked her</button></span></div>
+<div class="ch" data-a="have it fixed"><span class="n">7</span><span class="s">The pipe in the bathroom is leaking. We should ___ as soon as possible.</span><span class="o"><button type="button">have fixed it</button><button type="button">have it fixing</button><button type="button">have it fixed</button><button type="button">fix it by a plumber</button></span></div>
+<div class="ch" data-a="had them cleaned"><span class="n">8</span><span class="s">I didn’t clean the windows myself. I ___.</span><span class="o"><button type="button">had them cleaned</button><button type="button">have them clean</button><button type="button">had cleaned them</button><button type="button">cleaned them</button></span></div>
+<div class="ch" data-a="has her lunch delivered"><span class="n">9</span><span class="s">My grandma doesn’t cook on Sundays. She ___ from a café.</span><span class="o"><button type="button">delivers her lunch</button><button type="button">has delivered her lunch</button><button type="button">has her lunch delivered</button><button type="button">has her lunch deliver</button></span></div>
+<div class="ch" data-a="is having"><span class="n">10</span><span class="s">Lily is going to the hairdresser’s on Friday. She ___ her hair cut.</span><span class="o"><button type="button">has</button><button type="button">had</button><button type="button">is having</button><button type="button">having</button></span></div>
+<div class="ch" data-a="Dan had the lamp fixed."><span class="n">11</span><span class="s">Обери речення, де роботу зробив хтось інший: ___</span><span class="o"><button type="button">Dan had fixed the lamp before we came.</button><button type="button">Dan has fixed the lamp.</button><button type="button">Dan fixed the lamp.</button><button type="button">Dan had the lamp fixed.</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; have it repaired · had · are having · cleaned · hasn’t had · had her checked · have it fixed · had them cleaned · has her lunch delivered · is having · Dan had the lamp fixed."><b>Відповіді:</b> have it repaired · had · are having · cleaned · hasn’t had · had her checked · have it fixed · had them cleaned · has her lunch delivered · is having · Dan had the lamp fixed.</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="had it dyed"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Emma’s hair is purple now! She ___ (have / it / dye) yesterday.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="had it made"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Lily didn’t make her prom dress. She ___ (have / it / make) by a tailor.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="had his headphones stolen"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Poor Tom! Someone took his headphones at the festival. He ___ (have / his headphones / steal).</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="got my poster printed"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>The printer at home is broken, so I ___ (get / my poster / print) at the copy shop yesterday.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="have them shortened"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>These jeans are too long. I need to ___ (have / them / shorten).</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="did you get"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>“Your nails look amazing! Where ___ (you / get) them done?” “At a salon near the park, yesterday.”</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="decorated"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>Kate’s birthday cake was amazing. She had it ___ (decorate) with tiny cats.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="had his boxes taken"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>Max moved last week. He ___ (have / his boxes / take) to the new flat by a van company.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Have you had|Did you have"><span class="n" style="font-weight:800;color:var(--violet)">9</span><span>You look different! ___ (you / have) your hair cut?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; had it dyed · had it made · had his headphones stolen · got my poster printed · have them shortened · did you get · decorated · had his boxes taken · Have you had"><b>Відповіді:</b> had it dyed · had it made · had his headphones stolen · got my poster printed · have them shortened · did you get · decorated · had his boxes taken · Have you had</p>
+  </section>
+  <section class="end"><h2>Great job!</h2><p>See you next lesson.</p></section>
+</div>
+<div class="toast" id="toast"></div>
+<script>window.MURLY_LESSON={"id": "lib-drill-causative-have", "title": "Have something done, get something done: 100 tasks", "homework": ["s2", "s3", "s4", "s5", "s6"], "hw": {"s2": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "We’re having our flat {painted|paint|painting|to paint} next week.\nMy mum {has|have|having|is have} her car washed every Saturday.\nSophie {had|has|have|having} her nails done for the party yesterday.\nThey had the pizza {delivered|deliver|delivering|delivers} to their door.\nEmma is going to have her dress {shortened|shorten|shortening|to shorten} because it’s too long.\nOur neighbours {had|has had|have|having} a swimming pool built in their garden last summer.\nI’m going to get my teeth {checked|check|checking|to check} tomorrow.\nWe {have|has|having|are have} the windows cleaned twice a year.\nLily had the cake {made|make|making|makes} by her aunt, who is a baker.\nMax {had|did|was|made} his old jacket repaired instead of buying a new one.\nHave you ever had your portrait {painted|paint|painting|to paint}?"}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "Lily had her hair [cut] (cut) at the new salon.\nMax got his bike [fixed] (fix) at the shop.\nWe had a new door [put] (put) in last month.\nI need to have my eyes [tested] (test).\nDan [had] (have) his photo taken for his new passport last week.\nTom has just had his phone screen [repaired] (repair).\nKate [got] (get) her laptop cleaned last month, and now it works faster.\nMy grandparents have their groceries [brought] (bring) to the house.\nThey’re having a new kitchen [installed] (install)."}], "s3": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Where {do you have|you have|have you|are you have} your hair cut?\n{Did|Had|Have|Were} you have your phone fixed yesterday?\nWe {aren’t having|haven’t|not have|don’t having} the house painted this year. It’s too expensive.\nWhy didn’t you get the jacket {cleaned|clean|cleaning|to clean}?\nHow often does Emma {have|has|having|had} her eyes tested?\nHas Tom {had|have|having|has} his tooth checked yet?\nAre you going to {have|having|had|has} the wall painted blue?\nI {didn’t have|didn’t had|haven’t|don’t had} my laptop repaired. I fixed it myself!\nОбери правильне питання: {Did you have your hair cut?|Had you your hair cut?|Did you had your hair cut?|Did you have cut your hair?}\nWhen are you having your new sofa {delivered|deliver|delivering|to deliver}?\nWhy {did you have|you had|had you|have you} the locks changed? Did someone lose a key?"}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "I [didn’t have/did not have] (not / have) my bike checked before the trip, and the brakes failed.\nSophie [doesn’t get/does not get] (not / get) her nails done very often.\n[Do you have] (you / have) your car serviced every year?\nMax [hasn’t had/has not had] (not / have) his hair cut for months. It’s very long now.\nDid you [get] (get) the tickets printed?\nThey didn’t have the pizza [delivered] (deliver), they picked it up themselves.\nWhere [did Lily have] (Lily / have) her dress made last year?\nWe [haven’t had/have not had] (not / have) the carpet cleaned since last spring.\nDoes Dan get his shirts [ironed] (iron) at the dry cleaner’s?"}], "s4": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Max can’t cut hair, so he {has his hair cut|cuts his hair|has cut his hair|his hair has cut} at the barber’s.\nDan is a mechanic, so he {repairs his car|has his car repaired|gets his car repaired|is repaired his car} himself.\nSophie’s tooth hurt, so she {had it checked|checked it|had checked it|has it checking} by the dentist.\nLily loves baking, so she always {makes|has made|gets made|has it made} her own birthday cake.\nMy hair is too long. I’m going to {have it cut|cut it by someone|have cut it|be cut it} tomorrow.\nWhy don’t you {get your eyes tested|test your eyes|have tested your eyes|get tested your eyes}? You can’t see the board.\nEmma didn’t write the song herself. She {had it written|wrote it|had written it|got written it} by a friend.\nLook at Max’s new haircut! He {has had his hair cut|has cut his hair|has his hair cutting|has cut by someone} at a fancy salon.\nI don’t iron my shirts myself. I {have them ironed|iron them|have ironed them|am ironed them} at the laundry.\nDan {had|has|was|did} his car window smashed last night.\nSophie isn’t a hairdresser, so she {has|dyes|is|does} her hair dyed at a salon."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "I didn’t paint the room myself. I [had it painted] (have / it / paint).\nEmma [had her bag stolen] (have / her bag / steal) on the bus yesterday.\nOur roof is leaking. We need to [get it fixed] (get / it / fix).\nThe kids broke the window, so we [had it replaced] (have / it / replace) the next day.\nTom [got his wallet stolen] (get / his wallet / steal) at the stadium last Saturday.\nI can’t fix this laptop myself. I’ll [have it repaired] (have / it / repair) at the shop.\nDan’s car was making a strange noise, so he [had it checked] (have / it / check).\nWe’re [having our class photo taken] (have / our class photo / take) tomorrow.\nKate didn’t want to carry the new sofa home, so she [had it delivered] (have / it / deliver)."}], "s5": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Обери правильне речення: {I had my bike repaired last week.|I had repaired my bike by a mechanic.|I had my bike repair last week.|I have my bike repaired last week.}\nЯке речення означає, що хтось інший пофарбував паркан?: {We had the fence painted.|We had painted the fence.|We painted the fence.|We have painted the fence.}\nSophie {had|have|has|is having} her hair dyed pink last summer.\nЗнайди речення без помилки: {He gets his hair cut every month.|He gets cut his hair every month.|He get his hair cut every month.|He gets his hair cutting every month.}\nI had my tooth {taken|took|take|taking} out because it hurt so much.\nWe are going to have the old tree {cut|cutting|cutted|to cut} down.\nWhere did you get your bike {painted|paint|painting|to paint}? It looks great.\nEmma did it herself, without a hairdresser: she {did her hair|had her hair done|got her hair done|has her hair done}.\nThey had their house {broken into|break into|broke into|breaking into} while they were on holiday.\nI don’t want to {have my hair cut|having my hair cut|have my hair cutting|have cut my hair}. I like it long.\nWe’ve just {had|have|having|has} the heating fixed, so the flat is warm again."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "We had the car [washed] (wash) before the trip.\nLily is having her ears [pierced] (pierce) on Saturday.\n[Have you had] (you / have) your photo taken for the school ID yet?\nMy sister always [gets] (get) her nails painted before a holiday.\nDan [had] (have) his car stolen last night.\nThe teacher had the essays [checked] (check) by a colleague.\nI’ll [have] (have) the documents sent to your email.\nMax has [had] (have) his glasses repaired three times this year.\nYou should [get] (get) that cut on your hand looked at by a doctor."}], "s6": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "My phone screen cracked. I can’t fix it myself, so I’m going to {have it repaired|repair it|have repaired it|be repaired it}.\nDan’s car broke down. He {had|was|did|has got to} it towed to the garage.\nWe can’t use the kitchen today because we {are having|have had|had|having} it repainted right now.\nMax wants to look smart for the interview, so he’s going to get his suit {cleaned|clean|cleaning|cleans}.\nSophie can’t see well. She {hasn’t had|didn’t have|doesn’t have|isn’t having} her eyes tested since last year.\nOur cat was sick, so we {had her checked|checked her|had checked her|have her checking} by the vet.\nThe pipe in the bathroom is leaking. We should {have it fixed|fix it by a plumber|have fixed it|have it fixing} as soon as possible.\nI didn’t clean the windows myself. I {had them cleaned|cleaned them|had cleaned them|have them clean}.\nMy grandma doesn’t cook on Sundays. She {has her lunch delivered|delivers her lunch|has delivered her lunch|has her lunch deliver} from a café.\nLily is going to the hairdresser’s on Friday. She {is having|has|had|having} her hair cut.\nОбери речення, де роботу зробив хтось інший: {Dan had the lamp fixed.|Dan had fixed the lamp before we came.|Dan fixed the lamp.|Dan has fixed the lamp.}"}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "Emma’s hair is purple now! She [had it dyed] (have / it / dye) yesterday.\nLily didn’t make her prom dress. She [had it made] (have / it / make) by a tailor.\nPoor Tom! Someone took his headphones at the festival. He [had his headphones stolen] (have / his headphones / steal).\nThe printer at home is broken, so I [got my poster printed] (get / my poster / print) at the copy shop yesterday.\nThese jeans are too long. I need to [have them shortened] (have / them / shorten).\n“Your nails look amazing! Where [did you get] (you / get) them done?” “At a salon near the park, yesterday.”\nKate’s birthday cake was amazing. She had it [decorated] (decorate) with tiny cats.\nMax moved last week. He [had his boxes taken] (have / his boxes / take) to the new flat by a van company.\nYou look different! [Have you had/Did you have] (you / have) your hair cut?"}]}};</script>
+<script>
+(function(){var l=(document.cookie.match(/(?:^|; )murly_lang=(\w+)/)||[])[1];try{l=l||localStorage.getItem('murly:tlang')}catch(e){}l=l==='ru'?'ru':'uk';document.querySelectorAll('[data-pairs-'+l+']').forEach(function(b){b.dataset.pairs=b.getAttribute('data-pairs-'+l)});})();
+</script>
+<script>
+const $ = (id) => document.getElementById(id);
+const LIS = {};
+function say(w, rate) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; const v = speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang) && /Google|Natural|Libby|Sonia|Daniel/.test(x.name)) || speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang)); if (v) u.voice = v; u.rate = rate || .95; speechSynthesis.speak(u); } catch (e) { } }
+const sh = (a) => a.map((x) => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map((x) => x[1]);
+document.querySelectorAll('.voc div').forEach((d) => d.onclick = () => say(d.dataset.say));
+document.querySelectorAll('[data-play]').forEach((b) => b.onclick = () => say(LIS[b.dataset.play], b.dataset.slow ? .75 : .95));
+document.querySelectorAll('[data-stop]').forEach((b) => b.onclick = () => { try { speechSynthesis.cancel(); } catch (e) { } });
+document.querySelectorAll('.ch').forEach((q) => q.querySelectorAll('button').forEach((b) => b.onclick = () => { if (q.classList.contains('ok')) return; const ok = b.textContent === q.dataset.a; q.classList.toggle('ok', ok); q.classList.toggle('bad', !ok); if (ok) { const s = q.querySelector('.s'); if (s && s.textContent.includes('___')) { s.textContent = s.textContent.replace('___', q.dataset.a); } } }));
+const norm = (x) => x.toLowerCase().replace(/[’']/g, "'").replace(/[,;:"“”«»]/g, ' ').replace(/\s+/g, ' ').replace(/[.!?]$/, '').trim();
+document.querySelectorAll('.ty').forEach((r) => { const inp = r.querySelector('input'); const chk = () => { const ok = r.dataset.a.split('|').some((a) => norm(a) === norm(inp.value)); r.classList.toggle('ok', ok); r.classList.toggle('bad', !ok && inp.value.trim() !== ''); }; r.querySelector('button').onclick = chk; inp.onkeydown = (e) => { if (e.key === 'Enter') chk(); }; });
+document.querySelectorAll('[data-mt]').forEach((box) => { const pairs = JSON.parse(box.dataset.pairs); const L = sh(pairs.map((p) => p[0])), R = sh(pairs.map((p) => p[1])); let sel = null, done = 0, err = 0; box.innerHTML = L.map((w, i) => `<button type="button" data-w="${w}">${w}</button><button type="button" data-d="${R[i]}">${R[i]}</button>`).join('');
+  box.querySelectorAll('button').forEach((b) => b.onclick = () => { if (b.classList.contains('done')) return; if (!sel || (sel.dataset.w && b.dataset.w) || (sel.dataset.d && b.dataset.d)) { if (sel) sel.classList.remove('sel'); sel = b; b.classList.add('sel'); return; } const w = sel.dataset.w || b.dataset.w, d = sel.dataset.d || b.dataset.d; if (pairs.some((p) => p[0] === w && p[1] === d)) { sel.classList.add('done'); b.classList.add('done'); done++; say(w); if (done === pairs.length) document.querySelector(`[data-mtres="${box.dataset.mt}"]`).textContent = err ? `Done! Mistakes: ${err}` : 'Perfect!'; } else err++; sel.classList.remove('sel'); sel = null; }); });
+document.querySelectorAll('[data-vids]').forEach((box) => JSON.parse(box.dataset.vids).forEach(([id, title, ch, qs]) => { const d = document.createElement('div'); d.className = 'vid'; d.innerHTML = `<div class="frame"><button class="play" type="button" style="background-image:url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)"><span>PLAY</span></button></div><div class="info"><h3>${title}</h3><small>YouTube · ${ch}</small><ol>${qs.map((q) => `<li>${q}</li>`).join('')}</ol></div>`; d.querySelector('.play').onclick = (e) => { e.currentTarget.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&cc_load_policy=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${title}"></iframe>`; }; box.appendChild(d); }));
+document.querySelectorAll('[data-spin]').forEach((b) => { const list = JSON.parse(b.dataset.spin); let last = -1; b.onclick = () => { let i; do { i = Math.floor(Math.random() * list.length); } while (i === last && list.length > 1); last = i; document.getElementById(b.dataset.target).textContent = list[i]; }; });
+try { const k = 'murly:' + (window.MURLY_LESSON ? MURLY_LESSON.id : 'x') + ':hw'; const t = $('hwText'); if (t) { t.value = localStorage.getItem(k) || ''; t.oninput = () => localStorage.setItem(k, t.value); } } catch (e) { }
+const STAGES = [...document.querySelectorAll('.wrap > section[id]')];
+$('stages').innerHTML = STAGES.map((s) => `<a href="#${s.id}"><b>${s.querySelector('.lk-n').textContent}</b><span>${s.dataset.stage}</span><small>${s.dataset.min !== '0' ? s.dataset.min + ' min' : 'at home'}</small></a>`).join('');
+$('teacherBtn').onclick = (e) => { const on = document.body.classList.toggle('teacher'); e.currentTarget.textContent = on ? 'Student version' : 'Teacher version'; };
+</script>
+<script src="/game-lessons/kit.js" defer></script>
+</body>
+</html>

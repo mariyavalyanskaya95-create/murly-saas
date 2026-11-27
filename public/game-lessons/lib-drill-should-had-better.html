@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Should, ought to, had better; should have: 100 tasks (B1) | Murly</title>
+<link rel="icon" href="/favicon.svg">
+<meta name="description" content="Повторимо правило: Порада: should, ought to, had better, should have
+100 завдань від простого до складного
+Розберемо головні пастки">
+<link rel="canonical" href="https://murly.com.ua/game-lessons/lib-drill-should-had-better.html">
+<style>
+:root{--paper:#F3F0EA;--ink:#17181C;--violet:#3D4A7A;--lav:#D9D3C7;--pink:#E9C9BC;--green:#D4E2CF;--white:#fff;--muted:#62646B;--accent:#B5482F}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+/* hero */
+.hero{background:linear-gradient(rgba(16,17,22,.5),rgba(16,17,22,.72)),url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1400&q=70&auto=format&fit=crop");color:#fff;padding:70px 18px 56px;text-align:center;position:relative;overflow:hidden}
+.hero .kicker{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#E9C9BC;font-weight:700}
+.hero .cr{position:absolute;right:12px;bottom:8px;font-size:11px;color:rgba(255,255,255,.6)}
+.hero h1{margin:8px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(36px,6vw,64px);letter-spacing:-.5px;font-weight:700}
+.hero h1 span{color:var(--pink);font-style:italic}
+.hero p{margin:12px 0 0;font-size:17px;color:#e6e2da}
+.hero .flags{display:flex;justify-content:center;gap:12px;margin-top:22px;flex-wrap:wrap}
+.hero .flags svg{width:40px;height:26px;border-radius:3px;opacity:.9}
+/* sections */
+section{margin-top:30px;background:var(--white);border-radius:18px;padding:28px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.05)}
+section h2{margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tag{font-family:"Segoe UI",system-ui,sans-serif;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--paper);color:var(--accent);text-transform:uppercase;letter-spacing:1px}
+.lk-n{display:inline-grid;place-items:center;width:42px;height:42px;background:var(--violet);color:#fff;border-radius:50%;font-size:21px;flex:none}
+.lk-mode{font-size:13px;font-weight:700;border:2px dashed var(--lav);color:var(--muted);padding:2px 10px;border-radius:999px}
+.lk-ins{font-size:17px;background:var(--paper);border-radius:12px;padding:10px 14px;margin:6px 0 18px}
+.lk-sub{margin:24px 0 10px;font-size:19px}
+.btn{font:inherit;font-weight:700;border:0;border-radius:999px;background:var(--ink);color:#fff;padding:10px 20px;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+.btn.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+/* teacher */
+.lk-tbtn{position:fixed;right:16px;top:70px;z-index:45;font:inherit;font-weight:800;border:2px solid var(--ink);background:var(--pink);padding:8px 14px;border-radius:12px;cursor:pointer}
+body.teacher .lk-tbtn{background:var(--green)}
+.lk-ans,.lk-tnote{display:none}
+body.teacher .lk-ans{display:block;margin-top:8px;font-weight:700;color:#1d5a12;background:var(--green);border-left:5px solid #5aa845;padding:6px 10px;font-size:15px;border-radius:6px}
+body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff3f7;border-left:5px solid #d9789a;padding:8px 12px;font-size:15px;border-radius:6px}
+/* overview */
+.lk-overview ul{font-size:17px;line-height:1.7;margin:6px 0 16px}
+.lk-stages{display:flex;flex-wrap:wrap;gap:8px}
+.lk-stages a{display:grid;border-radius:14px;padding:8px 12px;text-decoration:none;color:var(--ink);background:var(--paper);font-weight:700;min-width:100px}
+.lk-stages a span{text-transform:capitalize}
+.lk-stages a b{font-size:20px;color:var(--violet)}
+.lk-stages a small{font-weight:600;color:var(--muted)}
+/* warm-up */
+.taxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tax{background:var(--paper);border-radius:18px;padding:16px;display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center}
+.tax svg{width:56px;height:56px}
+.tax b{display:block;font-size:17px}
+.tax small{color:var(--muted);font-size:14px}
+.qs{display:grid;gap:10px;margin-top:18px}
+.qs div{background:var(--green);border-radius:14px;padding:10px 16px;font-size:18px;font-weight:600}
+.phr{background:#fff7e8;border-radius:14px;padding:12px 16px;margin-top:16px;font-size:15px}
+.phr ul{margin:6px 0 0;padding-left:18px}
+.fic{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:16px}
+.fic .c{background:#fff;border:2px solid #1B2140;border-radius:16px;padding:14px 16px;box-shadow:3px 3px 0 #1B2140}
+.fic .c b{display:block;font-size:18px;line-height:1.35;margin-bottom:8px}
+.fic .c .k{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.fic .c .k span{font-size:13px;background:#eef1fb;border-radius:999px;padding:3px 10px}
+.fic .c details{margin-top:8px;font-size:15px;color:#3b4160}
+.fic .c summary{cursor:pointer;font-weight:700;color:#534AB7}
+.fi-n{display:inline-flex;width:28px;height:28px;border-radius:50%;background:#2F4BA0;color:#fff;align-items:center;justify-content:center;font-size:14px;margin-right:6px}
+/* vocab */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:12px}
+.vc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:2px solid transparent;transition:border-color .2s,transform .2s}
+.vc:hover{border-color:var(--violet);transform:translateY(-2px)}
+.vc b{font-size:18px;display:flex;align-items:center;gap:8px}
+.vc b svg{width:20px;height:20px;flex:none;color:var(--violet)}
+.vc p{margin:6px 0 0;font-size:14px;color:var(--muted)}
+.vc em{display:block;margin-top:6px;font-size:14px;color:var(--violet);font-style:normal;font-weight:600}
+.vc.played{background:#e6ecfb}
+/* grammar */
+.gram{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.gb{border-radius:18px;padding:16px}
+.gb h3{margin:0 0 6px;font-size:19px}
+.gb .f{display:inline-block;background:#fff;border-radius:8px;padding:3px 10px;font-weight:800;margin:4px 0;font-family:Consolas,monospace;font-size:15px}
+.gb p{margin:6px 0 0;font-size:15px}
+.g1{background:var(--pink)}.g2{background:var(--lav)}.g3{background:var(--green)}.g4{background:#fbe7c6}
+.warn{margin-top:14px;background:var(--ink);color:#fff;border-radius:14px;padding:12px 16px;font-size:16px}
+.warn b{color:var(--pink)}
+.q{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:2px dashed var(--paper);font-size:18px}
+.q:last-child{border-bottom:0}
+.q .n{width:32px;height:32px;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;border-radius:50%;font-weight:800;font-size:15px}
+.opt{font:inherit;font-size:16px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:10px;padding:4px 12px;cursor:pointer;margin:0 2px}
+.opt.ok{background:var(--green);border-color:#5aa845}
+.opt.bad{background:var(--pink);animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+/* tour */
+.tour{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.law{border-radius:22px;overflow:hidden;background:var(--paper);display:flex;flex-direction:column}
+.law .pic{height:150px;display:grid;place-items:center;position:relative}
+.law .pic svg.ill{width:130px;height:130px}
+.law .pic svg.fl{position:absolute;left:14px;top:14px;width:46px;height:30px;border-radius:5px;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.law .pic .no{position:absolute;right:14px;top:14px;background:var(--ink);color:#fff;font-weight:800;border-radius:999px;padding:2px 10px;font-size:13px}
+.law .body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.law h3{margin:0;font-size:20px}
+.law .where{font-size:13px;font-weight:800;color:var(--violet);text-transform:uppercase;letter-spacing:1px}
+.law p{margin:0;font-size:16px}
+.law .why{font-size:14px;color:var(--muted)}
+.law .dq{margin-top:auto;background:#fff;border-radius:12px;padding:8px 12px;font-weight:700;font-size:15px}
+.law .lsn{font:inherit;font-size:13px;font-weight:700;background:none;border:0;color:var(--violet);cursor:pointer;padding:0;text-align:left}
+/* game */
+.game{max-width:720px;margin:0 auto;text-align:center}
+.score{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.score span{background:var(--paper);border-radius:999px;padding:6px 16px;font-weight:800}
+.stmt{background:var(--ink);color:#fff;border-radius:22px;padding:28px 24px;min-height:150px;display:grid;place-items:center;font-size:23px;font-weight:700;position:relative}
+.stmt small{position:absolute;top:12px;left:18px;font-size:13px;color:var(--lav);font-weight:700}
+.choose{display:flex;justify-content:center;gap:14px;margin:18px 0}
+.choose button{font:inherit;font-size:18px;font-weight:700;border:2px solid var(--ink);border-radius:999px;padding:12px 28px;cursor:pointer}
+.choose .bl{background:var(--green)}.choose .bm{background:var(--pink)}
+.choose button:disabled{opacity:.5;cursor:default}
+.verdict{min-height:70px;font-size:17px;background:var(--paper);border-radius:16px;padding:12px 16px;text-align:left}
+.verdict b.r{color:#2d7a1d}.verdict b.w{color:#b23a62}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.dots i{width:14px;height:14px;border-radius:50%;background:var(--paper)}
+.dots i.r{background:#7cc663}.dots i.w{background:#e47b9f}.dots i.c{outline:3px solid var(--violet)}
+.final{font-size:22px;font-weight:800;color:var(--violet)}
+/* invent */
+.inv{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.frames{display:grid;gap:10px}
+.frames label{font-size:14px;font-weight:700;color:var(--muted)}
+.frames select,.frames input{font:inherit;width:100%;padding:8px 10px;border:2px solid var(--lav);border-radius:10px;background:#fff}
+.poster{background:var(--paper);border:3px solid var(--ink);border-radius:20px;padding:22px;text-align:center;min-height:260px;display:flex;flex-direction:column;gap:10px;justify-content:center}
+.poster .seal{width:70px;height:70px;margin:0 auto}
+.poster h3{margin:0;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--violet)}
+.poster .rule{font-size:22px;font-weight:800}
+.poster .pen{font-size:16px;color:var(--muted)}
+.ideas{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ideas span{background:var(--pink);border-radius:999px;padding:5px 12px;font-size:14px;font-weight:600}
+/* roleplay */
+.rp{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.role{border-radius:20px;padding:18px}
+.role h3{margin:0 0 6px;display:flex;align-items:center;gap:10px}
+.role h3 svg{width:42px;height:42px}
+.role ul{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.r1{background:var(--lav)}.r2{background:var(--green)}
+.scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:16px}
+.sc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:3px solid transparent}
+.sc.on{border-color:var(--violet);background:#fff}
+.sc b{display:block;font-size:17px;margin-bottom:4px}
+.sc p{margin:0;font-size:15px}
+.timer{font-size:40px;font-weight:800;text-align:center;margin:14px 0 6px;color:var(--violet)}
+.ctr{text-align:center}
+/* homework */
+.hwb{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hwc{background:var(--paper);border-radius:18px;padding:18px}
+.hwc h3{margin:0 0 8px}
+.hwc ol,.hwc ul{margin:6px 0 0;padding-left:20px;line-height:1.7}
+.hwc textarea{width:100%;min-height:150px;font:inherit;border:2px solid var(--lav);border-radius:12px;padding:10px;margin-top:10px}
+.end{text-align:center;background:var(--ink);color:#fff;box-shadow:none}
+.end h2{justify-content:center}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(140px);background:var(--ink);color:#fff;font-weight:800;padding:12px 22px;border-radius:14px;transition:transform .3s;z-index:50}
+.toast.show{transform:translateX(-50%) translateY(0)}
+/* photos */
+.ph{margin:0}
+.ph img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;background:var(--paper)}
+.ph figcaption{font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.2px}
+.tax{grid-template-columns:1fr !important;padding:12px !important}
+.law .pic{height:auto !important;display:block !important;padding:0;position:relative}
+.law .pic .ph img{border-radius:0;aspect-ratio:16/10;transition:filter .5s}
+.law .pic .ph figcaption{padding:4px 12px 0}
+.law.hide .pic .ph img{filter:blur(10px) grayscale(.6)}
+.law.hide .reveal-body,.law.hide .fl,.law.hide .where{visibility:hidden}
+.law .clue{font-size:15px;font-style:italic;color:var(--ink)}
+.law .gc{display:flex;flex-wrap:wrap;gap:6px}
+.law .gc button{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:4px 12px;cursor:pointer}
+.law .gc button.ok{background:var(--green)}.law .gc button.bad{background:var(--pink)}
+.law:not(.hide) .guess{display:none}
+.fair{display:grid;gap:4px;background:#fff;border-radius:12px;padding:8px 12px}
+.fair .ends{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.fair input{width:100%;accent-color:var(--accent)}
+.fair output{font-size:14px;font-weight:700;color:var(--accent)}
+.gph{max-width:720px;margin:0 auto 12px}
+.gph img{aspect-ratio:21/9}
+.fine{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.fq{background:var(--paper);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.fq h3{margin:0;font-size:18px}
+.fq .opts{display:flex;flex-wrap:wrap;gap:6px}
+.fq .opts button{font:inherit;font-size:14px;font-weight:700;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 12px;cursor:pointer}
+.fq .opts button.ok{background:var(--green)}.fq .opts button.bad{background:var(--pink)}
+.fq .res{font-size:15px;min-height:22px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{position:relative;aspect-ratio:16/9;background:#111}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;cursor:pointer;background:#111 center/cover;display:grid;place-items:center}
+.vid .play span{background:rgba(0,0,0,.7);color:#fff;font-weight:700;border-radius:999px;padding:10px 20px;font-size:15px;letter-spacing:1px}
+.vid .info{padding:14px 16px}
+.vid .info h3{margin:0 0 2px;font-size:18px}
+.vid .info small{color:var(--muted)}
+.vid .info ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+@media(max-width:760px){.inv,.rp,.hwb{grid-template-columns:1fr}.lk-tbtn{top:auto;bottom:70px}}
+
+.pr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.pb{border-radius:18px;padding:16px 18px}
+.pb h3{margin:0;font-family:Georgia,serif;font-size:30px}
+.pb .m{font-size:15px;color:var(--muted);margin:2px 0 8px}
+.pb .chips{display:flex;flex-wrap:wrap;gap:6px}
+.pb .chips span{background:#fff;border-radius:999px;padding:4px 11px;font-size:14px;font-weight:600}
+.pb ul{margin:10px 0 0;padding-left:18px;font-size:15px}
+.p-in{background:#DCE6F5}.p-at{background:#F3D9CF}.p-on{background:#D4E2CF}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-size:15px;margin-top:10px}
+.ex div{background:var(--paper);border-radius:10px;padding:8px 12px}
+.ex b{color:var(--accent)}
+.q{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.q .n{font-weight:800;color:var(--violet);min-width:24px}
+.q .gap{display:inline-block;min-width:44px;border-bottom:2px solid var(--ink);text-align:center;font-weight:800}
+.q .opts{margin-left:auto;display:flex;gap:6px}
+.q .opts button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 14px;cursor:pointer}
+.q.ok{background:#DDEED7}.q.ok .gap{color:#2F7A3B}
+.q.bad{background:#F6DAD3}
+.score{font-weight:800;margin-top:12px}
+.text{font-size:18px;line-height:1.75;background:var(--paper);border-radius:16px;padding:18px 22px}
+.text h3{margin:0 0 6px;font-family:Georgia,serif;font-size:24px}
+.text p{margin:0 0 12px}
+.text.hl mark{background:#F3D9CF;border-radius:4px;padding:0 3px;font-weight:700}
+.tf{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:9px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.tf .opts{margin-left:auto;display:flex;gap:6px}
+.tf button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.tf.ok{background:#DDEED7}.tf.bad{background:#F6DAD3}
+.disc{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px;margin-top:6px}
+.disc div{background:var(--green);border-radius:14px;padding:12px 16px;font-size:17px;font-weight:600}
+.disc div i{font-style:normal;color:var(--violet);margin-right:6px}
+.spin{text-align:center;margin-top:16px}
+.spin .card{display:inline-block;min-height:80px;min-width:min(560px,100%);background:var(--ink);color:#fff;border-radius:18px;padding:20px 24px;font-size:22px;font-weight:700;margin-bottom:12px}
+@media(max-width:700px){.ex{grid-template-columns:1fr}}
+
+.hero{background-size:cover!important;background-position:center!important}
+.voc{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.voc div{background:var(--paper);border-radius:14px;padding:10px 14px;cursor:pointer;border:2px solid transparent}
+.voc div:hover{border-color:var(--violet)}
+.voc b{display:block;font-size:18px}.voc span{display:block;color:var(--accent);font-weight:700;font-size:15px}.voc em{display:block;font-size:14px;color:var(--muted);margin-top:3px}
+.mt{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:10px}
+.mt button{font:inherit;font-size:16px;text-align:left;border:2px solid var(--ink);background:#fff;border-radius:14px;padding:9px 14px;cursor:pointer}
+.mt button.sel{background:#FFE7A8}.mt button.done{background:#CDE8C6;border-color:#4C9A5B;cursor:default}
+.ch{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ch .n{font-weight:800;color:var(--violet);min-width:24px}
+.ch .o{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.ch .o button{font:inherit;font-size:15px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.ch.ok{background:#DDEED7}.ch.bad{background:#F6DAD3}
+.ty{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ty input{font:inherit;border:2px solid var(--ink);border-radius:10px;padding:4px 10px;width:220px}
+.ty.ok{background:#DDEED7}.ty.bad{background:#F6DAD3}
+.ty small{color:var(--muted)}
+.photo{width:100%;height:300px;object-fit:cover;border-radius:16px;display:block}
+.cap{font-size:11px;color:var(--muted);margin:4px 0 12px}
+.pics{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.pics figure{margin:0;background:var(--paper);border-radius:16px;overflow:hidden}
+.pics img{width:100%;height:170px;object-fit:cover;display:block}
+.pics figcaption{padding:8px 12px;font-weight:700}
+.pics small{display:block;font-weight:400;font-size:10px;color:var(--muted)}
+.lis{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:8px 0 14px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{aspect-ratio:16/9;background:#000;position:relative}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;background-size:cover;background-position:center;cursor:pointer;display:grid;place-items:center}
+.vid .play span{background:#E5484D;color:#fff;font-weight:800;border-radius:12px;padding:10px 20px}
+.vid .info{padding:12px 16px}.vid h3{margin:0;font-size:18px}.vid small{color:var(--muted)}
+.vid ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th,.tbl td{border:1px solid #ddd;padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--paper)}
+@media(max-width:700px){.mt{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="/game-lessons/kit.css">
+</head>
+<body>
+<header class="hero">
+  <div class="kicker">B1 · teens · Граматика: тренажер Порада: should, ought to, had better, should have</div>
+  <h1>Should, ought to, had better; should have: 100 tasks</h1>
+  <p>B1 · 6 parts · 60 min</p>
+  <span class="cr">Photo: Unsplash</span>
+</header>
+<button class="lk-tbtn" id="teacherBtn" type="button">Teacher version</button>
+<div class="wrap">
+  <section class="lk-overview">
+    <h2>In this lesson you will:</h2>
+    <ul><li>Повторимо правило: Порада: should, ought to, had better, should have
+100 завдань від простого до складного
+Розберемо головні пастки</li></ul>
+    <div class="lk-stages" id="stages"></div>
+  </section>
+  <section id="s1" data-stage="practice" data-min="10">
+    <h2><span class="lk-n">1</span>Теорія <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<div class="warn"><p><b>Коли вживаємо</b></p><p>Порада і думка: should / shouldn’t: You should try the new pizza place. (Тобі варто спробувати нову піцерію.)</p><p>Те саме, трохи серйозніше: ought to: We ought to tell the teacher. (Нам слід сказати вчителеві.)</p><p>Сильна порада «а то буде погано»: had better (’d better): You’d better leave now, or you’ll miss the train. (Краще виходь зараз, а то спізнишся на потяг.)</p><p>Жаль або докір про минуле: should have + V3: I should have saved my work. (Треба було зберегти роботу.)</p><p>Не треба було: shouldn’t have + V3: You shouldn’t have eaten so much cake. (Не треба було тобі їсти стільки торта.)</p></div>
+    <div class="warn"><p><b>Форми</b></p><p>+  should + V; ought to + V; had better (’d better) + V без to. Приклад: You should rest. You ought to rest. You’d better rest.</p><p>−  shouldn’t + V; ought not to + V; had better not + V. Приклад: You shouldn’t worry. You’d better not be late.</p><p>?  Should + підмет + V? What / Where should ...?. Приклад: Should I call her? What should we bring?</p><p>минуле  should have / shouldn’t have / ought to have + V3: треба було або не треба було. Приклад: We should have booked earlier.</p></div>
+    <div class="warn"><p><b>Головна пастка</b></p><p>had better to і hadn’t better. Після had better дієслово без to. Заперечення: had better not, а не hadn’t better.</p><p>✗ You hadn’t better to be late.</p><p>✓ You’d better not be late.</p><p>had better не про минуле. Хоч тут і є had, had better говорить про зараз або майбутнє. Щоб пожалкувати про минуле, беремо should have + V3.</p><p>✗ Yesterday I had better study more.</p><p>✓ Yesterday I should have studied more.</p><p>should to і ought без to. should завжди без to, а ought завжди з to.</p><p>✗ You should to call him. You ought call him.</p><p>✓ You should call him. You ought to call him.</p></div>
+    <div class="warn"><p><b>Маркери:</b> порада → should, I think you should ..., I don’t think you should ..., If I were you, I’d ..., or / otherwise → had better, жаль про минуле → should have, yesterday / last night + should have</p></div>
+    <div class="warn"><p><b>Шпаргалка: порада, попередження, жаль</b></p><p>had better майже завжди скорочуємо: I’d, you’d, we’d better. Таблиця: форма, значення, приклад.</p><p>should · порада, думка · You should read more.</p><p>ought to · порада, «так правильно» · You ought to apologise.</p><p>had better (’d better) · сильна порада, попередження · You’d better hurry.</p><p>had better not · краще не роби, бо буде погано · You’d better not tell Mum.</p><p>should have + V3 · треба було (а не зробили) · I should have called.</p><p>shouldn’t have + V3 · не треба було (а зробили) · He shouldn’t have shouted.</p></div>
+    <p class="lk-tnote" data-ru="Тренажер на 100 завдань: 5 раундів по 20. На уроці можна пройти 1-2 раунди, решту задати додому. Пояснення до кожної відповіді учень бачить у тренажері на сайті (розділ «Граматика»).&lt;br&gt;">Тренажер на 100 завдань: 5 раундів по 20. На уроці можна пройти 1-2 раунди, решту задати додому. Пояснення до кожної відповіді учень бачить у тренажері на сайті (розділ «Граматика»).<br></p>
+  </section>
+  <section id="s2" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">2</span>Раунд 1. Форми: should, ought to, had better <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="should"><span class="n">1</span><span class="s">You look tired. You ___ go to bed early tonight.</span><span class="o"><button type="button">are should</button><button type="button">should</button><button type="button">shoulds</button><button type="button">should to</button></span></div>
+<div class="ch" data-a="ought"><span class="n">2</span><span class="s">We ___ to tell the teacher about the broken window.</span><span class="o"><button type="button">should</button><button type="button">ought</button><button type="button">must</button><button type="button">had better</button></span></div>
+<div class="ch" data-a="take"><span class="n">3</span><span class="s">You’d better ___ a jacket. It’s cold outside.</span><span class="o"><button type="button">taking</button><button type="button">took</button><button type="button">to take</button><button type="button">take</button></span></div>
+<div class="ch" data-a="should"><span class="n">4</span><span class="s">Sophie ___ try the new climbing gym. She’d love it.</span><span class="o"><button type="button">should</button><button type="button">had better to</button><button type="button">ought</button><button type="button">should to</button></span></div>
+<div class="ch" data-a="ought to"><span class="n">5</span><span class="s">Dan ___ check the weather before the hike.</span><span class="o"><button type="button">ought to</button><button type="button">oughts to</button><button type="button">is ought to</button><button type="button">ought</button></span></div>
+<div class="ch" data-a="had better"><span class="n">6</span><span class="s">We ___ hurry, or the film will start without us.</span><span class="o"><button type="button">had better to</button><button type="button">has better</button><button type="button">had better</button><button type="button">have better</button></span></div>
+<div class="ch" data-a="had"><span class="n">7</span><span class="s">Lily ___ better charge her phone before the trip.</span><span class="o"><button type="button">had</button><button type="button">has</button><button type="button">have</button><button type="button">would</button></span></div>
+<div class="ch" data-a="should"><span class="n">8</span><span class="s">I’m bored. What ___ I do this weekend?</span><span class="o"><button type="button">have</button><button type="button">am</button><button type="button">ought</button><button type="button">should</button></span></div>
+<div class="ch" data-a="ought"><span class="n">9</span><span class="s">Tom ___ to save some money for his trip.</span><span class="o"><button type="button">must</button><button type="button">should</button><button type="button">had better</button><button type="button">ought</button></span></div>
+<div class="ch" data-a="better"><span class="n">10</span><span class="s">The cat looks hungry. We’d ___ feed it.</span><span class="o"><button type="button">good</button><button type="button">better</button><button type="button">better to</button><button type="button">more</button></span></div>
+<div class="ch" data-a="should"><span class="n">11</span><span class="s">People ___ wear helmets when they ride bikes.</span><span class="o"><button type="button">should</button><button type="button">shoulding</button><button type="button">are should</button><button type="button">should to</button></span></div>
+<div class="ch" data-a="should"><span class="n">12</span><span class="s">I think you ___ talk to your coach about it.</span><span class="o"><button type="button">should</button><button type="button">ought</button><button type="button">better</button><button type="button">had</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; should · ought · take · should · ought to · had better · had · should · ought · better · should · should"><b>Відповіді:</b> should · ought · take · should · ought to · had better · had · should · ought · better · should · should</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="should drink"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Max ___ (should, drink) more water during training.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="had better go|’d better go|d better go"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>It’s getting dark. You ___ (had better, go) home now.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="ought to apologise|ought to apologize"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>You ___ (ought to, apologise) to your sister.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="should revise"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Kate’s exam is tomorrow. She ___ (should, revise) tonight.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="should try"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>You ___ (should, try) the cheesecake here. It’s amazing!</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="should stay"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Emma has a terrible cold. She ___ (should, stay) at home.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="had better charge|’d better charge|d better charge"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>Your phone is almost dead. You ___ (had better, charge) it.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="ought to call"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>Max ___ (ought to, call) his grandma more often.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; should drink · had better go · ought to apologise · should revise · should try · should stay · had better charge · ought to call"><b>Відповіді:</b> should drink · had better go · ought to apologise · should revise · should try · should stay · had better charge · ought to call</p>
+  </section>
+  <section id="s3" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">3</span>Раунд 2. Заперечення і питання <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="shouldn’t"><span class="n">1</span><span class="s">You ___ eat so much sugar before bed.</span><span class="o"><button type="button">shouldn’t</button><button type="button">shouldn’t to</button><button type="button">not should</button><button type="button">don’t should</button></span></div>
+<div class="ch" data-a="Should"><span class="n">2</span><span class="s">___ I bring anything to the party?</span><span class="o"><button type="button">Ought</button><button type="button">Am</button><button type="button">Had better</button><button type="button">Should</button></span></div>
+<div class="ch" data-a="not"><span class="n">3</span><span class="s">You’d better ___ tell anyone about the surprise party.</span><span class="o"><button type="button">not</button><button type="button">not to</button><button type="button">no</button><button type="button">don’t</button></span></div>
+<div class="ch" data-a="ought not to"><span class="n">4</span><span class="s">Dan ___ spend so much time on his phone.</span><span class="o"><button type="button">ought to don’t</button><button type="button">not ought to</button><button type="button">ought not to</button><button type="button">don’t ought to</button></span></div>
+<div class="ch" data-a="should"><span class="n">5</span><span class="s">What ___ I wear to the interview?</span><span class="o"><button type="button">ought</button><button type="button">am</button><button type="button">should</button><button type="button">must to</button></span></div>
+<div class="ch" data-a="should"><span class="n">6</span><span class="s">I don’t think you ___ buy that phone. It’s too expensive.</span><span class="o"><button type="button">ought</button><button type="button">had better</button><button type="button">should</button><button type="button">shouldn’t</button></span></div>
+<div class="ch" data-a="had better not"><span class="n">7</span><span class="s">Lily ___ miss another practice, or the coach will drop her.</span><span class="o"><button type="button">hadn’t better</button><button type="button">had better not to</button><button type="button">had not better</button><button type="button">had better not</button></span></div>
+<div class="ch" data-a="Should"><span class="n">8</span><span class="s">___ we tell Mum about the broken vase?</span><span class="o"><button type="button">Do we should</button><button type="button">Should</button><button type="button">Had</button><button type="button">Ought</button></span></div>
+<div class="ch" data-a="shouldn’t"><span class="n">9</span><span class="s">We ___ leave the dog alone for so long.</span><span class="o"><button type="button">not should</button><button type="button">shouldn’t to</button><button type="button">shouldn’t</button><button type="button">don’t should</button></span></div>
+<div class="ch" data-a="should"><span class="n">10</span><span class="s">Do you think I ___ dye my hair blue?</span><span class="o"><button type="button">should</button><button type="button">ought</button><button type="button">should to</button><button type="button">had better to</button></span></div>
+<div class="ch" data-a="should"><span class="n">11</span><span class="s">Where ___ we park the car?</span><span class="o"><button type="button">ought</button><button type="button">do we should</button><button type="button">should</button><button type="button">must to</button></span></div>
+<div class="ch" data-a="should"><span class="n">12</span><span class="s">“Should I call him?” “No, I don’t think you ___.”</span><span class="o"><button type="button">do</button><button type="button">shouldn’t</button><button type="button">had</button><button type="button">should</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; shouldn’t · Should · not · ought not to · should · should · had better not · Should · shouldn’t · should · should · should"><b>Відповіді:</b> shouldn’t · Should · not · ought not to · should · should · had better not · Should · shouldn’t · should · should · should</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="had better not be|’d better not be|d better not be"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>You ___ (had better, not, be) late again. The boss is angry.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="shouldn’t play|should not play"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Kids ___ (should, not, play) near the road.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Should"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>___ (should) we take the bus or walk?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="had better not forget|’d better not forget|d better not forget"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>You ___ (had better, not, forget) your passport!</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="shouldn’t worry|should not worry"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Emma ___ (should, not, worry) so much about the test.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="had better not touch|’d better not touch|d better not touch"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Tom, you ___ (had better, not, touch) that! It’s hot.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="shouldn’t feed|should not feed"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>People ___ (should, not, feed) the ducks bread.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="ought not to skip|oughtn’t to skip"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>Kate ___ (ought to, not, skip) breakfast.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; had better not be · shouldn’t play · Should · had better not forget · shouldn’t worry · had better not touch · shouldn’t feed · ought not to skip"><b>Відповіді:</b> had better not be · shouldn’t play · Should · had better not forget · shouldn’t worry · had better not touch · shouldn’t feed · ought not to skip</p>
+  </section>
+  <section id="s4" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">4</span>Раунд 3. Порада чи жаль про минуле? <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="should have studied"><span class="n">1</span><span class="s">I failed the test. I ___ more.</span><span class="o"><button type="button">should studied</button><button type="button">should have studied</button><button type="button">should study</button><button type="button">had better study</button></span></div>
+<div class="ch" data-a="had better"><span class="n">2</span><span class="s">You ___ book the tickets now. They’re selling fast.</span><span class="o"><button type="button">should had</button><button type="button">ought</button><button type="button">should have</button><button type="button">had better</button></span></div>
+<div class="ch" data-a="should have called"><span class="n">3</span><span class="s">It was Kate’s birthday yesterday. You ___ her!</span><span class="o"><button type="button">had better call</button><button type="button">ought call</button><button type="button">should have called</button><button type="button">should call</button></span></div>
+<div class="ch" data-a="should"><span class="n">4</span><span class="s">Your interview is tomorrow. You ___ prepare tonight.</span><span class="o"><button type="button">should</button><button type="button">should have</button><button type="button">had better to</button><button type="button">should had</button></span></div>
+<div class="ch" data-a="shouldn’t have"><span class="n">5</span><span class="s">Sorry, I ___ shouted at you. I was tired.</span><span class="o"><button type="button">shouldn’t</button><button type="button">shouldn’t have</button><button type="button">hadn’t better</button><button type="button">had better not</button></span></div>
+<div class="ch" data-a="shouldn’t have done"><span class="n">6</span><span class="s">Dan told everyone my secret. He ___ that.</span><span class="o"><button type="button">shouldn’t have done</button><button type="button">shouldn’t do</button><button type="button">had better not do</button><button type="button">ought not do</button></span></div>
+<div class="ch" data-a="had better"><span class="n">7</span><span class="s">It’s going to rain. You ___ take an umbrella.</span><span class="o"><button type="button">had better</button><button type="button">should had</button><button type="button">should have</button><button type="button">had better to</button></span></div>
+<div class="ch" data-a="should have"><span class="n">8</span><span class="s">The party was great, but you weren’t there. You ___ come!</span><span class="o"><button type="button">ought</button><button type="button">should had</button><button type="button">should have</button><button type="button">had better</button></span></div>
+<div class="ch" data-a="ought to have taken"><span class="n">9</span><span class="s">We got lost. We ___ a map.</span><span class="o"><button type="button">ought to take</button><button type="button">ought to have taken</button><button type="button">ought taken</button><button type="button">ought have taken</button></span></div>
+<div class="ch" data-a="shouldn’t go"><span class="n">10</span><span class="s">Tom is always tired. He ___ to bed so late.</span><span class="o"><button type="button">shouldn’t go</button><button type="button">shouldn’t have went</button><button type="button">hadn’t better go</button><button type="button">not should go</button></span></div>
+<div class="ch" data-a="had better"><span class="n">11</span><span class="s">The museum closes at five. We ___ go now if we want to see it.</span><span class="o"><button type="button">had better to</button><button type="button">had better</button><button type="button">should have</button><button type="button">hadn’t better</button></span></div>
+<div class="ch" data-a="shouldn’t have bought"><span class="n">12</span><span class="s">I ___ the cheap headphones. The expensive ones are much better.</span><span class="o"><button type="button">not should have bought</button><button type="button">shouldn’t buy</button><button type="button">shouldn’t have bought</button><button type="button">hadn’t better buy</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; should have studied · had better · should have called · should · shouldn’t have · shouldn’t have done · had better · should have · ought to have taken · shouldn’t go · had better · shouldn’t have bought"><b>Відповіді:</b> should have studied · had better · should have called · should · shouldn’t have · shouldn’t have done · had better · should have · ought to have taken · shouldn’t go · had better · shouldn’t have bought</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="should have left|should’ve left"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>We missed the train. We ___ (should, leave) earlier.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="shouldn’t have eaten|should not have eaten"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>My stomach hurts. I ___ (should, not, eat) so much pizza.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="should have put|should’ve put"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Max lost his keys again. He ___ (should, put) them in his bag.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="had better hurry|’d better hurry|d better hurry"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>The film starts in five minutes. We ___ (had better, hurry).</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="shouldn’t have bought|should not have bought"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Lily bought new shoes, and they hurt. She ___ (should, not, buy) them.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="should see"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>If you feel sick, you ___ (should, see) a doctor.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="should have written|should’ve written"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>I forgot Mum’s birthday. I ___ (should, write) it in my calendar.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="shouldn’t have told|should not have told"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>Sophie, you ___ (should, not, tell) him. Now he’s upset.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; should have left · shouldn’t have eaten · should have put · had better hurry · shouldn’t have bought · should see · should have written · shouldn’t have told"><b>Відповіді:</b> should have left · shouldn’t have eaten · should have put · had better hurry · shouldn’t have bought · should see · should have written · shouldn’t have told</p>
+  </section>
+  <section id="s5" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">5</span>Раунд 4. Пастки: had better to, should to, ought <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="You’d better leave now."><span class="n">1</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">You better to leave now.</button><button type="button">You’d better leave now.</button><button type="button">You’d better leaving now.</button><button type="button">You’d better to leave now.</button></span></div>
+<div class="ch" data-a="You should see this film."><span class="n">2</span><span class="s">Яке речення правильне?: ___</span><span class="o"><button type="button">You should to see this film.</button><button type="button">You ought see this film.</button><button type="button">You ought seeing this film.</button><button type="button">You should see this film.</button></span></div>
+<div class="ch" data-a="You’d better not be late."><span class="n">3</span><span class="s">Знайди речення без помилки: ___</span><span class="o"><button type="button">You’d better not be late.</button><button type="button">You hadn’t better be late.</button><button type="button">You’d not better be late.</button><button type="button">You’d better not to be late.</button></span></div>
+<div class="ch" data-a="should have"><span class="n">4</span><span class="s">Last night I ___ gone to bed earlier.</span><span class="o"><button type="button">should</button><button type="button">should have</button><button type="button">had better</button><button type="button">ought</button></span></div>
+<div class="ch" data-a="He should have called."><span class="n">5</span><span class="s">Де немає помилки?: ___</span><span class="o"><button type="button">He should has called.</button><button type="button">He should had called.</button><button type="button">He should have call.</button><button type="button">He should have called.</button></span></div>
+<div class="ch" data-a="shouldn’t"><span class="n">6</span><span class="s">Max ___ go to the party. He has an exam tomorrow.</span><span class="o"><button type="button">doesn’t should</button><button type="button">shouldn’t</button><button type="button">shouldn’t to</button><button type="button">not should</button></span></div>
+<div class="ch" data-a="She should rest more."><span class="n">7</span><span class="s">Обери речення без помилки: ___</span><span class="o"><button type="button">She should rest more.</button><button type="button">She should rests more.</button><button type="button">She should resting more.</button><button type="button">She shoulds rest more.</button></span></div>
+<div class="ch" data-a="ought to"><span class="n">8</span><span class="s">Kate ___ ask for help. She looks lost.</span><span class="o"><button type="button">oughts to</button><button type="button">ought to</button><button type="button">ought</button><button type="button">is ought</button></span></div>
+<div class="ch" data-a="I don’t think you should worry."><span class="n">9</span><span class="s">Яке речення звучить правильно?: ___</span><span class="o"><button type="button">I don’t think you should to worry.</button><button type="button">I don’t think you should worry.</button><button type="button">I think you shouldn’t to worry.</button><button type="button">I think you don’t should worry.</button></span></div>
+<div class="ch" data-a="had better"><span class="n">10</span><span class="s">It’s 8:55 and the lesson starts at nine. We ___ run!</span><span class="o"><button type="button">would better</button><button type="button">are better</button><button type="button">have better</button><button type="button">had better</button></span></div>
+<div class="ch" data-a="ought"><span class="n">11</span><span class="s">They ___ to have told us about the change.</span><span class="o"><button type="button">had better</button><button type="button">must</button><button type="button">should</button><button type="button">ought</button></span></div>
+<div class="ch" data-a="should have been"><span class="n">12</span><span class="s">Yesterday Tom ___ more careful with his bike.</span><span class="o"><button type="button">should have been</button><button type="button">should be</button><button type="button">had better be</button><button type="button">should been</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; You’d better leave now. · You should see this film. · You’d better not be late. · should have · He should have called. · shouldn’t · She should rest more. · ought to · I don’t think you should worry. · had better · ought · should have been"><b>Відповіді:</b> You’d better leave now. · You should see this film. · You’d better not be late. · should have · He should have called. · shouldn’t · She should rest more. · ought to · I don’t think you should worry. · had better · ought · should have been</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="had better not wake|’d better not wake|d better not wake"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>You ___ (had better, not, wake) the baby.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="ought to see"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Emma ___ (ought to, see) a dentist about that tooth.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="should have listened|should’ve listened"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>I ___ (should, listen) to your advice. You were right.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="had better take|’d better take|d better take"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>You ___ (had better, take) your medicine on time.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="shouldn’t have laughed|should not have laughed"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>We ___ (should, not, laugh) at him yesterday. It was mean.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="should wear"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>You ___ (should, wear) sunscreen at the beach.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="shouldn’t drive|should not drive"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>Dan ___ (should, not, drive) so fast. It’s dangerous.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="should have brought|should’ve brought"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>Lily didn’t bring a coat and now she’s freezing. She ___ (should, bring) one.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; had better not wake · ought to see · should have listened · had better take · shouldn’t have laughed · should wear · shouldn’t drive · should have brought"><b>Відповіді:</b> had better not wake · ought to see · should have listened · had better take · shouldn’t have laughed · should wear · shouldn’t drive · should have brought</p>
+  </section>
+  <section id="s6" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">6</span>Раунд 5. Фінальний бос: дай пораду <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="shouldn’t"><span class="n">1</span><span class="s">Max: “I have a headache.” Lily: “You ___ look at your screen so much.”</span><span class="o"><button type="button">shouldn’t</button><button type="button">don’t should</button><button type="button">not ought</button><button type="button">hadn’t better</button></span></div>
+<div class="ch" data-a="should"><span class="n">2</span><span class="s">“I’m always late for school.” “You ___ get up earlier.”</span><span class="o"><button type="button">should to</button><button type="button">ought</button><button type="button">had better to</button><button type="button">should</button></span></div>
+<div class="ch" data-a="should have"><span class="n">3</span><span class="s">Kate missed the bus. She ___ left home five minutes earlier.</span><span class="o"><button type="button">had better</button><button type="button">should have</button><button type="button">ought</button><button type="button">should</button></span></div>
+<div class="ch" data-a="had better not"><span class="n">4</span><span class="s">“Can I borrow your bike?” “Sure, but you ___ lose the lock!”</span><span class="o"><button type="button">hadn’t better</button><button type="button">had better not to</button><button type="button">had not better</button><button type="button">had better not</button></span></div>
+<div class="ch" data-a="should"><span class="n">5</span><span class="s">Sophie: “What ___ I say to him?” Emma: “Just tell him the truth.”</span><span class="o"><button type="button">should</button><button type="button">do I should</button><button type="button">ought</button><button type="button">am</button></span></div>
+<div class="ch" data-a="should have"><span class="n">6</span><span class="s">The concert was amazing! You ___ been there.</span><span class="o"><button type="button">had better</button><button type="button">ought</button><button type="button">should</button><button type="button">should have</button></span></div>
+<div class="ch" data-a="should"><span class="n">7</span><span class="s">Tom has a big match on Saturday. He ___ train every day this week.</span><span class="o"><button type="button">should</button><button type="button">should have</button><button type="button">should had</button><button type="button">had better to</button></span></div>
+<div class="ch" data-a="should have"><span class="n">8</span><span class="s">Lily forgot her umbrella and got wet. She ___ checked the weather.</span><span class="o"><button type="button">had better</button><button type="button">should have</button><button type="button">ought</button><button type="button">should</button></span></div>
+<div class="ch" data-a="should"><span class="n">9</span><span class="s">“My cat keeps scratching the sofa.” “You ___ buy her a scratching post.”</span><span class="o"><button type="button">should have</button><button type="button">should</button><button type="button">had better to</button><button type="button">ought</button></span></div>
+<div class="ch" data-a="had better"><span class="n">10</span><span class="s">It’s very icy today. You ___ drive carefully.</span><span class="o"><button type="button">better had</button><button type="button">had better to</button><button type="button">had better</button><button type="button">have better</button></span></div>
+<div class="ch" data-a="ought"><span class="n">11</span><span class="s">We ___ to recycle more plastic.</span><span class="o"><button type="button">had better</button><button type="button">should</button><button type="button">ought</button><button type="button">must</button></span></div>
+<div class="ch" data-a="shouldn’t have said"><span class="n">12</span><span class="s">Dan told Emma her haircut looked funny. He ___ that.</span><span class="o"><button type="button">hadn’t better say</button><button type="button">should had not said</button><button type="button">shouldn’t say</button><button type="button">shouldn’t have said</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; shouldn’t · should · should have · had better not · should · should have · should · should have · should · had better · ought · shouldn’t have said"><b>Відповіді:</b> shouldn’t · should · should have · had better not · should · should have · should · should have · should · had better · ought · shouldn’t have said</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="had better leave|’d better leave|d better leave"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>The shop closes in ten minutes. We ___ (had better, leave) now.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="shouldn’t have eaten|should not have eaten"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Dan ate all the cookies. Now he feels sick. He ___ (should, not, eat) them all.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="shouldn’t make|should not make"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Our neighbours are asleep. We ___ (should, not, make) so much noise.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="should have watered|should’ve watered"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>I didn’t water the plants and they died. I ___ (should, water) them.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="ought to try"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>You ___ (ought to, try) the new café on our street.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="shouldn’t have shouted|should not have shouted"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Max shouted at the referee and got a red card. He ___ (should, not, shout).</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="had better start|’d better start|d better start"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>The test is tomorrow and you haven’t started. You ___ (had better, start) now!</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="shouldn’t worry|should not worry"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>Mum, you ___ (should, not, worry). I’ll be home by ten.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; had better leave · shouldn’t have eaten · shouldn’t make · should have watered · ought to try · shouldn’t have shouted · had better start · shouldn’t worry"><b>Відповіді:</b> had better leave · shouldn’t have eaten · shouldn’t make · should have watered · ought to try · shouldn’t have shouted · had better start · shouldn’t worry</p>
+  </section>
+  <section class="end"><h2>Great job!</h2><p>See you next lesson.</p></section>
+</div>
+<div class="toast" id="toast"></div>
+<script>window.MURLY_LESSON={"id": "lib-drill-should-had-better", "title": "Should, ought to, had better; should have: 100 tasks", "homework": ["s2", "s3", "s4", "s5", "s6"], "hw": {"s2": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "You look tired. You {should|should to|shoulds|are should} go to bed early tonight.\nWe {ought|should|had better|must} to tell the teacher about the broken window.\nYou’d better {take|to take|taking|took} a jacket. It’s cold outside.\nSophie {should|ought|should to|had better to} try the new climbing gym. She’d love it.\nDan {ought to|oughts to|ought|is ought to} check the weather before the hike.\nWe {had better|have better|has better|had better to} hurry, or the film will start without us.\nLily {had|has|have|would} better charge her phone before the trip.\nI’m bored. What {should|am|have|ought} I do this weekend?\nTom {ought|should|had better|must} to save some money for his trip.\nThe cat looks hungry. We’d {better|better to|good|more} feed it.\nPeople {should|should to|shoulding|are should} wear helmets when they ride bikes.\nI think you {should|ought|had|better} talk to your coach about it."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "Max [should drink] (should, drink) more water during training.\nIt’s getting dark. You [had better go/’d better go/d better go] (had better, go) home now.\nYou [ought to apologise/ought to apologize] (ought to, apologise) to your sister.\nKate’s exam is tomorrow. She [should revise] (should, revise) tonight.\nYou [should try] (should, try) the cheesecake here. It’s amazing!\nEmma has a terrible cold. She [should stay] (should, stay) at home.\nYour phone is almost dead. You [had better charge/’d better charge/d better charge] (had better, charge) it.\nMax [ought to call] (ought to, call) his grandma more often."}], "s3": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "You {shouldn’t|don’t should|not should|shouldn’t to} eat so much sugar before bed.\n{Should|Am|Ought|Had better} I bring anything to the party?\nYou’d better {not|not to|don’t|no} tell anyone about the surprise party.\nDan {ought not to|don’t ought to|not ought to|ought to don’t} spend so much time on his phone.\nWhat {should|ought|must to|am} I wear to the interview?\nI don’t think you {should|ought|had better|shouldn’t} buy that phone. It’s too expensive.\nLily {had better not|hadn’t better|had not better|had better not to} miss another practice, or the coach will drop her.\n{Should|Ought|Had|Do we should} we tell Mum about the broken vase?\nWe {shouldn’t|not should|don’t should|shouldn’t to} leave the dog alone for so long.\nDo you think I {should|should to|ought|had better to} dye my hair blue?\nWhere {should|ought|must to|do we should} we park the car?\n“Should I call him?” “No, I don’t think you {should|shouldn’t|do|had}.”"}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "You [had better not be/’d better not be/d better not be] (had better, not, be) late again. The boss is angry.\nKids [shouldn’t play/should not play] (should, not, play) near the road.\n[Should] (should) we take the bus or walk?\nYou [had better not forget/’d better not forget/d better not forget] (had better, not, forget) your passport!\nEmma [shouldn’t worry/should not worry] (should, not, worry) so much about the test.\nTom, you [had better not touch/’d better not touch/d better not touch] (had better, not, touch) that! It’s hot.\nPeople [shouldn’t feed/should not feed] (should, not, feed) the ducks bread.\nKate [ought not to skip/oughtn’t to skip] (ought to, not, skip) breakfast."}], "s4": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "I failed the test. I {should have studied|should study|should studied|had better study} more.\nYou {had better|should have|should had|ought} book the tickets now. They’re selling fast.\nIt was Kate’s birthday yesterday. You {should have called|should call|had better call|ought call} her!\nYour interview is tomorrow. You {should|should have|should had|had better to} prepare tonight.\nSorry, I {shouldn’t have|shouldn’t|hadn’t better|had better not} shouted at you. I was tired.\nDan told everyone my secret. He {shouldn’t have done|shouldn’t do|had better not do|ought not do} that.\nIt’s going to rain. You {had better|should have|had better to|should had} take an umbrella.\nThe party was great, but you weren’t there. You {should have|should had|had better|ought} come!\nWe got lost. We {ought to have taken|ought to take|ought have taken|ought taken} a map.\nTom is always tired. He {shouldn’t go|shouldn’t have went|hadn’t better go|not should go} to bed so late.\nThe museum closes at five. We {had better|should have|had better to|hadn’t better} go now if we want to see it.\nI {shouldn’t have bought|shouldn’t buy|hadn’t better buy|not should have bought} the cheap headphones. The expensive ones are much better."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "We missed the train. We [should have left/should’ve left] (should, leave) earlier.\nMy stomach hurts. I [shouldn’t have eaten/should not have eaten] (should, not, eat) so much pizza.\nMax lost his keys again. He [should have put/should’ve put] (should, put) them in his bag.\nThe film starts in five minutes. We [had better hurry/’d better hurry/d better hurry] (had better, hurry).\nLily bought new shoes, and they hurt. She [shouldn’t have bought/should not have bought] (should, not, buy) them.\nIf you feel sick, you [should see] (should, see) a doctor.\nI forgot Mum’s birthday. I [should have written/should’ve written] (should, write) it in my calendar.\nSophie, you [shouldn’t have told/should not have told] (should, not, tell) him. Now he’s upset."}], "s5": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Обери правильне речення: {You’d better leave now.|You’d better to leave now.|You’d better leaving now.|You better to leave now.}\nЯке речення правильне?: {You should see this film.|You should to see this film.|You ought see this film.|You ought seeing this film.}\nЗнайди речення без помилки: {You’d better not be late.|You hadn’t better be late.|You’d not better be late.|You’d better not to be late.}\nLast night I {should have|had better|should|ought} gone to bed earlier.\nДе немає помилки?: {He should have called.|He should has called.|He should have call.|He should had called.}\nMax {shouldn’t|doesn’t should|shouldn’t to|not should} go to the party. He has an exam tomorrow.\nОбери речення без помилки: {She should rest more.|She shoulds rest more.|She should rests more.|She should resting more.}\nKate {ought to|ought|oughts to|is ought} ask for help. She looks lost.\nЯке речення звучить правильно?: {I don’t think you should worry.|I think you shouldn’t to worry.|I don’t think you should to worry.|I think you don’t should worry.}\nIt’s 8:55 and the lesson starts at nine. We {had better|would better|have better|are better} run!\nThey {ought|should|had better|must} to have told us about the change.\nYesterday Tom {should have been|should be|should been|had better be} more careful with his bike."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "You [had better not wake/’d better not wake/d better not wake] (had better, not, wake) the baby.\nEmma [ought to see] (ought to, see) a dentist about that tooth.\nI [should have listened/should’ve listened] (should, listen) to your advice. You were right.\nYou [had better take/’d better take/d better take] (had better, take) your medicine on time.\nWe [shouldn’t have laughed/should not have laughed] (should, not, laugh) at him yesterday. It was mean.\nYou [should wear] (should, wear) sunscreen at the beach.\nDan [shouldn’t drive/should not drive] (should, not, drive) so fast. It’s dangerous.\nLily didn’t bring a coat and now she’s freezing. She [should have brought/should’ve brought] (should, bring) one."}], "s6": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Max: “I have a headache.” Lily: “You {shouldn’t|hadn’t better|don’t should|not ought} look at your screen so much.”\n“I’m always late for school.” “You {should|ought|should to|had better to} get up earlier.”\nKate missed the bus. She {should have|had better|should|ought} left home five minutes earlier.\n“Can I borrow your bike?” “Sure, but you {had better not|hadn’t better|had better not to|had not better} lose the lock!”\nSophie: “What {should|ought|do I should|am} I say to him?” Emma: “Just tell him the truth.”\nThe concert was amazing! You {should have|should|had better|ought} been there.\nTom has a big match on Saturday. He {should|should have|had better to|should had} train every day this week.\nLily forgot her umbrella and got wet. She {should have|had better|ought|should} checked the weather.\n“My cat keeps scratching the sofa.” “You {should|should have|had better to|ought} buy her a scratching post.”\nIt’s very icy today. You {had better|had better to|have better|better had} drive carefully.\nWe {ought|should|had better|must} to recycle more plastic.\nDan told Emma her haircut looked funny. He {shouldn’t have said|shouldn’t say|hadn’t better say|should had not said} that."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "The shop closes in ten minutes. We [had better leave/’d better leave/d better leave] (had better, leave) now.\nDan ate all the cookies. Now he feels sick. He [shouldn’t have eaten/should not have eaten] (should, not, eat) them all.\nOur neighbours are asleep. We [shouldn’t make/should not make] (should, not, make) so much noise.\nI didn’t water the plants and they died. I [should have watered/should’ve watered] (should, water) them.\nYou [ought to try] (ought to, try) the new café on our street.\nMax shouted at the referee and got a red card. He [shouldn’t have shouted/should not have shouted] (should, not, shout).\nThe test is tomorrow and you haven’t started. You [had better start/’d better start/d better start] (had better, start) now!\nMum, you [shouldn’t worry/should not worry] (should, not, worry). I’ll be home by ten."}]}};</script>
+<script>
+(function(){var l=(document.cookie.match(/(?:^|; )murly_lang=(\w+)/)||[])[1];try{l=l||localStorage.getItem('murly:tlang')}catch(e){}l=l==='ru'?'ru':'uk';document.querySelectorAll('[data-pairs-'+l+']').forEach(function(b){b.dataset.pairs=b.getAttribute('data-pairs-'+l)});})();
+</script>
+<script>
+const $ = (id) => document.getElementById(id);
+const LIS = {};
+function say(w, rate) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; const v = speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang) && /Google|Natural|Libby|Sonia|Daniel/.test(x.name)) || speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang)); if (v) u.voice = v; u.rate = rate || .95; speechSynthesis.speak(u); } catch (e) { } }
+const sh = (a) => a.map((x) => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map((x) => x[1]);
+document.querySelectorAll('.voc div').forEach((d) => d.onclick = () => say(d.dataset.say));
+document.querySelectorAll('[data-play]').forEach((b) => b.onclick = () => say(LIS[b.dataset.play], b.dataset.slow ? .75 : .95));
+document.querySelectorAll('[data-stop]').forEach((b) => b.onclick = () => { try { speechSynthesis.cancel(); } catch (e) { } });
+document.querySelectorAll('.ch').forEach((q) => q.querySelectorAll('button').forEach((b) => b.onclick = () => { if (q.classList.contains('ok')) return; const ok = b.textContent === q.dataset.a; q.classList.toggle('ok', ok); q.classList.toggle('bad', !ok); if (ok) { const s = q.querySelector('.s'); if (s && s.textContent.includes('___')) { s.textContent = s.textContent.replace('___', q.dataset.a); } } }));
+const norm = (x) => x.toLowerCase().replace(/[’']/g, "'").replace(/[,;:"“”«»]/g, ' ').replace(/\s+/g, ' ').replace(/[.!?]$/, '').trim();
+document.querySelectorAll('.ty').forEach((r) => { const inp = r.querySelector('input'); const chk = () => { const ok = r.dataset.a.split('|').some((a) => norm(a) === norm(inp.value)); r.classList.toggle('ok', ok); r.classList.toggle('bad', !ok && inp.value.trim() !== ''); }; r.querySelector('button').onclick = chk; inp.onkeydown = (e) => { if (e.key === 'Enter') chk(); }; });
+document.querySelectorAll('[data-mt]').forEach((box) => { const pairs = JSON.parse(box.dataset.pairs); const L = sh(pairs.map((p) => p[0])), R = sh(pairs.map((p) => p[1])); let sel = null, done = 0, err = 0; box.innerHTML = L.map((w, i) => `<button type="button" data-w="${w}">${w}</button><button type="button" data-d="${R[i]}">${R[i]}</button>`).join('');
+  box.querySelectorAll('button').forEach((b) => b.onclick = () => { if (b.classList.contains('done')) return; if (!sel || (sel.dataset.w && b.dataset.w) || (sel.dataset.d && b.dataset.d)) { if (sel) sel.classList.remove('sel'); sel = b; b.classList.add('sel'); return; } const w = sel.dataset.w || b.dataset.w, d = sel.dataset.d || b.dataset.d; if (pairs.some((p) => p[0] === w && p[1] === d)) { sel.classList.add('done'); b.classList.add('done'); done++; say(w); if (done === pairs.length) document.querySelector(`[data-mtres="${box.dataset.mt}"]`).textContent = err ? `Done! Mistakes: ${err}` : 'Perfect!'; } else err++; sel.classList.remove('sel'); sel = null; }); });
+document.querySelectorAll('[data-vids]').forEach((box) => JSON.parse(box.dataset.vids).forEach(([id, title, ch, qs]) => { const d = document.createElement('div'); d.className = 'vid'; d.innerHTML = `<div class="frame"><button class="play" type="button" style="background-image:url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)"><span>PLAY</span></button></div><div class="info"><h3>${title}</h3><small>YouTube · ${ch}</small><ol>${qs.map((q) => `<li>${q}</li>`).join('')}</ol></div>`; d.querySelector('.play').onclick = (e) => { e.currentTarget.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&cc_load_policy=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${title}"></iframe>`; }; box.appendChild(d); }));
+document.querySelectorAll('[data-spin]').forEach((b) => { const list = JSON.parse(b.dataset.spin); let last = -1; b.onclick = () => { let i; do { i = Math.floor(Math.random() * list.length); } while (i === last && list.length > 1); last = i; document.getElementById(b.dataset.target).textContent = list[i]; }; });
+try { const k = 'murly:' + (window.MURLY_LESSON ? MURLY_LESSON.id : 'x') + ':hw'; const t = $('hwText'); if (t) { t.value = localStorage.getItem(k) || ''; t.oninput = () => localStorage.setItem(k, t.value); } } catch (e) { }
+const STAGES = [...document.querySelectorAll('.wrap > section[id]')];
+$('stages').innerHTML = STAGES.map((s) => `<a href="#${s.id}"><b>${s.querySelector('.lk-n').textContent}</b><span>${s.dataset.stage}</span><small>${s.dataset.min !== '0' ? s.dataset.min + ' min' : 'at home'}</small></a>`).join('');
+$('teacherBtn').onclick = (e) => { const on = document.body.classList.toggle('teacher'); e.currentTarget.textContent = on ? 'Student version' : 'Teacher version'; };
+</script>
+<script src="/game-lessons/kit.js" defer></script>
+</body>
+</html>

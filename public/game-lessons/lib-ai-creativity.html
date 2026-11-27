@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Can a machine be creative? (C1) | Murly</title>
+<link rel="icon" href="/favicon.svg">
+<meta name="description" content="Прочитаємо есе про штучний інтелект і творчість
+Вивчимо лексику рівня C1 для дискусій
+Потренуємо обережні формулювання (hedging) і контраргументи
+Пров">
+<link rel="canonical" href="https://murly.com.ua/game-lessons/lib-ai-creativity.html">
+<style>
+:root{--paper:#F3F0EA;--ink:#17181C;--violet:#3D4A7A;--lav:#D9D3C7;--pink:#E9C9BC;--green:#D4E2CF;--white:#fff;--muted:#62646B;--accent:#B5482F}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+/* hero */
+.hero{background:linear-gradient(rgba(16,17,22,.5),rgba(16,17,22,.72)),url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1400&q=70&auto=format&fit=crop");color:#fff;padding:70px 18px 56px;text-align:center;position:relative;overflow:hidden}
+.hero .kicker{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#E9C9BC;font-weight:700}
+.hero .cr{position:absolute;right:12px;bottom:8px;font-size:11px;color:rgba(255,255,255,.6)}
+.hero h1{margin:8px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(36px,6vw,64px);letter-spacing:-.5px;font-weight:700}
+.hero h1 span{color:var(--pink);font-style:italic}
+.hero p{margin:12px 0 0;font-size:17px;color:#e6e2da}
+.hero .flags{display:flex;justify-content:center;gap:12px;margin-top:22px;flex-wrap:wrap}
+.hero .flags svg{width:40px;height:26px;border-radius:3px;opacity:.9}
+/* sections */
+section{margin-top:30px;background:var(--white);border-radius:18px;padding:28px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.05)}
+section h2{margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tag{font-family:"Segoe UI",system-ui,sans-serif;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--paper);color:var(--accent);text-transform:uppercase;letter-spacing:1px}
+.lk-n{display:inline-grid;place-items:center;width:42px;height:42px;background:var(--violet);color:#fff;border-radius:50%;font-size:21px;flex:none}
+.lk-mode{font-size:13px;font-weight:700;border:2px dashed var(--lav);color:var(--muted);padding:2px 10px;border-radius:999px}
+.lk-ins{font-size:17px;background:var(--paper);border-radius:12px;padding:10px 14px;margin:6px 0 18px}
+.lk-sub{margin:24px 0 10px;font-size:19px}
+.btn{font:inherit;font-weight:700;border:0;border-radius:999px;background:var(--ink);color:#fff;padding:10px 20px;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+.btn.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+/* teacher */
+.lk-tbtn{position:fixed;right:16px;top:70px;z-index:45;font:inherit;font-weight:800;border:2px solid var(--ink);background:var(--pink);padding:8px 14px;border-radius:12px;cursor:pointer}
+body.teacher .lk-tbtn{background:var(--green)}
+.lk-ans,.lk-tnote{display:none}
+body.teacher .lk-ans{display:block;margin-top:8px;font-weight:700;color:#1d5a12;background:var(--green);border-left:5px solid #5aa845;padding:6px 10px;font-size:15px;border-radius:6px}
+body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff3f7;border-left:5px solid #d9789a;padding:8px 12px;font-size:15px;border-radius:6px}
+/* overview */
+.lk-overview ul{font-size:17px;line-height:1.7;margin:6px 0 16px}
+.lk-stages{display:flex;flex-wrap:wrap;gap:8px}
+.lk-stages a{display:grid;border-radius:14px;padding:8px 12px;text-decoration:none;color:var(--ink);background:var(--paper);font-weight:700;min-width:100px}
+.lk-stages a span{text-transform:capitalize}
+.lk-stages a b{font-size:20px;color:var(--violet)}
+.lk-stages a small{font-weight:600;color:var(--muted)}
+/* warm-up */
+.taxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tax{background:var(--paper);border-radius:18px;padding:16px;display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center}
+.tax svg{width:56px;height:56px}
+.tax b{display:block;font-size:17px}
+.tax small{color:var(--muted);font-size:14px}
+.qs{display:grid;gap:10px;margin-top:18px}
+.qs div{background:var(--green);border-radius:14px;padding:10px 16px;font-size:18px;font-weight:600}
+.phr{background:#fff7e8;border-radius:14px;padding:12px 16px;margin-top:16px;font-size:15px}
+.phr ul{margin:6px 0 0;padding-left:18px}
+.fic{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:16px}
+.fic .c{background:#fff;border:2px solid #1B2140;border-radius:16px;padding:14px 16px;box-shadow:3px 3px 0 #1B2140}
+.fic .c b{display:block;font-size:18px;line-height:1.35;margin-bottom:8px}
+.fic .c .k{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.fic .c .k span{font-size:13px;background:#eef1fb;border-radius:999px;padding:3px 10px}
+.fic .c details{margin-top:8px;font-size:15px;color:#3b4160}
+.fic .c summary{cursor:pointer;font-weight:700;color:#534AB7}
+.fi-n{display:inline-flex;width:28px;height:28px;border-radius:50%;background:#2F4BA0;color:#fff;align-items:center;justify-content:center;font-size:14px;margin-right:6px}
+/* vocab */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:12px}
+.vc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:2px solid transparent;transition:border-color .2s,transform .2s}
+.vc:hover{border-color:var(--violet);transform:translateY(-2px)}
+.vc b{font-size:18px;display:flex;align-items:center;gap:8px}
+.vc b svg{width:20px;height:20px;flex:none;color:var(--violet)}
+.vc p{margin:6px 0 0;font-size:14px;color:var(--muted)}
+.vc em{display:block;margin-top:6px;font-size:14px;color:var(--violet);font-style:normal;font-weight:600}
+.vc.played{background:#e6ecfb}
+/* grammar */
+.gram{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.gb{border-radius:18px;padding:16px}
+.gb h3{margin:0 0 6px;font-size:19px}
+.gb .f{display:inline-block;background:#fff;border-radius:8px;padding:3px 10px;font-weight:800;margin:4px 0;font-family:Consolas,monospace;font-size:15px}
+.gb p{margin:6px 0 0;font-size:15px}
+.g1{background:var(--pink)}.g2{background:var(--lav)}.g3{background:var(--green)}.g4{background:#fbe7c6}
+.warn{margin-top:14px;background:var(--ink);color:#fff;border-radius:14px;padding:12px 16px;font-size:16px}
+.warn b{color:var(--pink)}
+.q{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:2px dashed var(--paper);font-size:18px}
+.q:last-child{border-bottom:0}
+.q .n{width:32px;height:32px;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;border-radius:50%;font-weight:800;font-size:15px}
+.opt{font:inherit;font-size:16px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:10px;padding:4px 12px;cursor:pointer;margin:0 2px}
+.opt.ok{background:var(--green);border-color:#5aa845}
+.opt.bad{background:var(--pink);animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+/* tour */
+.tour{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.law{border-radius:22px;overflow:hidden;background:var(--paper);display:flex;flex-direction:column}
+.law .pic{height:150px;display:grid;place-items:center;position:relative}
+.law .pic svg.ill{width:130px;height:130px}
+.law .pic svg.fl{position:absolute;left:14px;top:14px;width:46px;height:30px;border-radius:5px;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.law .pic .no{position:absolute;right:14px;top:14px;background:var(--ink);color:#fff;font-weight:800;border-radius:999px;padding:2px 10px;font-size:13px}
+.law .body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.law h3{margin:0;font-size:20px}
+.law .where{font-size:13px;font-weight:800;color:var(--violet);text-transform:uppercase;letter-spacing:1px}
+.law p{margin:0;font-size:16px}
+.law .why{font-size:14px;color:var(--muted)}
+.law .dq{margin-top:auto;background:#fff;border-radius:12px;padding:8px 12px;font-weight:700;font-size:15px}
+.law .lsn{font:inherit;font-size:13px;font-weight:700;background:none;border:0;color:var(--violet);cursor:pointer;padding:0;text-align:left}
+/* game */
+.game{max-width:720px;margin:0 auto;text-align:center}
+.score{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.score span{background:var(--paper);border-radius:999px;padding:6px 16px;font-weight:800}
+.stmt{background:var(--ink);color:#fff;border-radius:22px;padding:28px 24px;min-height:150px;display:grid;place-items:center;font-size:23px;font-weight:700;position:relative}
+.stmt small{position:absolute;top:12px;left:18px;font-size:13px;color:var(--lav);font-weight:700}
+.choose{display:flex;justify-content:center;gap:14px;margin:18px 0}
+.choose button{font:inherit;font-size:18px;font-weight:700;border:2px solid var(--ink);border-radius:999px;padding:12px 28px;cursor:pointer}
+.choose .bl{background:var(--green)}.choose .bm{background:var(--pink)}
+.choose button:disabled{opacity:.5;cursor:default}
+.verdict{min-height:70px;font-size:17px;background:var(--paper);border-radius:16px;padding:12px 16px;text-align:left}
+.verdict b.r{color:#2d7a1d}.verdict b.w{color:#b23a62}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.dots i{width:14px;height:14px;border-radius:50%;background:var(--paper)}
+.dots i.r{background:#7cc663}.dots i.w{background:#e47b9f}.dots i.c{outline:3px solid var(--violet)}
+.final{font-size:22px;font-weight:800;color:var(--violet)}
+/* invent */
+.inv{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.frames{display:grid;gap:10px}
+.frames label{font-size:14px;font-weight:700;color:var(--muted)}
+.frames select,.frames input{font:inherit;width:100%;padding:8px 10px;border:2px solid var(--lav);border-radius:10px;background:#fff}
+.poster{background:var(--paper);border:3px solid var(--ink);border-radius:20px;padding:22px;text-align:center;min-height:260px;display:flex;flex-direction:column;gap:10px;justify-content:center}
+.poster .seal{width:70px;height:70px;margin:0 auto}
+.poster h3{margin:0;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--violet)}
+.poster .rule{font-size:22px;font-weight:800}
+.poster .pen{font-size:16px;color:var(--muted)}
+.ideas{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ideas span{background:var(--pink);border-radius:999px;padding:5px 12px;font-size:14px;font-weight:600}
+/* roleplay */
+.rp{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.role{border-radius:20px;padding:18px}
+.role h3{margin:0 0 6px;display:flex;align-items:center;gap:10px}
+.role h3 svg{width:42px;height:42px}
+.role ul{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.r1{background:var(--lav)}.r2{background:var(--green)}
+.scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:16px}
+.sc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:3px solid transparent}
+.sc.on{border-color:var(--violet);background:#fff}
+.sc b{display:block;font-size:17px;margin-bottom:4px}
+.sc p{margin:0;font-size:15px}
+.timer{font-size:40px;font-weight:800;text-align:center;margin:14px 0 6px;color:var(--violet)}
+.ctr{text-align:center}
+/* homework */
+.hwb{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hwc{background:var(--paper);border-radius:18px;padding:18px}
+.hwc h3{margin:0 0 8px}
+.hwc ol,.hwc ul{margin:6px 0 0;padding-left:20px;line-height:1.7}
+.hwc textarea{width:100%;min-height:150px;font:inherit;border:2px solid var(--lav);border-radius:12px;padding:10px;margin-top:10px}
+.end{text-align:center;background:var(--ink);color:#fff;box-shadow:none}
+.end h2{justify-content:center}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(140px);background:var(--ink);color:#fff;font-weight:800;padding:12px 22px;border-radius:14px;transition:transform .3s;z-index:50}
+.toast.show{transform:translateX(-50%) translateY(0)}
+/* photos */
+.ph{margin:0}
+.ph img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;background:var(--paper)}
+.ph figcaption{font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.2px}
+.tax{grid-template-columns:1fr !important;padding:12px !important}
+.law .pic{height:auto !important;display:block !important;padding:0;position:relative}
+.law .pic .ph img{border-radius:0;aspect-ratio:16/10;transition:filter .5s}
+.law .pic .ph figcaption{padding:4px 12px 0}
+.law.hide .pic .ph img{filter:blur(10px) grayscale(.6)}
+.law.hide .reveal-body,.law.hide .fl,.law.hide .where{visibility:hidden}
+.law .clue{font-size:15px;font-style:italic;color:var(--ink)}
+.law .gc{display:flex;flex-wrap:wrap;gap:6px}
+.law .gc button{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:4px 12px;cursor:pointer}
+.law .gc button.ok{background:var(--green)}.law .gc button.bad{background:var(--pink)}
+.law:not(.hide) .guess{display:none}
+.fair{display:grid;gap:4px;background:#fff;border-radius:12px;padding:8px 12px}
+.fair .ends{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.fair input{width:100%;accent-color:var(--accent)}
+.fair output{font-size:14px;font-weight:700;color:var(--accent)}
+.gph{max-width:720px;margin:0 auto 12px}
+.gph img{aspect-ratio:21/9}
+.fine{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.fq{background:var(--paper);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.fq h3{margin:0;font-size:18px}
+.fq .opts{display:flex;flex-wrap:wrap;gap:6px}
+.fq .opts button{font:inherit;font-size:14px;font-weight:700;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 12px;cursor:pointer}
+.fq .opts button.ok{background:var(--green)}.fq .opts button.bad{background:var(--pink)}
+.fq .res{font-size:15px;min-height:22px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{position:relative;aspect-ratio:16/9;background:#111}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;cursor:pointer;background:#111 center/cover;display:grid;place-items:center}
+.vid .play span{background:rgba(0,0,0,.7);color:#fff;font-weight:700;border-radius:999px;padding:10px 20px;font-size:15px;letter-spacing:1px}
+.vid .info{padding:14px 16px}
+.vid .info h3{margin:0 0 2px;font-size:18px}
+.vid .info small{color:var(--muted)}
+.vid .info ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+@media(max-width:760px){.inv,.rp,.hwb{grid-template-columns:1fr}.lk-tbtn{top:auto;bottom:70px}}
+
+.pr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.pb{border-radius:18px;padding:16px 18px}
+.pb h3{margin:0;font-family:Georgia,serif;font-size:30px}
+.pb .m{font-size:15px;color:var(--muted);margin:2px 0 8px}
+.pb .chips{display:flex;flex-wrap:wrap;gap:6px}
+.pb .chips span{background:#fff;border-radius:999px;padding:4px 11px;font-size:14px;font-weight:600}
+.pb ul{margin:10px 0 0;padding-left:18px;font-size:15px}
+.p-in{background:#DCE6F5}.p-at{background:#F3D9CF}.p-on{background:#D4E2CF}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-size:15px;margin-top:10px}
+.ex div{background:var(--paper);border-radius:10px;padding:8px 12px}
+.ex b{color:var(--accent)}
+.q{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.q .n{font-weight:800;color:var(--violet);min-width:24px}
+.q .gap{display:inline-block;min-width:44px;border-bottom:2px solid var(--ink);text-align:center;font-weight:800}
+.q .opts{margin-left:auto;display:flex;gap:6px}
+.q .opts button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 14px;cursor:pointer}
+.q.ok{background:#DDEED7}.q.ok .gap{color:#2F7A3B}
+.q.bad{background:#F6DAD3}
+.score{font-weight:800;margin-top:12px}
+.text{font-size:18px;line-height:1.75;background:var(--paper);border-radius:16px;padding:18px 22px}
+.text h3{margin:0 0 6px;font-family:Georgia,serif;font-size:24px}
+.text p{margin:0 0 12px}
+.text.hl mark{background:#F3D9CF;border-radius:4px;padding:0 3px;font-weight:700}
+.tf{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:9px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.tf .opts{margin-left:auto;display:flex;gap:6px}
+.tf button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.tf.ok{background:#DDEED7}.tf.bad{background:#F6DAD3}
+.disc{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px;margin-top:6px}
+.disc div{background:var(--green);border-radius:14px;padding:12px 16px;font-size:17px;font-weight:600}
+.disc div i{font-style:normal;color:var(--violet);margin-right:6px}
+.spin{text-align:center;margin-top:16px}
+.spin .card{display:inline-block;min-height:80px;min-width:min(560px,100%);background:var(--ink);color:#fff;border-radius:18px;padding:20px 24px;font-size:22px;font-weight:700;margin-bottom:12px}
+@media(max-width:700px){.ex{grid-template-columns:1fr}}
+
+.hero{background-size:cover!important;background-position:center!important}
+.voc{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.voc div{background:var(--paper);border-radius:14px;padding:10px 14px;cursor:pointer;border:2px solid transparent}
+.voc div:hover{border-color:var(--violet)}
+.voc b{display:block;font-size:18px}.voc span{display:block;color:var(--accent);font-weight:700;font-size:15px}.voc em{display:block;font-size:14px;color:var(--muted);margin-top:3px}
+.mt{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:10px}
+.mt button{font:inherit;font-size:16px;text-align:left;border:2px solid var(--ink);background:#fff;border-radius:14px;padding:9px 14px;cursor:pointer}
+.mt button.sel{background:#FFE7A8}.mt button.done{background:#CDE8C6;border-color:#4C9A5B;cursor:default}
+.ch{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ch .n{font-weight:800;color:var(--violet);min-width:24px}
+.ch .o{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.ch .o button{font:inherit;font-size:15px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.ch.ok{background:#DDEED7}.ch.bad{background:#F6DAD3}
+.ty{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ty input{font:inherit;border:2px solid var(--ink);border-radius:10px;padding:4px 10px;width:220px}
+.ty.ok{background:#DDEED7}.ty.bad{background:#F6DAD3}
+.ty small{color:var(--muted)}
+.photo{width:100%;height:300px;object-fit:cover;border-radius:16px;display:block}
+.cap{font-size:11px;color:var(--muted);margin:4px 0 12px}
+.pics{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.pics figure{margin:0;background:var(--paper);border-radius:16px;overflow:hidden}
+.pics img{width:100%;height:170px;object-fit:cover;display:block}
+.pics figcaption{padding:8px 12px;font-weight:700}
+.pics small{display:block;font-weight:400;font-size:10px;color:var(--muted)}
+.lis{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:8px 0 14px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{aspect-ratio:16/9;background:#000;position:relative}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;background-size:cover;background-position:center;cursor:pointer;display:grid;place-items:center}
+.vid .play span{background:#E5484D;color:#fff;font-weight:800;border-radius:12px;padding:10px 20px}
+.vid .info{padding:12px 16px}.vid h3{margin:0;font-size:18px}.vid small{color:var(--muted)}
+.vid ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th,.tbl td{border:1px solid #ddd;padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--paper)}
+@media(max-width:700px){.mt{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="/game-lessons/kit.css">
+</head>
+<body>
+<header class="hero">
+  <div class="kicker">C1 · adults · Технології · Мистецтво</div>
+  <h1>Can a machine be creative?</h1>
+  <p>C1 · 7 parts · 60 min</p>
+  <span class="cr">Photo: Unsplash</span>
+</header>
+<button class="lk-tbtn" id="teacherBtn" type="button">Teacher version</button>
+<div class="wrap">
+  <section class="lk-overview">
+    <h2>In this lesson you will:</h2>
+    <ul><li>Прочитаємо есе про штучний інтелект і творчість
+Вивчимо лексику рівня C1 для дискусій
+Потренуємо обережні формулювання (hedging) і контраргументи
+Проведемо дебати і напишемо аргументований абзац</li></ul>
+    <div class="lk-stages" id="stages"></div>
+  </section>
+  <section id="s1" data-stage="warm-up" data-min="5">
+    <h2><span class="lk-n">1</span>Warm-up <span class="tag">warm-up</span><span class="lk-mode">teacher + student</span></h2>
+<div class="qs"><div>What does it mean to be creative?</div><div>Have you ever used AI to write, draw or make music? How did you feel about the result?</div></div>
+    <p class="lk-tnote" data-ru="Дайте учням 30 секунд подумати перед відповіддю. На C1 очікуйте розгорнуті відповіді з прикладами. Запишіть 1-2 вдалі вирази і 1-2 неточності для зворотного зв’язку пізніше.&lt;br&gt;">Дайте учням 30 секунд подумати перед відповіддю. На C1 очікуйте розгорнуті відповіді з прикладами. Запишіть 1-2 вдалі вирази і 1-2 неточності для зворотного зв’язку пізніше.<br></p>
+  </section>
+  <section id="s2" data-stage="vocabulary" data-min="10">
+    <h2><span class="lk-n">2</span>Vocabulary <span class="tag">vocabulary</span><span class="lk-mode">teacher + student</span></h2>
+<div class="voc"><div data-say="to generate. "><b>to generate</b><span><span data-tr-uk="створювати, генерувати" data-tr-ru="створювати, генерувати">створювати, генерувати</span></span><em></em></div>
+<div data-say="original. "><b>original</b><span><span data-tr-uk="оригінальний" data-tr-ru="оригінальний">оригінальний</span></span><em></em></div>
+<div data-say="to imitate. "><b>to imitate</b><span><span data-tr-uk="наслідувати" data-tr-ru="наслідувати">наслідувати</span></span><em></em></div>
+<div data-say="intent. "><b>intent</b><span><span data-tr-uk="намір" data-tr-ru="намір">намір</span></span><em></em></div>
+<div data-say="to blur the line. "><b>to blur the line</b><span><span data-tr-uk="розмивати межу" data-tr-ru="розмивати межу">розмивати межу</span></span><em></em></div>
+<div data-say="to dismiss. "><b>to dismiss</b><span><span data-tr-uk="відкидати, не сприймати всерйоз" data-tr-ru="відкидати, не сприймати всерйоз">відкидати, не сприймати всерйоз</span></span><em></em></div>
+<div data-say="a breakthrough. "><b>a breakthrough</b><span><span data-tr-uk="прорив" data-tr-ru="прорив">прорив</span></span><em></em></div>
+<div data-say="arguably. "><b>arguably</b><span><span data-tr-uk="мабуть, можна стверджувати" data-tr-ru="мабуть, можна стверджувати">мабуть, можна стверджувати</span></span><em></em></div>
+<div data-say="to raise concerns. "><b>to raise concerns</b><span><span data-tr-uk="викликати занепокоєння" data-tr-ru="викликати занепокоєння">викликати занепокоєння</span></span><em></em></div>
+<div data-say="authorship. "><b>authorship</b><span><span data-tr-uk="авторство" data-tr-ru="авторство">авторство</span></span><em></em></div>
+<div data-say="derivative. "><b>derivative</b><span><span data-tr-uk="вторинний, неоригінальний" data-tr-ru="вторинний, неоригінальний">вторинний, неоригінальний</span></span><em></em></div>
+<div data-say="to play it safe. "><b>to play it safe</b><span><span data-tr-uk="не ризикувати" data-tr-ru="не ризикувати">не ризикувати</span></span><em></em></div></div>
+    <div class="mt" data-mt="m2" data-pairs="[[&quot;to generate&quot;, &quot;створювати, генерувати&quot;], [&quot;original&quot;, &quot;оригінальний&quot;], [&quot;to imitate&quot;, &quot;наслідувати&quot;], [&quot;intent&quot;, &quot;намір&quot;], [&quot;to blur the line&quot;, &quot;розмивати межу&quot;], [&quot;to dismiss&quot;, &quot;відкидати, не сприймати всерйоз&quot;], [&quot;a breakthrough&quot;, &quot;прорив&quot;], [&quot;arguably&quot;, &quot;мабуть, можна стверджувати&quot;]]"></div><div class="score" data-mtres="m2"></div>
+    <h3 class="lk-sub">Match the phrases with their meanings.</h3><div class="ch" data-a="to make the difference between two things less clear"><span class="n">1</span><span class="s">to blur the line between ___</span><span class="o"><button type="button">it can be said, though not everyone agrees</button><button type="button">to make the difference between two things less clear</button><button type="button">to decide it is not worth considering</button><button type="button">to make people worried about something</button><button type="button">lacking originality, copied from other work</button></span></div>
+<div class="ch" data-a="to decide it is not worth considering"><span class="n">2</span><span class="s">to dismiss something ___</span><span class="o"><button type="button">to decide it is not worth considering</button><button type="button">lacking originality, copied from other work</button><button type="button">to make people worried about something</button><button type="button">to make the difference between two things less clear</button><button type="button">it can be said, though not everyone agrees</button></span></div>
+<div class="ch" data-a="it can be said, though not everyone agrees"><span class="n">3</span><span class="s">arguably ___</span><span class="o"><button type="button">it can be said, though not everyone agrees</button><button type="button">to decide it is not worth considering</button><button type="button">to make the difference between two things less clear</button><button type="button">lacking originality, copied from other work</button><button type="button">to make people worried about something</button></span></div>
+<div class="ch" data-a="to make people worried about something"><span class="n">4</span><span class="s">to raise concerns ___</span><span class="o"><button type="button">to make the difference between two things less clear</button><button type="button">it can be said, though not everyone agrees</button><button type="button">to make people worried about something</button><button type="button">to decide it is not worth considering</button><button type="button">lacking originality, copied from other work</button></span></div>
+<div class="ch" data-a="lacking originality, copied from other work"><span class="n">5</span><span class="s">derivative ___</span><span class="o"><button type="button">lacking originality, copied from other work</button><button type="button">to make the difference between two things less clear</button><button type="button">to make people worried about something</button><button type="button">to decide it is not worth considering</button><button type="button">it can be said, though not everyone agrees</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; to make the difference between two things less clear · to decide it is not worth considering · it can be said, though not everyone agrees · to make people worried about something · lacking originality, copied from other work"><b>Відповіді:</b> to make the difference between two things less clear · to decide it is not worth considering · it can be said, though not everyone agrees · to make people worried about something · lacking originality, copied from other work</p>
+    <h3 class="lk-sub">Complete the sentences with words from the list.</h3><div class="ty" data-a="derivative"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Many critics found the film ___: it simply recycled older classics.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="breakthrough"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>The new model is a genuine ___ in image recognition.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="authorship"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Questions of ___ become complicated when software produces the text.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="raised"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>The museum’s decision to show AI paintings has ___ concerns among local artists.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; derivative · breakthrough · authorship · raised"><b>Відповіді:</b> derivative · breakthrough · authorship · raised</p>
+    <p class="lk-tnote" data-ru="Зверніть увагу на колокації: raise concerns, blur the line between X and Y, a genuine breakthrough. Вправи 5-6 хв. Попросіть учня використати arguably і derivative у реченні про сучасне кіно чи музику.&lt;br&gt;">Зверніть увагу на колокації: raise concerns, blur the line between X and Y, a genuine breakthrough. Вправи 5-6 хв. Попросіть учня використати arguably і derivative у реченні про сучасне кіно чи музику.<br></p>
+  </section>
+  <section id="s3" data-stage="reading" data-min="15">
+    <h2><span class="lk-n">3</span>Reading <span class="tag">reading</span><span class="lk-mode">teacher + student</span></h2>
+<div class="text"><p>When a computer program produces a poem that moves its readers or a painting that wins a competition, it is tempting to call it creative. Yet many artists dismiss such work as clever imitation: the machine has simply learned patterns from millions of human examples and recombined them.</p><p>Supporters of AI art point out that human creativity also builds on what came before. No painter works in a vacuum; every writer has read other writers. If creativity means combining existing ideas in surprising ways, then, arguably, machines are already creative.</p><p>Critics, however, focus on intent. A human artist chooses to express something: grief, joy, anger, a memory. A program has no experiences to express and no reason to create other than the instruction it was given. From this perspective, the creativity belongs to the person who wrote the prompt, selected the best result and decided what it meant.</p><p>There is also the question of risk. Human artists often produce work that fails, offends or confuses, and that willingness to take risks is arguably part of what makes art meaningful. A model designed to give users what they are most likely to approve of may, almost by definition, play it safe.</p><p>The debate also raises practical concerns. Who owns a picture generated by AI? Should illustrators be paid when their work is used to train a model? And if anyone can produce a professional-looking image in seconds, what happens to the value of human skill?</p><p>Perhaps the most honest answer is that AI is blurring the line between tool and creator. A camera did not end painting; it changed it. Whether AI turns out to be a breakthrough for artists or a threat to them may depend less on the technology itself than on the rules we choose to build around it.</p></div>
+    <h3 class="lk-sub">Gist: choose the best title for the essay.</h3><div class="ch" data-a="Tool or creator?"><span class="n">1</span><span class="s">The best title is ___.</span><span class="o"><button type="button">How to write better prompts</button><button type="button">Tool or creator?</button><button type="button">Why AI will replace all artists</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; Tool or creator?"><b>Відповіді:</b> Tool or creator?</p>
+    <h3 class="lk-sub">Detail: choose the best answer.</h3><div class="ch" data-a="imitation"><span class="n">1</span><span class="s">Critics say AI art is mainly ___.</span><span class="o"><button type="button">original thinking</button><button type="button">a new kind of painting</button><button type="button">imitation</button></span></div>
+<div class="ch" data-a="intent"><span class="n">2</span><span class="s">For critics, the key difference between humans and machines is ___.</span><span class="o"><button type="button">intent</button><button type="button">speed</button><button type="button">skill</button></span></div>
+<div class="ch" data-a="changes art rather than ending it"><span class="n">3</span><span class="s">The comparison with the camera suggests that new technology ___.</span><span class="o"><button type="button">changes art rather than ending it</button><button type="button">always destroys old art forms</button><button type="button">is not important for artists</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; imitation · intent · changes art rather than ending it"><b>Відповіді:</b> imitation · intent · changes art rather than ending it</p>
+    <h3 class="lk-sub">True or False?</h3><div class="ch" data-a="False"><span class="n">1</span><span class="s">The writer says that human artists never copy anyone.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="True"><span class="n">2</span><span class="s">Supporters think creativity can mean combining existing ideas in new ways.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="True"><span class="n">3</span><span class="s">The text raises the question of who owns AI-generated images.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="True"><span class="n">4</span><span class="s">The writer suggests that AI models may tend to avoid risk.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="False"><span class="n">5</span><span class="s">According to the essay, risk-taking has nothing to do with the value of art.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; False · True · True · True · False"><b>Відповіді:</b> False · True · True · True · False</p>
+    <p class="lk-tnote" data-ru="Перше читання 4-5 хв на загальну ідею (обрати заголовок). Друге читання на деталі. Попросіть учня знайти в тексті 3 приклади hedging (arguably, perhaps, may) як підготовку до наступного етапу. Загалом 13-15 хв.&lt;br&gt;">Перше читання 4-5 хв на загальну ідею (обрати заголовок). Друге читання на деталі. Попросіть учня знайти в тексті 3 приклади hedging (arguably, perhaps, may) як підготовку до наступного етапу. Загалом 13-15 хв.<br></p>
+  </section>
+  <section id="s4" data-stage="practice" data-min="10">
+    <h2><span class="lk-n">4</span>Language focus <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<div class="warn"><p>Hedging, тобто обережні формулювання, звучать переконливіше в дискусії: <b>It could be argued that… / To some extent… / This may suggest that… / There seems to be… / I’m not entirely convinced that…</b> Модальні <b>may / might / could</b> і дієслова <b>seem / appear / tend to</b> пом’якшують категоричні твердження.</p></div>
+    <h3 class="lk-sub">Rewrite more cautiously. Complete the gaps.</h3><div class="ty" data-a="argued"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>AI is creative. → It could be ___ that AI is creative.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="extent"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>This is true. → To some ___, this is true.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="convinced"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>I don’t believe it. → I’m not entirely ___.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="may|might|could"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>AI will replace illustrators. → AI ___ replace some illustrators.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="seems|appears"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Everyone agrees. → There ___ to be broad agreement.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; argued · extent · convinced · may · seems"><b>Відповіді:</b> argued · extent · convinced · may · seems</p>
+    <h3 class="lk-sub">Choose the correct hedging phrase.</h3><div class="ch" data-a="It could be argued"><span class="n">1</span><span class="s">___ that prompts are a form of authorship.</span><span class="o"><button type="button">It argued</button><button type="button">It is argue</button><button type="button">It could be argued</button></span></div>
+<div class="ch" data-a="to some extent"><span class="n">2</span><span class="s">The results are, ___, impressive.</span><span class="o"><button type="button">in some extent</button><button type="button">at some extent</button><button type="button">to some extent</button></span></div>
+<div class="ch" data-a="appears"><span class="n">3</span><span class="s">There ___ to be a growing demand for human-made art.</span><span class="o"><button type="button">appears</button><button type="button">appear</button><button type="button">is appearing</button></span></div>
+<div class="ch" data-a="would seem to suggest"><span class="n">4</span><span class="s">This ___ that the market is changing.</span><span class="o"><button type="button">seem suggesting</button><button type="button">would seems suggest</button><button type="button">would seem to suggest</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; It could be argued · to some extent · appears · would seem to suggest"><b>Відповіді:</b> It could be argued · to some extent · appears · would seem to suggest</p>
+    <h3 class="lk-sub">Переклади англійською, використовуючи hedging.</h3><div class="ty" data-a="It could be argued that AI is blurring the line between tool and creator|It could be argued that AI blurs the line between tool and creator|Arguably, AI is blurring the line between tool and creator"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Можна стверджувати, що ШІ розмиває межу між інструментом і творцем</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="To some extent, I agree with this|I agree with this to some extent|To some extent I agree"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>До певної міри я з цим згоден</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; It could be argued that AI is blurring the line between tool and creator · To some extent, I agree with this"><b>Відповіді:</b> It could be argued that AI is blurring the line between tool and creator · To some extent, I agree with this</p>
+    <p class="lk-tnote" data-ru="Поясніть, що hedging не означає слабкість позиції, це академічна і ділова норма. Вправи 6-7 хв. Переклад може мати інші коректні варіанти: зараховуйте їх вручну. Типова помилка: «in some extent» замість to some extent.&lt;br&gt;">Поясніть, що hedging не означає слабкість позиції, це академічна і ділова норма. Вправи 6-7 хв. Переклад може мати інші коректні варіанти: зараховуйте їх вручну. Типова помилка: «in some extent» замість to some extent.<br></p>
+  </section>
+  <section id="s5" data-stage="practice" data-min="12">
+    <h2><span class="lk-n">5</span>Debate <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<div class="text"><p><b>Card A: the illustrator.</b> Your clients now ask for AI images because they are cheaper. You believe artists deserve protection and payment when their work is used to train models.</p><p><b>Card B: the tech founder.</b> Your start-up builds AI tools for designers. You believe AI is just a new tool, like the camera, and that it makes creativity available to everyone.</p><p>Use at least three hedging phrases and one counter-argument: <b>That may be true, but… / I take your point; however…</b></p></div>
+    <h3 class="lk-sub">Where do you stand?</h3><div class="qs"><div>AI-generated art should be allowed in art competitions. (agree or disagree? Why?)</div><div>Artists should be paid if their work is used to train AI. (agree or disagree? Why?)</div><div>In ten years, most illustrations will be made by AI. (agree or disagree? Why?)</div></div>
+    <div class="qs"><div>Debate: use your cards (2 minutes each side, then 2 minutes of free discussion).</div><div>Is the person who writes the prompt an artist? Defend your view.</div><div>Which creative jobs are most at risk, and which are safe? Why?</div><div>Would you read a novel if you knew it was written by AI?</div></div>
+    <p class="lk-tnote" data-ru="Спершу шкала (1-2 хв), потім дебати за картками. В індивідуальному уроці вчитель бере протилежну позицію до справжньої думки учня. Відстежуйте hedging і контраргументи, дайте зворотний зв’язок про 2 найсильніші фрази і 2 неточності.&lt;br&gt;">Спершу шкала (1-2 хв), потім дебати за картками. В індивідуальному уроці вчитель бере протилежну позицію до справжньої думки учня. Відстежуйте hedging і контраргументи, дайте зворотний зв’язок про 2 найсильніші фрази і 2 неточності.<br></p>
+  </section>
+  <section id="s6" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">6</span>Extra practice · якщо лишився час або на наступний урок <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Встав слово з уроку.</h3><div class="ty" data-a="generate"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>The software can ___ dozens of images in a few seconds.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="imitate"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Young painters often begin by trying to ___ the artists they admire.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="intent"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Without human ___, some say, a picture is just a pattern.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="dismiss"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>It would be a mistake to ___ AI art as a passing fashion.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="blurred"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Smartphones have ___ the line between amateur and professional photography.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="safe"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Many publishers prefer to play it ___ and avoid experimental novels.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; generate · imitate · intent · dismiss · blurred · safe"><b>Відповіді:</b> generate · imitate · intent · dismiss · blurred · safe</p>
+    <h3 class="lk-sub">Обери правильну фразу для hedging.</h3><div class="ch" data-a="There seems to be"><span class="n">1</span><span class="s">___ a shift in how audiences value originality.</span><span class="o"><button type="button">There seems to be</button><button type="button">There seem to be</button><button type="button">It seems to be there</button></span></div>
+<div class="ch" data-a="may well"><span class="n">2</span><span class="s">AI ___ change the job market for illustrators.</span><span class="o"><button type="button">might good</button><button type="button">may well</button><button type="button">may good</button></span></div>
+<div class="ch" data-a="It could be argued"><span class="n">3</span><span class="s">___ that the prompt writer is the real author.</span><span class="o"><button type="button">It could argue</button><button type="button">It can argue</button><button type="button">It could be argued</button></span></div>
+<div class="ch" data-a="tend to"><span class="n">4</span><span class="s">Audiences ___ prefer works with a human story behind them.</span><span class="o"><button type="button">tend to</button><button type="button">are tending</button><button type="button">tend</button></span></div>
+<div class="ch" data-a="entirely"><span class="n">5</span><span class="s">I’m not ___ convinced by this argument.</span><span class="o"><button type="button">whole</button><button type="button">entire</button><button type="button">entirely</button></span></div>
+<div class="ch" data-a="To some extent"><span class="n">6</span><span class="s">___, the camera comparison holds.</span><span class="o"><button type="button">In some extent</button><button type="button">On some extent</button><button type="button">To some extent</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; There seems to be · may well · It could be argued · tend to · entirely · To some extent"><b>Відповіді:</b> There seems to be · may well · It could be argued · tend to · entirely · To some extent</p>
+    <h3 class="lk-sub">З’єднай фразу з простішим значенням.</h3><div class="ch" data-a="some people might say that"><span class="n">1</span><span class="s">It could be argued that ___</span><span class="o"><button type="button">to usually do something</button><button type="button">some people might say that</button><button type="button">I have some doubts</button><button type="button">partly</button><button type="button">this probably shows</button><button type="button">it looks like there is</button></span></div>
+<div class="ch" data-a="partly"><span class="n">2</span><span class="s">to some extent ___</span><span class="o"><button type="button">it looks like there is</button><button type="button">to usually do something</button><button type="button">I have some doubts</button><button type="button">partly</button><button type="button">some people might say that</button><button type="button">this probably shows</button></span></div>
+<div class="ch" data-a="I have some doubts"><span class="n">3</span><span class="s">I’m not entirely convinced ___</span><span class="o"><button type="button">this probably shows</button><button type="button">it looks like there is</button><button type="button">I have some doubts</button><button type="button">to usually do something</button><button type="button">some people might say that</button><button type="button">partly</button></span></div>
+<div class="ch" data-a="it looks like there is"><span class="n">4</span><span class="s">there seems to be ___</span><span class="o"><button type="button">this probably shows</button><button type="button">it looks like there is</button><button type="button">some people might say that</button><button type="button">I have some doubts</button><button type="button">partly</button><button type="button">to usually do something</button></span></div>
+<div class="ch" data-a="this probably shows"><span class="n">5</span><span class="s">this would seem to suggest ___</span><span class="o"><button type="button">partly</button><button type="button">some people might say that</button><button type="button">to usually do something</button><button type="button">it looks like there is</button><button type="button">this probably shows</button><button type="button">I have some doubts</button></span></div>
+<div class="ch" data-a="to usually do something"><span class="n">6</span><span class="s">to tend to do something ___</span><span class="o"><button type="button">to usually do something</button><button type="button">some people might say that</button><button type="button">it looks like there is</button><button type="button">this probably shows</button><button type="button">I have some doubts</button><button type="button">partly</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; some people might say that · partly · I have some doubts · it looks like there is · this probably shows · to usually do something"><b>Відповіді:</b> some people might say that · partly · I have some doubts · it looks like there is · this probably shows · to usually do something</p>
+    <h3 class="lk-sub">C1 vocabulary: word and meaning</h3><p class="lk-ins">Match the word with its meaning</p>
+    <div class="spin"><div class="card" id="g67">Click "Next card"</div><br><button class="btn" type="button" data-spin="[&quot;to generate&quot;, &quot;original&quot;, &quot;to imitate&quot;, &quot;intent&quot;, &quot;a breakthrough&quot;, &quot;authorship&quot;, &quot;derivative&quot;, &quot;to raise concerns&quot;]" data-target="g67">Next card</button></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; to produce or create · new and not copied · to copy someone’s style or behaviour · a clear purpose or aim · an important new discovery · the fact of being the creator of a work · based too much on other work · to make people worried"><b>Відповіді:</b> to produce or create · new and not copied · to copy someone’s style or behaviour · a clear purpose or aim · an important new discovery · the fact of being the creator of a work · based too much on other work · to make people worried</p>
+    <p class="lk-tnote" data-ru="10-12 хв або як повторення на наступному уроці. У gap «blurred» стоїть у Present Perfect (have blurred), тому потрібна форма дієслова, а не blur. Після choice попросіть учня перефразувати 2 категоричні твердження з есе через hedging. Match можна використати як шпаргалку до дебатів: учень обирає 3 фрази, які вживе наступного разу.&lt;br&gt;">10-12 хв або як повторення на наступному уроці. У gap «blurred» стоїть у Present Perfect (have blurred), тому потрібна форма дієслова, а не blur. Після choice попросіть учня перефразувати 2 категоричні твердження з есе через hedging. Match можна використати як шпаргалку до дебатів: учень обирає 3 фрази, які вживе наступного разу.<br></p>
+  </section>
+  <section id="s7" data-stage="writing" data-min="8">
+    <h2><span class="lk-n">7</span>Writing <span class="tag">writing</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Writing: 150-180 words.</h3><div class="qs"><div>Write an essay paragraph: "Creativity is a uniquely human ability." Present one argument for, one against, and your conclusion. Use at least two hedging phrases.</div></div>
+    <p class="lk-tnote" data-ru="На уроці учень пише тезу і перший аргумент (5-6 хв), вдома дописує абзац. Домашнє завдання: абзац 150-180 слів і 5 речень з новою лексикою. Перевіряйте не лише граматику, а й логіку аргументації і різноманітність hedging.&lt;br&gt;">На уроці учень пише тезу і перший аргумент (5-6 хв), вдома дописує абзац. Домашнє завдання: абзац 150-180 слів і 5 речень з новою лексикою. Перевіряйте не лише граматику, а й логіку аргументації і різноманітність hedging.<br></p>
+    <h3 class="lk-sub">Homework plus: переклади англійською, використовуючи hedging.</h3><div class="ty" data-a="It could be argued that technology changes art rather than destroying it|It could be argued that technology changes art rather than destroys it|Arguably, technology changes art rather than destroying it"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Можна стверджувати, що технології змінюють мистецтво, а не знищують його</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="There seems to be a growing demand for human-made work|There appears to be a growing demand for human-made work|Demand for human-made work seems to be growing"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Схоже, попит на роботи людей зростає</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="I found this film derivative|I found the film derivative|This film seemed derivative to me"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Цей фільм здався мені вторинним</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="The museum’s decision raised concerns among artists|The decision of the museum raised concerns among artists"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Рішення музею викликало занепокоєння серед художників</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="The question of authorship becomes complicated|The question of authorship is becoming complicated|Questions of authorship become complicated"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Питання авторства стає складним</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="I’m not entirely convinced that machines can be creative|I am not entirely convinced that machines can be creative|I’m not entirely convinced machines can be creative"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Я не зовсім переконаний, що машини можуть бути творчими</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; It could be argued that technology changes art rather than destroying it · There seems to be a growing demand for human-made work · I found this film derivative · The museum’s decision raised concerns among artists · The question of authorship becomes complicated · I’m not entirely convinced that machines can be creative"><b>Відповіді:</b> It could be argued that technology changes art rather than destroying it · There seems to be a growing demand for human-made work · I found this film derivative · The museum’s decision raised concerns among artists · The question of authorship becomes complicated · I’m not entirely convinced that machines can be creative</p>
+    <h3 class="lk-sub">Перефразуй обережніше: доповни пропуски.</h3><div class="ty" data-a="may|might|could"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>AI art is meaningless. → AI art ___ lack meaning for some viewers.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="tend|seem"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Everyone prefers human art. → Most people ___ to prefer human art.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="seem|appear"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>This proves the market has changed. → This would ___ to suggest that the market has changed.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="argued"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Prompt writers are artists. → It could be ___ that prompt writers are artists.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="convinced|sure"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>This is completely wrong. → I’m not entirely ___ that this is right.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="extent|degree"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>AI is the future of design. → To some ___, AI is shaping the future of design.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; may · tend · seem · argued · convinced · extent"><b>Відповіді:</b> may · tend · seem · argued · convinced · extent</p>
+    <h3 class="lk-sub">Письмо: 80-120 слів на кожне питання.</h3><div class="qs"><div>Should AI-generated works be allowed to win art prizes? Present both sides and use at least two hedging phrases.</div><div>Describe a piece of art, music or writing that you consider truly original. What makes it original?</div><div>How might the work of illustrators or writers change in the next ten years?</div></div>
+  </section>
+  <section class="end"><h2>Great job!</h2><p>See you next lesson.</p></section>
+</div>
+<div class="toast" id="toast"></div>
+<script>window.MURLY_LESSON={"id": "lib-ai-creativity", "title": "Can a machine be creative?", "homework": ["s2", "s3", "s4", "s6", "s7"], "hw": {"s2": [{"type": "choice", "instruction": "Match the phrases with their meanings.", "text": "to blur the line between {to make the difference between two things less clear|to decide it is not worth considering|it can be said, though not everyone agrees|to make people worried about something|lacking originality, copied from other work}\nto dismiss something {to decide it is not worth considering|to make the difference between two things less clear|it can be said, though not everyone agrees|to make people worried about something|lacking originality, copied from other work}\narguably {it can be said, though not everyone agrees|to make the difference between two things less clear|to decide it is not worth considering|to make people worried about something|lacking originality, copied from other work}\nto raise concerns {to make people worried about something|to make the difference between two things less clear|to decide it is not worth considering|it can be said, though not everyone agrees|lacking originality, copied from other work}\nderivative {lacking originality, copied from other work|to make the difference between two things less clear|to decide it is not worth considering|it can be said, though not everyone agrees|to make people worried about something}"}, {"type": "gap", "instruction": "Complete the sentences with words from the list.", "text": "Many critics found the film [derivative]: it simply recycled older classics.\nThe new model is a genuine [breakthrough] in image recognition.\nQuestions of [authorship] become complicated when software produces the text.\nThe museum’s decision to show AI paintings has [raised] concerns among local artists."}], "s3": [{"type": "choice", "instruction": "Gist: choose the best title for the essay.", "text": "The best title is {Tool or creator?|Why AI will replace all artists|How to write better prompts}."}, {"type": "choice", "instruction": "Detail: choose the best answer.", "text": "Critics say AI art is mainly {imitation|original thinking|a new kind of painting}.\nFor critics, the key difference between humans and machines is {intent|speed|skill}.\nThe comparison with the camera suggests that new technology {changes art rather than ending it|always destroys old art forms|is not important for artists}."}, {"type": "choice", "instruction": "True or False?", "text": "The writer says that human artists never copy anyone. {False|True}\nSupporters think creativity can mean combining existing ideas in new ways. {True|False}\nThe text raises the question of who owns AI-generated images. {True|False}\nThe writer suggests that AI models may tend to avoid risk. {True|False}\nAccording to the essay, risk-taking has nothing to do with the value of art. {False|True}"}], "s4": [{"type": "gap", "instruction": "Rewrite more cautiously. Complete the gaps.", "text": "AI is creative. → It could be [argued] that AI is creative.\nThis is true. → To some [extent], this is true.\nI don’t believe it. → I’m not entirely [convinced].\nAI will replace illustrators. → AI [may/might/could] replace some illustrators.\nEveryone agrees. → There [seems/appears] to be broad agreement."}, {"type": "choice", "instruction": "Choose the correct hedging phrase.", "text": "{It could be argued|It is argue|It argued} that prompts are a form of authorship.\nThe results are, {to some extent|in some extent|at some extent}, impressive.\nThere {appears|appear|is appearing} to be a growing demand for human-made art.\nThis {would seem to suggest|would seems suggest|seem suggesting} that the market is changing."}, {"type": "gap", "instruction": "Переклади англійською, використовуючи hedging.", "text": "Можна стверджувати, що ШІ розмиває межу між інструментом і творцем → [It could be argued that AI is blurring the line between tool and creator/It could be argued that AI blurs the line between tool and creator/Arguably, AI is blurring the line between tool and creator]\nДо певної міри я з цим згоден → [To some extent, I agree with this/I agree with this to some extent/To some extent I agree]"}], "s6": [{"type": "gap", "instruction": "Встав слово з уроку.", "text": "The software can [generate] dozens of images in a few seconds.\nYoung painters often begin by trying to [imitate] the artists they admire.\nWithout human [intent], some say, a picture is just a pattern.\nIt would be a mistake to [dismiss] AI art as a passing fashion.\nSmartphones have [blurred] the line between amateur and professional photography.\nMany publishers prefer to play it [safe] and avoid experimental novels."}, {"type": "choice", "instruction": "Обери правильну фразу для hedging.", "text": "{There seems to be|There seem to be|It seems to be there} a shift in how audiences value originality.\nAI {may well|may good|might good} change the job market for illustrators.\n{It could be argued|It can argue|It could argue} that the prompt writer is the real author.\nAudiences {tend to|tend|are tending} prefer works with a human story behind them.\nI’m not {entirely|entire|whole} convinced by this argument.\n{To some extent|In some extent|On some extent}, the camera comparison holds."}, {"type": "choice", "instruction": "З’єднай фразу з простішим значенням.", "text": "It could be argued that {some people might say that|partly|I have some doubts|it looks like there is|this probably shows|to usually do something}\nto some extent {partly|some people might say that|I have some doubts|it looks like there is|this probably shows|to usually do something}\nI’m not entirely convinced {I have some doubts|some people might say that|partly|it looks like there is|this probably shows|to usually do something}\nthere seems to be {it looks like there is|some people might say that|partly|I have some doubts|this probably shows|to usually do something}\nthis would seem to suggest {this probably shows|some people might say that|partly|I have some doubts|it looks like there is|to usually do something}\nto tend to do something {to usually do something|some people might say that|partly|I have some doubts|it looks like there is|this probably shows}"}], "s7": [{"type": "open", "instruction": "Writing: 150-180 words.", "text": "Write an essay paragraph: \"Creativity is a uniquely human ability.\" Present one argument for, one against, and your conclusion. Use at least two hedging phrases."}, {"type": "gap", "instruction": "Homework plus: переклади англійською, використовуючи hedging.", "text": "Можна стверджувати, що технології змінюють мистецтво, а не знищують його → [It could be argued that technology changes art rather than destroying it/It could be argued that technology changes art rather than destroys it/Arguably, technology changes art rather than destroying it]\nСхоже, попит на роботи людей зростає → [There seems to be a growing demand for human-made work/There appears to be a growing demand for human-made work/Demand for human-made work seems to be growing]\nЦей фільм здався мені вторинним → [I found this film derivative/I found the film derivative/This film seemed derivative to me]\nРішення музею викликало занепокоєння серед художників → [The museum’s decision raised concerns among artists/The decision of the museum raised concerns among artists]\nПитання авторства стає складним → [The question of authorship becomes complicated/The question of authorship is becoming complicated/Questions of authorship become complicated]\nЯ не зовсім переконаний, що машини можуть бути творчими → [I’m not entirely convinced that machines can be creative/I am not entirely convinced that machines can be creative/I’m not entirely convinced machines can be creative]"}, {"type": "gap", "instruction": "Перефразуй обережніше: доповни пропуски.", "text": "AI art is meaningless. → AI art [may/might/could] lack meaning for some viewers.\nEveryone prefers human art. → Most people [tend/seem] to prefer human art.\nThis proves the market has changed. → This would [seem/appear] to suggest that the market has changed.\nPrompt writers are artists. → It could be [argued] that prompt writers are artists.\nThis is completely wrong. → I’m not entirely [convinced/sure] that this is right.\nAI is the future of design. → To some [extent/degree], AI is shaping the future of design."}, {"type": "open", "instruction": "Письмо: 80-120 слів на кожне питання.", "text": "Should AI-generated works be allowed to win art prizes? Present both sides and use at least two hedging phrases.\nDescribe a piece of art, music or writing that you consider truly original. What makes it original?\nHow might the work of illustrators or writers change in the next ten years?"}]}};</script>
+<script>
+(function(){var l=(document.cookie.match(/(?:^|; )murly_lang=(\w+)/)||[])[1];try{l=l||localStorage.getItem('murly:tlang')}catch(e){}l=l==='ru'?'ru':'uk';document.querySelectorAll('[data-pairs-'+l+']').forEach(function(b){b.dataset.pairs=b.getAttribute('data-pairs-'+l)});})();
+</script>
+<script>
+const $ = (id) => document.getElementById(id);
+const LIS = {};
+function say(w, rate) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; const v = speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang) && /Google|Natural|Libby|Sonia|Daniel/.test(x.name)) || speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang)); if (v) u.voice = v; u.rate = rate || .95; speechSynthesis.speak(u); } catch (e) { } }
+const sh = (a) => a.map((x) => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map((x) => x[1]);
+document.querySelectorAll('.voc div').forEach((d) => d.onclick = () => say(d.dataset.say));
+document.querySelectorAll('[data-play]').forEach((b) => b.onclick = () => say(LIS[b.dataset.play], b.dataset.slow ? .75 : .95));
+document.querySelectorAll('[data-stop]').forEach((b) => b.onclick = () => { try { speechSynthesis.cancel(); } catch (e) { } });
+document.querySelectorAll('.ch').forEach((q) => q.querySelectorAll('button').forEach((b) => b.onclick = () => { if (q.classList.contains('ok')) return; const ok = b.textContent === q.dataset.a; q.classList.toggle('ok', ok); q.classList.toggle('bad', !ok); if (ok) { const s = q.querySelector('.s'); if (s && s.textContent.includes('___')) { s.textContent = s.textContent.replace('___', q.dataset.a); } } }));
+const norm = (x) => x.toLowerCase().replace(/[’']/g, "'").replace(/[,;:"“”«»]/g, ' ').replace(/\s+/g, ' ').replace(/[.!?]$/, '').trim();
+document.querySelectorAll('.ty').forEach((r) => { const inp = r.querySelector('input'); const chk = () => { const ok = r.dataset.a.split('|').some((a) => norm(a) === norm(inp.value)); r.classList.toggle('ok', ok); r.classList.toggle('bad', !ok && inp.value.trim() !== ''); }; r.querySelector('button').onclick = chk; inp.onkeydown = (e) => { if (e.key === 'Enter') chk(); }; });
+document.querySelectorAll('[data-mt]').forEach((box) => { const pairs = JSON.parse(box.dataset.pairs); const L = sh(pairs.map((p) => p[0])), R = sh(pairs.map((p) => p[1])); let sel = null, done = 0, err = 0; box.innerHTML = L.map((w, i) => `<button type="button" data-w="${w}">${w}</button><button type="button" data-d="${R[i]}">${R[i]}</button>`).join('');
+  box.querySelectorAll('button').forEach((b) => b.onclick = () => { if (b.classList.contains('done')) return; if (!sel || (sel.dataset.w && b.dataset.w) || (sel.dataset.d && b.dataset.d)) { if (sel) sel.classList.remove('sel'); sel = b; b.classList.add('sel'); return; } const w = sel.dataset.w || b.dataset.w, d = sel.dataset.d || b.dataset.d; if (pairs.some((p) => p[0] === w && p[1] === d)) { sel.classList.add('done'); b.classList.add('done'); done++; say(w); if (done === pairs.length) document.querySelector(`[data-mtres="${box.dataset.mt}"]`).textContent = err ? `Done! Mistakes: ${err}` : 'Perfect!'; } else err++; sel.classList.remove('sel'); sel = null; }); });
+document.querySelectorAll('[data-vids]').forEach((box) => JSON.parse(box.dataset.vids).forEach(([id, title, ch, qs]) => { const d = document.createElement('div'); d.className = 'vid'; d.innerHTML = `<div class="frame"><button class="play" type="button" style="background-image:url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)"><span>PLAY</span></button></div><div class="info"><h3>${title}</h3><small>YouTube · ${ch}</small><ol>${qs.map((q) => `<li>${q}</li>`).join('')}</ol></div>`; d.querySelector('.play').onclick = (e) => { e.currentTarget.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&cc_load_policy=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${title}"></iframe>`; }; box.appendChild(d); }));
+document.querySelectorAll('[data-spin]').forEach((b) => { const list = JSON.parse(b.dataset.spin); let last = -1; b.onclick = () => { let i; do { i = Math.floor(Math.random() * list.length); } while (i === last && list.length > 1); last = i; document.getElementById(b.dataset.target).textContent = list[i]; }; });
+try { const k = 'murly:' + (window.MURLY_LESSON ? MURLY_LESSON.id : 'x') + ':hw'; const t = $('hwText'); if (t) { t.value = localStorage.getItem(k) || ''; t.oninput = () => localStorage.setItem(k, t.value); } } catch (e) { }
+const STAGES = [...document.querySelectorAll('.wrap > section[id]')];
+$('stages').innerHTML = STAGES.map((s) => `<a href="#${s.id}"><b>${s.querySelector('.lk-n').textContent}</b><span>${s.dataset.stage}</span><small>${s.dataset.min !== '0' ? s.dataset.min + ' min' : 'at home'}</small></a>`).join('');
+$('teacherBtn').onclick = (e) => { const on = document.body.classList.toggle('teacher'); e.currentTarget.textContent = on ? 'Student version' : 'Teacher version'; };
+</script>
+<script src="/game-lessons/kit.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Present Perfect Continuous: 100 tasks (B1) | Murly</title>
+<link rel="icon" href="/favicon.svg">
+<meta name="description" content="Повторимо правило: Теперішній доконано-тривалий час
+100 завдань від простого до складного
+Розберемо головні пастки">
+<link rel="canonical" href="https://murly.com.ua/game-lessons/lib-drill-present-perfect-continuous.html">
+<style>
+:root{--paper:#F3F0EA;--ink:#17181C;--violet:#3D4A7A;--lav:#D9D3C7;--pink:#E9C9BC;--green:#D4E2CF;--white:#fff;--muted:#62646B;--accent:#B5482F}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+/* hero */
+.hero{background:linear-gradient(rgba(16,17,22,.5),rgba(16,17,22,.72)),url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1400&q=70&auto=format&fit=crop");color:#fff;padding:70px 18px 56px;text-align:center;position:relative;overflow:hidden}
+.hero .kicker{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#E9C9BC;font-weight:700}
+.hero .cr{position:absolute;right:12px;bottom:8px;font-size:11px;color:rgba(255,255,255,.6)}
+.hero h1{margin:8px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(36px,6vw,64px);letter-spacing:-.5px;font-weight:700}
+.hero h1 span{color:var(--pink);font-style:italic}
+.hero p{margin:12px 0 0;font-size:17px;color:#e6e2da}
+.hero .flags{display:flex;justify-content:center;gap:12px;margin-top:22px;flex-wrap:wrap}
+.hero .flags svg{width:40px;height:26px;border-radius:3px;opacity:.9}
+/* sections */
+section{margin-top:30px;background:var(--white);border-radius:18px;padding:28px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.05)}
+section h2{margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tag{font-family:"Segoe UI",system-ui,sans-serif;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--paper);color:var(--accent);text-transform:uppercase;letter-spacing:1px}
+.lk-n{display:inline-grid;place-items:center;width:42px;height:42px;background:var(--violet);color:#fff;border-radius:50%;font-size:21px;flex:none}
+.lk-mode{font-size:13px;font-weight:700;border:2px dashed var(--lav);color:var(--muted);padding:2px 10px;border-radius:999px}
+.lk-ins{font-size:17px;background:var(--paper);border-radius:12px;padding:10px 14px;margin:6px 0 18px}
+.lk-sub{margin:24px 0 10px;font-size:19px}
+.btn{font:inherit;font-weight:700;border:0;border-radius:999px;background:var(--ink);color:#fff;padding:10px 20px;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+.btn.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+/* teacher */
+.lk-tbtn{position:fixed;right:16px;top:70px;z-index:45;font:inherit;font-weight:800;border:2px solid var(--ink);background:var(--pink);padding:8px 14px;border-radius:12px;cursor:pointer}
+body.teacher .lk-tbtn{background:var(--green)}
+.lk-ans,.lk-tnote{display:none}
+body.teacher .lk-ans{display:block;margin-top:8px;font-weight:700;color:#1d5a12;background:var(--green);border-left:5px solid #5aa845;padding:6px 10px;font-size:15px;border-radius:6px}
+body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff3f7;border-left:5px solid #d9789a;padding:8px 12px;font-size:15px;border-radius:6px}
+/* overview */
+.lk-overview ul{font-size:17px;line-height:1.7;margin:6px 0 16px}
+.lk-stages{display:flex;flex-wrap:wrap;gap:8px}
+.lk-stages a{display:grid;border-radius:14px;padding:8px 12px;text-decoration:none;color:var(--ink);background:var(--paper);font-weight:700;min-width:100px}
+.lk-stages a span{text-transform:capitalize}
+.lk-stages a b{font-size:20px;color:var(--violet)}
+.lk-stages a small{font-weight:600;color:var(--muted)}
+/* warm-up */
+.taxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tax{background:var(--paper);border-radius:18px;padding:16px;display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center}
+.tax svg{width:56px;height:56px}
+.tax b{display:block;font-size:17px}
+.tax small{color:var(--muted);font-size:14px}
+.qs{display:grid;gap:10px;margin-top:18px}
+.qs div{background:var(--green);border-radius:14px;padding:10px 16px;font-size:18px;font-weight:600}
+.phr{background:#fff7e8;border-radius:14px;padding:12px 16px;margin-top:16px;font-size:15px}
+.phr ul{margin:6px 0 0;padding-left:18px}
+.fic{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:16px}
+.fic .c{background:#fff;border:2px solid #1B2140;border-radius:16px;padding:14px 16px;box-shadow:3px 3px 0 #1B2140}
+.fic .c b{display:block;font-size:18px;line-height:1.35;margin-bottom:8px}
+.fic .c .k{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.fic .c .k span{font-size:13px;background:#eef1fb;border-radius:999px;padding:3px 10px}
+.fic .c details{margin-top:8px;font-size:15px;color:#3b4160}
+.fic .c summary{cursor:pointer;font-weight:700;color:#534AB7}
+.fi-n{display:inline-flex;width:28px;height:28px;border-radius:50%;background:#2F4BA0;color:#fff;align-items:center;justify-content:center;font-size:14px;margin-right:6px}
+/* vocab */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:12px}
+.vc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:2px solid transparent;transition:border-color .2s,transform .2s}
+.vc:hover{border-color:var(--violet);transform:translateY(-2px)}
+.vc b{font-size:18px;display:flex;align-items:center;gap:8px}
+.vc b svg{width:20px;height:20px;flex:none;color:var(--violet)}
+.vc p{margin:6px 0 0;font-size:14px;color:var(--muted)}
+.vc em{display:block;margin-top:6px;font-size:14px;color:var(--violet);font-style:normal;font-weight:600}
+.vc.played{background:#e6ecfb}
+/* grammar */
+.gram{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.gb{border-radius:18px;padding:16px}
+.gb h3{margin:0 0 6px;font-size:19px}
+.gb .f{display:inline-block;background:#fff;border-radius:8px;padding:3px 10px;font-weight:800;margin:4px 0;font-family:Consolas,monospace;font-size:15px}
+.gb p{margin:6px 0 0;font-size:15px}
+.g1{background:var(--pink)}.g2{background:var(--lav)}.g3{background:var(--green)}.g4{background:#fbe7c6}
+.warn{margin-top:14px;background:var(--ink);color:#fff;border-radius:14px;padding:12px 16px;font-size:16px}
+.warn b{color:var(--pink)}
+.q{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:2px dashed var(--paper);font-size:18px}
+.q:last-child{border-bottom:0}
+.q .n{width:32px;height:32px;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;border-radius:50%;font-weight:800;font-size:15px}
+.opt{font:inherit;font-size:16px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:10px;padding:4px 12px;cursor:pointer;margin:0 2px}
+.opt.ok{background:var(--green);border-color:#5aa845}
+.opt.bad{background:var(--pink);animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+/* tour */
+.tour{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.law{border-radius:22px;overflow:hidden;background:var(--paper);display:flex;flex-direction:column}
+.law .pic{height:150px;display:grid;place-items:center;position:relative}
+.law .pic svg.ill{width:130px;height:130px}
+.law .pic svg.fl{position:absolute;left:14px;top:14px;width:46px;height:30px;border-radius:5px;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.law .pic .no{position:absolute;right:14px;top:14px;background:var(--ink);color:#fff;font-weight:800;border-radius:999px;padding:2px 10px;font-size:13px}
+.law .body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.law h3{margin:0;font-size:20px}
+.law .where{font-size:13px;font-weight:800;color:var(--violet);text-transform:uppercase;letter-spacing:1px}
+.law p{margin:0;font-size:16px}
+.law .why{font-size:14px;color:var(--muted)}
+.law .dq{margin-top:auto;background:#fff;border-radius:12px;padding:8px 12px;font-weight:700;font-size:15px}
+.law .lsn{font:inherit;font-size:13px;font-weight:700;background:none;border:0;color:var(--violet);cursor:pointer;padding:0;text-align:left}
+/* game */
+.game{max-width:720px;margin:0 auto;text-align:center}
+.score{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.score span{background:var(--paper);border-radius:999px;padding:6px 16px;font-weight:800}
+.stmt{background:var(--ink);color:#fff;border-radius:22px;padding:28px 24px;min-height:150px;display:grid;place-items:center;font-size:23px;font-weight:700;position:relative}
+.stmt small{position:absolute;top:12px;left:18px;font-size:13px;color:var(--lav);font-weight:700}
+.choose{display:flex;justify-content:center;gap:14px;margin:18px 0}
+.choose button{font:inherit;font-size:18px;font-weight:700;border:2px solid var(--ink);border-radius:999px;padding:12px 28px;cursor:pointer}
+.choose .bl{background:var(--green)}.choose .bm{background:var(--pink)}
+.choose button:disabled{opacity:.5;cursor:default}
+.verdict{min-height:70px;font-size:17px;background:var(--paper);border-radius:16px;padding:12px 16px;text-align:left}
+.verdict b.r{color:#2d7a1d}.verdict b.w{color:#b23a62}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.dots i{width:14px;height:14px;border-radius:50%;background:var(--paper)}
+.dots i.r{background:#7cc663}.dots i.w{background:#e47b9f}.dots i.c{outline:3px solid var(--violet)}
+.final{font-size:22px;font-weight:800;color:var(--violet)}
+/* invent */
+.inv{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.frames{display:grid;gap:10px}
+.frames label{font-size:14px;font-weight:700;color:var(--muted)}
+.frames select,.frames input{font:inherit;width:100%;padding:8px 10px;border:2px solid var(--lav);border-radius:10px;background:#fff}
+.poster{background:var(--paper);border:3px solid var(--ink);border-radius:20px;padding:22px;text-align:center;min-height:260px;display:flex;flex-direction:column;gap:10px;justify-content:center}
+.poster .seal{width:70px;height:70px;margin:0 auto}
+.poster h3{margin:0;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--violet)}
+.poster .rule{font-size:22px;font-weight:800}
+.poster .pen{font-size:16px;color:var(--muted)}
+.ideas{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ideas span{background:var(--pink);border-radius:999px;padding:5px 12px;font-size:14px;font-weight:600}
+/* roleplay */
+.rp{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.role{border-radius:20px;padding:18px}
+.role h3{margin:0 0 6px;display:flex;align-items:center;gap:10px}
+.role h3 svg{width:42px;height:42px}
+.role ul{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.r1{background:var(--lav)}.r2{background:var(--green)}
+.scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:16px}
+.sc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:3px solid transparent}
+.sc.on{border-color:var(--violet);background:#fff}
+.sc b{display:block;font-size:17px;margin-bottom:4px}
+.sc p{margin:0;font-size:15px}
+.timer{font-size:40px;font-weight:800;text-align:center;margin:14px 0 6px;color:var(--violet)}
+.ctr{text-align:center}
+/* homework */
+.hwb{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hwc{background:var(--paper);border-radius:18px;padding:18px}
+.hwc h3{margin:0 0 8px}
+.hwc ol,.hwc ul{margin:6px 0 0;padding-left:20px;line-height:1.7}
+.hwc textarea{width:100%;min-height:150px;font:inherit;border:2px solid var(--lav);border-radius:12px;padding:10px;margin-top:10px}
+.end{text-align:center;background:var(--ink);color:#fff;box-shadow:none}
+.end h2{justify-content:center}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(140px);background:var(--ink);color:#fff;font-weight:800;padding:12px 22px;border-radius:14px;transition:transform .3s;z-index:50}
+.toast.show{transform:translateX(-50%) translateY(0)}
+/* photos */
+.ph{margin:0}
+.ph img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;background:var(--paper)}
+.ph figcaption{font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.2px}
+.tax{grid-template-columns:1fr !important;padding:12px !important}
+.law .pic{height:auto !important;display:block !important;padding:0;position:relative}
+.law .pic .ph img{border-radius:0;aspect-ratio:16/10;transition:filter .5s}
+.law .pic .ph figcaption{padding:4px 12px 0}
+.law.hide .pic .ph img{filter:blur(10px) grayscale(.6)}
+.law.hide .reveal-body,.law.hide .fl,.law.hide .where{visibility:hidden}
+.law .clue{font-size:15px;font-style:italic;color:var(--ink)}
+.law .gc{display:flex;flex-wrap:wrap;gap:6px}
+.law .gc button{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:4px 12px;cursor:pointer}
+.law .gc button.ok{background:var(--green)}.law .gc button.bad{background:var(--pink)}
+.law:not(.hide) .guess{display:none}
+.fair{display:grid;gap:4px;background:#fff;border-radius:12px;padding:8px 12px}
+.fair .ends{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.fair input{width:100%;accent-color:var(--accent)}
+.fair output{font-size:14px;font-weight:700;color:var(--accent)}
+.gph{max-width:720px;margin:0 auto 12px}
+.gph img{aspect-ratio:21/9}
+.fine{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.fq{background:var(--paper);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.fq h3{margin:0;font-size:18px}
+.fq .opts{display:flex;flex-wrap:wrap;gap:6px}
+.fq .opts button{font:inherit;font-size:14px;font-weight:700;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 12px;cursor:pointer}
+.fq .opts button.ok{background:var(--green)}.fq .opts button.bad{background:var(--pink)}
+.fq .res{font-size:15px;min-height:22px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{position:relative;aspect-ratio:16/9;background:#111}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;cursor:pointer;background:#111 center/cover;display:grid;place-items:center}
+.vid .play span{background:rgba(0,0,0,.7);color:#fff;font-weight:700;border-radius:999px;padding:10px 20px;font-size:15px;letter-spacing:1px}
+.vid .info{padding:14px 16px}
+.vid .info h3{margin:0 0 2px;font-size:18px}
+.vid .info small{color:var(--muted)}
+.vid .info ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+@media(max-width:760px){.inv,.rp,.hwb{grid-template-columns:1fr}.lk-tbtn{top:auto;bottom:70px}}
+
+.pr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.pb{border-radius:18px;padding:16px 18px}
+.pb h3{margin:0;font-family:Georgia,serif;font-size:30px}
+.pb .m{font-size:15px;color:var(--muted);margin:2px 0 8px}
+.pb .chips{display:flex;flex-wrap:wrap;gap:6px}
+.pb .chips span{background:#fff;border-radius:999px;padding:4px 11px;font-size:14px;font-weight:600}
+.pb ul{margin:10px 0 0;padding-left:18px;font-size:15px}
+.p-in{background:#DCE6F5}.p-at{background:#F3D9CF}.p-on{background:#D4E2CF}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-size:15px;margin-top:10px}
+.ex div{background:var(--paper);border-radius:10px;padding:8px 12px}
+.ex b{color:var(--accent)}
+.q{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.q .n{font-weight:800;color:var(--violet);min-width:24px}
+.q .gap{display:inline-block;min-width:44px;border-bottom:2px solid var(--ink);text-align:center;font-weight:800}
+.q .opts{margin-left:auto;display:flex;gap:6px}
+.q .opts button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 14px;cursor:pointer}
+.q.ok{background:#DDEED7}.q.ok .gap{color:#2F7A3B}
+.q.bad{background:#F6DAD3}
+.score{font-weight:800;margin-top:12px}
+.text{font-size:18px;line-height:1.75;background:var(--paper);border-radius:16px;padding:18px 22px}
+.text h3{margin:0 0 6px;font-family:Georgia,serif;font-size:24px}
+.text p{margin:0 0 12px}
+.text.hl mark{background:#F3D9CF;border-radius:4px;padding:0 3px;font-weight:700}
+.tf{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:9px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.tf .opts{margin-left:auto;display:flex;gap:6px}
+.tf button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.tf.ok{background:#DDEED7}.tf.bad{background:#F6DAD3}
+.disc{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px;margin-top:6px}
+.disc div{background:var(--green);border-radius:14px;padding:12px 16px;font-size:17px;font-weight:600}
+.disc div i{font-style:normal;color:var(--violet);margin-right:6px}
+.spin{text-align:center;margin-top:16px}
+.spin .card{display:inline-block;min-height:80px;min-width:min(560px,100%);background:var(--ink);color:#fff;border-radius:18px;padding:20px 24px;font-size:22px;font-weight:700;margin-bottom:12px}
+@media(max-width:700px){.ex{grid-template-columns:1fr}}
+
+.hero{background-size:cover!important;background-position:center!important}
+.voc{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.voc div{background:var(--paper);border-radius:14px;padding:10px 14px;cursor:pointer;border:2px solid transparent}
+.voc div:hover{border-color:var(--violet)}
+.voc b{display:block;font-size:18px}.voc span{display:block;color:var(--accent);font-weight:700;font-size:15px}.voc em{display:block;font-size:14px;color:var(--muted);margin-top:3px}
+.mt{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:10px}
+.mt button{font:inherit;font-size:16px;text-align:left;border:2px solid var(--ink);background:#fff;border-radius:14px;padding:9px 14px;cursor:pointer}
+.mt button.sel{background:#FFE7A8}.mt button.done{background:#CDE8C6;border-color:#4C9A5B;cursor:default}
+.ch{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ch .n{font-weight:800;color:var(--violet);min-width:24px}
+.ch .o{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.ch .o button{font:inherit;font-size:15px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.ch.ok{background:#DDEED7}.ch.bad{background:#F6DAD3}
+.ty{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ty input{font:inherit;border:2px solid var(--ink);border-radius:10px;padding:4px 10px;width:220px}
+.ty.ok{background:#DDEED7}.ty.bad{background:#F6DAD3}
+.ty small{color:var(--muted)}
+.photo{width:100%;height:300px;object-fit:cover;border-radius:16px;display:block}
+.cap{font-size:11px;color:var(--muted);margin:4px 0 12px}
+.pics{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.pics figure{margin:0;background:var(--paper);border-radius:16px;overflow:hidden}
+.pics img{width:100%;height:170px;object-fit:cover;display:block}
+.pics figcaption{padding:8px 12px;font-weight:700}
+.pics small{display:block;font-weight:400;font-size:10px;color:var(--muted)}
+.lis{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:8px 0 14px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{aspect-ratio:16/9;background:#000;position:relative}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;background-size:cover;background-position:center;cursor:pointer;display:grid;place-items:center}
+.vid .play span{background:#E5484D;color:#fff;font-weight:800;border-radius:12px;padding:10px 20px}
+.vid .info{padding:12px 16px}.vid h3{margin:0;font-size:18px}.vid small{color:var(--muted)}
+.vid ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th,.tbl td{border:1px solid #ddd;padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--paper)}
+@media(max-width:700px){.mt{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="/game-lessons/kit.css">
+</head>
+<body>
+<header class="hero">
+  <div class="kicker">B1 · teens · Граматика: тренажер Теперішній доконано-тривалий час</div>
+  <h1>Present Perfect Continuous: 100 tasks</h1>
+  <p>B1 · 6 parts · 60 min</p>
+  <span class="cr">Photo: Unsplash</span>
+</header>
+<button class="lk-tbtn" id="teacherBtn" type="button">Teacher version</button>
+<div class="wrap">
+  <section class="lk-overview">
+    <h2>In this lesson you will:</h2>
+    <ul><li>Повторимо правило: Теперішній доконано-тривалий час
+100 завдань від простого до складного
+Розберемо головні пастки</li></ul>
+    <div class="lk-stages" id="stages"></div>
+  </section>
+  <section id="s1" data-stage="practice" data-min="10">
+    <h2><span class="lk-n">1</span>Теорія <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<div class="warn"><p><b>Коли вживаємо</b></p><p>Почалося в минулому і триває досі (for, since): Lily has been learning Spanish for two years. (Лілі вчить іспанську вже два роки.)</p><p>Питаємо, скільки часу триває: How long...?: How long have you been waiting? (Скільки ти вже чекаєш?)</p><p>Дія щойно скінчилася, а сліди видно зараз: I’m hot because I’ve been running. (Мені жарко, бо я бігав.)</p><p>Чим людина займалася останнім часом (lately, recently): Max has been playing a lot of chess lately. (Останнім часом Макс багато грає в шахи.)</p><p>Наголос на процесі, а не на результаті: We’ve been painting the kitchen all day. (Ми цілий день фарбуємо кухню.)</p></div>
+    <div class="warn"><p><b>Форми</b></p><p>+  I / you / we / they + have been + V-ing; he / she / it + has been + V-ing. Приклад: They have been chatting for an hour.</p><p>−  haven’t / hasn’t + been + V-ing. Приклад: She hasn’t been sleeping well.</p><p>?  Have / Has + підмет + been + V-ing?. Приклад: Has it been raining?</p><p>коротка відповідь  Yes, I have. / No, he hasn’t. (без been і без V-ing). Приклад: Have you been waiting long? No, I haven’t.</p><p>how long  How long + have / has + підмет + been + V-ing?. Приклад: How long has Dan been working here?</p></div>
+    <div class="warn"><p><b>Головна пастка</b></p><p>Стативні дієслова без -ing. know, like, love, want, believe, understand, own і have у значенні «мати» не вживаємо в Continuous. З ними потрібен звичайний Present Perfect: have known, has had.</p><p>✗ I have been knowing Tom since school.</p><p>✓ I have known Tom since school.</p><p>Процес чи результат. Скільки зробили (число, готовий результат): Present Perfect, have written three emails. Чим займалися і як довго: Present Perfect Continuous, have been writing all morning.</p><p>✗ I have been writing three emails this morning.</p><p>✓ I have written three emails this morning.</p><p>Не теперішній час з for і since. Українською кажемо «вчу два роки» в теперішньому часі, а англійською з for / since потрібно have / has been + V-ing.</p><p>✗ I am learning English for three years.</p><p>✓ I have been learning English for three years.</p></div>
+    <div class="warn"><p><b>Маркери:</b> for + період, since + момент, How long...?, all day, all morning, all week, lately, recently, for ages, long (Have you been waiting long?)</p></div>
+    <div class="warn"><p><b>For чи since</b></p><p>for + скільки часу триває: for ten minutes, for a week, for ages. since + коли почалося: since Monday, since 2022, since I was a kid. Написання -ing: write → writing (німе e зникає), run → running, chat → chatting (подвоєння після короткого голосного), lie → lying.</p><p>for · twenty minutes · двадцять хвилин</p><p>for · a week / a month · тиждень / місяць</p><p>for · three years · три роки</p><p>for · ages · дуже довго, цілу вічність</p><p>since · 8 o’clock · з восьмої години</p><p>since · Monday / May · з понеділка / з травня</p><p>since · 2022 · з 2022 року</p><p>since · breakfast · зі сніданку</p><p>since · I was a kid · з дитинства</p></div>
+    <p class="lk-tnote" data-ru="Тренажер на 100 завдань: 5 раундів по 20. На уроці можна пройти 1-2 раунди, решту задати додому. Пояснення до кожної відповіді учень бачить у тренажері на сайті (розділ «Граматика»).&lt;br&gt;">Тренажер на 100 завдань: 5 раундів по 20. На уроці можна пройти 1-2 раунди, решту задати додому. Пояснення до кожної відповіді учень бачить у тренажері на сайті (розділ «Граматика»).<br></p>
+  </section>
+  <section id="s2" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">2</span>Раунд 1. Форми: have been + V-ing <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="has been playing"><span class="n">1</span><span class="s">Sophie ___ the piano since lunch.</span><span class="o"><button type="button">is been playing</button><button type="button">has been playing</button><button type="button">has been play</button><button type="button">have been playing</button></span></div>
+<div class="ch" data-a="have"><span class="n">2</span><span class="s">My parents ___ been looking for a new flat.</span><span class="o"><button type="button">are</button><button type="button">has</button><button type="button">were</button><button type="button">have</button></span></div>
+<div class="ch" data-a="have been studying"><span class="n">3</span><span class="s">I ___ for this exam all week.</span><span class="o"><button type="button">have been studied</button><button type="button">has been studying</button><button type="button">am been studying</button><button type="button">have been studying</button></span></div>
+<div class="ch" data-a="been swimming"><span class="n">4</span><span class="s">The kids have ___ in the pool since morning.</span><span class="o"><button type="button">being swimming</button><button type="button">been swim</button><button type="button">been swimming</button><button type="button">be swimming</button></span></div>
+<div class="ch" data-a="has been sleeping"><span class="n">5</span><span class="s">Our cat ___ on my bed all afternoon.</span><span class="o"><button type="button">have been sleeping</button><button type="button">has been sleeping</button><button type="button">is been sleeping</button><button type="button">has sleeping</button></span></div>
+<div class="ch" data-a="have been singing"><span class="n">6</span><span class="s">Lily and Kate ___ the same song for an hour!</span><span class="o"><button type="button">have been singing</button><button type="button">has been singing</button><button type="button">have been sing</button><button type="button">have be singing</button></span></div>
+<div class="ch" data-a="watching"><span class="n">7</span><span class="s">I’ve been ___ TV since dinner.</span><span class="o"><button type="button">watched</button><button type="button">watch</button><button type="button">watches</button><button type="button">watching</button></span></div>
+<div class="ch" data-a="has been trying"><span class="n">8</span><span class="s">Tom ___ to fix his bike all morning.</span><span class="o"><button type="button">has tried been</button><button type="button">have been trying</button><button type="button">has been tried</button><button type="button">has been trying</button></span></div>
+<div class="ch" data-a="have been playing"><span class="n">9</span><span class="s">The neighbours ___ loud music since ten o’clock.</span><span class="o"><button type="button">has been playing</button><button type="button">have been playing</button><button type="button">are playing been</button><button type="button">have played been</button></span></div>
+<div class="ch" data-a="looking"><span class="n">10</span><span class="s">She’s been ___ for her keys for ten minutes.</span><span class="o"><button type="button">look</button><button type="button">looking</button><button type="button">looked</button><button type="button">looks</button></span></div>
+<div class="ch" data-a="have"><span class="n">11</span><span class="s">I ___ been feeling a bit tired lately.</span><span class="o"><button type="button">am</button><button type="button">have</button><button type="button">has</button><button type="button">was</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; has been playing · have · have been studying · been swimming · has been sleeping · have been singing · watching · has been trying · have been playing · looking · have"><b>Відповіді:</b> has been playing · have · have been studying · been swimming · has been sleeping · have been singing · watching · has been trying · have been playing · looking · have</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="chatting"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>They have been ___ (chat) online for two hours.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="has"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Max ___ (have) been waiting for you since six.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="writing"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Emma has been ___ (write) her essay all evening.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="been raining"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>It has ___ (rain) since Sunday.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="running"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>We’ve been ___ (run), that’s why we’re so hot.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="have"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>You ___ (have) been using my charger again!</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="making"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>Sophie has been ___ (make) cookies, the kitchen smells amazing.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="lying"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>Dan has been ___ (lie) on the sofa all day.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="learning"><span class="n" style="font-weight:800;color:var(--violet)">9</span><span>How long have you been ___ (learn) the guitar?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; chatting · has · writing · been raining · running · have · making · lying · learning"><b>Відповіді:</b> chatting · has · writing · been raining · running · have · making · lying · learning</p>
+  </section>
+  <section id="s3" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">3</span>Раунд 2. Заперечення і питання <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="hasn’t"><span class="n">1</span><span class="s">Lily ___ been sleeping well because of her exams.</span><span class="o"><button type="button">isn’t</button><button type="button">haven’t</button><button type="button">doesn’t</button><button type="button">hasn’t</button></span></div>
+<div class="ch" data-a="Have"><span class="n">2</span><span class="s">___ you been crying? Your eyes are red.</span><span class="o"><button type="button">Has</button><button type="button">Did</button><button type="button">Have</button><button type="button">Are</button></span></div>
+<div class="ch" data-a="have you been"><span class="n">3</span><span class="s">How long ___ waiting for the bus?</span><span class="o"><button type="button">have you</button><button type="button">you have been</button><button type="button">are you been</button><button type="button">have you been</button></span></div>
+<div class="ch" data-a="haven’t"><span class="n">4</span><span class="s">Have you been playing games all night? No, I ___.</span><span class="o"><button type="button">am not</button><button type="button">hasn’t</button><button type="button">don’t</button><button type="button">haven’t</button></span></div>
+<div class="ch" data-a="has"><span class="n">5</span><span class="s">Has it been snowing all night? Yes, it ___.</span><span class="o"><button type="button">has</button><button type="button">have</button><button type="button">does</button><button type="button">is</button></span></div>
+<div class="ch" data-a="has she been"><span class="n">6</span><span class="s">What ___ doing all afternoon?</span><span class="o"><button type="button">has she</button><button type="button">is she been</button><button type="button">has she been</button><button type="button">she has been</button></span></div>
+<div class="ch" data-a="hasn’t"><span class="n">7</span><span class="s">Dan ___ been using his phone in class, I promise!</span><span class="o"><button type="button">haven’t</button><button type="button">wasn’t</button><button type="button">hasn’t</button><button type="button">isn’t</button></span></div>
+<div class="ch" data-a="have"><span class="n">8</span><span class="s">Have your parents been travelling a lot? Yes, they ___.</span><span class="o"><button type="button">have</button><button type="button">are</button><button type="button">do</button><button type="button">has</button></span></div>
+<div class="ch" data-a="been reading"><span class="n">9</span><span class="s">I haven’t ___ much lately, I’m so busy.</span><span class="o"><button type="button">being reading</button><button type="button">been read</button><button type="button">read been</button><button type="button">been reading</button></span></div>
+<div class="ch" data-a="Has"><span class="n">10</span><span class="s">___ the dog been barking all day?</span><span class="o"><button type="button">Does</button><button type="button">Have</button><button type="button">Has</button><button type="button">Is</button></span></div>
+<div class="ch" data-a="has been"><span class="n">11</span><span class="s">Who ___ eating my chocolate?</span><span class="o"><button type="button">has been</button><button type="button">is been</button><button type="button">have been</button><button type="button">been</button></span></div>
+<div class="ch" data-a="working"><span class="n">12</span><span class="s">How long has Tom been ___ at the bank?</span><span class="o"><button type="button">works</button><button type="button">working</button><button type="button">worked</button><button type="button">work</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; hasn’t · Have · have you been · haven’t · has · has she been · hasn’t · have · been reading · Has · has been · working"><b>Відповіді:</b> hasn’t · Have · have you been · haven’t · has · has she been · hasn’t · have · been reading · Has · has been · working</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="haven’t|have not"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>I ___ (not) been feeling well this week.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Has|has"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>___ (have) Tom been working out? He looks stronger.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="practising|practicing"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Has Sophie been ___ (practise) every day?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="haven’t|have not"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>The kids ___ (not) been doing their homework, they’ve been gaming.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="have"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>How long ___ (have) your friends been planning this trip?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="ignoring"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Why have you been ___ (ignore) my messages?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="hasn’t|has not"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>Emma ___ (not) been answering her phone since lunch.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="sleeping"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>Have you been ___ (sleep)? Your hair is a mess!</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; haven’t · Has · practising · haven’t · have · ignoring · hasn’t · sleeping"><b>Відповіді:</b> haven’t · Has · practising · haven’t · have · ignoring · hasn’t · sleeping</p>
+  </section>
+  <section id="s4" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">4</span>Раунд 3. Коли вживати: for, since, how long <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="for"><span class="n">1</span><span class="s">I’ve been learning Spanish ___ two years.</span><span class="o"><button type="button">since</button><button type="button">during</button><button type="button">from</button><button type="button">for</button></span></div>
+<div class="ch" data-a="since"><span class="n">2</span><span class="s">We’ve been waiting ___ 3 o’clock!</span><span class="o"><button type="button">for</button><button type="button">from</button><button type="button">since</button><button type="button">during</button></span></div>
+<div class="ch" data-a="has been working"><span class="n">3</span><span class="s">Lily ___ for this company for six months.</span><span class="o"><button type="button">has been working</button><button type="button">is working</button><button type="button">works</button><button type="button">work</button></span></div>
+<div class="ch" data-a="Have"><span class="n">4</span><span class="s">You look tired. ___ you been working late?</span><span class="o"><button type="button">Are</button><button type="button">Did</button><button type="button">Do</button><button type="button">Have</button></span></div>
+<div class="ch" data-a="has been raining"><span class="n">5</span><span class="s">The road is wet. It ___.</span><span class="o"><button type="button">has rain</button><button type="button">has been raining</button><button type="button">is raining been</button><button type="button">rains</button></span></div>
+<div class="ch" data-a="is snowing"><span class="n">6</span><span class="s">Look out of the window! It ___ right now.</span><span class="o"><button type="button">snows</button><button type="button">is snowing</button><button type="button">snowed</button><button type="button">has been snowing</button></span></div>
+<div class="ch" data-a="long"><span class="n">7</span><span class="s">Sorry I’m late! Have you been waiting ___?</span><span class="o"><button type="button">since</button><button type="button">ago</button><button type="button">long</button><button type="button">yet</button></span></div>
+<div class="ch" data-a="has been running"><span class="n">8</span><span class="s">Sophie is out of breath because she ___.</span><span class="o"><button type="button">is running</button><button type="button">has been run</button><button type="button">has been running</button><button type="button">runs</button></span></div>
+<div class="ch" data-a="have been watching"><span class="n">9</span><span class="s">We ___ this series since Friday and we’re on episode six.</span><span class="o"><button type="button">watched</button><button type="button">are watching</button><button type="button">have been watching</button><button type="button">watch</button></span></div>
+<div class="ch" data-a="How long"><span class="n">10</span><span class="s">___ have you been learning to drive?</span><span class="o"><button type="button">How much</button><button type="button">How long</button><button type="button">How often</button><button type="button">When</button></span></div>
+<div class="ch" data-a="lately"><span class="n">11</span><span class="s">I’ve been reading a lot ___.</span><span class="o"><button type="button">yesterday</button><button type="button">last week</button><button type="button">ago</button><button type="button">lately</button></span></div>
+<div class="ch" data-a="has been cleaning"><span class="n">12</span><span class="s">Lily ___ her room for three hours and it’s still a mess!</span><span class="o"><button type="button">is cleaning</button><button type="button">has been clean</button><button type="button">cleans</button><button type="button">has been cleaning</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; for · since · has been working · Have · has been raining · is snowing · long · has been running · have been watching · How long · lately · has been cleaning"><b>Відповіді:</b> for · since · has been working · Have · has been raining · is snowing · long · has been running · have been watching · How long · lately · has been cleaning</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="since"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Max has been playing football ___ (for / since) he was seven.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="for"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>They’ve been chatting ___ (for / since) ages.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="digging"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>My hands are dirty because I’ve been ___ (dig) in the garden.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="since"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Dan has been working here ___ (for / since) last summer.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="since"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>I’ve been feeling much better ___ (for / since) I started running.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="for"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Tom and Lily have been dating ___ (for / since) a year.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="travelling|traveling"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>Emma’s been ___ (travel) around Italy since June.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="since"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>We’ve been friends ___ (for / since) primary school.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; since · for · digging · since · since · for · travelling · since"><b>Відповіді:</b> since · for · digging · since · since · for · travelling · since</p>
+  </section>
+  <section id="s5" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">5</span>Раунд 4. Пастки: know, результат чи процес <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="I have known Max for years."><span class="n">1</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">I am knowing Max for years.</button><button type="button">I have known Max for years.</button><button type="button">I know Max for years.</button><button type="button">I have been knowing Max for years.</button></span></div>
+<div class="ch" data-a="have written"><span class="n">2</span><span class="s">I ___ three emails since lunch.</span><span class="o"><button type="button">am writing</button><button type="button">have write</button><button type="button">have written</button><button type="button">have been writing</button></span></div>
+<div class="ch" data-a="I have been waiting here for an hour."><span class="n">3</span><span class="s">Яке речення правильне?: ___</span><span class="o"><button type="button">I been waiting here for an hour.</button><button type="button">I have been waiting here for an hour.</button><button type="button">I wait here for an hour.</button><button type="button">I am waiting here for an hour.</button></span></div>
+<div class="ch" data-a="have known"><span class="n">4</span><span class="s">We ___ each other since we were kids.</span><span class="o"><button type="button">have been knowing</button><button type="button">know</button><button type="button">are knowing</button><button type="button">have known</button></span></div>
+<div class="ch" data-a="has read"><span class="n">5</span><span class="s">Emma ___ the whole book! She’s so fast.</span><span class="o"><button type="button">reads</button><button type="button">is reading</button><button type="button">has been reading</button><button type="button">has read</button></span></div>
+<div class="ch" data-a="She has been living in London since 2019."><span class="n">6</span><span class="s">Знайди речення без помилки: ___</span><span class="o"><button type="button">She has been living in London since 2019.</button><button type="button">She lives in London since 2019.</button><button type="button">She living in London since 2019.</button><button type="button">She is living in London since 2019.</button></span></div>
+<div class="ch" data-a="has been playing"><span class="n">7</span><span class="s">Dan ___ the guitar for hours, so his fingers hurt.</span><span class="o"><button type="button">is playing</button><button type="button">plays</button><button type="button">has been play</button><button type="button">has been playing</button></span></div>
+<div class="ch" data-a="have been playing"><span class="n">8</span><span class="s">My phone is very hot. I ___ games on it for two hours.</span><span class="o"><button type="button">have been play</button><button type="button">have been playing</button><button type="button">am playing</button><button type="button">play</button></span></div>
+<div class="ch" data-a="How long have you been studying here?"><span class="n">9</span><span class="s">Знайди правильне питання: ___</span><span class="o"><button type="button">How long do you study here?</button><button type="button">How long have you been studying here?</button><button type="button">How long are you studying here?</button><button type="button">How long you have been studying here?</button></span></div>
+<div class="ch" data-a="Have you been playing"><span class="n">10</span><span class="s">Why are you so dirty? ___ in the mud?</span><span class="o"><button type="button">Have you be playing</button><button type="button">Do you play</button><button type="button">Have you been playing</button><button type="button">Are you playing</button></span></div>
+<div class="ch" data-a="has changed"><span class="n">11</span><span class="s">Kate ___ her phone number twice this year.</span><span class="o"><button type="button">changes</button><button type="button">is changing</button><button type="button">has changed</button><button type="button">has been changing</button></span></div>
+<div class="ch" data-a="Max has loved cats since he was a kid."><span class="n">12</span><span class="s">Яке речення звучить правильно?: ___</span><span class="o"><button type="button">Max has been loving cats since he was a kid.</button><button type="button">Max loves cats since he was a kid.</button><button type="button">Max has loved cats since he was a kid.</button><button type="button">Max is loving cats since he was a kid.</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; I have known Max for years. · have written · I have been waiting here for an hour. · have known · has read · She has been living in London since 2019. · has been playing · have been playing · How long have you been studying here? · Have you been playing · has changed · Max has loved cats since he was a kid."><b>Відповіді:</b> I have known Max for years. · have written · I have been waiting here for an hour. · have known · has read · She has been living in London since 2019. · has been playing · have been playing · How long have you been studying here? · Have you been playing · has changed · Max has loved cats since he was a kid.</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="has had|’s had"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Lily ___ (have) her cat since 2021.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="has drunk|’s drunk"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Max ___ (drink) four cups of coffee today!</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="has wanted|’s wanted"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Tom ___ (want) a dog for years.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="painting"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>I’ve been ___ (paint) the fence all day and I’m still not finished.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="have you read"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>How many pages ___ (you, read) so far?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="has believed|’s believed"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Lily ___ (believe) in ghosts since she was little.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="have visited|’ve visited"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>So far we ___ (visit) five museums on this trip.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="has owned|’s owned"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>Tom ___ (own) this car since 2018.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; has had · has drunk · has wanted · painting · have you read · has believed · have visited · has owned"><b>Відповіді:</b> has had · has drunk · has wanted · painting · have you read · has believed · have visited · has owned</p>
+  </section>
+  <section id="s6" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">6</span>Раунд 5. Фінальний бос <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="have been studying"><span class="n">1</span><span class="s">Lily: “You look exhausted!” Max: “I ___ for the exam all night.”</span><span class="o"><button type="button">have been studying</button><button type="button">study</button><button type="button">have been study</button><button type="button">am studying</button></span></div>
+<div class="ch" data-a="has been sleeping"><span class="n">2</span><span class="s">The cat is sleeping on the sofa. It ___ there since breakfast.</span><span class="o"><button type="button">sleeps</button><button type="button">has been sleeping</button><button type="button">slept</button><button type="button">is sleeping</button></span></div>
+<div class="ch" data-a="has been working"><span class="n">3</span><span class="s">Emma has a new job. She ___ there for two weeks, and she loves it.</span><span class="o"><button type="button">has been working</button><button type="button">is working</button><button type="button">work</button><button type="button">works</button></span></div>
+<div class="ch" data-a="has been playing"><span class="n">4</span><span class="s">Max’s eyes are red. He ___ games all night.</span><span class="o"><button type="button">has been playing</button><button type="button">is playing</button><button type="button">has played been</button><button type="button">plays</button></span></div>
+<div class="ch" data-a="have been washing"><span class="n">5</span><span class="s">“Why are your hands wet?” “I ___ my bike.”</span><span class="o"><button type="button">am washing</button><button type="button">wash</button><button type="button">have been washing</button><button type="button">washed been</button></span></div>
+<div class="ch" data-a="have"><span class="n">6</span><span class="s">How long ___ Tom and Lily been going out?</span><span class="o"><button type="button">did</button><button type="button">have</button><button type="button">are</button><button type="button">has</button></span></div>
+<div class="ch" data-a="has been raining"><span class="n">7</span><span class="s">It ___ since morning. The streets are like rivers!</span><span class="o"><button type="button">has been raining</button><button type="button">rains</button><button type="button">is rain</button><button type="button">has been rain</button></span></div>
+<div class="ch" data-a="Have you been waiting"><span class="n">8</span><span class="s">I’m so sorry! ___ long?</span><span class="o"><button type="button">Are you waiting</button><button type="button">Do you wait</button><button type="button">Have you been waiting</button><button type="button">Did you waiting</button></span></div>
+<div class="ch" data-a="has been playing"><span class="n">9</span><span class="s">Dan ___ in the band since it started, he’s the drummer.</span><span class="o"><button type="button">plays</button><button type="button">was playing</button><button type="button">is playing</button><button type="button">has been playing</button></span></div>
+<div class="ch" data-a="has been washing"><span class="n">10</span><span class="s">Dad ___ the car for an hour and it’s still not clean.</span><span class="o"><button type="button">has washed</button><button type="button">is washing</button><button type="button">washes</button><button type="button">has been washing</button></span></div>
+<div class="ch" data-a="have been walking"><span class="n">11</span><span class="s">“You’re all wet!” “Yes, I ___ in the rain.”</span><span class="o"><button type="button">have been walking</button><button type="button">walk</button><button type="button">have been walked</button><button type="button">am walk</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; have been studying · has been sleeping · has been working · has been playing · have been washing · have · has been raining · Have you been waiting · has been playing · has been washing · have been walking"><b>Відповіді:</b> have been studying · has been sleeping · has been working · has been playing · have been washing · have · has been raining · Have you been waiting · has been playing · has been washing · have been walking</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="for"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Kate started waiting at half past six. Now it’s half past seven, so she has been waiting ___ (for / since) an hour.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="baking"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Mum: “Why is the kitchen such a mess?” Tom: “Sorry, I’ve been ___ (bake) a cake.”</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="hasn’t|has not"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>“Is Sophie still angry?” “Yes, she ___ (not) been talking to me since Friday.”</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="have known|’ve known"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>I ___ (know) Lily since we were in the first grade.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="haven’t stopped|have not stopped"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>We’ve been driving for five hours and we ___ (not stop) once.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="has had|’s had"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Kate ___ (have) this phone for three years, it’s time for a new one.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="have you called"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>How many times ___ (you, call) her today?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="swimming"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>Sophie has been ___ (swim) since she was four, so she’s really good.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="have been|’ve been|have gone|’ve gone"><span class="n" style="font-weight:800;color:var(--violet)">9</span><span>This year my friends and I ___ (go) to three concerts so far.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; for · baking · hasn’t · have known · haven’t stopped · has had · have you called · swimming · have been"><b>Відповіді:</b> for · baking · hasn’t · have known · haven’t stopped · has had · have you called · swimming · have been</p>
+  </section>
+  <section class="end"><h2>Great job!</h2><p>See you next lesson.</p></section>
+</div>
+<div class="toast" id="toast"></div>
+<script>window.MURLY_LESSON={"id": "lib-drill-present-perfect-continuous", "title": "Present Perfect Continuous: 100 tasks", "homework": ["s2", "s3", "s4", "s5", "s6"], "hw": {"s2": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Sophie {has been playing|have been playing|has been play|is been playing} the piano since lunch.\nMy parents {have|has|are|were} been looking for a new flat.\nI {have been studying|has been studying|have been studied|am been studying} for this exam all week.\nThe kids have {been swimming|be swimming|being swimming|been swim} in the pool since morning.\nOur cat {has been sleeping|have been sleeping|is been sleeping|has sleeping} on my bed all afternoon.\nLily and Kate {have been singing|has been singing|have been sing|have be singing} the same song for an hour!\nI’ve been {watching|watch|watched|watches} TV since dinner.\nTom {has been trying|have been trying|has been tried|has tried been} to fix his bike all morning.\nThe neighbours {have been playing|have played been|has been playing|are playing been} loud music since ten o’clock.\nShe’s been {looking|look|looked|looks} for her keys for ten minutes.\nI {have|am|has|was} been feeling a bit tired lately."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "They have been [chatting] (chat) online for two hours.\nMax [has] (have) been waiting for you since six.\nEmma has been [writing] (write) her essay all evening.\nIt has [been raining] (rain) since Sunday.\nWe’ve been [running] (run), that’s why we’re so hot.\nYou [have] (have) been using my charger again!\nSophie has been [making] (make) cookies, the kitchen smells amazing.\nDan has been [lying] (lie) on the sofa all day.\nHow long have you been [learning] (learn) the guitar?"}], "s3": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Lily {hasn’t|haven’t|isn’t|doesn’t} been sleeping well because of her exams.\n{Have|Has|Are|Did} you been crying? Your eyes are red.\nHow long {have you been|you have been|are you been|have you} waiting for the bus?\nHave you been playing games all night? No, I {haven’t|hasn’t|don’t|am not}.\nHas it been snowing all night? Yes, it {has|have|is|does}.\nWhat {has she been|she has been|is she been|has she} doing all afternoon?\nDan {hasn’t|isn’t|haven’t|wasn’t} been using his phone in class, I promise!\nHave your parents been travelling a lot? Yes, they {have|has|do|are}.\nI haven’t {been reading|been read|being reading|read been} much lately, I’m so busy.\n{Has|Have|Is|Does} the dog been barking all day?\nWho {has been|have been|is been|been} eating my chocolate?\nHow long has Tom been {working|work|worked|works} at the bank?"}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "I [haven’t/have not] (not) been feeling well this week.\n[Has/has] (have) Tom been working out? He looks stronger.\nHas Sophie been [practising/practicing] (practise) every day?\nThe kids [haven’t/have not] (not) been doing their homework, they’ve been gaming.\nHow long [have] (have) your friends been planning this trip?\nWhy have you been [ignoring] (ignore) my messages?\nEmma [hasn’t/has not] (not) been answering her phone since lunch.\nHave you been [sleeping] (sleep)? Your hair is a mess!"}], "s4": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "I’ve been learning Spanish {for|since|from|during} two years.\nWe’ve been waiting {since|for|during|from} 3 o’clock!\nLily {has been working|is working|works|work} for this company for six months.\nYou look tired. {Have|Did|Are|Do} you been working late?\nThe road is wet. It {has been raining|is raining been|rains|has rain}.\nLook out of the window! It {is snowing|has been snowing|snows|snowed} right now.\nSorry I’m late! Have you been waiting {long|since|ago|yet}?\nSophie is out of breath because she {has been running|is running|runs|has been run}.\nWe {have been watching|are watching|watch|watched} this series since Friday and we’re on episode six.\n{How long|How much|When|How often} have you been learning to drive?\nI’ve been reading a lot {lately|yesterday|last week|ago}.\nLily {has been cleaning|is cleaning|cleans|has been clean} her room for three hours and it’s still a mess!"}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "Max has been playing football [since] (for / since) he was seven.\nThey’ve been chatting [for] (for / since) ages.\nMy hands are dirty because I’ve been [digging] (dig) in the garden.\nDan has been working here [since] (for / since) last summer.\nI’ve been feeling much better [since] (for / since) I started running.\nTom and Lily have been dating [for] (for / since) a year.\nEmma’s been [travelling/traveling] (travel) around Italy since June.\nWe’ve been friends [since] (for / since) primary school."}], "s5": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Обери правильне речення: {I have known Max for years.|I have been knowing Max for years.|I know Max for years.|I am knowing Max for years.}\nI {have written|have been writing|am writing|have write} three emails since lunch.\nЯке речення правильне?: {I have been waiting here for an hour.|I am waiting here for an hour.|I wait here for an hour.|I been waiting here for an hour.}\nWe {have known|have been knowing|know|are knowing} each other since we were kids.\nEmma {has read|has been reading|is reading|reads} the whole book! She’s so fast.\nЗнайди речення без помилки: {She has been living in London since 2019.|She is living in London since 2019.|She lives in London since 2019.|She living in London since 2019.}\nDan {has been playing|plays|is playing|has been play} the guitar for hours, so his fingers hurt.\nMy phone is very hot. I {have been playing|am playing|play|have been play} games on it for two hours.\nЗнайди правильне питання: {How long have you been studying here?|How long are you studying here?|How long do you study here?|How long you have been studying here?}\nWhy are you so dirty? {Have you been playing|Are you playing|Do you play|Have you be playing} in the mud?\nKate {has changed|has been changing|is changing|changes} her phone number twice this year.\nЯке речення звучить правильно?: {Max has loved cats since he was a kid.|Max has been loving cats since he was a kid.|Max loves cats since he was a kid.|Max is loving cats since he was a kid.}"}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "Lily [has had/’s had] (have) her cat since 2021.\nMax [has drunk/’s drunk] (drink) four cups of coffee today!\nTom [has wanted/’s wanted] (want) a dog for years.\nI’ve been [painting] (paint) the fence all day and I’m still not finished.\nHow many pages [have you read] (you, read) so far?\nLily [has believed/’s believed] (believe) in ghosts since she was little.\nSo far we [have visited/’ve visited] (visit) five museums on this trip.\nTom [has owned/’s owned] (own) this car since 2018."}], "s6": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Lily: “You look exhausted!” Max: “I {have been studying|am studying|study|have been study} for the exam all night.”\nThe cat is sleeping on the sofa. It {has been sleeping|is sleeping|sleeps|slept} there since breakfast.\nEmma has a new job. She {has been working|works|is working|work} there for two weeks, and she loves it.\nMax’s eyes are red. He {has been playing|is playing|plays|has played been} games all night.\n“Why are your hands wet?” “I {have been washing|wash|am washing|washed been} my bike.”\nHow long {have|has|are|did} Tom and Lily been going out?\nIt {has been raining|rains|is rain|has been rain} since morning. The streets are like rivers!\nI’m so sorry! {Have you been waiting|Are you waiting|Do you wait|Did you waiting} long?\nDan {has been playing|plays|is playing|was playing} in the band since it started, he’s the drummer.\nDad {has been washing|is washing|washes|has washed} the car for an hour and it’s still not clean.\n“You’re all wet!” “Yes, I {have been walking|walk|am walk|have been walked} in the rain.”"}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "Kate started waiting at half past six. Now it’s half past seven, so she has been waiting [for] (for / since) an hour.\nMum: “Why is the kitchen such a mess?” Tom: “Sorry, I’ve been [baking] (bake) a cake.”\n“Is Sophie still angry?” “Yes, she [hasn’t/has not] (not) been talking to me since Friday.”\nI [have known/’ve known] (know) Lily since we were in the first grade.\nWe’ve been driving for five hours and we [haven’t stopped/have not stopped] (not stop) once.\nKate [has had/’s had] (have) this phone for three years, it’s time for a new one.\nHow many times [have you called] (you, call) her today?\nSophie has been [swimming] (swim) since she was four, so she’s really good.\nThis year my friends and I [have been/’ve been/have gone/’ve gone] (go) to three concerts so far."}]}};</script>
+<script>
+(function(){var l=(document.cookie.match(/(?:^|; )murly_lang=(\w+)/)||[])[1];try{l=l||localStorage.getItem('murly:tlang')}catch(e){}l=l==='ru'?'ru':'uk';document.querySelectorAll('[data-pairs-'+l+']').forEach(function(b){b.dataset.pairs=b.getAttribute('data-pairs-'+l)});})();
+</script>
+<script>
+const $ = (id) => document.getElementById(id);
+const LIS = {};
+function say(w, rate) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; const v = speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang) && /Google|Natural|Libby|Sonia|Daniel/.test(x.name)) || speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang)); if (v) u.voice = v; u.rate = rate || .95; speechSynthesis.speak(u); } catch (e) { } }
+const sh = (a) => a.map((x) => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map((x) => x[1]);
+document.querySelectorAll('.voc div').forEach((d) => d.onclick = () => say(d.dataset.say));
+document.querySelectorAll('[data-play]').forEach((b) => b.onclick = () => say(LIS[b.dataset.play], b.dataset.slow ? .75 : .95));
+document.querySelectorAll('[data-stop]').forEach((b) => b.onclick = () => { try { speechSynthesis.cancel(); } catch (e) { } });
+document.querySelectorAll('.ch').forEach((q) => q.querySelectorAll('button').forEach((b) => b.onclick = () => { if (q.classList.contains('ok')) return; const ok = b.textContent === q.dataset.a; q.classList.toggle('ok', ok); q.classList.toggle('bad', !ok); if (ok) { const s = q.querySelector('.s'); if (s && s.textContent.includes('___')) { s.textContent = s.textContent.replace('___', q.dataset.a); } } }));
+const norm = (x) => x.toLowerCase().replace(/[’']/g, "'").replace(/[,;:"“”«»]/g, ' ').replace(/\s+/g, ' ').replace(/[.!?]$/, '').trim();
+document.querySelectorAll('.ty').forEach((r) => { const inp = r.querySelector('input'); const chk = () => { const ok = r.dataset.a.split('|').some((a) => norm(a) === norm(inp.value)); r.classList.toggle('ok', ok); r.classList.toggle('bad', !ok && inp.value.trim() !== ''); }; r.querySelector('button').onclick = chk; inp.onkeydown = (e) => { if (e.key === 'Enter') chk(); }; });
+document.querySelectorAll('[data-mt]').forEach((box) => { const pairs = JSON.parse(box.dataset.pairs); const L = sh(pairs.map((p) => p[0])), R = sh(pairs.map((p) => p[1])); let sel = null, done = 0, err = 0; box.innerHTML = L.map((w, i) => `<button type="button" data-w="${w}">${w}</button><button type="button" data-d="${R[i]}">${R[i]}</button>`).join('');
+  box.querySelectorAll('button').forEach((b) => b.onclick = () => { if (b.classList.contains('done')) return; if (!sel || (sel.dataset.w && b.dataset.w) || (sel.dataset.d && b.dataset.d)) { if (sel) sel.classList.remove('sel'); sel = b; b.classList.add('sel'); return; } const w = sel.dataset.w || b.dataset.w, d = sel.dataset.d || b.dataset.d; if (pairs.some((p) => p[0] === w && p[1] === d)) { sel.classList.add('done'); b.classList.add('done'); done++; say(w); if (done === pairs.length) document.querySelector(`[data-mtres="${box.dataset.mt}"]`).textContent = err ? `Done! Mistakes: ${err}` : 'Perfect!'; } else err++; sel.classList.remove('sel'); sel = null; }); });
+document.querySelectorAll('[data-vids]').forEach((box) => JSON.parse(box.dataset.vids).forEach(([id, title, ch, qs]) => { const d = document.createElement('div'); d.className = 'vid'; d.innerHTML = `<div class="frame"><button class="play" type="button" style="background-image:url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)"><span>PLAY</span></button></div><div class="info"><h3>${title}</h3><small>YouTube · ${ch}</small><ol>${qs.map((q) => `<li>${q}</li>`).join('')}</ol></div>`; d.querySelector('.play').onclick = (e) => { e.currentTarget.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&cc_load_policy=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${title}"></iframe>`; }; box.appendChild(d); }));
+document.querySelectorAll('[data-spin]').forEach((b) => { const list = JSON.parse(b.dataset.spin); let last = -1; b.onclick = () => { let i; do { i = Math.floor(Math.random() * list.length); } while (i === last && list.length > 1); last = i; document.getElementById(b.dataset.target).textContent = list[i]; }; });
+try { const k = 'murly:' + (window.MURLY_LESSON ? MURLY_LESSON.id : 'x') + ':hw'; const t = $('hwText'); if (t) { t.value = localStorage.getItem(k) || ''; t.oninput = () => localStorage.setItem(k, t.value); } } catch (e) { }
+const STAGES = [...document.querySelectorAll('.wrap > section[id]')];
+$('stages').innerHTML = STAGES.map((s) => `<a href="#${s.id}"><b>${s.querySelector('.lk-n').textContent}</b><span>${s.dataset.stage}</span><small>${s.dataset.min !== '0' ? s.dataset.min + ' min' : 'at home'}</small></a>`).join('');
+$('teacherBtn').onclick = (e) => { const on = document.body.classList.toggle('teacher'); e.currentTarget.textContent = on ? 'Student version' : 'Teacher version'; };
+</script>
+<script src="/game-lessons/kit.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Phrasal verbs: the most common: 100 tasks (B1) | Murly</title>
+<link rel="icon" href="/favicon.svg">
+<meta name="description" content="Повторимо правило: Фразові дієслова: найчастіші
+100 завдань від простого до складного
+Розберемо головні пастки">
+<link rel="canonical" href="https://murly.com.ua/game-lessons/lib-drill-phrasal-verbs.html">
+<style>
+:root{--paper:#F3F0EA;--ink:#17181C;--violet:#3D4A7A;--lav:#D9D3C7;--pink:#E9C9BC;--green:#D4E2CF;--white:#fff;--muted:#62646B;--accent:#B5482F}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+/* hero */
+.hero{background:linear-gradient(rgba(16,17,22,.5),rgba(16,17,22,.72)),url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1400&q=70&auto=format&fit=crop");color:#fff;padding:70px 18px 56px;text-align:center;position:relative;overflow:hidden}
+.hero .kicker{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#E9C9BC;font-weight:700}
+.hero .cr{position:absolute;right:12px;bottom:8px;font-size:11px;color:rgba(255,255,255,.6)}
+.hero h1{margin:8px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(36px,6vw,64px);letter-spacing:-.5px;font-weight:700}
+.hero h1 span{color:var(--pink);font-style:italic}
+.hero p{margin:12px 0 0;font-size:17px;color:#e6e2da}
+.hero .flags{display:flex;justify-content:center;gap:12px;margin-top:22px;flex-wrap:wrap}
+.hero .flags svg{width:40px;height:26px;border-radius:3px;opacity:.9}
+/* sections */
+section{margin-top:30px;background:var(--white);border-radius:18px;padding:28px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.05)}
+section h2{margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tag{font-family:"Segoe UI",system-ui,sans-serif;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--paper);color:var(--accent);text-transform:uppercase;letter-spacing:1px}
+.lk-n{display:inline-grid;place-items:center;width:42px;height:42px;background:var(--violet);color:#fff;border-radius:50%;font-size:21px;flex:none}
+.lk-mode{font-size:13px;font-weight:700;border:2px dashed var(--lav);color:var(--muted);padding:2px 10px;border-radius:999px}
+.lk-ins{font-size:17px;background:var(--paper);border-radius:12px;padding:10px 14px;margin:6px 0 18px}
+.lk-sub{margin:24px 0 10px;font-size:19px}
+.btn{font:inherit;font-weight:700;border:0;border-radius:999px;background:var(--ink);color:#fff;padding:10px 20px;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+.btn.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+/* teacher */
+.lk-tbtn{position:fixed;right:16px;top:70px;z-index:45;font:inherit;font-weight:800;border:2px solid var(--ink);background:var(--pink);padding:8px 14px;border-radius:12px;cursor:pointer}
+body.teacher .lk-tbtn{background:var(--green)}
+.lk-ans,.lk-tnote{display:none}
+body.teacher .lk-ans{display:block;margin-top:8px;font-weight:700;color:#1d5a12;background:var(--green);border-left:5px solid #5aa845;padding:6px 10px;font-size:15px;border-radius:6px}
+body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff3f7;border-left:5px solid #d9789a;padding:8px 12px;font-size:15px;border-radius:6px}
+/* overview */
+.lk-overview ul{font-size:17px;line-height:1.7;margin:6px 0 16px}
+.lk-stages{display:flex;flex-wrap:wrap;gap:8px}
+.lk-stages a{display:grid;border-radius:14px;padding:8px 12px;text-decoration:none;color:var(--ink);background:var(--paper);font-weight:700;min-width:100px}
+.lk-stages a span{text-transform:capitalize}
+.lk-stages a b{font-size:20px;color:var(--violet)}
+.lk-stages a small{font-weight:600;color:var(--muted)}
+/* warm-up */
+.taxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tax{background:var(--paper);border-radius:18px;padding:16px;display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center}
+.tax svg{width:56px;height:56px}
+.tax b{display:block;font-size:17px}
+.tax small{color:var(--muted);font-size:14px}
+.qs{display:grid;gap:10px;margin-top:18px}
+.qs div{background:var(--green);border-radius:14px;padding:10px 16px;font-size:18px;font-weight:600}
+.phr{background:#fff7e8;border-radius:14px;padding:12px 16px;margin-top:16px;font-size:15px}
+.phr ul{margin:6px 0 0;padding-left:18px}
+.fic{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:16px}
+.fic .c{background:#fff;border:2px solid #1B2140;border-radius:16px;padding:14px 16px;box-shadow:3px 3px 0 #1B2140}
+.fic .c b{display:block;font-size:18px;line-height:1.35;margin-bottom:8px}
+.fic .c .k{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.fic .c .k span{font-size:13px;background:#eef1fb;border-radius:999px;padding:3px 10px}
+.fic .c details{margin-top:8px;font-size:15px;color:#3b4160}
+.fic .c summary{cursor:pointer;font-weight:700;color:#534AB7}
+.fi-n{display:inline-flex;width:28px;height:28px;border-radius:50%;background:#2F4BA0;color:#fff;align-items:center;justify-content:center;font-size:14px;margin-right:6px}
+/* vocab */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:12px}
+.vc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:2px solid transparent;transition:border-color .2s,transform .2s}
+.vc:hover{border-color:var(--violet);transform:translateY(-2px)}
+.vc b{font-size:18px;display:flex;align-items:center;gap:8px}
+.vc b svg{width:20px;height:20px;flex:none;color:var(--violet)}
+.vc p{margin:6px 0 0;font-size:14px;color:var(--muted)}
+.vc em{display:block;margin-top:6px;font-size:14px;color:var(--violet);font-style:normal;font-weight:600}
+.vc.played{background:#e6ecfb}
+/* grammar */
+.gram{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.gb{border-radius:18px;padding:16px}
+.gb h3{margin:0 0 6px;font-size:19px}
+.gb .f{display:inline-block;background:#fff;border-radius:8px;padding:3px 10px;font-weight:800;margin:4px 0;font-family:Consolas,monospace;font-size:15px}
+.gb p{margin:6px 0 0;font-size:15px}
+.g1{background:var(--pink)}.g2{background:var(--lav)}.g3{background:var(--green)}.g4{background:#fbe7c6}
+.warn{margin-top:14px;background:var(--ink);color:#fff;border-radius:14px;padding:12px 16px;font-size:16px}
+.warn b{color:var(--pink)}
+.q{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:2px dashed var(--paper);font-size:18px}
+.q:last-child{border-bottom:0}
+.q .n{width:32px;height:32px;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;border-radius:50%;font-weight:800;font-size:15px}
+.opt{font:inherit;font-size:16px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:10px;padding:4px 12px;cursor:pointer;margin:0 2px}
+.opt.ok{background:var(--green);border-color:#5aa845}
+.opt.bad{background:var(--pink);animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+/* tour */
+.tour{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.law{border-radius:22px;overflow:hidden;background:var(--paper);display:flex;flex-direction:column}
+.law .pic{height:150px;display:grid;place-items:center;position:relative}
+.law .pic svg.ill{width:130px;height:130px}
+.law .pic svg.fl{position:absolute;left:14px;top:14px;width:46px;height:30px;border-radius:5px;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.law .pic .no{position:absolute;right:14px;top:14px;background:var(--ink);color:#fff;font-weight:800;border-radius:999px;padding:2px 10px;font-size:13px}
+.law .body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.law h3{margin:0;font-size:20px}
+.law .where{font-size:13px;font-weight:800;color:var(--violet);text-transform:uppercase;letter-spacing:1px}
+.law p{margin:0;font-size:16px}
+.law .why{font-size:14px;color:var(--muted)}
+.law .dq{margin-top:auto;background:#fff;border-radius:12px;padding:8px 12px;font-weight:700;font-size:15px}
+.law .lsn{font:inherit;font-size:13px;font-weight:700;background:none;border:0;color:var(--violet);cursor:pointer;padding:0;text-align:left}
+/* game */
+.game{max-width:720px;margin:0 auto;text-align:center}
+.score{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.score span{background:var(--paper);border-radius:999px;padding:6px 16px;font-weight:800}
+.stmt{background:var(--ink);color:#fff;border-radius:22px;padding:28px 24px;min-height:150px;display:grid;place-items:center;font-size:23px;font-weight:700;position:relative}
+.stmt small{position:absolute;top:12px;left:18px;font-size:13px;color:var(--lav);font-weight:700}
+.choose{display:flex;justify-content:center;gap:14px;margin:18px 0}
+.choose button{font:inherit;font-size:18px;font-weight:700;border:2px solid var(--ink);border-radius:999px;padding:12px 28px;cursor:pointer}
+.choose .bl{background:var(--green)}.choose .bm{background:var(--pink)}
+.choose button:disabled{opacity:.5;cursor:default}
+.verdict{min-height:70px;font-size:17px;background:var(--paper);border-radius:16px;padding:12px 16px;text-align:left}
+.verdict b.r{color:#2d7a1d}.verdict b.w{color:#b23a62}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.dots i{width:14px;height:14px;border-radius:50%;background:var(--paper)}
+.dots i.r{background:#7cc663}.dots i.w{background:#e47b9f}.dots i.c{outline:3px solid var(--violet)}
+.final{font-size:22px;font-weight:800;color:var(--violet)}
+/* invent */
+.inv{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.frames{display:grid;gap:10px}
+.frames label{font-size:14px;font-weight:700;color:var(--muted)}
+.frames select,.frames input{font:inherit;width:100%;padding:8px 10px;border:2px solid var(--lav);border-radius:10px;background:#fff}
+.poster{background:var(--paper);border:3px solid var(--ink);border-radius:20px;padding:22px;text-align:center;min-height:260px;display:flex;flex-direction:column;gap:10px;justify-content:center}
+.poster .seal{width:70px;height:70px;margin:0 auto}
+.poster h3{margin:0;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--violet)}
+.poster .rule{font-size:22px;font-weight:800}
+.poster .pen{font-size:16px;color:var(--muted)}
+.ideas{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ideas span{background:var(--pink);border-radius:999px;padding:5px 12px;font-size:14px;font-weight:600}
+/* roleplay */
+.rp{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.role{border-radius:20px;padding:18px}
+.role h3{margin:0 0 6px;display:flex;align-items:center;gap:10px}
+.role h3 svg{width:42px;height:42px}
+.role ul{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.r1{background:var(--lav)}.r2{background:var(--green)}
+.scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:16px}
+.sc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:3px solid transparent}
+.sc.on{border-color:var(--violet);background:#fff}
+.sc b{display:block;font-size:17px;margin-bottom:4px}
+.sc p{margin:0;font-size:15px}
+.timer{font-size:40px;font-weight:800;text-align:center;margin:14px 0 6px;color:var(--violet)}
+.ctr{text-align:center}
+/* homework */
+.hwb{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hwc{background:var(--paper);border-radius:18px;padding:18px}
+.hwc h3{margin:0 0 8px}
+.hwc ol,.hwc ul{margin:6px 0 0;padding-left:20px;line-height:1.7}
+.hwc textarea{width:100%;min-height:150px;font:inherit;border:2px solid var(--lav);border-radius:12px;padding:10px;margin-top:10px}
+.end{text-align:center;background:var(--ink);color:#fff;box-shadow:none}
+.end h2{justify-content:center}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(140px);background:var(--ink);color:#fff;font-weight:800;padding:12px 22px;border-radius:14px;transition:transform .3s;z-index:50}
+.toast.show{transform:translateX(-50%) translateY(0)}
+/* photos */
+.ph{margin:0}
+.ph img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;background:var(--paper)}
+.ph figcaption{font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.2px}
+.tax{grid-template-columns:1fr !important;padding:12px !important}
+.law .pic{height:auto !important;display:block !important;padding:0;position:relative}
+.law .pic .ph img{border-radius:0;aspect-ratio:16/10;transition:filter .5s}
+.law .pic .ph figcaption{padding:4px 12px 0}
+.law.hide .pic .ph img{filter:blur(10px) grayscale(.6)}
+.law.hide .reveal-body,.law.hide .fl,.law.hide .where{visibility:hidden}
+.law .clue{font-size:15px;font-style:italic;color:var(--ink)}
+.law .gc{display:flex;flex-wrap:wrap;gap:6px}
+.law .gc button{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:4px 12px;cursor:pointer}
+.law .gc button.ok{background:var(--green)}.law .gc button.bad{background:var(--pink)}
+.law:not(.hide) .guess{display:none}
+.fair{display:grid;gap:4px;background:#fff;border-radius:12px;padding:8px 12px}
+.fair .ends{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.fair input{width:100%;accent-color:var(--accent)}
+.fair output{font-size:14px;font-weight:700;color:var(--accent)}
+.gph{max-width:720px;margin:0 auto 12px}
+.gph img{aspect-ratio:21/9}
+.fine{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.fq{background:var(--paper);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.fq h3{margin:0;font-size:18px}
+.fq .opts{display:flex;flex-wrap:wrap;gap:6px}
+.fq .opts button{font:inherit;font-size:14px;font-weight:700;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 12px;cursor:pointer}
+.fq .opts button.ok{background:var(--green)}.fq .opts button.bad{background:var(--pink)}
+.fq .res{font-size:15px;min-height:22px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{position:relative;aspect-ratio:16/9;background:#111}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;cursor:pointer;background:#111 center/cover;display:grid;place-items:center}
+.vid .play span{background:rgba(0,0,0,.7);color:#fff;font-weight:700;border-radius:999px;padding:10px 20px;font-size:15px;letter-spacing:1px}
+.vid .info{padding:14px 16px}
+.vid .info h3{margin:0 0 2px;font-size:18px}
+.vid .info small{color:var(--muted)}
+.vid .info ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+@media(max-width:760px){.inv,.rp,.hwb{grid-template-columns:1fr}.lk-tbtn{top:auto;bottom:70px}}
+
+.pr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.pb{border-radius:18px;padding:16px 18px}
+.pb h3{margin:0;font-family:Georgia,serif;font-size:30px}
+.pb .m{font-size:15px;color:var(--muted);margin:2px 0 8px}
+.pb .chips{display:flex;flex-wrap:wrap;gap:6px}
+.pb .chips span{background:#fff;border-radius:999px;padding:4px 11px;font-size:14px;font-weight:600}
+.pb ul{margin:10px 0 0;padding-left:18px;font-size:15px}
+.p-in{background:#DCE6F5}.p-at{background:#F3D9CF}.p-on{background:#D4E2CF}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-size:15px;margin-top:10px}
+.ex div{background:var(--paper);border-radius:10px;padding:8px 12px}
+.ex b{color:var(--accent)}
+.q{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.q .n{font-weight:800;color:var(--violet);min-width:24px}
+.q .gap{display:inline-block;min-width:44px;border-bottom:2px solid var(--ink);text-align:center;font-weight:800}
+.q .opts{margin-left:auto;display:flex;gap:6px}
+.q .opts button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 14px;cursor:pointer}
+.q.ok{background:#DDEED7}.q.ok .gap{color:#2F7A3B}
+.q.bad{background:#F6DAD3}
+.score{font-weight:800;margin-top:12px}
+.text{font-size:18px;line-height:1.75;background:var(--paper);border-radius:16px;padding:18px 22px}
+.text h3{margin:0 0 6px;font-family:Georgia,serif;font-size:24px}
+.text p{margin:0 0 12px}
+.text.hl mark{background:#F3D9CF;border-radius:4px;padding:0 3px;font-weight:700}
+.tf{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:9px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.tf .opts{margin-left:auto;display:flex;gap:6px}
+.tf button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.tf.ok{background:#DDEED7}.tf.bad{background:#F6DAD3}
+.disc{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px;margin-top:6px}
+.disc div{background:var(--green);border-radius:14px;padding:12px 16px;font-size:17px;font-weight:600}
+.disc div i{font-style:normal;color:var(--violet);margin-right:6px}
+.spin{text-align:center;margin-top:16px}
+.spin .card{display:inline-block;min-height:80px;min-width:min(560px,100%);background:var(--ink);color:#fff;border-radius:18px;padding:20px 24px;font-size:22px;font-weight:700;margin-bottom:12px}
+@media(max-width:700px){.ex{grid-template-columns:1fr}}
+
+.hero{background-size:cover!important;background-position:center!important}
+.voc{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.voc div{background:var(--paper);border-radius:14px;padding:10px 14px;cursor:pointer;border:2px solid transparent}
+.voc div:hover{border-color:var(--violet)}
+.voc b{display:block;font-size:18px}.voc span{display:block;color:var(--accent);font-weight:700;font-size:15px}.voc em{display:block;font-size:14px;color:var(--muted);margin-top:3px}
+.mt{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:10px}
+.mt button{font:inherit;font-size:16px;text-align:left;border:2px solid var(--ink);background:#fff;border-radius:14px;padding:9px 14px;cursor:pointer}
+.mt button.sel{background:#FFE7A8}.mt button.done{background:#CDE8C6;border-color:#4C9A5B;cursor:default}
+.ch{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ch .n{font-weight:800;color:var(--violet);min-width:24px}
+.ch .o{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.ch .o button{font:inherit;font-size:15px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.ch.ok{background:#DDEED7}.ch.bad{background:#F6DAD3}
+.ty{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ty input{font:inherit;border:2px solid var(--ink);border-radius:10px;padding:4px 10px;width:220px}
+.ty.ok{background:#DDEED7}.ty.bad{background:#F6DAD3}
+.ty small{color:var(--muted)}
+.photo{width:100%;height:300px;object-fit:cover;border-radius:16px;display:block}
+.cap{font-size:11px;color:var(--muted);margin:4px 0 12px}
+.pics{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.pics figure{margin:0;background:var(--paper);border-radius:16px;overflow:hidden}
+.pics img{width:100%;height:170px;object-fit:cover;display:block}
+.pics figcaption{padding:8px 12px;font-weight:700}
+.pics small{display:block;font-weight:400;font-size:10px;color:var(--muted)}
+.lis{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:8px 0 14px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{aspect-ratio:16/9;background:#000;position:relative}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;background-size:cover;background-position:center;cursor:pointer;display:grid;place-items:center}
+.vid .play span{background:#E5484D;color:#fff;font-weight:800;border-radius:12px;padding:10px 20px}
+.vid .info{padding:12px 16px}.vid h3{margin:0;font-size:18px}.vid small{color:var(--muted)}
+.vid ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th,.tbl td{border:1px solid #ddd;padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--paper)}
+@media(max-width:700px){.mt{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="/game-lessons/kit.css">
+</head>
+<body>
+<header class="hero">
+  <div class="kicker">B1 · teens · Граматика: тренажер Фразові дієслова: найчастіші</div>
+  <h1>Phrasal verbs: the most common: 100 tasks</h1>
+  <p>B1 · 6 parts · 60 min</p>
+  <span class="cr">Photo: Unsplash</span>
+</header>
+<button class="lk-tbtn" id="teacherBtn" type="button">Teacher version</button>
+<div class="wrap">
+  <section class="lk-overview">
+    <h2>In this lesson you will:</h2>
+    <ul><li>Повторимо правило: Фразові дієслова: найчастіші
+100 завдань від простого до складного
+Розберемо головні пастки</li></ul>
+    <div class="lk-stages" id="stages"></div>
+  </section>
+  <section id="s1" data-stage="practice" data-min="10">
+    <h2><span class="lk-n">1</span>Теорія <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<div class="warn"><p><b>Коли вживаємо</b></p><p>Дієслово + частка = нове значення: Lily gave up chocolate for a month. (Лілі відмовилася від шоколаду на місяць.)</p><p>Щоденні дії: get up, wake up, put on, take off: I usually get up at seven. (Я зазвичай встаю о сьомій.)</p><p>Техніка: turn on / off, turn up / down: Turn off the lights when you leave. (Вимикай світло, коли йдеш.)</p><p>Шукати, дізнаватися, доглядати: look for, find out, look after: Can you look after my hamster? (Можеш доглянути мого хом’ячка?)</p><p>Щось закінчилося або триває: run out of, carry on: We’ve run out of bread. (У нас закінчився хліб.)</p></div>
+    <div class="warn"><p><b>Форми</b></p><p>+  час змінює тільки дієслово, частка лишається: get up → got up, give up → gave up. Приклад: Tom got up late again.</p><p>−  don’t / didn’t / won’t + базова форма + частка. Приклад: Don’t give up!</p><p>?  Do / Did / Have + підмет + дієслово + частка?. Приклад: Did you find out the score?</p><p>it  роздільні дієслова (turn on / off, put on, take off, pick up, throw away): займенник it / them / her тільки посередині. Приклад: Turn it off. Put them on.</p><p>іменник  з іменником у роздільних дієсловах можливі обидва порядки. Приклад: Turn off the TV. = Turn the TV off.</p><p>нероздільні  look after, look for, run out of: додаток завжди після всього дієслова, навіть займенник. Приклад: I’m looking for them.</p></div>
+    <div class="warn"><p><b>Головна пастка</b></p><p>turn off it. Займенник (it, them, her, me) з роздільними дієсловами стоїть між дієсловом і часткою. Іменник може стояти і там, і після частки.</p><p>✗ The TV is too loud. Turn off it.</p><p>✓ The TV is too loud. Turn it off.</p><p>look after не розривається. look after, look for, run out of не розриваємо: додаток іде після частки.</p><p>✗ Can you look my dog after?</p><p>✓ Can you look after my dog?</p><p>Час змінює тільки дієслово. У минулому часі змінюється лише перше слово: got up, gave up, found out, took off. Частка не змінюється і не отримує -ed.</p><p>✗ She give upped piano.</p><p>✓ She gave up piano.</p></div>
+    <div class="warn"><p><b>Маркери:</b> get up, wake up, give up, look after, look for, find out, turn on / off, turn up / down, put on, take off, run out of, carry on, pick up, throw away</p></div>
+    <div class="warn"><p><b>Шпаргалка: 15 частих фразових дієслів</b></p><p>Колонки: дієслово, чи ставимо займенник посередині (так / ні / без додатка), приклад, переклад.</p><p>get up · без додатка · I get up at 7. · вставати з ліжка</p><p>wake up · так · Wake me up at 8, please. · прокидатися, будити</p><p>give up · так · Don’t give it up! · кидати щось, здаватися</p><p>look after · ні · She looks after her gran. · доглядати</p><p>look for · ні · I’m looking for my keys. · шукати</p><p>find out · так · Find out the price. · дізнаватися</p><p>turn on / off · так · Turn it on. · вмикати / вимикати</p><p>turn up / down · так · Turn it down. · робити гучніше / тихіше</p><p>put on · так · Put it on. · вдягати</p><p>take off · так · Take them off. · знімати (одяг); злітати (літак)</p><p>run out of · ні · We ran out of milk. · закінчитися (про запас)</p><p>carry on · без додатка · Carry on, I’m listening. · продовжувати</p><p>pick up · так · Pick it up. · піднімати; забирати когось</p><p>throw away · так · Throw them away. · викидати</p><p>try on · так · Try it on! · приміряти</p></div>
+    <p class="lk-tnote" data-ru="Тренажер на 100 завдань: 5 раундів по 20. На уроці можна пройти 1-2 раунди, решту задати додому. Пояснення до кожної відповіді учень бачить у тренажері на сайті (розділ «Граматика»).&lt;br&gt;">Тренажер на 100 завдань: 5 раундів по 20. На уроці можна пройти 1-2 раунди, решту задати додому. Пояснення до кожної відповіді учень бачить у тренажері на сайті (розділ «Граматика»).<br></p>
+  </section>
+  <section id="s2" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">2</span>Раунд 1. Що означає це дієслово <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="get up"><span class="n">1</span><span class="s">My alarm rings at 6:30, but I usually ___ at seven.</span><span class="o"><button type="button">get out</button><button type="button">get up</button><button type="button">get off</button><button type="button">get on</button></span></div>
+<div class="ch" data-a="Put on"><span class="n">2</span><span class="s">It’s freezing outside. ___ your scarf.</span><span class="o"><button type="button">Put on</button><button type="button">Take off</button><button type="button">Turn on</button><button type="button">Give up</button></span></div>
+<div class="ch" data-a="take off"><span class="n">3</span><span class="s">Please ___ your shoes before you come in.</span><span class="o"><button type="button">put on</button><button type="button">turn off</button><button type="button">take off</button><button type="button">look after</button></span></div>
+<div class="ch" data-a="turn on"><span class="n">4</span><span class="s">I can’t see anything. Can you ___ the light?</span><span class="o"><button type="button">turn on</button><button type="button">take off</button><button type="button">turn off</button><button type="button">look for</button></span></div>
+<div class="ch" data-a="looking for"><span class="n">5</span><span class="s">I’m ___ my phone. Have you seen it?</span><span class="o"><button type="button">finding out</button><button type="button">looking for</button><button type="button">looking after</button><button type="button">looking up</button></span></div>
+<div class="ch" data-a="looks after"><span class="n">6</span><span class="s">Who ___ your cat when you’re on holiday?</span><span class="o"><button type="button">looks up</button><button type="button">looks for</button><button type="button">looks after</button><button type="button">looks at</button></span></div>
+<div class="ch" data-a="Carry on"><span class="n">7</span><span class="s">Don’t stop! ___ playing, it sounds great.</span><span class="o"><button type="button">Find out</button><button type="button">Give up</button><button type="button">Put on</button><button type="button">Carry on</button></span></div>
+<div class="ch" data-a="turn off"><span class="n">8</span><span class="s">The film is about to start. Please ___ your phones.</span><span class="o"><button type="button">turn up</button><button type="button">turn into</button><button type="button">turn on</button><button type="button">turn off</button></span></div>
+<div class="ch" data-a="give up"><span class="n">9</span><span class="s">This puzzle is too hard! I ___.</span><span class="o"><button type="button">carry on</button><button type="button">find out</button><button type="button">look after</button><button type="button">give up</button></span></div>
+<div class="ch" data-a="ran out"><span class="n">10</span><span class="s">Our car ___ of petrol on the motorway.</span><span class="o"><button type="button">ran off</button><button type="button">ran over</button><button type="button">ran away</button><button type="button">ran out</button></span></div>
+<div class="ch" data-a="find out"><span class="n">11</span><span class="s">Let’s ___ what time the museum opens.</span><span class="o"><button type="button">carry on</button><button type="button">give up</button><button type="button">look after</button><button type="button">find out</button></span></div>
+<div class="ch" data-a="turn up"><span class="n">12</span><span class="s">Can you ___ the volume? I can’t hear the song.</span><span class="o"><button type="button">turn up</button><button type="button">turn off</button><button type="button">turn on</button><button type="button">turn down</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; get up · Put on · take off · turn on · looking for · looks after · Carry on · turn off · give up · ran out · find out · turn up"><b>Відповіді:</b> get up · Put on · take off · turn on · looking for · looks after · Carry on · turn off · give up · ran out · find out · turn up</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="got up"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Yesterday Max ___ (get up) at noon.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="gave up"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Lily ___ (give up) sugar last month and feels great.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="found out"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Last night Sophie ___ (find out) the answer on the internet.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="ran out of"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>We ___ (run out of) bread, so I went to the shop.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="gets up"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Every morning Dan ___ (get up) at 6 and goes for a run.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="put on"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Emma ___ (put on) her new dress and went to the party.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="took off"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>When the plane ___ (take off), Tom fell asleep.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="turned off"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>Kate ___ (turn off) the TV and went to bed.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; got up · gave up · found out · ran out of · gets up · put on · took off · turned off"><b>Відповіді:</b> got up · gave up · found out · ran out of · gets up · put on · took off · turned off</p>
+  </section>
+  <section id="s3" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">3</span>Раунд 2. Заперечення, питання і минулий час <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="didn’t"><span class="n">1</span><span class="s">Max ___ give up, even when the game got really hard.</span><span class="o"><button type="button">wasn’t</button><button type="button">doesn’t</button><button type="button">hasn’t</button><button type="button">didn’t</button></span></div>
+<div class="ch" data-a="Did"><span class="n">2</span><span class="s">___ you find out who won the match last night?</span><span class="o"><button type="button">Were</button><button type="button">Have</button><button type="button">Did</button><button type="button">Do</button></span></div>
+<div class="ch" data-a="do"><span class="n">3</span><span class="s">What time ___ you usually get up on Sundays?</span><span class="o"><button type="button">do</button><button type="button">are</button><button type="button">does</button><button type="button">have</button></span></div>
+<div class="ch" data-a="taken out"><span class="n">4</span><span class="s">Has anyone ___ the bin today?</span><span class="o"><button type="button">taking out</button><button type="button">take out</button><button type="button">taken out</button><button type="button">took out</button></span></div>
+<div class="ch" data-a="did"><span class="n">5</span><span class="s">Why ___ Kate take off her jacket a minute ago?</span><span class="o"><button type="button">does</button><button type="button">has</button><button type="button">is</button><button type="button">did</button></span></div>
+<div class="ch" data-a="have been looking for"><span class="n">6</span><span class="s">I ___ my keys for twenty minutes, but I still can’t find them.</span><span class="o"><button type="button">have looking for</button><button type="button">am looking after</button><button type="button">have been looking for</button><button type="button">looked after</button></span></div>
+<div class="ch" data-a="turn"><span class="n">7</span><span class="s">Don’t ___ off the lights. I’m still reading.</span><span class="o"><button type="button">to turn</button><button type="button">turn</button><button type="button">turning</button><button type="button">turned</button></span></div>
+<div class="ch" data-a="look after"><span class="n">8</span><span class="s">Did Tom ___ the cat while you were away?</span><span class="o"><button type="button">looks after</button><button type="button">looking after</button><button type="button">look after</button><button type="button">looked after</button></span></div>
+<div class="ch" data-a="have run"><span class="n">9</span><span class="s">Oh no, we ___ out of coffee again.</span><span class="o"><button type="button">have run</button><button type="button">has run</button><button type="button">haven’t run</button><button type="button">runs</button></span></div>
+<div class="ch" data-a="pick"><span class="n">10</span><span class="s">Can you ___ me up at the station at six?</span><span class="o"><button type="button">picks</button><button type="button">picked</button><button type="button">pick</button><button type="button">picking</button></span></div>
+<div class="ch" data-a="on"><span class="n">11</span><span class="s">Are you going to carry ___ working after dinner?</span><span class="o"><button type="button">off</button><button type="button">out</button><button type="button">up</button><button type="button">on</button></span></div>
+<div class="ch" data-a="looked after"><span class="n">12</span><span class="s">Who ___ your dog when you were in Spain?</span><span class="o"><button type="button">looked after</button><button type="button">was looking</button><button type="button">looks for</button><button type="button">look after</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; didn’t · Did · do · taken out · did · have been looking for · turn · look after · have run · pick · on · looked after"><b>Відповіді:</b> didn’t · Did · do · taken out · did · have been looking for · turn · look after · have run · pick · on · looked after</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="give up"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Don’t ___ (give up)! You can do it.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="didn’t turn off|did not turn off"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>I ___ (not turn off) my laptop last night, so the battery is dead.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="haven’t run out of|have not run out of"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>We ___ (not run out of) milk yet, there’s still a bottle.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="didn’t give up|did not give up"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Lily failed the exam twice, but she ___ (not give up) and passed the third time.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="found out"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Have you ___ (find out) the date of the concert yet?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="doesn’t get up|does not get up"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Dan ___ (not get up) early on Saturdays, he sleeps till ten.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="didn’t take off|did not take off"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>The plane ___ (not take off) on time because of the fog.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="put on"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>Has Max ___ (put on) his new trainers yet?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; give up · didn’t turn off · haven’t run out of · didn’t give up · found out · doesn’t get up · didn’t take off · put on"><b>Відповіді:</b> give up · didn’t turn off · haven’t run out of · didn’t give up · found out · doesn’t get up · didn’t take off · put on</p>
+  </section>
+  <section id="s4" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">4</span>Раунд 3. Яке дієслово за змістом <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="grows up"><span class="n">1</span><span class="s">My little brother wants to be a footballer when he ___.</span><span class="o"><button type="button">gets up</button><button type="button">grows up</button><button type="button">gives up</button><button type="button">carries on</button></span></div>
+<div class="ch" data-a="try them on"><span class="n">2</span><span class="s">These jeans look nice. Can I ___?</span><span class="o"><button type="button">take on them</button><button type="button">try them on</button><button type="button">put them off</button><button type="button">try on them</button></span></div>
+<div class="ch" data-a="look up"><span class="n">3</span><span class="s">Our teacher asked us to ___ this word in the dictionary.</span><span class="o"><button type="button">look after</button><button type="button">give up</button><button type="button">look up</button><button type="button">find up</button></span></div>
+<div class="ch" data-a="fill in"><span class="n">4</span><span class="s">I need to ___ this form before the trip.</span><span class="o"><button type="button">fill on</button><button type="button">fill up</button><button type="button">fill in</button><button type="button">find out</button></span></div>
+<div class="ch" data-a="go out"><span class="n">5</span><span class="s">I’m bored. Let’s ___ tonight, maybe to the cinema.</span><span class="o"><button type="button">go out</button><button type="button">take out</button><button type="button">give out</button><button type="button">go off</button></span></div>
+<div class="ch" data-a="broke down"><span class="n">6</span><span class="s">Our old car ___ on the way to the beach, so we called a mechanic.</span><span class="o"><button type="button">broke up</button><button type="button">broke in</button><button type="button">broke out</button><button type="button">broke down</button></span></div>
+<div class="ch" data-a="turn down"><span class="n">7</span><span class="s">I can’t hear you. Can you ___ the TV?</span><span class="o"><button type="button">turn down</button><button type="button">turn up</button><button type="button">put on</button><button type="button">turn on</button></span></div>
+<div class="ch" data-a="put off"><span class="n">8</span><span class="s">Don’t ___ your homework until Sunday night. Do it now!</span><span class="o"><button type="button">put on</button><button type="button">take off</button><button type="button">put off</button><button type="button">turn off</button></span></div>
+<div class="ch" data-a="took up"><span class="n">9</span><span class="s">Lily ___ tennis when she was ten and now she plays every day.</span><span class="o"><button type="button">took off</button><button type="button">gave up</button><button type="button">took up</button><button type="button">looked up</button></span></div>
+<div class="ch" data-a="pick up"><span class="n">10</span><span class="s">Please ___ your rubbish. Don’t leave it on the beach.</span><span class="o"><button type="button">pick up</button><button type="button">take on</button><button type="button">look up</button><button type="button">pick out</button></span></div>
+<div class="ch" data-a="pay back"><span class="n">11</span><span class="s">I’ve got a new job, so I can finally ___ the money I borrowed from my parents.</span><span class="o"><button type="button">pay in</button><button type="button">give up</button><button type="button">pay back</button><button type="button">take back</button></span></div>
+<div class="ch" data-a="check in"><span class="n">12</span><span class="s">At the hotel we first had to ___ at the reception.</span><span class="o"><button type="button">check on</button><button type="button">check up</button><button type="button">check in</button><button type="button">check out</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; grows up · try them on · look up · fill in · go out · broke down · turn down · put off · took up · pick up · pay back · check in"><b>Відповіді:</b> grows up · try them on · look up · fill in · go out · broke down · turn down · put off · took up · pick up · pay back · check in</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="look for"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>I’ve lost my glasses. Can you help me ___ (look for) them?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="threw away"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Mum ___ (throw away) my old trainers last week.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="set off"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>We ___ (set off) at 5 a.m. to catch the early train.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="look after"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Dan has to ___ (look after) his baby sister tonight.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="find out"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Let’s ___ (find out) how much the tickets cost.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="carry on"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>It’s a long walk, but if we ___ (carry on), we’ll be there by six.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="woke up"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>Max ___ (wake up) at 3 a.m. because of a strange noise.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="ran out of"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>When we ___ (run out of) ideas, the teacher gave us some help.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; look for · threw away · set off · look after · find out · carry on · woke up · ran out of"><b>Відповіді:</b> look for · threw away · set off · look after · find out · carry on · woke up · ran out of</p>
+  </section>
+  <section id="s5" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">5</span>Раунд 4. Пастки: turn it off, а не turn off it <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="Turn it off, please."><span class="n">1</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">Off turn it, please.</button><button type="button">Turn off it, please.</button><button type="button">Turn it, please, off.</button><button type="button">Turn it off, please.</button></span></div>
+<div class="ch" data-a="Can you look after my dog?"><span class="n">2</span><span class="s">Яке речення правильне?: ___</span><span class="o"><button type="button">Can you look after for my dog?</button><button type="button">Can you look after my dog?</button><button type="button">Can you after look my dog?</button><button type="button">Can you look my dog after?</button></span></div>
+<div class="ch" data-a="for them"><span class="n">3</span><span class="s">Where are my glasses? I’m looking ___.</span><span class="o"><button type="button">them</button><button type="button">for they</button><button type="button">for them</button><button type="button">them for</button></span></div>
+<div class="ch" data-a="She gave up piano."><span class="n">4</span><span class="s">Знайди речення без помилки: ___</span><span class="o"><button type="button">She gave up piano.</button><button type="button">She gived up piano.</button><button type="button">She gaved up piano.</button><button type="button">She give upped piano.</button></span></div>
+<div class="ch" data-a="We ran out of milk."><span class="n">5</span><span class="s">Де немає помилки?: ___</span><span class="o"><button type="button">We ran milk out.</button><button type="button">We ran out of milk.</button><button type="button">We ran of milk out.</button><button type="button">We ran out milk.</button></span></div>
+<div class="ch" data-a="it off"><span class="n">6</span><span class="s">The TV? I’ve already turned ___.</span><span class="o"><button type="button">it</button><button type="button">off</button><button type="button">it off</button><button type="button">off it</button></span></div>
+<div class="ch" data-a="I put them on."><span class="n">7</span><span class="s">Обери речення без помилки: ___</span><span class="o"><button type="button">I put them on.</button><button type="button">I them put on.</button><button type="button">I put on them.</button><button type="button">I put on they.</button></span></div>
+<div class="ch" data-a="out"><span class="n">8</span><span class="s">Kate found ___ about the party from Instagram.</span><span class="o"><button type="button">off</button><button type="button">up</button><button type="button">out</button><button type="button">on</button></span></div>
+<div class="ch" data-a="Can you turn the radio on?"><span class="n">9</span><span class="s">Яке речення звучить правильно?: ___</span><span class="o"><button type="button">Can you turn on it?</button><button type="button">Can you on turn the radio?</button><button type="button">Can you turn the on radio?</button><button type="button">Can you turn the radio on?</button></span></div>
+<div class="ch" data-a="after them"><span class="n">10</span><span class="s">Are those your cats? Who looks ___ when you travel?</span><span class="o"><button type="button">after they</button><button type="button">they after</button><button type="button">them after</button><button type="button">after them</button></span></div>
+<div class="ch" data-a="Don’t give it up!"><span class="n">11</span><span class="s">Яке речення без помилки?: ___</span><span class="o"><button type="button">Don’t give it on!</button><button type="button">Don’t up give it!</button><button type="button">Don’t give up it!</button><button type="button">Don’t give it up!</button></span></div>
+<div class="ch" data-a="her up"><span class="n">12</span><span class="s">Mum asked me to wake ___ at seven.</span><span class="o"><button type="button">up she</button><button type="button">she up</button><button type="button">her up</button><button type="button">up her</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; Turn it off, please. · Can you look after my dog? · for them · She gave up piano. · We ran out of milk. · it off · I put them on. · out · Can you turn the radio on? · after them · Don’t give it up! · her up"><b>Відповіді:</b> Turn it off, please. · Can you look after my dog? · for them · She gave up piano. · We ran out of milk. · it off · I put them on. · out · Can you turn the radio on? · after them · Don’t give it up! · her up</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="it down"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>The music is too loud. Can you turn ___ (it / down)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="them off"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>These boots are muddy. Take ___ (them / off) before you come in.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="it up"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Your jacket is on the floor. Pick ___ (it / up), please.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="it on"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>This is my new coat. Do you like it? I want to put ___ (it / on) right now.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="after her"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>My grandma is ill, so my mum is looking ___ (after / her).</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="it away"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>The old sofa was broken, so we threw ___ (it / away).</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="them off"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>I switched the lights on, but now I can’t sleep, so I’m switching ___ (them / off).</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="playing"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>Max carried on ___ (play) the guitar after everyone went to bed.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; it down · them off · it up · it on · after her · it away · them off · playing"><b>Відповіді:</b> it down · them off · it up · it on · after her · it away · them off · playing</p>
+  </section>
+  <section id="s6" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">6</span>Раунд 5. Фінальний бос <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="ran out of"><span class="n">1</span><span class="s">We were halfway up the mountain when we ___ water. Luckily, there was a café.</span><span class="o"><button type="button">got up</button><button type="button">gave in</button><button type="button">ran out</button><button type="button">ran out of</button></span></div>
+<div class="ch" data-a="looks after"><span class="n">2</span><span class="s">Lily loves animals. She ___ her neighbour’s dogs every weekend and gets paid for it.</span><span class="o"><button type="button">looks up</button><button type="button">looks after</button><button type="button">finds out</button><button type="button">looks for</button></span></div>
+<div class="ch" data-a="turn on"><span class="n">3</span><span class="s">The meeting is in five minutes. Put your phone away and ___ the laptop.</span><span class="o"><button type="button">give up</button><button type="button">take off</button><button type="button">turn on</button><button type="button">turn into</button></span></div>
+<div class="ch" data-a="put on"><span class="n">4</span><span class="s">It’s raining. Don’t forget to ___ your raincoat.</span><span class="o"><button type="button">take off</button><button type="button">put on</button><button type="button">turn on</button><button type="button">find out</button></span></div>
+<div class="ch" data-a="found out"><span class="n">5</span><span class="s">Tom wasn’t at the party, so he ___ about the surprise only the next day.</span><span class="o"><button type="button">looked for</button><button type="button">gave up</button><button type="button">found out</button><button type="button">turned off</button></span></div>
+<div class="ch" data-a="carried on"><span class="n">6</span><span class="s">The kids were noisy, but the teacher ___ talking as if nothing had happened.</span><span class="o"><button type="button">carried on</button><button type="button">put on</button><button type="button">took off</button><button type="button">gave up</button></span></div>
+<div class="ch" data-a="them away"><span class="n">7</span><span class="s">Your room is full of old magazines. Why don’t you throw ___?</span><span class="o"><button type="button">away</button><button type="button">them</button><button type="button">away them</button><button type="button">them away</button></span></div>
+<div class="ch" data-a="looking after"><span class="n">8</span><span class="s">My parents are away, so my aunt is ___ us this week.</span><span class="o"><button type="button">looking after</button><button type="button">looking at</button><button type="button">looking up</button><button type="button">looking for</button></span></div>
+<div class="ch" data-a="took off"><span class="n">9</span><span class="s">The plane ___ late, so we missed our connection in Paris.</span><span class="o"><button type="button">gave up</button><button type="button">took off</button><button type="button">put on</button><button type="button">turned off</button></span></div>
+<div class="ch" data-a="carried on"><span class="n">10</span><span class="s">Lily didn’t like the film, but she ___ watching till the end.</span><span class="o"><button type="button">put off</button><button type="button">turned on</button><button type="button">carried on</button><button type="button">got up</button></span></div>
+<div class="ch" data-a="for it"><span class="n">11</span><span class="s">“Where is the remote?” “No idea. I’m looking ___ too.”</span><span class="o"><button type="button">for it</button><button type="button">after it</button><button type="button">it after</button><button type="button">it for</button></span></div>
+<div class="ch" data-a="Can you pick me up after school?"><span class="n">12</span><span class="s">Яке з речень правильне?: ___</span><span class="o"><button type="button">Can you pick me after school up?</button><button type="button">Can you pick up me after school?</button><button type="button">Can you pick me up after school?</button><button type="button">Can you up pick me after school?</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; ran out of · looks after · turn on · put on · found out · carried on · them away · looking after · took off · carried on · for it · Can you pick me up after school?"><b>Відповіді:</b> ran out of · looks after · turn on · put on · found out · carried on · them away · looking after · took off · carried on · for it · Can you pick me up after school?</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="didn’t get up|did not get up"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>I was so tired after the match that I ___ (not get up) until eleven.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="give up"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>This homework is impossible! I want to ___ (give up).</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="it on"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>I bought a new lamp, but I can’t switch it on. Can you help me turn ___ (it / on)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="took off"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>It was hot in the café, so Sophie ___ (take off) her hoodie.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="run out of"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>We’ve ___ (run out of) sugar. Can you buy some?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="find out"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>I don’t know where the party is. I need to ___ (find out) the address.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="tried on"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>Mia ___ (try on) five dresses but didn’t buy any.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="given up"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>Grandad has never ___ (give up) hope.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; didn’t get up · give up · it on · took off · run out of · find out · tried on · given up"><b>Відповіді:</b> didn’t get up · give up · it on · took off · run out of · find out · tried on · given up</p>
+  </section>
+  <section class="end"><h2>Great job!</h2><p>See you next lesson.</p></section>
+</div>
+<div class="toast" id="toast"></div>
+<script>window.MURLY_LESSON={"id": "lib-drill-phrasal-verbs", "title": "Phrasal verbs: the most common: 100 tasks", "homework": ["s2", "s3", "s4", "s5", "s6"], "hw": {"s2": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "My alarm rings at 6:30, but I usually {get up|get on|get off|get out} at seven.\nIt’s freezing outside. {Put on|Take off|Turn on|Give up} your scarf.\nPlease {take off|put on|turn off|look after} your shoes before you come in.\nI can’t see anything. Can you {turn on|turn off|take off|look for} the light?\nI’m {looking for|looking after|finding out|looking up} my phone. Have you seen it?\nWho {looks after|looks for|looks up|looks at} your cat when you’re on holiday?\nDon’t stop! {Carry on|Give up|Put on|Find out} playing, it sounds great.\nThe film is about to start. Please {turn off|turn up|turn on|turn into} your phones.\nThis puzzle is too hard! I {give up|carry on|find out|look after}.\nOur car {ran out|ran away|ran off|ran over} of petrol on the motorway.\nLet’s {find out|look after|give up|carry on} what time the museum opens.\nCan you {turn up|turn down|turn off|turn on} the volume? I can’t hear the song."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "Yesterday Max [got up] (get up) at noon.\nLily [gave up] (give up) sugar last month and feels great.\nLast night Sophie [found out] (find out) the answer on the internet.\nWe [ran out of] (run out of) bread, so I went to the shop.\nEvery morning Dan [gets up] (get up) at 6 and goes for a run.\nEmma [put on] (put on) her new dress and went to the party.\nWhen the plane [took off] (take off), Tom fell asleep.\nKate [turned off] (turn off) the TV and went to bed."}], "s3": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Max {didn’t|doesn’t|wasn’t|hasn’t} give up, even when the game got really hard.\n{Did|Do|Were|Have} you find out who won the match last night?\nWhat time {do|are|does|have} you usually get up on Sundays?\nHas anyone {taken out|take out|took out|taking out} the bin today?\nWhy {did|is|does|has} Kate take off her jacket a minute ago?\nI {have been looking for|looked after|am looking after|have looking for} my keys for twenty minutes, but I still can’t find them.\nDon’t {turn|turned|turning|to turn} off the lights. I’m still reading.\nDid Tom {look after|looked after|looks after|looking after} the cat while you were away?\nOh no, we {have run|has run|haven’t run|runs} out of coffee again.\nCan you {pick|picks|picked|picking} me up at the station at six?\nAre you going to carry {on|up|off|out} working after dinner?\nWho {looked after|look after|looks for|was looking} your dog when you were in Spain?"}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "Don’t [give up] (give up)! You can do it.\nI [didn’t turn off/did not turn off] (not turn off) my laptop last night, so the battery is dead.\nWe [haven’t run out of/have not run out of] (not run out of) milk yet, there’s still a bottle.\nLily failed the exam twice, but she [didn’t give up/did not give up] (not give up) and passed the third time.\nHave you [found out] (find out) the date of the concert yet?\nDan [doesn’t get up/does not get up] (not get up) early on Saturdays, he sleeps till ten.\nThe plane [didn’t take off/did not take off] (not take off) on time because of the fog.\nHas Max [put on] (put on) his new trainers yet?"}], "s4": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "My little brother wants to be a footballer when he {grows up|gets up|gives up|carries on}.\nThese jeans look nice. Can I {try them on|try on them|put them off|take on them}?\nOur teacher asked us to {look up|look after|give up|find up} this word in the dictionary.\nI need to {fill in|fill up|find out|fill on} this form before the trip.\nI’m bored. Let’s {go out|go off|take out|give out} tonight, maybe to the cinema.\nOur old car {broke down|broke up|broke out|broke in} on the way to the beach, so we called a mechanic.\nI can’t hear you. Can you {turn down|turn up|turn on|put on} the TV?\nDon’t {put off|put on|take off|turn off} your homework until Sunday night. Do it now!\nLily {took up|took off|gave up|looked up} tennis when she was ten and now she plays every day.\nPlease {pick up|pick out|look up|take on} your rubbish. Don’t leave it on the beach.\nI’ve got a new job, so I can finally {pay back|pay in|give up|take back} the money I borrowed from my parents.\nAt the hotel we first had to {check in|check out|check up|check on} at the reception."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "I’ve lost my glasses. Can you help me [look for] (look for) them?\nMum [threw away] (throw away) my old trainers last week.\nWe [set off] (set off) at 5 a.m. to catch the early train.\nDan has to [look after] (look after) his baby sister tonight.\nLet’s [find out] (find out) how much the tickets cost.\nIt’s a long walk, but if we [carry on] (carry on), we’ll be there by six.\nMax [woke up] (wake up) at 3 a.m. because of a strange noise.\nWhen we [ran out of] (run out of) ideas, the teacher gave us some help."}], "s5": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Обери правильне речення: {Turn it off, please.|Turn off it, please.|Turn it, please, off.|Off turn it, please.}\nЯке речення правильне?: {Can you look after my dog?|Can you look my dog after?|Can you after look my dog?|Can you look after for my dog?}\nWhere are my glasses? I’m looking {for them|them for|for they|them}.\nЗнайди речення без помилки: {She gave up piano.|She gived up piano.|She give upped piano.|She gaved up piano.}\nДе немає помилки?: {We ran out of milk.|We ran out milk.|We ran milk out.|We ran of milk out.}\nThe TV? I’ve already turned {it off|off it|off|it}.\nОбери речення без помилки: {I put them on.|I put on them.|I them put on.|I put on they.}\nKate found {out|up|off|on} about the party from Instagram.\nЯке речення звучить правильно?: {Can you turn the radio on?|Can you turn on it?|Can you on turn the radio?|Can you turn the on radio?}\nAre those your cats? Who looks {after them|them after|after they|they after} when you travel?\nЯке речення без помилки?: {Don’t give it up!|Don’t give up it!|Don’t up give it!|Don’t give it on!}\nMum asked me to wake {her up|up her|she up|up she} at seven."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "The music is too loud. Can you turn [it down] (it / down)?\nThese boots are muddy. Take [them off] (them / off) before you come in.\nYour jacket is on the floor. Pick [it up] (it / up), please.\nThis is my new coat. Do you like it? I want to put [it on] (it / on) right now.\nMy grandma is ill, so my mum is looking [after her] (after / her).\nThe old sofa was broken, so we threw [it away] (it / away).\nI switched the lights on, but now I can’t sleep, so I’m switching [them off] (them / off).\nMax carried on [playing] (play) the guitar after everyone went to bed."}], "s6": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "We were halfway up the mountain when we {ran out of|ran out|gave in|got up} water. Luckily, there was a café.\nLily loves animals. She {looks after|looks for|looks up|finds out} her neighbour’s dogs every weekend and gets paid for it.\nThe meeting is in five minutes. Put your phone away and {turn on|turn into|give up|take off} the laptop.\nIt’s raining. Don’t forget to {put on|take off|turn on|find out} your raincoat.\nTom wasn’t at the party, so he {found out|looked for|gave up|turned off} about the surprise only the next day.\nThe kids were noisy, but the teacher {carried on|gave up|took off|put on} talking as if nothing had happened.\nYour room is full of old magazines. Why don’t you throw {them away|away them|away|them}?\nMy parents are away, so my aunt is {looking after|looking for|looking up|looking at} us this week.\nThe plane {took off|put on|turned off|gave up} late, so we missed our connection in Paris.\nLily didn’t like the film, but she {carried on|turned on|got up|put off} watching till the end.\n“Where is the remote?” “No idea. I’m looking {for it|it for|after it|it after} too.”\nЯке з речень правильне?: {Can you pick me up after school?|Can you pick up me after school?|Can you pick me after school up?|Can you up pick me after school?}"}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "I was so tired after the match that I [didn’t get up/did not get up] (not get up) until eleven.\nThis homework is impossible! I want to [give up] (give up).\nI bought a new lamp, but I can’t switch it on. Can you help me turn [it on] (it / on)?\nIt was hot in the café, so Sophie [took off] (take off) her hoodie.\nWe’ve [run out of] (run out of) sugar. Can you buy some?\nI don’t know where the party is. I need to [find out] (find out) the address.\nMia [tried on] (try on) five dresses but didn’t buy any.\nGrandad has never [given up] (give up) hope."}]}};</script>
+<script>
+(function(){var l=(document.cookie.match(/(?:^|; )murly_lang=(\w+)/)||[])[1];try{l=l||localStorage.getItem('murly:tlang')}catch(e){}l=l==='ru'?'ru':'uk';document.querySelectorAll('[data-pairs-'+l+']').forEach(function(b){b.dataset.pairs=b.getAttribute('data-pairs-'+l)});})();
+</script>
+<script>
+const $ = (id) => document.getElementById(id);
+const LIS = {};
+function say(w, rate) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; const v = speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang) && /Google|Natural|Libby|Sonia|Daniel/.test(x.name)) || speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang)); if (v) u.voice = v; u.rate = rate || .95; speechSynthesis.speak(u); } catch (e) { } }
+const sh = (a) => a.map((x) => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map((x) => x[1]);
+document.querySelectorAll('.voc div').forEach((d) => d.onclick = () => say(d.dataset.say));
+document.querySelectorAll('[data-play]').forEach((b) => b.onclick = () => say(LIS[b.dataset.play], b.dataset.slow ? .75 : .95));
+document.querySelectorAll('[data-stop]').forEach((b) => b.onclick = () => { try { speechSynthesis.cancel(); } catch (e) { } });
+document.querySelectorAll('.ch').forEach((q) => q.querySelectorAll('button').forEach((b) => b.onclick = () => { if (q.classList.contains('ok')) return; const ok = b.textContent === q.dataset.a; q.classList.toggle('ok', ok); q.classList.toggle('bad', !ok); if (ok) { const s = q.querySelector('.s'); if (s && s.textContent.includes('___')) { s.textContent = s.textContent.replace('___', q.dataset.a); } } }));
+const norm = (x) => x.toLowerCase().replace(/[’']/g, "'").replace(/[,;:"“”«»]/g, ' ').replace(/\s+/g, ' ').replace(/[.!?]$/, '').trim();
+document.querySelectorAll('.ty').forEach((r) => { const inp = r.querySelector('input'); const chk = () => { const ok = r.dataset.a.split('|').some((a) => norm(a) === norm(inp.value)); r.classList.toggle('ok', ok); r.classList.toggle('bad', !ok && inp.value.trim() !== ''); }; r.querySelector('button').onclick = chk; inp.onkeydown = (e) => { if (e.key === 'Enter') chk(); }; });
+document.querySelectorAll('[data-mt]').forEach((box) => { const pairs = JSON.parse(box.dataset.pairs); const L = sh(pairs.map((p) => p[0])), R = sh(pairs.map((p) => p[1])); let sel = null, done = 0, err = 0; box.innerHTML = L.map((w, i) => `<button type="button" data-w="${w}">${w}</button><button type="button" data-d="${R[i]}">${R[i]}</button>`).join('');
+  box.querySelectorAll('button').forEach((b) => b.onclick = () => { if (b.classList.contains('done')) return; if (!sel || (sel.dataset.w && b.dataset.w) || (sel.dataset.d && b.dataset.d)) { if (sel) sel.classList.remove('sel'); sel = b; b.classList.add('sel'); return; } const w = sel.dataset.w || b.dataset.w, d = sel.dataset.d || b.dataset.d; if (pairs.some((p) => p[0] === w && p[1] === d)) { sel.classList.add('done'); b.classList.add('done'); done++; say(w); if (done === pairs.length) document.querySelector(`[data-mtres="${box.dataset.mt}"]`).textContent = err ? `Done! Mistakes: ${err}` : 'Perfect!'; } else err++; sel.classList.remove('sel'); sel = null; }); });
+document.querySelectorAll('[data-vids]').forEach((box) => JSON.parse(box.dataset.vids).forEach(([id, title, ch, qs]) => { const d = document.createElement('div'); d.className = 'vid'; d.innerHTML = `<div class="frame"><button class="play" type="button" style="background-image:url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)"><span>PLAY</span></button></div><div class="info"><h3>${title}</h3><small>YouTube · ${ch}</small><ol>${qs.map((q) => `<li>${q}</li>`).join('')}</ol></div>`; d.querySelector('.play').onclick = (e) => { e.currentTarget.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&cc_load_policy=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${title}"></iframe>`; }; box.appendChild(d); }));
+document.querySelectorAll('[data-spin]').forEach((b) => { const list = JSON.parse(b.dataset.spin); let last = -1; b.onclick = () => { let i; do { i = Math.floor(Math.random() * list.length); } while (i === last && list.length > 1); last = i; document.getElementById(b.dataset.target).textContent = list[i]; }; });
+try { const k = 'murly:' + (window.MURLY_LESSON ? MURLY_LESSON.id : 'x') + ':hw'; const t = $('hwText'); if (t) { t.value = localStorage.getItem(k) || ''; t.oninput = () => localStorage.setItem(k, t.value); } } catch (e) { }
+const STAGES = [...document.querySelectorAll('.wrap > section[id]')];
+$('stages').innerHTML = STAGES.map((s) => `<a href="#${s.id}"><b>${s.querySelector('.lk-n').textContent}</b><span>${s.dataset.stage}</span><small>${s.dataset.min !== '0' ? s.dataset.min + ' min' : 'at home'}</small></a>`).join('');
+$('teacherBtn').onclick = (e) => { const on = document.body.classList.toggle('teacher'); e.currentTarget.textContent = on ? 'Student version' : 'Teacher version'; };
+</script>
+<script src="/game-lessons/kit.js" defer></script>
+</body>
+</html>

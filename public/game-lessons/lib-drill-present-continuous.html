@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Present Continuous: 100 tasks (A1) | Murly</title>
+<link rel="icon" href="/favicon.svg">
+<meta name="description" content="Повторимо правило: Теперішній тривалий час
+100 завдань від простого до складного
+Розберемо головні пастки">
+<link rel="canonical" href="https://murly.com.ua/game-lessons/lib-drill-present-continuous.html">
+<style>
+:root{--paper:#F3F0EA;--ink:#17181C;--violet:#3D4A7A;--lav:#D9D3C7;--pink:#E9C9BC;--green:#D4E2CF;--white:#fff;--muted:#62646B;--accent:#B5482F}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+/* hero */
+.hero{background:linear-gradient(rgba(16,17,22,.5),rgba(16,17,22,.72)),url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1400&q=70&auto=format&fit=crop");color:#fff;padding:70px 18px 56px;text-align:center;position:relative;overflow:hidden}
+.hero .kicker{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#E9C9BC;font-weight:700}
+.hero .cr{position:absolute;right:12px;bottom:8px;font-size:11px;color:rgba(255,255,255,.6)}
+.hero h1{margin:8px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(36px,6vw,64px);letter-spacing:-.5px;font-weight:700}
+.hero h1 span{color:var(--pink);font-style:italic}
+.hero p{margin:12px 0 0;font-size:17px;color:#e6e2da}
+.hero .flags{display:flex;justify-content:center;gap:12px;margin-top:22px;flex-wrap:wrap}
+.hero .flags svg{width:40px;height:26px;border-radius:3px;opacity:.9}
+/* sections */
+section{margin-top:30px;background:var(--white);border-radius:18px;padding:28px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.05)}
+section h2{margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tag{font-family:"Segoe UI",system-ui,sans-serif;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--paper);color:var(--accent);text-transform:uppercase;letter-spacing:1px}
+.lk-n{display:inline-grid;place-items:center;width:42px;height:42px;background:var(--violet);color:#fff;border-radius:50%;font-size:21px;flex:none}
+.lk-mode{font-size:13px;font-weight:700;border:2px dashed var(--lav);color:var(--muted);padding:2px 10px;border-radius:999px}
+.lk-ins{font-size:17px;background:var(--paper);border-radius:12px;padding:10px 14px;margin:6px 0 18px}
+.lk-sub{margin:24px 0 10px;font-size:19px}
+.btn{font:inherit;font-weight:700;border:0;border-radius:999px;background:var(--ink);color:#fff;padding:10px 20px;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+.btn.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+/* teacher */
+.lk-tbtn{position:fixed;right:16px;top:70px;z-index:45;font:inherit;font-weight:800;border:2px solid var(--ink);background:var(--pink);padding:8px 14px;border-radius:12px;cursor:pointer}
+body.teacher .lk-tbtn{background:var(--green)}
+.lk-ans,.lk-tnote{display:none}
+body.teacher .lk-ans{display:block;margin-top:8px;font-weight:700;color:#1d5a12;background:var(--green);border-left:5px solid #5aa845;padding:6px 10px;font-size:15px;border-radius:6px}
+body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff3f7;border-left:5px solid #d9789a;padding:8px 12px;font-size:15px;border-radius:6px}
+/* overview */
+.lk-overview ul{font-size:17px;line-height:1.7;margin:6px 0 16px}
+.lk-stages{display:flex;flex-wrap:wrap;gap:8px}
+.lk-stages a{display:grid;border-radius:14px;padding:8px 12px;text-decoration:none;color:var(--ink);background:var(--paper);font-weight:700;min-width:100px}
+.lk-stages a span{text-transform:capitalize}
+.lk-stages a b{font-size:20px;color:var(--violet)}
+.lk-stages a small{font-weight:600;color:var(--muted)}
+/* warm-up */
+.taxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tax{background:var(--paper);border-radius:18px;padding:16px;display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center}
+.tax svg{width:56px;height:56px}
+.tax b{display:block;font-size:17px}
+.tax small{color:var(--muted);font-size:14px}
+.qs{display:grid;gap:10px;margin-top:18px}
+.qs div{background:var(--green);border-radius:14px;padding:10px 16px;font-size:18px;font-weight:600}
+.phr{background:#fff7e8;border-radius:14px;padding:12px 16px;margin-top:16px;font-size:15px}
+.phr ul{margin:6px 0 0;padding-left:18px}
+.fic{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:16px}
+.fic .c{background:#fff;border:2px solid #1B2140;border-radius:16px;padding:14px 16px;box-shadow:3px 3px 0 #1B2140}
+.fic .c b{display:block;font-size:18px;line-height:1.35;margin-bottom:8px}
+.fic .c .k{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.fic .c .k span{font-size:13px;background:#eef1fb;border-radius:999px;padding:3px 10px}
+.fic .c details{margin-top:8px;font-size:15px;color:#3b4160}
+.fic .c summary{cursor:pointer;font-weight:700;color:#534AB7}
+.fi-n{display:inline-flex;width:28px;height:28px;border-radius:50%;background:#2F4BA0;color:#fff;align-items:center;justify-content:center;font-size:14px;margin-right:6px}
+/* vocab */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:12px}
+.vc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:2px solid transparent;transition:border-color .2s,transform .2s}
+.vc:hover{border-color:var(--violet);transform:translateY(-2px)}
+.vc b{font-size:18px;display:flex;align-items:center;gap:8px}
+.vc b svg{width:20px;height:20px;flex:none;color:var(--violet)}
+.vc p{margin:6px 0 0;font-size:14px;color:var(--muted)}
+.vc em{display:block;margin-top:6px;font-size:14px;color:var(--violet);font-style:normal;font-weight:600}
+.vc.played{background:#e6ecfb}
+/* grammar */
+.gram{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.gb{border-radius:18px;padding:16px}
+.gb h3{margin:0 0 6px;font-size:19px}
+.gb .f{display:inline-block;background:#fff;border-radius:8px;padding:3px 10px;font-weight:800;margin:4px 0;font-family:Consolas,monospace;font-size:15px}
+.gb p{margin:6px 0 0;font-size:15px}
+.g1{background:var(--pink)}.g2{background:var(--lav)}.g3{background:var(--green)}.g4{background:#fbe7c6}
+.warn{margin-top:14px;background:var(--ink);color:#fff;border-radius:14px;padding:12px 16px;font-size:16px}
+.warn b{color:var(--pink)}
+.q{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:2px dashed var(--paper);font-size:18px}
+.q:last-child{border-bottom:0}
+.q .n{width:32px;height:32px;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;border-radius:50%;font-weight:800;font-size:15px}
+.opt{font:inherit;font-size:16px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:10px;padding:4px 12px;cursor:pointer;margin:0 2px}
+.opt.ok{background:var(--green);border-color:#5aa845}
+.opt.bad{background:var(--pink);animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+/* tour */
+.tour{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.law{border-radius:22px;overflow:hidden;background:var(--paper);display:flex;flex-direction:column}
+.law .pic{height:150px;display:grid;place-items:center;position:relative}
+.law .pic svg.ill{width:130px;height:130px}
+.law .pic svg.fl{position:absolute;left:14px;top:14px;width:46px;height:30px;border-radius:5px;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.law .pic .no{position:absolute;right:14px;top:14px;background:var(--ink);color:#fff;font-weight:800;border-radius:999px;padding:2px 10px;font-size:13px}
+.law .body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.law h3{margin:0;font-size:20px}
+.law .where{font-size:13px;font-weight:800;color:var(--violet);text-transform:uppercase;letter-spacing:1px}
+.law p{margin:0;font-size:16px}
+.law .why{font-size:14px;color:var(--muted)}
+.law .dq{margin-top:auto;background:#fff;border-radius:12px;padding:8px 12px;font-weight:700;font-size:15px}
+.law .lsn{font:inherit;font-size:13px;font-weight:700;background:none;border:0;color:var(--violet);cursor:pointer;padding:0;text-align:left}
+/* game */
+.game{max-width:720px;margin:0 auto;text-align:center}
+.score{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.score span{background:var(--paper);border-radius:999px;padding:6px 16px;font-weight:800}
+.stmt{background:var(--ink);color:#fff;border-radius:22px;padding:28px 24px;min-height:150px;display:grid;place-items:center;font-size:23px;font-weight:700;position:relative}
+.stmt small{position:absolute;top:12px;left:18px;font-size:13px;color:var(--lav);font-weight:700}
+.choose{display:flex;justify-content:center;gap:14px;margin:18px 0}
+.choose button{font:inherit;font-size:18px;font-weight:700;border:2px solid var(--ink);border-radius:999px;padding:12px 28px;cursor:pointer}
+.choose .bl{background:var(--green)}.choose .bm{background:var(--pink)}
+.choose button:disabled{opacity:.5;cursor:default}
+.verdict{min-height:70px;font-size:17px;background:var(--paper);border-radius:16px;padding:12px 16px;text-align:left}
+.verdict b.r{color:#2d7a1d}.verdict b.w{color:#b23a62}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.dots i{width:14px;height:14px;border-radius:50%;background:var(--paper)}
+.dots i.r{background:#7cc663}.dots i.w{background:#e47b9f}.dots i.c{outline:3px solid var(--violet)}
+.final{font-size:22px;font-weight:800;color:var(--violet)}
+/* invent */
+.inv{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.frames{display:grid;gap:10px}
+.frames label{font-size:14px;font-weight:700;color:var(--muted)}
+.frames select,.frames input{font:inherit;width:100%;padding:8px 10px;border:2px solid var(--lav);border-radius:10px;background:#fff}
+.poster{background:var(--paper);border:3px solid var(--ink);border-radius:20px;padding:22px;text-align:center;min-height:260px;display:flex;flex-direction:column;gap:10px;justify-content:center}
+.poster .seal{width:70px;height:70px;margin:0 auto}
+.poster h3{margin:0;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--violet)}
+.poster .rule{font-size:22px;font-weight:800}
+.poster .pen{font-size:16px;color:var(--muted)}
+.ideas{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ideas span{background:var(--pink);border-radius:999px;padding:5px 12px;font-size:14px;font-weight:600}
+/* roleplay */
+.rp{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.role{border-radius:20px;padding:18px}
+.role h3{margin:0 0 6px;display:flex;align-items:center;gap:10px}
+.role h3 svg{width:42px;height:42px}
+.role ul{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.r1{background:var(--lav)}.r2{background:var(--green)}
+.scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:16px}
+.sc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:3px solid transparent}
+.sc.on{border-color:var(--violet);background:#fff}
+.sc b{display:block;font-size:17px;margin-bottom:4px}
+.sc p{margin:0;font-size:15px}
+.timer{font-size:40px;font-weight:800;text-align:center;margin:14px 0 6px;color:var(--violet)}
+.ctr{text-align:center}
+/* homework */
+.hwb{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hwc{background:var(--paper);border-radius:18px;padding:18px}
+.hwc h3{margin:0 0 8px}
+.hwc ol,.hwc ul{margin:6px 0 0;padding-left:20px;line-height:1.7}
+.hwc textarea{width:100%;min-height:150px;font:inherit;border:2px solid var(--lav);border-radius:12px;padding:10px;margin-top:10px}
+.end{text-align:center;background:var(--ink);color:#fff;box-shadow:none}
+.end h2{justify-content:center}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(140px);background:var(--ink);color:#fff;font-weight:800;padding:12px 22px;border-radius:14px;transition:transform .3s;z-index:50}
+.toast.show{transform:translateX(-50%) translateY(0)}
+/* photos */
+.ph{margin:0}
+.ph img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;background:var(--paper)}
+.ph figcaption{font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.2px}
+.tax{grid-template-columns:1fr !important;padding:12px !important}
+.law .pic{height:auto !important;display:block !important;padding:0;position:relative}
+.law .pic .ph img{border-radius:0;aspect-ratio:16/10;transition:filter .5s}
+.law .pic .ph figcaption{padding:4px 12px 0}
+.law.hide .pic .ph img{filter:blur(10px) grayscale(.6)}
+.law.hide .reveal-body,.law.hide .fl,.law.hide .where{visibility:hidden}
+.law .clue{font-size:15px;font-style:italic;color:var(--ink)}
+.law .gc{display:flex;flex-wrap:wrap;gap:6px}
+.law .gc button{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:4px 12px;cursor:pointer}
+.law .gc button.ok{background:var(--green)}.law .gc button.bad{background:var(--pink)}
+.law:not(.hide) .guess{display:none}
+.fair{display:grid;gap:4px;background:#fff;border-radius:12px;padding:8px 12px}
+.fair .ends{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.fair input{width:100%;accent-color:var(--accent)}
+.fair output{font-size:14px;font-weight:700;color:var(--accent)}
+.gph{max-width:720px;margin:0 auto 12px}
+.gph img{aspect-ratio:21/9}
+.fine{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.fq{background:var(--paper);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.fq h3{margin:0;font-size:18px}
+.fq .opts{display:flex;flex-wrap:wrap;gap:6px}
+.fq .opts button{font:inherit;font-size:14px;font-weight:700;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 12px;cursor:pointer}
+.fq .opts button.ok{background:var(--green)}.fq .opts button.bad{background:var(--pink)}
+.fq .res{font-size:15px;min-height:22px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{position:relative;aspect-ratio:16/9;background:#111}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;cursor:pointer;background:#111 center/cover;display:grid;place-items:center}
+.vid .play span{background:rgba(0,0,0,.7);color:#fff;font-weight:700;border-radius:999px;padding:10px 20px;font-size:15px;letter-spacing:1px}
+.vid .info{padding:14px 16px}
+.vid .info h3{margin:0 0 2px;font-size:18px}
+.vid .info small{color:var(--muted)}
+.vid .info ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+@media(max-width:760px){.inv,.rp,.hwb{grid-template-columns:1fr}.lk-tbtn{top:auto;bottom:70px}}
+
+.pr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.pb{border-radius:18px;padding:16px 18px}
+.pb h3{margin:0;font-family:Georgia,serif;font-size:30px}
+.pb .m{font-size:15px;color:var(--muted);margin:2px 0 8px}
+.pb .chips{display:flex;flex-wrap:wrap;gap:6px}
+.pb .chips span{background:#fff;border-radius:999px;padding:4px 11px;font-size:14px;font-weight:600}
+.pb ul{margin:10px 0 0;padding-left:18px;font-size:15px}
+.p-in{background:#DCE6F5}.p-at{background:#F3D9CF}.p-on{background:#D4E2CF}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-size:15px;margin-top:10px}
+.ex div{background:var(--paper);border-radius:10px;padding:8px 12px}
+.ex b{color:var(--accent)}
+.q{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.q .n{font-weight:800;color:var(--violet);min-width:24px}
+.q .gap{display:inline-block;min-width:44px;border-bottom:2px solid var(--ink);text-align:center;font-weight:800}
+.q .opts{margin-left:auto;display:flex;gap:6px}
+.q .opts button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 14px;cursor:pointer}
+.q.ok{background:#DDEED7}.q.ok .gap{color:#2F7A3B}
+.q.bad{background:#F6DAD3}
+.score{font-weight:800;margin-top:12px}
+.text{font-size:18px;line-height:1.75;background:var(--paper);border-radius:16px;padding:18px 22px}
+.text h3{margin:0 0 6px;font-family:Georgia,serif;font-size:24px}
+.text p{margin:0 0 12px}
+.text.hl mark{background:#F3D9CF;border-radius:4px;padding:0 3px;font-weight:700}
+.tf{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:9px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.tf .opts{margin-left:auto;display:flex;gap:6px}
+.tf button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.tf.ok{background:#DDEED7}.tf.bad{background:#F6DAD3}
+.disc{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px;margin-top:6px}
+.disc div{background:var(--green);border-radius:14px;padding:12px 16px;font-size:17px;font-weight:600}
+.disc div i{font-style:normal;color:var(--violet);margin-right:6px}
+.spin{text-align:center;margin-top:16px}
+.spin .card{display:inline-block;min-height:80px;min-width:min(560px,100%);background:var(--ink);color:#fff;border-radius:18px;padding:20px 24px;font-size:22px;font-weight:700;margin-bottom:12px}
+@media(max-width:700px){.ex{grid-template-columns:1fr}}
+
+.hero{background-size:cover!important;background-position:center!important}
+.voc{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.voc div{background:var(--paper);border-radius:14px;padding:10px 14px;cursor:pointer;border:2px solid transparent}
+.voc div:hover{border-color:var(--violet)}
+.voc b{display:block;font-size:18px}.voc span{display:block;color:var(--accent);font-weight:700;font-size:15px}.voc em{display:block;font-size:14px;color:var(--muted);margin-top:3px}
+.mt{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:10px}
+.mt button{font:inherit;font-size:16px;text-align:left;border:2px solid var(--ink);background:#fff;border-radius:14px;padding:9px 14px;cursor:pointer}
+.mt button.sel{background:#FFE7A8}.mt button.done{background:#CDE8C6;border-color:#4C9A5B;cursor:default}
+.ch{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ch .n{font-weight:800;color:var(--violet);min-width:24px}
+.ch .o{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.ch .o button{font:inherit;font-size:15px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.ch.ok{background:#DDEED7}.ch.bad{background:#F6DAD3}
+.ty{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ty input{font:inherit;border:2px solid var(--ink);border-radius:10px;padding:4px 10px;width:220px}
+.ty.ok{background:#DDEED7}.ty.bad{background:#F6DAD3}
+.ty small{color:var(--muted)}
+.photo{width:100%;height:300px;object-fit:cover;border-radius:16px;display:block}
+.cap{font-size:11px;color:var(--muted);margin:4px 0 12px}
+.pics{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.pics figure{margin:0;background:var(--paper);border-radius:16px;overflow:hidden}
+.pics img{width:100%;height:170px;object-fit:cover;display:block}
+.pics figcaption{padding:8px 12px;font-weight:700}
+.pics small{display:block;font-weight:400;font-size:10px;color:var(--muted)}
+.lis{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:8px 0 14px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{aspect-ratio:16/9;background:#000;position:relative}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;background-size:cover;background-position:center;cursor:pointer;display:grid;place-items:center}
+.vid .play span{background:#E5484D;color:#fff;font-weight:800;border-radius:12px;padding:10px 20px}
+.vid .info{padding:12px 16px}.vid h3{margin:0;font-size:18px}.vid small{color:var(--muted)}
+.vid ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th,.tbl td{border:1px solid #ddd;padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--paper)}
+@media(max-width:700px){.mt{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="/game-lessons/kit.css">
+</head>
+<body>
+<header class="hero">
+  <div class="kicker">A1 · teens · Граматика: тренажер Теперішній тривалий час</div>
+  <h1>Present Continuous: 100 tasks</h1>
+  <p>A1 · 6 parts · 60 min</p>
+  <span class="cr">Photo: Unsplash</span>
+</header>
+<button class="lk-tbtn" id="teacherBtn" type="button">Teacher version</button>
+<div class="wrap">
+  <section class="lk-overview">
+    <h2>In this lesson you will:</h2>
+    <ul><li>Повторимо правило: Теперішній тривалий час
+100 завдань від простого до складного
+Розберемо головні пастки</li></ul>
+    <div class="lk-stages" id="stages"></div>
+  </section>
+  <section id="s1" data-stage="practice" data-min="10">
+    <h2><span class="lk-n">1</span>Теорія <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<div class="warn"><p><b>Коли вживаємо</b></p><p>Дія відбувається прямо зараз: Look, Max is dancing in the kitchen! (Дивись, Макс танцює на кухні!)</p><p>Тимчасова ситуація в цей період: Emma is learning to drive this month. (Емма цього місяця вчиться водити.)</p><p>Зміни, що тривають: My English is getting better. (Моя англійська стає кращою.)</p><p>Домовленості на майбутнє: I’m meeting Tom tomorrow. (Я зустрічаюся з Томом завтра.)</p></div>
+    <div class="warn"><p><b>Форми</b></p><p>+  I am / he, she, it is / we, you, they are + V-ing. Приклад: We are watching a series.</p><p>−  am not / isn’t / aren’t + V-ing. Приклад: Dan isn’t sleeping.</p><p>?  Am / Is / Are + підмет + V-ing?. Приклад: Are you listening to me?</p><p>коротко  Yes, I am. / No, I’m not. Yes, he is. / No, he isn’t.. Приклад: Is it raining? No, it isn’t.</p></div>
+    <div class="warn"><p><b>Головна пастка</b></p><p>Не губи am / is / are. В українській «вона читає» без допоміжного слова, тому його легко забути. Але одне -ing без am / is / are не працює.</p><p>✗ She reading a book now.</p><p>✓ She is reading a book now.</p><p>Дієслова стану не вживаємо в Continuous. Like, love, hate, want, need, know, understand, believe, agree описують стан, а не дію. Навіть «зараз» вони стоять у Present Simple.</p><p>✗ I’m wanting a new phone.</p><p>✓ I want a new phone.</p><p>Зараз чи завжди?. Якщо дія відбувається в момент мовлення (Look! Listen! Be quiet!), потрібен Continuous, а не Simple.</p><p>✗ Be quiet! Dad talks on the phone.</p><p>✓ Be quiet! Dad is talking on the phone.</p></div>
+    <div class="warn"><p><b>Маркери:</b> now, right now, at the moment, today, tonight, this week, this month, these days, currently, Look!, Listen!, tomorrow (план)</p></div>
+    <div class="warn"><p><b>Як писати -ing</b></p><p>Більшість дієслів: + ing (read → reading). Німа -e в кінці зникає: make → making (але see → seeing). Короткий склад «приголосна + голосна + приголосна» під наголосом: остання приголосна подвоюється (swim → swimming, run → running). -ie змінюється на -y: lie → lying. Після w, x, y нічого не подвоюємо: fix → fixing, play → playing.</p><p>read · reading · + ing · читати</p><p>play · playing · + ing · грати</p><p>fix · fixing · x не подвоюємо · лагодити</p><p>make · making · -e зникає · робити</p><p>write · writing · -e зникає · писати</p><p>dance · dancing · -e зникає · танцювати</p><p>see · seeing · -ee лишається · бачити</p><p>swim · swimming · подвоєння · плавати</p><p>run · running · подвоєння · бігати</p><p>sit · sitting · подвоєння · сидіти</p><p>get · getting · подвоєння · отримувати, ставати</p><p>lie · lying · -ie → -y · лежати; брехати</p><p>tie · tying · -ie → -y · зав’язувати</p></div>
+    <p class="lk-tnote" data-ru="Тренажер на 100 завдань: 5 раундів по 20. На уроці можна пройти 1-2 раунди, решту задати додому. Пояснення до кожної відповіді учень бачить у тренажері на сайті (розділ «Граматика»).&lt;br&gt;">Тренажер на 100 завдань: 5 раундів по 20. На уроці можна пройти 1-2 раунди, решту задати додому. Пояснення до кожної відповіді учень бачить у тренажері на сайті (розділ «Граматика»).<br></p>
+  </section>
+  <section id="s2" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">2</span>Раунд 1. Форми: розминка <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="is reading"><span class="n">1</span><span class="s">Emma ___ a new book right now.</span><span class="o"><button type="button">are reading</button><button type="button">reads</button><button type="button">reading</button><button type="button">is reading</button></span></div>
+<div class="ch" data-a="am doing"><span class="n">2</span><span class="s">I ___ my homework at the moment.</span><span class="o"><button type="button">is doing</button><button type="button">am doing</button><button type="button">doing</button></span></div>
+<div class="ch" data-a="are waiting"><span class="n">3</span><span class="s">We ___ for the bus right now.</span><span class="o"><button type="button">is waiting</button><button type="button">are waiting</button><button type="button">am waiting</button></span></div>
+<div class="ch" data-a="is cooking"><span class="n">4</span><span class="s">My mum ___ dinner in the kitchen at the moment.</span><span class="o"><button type="button">are cooking</button><button type="button">cooking</button><button type="button">is cooking</button></span></div>
+<div class="ch" data-a="is sleeping"><span class="n">5</span><span class="s">Shh! The baby ___.</span><span class="o"><button type="button">sleeps</button><button type="button">are sleeping</button><button type="button">is sleeping</button></span></div>
+<div class="ch" data-a="are watching"><span class="n">6</span><span class="s">They ___ a film at the cinema now.</span><span class="o"><button type="button">is watching</button><button type="button">watching</button><button type="button">are watching</button><button type="button">watch</button></span></div>
+<div class="ch" data-a="is lying"><span class="n">7</span><span class="s">The dog ___ on the sofa again!</span><span class="o"><button type="button">is lyeing</button><button type="button">is lying</button><button type="button">lies</button><button type="button">is lieing</button></span></div>
+<div class="ch" data-a="is fixing"><span class="n">8</span><span class="s">Dan ___ his bike in the garage at the moment.</span><span class="o"><button type="button">is fixing</button><button type="button">is fixxing</button><button type="button">fixing</button></span></div>
+<div class="ch" data-a="are running"><span class="n">9</span><span class="s">Wow, you ___ really fast today!</span><span class="o"><button type="button">are running</button><button type="button">are runing</button><button type="button">is running</button></span></div>
+<div class="ch" data-a="is ringing"><span class="n">10</span><span class="s">My phone ___ in my bag. Can you get it?</span><span class="o"><button type="button">ringing</button><button type="button">is ringing</button><button type="button">rings</button></span></div>
+<div class="ch" data-a="is shining"><span class="n">11</span><span class="s">The sun ___ and the birds are singing.</span><span class="o"><button type="button">are shining</button><button type="button">is shining</button><button type="button">shines</button></span></div>
+<div class="ch" data-a="is listening"><span class="n">12</span><span class="s">Tom ___ to music on his headphones at the moment.</span><span class="o"><button type="button">are listening</button><button type="button">is listening</button><button type="button">listens</button></span></div>
+<div class="ch" data-a="am tying"><span class="n">13</span><span class="s">Wait a second, I ___ my shoelaces.</span><span class="o"><button type="button">am tying</button><button type="button">am tieing</button><button type="button">tying</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; is reading · am doing · are waiting · is cooking · is sleeping · are watching · is lying · is fixing · are running · is ringing · is shining · is listening · am tying"><b>Відповіді:</b> is reading · am doing · are waiting · is cooking · is sleeping · are watching · is lying · is fixing · are running · is ringing · is shining · is listening · am tying</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="are playing"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Look! The kids ___ (play) in the snow.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="is swimming"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Max ___ (swim) in the pool now.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="is making"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Right now Sophie ___ (make) a cake for her friend’s birthday.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="is singing"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Listen! Somebody ___ (sing) in the bathroom.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="are sitting"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Lily and Kate ___ (sit) in the library at the moment.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="am writing"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>I ___ (write) a message to my grandma now.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="is snowing"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>Look! It ___ (snow) outside.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; are playing · is swimming · is making · is singing · are sitting · am writing · is snowing"><b>Відповіді:</b> are playing · is swimming · is making · is singing · are sitting · am writing · is snowing</p>
+  </section>
+  <section id="s3" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">3</span>Раунд 2. Заперечення і питання <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="isn’t"><span class="n">1</span><span class="s">Max ___ watching TV. He’s reading.</span><span class="o"><button type="button">doesn’t</button><button type="button">aren’t</button><button type="button">isn’t</button><button type="button">not</button></span></div>
+<div class="ch" data-a="Are"><span class="n">2</span><span class="s">___ you listening to me?</span><span class="o"><button type="button">Are</button><button type="button">Do</button><button type="button">Is</button></span></div>
+<div class="ch" data-a="is"><span class="n">3</span><span class="s">What ___ Sophie doing now?</span><span class="o"><button type="button">are</button><button type="button">is</button><button type="button">does</button></span></div>
+<div class="ch" data-a="isn’t"><span class="n">4</span><span class="s">A: Is it raining? B: No, it ___.</span><span class="o"><button type="button">aren’t</button><button type="button">not</button><button type="button">doesn’t</button><button type="button">isn’t</button></span></div>
+<div class="ch" data-a="are"><span class="n">5</span><span class="s">Why ___ you laughing?</span><span class="o"><button type="button">is</button><button type="button">are</button><button type="button">do</button></span></div>
+<div class="ch" data-a="aren’t"><span class="n">6</span><span class="s">The kids ___ doing their homework, they’re playing games.</span><span class="o"><button type="button">aren’t</button><button type="button">don’t</button><button type="button">isn’t</button></span></div>
+<div class="ch" data-a="are"><span class="n">7</span><span class="s">A: Are you having fun? B: Yes, we ___.</span><span class="o"><button type="button">have</button><button type="button">are</button><button type="button">is</button><button type="button">do</button></span></div>
+<div class="ch" data-a="Is she wearing my jacket?"><span class="n">8</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">Does she wearing my jacket?</button><button type="button">Is she wear my jacket?</button><button type="button">Is she wearing my jacket?</button></span></div>
+<div class="ch" data-a="are"><span class="n">9</span><span class="s">Where ___ Dan and Lily going?</span><span class="o"><button type="button">is</button><button type="button">do</button><button type="button">are</button></span></div>
+<div class="ch" data-a="I’m not working today."><span class="n">10</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">I don’t working today.</button><button type="button">I amn’t working today.</button><button type="button">I’m not working today.</button></span></div>
+<div class="ch" data-a="is"><span class="n">11</span><span class="s">What ___ your dad cooking? It smells amazing!</span><span class="o"><button type="button">are</button><button type="button">does</button><button type="button">is</button></span></div>
+<div class="ch" data-a="isn’t"><span class="n">12</span><span class="s">A: Is Max coming with us? B: No, he ___.</span><span class="o"><button type="button">doesn’t</button><button type="button">aren’t</button><button type="button">isn’t</button></span></div>
+<div class="ch" data-a="Are"><span class="n">13</span><span class="s">___ your parents working from home this week?</span><span class="o"><button type="button">Do</button><button type="button">Are</button><button type="button">Is</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; isn’t · Are · is · isn’t · are · aren’t · are · Is she wearing my jacket? · are · I’m not working today. · is · isn’t · Are"><b>Відповіді:</b> isn’t · Are · is · isn’t · are · aren’t · are · Is she wearing my jacket? · are · I’m not working today. · is · isn’t · Are</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="am not sleeping"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>I ___ (not / sleep), I’m just resting my eyes.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="aren’t going|are not going"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>We ___ (not / go) out tonight because it’s raining.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Is Tom playing"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>___ (Tom / play) online with his friends right now?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="isn’t charging|is not charging"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>My phone ___ (not / charge). Maybe the cable is broken.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="isn’t talking|is not talking"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Lily ___ (not / talk) to me today. Is she angry?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="are you texting"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Who ___ (you / text)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="aren’t eating|are not eating"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>The cats ___ (not / eat) their food today. Are they sick?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; am not sleeping · aren’t going · Is Tom playing · isn’t charging · isn’t talking · are you texting · aren’t eating"><b>Відповіді:</b> am not sleeping · aren’t going · Is Tom playing · isn’t charging · isn’t talking · are you texting · aren’t eating</p>
+  </section>
+  <section id="s4" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">4</span>Раунд 3. Коли вживати <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="is sleeping"><span class="n">1</span><span class="s">Be quiet! Grandpa ___.</span><span class="o"><button type="button">sleep</button><button type="button">sleeps</button><button type="button">is sleeping</button></span></div>
+<div class="ch" data-a="walks"><span class="n">2</span><span class="s">Tom ___ to school every day.</span><span class="o"><button type="button">is walking</button><button type="button">walks</button><button type="button">walk</button></span></div>
+<div class="ch" data-a="is staying"><span class="n">3</span><span class="s">This week Emma ___ at her aunt’s house because her parents are away.</span><span class="o"><button type="button">stays</button><button type="button">stay</button><button type="button">is staying</button></span></div>
+<div class="ch" data-a="is drinking"><span class="n">4</span><span class="s">Dan usually drinks tea, but today he ___ coffee.</span><span class="o"><button type="button">drink</button><button type="button">drinks</button><button type="button">is drinking</button></span></div>
+<div class="ch" data-a="is getting"><span class="n">5</span><span class="s">This year my English ___ better and better.</span><span class="o"><button type="button">get</button><button type="button">is getting</button><button type="button">gets</button></span></div>
+<div class="ch" data-a="moves"><span class="n">6</span><span class="s">The Earth ___ around the Sun.</span><span class="o"><button type="button">moves</button><button type="button">is moving</button><button type="button">move</button></span></div>
+<div class="ch" data-a="am watching"><span class="n">7</span><span class="s">I ___ a great series these days. It’s about detectives.</span><span class="o"><button type="button">watch</button><button type="button">am watching</button><button type="button">watches</button></span></div>
+<div class="ch" data-a="plays"><span class="n">8</span><span class="s">Lily ___ the guitar on Wednesdays.</span><span class="o"><button type="button">plays</button><button type="button">is playing</button><button type="button">play</button></span></div>
+<div class="ch" data-a="is knocking"><span class="n">9</span><span class="s">Listen! Someone ___ at the door.</span><span class="o"><button type="button">is knocking</button><button type="button">knocks</button><button type="button">knock</button></span></div>
+<div class="ch" data-a="is working"><span class="n">10</span><span class="s">My brother ___ at a café this summer, then he goes back to uni.</span><span class="o"><button type="button">works</button><button type="button">is working</button><button type="button">work</button></span></div>
+<div class="ch" data-a="is having"><span class="n">11</span><span class="s">Sophie can’t talk now. She ___ a shower.</span><span class="o"><button type="button">has</button><button type="button">is having</button><button type="button">have</button></span></div>
+<div class="ch" data-a="cleans"><span class="n">12</span><span class="s">Max always ___ his room on Saturdays.</span><span class="o"><button type="button">cleans</button><button type="button">clean</button><button type="button">is cleaning</button></span></div>
+<div class="ch" data-a="are painting"><span class="n">13</span><span class="s">We ___ our flat this month, so everything is a mess.</span><span class="o"><button type="button">paints</button><button type="button">paint</button><button type="button">are painting</button></span></div>
+<div class="ch" data-a="Look, the bus is coming!"><span class="n">14</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">Look, the bus coming!</button><button type="button">Look, the bus is coming!</button><button type="button">Look, the bus comes!</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; is sleeping · walks · is staying · is drinking · is getting · moves · am watching · plays · is knocking · is working · is having · cleans · are painting · Look, the bus is coming!"><b>Відповіді:</b> is sleeping · walks · is staying · is drinking · is getting · moves · am watching · plays · is knocking · is working · is having · cleans · are painting · Look, the bus is coming!</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="is dancing"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Look at Kate! She ___ (dance) on the table.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="are learning"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>At the moment we ___ (learn) a new song for the school concert.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="is starting"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Hurry up! The lights are going down, the film ___ (start).</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="are you wearing"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Why ___ (you / wear) a coat? It’s so hot today!</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="are going"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Prices in our town ___ (go) up these days.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="am sitting"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Right now I ___ (sit) on the train.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; is dancing · are learning · is starting · are you wearing · are going · am sitting"><b>Відповіді:</b> is dancing · are learning · is starting · are you wearing · are going · am sitting</p>
+  </section>
+  <section id="s5" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">5</span>Раунд 4. Пастки: не попадись <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="She is watching a video now."><span class="n">1</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">She are watching a video now.</button><button type="button">She is watching a video now.</button><button type="button">She watching a video now.</button></span></div>
+<div class="ch" data-a="I know the answer."><span class="n">2</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">I am knowing the answer.</button><button type="button">I knowing the answer.</button><button type="button">I know the answer.</button></span></div>
+<div class="ch" data-a="We like this song."><span class="n">3</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">We are liking this song.</button><button type="button">We like this song.</button><button type="button">We likes this song.</button></span></div>
+<div class="ch" data-a="is getting"><span class="n">4</span><span class="s">Tom ___ ready for the party.</span><span class="o"><button type="button">is getting</button><button type="button">is geting</button><button type="button">getting</button><button type="button">is gettting</button></span></div>
+<div class="ch" data-a="Dan needs help with maths."><span class="n">5</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">Dan is needing help with maths.</button><button type="button">Dan need help with maths.</button><button type="button">Dan needs help with maths.</button></span></div>
+<div class="ch" data-a="is making"><span class="n">6</span><span class="s">Look! Lily ___ a snowman.</span><span class="o"><button type="button">making</button><button type="button">is making</button><button type="button">is makeing</button></span></div>
+<div class="ch" data-a="They’re playing football in the park."><span class="n">7</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">They’re play football in the park.</button><button type="button">They playing football in the park.</button><button type="button">They’re playing football in the park.</button></span></div>
+<div class="ch" data-a="is running"><span class="n">8</span><span class="s">My little brother ___ around the garden.</span><span class="o"><button type="button">is running</button><button type="button">is runing</button><button type="button">running</button></span></div>
+<div class="ch" data-a="This pizza tastes great."><span class="n">9</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">This pizza tastes great.</button><button type="button">This pizza is tasting great.</button><button type="button">This pizza taste great.</button></span></div>
+<div class="ch" data-a="is writing"><span class="n">10</span><span class="s">Our teacher ___ on the board.</span><span class="o"><button type="button">is writeing</button><button type="button">is writing</button><button type="button">is writting</button></span></div>
+<div class="ch" data-a="Lily hates rainy days."><span class="n">11</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">Lily hates rainy days.</button><button type="button">Lily is hating rainy days.</button><button type="button">Lily hate rainy days.</button></span></div>
+<div class="ch" data-a="is swimming"><span class="n">12</span><span class="s">Look! The dog ___ in the river.</span><span class="o"><button type="button">swimming</button><button type="button">is swimming</button><button type="button">is swiming</button></span></div>
+<div class="ch" data-a="I don’t agree with you."><span class="n">13</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">I am not agreeing with you.</button><button type="button">I am not agree with you.</button><button type="button">I don’t agree with you.</button></span></div>
+<div class="ch" data-a="Look! The cats are fighting."><span class="n">14</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">Look! The cats is fighting.</button><button type="button">Look! The cats are fighting.</button><button type="button">Look! The cats fighting.</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; She is watching a video now. · I know the answer. · We like this song. · is getting · Dan needs help with maths. · is making · They’re playing football in the park. · is running · This pizza tastes great. · is writing · Lily hates rainy days. · is swimming · I don’t agree with you. · Look! The cats are fighting."><b>Відповіді:</b> She is watching a video now. · I know the answer. · We like this song. · is getting · Dan needs help with maths. · is making · They’re playing football in the park. · is running · This pizza tastes great. · is writing · Lily hates rainy days. · is swimming · I don’t agree with you. · Look! The cats are fighting.</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="wants"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Max ___ (want) a new skateboard for his birthday.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="is lying"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Kate ___ (lie) on the beach right now.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="don’t understand|do not understand"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Sorry, I ___ (not / understand) this question.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="believes"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Sophie ___ (believe) in ghosts. She’s scared of the dark.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="is Dan smiling"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Why ___ (Dan / smile)? Did he get a good mark?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="are shopping"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Right now my parents ___ (shop) for a new sofa.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; wants · is lying · don’t understand · believes · is Dan smiling · are shopping"><b>Відповіді:</b> wants · is lying · don’t understand · believes · is Dan smiling · are shopping</p>
+  </section>
+  <section id="s6" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">6</span>Раунд 5. Фінальний бос <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="am visiting"><span class="n">1</span><span class="s">I can’t come to the party. I ___ my grandma on Saturday.</span><span class="o"><button type="button">visits</button><button type="button">visit</button><button type="button">am visiting</button></span></div>
+<div class="ch" data-a="is watching"><span class="n">2</span><span class="s">Tom usually goes to bed at 10, but tonight he ___ a late film.</span><span class="o"><button type="button">watches</button><button type="button">is watching</button><button type="button">watch</button></span></div>
+<div class="ch" data-a="is feeding"><span class="n">3</span><span class="s">Kate loves animals. Right now she ___ her neighbour’s cat.</span><span class="o"><button type="button">feeding</button><button type="button">feeds</button><button type="button">is feeding</button></span></div>
+<div class="ch" data-a="is studying"><span class="n">4</span><span class="s">A: Where’s Max? B: In his room. He ___ for his maths test.</span><span class="o"><button type="button">study</button><button type="button">is studying</button><button type="button">studies</button></span></div>
+<div class="ch" data-a="I’m meeting Sophie at 6 tomorrow."><span class="n">5</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">I’m meeting Sophie at 6 tomorrow.</button><button type="button">I meeting Sophie at 6 tomorrow.</button><button type="button">I meets Sophie at 6 tomorrow.</button></span></div>
+<div class="ch" data-a="want"><span class="n">6</span><span class="s">This jacket is really cool. I ___ it!</span><span class="o"><button type="button">want</button><button type="button">wanting</button><button type="button">am wanting</button></span></div>
+<div class="ch" data-a="is walking"><span class="n">7</span><span class="s">Emma isn’t at home. She ___ in the park with her dog.</span><span class="o"><button type="button">is walking</button><button type="button">walks</button><button type="button">walking</button></span></div>
+<div class="ch" data-a="Do you know where Lily is?"><span class="n">8</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">Are you knowing where Lily is?</button><button type="button">Do you know where Lily is?</button><button type="button">You know where is Lily?</button></span></div>
+<div class="ch" data-a="are having"><span class="n">9</span><span class="s">It’s 8 p.m. My parents ___ dinner in the garden.</span><span class="o"><button type="button">are having</button><button type="button">have</button><button type="button">is having</button></span></div>
+<div class="ch" data-a="Are"><span class="n">10</span><span class="s">A: ___ you coming to the match on Sunday? B: Yes, of course!</span><span class="o"><button type="button">Do</button><button type="button">Are</button><button type="button">Is</button></span></div>
+<div class="ch" data-a="is learning"><span class="n">11</span><span class="s">Sophie speaks Spanish well. This year she ___ Italian too.</span><span class="o"><button type="button">learns</button><button type="button">is learning</button><button type="button">learn</button></span></div>
+<div class="ch" data-a="is getting"><span class="n">12</span><span class="s">Look at the sky! It ___ dark.</span><span class="o"><button type="button">gets</button><button type="button">get</button><button type="button">is getting</button></span></div>
+<div class="ch" data-a="Lily isn’t coming to the cinema tonight."><span class="n">13</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">Lily not coming to the cinema tonight.</button><button type="button">Lily doesn’t come to the cinema tonight.</button><button type="button">Lily isn’t coming to the cinema tonight.</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; am visiting · is watching · is feeding · is studying · I’m meeting Sophie at 6 tomorrow. · want · is walking · Do you know where Lily is? · are having · Are · is learning · is getting · Lily isn’t coming to the cinema tonight."><b>Відповіді:</b> am visiting · is watching · is feeding · is studying · I’m meeting Sophie at 6 tomorrow. · want · is walking · Do you know where Lily is? · are having · Are · is learning · is getting · Lily isn’t coming to the cinema tonight.</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="am looking"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>A: What are you doing? B: I ___ (look) for my keys.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="are flying"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>We ___ (fly) to Barcelona next Friday. We already have the tickets.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="is talking"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Dan is on the phone. He ___ (talk) to his boss.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="am having"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>A: Are you busy tonight? B: Yes, I ___ (have) dinner with my cousins.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="are making"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Sorry, I can’t hear you. The kids ___ (make) a lot of noise.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="is waiting"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Hurry up! Everyone ___ (wait) for you in the car.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="am going"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>A: Why are you wearing a suit? B: I ___ (go) to a job interview.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; am looking · are flying · is talking · am having · are making · is waiting · am going"><b>Відповіді:</b> am looking · are flying · is talking · am having · are making · is waiting · am going</p>
+  </section>
+  <section class="end"><h2>Great job!</h2><p>See you next lesson.</p></section>
+</div>
+<div class="toast" id="toast"></div>
+<script>window.MURLY_LESSON={"id": "lib-drill-present-continuous", "title": "Present Continuous: 100 tasks", "homework": ["s2", "s3", "s4", "s5", "s6"], "hw": {"s2": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Emma {is reading|reads|are reading|reading} a new book right now.\nI {am doing|is doing|doing} my homework at the moment.\nWe {are waiting|is waiting|am waiting} for the bus right now.\nMy mum {is cooking|cooking|are cooking} dinner in the kitchen at the moment.\nShh! The baby {is sleeping|sleeps|are sleeping}.\nThey {are watching|is watching|watching|watch} a film at the cinema now.\nThe dog {is lying|is lieing|lies|is lyeing} on the sofa again!\nDan {is fixing|fixing|is fixxing} his bike in the garage at the moment.\nWow, you {are running|are runing|is running} really fast today!\nMy phone {is ringing|rings|ringing} in my bag. Can you get it?\nThe sun {is shining|are shining|shines} and the birds are singing.\nTom {is listening|listens|are listening} to music on his headphones at the moment.\nWait a second, I {am tying|am tieing|tying} my shoelaces."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "Look! The kids [are playing] (play) in the snow.\nMax [is swimming] (swim) in the pool now.\nRight now Sophie [is making] (make) a cake for her friend’s birthday.\nListen! Somebody [is singing] (sing) in the bathroom.\nLily and Kate [are sitting] (sit) in the library at the moment.\nI [am writing] (write) a message to my grandma now.\nLook! It [is snowing] (snow) outside."}], "s3": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Max {isn’t|aren’t|doesn’t|not} watching TV. He’s reading.\n{Are|Do|Is} you listening to me?\nWhat {is|are|does} Sophie doing now?\nA: Is it raining? B: No, it {isn’t|doesn’t|not|aren’t}.\nWhy {are|do|is} you laughing?\nThe kids {aren’t|isn’t|don’t} doing their homework, they’re playing games.\nA: Are you having fun? B: Yes, we {are|do|have|is}.\nОбери правильне речення: {Is she wearing my jacket?|Does she wearing my jacket?|Is she wear my jacket?}\nWhere {are|is|do} Dan and Lily going?\nОбери правильне речення: {I’m not working today.|I amn’t working today.|I don’t working today.}\nWhat {is|are|does} your dad cooking? It smells amazing!\nA: Is Max coming with us? B: No, he {isn’t|doesn’t|aren’t}.\n{Are|Is|Do} your parents working from home this week?"}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "I [am not sleeping] (not / sleep), I’m just resting my eyes.\nWe [aren’t going/are not going] (not / go) out tonight because it’s raining.\n[Is Tom playing] (Tom / play) online with his friends right now?\nMy phone [isn’t charging/is not charging] (not / charge). Maybe the cable is broken.\nLily [isn’t talking/is not talking] (not / talk) to me today. Is she angry?\nWho [are you texting] (you / text)?\nThe cats [aren’t eating/are not eating] (not / eat) their food today. Are they sick?"}], "s4": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Be quiet! Grandpa {is sleeping|sleeps|sleep}.\nTom {walks|is walking|walk} to school every day.\nThis week Emma {is staying|stays|stay} at her aunt’s house because her parents are away.\nDan usually drinks tea, but today he {is drinking|drinks|drink} coffee.\nThis year my English {is getting|gets|get} better and better.\nThe Earth {moves|is moving|move} around the Sun.\nI {am watching|watch|watches} a great series these days. It’s about detectives.\nLily {plays|is playing|play} the guitar on Wednesdays.\nListen! Someone {is knocking|knocks|knock} at the door.\nMy brother {is working|works|work} at a café this summer, then he goes back to uni.\nSophie can’t talk now. She {is having|has|have} a shower.\nMax always {cleans|is cleaning|clean} his room on Saturdays.\nWe {are painting|paint|paints} our flat this month, so everything is a mess.\nОбери правильне речення: {Look, the bus is coming!|Look, the bus comes!|Look, the bus coming!}"}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "Look at Kate! She [is dancing] (dance) on the table.\nAt the moment we [are learning] (learn) a new song for the school concert.\nHurry up! The lights are going down, the film [is starting] (start).\nWhy [are you wearing] (you / wear) a coat? It’s so hot today!\nPrices in our town [are going] (go) up these days.\nRight now I [am sitting] (sit) on the train."}], "s5": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Обери правильне речення: {She is watching a video now.|She watching a video now.|She are watching a video now.}\nОбери правильне речення: {I know the answer.|I am knowing the answer.|I knowing the answer.}\nОбери правильне речення: {We like this song.|We are liking this song.|We likes this song.}\nTom {is getting|is geting|getting|is gettting} ready for the party.\nОбери правильне речення: {Dan needs help with maths.|Dan is needing help with maths.|Dan need help with maths.}\nLook! Lily {is making|is makeing|making} a snowman.\nОбери правильне речення: {They’re playing football in the park.|They’re play football in the park.|They playing football in the park.}\nMy little brother {is running|is runing|running} around the garden.\nОбери правильне речення: {This pizza tastes great.|This pizza is tasting great.|This pizza taste great.}\nOur teacher {is writing|is writeing|is writting} on the board.\nОбери правильне речення: {Lily hates rainy days.|Lily is hating rainy days.|Lily hate rainy days.}\nLook! The dog {is swimming|is swiming|swimming} in the river.\nОбери правильне речення: {I don’t agree with you.|I am not agree with you.|I am not agreeing with you.}\nОбери правильне речення: {Look! The cats are fighting.|Look! The cats is fighting.|Look! The cats fighting.}"}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "Max [wants] (want) a new skateboard for his birthday.\nKate [is lying] (lie) on the beach right now.\nSorry, I [don’t understand/do not understand] (not / understand) this question.\nSophie [believes] (believe) in ghosts. She’s scared of the dark.\nWhy [is Dan smiling] (Dan / smile)? Did he get a good mark?\nRight now my parents [are shopping] (shop) for a new sofa."}], "s6": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "I can’t come to the party. I {am visiting|visit|visits} my grandma on Saturday.\nTom usually goes to bed at 10, but tonight he {is watching|watches|watch} a late film.\nKate loves animals. Right now she {is feeding|feeds|feeding} her neighbour’s cat.\nA: Where’s Max? B: In his room. He {is studying|studies|study} for his maths test.\nОбери правильне речення: {I’m meeting Sophie at 6 tomorrow.|I meeting Sophie at 6 tomorrow.|I meets Sophie at 6 tomorrow.}\nThis jacket is really cool. I {want|am wanting|wanting} it!\nEmma isn’t at home. She {is walking|walks|walking} in the park with her dog.\nОбери правильне речення: {Do you know where Lily is?|Are you knowing where Lily is?|You know where is Lily?}\nIt’s 8 p.m. My parents {are having|is having|have} dinner in the garden.\nA: {Are|Do|Is} you coming to the match on Sunday? B: Yes, of course!\nSophie speaks Spanish well. This year she {is learning|learns|learn} Italian too.\nLook at the sky! It {is getting|gets|get} dark.\nОбери правильне речення: {Lily isn’t coming to the cinema tonight.|Lily doesn’t come to the cinema tonight.|Lily not coming to the cinema tonight.}"}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "A: What are you doing? B: I [am looking] (look) for my keys.\nWe [are flying] (fly) to Barcelona next Friday. We already have the tickets.\nDan is on the phone. He [is talking] (talk) to his boss.\nA: Are you busy tonight? B: Yes, I [am having] (have) dinner with my cousins.\nSorry, I can’t hear you. The kids [are making] (make) a lot of noise.\nHurry up! Everyone [is waiting] (wait) for you in the car.\nA: Why are you wearing a suit? B: I [am going] (go) to a job interview."}]}};</script>
+<script>
+(function(){var l=(document.cookie.match(/(?:^|; )murly_lang=(\w+)/)||[])[1];try{l=l||localStorage.getItem('murly:tlang')}catch(e){}l=l==='ru'?'ru':'uk';document.querySelectorAll('[data-pairs-'+l+']').forEach(function(b){b.dataset.pairs=b.getAttribute('data-pairs-'+l)});})();
+</script>
+<script>
+const $ = (id) => document.getElementById(id);
+const LIS = {};
+function say(w, rate) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; const v = speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang) && /Google|Natural|Libby|Sonia|Daniel/.test(x.name)) || speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang)); if (v) u.voice = v; u.rate = rate || .95; speechSynthesis.speak(u); } catch (e) { } }
+const sh = (a) => a.map((x) => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map((x) => x[1]);
+document.querySelectorAll('.voc div').forEach((d) => d.onclick = () => say(d.dataset.say));
+document.querySelectorAll('[data-play]').forEach((b) => b.onclick = () => say(LIS[b.dataset.play], b.dataset.slow ? .75 : .95));
+document.querySelectorAll('[data-stop]').forEach((b) => b.onclick = () => { try { speechSynthesis.cancel(); } catch (e) { } });
+document.querySelectorAll('.ch').forEach((q) => q.querySelectorAll('button').forEach((b) => b.onclick = () => { if (q.classList.contains('ok')) return; const ok = b.textContent === q.dataset.a; q.classList.toggle('ok', ok); q.classList.toggle('bad', !ok); if (ok) { const s = q.querySelector('.s'); if (s && s.textContent.includes('___')) { s.textContent = s.textContent.replace('___', q.dataset.a); } } }));
+const norm = (x) => x.toLowerCase().replace(/[’']/g, "'").replace(/[,;:"“”«»]/g, ' ').replace(/\s+/g, ' ').replace(/[.!?]$/, '').trim();
+document.querySelectorAll('.ty').forEach((r) => { const inp = r.querySelector('input'); const chk = () => { const ok = r.dataset.a.split('|').some((a) => norm(a) === norm(inp.value)); r.classList.toggle('ok', ok); r.classList.toggle('bad', !ok && inp.value.trim() !== ''); }; r.querySelector('button').onclick = chk; inp.onkeydown = (e) => { if (e.key === 'Enter') chk(); }; });
+document.querySelectorAll('[data-mt]').forEach((box) => { const pairs = JSON.parse(box.dataset.pairs); const L = sh(pairs.map((p) => p[0])), R = sh(pairs.map((p) => p[1])); let sel = null, done = 0, err = 0; box.innerHTML = L.map((w, i) => `<button type="button" data-w="${w}">${w}</button><button type="button" data-d="${R[i]}">${R[i]}</button>`).join('');
+  box.querySelectorAll('button').forEach((b) => b.onclick = () => { if (b.classList.contains('done')) return; if (!sel || (sel.dataset.w && b.dataset.w) || (sel.dataset.d && b.dataset.d)) { if (sel) sel.classList.remove('sel'); sel = b; b.classList.add('sel'); return; } const w = sel.dataset.w || b.dataset.w, d = sel.dataset.d || b.dataset.d; if (pairs.some((p) => p[0] === w && p[1] === d)) { sel.classList.add('done'); b.classList.add('done'); done++; say(w); if (done === pairs.length) document.querySelector(`[data-mtres="${box.dataset.mt}"]`).textContent = err ? `Done! Mistakes: ${err}` : 'Perfect!'; } else err++; sel.classList.remove('sel'); sel = null; }); });
+document.querySelectorAll('[data-vids]').forEach((box) => JSON.parse(box.dataset.vids).forEach(([id, title, ch, qs]) => { const d = document.createElement('div'); d.className = 'vid'; d.innerHTML = `<div class="frame"><button class="play" type="button" style="background-image:url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)"><span>PLAY</span></button></div><div class="info"><h3>${title}</h3><small>YouTube · ${ch}</small><ol>${qs.map((q) => `<li>${q}</li>`).join('')}</ol></div>`; d.querySelector('.play').onclick = (e) => { e.currentTarget.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&cc_load_policy=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${title}"></iframe>`; }; box.appendChild(d); }));
+document.querySelectorAll('[data-spin]').forEach((b) => { const list = JSON.parse(b.dataset.spin); let last = -1; b.onclick = () => { let i; do { i = Math.floor(Math.random() * list.length); } while (i === last && list.length > 1); last = i; document.getElementById(b.dataset.target).textContent = list[i]; }; });
+try { const k = 'murly:' + (window.MURLY_LESSON ? MURLY_LESSON.id : 'x') + ':hw'; const t = $('hwText'); if (t) { t.value = localStorage.getItem(k) || ''; t.oninput = () => localStorage.setItem(k, t.value); } } catch (e) { }
+const STAGES = [...document.querySelectorAll('.wrap > section[id]')];
+$('stages').innerHTML = STAGES.map((s) => `<a href="#${s.id}"><b>${s.querySelector('.lk-n').textContent}</b><span>${s.dataset.stage}</span><small>${s.dataset.min !== '0' ? s.dataset.min + ' min' : 'at home'}</small></a>`).join('');
+$('teacherBtn').onclick = (e) => { const on = document.body.classList.toggle('teacher'); e.currentTarget.textContent = on ? 'Student version' : 'Teacher version'; };
+</script>
+<script src="/game-lessons/kit.js" defer></script>
+</body>
+</html>

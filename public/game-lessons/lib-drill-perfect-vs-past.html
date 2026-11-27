@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Present Perfect vs Past Simple: 100 tasks (B1) | Murly</title>
+<link rel="icon" href="/favicon.svg">
+<meta name="description" content="Повторимо правило: Present Perfect чи Past Simple
+100 завдань від простого до складного
+Розберемо головні пастки">
+<link rel="canonical" href="https://murly.com.ua/game-lessons/lib-drill-perfect-vs-past.html">
+<style>
+:root{--paper:#F3F0EA;--ink:#17181C;--violet:#3D4A7A;--lav:#D9D3C7;--pink:#E9C9BC;--green:#D4E2CF;--white:#fff;--muted:#62646B;--accent:#B5482F}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+/* hero */
+.hero{background:linear-gradient(rgba(16,17,22,.5),rgba(16,17,22,.72)),url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1400&q=70&auto=format&fit=crop");color:#fff;padding:70px 18px 56px;text-align:center;position:relative;overflow:hidden}
+.hero .kicker{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#E9C9BC;font-weight:700}
+.hero .cr{position:absolute;right:12px;bottom:8px;font-size:11px;color:rgba(255,255,255,.6)}
+.hero h1{margin:8px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(36px,6vw,64px);letter-spacing:-.5px;font-weight:700}
+.hero h1 span{color:var(--pink);font-style:italic}
+.hero p{margin:12px 0 0;font-size:17px;color:#e6e2da}
+.hero .flags{display:flex;justify-content:center;gap:12px;margin-top:22px;flex-wrap:wrap}
+.hero .flags svg{width:40px;height:26px;border-radius:3px;opacity:.9}
+/* sections */
+section{margin-top:30px;background:var(--white);border-radius:18px;padding:28px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.05)}
+section h2{margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tag{font-family:"Segoe UI",system-ui,sans-serif;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--paper);color:var(--accent);text-transform:uppercase;letter-spacing:1px}
+.lk-n{display:inline-grid;place-items:center;width:42px;height:42px;background:var(--violet);color:#fff;border-radius:50%;font-size:21px;flex:none}
+.lk-mode{font-size:13px;font-weight:700;border:2px dashed var(--lav);color:var(--muted);padding:2px 10px;border-radius:999px}
+.lk-ins{font-size:17px;background:var(--paper);border-radius:12px;padding:10px 14px;margin:6px 0 18px}
+.lk-sub{margin:24px 0 10px;font-size:19px}
+.btn{font:inherit;font-weight:700;border:0;border-radius:999px;background:var(--ink);color:#fff;padding:10px 20px;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+.btn.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+/* teacher */
+.lk-tbtn{position:fixed;right:16px;top:70px;z-index:45;font:inherit;font-weight:800;border:2px solid var(--ink);background:var(--pink);padding:8px 14px;border-radius:12px;cursor:pointer}
+body.teacher .lk-tbtn{background:var(--green)}
+.lk-ans,.lk-tnote{display:none}
+body.teacher .lk-ans{display:block;margin-top:8px;font-weight:700;color:#1d5a12;background:var(--green);border-left:5px solid #5aa845;padding:6px 10px;font-size:15px;border-radius:6px}
+body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff3f7;border-left:5px solid #d9789a;padding:8px 12px;font-size:15px;border-radius:6px}
+/* overview */
+.lk-overview ul{font-size:17px;line-height:1.7;margin:6px 0 16px}
+.lk-stages{display:flex;flex-wrap:wrap;gap:8px}
+.lk-stages a{display:grid;border-radius:14px;padding:8px 12px;text-decoration:none;color:var(--ink);background:var(--paper);font-weight:700;min-width:100px}
+.lk-stages a span{text-transform:capitalize}
+.lk-stages a b{font-size:20px;color:var(--violet)}
+.lk-stages a small{font-weight:600;color:var(--muted)}
+/* warm-up */
+.taxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tax{background:var(--paper);border-radius:18px;padding:16px;display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center}
+.tax svg{width:56px;height:56px}
+.tax b{display:block;font-size:17px}
+.tax small{color:var(--muted);font-size:14px}
+.qs{display:grid;gap:10px;margin-top:18px}
+.qs div{background:var(--green);border-radius:14px;padding:10px 16px;font-size:18px;font-weight:600}
+.phr{background:#fff7e8;border-radius:14px;padding:12px 16px;margin-top:16px;font-size:15px}
+.phr ul{margin:6px 0 0;padding-left:18px}
+.fic{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:16px}
+.fic .c{background:#fff;border:2px solid #1B2140;border-radius:16px;padding:14px 16px;box-shadow:3px 3px 0 #1B2140}
+.fic .c b{display:block;font-size:18px;line-height:1.35;margin-bottom:8px}
+.fic .c .k{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.fic .c .k span{font-size:13px;background:#eef1fb;border-radius:999px;padding:3px 10px}
+.fic .c details{margin-top:8px;font-size:15px;color:#3b4160}
+.fic .c summary{cursor:pointer;font-weight:700;color:#534AB7}
+.fi-n{display:inline-flex;width:28px;height:28px;border-radius:50%;background:#2F4BA0;color:#fff;align-items:center;justify-content:center;font-size:14px;margin-right:6px}
+/* vocab */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:12px}
+.vc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:2px solid transparent;transition:border-color .2s,transform .2s}
+.vc:hover{border-color:var(--violet);transform:translateY(-2px)}
+.vc b{font-size:18px;display:flex;align-items:center;gap:8px}
+.vc b svg{width:20px;height:20px;flex:none;color:var(--violet)}
+.vc p{margin:6px 0 0;font-size:14px;color:var(--muted)}
+.vc em{display:block;margin-top:6px;font-size:14px;color:var(--violet);font-style:normal;font-weight:600}
+.vc.played{background:#e6ecfb}
+/* grammar */
+.gram{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.gb{border-radius:18px;padding:16px}
+.gb h3{margin:0 0 6px;font-size:19px}
+.gb .f{display:inline-block;background:#fff;border-radius:8px;padding:3px 10px;font-weight:800;margin:4px 0;font-family:Consolas,monospace;font-size:15px}
+.gb p{margin:6px 0 0;font-size:15px}
+.g1{background:var(--pink)}.g2{background:var(--lav)}.g3{background:var(--green)}.g4{background:#fbe7c6}
+.warn{margin-top:14px;background:var(--ink);color:#fff;border-radius:14px;padding:12px 16px;font-size:16px}
+.warn b{color:var(--pink)}
+.q{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:2px dashed var(--paper);font-size:18px}
+.q:last-child{border-bottom:0}
+.q .n{width:32px;height:32px;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;border-radius:50%;font-weight:800;font-size:15px}
+.opt{font:inherit;font-size:16px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:10px;padding:4px 12px;cursor:pointer;margin:0 2px}
+.opt.ok{background:var(--green);border-color:#5aa845}
+.opt.bad{background:var(--pink);animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+/* tour */
+.tour{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.law{border-radius:22px;overflow:hidden;background:var(--paper);display:flex;flex-direction:column}
+.law .pic{height:150px;display:grid;place-items:center;position:relative}
+.law .pic svg.ill{width:130px;height:130px}
+.law .pic svg.fl{position:absolute;left:14px;top:14px;width:46px;height:30px;border-radius:5px;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.law .pic .no{position:absolute;right:14px;top:14px;background:var(--ink);color:#fff;font-weight:800;border-radius:999px;padding:2px 10px;font-size:13px}
+.law .body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.law h3{margin:0;font-size:20px}
+.law .where{font-size:13px;font-weight:800;color:var(--violet);text-transform:uppercase;letter-spacing:1px}
+.law p{margin:0;font-size:16px}
+.law .why{font-size:14px;color:var(--muted)}
+.law .dq{margin-top:auto;background:#fff;border-radius:12px;padding:8px 12px;font-weight:700;font-size:15px}
+.law .lsn{font:inherit;font-size:13px;font-weight:700;background:none;border:0;color:var(--violet);cursor:pointer;padding:0;text-align:left}
+/* game */
+.game{max-width:720px;margin:0 auto;text-align:center}
+.score{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.score span{background:var(--paper);border-radius:999px;padding:6px 16px;font-weight:800}
+.stmt{background:var(--ink);color:#fff;border-radius:22px;padding:28px 24px;min-height:150px;display:grid;place-items:center;font-size:23px;font-weight:700;position:relative}
+.stmt small{position:absolute;top:12px;left:18px;font-size:13px;color:var(--lav);font-weight:700}
+.choose{display:flex;justify-content:center;gap:14px;margin:18px 0}
+.choose button{font:inherit;font-size:18px;font-weight:700;border:2px solid var(--ink);border-radius:999px;padding:12px 28px;cursor:pointer}
+.choose .bl{background:var(--green)}.choose .bm{background:var(--pink)}
+.choose button:disabled{opacity:.5;cursor:default}
+.verdict{min-height:70px;font-size:17px;background:var(--paper);border-radius:16px;padding:12px 16px;text-align:left}
+.verdict b.r{color:#2d7a1d}.verdict b.w{color:#b23a62}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.dots i{width:14px;height:14px;border-radius:50%;background:var(--paper)}
+.dots i.r{background:#7cc663}.dots i.w{background:#e47b9f}.dots i.c{outline:3px solid var(--violet)}
+.final{font-size:22px;font-weight:800;color:var(--violet)}
+/* invent */
+.inv{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.frames{display:grid;gap:10px}
+.frames label{font-size:14px;font-weight:700;color:var(--muted)}
+.frames select,.frames input{font:inherit;width:100%;padding:8px 10px;border:2px solid var(--lav);border-radius:10px;background:#fff}
+.poster{background:var(--paper);border:3px solid var(--ink);border-radius:20px;padding:22px;text-align:center;min-height:260px;display:flex;flex-direction:column;gap:10px;justify-content:center}
+.poster .seal{width:70px;height:70px;margin:0 auto}
+.poster h3{margin:0;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--violet)}
+.poster .rule{font-size:22px;font-weight:800}
+.poster .pen{font-size:16px;color:var(--muted)}
+.ideas{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ideas span{background:var(--pink);border-radius:999px;padding:5px 12px;font-size:14px;font-weight:600}
+/* roleplay */
+.rp{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.role{border-radius:20px;padding:18px}
+.role h3{margin:0 0 6px;display:flex;align-items:center;gap:10px}
+.role h3 svg{width:42px;height:42px}
+.role ul{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.r1{background:var(--lav)}.r2{background:var(--green)}
+.scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:16px}
+.sc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:3px solid transparent}
+.sc.on{border-color:var(--violet);background:#fff}
+.sc b{display:block;font-size:17px;margin-bottom:4px}
+.sc p{margin:0;font-size:15px}
+.timer{font-size:40px;font-weight:800;text-align:center;margin:14px 0 6px;color:var(--violet)}
+.ctr{text-align:center}
+/* homework */
+.hwb{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hwc{background:var(--paper);border-radius:18px;padding:18px}
+.hwc h3{margin:0 0 8px}
+.hwc ol,.hwc ul{margin:6px 0 0;padding-left:20px;line-height:1.7}
+.hwc textarea{width:100%;min-height:150px;font:inherit;border:2px solid var(--lav);border-radius:12px;padding:10px;margin-top:10px}
+.end{text-align:center;background:var(--ink);color:#fff;box-shadow:none}
+.end h2{justify-content:center}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(140px);background:var(--ink);color:#fff;font-weight:800;padding:12px 22px;border-radius:14px;transition:transform .3s;z-index:50}
+.toast.show{transform:translateX(-50%) translateY(0)}
+/* photos */
+.ph{margin:0}
+.ph img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;background:var(--paper)}
+.ph figcaption{font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.2px}
+.tax{grid-template-columns:1fr !important;padding:12px !important}
+.law .pic{height:auto !important;display:block !important;padding:0;position:relative}
+.law .pic .ph img{border-radius:0;aspect-ratio:16/10;transition:filter .5s}
+.law .pic .ph figcaption{padding:4px 12px 0}
+.law.hide .pic .ph img{filter:blur(10px) grayscale(.6)}
+.law.hide .reveal-body,.law.hide .fl,.law.hide .where{visibility:hidden}
+.law .clue{font-size:15px;font-style:italic;color:var(--ink)}
+.law .gc{display:flex;flex-wrap:wrap;gap:6px}
+.law .gc button{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:4px 12px;cursor:pointer}
+.law .gc button.ok{background:var(--green)}.law .gc button.bad{background:var(--pink)}
+.law:not(.hide) .guess{display:none}
+.fair{display:grid;gap:4px;background:#fff;border-radius:12px;padding:8px 12px}
+.fair .ends{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.fair input{width:100%;accent-color:var(--accent)}
+.fair output{font-size:14px;font-weight:700;color:var(--accent)}
+.gph{max-width:720px;margin:0 auto 12px}
+.gph img{aspect-ratio:21/9}
+.fine{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.fq{background:var(--paper);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.fq h3{margin:0;font-size:18px}
+.fq .opts{display:flex;flex-wrap:wrap;gap:6px}
+.fq .opts button{font:inherit;font-size:14px;font-weight:700;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 12px;cursor:pointer}
+.fq .opts button.ok{background:var(--green)}.fq .opts button.bad{background:var(--pink)}
+.fq .res{font-size:15px;min-height:22px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{position:relative;aspect-ratio:16/9;background:#111}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;cursor:pointer;background:#111 center/cover;display:grid;place-items:center}
+.vid .play span{background:rgba(0,0,0,.7);color:#fff;font-weight:700;border-radius:999px;padding:10px 20px;font-size:15px;letter-spacing:1px}
+.vid .info{padding:14px 16px}
+.vid .info h3{margin:0 0 2px;font-size:18px}
+.vid .info small{color:var(--muted)}
+.vid .info ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+@media(max-width:760px){.inv,.rp,.hwb{grid-template-columns:1fr}.lk-tbtn{top:auto;bottom:70px}}
+
+.pr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.pb{border-radius:18px;padding:16px 18px}
+.pb h3{margin:0;font-family:Georgia,serif;font-size:30px}
+.pb .m{font-size:15px;color:var(--muted);margin:2px 0 8px}
+.pb .chips{display:flex;flex-wrap:wrap;gap:6px}
+.pb .chips span{background:#fff;border-radius:999px;padding:4px 11px;font-size:14px;font-weight:600}
+.pb ul{margin:10px 0 0;padding-left:18px;font-size:15px}
+.p-in{background:#DCE6F5}.p-at{background:#F3D9CF}.p-on{background:#D4E2CF}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-size:15px;margin-top:10px}
+.ex div{background:var(--paper);border-radius:10px;padding:8px 12px}
+.ex b{color:var(--accent)}
+.q{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.q .n{font-weight:800;color:var(--violet);min-width:24px}
+.q .gap{display:inline-block;min-width:44px;border-bottom:2px solid var(--ink);text-align:center;font-weight:800}
+.q .opts{margin-left:auto;display:flex;gap:6px}
+.q .opts button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 14px;cursor:pointer}
+.q.ok{background:#DDEED7}.q.ok .gap{color:#2F7A3B}
+.q.bad{background:#F6DAD3}
+.score{font-weight:800;margin-top:12px}
+.text{font-size:18px;line-height:1.75;background:var(--paper);border-radius:16px;padding:18px 22px}
+.text h3{margin:0 0 6px;font-family:Georgia,serif;font-size:24px}
+.text p{margin:0 0 12px}
+.text.hl mark{background:#F3D9CF;border-radius:4px;padding:0 3px;font-weight:700}
+.tf{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:9px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.tf .opts{margin-left:auto;display:flex;gap:6px}
+.tf button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.tf.ok{background:#DDEED7}.tf.bad{background:#F6DAD3}
+.disc{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px;margin-top:6px}
+.disc div{background:var(--green);border-radius:14px;padding:12px 16px;font-size:17px;font-weight:600}
+.disc div i{font-style:normal;color:var(--violet);margin-right:6px}
+.spin{text-align:center;margin-top:16px}
+.spin .card{display:inline-block;min-height:80px;min-width:min(560px,100%);background:var(--ink);color:#fff;border-radius:18px;padding:20px 24px;font-size:22px;font-weight:700;margin-bottom:12px}
+@media(max-width:700px){.ex{grid-template-columns:1fr}}
+
+.hero{background-size:cover!important;background-position:center!important}
+.voc{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.voc div{background:var(--paper);border-radius:14px;padding:10px 14px;cursor:pointer;border:2px solid transparent}
+.voc div:hover{border-color:var(--violet)}
+.voc b{display:block;font-size:18px}.voc span{display:block;color:var(--accent);font-weight:700;font-size:15px}.voc em{display:block;font-size:14px;color:var(--muted);margin-top:3px}
+.mt{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:10px}
+.mt button{font:inherit;font-size:16px;text-align:left;border:2px solid var(--ink);background:#fff;border-radius:14px;padding:9px 14px;cursor:pointer}
+.mt button.sel{background:#FFE7A8}.mt button.done{background:#CDE8C6;border-color:#4C9A5B;cursor:default}
+.ch{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ch .n{font-weight:800;color:var(--violet);min-width:24px}
+.ch .o{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.ch .o button{font:inherit;font-size:15px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.ch.ok{background:#DDEED7}.ch.bad{background:#F6DAD3}
+.ty{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ty input{font:inherit;border:2px solid var(--ink);border-radius:10px;padding:4px 10px;width:220px}
+.ty.ok{background:#DDEED7}.ty.bad{background:#F6DAD3}
+.ty small{color:var(--muted)}
+.photo{width:100%;height:300px;object-fit:cover;border-radius:16px;display:block}
+.cap{font-size:11px;color:var(--muted);margin:4px 0 12px}
+.pics{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.pics figure{margin:0;background:var(--paper);border-radius:16px;overflow:hidden}
+.pics img{width:100%;height:170px;object-fit:cover;display:block}
+.pics figcaption{padding:8px 12px;font-weight:700}
+.pics small{display:block;font-weight:400;font-size:10px;color:var(--muted)}
+.lis{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:8px 0 14px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{aspect-ratio:16/9;background:#000;position:relative}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;background-size:cover;background-position:center;cursor:pointer;display:grid;place-items:center}
+.vid .play span{background:#E5484D;color:#fff;font-weight:800;border-radius:12px;padding:10px 20px}
+.vid .info{padding:12px 16px}.vid h3{margin:0;font-size:18px}.vid small{color:var(--muted)}
+.vid ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th,.tbl td{border:1px solid #ddd;padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--paper)}
+@media(max-width:700px){.mt{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="/game-lessons/kit.css">
+</head>
+<body>
+<header class="hero">
+  <div class="kicker">B1 · teens · Граматика: тренажер Present Perfect чи Past Simple</div>
+  <h1>Present Perfect vs Past Simple: 100 tasks</h1>
+  <p>B1 · 6 parts · 60 min</p>
+  <span class="cr">Photo: Unsplash</span>
+</header>
+<button class="lk-tbtn" id="teacherBtn" type="button">Teacher version</button>
+<div class="wrap">
+  <section class="lk-overview">
+    <h2>In this lesson you will:</h2>
+    <ul><li>Повторимо правило: Present Perfect чи Past Simple
+100 завдань від простого до складного
+Розберемо головні пастки</li></ul>
+    <div class="lk-stages" id="stages"></div>
+  </section>
+  <section id="s1" data-stage="practice" data-min="10">
+    <h2><span class="lk-n">1</span>Теорія <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<div class="warn"><p><b>Коли вживаємо</b></p><p>Досвід за життя, без точного часу: Present Perfect: I have been to London twice. (Я двічі бував у Лондоні.)</p><p>Конкретний час у минулому: Past Simple: I went to London in 2023. (Я їздив до Лондона в 2023 році.)</p><p>Результат важливий зараз: Present Perfect: I’ve lost my keys. Now I can’t get in. (Я загубив ключі. Тепер не можу зайти.)</p><p>Дія триває досі (for / since): Present Perfect; уже закінчилась: Past Simple: We have lived here since 2020. / We lived in Brighton for five years. (Ми живемо тут з 2020 року. / Ми жили в Брайтоні п’ять років.)</p><p>Питання When...? і What time...?: завжди Past Simple: When did you arrive? (Коли ти приїхав?)</p></div>
+    <div class="warn"><p><b>Форми</b></p><p>+  Present Perfect: have / has + V3. Past Simple: V2. Приклад: She has seen this film. / She saw it yesterday.</p><p>−  Present Perfect: haven’t / hasn’t + V3. Past Simple: didn’t + V1. Приклад: I haven’t finished yet. / I didn’t finish it yesterday.</p><p>?  Present Perfect: Have / Has + підмет + V3? Past Simple: Did + підмет + V1?. Приклад: Have you ever tried sushi? / Did you try it in Japan?</p><p>коротка відповідь  Yes, I have. / No, she hasn’t. Але: Yes, I did. / No, she didn’t.. Приклад: Have you met Lily? Yes, I have. I met her last year.</p></div>
+    <div class="warn"><p><b>Головна пастка</b></p><p>Конкретний час = Past Simple. Якщо в реченні є yesterday, ago, last..., in 2020, Present Perfect неможливий, навіть якщо по-українськи звучить як «вже зробив».</p><p>✗ I have seen him yesterday.</p><p>✓ I saw him yesterday.</p><p>When...? = Past Simple. Питання «коли?» завжди про конкретний момент, тому Present Perfect з When не вживаємо.</p><p>✗ When have you bought this phone?</p><p>✓ When did you buy this phone?</p><p>Been чи gone. Has been to: побував і повернувся. Has gone to: поїхав і досі там.</p><p>✗ Max has been to the shop. He’ll be back soon.</p><p>✓ Max has gone to the shop. He’ll be back soon.</p></div>
+    <div class="warn"><p><b>Маркери:</b> ever, never, just, already, yet, for, since, yesterday, ago, last week, in 2020, When...?</p></div>
+    <div class="warn"><p><b>Been чи gone, for чи since</b></p><p>Been і gone обидва V3, але значення різне. For показує тривалість (скільки часу), since показує точку початку (з якого моменту). Ago (тому) працює тільки з Past Simple. Ліва колонка: форма, далі: значення і приклад.</p><p>has been to · побував і повернувся · She has been to Paris. (вона вдома)</p><p>has gone to · поїхав і ще там · She has gone to Paris. (вона в Парижі)</p><p>for + період · for two years, for ages, for a week · I have known Lily for two years.</p><p>since + початок · since 2020, since Monday, since I was ten · I have known Lily since 2024.</p><p>... ago · тільки Past Simple · I met Lily two years ago.</p><p>ever / never · досвід за життя · Have you ever seen snow?</p><p>just / already / yet · щойно / вже / yet: ще не (у запереченнях), вже? (у питаннях) · I haven’t eaten yet.</p></div>
+    <p class="lk-tnote" data-ru="Тренажер на 100 завдань: 5 раундів по 20. На уроці можна пройти 1-2 раунди, решту задати додому. Пояснення до кожної відповіді учень бачить у тренажері на сайті (розділ «Граматика»).&lt;br&gt;">Тренажер на 100 завдань: 5 раундів по 20. На уроці можна пройти 1-2 раунди, решту задати додому. Пояснення до кожної відповіді учень бачить у тренажері на сайті (розділ «Граматика»).<br></p>
+  </section>
+  <section id="s2" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">2</span>Раунд 1. Форми: have + V3 <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="has"><span class="n">1</span><span class="s">Sophie ___ already finished her homework.</span><span class="o"><button type="button">have</button><button type="button">did</button><button type="button">is</button><button type="button">has</button></span></div>
+<div class="ch" data-a="have"><span class="n">2</span><span class="s">We ___ just eaten, thanks.</span><span class="o"><button type="button">has</button><button type="button">have</button><button type="button">are</button><button type="button">did</button></span></div>
+<div class="ch" data-a="been"><span class="n">3</span><span class="s">They have ___ to Italy three times.</span><span class="o"><button type="button">being</button><button type="button">go</button><button type="button">been</button><button type="button">went</button></span></div>
+<div class="ch" data-a="has"><span class="n">4</span><span class="s">My cat ___ broken my favourite mug!</span><span class="o"><button type="button">have</button><button type="button">is</button><button type="button">has</button><button type="button">did</button></span></div>
+<div class="ch" data-a="Has"><span class="n">5</span><span class="s">___ Dan played the new game yet?</span><span class="o"><button type="button">Has</button><button type="button">Have</button><button type="button">Did</button><button type="button">Is</button></span></div>
+<div class="ch" data-a="forgotten"><span class="n">6</span><span class="s">I’ve ___ my password. Can you help me?</span><span class="o"><button type="button">forget</button><button type="button">forgetted</button><button type="button">forgotten</button><button type="button">forgot</button></span></div>
+<div class="ch" data-a="watched"><span class="n">7</span><span class="s">Yesterday we ___ a great film.</span><span class="o"><button type="button">watched</button><button type="button">watch</button><button type="button">has watched</button><button type="button">have watched</button></span></div>
+<div class="ch" data-a="left"><span class="n">8</span><span class="s">She has ___ her phone in the taxi.</span><span class="o"><button type="button">lefted</button><button type="button">leaved</button><button type="button">left</button><button type="button">leave</button></span></div>
+<div class="ch" data-a="got"><span class="n">9</span><span class="s">My parents ___ married in 2005.</span><span class="o"><button type="button">got</button><button type="button">get</button><button type="button">has got</button><button type="button">have got</button></span></div>
+<div class="ch" data-a="eaten"><span class="n">10</span><span class="s">The kids have ___ all the cookies!</span><span class="o"><button type="button">eat</button><button type="button">eated</button><button type="button">eaten</button><button type="button">ate</button></span></div>
+<div class="ch" data-a="has"><span class="n">11</span><span class="s">He ___ never tried snowboarding.</span><span class="o"><button type="button">has</button><button type="button">have</button><button type="button">is</button><button type="button">was</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; has · have · been · has · Has · forgotten · watched · left · got · eaten · has"><b>Відповіді:</b> has · have · been · has · Has · forgotten · watched · left · got · eaten · has</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="seen"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>I have never ___ (see) a real panda.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="lost"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Max has ___ (lose) his headphones again.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="ridden"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Have you ever ___ (ride) a horse?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="written"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Lily has ___ (write) three songs this year.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="known"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>We have ___ (know) each other since primary school.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="bought"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Emma has ___ (buy) tickets for the concert.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="went"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>Tom ___ (go) to the dentist two days ago.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="done"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>Have you ___ (do) the washing-up yet?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="met"><span class="n" style="font-weight:800;color:var(--violet)">9</span><span>Sophie ___ (meet) her favourite singer last summer.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; seen · lost · ridden · written · known · bought · went · done · met"><b>Відповіді:</b> seen · lost · ridden · written · known · bought · went · done · met</p>
+  </section>
+  <section id="s3" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">3</span>Раунд 2. Заперечення і питання <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="haven’t"><span class="n">1</span><span class="s">I ___ finished the book yet.</span><span class="o"><button type="button">hasn’t</button><button type="button">haven’t</button><button type="button">don’t</button><button type="button">didn’t</button></span></div>
+<div class="ch" data-a="Have"><span class="n">2</span><span class="s">___ you ever been to Edinburgh?</span><span class="o"><button type="button">Were</button><button type="button">Have</button><button type="button">Did</button><button type="button">Has</button></span></div>
+<div class="ch" data-a="Did"><span class="n">3</span><span class="s">___ you go to the party last Saturday?</span><span class="o"><button type="button">Do</button><button type="button">Have</button><button type="button">Has</button><button type="button">Did</button></span></div>
+<div class="ch" data-a="didn’t"><span class="n">4</span><span class="s">She ___ watch the match yesterday because she was busy.</span><span class="o"><button type="button">didn’t</button><button type="button">hasn’t</button><button type="button">wasn’t</button><button type="button">haven’t</button></span></div>
+<div class="ch" data-a="hasn’t"><span class="n">5</span><span class="s">A: Has Lily answered your message? B: No, she ___.</span><span class="o"><button type="button">hasn’t</button><button type="button">isn’t</button><button type="button">haven’t</button><button type="button">didn’t</button></span></div>
+<div class="ch" data-a="did"><span class="n">6</span><span class="s">A: Did you like the pizza? B: Yes, I ___.</span><span class="o"><button type="button">do</button><button type="button">have</button><button type="button">did</button><button type="button">liked</button></span></div>
+<div class="ch" data-a="have"><span class="n">7</span><span class="s">How long ___ you known Sophie?</span><span class="o"><button type="button">did</button><button type="button">do</button><button type="button">are</button><button type="button">have</button></span></div>
+<div class="ch" data-a="hasn’t"><span class="n">8</span><span class="s">Tom ___ been to a concert before. It’s his first time.</span><span class="o"><button type="button">haven’t</button><button type="button">didn’t</button><button type="button">hasn’t</button><button type="button">wasn’t</button></span></div>
+<div class="ch" data-a="did"><span class="n">9</span><span class="s">What time ___ the lesson start yesterday?</span><span class="o"><button type="button">have</button><button type="button">did</button><button type="button">does</button><button type="button">has</button></span></div>
+<div class="ch" data-a="yet"><span class="n">10</span><span class="s">They haven’t finished the project ___.</span><span class="o"><button type="button">yet</button><button type="button">already</button><button type="button">ago</button><button type="button">just</button></span></div>
+<div class="ch" data-a="Has"><span class="n">11</span><span class="s">___ Max ever won a competition?</span><span class="o"><button type="button">Is</button><button type="button">Has</button><button type="button">Have</button><button type="button">Did</button></span></div>
+<div class="ch" data-a="haven’t"><span class="n">12</span><span class="s">A: Have you seen my keys? B: No, I ___.</span><span class="o"><button type="button">wasn’t</button><button type="button">don’t</button><button type="button">haven’t</button><button type="button">didn’t</button></span></div>
+<div class="ch" data-a="didn’t"><span class="n">13</span><span class="s">Emma ___ visit her grandparents last weekend because of the rain.</span><span class="o"><button type="button">doesn’t</button><button type="button">hasn’t</button><button type="button">didn’t</button><button type="button">haven’t</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; haven’t · Have · Did · didn’t · hasn’t · did · have · hasn’t · did · yet · Has · haven’t · didn’t"><b>Відповіді:</b> haven’t · Have · Did · didn’t · hasn’t · did · have · hasn’t · did · yet · Has · haven’t · didn’t</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="hasn’t called|hasn&#x27;t called|has not called"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Max ___ (not / call) me yet.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Have you ever tried|have you ever tried"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>___ (you / ever / try) Japanese food?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="haven’t seen|haven&#x27;t seen|have not seen"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>We ___ (not / see) Dan since Monday.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="did you arrive"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>When ___ (you / arrive) in London?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="didn’t sleep|didn&#x27;t sleep|did not sleep"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>I ___ (not / sleep) well last night.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="did you buy"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Where ___ (you / buy) that hoodie last week?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="hasn’t eaten|hasn&#x27;t eaten|has not eaten"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>Our dog ___ (not / eat) anything since this morning.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; hasn’t called · Have you ever tried · haven’t seen · did you arrive · didn’t sleep · did you buy · hasn’t eaten"><b>Відповіді:</b> hasn’t called · Have you ever tried · haven’t seen · did you arrive · didn’t sleep · did you buy · hasn’t eaten</p>
+  </section>
+  <section id="s4" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">4</span>Раунд 3. Коли вживати <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="went"><span class="n">1</span><span class="s">I ___ to Paris in 2022.</span><span class="o"><button type="button">have been</button><button type="button">have gone</button><button type="button">go</button><button type="button">went</button></span></div>
+<div class="ch" data-a="already"><span class="n">2</span><span class="s">Dan has ___ cleaned his room, so he can go out now.</span><span class="o"><button type="button">already</button><button type="button">yet</button><button type="button">ago</button><button type="button">since</button></span></div>
+<div class="ch" data-a="went"><span class="n">3</span><span class="s">We ___ to the cinema yesterday.</span><span class="o"><button type="button">go</button><button type="button">have gone</button><button type="button">went</button><button type="button">have been</button></span></div>
+<div class="ch" data-a="have eaten"><span class="n">4</span><span class="s">This is the first time I ___ sushi.</span><span class="o"><button type="button">eat</button><button type="button">ate</button><button type="button">was eating</button><button type="button">have eaten</button></span></div>
+<div class="ch" data-a="broke"><span class="n">5</span><span class="s">Max ___ his leg two years ago, but now he plays football again.</span><span class="o"><button type="button">breaks</button><button type="button">has broken</button><button type="button">has broke</button><button type="button">broke</button></span></div>
+<div class="ch" data-a="did"><span class="n">6</span><span class="s">When ___ you start learning English?</span><span class="o"><button type="button">did</button><button type="button">were</button><button type="button">have</button><button type="button">has</button></span></div>
+<div class="ch" data-a="worked"><span class="n">7</span><span class="s">My brother ___ in Poland for two years, but now he lives in London again.</span><span class="o"><button type="button">has worked</button><button type="button">worked</button><button type="button">has work</button><button type="button">works</button></span></div>
+<div class="ch" data-a="haven’t seen"><span class="n">8</span><span class="s">I ___ Tom since last summer. Where is he?</span><span class="o"><button type="button">wasn’t see</button><button type="button">don’t see</button><button type="button">haven’t seen</button><button type="button">didn’t see</button></span></div>
+<div class="ch" data-a="wrote"><span class="n">9</span><span class="s">Shakespeare ___ nearly 40 plays.</span><span class="o"><button type="button">has written</button><button type="button">has wrote</button><button type="button">wrote</button><button type="button">writes</button></span></div>
+<div class="ch" data-a="have been"><span class="n">10</span><span class="s">They ___ married for ten years now.</span><span class="o"><button type="button">have been</button><button type="button">are being</button><button type="button">was</button><button type="button">were</button></span></div>
+<div class="ch" data-a="bought"><span class="n">11</span><span class="s">In 2015 our family ___ a house by the lake.</span><span class="o"><button type="button">has bought</button><button type="button">buys</button><button type="button">buyed</button><button type="button">bought</button></span></div>
+<div class="ch" data-a="played"><span class="n">12</span><span class="s">A: Have you ever played golf? B: Yes, I ___ it last summer in Spain.</span><span class="o"><button type="button">have play</button><button type="button">played</button><button type="button">play</button><button type="button">have played</button></span></div>
+<div class="ch" data-a="came"><span class="n">13</span><span class="s">The new game ___ out last Friday.</span><span class="o"><button type="button">came</button><button type="button">has come</button><button type="button">come</button><button type="button">comes</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; went · already · went · have eaten · broke · did · worked · haven’t seen · wrote · have been · bought · played · came"><b>Відповіді:</b> went · already · went · have eaten · broke · did · worked · haven’t seen · wrote · have been · bought · played · came</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="has had|’s had|&#x27;s had"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Sophie ___ (have) this cat since 2019.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="finished"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>I ___ (finish) my essay an hour ago.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="have known|’ve known|&#x27;ve known"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>We ___ (know) Lily for five years, and she’s still our best friend.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="has been|’s been|&#x27;s been"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Emma ___ (be) to Japan twice. She wants to go again.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="have you had"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>How long ___ (you / have) your dog?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="hasn’t been|hasn&#x27;t been|has not been"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Sophie ___ (not / be) to a football match yet.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="have never seen|’ve never seen|&#x27;ve never seen"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>I ___ (never / see) the sea in my life, so I’m really excited about this trip.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; has had · finished · have known · has been · have you had · hasn’t been · have never seen"><b>Відповіді:</b> has had · finished · have known · has been · have you had · hasn’t been · have never seen</p>
+  </section>
+  <section id="s5" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">5</span>Раунд 4. Пастки <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="gone"><span class="n">1</span><span class="s">Max isn’t here. He has ___ to the gym.</span><span class="o"><button type="button">went</button><button type="button">go</button><button type="button">gone</button><button type="button">been</button></span></div>
+<div class="ch" data-a="been"><span class="n">2</span><span class="s">I have ___ to Rome. It’s beautiful!</span><span class="o"><button type="button">went</button><button type="button">go</button><button type="button">been</button><button type="button">gone</button></span></div>
+<div class="ch" data-a="I met Sophie yesterday."><span class="n">3</span><span class="s">Обери правильне речення з yesterday: ___</span><span class="o"><button type="button">I have meet Sophie yesterday.</button><button type="button">I meet Sophie yesterday.</button><button type="button">I met Sophie yesterday.</button><button type="button">I have met Sophie yesterday.</button></span></div>
+<div class="ch" data-a="When did you buy this phone?"><span class="n">4</span><span class="s">Обери правильне питання з When: ___</span><span class="o"><button type="button">When did you bought this phone?</button><button type="button">When you bought this phone?</button><button type="button">When have you bought this phone?</button><button type="button">When did you buy this phone?</button></span></div>
+<div class="ch" data-a="since"><span class="n">5</span><span class="s">We have lived here ___ 2018.</span><span class="o"><button type="button">for</button><button type="button">from</button><button type="button">since</button><button type="button">ago</button></span></div>
+<div class="ch" data-a="for"><span class="n">6</span><span class="s">She has studied French ___ three years.</span><span class="o"><button type="button">since</button><button type="button">for</button><button type="button">ago</button><button type="button">during</button></span></div>
+<div class="ch" data-a="ago"><span class="n">7</span><span class="s">I saw this video three days ___.</span><span class="o"><button type="button">for</button><button type="button">yet</button><button type="button">ago</button><button type="button">since</button></span></div>
+<div class="ch" data-a="I have known him for five years."><span class="n">8</span><span class="s">Обери правильне речення з for: ___</span><span class="o"><button type="button">I know him for five years.</button><button type="button">I knew him since five years.</button><button type="button">I have known him for 2015.</button><button type="button">I have known him for five years.</button></span></div>
+<div class="ch" data-a="yet"><span class="n">9</span><span class="s">Have you done your homework ___?</span><span class="o"><button type="button">yet</button><button type="button">last</button><button type="button">ago</button><button type="button">since</button></span></div>
+<div class="ch" data-a="just"><span class="n">10</span><span class="s">Wait, I’ve ___ had an idea!</span><span class="o"><button type="button">ago</button><button type="button">since</button><button type="button">yet</button><button type="button">just</button></span></div>
+<div class="ch" data-a="Have you ever been to London?"><span class="n">11</span><span class="s">Обери правильне речення про досвід: ___</span><span class="o"><button type="button">Were you ever been to London?</button><button type="button">Did you ever be to London?</button><button type="button">Have you ever went to London?</button><button type="button">Have you ever been to London?</button></span></div>
+<div class="ch" data-a="gave"><span class="n">12</span><span class="s">Dan ___ his first concert when he was 15.</span><span class="o"><button type="button">gave</button><button type="button">gives</button><button type="button">has given</button><button type="button">has gave</button></span></div>
+<div class="ch" data-a="We moved here two years ago."><span class="n">13</span><span class="s">Обери правильне речення з ago: ___</span><span class="o"><button type="button">We have moved here since two years.</button><button type="button">We moved here two years ago.</button><button type="button">We have moved here two years ago.</button><button type="button">We moved here for two years ago.</button></span></div>
+<div class="ch" data-a="gone"><span class="n">14</span><span class="s">A: Is Emma at home? B: No, she’s ___ to Edinburgh for the weekend.</span><span class="o"><button type="button">went</button><button type="button">gone</button><button type="button">go</button><button type="button">been</button></span></div>
+<div class="ch" data-a="have had"><span class="n">15</span><span class="s">I ___ this teacher since September.</span><span class="o"><button type="button">has had</button><button type="button">have had</button><button type="button">have</button><button type="button">had</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; gone · been · I met Sophie yesterday. · When did you buy this phone? · since · for · ago · I have known him for five years. · yet · just · Have you ever been to London? · gave · We moved here two years ago. · gone · have had"><b>Відповіді:</b> gone · been · I met Sophie yesterday. · When did you buy this phone? · since · for · ago · I have known him for five years. · yet · just · Have you ever been to London? · gave · We moved here two years ago. · gone · have had</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="gone"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Lily has ___ (go) to the shop. She’ll be back in ten minutes.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="been"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Have you ever ___ (be) to a K-pop concert?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="lost"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Tom ___ (lose) his wallet last week, but luckily someone found it.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="has never used|’s never used|&#x27;s never used"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>My grandma ___ (never / use) a smartphone before, so I’m teaching her now.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="did you meet"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>How long ago ___ (you / meet) your best friend?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; gone · been · lost · has never used · did you meet"><b>Відповіді:</b> gone · been · lost · has never used · did you meet</p>
+  </section>
+  <section id="s6" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">6</span>Раунд 5. Фінальний бос <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="left"><span class="n">1</span><span class="s">I’ve lost my keys. I ___ them on the bus this morning.</span><span class="o"><button type="button">was leave</button><button type="button">leave</button><button type="button">have left</button><button type="button">left</button></span></div>
+<div class="ch" data-a="saw"><span class="n">2</span><span class="s">A: Have you seen the new Pixar film? B: Yes, I ___ it on Sunday.</span><span class="o"><button type="button">see</button><button type="button">have seen</button><button type="button">saw</button><button type="button">seen</button></span></div>
+<div class="ch" data-a="hasn’t finished"><span class="n">3</span><span class="s">Max can’t play now. He ___ his homework yet.</span><span class="o"><button type="button">didn’t finish</button><button type="button">isn’t finish</button><button type="button">doesn’t finish</button><button type="button">hasn’t finished</button></span></div>
+<div class="ch" data-a="haven’t seen"><span class="n">4</span><span class="s">Our cat is missing! We ___ her since yesterday.</span><span class="o"><button type="button">didn’t see</button><button type="button">haven’t seen</button><button type="button">hadn’t seen</button><button type="button">don’t see</button></span></div>
+<div class="ch" data-a="got"><span class="n">5</span><span class="s">A: When did you get your dog? B: We ___ him three years ago.</span><span class="o"><button type="button">has got</button><button type="button">get</button><button type="button">have got</button><button type="button">got</button></span></div>
+<div class="ch" data-a="has worked"><span class="n">6</span><span class="s">Tom started his job in May. He ___ there for five months now.</span><span class="o"><button type="button">has worked</button><button type="button">is work</button><button type="button">works</button><button type="button">worked</button></span></div>
+<div class="ch" data-a="lost"><span class="n">7</span><span class="s">A: Have you ever lost your phone? B: Yes, I ___ it at a concert last year.</span><span class="o"><button type="button">lost</button><button type="button">losed</button><button type="button">have lost</button><button type="button">lose</button></span></div>
+<div class="ch" data-a="visited"><span class="n">8</span><span class="s">We were in London last summer. We ___ Tower Bridge and the London Eye.</span><span class="o"><button type="button">has visited</button><button type="button">visit</button><button type="button">visited</button><button type="button">have visited</button></span></div>
+<div class="ch" data-a="have gone"><span class="n">9</span><span class="s">Dan’s parents aren’t at home. They ___ to the supermarket.</span><span class="o"><button type="button">have gone</button><button type="button">have been</button><button type="button">has gone</button><button type="button">gone</button></span></div>
+<div class="ch" data-a="went"><span class="n">10</span><span class="s">A: How was your weekend? B: Great! I ___ to a concert on Saturday.</span><span class="o"><button type="button">have gone</button><button type="button">have been</button><button type="button">went</button><button type="button">go</button></span></div>
+<div class="ch" data-a="have"><span class="n">11</span><span class="s">This is the best pizza I ___ ever eaten!</span><span class="o"><button type="button">has</button><button type="button">was</button><button type="button">have</button><button type="button">did</button></span></div>
+<div class="ch" data-a="bought"><span class="n">12</span><span class="s">We have had this car for ten years. We ___ it in 2016.</span><span class="o"><button type="button">buy</button><button type="button">have bought</button><button type="button">bought</button><button type="button">buyed</button></span></div>
+<div class="ch" data-a="started"><span class="n">13</span><span class="s">A: Have you finished the book? B: Not yet. I ___ it on Monday and I’m on page 50.</span><span class="o"><button type="button">have started</button><button type="button">started</button><button type="button">was start</button><button type="button">start</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; left · saw · hasn’t finished · haven’t seen · got · has worked · lost · visited · have gone · went · have · bought · started"><b>Відповіді:</b> left · saw · hasn’t finished · haven’t seen · got · has worked · lost · visited · have gone · went · have · bought · started</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="went"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Sophie has been to Spain twice. She first ___ (go) there in 2021.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="have known|’ve known|&#x27;ve known"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>I ___ (know) Dan since we were five. We’re best friends.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="has never flown|’s never flown|&#x27;s never flown"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Lily is nervous. She ___ (never / fly) before, and tomorrow is her first flight.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="hasn’t replied|hasn&#x27;t replied|has not replied"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Emma ___ (not / reply) to my message yet. Maybe she’s busy.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="was"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Sophie ___ (be) in hospital for a week in 2023, but she’s fine now.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="has just come|’s just come|&#x27;s just come"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>A: Where’s Max? B: He’s at home. He ___ (just / come) back from school.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Did you see|did you see"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>___ (you / see) Lily yesterday? She wasn’t at school.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; went · have known · has never flown · hasn’t replied · was · has just come · Did you see"><b>Відповіді:</b> went · have known · has never flown · hasn’t replied · was · has just come · Did you see</p>
+  </section>
+  <section class="end"><h2>Great job!</h2><p>See you next lesson.</p></section>
+</div>
+<div class="toast" id="toast"></div>
+<script>window.MURLY_LESSON={"id": "lib-drill-perfect-vs-past", "title": "Present Perfect vs Past Simple: 100 tasks", "homework": ["s2", "s3", "s4", "s5", "s6"], "hw": {"s2": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Sophie {has|have|is|did} already finished her homework.\nWe {have|has|are|did} just eaten, thanks.\nThey have {been|went|go|being} to Italy three times.\nMy cat {has|have|is|did} broken my favourite mug!\n{Has|Have|Did|Is} Dan played the new game yet?\nI’ve {forgotten|forgot|forget|forgetted} my password. Can you help me?\nYesterday we {watched|have watched|has watched|watch} a great film.\nShe has {left|leaved|leave|lefted} her phone in the taxi.\nMy parents {got|have got|has got|get} married in 2005.\nThe kids have {eaten|eat|ate|eated} all the cookies!\nHe {has|have|is|was} never tried snowboarding."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "I have never [seen] (see) a real panda.\nMax has [lost] (lose) his headphones again.\nHave you ever [ridden] (ride) a horse?\nLily has [written] (write) three songs this year.\nWe have [known] (know) each other since primary school.\nEmma has [bought] (buy) tickets for the concert.\nTom [went] (go) to the dentist two days ago.\nHave you [done] (do) the washing-up yet?\nSophie [met] (meet) her favourite singer last summer."}], "s3": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "I {haven’t|didn’t|hasn’t|don’t} finished the book yet.\n{Have|Did|Has|Were} you ever been to Edinburgh?\n{Did|Have|Has|Do} you go to the party last Saturday?\nShe {didn’t|hasn’t|haven’t|wasn’t} watch the match yesterday because she was busy.\nA: Has Lily answered your message? B: No, she {hasn’t|didn’t|haven’t|isn’t}.\nA: Did you like the pizza? B: Yes, I {did|have|liked|do}.\nHow long {have|did|are|do} you known Sophie?\nTom {hasn’t|didn’t|haven’t|wasn’t} been to a concert before. It’s his first time.\nWhat time {did|does|has|have} the lesson start yesterday?\nThey haven’t finished the project {yet|already|just|ago}.\n{Has|Did|Have|Is} Max ever won a competition?\nA: Have you seen my keys? B: No, I {haven’t|didn’t|don’t|wasn’t}.\nEmma {didn’t|hasn’t|haven’t|doesn’t} visit her grandparents last weekend because of the rain."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "Max [hasn’t called/hasn't called/has not called] (not / call) me yet.\n[Have you ever tried/have you ever tried] (you / ever / try) Japanese food?\nWe [haven’t seen/haven't seen/have not seen] (not / see) Dan since Monday.\nWhen [did you arrive] (you / arrive) in London?\nI [didn’t sleep/didn't sleep/did not sleep] (not / sleep) well last night.\nWhere [did you buy] (you / buy) that hoodie last week?\nOur dog [hasn’t eaten/hasn't eaten/has not eaten] (not / eat) anything since this morning."}], "s4": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "I {went|have been|have gone|go} to Paris in 2022.\nDan has {already|yet|ago|since} cleaned his room, so he can go out now.\nWe {went|have gone|have been|go} to the cinema yesterday.\nThis is the first time I {have eaten|ate|eat|was eating} sushi.\nMax {broke|has broken|has broke|breaks} his leg two years ago, but now he plays football again.\nWhen {did|have|has|were} you start learning English?\nMy brother {worked|has worked|works|has work} in Poland for two years, but now he lives in London again.\nI {haven’t seen|don’t see|didn’t see|wasn’t see} Tom since last summer. Where is he?\nShakespeare {wrote|has written|writes|has wrote} nearly 40 plays.\nThey {have been|were|are being|was} married for ten years now.\nIn 2015 our family {bought|buys|has bought|buyed} a house by the lake.\nA: Have you ever played golf? B: Yes, I {played|have played|play|have play} it last summer in Spain.\nThe new game {came|comes|has come|come} out last Friday."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "Sophie [has had/’s had/'s had] (have) this cat since 2019.\nI [finished] (finish) my essay an hour ago.\nWe [have known/’ve known/'ve known] (know) Lily for five years, and she’s still our best friend.\nEmma [has been/’s been/'s been] (be) to Japan twice. She wants to go again.\nHow long [have you had] (you / have) your dog?\nSophie [hasn’t been/hasn't been/has not been] (not / be) to a football match yet.\nI [have never seen/’ve never seen/'ve never seen] (never / see) the sea in my life, so I’m really excited about this trip."}], "s5": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Max isn’t here. He has {gone|been|went|go} to the gym.\nI have {been|went|gone|go} to Rome. It’s beautiful!\nОбери правильне речення з yesterday: {I met Sophie yesterday.|I have met Sophie yesterday.|I have meet Sophie yesterday.|I meet Sophie yesterday.}\nОбери правильне питання з When: {When did you buy this phone?|When have you bought this phone?|When did you bought this phone?|When you bought this phone?}\nWe have lived here {since|for|ago|from} 2018.\nShe has studied French {for|since|ago|during} three years.\nI saw this video three days {ago|for|since|yet}.\nОбери правильне речення з for: {I have known him for five years.|I have known him for 2015.|I know him for five years.|I knew him since five years.}\nHave you done your homework {yet|ago|since|last}?\nWait, I’ve {just|ago|yet|since} had an idea!\nОбери правильне речення про досвід: {Have you ever been to London?|Did you ever be to London?|Have you ever went to London?|Were you ever been to London?}\nDan {gave|has given|has gave|gives} his first concert when he was 15.\nОбери правильне речення з ago: {We moved here two years ago.|We have moved here two years ago.|We have moved here since two years.|We moved here for two years ago.}\nA: Is Emma at home? B: No, she’s {gone|went|been|go} to Edinburgh for the weekend.\nI {have had|have|had|has had} this teacher since September."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "Lily has [gone] (go) to the shop. She’ll be back in ten minutes.\nHave you ever [been] (be) to a K-pop concert?\nTom [lost] (lose) his wallet last week, but luckily someone found it.\nMy grandma [has never used/’s never used/'s never used] (never / use) a smartphone before, so I’m teaching her now.\nHow long ago [did you meet] (you / meet) your best friend?"}], "s6": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "I’ve lost my keys. I {left|have left|leave|was leave} them on the bus this morning.\nA: Have you seen the new Pixar film? B: Yes, I {saw|have seen|see|seen} it on Sunday.\nMax can’t play now. He {hasn’t finished|didn’t finish|doesn’t finish|isn’t finish} his homework yet.\nOur cat is missing! We {haven’t seen|don’t see|hadn’t seen|didn’t see} her since yesterday.\nA: When did you get your dog? B: We {got|have got|get|has got} him three years ago.\nTom started his job in May. He {has worked|worked|works|is work} there for five months now.\nA: Have you ever lost your phone? B: Yes, I {lost|have lost|lose|losed} it at a concert last year.\nWe were in London last summer. We {visited|visit|have visited|has visited} Tower Bridge and the London Eye.\nDan’s parents aren’t at home. They {have gone|have been|has gone|gone} to the supermarket.\nA: How was your weekend? B: Great! I {went|have been|have gone|go} to a concert on Saturday.\nThis is the best pizza I {have|did|has|was} ever eaten!\nWe have had this car for ten years. We {bought|have bought|buy|buyed} it in 2016.\nA: Have you finished the book? B: Not yet. I {started|have started|start|was start} it on Monday and I’m on page 50."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "Sophie has been to Spain twice. She first [went] (go) there in 2021.\nI [have known/’ve known/'ve known] (know) Dan since we were five. We’re best friends.\nLily is nervous. She [has never flown/’s never flown/'s never flown] (never / fly) before, and tomorrow is her first flight.\nEmma [hasn’t replied/hasn't replied/has not replied] (not / reply) to my message yet. Maybe she’s busy.\nSophie [was] (be) in hospital for a week in 2023, but she’s fine now.\nA: Where’s Max? B: He’s at home. He [has just come/’s just come/'s just come] (just / come) back from school.\n[Did you see/did you see] (you / see) Lily yesterday? She wasn’t at school."}]}};</script>
+<script>
+(function(){var l=(document.cookie.match(/(?:^|; )murly_lang=(\w+)/)||[])[1];try{l=l||localStorage.getItem('murly:tlang')}catch(e){}l=l==='ru'?'ru':'uk';document.querySelectorAll('[data-pairs-'+l+']').forEach(function(b){b.dataset.pairs=b.getAttribute('data-pairs-'+l)});})();
+</script>
+<script>
+const $ = (id) => document.getElementById(id);
+const LIS = {};
+function say(w, rate) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; const v = speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang) && /Google|Natural|Libby|Sonia|Daniel/.test(x.name)) || speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang)); if (v) u.voice = v; u.rate = rate || .95; speechSynthesis.speak(u); } catch (e) { } }
+const sh = (a) => a.map((x) => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map((x) => x[1]);
+document.querySelectorAll('.voc div').forEach((d) => d.onclick = () => say(d.dataset.say));
+document.querySelectorAll('[data-play]').forEach((b) => b.onclick = () => say(LIS[b.dataset.play], b.dataset.slow ? .75 : .95));
+document.querySelectorAll('[data-stop]').forEach((b) => b.onclick = () => { try { speechSynthesis.cancel(); } catch (e) { } });
+document.querySelectorAll('.ch').forEach((q) => q.querySelectorAll('button').forEach((b) => b.onclick = () => { if (q.classList.contains('ok')) return; const ok = b.textContent === q.dataset.a; q.classList.toggle('ok', ok); q.classList.toggle('bad', !ok); if (ok) { const s = q.querySelector('.s'); if (s && s.textContent.includes('___')) { s.textContent = s.textContent.replace('___', q.dataset.a); } } }));
+const norm = (x) => x.toLowerCase().replace(/[’']/g, "'").replace(/[,;:"“”«»]/g, ' ').replace(/\s+/g, ' ').replace(/[.!?]$/, '').trim();
+document.querySelectorAll('.ty').forEach((r) => { const inp = r.querySelector('input'); const chk = () => { const ok = r.dataset.a.split('|').some((a) => norm(a) === norm(inp.value)); r.classList.toggle('ok', ok); r.classList.toggle('bad', !ok && inp.value.trim() !== ''); }; r.querySelector('button').onclick = chk; inp.onkeydown = (e) => { if (e.key === 'Enter') chk(); }; });
+document.querySelectorAll('[data-mt]').forEach((box) => { const pairs = JSON.parse(box.dataset.pairs); const L = sh(pairs.map((p) => p[0])), R = sh(pairs.map((p) => p[1])); let sel = null, done = 0, err = 0; box.innerHTML = L.map((w, i) => `<button type="button" data-w="${w}">${w}</button><button type="button" data-d="${R[i]}">${R[i]}</button>`).join('');
+  box.querySelectorAll('button').forEach((b) => b.onclick = () => { if (b.classList.contains('done')) return; if (!sel || (sel.dataset.w && b.dataset.w) || (sel.dataset.d && b.dataset.d)) { if (sel) sel.classList.remove('sel'); sel = b; b.classList.add('sel'); return; } const w = sel.dataset.w || b.dataset.w, d = sel.dataset.d || b.dataset.d; if (pairs.some((p) => p[0] === w && p[1] === d)) { sel.classList.add('done'); b.classList.add('done'); done++; say(w); if (done === pairs.length) document.querySelector(`[data-mtres="${box.dataset.mt}"]`).textContent = err ? `Done! Mistakes: ${err}` : 'Perfect!'; } else err++; sel.classList.remove('sel'); sel = null; }); });
+document.querySelectorAll('[data-vids]').forEach((box) => JSON.parse(box.dataset.vids).forEach(([id, title, ch, qs]) => { const d = document.createElement('div'); d.className = 'vid'; d.innerHTML = `<div class="frame"><button class="play" type="button" style="background-image:url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)"><span>PLAY</span></button></div><div class="info"><h3>${title}</h3><small>YouTube · ${ch}</small><ol>${qs.map((q) => `<li>${q}</li>`).join('')}</ol></div>`; d.querySelector('.play').onclick = (e) => { e.currentTarget.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&cc_load_policy=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${title}"></iframe>`; }; box.appendChild(d); }));
+document.querySelectorAll('[data-spin]').forEach((b) => { const list = JSON.parse(b.dataset.spin); let last = -1; b.onclick = () => { let i; do { i = Math.floor(Math.random() * list.length); } while (i === last && list.length > 1); last = i; document.getElementById(b.dataset.target).textContent = list[i]; }; });
+try { const k = 'murly:' + (window.MURLY_LESSON ? MURLY_LESSON.id : 'x') + ':hw'; const t = $('hwText'); if (t) { t.value = localStorage.getItem(k) || ''; t.oninput = () => localStorage.setItem(k, t.value); } } catch (e) { }
+const STAGES = [...document.querySelectorAll('.wrap > section[id]')];
+$('stages').innerHTML = STAGES.map((s) => `<a href="#${s.id}"><b>${s.querySelector('.lk-n').textContent}</b><span>${s.dataset.stage}</span><small>${s.dataset.min !== '0' ? s.dataset.min + ' min' : 'at home'}</small></a>`).join('');
+$('teacherBtn').onclick = (e) => { const on = document.body.classList.toggle('teacher'); e.currentTarget.textContent = on ? 'Student version' : 'Teacher version'; };
+</script>
+<script src="/game-lessons/kit.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Myself, yourself, each other: 100 tasks (A2) | Murly</title>
+<link rel="icon" href="/favicon.svg">
+<meta name="description" content="Повторимо правило: Зворотні займенники: myself і each other
+100 завдань від простого до складного
+Розберемо головні пастки">
+<link rel="canonical" href="https://murly.com.ua/game-lessons/lib-drill-reflexive-pronouns.html">
+<style>
+:root{--paper:#F3F0EA;--ink:#17181C;--violet:#3D4A7A;--lav:#D9D3C7;--pink:#E9C9BC;--green:#D4E2CF;--white:#fff;--muted:#62646B;--accent:#B5482F}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+/* hero */
+.hero{background:linear-gradient(rgba(16,17,22,.5),rgba(16,17,22,.72)),url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1400&q=70&auto=format&fit=crop");color:#fff;padding:70px 18px 56px;text-align:center;position:relative;overflow:hidden}
+.hero .kicker{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#E9C9BC;font-weight:700}
+.hero .cr{position:absolute;right:12px;bottom:8px;font-size:11px;color:rgba(255,255,255,.6)}
+.hero h1{margin:8px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(36px,6vw,64px);letter-spacing:-.5px;font-weight:700}
+.hero h1 span{color:var(--pink);font-style:italic}
+.hero p{margin:12px 0 0;font-size:17px;color:#e6e2da}
+.hero .flags{display:flex;justify-content:center;gap:12px;margin-top:22px;flex-wrap:wrap}
+.hero .flags svg{width:40px;height:26px;border-radius:3px;opacity:.9}
+/* sections */
+section{margin-top:30px;background:var(--white);border-radius:18px;padding:28px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.05)}
+section h2{margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tag{font-family:"Segoe UI",system-ui,sans-serif;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--paper);color:var(--accent);text-transform:uppercase;letter-spacing:1px}
+.lk-n{display:inline-grid;place-items:center;width:42px;height:42px;background:var(--violet);color:#fff;border-radius:50%;font-size:21px;flex:none}
+.lk-mode{font-size:13px;font-weight:700;border:2px dashed var(--lav);color:var(--muted);padding:2px 10px;border-radius:999px}
+.lk-ins{font-size:17px;background:var(--paper);border-radius:12px;padding:10px 14px;margin:6px 0 18px}
+.lk-sub{margin:24px 0 10px;font-size:19px}
+.btn{font:inherit;font-weight:700;border:0;border-radius:999px;background:var(--ink);color:#fff;padding:10px 20px;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+.btn.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+/* teacher */
+.lk-tbtn{position:fixed;right:16px;top:70px;z-index:45;font:inherit;font-weight:800;border:2px solid var(--ink);background:var(--pink);padding:8px 14px;border-radius:12px;cursor:pointer}
+body.teacher .lk-tbtn{background:var(--green)}
+.lk-ans,.lk-tnote{display:none}
+body.teacher .lk-ans{display:block;margin-top:8px;font-weight:700;color:#1d5a12;background:var(--green);border-left:5px solid #5aa845;padding:6px 10px;font-size:15px;border-radius:6px}
+body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff3f7;border-left:5px solid #d9789a;padding:8px 12px;font-size:15px;border-radius:6px}
+/* overview */
+.lk-overview ul{font-size:17px;line-height:1.7;margin:6px 0 16px}
+.lk-stages{display:flex;flex-wrap:wrap;gap:8px}
+.lk-stages a{display:grid;border-radius:14px;padding:8px 12px;text-decoration:none;color:var(--ink);background:var(--paper);font-weight:700;min-width:100px}
+.lk-stages a span{text-transform:capitalize}
+.lk-stages a b{font-size:20px;color:var(--violet)}
+.lk-stages a small{font-weight:600;color:var(--muted)}
+/* warm-up */
+.taxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tax{background:var(--paper);border-radius:18px;padding:16px;display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center}
+.tax svg{width:56px;height:56px}
+.tax b{display:block;font-size:17px}
+.tax small{color:var(--muted);font-size:14px}
+.qs{display:grid;gap:10px;margin-top:18px}
+.qs div{background:var(--green);border-radius:14px;padding:10px 16px;font-size:18px;font-weight:600}
+.phr{background:#fff7e8;border-radius:14px;padding:12px 16px;margin-top:16px;font-size:15px}
+.phr ul{margin:6px 0 0;padding-left:18px}
+.fic{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:16px}
+.fic .c{background:#fff;border:2px solid #1B2140;border-radius:16px;padding:14px 16px;box-shadow:3px 3px 0 #1B2140}
+.fic .c b{display:block;font-size:18px;line-height:1.35;margin-bottom:8px}
+.fic .c .k{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.fic .c .k span{font-size:13px;background:#eef1fb;border-radius:999px;padding:3px 10px}
+.fic .c details{margin-top:8px;font-size:15px;color:#3b4160}
+.fic .c summary{cursor:pointer;font-weight:700;color:#534AB7}
+.fi-n{display:inline-flex;width:28px;height:28px;border-radius:50%;background:#2F4BA0;color:#fff;align-items:center;justify-content:center;font-size:14px;margin-right:6px}
+/* vocab */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:12px}
+.vc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:2px solid transparent;transition:border-color .2s,transform .2s}
+.vc:hover{border-color:var(--violet);transform:translateY(-2px)}
+.vc b{font-size:18px;display:flex;align-items:center;gap:8px}
+.vc b svg{width:20px;height:20px;flex:none;color:var(--violet)}
+.vc p{margin:6px 0 0;font-size:14px;color:var(--muted)}
+.vc em{display:block;margin-top:6px;font-size:14px;color:var(--violet);font-style:normal;font-weight:600}
+.vc.played{background:#e6ecfb}
+/* grammar */
+.gram{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.gb{border-radius:18px;padding:16px}
+.gb h3{margin:0 0 6px;font-size:19px}
+.gb .f{display:inline-block;background:#fff;border-radius:8px;padding:3px 10px;font-weight:800;margin:4px 0;font-family:Consolas,monospace;font-size:15px}
+.gb p{margin:6px 0 0;font-size:15px}
+.g1{background:var(--pink)}.g2{background:var(--lav)}.g3{background:var(--green)}.g4{background:#fbe7c6}
+.warn{margin-top:14px;background:var(--ink);color:#fff;border-radius:14px;padding:12px 16px;font-size:16px}
+.warn b{color:var(--pink)}
+.q{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:2px dashed var(--paper);font-size:18px}
+.q:last-child{border-bottom:0}
+.q .n{width:32px;height:32px;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;border-radius:50%;font-weight:800;font-size:15px}
+.opt{font:inherit;font-size:16px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:10px;padding:4px 12px;cursor:pointer;margin:0 2px}
+.opt.ok{background:var(--green);border-color:#5aa845}
+.opt.bad{background:var(--pink);animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+/* tour */
+.tour{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.law{border-radius:22px;overflow:hidden;background:var(--paper);display:flex;flex-direction:column}
+.law .pic{height:150px;display:grid;place-items:center;position:relative}
+.law .pic svg.ill{width:130px;height:130px}
+.law .pic svg.fl{position:absolute;left:14px;top:14px;width:46px;height:30px;border-radius:5px;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.law .pic .no{position:absolute;right:14px;top:14px;background:var(--ink);color:#fff;font-weight:800;border-radius:999px;padding:2px 10px;font-size:13px}
+.law .body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.law h3{margin:0;font-size:20px}
+.law .where{font-size:13px;font-weight:800;color:var(--violet);text-transform:uppercase;letter-spacing:1px}
+.law p{margin:0;font-size:16px}
+.law .why{font-size:14px;color:var(--muted)}
+.law .dq{margin-top:auto;background:#fff;border-radius:12px;padding:8px 12px;font-weight:700;font-size:15px}
+.law .lsn{font:inherit;font-size:13px;font-weight:700;background:none;border:0;color:var(--violet);cursor:pointer;padding:0;text-align:left}
+/* game */
+.game{max-width:720px;margin:0 auto;text-align:center}
+.score{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.score span{background:var(--paper);border-radius:999px;padding:6px 16px;font-weight:800}
+.stmt{background:var(--ink);color:#fff;border-radius:22px;padding:28px 24px;min-height:150px;display:grid;place-items:center;font-size:23px;font-weight:700;position:relative}
+.stmt small{position:absolute;top:12px;left:18px;font-size:13px;color:var(--lav);font-weight:700}
+.choose{display:flex;justify-content:center;gap:14px;margin:18px 0}
+.choose button{font:inherit;font-size:18px;font-weight:700;border:2px solid var(--ink);border-radius:999px;padding:12px 28px;cursor:pointer}
+.choose .bl{background:var(--green)}.choose .bm{background:var(--pink)}
+.choose button:disabled{opacity:.5;cursor:default}
+.verdict{min-height:70px;font-size:17px;background:var(--paper);border-radius:16px;padding:12px 16px;text-align:left}
+.verdict b.r{color:#2d7a1d}.verdict b.w{color:#b23a62}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.dots i{width:14px;height:14px;border-radius:50%;background:var(--paper)}
+.dots i.r{background:#7cc663}.dots i.w{background:#e47b9f}.dots i.c{outline:3px solid var(--violet)}
+.final{font-size:22px;font-weight:800;color:var(--violet)}
+/* invent */
+.inv{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.frames{display:grid;gap:10px}
+.frames label{font-size:14px;font-weight:700;color:var(--muted)}
+.frames select,.frames input{font:inherit;width:100%;padding:8px 10px;border:2px solid var(--lav);border-radius:10px;background:#fff}
+.poster{background:var(--paper);border:3px solid var(--ink);border-radius:20px;padding:22px;text-align:center;min-height:260px;display:flex;flex-direction:column;gap:10px;justify-content:center}
+.poster .seal{width:70px;height:70px;margin:0 auto}
+.poster h3{margin:0;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--violet)}
+.poster .rule{font-size:22px;font-weight:800}
+.poster .pen{font-size:16px;color:var(--muted)}
+.ideas{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ideas span{background:var(--pink);border-radius:999px;padding:5px 12px;font-size:14px;font-weight:600}
+/* roleplay */
+.rp{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.role{border-radius:20px;padding:18px}
+.role h3{margin:0 0 6px;display:flex;align-items:center;gap:10px}
+.role h3 svg{width:42px;height:42px}
+.role ul{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.r1{background:var(--lav)}.r2{background:var(--green)}
+.scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:16px}
+.sc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:3px solid transparent}
+.sc.on{border-color:var(--violet);background:#fff}
+.sc b{display:block;font-size:17px;margin-bottom:4px}
+.sc p{margin:0;font-size:15px}
+.timer{font-size:40px;font-weight:800;text-align:center;margin:14px 0 6px;color:var(--violet)}
+.ctr{text-align:center}
+/* homework */
+.hwb{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hwc{background:var(--paper);border-radius:18px;padding:18px}
+.hwc h3{margin:0 0 8px}
+.hwc ol,.hwc ul{margin:6px 0 0;padding-left:20px;line-height:1.7}
+.hwc textarea{width:100%;min-height:150px;font:inherit;border:2px solid var(--lav);border-radius:12px;padding:10px;margin-top:10px}
+.end{text-align:center;background:var(--ink);color:#fff;box-shadow:none}
+.end h2{justify-content:center}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(140px);background:var(--ink);color:#fff;font-weight:800;padding:12px 22px;border-radius:14px;transition:transform .3s;z-index:50}
+.toast.show{transform:translateX(-50%) translateY(0)}
+/* photos */
+.ph{margin:0}
+.ph img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;background:var(--paper)}
+.ph figcaption{font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.2px}
+.tax{grid-template-columns:1fr !important;padding:12px !important}
+.law .pic{height:auto !important;display:block !important;padding:0;position:relative}
+.law .pic .ph img{border-radius:0;aspect-ratio:16/10;transition:filter .5s}
+.law .pic .ph figcaption{padding:4px 12px 0}
+.law.hide .pic .ph img{filter:blur(10px) grayscale(.6)}
+.law.hide .reveal-body,.law.hide .fl,.law.hide .where{visibility:hidden}
+.law .clue{font-size:15px;font-style:italic;color:var(--ink)}
+.law .gc{display:flex;flex-wrap:wrap;gap:6px}
+.law .gc button{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:4px 12px;cursor:pointer}
+.law .gc button.ok{background:var(--green)}.law .gc button.bad{background:var(--pink)}
+.law:not(.hide) .guess{display:none}
+.fair{display:grid;gap:4px;background:#fff;border-radius:12px;padding:8px 12px}
+.fair .ends{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.fair input{width:100%;accent-color:var(--accent)}
+.fair output{font-size:14px;font-weight:700;color:var(--accent)}
+.gph{max-width:720px;margin:0 auto 12px}
+.gph img{aspect-ratio:21/9}
+.fine{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.fq{background:var(--paper);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.fq h3{margin:0;font-size:18px}
+.fq .opts{display:flex;flex-wrap:wrap;gap:6px}
+.fq .opts button{font:inherit;font-size:14px;font-weight:700;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 12px;cursor:pointer}
+.fq .opts button.ok{background:var(--green)}.fq .opts button.bad{background:var(--pink)}
+.fq .res{font-size:15px;min-height:22px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{position:relative;aspect-ratio:16/9;background:#111}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;cursor:pointer;background:#111 center/cover;display:grid;place-items:center}
+.vid .play span{background:rgba(0,0,0,.7);color:#fff;font-weight:700;border-radius:999px;padding:10px 20px;font-size:15px;letter-spacing:1px}
+.vid .info{padding:14px 16px}
+.vid .info h3{margin:0 0 2px;font-size:18px}
+.vid .info small{color:var(--muted)}
+.vid .info ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+@media(max-width:760px){.inv,.rp,.hwb{grid-template-columns:1fr}.lk-tbtn{top:auto;bottom:70px}}
+
+.pr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.pb{border-radius:18px;padding:16px 18px}
+.pb h3{margin:0;font-family:Georgia,serif;font-size:30px}
+.pb .m{font-size:15px;color:var(--muted);margin:2px 0 8px}
+.pb .chips{display:flex;flex-wrap:wrap;gap:6px}
+.pb .chips span{background:#fff;border-radius:999px;padding:4px 11px;font-size:14px;font-weight:600}
+.pb ul{margin:10px 0 0;padding-left:18px;font-size:15px}
+.p-in{background:#DCE6F5}.p-at{background:#F3D9CF}.p-on{background:#D4E2CF}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-size:15px;margin-top:10px}
+.ex div{background:var(--paper);border-radius:10px;padding:8px 12px}
+.ex b{color:var(--accent)}
+.q{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.q .n{font-weight:800;color:var(--violet);min-width:24px}
+.q .gap{display:inline-block;min-width:44px;border-bottom:2px solid var(--ink);text-align:center;font-weight:800}
+.q .opts{margin-left:auto;display:flex;gap:6px}
+.q .opts button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 14px;cursor:pointer}
+.q.ok{background:#DDEED7}.q.ok .gap{color:#2F7A3B}
+.q.bad{background:#F6DAD3}
+.score{font-weight:800;margin-top:12px}
+.text{font-size:18px;line-height:1.75;background:var(--paper);border-radius:16px;padding:18px 22px}
+.text h3{margin:0 0 6px;font-family:Georgia,serif;font-size:24px}
+.text p{margin:0 0 12px}
+.text.hl mark{background:#F3D9CF;border-radius:4px;padding:0 3px;font-weight:700}
+.tf{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:9px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.tf .opts{margin-left:auto;display:flex;gap:6px}
+.tf button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.tf.ok{background:#DDEED7}.tf.bad{background:#F6DAD3}
+.disc{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px;margin-top:6px}
+.disc div{background:var(--green);border-radius:14px;padding:12px 16px;font-size:17px;font-weight:600}
+.disc div i{font-style:normal;color:var(--violet);margin-right:6px}
+.spin{text-align:center;margin-top:16px}
+.spin .card{display:inline-block;min-height:80px;min-width:min(560px,100%);background:var(--ink);color:#fff;border-radius:18px;padding:20px 24px;font-size:22px;font-weight:700;margin-bottom:12px}
+@media(max-width:700px){.ex{grid-template-columns:1fr}}
+
+.hero{background-size:cover!important;background-position:center!important}
+.voc{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.voc div{background:var(--paper);border-radius:14px;padding:10px 14px;cursor:pointer;border:2px solid transparent}
+.voc div:hover{border-color:var(--violet)}
+.voc b{display:block;font-size:18px}.voc span{display:block;color:var(--accent);font-weight:700;font-size:15px}.voc em{display:block;font-size:14px;color:var(--muted);margin-top:3px}
+.mt{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:10px}
+.mt button{font:inherit;font-size:16px;text-align:left;border:2px solid var(--ink);background:#fff;border-radius:14px;padding:9px 14px;cursor:pointer}
+.mt button.sel{background:#FFE7A8}.mt button.done{background:#CDE8C6;border-color:#4C9A5B;cursor:default}
+.ch{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ch .n{font-weight:800;color:var(--violet);min-width:24px}
+.ch .o{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.ch .o button{font:inherit;font-size:15px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.ch.ok{background:#DDEED7}.ch.bad{background:#F6DAD3}
+.ty{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ty input{font:inherit;border:2px solid var(--ink);border-radius:10px;padding:4px 10px;width:220px}
+.ty.ok{background:#DDEED7}.ty.bad{background:#F6DAD3}
+.ty small{color:var(--muted)}
+.photo{width:100%;height:300px;object-fit:cover;border-radius:16px;display:block}
+.cap{font-size:11px;color:var(--muted);margin:4px 0 12px}
+.pics{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.pics figure{margin:0;background:var(--paper);border-radius:16px;overflow:hidden}
+.pics img{width:100%;height:170px;object-fit:cover;display:block}
+.pics figcaption{padding:8px 12px;font-weight:700}
+.pics small{display:block;font-weight:400;font-size:10px;color:var(--muted)}
+.lis{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:8px 0 14px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{aspect-ratio:16/9;background:#000;position:relative}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;background-size:cover;background-position:center;cursor:pointer;display:grid;place-items:center}
+.vid .play span{background:#E5484D;color:#fff;font-weight:800;border-radius:12px;padding:10px 20px}
+.vid .info{padding:12px 16px}.vid h3{margin:0;font-size:18px}.vid small{color:var(--muted)}
+.vid ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th,.tbl td{border:1px solid #ddd;padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--paper)}
+@media(max-width:700px){.mt{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="/game-lessons/kit.css">
+</head>
+<body>
+<header class="hero">
+  <div class="kicker">A2 · teens · Граматика: тренажер Зворотні займенники: myself і each other</div>
+  <h1>Myself, yourself, each other: 100 tasks</h1>
+  <p>A2 · 6 parts · 60 min</p>
+  <span class="cr">Photo: Unsplash</span>
+</header>
+<button class="lk-tbtn" id="teacherBtn" type="button">Teacher version</button>
+<div class="wrap">
+  <section class="lk-overview">
+    <h2>In this lesson you will:</h2>
+    <ul><li>Повторимо правило: Зворотні займенники: myself і each other
+100 завдань від простого до складного
+Розберемо головні пастки</li></ul>
+    <div class="lk-stages" id="stages"></div>
+  </section>
+  <section id="s1" data-stage="practice" data-min="10">
+    <h2><span class="lk-n">1</span>Теорія <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<div class="warn"><p><b>Коли вживаємо</b></p><p>Дія повертається на того, хто її робить: I cut myself while I was cooking. (Я порізався, коли готував.)</p><p>Сам, без допомоги і без нікого: by myself / on my own: Lily put the shelf together by herself. (Лілі сама зібрала полицю.)</p><p>Підкреслюємо «сам, особисто»: The chef himself brought us the dessert. (Шеф сам приніс нам десерт.)</p><p>Один одного: each other: Tom and Max help each other with homework. (Том і Макс допомагають один одному з домашкою.)</p><p>Сталі вирази: enjoy yourself, help yourself, make yourself at home: Help yourself to some cake! (Пригощайся тортом!)</p></div>
+    <div class="warn"><p><b>Форми</b></p><p>однина  I → myself, you → yourself, he → himself, she → herself, it → itself. Приклад: She taught herself to play the guitar.</p><p>множина  we → ourselves, you → yourselves, they → themselves. У множині -selves.. Приклад: We made ourselves a big breakfast.</p><p>by  by myself / by herself ...: «сам, без нікого». Те саме: on my own, on her own (з my, her, а не myself).. Приклад: Dan lives by himself.</p><p>each other  двоє або більше роблять щось один одному. Форма не змінюється.. Приклад: Emma and Kate text each other every day.</p><p>−  без займенника: feel, relax, meet, concentrate, hurry, laugh, smile, learn, come back, get married. Українське -ся тут не перекладаємо.. Приклад: I feel great. Just relax!</p></div>
+    <div class="warn"><p><b>Головна пастка</b></p><p>feel myself, relax yourself. Українською «почуватися», «розслаблятися» мають -ся, але англійською займенник не потрібен.</p><p>✗ I feel myself much better today.</p><p>✓ I feel much better today.</p><p>themselves чи each other. They looked at themselves = кожен на себе (наприклад, у дзеркало). They looked at each other = один на одного.</p><p>✗ Lily and Max shook hands and smiled at themselves.</p><p>✓ Lily and Max shook hands and smiled at each other.</p><p>hisself, theirselves. Правильно тільки himself і themselves. Форм hisself і theirselves у стандартній англійській немає.</p><p>✗ They built the treehouse theirselves.</p><p>✓ They built the treehouse themselves.</p></div>
+    <div class="warn"><p><b>Маркери:</b> myself, yourself, himself, herself, itself, ourselves, yourselves, themselves, by myself, on my own, each other, enjoy yourself, help yourself</p></div>
+    <div class="warn"><p><b>Таблиця: займенник і його -self</b></p><p>В однині -self, у множині -selves. you має дві форми: yourself (одна людина) і yourselves (кілька людей). Таблиця: займенник, зворотна форма, переклад, приклад.</p><p>I · myself · я сам, себе · I taught myself Spanish.</p><p>you (одна людина) · yourself · ти сам, себе · Did you cut yourself?</p><p>he · himself · він сам, себе · He fixed it himself.</p><p>she · herself · вона сама, себе · She enjoyed herself.</p><p>it · itself · воно само, себе · The door closed by itself.</p><p>we · ourselves · ми самі, себе · We did it ourselves.</p><p>you (кілька людей) · yourselves · ви самі, себе · Help yourselves, guys!</p><p>they · themselves · вони самі, себе · They painted it themselves.</p><p>двоє або більше · each other · один одного · They love each other.</p></div>
+    <p class="lk-tnote" data-ru="Тренажер на 100 завдань: 5 раундів по 20. На уроці можна пройти 1-2 раунди, решту задати додому. Пояснення до кожної відповіді учень бачить у тренажері на сайті (розділ «Граматика»).&lt;br&gt;">Тренажер на 100 завдань: 5 раундів по 20. На уроці можна пройти 1-2 раунди, решту задати додому. Пояснення до кожної відповіді учень бачить у тренажері на сайті (розділ «Граматика»).<br></p>
+  </section>
+  <section id="s2" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">2</span>Раунд 1. Форми: my + self <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="myself"><span class="n">1</span><span class="s">I cut ___ while I was making a salad.</span><span class="o"><button type="button">me</button><button type="button">my</button><button type="button">myself</button><button type="button">mine</button></span></div>
+<div class="ch" data-a="himself"><span class="n">2</span><span class="s">Tom looked at ___ in the mirror.</span><span class="o"><button type="button">him</button><button type="button">his</button><button type="button">himself</button><button type="button">hisself</button></span></div>
+<div class="ch" data-a="themselves"><span class="n">3</span><span class="s">The kids built the sandcastle all by ___.</span><span class="o"><button type="button">theirselves</button><button type="button">them</button><button type="button">themselves</button><button type="button">themself</button></span></div>
+<div class="ch" data-a="yourself"><span class="n">4</span><span class="s">Be careful with that knife, Max! Don’t hurt ___.</span><span class="o"><button type="button">yourselves</button><button type="button">yourself</button><button type="button">you</button><button type="button">himself</button></span></div>
+<div class="ch" data-a="itself"><span class="n">5</span><span class="s">The robot can switch ___ off.</span><span class="o"><button type="button">its</button><button type="button">it</button><button type="button">itselves</button><button type="button">itself</button></span></div>
+<div class="ch" data-a="myself"><span class="n">6</span><span class="s">I wrote this song ___.</span><span class="o"><button type="button">myself</button><button type="button">mine</button><button type="button">me</button><button type="button">by me</button></span></div>
+<div class="ch" data-a="ourselves"><span class="n">7</span><span class="s">Sophie and I organised the party ___.</span><span class="o"><button type="button">themselves</button><button type="button">myself</button><button type="button">ourselves</button><button type="button">ourself</button></span></div>
+<div class="ch" data-a="herself"><span class="n">8</span><span class="s">Lily burnt ___ on the hot pan.</span><span class="o"><button type="button">herself</button><button type="button">her</button><button type="button">sheself</button><button type="button">hers</button></span></div>
+<div class="ch" data-a="yourself"><span class="n">9</span><span class="s">Kate, you should be proud of ___!</span><span class="o"><button type="button">yours</button><button type="button">you</button><button type="button">herself</button><button type="button">yourself</button></span></div>
+<div class="ch" data-a="yourselves"><span class="n">10</span><span class="s">Max and Dan, please behave ___ at the museum.</span><span class="o"><button type="button">yourselves</button><button type="button">yourself</button><button type="button">themselves</button><button type="button">ourselves</button></span></div>
+<div class="ch" data-a="himself"><span class="n">11</span><span class="s">My little brother can tie his shoes ___ now.</span><span class="o"><button type="button">his own</button><button type="button">hisself</button><button type="button">himself</button><button type="button">him</button></span></div>
+<div class="ch" data-a="themselves"><span class="n">12</span><span class="s">The players were really angry with ___ after the match.</span><span class="o"><button type="button">themselves</button><button type="button">themself</button><button type="button">their</button><button type="button">theirselves</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; myself · himself · themselves · yourself · itself · myself · ourselves · herself · yourself · yourselves · himself · themselves"><b>Відповіді:</b> myself · himself · themselves · yourself · itself · myself · ourselves · herself · yourself · yourselves · himself · themselves</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="herself"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Emma taught ___ (she) to draw anime characters.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="ourselves"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>We made ___ (we) pancakes for breakfast.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="yourself"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Dan, did you paint this picture ___ (you)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="yourselves"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Girls, please help ___ (you) to some juice!</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="himself"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>My grandad fixed the car ___ (he).</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="itself"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>The cat got ___ (it) stuck in the box again.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="themselves"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>They introduced ___ (they) to the new neighbours.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="myself|by myself|on my own"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>I don’t need help. I can do it ___ (I).</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; herself · ourselves · yourself · yourselves · himself · itself · themselves · myself"><b>Відповіді:</b> herself · ourselves · yourself · yourselves · himself · itself · themselves · myself</p>
+  </section>
+  <section id="s3" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">3</span>Раунд 2. By myself і сталі вирази <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="by herself"><span class="n">1</span><span class="s">Grandma lives ___ in a small house by the lake.</span><span class="o"><button type="button">by she</button><button type="button">by her</button><button type="button">by herself</button><button type="button">with herself</button></span></div>
+<div class="ch" data-a="enjoy yourself"><span class="n">2</span><span class="s">Did you ___ at the party last night?</span><span class="o"><button type="button">enjoyed yourself</button><button type="button">enjoy yourself</button><button type="button">enjoy you</button><button type="button">enjoy</button></span></div>
+<div class="ch" data-a="yourselves"><span class="n">3</span><span class="s">Kids, there’s pizza on the table. Help ___!</span><span class="o"><button type="button">yourselves</button><button type="button">themselves</button><button type="button">yourself</button><button type="button">you</button></span></div>
+<div class="ch" data-a="himself"><span class="n">4</span><span class="s">Dan often talks to ___ when he’s solving a puzzle.</span><span class="o"><button type="button">himself</button><button type="button">him</button><button type="button">his</button><button type="button">he</button></span></div>
+<div class="ch" data-a="her"><span class="n">5</span><span class="s">Kate travelled around Italy on ___ own.</span><span class="o"><button type="button">her</button><button type="button">hers</button><button type="button">herself</button><button type="button">she</button></span></div>
+<div class="ch" data-a="ourselves"><span class="n">6</span><span class="s">We really enjoyed ___ at the water park.</span><span class="o"><button type="button">us</button><button type="button">themselves</button><button type="button">ourselves</button><button type="button">ourself</button></span></div>
+<div class="ch" data-a="himself"><span class="n">7</span><span class="s">Max hurt ___ playing basketball.</span><span class="o"><button type="button">his</button><button type="button">he</button><button type="button">him</button><button type="button">himself</button></span></div>
+<div class="ch" data-a="yourselves"><span class="n">8</span><span class="s">Are you two OK? Did you hurt ___?</span><span class="o"><button type="button">yourselves</button><button type="button">themselves</button><button type="button">yourself</button><button type="button">ourselves</button></span></div>
+<div class="ch" data-a="itself"><span class="n">9</span><span class="s">The door opened by ___.</span><span class="o"><button type="button">itselves</button><button type="button">itself</button><button type="button">it</button><button type="button">its</button></span></div>
+<div class="ch" data-a="by himself"><span class="n">10</span><span class="s">My little brother is scared of being at home ___.</span><span class="o"><button type="button">by himself</button><button type="button">by him</button><button type="button">on himself</button><button type="button">with himself</button></span></div>
+<div class="ch" data-a="on their own"><span class="n">11</span><span class="s">Tom and Lily are going camping ___. No parents!</span><span class="o"><button type="button">on themselves</button><button type="button">on their own</button><button type="button">by them</button><button type="button">by their own</button></span></div>
+<div class="ch" data-a="ourselves"><span class="n">12</span><span class="s">We painted the room ___, without any help.</span><span class="o"><button type="button">us</button><button type="button">ours</button><button type="button">our own</button><button type="button">ourselves</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; by herself · enjoy yourself · yourselves · himself · her · ourselves · himself · yourselves · itself · by himself · on their own · ourselves"><b>Відповіді:</b> by herself · enjoy yourself · yourselves · himself · her · ourselves · himself · yourselves · itself · by himself · on their own · ourselves</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="myself"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>I don’t like going to the cinema by ___ (I).</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="yourself"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Welcome, Lily! Come in and make ___ (you) at home.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="yourself"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Don’t worry about the interview. Just be ___ (you)!</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="themselves"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>The kids decorated the classroom all by ___ (they).</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="my"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Mum, can I go to the shop on ___ (I) own?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="yourself"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Don’t blame ___ (you), Sophie. It wasn’t your fault.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="yourself"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>Emma, help ___ (you) to more salad.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="yourselves"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>Have fun at the concert, guys! Enjoy ___ (you)!</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; myself · yourself · yourself · themselves · my · yourself · yourself · yourselves"><b>Відповіді:</b> myself · yourself · yourself · themselves · my · yourself · yourself · yourselves</p>
+  </section>
+  <section id="s4" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">4</span>Раунд 3. Each other чи themselves <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="each other"><span class="n">1</span><span class="s">Lily and Kate have been friends for years. They tell ___ everything.</span><span class="o"><button type="button">theirselves</button><button type="button">them</button><button type="button">themselves</button><button type="button">each other</button></span></div>
+<div class="ch" data-a="themselves"><span class="n">2</span><span class="s">After the long hike, the girls looked at ___ in the shop window and laughed at their messy hair.</span><span class="o"><button type="button">themselves</button><button type="button">theirselves</button><button type="button">themself</button><button type="button">each other</button></span></div>
+<div class="ch" data-a="each other"><span class="n">3</span><span class="s">Emma and Mia write to ___ every week.</span><span class="o"><button type="button">theirselves</button><button type="button">themselves</button><button type="button">their</button><button type="button">each other</button></span></div>
+<div class="ch" data-a="themselves"><span class="n">4</span><span class="s">The kids hid ___ behind the sofa.</span><span class="o"><button type="button">each other</button><button type="button">theirselves</button><button type="button">them</button><button type="button">themselves</button></span></div>
+<div class="ch" data-a="each other"><span class="n">5</span><span class="s">After the game, the two teams shook hands with ___.</span><span class="o"><button type="button">ourselves</button><button type="button">each other</button><button type="button">theirselves</button><button type="button">themselves</button></span></div>
+<div class="ch" data-a="each other"><span class="n">6</span><span class="s">How long have you two known ___?</span><span class="o"><button type="button">themselves</button><button type="button">each other</button><button type="button">yourself</button><button type="button">yourselves</button></span></div>
+<div class="ch" data-a="each other"><span class="n">7</span><span class="s">Dan and I texted ___ all night.</span><span class="o"><button type="button">ourselves</button><button type="button">us</button><button type="button">each other</button><button type="button">yourselves</button></span></div>
+<div class="ch" data-a="themselves"><span class="n">8</span><span class="s">They took a selfie of ___ in front of the Eiffel Tower.</span><span class="o"><button type="button">each other</button><button type="button">themselves</button><button type="button">themself</button><button type="button">theirselves</button></span></div>
+<div class="ch" data-a="ourselves"><span class="n">9</span><span class="s">We were so tired that we just threw ___ onto the sofa.</span><span class="o"><button type="button">ourself</button><button type="button">us</button><button type="button">each other</button><button type="button">ourselves</button></span></div>
+<div class="ch" data-a="each other"><span class="n">10</span><span class="s">Lily and Max are angry. They aren’t speaking to ___.</span><span class="o"><button type="button">them</button><button type="button">themselves</button><button type="button">theirselves</button><button type="button">each other</button></span></div>
+<div class="ch" data-a="himself"><span class="n">11</span><span class="s">Tom fell off his bike and hurt ___.</span><span class="o"><button type="button">each other</button><button type="button">themselves</button><button type="button">him</button><button type="button">himself</button></span></div>
+<div class="ch" data-a="each other"><span class="n">12</span><span class="s">The neighbours don’t like ___, so they never say hello.</span><span class="o"><button type="button">themself</button><button type="button">theirselves</button><button type="button">each other</button><button type="button">themselves</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; each other · themselves · each other · themselves · each other · each other · each other · themselves · ourselves · each other · himself · each other"><b>Відповіді:</b> each other · themselves · each other · themselves · each other · each other · each other · themselves · ourselves · each other · himself · each other</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="each other|one another"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Max and Tom met at the station and smiled at ___ (each other / themselves).</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="each other|one another"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>We’ve known ___ (each other / ourselves) since kindergarten.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="each other|one another"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Sophie and Lily often borrow clothes from ___ (each other / themselves).</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="each other|one another"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>The twins argue a lot, but they really love ___ (each other / themselves).</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="each other|one another"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Max and Mia sit next to ___ (each other / themselves) in maths.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="herself"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Kate taught ___ (she) to juggle from online videos.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="each other|one another"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>Max and I were sitting opposite ___ (each other / ourselves) on the train.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="each other|one another"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>Mia and her sister look so much like ___ (each other / themselves)!</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; each other · each other · each other · each other · each other · herself · each other · each other"><b>Відповіді:</b> each other · each other · each other · each other · each other · herself · each other · each other</p>
+  </section>
+  <section id="s5" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">5</span>Раунд 4. Пастки: feel, relax і без -self <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="feel"><span class="n">1</span><span class="s">I ___ much better today.</span><span class="o"><button type="button">feel myself</button><button type="button">feel me</button><button type="button">feel</button><button type="button">am feeling myself</button></span></div>
+<div class="ch" data-a="met"><span class="n">2</span><span class="s">We ___ at the café at six.</span><span class="o"><button type="button">met ourselves</button><button type="button">met themselves</button><button type="button">met</button><button type="button">met us</button></span></div>
+<div class="ch" data-a="concentrate"><span class="n">3</span><span class="s">Lily, try to ___ on your homework.</span><span class="o"><button type="button">concentrate yourself</button><button type="button">concentrate you</button><button type="button">concentrate</button><button type="button">concentrating yourself</button></span></div>
+<div class="ch" data-a="laughed"><span class="n">4</span><span class="s">Kate ___ when she saw the funny video.</span><span class="o"><button type="button">laughed</button><button type="button">laughed herself</button><button type="button">was laughing herself</button><button type="button">laughed her</button></span></div>
+<div class="ch" data-a="They got married in June."><span class="n">5</span><span class="s">Знайди речення без помилки: ___</span><span class="o"><button type="button">They married themselves in June.</button><button type="button">They got married themselves in June.</button><button type="button">They got married in June.</button><button type="button">They were married themselves in June.</button></span></div>
+<div class="ch" data-a="himself"><span class="n">6</span><span class="s">Dan built the treehouse all by ___.</span><span class="o"><button type="button">him</button><button type="button">hisself</button><button type="button">himself</button><button type="button">his own</button></span></div>
+<div class="ch" data-a="surprised"><span class="n">7</span><span class="s">I’m ___ to see you here!</span><span class="o"><button type="button">surprised</button><button type="button">surprising myself</button><button type="button">surprised myself</button><button type="button">surprise</button></span></div>
+<div class="ch" data-a="came back"><span class="n">8</span><span class="s">Dan ___ to London last night.</span><span class="o"><button type="button">came back himself</button><button type="button">came back</button><button type="button">returned himself</button><button type="button">came himself back</button></span></div>
+<div class="ch" data-a="I don’t like seeing myself in photos."><span class="n">9</span><span class="s">Яке речення правильне?: ___</span><span class="o"><button type="button">I don’t like to see me in photos.</button><button type="button">I don’t like seeing mine in photos.</button><button type="button">I don’t like seeing meself in photos.</button><button type="button">I don’t like seeing myself in photos.</button></span></div>
+<div class="ch" data-a="learning"><span class="n">10</span><span class="s">Sophie is ___ English with an app.</span><span class="o"><button type="button">learnt herself</button><button type="button">learning</button><button type="button">learn herself</button><button type="button">learning herself</button></span></div>
+<div class="ch" data-a="smiled"><span class="n">11</span><span class="s">Lily ___ at the baby.</span><span class="o"><button type="button">smiled her</button><button type="button">smiled</button><button type="button">was smile</button><button type="button">smiled herself</button></span></div>
+<div class="ch" data-a="They enjoyed themselves at the party."><span class="n">12</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">They enjoyed at the party.</button><button type="button">They enjoyed theirselves at the party.</button><button type="button">They enjoyed itself at the party.</button><button type="button">They enjoyed themselves at the party.</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; feel · met · concentrate · laughed · They got married in June. · himself · surprised · came back · I don’t like seeing myself in photos. · learning · smiled · They enjoyed themselves at the party."><b>Відповіді:</b> feel · met · concentrate · laughed · They got married in June. · himself · surprised · came back · I don’t like seeing myself in photos. · learning · smiled · They enjoyed themselves at the party.</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="relax"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Don’t worry, just ___ (relax / relax yourself) and breathe.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="me"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Can you help ___ (me / myself) with this box, please?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="hurry|hurry up"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>We’re late! Let’s ___ (hurry / hurry ourselves).</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="themselves"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>They did the project ___ (they), without any help.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="me"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Tom asked ___ (me / myself) to wait outside.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="yourselves"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>You and Dan should be proud of ___ (you).</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="itself"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>The phone turned ___ (it) off during the film.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="herself"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>Mia looked at ___ (her / herself) in the mirror.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; relax · me · hurry · themselves · me · yourselves · itself · herself"><b>Відповіді:</b> relax · me · hurry · themselves · me · yourselves · itself · herself</p>
+  </section>
+  <section id="s6" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">6</span>Раунд 5. Фінальний бос <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="himself"><span class="n">1</span><span class="s">Max broke his arm last week. He fell and hurt ___ badly.</span><span class="o"><button type="button">himself</button><button type="button">each other</button><button type="button">his</button><button type="button">him</button></span></div>
+<div class="ch" data-a="enjoyed themselves"><span class="n">2</span><span class="s">The party was amazing. Everyone ___.</span><span class="o"><button type="button">enjoyed themselves</button><button type="button">enjoyed theirselves</button><button type="button">enjoyed itself</button><button type="button">enjoyed</button></span></div>
+<div class="ch" data-a="each other"><span class="n">3</span><span class="s">Lily and Dan had a fight. Now they don’t look at ___.</span><span class="o"><button type="button">theirselves</button><button type="button">themself</button><button type="button">themselves</button><button type="button">each other</button></span></div>
+<div class="ch" data-a="feel"><span class="n">4</span><span class="s">We’re in a new city. We don’t know anyone, so we ___ a bit lonely.</span><span class="o"><button type="button">feel ourselves</button><button type="button">feel each other</button><button type="button">feel</button><button type="button">feel us</button></span></div>
+<div class="ch" data-a="itself"><span class="n">5</span><span class="s">My cat doesn’t like the vet. It always hides ___ under the bed.</span><span class="o"><button type="button">itselves</button><button type="button">its</button><button type="button">itself</button><button type="button">it</button></span></div>
+<div class="ch" data-a="each other"><span class="n">6</span><span class="s">Sophie and her brother live far apart, but they call ___ every Sunday.</span><span class="o"><button type="button">himself</button><button type="button">each other</button><button type="button">theirselves</button><button type="button">themselves</button></span></div>
+<div class="ch" data-a="by himself"><span class="n">7</span><span class="s">Grandpa is 90, but he still does his shopping ___.</span><span class="o"><button type="button">by himself</button><button type="button">on himself</button><button type="button">by him</button><button type="button">by his own</button></span></div>
+<div class="ch" data-a="yourself"><span class="n">8</span><span class="s">Tom, you can’t blame Max. You did it ___!</span><span class="o"><button type="button">himself</button><button type="button">yourself</button><button type="button">you</button><button type="button">yourselves</button></span></div>
+<div class="ch" data-a="herself"><span class="n">9</span><span class="s">Lily looked in the mirror and didn’t recognise ___ with blue hair!</span><span class="o"><button type="button">her</button><button type="button">hers</button><button type="button">each other</button><button type="button">herself</button></span></div>
+<div class="ch" data-a="feel"><span class="n">10</span><span class="s">I’m sorry, I can’t come. I don’t ___ well today.</span><span class="o"><button type="button">feeling</button><button type="button">feel me</button><button type="button">feel myself</button><button type="button">feel</button></span></div>
+<div class="ch" data-a="each other"><span class="n">11</span><span class="s">We’re best friends. We tell ___ all our secrets.</span><span class="o"><button type="button">ourselves</button><button type="button">each other</button><button type="button">us</button><button type="button">our</button></span></div>
+<div class="ch" data-a="I met Tom yesterday."><span class="n">12</span><span class="s">Яке речення звучить правильно?: ___</span><span class="o"><button type="button">I meeted Tom yesterday.</button><button type="button">I met myself with Tom yesterday.</button><button type="button">I met Tom yesterday.</button><button type="button">I met with myself Tom yesterday.</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; himself · enjoyed themselves · each other · feel · itself · each other · by himself · yourself · herself · feel · each other · I met Tom yesterday."><b>Відповіді:</b> himself · enjoyed themselves · each other · feel · itself · each other · by himself · yourself · herself · feel · each other · I met Tom yesterday.</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="ourselves"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Kate and I don’t need a teacher. We can practise by ___ (we).</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="myself|by myself|on my own"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Don’t help me, Mum! I want to do it ___ (I).</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="yourselves"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>The guests arrived, and Mum said: “Please help ___ (you) to drinks!”</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="concentrate"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Turn off your phone so you can ___ (concentrate / concentrate yourself) on your essay.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="itself"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>The machine cleans ___ (it) after every use.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="each other|one another"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Lily and Mia exchanged gifts: they gave ___ (each other / themselves) bracelets.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="yourself"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>Did you cut your hair ___ (you), Dan? It looks great!</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="themselves"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>Did the kids make the cake by ___ (they)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; ourselves · myself · yourselves · concentrate · itself · each other · yourself · themselves"><b>Відповіді:</b> ourselves · myself · yourselves · concentrate · itself · each other · yourself · themselves</p>
+  </section>
+  <section class="end"><h2>Great job!</h2><p>See you next lesson.</p></section>
+</div>
+<div class="toast" id="toast"></div>
+<script>window.MURLY_LESSON={"id": "lib-drill-reflexive-pronouns", "title": "Myself, yourself, each other: 100 tasks", "homework": ["s2", "s3", "s4", "s5", "s6"], "hw": {"s2": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "I cut {myself|me|mine|my} while I was making a salad.\nTom looked at {himself|hisself|him|his} in the mirror.\nThe kids built the sandcastle all by {themselves|theirselves|themself|them}.\nBe careful with that knife, Max! Don’t hurt {yourself|yourselves|you|himself}.\nThe robot can switch {itself|it|its|itselves} off.\nI wrote this song {myself|me|mine|by me}.\nSophie and I organised the party {ourselves|themselves|ourself|myself}.\nLily burnt {herself|her|sheself|hers} on the hot pan.\nKate, you should be proud of {yourself|you|yours|herself}!\nMax and Dan, please behave {yourselves|yourself|themselves|ourselves} at the museum.\nMy little brother can tie his shoes {himself|him|hisself|his own} now.\nThe players were really angry with {themselves|theirselves|themself|their} after the match."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "Emma taught [herself] (she) to draw anime characters.\nWe made [ourselves] (we) pancakes for breakfast.\nDan, did you paint this picture [yourself] (you)?\nGirls, please help [yourselves] (you) to some juice!\nMy grandad fixed the car [himself] (he).\nThe cat got [itself] (it) stuck in the box again.\nThey introduced [themselves] (they) to the new neighbours.\nI don’t need help. I can do it [myself/by myself/on my own] (I)."}], "s3": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Grandma lives {by herself|by her|by she|with herself} in a small house by the lake.\nDid you {enjoy yourself|enjoy|enjoy you|enjoyed yourself} at the party last night?\nKids, there’s pizza on the table. Help {yourselves|yourself|you|themselves}!\nDan often talks to {himself|him|his|he} when he’s solving a puzzle.\nKate travelled around Italy on {her|herself|she|hers} own.\nWe really enjoyed {ourselves|us|ourself|themselves} at the water park.\nMax hurt {himself|him|his|he} playing basketball.\nAre you two OK? Did you hurt {yourselves|yourself|themselves|ourselves}?\nThe door opened by {itself|it|its|itselves}.\nMy little brother is scared of being at home {by himself|by him|on himself|with himself}.\nTom and Lily are going camping {on their own|on themselves|by their own|by them}. No parents!\nWe painted the room {ourselves|us|ours|our own}, without any help."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "I don’t like going to the cinema by [myself] (I).\nWelcome, Lily! Come in and make [yourself] (you) at home.\nDon’t worry about the interview. Just be [yourself] (you)!\nThe kids decorated the classroom all by [themselves] (they).\nMum, can I go to the shop on [my] (I) own?\nDon’t blame [yourself] (you), Sophie. It wasn’t your fault.\nEmma, help [yourself] (you) to more salad.\nHave fun at the concert, guys! Enjoy [yourselves] (you)!"}], "s4": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Lily and Kate have been friends for years. They tell {each other|themselves|theirselves|them} everything.\nAfter the long hike, the girls looked at {themselves|each other|theirselves|themself} in the shop window and laughed at their messy hair.\nEmma and Mia write to {each other|themselves|their|theirselves} every week.\nThe kids hid {themselves|each other|them|theirselves} behind the sofa.\nAfter the game, the two teams shook hands with {each other|themselves|theirselves|ourselves}.\nHow long have you two known {each other|yourselves|yourself|themselves}?\nDan and I texted {each other|ourselves|us|yourselves} all night.\nThey took a selfie of {themselves|each other|themself|theirselves} in front of the Eiffel Tower.\nWe were so tired that we just threw {ourselves|each other|us|ourself} onto the sofa.\nLily and Max are angry. They aren’t speaking to {each other|themselves|them|theirselves}.\nTom fell off his bike and hurt {himself|each other|him|themselves}.\nThe neighbours don’t like {each other|themselves|theirselves|themself}, so they never say hello."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "Max and Tom met at the station and smiled at [each other/one another] (each other / themselves).\nWe’ve known [each other/one another] (each other / ourselves) since kindergarten.\nSophie and Lily often borrow clothes from [each other/one another] (each other / themselves).\nThe twins argue a lot, but they really love [each other/one another] (each other / themselves).\nMax and Mia sit next to [each other/one another] (each other / themselves) in maths.\nKate taught [herself] (she) to juggle from online videos.\nMax and I were sitting opposite [each other/one another] (each other / ourselves) on the train.\nMia and her sister look so much like [each other/one another] (each other / themselves)!"}], "s5": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "I {feel|feel myself|feel me|am feeling myself} much better today.\nWe {met|met ourselves|met us|met themselves} at the café at six.\nLily, try to {concentrate|concentrate yourself|concentrate you|concentrating yourself} on your homework.\nKate {laughed|laughed herself|laughed her|was laughing herself} when she saw the funny video.\nЗнайди речення без помилки: {They got married in June.|They got married themselves in June.|They married themselves in June.|They were married themselves in June.}\nDan built the treehouse all by {himself|hisself|his own|him}.\nI’m {surprised|surprised myself|surprising myself|surprise} to see you here!\nDan {came back|came back himself|returned himself|came himself back} to London last night.\nЯке речення правильне?: {I don’t like seeing myself in photos.|I don’t like to see me in photos.|I don’t like seeing mine in photos.|I don’t like seeing meself in photos.}\nSophie is {learning|learning herself|learn herself|learnt herself} English with an app.\nLily {smiled|smiled herself|smiled her|was smile} at the baby.\nОбери правильне речення: {They enjoyed themselves at the party.|They enjoyed at the party.|They enjoyed theirselves at the party.|They enjoyed itself at the party.}"}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "Don’t worry, just [relax] (relax / relax yourself) and breathe.\nCan you help [me] (me / myself) with this box, please?\nWe’re late! Let’s [hurry/hurry up] (hurry / hurry ourselves).\nThey did the project [themselves] (they), without any help.\nTom asked [me] (me / myself) to wait outside.\nYou and Dan should be proud of [yourselves] (you).\nThe phone turned [itself] (it) off during the film.\nMia looked at [herself] (her / herself) in the mirror."}], "s6": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Max broke his arm last week. He fell and hurt {himself|him|his|each other} badly.\nThe party was amazing. Everyone {enjoyed themselves|enjoyed|enjoyed itself|enjoyed theirselves}.\nLily and Dan had a fight. Now they don’t look at {each other|themselves|themself|theirselves}.\nWe’re in a new city. We don’t know anyone, so we {feel|feel ourselves|feel us|feel each other} a bit lonely.\nMy cat doesn’t like the vet. It always hides {itself|it|its|itselves} under the bed.\nSophie and her brother live far apart, but they call {each other|themselves|theirselves|himself} every Sunday.\nGrandpa is 90, but he still does his shopping {by himself|by him|by his own|on himself}.\nTom, you can’t blame Max. You did it {yourself|himself|yourselves|you}!\nLily looked in the mirror and didn’t recognise {herself|her|hers|each other} with blue hair!\nI’m sorry, I can’t come. I don’t {feel|feel me|feel myself|feeling} well today.\nWe’re best friends. We tell {each other|ourselves|us|our} all our secrets.\nЯке речення звучить правильно?: {I met Tom yesterday.|I met myself with Tom yesterday.|I met with myself Tom yesterday.|I meeted Tom yesterday.}"}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "Kate and I don’t need a teacher. We can practise by [ourselves] (we).\nDon’t help me, Mum! I want to do it [myself/by myself/on my own] (I).\nThe guests arrived, and Mum said: “Please help [yourselves] (you) to drinks!”\nTurn off your phone so you can [concentrate] (concentrate / concentrate yourself) on your essay.\nThe machine cleans [itself] (it) after every use.\nLily and Mia exchanged gifts: they gave [each other/one another] (each other / themselves) bracelets.\nDid you cut your hair [yourself] (you), Dan? It looks great!\nDid the kids make the cake by [themselves] (they)?"}]}};</script>
+<script>
+(function(){var l=(document.cookie.match(/(?:^|; )murly_lang=(\w+)/)||[])[1];try{l=l||localStorage.getItem('murly:tlang')}catch(e){}l=l==='ru'?'ru':'uk';document.querySelectorAll('[data-pairs-'+l+']').forEach(function(b){b.dataset.pairs=b.getAttribute('data-pairs-'+l)});})();
+</script>
+<script>
+const $ = (id) => document.getElementById(id);
+const LIS = {};
+function say(w, rate) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; const v = speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang) && /Google|Natural|Libby|Sonia|Daniel/.test(x.name)) || speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang)); if (v) u.voice = v; u.rate = rate || .95; speechSynthesis.speak(u); } catch (e) { } }
+const sh = (a) => a.map((x) => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map((x) => x[1]);
+document.querySelectorAll('.voc div').forEach((d) => d.onclick = () => say(d.dataset.say));
+document.querySelectorAll('[data-play]').forEach((b) => b.onclick = () => say(LIS[b.dataset.play], b.dataset.slow ? .75 : .95));
+document.querySelectorAll('[data-stop]').forEach((b) => b.onclick = () => { try { speechSynthesis.cancel(); } catch (e) { } });
+document.querySelectorAll('.ch').forEach((q) => q.querySelectorAll('button').forEach((b) => b.onclick = () => { if (q.classList.contains('ok')) return; const ok = b.textContent === q.dataset.a; q.classList.toggle('ok', ok); q.classList.toggle('bad', !ok); if (ok) { const s = q.querySelector('.s'); if (s && s.textContent.includes('___')) { s.textContent = s.textContent.replace('___', q.dataset.a); } } }));
+const norm = (x) => x.toLowerCase().replace(/[’']/g, "'").replace(/[,;:"“”«»]/g, ' ').replace(/\s+/g, ' ').replace(/[.!?]$/, '').trim();
+document.querySelectorAll('.ty').forEach((r) => { const inp = r.querySelector('input'); const chk = () => { const ok = r.dataset.a.split('|').some((a) => norm(a) === norm(inp.value)); r.classList.toggle('ok', ok); r.classList.toggle('bad', !ok && inp.value.trim() !== ''); }; r.querySelector('button').onclick = chk; inp.onkeydown = (e) => { if (e.key === 'Enter') chk(); }; });
+document.querySelectorAll('[data-mt]').forEach((box) => { const pairs = JSON.parse(box.dataset.pairs); const L = sh(pairs.map((p) => p[0])), R = sh(pairs.map((p) => p[1])); let sel = null, done = 0, err = 0; box.innerHTML = L.map((w, i) => `<button type="button" data-w="${w}">${w}</button><button type="button" data-d="${R[i]}">${R[i]}</button>`).join('');
+  box.querySelectorAll('button').forEach((b) => b.onclick = () => { if (b.classList.contains('done')) return; if (!sel || (sel.dataset.w && b.dataset.w) || (sel.dataset.d && b.dataset.d)) { if (sel) sel.classList.remove('sel'); sel = b; b.classList.add('sel'); return; } const w = sel.dataset.w || b.dataset.w, d = sel.dataset.d || b.dataset.d; if (pairs.some((p) => p[0] === w && p[1] === d)) { sel.classList.add('done'); b.classList.add('done'); done++; say(w); if (done === pairs.length) document.querySelector(`[data-mtres="${box.dataset.mt}"]`).textContent = err ? `Done! Mistakes: ${err}` : 'Perfect!'; } else err++; sel.classList.remove('sel'); sel = null; }); });
+document.querySelectorAll('[data-vids]').forEach((box) => JSON.parse(box.dataset.vids).forEach(([id, title, ch, qs]) => { const d = document.createElement('div'); d.className = 'vid'; d.innerHTML = `<div class="frame"><button class="play" type="button" style="background-image:url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)"><span>PLAY</span></button></div><div class="info"><h3>${title}</h3><small>YouTube · ${ch}</small><ol>${qs.map((q) => `<li>${q}</li>`).join('')}</ol></div>`; d.querySelector('.play').onclick = (e) => { e.currentTarget.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&cc_load_policy=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${title}"></iframe>`; }; box.appendChild(d); }));
+document.querySelectorAll('[data-spin]').forEach((b) => { const list = JSON.parse(b.dataset.spin); let last = -1; b.onclick = () => { let i; do { i = Math.floor(Math.random() * list.length); } while (i === last && list.length > 1); last = i; document.getElementById(b.dataset.target).textContent = list[i]; }; });
+try { const k = 'murly:' + (window.MURLY_LESSON ? MURLY_LESSON.id : 'x') + ':hw'; const t = $('hwText'); if (t) { t.value = localStorage.getItem(k) || ''; t.oninput = () => localStorage.setItem(k, t.value); } } catch (e) { }
+const STAGES = [...document.querySelectorAll('.wrap > section[id]')];
+$('stages').innerHTML = STAGES.map((s) => `<a href="#${s.id}"><b>${s.querySelector('.lk-n').textContent}</b><span>${s.dataset.stage}</span><small>${s.dataset.min !== '0' ? s.dataset.min + ' min' : 'at home'}</small></a>`).join('');
+$('teacherBtn').onclick = (e) => { const on = document.body.classList.toggle('teacher'); e.currentTarget.textContent = on ? 'Student version' : 'Teacher version'; };
+</script>
+<script src="/game-lessons/kit.js" defer></script>
+</body>
+</html>

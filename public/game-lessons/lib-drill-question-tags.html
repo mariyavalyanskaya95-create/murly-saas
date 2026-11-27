@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Question tags: 100 tasks (B1) | Murly</title>
+<link rel="icon" href="/favicon.svg">
+<meta name="description" content="Повторимо правило: Розділові питання (question tags)
+100 завдань від простого до складного
+Розберемо головні пастки">
+<link rel="canonical" href="https://murly.com.ua/game-lessons/lib-drill-question-tags.html">
+<style>
+:root{--paper:#F3F0EA;--ink:#17181C;--violet:#3D4A7A;--lav:#D9D3C7;--pink:#E9C9BC;--green:#D4E2CF;--white:#fff;--muted:#62646B;--accent:#B5482F}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+/* hero */
+.hero{background:linear-gradient(rgba(16,17,22,.5),rgba(16,17,22,.72)),url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1400&q=70&auto=format&fit=crop");color:#fff;padding:70px 18px 56px;text-align:center;position:relative;overflow:hidden}
+.hero .kicker{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#E9C9BC;font-weight:700}
+.hero .cr{position:absolute;right:12px;bottom:8px;font-size:11px;color:rgba(255,255,255,.6)}
+.hero h1{margin:8px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(36px,6vw,64px);letter-spacing:-.5px;font-weight:700}
+.hero h1 span{color:var(--pink);font-style:italic}
+.hero p{margin:12px 0 0;font-size:17px;color:#e6e2da}
+.hero .flags{display:flex;justify-content:center;gap:12px;margin-top:22px;flex-wrap:wrap}
+.hero .flags svg{width:40px;height:26px;border-radius:3px;opacity:.9}
+/* sections */
+section{margin-top:30px;background:var(--white);border-radius:18px;padding:28px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.05)}
+section h2{margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tag{font-family:"Segoe UI",system-ui,sans-serif;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--paper);color:var(--accent);text-transform:uppercase;letter-spacing:1px}
+.lk-n{display:inline-grid;place-items:center;width:42px;height:42px;background:var(--violet);color:#fff;border-radius:50%;font-size:21px;flex:none}
+.lk-mode{font-size:13px;font-weight:700;border:2px dashed var(--lav);color:var(--muted);padding:2px 10px;border-radius:999px}
+.lk-ins{font-size:17px;background:var(--paper);border-radius:12px;padding:10px 14px;margin:6px 0 18px}
+.lk-sub{margin:24px 0 10px;font-size:19px}
+.btn{font:inherit;font-weight:700;border:0;border-radius:999px;background:var(--ink);color:#fff;padding:10px 20px;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+.btn.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+/* teacher */
+.lk-tbtn{position:fixed;right:16px;top:70px;z-index:45;font:inherit;font-weight:800;border:2px solid var(--ink);background:var(--pink);padding:8px 14px;border-radius:12px;cursor:pointer}
+body.teacher .lk-tbtn{background:var(--green)}
+.lk-ans,.lk-tnote{display:none}
+body.teacher .lk-ans{display:block;margin-top:8px;font-weight:700;color:#1d5a12;background:var(--green);border-left:5px solid #5aa845;padding:6px 10px;font-size:15px;border-radius:6px}
+body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff3f7;border-left:5px solid #d9789a;padding:8px 12px;font-size:15px;border-radius:6px}
+/* overview */
+.lk-overview ul{font-size:17px;line-height:1.7;margin:6px 0 16px}
+.lk-stages{display:flex;flex-wrap:wrap;gap:8px}
+.lk-stages a{display:grid;border-radius:14px;padding:8px 12px;text-decoration:none;color:var(--ink);background:var(--paper);font-weight:700;min-width:100px}
+.lk-stages a span{text-transform:capitalize}
+.lk-stages a b{font-size:20px;color:var(--violet)}
+.lk-stages a small{font-weight:600;color:var(--muted)}
+/* warm-up */
+.taxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tax{background:var(--paper);border-radius:18px;padding:16px;display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center}
+.tax svg{width:56px;height:56px}
+.tax b{display:block;font-size:17px}
+.tax small{color:var(--muted);font-size:14px}
+.qs{display:grid;gap:10px;margin-top:18px}
+.qs div{background:var(--green);border-radius:14px;padding:10px 16px;font-size:18px;font-weight:600}
+.phr{background:#fff7e8;border-radius:14px;padding:12px 16px;margin-top:16px;font-size:15px}
+.phr ul{margin:6px 0 0;padding-left:18px}
+.fic{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:16px}
+.fic .c{background:#fff;border:2px solid #1B2140;border-radius:16px;padding:14px 16px;box-shadow:3px 3px 0 #1B2140}
+.fic .c b{display:block;font-size:18px;line-height:1.35;margin-bottom:8px}
+.fic .c .k{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.fic .c .k span{font-size:13px;background:#eef1fb;border-radius:999px;padding:3px 10px}
+.fic .c details{margin-top:8px;font-size:15px;color:#3b4160}
+.fic .c summary{cursor:pointer;font-weight:700;color:#534AB7}
+.fi-n{display:inline-flex;width:28px;height:28px;border-radius:50%;background:#2F4BA0;color:#fff;align-items:center;justify-content:center;font-size:14px;margin-right:6px}
+/* vocab */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:12px}
+.vc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:2px solid transparent;transition:border-color .2s,transform .2s}
+.vc:hover{border-color:var(--violet);transform:translateY(-2px)}
+.vc b{font-size:18px;display:flex;align-items:center;gap:8px}
+.vc b svg{width:20px;height:20px;flex:none;color:var(--violet)}
+.vc p{margin:6px 0 0;font-size:14px;color:var(--muted)}
+.vc em{display:block;margin-top:6px;font-size:14px;color:var(--violet);font-style:normal;font-weight:600}
+.vc.played{background:#e6ecfb}
+/* grammar */
+.gram{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.gb{border-radius:18px;padding:16px}
+.gb h3{margin:0 0 6px;font-size:19px}
+.gb .f{display:inline-block;background:#fff;border-radius:8px;padding:3px 10px;font-weight:800;margin:4px 0;font-family:Consolas,monospace;font-size:15px}
+.gb p{margin:6px 0 0;font-size:15px}
+.g1{background:var(--pink)}.g2{background:var(--lav)}.g3{background:var(--green)}.g4{background:#fbe7c6}
+.warn{margin-top:14px;background:var(--ink);color:#fff;border-radius:14px;padding:12px 16px;font-size:16px}
+.warn b{color:var(--pink)}
+.q{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:2px dashed var(--paper);font-size:18px}
+.q:last-child{border-bottom:0}
+.q .n{width:32px;height:32px;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;border-radius:50%;font-weight:800;font-size:15px}
+.opt{font:inherit;font-size:16px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:10px;padding:4px 12px;cursor:pointer;margin:0 2px}
+.opt.ok{background:var(--green);border-color:#5aa845}
+.opt.bad{background:var(--pink);animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+/* tour */
+.tour{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.law{border-radius:22px;overflow:hidden;background:var(--paper);display:flex;flex-direction:column}
+.law .pic{height:150px;display:grid;place-items:center;position:relative}
+.law .pic svg.ill{width:130px;height:130px}
+.law .pic svg.fl{position:absolute;left:14px;top:14px;width:46px;height:30px;border-radius:5px;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.law .pic .no{position:absolute;right:14px;top:14px;background:var(--ink);color:#fff;font-weight:800;border-radius:999px;padding:2px 10px;font-size:13px}
+.law .body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.law h3{margin:0;font-size:20px}
+.law .where{font-size:13px;font-weight:800;color:var(--violet);text-transform:uppercase;letter-spacing:1px}
+.law p{margin:0;font-size:16px}
+.law .why{font-size:14px;color:var(--muted)}
+.law .dq{margin-top:auto;background:#fff;border-radius:12px;padding:8px 12px;font-weight:700;font-size:15px}
+.law .lsn{font:inherit;font-size:13px;font-weight:700;background:none;border:0;color:var(--violet);cursor:pointer;padding:0;text-align:left}
+/* game */
+.game{max-width:720px;margin:0 auto;text-align:center}
+.score{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.score span{background:var(--paper);border-radius:999px;padding:6px 16px;font-weight:800}
+.stmt{background:var(--ink);color:#fff;border-radius:22px;padding:28px 24px;min-height:150px;display:grid;place-items:center;font-size:23px;font-weight:700;position:relative}
+.stmt small{position:absolute;top:12px;left:18px;font-size:13px;color:var(--lav);font-weight:700}
+.choose{display:flex;justify-content:center;gap:14px;margin:18px 0}
+.choose button{font:inherit;font-size:18px;font-weight:700;border:2px solid var(--ink);border-radius:999px;padding:12px 28px;cursor:pointer}
+.choose .bl{background:var(--green)}.choose .bm{background:var(--pink)}
+.choose button:disabled{opacity:.5;cursor:default}
+.verdict{min-height:70px;font-size:17px;background:var(--paper);border-radius:16px;padding:12px 16px;text-align:left}
+.verdict b.r{color:#2d7a1d}.verdict b.w{color:#b23a62}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.dots i{width:14px;height:14px;border-radius:50%;background:var(--paper)}
+.dots i.r{background:#7cc663}.dots i.w{background:#e47b9f}.dots i.c{outline:3px solid var(--violet)}
+.final{font-size:22px;font-weight:800;color:var(--violet)}
+/* invent */
+.inv{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.frames{display:grid;gap:10px}
+.frames label{font-size:14px;font-weight:700;color:var(--muted)}
+.frames select,.frames input{font:inherit;width:100%;padding:8px 10px;border:2px solid var(--lav);border-radius:10px;background:#fff}
+.poster{background:var(--paper);border:3px solid var(--ink);border-radius:20px;padding:22px;text-align:center;min-height:260px;display:flex;flex-direction:column;gap:10px;justify-content:center}
+.poster .seal{width:70px;height:70px;margin:0 auto}
+.poster h3{margin:0;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--violet)}
+.poster .rule{font-size:22px;font-weight:800}
+.poster .pen{font-size:16px;color:var(--muted)}
+.ideas{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ideas span{background:var(--pink);border-radius:999px;padding:5px 12px;font-size:14px;font-weight:600}
+/* roleplay */
+.rp{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.role{border-radius:20px;padding:18px}
+.role h3{margin:0 0 6px;display:flex;align-items:center;gap:10px}
+.role h3 svg{width:42px;height:42px}
+.role ul{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.r1{background:var(--lav)}.r2{background:var(--green)}
+.scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:16px}
+.sc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:3px solid transparent}
+.sc.on{border-color:var(--violet);background:#fff}
+.sc b{display:block;font-size:17px;margin-bottom:4px}
+.sc p{margin:0;font-size:15px}
+.timer{font-size:40px;font-weight:800;text-align:center;margin:14px 0 6px;color:var(--violet)}
+.ctr{text-align:center}
+/* homework */
+.hwb{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hwc{background:var(--paper);border-radius:18px;padding:18px}
+.hwc h3{margin:0 0 8px}
+.hwc ol,.hwc ul{margin:6px 0 0;padding-left:20px;line-height:1.7}
+.hwc textarea{width:100%;min-height:150px;font:inherit;border:2px solid var(--lav);border-radius:12px;padding:10px;margin-top:10px}
+.end{text-align:center;background:var(--ink);color:#fff;box-shadow:none}
+.end h2{justify-content:center}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(140px);background:var(--ink);color:#fff;font-weight:800;padding:12px 22px;border-radius:14px;transition:transform .3s;z-index:50}
+.toast.show{transform:translateX(-50%) translateY(0)}
+/* photos */
+.ph{margin:0}
+.ph img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;background:var(--paper)}
+.ph figcaption{font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.2px}
+.tax{grid-template-columns:1fr !important;padding:12px !important}
+.law .pic{height:auto !important;display:block !important;padding:0;position:relative}
+.law .pic .ph img{border-radius:0;aspect-ratio:16/10;transition:filter .5s}
+.law .pic .ph figcaption{padding:4px 12px 0}
+.law.hide .pic .ph img{filter:blur(10px) grayscale(.6)}
+.law.hide .reveal-body,.law.hide .fl,.law.hide .where{visibility:hidden}
+.law .clue{font-size:15px;font-style:italic;color:var(--ink)}
+.law .gc{display:flex;flex-wrap:wrap;gap:6px}
+.law .gc button{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:4px 12px;cursor:pointer}
+.law .gc button.ok{background:var(--green)}.law .gc button.bad{background:var(--pink)}
+.law:not(.hide) .guess{display:none}
+.fair{display:grid;gap:4px;background:#fff;border-radius:12px;padding:8px 12px}
+.fair .ends{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.fair input{width:100%;accent-color:var(--accent)}
+.fair output{font-size:14px;font-weight:700;color:var(--accent)}
+.gph{max-width:720px;margin:0 auto 12px}
+.gph img{aspect-ratio:21/9}
+.fine{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.fq{background:var(--paper);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.fq h3{margin:0;font-size:18px}
+.fq .opts{display:flex;flex-wrap:wrap;gap:6px}
+.fq .opts button{font:inherit;font-size:14px;font-weight:700;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 12px;cursor:pointer}
+.fq .opts button.ok{background:var(--green)}.fq .opts button.bad{background:var(--pink)}
+.fq .res{font-size:15px;min-height:22px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{position:relative;aspect-ratio:16/9;background:#111}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;cursor:pointer;background:#111 center/cover;display:grid;place-items:center}
+.vid .play span{background:rgba(0,0,0,.7);color:#fff;font-weight:700;border-radius:999px;padding:10px 20px;font-size:15px;letter-spacing:1px}
+.vid .info{padding:14px 16px}
+.vid .info h3{margin:0 0 2px;font-size:18px}
+.vid .info small{color:var(--muted)}
+.vid .info ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+@media(max-width:760px){.inv,.rp,.hwb{grid-template-columns:1fr}.lk-tbtn{top:auto;bottom:70px}}
+
+.pr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.pb{border-radius:18px;padding:16px 18px}
+.pb h3{margin:0;font-family:Georgia,serif;font-size:30px}
+.pb .m{font-size:15px;color:var(--muted);margin:2px 0 8px}
+.pb .chips{display:flex;flex-wrap:wrap;gap:6px}
+.pb .chips span{background:#fff;border-radius:999px;padding:4px 11px;font-size:14px;font-weight:600}
+.pb ul{margin:10px 0 0;padding-left:18px;font-size:15px}
+.p-in{background:#DCE6F5}.p-at{background:#F3D9CF}.p-on{background:#D4E2CF}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-size:15px;margin-top:10px}
+.ex div{background:var(--paper);border-radius:10px;padding:8px 12px}
+.ex b{color:var(--accent)}
+.q{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.q .n{font-weight:800;color:var(--violet);min-width:24px}
+.q .gap{display:inline-block;min-width:44px;border-bottom:2px solid var(--ink);text-align:center;font-weight:800}
+.q .opts{margin-left:auto;display:flex;gap:6px}
+.q .opts button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 14px;cursor:pointer}
+.q.ok{background:#DDEED7}.q.ok .gap{color:#2F7A3B}
+.q.bad{background:#F6DAD3}
+.score{font-weight:800;margin-top:12px}
+.text{font-size:18px;line-height:1.75;background:var(--paper);border-radius:16px;padding:18px 22px}
+.text h3{margin:0 0 6px;font-family:Georgia,serif;font-size:24px}
+.text p{margin:0 0 12px}
+.text.hl mark{background:#F3D9CF;border-radius:4px;padding:0 3px;font-weight:700}
+.tf{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:9px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.tf .opts{margin-left:auto;display:flex;gap:6px}
+.tf button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.tf.ok{background:#DDEED7}.tf.bad{background:#F6DAD3}
+.disc{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px;margin-top:6px}
+.disc div{background:var(--green);border-radius:14px;padding:12px 16px;font-size:17px;font-weight:600}
+.disc div i{font-style:normal;color:var(--violet);margin-right:6px}
+.spin{text-align:center;margin-top:16px}
+.spin .card{display:inline-block;min-height:80px;min-width:min(560px,100%);background:var(--ink);color:#fff;border-radius:18px;padding:20px 24px;font-size:22px;font-weight:700;margin-bottom:12px}
+@media(max-width:700px){.ex{grid-template-columns:1fr}}
+
+.hero{background-size:cover!important;background-position:center!important}
+.voc{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.voc div{background:var(--paper);border-radius:14px;padding:10px 14px;cursor:pointer;border:2px solid transparent}
+.voc div:hover{border-color:var(--violet)}
+.voc b{display:block;font-size:18px}.voc span{display:block;color:var(--accent);font-weight:700;font-size:15px}.voc em{display:block;font-size:14px;color:var(--muted);margin-top:3px}
+.mt{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:10px}
+.mt button{font:inherit;font-size:16px;text-align:left;border:2px solid var(--ink);background:#fff;border-radius:14px;padding:9px 14px;cursor:pointer}
+.mt button.sel{background:#FFE7A8}.mt button.done{background:#CDE8C6;border-color:#4C9A5B;cursor:default}
+.ch{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ch .n{font-weight:800;color:var(--violet);min-width:24px}
+.ch .o{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.ch .o button{font:inherit;font-size:15px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.ch.ok{background:#DDEED7}.ch.bad{background:#F6DAD3}
+.ty{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ty input{font:inherit;border:2px solid var(--ink);border-radius:10px;padding:4px 10px;width:220px}
+.ty.ok{background:#DDEED7}.ty.bad{background:#F6DAD3}
+.ty small{color:var(--muted)}
+.photo{width:100%;height:300px;object-fit:cover;border-radius:16px;display:block}
+.cap{font-size:11px;color:var(--muted);margin:4px 0 12px}
+.pics{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.pics figure{margin:0;background:var(--paper);border-radius:16px;overflow:hidden}
+.pics img{width:100%;height:170px;object-fit:cover;display:block}
+.pics figcaption{padding:8px 12px;font-weight:700}
+.pics small{display:block;font-weight:400;font-size:10px;color:var(--muted)}
+.lis{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:8px 0 14px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{aspect-ratio:16/9;background:#000;position:relative}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;background-size:cover;background-position:center;cursor:pointer;display:grid;place-items:center}
+.vid .play span{background:#E5484D;color:#fff;font-weight:800;border-radius:12px;padding:10px 20px}
+.vid .info{padding:12px 16px}.vid h3{margin:0;font-size:18px}.vid small{color:var(--muted)}
+.vid ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th,.tbl td{border:1px solid #ddd;padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--paper)}
+@media(max-width:700px){.mt{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="/game-lessons/kit.css">
+</head>
+<body>
+<header class="hero">
+  <div class="kicker">B1 · teens · Граматика: тренажер Розділові питання (question tags)</div>
+  <h1>Question tags: 100 tasks</h1>
+  <p>B1 · 6 parts · 60 min</p>
+  <span class="cr">Photo: Unsplash</span>
+</header>
+<button class="lk-tbtn" id="teacherBtn" type="button">Teacher version</button>
+<div class="wrap">
+  <section class="lk-overview">
+    <h2>In this lesson you will:</h2>
+    <ul><li>Повторимо правило: Розділові питання (question tags)
+100 завдань від простого до складного
+Розберемо головні пастки</li></ul>
+    <div class="lk-stages" id="stages"></div>
+  </section>
+  <section id="s1" data-stage="practice" data-min="10">
+    <h2><span class="lk-n">1</span>Теорія <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<div class="warn"><p><b>Коли вживаємо</b></p><p>Просимо погодитися: ми впевнені (інтонація вниз): It’s a beautiful day, isn’t it? (Гарний сьогодні день, правда ж?)</p><p>Перепитуємо: ми не впевнені (інтонація вгору): You’re coming tomorrow, aren’t you? (Ти ж прийдеш завтра, так?)</p><p>Заперечне речення → стверджувальний хвостик: Dan doesn’t eat fish, does he? (Ден не їсть рибу, так?)</p><p>Ввічливе прохання або пропозиція: Pass me the salt, will you? Let’s order pizza, shall we? (Передай мені сіль, добре? Замовмо піцу, гаразд?)</p></div>
+    <div class="warn"><p><b>Форми</b></p><p>+ → −  стверджувальне речення + заперечний хвостик: допоміжне з n’t + займенник. Приклад: Lily is your cousin, isn’t she?</p><p>− → +  заперечне речення + стверджувальний хвостик. Приклад: You can’t swim, can you?</p><p>do  немає допоміжного (Present Simple, Past Simple) → do / does / did. Приклад: Max plays the drums, doesn’t he? You saw it, didn’t you?</p><p>часи  беремо допоміжне, яке вже є в реченні: be, have, will, would, can, should .... Приклад: They’ve left, haven’t they? She’ll help, won’t she?</p><p>особливі  I am → aren’t I; Let’s → shall we; наказ → will you; There is → isn’t there; nobody / everyone → they. Приклад: I’m right, aren’t I? Let’s go, shall we?</p><p>інтонація  вниз ↘: я впевнений, просто погодься; вгору ↗: я справді питаю. Приклад: You’re from Edinburgh, aren’t you? ↘ (I know) / ↗ (I’m not sure)</p></div>
+    <div class="warn"><p><b>Головна пастка</b></p><p>Два плюси або два мінуси. Хвостик має протилежний знак: + речення → − хвостик, − речення → + хвостик. Слова never, nobody, nothing, hardly роблять речення заперечним.</p><p>✗ You never eat meat, don’t you?</p><p>✓ You never eat meat, do you?</p><p>Не те допоміжне і ім’я в хвостику. Хвостик повторює допоміжне з речення; якщо його немає, беремо do / does / did за часом. Ім’я в хвостику завжди замінюємо займенником.</p><p>✗ Sophie lives here, isn’t Sophie?</p><p>✓ Sophie lives here, doesn’t she?</p><p>I am → amn’t I. Форми amn’t немає. Після I am хвостик aren’t I. А після I’m not звичайне am I.</p><p>✗ I’m late, amn’t I?</p><p>✓ I’m late, aren’t I?</p></div>
+    <div class="warn"><p><b>Маркери:</b> isn’t it? / is it?, don’t you? / do you?, doesn’t he? / didn’t she?, haven’t you? / won’t they?, can’t she? / shouldn’t we?, aren’t I?, Let’s ..., shall we?, Open ..., will you?, There’s ..., isn’t there?, Nobody ..., did they?, never / nothing / hardly → + хвостик</p></div>
+    <div class="warn"><p><b>Шпаргалка: хвостики для всіх часів</b></p><p>Хвостик будуємо з допоміжного дієслова речення і займенника. Скорочення ’s може бути is або has, а ’d може бути had або would: дивимося, що йде далі. Таблиця: речення, хвостик, коментар.</p><p>She’s tired, · isn’t she? · be: is → isn’t</p><p>You aren’t busy, · are you? · заперечення → +</p><p>He likes jazz, · doesn’t he? · Present Simple → does</p><p>They went home, · didn’t they? · Past Simple → did</p><p>You were there, · weren’t you? · was / were</p><p>It’s raining, · isn’t it? · Present Continuous</p><p>She’s finished, · hasn’t she? · Present Perfect: ’s = has</p><p>She’ll call, · won’t she? · will → won’t</p><p>You can drive, · can’t you? · модальні: can, could, should</p><p>He’d like tea, · wouldn’t he? · ’d like = would like</p><p>You’d better go, · hadn’t you? · ’d better = had better</p><p>I’m right, · aren’t I? · виняток: amn’t не буває</p><p>Let’s dance, · shall we? · пропозиція</p><p>Close the door, · will you? · прохання (також can you? / could you?)</p><p>Nobody knows, · do they? · nobody / everyone → they; nobody робить речення заперечним</p></div>
+    <p class="lk-tnote" data-ru="Тренажер на 100 завдань: 5 раундів по 20. На уроці можна пройти 1-2 раунди, решту задати додому. Пояснення до кожної відповіді учень бачить у тренажері на сайті (розділ «Граматика»).&lt;br&gt;">Тренажер на 100 завдань: 5 раундів по 20. На уроці можна пройти 1-2 раунди, решту задати додому. Пояснення до кожної відповіді учень бачить у тренажері на сайті (розділ «Граматика»).<br></p>
+  </section>
+  <section id="s2" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">2</span>Раунд 1. Форми: плюс → мінус <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="isn’t she"><span class="n">1</span><span class="s">Lily is your cousin, ___?</span><span class="o"><button type="button">doesn’t she</button><button type="button">isn’t she</button><button type="button">isn’t Lily</button><button type="button">is she</button></span></div>
+<div class="ch" data-a="doesn’t he"><span class="n">2</span><span class="s">Max plays the drums, ___?</span><span class="o"><button type="button">isn’t he</button><button type="button">don’t he</button><button type="button">didn’t he</button><button type="button">doesn’t he</button></span></div>
+<div class="ch" data-a="isn’t it"><span class="n">3</span><span class="s">It’s raining, ___?</span><span class="o"><button type="button">isn’t it</button><button type="button">isn’t there</button><button type="button">doesn’t it</button><button type="button">is it</button></span></div>
+<div class="ch" data-a="won’t she"><span class="n">4</span><span class="s">Sophie will help us, ___?</span><span class="o"><button type="button">will she</button><button type="button">doesn’t she</button><button type="button">won’t she</button><button type="button">wouldn’t she</button></span></div>
+<div class="ch" data-a="weren’t we"><span class="n">5</span><span class="s">We were late again, ___?</span><span class="o"><button type="button">didn’t we</button><button type="button">weren’t we</button><button type="button">wasn’t we</button><button type="button">were we</button></span></div>
+<div class="ch" data-a="hasn’t she"><span class="n">6</span><span class="s">Emma has got a new bike, ___?</span><span class="o"><button type="button">hasn’t she</button><button type="button">isn’t she</button><button type="button">has she</button><button type="button">doesn’t she</button></span></div>
+<div class="ch" data-a="shouldn’t you"><span class="n">7</span><span class="s">You should call your grandma, ___?</span><span class="o"><button type="button">shouldn’t you</button><button type="button">don’t you</button><button type="button">wouldn’t you</button><button type="button">should you</button></span></div>
+<div class="ch" data-a="wasn’t it"><span class="n">8</span><span class="s">The film was really funny, ___?</span><span class="o"><button type="button">didn’t it</button><button type="button">wasn’t the film</button><button type="button">isn’t it</button><button type="button">wasn’t it</button></span></div>
+<div class="ch" data-a="wouldn’t you"><span class="n">9</span><span class="s">You’d like some cake, ___?</span><span class="o"><button type="button">hadn’t you</button><button type="button">don’t you</button><button type="button">wouldn’t you</button><button type="button">won’t you</button></span></div>
+<div class="ch" data-a="didn’t she"><span class="n">10</span><span class="s">Mia had a great time in Rome, ___?</span><span class="o"><button type="button">didn’t she</button><button type="button">doesn’t she</button><button type="button">hadn’t she</button><button type="button">wasn’t she</button></span></div>
+<div class="ch" data-a="aren’t they"><span class="n">11</span><span class="s">The kids are playing in the garden, ___?</span><span class="o"><button type="button">isn’t it</button><button type="button">don’t they</button><button type="button">aren’t they</button><button type="button">are they</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; isn’t she · doesn’t he · isn’t it · won’t she · weren’t we · hasn’t she · shouldn’t you · wasn’t it · wouldn’t you · didn’t she · aren’t they"><b>Відповіді:</b> isn’t she · doesn’t he · isn’t it · won’t she · weren’t we · hasn’t she · shouldn’t you · wasn’t it · wouldn’t you · didn’t she · aren’t they</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="don’t you|do you not"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>You like pizza, ___ (do)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="didn’t they|did they not"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>They went to the beach yesterday, ___ (do)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="haven’t you|have you not"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>You’ve seen this film, ___ (have)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="can’t he|can he not"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Tom can swim, ___ (can)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="aren’t they|are they not"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Your parents are at home, ___ (be)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="wasn’t he|was he not"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Dan was at the party, ___ (be)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="doesn’t she|does she not"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>Kate lives near the park, ___ (do)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="aren’t they|are they not"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>Ben and Lily are dancing, ___ (be)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="doesn’t it|does it not"><span class="n" style="font-weight:800;color:var(--violet)">9</span><span>This bus goes to the centre, ___ (do)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; don’t you · didn’t they · haven’t you · can’t he · aren’t they · wasn’t he · doesn’t she · aren’t they · doesn’t it"><b>Відповіді:</b> don’t you · didn’t they · haven’t you · can’t he · aren’t they · wasn’t he · doesn’t she · aren’t they · doesn’t it</p>
+  </section>
+  <section id="s3" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">3</span>Раунд 2. Заперечення: мінус → плюс <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="are you"><span class="n">1</span><span class="s">You aren’t tired, ___?</span><span class="o"><button type="button">is you</button><button type="button">do you</button><button type="button">aren’t you</button><button type="button">are you</button></span></div>
+<div class="ch" data-a="did they"><span class="n">2</span><span class="s">They didn’t win the match, ___?</span><span class="o"><button type="button">didn’t they</button><button type="button">do they</button><button type="button">won they</button><button type="button">did they</button></span></div>
+<div class="ch" data-a="was it"><span class="n">3</span><span class="s">It wasn’t your fault, ___?</span><span class="o"><button type="button">did it</button><button type="button">is it</button><button type="button">was it</button><button type="button">wasn’t it</button></span></div>
+<div class="ch" data-a="should we"><span class="n">4</span><span class="s">We shouldn’t be here, ___?</span><span class="o"><button type="button">are we</button><button type="button">should we</button><button type="button">shouldn’t we</button><button type="button">do we</button></span></div>
+<div class="ch" data-a="do you"><span class="n">5</span><span class="s">You never listen to me, ___?</span><span class="o"><button type="button">do you</button><button type="button">never you</button><button type="button">aren’t you</button><button type="button">don’t you</button></span></div>
+<div class="ch" data-a="did it"><span class="n">6</span><span class="s">Nothing happened, ___?</span><span class="o"><button type="button">did it</button><button type="button">does it</button><button type="button">didn’t it</button><button type="button">did nothing</button></span></div>
+<div class="ch" data-a="does she"><span class="n">7</span><span class="s">She hardly ever cooks, ___?</span><span class="o"><button type="button">doesn’t she</button><button type="button">hardly she</button><button type="button">does she</button><button type="button">is she</button></span></div>
+<div class="ch" data-a="do you"><span class="n">8</span><span class="s">You don’t know where Tom is, ___?</span><span class="o"><button type="button">do you</button><button type="button">are you</button><button type="button">know you</button><button type="button">don’t you</button></span></div>
+<div class="ch" data-a="is she"><span class="n">9</span><span class="s">Emma isn’t coming tonight, ___?</span><span class="o"><button type="button">is Emma</button><button type="button">does she</button><button type="button">is she</button><button type="button">isn’t she</button></span></div>
+<div class="ch" data-a="can we"><span class="n">10</span><span class="s">We can’t park here, ___?</span><span class="o"><button type="button">can we</button><button type="button">do we</button><button type="button">can’t we</button><button type="button">could we</button></span></div>
+<div class="ch" data-a="did they"><span class="n">11</span><span class="s">Nobody called while I was out, ___?</span><span class="o"><button type="button">did he</button><button type="button">does anybody</button><button type="button">didn’t they</button><button type="button">did they</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; are you · did they · was it · should we · do you · did it · does she · do you · is she · can we · did they"><b>Відповіді:</b> are you · did they · was it · should we · do you · did it · does she · do you · is she · can we · did they</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="does he"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Max doesn’t eat fish, ___ (do)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="can she"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Sophie can’t drive, ___ (can)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="have you"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>You haven’t finished yet, ___ (have)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="will she"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Lily won’t be late, ___ (will)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="were they"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Your friends weren’t at school today, ___ (be)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="has he"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Dan hasn’t got a car, ___ (have)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="is it"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>This isn’t your phone, ___ (be)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="did they"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>The kids didn’t break the window, ___ (do)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="does she"><span class="n" style="font-weight:800;color:var(--violet)">9</span><span>Your sister doesn’t like spiders, ___ (do)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; does he · can she · have you · will she · were they · has he · is it · did they · does she"><b>Відповіді:</b> does he · can she · have you · will she · were they · has he · is it · did they · does she</p>
+  </section>
+  <section id="s4" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">4</span>Раунд 3. Коли вживати: особливі випадки та інтонація <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="aren’t I"><span class="n">1</span><span class="s">I’m in the team, ___?</span><span class="o"><button type="button">aren’t I</button><button type="button">isn’t I</button><button type="button">amn’t I</button><button type="button">am I</button></span></div>
+<div class="ch" data-a="will you"><span class="n">2</span><span class="s">Pass me the ketchup, ___?</span><span class="o"><button type="button">don’t you</button><button type="button">shall we</button><button type="button">will you</button><button type="button">do you</button></span></div>
+<div class="ch" data-a="isn’t there"><span class="n">3</span><span class="s">There’s a café near the station, ___?</span><span class="o"><button type="button">hasn’t there</button><button type="button">isn’t it</button><button type="button">isn’t there</button><button type="button">is there</button></span></div>
+<div class="ch" data-a="didn’t they"><span class="n">4</span><span class="s">Everyone loved the show, ___?</span><span class="o"><button type="button">did they</button><button type="button">didn’t they</button><button type="button">didn’t he</button><button type="button">loved they</button></span></div>
+<div class="ch" data-a="will you"><span class="n">5</span><span class="s">Don’t forget your umbrella, ___?</span><span class="o"><button type="button">will you</button><button type="button">do you</button><button type="button">don’t you</button><button type="button">won’t you</button></span></div>
+<div class="ch" data-a="is not sure and really asks"><span class="n">6</span><span class="s">“You’re Kate’s brother, aren’t you?” His voice goes up on the tag. He ___.</span><span class="o"><button type="button">is not sure and really asks</button><button type="button">is sure and wants you to agree</button><button type="button">wants you to leave</button><button type="button">is angry</button></span></div>
+<div class="ch" data-a="expects you to agree"><span class="n">7</span><span class="s">“Lovely weather, isn’t it?” Anna’s voice goes down on the tag. She ___.</span><span class="o"><button type="button">wants to check a fact</button><button type="button">doesn’t know the weather</button><button type="button">is asking for help</button><button type="button">expects you to agree</button></span></div>
+<div class="ch" data-a="do they"><span class="n">8</span><span class="s">Nobody wants more pizza, ___?</span><span class="o"><button type="button">do they</button><button type="button">does he</button><button type="button">don’t they</button><button type="button">doesn’t it</button></span></div>
+<div class="ch" data-a="aren’t they"><span class="n">9</span><span class="s">Those are your shoes, ___?</span><span class="o"><button type="button">isn’t it</button><button type="button">don’t they</button><button type="button">aren’t those</button><button type="button">aren’t they</button></span></div>
+<div class="ch" data-a="shall we"><span class="n">10</span><span class="s">Let’s take a selfie, ___?</span><span class="o"><button type="button">don’t we</button><button type="button">do we</button><button type="button">will we</button><button type="button">shall we</button></span></div>
+<div class="ch" data-a="could you"><span class="n">11</span><span class="s">Turn the music down a bit, ___?</span><span class="o"><button type="button">could you</button><button type="button">don’t you</button><button type="button">shall we</button><button type="button">do you</button></span></div>
+<div class="ch" data-a="could you"><span class="n">12</span><span class="s">You couldn’t lend me five euros, ___?</span><span class="o"><button type="button">could you</button><button type="button">can’t you</button><button type="button">couldn’t you</button><button type="button">do you</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; aren’t I · will you · isn’t there · didn’t they · will you · is not sure and really asks · expects you to agree · do they · aren’t they · shall we · could you · could you"><b>Відповіді:</b> aren’t I · will you · isn’t there · didn’t they · will you · is not sure and really asks · expects you to agree · do they · aren’t they · shall we · could you · could you</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="shall we"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Let’s go for a walk, ___ (shall)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="am I"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>I’m not late, ___ (be)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="were there"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>There weren’t many people at the concert, ___ (be)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="shall we"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Let’s not argue, ___ (shall)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="didn’t they|did they not"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Somebody left the door open, ___ (do)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="will you|won’t you"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Be careful on the ice, ___ (will)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="wasn’t it|was it not"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>That was a great match, ___ (be)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="aren’t they|are they not"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>Everybody’s here, ___ (be)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; shall we · am I · were there · shall we · didn’t they · will you · wasn’t it · aren’t they"><b>Відповіді:</b> shall we · am I · were there · shall we · didn’t they · will you · wasn’t it · aren’t they</p>
+  </section>
+  <section id="s5" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">5</span>Раунд 4. Пастки <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="I’m your best friend, aren’t I?"><span class="n">1</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">I’m your best friend, amn’t I?</button><button type="button">I’m your best friend, isn’t I?</button><button type="button">I’m your best friend, aren’t I?</button><button type="button">I’m your best friend, am not I?</button></span></div>
+<div class="ch" data-a="doesn’t she"><span class="n">2</span><span class="s">Sophie lives in London, ___?</span><span class="o"><button type="button">doesn’t she</button><button type="button">does she</button><button type="button">doesn’t Sophie</button><button type="button">isn’t she</button></span></div>
+<div class="ch" data-a="He didn’t call, did he?"><span class="n">3</span><span class="s">Яке речення правильне?: ___</span><span class="o"><button type="button">He didn’t call, called he?</button><button type="button">He didn’t call, does he?</button><button type="button">He didn’t call, did he?</button><button type="button">He didn’t call, didn’t he?</button></span></div>
+<div class="ch" data-a="is there"><span class="n">4</span><span class="s">There isn’t any milk left, ___?</span><span class="o"><button type="button">isn’t there</button><button type="button">is there</button><button type="button">are there</button><button type="button">is it</button></span></div>
+<div class="ch" data-a="Let’s start, shall we?"><span class="n">5</span><span class="s">Знайди речення без помилки: ___</span><span class="o"><button type="button">Let’s start, do we?</button><button type="button">Let’s start, will we?</button><button type="button">Let’s start, don’t we?</button><button type="button">Let’s start, shall we?</button></span></div>
+<div class="ch" data-a="didn’t he"><span class="n">6</span><span class="s">Tom used to live in Brighton, ___?</span><span class="o"><button type="button">hadn’t he</button><button type="button">wasn’t he</button><button type="button">doesn’t he</button><button type="button">didn’t he</button></span></div>
+<div class="ch" data-a="She can’t come, can she?"><span class="n">7</span><span class="s">Де немає помилки?: ___</span><span class="o"><button type="button">She can’t come, can she?</button><button type="button">She can’t come, is she?</button><button type="button">She can’t come, does she?</button><button type="button">She can’t come, can’t she?</button></span></div>
+<div class="ch" data-a="isn’t he"><span class="n">8</span><span class="s">Ben’s working today, ___?</span><span class="o"><button type="button">isn’t he</button><button type="button">hasn’t he</button><button type="button">doesn’t he</button><button type="button">is he</button></span></div>
+<div class="ch" data-a="Everyone was happy, weren’t they?"><span class="n">9</span><span class="s">Обери речення, яке звучить правильно: ___</span><span class="o"><button type="button">Everyone was happy, wasn’t he?</button><button type="button">Everyone was happy, didn’t they?</button><button type="button">Everyone was happy, weren’t they?</button><button type="button">Everyone was happy, wasn’t everyone?</button></span></div>
+<div class="ch" data-a="hadn’t you"><span class="n">10</span><span class="s">You’d told her before, ___?</span><span class="o"><button type="button">didn’t you</button><button type="button">hadn’t you</button><button type="button">wouldn’t you</button><button type="button">had you</button></span></div>
+<div class="ch" data-a="isn’t it"><span class="n">11</span><span class="s">This is your first time in London, ___?</span><span class="o"><button type="button">doesn’t it</button><button type="button">isn’t it</button><button type="button">isn’t this</button><button type="button">is it</button></span></div>
+<div class="ch" data-a="Dan hardly ever smiles, does he?"><span class="n">12</span><span class="s">Яке речення написане правильно?: ___</span><span class="o"><button type="button">Dan hardly ever smiles, isn’t he?</button><button type="button">Dan hardly ever smiles, doesn’t he?</button><button type="button">Dan hardly ever smiles, is he?</button><button type="button">Dan hardly ever smiles, does he?</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; I’m your best friend, aren’t I? · doesn’t she · He didn’t call, did he? · is there · Let’s start, shall we? · didn’t he · She can’t come, can she? · isn’t he · Everyone was happy, weren’t they? · hadn’t you · isn’t it · Dan hardly ever smiles, does he?"><b>Відповіді:</b> I’m your best friend, aren’t I? · doesn’t she · He didn’t call, did he? · is there · Let’s start, shall we? · didn’t he · She can’t come, can she? · isn’t he · Everyone was happy, weren’t they? · hadn’t you · isn’t it · Dan hardly ever smiles, does he?</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="do you"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>You never tell lies, ___ (do)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="doesn’t he|does he not"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Your brother walks the dog every day, ___ (do)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="haven’t they|have they not"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Max and Lily have broken up, ___ (have)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="did they"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Nobody saw us, ___ (do)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="are you"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>You’re not angry with me, ___ (be)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="hasn’t she|has she not"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Lily’s been to Paris, ___ (have)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="hadn’t you|had you not"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>You’d better hurry, ___ (had)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="will you|won’t you|would you|can you|could you"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>Sit down, ___ (will)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; do you · doesn’t he · haven’t they · did they · are you · hasn’t she · hadn’t you · will you"><b>Відповіді:</b> do you · doesn’t he · haven’t they · did they · are you · hasn’t she · hadn’t you · will you</p>
+  </section>
+  <section id="s6" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">6</span>Раунд 5. Фінальний бос <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="didn’t you"><span class="n">1</span><span class="s">Wow, the pizza smells amazing. You made it yourself, ___?</span><span class="o"><button type="button">hadn’t you</button><button type="button">don’t you</button><button type="button">weren’t you</button><button type="button">didn’t you</button></span></div>
+<div class="ch" data-a="have you"><span class="n">2</span><span class="s">We’ve got a test tomorrow. You haven’t forgotten, ___?</span><span class="o"><button type="button">don’t you</button><button type="button">have you</button><button type="button">haven’t you</button><button type="button">did you</button></span></div>
+<div class="ch" data-a="shall we"><span class="n">3</span><span class="s">The shop closes at nine. Let’s hurry, ___?</span><span class="o"><button type="button">will we</button><button type="button">do we</button><button type="button">shall we</button><button type="button">don’t we</button></span></div>
+<div class="ch" data-a="didn’t they"><span class="n">4</span><span class="s">There’s no cheese in the fridge. Somebody ate it all, ___?</span><span class="o"><button type="button">didn’t they</button><button type="button">did they</button><button type="button">didn’t he</button><button type="button">ate they</button></span></div>
+<div class="ch" data-a="isn’t he"><span class="n">5</span><span class="s">Max can’t come to training. He’s still ill, ___?</span><span class="o"><button type="button">isn’t he</button><button type="button">hasn’t he</button><button type="button">doesn’t he</button><button type="button">is he</button></span></div>
+<div class="ch" data-a="isn’t it"><span class="n">6</span><span class="s">Sophie speaks four languages. That’s amazing, ___?</span><span class="o"><button type="button">isn’t that</button><button type="button">is it</button><button type="button">isn’t it</button><button type="button">doesn’t it</button></span></div>
+<div class="ch" data-a="have they"><span class="n">7</span><span class="s">Nobody has seen my keys, ___?</span><span class="o"><button type="button">hasn’t it</button><button type="button">have they</button><button type="button">haven’t they</button><button type="button">has he</button></span></div>
+<div class="ch" data-a="shouldn’t he"><span class="n">8</span><span class="s">Dan should apologise to Lily, ___?</span><span class="o"><button type="button">shouldn’t he</button><button type="button">should he</button><button type="button">wouldn’t he</button><button type="button">doesn’t he</button></span></div>
+<div class="ch" data-a="do you"><span class="n">9</span><span class="s">You don’t have to wear a uniform, ___?</span><span class="o"><button type="button">do you</button><button type="button">don’t you</button><button type="button">have you</button><button type="button">haven’t you</button></span></div>
+<div class="ch" data-a="up"><span class="n">10</span><span class="s">“You’re coming with us, aren’t you?” Lily isn’t sure and really wants to know. Her voice on the tag goes ___.</span><span class="o"><button type="button">up and then down</button><button type="button">down</button><button type="button">up</button></span></div>
+<div class="ch" data-a="isn’t it"><span class="n">11</span><span class="s">Everything is ready for the trip, ___?</span><span class="o"><button type="button">aren’t they</button><button type="button">isn’t everything</button><button type="button">isn’t it</button><button type="button">doesn’t it</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; didn’t you · have you · shall we · didn’t they · isn’t he · isn’t it · have they · shouldn’t he · do you · up · isn’t it"><b>Відповіді:</b> didn’t you · have you · shall we · didn’t they · isn’t he · isn’t it · have they · shouldn’t he · do you · up · isn’t it</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="would you"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>It’s cold in here. You wouldn’t mind closing the window, ___ (would)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="did she"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Mia looks upset. She didn’t get the job, ___ (do)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="aren’t you|are you not"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>You’re Emma’s new neighbour, ___ (be)? Nice to meet you!</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="aren’t I|am I not"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>I’m invited to the party too, ___ (be)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="will you"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Don’t tell anyone about the surprise, ___ (will)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="won’t you|will you not"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>You’ll text me when you get home, ___ (will)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="were they"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>The tickets weren’t cheap, ___ (be)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="couldn’t she|could she not"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>Lily could ride a bike at four, ___ (could)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="didn’t they|did they not"><span class="n" style="font-weight:800;color:var(--violet)">9</span><span>Your parents met at university, ___ (do)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; would you · did she · aren’t you · aren’t I · will you · won’t you · were they · couldn’t she · didn’t they"><b>Відповіді:</b> would you · did she · aren’t you · aren’t I · will you · won’t you · were they · couldn’t she · didn’t they</p>
+  </section>
+  <section class="end"><h2>Great job!</h2><p>See you next lesson.</p></section>
+</div>
+<div class="toast" id="toast"></div>
+<script>window.MURLY_LESSON={"id": "lib-drill-question-tags", "title": "Question tags: 100 tasks", "homework": ["s2", "s3", "s4", "s5", "s6"], "hw": {"s2": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Lily is your cousin, {isn’t she|is she|doesn’t she|isn’t Lily}?\nMax plays the drums, {doesn’t he|isn’t he|don’t he|didn’t he}?\nIt’s raining, {isn’t it|doesn’t it|is it|isn’t there}?\nSophie will help us, {won’t she|will she|doesn’t she|wouldn’t she}?\nWe were late again, {weren’t we|wasn’t we|didn’t we|were we}?\nEmma has got a new bike, {hasn’t she|doesn’t she|isn’t she|has she}?\nYou should call your grandma, {shouldn’t you|should you|don’t you|wouldn’t you}?\nThe film was really funny, {wasn’t it|didn’t it|wasn’t the film|isn’t it}?\nYou’d like some cake, {wouldn’t you|hadn’t you|don’t you|won’t you}?\nMia had a great time in Rome, {didn’t she|hadn’t she|wasn’t she|doesn’t she}?\nThe kids are playing in the garden, {aren’t they|don’t they|are they|isn’t it}?"}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "You like pizza, [don’t you/do you not] (do)?\nThey went to the beach yesterday, [didn’t they/did they not] (do)?\nYou’ve seen this film, [haven’t you/have you not] (have)?\nTom can swim, [can’t he/can he not] (can)?\nYour parents are at home, [aren’t they/are they not] (be)?\nDan was at the party, [wasn’t he/was he not] (be)?\nKate lives near the park, [doesn’t she/does she not] (do)?\nBen and Lily are dancing, [aren’t they/are they not] (be)?\nThis bus goes to the centre, [doesn’t it/does it not] (do)?"}], "s3": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "You aren’t tired, {are you|aren’t you|do you|is you}?\nThey didn’t win the match, {did they|didn’t they|do they|won they}?\nIt wasn’t your fault, {was it|wasn’t it|is it|did it}?\nWe shouldn’t be here, {should we|shouldn’t we|do we|are we}?\nYou never listen to me, {do you|don’t you|never you|aren’t you}?\nNothing happened, {did it|didn’t it|does it|did nothing}?\nShe hardly ever cooks, {does she|doesn’t she|is she|hardly she}?\nYou don’t know where Tom is, {do you|don’t you|are you|know you}?\nEmma isn’t coming tonight, {is she|isn’t she|does she|is Emma}?\nWe can’t park here, {can we|can’t we|do we|could we}?\nNobody called while I was out, {did they|did he|didn’t they|does anybody}?"}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "Max doesn’t eat fish, [does he] (do)?\nSophie can’t drive, [can she] (can)?\nYou haven’t finished yet, [have you] (have)?\nLily won’t be late, [will she] (will)?\nYour friends weren’t at school today, [were they] (be)?\nDan hasn’t got a car, [has he] (have)?\nThis isn’t your phone, [is it] (be)?\nThe kids didn’t break the window, [did they] (do)?\nYour sister doesn’t like spiders, [does she] (do)?"}], "s4": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "I’m in the team, {aren’t I|amn’t I|am I|isn’t I}?\nPass me the ketchup, {will you|don’t you|shall we|do you}?\nThere’s a café near the station, {isn’t there|isn’t it|is there|hasn’t there}?\nEveryone loved the show, {didn’t they|didn’t he|did they|loved they}?\nDon’t forget your umbrella, {will you|won’t you|do you|don’t you}?\n“You’re Kate’s brother, aren’t you?” His voice goes up on the tag. He {is not sure and really asks|is sure and wants you to agree|is angry|wants you to leave}.\n“Lovely weather, isn’t it?” Anna’s voice goes down on the tag. She {expects you to agree|doesn’t know the weather|wants to check a fact|is asking for help}.\nNobody wants more pizza, {do they|don’t they|does he|doesn’t it}?\nThose are your shoes, {aren’t they|aren’t those|isn’t it|don’t they}?\nLet’s take a selfie, {shall we|will we|do we|don’t we}?\nTurn the music down a bit, {could you|shall we|do you|don’t you}?\nYou couldn’t lend me five euros, {could you|couldn’t you|can’t you|do you}?"}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "Let’s go for a walk, [shall we] (shall)?\nI’m not late, [am I] (be)?\nThere weren’t many people at the concert, [were there] (be)?\nLet’s not argue, [shall we] (shall)?\nSomebody left the door open, [didn’t they/did they not] (do)?\nBe careful on the ice, [will you/won’t you] (will)?\nThat was a great match, [wasn’t it/was it not] (be)?\nEverybody’s here, [aren’t they/are they not] (be)?"}], "s5": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Обери правильне речення: {I’m your best friend, aren’t I?|I’m your best friend, amn’t I?|I’m your best friend, am not I?|I’m your best friend, isn’t I?}\nSophie lives in London, {doesn’t she|isn’t she|doesn’t Sophie|does she}?\nЯке речення правильне?: {He didn’t call, did he?|He didn’t call, didn’t he?|He didn’t call, does he?|He didn’t call, called he?}\nThere isn’t any milk left, {is there|is it|isn’t there|are there}?\nЗнайди речення без помилки: {Let’s start, shall we?|Let’s start, do we?|Let’s start, don’t we?|Let’s start, will we?}\nTom used to live in Brighton, {didn’t he|hadn’t he|wasn’t he|doesn’t he}?\nДе немає помилки?: {She can’t come, can she?|She can’t come, can’t she?|She can’t come, does she?|She can’t come, is she?}\nBen’s working today, {isn’t he|hasn’t he|doesn’t he|is he}?\nОбери речення, яке звучить правильно: {Everyone was happy, weren’t they?|Everyone was happy, wasn’t he?|Everyone was happy, wasn’t everyone?|Everyone was happy, didn’t they?}\nYou’d told her before, {hadn’t you|had you|wouldn’t you|didn’t you}?\nThis is your first time in London, {isn’t it|isn’t this|is it|doesn’t it}?\nЯке речення написане правильно?: {Dan hardly ever smiles, does he?|Dan hardly ever smiles, doesn’t he?|Dan hardly ever smiles, isn’t he?|Dan hardly ever smiles, is he?}"}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "You never tell lies, [do you] (do)?\nYour brother walks the dog every day, [doesn’t he/does he not] (do)?\nMax and Lily have broken up, [haven’t they/have they not] (have)?\nNobody saw us, [did they] (do)?\nYou’re not angry with me, [are you] (be)?\nLily’s been to Paris, [hasn’t she/has she not] (have)?\nYou’d better hurry, [hadn’t you/had you not] (had)?\nSit down, [will you/won’t you/would you/can you/could you] (will)?"}], "s6": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Wow, the pizza smells amazing. You made it yourself, {didn’t you|don’t you|weren’t you|hadn’t you}?\nWe’ve got a test tomorrow. You haven’t forgotten, {have you|haven’t you|did you|don’t you}?\nThe shop closes at nine. Let’s hurry, {shall we|will we|don’t we|do we}?\nThere’s no cheese in the fridge. Somebody ate it all, {didn’t they|didn’t he|did they|ate they}?\nMax can’t come to training. He’s still ill, {isn’t he|hasn’t he|doesn’t he|is he}?\nSophie speaks four languages. That’s amazing, {isn’t it|is it|isn’t that|doesn’t it}?\nNobody has seen my keys, {have they|has he|haven’t they|hasn’t it}?\nDan should apologise to Lily, {shouldn’t he|should he|doesn’t he|wouldn’t he}?\nYou don’t have to wear a uniform, {do you|don’t you|have you|haven’t you}?\n“You’re coming with us, aren’t you?” Lily isn’t sure and really wants to know. Her voice on the tag goes {up|down|up and then down}.\nEverything is ready for the trip, {isn’t it|isn’t everything|aren’t they|doesn’t it}?"}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "It’s cold in here. You wouldn’t mind closing the window, [would you] (would)?\nMia looks upset. She didn’t get the job, [did she] (do)?\nYou’re Emma’s new neighbour, [aren’t you/are you not] (be)? Nice to meet you!\nI’m invited to the party too, [aren’t I/am I not] (be)?\nDon’t tell anyone about the surprise, [will you] (will)?\nYou’ll text me when you get home, [won’t you/will you not] (will)?\nThe tickets weren’t cheap, [were they] (be)?\nLily could ride a bike at four, [couldn’t she/could she not] (could)?\nYour parents met at university, [didn’t they/did they not] (do)?"}]}};</script>
+<script>
+(function(){var l=(document.cookie.match(/(?:^|; )murly_lang=(\w+)/)||[])[1];try{l=l||localStorage.getItem('murly:tlang')}catch(e){}l=l==='ru'?'ru':'uk';document.querySelectorAll('[data-pairs-'+l+']').forEach(function(b){b.dataset.pairs=b.getAttribute('data-pairs-'+l)});})();
+</script>
+<script>
+const $ = (id) => document.getElementById(id);
+const LIS = {};
+function say(w, rate) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; const v = speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang) && /Google|Natural|Libby|Sonia|Daniel/.test(x.name)) || speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang)); if (v) u.voice = v; u.rate = rate || .95; speechSynthesis.speak(u); } catch (e) { } }
+const sh = (a) => a.map((x) => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map((x) => x[1]);
+document.querySelectorAll('.voc div').forEach((d) => d.onclick = () => say(d.dataset.say));
+document.querySelectorAll('[data-play]').forEach((b) => b.onclick = () => say(LIS[b.dataset.play], b.dataset.slow ? .75 : .95));
+document.querySelectorAll('[data-stop]').forEach((b) => b.onclick = () => { try { speechSynthesis.cancel(); } catch (e) { } });
+document.querySelectorAll('.ch').forEach((q) => q.querySelectorAll('button').forEach((b) => b.onclick = () => { if (q.classList.contains('ok')) return; const ok = b.textContent === q.dataset.a; q.classList.toggle('ok', ok); q.classList.toggle('bad', !ok); if (ok) { const s = q.querySelector('.s'); if (s && s.textContent.includes('___')) { s.textContent = s.textContent.replace('___', q.dataset.a); } } }));
+const norm = (x) => x.toLowerCase().replace(/[’']/g, "'").replace(/[,;:"“”«»]/g, ' ').replace(/\s+/g, ' ').replace(/[.!?]$/, '').trim();
+document.querySelectorAll('.ty').forEach((r) => { const inp = r.querySelector('input'); const chk = () => { const ok = r.dataset.a.split('|').some((a) => norm(a) === norm(inp.value)); r.classList.toggle('ok', ok); r.classList.toggle('bad', !ok && inp.value.trim() !== ''); }; r.querySelector('button').onclick = chk; inp.onkeydown = (e) => { if (e.key === 'Enter') chk(); }; });
+document.querySelectorAll('[data-mt]').forEach((box) => { const pairs = JSON.parse(box.dataset.pairs); const L = sh(pairs.map((p) => p[0])), R = sh(pairs.map((p) => p[1])); let sel = null, done = 0, err = 0; box.innerHTML = L.map((w, i) => `<button type="button" data-w="${w}">${w}</button><button type="button" data-d="${R[i]}">${R[i]}</button>`).join('');
+  box.querySelectorAll('button').forEach((b) => b.onclick = () => { if (b.classList.contains('done')) return; if (!sel || (sel.dataset.w && b.dataset.w) || (sel.dataset.d && b.dataset.d)) { if (sel) sel.classList.remove('sel'); sel = b; b.classList.add('sel'); return; } const w = sel.dataset.w || b.dataset.w, d = sel.dataset.d || b.dataset.d; if (pairs.some((p) => p[0] === w && p[1] === d)) { sel.classList.add('done'); b.classList.add('done'); done++; say(w); if (done === pairs.length) document.querySelector(`[data-mtres="${box.dataset.mt}"]`).textContent = err ? `Done! Mistakes: ${err}` : 'Perfect!'; } else err++; sel.classList.remove('sel'); sel = null; }); });
+document.querySelectorAll('[data-vids]').forEach((box) => JSON.parse(box.dataset.vids).forEach(([id, title, ch, qs]) => { const d = document.createElement('div'); d.className = 'vid'; d.innerHTML = `<div class="frame"><button class="play" type="button" style="background-image:url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)"><span>PLAY</span></button></div><div class="info"><h3>${title}</h3><small>YouTube · ${ch}</small><ol>${qs.map((q) => `<li>${q}</li>`).join('')}</ol></div>`; d.querySelector('.play').onclick = (e) => { e.currentTarget.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&cc_load_policy=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${title}"></iframe>`; }; box.appendChild(d); }));
+document.querySelectorAll('[data-spin]').forEach((b) => { const list = JSON.parse(b.dataset.spin); let last = -1; b.onclick = () => { let i; do { i = Math.floor(Math.random() * list.length); } while (i === last && list.length > 1); last = i; document.getElementById(b.dataset.target).textContent = list[i]; }; });
+try { const k = 'murly:' + (window.MURLY_LESSON ? MURLY_LESSON.id : 'x') + ':hw'; const t = $('hwText'); if (t) { t.value = localStorage.getItem(k) || ''; t.oninput = () => localStorage.setItem(k, t.value); } } catch (e) { }
+const STAGES = [...document.querySelectorAll('.wrap > section[id]')];
+$('stages').innerHTML = STAGES.map((s) => `<a href="#${s.id}"><b>${s.querySelector('.lk-n').textContent}</b><span>${s.dataset.stage}</span><small>${s.dataset.min !== '0' ? s.dataset.min + ' min' : 'at home'}</small></a>`).join('');
+$('teacherBtn').onclick = (e) => { const on = document.body.classList.toggle('teacher'); e.currentTarget.textContent = on ? 'Student version' : 'Teacher version'; };
+</script>
+<script src="/game-lessons/kit.js" defer></script>
+</body>
+</html>

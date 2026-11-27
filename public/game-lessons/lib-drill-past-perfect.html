@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Past Perfect (and Past Perfect Continuous): 100 tasks (B1) | Murly</title>
+<link rel="icon" href="/favicon.svg">
+<meta name="description" content="Повторимо правило: Минулий доконаний час
+100 завдань від простого до складного
+Розберемо головні пастки">
+<link rel="canonical" href="https://murly.com.ua/game-lessons/lib-drill-past-perfect.html">
+<style>
+:root{--paper:#F3F0EA;--ink:#17181C;--violet:#3D4A7A;--lav:#D9D3C7;--pink:#E9C9BC;--green:#D4E2CF;--white:#fff;--muted:#62646B;--accent:#B5482F}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+/* hero */
+.hero{background:linear-gradient(rgba(16,17,22,.5),rgba(16,17,22,.72)),url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1400&q=70&auto=format&fit=crop");color:#fff;padding:70px 18px 56px;text-align:center;position:relative;overflow:hidden}
+.hero .kicker{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#E9C9BC;font-weight:700}
+.hero .cr{position:absolute;right:12px;bottom:8px;font-size:11px;color:rgba(255,255,255,.6)}
+.hero h1{margin:8px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(36px,6vw,64px);letter-spacing:-.5px;font-weight:700}
+.hero h1 span{color:var(--pink);font-style:italic}
+.hero p{margin:12px 0 0;font-size:17px;color:#e6e2da}
+.hero .flags{display:flex;justify-content:center;gap:12px;margin-top:22px;flex-wrap:wrap}
+.hero .flags svg{width:40px;height:26px;border-radius:3px;opacity:.9}
+/* sections */
+section{margin-top:30px;background:var(--white);border-radius:18px;padding:28px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.05)}
+section h2{margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tag{font-family:"Segoe UI",system-ui,sans-serif;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--paper);color:var(--accent);text-transform:uppercase;letter-spacing:1px}
+.lk-n{display:inline-grid;place-items:center;width:42px;height:42px;background:var(--violet);color:#fff;border-radius:50%;font-size:21px;flex:none}
+.lk-mode{font-size:13px;font-weight:700;border:2px dashed var(--lav);color:var(--muted);padding:2px 10px;border-radius:999px}
+.lk-ins{font-size:17px;background:var(--paper);border-radius:12px;padding:10px 14px;margin:6px 0 18px}
+.lk-sub{margin:24px 0 10px;font-size:19px}
+.btn{font:inherit;font-weight:700;border:0;border-radius:999px;background:var(--ink);color:#fff;padding:10px 20px;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+.btn.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+/* teacher */
+.lk-tbtn{position:fixed;right:16px;top:70px;z-index:45;font:inherit;font-weight:800;border:2px solid var(--ink);background:var(--pink);padding:8px 14px;border-radius:12px;cursor:pointer}
+body.teacher .lk-tbtn{background:var(--green)}
+.lk-ans,.lk-tnote{display:none}
+body.teacher .lk-ans{display:block;margin-top:8px;font-weight:700;color:#1d5a12;background:var(--green);border-left:5px solid #5aa845;padding:6px 10px;font-size:15px;border-radius:6px}
+body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff3f7;border-left:5px solid #d9789a;padding:8px 12px;font-size:15px;border-radius:6px}
+/* overview */
+.lk-overview ul{font-size:17px;line-height:1.7;margin:6px 0 16px}
+.lk-stages{display:flex;flex-wrap:wrap;gap:8px}
+.lk-stages a{display:grid;border-radius:14px;padding:8px 12px;text-decoration:none;color:var(--ink);background:var(--paper);font-weight:700;min-width:100px}
+.lk-stages a span{text-transform:capitalize}
+.lk-stages a b{font-size:20px;color:var(--violet)}
+.lk-stages a small{font-weight:600;color:var(--muted)}
+/* warm-up */
+.taxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tax{background:var(--paper);border-radius:18px;padding:16px;display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center}
+.tax svg{width:56px;height:56px}
+.tax b{display:block;font-size:17px}
+.tax small{color:var(--muted);font-size:14px}
+.qs{display:grid;gap:10px;margin-top:18px}
+.qs div{background:var(--green);border-radius:14px;padding:10px 16px;font-size:18px;font-weight:600}
+.phr{background:#fff7e8;border-radius:14px;padding:12px 16px;margin-top:16px;font-size:15px}
+.phr ul{margin:6px 0 0;padding-left:18px}
+.fic{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:16px}
+.fic .c{background:#fff;border:2px solid #1B2140;border-radius:16px;padding:14px 16px;box-shadow:3px 3px 0 #1B2140}
+.fic .c b{display:block;font-size:18px;line-height:1.35;margin-bottom:8px}
+.fic .c .k{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.fic .c .k span{font-size:13px;background:#eef1fb;border-radius:999px;padding:3px 10px}
+.fic .c details{margin-top:8px;font-size:15px;color:#3b4160}
+.fic .c summary{cursor:pointer;font-weight:700;color:#534AB7}
+.fi-n{display:inline-flex;width:28px;height:28px;border-radius:50%;background:#2F4BA0;color:#fff;align-items:center;justify-content:center;font-size:14px;margin-right:6px}
+/* vocab */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:12px}
+.vc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:2px solid transparent;transition:border-color .2s,transform .2s}
+.vc:hover{border-color:var(--violet);transform:translateY(-2px)}
+.vc b{font-size:18px;display:flex;align-items:center;gap:8px}
+.vc b svg{width:20px;height:20px;flex:none;color:var(--violet)}
+.vc p{margin:6px 0 0;font-size:14px;color:var(--muted)}
+.vc em{display:block;margin-top:6px;font-size:14px;color:var(--violet);font-style:normal;font-weight:600}
+.vc.played{background:#e6ecfb}
+/* grammar */
+.gram{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.gb{border-radius:18px;padding:16px}
+.gb h3{margin:0 0 6px;font-size:19px}
+.gb .f{display:inline-block;background:#fff;border-radius:8px;padding:3px 10px;font-weight:800;margin:4px 0;font-family:Consolas,monospace;font-size:15px}
+.gb p{margin:6px 0 0;font-size:15px}
+.g1{background:var(--pink)}.g2{background:var(--lav)}.g3{background:var(--green)}.g4{background:#fbe7c6}
+.warn{margin-top:14px;background:var(--ink);color:#fff;border-radius:14px;padding:12px 16px;font-size:16px}
+.warn b{color:var(--pink)}
+.q{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:2px dashed var(--paper);font-size:18px}
+.q:last-child{border-bottom:0}
+.q .n{width:32px;height:32px;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;border-radius:50%;font-weight:800;font-size:15px}
+.opt{font:inherit;font-size:16px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:10px;padding:4px 12px;cursor:pointer;margin:0 2px}
+.opt.ok{background:var(--green);border-color:#5aa845}
+.opt.bad{background:var(--pink);animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+/* tour */
+.tour{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.law{border-radius:22px;overflow:hidden;background:var(--paper);display:flex;flex-direction:column}
+.law .pic{height:150px;display:grid;place-items:center;position:relative}
+.law .pic svg.ill{width:130px;height:130px}
+.law .pic svg.fl{position:absolute;left:14px;top:14px;width:46px;height:30px;border-radius:5px;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.law .pic .no{position:absolute;right:14px;top:14px;background:var(--ink);color:#fff;font-weight:800;border-radius:999px;padding:2px 10px;font-size:13px}
+.law .body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.law h3{margin:0;font-size:20px}
+.law .where{font-size:13px;font-weight:800;color:var(--violet);text-transform:uppercase;letter-spacing:1px}
+.law p{margin:0;font-size:16px}
+.law .why{font-size:14px;color:var(--muted)}
+.law .dq{margin-top:auto;background:#fff;border-radius:12px;padding:8px 12px;font-weight:700;font-size:15px}
+.law .lsn{font:inherit;font-size:13px;font-weight:700;background:none;border:0;color:var(--violet);cursor:pointer;padding:0;text-align:left}
+/* game */
+.game{max-width:720px;margin:0 auto;text-align:center}
+.score{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.score span{background:var(--paper);border-radius:999px;padding:6px 16px;font-weight:800}
+.stmt{background:var(--ink);color:#fff;border-radius:22px;padding:28px 24px;min-height:150px;display:grid;place-items:center;font-size:23px;font-weight:700;position:relative}
+.stmt small{position:absolute;top:12px;left:18px;font-size:13px;color:var(--lav);font-weight:700}
+.choose{display:flex;justify-content:center;gap:14px;margin:18px 0}
+.choose button{font:inherit;font-size:18px;font-weight:700;border:2px solid var(--ink);border-radius:999px;padding:12px 28px;cursor:pointer}
+.choose .bl{background:var(--green)}.choose .bm{background:var(--pink)}
+.choose button:disabled{opacity:.5;cursor:default}
+.verdict{min-height:70px;font-size:17px;background:var(--paper);border-radius:16px;padding:12px 16px;text-align:left}
+.verdict b.r{color:#2d7a1d}.verdict b.w{color:#b23a62}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.dots i{width:14px;height:14px;border-radius:50%;background:var(--paper)}
+.dots i.r{background:#7cc663}.dots i.w{background:#e47b9f}.dots i.c{outline:3px solid var(--violet)}
+.final{font-size:22px;font-weight:800;color:var(--violet)}
+/* invent */
+.inv{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.frames{display:grid;gap:10px}
+.frames label{font-size:14px;font-weight:700;color:var(--muted)}
+.frames select,.frames input{font:inherit;width:100%;padding:8px 10px;border:2px solid var(--lav);border-radius:10px;background:#fff}
+.poster{background:var(--paper);border:3px solid var(--ink);border-radius:20px;padding:22px;text-align:center;min-height:260px;display:flex;flex-direction:column;gap:10px;justify-content:center}
+.poster .seal{width:70px;height:70px;margin:0 auto}
+.poster h3{margin:0;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--violet)}
+.poster .rule{font-size:22px;font-weight:800}
+.poster .pen{font-size:16px;color:var(--muted)}
+.ideas{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ideas span{background:var(--pink);border-radius:999px;padding:5px 12px;font-size:14px;font-weight:600}
+/* roleplay */
+.rp{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.role{border-radius:20px;padding:18px}
+.role h3{margin:0 0 6px;display:flex;align-items:center;gap:10px}
+.role h3 svg{width:42px;height:42px}
+.role ul{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.r1{background:var(--lav)}.r2{background:var(--green)}
+.scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:16px}
+.sc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:3px solid transparent}
+.sc.on{border-color:var(--violet);background:#fff}
+.sc b{display:block;font-size:17px;margin-bottom:4px}
+.sc p{margin:0;font-size:15px}
+.timer{font-size:40px;font-weight:800;text-align:center;margin:14px 0 6px;color:var(--violet)}
+.ctr{text-align:center}
+/* homework */
+.hwb{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hwc{background:var(--paper);border-radius:18px;padding:18px}
+.hwc h3{margin:0 0 8px}
+.hwc ol,.hwc ul{margin:6px 0 0;padding-left:20px;line-height:1.7}
+.hwc textarea{width:100%;min-height:150px;font:inherit;border:2px solid var(--lav);border-radius:12px;padding:10px;margin-top:10px}
+.end{text-align:center;background:var(--ink);color:#fff;box-shadow:none}
+.end h2{justify-content:center}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(140px);background:var(--ink);color:#fff;font-weight:800;padding:12px 22px;border-radius:14px;transition:transform .3s;z-index:50}
+.toast.show{transform:translateX(-50%) translateY(0)}
+/* photos */
+.ph{margin:0}
+.ph img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;background:var(--paper)}
+.ph figcaption{font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.2px}
+.tax{grid-template-columns:1fr !important;padding:12px !important}
+.law .pic{height:auto !important;display:block !important;padding:0;position:relative}
+.law .pic .ph img{border-radius:0;aspect-ratio:16/10;transition:filter .5s}
+.law .pic .ph figcaption{padding:4px 12px 0}
+.law.hide .pic .ph img{filter:blur(10px) grayscale(.6)}
+.law.hide .reveal-body,.law.hide .fl,.law.hide .where{visibility:hidden}
+.law .clue{font-size:15px;font-style:italic;color:var(--ink)}
+.law .gc{display:flex;flex-wrap:wrap;gap:6px}
+.law .gc button{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:4px 12px;cursor:pointer}
+.law .gc button.ok{background:var(--green)}.law .gc button.bad{background:var(--pink)}
+.law:not(.hide) .guess{display:none}
+.fair{display:grid;gap:4px;background:#fff;border-radius:12px;padding:8px 12px}
+.fair .ends{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.fair input{width:100%;accent-color:var(--accent)}
+.fair output{font-size:14px;font-weight:700;color:var(--accent)}
+.gph{max-width:720px;margin:0 auto 12px}
+.gph img{aspect-ratio:21/9}
+.fine{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.fq{background:var(--paper);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.fq h3{margin:0;font-size:18px}
+.fq .opts{display:flex;flex-wrap:wrap;gap:6px}
+.fq .opts button{font:inherit;font-size:14px;font-weight:700;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 12px;cursor:pointer}
+.fq .opts button.ok{background:var(--green)}.fq .opts button.bad{background:var(--pink)}
+.fq .res{font-size:15px;min-height:22px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{position:relative;aspect-ratio:16/9;background:#111}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;cursor:pointer;background:#111 center/cover;display:grid;place-items:center}
+.vid .play span{background:rgba(0,0,0,.7);color:#fff;font-weight:700;border-radius:999px;padding:10px 20px;font-size:15px;letter-spacing:1px}
+.vid .info{padding:14px 16px}
+.vid .info h3{margin:0 0 2px;font-size:18px}
+.vid .info small{color:var(--muted)}
+.vid .info ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+@media(max-width:760px){.inv,.rp,.hwb{grid-template-columns:1fr}.lk-tbtn{top:auto;bottom:70px}}
+
+.pr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.pb{border-radius:18px;padding:16px 18px}
+.pb h3{margin:0;font-family:Georgia,serif;font-size:30px}
+.pb .m{font-size:15px;color:var(--muted);margin:2px 0 8px}
+.pb .chips{display:flex;flex-wrap:wrap;gap:6px}
+.pb .chips span{background:#fff;border-radius:999px;padding:4px 11px;font-size:14px;font-weight:600}
+.pb ul{margin:10px 0 0;padding-left:18px;font-size:15px}
+.p-in{background:#DCE6F5}.p-at{background:#F3D9CF}.p-on{background:#D4E2CF}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-size:15px;margin-top:10px}
+.ex div{background:var(--paper);border-radius:10px;padding:8px 12px}
+.ex b{color:var(--accent)}
+.q{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.q .n{font-weight:800;color:var(--violet);min-width:24px}
+.q .gap{display:inline-block;min-width:44px;border-bottom:2px solid var(--ink);text-align:center;font-weight:800}
+.q .opts{margin-left:auto;display:flex;gap:6px}
+.q .opts button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 14px;cursor:pointer}
+.q.ok{background:#DDEED7}.q.ok .gap{color:#2F7A3B}
+.q.bad{background:#F6DAD3}
+.score{font-weight:800;margin-top:12px}
+.text{font-size:18px;line-height:1.75;background:var(--paper);border-radius:16px;padding:18px 22px}
+.text h3{margin:0 0 6px;font-family:Georgia,serif;font-size:24px}
+.text p{margin:0 0 12px}
+.text.hl mark{background:#F3D9CF;border-radius:4px;padding:0 3px;font-weight:700}
+.tf{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:9px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.tf .opts{margin-left:auto;display:flex;gap:6px}
+.tf button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.tf.ok{background:#DDEED7}.tf.bad{background:#F6DAD3}
+.disc{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px;margin-top:6px}
+.disc div{background:var(--green);border-radius:14px;padding:12px 16px;font-size:17px;font-weight:600}
+.disc div i{font-style:normal;color:var(--violet);margin-right:6px}
+.spin{text-align:center;margin-top:16px}
+.spin .card{display:inline-block;min-height:80px;min-width:min(560px,100%);background:var(--ink);color:#fff;border-radius:18px;padding:20px 24px;font-size:22px;font-weight:700;margin-bottom:12px}
+@media(max-width:700px){.ex{grid-template-columns:1fr}}
+
+.hero{background-size:cover!important;background-position:center!important}
+.voc{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.voc div{background:var(--paper);border-radius:14px;padding:10px 14px;cursor:pointer;border:2px solid transparent}
+.voc div:hover{border-color:var(--violet)}
+.voc b{display:block;font-size:18px}.voc span{display:block;color:var(--accent);font-weight:700;font-size:15px}.voc em{display:block;font-size:14px;color:var(--muted);margin-top:3px}
+.mt{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:10px}
+.mt button{font:inherit;font-size:16px;text-align:left;border:2px solid var(--ink);background:#fff;border-radius:14px;padding:9px 14px;cursor:pointer}
+.mt button.sel{background:#FFE7A8}.mt button.done{background:#CDE8C6;border-color:#4C9A5B;cursor:default}
+.ch{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ch .n{font-weight:800;color:var(--violet);min-width:24px}
+.ch .o{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.ch .o button{font:inherit;font-size:15px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.ch.ok{background:#DDEED7}.ch.bad{background:#F6DAD3}
+.ty{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ty input{font:inherit;border:2px solid var(--ink);border-radius:10px;padding:4px 10px;width:220px}
+.ty.ok{background:#DDEED7}.ty.bad{background:#F6DAD3}
+.ty small{color:var(--muted)}
+.photo{width:100%;height:300px;object-fit:cover;border-radius:16px;display:block}
+.cap{font-size:11px;color:var(--muted);margin:4px 0 12px}
+.pics{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.pics figure{margin:0;background:var(--paper);border-radius:16px;overflow:hidden}
+.pics img{width:100%;height:170px;object-fit:cover;display:block}
+.pics figcaption{padding:8px 12px;font-weight:700}
+.pics small{display:block;font-weight:400;font-size:10px;color:var(--muted)}
+.lis{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:8px 0 14px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{aspect-ratio:16/9;background:#000;position:relative}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;background-size:cover;background-position:center;cursor:pointer;display:grid;place-items:center}
+.vid .play span{background:#E5484D;color:#fff;font-weight:800;border-radius:12px;padding:10px 20px}
+.vid .info{padding:12px 16px}.vid h3{margin:0;font-size:18px}.vid small{color:var(--muted)}
+.vid ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th,.tbl td{border:1px solid #ddd;padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--paper)}
+@media(max-width:700px){.mt{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="/game-lessons/kit.css">
+</head>
+<body>
+<header class="hero">
+  <div class="kicker">B1 · teens · Граматика: тренажер Минулий доконаний час</div>
+  <h1>Past Perfect (and Past Perfect Continuous): 100 tasks</h1>
+  <p>B1 · 6 parts · 60 min</p>
+  <span class="cr">Photo: Unsplash</span>
+</header>
+<button class="lk-tbtn" id="teacherBtn" type="button">Teacher version</button>
+<div class="wrap">
+  <section class="lk-overview">
+    <h2>In this lesson you will:</h2>
+    <ul><li>Повторимо правило: Минулий доконаний час
+100 завдань від простого до складного
+Розберемо головні пастки</li></ul>
+    <div class="lk-stages" id="stages"></div>
+  </section>
+  <section id="s1" data-stage="practice" data-min="10">
+    <h2><span class="lk-n">1</span>Теорія <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<div class="warn"><p><b>Коли вживаємо</b></p><p>Що сталося раніше за інший момент у минулому: When we got to the cinema, the film had already started. (Коли ми приїхали до кінотеатру, фільм уже почався.)</p><p>by the time: «на той момент, коли»: By the time Max woke up, his parents had left. (Коли Макс прокинувся, батьки вже пішли.)</p><p>Досвід до певного моменту в минулому (never ... before): Lily had never seen the sea before that trip. (До тієї поїздки Лілі ніколи не бачила моря.)</p><p>Причина минулої ситуації: Tom was sad because he had lost his phone. (Том був сумний, бо загубив телефон.)</p><p>Past Perfect Continuous: як довго щось тривало до моменту в минулому: We had been waiting for an hour when the bus came. (Ми чекали вже годину, коли приїхав автобус.)</p></div>
+    <div class="warn"><p><b>Форми</b></p><p>+  had + V3 (однаково для всіх осіб). Приклад: She had finished her homework.</p><p>−  hadn’t (had not) + V3. Приклад: They hadn’t met before.</p><p>?  Had + підмет + V3?. Приклад: Had you heard the news?</p><p>тривала форма  had been + V-ing: процес до моменту в минулому. Приклад: I had been sleeping for ten hours.</p><p>коротка відповідь  Yes, I had. / No, she hadn’t.. Приклад: Had they left? No, they hadn’t.</p></div>
+    <div class="warn"><p><b>Головна пастка</b></p><p>Дії по черзі: просто Past Simple. Якщо дії йдуть одна за одною в тому ж порядку, як ми розповідаємо, Past Perfect не потрібен.</p><p>✗ I had woken up, had had a shower and had gone to school.</p><p>✓ I woke up, had a shower and went to school.</p><p>when + Past Simple чи Past Perfect. When I arrived, they left: вони пішли, коли я прийшов. When I arrived, they had left: вони пішли ще до мене, я їх не застав.</p><p>✗ When I got to the party, Lily already went home.</p><p>✓ When I got to the party, Lily had already gone home.</p><p>Після had тільки V3. Після had потрібна третя форма: had gone, had seen, had eaten. Друга форма (went, saw, ate) тут помилка.</p><p>✗ She had went home early.</p><p>✓ She had gone home early.</p></div>
+    <div class="warn"><p><b>Маркери:</b> already, just, never ... before, by the time, before, after, when, by then, until, for / since (had been doing)</p></div>
+    <div class="warn"><p><b>Скорочення ’d і порядок подій</b></p><p>had скорочується до ’d: I’d, she’d, they’d. Обережно: ’d буває і would. Якщо після ’d стоїть V3, це had (I’d left), якщо V1, це would (I’d leave). Past Perfect показує подію 1 (раніше), Past Simple подію 2 (пізніше).</p><p>had finished · Past Perfect · закінчив (раніше за інший момент)</p><p>had been doing · Past Perfect Continuous · робив якийсь час до моменту</p><p>hadn’t seen · заперечення · не бачив (до того моменту)</p><p>Had you met...? · питання · Ви вже були знайомі...?</p><p>I’d left · I had left · я вже пішов</p><p>I’d leave · I would leave · я б пішов</p></div>
+    <p class="lk-tnote" data-ru="Тренажер на 100 завдань: 5 раундів по 20. На уроці можна пройти 1-2 раунди, решту задати додому. Пояснення до кожної відповіді учень бачить у тренажері на сайті (розділ «Граматика»).&lt;br&gt;">Тренажер на 100 завдань: 5 раундів по 20. На уроці можна пройти 1-2 раунди, решту задати додому. Пояснення до кожної відповіді учень бачить у тренажері на сайті (розділ «Граматика»).<br></p>
+  </section>
+  <section id="s2" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">2</span>Раунд 1. Форми: had + V3 <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="had cooked"><span class="n">1</span><span class="s">When I got home, Mum ___ dinner.</span><span class="o"><button type="button">had cook</button><button type="button">has cooked</button><button type="button">had cooked</button><button type="button">had cooking</button></span></div>
+<div class="ch" data-a="had"><span class="n">2</span><span class="s">Sophie ___ already eaten, so she didn’t come with us.</span><span class="o"><button type="button">was</button><button type="button">have</button><button type="button">had</button><button type="button">has</button></span></div>
+<div class="ch" data-a="seen"><span class="n">3</span><span class="s">They had ___ the film before, so they knew the ending.</span><span class="o"><button type="button">seen</button><button type="button">see</button><button type="button">saw</button><button type="button">seeing</button></span></div>
+<div class="ch" data-a="had bought"><span class="n">4</span><span class="s">We ___ the tickets online before the trip.</span><span class="o"><button type="button">had buyed</button><button type="button">had buy</button><button type="button">has bought</button><button type="button">had bought</button></span></div>
+<div class="ch" data-a="had been"><span class="n">5</span><span class="s">She told me she ___ to Paris twice.</span><span class="o"><button type="button">had been</button><button type="button">had went</button><button type="button">has went</button><button type="button">had be</button></span></div>
+<div class="ch" data-a="had left"><span class="n">6</span><span class="s">When we got to the station, the train ___.</span><span class="o"><button type="button">had leave</button><button type="button">had left</button><button type="button">had leaving</button><button type="button">has left</button></span></div>
+<div class="ch" data-a="had tidied"><span class="n">7</span><span class="s">Tom’s room was clean because he ___ it that morning.</span><span class="o"><button type="button">has tidied</button><button type="button">had tidy</button><button type="button">had tidying</button><button type="button">had tidied</button></span></div>
+<div class="ch" data-a="had done"><span class="n">8</span><span class="s">I ___ my homework before the match started.</span><span class="o"><button type="button">had did</button><button type="button">had do</button><button type="button">have done</button><button type="button">had done</button></span></div>
+<div class="ch" data-a="had been running"><span class="n">9</span><span class="s">He was out of breath. He ___ for an hour.</span><span class="o"><button type="button">had running</button><button type="button">has been running</button><button type="button">had been running</button><button type="button">had been run</button></span></div>
+<div class="ch" data-a="had been raining"><span class="n">10</span><span class="s">The streets were wet because it ___ all night.</span><span class="o"><button type="button">had raining</button><button type="button">has been raining</button><button type="button">had been raining</button><button type="button">had been rain</button></span></div>
+<div class="ch" data-a="had forgotten"><span class="n">11</span><span class="s">My phone was dead because I ___ to charge it.</span><span class="o"><button type="button">had forget</button><button type="button">have forgotten</button><button type="button">had forgotten</button><button type="button">had forgot</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; had cooked · had · seen · had bought · had been · had left · had tidied · had done · had been running · had been raining · had forgotten"><b>Відповіді:</b> had cooked · had · seen · had bought · had been · had left · had tidied · had done · had been running · had been raining · had forgotten</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="started"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>By the time we arrived, the concert had ___ (start).</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="forgotten"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Max had ___ (forget) his keys, so he waited outside.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="broken"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Lily was upset because someone had ___ (break) her headphones.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="written"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>I’d ___ (write) the email before my boss called.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="eaten"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>By 10 p.m. the cat had ___ (eat) all its food.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="lost"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Kate had ___ (lose) her ticket, so she couldn’t get in.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="been"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>Emma had ___ (be) to London before, so she showed us around.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="waiting"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>They had been ___ (wait) for ages when the doors opened.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="had"><span class="n" style="font-weight:800;color:var(--violet)">9</span><span>We ___ (have) been talking for an hour when Lily finally arrived.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; started · forgotten · broken · written · eaten · lost · been · waiting · had"><b>Відповіді:</b> started · forgotten · broken · written · eaten · lost · been · waiting · had</p>
+  </section>
+  <section id="s3" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">3</span>Раунд 2. Заперечення і питання <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="hadn’t seen"><span class="n">1</span><span class="s">I ___ that film before, so it was all new to me.</span><span class="o"><button type="button">hadn’t saw</button><button type="button">didn’t saw</button><button type="button">hadn’t seen</button><button type="button">haven’t seen</button></span></div>
+<div class="ch" data-a="Had"><span class="n">2</span><span class="s">___ you finished your project when the teacher asked?</span><span class="o"><button type="button">Were</button><button type="button">Had</button><button type="button">Did</button><button type="button">Have</button></span></div>
+<div class="ch" data-a="hadn’t"><span class="n">3</span><span class="s">Had Lily met Tom before the party? No, she ___.</span><span class="o"><button type="button">hadn’t</button><button type="button">wasn’t</button><button type="button">hasn’t</button><button type="button">didn’t</button></span></div>
+<div class="ch" data-a="had you worked"><span class="n">4</span><span class="s">Where ___ before you joined this company?</span><span class="o"><button type="button">had you work</button><button type="button">you had worked</button><button type="button">have you worked</button><button type="button">had you worked</button></span></div>
+<div class="ch" data-a="hadn’t"><span class="n">5</span><span class="s">They ___ been waiting long when the bus came.</span><span class="o"><button type="button">haven’t</button><button type="button">hadn’t</button><button type="button">didn’t</button><button type="button">weren’t</button></span></div>
+<div class="ch" data-a="had"><span class="n">6</span><span class="s">Had the kids been playing outside? Yes, they ___.</span><span class="o"><button type="button">were</button><button type="button">have</button><button type="button">did</button><button type="button">had</button></span></div>
+<div class="ch" data-a="had you"><span class="n">7</span><span class="s">How long ___ been learning French before you went to Lyon?</span><span class="o"><button type="button">had you</button><button type="button">were you</button><button type="button">have you</button><button type="button">did you</button></span></div>
+<div class="ch" data-a="hadn’t"><span class="n">8</span><span class="s">The shop ___ opened yet, so we waited outside.</span><span class="o"><button type="button">didn’t</button><button type="button">haven’t</button><button type="button">hadn’t</button><button type="button">wasn’t</button></span></div>
+<div class="ch" data-a="Had"><span class="n">9</span><span class="s">___ he told you about the new job before you called?</span><span class="o"><button type="button">Had</button><button type="button">Was</button><button type="button">Did</button><button type="button">Has</button></span></div>
+<div class="ch" data-a="done"><span class="n">10</span><span class="s">Kate hadn’t ___ her homework, so the teacher was angry.</span><span class="o"><button type="button">do</button><button type="button">doing</button><button type="button">did</button><button type="button">done</button></span></div>
+<div class="ch" data-a="had"><span class="n">11</span><span class="s">“Had they left before the storm?” “Yes, they ___.”</span><span class="o"><button type="button">did</button><button type="button">were</button><button type="button">have</button><button type="button">had</button></span></div>
+<div class="ch" data-a="had"><span class="n">12</span><span class="s">We ___ never been to a concert before that night.</span><span class="o"><button type="button">were</button><button type="button">did</button><button type="button">have</button><button type="button">had</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; hadn’t seen · Had · hadn’t · had you worked · hadn’t · had · had you · hadn’t · Had · done · had · had"><b>Відповіді:</b> hadn’t seen · Had · hadn’t · had you worked · hadn’t · had · had you · hadn’t · Had · done · had · had</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="hadn’t|had not"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>We were lost because we ___ (not) been there before.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="eaten"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Max hadn’t ___ (eat) anything all day, so he was starving.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Had|had"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>___ (have) the film started when you arrived?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="tried"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Had you ever ___ (try) sushi before that trip?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="hadn’t|had not"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Emma ___ (not) seen snow until she moved to Manchester.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="flown"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Sophie was nervous. She had never ___ (fly) before.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="had"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>How long ___ (have) Dan been living there before he moved?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="sleeping"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>I hadn’t been ___ (sleep) well, so I felt terrible.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; hadn’t · eaten · Had · tried · hadn’t · flown · had · sleeping"><b>Відповіді:</b> hadn’t · eaten · Had · tried · hadn’t · flown · had · sleeping</p>
+  </section>
+  <section id="s4" data-stage="reading" data-min="8">
+    <h2><span class="lk-n">4</span>Раунд 3. Що було раніше: by the time, already, before <span class="tag">reading</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="had gone"><span class="n">1</span><span class="s">When I arrived at the party, Lily ___ home. I didn’t see her at all.</span><span class="o"><button type="button">goes</button><button type="button">went</button><button type="button">had gone</button><button type="button">has gone</button></span></div>
+<div class="ch" data-a="gave"><span class="n">2</span><span class="s">When I arrived at the party, Lily ___ me a big hug.</span><span class="o"><button type="button">has given</button><button type="button">had give</button><button type="button">gave</button><button type="button">had given</button></span></div>
+<div class="ch" data-a="had lost"><span class="n">3</span><span class="s">I ___ my keys, so I couldn’t open the door.</span><span class="o"><button type="button">lose</button><button type="button">was losing</button><button type="button">have lost</button><button type="button">had lost</button></span></div>
+<div class="ch" data-a="had had"><span class="n">4</span><span class="s">After we ___ dinner, we watched a film.</span><span class="o"><button type="button">had had</button><button type="button">has had</button><button type="button">had have</button><button type="button">have had</button></span></div>
+<div class="ch" data-a="had known"><span class="n">5</span><span class="s">Dan ___ the ending before he saw the film, so it wasn’t a surprise.</span><span class="o"><button type="button">has known</button><button type="button">had known</button><button type="button">had knew</button><button type="button">knows</button></span></div>
+<div class="ch" data-a="played"><span class="n">6</span><span class="s">First Tom did his homework, then he ___ football.</span><span class="o"><button type="button">had play</button><button type="button">has played</button><button type="button">played</button><button type="button">had played</button></span></div>
+<div class="ch" data-a="had already started"><span class="n">7</span><span class="s">The film ___ when we got to the cinema, so we missed the beginning.</span><span class="o"><button type="button">already start</button><button type="button">had already started</button><button type="button">has already started</button><button type="button">already starts</button></span></div>
+<div class="ch" data-a="had dyed"><span class="n">8</span><span class="s">I didn’t recognise Kate. She ___ her hair red.</span><span class="o"><button type="button">dyes</button><button type="button">has dyed</button><button type="button">had dye</button><button type="button">had dyed</button></span></div>
+<div class="ch" data-a="had eaten"><span class="n">9</span><span class="s">When Sophie came home, the sandwich was gone. Her cat ___ it.</span><span class="o"><button type="button">had ate</button><button type="button">had eaten</button><button type="button">eats</button><button type="button">has eaten</button></span></div>
+<div class="ch" data-a="had been raining"><span class="n">10</span><span class="s">The roads were wet. It ___ all night.</span><span class="o"><button type="button">had been raining</button><button type="button">has been raining</button><button type="button">rains</button><button type="button">is raining</button></span></div>
+<div class="ch" data-a="had been walking"><span class="n">11</span><span class="s">We ___ for two hours when the rain finally stopped.</span><span class="o"><button type="button">are walking</button><button type="button">walk</button><button type="button">have been walking</button><button type="button">had been walking</button></span></div>
+<div class="ch" data-a="had lived"><span class="n">12</span><span class="s">Lily ___ in Edinburgh for five years before she moved to London.</span><span class="o"><button type="button">lives</button><button type="button">is living</button><button type="button">has lived</button><button type="button">had lived</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; had gone · gave · had lost · had had · had known · played · had already started · had dyed · had eaten · had been raining · had been walking · had lived"><b>Відповіді:</b> had gone · gave · had lost · had had · had known · played · had already started · had dyed · had eaten · had been raining · had been walking · had lived</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="had already finished|’d already finished"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>By the time the teacher came in, we ___ (already, finish) the test.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="hadn’t|had not"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Max was nervous because he ___ (not) studied enough.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="been"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>It was Lily’s first time in Rome. She had never ___ (be) there before.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="had gone|’d gone"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>By the time Dad got home, the kids ___ (go) to bed.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="known"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>We had ___ (know) each other for years before we started the band.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="eaten"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Emma felt sick because she’d ___ (eat) too much cake.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="painting"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>Tom’s hands were covered in paint. He had been ___ (paint) the fence.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="waiting"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>How long had you been ___ (wait) when the doctor finally saw you?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; had already finished · hadn’t · been · had gone · known · eaten · painting · waiting"><b>Відповіді:</b> had already finished · hadn’t · been · had gone · known · eaten · painting · waiting</p>
+  </section>
+  <section id="s5" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">5</span>Раунд 4. Пастки: had went і зайвий Past Perfect <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="She had gone home early."><span class="n">1</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">She has went home early.</button><button type="button">She had gone home early.</button><button type="button">She had go home early.</button><button type="button">She had went home early.</button></span></div>
+<div class="ch" data-a="I woke up, dressed and left."><span class="n">2</span><span class="s">Яке речення правильне?: ___</span><span class="o"><button type="button">I had woke up, dressed and left.</button><button type="button">I woke up, dressed and left.</button><button type="button">I woken up, dressed and left.</button><button type="button">I had wake up, dressed and left.</button></span></div>
+<div class="ch" data-a="When we arrived, the bus had already left."><span class="n">3</span><span class="s">Знайди речення без помилки: ___</span><span class="o"><button type="button">When we arrived, the bus has already left.</button><button type="button">When we arrived, the bus had already left.</button><button type="button">When we arrived, the bus had already leave.</button><button type="button">When we had arrived, the bus already leaves.</button></span></div>
+<div class="ch" data-a="didn’t"><span class="n">4</span><span class="s">She ___ like coffee, so she ordered tea.</span><span class="o"><button type="button">didn’t</button><button type="button">hasn’t</button><button type="button">hadn’t</button><button type="button">wasn’t</button></span></div>
+<div class="ch" data-a="had known"><span class="n">5</span><span class="s">I ___ Dan for ten years when he moved abroad.</span><span class="o"><button type="button">was knowing</button><button type="button">have known</button><button type="button">had known</button><button type="button">had been knowing</button></span></div>
+<div class="ch" data-a="Tom said he had already seen the film."><span class="n">6</span><span class="s">Де немає помилки?: ___</span><span class="o"><button type="button">Tom said he had already seen the film.</button><button type="button">Tom said he had already see the film.</button><button type="button">Tom said he has already seen the film.</button><button type="button">Tom said he had already saw the film.</button></span></div>
+<div class="ch" data-a="forgotten"><span class="n">7</span><span class="s">I’d ___ my bag on the bus, so I had to go back.</span><span class="o"><button type="button">forget</button><button type="button">forgetting</button><button type="button">forgotten</button><button type="button">forgot</button></span></div>
+<div class="ch" data-a="like"><span class="n">8</span><span class="s">I’d ___ a pizza, please.</span><span class="o"><button type="button">liked</button><button type="button">like</button><button type="button">had</button><button type="button">liking</button></span></div>
+<div class="ch" data-a="After she had finished school, she went to Spain."><span class="n">9</span><span class="s">Яке речення звучить природно?: ___</span><span class="o"><button type="button">After she finished school, she has gone to Spain.</button><button type="button">After she has finished school, she went to Spain.</button><button type="button">After she had finished school, she went to Spain.</button><button type="button">After she had finished school, she had gone to Spain.</button></span></div>
+<div class="ch" data-a="had gone"><span class="n">10</span><span class="s">The house was quiet. Everyone ___ to bed.</span><span class="o"><button type="button">has gone</button><button type="button">had gone</button><button type="button">goes</button><button type="button">had went</button></span></div>
+<div class="ch" data-a="had been"><span class="n">11</span><span class="s">We ___ waiting for half an hour when Max finally texted.</span><span class="o"><button type="button">had been</button><button type="button">have been</button><button type="button">were been</button><button type="button">had</button></span></div>
+<div class="ch" data-a="I was tired because I had been working all day."><span class="n">12</span><span class="s">Обери речення без помилки: ___</span><span class="o"><button type="button">I was tired because I had working all day.</button><button type="button">I was tired because I had been work all day.</button><button type="button">I was tired because I have been working all day.</button><button type="button">I was tired because I had been working all day.</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; She had gone home early. · I woke up, dressed and left. · When we arrived, the bus had already left. · didn’t · had known · Tom said he had already seen the film. · forgotten · like · After she had finished school, she went to Spain. · had gone · had been · I was tired because I had been working all day."><b>Відповіді:</b> She had gone home early. · I woke up, dressed and left. · When we arrived, the bus had already left. · didn’t · had known · Tom said he had already seen the film. · forgotten · like · After she had finished school, she went to Spain. · had gone · had been · I was tired because I had been working all day.</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="left"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Max couldn’t pay because he had ___ (leave) his wallet at home.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="ridden"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>I’d never ___ (ride) a horse before last summer.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="dancing"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>They had been ___ (dance) for hours, so their feet hurt.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="had had|’d had"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Kate ___ (have) her dog for ten years when it got ill.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="gone"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>When I called Lily, she had just ___ (go) out.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="hadn’t|had not"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>He was angry because we ___ (not) told him about the party.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="had"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>Dan’s eyes were red because he ___ (have) been staring at his screen all night.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="walked"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>By the end of the day, we had ___ (walk) twenty kilometres.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; left · ridden · dancing · had had · gone · hadn’t · had · walked"><b>Відповіді:</b> left · ridden · dancing · had had · gone · hadn’t · had · walked</p>
+  </section>
+  <section id="s6" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">6</span>Раунд 5. Фінальний бос <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="had passed"><span class="n">1</span><span class="s">Lily: “Why were you so happy yesterday?” Tom: “Because I ___ my driving test that morning!”</span><span class="o"><button type="button">pass</button><button type="button">had pass</button><button type="button">have passed</button><button type="button">had passed</button></span></div>
+<div class="ch" data-a="had been playing"><span class="n">2</span><span class="s">The kids were muddy from head to toe. They ___ football in the rain.</span><span class="o"><button type="button">had been play</button><button type="button">had been playing</button><button type="button">are playing</button><button type="button">have been playing</button></span></div>
+<div class="ch" data-a="had been waiting"><span class="n">3</span><span class="s">By the time the pizza arrived, we ___ for an hour.</span><span class="o"><button type="button">had been waiting</button><button type="button">have waited</button><button type="button">waited been</button><button type="button">are waiting</button></span></div>
+<div class="ch" data-a="had seen"><span class="n">4</span><span class="s">I didn’t go to the cinema with them because I ___ the film already.</span><span class="o"><button type="button">see</button><button type="button">have seen</button><button type="button">had seen</button><button type="button">had saw</button></span></div>
+<div class="ch" data-a="had called"><span class="n">5</span><span class="s">When I checked my phone, I saw that Dan ___ me five times.</span><span class="o"><button type="button">was calling</button><button type="button">had called</button><button type="button">has called</button><button type="button">calls</button></span></div>
+<div class="ch" data-a="were having"><span class="n">6</span><span class="s">We ___ dinner when the lights went out, so we finished it by candlelight.</span><span class="o"><button type="button">were having</button><button type="button">had</button><button type="button">had had</button><button type="button">have had</button></span></div>
+<div class="ch" data-a="had read"><span class="n">7</span><span class="s">Kate was happy: she ___ the whole book in one weekend.</span><span class="o"><button type="button">has read</button><button type="button">had readed</button><button type="button">reads</button><button type="button">had read</button></span></div>
+<div class="ch" data-a="came"><span class="n">8</span><span class="s">Tom ___ home, had a snack and started his homework.</span><span class="o"><button type="button">had come</button><button type="button">came</button><button type="button">has come</button><button type="button">comes</button></span></div>
+<div class="ch" data-a="hadn’t"><span class="n">9</span><span class="s">“Had you heard about the party?” “No, I ___. Nobody told me.”</span><span class="o"><button type="button">wasn’t</button><button type="button">haven’t</button><button type="button">hadn’t</button><button type="button">didn’t</button></span></div>
+<div class="ch" data-a="had left"><span class="n">10</span><span class="s">After the guests ___, we cleaned the whole flat.</span><span class="o"><button type="button">leaving</button><button type="button">had left</button><button type="button">had leave</button><button type="button">have left</button></span></div>
+<div class="ch" data-a="had been splashing"><span class="n">11</span><span class="s">The floor was wet because the dog ___ in the bath.</span><span class="o"><button type="button">is splashing</button><button type="button">has been splashing</button><button type="button">had been splashing</button><button type="button">splashes</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; had passed · had been playing · had been waiting · had seen · had called · were having · had read · came · hadn’t · had left · had been splashing"><b>Відповіді:</b> had passed · had been playing · had been waiting · had seen · had called · were having · had read · came · hadn’t · had left · had been splashing</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="left"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Max ran to the platform, but his train had already ___ (leave).</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="had stolen|’d stolen"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>When we got back from holiday, we found that someone ___ (steal) our bikes.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="hadn’t|had not"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Emma ___ (not) eaten sushi before she went to Japan.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="heard"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Sophie was surprised. She had never ___ (hear) that song before.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="had"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>How long ___ (have) they been dating before they got married?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="done"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>The teacher was angry because nobody had ___ (do) the homework.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="training"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>Before the match, the players had been ___ (train) for months.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="lost"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>Lily was crying because she’d ___ (lose) her cat.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="had been looking|’d been looking|had looked|’d looked"><span class="n" style="font-weight:800;color:var(--violet)">9</span><span>When Max finally found a job, he ___ (look) for six months.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; left · had stolen · hadn’t · heard · had · done · training · lost · had been looking"><b>Відповіді:</b> left · had stolen · hadn’t · heard · had · done · training · lost · had been looking</p>
+  </section>
+  <section class="end"><h2>Great job!</h2><p>See you next lesson.</p></section>
+</div>
+<div class="toast" id="toast"></div>
+<script>window.MURLY_LESSON={"id": "lib-drill-past-perfect", "title": "Past Perfect (and Past Perfect Continuous): 100 tasks", "homework": ["s2", "s3", "s4", "s5", "s6"], "hw": {"s2": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "When I got home, Mum {had cooked|had cook|has cooked|had cooking} dinner.\nSophie {had|has|have|was} already eaten, so she didn’t come with us.\nThey had {seen|saw|see|seeing} the film before, so they knew the ending.\nWe {had bought|had buy|had buyed|has bought} the tickets online before the trip.\nShe told me she {had been|had be|has went|had went} to Paris twice.\nWhen we got to the station, the train {had left|had leave|has left|had leaving}.\nTom’s room was clean because he {had tidied|had tidy|had tidying|has tidied} it that morning.\nI {had done|had did|had do|have done} my homework before the match started.\nHe was out of breath. He {had been running|had been run|had running|has been running} for an hour.\nThe streets were wet because it {had been raining|had been rain|has been raining|had raining} all night.\nMy phone was dead because I {had forgotten|had forgot|had forget|have forgotten} to charge it."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "By the time we arrived, the concert had [started] (start).\nMax had [forgotten] (forget) his keys, so he waited outside.\nLily was upset because someone had [broken] (break) her headphones.\nI’d [written] (write) the email before my boss called.\nBy 10 p.m. the cat had [eaten] (eat) all its food.\nKate had [lost] (lose) her ticket, so she couldn’t get in.\nEmma had [been] (be) to London before, so she showed us around.\nThey had been [waiting] (wait) for ages when the doors opened.\nWe [had] (have) been talking for an hour when Lily finally arrived."}], "s3": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "I {hadn’t seen|didn’t saw|haven’t seen|hadn’t saw} that film before, so it was all new to me.\n{Had|Have|Did|Were} you finished your project when the teacher asked?\nHad Lily met Tom before the party? No, she {hadn’t|didn’t|hasn’t|wasn’t}.\nWhere {had you worked|you had worked|had you work|have you worked} before you joined this company?\nThey {hadn’t|haven’t|didn’t|weren’t} been waiting long when the bus came.\nHad the kids been playing outside? Yes, they {had|did|were|have}.\nHow long {had you|have you|did you|were you} been learning French before you went to Lyon?\nThe shop {hadn’t|didn’t|wasn’t|haven’t} opened yet, so we waited outside.\n{Had|Did|Has|Was} he told you about the new job before you called?\nKate hadn’t {done|did|do|doing} her homework, so the teacher was angry.\n“Had they left before the storm?” “Yes, they {had|did|have|were}.”\nWe {had|have|did|were} never been to a concert before that night."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "We were lost because we [hadn’t/had not] (not) been there before.\nMax hadn’t [eaten] (eat) anything all day, so he was starving.\n[Had/had] (have) the film started when you arrived?\nHad you ever [tried] (try) sushi before that trip?\nEmma [hadn’t/had not] (not) seen snow until she moved to Manchester.\nSophie was nervous. She had never [flown] (fly) before.\nHow long [had] (have) Dan been living there before he moved?\nI hadn’t been [sleeping] (sleep) well, so I felt terrible."}], "s4": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "When I arrived at the party, Lily {had gone|went|has gone|goes} home. I didn’t see her at all.\nWhen I arrived at the party, Lily {gave|had given|has given|had give} me a big hug.\nI {had lost|have lost|was losing|lose} my keys, so I couldn’t open the door.\nAfter we {had had|have had|had have|has had} dinner, we watched a film.\nDan {had known|has known|knows|had knew} the ending before he saw the film, so it wasn’t a surprise.\nFirst Tom did his homework, then he {played|had played|has played|had play} football.\nThe film {had already started|already starts|has already started|already start} when we got to the cinema, so we missed the beginning.\nI didn’t recognise Kate. She {had dyed|dyes|has dyed|had dye} her hair red.\nWhen Sophie came home, the sandwich was gone. Her cat {had eaten|has eaten|eats|had ate} it.\nThe roads were wet. It {had been raining|has been raining|rains|is raining} all night.\nWe {had been walking|have been walking|walk|are walking} for two hours when the rain finally stopped.\nLily {had lived|has lived|lives|is living} in Edinburgh for five years before she moved to London."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "By the time the teacher came in, we [had already finished/’d already finished] (already, finish) the test.\nMax was nervous because he [hadn’t/had not] (not) studied enough.\nIt was Lily’s first time in Rome. She had never [been] (be) there before.\nBy the time Dad got home, the kids [had gone/’d gone] (go) to bed.\nWe had [known] (know) each other for years before we started the band.\nEmma felt sick because she’d [eaten] (eat) too much cake.\nTom’s hands were covered in paint. He had been [painting] (paint) the fence.\nHow long had you been [waiting] (wait) when the doctor finally saw you?"}], "s5": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Обери правильне речення: {She had gone home early.|She had went home early.|She has went home early.|She had go home early.}\nЯке речення правильне?: {I woke up, dressed and left.|I had woke up, dressed and left.|I had wake up, dressed and left.|I woken up, dressed and left.}\nЗнайди речення без помилки: {When we arrived, the bus had already left.|When we arrived, the bus had already leave.|When we arrived, the bus has already left.|When we had arrived, the bus already leaves.}\nShe {didn’t|hadn’t|hasn’t|wasn’t} like coffee, so she ordered tea.\nI {had known|had been knowing|have known|was knowing} Dan for ten years when he moved abroad.\nДе немає помилки?: {Tom said he had already seen the film.|Tom said he had already saw the film.|Tom said he has already seen the film.|Tom said he had already see the film.}\nI’d {forgotten|forgot|forget|forgetting} my bag on the bus, so I had to go back.\nI’d {like|liked|had|liking} a pizza, please.\nЯке речення звучить природно?: {After she had finished school, she went to Spain.|After she had finished school, she had gone to Spain.|After she finished school, she has gone to Spain.|After she has finished school, she went to Spain.}\nThe house was quiet. Everyone {had gone|goes|has gone|had went} to bed.\nWe {had been|have been|had|were been} waiting for half an hour when Max finally texted.\nОбери речення без помилки: {I was tired because I had been working all day.|I was tired because I have been working all day.|I was tired because I had working all day.|I was tired because I had been work all day.}"}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "Max couldn’t pay because he had [left] (leave) his wallet at home.\nI’d never [ridden] (ride) a horse before last summer.\nThey had been [dancing] (dance) for hours, so their feet hurt.\nKate [had had/’d had] (have) her dog for ten years when it got ill.\nWhen I called Lily, she had just [gone] (go) out.\nHe was angry because we [hadn’t/had not] (not) told him about the party.\nDan’s eyes were red because he [had] (have) been staring at his screen all night.\nBy the end of the day, we had [walked] (walk) twenty kilometres."}], "s6": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Lily: “Why were you so happy yesterday?” Tom: “Because I {had passed|have passed|pass|had pass} my driving test that morning!”\nThe kids were muddy from head to toe. They {had been playing|have been playing|had been play|are playing} football in the rain.\nBy the time the pizza arrived, we {had been waiting|have waited|are waiting|waited been} for an hour.\nI didn’t go to the cinema with them because I {had seen|have seen|see|had saw} the film already.\nWhen I checked my phone, I saw that Dan {had called|has called|calls|was calling} me five times.\nWe {were having|had had|have had|had} dinner when the lights went out, so we finished it by candlelight.\nKate was happy: she {had read|has read|had readed|reads} the whole book in one weekend.\nTom {came|had come|has come|comes} home, had a snack and started his homework.\n“Had you heard about the party?” “No, I {hadn’t|didn’t|haven’t|wasn’t}. Nobody told me.”\nAfter the guests {had left|have left|leaving|had leave}, we cleaned the whole flat.\nThe floor was wet because the dog {had been splashing|has been splashing|splashes|is splashing} in the bath."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "Max ran to the platform, but his train had already [left] (leave).\nWhen we got back from holiday, we found that someone [had stolen/’d stolen] (steal) our bikes.\nEmma [hadn’t/had not] (not) eaten sushi before she went to Japan.\nSophie was surprised. She had never [heard] (hear) that song before.\nHow long [had] (have) they been dating before they got married?\nThe teacher was angry because nobody had [done] (do) the homework.\nBefore the match, the players had been [training] (train) for months.\nLily was crying because she’d [lost] (lose) her cat.\nWhen Max finally found a job, he [had been looking/’d been looking/had looked/’d looked] (look) for six months."}]}};</script>
+<script>
+(function(){var l=(document.cookie.match(/(?:^|; )murly_lang=(\w+)/)||[])[1];try{l=l||localStorage.getItem('murly:tlang')}catch(e){}l=l==='ru'?'ru':'uk';document.querySelectorAll('[data-pairs-'+l+']').forEach(function(b){b.dataset.pairs=b.getAttribute('data-pairs-'+l)});})();
+</script>
+<script>
+const $ = (id) => document.getElementById(id);
+const LIS = {};
+function say(w, rate) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; const v = speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang) && /Google|Natural|Libby|Sonia|Daniel/.test(x.name)) || speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang)); if (v) u.voice = v; u.rate = rate || .95; speechSynthesis.speak(u); } catch (e) { } }
+const sh = (a) => a.map((x) => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map((x) => x[1]);
+document.querySelectorAll('.voc div').forEach((d) => d.onclick = () => say(d.dataset.say));
+document.querySelectorAll('[data-play]').forEach((b) => b.onclick = () => say(LIS[b.dataset.play], b.dataset.slow ? .75 : .95));
+document.querySelectorAll('[data-stop]').forEach((b) => b.onclick = () => { try { speechSynthesis.cancel(); } catch (e) { } });
+document.querySelectorAll('.ch').forEach((q) => q.querySelectorAll('button').forEach((b) => b.onclick = () => { if (q.classList.contains('ok')) return; const ok = b.textContent === q.dataset.a; q.classList.toggle('ok', ok); q.classList.toggle('bad', !ok); if (ok) { const s = q.querySelector('.s'); if (s && s.textContent.includes('___')) { s.textContent = s.textContent.replace('___', q.dataset.a); } } }));
+const norm = (x) => x.toLowerCase().replace(/[’']/g, "'").replace(/[,;:"“”«»]/g, ' ').replace(/\s+/g, ' ').replace(/[.!?]$/, '').trim();
+document.querySelectorAll('.ty').forEach((r) => { const inp = r.querySelector('input'); const chk = () => { const ok = r.dataset.a.split('|').some((a) => norm(a) === norm(inp.value)); r.classList.toggle('ok', ok); r.classList.toggle('bad', !ok && inp.value.trim() !== ''); }; r.querySelector('button').onclick = chk; inp.onkeydown = (e) => { if (e.key === 'Enter') chk(); }; });
+document.querySelectorAll('[data-mt]').forEach((box) => { const pairs = JSON.parse(box.dataset.pairs); const L = sh(pairs.map((p) => p[0])), R = sh(pairs.map((p) => p[1])); let sel = null, done = 0, err = 0; box.innerHTML = L.map((w, i) => `<button type="button" data-w="${w}">${w}</button><button type="button" data-d="${R[i]}">${R[i]}</button>`).join('');
+  box.querySelectorAll('button').forEach((b) => b.onclick = () => { if (b.classList.contains('done')) return; if (!sel || (sel.dataset.w && b.dataset.w) || (sel.dataset.d && b.dataset.d)) { if (sel) sel.classList.remove('sel'); sel = b; b.classList.add('sel'); return; } const w = sel.dataset.w || b.dataset.w, d = sel.dataset.d || b.dataset.d; if (pairs.some((p) => p[0] === w && p[1] === d)) { sel.classList.add('done'); b.classList.add('done'); done++; say(w); if (done === pairs.length) document.querySelector(`[data-mtres="${box.dataset.mt}"]`).textContent = err ? `Done! Mistakes: ${err}` : 'Perfect!'; } else err++; sel.classList.remove('sel'); sel = null; }); });
+document.querySelectorAll('[data-vids]').forEach((box) => JSON.parse(box.dataset.vids).forEach(([id, title, ch, qs]) => { const d = document.createElement('div'); d.className = 'vid'; d.innerHTML = `<div class="frame"><button class="play" type="button" style="background-image:url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)"><span>PLAY</span></button></div><div class="info"><h3>${title}</h3><small>YouTube · ${ch}</small><ol>${qs.map((q) => `<li>${q}</li>`).join('')}</ol></div>`; d.querySelector('.play').onclick = (e) => { e.currentTarget.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&cc_load_policy=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${title}"></iframe>`; }; box.appendChild(d); }));
+document.querySelectorAll('[data-spin]').forEach((b) => { const list = JSON.parse(b.dataset.spin); let last = -1; b.onclick = () => { let i; do { i = Math.floor(Math.random() * list.length); } while (i === last && list.length > 1); last = i; document.getElementById(b.dataset.target).textContent = list[i]; }; });
+try { const k = 'murly:' + (window.MURLY_LESSON ? MURLY_LESSON.id : 'x') + ':hw'; const t = $('hwText'); if (t) { t.value = localStorage.getItem(k) || ''; t.oninput = () => localStorage.setItem(k, t.value); } } catch (e) { }
+const STAGES = [...document.querySelectorAll('.wrap > section[id]')];
+$('stages').innerHTML = STAGES.map((s) => `<a href="#${s.id}"><b>${s.querySelector('.lk-n').textContent}</b><span>${s.dataset.stage}</span><small>${s.dataset.min !== '0' ? s.dataset.min + ' min' : 'at home'}</small></a>`).join('');
+$('teacherBtn').onclick = (e) => { const on = document.body.classList.toggle('teacher'); e.currentTarget.textContent = on ? 'Student version' : 'Teacher version'; };
+</script>
+<script src="/game-lessons/kit.js" defer></script>
+</body>
+</html>

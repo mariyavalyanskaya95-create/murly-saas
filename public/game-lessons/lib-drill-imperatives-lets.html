@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Imperatives and let’s: 100 tasks (A1) | Murly</title>
+<link rel="icon" href="/favicon.svg">
+<meta name="description" content="Повторимо правило: Наказовий спосіб і let’s
+100 завдань від простого до складного
+Розберемо головні пастки">
+<link rel="canonical" href="https://murly.com.ua/game-lessons/lib-drill-imperatives-lets.html">
+<style>
+:root{--paper:#F3F0EA;--ink:#17181C;--violet:#3D4A7A;--lav:#D9D3C7;--pink:#E9C9BC;--green:#D4E2CF;--white:#fff;--muted:#62646B;--accent:#B5482F}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+/* hero */
+.hero{background:linear-gradient(rgba(16,17,22,.5),rgba(16,17,22,.72)),url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1400&q=70&auto=format&fit=crop");color:#fff;padding:70px 18px 56px;text-align:center;position:relative;overflow:hidden}
+.hero .kicker{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#E9C9BC;font-weight:700}
+.hero .cr{position:absolute;right:12px;bottom:8px;font-size:11px;color:rgba(255,255,255,.6)}
+.hero h1{margin:8px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(36px,6vw,64px);letter-spacing:-.5px;font-weight:700}
+.hero h1 span{color:var(--pink);font-style:italic}
+.hero p{margin:12px 0 0;font-size:17px;color:#e6e2da}
+.hero .flags{display:flex;justify-content:center;gap:12px;margin-top:22px;flex-wrap:wrap}
+.hero .flags svg{width:40px;height:26px;border-radius:3px;opacity:.9}
+/* sections */
+section{margin-top:30px;background:var(--white);border-radius:18px;padding:28px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.05)}
+section h2{margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tag{font-family:"Segoe UI",system-ui,sans-serif;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--paper);color:var(--accent);text-transform:uppercase;letter-spacing:1px}
+.lk-n{display:inline-grid;place-items:center;width:42px;height:42px;background:var(--violet);color:#fff;border-radius:50%;font-size:21px;flex:none}
+.lk-mode{font-size:13px;font-weight:700;border:2px dashed var(--lav);color:var(--muted);padding:2px 10px;border-radius:999px}
+.lk-ins{font-size:17px;background:var(--paper);border-radius:12px;padding:10px 14px;margin:6px 0 18px}
+.lk-sub{margin:24px 0 10px;font-size:19px}
+.btn{font:inherit;font-weight:700;border:0;border-radius:999px;background:var(--ink);color:#fff;padding:10px 20px;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+.btn.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+/* teacher */
+.lk-tbtn{position:fixed;right:16px;top:70px;z-index:45;font:inherit;font-weight:800;border:2px solid var(--ink);background:var(--pink);padding:8px 14px;border-radius:12px;cursor:pointer}
+body.teacher .lk-tbtn{background:var(--green)}
+.lk-ans,.lk-tnote{display:none}
+body.teacher .lk-ans{display:block;margin-top:8px;font-weight:700;color:#1d5a12;background:var(--green);border-left:5px solid #5aa845;padding:6px 10px;font-size:15px;border-radius:6px}
+body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff3f7;border-left:5px solid #d9789a;padding:8px 12px;font-size:15px;border-radius:6px}
+/* overview */
+.lk-overview ul{font-size:17px;line-height:1.7;margin:6px 0 16px}
+.lk-stages{display:flex;flex-wrap:wrap;gap:8px}
+.lk-stages a{display:grid;border-radius:14px;padding:8px 12px;text-decoration:none;color:var(--ink);background:var(--paper);font-weight:700;min-width:100px}
+.lk-stages a span{text-transform:capitalize}
+.lk-stages a b{font-size:20px;color:var(--violet)}
+.lk-stages a small{font-weight:600;color:var(--muted)}
+/* warm-up */
+.taxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tax{background:var(--paper);border-radius:18px;padding:16px;display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center}
+.tax svg{width:56px;height:56px}
+.tax b{display:block;font-size:17px}
+.tax small{color:var(--muted);font-size:14px}
+.qs{display:grid;gap:10px;margin-top:18px}
+.qs div{background:var(--green);border-radius:14px;padding:10px 16px;font-size:18px;font-weight:600}
+.phr{background:#fff7e8;border-radius:14px;padding:12px 16px;margin-top:16px;font-size:15px}
+.phr ul{margin:6px 0 0;padding-left:18px}
+.fic{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:16px}
+.fic .c{background:#fff;border:2px solid #1B2140;border-radius:16px;padding:14px 16px;box-shadow:3px 3px 0 #1B2140}
+.fic .c b{display:block;font-size:18px;line-height:1.35;margin-bottom:8px}
+.fic .c .k{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.fic .c .k span{font-size:13px;background:#eef1fb;border-radius:999px;padding:3px 10px}
+.fic .c details{margin-top:8px;font-size:15px;color:#3b4160}
+.fic .c summary{cursor:pointer;font-weight:700;color:#534AB7}
+.fi-n{display:inline-flex;width:28px;height:28px;border-radius:50%;background:#2F4BA0;color:#fff;align-items:center;justify-content:center;font-size:14px;margin-right:6px}
+/* vocab */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:12px}
+.vc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:2px solid transparent;transition:border-color .2s,transform .2s}
+.vc:hover{border-color:var(--violet);transform:translateY(-2px)}
+.vc b{font-size:18px;display:flex;align-items:center;gap:8px}
+.vc b svg{width:20px;height:20px;flex:none;color:var(--violet)}
+.vc p{margin:6px 0 0;font-size:14px;color:var(--muted)}
+.vc em{display:block;margin-top:6px;font-size:14px;color:var(--violet);font-style:normal;font-weight:600}
+.vc.played{background:#e6ecfb}
+/* grammar */
+.gram{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.gb{border-radius:18px;padding:16px}
+.gb h3{margin:0 0 6px;font-size:19px}
+.gb .f{display:inline-block;background:#fff;border-radius:8px;padding:3px 10px;font-weight:800;margin:4px 0;font-family:Consolas,monospace;font-size:15px}
+.gb p{margin:6px 0 0;font-size:15px}
+.g1{background:var(--pink)}.g2{background:var(--lav)}.g3{background:var(--green)}.g4{background:#fbe7c6}
+.warn{margin-top:14px;background:var(--ink);color:#fff;border-radius:14px;padding:12px 16px;font-size:16px}
+.warn b{color:var(--pink)}
+.q{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:2px dashed var(--paper);font-size:18px}
+.q:last-child{border-bottom:0}
+.q .n{width:32px;height:32px;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;border-radius:50%;font-weight:800;font-size:15px}
+.opt{font:inherit;font-size:16px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:10px;padding:4px 12px;cursor:pointer;margin:0 2px}
+.opt.ok{background:var(--green);border-color:#5aa845}
+.opt.bad{background:var(--pink);animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+/* tour */
+.tour{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.law{border-radius:22px;overflow:hidden;background:var(--paper);display:flex;flex-direction:column}
+.law .pic{height:150px;display:grid;place-items:center;position:relative}
+.law .pic svg.ill{width:130px;height:130px}
+.law .pic svg.fl{position:absolute;left:14px;top:14px;width:46px;height:30px;border-radius:5px;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.law .pic .no{position:absolute;right:14px;top:14px;background:var(--ink);color:#fff;font-weight:800;border-radius:999px;padding:2px 10px;font-size:13px}
+.law .body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.law h3{margin:0;font-size:20px}
+.law .where{font-size:13px;font-weight:800;color:var(--violet);text-transform:uppercase;letter-spacing:1px}
+.law p{margin:0;font-size:16px}
+.law .why{font-size:14px;color:var(--muted)}
+.law .dq{margin-top:auto;background:#fff;border-radius:12px;padding:8px 12px;font-weight:700;font-size:15px}
+.law .lsn{font:inherit;font-size:13px;font-weight:700;background:none;border:0;color:var(--violet);cursor:pointer;padding:0;text-align:left}
+/* game */
+.game{max-width:720px;margin:0 auto;text-align:center}
+.score{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.score span{background:var(--paper);border-radius:999px;padding:6px 16px;font-weight:800}
+.stmt{background:var(--ink);color:#fff;border-radius:22px;padding:28px 24px;min-height:150px;display:grid;place-items:center;font-size:23px;font-weight:700;position:relative}
+.stmt small{position:absolute;top:12px;left:18px;font-size:13px;color:var(--lav);font-weight:700}
+.choose{display:flex;justify-content:center;gap:14px;margin:18px 0}
+.choose button{font:inherit;font-size:18px;font-weight:700;border:2px solid var(--ink);border-radius:999px;padding:12px 28px;cursor:pointer}
+.choose .bl{background:var(--green)}.choose .bm{background:var(--pink)}
+.choose button:disabled{opacity:.5;cursor:default}
+.verdict{min-height:70px;font-size:17px;background:var(--paper);border-radius:16px;padding:12px 16px;text-align:left}
+.verdict b.r{color:#2d7a1d}.verdict b.w{color:#b23a62}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.dots i{width:14px;height:14px;border-radius:50%;background:var(--paper)}
+.dots i.r{background:#7cc663}.dots i.w{background:#e47b9f}.dots i.c{outline:3px solid var(--violet)}
+.final{font-size:22px;font-weight:800;color:var(--violet)}
+/* invent */
+.inv{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.frames{display:grid;gap:10px}
+.frames label{font-size:14px;font-weight:700;color:var(--muted)}
+.frames select,.frames input{font:inherit;width:100%;padding:8px 10px;border:2px solid var(--lav);border-radius:10px;background:#fff}
+.poster{background:var(--paper);border:3px solid var(--ink);border-radius:20px;padding:22px;text-align:center;min-height:260px;display:flex;flex-direction:column;gap:10px;justify-content:center}
+.poster .seal{width:70px;height:70px;margin:0 auto}
+.poster h3{margin:0;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--violet)}
+.poster .rule{font-size:22px;font-weight:800}
+.poster .pen{font-size:16px;color:var(--muted)}
+.ideas{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ideas span{background:var(--pink);border-radius:999px;padding:5px 12px;font-size:14px;font-weight:600}
+/* roleplay */
+.rp{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.role{border-radius:20px;padding:18px}
+.role h3{margin:0 0 6px;display:flex;align-items:center;gap:10px}
+.role h3 svg{width:42px;height:42px}
+.role ul{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.r1{background:var(--lav)}.r2{background:var(--green)}
+.scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:16px}
+.sc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:3px solid transparent}
+.sc.on{border-color:var(--violet);background:#fff}
+.sc b{display:block;font-size:17px;margin-bottom:4px}
+.sc p{margin:0;font-size:15px}
+.timer{font-size:40px;font-weight:800;text-align:center;margin:14px 0 6px;color:var(--violet)}
+.ctr{text-align:center}
+/* homework */
+.hwb{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hwc{background:var(--paper);border-radius:18px;padding:18px}
+.hwc h3{margin:0 0 8px}
+.hwc ol,.hwc ul{margin:6px 0 0;padding-left:20px;line-height:1.7}
+.hwc textarea{width:100%;min-height:150px;font:inherit;border:2px solid var(--lav);border-radius:12px;padding:10px;margin-top:10px}
+.end{text-align:center;background:var(--ink);color:#fff;box-shadow:none}
+.end h2{justify-content:center}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(140px);background:var(--ink);color:#fff;font-weight:800;padding:12px 22px;border-radius:14px;transition:transform .3s;z-index:50}
+.toast.show{transform:translateX(-50%) translateY(0)}
+/* photos */
+.ph{margin:0}
+.ph img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;background:var(--paper)}
+.ph figcaption{font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.2px}
+.tax{grid-template-columns:1fr !important;padding:12px !important}
+.law .pic{height:auto !important;display:block !important;padding:0;position:relative}
+.law .pic .ph img{border-radius:0;aspect-ratio:16/10;transition:filter .5s}
+.law .pic .ph figcaption{padding:4px 12px 0}
+.law.hide .pic .ph img{filter:blur(10px) grayscale(.6)}
+.law.hide .reveal-body,.law.hide .fl,.law.hide .where{visibility:hidden}
+.law .clue{font-size:15px;font-style:italic;color:var(--ink)}
+.law .gc{display:flex;flex-wrap:wrap;gap:6px}
+.law .gc button{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:4px 12px;cursor:pointer}
+.law .gc button.ok{background:var(--green)}.law .gc button.bad{background:var(--pink)}
+.law:not(.hide) .guess{display:none}
+.fair{display:grid;gap:4px;background:#fff;border-radius:12px;padding:8px 12px}
+.fair .ends{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.fair input{width:100%;accent-color:var(--accent)}
+.fair output{font-size:14px;font-weight:700;color:var(--accent)}
+.gph{max-width:720px;margin:0 auto 12px}
+.gph img{aspect-ratio:21/9}
+.fine{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.fq{background:var(--paper);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.fq h3{margin:0;font-size:18px}
+.fq .opts{display:flex;flex-wrap:wrap;gap:6px}
+.fq .opts button{font:inherit;font-size:14px;font-weight:700;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 12px;cursor:pointer}
+.fq .opts button.ok{background:var(--green)}.fq .opts button.bad{background:var(--pink)}
+.fq .res{font-size:15px;min-height:22px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{position:relative;aspect-ratio:16/9;background:#111}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;cursor:pointer;background:#111 center/cover;display:grid;place-items:center}
+.vid .play span{background:rgba(0,0,0,.7);color:#fff;font-weight:700;border-radius:999px;padding:10px 20px;font-size:15px;letter-spacing:1px}
+.vid .info{padding:14px 16px}
+.vid .info h3{margin:0 0 2px;font-size:18px}
+.vid .info small{color:var(--muted)}
+.vid .info ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+@media(max-width:760px){.inv,.rp,.hwb{grid-template-columns:1fr}.lk-tbtn{top:auto;bottom:70px}}
+
+.pr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.pb{border-radius:18px;padding:16px 18px}
+.pb h3{margin:0;font-family:Georgia,serif;font-size:30px}
+.pb .m{font-size:15px;color:var(--muted);margin:2px 0 8px}
+.pb .chips{display:flex;flex-wrap:wrap;gap:6px}
+.pb .chips span{background:#fff;border-radius:999px;padding:4px 11px;font-size:14px;font-weight:600}
+.pb ul{margin:10px 0 0;padding-left:18px;font-size:15px}
+.p-in{background:#DCE6F5}.p-at{background:#F3D9CF}.p-on{background:#D4E2CF}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-size:15px;margin-top:10px}
+.ex div{background:var(--paper);border-radius:10px;padding:8px 12px}
+.ex b{color:var(--accent)}
+.q{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.q .n{font-weight:800;color:var(--violet);min-width:24px}
+.q .gap{display:inline-block;min-width:44px;border-bottom:2px solid var(--ink);text-align:center;font-weight:800}
+.q .opts{margin-left:auto;display:flex;gap:6px}
+.q .opts button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 14px;cursor:pointer}
+.q.ok{background:#DDEED7}.q.ok .gap{color:#2F7A3B}
+.q.bad{background:#F6DAD3}
+.score{font-weight:800;margin-top:12px}
+.text{font-size:18px;line-height:1.75;background:var(--paper);border-radius:16px;padding:18px 22px}
+.text h3{margin:0 0 6px;font-family:Georgia,serif;font-size:24px}
+.text p{margin:0 0 12px}
+.text.hl mark{background:#F3D9CF;border-radius:4px;padding:0 3px;font-weight:700}
+.tf{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:9px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.tf .opts{margin-left:auto;display:flex;gap:6px}
+.tf button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.tf.ok{background:#DDEED7}.tf.bad{background:#F6DAD3}
+.disc{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px;margin-top:6px}
+.disc div{background:var(--green);border-radius:14px;padding:12px 16px;font-size:17px;font-weight:600}
+.disc div i{font-style:normal;color:var(--violet);margin-right:6px}
+.spin{text-align:center;margin-top:16px}
+.spin .card{display:inline-block;min-height:80px;min-width:min(560px,100%);background:var(--ink);color:#fff;border-radius:18px;padding:20px 24px;font-size:22px;font-weight:700;margin-bottom:12px}
+@media(max-width:700px){.ex{grid-template-columns:1fr}}
+
+.hero{background-size:cover!important;background-position:center!important}
+.voc{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.voc div{background:var(--paper);border-radius:14px;padding:10px 14px;cursor:pointer;border:2px solid transparent}
+.voc div:hover{border-color:var(--violet)}
+.voc b{display:block;font-size:18px}.voc span{display:block;color:var(--accent);font-weight:700;font-size:15px}.voc em{display:block;font-size:14px;color:var(--muted);margin-top:3px}
+.mt{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:10px}
+.mt button{font:inherit;font-size:16px;text-align:left;border:2px solid var(--ink);background:#fff;border-radius:14px;padding:9px 14px;cursor:pointer}
+.mt button.sel{background:#FFE7A8}.mt button.done{background:#CDE8C6;border-color:#4C9A5B;cursor:default}
+.ch{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ch .n{font-weight:800;color:var(--violet);min-width:24px}
+.ch .o{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.ch .o button{font:inherit;font-size:15px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.ch.ok{background:#DDEED7}.ch.bad{background:#F6DAD3}
+.ty{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ty input{font:inherit;border:2px solid var(--ink);border-radius:10px;padding:4px 10px;width:220px}
+.ty.ok{background:#DDEED7}.ty.bad{background:#F6DAD3}
+.ty small{color:var(--muted)}
+.photo{width:100%;height:300px;object-fit:cover;border-radius:16px;display:block}
+.cap{font-size:11px;color:var(--muted);margin:4px 0 12px}
+.pics{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.pics figure{margin:0;background:var(--paper);border-radius:16px;overflow:hidden}
+.pics img{width:100%;height:170px;object-fit:cover;display:block}
+.pics figcaption{padding:8px 12px;font-weight:700}
+.pics small{display:block;font-weight:400;font-size:10px;color:var(--muted)}
+.lis{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:8px 0 14px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{aspect-ratio:16/9;background:#000;position:relative}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;background-size:cover;background-position:center;cursor:pointer;display:grid;place-items:center}
+.vid .play span{background:#E5484D;color:#fff;font-weight:800;border-radius:12px;padding:10px 20px}
+.vid .info{padding:12px 16px}.vid h3{margin:0;font-size:18px}.vid small{color:var(--muted)}
+.vid ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th,.tbl td{border:1px solid #ddd;padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--paper)}
+@media(max-width:700px){.mt{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="/game-lessons/kit.css">
+</head>
+<body>
+<header class="hero">
+  <div class="kicker">A1 · teens · Граматика: тренажер Наказовий спосіб і let’s</div>
+  <h1>Imperatives and let’s: 100 tasks</h1>
+  <p>A1 · 6 parts · 60 min</p>
+  <span class="cr">Photo: Unsplash</span>
+</header>
+<button class="lk-tbtn" id="teacherBtn" type="button">Teacher version</button>
+<div class="wrap">
+  <section class="lk-overview">
+    <h2>In this lesson you will:</h2>
+    <ul><li>Повторимо правило: Наказовий спосіб і let’s
+100 завдань від простого до складного
+Розберемо головні пастки</li></ul>
+    <div class="lk-stages" id="stages"></div>
+  </section>
+  <section id="s1" data-stage="practice" data-min="10">
+    <h2><span class="lk-n">1</span>Теорія <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<div class="warn"><p><b>Коли вживаємо</b></p><p>Інструкції і поради: що робити: Open your books and read the text. (Відкрийте книжки і прочитайте текст.)</p><p>Заборони і попередження: чого не робити: Don’t touch the oven, it’s hot! (Не торкайся духовки, вона гаряча!)</p><p>Ввічливі прохання з please: Close the door, please. (Зачини двері, будь ласка.)</p><p>Пропонуємо зробити щось разом: let’s: Let’s order pizza tonight. (Давай замовимо піцу сьогодні ввечері.)</p><p>Пропонуємо разом чогось не робити: let’s not: Let’s not go out, it’s raining. (Давай не підемо гуляти, йде дощ.)</p></div>
+    <div class="warn"><p><b>Форми</b></p><p>+  дієслово в початковій формі без підмета і без to: Open, Wait, Be. Приклад: Wait here. Be careful!</p><p>−  Don’t (Do not) + дієслово, навіть з be: Don’t be .... Приклад: Don’t run. Don’t be late.</p><p>let’s  Let’s + дієслово без to (let’s = let us). Приклад: Let’s play a game.</p><p>let’s not  Let’s not + дієслово без to. Приклад: Let’s not argue.</p><p>please  please на початку або в кінці; перед please у кінці ставимо кому. Приклад: Please help me. Help me, please.</p><p>відповідь  Погодитися: Yes, let’s! / Good idea! Відмовитися: No, let’s not. / Sorry, I can’t.. Приклад: “Let’s watch a film.” “Yes, let’s!”</p></div>
+    <div class="warn"><p><b>Головна пастка</b></p><p>Без to і без -ing. Після let’s і don’t дієслово стоїть у початковій формі: let’s go, don’t go. Не let’s to go і не let’s going.</p><p>✗ Let’s to go to the park.</p><p>✓ Let’s go to the park.</p><p>Заборона завжди з Don’t, навіть з be. Українське «не» хочеться перекласти як not, але заперечний наказ починається з Don’t: Don’t be late, Don’t worry.</p><p>✗ Not be late!</p><p>✓ Don’t be late!</p><p>Let’s not, а не let’s don’t. Щоб запропонувати разом чогось не робити, кажемо let’s not + дієслово.</p><p>✗ Let’s don’t watch this film.</p><p>✓ Let’s not watch this film.</p></div>
+    <div class="warn"><p><b>Маркери:</b> please, don’t, never, let’s, let’s not, Yes, let’s!, Shall we ...?, Why don’t we ...?, Could you ...?, Be careful!, Don’t worry!</p></div>
+    <div class="warn"><p><b>Корисні фрази: накази, прохання, пропозиції</b></p><p>Голий наказ може звучати різко, тому в проханнях додаємо please або кажемо Could you ...? Запропонувати щось разом можна трьома способами: Let’s ..., Shall we ...?, Why don’t we ...?</p><p>Be careful! · Обережно!</p><p>Don’t worry. · Не хвилюйся.</p><p>Hurry up! · Швидше!</p><p>Come in. · Заходь.</p><p>Sit down, please. · Сідай, будь ласка.</p><p>Have fun! · Гарно провести час!</p><p>Help yourself. · Пригощайся.</p><p>Let me help you. · Дай я тобі допоможу.</p><p>Let’s go! · Ходімо!</p><p>Let’s not wait. · Давай не чекатимемо.</p><p>Shall we start? · Почнемо?</p><p>Why don’t we take a taxi? · Може, візьмемо таксі?</p><p>Could you open the window? · Ти не міг би відчинити вікно?</p></div>
+    <p class="lk-tnote" data-ru="Тренажер на 100 завдань: 5 раундів по 20. На уроці можна пройти 1-2 раунди, решту задати додому. Пояснення до кожної відповіді учень бачить у тренажері на сайті (розділ «Граматика»).&lt;br&gt;">Тренажер на 100 завдань: 5 раундів по 20. На уроці можна пройти 1-2 раунди, решту задати додому. Пояснення до кожної відповіді учень бачить у тренажері на сайті (розділ «Граматика»).<br></p>
+  </section>
+  <section id="s2" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">2</span>Раунд 1. Форми: просто дієслово <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="close"><span class="n">1</span><span class="s">Please ___ the door, it’s cold in here.</span><span class="o"><button type="button">close</button><button type="button">closes</button><button type="button">closing</button><button type="button">to close</button></span></div>
+<div class="ch" data-a="Be"><span class="n">2</span><span class="s">___ careful, the floor is wet!</span><span class="o"><button type="button">Is</button><button type="button">Be</button><button type="button">Are</button><button type="button">Being</button></span></div>
+<div class="ch" data-a="order"><span class="n">3</span><span class="s">Let’s ___ a pizza for dinner.</span><span class="o"><button type="button">ordering</button><button type="button">ordered</button><button type="button">to order</button><button type="button">order</button></span></div>
+<div class="ch" data-a="Send"><span class="n">4</span><span class="s">___ me your new song, Lily!</span><span class="o"><button type="button">To send</button><button type="button">Send</button><button type="button">Sends</button><button type="button">Sending</button></span></div>
+<div class="ch" data-a="go"><span class="n">5</span><span class="s">It’s late. Let’s ___ home.</span><span class="o"><button type="button">going</button><button type="button">goes</button><button type="button">go</button><button type="button">to go</button></span></div>
+<div class="ch" data-a="be"><span class="n">6</span><span class="s">Max, ___ quiet, please. Your sister is sleeping.</span><span class="o"><button type="button">are</button><button type="button">is</button><button type="button">be</button><button type="button">being</button></span></div>
+<div class="ch" data-a="Go"><span class="n">7</span><span class="s">___ to the end of the street and turn left.</span><span class="o"><button type="button">Go</button><button type="button">Going</button><button type="button">To go</button><button type="button">Goes</button></span></div>
+<div class="ch" data-a="help"><span class="n">8</span><span class="s">Mum, ___ me with my homework, please!</span><span class="o"><button type="button">helping</button><button type="button">help</button><button type="button">to help</button><button type="button">helps</button></span></div>
+<div class="ch" data-a="take"><span class="n">9</span><span class="s">Let’s ___ the bus, it’s faster.</span><span class="o"><button type="button">took</button><button type="button">take</button><button type="button">to take</button><button type="button">taking</button></span></div>
+<div class="ch" data-a="Let’s"><span class="n">10</span><span class="s">I’m hungry. ___ make some sandwiches.</span><span class="o"><button type="button">Lets</button><button type="button">Let</button><button type="button">Let’s</button><button type="button">Let’s to</button></span></div>
+<div class="ch" data-a="write"><span class="n">11</span><span class="s">Please ___ your name at the top of the page.</span><span class="o"><button type="button">write</button><button type="button">writes</button><button type="button">to write</button><button type="button">writing</button></span></div>
+<div class="ch" data-a="Put on"><span class="n">12</span><span class="s">___ your seatbelt, Dan.</span><span class="o"><button type="button">Puts on</button><button type="button">Put on</button><button type="button">Putting on</button><button type="button">To put on</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; close · Be · order · Send · go · be · Go · help · take · Let’s · write · Put on"><b>Відповіді:</b> close · Be · order · Send · go · be · Go · help · take · Let’s · write · Put on</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="Wash|wash"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>___ (wash) your hands before dinner, kids!</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="play"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Let’s ___ (play) a board game tonight.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="turn"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Tom, ___ (turn) off your phone, please. The film is starting.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Open|open"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>___ (open) your books at page 20, please.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Have|have"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>___ (have) a great time at the concert!</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="meet"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Let’s ___ (meet) at the café at five.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Try|try"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>___ (try) this cake, it’s delicious!</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Listen|listen"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>___ (listen) to me, everybody!</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; Wash · play · turn · Open · Have · meet · Try · Listen"><b>Відповіді:</b> Wash · play · turn · Open · Have · meet · Try · Listen</p>
+  </section>
+  <section id="s3" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">3</span>Раунд 2. Don’t і let’s not <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="Don’t be"><span class="n">1</span><span class="s">___ late for the train tomorrow!</span><span class="o"><button type="button">Be not</button><button type="button">Doesn’t be</button><button type="button">Not be</button><button type="button">Don’t be</button></span></div>
+<div class="ch" data-a="not go"><span class="n">2</span><span class="s">It’s raining. Let’s ___ out today.</span><span class="o"><button type="button">no go</button><button type="button">not to go</button><button type="button">don’t go</button><button type="button">not go</button></span></div>
+<div class="ch" data-a="Don’t"><span class="n">3</span><span class="s">___ worry, the test will be easy.</span><span class="o"><button type="button">Doesn’t</button><button type="button">Don’t</button><button type="button">No</button><button type="button">Not</button></span></div>
+<div class="ch" data-a="let’s"><span class="n">4</span><span class="s">“Let’s go swimming.” “Yes, ___!”</span><span class="o"><button type="button">we do</button><button type="button">let</button><button type="button">lets</button><button type="button">let’s</button></span></div>
+<div class="ch" data-a="let’s not"><span class="n">5</span><span class="s">“Let’s take a taxi.” “No, ___. Let’s walk.”</span><span class="o"><button type="button">let’s not</button><button type="button">let’s don’t</button><button type="button">don’t let</button><button type="button">not let’s</button></span></div>
+<div class="ch" data-a="don’t use"><span class="n">6</span><span class="s">Please ___ your phone in class.</span><span class="o"><button type="button">doesn’t use</button><button type="button">not use</button><button type="button">don’t use</button><button type="button">no use</button></span></div>
+<div class="ch" data-a="Don’t"><span class="n">7</span><span class="s">___ open the window. The cat might jump out!</span><span class="o"><button type="button">Don’t</button><button type="button">Not</button><button type="button">Let’s don’t</button><button type="button">No</button></span></div>
+<div class="ch" data-a="not take"><span class="n">8</span><span class="s">We’re tired. Let’s ___ the stairs, let’s take the lift.</span><span class="o"><button type="button">no take</button><button type="button">not taking</button><button type="button">don’t take</button><button type="button">not take</button></span></div>
+<div class="ch" data-a="Don’t eat in the library."><span class="n">9</span><span class="s">Обери правильну заборону: ___</span><span class="o"><button type="button">No eat in the library.</button><button type="button">Not eat in the library.</button><button type="button">Don’t eat in the library.</button><button type="button">Don’t to eat in the library.</button></span></div>
+<div class="ch" data-a="Never"><span class="n">10</span><span class="s">___ give the dog chocolate, it’s bad for him.</span><span class="o"><button type="button">Don’t never</button><button type="button">Not</button><button type="button">Never</button><button type="button">No</button></span></div>
+<div class="ch" data-a="Let’s not stay too late."><span class="n">11</span><span class="s">Обери правильну пропозицію: ___</span><span class="o"><button type="button">Let’s don’t stay too late.</button><button type="button">Let’s no stay too late.</button><button type="button">Let’s not stay too late.</button><button type="button">Let’s not to stay too late.</button></span></div>
+<div class="ch" data-a="can’t"><span class="n">12</span><span class="s">“Let’s play tennis after school.” “Sorry, I ___. I have a piano lesson.”</span><span class="o"><button type="button">don’t</button><button type="button">let’s not</button><button type="button">can’t</button><button type="button">not</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; Don’t be · not go · Don’t · let’s · let’s not · don’t use · Don’t · not take · Don’t eat in the library. · Never · Let’s not stay too late. · can’t"><b>Відповіді:</b> Don’t be · not go · Don’t · let’s · let’s not · don’t use · Don’t · not take · Don’t eat in the library. · Never · Let’s not stay too late. · can’t</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="Don’t touch|Do not touch|don’t touch|do not touch"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>___ (not touch) the paint, it’s still wet!</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="not watch"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Let’s ___ (not watch) a horror film tonight, I’m scared.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="don’t feed|do not feed"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Please ___ (not feed) the ducks bread.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Don’t forget|Do not forget|don’t forget|do not forget"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>___ (not forget) your keys, Sophie!</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="not tell"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Let’s ___ (not tell) Max about the party. It’s a surprise!</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Don’t be|Do not be|don’t be|do not be"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>___ (not be) shy, come and dance with us!</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="don’t shout|do not shout"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>Please ___ (not shout), the baby is asleep.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Don’t leave|Do not leave|don’t leave|do not leave"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>___ (not leave) your bag on the bus!</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; Don’t touch · not watch · don’t feed · Don’t forget · not tell · Don’t be · don’t shout · Don’t leave"><b>Відповіді:</b> Don’t touch · not watch · don’t feed · Don’t forget · not tell · Don’t be · don’t shout · Don’t leave</p>
+  </section>
+  <section id="s4" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">4</span>Раунд 3. Коли що вживати <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="Let’s"><span class="n">1</span><span class="s">You and your friend are bored. You say: “___ go to the park.”</span><span class="o"><button type="button">Please</button><button type="button">Don’t</button><button type="button">Let</button><button type="button">Let’s</button></span></div>
+<div class="ch" data-a="Don’t"><span class="n">2</span><span class="s">Your little brother is near a hot oven. You say: “___ touch it!”</span><span class="o"><button type="button">Please</button><button type="button">Let’s</button><button type="button">Let’s not</button><button type="button">Don’t</button></span></div>
+<div class="ch" data-a="Could you"><span class="n">3</span><span class="s">You want a friend to pass the salt. You ask politely: “___ pass the salt?”</span><span class="o"><button type="button">Could you</button><button type="button">Don’t</button><button type="button">You</button><button type="button">Let’s</button></span></div>
+<div class="ch" data-a="Let’s not"><span class="n">4</span><span class="s">You and your sister don’t want to spend the money. You say: “___ buy it.”</span><span class="o"><button type="button">Let’s</button><button type="button">Don’t let</button><button type="button">Let’s not</button><button type="button">Not</button></span></div>
+<div class="ch" data-a="Don’t"><span class="n">5</span><span class="s">A friend is nervous before an exam. You say: “___ worry, you’ll be fine!”</span><span class="o"><button type="button">Let’s not</button><button type="button">No</button><button type="button">Not</button><button type="button">Don’t</button></span></div>
+<div class="ch" data-a="Have"><span class="n">6</span><span class="s">It’s your friend’s birthday. You say: “___ a great day!”</span><span class="o"><button type="button">Don’t have</button><button type="button">Having</button><button type="button">Have</button><button type="button">Has</button></span></div>
+<div class="ch" data-a="please"><span class="n">7</span><span class="s">The music is too loud. You say to your brother: “Turn it down, ___!”</span><span class="o"><button type="button">let’s</button><button type="button">don’t</button><button type="button">please</button><button type="button">not</button></span></div>
+<div class="ch" data-a="don’t"><span class="n">8</span><span class="s">It’s very hot. Your friend suggests: “Why ___ we go to the beach?”</span><span class="o"><button type="button">let’s</button><button type="button">not</button><button type="button">don’t</button><button type="button">doesn’t</button></span></div>
+<div class="ch" data-a="Don’t"><span class="n">9</span><span class="s">A coach to a player: “___ stop now, Dan, keep running!”</span><span class="o"><button type="button">Doesn’t</button><button type="button">No</button><button type="button">Don’t</button><button type="button">Not</button></span></div>
+<div class="ch" data-a="Let’s"><span class="n">10</span><span class="s">You and Lily are late. You say: “___ hurry!”</span><span class="o"><button type="button">Lets</button><button type="button">Let</button><button type="button">Don’t</button><button type="button">Let’s</button></span></div>
+<div class="ch" data-a="Take"><span class="n">11</span><span class="s">A doctor to a patient: “___ this medicine twice a day.”</span><span class="o"><button type="button">Taking</button><button type="button">Takes</button><button type="button">Take</button><button type="button">Let’s take</button></span></div>
+<div class="ch" data-a="Go"><span class="n">12</span><span class="s">Your friend asks the way to the station. You say: “___ straight on and turn right.”</span><span class="o"><button type="button">Goes</button><button type="button">You going</button><button type="button">To go</button><button type="button">Go</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; Let’s · Don’t · Could you · Let’s not · Don’t · Have · please · don’t · Don’t · Let’s · Take · Go"><b>Відповіді:</b> Let’s · Don’t · Could you · Let’s not · Don’t · Have · please · don’t · Don’t · Let’s · Take · Go</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="Look|look"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>A teacher to the class: “___ (look) at the board, please.”</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Do not take|Don’t take|do not take|don’t take"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>A sign in the museum: “___ (not take) photos.”</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Add|add"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>A recipe: “___ (add) two eggs and mix well.”</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Come|come"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Your friend is visiting. You open the door and say: “Hi! ___ (come) in!”</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="start"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Your friends want to start the game. You say: “OK, let’s ___ (start)!”</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Help|help"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Your friend is at your house. You say: “___ (help) yourself to juice.”</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Don’t talk|Do not talk|don’t talk|do not talk"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>Before the test the teacher says: “___ (not talk) during the test.”</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="not stay"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>You suggest a plan to your friends: “Let’s ___ (not stay) at home all weekend.”</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; Look · Do not take · Add · Come · start · Help · Don’t talk · not stay"><b>Відповіді:</b> Look · Do not take · Add · Come · start · Help · Don’t talk · not stay</p>
+  </section>
+  <section id="s5" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">5</span>Раунд 4. Пастки <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="Let’s go to the park."><span class="n">1</span><span class="s">Обери правильне речення про парк: ___</span><span class="o"><button type="button">Let’s go to the park.</button><button type="button">Let’s going to the park.</button><button type="button">Let’s to go to the park.</button><button type="button">Lets go to the park.</button></span></div>
+<div class="ch" data-a="Don’t be late again."><span class="n">2</span><span class="s">Обери правильну заборону про запізнення: ___</span><span class="o"><button type="button">Be not late again.</button><button type="button">Not be late again.</button><button type="button">Don’t be late again.</button><button type="button">Don’t late again.</button></span></div>
+<div class="ch" data-a="be"><span class="n">3</span><span class="s">Kids, ___ nice to the new cat.</span><span class="o"><button type="button">be</button><button type="button">do</button><button type="button">are</button><button type="button">being</button></span></div>
+<div class="ch" data-a="Let’s not watch this film."><span class="n">4</span><span class="s">Обери правильну пропозицію про фільм: ___</span><span class="o"><button type="button">Let’s don’t watch this film.</button><button type="button">Let’s not to watch this film.</button><button type="button">Let’s no watch this film.</button><button type="button">Let’s not watch this film.</button></span></div>
+<div class="ch" data-a="don’t forget"><span class="n">5</span><span class="s">Please ___ about your homework!</span><span class="o"><button type="button">don’t forgetting</button><button type="button">not forget</button><button type="button">don’t forget</button><button type="button">no forget</button></span></div>
+<div class="ch" data-a="clean"><span class="n">6</span><span class="s">Dan, ___ your room before your grandma comes!</span><span class="o"><button type="button">clean</button><button type="button">to clean</button><button type="button">you cleaning</button><button type="button">cleans</button></span></div>
+<div class="ch" data-a="Let’s make"><span class="n">7</span><span class="s">“Let’s have a picnic.” “Good idea! ___ some sandwiches.”</span><span class="o"><button type="button">Let’s make</button><button type="button">Let’s making</button><button type="button">Let’s to make</button><button type="button">Lets making</button></span></div>
+<div class="ch" data-a="Please help me with this box."><span class="n">8</span><span class="s">Обери правильне прохання: ___</span><span class="o"><button type="button">Please helps me with this box.</button><button type="button">Please help me with this box.</button><button type="button">Please helping me with this box.</button><button type="button">Please to help me with this box.</button></span></div>
+<div class="ch" data-a="Let’s not"><span class="n">9</span><span class="s">The baby is asleep. ___ make any noise.</span><span class="o"><button type="button">Let’s not</button><button type="button">Not let’s</button><button type="button">Let’s no</button><button type="button">Let’s don’t</button></span></div>
+<div class="ch" data-a="Take"><span class="n">10</span><span class="s">Your shoes are dirty. ___ them off at the door, please.</span><span class="o"><button type="button">Taking</button><button type="button">Takes</button><button type="button">To take</button><button type="button">Take</button></span></div>
+<div class="ch" data-a="Open the window, please."><span class="n">11</span><span class="s">Обери правильне речення про вікно: ___</span><span class="o"><button type="button">You opening the window, please.</button><button type="button">To open the window, please.</button><button type="button">Open the window, please.</button><button type="button">Opens the window, please.</button></span></div>
+<div class="ch" data-a="Let’s"><span class="n">12</span><span class="s">It’s getting dark. ___ go back to the hotel.</span><span class="o"><button type="button">Let</button><button type="button">Let’s</button><button type="button">Let’s to</button><button type="button">Lets</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; Let’s go to the park. · Don’t be late again. · be · Let’s not watch this film. · don’t forget · clean · Let’s make · Please help me with this box. · Let’s not · Take · Open the window, please. · Let’s"><b>Відповіді:</b> Let’s go to the park. · Don’t be late again. · be · Let’s not watch this film. · don’t forget · clean · Let’s make · Please help me with this box. · Let’s not · Take · Open the window, please. · Let’s</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="have"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Let’s ___ (have) lunch together.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Don’t be|Do not be|don’t be|do not be"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>___ (not be) angry with me, please.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="go"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Let’s ___ (go) shopping on Saturday.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="don’t eat|do not eat"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Sophie, please ___ (not eat) my chips!</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Be|be"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>___ (be) on time tomorrow, the bus leaves at seven.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="not argue"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Let’s ___ (not argue) about it.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="don’t worry|do not worry"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>Please ___ (not worry) about the money, I’ll pay.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="lift"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>Don’t ___ (lift) that box, it’s heavy!</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; have · Don’t be · go · don’t eat · Be · not argue · don’t worry · lift"><b>Відповіді:</b> have · Don’t be · go · don’t eat · Be · not argue · don’t worry · lift</p>
+  </section>
+  <section id="s6" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">6</span>Раунд 5. Фінальний бос <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="Let’s"><span class="n">1</span><span class="s">We have no food at home. ___ go to the supermarket.</span><span class="o"><button type="button">Let us to</button><button type="button">Let’s</button><button type="button">Let’s not</button><button type="button">Don’t</button></span></div>
+<div class="ch" data-a="Hurry up"><span class="n">2</span><span class="s">The film starts in five minutes! ___, please.</span><span class="o"><button type="button">Hurrying up</button><button type="button">Let’s hurry up to</button><button type="button">Hurry up</button><button type="button">Hurries up</button></span></div>
+<div class="ch" data-a="Don’t"><span class="n">3</span><span class="s">Your friend wants to cross on a red light. You say: “Stop! ___ cross now!”</span><span class="o"><button type="button">Let’s</button><button type="button">Don’t</button><button type="button">Do</button><button type="button">Please</button></span></div>
+<div class="ch" data-a="Yes, let’s"><span class="n">4</span><span class="s">“Let’s go to the beach tomorrow.” “___, I love swimming!”</span><span class="o"><button type="button">Yes, let</button><button type="button">No, let’s not</button><button type="button">Yes, lets</button><button type="button">Yes, let’s</button></span></div>
+<div class="ch" data-a="Could you help"><span class="n">5</span><span class="s">My laptop isn’t working. ___ me, please?</span><span class="o"><button type="button">You help</button><button type="button">Let’s help</button><button type="button">Could you help</button><button type="button">Don’t help</button></span></div>
+<div class="ch" data-a="put on"><span class="n">6</span><span class="s">Lily, ___ your coat. It’s freezing outside!</span><span class="o"><button type="button">put on</button><button type="button">puts on</button><button type="button">to put on</button><button type="button">putting on</button></span></div>
+<div class="ch" data-a="Please do not"><span class="n">7</span><span class="s">You’re in the library. The sign says: “___ use mobile phones.”</span><span class="o"><button type="button">Please not</button><button type="button">Please no</button><button type="button">Please doesn’t</button><button type="button">Please do not</button></span></div>
+<div class="ch" data-a="Let’s not"><span class="n">8</span><span class="s">We have a test tomorrow. ___ play games tonight, let’s study.</span><span class="o"><button type="button">Not let’s</button><button type="button">Let’s not</button><button type="button">Don’t let</button><button type="button">Let’s don’t</button></span></div>
+<div class="ch" data-a="chop"><span class="n">9</span><span class="s">Sophie is cooking. She says: “Dan, ___ the onions, please.”</span><span class="o"><button type="button">to chop</button><button type="button">chops</button><button type="button">chopping</button><button type="button">chop</button></span></div>
+<div class="ch" data-a="let’s"><span class="n">10</span><span class="s">“Shall we take the bus?” “No, ___ walk. It’s a lovely day.”</span><span class="o"><button type="button">let’s</button><button type="button">don’t</button><button type="button">let’s not</button><button type="button">we let</button></span></div>
+<div class="ch" data-a="turn"><span class="n">11</span><span class="s">Before you leave, ___ off the lights, please.</span><span class="o"><button type="button">turning</button><button type="button">turn</button><button type="button">to turn</button><button type="button">turns</button></span></div>
+<div class="ch" data-a="Don’t stay up too late before the exam."><span class="n">12</span><span class="s">Обери правильну пораду другу: ___</span><span class="o"><button type="button">Not stay up too late before the exam.</button><button type="button">Don’t staying up too late before the exam.</button><button type="button">Don’t stay up too late before the exam.</button><button type="button">Doesn’t stay up too late before the exam.</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; Let’s · Hurry up · Don’t · Yes, let’s · Could you help · put on · Please do not · Let’s not · chop · let’s · turn · Don’t stay up too late before the exam."><b>Відповіді:</b> Let’s · Hurry up · Don’t · Yes, let’s · Could you help · put on · Please do not · Let’s not · chop · let’s · turn · Don’t stay up too late before the exam.</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="Hold|hold"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>The road is busy. ___ (hold) my hand, Mia.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="not sit"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>This café is too noisy. Let’s ___ (not sit) here.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Relax|relax"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Tom is nervous before his match. His coach says: “___ (relax) and enjoy the game.”</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Don’t drink|Do not drink|don’t drink|do not drink"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>The soup is very hot. ___ (not drink) it yet!</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="buy"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>It’s Max’s birthday. Let’s ___ (buy) him a skateboard.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Turn|turn"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Your friend can’t find the café. You text: “___ (turn) left at the bank. I’m outside.”</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="don’t bark|do not bark"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>Your dog is barking at night. You say: “Rex, ___ (not bark)! Everyone is asleep.”</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="stay"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>The museum guide says: “Please ___ (stay) together and follow me.”</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; Hold · not sit · Relax · Don’t drink · buy · Turn · don’t bark · stay"><b>Відповіді:</b> Hold · not sit · Relax · Don’t drink · buy · Turn · don’t bark · stay</p>
+  </section>
+  <section class="end"><h2>Great job!</h2><p>See you next lesson.</p></section>
+</div>
+<div class="toast" id="toast"></div>
+<script>window.MURLY_LESSON={"id": "lib-drill-imperatives-lets", "title": "Imperatives and let’s: 100 tasks", "homework": ["s2", "s3", "s4", "s5", "s6"], "hw": {"s2": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Please {close|closes|to close|closing} the door, it’s cold in here.\n{Be|Are|Is|Being} careful, the floor is wet!\nLet’s {order|to order|ordering|ordered} a pizza for dinner.\n{Send|Sends|Sending|To send} me your new song, Lily!\nIt’s late. Let’s {go|to go|going|goes} home.\nMax, {be|are|is|being} quiet, please. Your sister is sleeping.\n{Go|Goes|Going|To go} to the end of the street and turn left.\nMum, {help|helps|helping|to help} me with my homework, please!\nLet’s {take|to take|taking|took} the bus, it’s faster.\nI’m hungry. {Let’s|Let|Lets|Let’s to} make some sandwiches.\nPlease {write|writes|to write|writing} your name at the top of the page.\n{Put on|Puts on|Putting on|To put on} your seatbelt, Dan."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "[Wash/wash] (wash) your hands before dinner, kids!\nLet’s [play] (play) a board game tonight.\nTom, [turn] (turn) off your phone, please. The film is starting.\n[Open/open] (open) your books at page 20, please.\n[Have/have] (have) a great time at the concert!\nLet’s [meet] (meet) at the café at five.\n[Try/try] (try) this cake, it’s delicious!\n[Listen/listen] (listen) to me, everybody!"}], "s3": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "{Don’t be|Not be|Be not|Doesn’t be} late for the train tomorrow!\nIt’s raining. Let’s {not go|don’t go|not to go|no go} out today.\n{Don’t|Not|No|Doesn’t} worry, the test will be easy.\n“Let’s go swimming.” “Yes, {let’s|let|lets|we do}!”\n“Let’s take a taxi.” “No, {let’s not|let’s don’t|don’t let|not let’s}. Let’s walk.”\nPlease {don’t use|not use|no use|doesn’t use} your phone in class.\n{Don’t|Not|No|Let’s don’t} open the window. The cat might jump out!\nWe’re tired. Let’s {not take|don’t take|not taking|no take} the stairs, let’s take the lift.\nОбери правильну заборону: {Don’t eat in the library.|Not eat in the library.|No eat in the library.|Don’t to eat in the library.}\n{Never|Not|No|Don’t never} give the dog chocolate, it’s bad for him.\nОбери правильну пропозицію: {Let’s not stay too late.|Let’s don’t stay too late.|Let’s not to stay too late.|Let’s no stay too late.}\n“Let’s play tennis after school.” “Sorry, I {can’t|don’t|let’s not|not}. I have a piano lesson.”"}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "[Don’t touch/Do not touch/don’t touch/do not touch] (not touch) the paint, it’s still wet!\nLet’s [not watch] (not watch) a horror film tonight, I’m scared.\nPlease [don’t feed/do not feed] (not feed) the ducks bread.\n[Don’t forget/Do not forget/don’t forget/do not forget] (not forget) your keys, Sophie!\nLet’s [not tell] (not tell) Max about the party. It’s a surprise!\n[Don’t be/Do not be/don’t be/do not be] (not be) shy, come and dance with us!\nPlease [don’t shout/do not shout] (not shout), the baby is asleep.\n[Don’t leave/Do not leave/don’t leave/do not leave] (not leave) your bag on the bus!"}], "s4": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "You and your friend are bored. You say: “{Let’s|Don’t|Please|Let} go to the park.”\nYour little brother is near a hot oven. You say: “{Don’t|Let’s|Please|Let’s not} touch it!”\nYou want a friend to pass the salt. You ask politely: “{Could you|Let’s|Don’t|You} pass the salt?”\nYou and your sister don’t want to spend the money. You say: “{Let’s not|Don’t let|Let’s|Not} buy it.”\nA friend is nervous before an exam. You say: “{Don’t|Let’s not|Not|No} worry, you’ll be fine!”\nIt’s your friend’s birthday. You say: “{Have|Having|Don’t have|Has} a great day!”\nThe music is too loud. You say to your brother: “Turn it down, {please|let’s|don’t|not}!”\nIt’s very hot. Your friend suggests: “Why {don’t|not|let’s|doesn’t} we go to the beach?”\nA coach to a player: “{Don’t|Not|No|Doesn’t} stop now, Dan, keep running!”\nYou and Lily are late. You say: “{Let’s|Don’t|Let|Lets} hurry!”\nA doctor to a patient: “{Take|Let’s take|Takes|Taking} this medicine twice a day.”\nYour friend asks the way to the station. You say: “{Go|To go|You going|Goes} straight on and turn right.”"}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "A teacher to the class: “[Look/look] (look) at the board, please.”\nA sign in the museum: “[Do not take/Don’t take/do not take/don’t take] (not take) photos.”\nA recipe: “[Add/add] (add) two eggs and mix well.”\nYour friend is visiting. You open the door and say: “Hi! [Come/come] (come) in!”\nYour friends want to start the game. You say: “OK, let’s [start] (start)!”\nYour friend is at your house. You say: “[Help/help] (help) yourself to juice.”\nBefore the test the teacher says: “[Don’t talk/Do not talk/don’t talk/do not talk] (not talk) during the test.”\nYou suggest a plan to your friends: “Let’s [not stay] (not stay) at home all weekend.”"}], "s5": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Обери правильне речення про парк: {Let’s go to the park.|Let’s to go to the park.|Let’s going to the park.|Lets go to the park.}\nОбери правильну заборону про запізнення: {Don’t be late again.|Not be late again.|Don’t late again.|Be not late again.}\nKids, {be|are|being|do} nice to the new cat.\nОбери правильну пропозицію про фільм: {Let’s not watch this film.|Let’s don’t watch this film.|Let’s not to watch this film.|Let’s no watch this film.}\nPlease {don’t forget|not forget|no forget|don’t forgetting} about your homework!\nDan, {clean|cleans|to clean|you cleaning} your room before your grandma comes!\n“Let’s have a picnic.” “Good idea! {Let’s make|Let’s making|Let’s to make|Lets making} some sandwiches.”\nОбери правильне прохання: {Please help me with this box.|Please helps me with this box.|Please to help me with this box.|Please helping me with this box.}\nThe baby is asleep. {Let’s not|Let’s don’t|Not let’s|Let’s no} make any noise.\nYour shoes are dirty. {Take|Takes|Taking|To take} them off at the door, please.\nОбери правильне речення про вікно: {Open the window, please.|Opens the window, please.|You opening the window, please.|To open the window, please.}\nIt’s getting dark. {Let’s|Let|Lets|Let’s to} go back to the hotel."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "Let’s [have] (have) lunch together.\n[Don’t be/Do not be/don’t be/do not be] (not be) angry with me, please.\nLet’s [go] (go) shopping on Saturday.\nSophie, please [don’t eat/do not eat] (not eat) my chips!\n[Be/be] (be) on time tomorrow, the bus leaves at seven.\nLet’s [not argue] (not argue) about it.\nPlease [don’t worry/do not worry] (not worry) about the money, I’ll pay.\nDon’t [lift] (lift) that box, it’s heavy!"}], "s6": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "We have no food at home. {Let’s|Let’s not|Don’t|Let us to} go to the supermarket.\nThe film starts in five minutes! {Hurry up|Hurries up|Let’s hurry up to|Hurrying up}, please.\nYour friend wants to cross on a red light. You say: “Stop! {Don’t|Let’s|Please|Do} cross now!”\n“Let’s go to the beach tomorrow.” “{Yes, let’s|No, let’s not|Yes, let|Yes, lets}, I love swimming!”\nMy laptop isn’t working. {Could you help|Let’s help|Don’t help|You help} me, please?\nLily, {put on|puts on|putting on|to put on} your coat. It’s freezing outside!\nYou’re in the library. The sign says: “{Please do not|Please not|Please no|Please doesn’t} use mobile phones.”\nWe have a test tomorrow. {Let’s not|Don’t let|Let’s don’t|Not let’s} play games tonight, let’s study.\nSophie is cooking. She says: “Dan, {chop|chops|to chop|chopping} the onions, please.”\n“Shall we take the bus?” “No, {let’s|let’s not|don’t|we let} walk. It’s a lovely day.”\nBefore you leave, {turn|turns|to turn|turning} off the lights, please.\nОбери правильну пораду другу: {Don’t stay up too late before the exam.|Not stay up too late before the exam.|Don’t staying up too late before the exam.|Doesn’t stay up too late before the exam.}"}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "The road is busy. [Hold/hold] (hold) my hand, Mia.\nThis café is too noisy. Let’s [not sit] (not sit) here.\nTom is nervous before his match. His coach says: “[Relax/relax] (relax) and enjoy the game.”\nThe soup is very hot. [Don’t drink/Do not drink/don’t drink/do not drink] (not drink) it yet!\nIt’s Max’s birthday. Let’s [buy] (buy) him a skateboard.\nYour friend can’t find the café. You text: “[Turn/turn] (turn) left at the bank. I’m outside.”\nYour dog is barking at night. You say: “Rex, [don’t bark/do not bark] (not bark)! Everyone is asleep.”\nThe museum guide says: “Please [stay] (stay) together and follow me.”"}]}};</script>
+<script>
+(function(){var l=(document.cookie.match(/(?:^|; )murly_lang=(\w+)/)||[])[1];try{l=l||localStorage.getItem('murly:tlang')}catch(e){}l=l==='ru'?'ru':'uk';document.querySelectorAll('[data-pairs-'+l+']').forEach(function(b){b.dataset.pairs=b.getAttribute('data-pairs-'+l)});})();
+</script>
+<script>
+const $ = (id) => document.getElementById(id);
+const LIS = {};
+function say(w, rate) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; const v = speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang) && /Google|Natural|Libby|Sonia|Daniel/.test(x.name)) || speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang)); if (v) u.voice = v; u.rate = rate || .95; speechSynthesis.speak(u); } catch (e) { } }
+const sh = (a) => a.map((x) => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map((x) => x[1]);
+document.querySelectorAll('.voc div').forEach((d) => d.onclick = () => say(d.dataset.say));
+document.querySelectorAll('[data-play]').forEach((b) => b.onclick = () => say(LIS[b.dataset.play], b.dataset.slow ? .75 : .95));
+document.querySelectorAll('[data-stop]').forEach((b) => b.onclick = () => { try { speechSynthesis.cancel(); } catch (e) { } });
+document.querySelectorAll('.ch').forEach((q) => q.querySelectorAll('button').forEach((b) => b.onclick = () => { if (q.classList.contains('ok')) return; const ok = b.textContent === q.dataset.a; q.classList.toggle('ok', ok); q.classList.toggle('bad', !ok); if (ok) { const s = q.querySelector('.s'); if (s && s.textContent.includes('___')) { s.textContent = s.textContent.replace('___', q.dataset.a); } } }));
+const norm = (x) => x.toLowerCase().replace(/[’']/g, "'").replace(/[,;:"“”«»]/g, ' ').replace(/\s+/g, ' ').replace(/[.!?]$/, '').trim();
+document.querySelectorAll('.ty').forEach((r) => { const inp = r.querySelector('input'); const chk = () => { const ok = r.dataset.a.split('|').some((a) => norm(a) === norm(inp.value)); r.classList.toggle('ok', ok); r.classList.toggle('bad', !ok && inp.value.trim() !== ''); }; r.querySelector('button').onclick = chk; inp.onkeydown = (e) => { if (e.key === 'Enter') chk(); }; });
+document.querySelectorAll('[data-mt]').forEach((box) => { const pairs = JSON.parse(box.dataset.pairs); const L = sh(pairs.map((p) => p[0])), R = sh(pairs.map((p) => p[1])); let sel = null, done = 0, err = 0; box.innerHTML = L.map((w, i) => `<button type="button" data-w="${w}">${w}</button><button type="button" data-d="${R[i]}">${R[i]}</button>`).join('');
+  box.querySelectorAll('button').forEach((b) => b.onclick = () => { if (b.classList.contains('done')) return; if (!sel || (sel.dataset.w && b.dataset.w) || (sel.dataset.d && b.dataset.d)) { if (sel) sel.classList.remove('sel'); sel = b; b.classList.add('sel'); return; } const w = sel.dataset.w || b.dataset.w, d = sel.dataset.d || b.dataset.d; if (pairs.some((p) => p[0] === w && p[1] === d)) { sel.classList.add('done'); b.classList.add('done'); done++; say(w); if (done === pairs.length) document.querySelector(`[data-mtres="${box.dataset.mt}"]`).textContent = err ? `Done! Mistakes: ${err}` : 'Perfect!'; } else err++; sel.classList.remove('sel'); sel = null; }); });
+document.querySelectorAll('[data-vids]').forEach((box) => JSON.parse(box.dataset.vids).forEach(([id, title, ch, qs]) => { const d = document.createElement('div'); d.className = 'vid'; d.innerHTML = `<div class="frame"><button class="play" type="button" style="background-image:url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)"><span>PLAY</span></button></div><div class="info"><h3>${title}</h3><small>YouTube · ${ch}</small><ol>${qs.map((q) => `<li>${q}</li>`).join('')}</ol></div>`; d.querySelector('.play').onclick = (e) => { e.currentTarget.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&cc_load_policy=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${title}"></iframe>`; }; box.appendChild(d); }));
+document.querySelectorAll('[data-spin]').forEach((b) => { const list = JSON.parse(b.dataset.spin); let last = -1; b.onclick = () => { let i; do { i = Math.floor(Math.random() * list.length); } while (i === last && list.length > 1); last = i; document.getElementById(b.dataset.target).textContent = list[i]; }; });
+try { const k = 'murly:' + (window.MURLY_LESSON ? MURLY_LESSON.id : 'x') + ':hw'; const t = $('hwText'); if (t) { t.value = localStorage.getItem(k) || ''; t.oninput = () => localStorage.setItem(k, t.value); } } catch (e) { }
+const STAGES = [...document.querySelectorAll('.wrap > section[id]')];
+$('stages').innerHTML = STAGES.map((s) => `<a href="#${s.id}"><b>${s.querySelector('.lk-n').textContent}</b><span>${s.dataset.stage}</span><small>${s.dataset.min !== '0' ? s.dataset.min + ' min' : 'at home'}</small></a>`).join('');
+$('teacherBtn').onclick = (e) => { const on = document.body.classList.toggle('teacher'); e.currentTarget.textContent = on ? 'Student version' : 'Teacher version'; };
+</script>
+<script src="/game-lessons/kit.js" defer></script>
+</body>
+</html>

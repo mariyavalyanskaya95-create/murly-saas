@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The bilingual brain (B1) | Murly</title>
+<link rel="icon" href="/favicon.svg">
+<meta name="description" content="Обговоримо, навіщо вчити кілька мов
+Подивимось коротке відео TED-Ed і перевіримо розуміння
+Вивчимо слова про мозок і навчання та фрази для аргументаці">
+<link rel="canonical" href="https://murly.com.ua/game-lessons/lib-bilingual-brain.html">
+<style>
+:root{--paper:#F3F0EA;--ink:#17181C;--violet:#3D4A7A;--lav:#D9D3C7;--pink:#E9C9BC;--green:#D4E2CF;--white:#fff;--muted:#62646B;--accent:#B5482F}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+/* hero */
+.hero{background:linear-gradient(rgba(16,17,22,.5),rgba(16,17,22,.72)),url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1400&q=70&auto=format&fit=crop");color:#fff;padding:70px 18px 56px;text-align:center;position:relative;overflow:hidden}
+.hero .kicker{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#E9C9BC;font-weight:700}
+.hero .cr{position:absolute;right:12px;bottom:8px;font-size:11px;color:rgba(255,255,255,.6)}
+.hero h1{margin:8px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(36px,6vw,64px);letter-spacing:-.5px;font-weight:700}
+.hero h1 span{color:var(--pink);font-style:italic}
+.hero p{margin:12px 0 0;font-size:17px;color:#e6e2da}
+.hero .flags{display:flex;justify-content:center;gap:12px;margin-top:22px;flex-wrap:wrap}
+.hero .flags svg{width:40px;height:26px;border-radius:3px;opacity:.9}
+/* sections */
+section{margin-top:30px;background:var(--white);border-radius:18px;padding:28px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.05)}
+section h2{margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tag{font-family:"Segoe UI",system-ui,sans-serif;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--paper);color:var(--accent);text-transform:uppercase;letter-spacing:1px}
+.lk-n{display:inline-grid;place-items:center;width:42px;height:42px;background:var(--violet);color:#fff;border-radius:50%;font-size:21px;flex:none}
+.lk-mode{font-size:13px;font-weight:700;border:2px dashed var(--lav);color:var(--muted);padding:2px 10px;border-radius:999px}
+.lk-ins{font-size:17px;background:var(--paper);border-radius:12px;padding:10px 14px;margin:6px 0 18px}
+.lk-sub{margin:24px 0 10px;font-size:19px}
+.btn{font:inherit;font-weight:700;border:0;border-radius:999px;background:var(--ink);color:#fff;padding:10px 20px;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+.btn.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+/* teacher */
+.lk-tbtn{position:fixed;right:16px;top:70px;z-index:45;font:inherit;font-weight:800;border:2px solid var(--ink);background:var(--pink);padding:8px 14px;border-radius:12px;cursor:pointer}
+body.teacher .lk-tbtn{background:var(--green)}
+.lk-ans,.lk-tnote{display:none}
+body.teacher .lk-ans{display:block;margin-top:8px;font-weight:700;color:#1d5a12;background:var(--green);border-left:5px solid #5aa845;padding:6px 10px;font-size:15px;border-radius:6px}
+body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff3f7;border-left:5px solid #d9789a;padding:8px 12px;font-size:15px;border-radius:6px}
+/* overview */
+.lk-overview ul{font-size:17px;line-height:1.7;margin:6px 0 16px}
+.lk-stages{display:flex;flex-wrap:wrap;gap:8px}
+.lk-stages a{display:grid;border-radius:14px;padding:8px 12px;text-decoration:none;color:var(--ink);background:var(--paper);font-weight:700;min-width:100px}
+.lk-stages a span{text-transform:capitalize}
+.lk-stages a b{font-size:20px;color:var(--violet)}
+.lk-stages a small{font-weight:600;color:var(--muted)}
+/* warm-up */
+.taxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tax{background:var(--paper);border-radius:18px;padding:16px;display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center}
+.tax svg{width:56px;height:56px}
+.tax b{display:block;font-size:17px}
+.tax small{color:var(--muted);font-size:14px}
+.qs{display:grid;gap:10px;margin-top:18px}
+.qs div{background:var(--green);border-radius:14px;padding:10px 16px;font-size:18px;font-weight:600}
+.phr{background:#fff7e8;border-radius:14px;padding:12px 16px;margin-top:16px;font-size:15px}
+.phr ul{margin:6px 0 0;padding-left:18px}
+.fic{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:16px}
+.fic .c{background:#fff;border:2px solid #1B2140;border-radius:16px;padding:14px 16px;box-shadow:3px 3px 0 #1B2140}
+.fic .c b{display:block;font-size:18px;line-height:1.35;margin-bottom:8px}
+.fic .c .k{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.fic .c .k span{font-size:13px;background:#eef1fb;border-radius:999px;padding:3px 10px}
+.fic .c details{margin-top:8px;font-size:15px;color:#3b4160}
+.fic .c summary{cursor:pointer;font-weight:700;color:#534AB7}
+.fi-n{display:inline-flex;width:28px;height:28px;border-radius:50%;background:#2F4BA0;color:#fff;align-items:center;justify-content:center;font-size:14px;margin-right:6px}
+/* vocab */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:12px}
+.vc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:2px solid transparent;transition:border-color .2s,transform .2s}
+.vc:hover{border-color:var(--violet);transform:translateY(-2px)}
+.vc b{font-size:18px;display:flex;align-items:center;gap:8px}
+.vc b svg{width:20px;height:20px;flex:none;color:var(--violet)}
+.vc p{margin:6px 0 0;font-size:14px;color:var(--muted)}
+.vc em{display:block;margin-top:6px;font-size:14px;color:var(--violet);font-style:normal;font-weight:600}
+.vc.played{background:#e6ecfb}
+/* grammar */
+.gram{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.gb{border-radius:18px;padding:16px}
+.gb h3{margin:0 0 6px;font-size:19px}
+.gb .f{display:inline-block;background:#fff;border-radius:8px;padding:3px 10px;font-weight:800;margin:4px 0;font-family:Consolas,monospace;font-size:15px}
+.gb p{margin:6px 0 0;font-size:15px}
+.g1{background:var(--pink)}.g2{background:var(--lav)}.g3{background:var(--green)}.g4{background:#fbe7c6}
+.warn{margin-top:14px;background:var(--ink);color:#fff;border-radius:14px;padding:12px 16px;font-size:16px}
+.warn b{color:var(--pink)}
+.q{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:2px dashed var(--paper);font-size:18px}
+.q:last-child{border-bottom:0}
+.q .n{width:32px;height:32px;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;border-radius:50%;font-weight:800;font-size:15px}
+.opt{font:inherit;font-size:16px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:10px;padding:4px 12px;cursor:pointer;margin:0 2px}
+.opt.ok{background:var(--green);border-color:#5aa845}
+.opt.bad{background:var(--pink);animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+/* tour */
+.tour{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.law{border-radius:22px;overflow:hidden;background:var(--paper);display:flex;flex-direction:column}
+.law .pic{height:150px;display:grid;place-items:center;position:relative}
+.law .pic svg.ill{width:130px;height:130px}
+.law .pic svg.fl{position:absolute;left:14px;top:14px;width:46px;height:30px;border-radius:5px;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.law .pic .no{position:absolute;right:14px;top:14px;background:var(--ink);color:#fff;font-weight:800;border-radius:999px;padding:2px 10px;font-size:13px}
+.law .body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.law h3{margin:0;font-size:20px}
+.law .where{font-size:13px;font-weight:800;color:var(--violet);text-transform:uppercase;letter-spacing:1px}
+.law p{margin:0;font-size:16px}
+.law .why{font-size:14px;color:var(--muted)}
+.law .dq{margin-top:auto;background:#fff;border-radius:12px;padding:8px 12px;font-weight:700;font-size:15px}
+.law .lsn{font:inherit;font-size:13px;font-weight:700;background:none;border:0;color:var(--violet);cursor:pointer;padding:0;text-align:left}
+/* game */
+.game{max-width:720px;margin:0 auto;text-align:center}
+.score{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.score span{background:var(--paper);border-radius:999px;padding:6px 16px;font-weight:800}
+.stmt{background:var(--ink);color:#fff;border-radius:22px;padding:28px 24px;min-height:150px;display:grid;place-items:center;font-size:23px;font-weight:700;position:relative}
+.stmt small{position:absolute;top:12px;left:18px;font-size:13px;color:var(--lav);font-weight:700}
+.choose{display:flex;justify-content:center;gap:14px;margin:18px 0}
+.choose button{font:inherit;font-size:18px;font-weight:700;border:2px solid var(--ink);border-radius:999px;padding:12px 28px;cursor:pointer}
+.choose .bl{background:var(--green)}.choose .bm{background:var(--pink)}
+.choose button:disabled{opacity:.5;cursor:default}
+.verdict{min-height:70px;font-size:17px;background:var(--paper);border-radius:16px;padding:12px 16px;text-align:left}
+.verdict b.r{color:#2d7a1d}.verdict b.w{color:#b23a62}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.dots i{width:14px;height:14px;border-radius:50%;background:var(--paper)}
+.dots i.r{background:#7cc663}.dots i.w{background:#e47b9f}.dots i.c{outline:3px solid var(--violet)}
+.final{font-size:22px;font-weight:800;color:var(--violet)}
+/* invent */
+.inv{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.frames{display:grid;gap:10px}
+.frames label{font-size:14px;font-weight:700;color:var(--muted)}
+.frames select,.frames input{font:inherit;width:100%;padding:8px 10px;border:2px solid var(--lav);border-radius:10px;background:#fff}
+.poster{background:var(--paper);border:3px solid var(--ink);border-radius:20px;padding:22px;text-align:center;min-height:260px;display:flex;flex-direction:column;gap:10px;justify-content:center}
+.poster .seal{width:70px;height:70px;margin:0 auto}
+.poster h3{margin:0;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--violet)}
+.poster .rule{font-size:22px;font-weight:800}
+.poster .pen{font-size:16px;color:var(--muted)}
+.ideas{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ideas span{background:var(--pink);border-radius:999px;padding:5px 12px;font-size:14px;font-weight:600}
+/* roleplay */
+.rp{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.role{border-radius:20px;padding:18px}
+.role h3{margin:0 0 6px;display:flex;align-items:center;gap:10px}
+.role h3 svg{width:42px;height:42px}
+.role ul{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.r1{background:var(--lav)}.r2{background:var(--green)}
+.scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:16px}
+.sc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:3px solid transparent}
+.sc.on{border-color:var(--violet);background:#fff}
+.sc b{display:block;font-size:17px;margin-bottom:4px}
+.sc p{margin:0;font-size:15px}
+.timer{font-size:40px;font-weight:800;text-align:center;margin:14px 0 6px;color:var(--violet)}
+.ctr{text-align:center}
+/* homework */
+.hwb{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hwc{background:var(--paper);border-radius:18px;padding:18px}
+.hwc h3{margin:0 0 8px}
+.hwc ol,.hwc ul{margin:6px 0 0;padding-left:20px;line-height:1.7}
+.hwc textarea{width:100%;min-height:150px;font:inherit;border:2px solid var(--lav);border-radius:12px;padding:10px;margin-top:10px}
+.end{text-align:center;background:var(--ink);color:#fff;box-shadow:none}
+.end h2{justify-content:center}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(140px);background:var(--ink);color:#fff;font-weight:800;padding:12px 22px;border-radius:14px;transition:transform .3s;z-index:50}
+.toast.show{transform:translateX(-50%) translateY(0)}
+/* photos */
+.ph{margin:0}
+.ph img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;background:var(--paper)}
+.ph figcaption{font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.2px}
+.tax{grid-template-columns:1fr !important;padding:12px !important}
+.law .pic{height:auto !important;display:block !important;padding:0;position:relative}
+.law .pic .ph img{border-radius:0;aspect-ratio:16/10;transition:filter .5s}
+.law .pic .ph figcaption{padding:4px 12px 0}
+.law.hide .pic .ph img{filter:blur(10px) grayscale(.6)}
+.law.hide .reveal-body,.law.hide .fl,.law.hide .where{visibility:hidden}
+.law .clue{font-size:15px;font-style:italic;color:var(--ink)}
+.law .gc{display:flex;flex-wrap:wrap;gap:6px}
+.law .gc button{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:4px 12px;cursor:pointer}
+.law .gc button.ok{background:var(--green)}.law .gc button.bad{background:var(--pink)}
+.law:not(.hide) .guess{display:none}
+.fair{display:grid;gap:4px;background:#fff;border-radius:12px;padding:8px 12px}
+.fair .ends{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.fair input{width:100%;accent-color:var(--accent)}
+.fair output{font-size:14px;font-weight:700;color:var(--accent)}
+.gph{max-width:720px;margin:0 auto 12px}
+.gph img{aspect-ratio:21/9}
+.fine{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.fq{background:var(--paper);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.fq h3{margin:0;font-size:18px}
+.fq .opts{display:flex;flex-wrap:wrap;gap:6px}
+.fq .opts button{font:inherit;font-size:14px;font-weight:700;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 12px;cursor:pointer}
+.fq .opts button.ok{background:var(--green)}.fq .opts button.bad{background:var(--pink)}
+.fq .res{font-size:15px;min-height:22px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{position:relative;aspect-ratio:16/9;background:#111}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;cursor:pointer;background:#111 center/cover;display:grid;place-items:center}
+.vid .play span{background:rgba(0,0,0,.7);color:#fff;font-weight:700;border-radius:999px;padding:10px 20px;font-size:15px;letter-spacing:1px}
+.vid .info{padding:14px 16px}
+.vid .info h3{margin:0 0 2px;font-size:18px}
+.vid .info small{color:var(--muted)}
+.vid .info ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+@media(max-width:760px){.inv,.rp,.hwb{grid-template-columns:1fr}.lk-tbtn{top:auto;bottom:70px}}
+
+.pr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.pb{border-radius:18px;padding:16px 18px}
+.pb h3{margin:0;font-family:Georgia,serif;font-size:30px}
+.pb .m{font-size:15px;color:var(--muted);margin:2px 0 8px}
+.pb .chips{display:flex;flex-wrap:wrap;gap:6px}
+.pb .chips span{background:#fff;border-radius:999px;padding:4px 11px;font-size:14px;font-weight:600}
+.pb ul{margin:10px 0 0;padding-left:18px;font-size:15px}
+.p-in{background:#DCE6F5}.p-at{background:#F3D9CF}.p-on{background:#D4E2CF}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-size:15px;margin-top:10px}
+.ex div{background:var(--paper);border-radius:10px;padding:8px 12px}
+.ex b{color:var(--accent)}
+.q{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.q .n{font-weight:800;color:var(--violet);min-width:24px}
+.q .gap{display:inline-block;min-width:44px;border-bottom:2px solid var(--ink);text-align:center;font-weight:800}
+.q .opts{margin-left:auto;display:flex;gap:6px}
+.q .opts button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 14px;cursor:pointer}
+.q.ok{background:#DDEED7}.q.ok .gap{color:#2F7A3B}
+.q.bad{background:#F6DAD3}
+.score{font-weight:800;margin-top:12px}
+.text{font-size:18px;line-height:1.75;background:var(--paper);border-radius:16px;padding:18px 22px}
+.text h3{margin:0 0 6px;font-family:Georgia,serif;font-size:24px}
+.text p{margin:0 0 12px}
+.text.hl mark{background:#F3D9CF;border-radius:4px;padding:0 3px;font-weight:700}
+.tf{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:9px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.tf .opts{margin-left:auto;display:flex;gap:6px}
+.tf button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.tf.ok{background:#DDEED7}.tf.bad{background:#F6DAD3}
+.disc{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px;margin-top:6px}
+.disc div{background:var(--green);border-radius:14px;padding:12px 16px;font-size:17px;font-weight:600}
+.disc div i{font-style:normal;color:var(--violet);margin-right:6px}
+.spin{text-align:center;margin-top:16px}
+.spin .card{display:inline-block;min-height:80px;min-width:min(560px,100%);background:var(--ink);color:#fff;border-radius:18px;padding:20px 24px;font-size:22px;font-weight:700;margin-bottom:12px}
+@media(max-width:700px){.ex{grid-template-columns:1fr}}
+
+.hero{background-size:cover!important;background-position:center!important}
+.voc{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.voc div{background:var(--paper);border-radius:14px;padding:10px 14px;cursor:pointer;border:2px solid transparent}
+.voc div:hover{border-color:var(--violet)}
+.voc b{display:block;font-size:18px}.voc span{display:block;color:var(--accent);font-weight:700;font-size:15px}.voc em{display:block;font-size:14px;color:var(--muted);margin-top:3px}
+.mt{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:10px}
+.mt button{font:inherit;font-size:16px;text-align:left;border:2px solid var(--ink);background:#fff;border-radius:14px;padding:9px 14px;cursor:pointer}
+.mt button.sel{background:#FFE7A8}.mt button.done{background:#CDE8C6;border-color:#4C9A5B;cursor:default}
+.ch{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ch .n{font-weight:800;color:var(--violet);min-width:24px}
+.ch .o{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.ch .o button{font:inherit;font-size:15px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.ch.ok{background:#DDEED7}.ch.bad{background:#F6DAD3}
+.ty{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ty input{font:inherit;border:2px solid var(--ink);border-radius:10px;padding:4px 10px;width:220px}
+.ty.ok{background:#DDEED7}.ty.bad{background:#F6DAD3}
+.ty small{color:var(--muted)}
+.photo{width:100%;height:300px;object-fit:cover;border-radius:16px;display:block}
+.cap{font-size:11px;color:var(--muted);margin:4px 0 12px}
+.pics{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.pics figure{margin:0;background:var(--paper);border-radius:16px;overflow:hidden}
+.pics img{width:100%;height:170px;object-fit:cover;display:block}
+.pics figcaption{padding:8px 12px;font-weight:700}
+.pics small{display:block;font-weight:400;font-size:10px;color:var(--muted)}
+.lis{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:8px 0 14px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{aspect-ratio:16/9;background:#000;position:relative}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;background-size:cover;background-position:center;cursor:pointer;display:grid;place-items:center}
+.vid .play span{background:#E5484D;color:#fff;font-weight:800;border-radius:12px;padding:10px 20px}
+.vid .info{padding:12px 16px}.vid h3{margin:0;font-size:18px}.vid small{color:var(--muted)}
+.vid ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th,.tbl td{border:1px solid #ddd;padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--paper)}
+@media(max-width:700px){.mt{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="/game-lessons/kit.css">
+</head>
+<body>
+<header class="hero">
+  <div class="kicker">B1 · teens · Мови і мозок</div>
+  <h1>The bilingual brain</h1>
+  <p>B1 · 7 parts · 60 min</p>
+  <span class="cr">Photo: Unsplash</span>
+</header>
+<button class="lk-tbtn" id="teacherBtn" type="button">Teacher version</button>
+<div class="wrap">
+  <section class="lk-overview">
+    <h2>In this lesson you will:</h2>
+    <ul><li>Обговоримо, навіщо вчити кілька мов
+Подивимось коротке відео TED-Ed і перевіримо розуміння
+Вивчимо слова про мозок і навчання та фрази для аргументації
+Висловимо і захистимо свою думку</li></ul>
+    <div class="lk-stages" id="stages"></div>
+  </section>
+  <section id="s1" data-stage="warm-up" data-min="5">
+    <h2><span class="lk-n">1</span>Warm-up <span class="tag">warm-up</span><span class="lk-mode">teacher + student</span></h2>
+<div class="qs"><div>How many languages do you speak or understand?</div><div>Is it easier to learn a language as a child or as an adult? Why?</div><div>Do you ever mix Ukrainian and English words when you speak?</div></div>
+    <h3 class="lk-sub">How much do you agree?</h3><div class="qs"><div>Learning languages is easy for me. (agree or disagree? Why?)</div><div>People who speak two languages are smarter. (agree or disagree? Why?)</div><div>It is too late to start a new language after 30. (agree or disagree? Why?)</div></div>
+    <p class="lk-tnote" data-ru="Почни з короткого обговорення, потім шкала. Попроси учня пояснити одну свою відповідь і пообіцяй повернутися до неї після відео: чи зміниться думка? Не виправляй помилки на цьому етапі. 5 хвилин.&lt;br&gt;">Почни з короткого обговорення, потім шкала. Попроси учня пояснити одну свою відповідь і пообіцяй повернутися до неї після відео: чи зміниться думка? Не виправляй помилки на цьому етапі. 5 хвилин.<br></p>
+  </section>
+  <section id="s2" data-stage="vocabulary" data-min="10">
+    <h2><span class="lk-n">2</span>Vocabulary <span class="tag">vocabulary</span><span class="lk-mode">teacher + student</span></h2>
+<div class="voc"><div data-say="bilingual. "><b>bilingual</b><span><span data-tr-uk="двомовний" data-tr-ru="двомовний">двомовний</span></span><em></em></div>
+<div data-say="native language. "><b>native language</b><span><span data-tr-uk="рідна мова" data-tr-ru="рідна мова">рідна мова</span></span><em></em></div>
+<div data-say="to acquire. "><b>to acquire</b><span><span data-tr-uk="засвоювати, набувати" data-tr-ru="засвоювати, набувати">засвоювати, набувати</span></span><em></em></div>
+<div data-say="the brain. "><b>the brain</b><span><span data-tr-uk="мозок" data-tr-ru="мозок">мозок</span></span><em></em></div>
+<div data-say="to switch. "><b>to switch</b><span><span data-tr-uk="перемикатися" data-tr-ru="перемикатися">перемикатися</span></span><em></em></div>
+<div data-say="an advantage. "><b>an advantage</b><span><span data-tr-uk="перевага" data-tr-ru="перевага">перевага</span></span><em></em></div>
+<div data-say="fluent. "><b>fluent</b><span><span data-tr-uk="вільний (про мову)" data-tr-ru="вільний (про мову)">вільний (про мову)</span></span><em></em></div>
+<div data-say="to decline. "><b>to decline</b><span><span data-tr-uk="знижуватися" data-tr-ru="знижуватися">знижуватися</span></span><em></em></div>
+<div data-say="memory. "><b>memory</b><span><span data-tr-uk="пам’ять" data-tr-ru="пам’ять">пам’ять</span></span><em></em></div>
+<div data-say="to improve. "><b>to improve</b><span><span data-tr-uk="покращувати" data-tr-ru="покращувати">покращувати</span></span><em></em></div>
+<div data-say="a skill. "><b>a skill</b><span><span data-tr-uk="навичка" data-tr-ru="навичка">навичка</span></span><em></em></div>
+<div data-say="to focus. "><b>to focus</b><span><span data-tr-uk="зосереджуватися" data-tr-ru="зосереджуватися">зосереджуватися</span></span><em></em></div></div>
+    <div class="mt" data-mt="m2" data-pairs="[[&quot;bilingual&quot;, &quot;двомовний&quot;], [&quot;native language&quot;, &quot;рідна мова&quot;], [&quot;to acquire&quot;, &quot;засвоювати, набувати&quot;], [&quot;the brain&quot;, &quot;мозок&quot;], [&quot;to switch&quot;, &quot;перемикатися&quot;], [&quot;an advantage&quot;, &quot;перевага&quot;], [&quot;fluent&quot;, &quot;вільний (про мову)&quot;], [&quot;to decline&quot;, &quot;знижуватися&quot;]]"></div><div class="score" data-mtres="m2"></div>
+    <h3 class="lk-sub">Match the words with their meanings.</h3><div class="ch" data-a="able to speak easily and well"><span class="n">1</span><span class="s">fluent ___</span><span class="o"><button type="button">to change from one thing to another</button><button type="button">the ability to remember things</button><button type="button">the first language you learn</button><button type="button">able to speak easily and well</button><button type="button">something that helps you</button><button type="button">to become smaller or weaker</button></span></div>
+<div class="ch" data-a="to change from one thing to another"><span class="n">2</span><span class="s">to switch ___</span><span class="o"><button type="button">the first language you learn</button><button type="button">to change from one thing to another</button><button type="button">able to speak easily and well</button><button type="button">the ability to remember things</button><button type="button">to become smaller or weaker</button><button type="button">something that helps you</button></span></div>
+<div class="ch" data-a="something that helps you"><span class="n">3</span><span class="s">an advantage ___</span><span class="o"><button type="button">to become smaller or weaker</button><button type="button">the ability to remember things</button><button type="button">something that helps you</button><button type="button">the first language you learn</button><button type="button">to change from one thing to another</button><button type="button">able to speak easily and well</button></span></div>
+<div class="ch" data-a="the first language you learn"><span class="n">4</span><span class="s">native language ___</span><span class="o"><button type="button">to become smaller or weaker</button><button type="button">to change from one thing to another</button><button type="button">the ability to remember things</button><button type="button">the first language you learn</button><button type="button">able to speak easily and well</button><button type="button">something that helps you</button></span></div>
+<div class="ch" data-a="to become smaller or weaker"><span class="n">5</span><span class="s">to decline ___</span><span class="o"><button type="button">to become smaller or weaker</button><button type="button">the first language you learn</button><button type="button">something that helps you</button><button type="button">to change from one thing to another</button><button type="button">the ability to remember things</button><button type="button">able to speak easily and well</button></span></div>
+<div class="ch" data-a="the ability to remember things"><span class="n">6</span><span class="s">memory ___</span><span class="o"><button type="button">something that helps you</button><button type="button">able to speak easily and well</button><button type="button">the first language you learn</button><button type="button">to change from one thing to another</button><button type="button">to become smaller or weaker</button><button type="button">the ability to remember things</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; able to speak easily and well · to change from one thing to another · something that helps you · the first language you learn · to become smaller or weaker · the ability to remember things"><b>Відповіді:</b> able to speak easily and well · to change from one thing to another · something that helps you · the first language you learn · to become smaller or weaker · the ability to remember things</p>
+    <h3 class="lk-sub">Complete the sentences: switch, fluent, advantage, acquire, improve.</h3><div class="ty" data-a="acquire"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Children ___ languages very quickly.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="fluent"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>She is ___ in English and Spanish.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="switch"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Bilingual people can ___ between languages.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="advantage"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>One ___ of speaking two languages is better memory.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="improve"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Reading every day helps you ___ your English.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; acquire · fluent · switch · advantage · improve"><b>Відповіді:</b> acquire · fluent · switch · advantage · improve</p>
+    <p class="lk-tnote" data-ru="Перед вправами попроси учня розділити слова на дві групи: «мозок» (brain, memory, focus) і «мови» (fluent, native language, bilingual). Перевір вимову: acquire, advantage, fluent. 10 хвилин.&lt;br&gt;">Перед вправами попроси учня розділити слова на дві групи: «мозок» (brain, memory, focus) і «мови» (fluent, native language, bilingual). Перевір вимову: acquire, advantage, fluent. 10 хвилин.<br></p>
+  </section>
+  <section id="s3" data-stage="practice" data-min="15">
+    <h2><span class="lk-n">3</span>Watch <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<div class="frame" style="aspect-ratio:16/9"><iframe src="https://www.youtube-nocookie.com/embed/MMmOLN5zBLY" style="width:100%;height:100%;border:0" allowfullscreen loading="lazy"></iframe></div>
+    <p class="lk-ins">Подивись відео (5 хв). Спершу просто зрозумій головну ідею, потім виконай вправи.</p>
+    <p class="lk-tnote" data-ru="Відео з англійськими субтитрами на YouTube. На B1 дивіться двічі: спочатку для загального розуміння (вправа на головну ідею), потім для деталей. Перевір відповіді True/False разом, повертаючись до моментів у відео. Якщо учню важко, увімкни субтитри і швидкість 0.75. 15 хвилин.&lt;br&gt;">Відео з англійськими субтитрами на YouTube. На B1 дивіться двічі: спочатку для загального розуміння (вправа на головну ідею), потім для деталей. Перевір відповіді True/False разом, повертаючись до моментів у відео. Якщо учню важко, увімкни субтитри і швидкість 0.75. 15 хвилин.<br></p>
+    <h3 class="lk-sub">What is the video mainly about?</h3><div class="ch" data-a="how knowing two languages affects the brain"><span class="n">1</span><span class="s">The video is mainly about ___.</span><span class="o"><button type="button">how to pass a language exam</button><button type="button">how knowing two languages affects the brain</button><button type="button">the history of the English language</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; how knowing two languages affects the brain"><b>Відповіді:</b> how knowing two languages affects the brain</p>
+    <h3 class="lk-sub">True or False?</h3><div class="ch" data-a="True"><span class="n">1</span><span class="s">The video describes different types of bilingual people.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="False"><span class="n">2</span><span class="s">You can only learn a second language as a small child.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="True"><span class="n">3</span><span class="s">Using two languages can keep your brain active.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="True"><span class="n">4</span><span class="s">According to the video, being bilingual can help to delay diseases like dementia.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; True · False · True · True"><b>Відповіді:</b> True · False · True · True</p>
+    <h3 class="lk-sub">Choose the correct answer.</h3><div class="ch" data-a="three"><span class="n">1</span><span class="s">The video describes ___ types of bilingual people.</span><span class="o"><button type="button">three</button><button type="button">two</button><button type="button">five</button></span></div>
+<div class="ch" data-a="for adults too"><span class="n">2</span><span class="s">The video says that the benefits of learning a language are ___.</span><span class="o"><button type="button">only for teachers</button><button type="button">for adults too</button><button type="button">only for children</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; three · for adults too"><b>Відповіді:</b> three · for adults too</p>
+  </section>
+  <section id="s4" data-stage="practice" data-min="10">
+    <h2><span class="lk-n">4</span>Language focus <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<div class="warn"><p>Говоримо про переваги і недоліки: <b>One advantage of … is that …</b> / <b>It helps you to …</b> / <b>The best thing about … is …</b> / <b>One disadvantage is that …</b> / <b>On the other hand, …</b> Після <b>It helps you</b> можна вживати дієслово з <b>to</b> або без: It helps you (to) remember words.</p></div>
+    <h3 class="lk-sub">Choose the correct option.</h3><div class="ch" data-a="is that"><span class="n">1</span><span class="s">One advantage of learning languages ___ you can travel easily.</span><span class="o"><button type="button">it is</button><button type="button">is that</button></span></div>
+<div class="ch" data-a="to focus"><span class="n">2</span><span class="s">It helps you ___ better.</span><span class="o"><button type="button">focusing</button><button type="button">to focus</button></span></div>
+<div class="ch" data-a="is"><span class="n">3</span><span class="s">The best thing about English ___ that you can watch films in the original.</span><span class="o"><button type="button">are</button><button type="button">is</button></span></div>
+<div class="ch" data-a="On the other hand"><span class="n">4</span><span class="s">___, learning a language takes a lot of time.</span><span class="o"><button type="button">On the other hand</button><button type="button">On other hand</button></span></div>
+<div class="ch" data-a="disadvantage"><span class="n">5</span><span class="s">One ___ is that you need to practise every day.</span><span class="o"><button type="button">disadvantages</button><button type="button">disadvantage</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; is that · to focus · is · On the other hand · disadvantage"><b>Відповіді:</b> is that · to focus · is · On the other hand · disadvantage</p>
+    <h3 class="lk-sub">Translate into English.</h3><div class="ty" data-a="One advantage of being bilingual is that the brain stays active|One advantage of bilingualism is that the brain stays active|One advantage of being bilingual is that your brain stays active"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Одна з переваг двомовності в тому, що мозок залишається активним</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="It helps you to remember words better|It helps you remember words better"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Це допомагає тобі краще запам’ятовувати слова</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; One advantage of being bilingual is that the brain stays active · It helps you to remember words better"><b>Відповіді:</b> One advantage of being bilingual is that the brain stays active · It helps you to remember words better</p>
+    <p class="lk-tnote" data-ru="Попроси учня усно зробити 3 речення про переваги англійської з різними фразами з підказки. Переклад може мати кілька варіантів: якщо відповідь правильна за змістом, зарахуй вручну. Типова помилка: One advantage is learning languages is... - покажи структуру One advantage of + -ing + is that. 10 хвилин.&lt;br&gt;">Попроси учня усно зробити 3 речення про переваги англійської з різними фразами з підказки. Переклад може мати кілька варіантів: якщо відповідь правильна за змістом, зарахуй вручну. Типова помилка: One advantage is learning languages is... - покажи структуру One advantage of + -ing + is that. 10 хвилин.<br></p>
+  </section>
+  <section id="s5" data-stage="speaking" data-min="14">
+    <h2><span class="lk-n">5</span>Speaking <span class="tag">speaking</span><span class="lk-mode">teacher + student</span></h2>
+<div class="text"><p><b>Mini-debate.</b> Read the statement. Choose a side, prepare two arguments and one example in 2 minutes, then present your opinion. Use the phrases from the tip.</p></div>
+    <div class="qs"><div>Which language would you like to learn next? Why?</div><div>Agree or disagree: "Everyone in Ukraine should speak English." Give two reasons.</div><div>Do you think online translators will make learning languages unnecessary?</div><div>Look at your answers on the scale from the warm-up. Has your opinion changed after the video?</div></div>
+    <h3 class="lk-sub">Record a 1-minute opinion.</h3><div class="qs"><div>"Every child should learn two foreign languages at school." Do you agree? Give two arguments and one example from the video or your life. (say it out loud)</div></div>
+    <p class="lk-tnote" data-ru="Міні-дебати: вчитель бере протилежну позицію, учень захищає свою. Кожна сторона говорить 1 хвилину, потім 1 хвилина на відповідь. Слідкуй за використанням фраз One advantage of…, On the other hand… Помилки записуй і розбирай після дебатів, а не під час. 14 хвилин.&lt;br&gt;">Міні-дебати: вчитель бере протилежну позицію, учень захищає свою. Кожна сторона говорить 1 хвилину, потім 1 хвилина на відповідь. Слідкуй за використанням фраз One advantage of…, On the other hand… Помилки записуй і розбирай після дебатів, а не під час. 14 хвилин.<br></p>
+  </section>
+  <section id="s6" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">6</span>Extra practice · якщо лишився час або на наступний урок <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Встав слово: native, skill, decline, bilingual, brain, focus, memory.</h3><div class="ty" data-a="native"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>My ___ language is Ukrainian.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="skill"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Learning a language is a ___, like swimming or cooking.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="decline"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Some abilities ___ when people get older.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="bilingual"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>A person who speaks two languages is ___.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="brain"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Our ___ controls everything we do.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="focus"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>I can’t ___ when my phone is ringing.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="memory"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>Learning new words is good for your ___.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; native · skill · decline · bilingual · brain · focus · memory"><b>Відповіді:</b> native · skill · decline · bilingual · brain · focus · memory</p>
+    <h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="speaking"><span class="n">1</span><span class="s">One advantage of ___ two languages is better memory.</span><span class="o"><button type="button">speaking</button><button type="button">to speak</button><button type="button">speak</button></span></div>
+<div class="ch" data-a="remember"><span class="n">2</span><span class="s">It helps you ___ new words.</span><span class="o"><button type="button">remembers</button><button type="button">remembering</button><button type="button">remember</button></span></div>
+<div class="ch" data-a="is that"><span class="n">3</span><span class="s">The best thing about travelling ___ you meet new people.</span><span class="o"><button type="button">are that</button><button type="button">it is that</button><button type="button">is that</button></span></div>
+<div class="ch" data-a="disadvantage"><span class="n">4</span><span class="s">One ___ is that it takes a lot of time.</span><span class="o"><button type="button">disadvantages</button><button type="button">disadvantage</button></span></div>
+<div class="ch" data-a="On the other hand"><span class="n">5</span><span class="s">___, it is a lot of fun.</span><span class="o"><button type="button">On the other hand</button><button type="button">In other hand</button><button type="button">On other hand</button></span></div>
+<div class="ch" data-a="in"><span class="n">6</span><span class="s">She is fluent ___ three languages.</span><span class="o"><button type="button">at</button><button type="button">on</button><button type="button">in</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; speaking · remember · is that · disadvantage · On the other hand · in"><b>Відповіді:</b> speaking · remember · is that · disadvantage · On the other hand · in</p>
+    <h3 class="lk-sub">Переклади англійською.</h3><div class="ty" data-a="He is fluent in English|He speaks English fluently|He speaks fluent English"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Він вільно говорить англійською</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Children acquire languages quickly|Children acquire languages fast|Kids acquire languages quickly"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Діти швидко засвоюють мови</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="My native language is Ukrainian|Ukrainian is my native language"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Моя рідна мова українська</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Reading improves memory|Reading improves your memory|Reading improves our memory"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Читання покращує пам’ять</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="It is hard for me to focus|It’s hard for me to focus|I find it hard to focus"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Мені важко зосередитися</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="On the other hand, it takes a lot of time|On the other hand it takes a lot of time|On the other hand, it takes much time"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>З іншого боку, це займає багато часу</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; He is fluent in English · Children acquire languages quickly · My native language is Ukrainian · Reading improves memory · It is hard for me to focus · On the other hand, it takes a lot of time"><b>Відповіді:</b> He is fluent in English · Children acquire languages quickly · My native language is Ukrainian · Reading improves memory · It is hard for me to focus · On the other hand, it takes a lot of time</p>
+    <h3 class="lk-sub">Brain words</h3><p class="lk-ins">Знайди переклад слова.</p>
+    <div class="spin"><div class="card" id="g67">Click "Next card"</div><br><button class="btn" type="button" data-spin="[&quot;bilingual&quot;, &quot;the brain&quot;, &quot;memory&quot;, &quot;fluent&quot;, &quot;to switch&quot;, &quot;an advantage&quot;, &quot;a skill&quot;, &quot;to focus&quot;, &quot;to improve&quot;]" data-target="g67">Next card</button></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; двомовний · мозок · пам’ять · вільний (про мову) · перемикатися · перевага · навичка · зосереджуватися · покращувати"><b>Відповіді:</b> двомовний · мозок · пам’ять · вільний (про мову) · перемикатися · перевага · навичка · зосереджуватися · покращувати</p>
+    <p class="lk-tnote" data-ru="Можна дати наприкінці уроку або як розминку на наступному. Неочевидні місця: після One advantage of потрібне дієслово з -ing (speaking); у фразі On the other hand обов’язкові the і on; fluent in English, а не on. У перекладі зараховуються різні правильні варіанти (He is fluent in English / He speaks English fluently); інші логічні відповіді зарахуй вручну. Після гри попроси учня скласти 2 речення з новими словами про себе: I want to improve my… / I can’t focus when…&lt;br&gt;">Можна дати наприкінці уроку або як розминку на наступному. Неочевидні місця: після One advantage of потрібне дієслово з -ing (speaking); у фразі On the other hand обов’язкові the і on; fluent in English, а не on. У перекладі зараховуються різні правильні варіанти (He is fluent in English / He speaks English fluently); інші логічні відповіді зарахуй вручну. Після гри попроси учня скласти 2 речення з новими словами про себе: I want to improve my… / I can’t focus when…<br></p>
+  </section>
+  <section id="s7" data-stage="writing" data-min="6">
+    <h2><span class="lk-n">7</span>Writing <span class="tag">writing</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Writing: 60-80 words.</h3><div class="qs"><div>Write a short post: "Why I learn English". Use at least three words from the lesson and one phrase for advantages.</div></div>
+    <p class="lk-tnote" data-ru="Якщо учень не встигає, нехай напише план і перше речення, а пост доробить удома. Домашнє завдання: дописати пост до 100-120 слів; або знайти людину, яка знає 2+ мови, взяти коротке інтерв’ю (3 питання) і розповісти про це на наступному уроці.&lt;br&gt;">Якщо учень не встигає, нехай напише план і перше речення, а пост доробить удома. Домашнє завдання: дописати пост до 100-120 слів; або знайти людину, яка знає 2+ мови, взяти коротке інтерв’ю (3 питання) і розповісти про це на наступному уроці.<br></p>
+    <h3 class="lk-sub">Homework plus. Обери правильний варіант.</h3><div class="ch" data-a="switch"><span class="n">1</span><span class="s">Bilingual people can ___ between languages easily.</span><span class="o"><button type="button">switch</button><button type="button">decline</button></span></div>
+<div class="ch" data-a="decline"><span class="n">2</span><span class="s">Some skills ___ when we stop using them.</span><span class="o"><button type="button">improve</button><button type="button">decline</button></span></div>
+<div class="ch" data-a="advantage"><span class="n">3</span><span class="s">English helps you to travel. That is a big ___.</span><span class="o"><button type="button">advantage</button><button type="button">disadvantage</button></span></div>
+<div class="ch" data-a="fluent"><span class="n">4</span><span class="s">I want to become ___ in Spanish.</span><span class="o"><button type="button">fluent</button><button type="button">native</button></span></div>
+<div class="ch" data-a="to understand"><span class="n">5</span><span class="s">Learning a language helps you ___ other cultures.</span><span class="o"><button type="button">understanding</button><button type="button">to understand</button></span></div>
+<div class="ch" data-a="improves"><span class="n">6</span><span class="s">Reading every day ___ your vocabulary.</span><span class="o"><button type="button">improves</button><button type="button">declines</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; switch · decline · advantage · fluent · to understand · improves"><b>Відповіді:</b> switch · decline · advantage · fluent · to understand · improves</p>
+    <h3 class="lk-sub">Встав фразу: One advantage, It helps you, The best thing, Another advantage, One disadvantage, On the other hand.</h3><div class="ty" data-a="One advantage"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>___ of online lessons is that you can study at home.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="It helps you"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>___ to save time on the road.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="The best thing"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>___ about my English class is the games.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Another advantage"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>___ is that you can watch the recording later.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="One disadvantage"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>___ is that you sit at the computer all day.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="On the other hand"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>___, you can’t meet your classmates in person.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; One advantage · It helps you · The best thing · Another advantage · One disadvantage · On the other hand"><b>Відповіді:</b> One advantage · It helps you · The best thing · Another advantage · One disadvantage · On the other hand</p>
+    <h3 class="lk-sub">Напиши відповіді англійською.</h3><div class="qs"><div>Write 5-6 sentences: What are the advantages and disadvantages of learning English online?</div><div>Ask a family member: What languages do you speak? When did you learn them? Write their answers in English.</div></div>
+  </section>
+  <section class="end"><h2>Great job!</h2><p>See you next lesson.</p></section>
+</div>
+<div class="toast" id="toast"></div>
+<script>window.MURLY_LESSON={"id": "lib-bilingual-brain", "title": "The bilingual brain", "homework": ["s2", "s3", "s4", "s6", "s7"], "hw": {"s2": [{"type": "choice", "instruction": "Match the words with their meanings.", "text": "fluent {able to speak easily and well|to change from one thing to another|something that helps you|the first language you learn|to become smaller or weaker|the ability to remember things}\nto switch {to change from one thing to another|able to speak easily and well|something that helps you|the first language you learn|to become smaller or weaker|the ability to remember things}\nan advantage {something that helps you|able to speak easily and well|to change from one thing to another|the first language you learn|to become smaller or weaker|the ability to remember things}\nnative language {the first language you learn|able to speak easily and well|to change from one thing to another|something that helps you|to become smaller or weaker|the ability to remember things}\nto decline {to become smaller or weaker|able to speak easily and well|to change from one thing to another|something that helps you|the first language you learn|the ability to remember things}\nmemory {the ability to remember things|able to speak easily and well|to change from one thing to another|something that helps you|the first language you learn|to become smaller or weaker}"}, {"type": "gap", "instruction": "Complete the sentences: switch, fluent, advantage, acquire, improve.", "text": "Children [acquire] languages very quickly.\nShe is [fluent] in English and Spanish.\nBilingual people can [switch] between languages.\nOne [advantage] of speaking two languages is better memory.\nReading every day helps you [improve] your English."}], "s3": [{"type": "choice", "instruction": "What is the video mainly about?", "text": "The video is mainly about {how knowing two languages affects the brain|how to pass a language exam|the history of the English language}."}, {"type": "choice", "instruction": "True or False?", "text": "The video describes different types of bilingual people. {True|False}\nYou can only learn a second language as a small child. {False|True}\nUsing two languages can keep your brain active. {True|False}\nAccording to the video, being bilingual can help to delay diseases like dementia. {True|False}"}, {"type": "choice", "instruction": "Choose the correct answer.", "text": "The video describes {three|two|five} types of bilingual people.\nThe video says that the benefits of learning a language are {for adults too|only for children|only for teachers}."}], "s4": [{"type": "choice", "instruction": "Choose the correct option.", "text": "One advantage of learning languages {is that|it is} you can travel easily.\nIt helps you {to focus|focusing} better.\nThe best thing about English {is|are} that you can watch films in the original.\n{On the other hand|On other hand}, learning a language takes a lot of time.\nOne {disadvantage|disadvantages} is that you need to practise every day."}, {"type": "gap", "instruction": "Translate into English.", "text": "Одна з переваг двомовності в тому, що мозок залишається активним → [One advantage of being bilingual is that the brain stays active/One advantage of bilingualism is that the brain stays active/One advantage of being bilingual is that your brain stays active]\nЦе допомагає тобі краще запам’ятовувати слова → [It helps you to remember words better/It helps you remember words better]"}], "s6": [{"type": "gap", "instruction": "Встав слово: native, skill, decline, bilingual, brain, focus, memory.", "text": "My [native] language is Ukrainian.\nLearning a language is a [skill], like swimming or cooking.\nSome abilities [decline] when people get older.\nA person who speaks two languages is [bilingual].\nOur [brain] controls everything we do.\nI can’t [focus] when my phone is ringing.\nLearning new words is good for your [memory]."}, {"type": "choice", "instruction": "Обери правильний варіант.", "text": "One advantage of {speaking|speak|to speak} two languages is better memory.\nIt helps you {remember|remembering|remembers} new words.\nThe best thing about travelling {is that|it is that|are that} you meet new people.\nOne {disadvantage|disadvantages} is that it takes a lot of time.\n{On the other hand|In other hand|On other hand}, it is a lot of fun.\nShe is fluent {in|on|at} three languages."}, {"type": "gap", "instruction": "Переклади англійською.", "text": "Він вільно говорить англійською → [He is fluent in English/He speaks English fluently/He speaks fluent English]\nДіти швидко засвоюють мови → [Children acquire languages quickly/Children acquire languages fast/Kids acquire languages quickly]\nМоя рідна мова українська → [My native language is Ukrainian/Ukrainian is my native language]\nЧитання покращує пам’ять → [Reading improves memory/Reading improves your memory/Reading improves our memory]\nМені важко зосередитися → [It is hard for me to focus/It’s hard for me to focus/I find it hard to focus]\nЗ іншого боку, це займає багато часу → [On the other hand, it takes a lot of time/On the other hand it takes a lot of time/On the other hand, it takes much time]"}], "s7": [{"type": "open", "instruction": "Writing: 60-80 words.", "text": "Write a short post: \"Why I learn English\". Use at least three words from the lesson and one phrase for advantages."}, {"type": "choice", "instruction": "Homework plus. Обери правильний варіант.", "text": "Bilingual people can {switch|decline} between languages easily.\nSome skills {decline|improve} when we stop using them.\nEnglish helps you to travel. That is a big {advantage|disadvantage}.\nI want to become {fluent|native} in Spanish.\nLearning a language helps you {to understand|understanding} other cultures.\nReading every day {improves|declines} your vocabulary."}, {"type": "gap", "instruction": "Встав фразу: One advantage, It helps you, The best thing, Another advantage, One disadvantage, On the other hand.", "text": "[One advantage] of online lessons is that you can study at home.\n[It helps you] to save time on the road.\n[The best thing] about my English class is the games.\n[Another advantage] is that you can watch the recording later.\n[One disadvantage] is that you sit at the computer all day.\n[On the other hand], you can’t meet your classmates in person."}, {"type": "open", "instruction": "Напиши відповіді англійською.", "text": "Write 5-6 sentences: What are the advantages and disadvantages of learning English online?\nAsk a family member: What languages do you speak? When did you learn them? Write their answers in English."}]}};</script>
+<script>
+(function(){var l=(document.cookie.match(/(?:^|; )murly_lang=(\w+)/)||[])[1];try{l=l||localStorage.getItem('murly:tlang')}catch(e){}l=l==='ru'?'ru':'uk';document.querySelectorAll('[data-pairs-'+l+']').forEach(function(b){b.dataset.pairs=b.getAttribute('data-pairs-'+l)});})();
+</script>
+<script>
+const $ = (id) => document.getElementById(id);
+const LIS = {};
+function say(w, rate) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; const v = speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang) && /Google|Natural|Libby|Sonia|Daniel/.test(x.name)) || speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang)); if (v) u.voice = v; u.rate = rate || .95; speechSynthesis.speak(u); } catch (e) { } }
+const sh = (a) => a.map((x) => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map((x) => x[1]);
+document.querySelectorAll('.voc div').forEach((d) => d.onclick = () => say(d.dataset.say));
+document.querySelectorAll('[data-play]').forEach((b) => b.onclick = () => say(LIS[b.dataset.play], b.dataset.slow ? .75 : .95));
+document.querySelectorAll('[data-stop]').forEach((b) => b.onclick = () => { try { speechSynthesis.cancel(); } catch (e) { } });
+document.querySelectorAll('.ch').forEach((q) => q.querySelectorAll('button').forEach((b) => b.onclick = () => { if (q.classList.contains('ok')) return; const ok = b.textContent === q.dataset.a; q.classList.toggle('ok', ok); q.classList.toggle('bad', !ok); if (ok) { const s = q.querySelector('.s'); if (s && s.textContent.includes('___')) { s.textContent = s.textContent.replace('___', q.dataset.a); } } }));
+const norm = (x) => x.toLowerCase().replace(/[’']/g, "'").replace(/[,;:"“”«»]/g, ' ').replace(/\s+/g, ' ').replace(/[.!?]$/, '').trim();
+document.querySelectorAll('.ty').forEach((r) => { const inp = r.querySelector('input'); const chk = () => { const ok = r.dataset.a.split('|').some((a) => norm(a) === norm(inp.value)); r.classList.toggle('ok', ok); r.classList.toggle('bad', !ok && inp.value.trim() !== ''); }; r.querySelector('button').onclick = chk; inp.onkeydown = (e) => { if (e.key === 'Enter') chk(); }; });
+document.querySelectorAll('[data-mt]').forEach((box) => { const pairs = JSON.parse(box.dataset.pairs); const L = sh(pairs.map((p) => p[0])), R = sh(pairs.map((p) => p[1])); let sel = null, done = 0, err = 0; box.innerHTML = L.map((w, i) => `<button type="button" data-w="${w}">${w}</button><button type="button" data-d="${R[i]}">${R[i]}</button>`).join('');
+  box.querySelectorAll('button').forEach((b) => b.onclick = () => { if (b.classList.contains('done')) return; if (!sel || (sel.dataset.w && b.dataset.w) || (sel.dataset.d && b.dataset.d)) { if (sel) sel.classList.remove('sel'); sel = b; b.classList.add('sel'); return; } const w = sel.dataset.w || b.dataset.w, d = sel.dataset.d || b.dataset.d; if (pairs.some((p) => p[0] === w && p[1] === d)) { sel.classList.add('done'); b.classList.add('done'); done++; say(w); if (done === pairs.length) document.querySelector(`[data-mtres="${box.dataset.mt}"]`).textContent = err ? `Done! Mistakes: ${err}` : 'Perfect!'; } else err++; sel.classList.remove('sel'); sel = null; }); });
+document.querySelectorAll('[data-vids]').forEach((box) => JSON.parse(box.dataset.vids).forEach(([id, title, ch, qs]) => { const d = document.createElement('div'); d.className = 'vid'; d.innerHTML = `<div class="frame"><button class="play" type="button" style="background-image:url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)"><span>PLAY</span></button></div><div class="info"><h3>${title}</h3><small>YouTube · ${ch}</small><ol>${qs.map((q) => `<li>${q}</li>`).join('')}</ol></div>`; d.querySelector('.play').onclick = (e) => { e.currentTarget.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&cc_load_policy=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${title}"></iframe>`; }; box.appendChild(d); }));
+document.querySelectorAll('[data-spin]').forEach((b) => { const list = JSON.parse(b.dataset.spin); let last = -1; b.onclick = () => { let i; do { i = Math.floor(Math.random() * list.length); } while (i === last && list.length > 1); last = i; document.getElementById(b.dataset.target).textContent = list[i]; }; });
+try { const k = 'murly:' + (window.MURLY_LESSON ? MURLY_LESSON.id : 'x') + ':hw'; const t = $('hwText'); if (t) { t.value = localStorage.getItem(k) || ''; t.oninput = () => localStorage.setItem(k, t.value); } } catch (e) { }
+const STAGES = [...document.querySelectorAll('.wrap > section[id]')];
+$('stages').innerHTML = STAGES.map((s) => `<a href="#${s.id}"><b>${s.querySelector('.lk-n').textContent}</b><span>${s.dataset.stage}</span><small>${s.dataset.min !== '0' ? s.dataset.min + ' min' : 'at home'}</small></a>`).join('');
+$('teacherBtn').onclick = (e) => { const on = document.body.classList.toggle('teacher'); e.currentTarget.textContent = on ? 'Student version' : 'Teacher version'; };
+</script>
+<script src="/game-lessons/kit.js" defer></script>
+</body>
+</html>

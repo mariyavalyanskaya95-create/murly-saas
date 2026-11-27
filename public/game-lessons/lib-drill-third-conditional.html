@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Third conditional and mixed conditionals: 100 tasks (B2) | Murly</title>
+<link rel="icon" href="/favicon.svg">
+<meta name="description" content="Повторимо правило: Умовні речення 3 типу і змішані
+100 завдань від простого до складного
+Розберемо головні пастки">
+<link rel="canonical" href="https://murly.com.ua/game-lessons/lib-drill-third-conditional.html">
+<style>
+:root{--paper:#F3F0EA;--ink:#17181C;--violet:#3D4A7A;--lav:#D9D3C7;--pink:#E9C9BC;--green:#D4E2CF;--white:#fff;--muted:#62646B;--accent:#B5482F}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+/* hero */
+.hero{background:linear-gradient(rgba(16,17,22,.5),rgba(16,17,22,.72)),url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1400&q=70&auto=format&fit=crop");color:#fff;padding:70px 18px 56px;text-align:center;position:relative;overflow:hidden}
+.hero .kicker{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#E9C9BC;font-weight:700}
+.hero .cr{position:absolute;right:12px;bottom:8px;font-size:11px;color:rgba(255,255,255,.6)}
+.hero h1{margin:8px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(36px,6vw,64px);letter-spacing:-.5px;font-weight:700}
+.hero h1 span{color:var(--pink);font-style:italic}
+.hero p{margin:12px 0 0;font-size:17px;color:#e6e2da}
+.hero .flags{display:flex;justify-content:center;gap:12px;margin-top:22px;flex-wrap:wrap}
+.hero .flags svg{width:40px;height:26px;border-radius:3px;opacity:.9}
+/* sections */
+section{margin-top:30px;background:var(--white);border-radius:18px;padding:28px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.05)}
+section h2{margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tag{font-family:"Segoe UI",system-ui,sans-serif;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--paper);color:var(--accent);text-transform:uppercase;letter-spacing:1px}
+.lk-n{display:inline-grid;place-items:center;width:42px;height:42px;background:var(--violet);color:#fff;border-radius:50%;font-size:21px;flex:none}
+.lk-mode{font-size:13px;font-weight:700;border:2px dashed var(--lav);color:var(--muted);padding:2px 10px;border-radius:999px}
+.lk-ins{font-size:17px;background:var(--paper);border-radius:12px;padding:10px 14px;margin:6px 0 18px}
+.lk-sub{margin:24px 0 10px;font-size:19px}
+.btn{font:inherit;font-weight:700;border:0;border-radius:999px;background:var(--ink);color:#fff;padding:10px 20px;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+.btn.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+/* teacher */
+.lk-tbtn{position:fixed;right:16px;top:70px;z-index:45;font:inherit;font-weight:800;border:2px solid var(--ink);background:var(--pink);padding:8px 14px;border-radius:12px;cursor:pointer}
+body.teacher .lk-tbtn{background:var(--green)}
+.lk-ans,.lk-tnote{display:none}
+body.teacher .lk-ans{display:block;margin-top:8px;font-weight:700;color:#1d5a12;background:var(--green);border-left:5px solid #5aa845;padding:6px 10px;font-size:15px;border-radius:6px}
+body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff3f7;border-left:5px solid #d9789a;padding:8px 12px;font-size:15px;border-radius:6px}
+/* overview */
+.lk-overview ul{font-size:17px;line-height:1.7;margin:6px 0 16px}
+.lk-stages{display:flex;flex-wrap:wrap;gap:8px}
+.lk-stages a{display:grid;border-radius:14px;padding:8px 12px;text-decoration:none;color:var(--ink);background:var(--paper);font-weight:700;min-width:100px}
+.lk-stages a span{text-transform:capitalize}
+.lk-stages a b{font-size:20px;color:var(--violet)}
+.lk-stages a small{font-weight:600;color:var(--muted)}
+/* warm-up */
+.taxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tax{background:var(--paper);border-radius:18px;padding:16px;display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center}
+.tax svg{width:56px;height:56px}
+.tax b{display:block;font-size:17px}
+.tax small{color:var(--muted);font-size:14px}
+.qs{display:grid;gap:10px;margin-top:18px}
+.qs div{background:var(--green);border-radius:14px;padding:10px 16px;font-size:18px;font-weight:600}
+.phr{background:#fff7e8;border-radius:14px;padding:12px 16px;margin-top:16px;font-size:15px}
+.phr ul{margin:6px 0 0;padding-left:18px}
+.fic{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:16px}
+.fic .c{background:#fff;border:2px solid #1B2140;border-radius:16px;padding:14px 16px;box-shadow:3px 3px 0 #1B2140}
+.fic .c b{display:block;font-size:18px;line-height:1.35;margin-bottom:8px}
+.fic .c .k{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.fic .c .k span{font-size:13px;background:#eef1fb;border-radius:999px;padding:3px 10px}
+.fic .c details{margin-top:8px;font-size:15px;color:#3b4160}
+.fic .c summary{cursor:pointer;font-weight:700;color:#534AB7}
+.fi-n{display:inline-flex;width:28px;height:28px;border-radius:50%;background:#2F4BA0;color:#fff;align-items:center;justify-content:center;font-size:14px;margin-right:6px}
+/* vocab */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:12px}
+.vc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:2px solid transparent;transition:border-color .2s,transform .2s}
+.vc:hover{border-color:var(--violet);transform:translateY(-2px)}
+.vc b{font-size:18px;display:flex;align-items:center;gap:8px}
+.vc b svg{width:20px;height:20px;flex:none;color:var(--violet)}
+.vc p{margin:6px 0 0;font-size:14px;color:var(--muted)}
+.vc em{display:block;margin-top:6px;font-size:14px;color:var(--violet);font-style:normal;font-weight:600}
+.vc.played{background:#e6ecfb}
+/* grammar */
+.gram{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.gb{border-radius:18px;padding:16px}
+.gb h3{margin:0 0 6px;font-size:19px}
+.gb .f{display:inline-block;background:#fff;border-radius:8px;padding:3px 10px;font-weight:800;margin:4px 0;font-family:Consolas,monospace;font-size:15px}
+.gb p{margin:6px 0 0;font-size:15px}
+.g1{background:var(--pink)}.g2{background:var(--lav)}.g3{background:var(--green)}.g4{background:#fbe7c6}
+.warn{margin-top:14px;background:var(--ink);color:#fff;border-radius:14px;padding:12px 16px;font-size:16px}
+.warn b{color:var(--pink)}
+.q{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:2px dashed var(--paper);font-size:18px}
+.q:last-child{border-bottom:0}
+.q .n{width:32px;height:32px;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;border-radius:50%;font-weight:800;font-size:15px}
+.opt{font:inherit;font-size:16px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:10px;padding:4px 12px;cursor:pointer;margin:0 2px}
+.opt.ok{background:var(--green);border-color:#5aa845}
+.opt.bad{background:var(--pink);animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+/* tour */
+.tour{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.law{border-radius:22px;overflow:hidden;background:var(--paper);display:flex;flex-direction:column}
+.law .pic{height:150px;display:grid;place-items:center;position:relative}
+.law .pic svg.ill{width:130px;height:130px}
+.law .pic svg.fl{position:absolute;left:14px;top:14px;width:46px;height:30px;border-radius:5px;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.law .pic .no{position:absolute;right:14px;top:14px;background:var(--ink);color:#fff;font-weight:800;border-radius:999px;padding:2px 10px;font-size:13px}
+.law .body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.law h3{margin:0;font-size:20px}
+.law .where{font-size:13px;font-weight:800;color:var(--violet);text-transform:uppercase;letter-spacing:1px}
+.law p{margin:0;font-size:16px}
+.law .why{font-size:14px;color:var(--muted)}
+.law .dq{margin-top:auto;background:#fff;border-radius:12px;padding:8px 12px;font-weight:700;font-size:15px}
+.law .lsn{font:inherit;font-size:13px;font-weight:700;background:none;border:0;color:var(--violet);cursor:pointer;padding:0;text-align:left}
+/* game */
+.game{max-width:720px;margin:0 auto;text-align:center}
+.score{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.score span{background:var(--paper);border-radius:999px;padding:6px 16px;font-weight:800}
+.stmt{background:var(--ink);color:#fff;border-radius:22px;padding:28px 24px;min-height:150px;display:grid;place-items:center;font-size:23px;font-weight:700;position:relative}
+.stmt small{position:absolute;top:12px;left:18px;font-size:13px;color:var(--lav);font-weight:700}
+.choose{display:flex;justify-content:center;gap:14px;margin:18px 0}
+.choose button{font:inherit;font-size:18px;font-weight:700;border:2px solid var(--ink);border-radius:999px;padding:12px 28px;cursor:pointer}
+.choose .bl{background:var(--green)}.choose .bm{background:var(--pink)}
+.choose button:disabled{opacity:.5;cursor:default}
+.verdict{min-height:70px;font-size:17px;background:var(--paper);border-radius:16px;padding:12px 16px;text-align:left}
+.verdict b.r{color:#2d7a1d}.verdict b.w{color:#b23a62}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.dots i{width:14px;height:14px;border-radius:50%;background:var(--paper)}
+.dots i.r{background:#7cc663}.dots i.w{background:#e47b9f}.dots i.c{outline:3px solid var(--violet)}
+.final{font-size:22px;font-weight:800;color:var(--violet)}
+/* invent */
+.inv{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.frames{display:grid;gap:10px}
+.frames label{font-size:14px;font-weight:700;color:var(--muted)}
+.frames select,.frames input{font:inherit;width:100%;padding:8px 10px;border:2px solid var(--lav);border-radius:10px;background:#fff}
+.poster{background:var(--paper);border:3px solid var(--ink);border-radius:20px;padding:22px;text-align:center;min-height:260px;display:flex;flex-direction:column;gap:10px;justify-content:center}
+.poster .seal{width:70px;height:70px;margin:0 auto}
+.poster h3{margin:0;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--violet)}
+.poster .rule{font-size:22px;font-weight:800}
+.poster .pen{font-size:16px;color:var(--muted)}
+.ideas{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ideas span{background:var(--pink);border-radius:999px;padding:5px 12px;font-size:14px;font-weight:600}
+/* roleplay */
+.rp{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.role{border-radius:20px;padding:18px}
+.role h3{margin:0 0 6px;display:flex;align-items:center;gap:10px}
+.role h3 svg{width:42px;height:42px}
+.role ul{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.r1{background:var(--lav)}.r2{background:var(--green)}
+.scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:16px}
+.sc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:3px solid transparent}
+.sc.on{border-color:var(--violet);background:#fff}
+.sc b{display:block;font-size:17px;margin-bottom:4px}
+.sc p{margin:0;font-size:15px}
+.timer{font-size:40px;font-weight:800;text-align:center;margin:14px 0 6px;color:var(--violet)}
+.ctr{text-align:center}
+/* homework */
+.hwb{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hwc{background:var(--paper);border-radius:18px;padding:18px}
+.hwc h3{margin:0 0 8px}
+.hwc ol,.hwc ul{margin:6px 0 0;padding-left:20px;line-height:1.7}
+.hwc textarea{width:100%;min-height:150px;font:inherit;border:2px solid var(--lav);border-radius:12px;padding:10px;margin-top:10px}
+.end{text-align:center;background:var(--ink);color:#fff;box-shadow:none}
+.end h2{justify-content:center}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(140px);background:var(--ink);color:#fff;font-weight:800;padding:12px 22px;border-radius:14px;transition:transform .3s;z-index:50}
+.toast.show{transform:translateX(-50%) translateY(0)}
+/* photos */
+.ph{margin:0}
+.ph img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;background:var(--paper)}
+.ph figcaption{font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.2px}
+.tax{grid-template-columns:1fr !important;padding:12px !important}
+.law .pic{height:auto !important;display:block !important;padding:0;position:relative}
+.law .pic .ph img{border-radius:0;aspect-ratio:16/10;transition:filter .5s}
+.law .pic .ph figcaption{padding:4px 12px 0}
+.law.hide .pic .ph img{filter:blur(10px) grayscale(.6)}
+.law.hide .reveal-body,.law.hide .fl,.law.hide .where{visibility:hidden}
+.law .clue{font-size:15px;font-style:italic;color:var(--ink)}
+.law .gc{display:flex;flex-wrap:wrap;gap:6px}
+.law .gc button{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:4px 12px;cursor:pointer}
+.law .gc button.ok{background:var(--green)}.law .gc button.bad{background:var(--pink)}
+.law:not(.hide) .guess{display:none}
+.fair{display:grid;gap:4px;background:#fff;border-radius:12px;padding:8px 12px}
+.fair .ends{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.fair input{width:100%;accent-color:var(--accent)}
+.fair output{font-size:14px;font-weight:700;color:var(--accent)}
+.gph{max-width:720px;margin:0 auto 12px}
+.gph img{aspect-ratio:21/9}
+.fine{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.fq{background:var(--paper);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.fq h3{margin:0;font-size:18px}
+.fq .opts{display:flex;flex-wrap:wrap;gap:6px}
+.fq .opts button{font:inherit;font-size:14px;font-weight:700;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 12px;cursor:pointer}
+.fq .opts button.ok{background:var(--green)}.fq .opts button.bad{background:var(--pink)}
+.fq .res{font-size:15px;min-height:22px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{position:relative;aspect-ratio:16/9;background:#111}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;cursor:pointer;background:#111 center/cover;display:grid;place-items:center}
+.vid .play span{background:rgba(0,0,0,.7);color:#fff;font-weight:700;border-radius:999px;padding:10px 20px;font-size:15px;letter-spacing:1px}
+.vid .info{padding:14px 16px}
+.vid .info h3{margin:0 0 2px;font-size:18px}
+.vid .info small{color:var(--muted)}
+.vid .info ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+@media(max-width:760px){.inv,.rp,.hwb{grid-template-columns:1fr}.lk-tbtn{top:auto;bottom:70px}}
+
+.pr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.pb{border-radius:18px;padding:16px 18px}
+.pb h3{margin:0;font-family:Georgia,serif;font-size:30px}
+.pb .m{font-size:15px;color:var(--muted);margin:2px 0 8px}
+.pb .chips{display:flex;flex-wrap:wrap;gap:6px}
+.pb .chips span{background:#fff;border-radius:999px;padding:4px 11px;font-size:14px;font-weight:600}
+.pb ul{margin:10px 0 0;padding-left:18px;font-size:15px}
+.p-in{background:#DCE6F5}.p-at{background:#F3D9CF}.p-on{background:#D4E2CF}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-size:15px;margin-top:10px}
+.ex div{background:var(--paper);border-radius:10px;padding:8px 12px}
+.ex b{color:var(--accent)}
+.q{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.q .n{font-weight:800;color:var(--violet);min-width:24px}
+.q .gap{display:inline-block;min-width:44px;border-bottom:2px solid var(--ink);text-align:center;font-weight:800}
+.q .opts{margin-left:auto;display:flex;gap:6px}
+.q .opts button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 14px;cursor:pointer}
+.q.ok{background:#DDEED7}.q.ok .gap{color:#2F7A3B}
+.q.bad{background:#F6DAD3}
+.score{font-weight:800;margin-top:12px}
+.text{font-size:18px;line-height:1.75;background:var(--paper);border-radius:16px;padding:18px 22px}
+.text h3{margin:0 0 6px;font-family:Georgia,serif;font-size:24px}
+.text p{margin:0 0 12px}
+.text.hl mark{background:#F3D9CF;border-radius:4px;padding:0 3px;font-weight:700}
+.tf{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:9px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.tf .opts{margin-left:auto;display:flex;gap:6px}
+.tf button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.tf.ok{background:#DDEED7}.tf.bad{background:#F6DAD3}
+.disc{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px;margin-top:6px}
+.disc div{background:var(--green);border-radius:14px;padding:12px 16px;font-size:17px;font-weight:600}
+.disc div i{font-style:normal;color:var(--violet);margin-right:6px}
+.spin{text-align:center;margin-top:16px}
+.spin .card{display:inline-block;min-height:80px;min-width:min(560px,100%);background:var(--ink);color:#fff;border-radius:18px;padding:20px 24px;font-size:22px;font-weight:700;margin-bottom:12px}
+@media(max-width:700px){.ex{grid-template-columns:1fr}}
+
+.hero{background-size:cover!important;background-position:center!important}
+.voc{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.voc div{background:var(--paper);border-radius:14px;padding:10px 14px;cursor:pointer;border:2px solid transparent}
+.voc div:hover{border-color:var(--violet)}
+.voc b{display:block;font-size:18px}.voc span{display:block;color:var(--accent);font-weight:700;font-size:15px}.voc em{display:block;font-size:14px;color:var(--muted);margin-top:3px}
+.mt{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:10px}
+.mt button{font:inherit;font-size:16px;text-align:left;border:2px solid var(--ink);background:#fff;border-radius:14px;padding:9px 14px;cursor:pointer}
+.mt button.sel{background:#FFE7A8}.mt button.done{background:#CDE8C6;border-color:#4C9A5B;cursor:default}
+.ch{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ch .n{font-weight:800;color:var(--violet);min-width:24px}
+.ch .o{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.ch .o button{font:inherit;font-size:15px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.ch.ok{background:#DDEED7}.ch.bad{background:#F6DAD3}
+.ty{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ty input{font:inherit;border:2px solid var(--ink);border-radius:10px;padding:4px 10px;width:220px}
+.ty.ok{background:#DDEED7}.ty.bad{background:#F6DAD3}
+.ty small{color:var(--muted)}
+.photo{width:100%;height:300px;object-fit:cover;border-radius:16px;display:block}
+.cap{font-size:11px;color:var(--muted);margin:4px 0 12px}
+.pics{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.pics figure{margin:0;background:var(--paper);border-radius:16px;overflow:hidden}
+.pics img{width:100%;height:170px;object-fit:cover;display:block}
+.pics figcaption{padding:8px 12px;font-weight:700}
+.pics small{display:block;font-weight:400;font-size:10px;color:var(--muted)}
+.lis{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:8px 0 14px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{aspect-ratio:16/9;background:#000;position:relative}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;background-size:cover;background-position:center;cursor:pointer;display:grid;place-items:center}
+.vid .play span{background:#E5484D;color:#fff;font-weight:800;border-radius:12px;padding:10px 20px}
+.vid .info{padding:12px 16px}.vid h3{margin:0;font-size:18px}.vid small{color:var(--muted)}
+.vid ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th,.tbl td{border:1px solid #ddd;padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--paper)}
+@media(max-width:700px){.mt{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="/game-lessons/kit.css">
+</head>
+<body>
+<header class="hero">
+  <div class="kicker">B2 · teens · Граматика: тренажер Умовні речення 3 типу і змішані</div>
+  <h1>Third conditional and mixed conditionals: 100 tasks</h1>
+  <p>B2 · 6 parts · 60 min</p>
+  <span class="cr">Photo: Unsplash</span>
+</header>
+<button class="lk-tbtn" id="teacherBtn" type="button">Teacher version</button>
+<div class="wrap">
+  <section class="lk-overview">
+    <h2>In this lesson you will:</h2>
+    <ul><li>Повторимо правило: Умовні речення 3 типу і змішані
+100 завдань від простого до складного
+Розберемо головні пастки</li></ul>
+    <div class="lk-stages" id="stages"></div>
+  </section>
+  <section id="s1" data-stage="practice" data-min="10">
+    <h2><span class="lk-n">1</span>Теорія <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<div class="warn"><p><b>Коли вживаємо</b></p><p>Третій тип: уявне минуле, якого насправді не було: If I had left earlier, I would have caught the bus. (Якби я вийшов раніше, я встиг би на автобус.)</p><p>Жаль або докір за минуле: If you had told me, I would have helped. (Якби ти мені сказав, я б допоміг.)</p><p>Можливий результат у минулому: could have / might have: If we had booked earlier, we might have got better seats. (Якби ми забронювали раніше, можливо, отримали б кращі місця.)</p><p>Змішаний тип: минула умова, результат зараз: If I had slept more, I wouldn’t be so tired now. (Якби я більше спав, зараз не був би такий втомлений.)</p><p>Змішаний тип: постійна умова зараз, результат у минулому: If Max weren’t so shy, he would have spoken to her at the party. (Якби Макс не був такий сором’язливий, він заговорив би з нею на вечірці.)</p></div>
+    <div class="warn"><p><b>Форми</b></p><p>3  If + had + V3, would have + V3. Обидві частини про минуле.. Приклад: If Lily had trained more, she would have won.</p><p>−  Заперечення: hadn’t + V3 у частині з if, wouldn’t have + V3 у головній.. Приклад: If it hadn’t rained, we wouldn’t have stayed at home.</p><p>?  Питання в головній частині: What would you have done if ...?. Приклад: What would you have done if you had lost your bag?</p><p>мікс 1  Минуле → зараз: If + had + V3, would + V (часто з now, today, still).. Приклад: If I had saved money, I would have a new bike now.</p><p>мікс 2  Зараз завжди → минуле: If + Past Simple, would have + V3.. Приклад: If Dan weren’t afraid of dogs, he would have stroked the puppy.</p><p>’d  Скорочення ’d буває і had, і would. If I’d known, I’d have come = If I had known, I would have come.. Приклад: If she’d asked, I’d have said yes.</p></div>
+    <div class="warn"><p><b>Головна пастка</b></p><p>Ніякого would після if. Українське «якби я знав» не перекладаємо як If I would have known. Після if стоїть had + V3, а would have живе тільки в головній частині.</p><p>✗ If I would have known, I would have come.</p><p>✓ If I had known, I would have come.</p><p>Після have тільки V3. У would have, could have, might have дієслово завжди в третій формі: gone, seen, done. Форма з другої колонки (went, saw) тут помилка. І пишемо have, а не of, хоч на слух вони схожі.</p><p>✗ We would have went home.</p><p>✓ We would have gone home.</p><p>Результат зараз: would + V, а не would have. Якщо наслідок минулої події відчуваємо зараз (now, today, still), у головній частині would + V. Would have + V3 тільки для результату в минулому.</p><p>✗ If I had eaten, I wouldn’t have been hungry now.</p><p>✓ If I had eaten, I wouldn’t be hungry now.</p></div>
+    <div class="warn"><p><b>Маркери:</b> If I had known ..., would have + V3, could have + V3, might have + V3, hadn’t + V3, yesterday, last week, last year, now, today, still (змішаний тип), If I’d ... I’d have ..., but I didn’t / but it wasn’t, If I were you, I would have ...</p></div>
+    <div class="warn"><p><b>Шпаргалка: усі типи поруч</b></p><p>Нульовий, перший і другий типи вже знайомі, тут вони лише для порівняння. Головна ознака третього типу: had + V3 після if і would have + V3 у головній частині. Таблиця: тип, частина з if, головна частина, приклад.</p><p>0 · Present Simple · Present Simple · If you mix red and yellow, you get orange.</p><p>1 · Present Simple · will + V · If it’s windy, I’ll wear a hat.</p><p>2 · Past Simple · would + V · If I lived by the sea, I’d swim every day.</p><p>3 · had + V3 · would have + V3 · If I had noticed you, I’d have waved.</p><p>мікс 1 · had + V3 · would + V · If I had watered the plant, it would be alive now.</p><p>мікс 2 · Past Simple · would have + V3 · If I spoke Italian, I’d have chatted with the guide.</p><p>V3 · go → gone, see → seen · take → taken, eat → eaten · write → written, forget → forgotten</p><p>V3 · buy → bought, get → got · know → known, give → given · come → come, run → run</p></div>
+    <p class="lk-tnote" data-ru="Тренажер на 100 завдань: 5 раундів по 20. На уроці можна пройти 1-2 раунди, решту задати додому. Пояснення до кожної відповіді учень бачить у тренажері на сайті (розділ «Граматика»).&lt;br&gt;">Тренажер на 100 завдань: 5 раундів по 20. На уроці можна пройти 1-2 раунди, решту задати додому. Пояснення до кожної відповіді учень бачить у тренажері на сайті (розділ «Граматика»).<br></p>
+  </section>
+  <section id="s2" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">2</span>Раунд 1. Форми: had done і would have done <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="wouldn’t have missed"><span class="n">1</span><span class="s">If Max had set an alarm, he ___ the bus.</span><span class="o"><button type="button">won’t have missed</button><button type="button">wouldn’t have missed</button><button type="button">wouldn’t miss</button><button type="button">didn’t miss</button></span></div>
+<div class="ch" data-a="would have got"><span class="n">2</span><span class="s">If we had left at six, we ___ there on time.</span><span class="o"><button type="button">would have got</button><button type="button">will have got</button><button type="button">had got</button><button type="button">would get</button></span></div>
+<div class="ch" data-a="had asked"><span class="n">3</span><span class="s">If you ___ me, I would have helped you with the project.</span><span class="o"><button type="button">had asked</button><button type="button">asked</button><button type="button">have asked</button><button type="button">would ask</button></span></div>
+<div class="ch" data-a="had checked"><span class="n">4</span><span class="s">If Sophie ___ the map, they wouldn’t have got lost.</span><span class="o"><button type="button">had checked</button><button type="button">checked</button><button type="button">would check</button><button type="button">has checked</button></span></div>
+<div class="ch" data-a="would have won"><span class="n">5</span><span class="s">Emma ___ the match if she hadn’t hurt her knee.</span><span class="o"><button type="button">would have won</button><button type="button">would win</button><button type="button">will win</button><button type="button">had won</button></span></div>
+<div class="ch" data-a="would have seen"><span class="n">6</span><span class="s">If they had taken a taxi, they ___ the start of the film.</span><span class="o"><button type="button">would see</button><button type="button">would have saw</button><button type="button">would have seen</button><button type="button">had seen</button></span></div>
+<div class="ch" data-a="would have bought"><span class="n">7</span><span class="s">If I had had more money, I ___ the red trainers.</span><span class="o"><button type="button">would buy</button><button type="button">would have buy</button><button type="button">had bought</button><button type="button">would have bought</button></span></div>
+<div class="ch" data-a="had followed"><span class="n">8</span><span class="s">If Max ___ the instructions, the cake would have been better.</span><span class="o"><button type="button">had followed</button><button type="button">followed</button><button type="button">would follow</button><button type="button">follows</button></span></div>
+<div class="ch" data-a="would have been"><span class="n">9</span><span class="s">If it had rained, the picnic ___ cancelled.</span><span class="o"><button type="button">was</button><button type="button">would be</button><button type="button">would have been</button><button type="button">had been</button></span></div>
+<div class="ch" data-a="If I had known, I would have come."><span class="n">10</span><span class="s">Обери речення третього типу: ___</span><span class="o"><button type="button">If I knew, I would have came.</button><button type="button">If I had known, I would have come.</button><button type="button">If I had knew, I would come.</button><button type="button">If I would know, I had come.</button></span></div>
+<div class="ch" data-a="would have got"><span class="n">11</span><span class="s">If the shop had been open, I ___ some milk.</span><span class="o"><button type="button">had got</button><button type="button">would have got</button><button type="button">would get</button><button type="button">will get</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; wouldn’t have missed · would have got · had asked · had checked · would have won · would have seen · would have bought · had followed · would have been · If I had known, I would have come. · would have got"><b>Відповіді:</b> wouldn’t have missed · would have got · had asked · had checked · would have won · would have seen · would have bought · had followed · would have been · If I had known, I would have come. · would have got</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="had studied|’d studied"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>If Lily ___ (study) harder, she would have passed the test.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="would have come|would’ve come|’d have come"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>If Dan had known about the party, he ___ (come).</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="had seen|’d seen"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>If I ___ (see) you at the concert, I would have said hi.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="would have eaten|would’ve eaten|’d have eaten"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>If our cat had been hungry, she ___ (eat) all the food.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="had charged|’d charged"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>If Tom ___ (charge) his phone, he would have called us.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="would have booked|would’ve booked|’d have booked"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>If you had told me earlier, I ___ (book) a table for four.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="had known|’d known"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>We would have won the quiz if we ___ (know) the last answer.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="would have run|would’ve run|’d have run"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>If Lily had trained more, she ___ (run) faster in the race.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="had taken|’d taken"><span class="n" style="font-weight:800;color:var(--violet)">9</span><span>If we ___ (take) the earlier train, we would have arrived before dark.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; had studied · would have come · had seen · would have eaten · had charged · would have booked · had known · would have run · had taken"><b>Відповіді:</b> had studied · would have come · had seen · would have eaten · had charged · would have booked · had known · would have run · had taken</p>
+  </section>
+  <section id="s3" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">3</span>Раунд 2. Заперечення і питання <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="wouldn’t have dropped"><span class="n">1</span><span class="s">If Tom had been more careful, he ___ his phone.</span><span class="o"><button type="button">wouldn’t have dropped</button><button type="button">didn’t drop</button><button type="button">hadn’t dropped</button><button type="button">wouldn’t drop</button></span></div>
+<div class="ch" data-a="would you have done"><span class="n">2</span><span class="s">What ___ if you had missed the plane?</span><span class="o"><button type="button">would you do</button><button type="button">will you have done</button><button type="button">had you done</button><button type="button">would you have done</button></span></div>
+<div class="ch" data-a="had invited"><span class="n">3</span><span class="s">Would you have gone to the party if they ___ you?</span><span class="o"><button type="button">had invited</button><button type="button">have invited</button><button type="button">invited</button><button type="button">would have invited</button></span></div>
+<div class="ch" data-a="would have forgotten"><span class="n">4</span><span class="s">If you hadn’t reminded me, I ___ Mum’s birthday.</span><span class="o"><button type="button">would have forgotten</button><button type="button">would forget</button><button type="button">had forgotten</button><button type="button">would have forgot</button></span></div>
+<div class="ch" data-a="would you have got"><span class="n">5</span><span class="s">How ___ home last night if the buses had stopped?</span><span class="o"><button type="button">would you get</button><button type="button">would you have got</button><button type="button">will you get</button><button type="button">had you got</button></span></div>
+<div class="ch" data-a="wouldn’t have reached"><span class="n">6</span><span class="s">Lily ___ the final if she hadn’t trained every day.</span><span class="o"><button type="button">hadn’t reached</button><button type="button">won’t reach</button><button type="button">wouldn’t have reached</button><button type="button">wouldn’t reach</button></span></div>
+<div class="ch" data-a="would have got"><span class="n">7</span><span class="s">If we hadn’t taken an umbrella, we ___ wet.</span><span class="o"><button type="button">will have got</button><button type="button">would get</button><button type="button">got</button><button type="button">would have got</button></span></div>
+<div class="ch" data-a="hadn’t been"><span class="n">8</span><span class="s">Would Emma have bought the dress if it ___ so expensive?</span><span class="o"><button type="button">wouldn’t have been</button><button type="button">isn’t</button><button type="button">hadn’t been</button><button type="button">wasn’t</button></span></div>
+<div class="ch" data-a="What would you have said if she had called?"><span class="n">9</span><span class="s">Обери правильне питання: ___</span><span class="o"><button type="button">What would you said if she had called?</button><button type="button">What you would have said if she had called?</button><button type="button">What would you have said if she had called?</button><button type="button">What would you have say if she had called?</button></span></div>
+<div class="ch" data-a="wouldn’t have been"><span class="n">10</span><span class="s">She ___ so angry yesterday if you had told her the truth.</span><span class="o"><button type="button">won’t be</button><button type="button">hadn’t been</button><button type="button">wouldn’t have been</button><button type="button">wouldn’t be</button></span></div>
+<div class="ch" data-a="hadn’t forgotten"><span class="n">11</span><span class="s">If you ___ your password, you wouldn’t have needed a new account.</span><span class="o"><button type="button">didn’t forget</button><button type="button">haven’t forgotten</button><button type="button">hadn’t forgotten</button><button type="button">wouldn’t forget</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; wouldn’t have dropped · would you have done · had invited · would have forgotten · would you have got · wouldn’t have reached · would have got · hadn’t been · What would you have said if she had called? · wouldn’t have been · hadn’t forgotten"><b>Відповіді:</b> wouldn’t have dropped · would you have done · had invited · would have forgotten · would you have got · wouldn’t have reached · would have got · hadn’t been · What would you have said if she had called? · wouldn’t have been · hadn’t forgotten</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="hadn’t forgotten|had not forgotten"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>If I ___ (not / forget) my keys, I wouldn’t have waited outside for an hour.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="hadn’t eaten|had not eaten"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>If Sophie ___ (not / eat) that old sandwich, she wouldn’t have felt sick.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="wouldn’t have closed|would not have closed"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>If it hadn’t snowed, the school ___ (not / close).</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="hadn’t played|had not played"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>If Max ___ (not / play) games all night, he wouldn’t have overslept.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="would you have gone"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Where ___ (you / go) on holiday if you had had more money last summer?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="wouldn’t have finished|would not have finished"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>If you hadn’t helped me, I ___ (not / finish) the essay on time.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="hadn’t lost|had not lost"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>If Dan ___ (not / lose) the map, we would have found the lake.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="hadn’t barked|had not barked"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>If the dog ___ (not / bark), we wouldn’t have woken up at 5 a.m.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="had rained|’d rained"><span class="n" style="font-weight:800;color:var(--violet)">9</span><span>Would you have stayed at home if it ___ (rain)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; hadn’t forgotten · hadn’t eaten · wouldn’t have closed · hadn’t played · would you have gone · wouldn’t have finished · hadn’t lost · hadn’t barked · had rained"><b>Відповіді:</b> hadn’t forgotten · hadn’t eaten · wouldn’t have closed · hadn’t played · would you have gone · wouldn’t have finished · hadn’t lost · hadn’t barked · had rained</p>
+  </section>
+  <section id="s4" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">4</span>Раунд 3. Третій, змішаний чи знайомий? <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="wouldn’t be"><span class="n">1</span><span class="s">If I had gone to bed earlier, I ___ so tired now.</span><span class="o"><button type="button">wouldn’t have been</button><button type="button">won’t be</button><button type="button">wouldn’t be</button><button type="button">hadn’t been</button></span></div>
+<div class="ch" data-a="would have"><span class="n">2</span><span class="s">If Max had saved his money last year, he ___ a new laptop now.</span><span class="o"><button type="button">would have</button><button type="button">had</button><button type="button">would have had</button><button type="button">will have</button></span></div>
+<div class="ch" data-a="weren’t"><span class="n">3</span><span class="s">Dan is afraid of heights. If he ___ afraid of heights, he would have climbed the tower with us yesterday.</span><span class="o"><button type="button">weren’t</button><button type="button">won’t be</button><button type="button">isn’t</button><button type="button">wouldn’t be</button></span></div>
+<div class="ch" data-a="will cancel"><span class="n">4</span><span class="s">If it rains tomorrow, we ___ the match.</span><span class="o"><button type="button">would cancel</button><button type="button">will cancel</button><button type="button">would have cancelled</button><button type="button">had cancelled</button></span></div>
+<div class="ch" data-a="would drive"><span class="n">5</span><span class="s">If I had a car, I ___ you to the station every day.</span><span class="o"><button type="button">would have driven</button><button type="button">will drive</button><button type="button">would drive</button><button type="button">had driven</button></span></div>
+<div class="ch" data-a="would be"><span class="n">6</span><span class="s">If we hadn’t adopted the kitten, our flat ___ so quiet now.</span><span class="o"><button type="button">would have been</button><button type="button">would be</button><button type="button">had been</button><button type="button">will be</button></span></div>
+<div class="ch" data-a="had told"><span class="n">7</span><span class="s">If you ___ me the truth yesterday, we wouldn’t have this problem now.</span><span class="o"><button type="button">told</button><button type="button">had told</button><button type="button">would tell</button><button type="button">have told</button></span></div>
+<div class="ch" data-a="would be"><span class="n">8</span><span class="s">If the team had won yesterday, they ___ in the final now.</span><span class="o"><button type="button">will be</button><button type="button">were</button><button type="button">would be</button><button type="button">would have been</button></span></div>
+<div class="ch" data-a="If I had eaten breakfast, I wouldn’t be hungry now."><span class="n">9</span><span class="s">Обери змішане речення (минуле впливає на зараз): ___</span><span class="o"><button type="button">If I eat breakfast, I won’t be hungry.</button><button type="button">If I had eaten breakfast, I wouldn’t be hungry now.</button><button type="button">If I had eaten breakfast, I wouldn’t have been hungry.</button><button type="button">If I ate breakfast, I wouldn’t be hungry.</button></span></div>
+<div class="ch" data-a="melts"><span class="n">10</span><span class="s">If you heat chocolate, it ___.</span><span class="o"><button type="button">will have melted</button><button type="button">would have melted</button><button type="button">melts</button><button type="button">would melt</button></span></div>
+<div class="ch" data-a="would be"><span class="n">11</span><span class="s">If I hadn’t broken my leg, I ___ skiing with my friends right now.</span><span class="o"><button type="button">would be</button><button type="button">would have been</button><button type="button">will be</button><button type="button">had been</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; wouldn’t be · would have · weren’t · will cancel · would drive · would be · had told · would be · If I had eaten breakfast, I wouldn’t be hungry now. · melts · would be"><b>Відповіді:</b> wouldn’t be · would have · weren’t · will cancel · would drive · would be · had told · would be · If I had eaten breakfast, I wouldn’t be hungry now. · melts · would be</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="would live|’d live|would be living|’d be living"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>If Sophie had taken the job in London, she ___ (live) there now.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="wouldn’t be|would not be"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>If you had listened to the forecast, you ___ (not / be) wet now.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="would have watched|would’ve watched|’d have watched"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>If Lily had remembered the tickets yesterday, we ___ (watch) the concert.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="hadn’t moved|had not moved"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>If Emma ___ (not / move) to London, she wouldn’t know Max now.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="were|was"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>If I ___ (be) you, I would have said sorry immediately.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="hadn’t fallen|had not fallen"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>If Dan ___ (not / fall) asleep, he would have seen the end of the film.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="wouldn’t have slept|would not have slept"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>If we had booked a hotel, we ___ (not / sleep) in the car last night.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="had lost|’d lost"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>If Max ___ (lose) his passport last week, he would be stuck at the airport now.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="would be|’d be"><span class="n" style="font-weight:800;color:var(--violet)">9</span><span>If they had planted the trees ten years ago, the garden ___ (be) green now.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; would live · wouldn’t be · would have watched · hadn’t moved · were · hadn’t fallen · wouldn’t have slept · had lost · would be"><b>Відповіді:</b> would live · wouldn’t be · would have watched · hadn’t moved · were · hadn’t fallen · wouldn’t have slept · had lost · would be</p>
+  </section>
+  <section id="s5" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">5</span>Раунд 4. Пастки: would після if і компанія <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="If I had known, I would have called."><span class="n">1</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">If I knew, I would have calls.</button><button type="button">If I had known, I would have called.</button><button type="button">If I had known, I would of called.</button><button type="button">If I would have known, I would have called.</button></span></div>
+<div class="ch" data-a="called"><span class="n">2</span><span class="s">I would have ___ you, but I didn’t have your number.</span><span class="o"><button type="button">calling</button><button type="button">call</button><button type="button">called</button><button type="button">to call</button></span></div>
+<div class="ch" data-a="given"><span class="n">3</span><span class="s">If she had asked, I would have ___ her my notes.</span><span class="o"><button type="button">giving</button><button type="button">gave</button><button type="button">give</button><button type="button">given</button></span></div>
+<div class="ch" data-a="had"><span class="n">4</span><span class="s">In “If I’d known, I’d have come”, the first ’d means ___.</span><span class="o"><button type="button">had</button><button type="button">would</button><button type="button">could</button><button type="button">did</button></span></div>
+<div class="ch" data-a="would"><span class="n">5</span><span class="s">In “I’d have stayed longer”, ’d means ___.</span><span class="o"><button type="button">did</button><button type="button">should</button><button type="button">would</button><button type="button">had</button></span></div>
+<div class="ch" data-a="I would have helped you."><span class="n">6</span><span class="s">Знайди речення без помилки: ___</span><span class="o"><button type="button">I would have helped you.</button><button type="button">I would helped you.</button><button type="button">I would of helped you.</button><button type="button">I would have help you.</button></span></div>
+<div class="ch" data-a="wouldn’t be sitting"><span class="n">7</span><span class="s">If we had left earlier, we ___ in this traffic jam now.</span><span class="o"><button type="button">wouldn’t be sitting</button><button type="button">won’t sit</button><button type="button">wouldn’t have sat</button><button type="button">hadn’t sat</button></span></div>
+<div class="ch" data-a="had caught"><span class="n">8</span><span class="s">If Max ___ the bus, he wouldn’t have been late.</span><span class="o"><button type="button">caught</button><button type="button">would catch</button><button type="button">would have caught</button><button type="button">had caught</button></span></div>
+<div class="ch" data-a="If I had seen the sign, I would have stopped."><span class="n">9</span><span class="s">Яке речення правильне?: ___</span><span class="o"><button type="button">If I had saw the sign, I would have stopped.</button><button type="button">If I seen the sign, I would have stopped.</button><button type="button">If I had seen the sign, I would stopped.</button><button type="button">If I had seen the sign, I would have stopped.</button></span></div>
+<div class="ch" data-a="had been"><span class="n">10</span><span class="s">If it ___ sunny yesterday, we would have had a barbecue.</span><span class="o"><button type="button">would have been</button><button type="button">was</button><button type="button">had been</button><button type="button">would be</button></span></div>
+<div class="ch" data-a="would have enjoyed"><span class="n">11</span><span class="s">We ___ the film if you hadn’t talked all the time.</span><span class="o"><button type="button">would enjoy</button><button type="button">had enjoyed</button><button type="button">will enjoy</button><button type="button">would have enjoyed</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; If I had known, I would have called. · called · given · had · would · I would have helped you. · wouldn’t be sitting · had caught · If I had seen the sign, I would have stopped. · had been · would have enjoyed"><b>Відповіді:</b> If I had known, I would have called. · called · given · had · would · I would have helped you. · wouldn’t be sitting · had caught · If I had seen the sign, I would have stopped. · had been · would have enjoyed</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="had called|’d called"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>If you ___ (call) me, I would have picked you up.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="wouldn’t have got|would not have got|wouldn’t have gotten|would not have gotten"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>If Tom had driven slower, he ___ (not / get) a fine.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="have won"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>They would ___ (win) if the referee had seen the foul.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="had been|’d been"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>If the weather ___ (be) better, we would have gone to the beach.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="had had|’d had"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Lily would have bought the tickets if she ___ (have) enough money.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="would have known|would’ve known|’d have known"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>If you had read the message, you ___ (know) about the meeting yesterday.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="wouldn’t have broken|would not have broken"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>If our cat hadn’t knocked the cup over, the laptop ___ (not / break).</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="would have been|would’ve been|’d have been"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>The party ___ (be) more fun if Dan had brought his guitar.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="wouldn’t have cooked|would not have cooked"><span class="n" style="font-weight:800;color:var(--violet)">9</span><span>If I had known you were vegetarian, I ___ (not / cook) chicken.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; had called · wouldn’t have got · have won · had been · had had · would have known · wouldn’t have broken · would have been · wouldn’t have cooked"><b>Відповіді:</b> had called · wouldn’t have got · have won · had been · had had · would have known · wouldn’t have broken · would have been · wouldn’t have cooked</p>
+  </section>
+  <section id="s6" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">6</span>Раунд 5. Фінальний бос <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="wouldn’t have got"><span class="n">1</span><span class="s">Max didn’t check the weather and got soaked. If he had checked it, he ___ soaked.</span><span class="o"><button type="button">didn’t get</button><button type="button">wouldn’t get</button><button type="button">wouldn’t have got</button><button type="button">hadn’t got</button></span></div>
+<div class="ch" data-a="would read"><span class="n">2</span><span class="s">I didn’t study Japanese at school. If I had, I ___ this manga in the original now.</span><span class="o"><button type="button">will read</button><button type="button">would have read</button><button type="button">would read</button><button type="button">had read</button></span></div>
+<div class="ch" data-a="hadn’t been"><span class="n">3</span><span class="s">We missed the start of the film. If the bus ___ late, we would have seen it.</span><span class="o"><button type="button">wasn’t</button><button type="button">isn’t</button><button type="button">wouldn’t be</button><button type="button">hadn’t been</button></span></div>
+<div class="ch" data-a="would have"><span class="n">4</span><span class="s">Tom ate all the pizza last night, so there’s nothing for breakfast. If he hadn’t eaten it, we ___ something for breakfast now.</span><span class="o"><button type="button">had</button><button type="button">would have had</button><button type="button">would have</button><button type="button">will have</button></span></div>
+<div class="ch" data-a="had known"><span class="n">5</span><span class="s">Emma didn’t know the answer, so she guessed. If she ___ it, she wouldn’t have guessed.</span><span class="o"><button type="button">had known</button><button type="button">would have known</button><button type="button">knew</button><button type="button">would know</button></span></div>
+<div class="ch" data-a="wouldn’t have lifted"><span class="n">6</span><span class="s">The team practised hard all season. If they hadn’t, they ___ the cup last Sunday.</span><span class="o"><button type="button">wouldn’t have lifted</button><button type="button">hadn’t lifted</button><button type="button">didn’t lift</button><button type="button">wouldn’t lift</button></span></div>
+<div class="ch" data-a="would have given"><span class="n">7</span><span class="s">Why didn’t you call me? I ___ you a lift if I had known.</span><span class="o"><button type="button">would give</button><button type="button">had given</button><button type="button">will give</button><button type="button">would have given</button></span></div>
+<div class="ch" data-a="would she have said"><span class="n">8</span><span class="s">Lily wasn’t at the meeting. What ___ if she had been there?</span><span class="o"><button type="button">will she say</button><button type="button">would she have said</button><button type="button">would she say</button><button type="button">had she said</button></span></div>
+<div class="ch" data-a="had to take"><span class="n">9</span><span class="s">I missed the last train, so I ___ a taxi.</span><span class="o"><button type="button">would take</button><button type="button">had to take</button><button type="button">will have taken</button><button type="button">would have taken</button></span></div>
+<div class="ch" data-a="wouldn’t have watched"><span class="n">10</span><span class="s">If you had told me the film was so scary, I ___ it alone at night.</span><span class="o"><button type="button">won’t watch</button><button type="button">wouldn’t watch</button><button type="button">wouldn’t have watched</button><button type="button">hadn’t watched</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; wouldn’t have got · would read · hadn’t been · would have · had known · wouldn’t have lifted · would have given · would she have said · had to take · wouldn’t have watched"><b>Відповіді:</b> wouldn’t have got · would read · hadn’t been · would have · had known · wouldn’t have lifted · would have given · would she have said · had to take · wouldn’t have watched</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="hadn’t forgotten|had not forgotten"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Lily forgot her headphones, so the flight felt endless. If she ___ (not / forget) them, the flight would have been more fun.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="had been|’d been"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>The shop was closed. If it ___ (be) open, we would have bought some ice cream.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="would have got|would’ve got|’d have got|would have gotten"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Sophie didn’t go to the audition. She ___ (get) the role if she had gone.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="had put|’d put"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>I lost my phone at the station. If I ___ (put) it in my bag, I wouldn’t have lost it.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="would have left|would’ve left|’d have left"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>You didn’t warn me about the traffic. I ___ (leave) earlier if you had warned me.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="had walked|’d walked"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>We didn’t take the dog for a walk, and now he’s bored. If we ___ (walk) him, he wouldn’t be bored now.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="had gone|’d gone"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>Max overslept this morning. If he ___ (go) to bed earlier, he wouldn’t be so sleepy now.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="hadn’t been|had not been"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>It was so cold yesterday. If it ___ (not / be) so cold, we would have stayed in the park longer.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="wouldn’t have died|would not have died"><span class="n" style="font-weight:800;color:var(--violet)">9</span><span>Max didn’t water the plants, so they died. They ___ (not / die) if he had watered them.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="wouldn’t be|would not be"><span class="n" style="font-weight:800;color:var(--violet)">10</span><span>Sophie didn’t bring a jacket, and now she’s freezing. If she had brought one, she ___ (not / be) cold now.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; hadn’t forgotten · had been · would have got · had put · would have left · had walked · had gone · hadn’t been · wouldn’t have died · wouldn’t be"><b>Відповіді:</b> hadn’t forgotten · had been · would have got · had put · would have left · had walked · had gone · hadn’t been · wouldn’t have died · wouldn’t be</p>
+  </section>
+  <section class="end"><h2>Great job!</h2><p>See you next lesson.</p></section>
+</div>
+<div class="toast" id="toast"></div>
+<script>window.MURLY_LESSON={"id": "lib-drill-third-conditional", "title": "Third conditional and mixed conditionals: 100 tasks", "homework": ["s2", "s3", "s4", "s5", "s6"], "hw": {"s2": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "If Max had set an alarm, he {wouldn’t have missed|wouldn’t miss|won’t have missed|didn’t miss} the bus.\nIf we had left at six, we {would have got|would get|had got|will have got} there on time.\nIf you {had asked|would ask|asked|have asked} me, I would have helped you with the project.\nIf Sophie {had checked|checked|would check|has checked} the map, they wouldn’t have got lost.\nEmma {would have won|would win|will win|had won} the match if she hadn’t hurt her knee.\nIf they had taken a taxi, they {would have seen|would see|had seen|would have saw} the start of the film.\nIf I had had more money, I {would have bought|would buy|would have buy|had bought} the red trainers.\nIf Max {had followed|followed|would follow|follows} the instructions, the cake would have been better.\nIf it had rained, the picnic {would have been|would be|had been|was} cancelled.\nОбери речення третього типу: {If I had known, I would have come.|If I knew, I would have came.|If I would know, I had come.|If I had knew, I would come.}\nIf the shop had been open, I {would have got|would get|will get|had got} some milk."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "If Lily [had studied/’d studied] (study) harder, she would have passed the test.\nIf Dan had known about the party, he [would have come/would’ve come/’d have come] (come).\nIf I [had seen/’d seen] (see) you at the concert, I would have said hi.\nIf our cat had been hungry, she [would have eaten/would’ve eaten/’d have eaten] (eat) all the food.\nIf Tom [had charged/’d charged] (charge) his phone, he would have called us.\nIf you had told me earlier, I [would have booked/would’ve booked/’d have booked] (book) a table for four.\nWe would have won the quiz if we [had known/’d known] (know) the last answer.\nIf Lily had trained more, she [would have run/would’ve run/’d have run] (run) faster in the race.\nIf we [had taken/’d taken] (take) the earlier train, we would have arrived before dark."}], "s3": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "If Tom had been more careful, he {wouldn’t have dropped|hadn’t dropped|wouldn’t drop|didn’t drop} his phone.\nWhat {would you have done|would you do|will you have done|had you done} if you had missed the plane?\nWould you have gone to the party if they {had invited|would have invited|invited|have invited} you?\nIf you hadn’t reminded me, I {would have forgotten|would forget|had forgotten|would have forgot} Mum’s birthday.\nHow {would you have got|would you get|had you got|will you get} home last night if the buses had stopped?\nLily {wouldn’t have reached|wouldn’t reach|hadn’t reached|won’t reach} the final if she hadn’t trained every day.\nIf we hadn’t taken an umbrella, we {would have got|would get|will have got|got} wet.\nWould Emma have bought the dress if it {hadn’t been|wasn’t|wouldn’t have been|isn’t} so expensive?\nОбери правильне питання: {What would you have said if she had called?|What would you said if she had called?|What you would have said if she had called?|What would you have say if she had called?}\nShe {wouldn’t have been|wouldn’t be|hadn’t been|won’t be} so angry yesterday if you had told her the truth.\nIf you {hadn’t forgotten|didn’t forget|wouldn’t forget|haven’t forgotten} your password, you wouldn’t have needed a new account."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "If I [hadn’t forgotten/had not forgotten] (not / forget) my keys, I wouldn’t have waited outside for an hour.\nIf Sophie [hadn’t eaten/had not eaten] (not / eat) that old sandwich, she wouldn’t have felt sick.\nIf it hadn’t snowed, the school [wouldn’t have closed/would not have closed] (not / close).\nIf Max [hadn’t played/had not played] (not / play) games all night, he wouldn’t have overslept.\nWhere [would you have gone] (you / go) on holiday if you had had more money last summer?\nIf you hadn’t helped me, I [wouldn’t have finished/would not have finished] (not / finish) the essay on time.\nIf Dan [hadn’t lost/had not lost] (not / lose) the map, we would have found the lake.\nIf the dog [hadn’t barked/had not barked] (not / bark), we wouldn’t have woken up at 5 a.m.\nWould you have stayed at home if it [had rained/’d rained] (rain)?"}], "s4": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "If I had gone to bed earlier, I {wouldn’t be|wouldn’t have been|won’t be|hadn’t been} so tired now.\nIf Max had saved his money last year, he {would have|would have had|will have|had} a new laptop now.\nDan is afraid of heights. If he {weren’t|isn’t|wouldn’t be|won’t be} afraid of heights, he would have climbed the tower with us yesterday.\nIf it rains tomorrow, we {will cancel|would have cancelled|would cancel|had cancelled} the match.\nIf I had a car, I {would drive|would have driven|will drive|had driven} you to the station every day.\nIf we hadn’t adopted the kitten, our flat {would be|would have been|will be|had been} so quiet now.\nIf you {had told|told|would tell|have told} me the truth yesterday, we wouldn’t have this problem now.\nIf the team had won yesterday, they {would be|would have been|will be|were} in the final now.\nОбери змішане речення (минуле впливає на зараз): {If I had eaten breakfast, I wouldn’t be hungry now.|If I eat breakfast, I won’t be hungry.|If I ate breakfast, I wouldn’t be hungry.|If I had eaten breakfast, I wouldn’t have been hungry.}\nIf you heat chocolate, it {melts|would melt|would have melted|will have melted}.\nIf I hadn’t broken my leg, I {would be|would have been|will be|had been} skiing with my friends right now."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "If Sophie had taken the job in London, she [would live/’d live/would be living/’d be living] (live) there now.\nIf you had listened to the forecast, you [wouldn’t be/would not be] (not / be) wet now.\nIf Lily had remembered the tickets yesterday, we [would have watched/would’ve watched/’d have watched] (watch) the concert.\nIf Emma [hadn’t moved/had not moved] (not / move) to London, she wouldn’t know Max now.\nIf I [were/was] (be) you, I would have said sorry immediately.\nIf Dan [hadn’t fallen/had not fallen] (not / fall) asleep, he would have seen the end of the film.\nIf we had booked a hotel, we [wouldn’t have slept/would not have slept] (not / sleep) in the car last night.\nIf Max [had lost/’d lost] (lose) his passport last week, he would be stuck at the airport now.\nIf they had planted the trees ten years ago, the garden [would be/’d be] (be) green now."}], "s5": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Обери правильне речення: {If I had known, I would have called.|If I would have known, I would have called.|If I knew, I would have calls.|If I had known, I would of called.}\nI would have {called|call|calling|to call} you, but I didn’t have your number.\nIf she had asked, I would have {given|gave|give|giving} her my notes.\nIn “If I’d known, I’d have come”, the first ’d means {had|would|did|could}.\nIn “I’d have stayed longer”, ’d means {would|had|did|should}.\nЗнайди речення без помилки: {I would have helped you.|I would of helped you.|I would have help you.|I would helped you.}\nIf we had left earlier, we {wouldn’t be sitting|wouldn’t have sat|hadn’t sat|won’t sit} in this traffic jam now.\nIf Max {had caught|would have caught|caught|would catch} the bus, he wouldn’t have been late.\nЯке речення правильне?: {If I had seen the sign, I would have stopped.|If I had saw the sign, I would have stopped.|If I seen the sign, I would have stopped.|If I had seen the sign, I would stopped.}\nIf it {had been|would be|was|would have been} sunny yesterday, we would have had a barbecue.\nWe {would have enjoyed|would enjoy|will enjoy|had enjoyed} the film if you hadn’t talked all the time."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "If you [had called/’d called] (call) me, I would have picked you up.\nIf Tom had driven slower, he [wouldn’t have got/would not have got/wouldn’t have gotten/would not have gotten] (not / get) a fine.\nThey would [have won] (win) if the referee had seen the foul.\nIf the weather [had been/’d been] (be) better, we would have gone to the beach.\nLily would have bought the tickets if she [had had/’d had] (have) enough money.\nIf you had read the message, you [would have known/would’ve known/’d have known] (know) about the meeting yesterday.\nIf our cat hadn’t knocked the cup over, the laptop [wouldn’t have broken/would not have broken] (not / break).\nThe party [would have been/would’ve been/’d have been] (be) more fun if Dan had brought his guitar.\nIf I had known you were vegetarian, I [wouldn’t have cooked/would not have cooked] (not / cook) chicken."}], "s6": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Max didn’t check the weather and got soaked. If he had checked it, he {wouldn’t have got|wouldn’t get|didn’t get|hadn’t got} soaked.\nI didn’t study Japanese at school. If I had, I {would read|would have read|will read|had read} this manga in the original now.\nWe missed the start of the film. If the bus {hadn’t been|wasn’t|wouldn’t be|isn’t} late, we would have seen it.\nTom ate all the pizza last night, so there’s nothing for breakfast. If he hadn’t eaten it, we {would have|would have had|will have|had} something for breakfast now.\nEmma didn’t know the answer, so she guessed. If she {had known|knew|would know|would have known} it, she wouldn’t have guessed.\nThe team practised hard all season. If they hadn’t, they {wouldn’t have lifted|wouldn’t lift|hadn’t lifted|didn’t lift} the cup last Sunday.\nWhy didn’t you call me? I {would have given|would give|had given|will give} you a lift if I had known.\nLily wasn’t at the meeting. What {would she have said|would she say|will she say|had she said} if she had been there?\nI missed the last train, so I {had to take|would have taken|would take|will have taken} a taxi.\nIf you had told me the film was so scary, I {wouldn’t have watched|wouldn’t watch|hadn’t watched|won’t watch} it alone at night."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "Lily forgot her headphones, so the flight felt endless. If she [hadn’t forgotten/had not forgotten] (not / forget) them, the flight would have been more fun.\nThe shop was closed. If it [had been/’d been] (be) open, we would have bought some ice cream.\nSophie didn’t go to the audition. She [would have got/would’ve got/’d have got/would have gotten] (get) the role if she had gone.\nI lost my phone at the station. If I [had put/’d put] (put) it in my bag, I wouldn’t have lost it.\nYou didn’t warn me about the traffic. I [would have left/would’ve left/’d have left] (leave) earlier if you had warned me.\nWe didn’t take the dog for a walk, and now he’s bored. If we [had walked/’d walked] (walk) him, he wouldn’t be bored now.\nMax overslept this morning. If he [had gone/’d gone] (go) to bed earlier, he wouldn’t be so sleepy now.\nIt was so cold yesterday. If it [hadn’t been/had not been] (not / be) so cold, we would have stayed in the park longer.\nMax didn’t water the plants, so they died. They [wouldn’t have died/would not have died] (not / die) if he had watered them.\nSophie didn’t bring a jacket, and now she’s freezing. If she had brought one, she [wouldn’t be/would not be] (not / be) cold now."}]}};</script>
+<script>
+(function(){var l=(document.cookie.match(/(?:^|; )murly_lang=(\w+)/)||[])[1];try{l=l||localStorage.getItem('murly:tlang')}catch(e){}l=l==='ru'?'ru':'uk';document.querySelectorAll('[data-pairs-'+l+']').forEach(function(b){b.dataset.pairs=b.getAttribute('data-pairs-'+l)});})();
+</script>
+<script>
+const $ = (id) => document.getElementById(id);
+const LIS = {};
+function say(w, rate) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; const v = speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang) && /Google|Natural|Libby|Sonia|Daniel/.test(x.name)) || speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang)); if (v) u.voice = v; u.rate = rate || .95; speechSynthesis.speak(u); } catch (e) { } }
+const sh = (a) => a.map((x) => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map((x) => x[1]);
+document.querySelectorAll('.voc div').forEach((d) => d.onclick = () => say(d.dataset.say));
+document.querySelectorAll('[data-play]').forEach((b) => b.onclick = () => say(LIS[b.dataset.play], b.dataset.slow ? .75 : .95));
+document.querySelectorAll('[data-stop]').forEach((b) => b.onclick = () => { try { speechSynthesis.cancel(); } catch (e) { } });
+document.querySelectorAll('.ch').forEach((q) => q.querySelectorAll('button').forEach((b) => b.onclick = () => { if (q.classList.contains('ok')) return; const ok = b.textContent === q.dataset.a; q.classList.toggle('ok', ok); q.classList.toggle('bad', !ok); if (ok) { const s = q.querySelector('.s'); if (s && s.textContent.includes('___')) { s.textContent = s.textContent.replace('___', q.dataset.a); } } }));
+const norm = (x) => x.toLowerCase().replace(/[’']/g, "'").replace(/[,;:"“”«»]/g, ' ').replace(/\s+/g, ' ').replace(/[.!?]$/, '').trim();
+document.querySelectorAll('.ty').forEach((r) => { const inp = r.querySelector('input'); const chk = () => { const ok = r.dataset.a.split('|').some((a) => norm(a) === norm(inp.value)); r.classList.toggle('ok', ok); r.classList.toggle('bad', !ok && inp.value.trim() !== ''); }; r.querySelector('button').onclick = chk; inp.onkeydown = (e) => { if (e.key === 'Enter') chk(); }; });
+document.querySelectorAll('[data-mt]').forEach((box) => { const pairs = JSON.parse(box.dataset.pairs); const L = sh(pairs.map((p) => p[0])), R = sh(pairs.map((p) => p[1])); let sel = null, done = 0, err = 0; box.innerHTML = L.map((w, i) => `<button type="button" data-w="${w}">${w}</button><button type="button" data-d="${R[i]}">${R[i]}</button>`).join('');
+  box.querySelectorAll('button').forEach((b) => b.onclick = () => { if (b.classList.contains('done')) return; if (!sel || (sel.dataset.w && b.dataset.w) || (sel.dataset.d && b.dataset.d)) { if (sel) sel.classList.remove('sel'); sel = b; b.classList.add('sel'); return; } const w = sel.dataset.w || b.dataset.w, d = sel.dataset.d || b.dataset.d; if (pairs.some((p) => p[0] === w && p[1] === d)) { sel.classList.add('done'); b.classList.add('done'); done++; say(w); if (done === pairs.length) document.querySelector(`[data-mtres="${box.dataset.mt}"]`).textContent = err ? `Done! Mistakes: ${err}` : 'Perfect!'; } else err++; sel.classList.remove('sel'); sel = null; }); });
+document.querySelectorAll('[data-vids]').forEach((box) => JSON.parse(box.dataset.vids).forEach(([id, title, ch, qs]) => { const d = document.createElement('div'); d.className = 'vid'; d.innerHTML = `<div class="frame"><button class="play" type="button" style="background-image:url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)"><span>PLAY</span></button></div><div class="info"><h3>${title}</h3><small>YouTube · ${ch}</small><ol>${qs.map((q) => `<li>${q}</li>`).join('')}</ol></div>`; d.querySelector('.play').onclick = (e) => { e.currentTarget.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&cc_load_policy=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${title}"></iframe>`; }; box.appendChild(d); }));
+document.querySelectorAll('[data-spin]').forEach((b) => { const list = JSON.parse(b.dataset.spin); let last = -1; b.onclick = () => { let i; do { i = Math.floor(Math.random() * list.length); } while (i === last && list.length > 1); last = i; document.getElementById(b.dataset.target).textContent = list[i]; }; });
+try { const k = 'murly:' + (window.MURLY_LESSON ? MURLY_LESSON.id : 'x') + ':hw'; const t = $('hwText'); if (t) { t.value = localStorage.getItem(k) || ''; t.oninput = () => localStorage.setItem(k, t.value); } } catch (e) { }
+const STAGES = [...document.querySelectorAll('.wrap > section[id]')];
+$('stages').innerHTML = STAGES.map((s) => `<a href="#${s.id}"><b>${s.querySelector('.lk-n').textContent}</b><span>${s.dataset.stage}</span><small>${s.dataset.min !== '0' ? s.dataset.min + ' min' : 'at home'}</small></a>`).join('');
+$('teacherBtn').onclick = (e) => { const on = document.body.classList.toggle('teacher'); e.currentTarget.textContent = on ? 'Student version' : 'Teacher version'; };
+</script>
+<script src="/game-lessons/kit.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conditionals: zero, first, second: 100 tasks (B1) | Murly</title>
+<link rel="icon" href="/favicon.svg">
+<meta name="description" content="Повторимо правило: Умовні речення 0, 1, 2 типу
+100 завдань від простого до складного
+Розберемо головні пастки">
+<link rel="canonical" href="https://murly.com.ua/game-lessons/lib-drill-conditionals.html">
+<style>
+:root{--paper:#F3F0EA;--ink:#17181C;--violet:#3D4A7A;--lav:#D9D3C7;--pink:#E9C9BC;--green:#D4E2CF;--white:#fff;--muted:#62646B;--accent:#B5482F}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+/* hero */
+.hero{background:linear-gradient(rgba(16,17,22,.5),rgba(16,17,22,.72)),url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1400&q=70&auto=format&fit=crop");color:#fff;padding:70px 18px 56px;text-align:center;position:relative;overflow:hidden}
+.hero .kicker{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#E9C9BC;font-weight:700}
+.hero .cr{position:absolute;right:12px;bottom:8px;font-size:11px;color:rgba(255,255,255,.6)}
+.hero h1{margin:8px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(36px,6vw,64px);letter-spacing:-.5px;font-weight:700}
+.hero h1 span{color:var(--pink);font-style:italic}
+.hero p{margin:12px 0 0;font-size:17px;color:#e6e2da}
+.hero .flags{display:flex;justify-content:center;gap:12px;margin-top:22px;flex-wrap:wrap}
+.hero .flags svg{width:40px;height:26px;border-radius:3px;opacity:.9}
+/* sections */
+section{margin-top:30px;background:var(--white);border-radius:18px;padding:28px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.05)}
+section h2{margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tag{font-family:"Segoe UI",system-ui,sans-serif;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--paper);color:var(--accent);text-transform:uppercase;letter-spacing:1px}
+.lk-n{display:inline-grid;place-items:center;width:42px;height:42px;background:var(--violet);color:#fff;border-radius:50%;font-size:21px;flex:none}
+.lk-mode{font-size:13px;font-weight:700;border:2px dashed var(--lav);color:var(--muted);padding:2px 10px;border-radius:999px}
+.lk-ins{font-size:17px;background:var(--paper);border-radius:12px;padding:10px 14px;margin:6px 0 18px}
+.lk-sub{margin:24px 0 10px;font-size:19px}
+.btn{font:inherit;font-weight:700;border:0;border-radius:999px;background:var(--ink);color:#fff;padding:10px 20px;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+.btn.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+/* teacher */
+.lk-tbtn{position:fixed;right:16px;top:70px;z-index:45;font:inherit;font-weight:800;border:2px solid var(--ink);background:var(--pink);padding:8px 14px;border-radius:12px;cursor:pointer}
+body.teacher .lk-tbtn{background:var(--green)}
+.lk-ans,.lk-tnote{display:none}
+body.teacher .lk-ans{display:block;margin-top:8px;font-weight:700;color:#1d5a12;background:var(--green);border-left:5px solid #5aa845;padding:6px 10px;font-size:15px;border-radius:6px}
+body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff3f7;border-left:5px solid #d9789a;padding:8px 12px;font-size:15px;border-radius:6px}
+/* overview */
+.lk-overview ul{font-size:17px;line-height:1.7;margin:6px 0 16px}
+.lk-stages{display:flex;flex-wrap:wrap;gap:8px}
+.lk-stages a{display:grid;border-radius:14px;padding:8px 12px;text-decoration:none;color:var(--ink);background:var(--paper);font-weight:700;min-width:100px}
+.lk-stages a span{text-transform:capitalize}
+.lk-stages a b{font-size:20px;color:var(--violet)}
+.lk-stages a small{font-weight:600;color:var(--muted)}
+/* warm-up */
+.taxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tax{background:var(--paper);border-radius:18px;padding:16px;display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center}
+.tax svg{width:56px;height:56px}
+.tax b{display:block;font-size:17px}
+.tax small{color:var(--muted);font-size:14px}
+.qs{display:grid;gap:10px;margin-top:18px}
+.qs div{background:var(--green);border-radius:14px;padding:10px 16px;font-size:18px;font-weight:600}
+.phr{background:#fff7e8;border-radius:14px;padding:12px 16px;margin-top:16px;font-size:15px}
+.phr ul{margin:6px 0 0;padding-left:18px}
+.fic{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:16px}
+.fic .c{background:#fff;border:2px solid #1B2140;border-radius:16px;padding:14px 16px;box-shadow:3px 3px 0 #1B2140}
+.fic .c b{display:block;font-size:18px;line-height:1.35;margin-bottom:8px}
+.fic .c .k{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.fic .c .k span{font-size:13px;background:#eef1fb;border-radius:999px;padding:3px 10px}
+.fic .c details{margin-top:8px;font-size:15px;color:#3b4160}
+.fic .c summary{cursor:pointer;font-weight:700;color:#534AB7}
+.fi-n{display:inline-flex;width:28px;height:28px;border-radius:50%;background:#2F4BA0;color:#fff;align-items:center;justify-content:center;font-size:14px;margin-right:6px}
+/* vocab */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:12px}
+.vc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:2px solid transparent;transition:border-color .2s,transform .2s}
+.vc:hover{border-color:var(--violet);transform:translateY(-2px)}
+.vc b{font-size:18px;display:flex;align-items:center;gap:8px}
+.vc b svg{width:20px;height:20px;flex:none;color:var(--violet)}
+.vc p{margin:6px 0 0;font-size:14px;color:var(--muted)}
+.vc em{display:block;margin-top:6px;font-size:14px;color:var(--violet);font-style:normal;font-weight:600}
+.vc.played{background:#e6ecfb}
+/* grammar */
+.gram{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.gb{border-radius:18px;padding:16px}
+.gb h3{margin:0 0 6px;font-size:19px}
+.gb .f{display:inline-block;background:#fff;border-radius:8px;padding:3px 10px;font-weight:800;margin:4px 0;font-family:Consolas,monospace;font-size:15px}
+.gb p{margin:6px 0 0;font-size:15px}
+.g1{background:var(--pink)}.g2{background:var(--lav)}.g3{background:var(--green)}.g4{background:#fbe7c6}
+.warn{margin-top:14px;background:var(--ink);color:#fff;border-radius:14px;padding:12px 16px;font-size:16px}
+.warn b{color:var(--pink)}
+.q{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:2px dashed var(--paper);font-size:18px}
+.q:last-child{border-bottom:0}
+.q .n{width:32px;height:32px;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;border-radius:50%;font-weight:800;font-size:15px}
+.opt{font:inherit;font-size:16px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:10px;padding:4px 12px;cursor:pointer;margin:0 2px}
+.opt.ok{background:var(--green);border-color:#5aa845}
+.opt.bad{background:var(--pink);animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+/* tour */
+.tour{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.law{border-radius:22px;overflow:hidden;background:var(--paper);display:flex;flex-direction:column}
+.law .pic{height:150px;display:grid;place-items:center;position:relative}
+.law .pic svg.ill{width:130px;height:130px}
+.law .pic svg.fl{position:absolute;left:14px;top:14px;width:46px;height:30px;border-radius:5px;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.law .pic .no{position:absolute;right:14px;top:14px;background:var(--ink);color:#fff;font-weight:800;border-radius:999px;padding:2px 10px;font-size:13px}
+.law .body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.law h3{margin:0;font-size:20px}
+.law .where{font-size:13px;font-weight:800;color:var(--violet);text-transform:uppercase;letter-spacing:1px}
+.law p{margin:0;font-size:16px}
+.law .why{font-size:14px;color:var(--muted)}
+.law .dq{margin-top:auto;background:#fff;border-radius:12px;padding:8px 12px;font-weight:700;font-size:15px}
+.law .lsn{font:inherit;font-size:13px;font-weight:700;background:none;border:0;color:var(--violet);cursor:pointer;padding:0;text-align:left}
+/* game */
+.game{max-width:720px;margin:0 auto;text-align:center}
+.score{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.score span{background:var(--paper);border-radius:999px;padding:6px 16px;font-weight:800}
+.stmt{background:var(--ink);color:#fff;border-radius:22px;padding:28px 24px;min-height:150px;display:grid;place-items:center;font-size:23px;font-weight:700;position:relative}
+.stmt small{position:absolute;top:12px;left:18px;font-size:13px;color:var(--lav);font-weight:700}
+.choose{display:flex;justify-content:center;gap:14px;margin:18px 0}
+.choose button{font:inherit;font-size:18px;font-weight:700;border:2px solid var(--ink);border-radius:999px;padding:12px 28px;cursor:pointer}
+.choose .bl{background:var(--green)}.choose .bm{background:var(--pink)}
+.choose button:disabled{opacity:.5;cursor:default}
+.verdict{min-height:70px;font-size:17px;background:var(--paper);border-radius:16px;padding:12px 16px;text-align:left}
+.verdict b.r{color:#2d7a1d}.verdict b.w{color:#b23a62}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.dots i{width:14px;height:14px;border-radius:50%;background:var(--paper)}
+.dots i.r{background:#7cc663}.dots i.w{background:#e47b9f}.dots i.c{outline:3px solid var(--violet)}
+.final{font-size:22px;font-weight:800;color:var(--violet)}
+/* invent */
+.inv{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.frames{display:grid;gap:10px}
+.frames label{font-size:14px;font-weight:700;color:var(--muted)}
+.frames select,.frames input{font:inherit;width:100%;padding:8px 10px;border:2px solid var(--lav);border-radius:10px;background:#fff}
+.poster{background:var(--paper);border:3px solid var(--ink);border-radius:20px;padding:22px;text-align:center;min-height:260px;display:flex;flex-direction:column;gap:10px;justify-content:center}
+.poster .seal{width:70px;height:70px;margin:0 auto}
+.poster h3{margin:0;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--violet)}
+.poster .rule{font-size:22px;font-weight:800}
+.poster .pen{font-size:16px;color:var(--muted)}
+.ideas{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ideas span{background:var(--pink);border-radius:999px;padding:5px 12px;font-size:14px;font-weight:600}
+/* roleplay */
+.rp{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.role{border-radius:20px;padding:18px}
+.role h3{margin:0 0 6px;display:flex;align-items:center;gap:10px}
+.role h3 svg{width:42px;height:42px}
+.role ul{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.r1{background:var(--lav)}.r2{background:var(--green)}
+.scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:16px}
+.sc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:3px solid transparent}
+.sc.on{border-color:var(--violet);background:#fff}
+.sc b{display:block;font-size:17px;margin-bottom:4px}
+.sc p{margin:0;font-size:15px}
+.timer{font-size:40px;font-weight:800;text-align:center;margin:14px 0 6px;color:var(--violet)}
+.ctr{text-align:center}
+/* homework */
+.hwb{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hwc{background:var(--paper);border-radius:18px;padding:18px}
+.hwc h3{margin:0 0 8px}
+.hwc ol,.hwc ul{margin:6px 0 0;padding-left:20px;line-height:1.7}
+.hwc textarea{width:100%;min-height:150px;font:inherit;border:2px solid var(--lav);border-radius:12px;padding:10px;margin-top:10px}
+.end{text-align:center;background:var(--ink);color:#fff;box-shadow:none}
+.end h2{justify-content:center}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(140px);background:var(--ink);color:#fff;font-weight:800;padding:12px 22px;border-radius:14px;transition:transform .3s;z-index:50}
+.toast.show{transform:translateX(-50%) translateY(0)}
+/* photos */
+.ph{margin:0}
+.ph img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;background:var(--paper)}
+.ph figcaption{font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.2px}
+.tax{grid-template-columns:1fr !important;padding:12px !important}
+.law .pic{height:auto !important;display:block !important;padding:0;position:relative}
+.law .pic .ph img{border-radius:0;aspect-ratio:16/10;transition:filter .5s}
+.law .pic .ph figcaption{padding:4px 12px 0}
+.law.hide .pic .ph img{filter:blur(10px) grayscale(.6)}
+.law.hide .reveal-body,.law.hide .fl,.law.hide .where{visibility:hidden}
+.law .clue{font-size:15px;font-style:italic;color:var(--ink)}
+.law .gc{display:flex;flex-wrap:wrap;gap:6px}
+.law .gc button{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:4px 12px;cursor:pointer}
+.law .gc button.ok{background:var(--green)}.law .gc button.bad{background:var(--pink)}
+.law:not(.hide) .guess{display:none}
+.fair{display:grid;gap:4px;background:#fff;border-radius:12px;padding:8px 12px}
+.fair .ends{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.fair input{width:100%;accent-color:var(--accent)}
+.fair output{font-size:14px;font-weight:700;color:var(--accent)}
+.gph{max-width:720px;margin:0 auto 12px}
+.gph img{aspect-ratio:21/9}
+.fine{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.fq{background:var(--paper);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.fq h3{margin:0;font-size:18px}
+.fq .opts{display:flex;flex-wrap:wrap;gap:6px}
+.fq .opts button{font:inherit;font-size:14px;font-weight:700;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 12px;cursor:pointer}
+.fq .opts button.ok{background:var(--green)}.fq .opts button.bad{background:var(--pink)}
+.fq .res{font-size:15px;min-height:22px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{position:relative;aspect-ratio:16/9;background:#111}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;cursor:pointer;background:#111 center/cover;display:grid;place-items:center}
+.vid .play span{background:rgba(0,0,0,.7);color:#fff;font-weight:700;border-radius:999px;padding:10px 20px;font-size:15px;letter-spacing:1px}
+.vid .info{padding:14px 16px}
+.vid .info h3{margin:0 0 2px;font-size:18px}
+.vid .info small{color:var(--muted)}
+.vid .info ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+@media(max-width:760px){.inv,.rp,.hwb{grid-template-columns:1fr}.lk-tbtn{top:auto;bottom:70px}}
+
+.pr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.pb{border-radius:18px;padding:16px 18px}
+.pb h3{margin:0;font-family:Georgia,serif;font-size:30px}
+.pb .m{font-size:15px;color:var(--muted);margin:2px 0 8px}
+.pb .chips{display:flex;flex-wrap:wrap;gap:6px}
+.pb .chips span{background:#fff;border-radius:999px;padding:4px 11px;font-size:14px;font-weight:600}
+.pb ul{margin:10px 0 0;padding-left:18px;font-size:15px}
+.p-in{background:#DCE6F5}.p-at{background:#F3D9CF}.p-on{background:#D4E2CF}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-size:15px;margin-top:10px}
+.ex div{background:var(--paper);border-radius:10px;padding:8px 12px}
+.ex b{color:var(--accent)}
+.q{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.q .n{font-weight:800;color:var(--violet);min-width:24px}
+.q .gap{display:inline-block;min-width:44px;border-bottom:2px solid var(--ink);text-align:center;font-weight:800}
+.q .opts{margin-left:auto;display:flex;gap:6px}
+.q .opts button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 14px;cursor:pointer}
+.q.ok{background:#DDEED7}.q.ok .gap{color:#2F7A3B}
+.q.bad{background:#F6DAD3}
+.score{font-weight:800;margin-top:12px}
+.text{font-size:18px;line-height:1.75;background:var(--paper);border-radius:16px;padding:18px 22px}
+.text h3{margin:0 0 6px;font-family:Georgia,serif;font-size:24px}
+.text p{margin:0 0 12px}
+.text.hl mark{background:#F3D9CF;border-radius:4px;padding:0 3px;font-weight:700}
+.tf{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:9px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.tf .opts{margin-left:auto;display:flex;gap:6px}
+.tf button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.tf.ok{background:#DDEED7}.tf.bad{background:#F6DAD3}
+.disc{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px;margin-top:6px}
+.disc div{background:var(--green);border-radius:14px;padding:12px 16px;font-size:17px;font-weight:600}
+.disc div i{font-style:normal;color:var(--violet);margin-right:6px}
+.spin{text-align:center;margin-top:16px}
+.spin .card{display:inline-block;min-height:80px;min-width:min(560px,100%);background:var(--ink);color:#fff;border-radius:18px;padding:20px 24px;font-size:22px;font-weight:700;margin-bottom:12px}
+@media(max-width:700px){.ex{grid-template-columns:1fr}}
+
+.hero{background-size:cover!important;background-position:center!important}
+.voc{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.voc div{background:var(--paper);border-radius:14px;padding:10px 14px;cursor:pointer;border:2px solid transparent}
+.voc div:hover{border-color:var(--violet)}
+.voc b{display:block;font-size:18px}.voc span{display:block;color:var(--accent);font-weight:700;font-size:15px}.voc em{display:block;font-size:14px;color:var(--muted);margin-top:3px}
+.mt{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:10px}
+.mt button{font:inherit;font-size:16px;text-align:left;border:2px solid var(--ink);background:#fff;border-radius:14px;padding:9px 14px;cursor:pointer}
+.mt button.sel{background:#FFE7A8}.mt button.done{background:#CDE8C6;border-color:#4C9A5B;cursor:default}
+.ch{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ch .n{font-weight:800;color:var(--violet);min-width:24px}
+.ch .o{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.ch .o button{font:inherit;font-size:15px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.ch.ok{background:#DDEED7}.ch.bad{background:#F6DAD3}
+.ty{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ty input{font:inherit;border:2px solid var(--ink);border-radius:10px;padding:4px 10px;width:220px}
+.ty.ok{background:#DDEED7}.ty.bad{background:#F6DAD3}
+.ty small{color:var(--muted)}
+.photo{width:100%;height:300px;object-fit:cover;border-radius:16px;display:block}
+.cap{font-size:11px;color:var(--muted);margin:4px 0 12px}
+.pics{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.pics figure{margin:0;background:var(--paper);border-radius:16px;overflow:hidden}
+.pics img{width:100%;height:170px;object-fit:cover;display:block}
+.pics figcaption{padding:8px 12px;font-weight:700}
+.pics small{display:block;font-weight:400;font-size:10px;color:var(--muted)}
+.lis{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:8px 0 14px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{aspect-ratio:16/9;background:#000;position:relative}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;background-size:cover;background-position:center;cursor:pointer;display:grid;place-items:center}
+.vid .play span{background:#E5484D;color:#fff;font-weight:800;border-radius:12px;padding:10px 20px}
+.vid .info{padding:12px 16px}.vid h3{margin:0;font-size:18px}.vid small{color:var(--muted)}
+.vid ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th,.tbl td{border:1px solid #ddd;padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--paper)}
+@media(max-width:700px){.mt{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="/game-lessons/kit.css">
+</head>
+<body>
+<header class="hero">
+  <div class="kicker">B1 · teens · Граматика: тренажер Умовні речення 0, 1, 2 типу</div>
+  <h1>Conditionals: zero, first, second: 100 tasks</h1>
+  <p>B1 · 6 parts · 60 min</p>
+  <span class="cr">Photo: Unsplash</span>
+</header>
+<button class="lk-tbtn" id="teacherBtn" type="button">Teacher version</button>
+<div class="wrap">
+  <section class="lk-overview">
+    <h2>In this lesson you will:</h2>
+    <ul><li>Повторимо правило: Умовні речення 0, 1, 2 типу
+100 завдань від простого до складного
+Розберемо головні пастки</li></ul>
+    <div class="lk-stages" id="stages"></div>
+  </section>
+  <section id="s1" data-stage="practice" data-min="10">
+    <h2><span class="lk-n">1</span>Теорія <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<div class="warn"><p><b>Коли вживаємо</b></p><p>Нульовий тип: факти, закони природи, інструкції: If you freeze water, it turns into ice. (Якщо заморозити воду, вона перетворюється на лід.)</p><p>Нульовий тип: звички і те, що буває щоразу: If I go to bed late, I feel awful in the morning. (Якщо я лягаю пізно, вранці почуваюся жахливо.)</p><p>Перший тип: реальна умова в майбутньому: If it’s sunny on Saturday, we’ll go to the lake. (Якщо в суботу буде сонячно, ми поїдемо на озеро.)</p><p>Другий тип: уявна або малоймовірна ситуація зараз: If I had a horse, I would ride it to school. (Якби в мене був кінь, я б їздив на ньому до школи.)</p><p>Другий тип: порада з If I were you: If I were you, I’d call her. (На твоєму місці я б їй подзвонив.)</p></div>
+    <div class="warn"><p><b>Форми</b></p><p>0  If + Present Simple, Present Simple. Приклад: If it’s cold, our cat sleeps on the radiator.</p><p>1  If + Present Simple, will + V. Приклад: If Emma calls, I’ll tell her the news.</p><p>2  If + Past Simple, would + V (could + V). Приклад: If we lived in Spain, we would eat dinner at ten.</p><p>−  Заперечення: don’t / doesn’t у нульовому і першому, didn’t у другому; у головній частині won’t або wouldn’t. Приклад: If it doesn’t stop raining, we won’t go out.</p><p>?  Питання ставимо в головній частині: What will you do if...? / What would you do if...?. Приклад: What would you do if you found a wallet?</p><p>,  Кома: якщо if-частина перша, ставимо кому; якщо друга, кома не потрібна. Приклад: We’ll stay at home if the weather is bad.</p></div>
+    <div class="warn"><p><b>Головна пастка</b></p><p>Ніякого will після if. Навіть коли йдеться про майбутнє, після if (when, as soon as, unless) стоїть Present Simple. Will живе тільки в головній частині.</p><p>✗ If you will come, we’ll play chess.</p><p>✓ If you come, we’ll play chess.</p><p>Ніякого would після if. У другому типі would тільки в головній частині, а після if стоїть Past Simple. Українське «якби я знав» не перекладаємо як If I would know.</p><p>✗ If I would know, I would tell you.</p><p>✓ If I knew, I would tell you.</p><p>Unless уже містить «не». Unless = if not («якщо не»). Тому після unless дієслово стверджувальне, інакше вийде подвійне заперечення.</p><p>✗ Unless you don’t call, I’ll worry.</p><p>✓ Unless you call, I’ll worry.</p></div>
+    <div class="warn"><p><b>Маркери:</b> if, when, whenever, unless, as soon as, If I were you, What will you do if...?, What would you do if...?, imagine, tomorrow / next week</p></div>
+    <div class="warn"><p><b>Три типи в одній таблиці</b></p><p>Колонки: тип, if-частина, головна частина, значення. If I were you: сталий вираз для поради, тут завжди were. В інших реченнях другого типу з I / he / she / it можна і were, і was (were звучить формальніше). Unless = if not: Unless you hurry = If you don’t hurry. Після when, as soon as, before, after, until у реченнях про майбутнє теж без will.</p><p>0 · Present Simple · Present Simple · завжди правда: факт або звичка</p><p>1 · Present Simple · will + V · реально може статися в майбутньому</p><p>2 · Past Simple · would / could + V · уявне, малоймовірне або нереальне зараз</p></div>
+    <p class="lk-tnote" data-ru="Тренажер на 100 завдань: 5 раундів по 20. На уроці можна пройти 1-2 раунди, решту задати додому. Пояснення до кожної відповіді учень бачить у тренажері на сайті (розділ «Граматика»).&lt;br&gt;">Тренажер на 100 завдань: 5 раундів по 20. На уроці можна пройти 1-2 раунди, решту задати додому. Пояснення до кожної відповіді учень бачить у тренажері на сайті (розділ «Граматика»).<br></p>
+  </section>
+  <section id="s2" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">2</span>Раунд 1. Нульовий тип: так буває завжди <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="get"><span class="n">1</span><span class="s">If you mix blue and yellow, you ___ green.</span><span class="o"><button type="button">get</button><button type="button">gets</button><button type="button">got</button><button type="button">would get</button></span></div>
+<div class="ch" data-a="don’t get"><span class="n">2</span><span class="s">Plants die if they ___ enough water.</span><span class="o"><button type="button">don’t get</button><button type="button">won’t get</button><button type="button">doesn’t get</button><button type="button">didn’t get</button></span></div>
+<div class="ch" data-a="drinks"><span class="n">3</span><span class="s">When Lily ___ too much coffee, she can’t sleep.</span><span class="o"><button type="button">drinks</button><button type="button">will drink</button><button type="button">drank</button><button type="button">drink</button></span></div>
+<div class="ch" data-a="heat"><span class="n">4</span><span class="s">If you ___ ice, it melts.</span><span class="o"><button type="button">heated</button><button type="button">heat</button><button type="button">will heat</button><button type="button">heats</button></span></div>
+<div class="ch" data-a="overheats"><span class="n">5</span><span class="s">My phone ___ if I play games for hours.</span><span class="o"><button type="button">overheat</button><button type="button">would overheat</button><button type="button">overheats</button><button type="button">overheated</button></span></div>
+<div class="ch" data-a="thunders"><span class="n">6</span><span class="s">Whenever it ___, our dog hides under the bed.</span><span class="o"><button type="button">thundered</button><button type="button">thunder</button><button type="button">thunders</button><button type="button">will thunder</button></span></div>
+<div class="ch" data-a="dies"><span class="n">7</span><span class="s">If you don’t charge your phone, it ___ by the evening.</span><span class="o"><button type="button">died</button><button type="button">is dying</button><button type="button">die</button><button type="button">dies</button></span></div>
+<div class="ch" data-a="is"><span class="n">8</span><span class="s">If Dan ___ late, the coach makes him run extra laps.</span><span class="o"><button type="button">are</button><button type="button">is</button><button type="button">will be</button><button type="button">was</button></span></div>
+<div class="ch" data-a="click"><span class="n">9</span><span class="s">If you ___ on the link, the video starts.</span><span class="o"><button type="button">clicks</button><button type="button">clicked</button><button type="button">click</button><button type="button">would click</button></span></div>
+<div class="ch" data-a="feels"><span class="n">10</span><span class="s">Sophie ___ nervous if she speaks in front of the class.</span><span class="o"><button type="button">feels</button><button type="button">would feel</button><button type="button">felt</button><button type="button">feel</button></span></div>
+<div class="ch" data-a="don’t sleep"><span class="n">11</span><span class="s">If people ___ enough, they feel tired.</span><span class="o"><button type="button">don’t sleep</button><button type="button">doesn’t sleep</button><button type="button">not sleep</button><button type="button">won’t sleep</button></span></div>
+<div class="ch" data-a="If you heat chocolate, it melts."><span class="n">12</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">If you heat chocolate, it melts.</button><button type="button">If you heat chocolate, it will melts.</button><button type="button">If you will heat chocolate, it melts.</button><button type="button">If you heated chocolate, it melts.</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; get · don’t get · drinks · heat · overheats · thunders · dies · is · click · feels · don’t sleep · If you heat chocolate, it melts."><b>Відповіді:</b> get · don’t get · drinks · heat · overheats · thunders · dies · is · click · feels · don’t sleep · If you heat chocolate, it melts.</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="hears"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>If my cat ___ (hear) the fridge open, she runs to the kitchen.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="turns"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Every time you press this button, the screen ___ (turn) off.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="doesn’t have|does not have"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>If Tom ___ (not / have) breakfast, he gets hungry by ten.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="travel"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>When we ___ (travel) by train, we always play cards.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="hurt"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Whenever I eat too many sweets, my teeth ___ (hurt).</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="watches"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>If my sister ___ (watch) a horror film, she sleeps with the light on.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="forgets"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>If Max ___ (forget) his headphones, the bus ride feels endless.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="doesn’t work|does not work"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>If the battery is low, the lamp ___ (not / work).</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; hears · turns · doesn’t have · travel · hurt · watches · forgets · doesn’t work"><b>Відповіді:</b> hears · turns · doesn’t have · travel · hurt · watches · forgets · doesn’t work</p>
+  </section>
+  <section id="s3" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">3</span>Раунд 2. Перший тип: реальне майбутнє <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="will cancel"><span class="n">1</span><span class="s">If it rains on Saturday, we ___ the picnic.</span><span class="o"><button type="button">would cancel</button><button type="button">cancelled</button><button type="button">cancel</button><button type="button">will cancel</button></span></div>
+<div class="ch" data-a="will be"><span class="n">2</span><span class="s">Emma ___ angry if you take her charger again.</span><span class="o"><button type="button">would be</button><button type="button">is being</button><button type="button">will be</button><button type="button">be</button></span></div>
+<div class="ch" data-a="misses"><span class="n">3</span><span class="s">If Max ___ the bus, he will be late for school.</span><span class="o"><button type="button">missed</button><button type="button">misses</button><button type="button">miss</button><button type="button">will miss</button></span></div>
+<div class="ch" data-a="will"><span class="n">4</span><span class="s">What ___ you do if the shop is closed?</span><span class="o"><button type="button">would</button><button type="button">are</button><button type="button">do</button><button type="button">will</button></span></div>
+<div class="ch" data-a="passes"><span class="n">5</span><span class="s">If she ___ the exam, her parents will buy her a new bike.</span><span class="o"><button type="button">will pass</button><button type="button">pass</button><button type="button">passed</button><button type="button">passes</button></span></div>
+<div class="ch" data-a="will text"><span class="n">6</span><span class="s">I ___ you if I hear any news.</span><span class="o"><button type="button">am texting</button><button type="button">would text</button><button type="button">text</button><button type="button">will text</button></span></div>
+<div class="ch" data-a="will wake"><span class="n">7</span><span class="s">If you don’t feed the cat tonight, she ___ you at 5 a.m.</span><span class="o"><button type="button">wake</button><button type="button">would wake</button><button type="button">woke</button><button type="button">will wake</button></span></div>
+<div class="ch" data-a="finishes"><span class="n">8</span><span class="s">If Dan ___ the game tonight, he’ll tell us the ending.</span><span class="o"><button type="button">finishes</button><button type="button">will finish</button><button type="button">finish</button><button type="button">would finish</button></span></div>
+<div class="ch" data-a="will give"><span class="n">9</span><span class="s">If you lend me your notes, I ___ them back on Monday.</span><span class="o"><button type="button">give</button><button type="button">will give</button><button type="button">gave</button><button type="button">would give</button></span></div>
+<div class="ch" data-a="get"><span class="n">10</span><span class="s">Will you help me if I ___ stuck with this task?</span><span class="o"><button type="button">get</button><button type="button">will get</button><button type="button">got</button><button type="button">gets</button></span></div>
+<div class="ch" data-a="don’t buy"><span class="n">11</span><span class="s">If they ___ tickets, they won’t see the concert.</span><span class="o"><button type="button">don’t buy</button><button type="button">doesn’t buy</button><button type="button">didn’t buy</button><button type="button">won’t buy</button></span></div>
+<div class="ch" data-a="will be"><span class="n">12</span><span class="s">If we order pizza now, it ___ here in thirty minutes.</span><span class="o"><button type="button">would be</button><button type="button">was</button><button type="button">will be</button><button type="button">is</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; will cancel · will be · misses · will · passes · will text · will wake · finishes · will give · get · don’t buy · will be"><b>Відповіді:</b> will cancel · will be · misses · will · passes · will text · will wake · finishes · will give · get · don’t buy · will be</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="finish"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>If you ___ (finish) your homework early, we’ll watch a film.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="will catch|’ll catch"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>If we leave now, we ___ (catch) the last train.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="will get|’ll get"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>If you don’t wear a jacket, you ___ (get) cold.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="doesn’t come|does not come"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>If Tom ___ (not / come) to the party, Sophie will be sad.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="won’t go|will not go"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>We ___ (not / go) to the beach if the weather is bad tomorrow.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="rehearses"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>If Lily ___ (rehearse) every day, she will play the song at the concert.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="breaks"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>What will you do if your phone ___ (break)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="don’t hurry|do not hurry"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>If you ___ (not / hurry), we’ll miss the start of the film.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; finish · will catch · will get · doesn’t come · won’t go · rehearses · breaks · don’t hurry"><b>Відповіді:</b> finish · will catch · will get · doesn’t come · won’t go · rehearses · breaks · don’t hurry</p>
+  </section>
+  <section id="s4" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">4</span>Раунд 3. Другий тип: якби та мрії <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="had"><span class="n">1</span><span class="s">If I ___ a million dollars, I would travel around the world.</span><span class="o"><button type="button">would have</button><button type="button">had</button><button type="button">will have</button><button type="button">have</button></span></div>
+<div class="ch" data-a="spoke"><span class="n">2</span><span class="s">If she ___ French, she would understand the song.</span><span class="o"><button type="button">spoke</button><button type="button">would speak</button><button type="button">speaks</button><button type="button">will speak</button></span></div>
+<div class="ch" data-a="would play"><span class="n">3</span><span class="s">If I were taller, I ___ in the school basketball team.</span><span class="o"><button type="button">play</button><button type="button">would play</button><button type="button">will play</button><button type="button">played</button></span></div>
+<div class="ch" data-a="were"><span class="n">4</span><span class="s">What would you do if you ___ invisible for a day?</span><span class="o"><button type="button">would be</button><button type="button">are</button><button type="button">were</button><button type="button">will be</button></span></div>
+<div class="ch" data-a="would tell"><span class="n">5</span><span class="s">If cats could talk, they ___ us to feed them all day.</span><span class="o"><button type="button">would tell</button><button type="button">told</button><button type="button">will tell</button><button type="button">tell</button></span></div>
+<div class="ch" data-a="would buy"><span class="n">6</span><span class="s">I ___ that jacket if it were cheaper.</span><span class="o"><button type="button">buy</button><button type="button">bought</button><button type="button">will buy</button><button type="button">would buy</button></span></div>
+<div class="ch" data-a="slept"><span class="n">7</span><span class="s">If Tom ___ more, he wouldn’t feel so tired.</span><span class="o"><button type="button">slept</button><button type="button">would sleep</button><button type="button">will sleep</button><button type="button">sleeps</button></span></div>
+<div class="ch" data-a="didn’t live"><span class="n">8</span><span class="s">She would be happier if she ___ in a big city.</span><span class="o"><button type="button">won’t live</button><button type="button">doesn’t live</button><button type="button">didn’t live</button><button type="button">wouldn’t live</button></span></div>
+<div class="ch" data-a="had"><span class="n">9</span><span class="s">If our school ___ a pool, I would swim every day.</span><span class="o"><button type="button">have</button><button type="button">had</button><button type="button">has</button><button type="button">will have</button></span></div>
+<div class="ch" data-a="would win"><span class="n">10</span><span class="s">They ___ the game if their best player weren’t injured.</span><span class="o"><button type="button">win</button><button type="button">won</button><button type="button">will win</button><button type="button">would win</button></span></div>
+<div class="ch" data-a="knew"><span class="n">11</span><span class="s">If I ___ how to cook, I wouldn’t order food every day.</span><span class="o"><button type="button">would know</button><button type="button">know</button><button type="button">knew</button><button type="button">will know</button></span></div>
+<div class="ch" data-a="got"><span class="n">12</span><span class="s">Would you move abroad if you ___ a great job offer?</span><span class="o"><button type="button">would get</button><button type="button">will get</button><button type="button">got</button><button type="button">get</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; had · spoke · would play · were · would tell · would buy · slept · didn’t live · had · would win · knew · got"><b>Відповіді:</b> had · spoke · would play · were · would tell · would buy · slept · didn’t live · had · would win · knew · got</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="would surf|’d surf"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>If Max lived by the sea, he ___ (surf) every day.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="had"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>If we ___ (have) a car, we would drive to the mountains.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="knew"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>If Emma ___ (know) his number, she would call him.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="didn’t have|did not have"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>If I ___ (not / have) so much homework, I would come to the cinema.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="would you choose"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>If you could meet any singer, who ___ (you / choose)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="didn’t rain|did not rain"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>If it ___ (not / rain) so often here, I would ride my bike to work.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="wouldn’t be|would not be"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>Dan ___ (not / be) so nervous if he knew the answers.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="would learn|’d learn"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>If Sophie had more free time, she ___ (learn) to play the guitar.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; would surf · had · knew · didn’t have · would you choose · didn’t rain · wouldn’t be · would learn"><b>Відповіді:</b> would surf · had · knew · didn’t have · would you choose · didn’t rain · wouldn’t be · would learn</p>
+  </section>
+  <section id="s5" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">5</span>Раунд 4. Пастки <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="If it snows, we’ll go skiing."><span class="n">1</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">If it snows, we’ll go skiing.</button><button type="button">If it snowed, we’ll go skiing.</button><button type="button">If it will snow, we’ll go skiing.</button><button type="button">If it would snow, we’ll go skiing.</button></span></div>
+<div class="ch" data-a="were"><span class="n">2</span><span class="s">If I ___ rich, I would buy an island.</span><span class="o"><button type="button">will be</button><button type="button">were</button><button type="button">am</button><button type="button">would be</button></span></div>
+<div class="ch" data-a="would talk"><span class="n">3</span><span class="s">If I were you, I ___ to the teacher.</span><span class="o"><button type="button">talked</button><button type="button">would talk</button><button type="button">will talk</button><button type="button">talk</button></span></div>
+<div class="ch" data-a="hurry"><span class="n">4</span><span class="s">Unless you ___, you will miss the bus.</span><span class="o"><button type="button">hurry</button><button type="button">don’t hurry</button><button type="button">won’t hurry</button><button type="button">hurried</button></span></div>
+<div class="ch" data-a="If I had time, I’d help you."><span class="n">5</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">If I had time, I’d help you.</button><button type="button">If I have time, I’d help you.</button><button type="button">If I had time, I’ll help you.</button><button type="button">If I would have time, I’d help you.</button></span></div>
+<div class="ch" data-a="get"><span class="n">6</span><span class="s">I’ll call you when I ___ home.</span><span class="o"><button type="button">would get</button><button type="button">got</button><button type="button">get</button><button type="button">will get</button></span></div>
+<div class="ch" data-a="If you don’t study, you’ll fail."><span class="n">7</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">If you won’t study, you’ll fail.</button><button type="button">Unless you don’t study, you’ll fail.</button><button type="button">If you don’t study, you’ll fail.</button><button type="button">If you not study, you’ll fail.</button></span></div>
+<div class="ch" data-a="worked"><span class="n">8</span><span class="s">If he ___ harder, he would get better marks.</span><span class="o"><button type="button">works</button><button type="button">will work</button><button type="button">worked</button><button type="button">would work</button></span></div>
+<div class="ch" data-a="goes"><span class="n">9</span><span class="s">I won’t go to the party unless Emma ___ too.</span><span class="o"><button type="button">doesn’t go</button><button type="button">goes</button><button type="button">won’t go</button><button type="button">will go</button></span></div>
+<div class="ch" data-a="If I were you, I would wait."><span class="n">10</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">If I am you, I would wait.</button><button type="button">If I would be you, I would wait.</button><button type="button">If I was you, I will wait.</button><button type="button">If I were you, I would wait.</button></span></div>
+<div class="ch" data-a="ends"><span class="n">11</span><span class="s">As soon as the film ___, we’ll order pizza.</span><span class="o"><button type="button">ends</button><button type="button">would end</button><button type="button">will end</button><button type="button">end</button></span></div>
+<div class="ch" data-a="could"><span class="n">12</span><span class="s">Where would you live if you ___ choose any country?</span><span class="o"><button type="button">can</button><button type="button">would can</button><button type="button">could</button><button type="button">will can</button></span></div>
+<div class="ch" data-a="have"><span class="n">13</span><span class="s">If you ___ any problems, call me.</span><span class="o"><button type="button">would have</button><button type="button">had</button><button type="button">have</button><button type="button">will have</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; If it snows, we’ll go skiing. · were · would talk · hurry · If I had time, I’d help you. · get · If you don’t study, you’ll fail. · worked · goes · If I were you, I would wait. · ends · could · have"><b>Відповіді:</b> If it snows, we’ll go skiing. · were · would talk · hurry · If I had time, I’d help you. · get · If you don’t study, you’ll fail. · worked · goes · If I were you, I would wait. · ends · could · have</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="were"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>If I ___ (be) you, I would apologise to Lily.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="rains"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Unless it ___ (rain), we’ll play football after school.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="see"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>If you ___ (see) Max tomorrow, tell him about the trip.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="wouldn’t buy|would not buy"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>If I were you, I ___ (not / buy) that phone.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="score"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>We will lose the match unless we ___ (score) soon.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="is"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>If it ___ (be) warm tomorrow, we’ll have lunch in the park.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="asked"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>If Tom ___ (ask) me, I would help him, but he never asks.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; were · rains · see · wouldn’t buy · score · is · asked"><b>Відповіді:</b> were · rains · see · wouldn’t buy · score · is · asked</p>
+  </section>
+  <section id="s6" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">6</span>Раунд 5. Фінальний бос <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="go"><span class="n">1</span><span class="s">Our fridge is empty. If we ___ to the shop now, we’ll have dinner by seven.</span><span class="o"><button type="button">would go</button><button type="button">go</button><button type="button">will go</button><button type="button">went</button></span></div>
+<div class="ch" data-a="had"><span class="n">2</span><span class="s">I don’t have a bike. If I ___ one, I would ride to school.</span><span class="o"><button type="button">have</button><button type="button">had</button><button type="button">would have</button><button type="button">will have</button></span></div>
+<div class="ch" data-a="could"><span class="n">3</span><span class="s">Max can’t swim. If he ___ swim, he would join the water polo team.</span><span class="o"><button type="button">would</button><button type="button">will can</button><button type="button">could</button><button type="button">can</button></span></div>
+<div class="ch" data-a="is"><span class="n">4</span><span class="s">The forecast says sun all weekend. If it ___ sunny, we’ll go camping.</span><span class="o"><button type="button">was</button><button type="button">would be</button><button type="button">will be</button><button type="button">is</button></span></div>
+<div class="ch" data-a="felt"><span class="n">5</span><span class="s">Dan is ill today. If he ___ well, he would play in the match.</span><span class="o"><button type="button">felt</button><button type="button">would feel</button><button type="button">feels</button><button type="button">will feel</button></span></div>
+<div class="ch" data-a="lived"><span class="n">6</span><span class="s">I live far from my friends. I would see them more often if we ___ closer.</span><span class="o"><button type="button">lived</button><button type="button">will live</button><button type="button">live</button><button type="button">would live</button></span></div>
+<div class="ch" data-a="don’t drink"><span class="n">7</span><span class="s">Your tea is getting cold. If you ___ it now, it will be horrible.</span><span class="o"><button type="button">won’t drink</button><button type="button">don’t drink</button><button type="button">not drink</button><button type="button">didn’t drink</button></span></div>
+<div class="ch" data-a="When I’m 18, I’ll learn to drive."><span class="n">8</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">When I will be 18, I’ll learn to drive.</button><button type="button">When I’d be 18, I’ll learn to drive.</button><button type="button">When I’m 18, I’ll learn to drive.</button><button type="button">When I was 18, I’ll learn to drive.</button></span></div>
+<div class="ch" data-a="needs"><span class="n">9</span><span class="s">Emma is my best friend. If she ___ help, I always help her.</span><span class="o"><button type="button">needed</button><button type="button">will need</button><button type="button">needs</button><button type="button">need</button></span></div>
+<div class="ch" data-a="scores"><span class="n">10</span><span class="s">The game is almost over. Unless our team ___ now, we will lose.</span><span class="o"><button type="button">won’t score</button><button type="button">scored</button><button type="button">doesn’t score</button><button type="button">scores</button></span></div>
+<div class="ch" data-a="were"><span class="n">11</span><span class="s">You always forget your keys. If I ___ you, I’d keep a spare set at work.</span><span class="o"><button type="button">were</button><button type="button">am</button><button type="button">will be</button><button type="button">would be</button></span></div>
+<div class="ch" data-a="come"><span class="n">12</span><span class="s">The museum is free on Sundays. If you ___ on Sunday, you won’t pay anything.</span><span class="o"><button type="button">came</button><button type="button">come</button><button type="button">will come</button><button type="button">would come</button></span></div>
+<div class="ch" data-a="If you need help, ask me."><span class="n">13</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">If you need help, ask me.</button><button type="button">If you needed help, ask me.</button><button type="button">If you will need help, ask me.</button><button type="button">If you would need help, ask me.</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; go · had · could · is · felt · lived · don’t drink · When I’m 18, I’ll learn to drive. · needs · scores · were · come · If you need help, ask me."><b>Відповіді:</b> go · had · could · is · felt · lived · don’t drink · When I’m 18, I’ll learn to drive. · needs · scores · were · come · If you need help, ask me.</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="drop"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>It’s a simple rule. If you ___ (drop) a glass on a stone floor, it breaks.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="sees"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Sophie hates spiders. If she ___ (see) one, she screams.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="don’t leave|do not leave"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>The concert starts at eight. If we ___ (not / leave) now, we’ll be late.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="will buy|’ll buy"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Lily wants a new laptop. If she saves enough money, she ___ (buy) one in June.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="lived"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>This is just a dream. If I ___ (live) in Paris, I would eat croissants every day.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="would sleep|’d sleep"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>My cat is so lazy. If she had a job, she ___ (sleep) through every meeting.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="were|was"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>I’m not the teacher. If I ___ (be) the teacher, I wouldn’t give homework on Fridays.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; drop · sees · don’t leave · will buy · lived · would sleep · were"><b>Відповіді:</b> drop · sees · don’t leave · will buy · lived · would sleep · were</p>
+  </section>
+  <section class="end"><h2>Great job!</h2><p>See you next lesson.</p></section>
+</div>
+<div class="toast" id="toast"></div>
+<script>window.MURLY_LESSON={"id": "lib-drill-conditionals", "title": "Conditionals: zero, first, second: 100 tasks", "homework": ["s2", "s3", "s4", "s5", "s6"], "hw": {"s2": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "If you mix blue and yellow, you {get|gets|got|would get} green.\nPlants die if they {don’t get|doesn’t get|didn’t get|won’t get} enough water.\nWhen Lily {drinks|drink|drank|will drink} too much coffee, she can’t sleep.\nIf you {heat|heats|will heat|heated} ice, it melts.\nMy phone {overheats|overheat|overheated|would overheat} if I play games for hours.\nWhenever it {thunders|thunder|will thunder|thundered}, our dog hides under the bed.\nIf you don’t charge your phone, it {dies|die|died|is dying} by the evening.\nIf Dan {is|are|was|will be} late, the coach makes him run extra laps.\nIf you {click|clicks|clicked|would click} on the link, the video starts.\nSophie {feels|feel|would feel|felt} nervous if she speaks in front of the class.\nIf people {don’t sleep|doesn’t sleep|won’t sleep|not sleep} enough, they feel tired.\nОбери правильне речення: {If you heat chocolate, it melts.|If you heat chocolate, it will melts.|If you will heat chocolate, it melts.|If you heated chocolate, it melts.}"}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "If my cat [hears] (hear) the fridge open, she runs to the kitchen.\nEvery time you press this button, the screen [turns] (turn) off.\nIf Tom [doesn’t have/does not have] (not / have) breakfast, he gets hungry by ten.\nWhen we [travel] (travel) by train, we always play cards.\nWhenever I eat too many sweets, my teeth [hurt] (hurt).\nIf my sister [watches] (watch) a horror film, she sleeps with the light on.\nIf Max [forgets] (forget) his headphones, the bus ride feels endless.\nIf the battery is low, the lamp [doesn’t work/does not work] (not / work)."}], "s3": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "If it rains on Saturday, we {will cancel|cancel|would cancel|cancelled} the picnic.\nEmma {will be|is being|would be|be} angry if you take her charger again.\nIf Max {misses|will miss|missed|miss} the bus, he will be late for school.\nWhat {will|do|would|are} you do if the shop is closed?\nIf she {passes|pass|will pass|passed} the exam, her parents will buy her a new bike.\nI {will text|text|would text|am texting} you if I hear any news.\nIf you don’t feed the cat tonight, she {will wake|woke|would wake|wake} you at 5 a.m.\nIf Dan {finishes|will finish|finish|would finish} the game tonight, he’ll tell us the ending.\nIf you lend me your notes, I {will give|give|gave|would give} them back on Monday.\nWill you help me if I {get|will get|got|gets} stuck with this task?\nIf they {don’t buy|won’t buy|doesn’t buy|didn’t buy} tickets, they won’t see the concert.\nIf we order pizza now, it {will be|would be|is|was} here in thirty minutes."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "If you [finish] (finish) your homework early, we’ll watch a film.\nIf we leave now, we [will catch/’ll catch] (catch) the last train.\nIf you don’t wear a jacket, you [will get/’ll get] (get) cold.\nIf Tom [doesn’t come/does not come] (not / come) to the party, Sophie will be sad.\nWe [won’t go/will not go] (not / go) to the beach if the weather is bad tomorrow.\nIf Lily [rehearses] (rehearse) every day, she will play the song at the concert.\nWhat will you do if your phone [breaks] (break)?\nIf you [don’t hurry/do not hurry] (not / hurry), we’ll miss the start of the film."}], "s4": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "If I {had|have|will have|would have} a million dollars, I would travel around the world.\nIf she {spoke|speaks|would speak|will speak} French, she would understand the song.\nIf I were taller, I {would play|will play|play|played} in the school basketball team.\nWhat would you do if you {were|are|will be|would be} invisible for a day?\nIf cats could talk, they {would tell|will tell|tell|told} us to feed them all day.\nI {would buy|will buy|buy|bought} that jacket if it were cheaper.\nIf Tom {slept|sleeps|will sleep|would sleep} more, he wouldn’t feel so tired.\nShe would be happier if she {didn’t live|doesn’t live|won’t live|wouldn’t live} in a big city.\nIf our school {had|has|will have|have} a pool, I would swim every day.\nThey {would win|will win|win|won} the game if their best player weren’t injured.\nIf I {knew|would know|will know|know} how to cook, I wouldn’t order food every day.\nWould you move abroad if you {got|would get|get|will get} a great job offer?"}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "If Max lived by the sea, he [would surf/’d surf] (surf) every day.\nIf we [had] (have) a car, we would drive to the mountains.\nIf Emma [knew] (know) his number, she would call him.\nIf I [didn’t have/did not have] (not / have) so much homework, I would come to the cinema.\nIf you could meet any singer, who [would you choose] (you / choose)?\nIf it [didn’t rain/did not rain] (not / rain) so often here, I would ride my bike to work.\nDan [wouldn’t be/would not be] (not / be) so nervous if he knew the answers.\nIf Sophie had more free time, she [would learn/’d learn] (learn) to play the guitar."}], "s5": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Обери правильне речення: {If it snows, we’ll go skiing.|If it will snow, we’ll go skiing.|If it snowed, we’ll go skiing.|If it would snow, we’ll go skiing.}\nIf I {were|would be|will be|am} rich, I would buy an island.\nIf I were you, I {would talk|will talk|talk|talked} to the teacher.\nUnless you {hurry|don’t hurry|won’t hurry|hurried}, you will miss the bus.\nОбери правильне речення: {If I had time, I’d help you.|If I would have time, I’d help you.|If I have time, I’d help you.|If I had time, I’ll help you.}\nI’ll call you when I {get|will get|got|would get} home.\nОбери правильне речення: {If you don’t study, you’ll fail.|Unless you don’t study, you’ll fail.|If you won’t study, you’ll fail.|If you not study, you’ll fail.}\nIf he {worked|works|will work|would work} harder, he would get better marks.\nI won’t go to the party unless Emma {goes|doesn’t go|won’t go|will go} too.\nОбери правильне речення: {If I were you, I would wait.|If I am you, I would wait.|If I would be you, I would wait.|If I was you, I will wait.}\nAs soon as the film {ends|will end|would end|end}, we’ll order pizza.\nWhere would you live if you {could|would can|will can|can} choose any country?\nIf you {have|had|would have|will have} any problems, call me."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "If I [were] (be) you, I would apologise to Lily.\nUnless it [rains] (rain), we’ll play football after school.\nIf you [see] (see) Max tomorrow, tell him about the trip.\nIf I were you, I [wouldn’t buy/would not buy] (not / buy) that phone.\nWe will lose the match unless we [score] (score) soon.\nIf it [is] (be) warm tomorrow, we’ll have lunch in the park.\nIf Tom [asked] (ask) me, I would help him, but he never asks."}], "s6": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Our fridge is empty. If we {go|went|will go|would go} to the shop now, we’ll have dinner by seven.\nI don’t have a bike. If I {had|have|will have|would have} one, I would ride to school.\nMax can’t swim. If he {could|can|will can|would} swim, he would join the water polo team.\nThe forecast says sun all weekend. If it {is|will be|would be|was} sunny, we’ll go camping.\nDan is ill today. If he {felt|feels|will feel|would feel} well, he would play in the match.\nI live far from my friends. I would see them more often if we {lived|live|will live|would live} closer.\nYour tea is getting cold. If you {don’t drink|didn’t drink|not drink|won’t drink} it now, it will be horrible.\nОбери правильне речення: {When I’m 18, I’ll learn to drive.|When I will be 18, I’ll learn to drive.|When I’d be 18, I’ll learn to drive.|When I was 18, I’ll learn to drive.}\nEmma is my best friend. If she {needs|need|needed|will need} help, I always help her.\nThe game is almost over. Unless our team {scores|doesn’t score|won’t score|scored} now, we will lose.\nYou always forget your keys. If I {were|would be|am|will be} you, I’d keep a spare set at work.\nThe museum is free on Sundays. If you {come|will come|came|would come} on Sunday, you won’t pay anything.\nОбери правильне речення: {If you need help, ask me.|If you will need help, ask me.|If you needed help, ask me.|If you would need help, ask me.}"}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "It’s a simple rule. If you [drop] (drop) a glass on a stone floor, it breaks.\nSophie hates spiders. If she [sees] (see) one, she screams.\nThe concert starts at eight. If we [don’t leave/do not leave] (not / leave) now, we’ll be late.\nLily wants a new laptop. If she saves enough money, she [will buy/’ll buy] (buy) one in June.\nThis is just a dream. If I [lived] (live) in Paris, I would eat croissants every day.\nMy cat is so lazy. If she had a job, she [would sleep/’d sleep] (sleep) through every meeting.\nI’m not the teacher. If I [were/was] (be) the teacher, I wouldn’t give homework on Fridays."}]}};</script>
+<script>
+(function(){var l=(document.cookie.match(/(?:^|; )murly_lang=(\w+)/)||[])[1];try{l=l||localStorage.getItem('murly:tlang')}catch(e){}l=l==='ru'?'ru':'uk';document.querySelectorAll('[data-pairs-'+l+']').forEach(function(b){b.dataset.pairs=b.getAttribute('data-pairs-'+l)});})();
+</script>
+<script>
+const $ = (id) => document.getElementById(id);
+const LIS = {};
+function say(w, rate) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; const v = speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang) && /Google|Natural|Libby|Sonia|Daniel/.test(x.name)) || speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang)); if (v) u.voice = v; u.rate = rate || .95; speechSynthesis.speak(u); } catch (e) { } }
+const sh = (a) => a.map((x) => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map((x) => x[1]);
+document.querySelectorAll('.voc div').forEach((d) => d.onclick = () => say(d.dataset.say));
+document.querySelectorAll('[data-play]').forEach((b) => b.onclick = () => say(LIS[b.dataset.play], b.dataset.slow ? .75 : .95));
+document.querySelectorAll('[data-stop]').forEach((b) => b.onclick = () => { try { speechSynthesis.cancel(); } catch (e) { } });
+document.querySelectorAll('.ch').forEach((q) => q.querySelectorAll('button').forEach((b) => b.onclick = () => { if (q.classList.contains('ok')) return; const ok = b.textContent === q.dataset.a; q.classList.toggle('ok', ok); q.classList.toggle('bad', !ok); if (ok) { const s = q.querySelector('.s'); if (s && s.textContent.includes('___')) { s.textContent = s.textContent.replace('___', q.dataset.a); } } }));
+const norm = (x) => x.toLowerCase().replace(/[’']/g, "'").replace(/[,;:"“”«»]/g, ' ').replace(/\s+/g, ' ').replace(/[.!?]$/, '').trim();
+document.querySelectorAll('.ty').forEach((r) => { const inp = r.querySelector('input'); const chk = () => { const ok = r.dataset.a.split('|').some((a) => norm(a) === norm(inp.value)); r.classList.toggle('ok', ok); r.classList.toggle('bad', !ok && inp.value.trim() !== ''); }; r.querySelector('button').onclick = chk; inp.onkeydown = (e) => { if (e.key === 'Enter') chk(); }; });
+document.querySelectorAll('[data-mt]').forEach((box) => { const pairs = JSON.parse(box.dataset.pairs); const L = sh(pairs.map((p) => p[0])), R = sh(pairs.map((p) => p[1])); let sel = null, done = 0, err = 0; box.innerHTML = L.map((w, i) => `<button type="button" data-w="${w}">${w}</button><button type="button" data-d="${R[i]}">${R[i]}</button>`).join('');
+  box.querySelectorAll('button').forEach((b) => b.onclick = () => { if (b.classList.contains('done')) return; if (!sel || (sel.dataset.w && b.dataset.w) || (sel.dataset.d && b.dataset.d)) { if (sel) sel.classList.remove('sel'); sel = b; b.classList.add('sel'); return; } const w = sel.dataset.w || b.dataset.w, d = sel.dataset.d || b.dataset.d; if (pairs.some((p) => p[0] === w && p[1] === d)) { sel.classList.add('done'); b.classList.add('done'); done++; say(w); if (done === pairs.length) document.querySelector(`[data-mtres="${box.dataset.mt}"]`).textContent = err ? `Done! Mistakes: ${err}` : 'Perfect!'; } else err++; sel.classList.remove('sel'); sel = null; }); });
+document.querySelectorAll('[data-vids]').forEach((box) => JSON.parse(box.dataset.vids).forEach(([id, title, ch, qs]) => { const d = document.createElement('div'); d.className = 'vid'; d.innerHTML = `<div class="frame"><button class="play" type="button" style="background-image:url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)"><span>PLAY</span></button></div><div class="info"><h3>${title}</h3><small>YouTube · ${ch}</small><ol>${qs.map((q) => `<li>${q}</li>`).join('')}</ol></div>`; d.querySelector('.play').onclick = (e) => { e.currentTarget.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&cc_load_policy=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${title}"></iframe>`; }; box.appendChild(d); }));
+document.querySelectorAll('[data-spin]').forEach((b) => { const list = JSON.parse(b.dataset.spin); let last = -1; b.onclick = () => { let i; do { i = Math.floor(Math.random() * list.length); } while (i === last && list.length > 1); last = i; document.getElementById(b.dataset.target).textContent = list[i]; }; });
+try { const k = 'murly:' + (window.MURLY_LESSON ? MURLY_LESSON.id : 'x') + ':hw'; const t = $('hwText'); if (t) { t.value = localStorage.getItem(k) || ''; t.oninput = () => localStorage.setItem(k, t.value); } } catch (e) { }
+const STAGES = [...document.querySelectorAll('.wrap > section[id]')];
+$('stages').innerHTML = STAGES.map((s) => `<a href="#${s.id}"><b>${s.querySelector('.lk-n').textContent}</b><span>${s.dataset.stage}</span><small>${s.dataset.min !== '0' ? s.dataset.min + ' min' : 'at home'}</small></a>`).join('');
+$('teacherBtn').onclick = (e) => { const on = document.body.classList.toggle('teacher'); e.currentTarget.textContent = on ? 'Student version' : 'Teacher version'; };
+</script>
+<script src="/game-lessons/kit.js" defer></script>
+</body>
+</html>

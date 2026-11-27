@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Comparatives and superlatives: 100 tasks (A2) | Murly</title>
+<link rel="icon" href="/favicon.svg">
+<meta name="description" content="Повторимо правило: Ступені порівняння прикметників
+100 завдань від простого до складного
+Розберемо головні пастки">
+<link rel="canonical" href="https://murly.com.ua/game-lessons/lib-drill-comparatives.html">
+<style>
+:root{--paper:#F3F0EA;--ink:#17181C;--violet:#3D4A7A;--lav:#D9D3C7;--pink:#E9C9BC;--green:#D4E2CF;--white:#fff;--muted:#62646B;--accent:#B5482F}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+/* hero */
+.hero{background:linear-gradient(rgba(16,17,22,.5),rgba(16,17,22,.72)),url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1400&q=70&auto=format&fit=crop");color:#fff;padding:70px 18px 56px;text-align:center;position:relative;overflow:hidden}
+.hero .kicker{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#E9C9BC;font-weight:700}
+.hero .cr{position:absolute;right:12px;bottom:8px;font-size:11px;color:rgba(255,255,255,.6)}
+.hero h1{margin:8px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(36px,6vw,64px);letter-spacing:-.5px;font-weight:700}
+.hero h1 span{color:var(--pink);font-style:italic}
+.hero p{margin:12px 0 0;font-size:17px;color:#e6e2da}
+.hero .flags{display:flex;justify-content:center;gap:12px;margin-top:22px;flex-wrap:wrap}
+.hero .flags svg{width:40px;height:26px;border-radius:3px;opacity:.9}
+/* sections */
+section{margin-top:30px;background:var(--white);border-radius:18px;padding:28px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.05)}
+section h2{margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tag{font-family:"Segoe UI",system-ui,sans-serif;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--paper);color:var(--accent);text-transform:uppercase;letter-spacing:1px}
+.lk-n{display:inline-grid;place-items:center;width:42px;height:42px;background:var(--violet);color:#fff;border-radius:50%;font-size:21px;flex:none}
+.lk-mode{font-size:13px;font-weight:700;border:2px dashed var(--lav);color:var(--muted);padding:2px 10px;border-radius:999px}
+.lk-ins{font-size:17px;background:var(--paper);border-radius:12px;padding:10px 14px;margin:6px 0 18px}
+.lk-sub{margin:24px 0 10px;font-size:19px}
+.btn{font:inherit;font-weight:700;border:0;border-radius:999px;background:var(--ink);color:#fff;padding:10px 20px;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+.btn.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+/* teacher */
+.lk-tbtn{position:fixed;right:16px;top:70px;z-index:45;font:inherit;font-weight:800;border:2px solid var(--ink);background:var(--pink);padding:8px 14px;border-radius:12px;cursor:pointer}
+body.teacher .lk-tbtn{background:var(--green)}
+.lk-ans,.lk-tnote{display:none}
+body.teacher .lk-ans{display:block;margin-top:8px;font-weight:700;color:#1d5a12;background:var(--green);border-left:5px solid #5aa845;padding:6px 10px;font-size:15px;border-radius:6px}
+body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff3f7;border-left:5px solid #d9789a;padding:8px 12px;font-size:15px;border-radius:6px}
+/* overview */
+.lk-overview ul{font-size:17px;line-height:1.7;margin:6px 0 16px}
+.lk-stages{display:flex;flex-wrap:wrap;gap:8px}
+.lk-stages a{display:grid;border-radius:14px;padding:8px 12px;text-decoration:none;color:var(--ink);background:var(--paper);font-weight:700;min-width:100px}
+.lk-stages a span{text-transform:capitalize}
+.lk-stages a b{font-size:20px;color:var(--violet)}
+.lk-stages a small{font-weight:600;color:var(--muted)}
+/* warm-up */
+.taxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tax{background:var(--paper);border-radius:18px;padding:16px;display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center}
+.tax svg{width:56px;height:56px}
+.tax b{display:block;font-size:17px}
+.tax small{color:var(--muted);font-size:14px}
+.qs{display:grid;gap:10px;margin-top:18px}
+.qs div{background:var(--green);border-radius:14px;padding:10px 16px;font-size:18px;font-weight:600}
+.phr{background:#fff7e8;border-radius:14px;padding:12px 16px;margin-top:16px;font-size:15px}
+.phr ul{margin:6px 0 0;padding-left:18px}
+.fic{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:16px}
+.fic .c{background:#fff;border:2px solid #1B2140;border-radius:16px;padding:14px 16px;box-shadow:3px 3px 0 #1B2140}
+.fic .c b{display:block;font-size:18px;line-height:1.35;margin-bottom:8px}
+.fic .c .k{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.fic .c .k span{font-size:13px;background:#eef1fb;border-radius:999px;padding:3px 10px}
+.fic .c details{margin-top:8px;font-size:15px;color:#3b4160}
+.fic .c summary{cursor:pointer;font-weight:700;color:#534AB7}
+.fi-n{display:inline-flex;width:28px;height:28px;border-radius:50%;background:#2F4BA0;color:#fff;align-items:center;justify-content:center;font-size:14px;margin-right:6px}
+/* vocab */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:12px}
+.vc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:2px solid transparent;transition:border-color .2s,transform .2s}
+.vc:hover{border-color:var(--violet);transform:translateY(-2px)}
+.vc b{font-size:18px;display:flex;align-items:center;gap:8px}
+.vc b svg{width:20px;height:20px;flex:none;color:var(--violet)}
+.vc p{margin:6px 0 0;font-size:14px;color:var(--muted)}
+.vc em{display:block;margin-top:6px;font-size:14px;color:var(--violet);font-style:normal;font-weight:600}
+.vc.played{background:#e6ecfb}
+/* grammar */
+.gram{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.gb{border-radius:18px;padding:16px}
+.gb h3{margin:0 0 6px;font-size:19px}
+.gb .f{display:inline-block;background:#fff;border-radius:8px;padding:3px 10px;font-weight:800;margin:4px 0;font-family:Consolas,monospace;font-size:15px}
+.gb p{margin:6px 0 0;font-size:15px}
+.g1{background:var(--pink)}.g2{background:var(--lav)}.g3{background:var(--green)}.g4{background:#fbe7c6}
+.warn{margin-top:14px;background:var(--ink);color:#fff;border-radius:14px;padding:12px 16px;font-size:16px}
+.warn b{color:var(--pink)}
+.q{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:2px dashed var(--paper);font-size:18px}
+.q:last-child{border-bottom:0}
+.q .n{width:32px;height:32px;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;border-radius:50%;font-weight:800;font-size:15px}
+.opt{font:inherit;font-size:16px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:10px;padding:4px 12px;cursor:pointer;margin:0 2px}
+.opt.ok{background:var(--green);border-color:#5aa845}
+.opt.bad{background:var(--pink);animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+/* tour */
+.tour{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.law{border-radius:22px;overflow:hidden;background:var(--paper);display:flex;flex-direction:column}
+.law .pic{height:150px;display:grid;place-items:center;position:relative}
+.law .pic svg.ill{width:130px;height:130px}
+.law .pic svg.fl{position:absolute;left:14px;top:14px;width:46px;height:30px;border-radius:5px;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.law .pic .no{position:absolute;right:14px;top:14px;background:var(--ink);color:#fff;font-weight:800;border-radius:999px;padding:2px 10px;font-size:13px}
+.law .body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.law h3{margin:0;font-size:20px}
+.law .where{font-size:13px;font-weight:800;color:var(--violet);text-transform:uppercase;letter-spacing:1px}
+.law p{margin:0;font-size:16px}
+.law .why{font-size:14px;color:var(--muted)}
+.law .dq{margin-top:auto;background:#fff;border-radius:12px;padding:8px 12px;font-weight:700;font-size:15px}
+.law .lsn{font:inherit;font-size:13px;font-weight:700;background:none;border:0;color:var(--violet);cursor:pointer;padding:0;text-align:left}
+/* game */
+.game{max-width:720px;margin:0 auto;text-align:center}
+.score{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.score span{background:var(--paper);border-radius:999px;padding:6px 16px;font-weight:800}
+.stmt{background:var(--ink);color:#fff;border-radius:22px;padding:28px 24px;min-height:150px;display:grid;place-items:center;font-size:23px;font-weight:700;position:relative}
+.stmt small{position:absolute;top:12px;left:18px;font-size:13px;color:var(--lav);font-weight:700}
+.choose{display:flex;justify-content:center;gap:14px;margin:18px 0}
+.choose button{font:inherit;font-size:18px;font-weight:700;border:2px solid var(--ink);border-radius:999px;padding:12px 28px;cursor:pointer}
+.choose .bl{background:var(--green)}.choose .bm{background:var(--pink)}
+.choose button:disabled{opacity:.5;cursor:default}
+.verdict{min-height:70px;font-size:17px;background:var(--paper);border-radius:16px;padding:12px 16px;text-align:left}
+.verdict b.r{color:#2d7a1d}.verdict b.w{color:#b23a62}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.dots i{width:14px;height:14px;border-radius:50%;background:var(--paper)}
+.dots i.r{background:#7cc663}.dots i.w{background:#e47b9f}.dots i.c{outline:3px solid var(--violet)}
+.final{font-size:22px;font-weight:800;color:var(--violet)}
+/* invent */
+.inv{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.frames{display:grid;gap:10px}
+.frames label{font-size:14px;font-weight:700;color:var(--muted)}
+.frames select,.frames input{font:inherit;width:100%;padding:8px 10px;border:2px solid var(--lav);border-radius:10px;background:#fff}
+.poster{background:var(--paper);border:3px solid var(--ink);border-radius:20px;padding:22px;text-align:center;min-height:260px;display:flex;flex-direction:column;gap:10px;justify-content:center}
+.poster .seal{width:70px;height:70px;margin:0 auto}
+.poster h3{margin:0;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--violet)}
+.poster .rule{font-size:22px;font-weight:800}
+.poster .pen{font-size:16px;color:var(--muted)}
+.ideas{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ideas span{background:var(--pink);border-radius:999px;padding:5px 12px;font-size:14px;font-weight:600}
+/* roleplay */
+.rp{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.role{border-radius:20px;padding:18px}
+.role h3{margin:0 0 6px;display:flex;align-items:center;gap:10px}
+.role h3 svg{width:42px;height:42px}
+.role ul{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.r1{background:var(--lav)}.r2{background:var(--green)}
+.scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:16px}
+.sc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:3px solid transparent}
+.sc.on{border-color:var(--violet);background:#fff}
+.sc b{display:block;font-size:17px;margin-bottom:4px}
+.sc p{margin:0;font-size:15px}
+.timer{font-size:40px;font-weight:800;text-align:center;margin:14px 0 6px;color:var(--violet)}
+.ctr{text-align:center}
+/* homework */
+.hwb{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hwc{background:var(--paper);border-radius:18px;padding:18px}
+.hwc h3{margin:0 0 8px}
+.hwc ol,.hwc ul{margin:6px 0 0;padding-left:20px;line-height:1.7}
+.hwc textarea{width:100%;min-height:150px;font:inherit;border:2px solid var(--lav);border-radius:12px;padding:10px;margin-top:10px}
+.end{text-align:center;background:var(--ink);color:#fff;box-shadow:none}
+.end h2{justify-content:center}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(140px);background:var(--ink);color:#fff;font-weight:800;padding:12px 22px;border-radius:14px;transition:transform .3s;z-index:50}
+.toast.show{transform:translateX(-50%) translateY(0)}
+/* photos */
+.ph{margin:0}
+.ph img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;background:var(--paper)}
+.ph figcaption{font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.2px}
+.tax{grid-template-columns:1fr !important;padding:12px !important}
+.law .pic{height:auto !important;display:block !important;padding:0;position:relative}
+.law .pic .ph img{border-radius:0;aspect-ratio:16/10;transition:filter .5s}
+.law .pic .ph figcaption{padding:4px 12px 0}
+.law.hide .pic .ph img{filter:blur(10px) grayscale(.6)}
+.law.hide .reveal-body,.law.hide .fl,.law.hide .where{visibility:hidden}
+.law .clue{font-size:15px;font-style:italic;color:var(--ink)}
+.law .gc{display:flex;flex-wrap:wrap;gap:6px}
+.law .gc button{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:4px 12px;cursor:pointer}
+.law .gc button.ok{background:var(--green)}.law .gc button.bad{background:var(--pink)}
+.law:not(.hide) .guess{display:none}
+.fair{display:grid;gap:4px;background:#fff;border-radius:12px;padding:8px 12px}
+.fair .ends{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.fair input{width:100%;accent-color:var(--accent)}
+.fair output{font-size:14px;font-weight:700;color:var(--accent)}
+.gph{max-width:720px;margin:0 auto 12px}
+.gph img{aspect-ratio:21/9}
+.fine{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.fq{background:var(--paper);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.fq h3{margin:0;font-size:18px}
+.fq .opts{display:flex;flex-wrap:wrap;gap:6px}
+.fq .opts button{font:inherit;font-size:14px;font-weight:700;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 12px;cursor:pointer}
+.fq .opts button.ok{background:var(--green)}.fq .opts button.bad{background:var(--pink)}
+.fq .res{font-size:15px;min-height:22px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{position:relative;aspect-ratio:16/9;background:#111}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;cursor:pointer;background:#111 center/cover;display:grid;place-items:center}
+.vid .play span{background:rgba(0,0,0,.7);color:#fff;font-weight:700;border-radius:999px;padding:10px 20px;font-size:15px;letter-spacing:1px}
+.vid .info{padding:14px 16px}
+.vid .info h3{margin:0 0 2px;font-size:18px}
+.vid .info small{color:var(--muted)}
+.vid .info ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+@media(max-width:760px){.inv,.rp,.hwb{grid-template-columns:1fr}.lk-tbtn{top:auto;bottom:70px}}
+
+.pr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.pb{border-radius:18px;padding:16px 18px}
+.pb h3{margin:0;font-family:Georgia,serif;font-size:30px}
+.pb .m{font-size:15px;color:var(--muted);margin:2px 0 8px}
+.pb .chips{display:flex;flex-wrap:wrap;gap:6px}
+.pb .chips span{background:#fff;border-radius:999px;padding:4px 11px;font-size:14px;font-weight:600}
+.pb ul{margin:10px 0 0;padding-left:18px;font-size:15px}
+.p-in{background:#DCE6F5}.p-at{background:#F3D9CF}.p-on{background:#D4E2CF}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-size:15px;margin-top:10px}
+.ex div{background:var(--paper);border-radius:10px;padding:8px 12px}
+.ex b{color:var(--accent)}
+.q{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.q .n{font-weight:800;color:var(--violet);min-width:24px}
+.q .gap{display:inline-block;min-width:44px;border-bottom:2px solid var(--ink);text-align:center;font-weight:800}
+.q .opts{margin-left:auto;display:flex;gap:6px}
+.q .opts button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 14px;cursor:pointer}
+.q.ok{background:#DDEED7}.q.ok .gap{color:#2F7A3B}
+.q.bad{background:#F6DAD3}
+.score{font-weight:800;margin-top:12px}
+.text{font-size:18px;line-height:1.75;background:var(--paper);border-radius:16px;padding:18px 22px}
+.text h3{margin:0 0 6px;font-family:Georgia,serif;font-size:24px}
+.text p{margin:0 0 12px}
+.text.hl mark{background:#F3D9CF;border-radius:4px;padding:0 3px;font-weight:700}
+.tf{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:9px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.tf .opts{margin-left:auto;display:flex;gap:6px}
+.tf button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.tf.ok{background:#DDEED7}.tf.bad{background:#F6DAD3}
+.disc{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px;margin-top:6px}
+.disc div{background:var(--green);border-radius:14px;padding:12px 16px;font-size:17px;font-weight:600}
+.disc div i{font-style:normal;color:var(--violet);margin-right:6px}
+.spin{text-align:center;margin-top:16px}
+.spin .card{display:inline-block;min-height:80px;min-width:min(560px,100%);background:var(--ink);color:#fff;border-radius:18px;padding:20px 24px;font-size:22px;font-weight:700;margin-bottom:12px}
+@media(max-width:700px){.ex{grid-template-columns:1fr}}
+
+.hero{background-size:cover!important;background-position:center!important}
+.voc{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.voc div{background:var(--paper);border-radius:14px;padding:10px 14px;cursor:pointer;border:2px solid transparent}
+.voc div:hover{border-color:var(--violet)}
+.voc b{display:block;font-size:18px}.voc span{display:block;color:var(--accent);font-weight:700;font-size:15px}.voc em{display:block;font-size:14px;color:var(--muted);margin-top:3px}
+.mt{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:10px}
+.mt button{font:inherit;font-size:16px;text-align:left;border:2px solid var(--ink);background:#fff;border-radius:14px;padding:9px 14px;cursor:pointer}
+.mt button.sel{background:#FFE7A8}.mt button.done{background:#CDE8C6;border-color:#4C9A5B;cursor:default}
+.ch{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ch .n{font-weight:800;color:var(--violet);min-width:24px}
+.ch .o{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.ch .o button{font:inherit;font-size:15px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.ch.ok{background:#DDEED7}.ch.bad{background:#F6DAD3}
+.ty{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ty input{font:inherit;border:2px solid var(--ink);border-radius:10px;padding:4px 10px;width:220px}
+.ty.ok{background:#DDEED7}.ty.bad{background:#F6DAD3}
+.ty small{color:var(--muted)}
+.photo{width:100%;height:300px;object-fit:cover;border-radius:16px;display:block}
+.cap{font-size:11px;color:var(--muted);margin:4px 0 12px}
+.pics{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.pics figure{margin:0;background:var(--paper);border-radius:16px;overflow:hidden}
+.pics img{width:100%;height:170px;object-fit:cover;display:block}
+.pics figcaption{padding:8px 12px;font-weight:700}
+.pics small{display:block;font-weight:400;font-size:10px;color:var(--muted)}
+.lis{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:8px 0 14px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{aspect-ratio:16/9;background:#000;position:relative}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;background-size:cover;background-position:center;cursor:pointer;display:grid;place-items:center}
+.vid .play span{background:#E5484D;color:#fff;font-weight:800;border-radius:12px;padding:10px 20px}
+.vid .info{padding:12px 16px}.vid h3{margin:0;font-size:18px}.vid small{color:var(--muted)}
+.vid ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th,.tbl td{border:1px solid #ddd;padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--paper)}
+@media(max-width:700px){.mt{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="/game-lessons/kit.css">
+</head>
+<body>
+<header class="hero">
+  <div class="kicker">A2 · teens · Граматика: тренажер Ступені порівняння прикметників</div>
+  <h1>Comparatives and superlatives: 100 tasks</h1>
+  <p>A2 · 6 parts · 60 min</p>
+  <span class="cr">Photo: Unsplash</span>
+</header>
+<button class="lk-tbtn" id="teacherBtn" type="button">Teacher version</button>
+<div class="wrap">
+  <section class="lk-overview">
+    <h2>In this lesson you will:</h2>
+    <ul><li>Повторимо правило: Ступені порівняння прикметників
+100 завдань від простого до складного
+Розберемо головні пастки</li></ul>
+    <div class="lk-stages" id="stages"></div>
+  </section>
+  <section id="s1" data-stage="practice" data-min="10">
+    <h2><span class="lk-n">1</span>Теорія <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<div class="warn"><p><b>Коли вживаємо</b></p><p>Порівнюємо двох: вищий ступінь + than: My cat is lazier than my dog. (Мій кіт лінивіший за мого пса.)</p><p>Найкращий з групи: the + найвищий ступінь: Dan is the tallest boy in our class. (Ден найвищий хлопець у нашому класі.)</p><p>Однакові: as ... as: Sophie is as tall as her mum. (Софі така ж висока, як її мама.)</p><p>Не такий, як: not as ... as: The sequel isn’t as good as the first film. (Продовження не таке добре, як перший фільм.)</p></div>
+    <div class="warn"><p><b>Форми</b></p><p>Короткі  1 склад (і 2 склади на -y): прикметник + er / the + прикметник + est. Приклад: big → bigger → the biggest; happy → happier → the happiest</p><p>Довгі  2 і більше складів: more / the most + прикметник. Приклад: This game is more popular than chess. It’s the most popular game at school.</p><p>Неправильні  запам’ятати напам’ять. Приклад: good → better → the best; bad → worse → the worst; far → farther / further → the farthest / the furthest</p><p>=  as + прикметник + as. Приклад: My bag is as heavy as yours.</p><p>−  not as + прикметник + as. Приклад: Buses aren’t as fast as trains.</p></div>
+    <div class="warn"><p><b>Головна пастка</b></p><p>more + -er разом. Або -er, або more, але ніколи обидва одразу.</p><p>✗ This phone is more cheaper.</p><p>✓ This phone is cheaper.</p><p>than чи then. than = «ніж» (для порівняння), then = «потім». Звучать схоже, пишуться по-різному.</p><p>✗ Tom is older then me.</p><p>✓ Tom is older than me.</p><p>the most best. best вже означає «найкращий», тому most не потрібне.</p><p>✗ It’s the most best day.</p><p>✓ It’s the best day.</p></div>
+    <div class="warn"><p><b>Маркери:</b> than, the ... in (the class), the ... of (all), as ... as, not as ... as, much (набагато), even (ще), a bit (трохи), ever (коли-небудь)</p></div>
+    <div class="warn"><p><b>Правила написання -er / -est</b></p><p>Зазвичай: tall → taller. На -e: додаємо тільки -r / -st (nice → nicer). Голосна + приголосна в кінці короткого слова: подвоюємо приголосну (big → bigger, hot → hotter). Приголосна + y: y змінюється на i (happy → happier, easy → the easiest). 2+ склади: more / the most. Таблиця: прикметник, вищий ступінь, найвищий, переклад.</p><p>tall · taller · the tallest · високий</p><p>nice · nicer · the nicest · приємний</p><p>big · bigger · the biggest · великий</p><p>hot · hotter · the hottest · гарячий, спекотний</p><p>thin · thinner · the thinnest · худий, тонкий</p><p>happy · happier · the happiest · щасливий</p><p>easy · easier · the easiest · легкий</p><p>funny · funnier · the funniest · смішний</p><p>expensive · more expensive · the most expensive · дорогий</p><p>interesting · more interesting · the most interesting · цікавий</p><p>good · better · the best · добрий, хороший</p><p>bad · worse · the worst · поганий</p><p>far · farther / further · the farthest / the furthest · далекий</p></div>
+    <p class="lk-tnote" data-ru="Тренажер на 100 завдань: 5 раундів по 20. На уроці можна пройти 1-2 раунди, решту задати додому. Пояснення до кожної відповіді учень бачить у тренажері на сайті (розділ «Граматика»).&lt;br&gt;">Тренажер на 100 завдань: 5 раундів по 20. На уроці можна пройти 1-2 раунди, решту задати додому. Пояснення до кожної відповіді учень бачить у тренажері на сайті (розділ «Граматика»).<br></p>
+  </section>
+  <section id="s2" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">2</span>Раунд 1. Форми: -er, -est, more, most <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="taller"><span class="n">1</span><span class="s">My brother is ___ than me.</span><span class="o"><button type="button">tall</button><button type="button">taller</button><button type="button">tallest</button><button type="button">more tall</button></span></div>
+<div class="ch" data-a="bigger"><span class="n">2</span><span class="s">London is ___ than my town.</span><span class="o"><button type="button">big</button><button type="button">bigger</button><button type="button">biger</button><button type="button">more big</button></span></div>
+<div class="ch" data-a="easier"><span class="n">3</span><span class="s">This test was ___ than the last one.</span><span class="o"><button type="button">more easy</button><button type="button">easier</button><button type="button">easyer</button><button type="button">easiest</button></span></div>
+<div class="ch" data-a="more difficult"><span class="n">4</span><span class="s">Chess is ___ than checkers.</span><span class="o"><button type="button">more difficult</button><button type="button">most difficult</button><button type="button">more difficulter</button><button type="button">difficulter</button></span></div>
+<div class="ch" data-a="the highest"><span class="n">5</span><span class="s">Everest is ___ mountain in the world.</span><span class="o"><button type="button">highest</button><button type="button">the higher</button><button type="button">the most high</button><button type="button">the highest</button></span></div>
+<div class="ch" data-a="most boring"><span class="n">6</span><span class="s">This is the ___ film I have ever seen.</span><span class="o"><button type="button">most boring</button><button type="button">boringest</button><button type="button">most boringest</button><button type="button">more boring</button></span></div>
+<div class="ch" data-a="heavier"><span class="n">7</span><span class="s">Your bag is ___ than mine.</span><span class="o"><button type="button">heavier</button><button type="button">heaviest</button><button type="button">heavyer</button><button type="button">more heavy</button></span></div>
+<div class="ch" data-a="hottest"><span class="n">8</span><span class="s">August is usually the ___ month of the year here.</span><span class="o"><button type="button">hottest</button><button type="button">most hot</button><button type="button">hotest</button><button type="button">hotter</button></span></div>
+<div class="ch" data-a="more interesting"><span class="n">9</span><span class="s">For me, maths is ___ than history.</span><span class="o"><button type="button">more interesting</button><button type="button">as interesting</button><button type="button">most interesting</button><button type="button">interestinger</button></span></div>
+<div class="ch" data-a="faster"><span class="n">10</span><span class="s">Trains are ___ than buses in my city.</span><span class="o"><button type="button">fastter</button><button type="button">more fast</button><button type="button">faster</button><button type="button">fastest</button></span></div>
+<div class="ch" data-a="friendliest"><span class="n">11</span><span class="s">Emma is the ___ student in our group.</span><span class="o"><button type="button">friendliest</button><button type="button">friendlier</button><button type="button">friendlyest</button><button type="button">most friendliest</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; taller · bigger · easier · more difficult · the highest · most boring · heavier · hottest · more interesting · faster · friendliest"><b>Відповіді:</b> taller · bigger · easier · more difficult · the highest · most boring · heavier · hottest · more interesting · faster · friendliest</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="newer"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Sophie’s phone is ___ (new) than mine.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="hotter"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Today is ___ (hot) than yesterday.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="happier"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Max is ___ (happy) now than last year.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="youngest"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Lily is the ___ (young) person in our class.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="laziest"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>My cat is the ___ (lazy) animal in the house.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="wider"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>This street is ___ (wide) than ours.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="thinner"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>Tom is ___ (thin) than his brother.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="cleanest"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>Dan’s room is the ___ (clean) in the flat.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="more comfortable"><span class="n" style="font-weight:800;color:var(--violet)">9</span><span>This sofa is ___ (comfortable) than the old one.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; newer · hotter · happier · youngest · laziest · wider · thinner · cleanest · more comfortable"><b>Відповіді:</b> newer · hotter · happier · youngest · laziest · wider · thinner · cleanest · more comfortable</p>
+  </section>
+  <section id="s3" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">3</span>Раунд 2. Бунтарі: good, bad, far <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="better"><span class="n">1</span><span class="s">My English is ___ now than last year.</span><span class="o"><button type="button">more good</button><button type="button">gooder</button><button type="button">better</button><button type="button">best</button></span></div>
+<div class="ch" data-a="worse"><span class="n">2</span><span class="s">The weather today is ___ than yesterday.</span><span class="o"><button type="button">worst</button><button type="button">worse</button><button type="button">badder</button><button type="button">more bad</button></span></div>
+<div class="ch" data-a="further"><span class="n">3</span><span class="s">The station is ___ than the park.</span><span class="o"><button type="button">farest</button><button type="button">more far</button><button type="button">farer</button><button type="button">further</button></span></div>
+<div class="ch" data-a="best"><span class="n">4</span><span class="s">Who is the ___ player in your team?</span><span class="o"><button type="button">best</button><button type="button">goodest</button><button type="button">most good</button><button type="button">better</button></span></div>
+<div class="ch" data-a="worse"><span class="n">5</span><span class="s">The traffic is ___ today than on Monday.</span><span class="o"><button type="button">badder</button><button type="button">worse</button><button type="button">more worse</button><button type="button">worst</button></span></div>
+<div class="ch" data-a="farthest"><span class="n">6</span><span class="s">Which is the ___ city from London: Edinburgh, Brighton or Inverness?</span><span class="o"><button type="button">farest</button><button type="button">most far</button><button type="button">farther</button><button type="button">farthest</button></span></div>
+<div class="ch" data-a="best"><span class="n">7</span><span class="s">I think summer is the ___ season.</span><span class="o"><button type="button">goodest</button><button type="button">better</button><button type="button">best</button><button type="button">most best</button></span></div>
+<div class="ch" data-a="worst"><span class="n">8</span><span class="s">This is the ___ pizza I have ever eaten. Never again!</span><span class="o"><button type="button">baddest</button><button type="button">worse</button><button type="button">worst</button><button type="button">most bad</button></span></div>
+<div class="ch" data-a="better"><span class="n">9</span><span class="s">Max plays the guitar ___ than his teacher now!</span><span class="o"><button type="button">best</button><button type="button">more well</button><button type="button">gooder</button><button type="button">better</button></span></div>
+<div class="ch" data-a="better"><span class="n">10</span><span class="s">Your score is good, but Lily’s is even ___.</span><span class="o"><button type="button">better</button><button type="button">best</button><button type="button">gooder</button><button type="button">more good</button></span></div>
+<div class="ch" data-a="worse"><span class="n">11</span><span class="s">My little sister draws ___ than I do.</span><span class="o"><button type="button">worse</button><button type="button">more bad</button><button type="button">worst</button><button type="button">badder</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; better · worse · further · best · worse · farthest · best · worst · better · better · worse"><b>Відповіді:</b> better · worse · further · best · worse · farthest · best · worst · better · better · worse</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="best"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>This is the ___ (good) burger in town.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="worst"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>That was the ___ (bad) day of my holiday.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="farther|further"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Edinburgh is ___ (far) from here than Oxford.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="better"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Sophie sings ___ (well) than me.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="worse"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>His new song is ___ (bad) than the old one.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="better"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Your plan is ___ (good) than mine.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="farther|further"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>We walked ___ (far) than we planned.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="worst"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>Monday is the ___ (bad) day of the week for me.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="best"><span class="n" style="font-weight:800;color:var(--violet)">9</span><span>Is this the ___ (good) café in the city?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; best · worst · farther · better · worse · better · farther · worst · best"><b>Відповіді:</b> best · worst · farther · better · worse · better · farther · worst · best</p>
+  </section>
+  <section id="s4" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">4</span>Раунд 3. Than, the, as ... as <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="than"><span class="n">1</span><span class="s">My sister is older ___ me.</span><span class="o"><button type="button">then</button><button type="button">that</button><button type="button">as</button><button type="button">than</button></span></div>
+<div class="ch" data-a="as"><span class="n">2</span><span class="s">Tom is as tall ___ his dad.</span><span class="o"><button type="button">that</button><button type="button">than</button><button type="button">as</button><button type="button">like</button></span></div>
+<div class="ch" data-a="as"><span class="n">3</span><span class="s">This phone is ___ expensive as that one. They both cost the same.</span><span class="o"><button type="button">the most</button><button type="button">more</button><button type="button">as</button><button type="button">so</button></span></div>
+<div class="ch" data-a="as"><span class="n">4</span><span class="s">My bike isn’t as fast ___ yours.</span><span class="o"><button type="button">as</button><button type="button">than</button><button type="button">so</button><button type="button">that</button></span></div>
+<div class="ch" data-a="in"><span class="n">5</span><span class="s">Dan is the funniest boy ___ our class.</span><span class="o"><button type="button">at</button><button type="button">in</button><button type="button">of</button><button type="button">than</button></span></div>
+<div class="ch" data-a="the biggest"><span class="n">6</span><span class="s">Which is ___ animal: a cat, a dog or a horse?</span><span class="o"><button type="button">the biggest</button><button type="button">biggest</button><button type="button">bigger</button><button type="button">the bigger</button></span></div>
+<div class="ch" data-a="quieter"><span class="n">7</span><span class="s">Cats are ___ than dogs, I think.</span><span class="o"><button type="button">the quietest</button><button type="button">quieter</button><button type="button">more quieter</button><button type="button">quietest</button></span></div>
+<div class="ch" data-a="of"><span class="n">8</span><span class="s">She is the oldest ___ the three sisters.</span><span class="o"><button type="button">than</button><button type="button">at</button><button type="button">of</button><button type="button">in</button></span></div>
+<div class="ch" data-a="bigger"><span class="n">9</span><span class="s">Is your school ___ than mine?</span><span class="o"><button type="button">bigger</button><button type="button">the biggest</button><button type="button">big</button><button type="button">more big</button></span></div>
+<div class="ch" data-a="the best"><span class="n">10</span><span class="s">Our team is ___ team in the league.</span><span class="o"><button type="button">the best</button><button type="button">the better</button><button type="button">better</button><button type="button">best</button></span></div>
+<div class="ch" data-a="tidy"><span class="n">11</span><span class="s">My room is not as ___ as yours.</span><span class="o"><button type="button">more tidy</button><button type="button">tidiest</button><button type="button">tidier</button><button type="button">tidy</button></span></div>
+<div class="ch" data-a="taller"><span class="n">12</span><span class="s">He’s much ___ than his brother.</span><span class="o"><button type="button">taller</button><button type="button">tallest</button><button type="button">more tall</button><button type="button">the tallest</button></span></div>
+<div class="ch" data-a="the most expensive"><span class="n">13</span><span class="s">This is ___ restaurant in the city.</span><span class="o"><button type="button">the expensivest</button><button type="button">the most expensive</button><button type="button">the more expensive</button><button type="button">more expensive</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; than · as · as · as · in · the biggest · quieter · of · bigger · the best · tidy · taller · the most expensive"><b>Відповіді:</b> than · as · as · as · in · the biggest · quieter · of · bigger · the best · tidy · taller · the most expensive</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="sweet"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Coffee is not as ___ (sweet) as hot chocolate.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="good"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>The film was not as ___ (good) as the book.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="longest"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Which is the ___ (long) river in the UK?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="fast"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>My new laptop is twice as ___ (fast) as the old one.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="easier"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Running is ___ (easy) than swimming for me.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="busy"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>I’m not as ___ (busy) as I was last week.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="most popular"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>Is this the ___ (popular) game at your school?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; sweet · good · longest · fast · easier · busy · most popular"><b>Відповіді:</b> sweet · good · longest · fast · easier · busy · most popular</p>
+  </section>
+  <section id="s5" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">5</span>Раунд 4. Пастки <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="My dog is bigger than yours."><span class="n">1</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">My dog is more bigger than yours.</button><button type="button">My dog is more big than yours.</button><button type="button">My dog is biggest than yours.</button><button type="button">My dog is bigger than yours.</button></span></div>
+<div class="ch" data-a="She is taller than me."><span class="n">2</span><span class="s">Яке речення правильне?: ___</span><span class="o"><button type="button">She is taller that me.</button><button type="button">She is taller than me.</button><button type="button">She is taller then me.</button><button type="button">She is more taller than me.</button></span></div>
+<div class="ch" data-a="It’s the best song."><span class="n">3</span><span class="s">Знайди речення без помилки: ___</span><span class="o"><button type="button">It’s the most best song.</button><button type="button">It’s the best song.</button><button type="button">It’s most best song.</button><button type="button">It’s the bestest song.</button></span></div>
+<div class="ch" data-a="This film is worse than that one."><span class="n">4</span><span class="s">Де немає помилки?: ___</span><span class="o"><button type="button">This film is badder than that one.</button><button type="button">This film is worst than that one.</button><button type="button">This film is worse than that one.</button><button type="button">This film is more bad than that one.</button></span></div>
+<div class="ch" data-a="then"><span class="n">5</span><span class="s">First we had lunch, and ___ we went to the cinema.</span><span class="o"><button type="button">than</button><button type="button">as</button><button type="button">then</button><button type="button">that</button></span></div>
+<div class="ch" data-a="fatter"><span class="n">6</span><span class="s">My cat is ___ than my neighbour’s cat.</span><span class="o"><button type="button">fatter</button><button type="button">most fat</button><button type="button">fater</button><button type="button">more fatter</button></span></div>
+<div class="ch" data-a="the smartest"><span class="n">7</span><span class="s">Lily is ___ girl in the team.</span><span class="o"><button type="button">the smartest</button><button type="button">the most smartest</button><button type="button">most smartest</button><button type="button">the smarter</button></span></div>
+<div class="ch" data-a="lazier"><span class="n">8</span><span class="s">He is ___ than his sister.</span><span class="o"><button type="button">lazier</button><button type="button">most lazy</button><button type="button">more lazier</button><button type="button">lazyer</button></span></div>
+<div class="ch" data-a="as"><span class="n">9</span><span class="s">My score is the same as yours: it’s as high ___ yours.</span><span class="o"><button type="button">than</button><button type="button">like</button><button type="button">as</button><button type="button">then</button></span></div>
+<div class="ch" data-a="more expensive"><span class="n">10</span><span class="s">Taxis are ___ than buses.</span><span class="o"><button type="button">more expensiver</button><button type="button">expensiver</button><button type="button">more expensive</button><button type="button">most expensive</button></span></div>
+<div class="ch" data-a="the best"><span class="n">11</span><span class="s">This is ___ song on the album.</span><span class="o"><button type="button">the better</button><button type="button">the most good</button><button type="button">the best</button><button type="button">most best</button></span></div>
+<div class="ch" data-a="longer"><span class="n">12</span><span class="s">My hair is ___ than my mum’s.</span><span class="o"><button type="button">more longer</button><button type="button">more long</button><button type="button">longest</button><button type="button">longer</button></span></div>
+<div class="ch" data-a="the fastest"><span class="n">13</span><span class="s">A cheetah is ___ animal on land.</span><span class="o"><button type="button">the faster</button><button type="button">the fastest</button><button type="button">the most fast</button><button type="button">fastest than</button></span></div>
+<div class="ch" data-a="older"><span class="n">14</span><span class="s">My phone is ___ than yours, but yours is newer.</span><span class="o"><button type="button">oldest</button><button type="button">more old</button><button type="button">more older</button><button type="button">older</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; My dog is bigger than yours. · She is taller than me. · It’s the best song. · This film is worse than that one. · then · fatter · the smartest · lazier · as · more expensive · the best · longer · the fastest · older"><b>Відповіді:</b> My dog is bigger than yours. · She is taller than me. · It’s the best song. · This film is worse than that one. · then · fatter · the smartest · lazier · as · more expensive · the best · longer · the fastest · older</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="more difficult"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>This exam was ___ (difficult) than I expected.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="nicer"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Our new teacher is ___ (nice) than the old one.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="biggest"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Our kitchen is the ___ (big) room in the house.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="more exciting"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>The new game is ___ (exciting) than the old one.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="earlier"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>It’s ___ (early) than I thought. Let’s have breakfast.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="funnier"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Your joke was ___ (funny) than mine.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; more difficult · nicer · biggest · more exciting · earlier · funnier"><b>Відповіді:</b> more difficult · nicer · biggest · more exciting · earlier · funnier</p>
+  </section>
+  <section id="s6" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">6</span>Раунд 5. Фінальний бос <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="more"><span class="n">1</span><span class="s">Max has 3 cats and Dan has 5. Dan has ___ cats than Max.</span><span class="o"><button type="button">most</button><button type="button">more</button><button type="button">much</button><button type="button">many</button></span></div>
+<div class="ch" data-a="as old as"><span class="n">2</span><span class="s">Tom is 16. Lily is 16 too. Tom is ___ Lily.</span><span class="o"><button type="button">as old as</button><button type="button">younger than</button><button type="button">older than</button><button type="button">the oldest</button></span></div>
+<div class="ch" data-a="cheaper"><span class="n">3</span><span class="s">The blue jacket costs £45, the black one costs £60. The blue one is ___.</span><span class="o"><button type="button">the cheapest</button><button type="button">cheaper</button><button type="button">as cheap</button><button type="button">more cheap</button></span></div>
+<div class="ch" data-a="far"><span class="n">4</span><span class="s">Emma runs 5 km, Max runs 3 km. Max doesn’t run as ___ as Emma.</span><span class="o"><button type="button">farthest</button><button type="button">further</button><button type="button">farther</button><button type="button">far</button></span></div>
+<div class="ch" data-a="faster"><span class="n">5</span><span class="s">My old phone was slow. The new one is much ___.</span><span class="o"><button type="button">more fast</button><button type="button">the fastest</button><button type="button">faster</button><button type="button">fastest</button></span></div>
+<div class="ch" data-a="colder"><span class="n">6</span><span class="s">It was 10 degrees yesterday and only 2 today. Today is ___ than yesterday.</span><span class="o"><button type="button">more cold</button><button type="button">warmer</button><button type="button">coldest</button><button type="button">colder</button></span></div>
+<div class="ch" data-a="worse"><span class="n">7</span><span class="s">Sophie got 95 points, Lily got 80. Lily’s result was ___ than Sophie’s.</span><span class="o"><button type="button">worse</button><button type="button">worst</button><button type="button">bad</button><button type="button">badder</button></span></div>
+<div class="ch" data-a="better than"><span class="n">8</span><span class="s">The pizza was great, but the dessert was ___ the pizza.</span><span class="o"><button type="button">the best</button><button type="button">more good than</button><button type="button">best than</button><button type="button">better than</button></span></div>
+<div class="ch" data-a="the tallest"><span class="n">9</span><span class="s">All my friends are tall. But Dan is ___ of all.</span><span class="o"><button type="button">the tallest</button><button type="button">taller</button><button type="button">tallest than</button><button type="button">the taller</button></span></div>
+<div class="ch" data-a="the noisiest"><span class="n">10</span><span class="s">I’ve got three dogs. Rex is ___ of them.</span><span class="o"><button type="button">noisier</button><button type="button">the most noisiest</button><button type="button">noisyest</button><button type="button">the noisiest</button></span></div>
+<div class="ch" data-a="as expensive as"><span class="n">11</span><span class="s">Lunch at school costs £4. At the café it costs £4 too. The café is ___ the school.</span><span class="o"><button type="button">more expensive than</button><button type="button">as expensive as</button><button type="button">expensiver than</button><button type="button">the most expensive</button></span></div>
+<div class="ch" data-a="the youngest"><span class="n">12</span><span class="s">Kate is younger than Tom but older than Lily. Lily is ___.</span><span class="o"><button type="button">the youngest</button><button type="button">the oldest</button><button type="button">older</button><button type="button">as old as Kate</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; more · as old as · cheaper · far · faster · colder · worse · better than · the tallest · the noisiest · as expensive as · the youngest"><b>Відповіді:</b> more · as old as · cheaper · far · faster · colder · worse · better than · the tallest · the noisiest · as expensive as · the youngest</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="cheaper"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>I paid 20 dollars and Sophie paid 15. Her ticket was ___ (cheap) than mine.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="best"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>We tried three cafés. The last one was the ___ (good).</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="more interesting"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>I love this series. The new season is ___ (interesting) than the first one.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="fastest"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Nobody in our class is faster than Dan. He’s the ___ (fast).</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="harder"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>This exercise is hard, but the next one is even ___ (hard).</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="crowded"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>The museum was not as ___ (crowded) as the beach. We were happy.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="better"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>Yesterday I slept 5 hours, today 9. Today I feel much ___ (good).</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="most relaxing"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>Of all the subjects, art is the ___ (relaxing) for me.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; cheaper · best · more interesting · fastest · harder · crowded · better · most relaxing"><b>Відповіді:</b> cheaper · best · more interesting · fastest · harder · crowded · better · most relaxing</p>
+  </section>
+  <section class="end"><h2>Great job!</h2><p>See you next lesson.</p></section>
+</div>
+<div class="toast" id="toast"></div>
+<script>window.MURLY_LESSON={"id": "lib-drill-comparatives", "title": "Comparatives and superlatives: 100 tasks", "homework": ["s2", "s3", "s4", "s5", "s6"], "hw": {"s2": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "My brother is {taller|tall|tallest|more tall} than me.\nLondon is {bigger|big|biger|more big} than my town.\nThis test was {easier|easyer|more easy|easiest} than the last one.\nChess is {more difficult|difficulter|most difficult|more difficulter} than checkers.\nEverest is {the highest|the higher|highest|the most high} mountain in the world.\nThis is the {most boring|boringest|more boring|most boringest} film I have ever seen.\nYour bag is {heavier|heavyer|more heavy|heaviest} than mine.\nAugust is usually the {hottest|hotest|most hot|hotter} month of the year here.\nFor me, maths is {more interesting|interestinger|most interesting|as interesting} than history.\nTrains are {faster|more fast|fastest|fastter} than buses in my city.\nEmma is the {friendliest|friendlyest|most friendliest|friendlier} student in our group."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "Sophie’s phone is [newer] (new) than mine.\nToday is [hotter] (hot) than yesterday.\nMax is [happier] (happy) now than last year.\nLily is the [youngest] (young) person in our class.\nMy cat is the [laziest] (lazy) animal in the house.\nThis street is [wider] (wide) than ours.\nTom is [thinner] (thin) than his brother.\nDan’s room is the [cleanest] (clean) in the flat.\nThis sofa is [more comfortable] (comfortable) than the old one."}], "s3": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "My English is {better|gooder|more good|best} now than last year.\nThe weather today is {worse|badder|worst|more bad} than yesterday.\nThe station is {further|farer|farest|more far} than the park.\nWho is the {best|goodest|better|most good} player in your team?\nThe traffic is {worse|badder|worst|more worse} today than on Monday.\nWhich is the {farthest|farest|farther|most far} city from London: Edinburgh, Brighton or Inverness?\nI think summer is the {best|better|goodest|most best} season.\nThis is the {worst|baddest|worse|most bad} pizza I have ever eaten. Never again!\nMax plays the guitar {better|gooder|more well|best} than his teacher now!\nYour score is good, but Lily’s is even {better|best|more good|gooder}.\nMy little sister draws {worse|worst|badder|more bad} than I do."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "This is the [best] (good) burger in town.\nThat was the [worst] (bad) day of my holiday.\nEdinburgh is [farther/further] (far) from here than Oxford.\nSophie sings [better] (well) than me.\nHis new song is [worse] (bad) than the old one.\nYour plan is [better] (good) than mine.\nWe walked [farther/further] (far) than we planned.\nMonday is the [worst] (bad) day of the week for me.\nIs this the [best] (good) café in the city?"}], "s4": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "My sister is older {than|that|then|as} me.\nTom is as tall {as|than|like|that} his dad.\nThis phone is {as|so|more|the most} expensive as that one. They both cost the same.\nMy bike isn’t as fast {as|than|that|so} yours.\nDan is the funniest boy {in|of|than|at} our class.\nWhich is {the biggest|bigger|the bigger|biggest} animal: a cat, a dog or a horse?\nCats are {quieter|the quietest|quietest|more quieter} than dogs, I think.\nShe is the oldest {of|in|than|at} the three sisters.\nIs your school {bigger|the biggest|big|more big} than mine?\nOur team is {the best|better|best|the better} team in the league.\nMy room is not as {tidy|tidier|tidiest|more tidy} as yours.\nHe’s much {taller|tallest|more tall|the tallest} than his brother.\nThis is {the most expensive|the more expensive|the expensivest|more expensive} restaurant in the city."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "Coffee is not as [sweet] (sweet) as hot chocolate.\nThe film was not as [good] (good) as the book.\nWhich is the [longest] (long) river in the UK?\nMy new laptop is twice as [fast] (fast) as the old one.\nRunning is [easier] (easy) than swimming for me.\nI’m not as [busy] (busy) as I was last week.\nIs this the [most popular] (popular) game at your school?"}], "s5": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Обери правильне речення: {My dog is bigger than yours.|My dog is more bigger than yours.|My dog is biggest than yours.|My dog is more big than yours.}\nЯке речення правильне?: {She is taller than me.|She is taller then me.|She is taller that me.|She is more taller than me.}\nЗнайди речення без помилки: {It’s the best song.|It’s the most best song.|It’s the bestest song.|It’s most best song.}\nДе немає помилки?: {This film is worse than that one.|This film is badder than that one.|This film is more bad than that one.|This film is worst than that one.}\nFirst we had lunch, and {then|than|that|as} we went to the cinema.\nMy cat is {fatter|more fatter|fater|most fat} than my neighbour’s cat.\nLily is {the smartest|most smartest|the smarter|the most smartest} girl in the team.\nHe is {lazier|more lazier|lazyer|most lazy} than his sister.\nMy score is the same as yours: it’s as high {as|than|then|like} yours.\nTaxis are {more expensive|expensiver|most expensive|more expensiver} than buses.\nThis is {the best|the most good|the better|most best} song on the album.\nMy hair is {longer|more long|longest|more longer} than my mum’s.\nA cheetah is {the fastest|the faster|the most fast|fastest than} animal on land.\nMy phone is {older|more older|more old|oldest} than yours, but yours is newer."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "This exam was [more difficult] (difficult) than I expected.\nOur new teacher is [nicer] (nice) than the old one.\nOur kitchen is the [biggest] (big) room in the house.\nThe new game is [more exciting] (exciting) than the old one.\nIt’s [earlier] (early) than I thought. Let’s have breakfast.\nYour joke was [funnier] (funny) than mine."}], "s6": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Max has 3 cats and Dan has 5. Dan has {more|much|most|many} cats than Max.\nTom is 16. Lily is 16 too. Tom is {as old as|older than|the oldest|younger than} Lily.\nThe blue jacket costs £45, the black one costs £60. The blue one is {cheaper|more cheap|the cheapest|as cheap}.\nEmma runs 5 km, Max runs 3 km. Max doesn’t run as {far|farther|further|farthest} as Emma.\nMy old phone was slow. The new one is much {faster|fastest|more fast|the fastest}.\nIt was 10 degrees yesterday and only 2 today. Today is {colder|warmer|more cold|coldest} than yesterday.\nSophie got 95 points, Lily got 80. Lily’s result was {worse|bad|worst|badder} than Sophie’s.\nThe pizza was great, but the dessert was {better than|best than|more good than|the best} the pizza.\nAll my friends are tall. But Dan is {the tallest|taller|the taller|tallest than} of all.\nI’ve got three dogs. Rex is {the noisiest|noisier|the most noisiest|noisyest} of them.\nLunch at school costs £4. At the café it costs £4 too. The café is {as expensive as|more expensive than|the most expensive|expensiver than} the school.\nKate is younger than Tom but older than Lily. Lily is {the youngest|the oldest|older|as old as Kate}."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "I paid 20 dollars and Sophie paid 15. Her ticket was [cheaper] (cheap) than mine.\nWe tried three cafés. The last one was the [best] (good).\nI love this series. The new season is [more interesting] (interesting) than the first one.\nNobody in our class is faster than Dan. He’s the [fastest] (fast).\nThis exercise is hard, but the next one is even [harder] (hard).\nThe museum was not as [crowded] (crowded) as the beach. We were happy.\nYesterday I slept 5 hours, today 9. Today I feel much [better] (good).\nOf all the subjects, art is the [most relaxing] (relaxing) for me."}]}};</script>
+<script>
+(function(){var l=(document.cookie.match(/(?:^|; )murly_lang=(\w+)/)||[])[1];try{l=l||localStorage.getItem('murly:tlang')}catch(e){}l=l==='ru'?'ru':'uk';document.querySelectorAll('[data-pairs-'+l+']').forEach(function(b){b.dataset.pairs=b.getAttribute('data-pairs-'+l)});})();
+</script>
+<script>
+const $ = (id) => document.getElementById(id);
+const LIS = {};
+function say(w, rate) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; const v = speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang) && /Google|Natural|Libby|Sonia|Daniel/.test(x.name)) || speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang)); if (v) u.voice = v; u.rate = rate || .95; speechSynthesis.speak(u); } catch (e) { } }
+const sh = (a) => a.map((x) => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map((x) => x[1]);
+document.querySelectorAll('.voc div').forEach((d) => d.onclick = () => say(d.dataset.say));
+document.querySelectorAll('[data-play]').forEach((b) => b.onclick = () => say(LIS[b.dataset.play], b.dataset.slow ? .75 : .95));
+document.querySelectorAll('[data-stop]').forEach((b) => b.onclick = () => { try { speechSynthesis.cancel(); } catch (e) { } });
+document.querySelectorAll('.ch').forEach((q) => q.querySelectorAll('button').forEach((b) => b.onclick = () => { if (q.classList.contains('ok')) return; const ok = b.textContent === q.dataset.a; q.classList.toggle('ok', ok); q.classList.toggle('bad', !ok); if (ok) { const s = q.querySelector('.s'); if (s && s.textContent.includes('___')) { s.textContent = s.textContent.replace('___', q.dataset.a); } } }));
+const norm = (x) => x.toLowerCase().replace(/[’']/g, "'").replace(/[,;:"“”«»]/g, ' ').replace(/\s+/g, ' ').replace(/[.!?]$/, '').trim();
+document.querySelectorAll('.ty').forEach((r) => { const inp = r.querySelector('input'); const chk = () => { const ok = r.dataset.a.split('|').some((a) => norm(a) === norm(inp.value)); r.classList.toggle('ok', ok); r.classList.toggle('bad', !ok && inp.value.trim() !== ''); }; r.querySelector('button').onclick = chk; inp.onkeydown = (e) => { if (e.key === 'Enter') chk(); }; });
+document.querySelectorAll('[data-mt]').forEach((box) => { const pairs = JSON.parse(box.dataset.pairs); const L = sh(pairs.map((p) => p[0])), R = sh(pairs.map((p) => p[1])); let sel = null, done = 0, err = 0; box.innerHTML = L.map((w, i) => `<button type="button" data-w="${w}">${w}</button><button type="button" data-d="${R[i]}">${R[i]}</button>`).join('');
+  box.querySelectorAll('button').forEach((b) => b.onclick = () => { if (b.classList.contains('done')) return; if (!sel || (sel.dataset.w && b.dataset.w) || (sel.dataset.d && b.dataset.d)) { if (sel) sel.classList.remove('sel'); sel = b; b.classList.add('sel'); return; } const w = sel.dataset.w || b.dataset.w, d = sel.dataset.d || b.dataset.d; if (pairs.some((p) => p[0] === w && p[1] === d)) { sel.classList.add('done'); b.classList.add('done'); done++; say(w); if (done === pairs.length) document.querySelector(`[data-mtres="${box.dataset.mt}"]`).textContent = err ? `Done! Mistakes: ${err}` : 'Perfect!'; } else err++; sel.classList.remove('sel'); sel = null; }); });
+document.querySelectorAll('[data-vids]').forEach((box) => JSON.parse(box.dataset.vids).forEach(([id, title, ch, qs]) => { const d = document.createElement('div'); d.className = 'vid'; d.innerHTML = `<div class="frame"><button class="play" type="button" style="background-image:url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)"><span>PLAY</span></button></div><div class="info"><h3>${title}</h3><small>YouTube · ${ch}</small><ol>${qs.map((q) => `<li>${q}</li>`).join('')}</ol></div>`; d.querySelector('.play').onclick = (e) => { e.currentTarget.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&cc_load_policy=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${title}"></iframe>`; }; box.appendChild(d); }));
+document.querySelectorAll('[data-spin]').forEach((b) => { const list = JSON.parse(b.dataset.spin); let last = -1; b.onclick = () => { let i; do { i = Math.floor(Math.random() * list.length); } while (i === last && list.length > 1); last = i; document.getElementById(b.dataset.target).textContent = list[i]; }; });
+try { const k = 'murly:' + (window.MURLY_LESSON ? MURLY_LESSON.id : 'x') + ':hw'; const t = $('hwText'); if (t) { t.value = localStorage.getItem(k) || ''; t.oninput = () => localStorage.setItem(k, t.value); } } catch (e) { }
+const STAGES = [...document.querySelectorAll('.wrap > section[id]')];
+$('stages').innerHTML = STAGES.map((s) => `<a href="#${s.id}"><b>${s.querySelector('.lk-n').textContent}</b><span>${s.dataset.stage}</span><small>${s.dataset.min !== '0' ? s.dataset.min + ' min' : 'at home'}</small></a>`).join('');
+$('teacherBtn').onclick = (e) => { const on = document.body.classList.toggle('teacher'); e.currentTarget.textContent = on ? 'Student version' : 'Teacher version'; };
+</script>
+<script src="/game-lessons/kit.js" defer></script>
+</body>
+</html>

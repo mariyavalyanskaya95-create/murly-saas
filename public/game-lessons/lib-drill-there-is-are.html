@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>There is / There are: 100 tasks (A1) | Murly</title>
+<link rel="icon" href="/favicon.svg">
+<meta name="description" content="Повторимо правило: Є, існує: there is / there are
+100 завдань від простого до складного
+Розберемо головні пастки">
+<link rel="canonical" href="https://murly.com.ua/game-lessons/lib-drill-there-is-are.html">
+<style>
+:root{--paper:#F3F0EA;--ink:#17181C;--violet:#3D4A7A;--lav:#D9D3C7;--pink:#E9C9BC;--green:#D4E2CF;--white:#fff;--muted:#62646B;--accent:#B5482F}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+/* hero */
+.hero{background:linear-gradient(rgba(16,17,22,.5),rgba(16,17,22,.72)),url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1400&q=70&auto=format&fit=crop");color:#fff;padding:70px 18px 56px;text-align:center;position:relative;overflow:hidden}
+.hero .kicker{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#E9C9BC;font-weight:700}
+.hero .cr{position:absolute;right:12px;bottom:8px;font-size:11px;color:rgba(255,255,255,.6)}
+.hero h1{margin:8px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(36px,6vw,64px);letter-spacing:-.5px;font-weight:700}
+.hero h1 span{color:var(--pink);font-style:italic}
+.hero p{margin:12px 0 0;font-size:17px;color:#e6e2da}
+.hero .flags{display:flex;justify-content:center;gap:12px;margin-top:22px;flex-wrap:wrap}
+.hero .flags svg{width:40px;height:26px;border-radius:3px;opacity:.9}
+/* sections */
+section{margin-top:30px;background:var(--white);border-radius:18px;padding:28px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.05)}
+section h2{margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tag{font-family:"Segoe UI",system-ui,sans-serif;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--paper);color:var(--accent);text-transform:uppercase;letter-spacing:1px}
+.lk-n{display:inline-grid;place-items:center;width:42px;height:42px;background:var(--violet);color:#fff;border-radius:50%;font-size:21px;flex:none}
+.lk-mode{font-size:13px;font-weight:700;border:2px dashed var(--lav);color:var(--muted);padding:2px 10px;border-radius:999px}
+.lk-ins{font-size:17px;background:var(--paper);border-radius:12px;padding:10px 14px;margin:6px 0 18px}
+.lk-sub{margin:24px 0 10px;font-size:19px}
+.btn{font:inherit;font-weight:700;border:0;border-radius:999px;background:var(--ink);color:#fff;padding:10px 20px;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+.btn.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+/* teacher */
+.lk-tbtn{position:fixed;right:16px;top:70px;z-index:45;font:inherit;font-weight:800;border:2px solid var(--ink);background:var(--pink);padding:8px 14px;border-radius:12px;cursor:pointer}
+body.teacher .lk-tbtn{background:var(--green)}
+.lk-ans,.lk-tnote{display:none}
+body.teacher .lk-ans{display:block;margin-top:8px;font-weight:700;color:#1d5a12;background:var(--green);border-left:5px solid #5aa845;padding:6px 10px;font-size:15px;border-radius:6px}
+body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff3f7;border-left:5px solid #d9789a;padding:8px 12px;font-size:15px;border-radius:6px}
+/* overview */
+.lk-overview ul{font-size:17px;line-height:1.7;margin:6px 0 16px}
+.lk-stages{display:flex;flex-wrap:wrap;gap:8px}
+.lk-stages a{display:grid;border-radius:14px;padding:8px 12px;text-decoration:none;color:var(--ink);background:var(--paper);font-weight:700;min-width:100px}
+.lk-stages a span{text-transform:capitalize}
+.lk-stages a b{font-size:20px;color:var(--violet)}
+.lk-stages a small{font-weight:600;color:var(--muted)}
+/* warm-up */
+.taxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tax{background:var(--paper);border-radius:18px;padding:16px;display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center}
+.tax svg{width:56px;height:56px}
+.tax b{display:block;font-size:17px}
+.tax small{color:var(--muted);font-size:14px}
+.qs{display:grid;gap:10px;margin-top:18px}
+.qs div{background:var(--green);border-radius:14px;padding:10px 16px;font-size:18px;font-weight:600}
+.phr{background:#fff7e8;border-radius:14px;padding:12px 16px;margin-top:16px;font-size:15px}
+.phr ul{margin:6px 0 0;padding-left:18px}
+.fic{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:16px}
+.fic .c{background:#fff;border:2px solid #1B2140;border-radius:16px;padding:14px 16px;box-shadow:3px 3px 0 #1B2140}
+.fic .c b{display:block;font-size:18px;line-height:1.35;margin-bottom:8px}
+.fic .c .k{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.fic .c .k span{font-size:13px;background:#eef1fb;border-radius:999px;padding:3px 10px}
+.fic .c details{margin-top:8px;font-size:15px;color:#3b4160}
+.fic .c summary{cursor:pointer;font-weight:700;color:#534AB7}
+.fi-n{display:inline-flex;width:28px;height:28px;border-radius:50%;background:#2F4BA0;color:#fff;align-items:center;justify-content:center;font-size:14px;margin-right:6px}
+/* vocab */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:12px}
+.vc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:2px solid transparent;transition:border-color .2s,transform .2s}
+.vc:hover{border-color:var(--violet);transform:translateY(-2px)}
+.vc b{font-size:18px;display:flex;align-items:center;gap:8px}
+.vc b svg{width:20px;height:20px;flex:none;color:var(--violet)}
+.vc p{margin:6px 0 0;font-size:14px;color:var(--muted)}
+.vc em{display:block;margin-top:6px;font-size:14px;color:var(--violet);font-style:normal;font-weight:600}
+.vc.played{background:#e6ecfb}
+/* grammar */
+.gram{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.gb{border-radius:18px;padding:16px}
+.gb h3{margin:0 0 6px;font-size:19px}
+.gb .f{display:inline-block;background:#fff;border-radius:8px;padding:3px 10px;font-weight:800;margin:4px 0;font-family:Consolas,monospace;font-size:15px}
+.gb p{margin:6px 0 0;font-size:15px}
+.g1{background:var(--pink)}.g2{background:var(--lav)}.g3{background:var(--green)}.g4{background:#fbe7c6}
+.warn{margin-top:14px;background:var(--ink);color:#fff;border-radius:14px;padding:12px 16px;font-size:16px}
+.warn b{color:var(--pink)}
+.q{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:2px dashed var(--paper);font-size:18px}
+.q:last-child{border-bottom:0}
+.q .n{width:32px;height:32px;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;border-radius:50%;font-weight:800;font-size:15px}
+.opt{font:inherit;font-size:16px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:10px;padding:4px 12px;cursor:pointer;margin:0 2px}
+.opt.ok{background:var(--green);border-color:#5aa845}
+.opt.bad{background:var(--pink);animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+/* tour */
+.tour{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.law{border-radius:22px;overflow:hidden;background:var(--paper);display:flex;flex-direction:column}
+.law .pic{height:150px;display:grid;place-items:center;position:relative}
+.law .pic svg.ill{width:130px;height:130px}
+.law .pic svg.fl{position:absolute;left:14px;top:14px;width:46px;height:30px;border-radius:5px;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.law .pic .no{position:absolute;right:14px;top:14px;background:var(--ink);color:#fff;font-weight:800;border-radius:999px;padding:2px 10px;font-size:13px}
+.law .body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.law h3{margin:0;font-size:20px}
+.law .where{font-size:13px;font-weight:800;color:var(--violet);text-transform:uppercase;letter-spacing:1px}
+.law p{margin:0;font-size:16px}
+.law .why{font-size:14px;color:var(--muted)}
+.law .dq{margin-top:auto;background:#fff;border-radius:12px;padding:8px 12px;font-weight:700;font-size:15px}
+.law .lsn{font:inherit;font-size:13px;font-weight:700;background:none;border:0;color:var(--violet);cursor:pointer;padding:0;text-align:left}
+/* game */
+.game{max-width:720px;margin:0 auto;text-align:center}
+.score{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.score span{background:var(--paper);border-radius:999px;padding:6px 16px;font-weight:800}
+.stmt{background:var(--ink);color:#fff;border-radius:22px;padding:28px 24px;min-height:150px;display:grid;place-items:center;font-size:23px;font-weight:700;position:relative}
+.stmt small{position:absolute;top:12px;left:18px;font-size:13px;color:var(--lav);font-weight:700}
+.choose{display:flex;justify-content:center;gap:14px;margin:18px 0}
+.choose button{font:inherit;font-size:18px;font-weight:700;border:2px solid var(--ink);border-radius:999px;padding:12px 28px;cursor:pointer}
+.choose .bl{background:var(--green)}.choose .bm{background:var(--pink)}
+.choose button:disabled{opacity:.5;cursor:default}
+.verdict{min-height:70px;font-size:17px;background:var(--paper);border-radius:16px;padding:12px 16px;text-align:left}
+.verdict b.r{color:#2d7a1d}.verdict b.w{color:#b23a62}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.dots i{width:14px;height:14px;border-radius:50%;background:var(--paper)}
+.dots i.r{background:#7cc663}.dots i.w{background:#e47b9f}.dots i.c{outline:3px solid var(--violet)}
+.final{font-size:22px;font-weight:800;color:var(--violet)}
+/* invent */
+.inv{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.frames{display:grid;gap:10px}
+.frames label{font-size:14px;font-weight:700;color:var(--muted)}
+.frames select,.frames input{font:inherit;width:100%;padding:8px 10px;border:2px solid var(--lav);border-radius:10px;background:#fff}
+.poster{background:var(--paper);border:3px solid var(--ink);border-radius:20px;padding:22px;text-align:center;min-height:260px;display:flex;flex-direction:column;gap:10px;justify-content:center}
+.poster .seal{width:70px;height:70px;margin:0 auto}
+.poster h3{margin:0;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--violet)}
+.poster .rule{font-size:22px;font-weight:800}
+.poster .pen{font-size:16px;color:var(--muted)}
+.ideas{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ideas span{background:var(--pink);border-radius:999px;padding:5px 12px;font-size:14px;font-weight:600}
+/* roleplay */
+.rp{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.role{border-radius:20px;padding:18px}
+.role h3{margin:0 0 6px;display:flex;align-items:center;gap:10px}
+.role h3 svg{width:42px;height:42px}
+.role ul{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.r1{background:var(--lav)}.r2{background:var(--green)}
+.scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:16px}
+.sc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:3px solid transparent}
+.sc.on{border-color:var(--violet);background:#fff}
+.sc b{display:block;font-size:17px;margin-bottom:4px}
+.sc p{margin:0;font-size:15px}
+.timer{font-size:40px;font-weight:800;text-align:center;margin:14px 0 6px;color:var(--violet)}
+.ctr{text-align:center}
+/* homework */
+.hwb{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hwc{background:var(--paper);border-radius:18px;padding:18px}
+.hwc h3{margin:0 0 8px}
+.hwc ol,.hwc ul{margin:6px 0 0;padding-left:20px;line-height:1.7}
+.hwc textarea{width:100%;min-height:150px;font:inherit;border:2px solid var(--lav);border-radius:12px;padding:10px;margin-top:10px}
+.end{text-align:center;background:var(--ink);color:#fff;box-shadow:none}
+.end h2{justify-content:center}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(140px);background:var(--ink);color:#fff;font-weight:800;padding:12px 22px;border-radius:14px;transition:transform .3s;z-index:50}
+.toast.show{transform:translateX(-50%) translateY(0)}
+/* photos */
+.ph{margin:0}
+.ph img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;background:var(--paper)}
+.ph figcaption{font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.2px}
+.tax{grid-template-columns:1fr !important;padding:12px !important}
+.law .pic{height:auto !important;display:block !important;padding:0;position:relative}
+.law .pic .ph img{border-radius:0;aspect-ratio:16/10;transition:filter .5s}
+.law .pic .ph figcaption{padding:4px 12px 0}
+.law.hide .pic .ph img{filter:blur(10px) grayscale(.6)}
+.law.hide .reveal-body,.law.hide .fl,.law.hide .where{visibility:hidden}
+.law .clue{font-size:15px;font-style:italic;color:var(--ink)}
+.law .gc{display:flex;flex-wrap:wrap;gap:6px}
+.law .gc button{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:4px 12px;cursor:pointer}
+.law .gc button.ok{background:var(--green)}.law .gc button.bad{background:var(--pink)}
+.law:not(.hide) .guess{display:none}
+.fair{display:grid;gap:4px;background:#fff;border-radius:12px;padding:8px 12px}
+.fair .ends{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.fair input{width:100%;accent-color:var(--accent)}
+.fair output{font-size:14px;font-weight:700;color:var(--accent)}
+.gph{max-width:720px;margin:0 auto 12px}
+.gph img{aspect-ratio:21/9}
+.fine{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.fq{background:var(--paper);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.fq h3{margin:0;font-size:18px}
+.fq .opts{display:flex;flex-wrap:wrap;gap:6px}
+.fq .opts button{font:inherit;font-size:14px;font-weight:700;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 12px;cursor:pointer}
+.fq .opts button.ok{background:var(--green)}.fq .opts button.bad{background:var(--pink)}
+.fq .res{font-size:15px;min-height:22px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{position:relative;aspect-ratio:16/9;background:#111}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;cursor:pointer;background:#111 center/cover;display:grid;place-items:center}
+.vid .play span{background:rgba(0,0,0,.7);color:#fff;font-weight:700;border-radius:999px;padding:10px 20px;font-size:15px;letter-spacing:1px}
+.vid .info{padding:14px 16px}
+.vid .info h3{margin:0 0 2px;font-size:18px}
+.vid .info small{color:var(--muted)}
+.vid .info ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+@media(max-width:760px){.inv,.rp,.hwb{grid-template-columns:1fr}.lk-tbtn{top:auto;bottom:70px}}
+
+.pr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.pb{border-radius:18px;padding:16px 18px}
+.pb h3{margin:0;font-family:Georgia,serif;font-size:30px}
+.pb .m{font-size:15px;color:var(--muted);margin:2px 0 8px}
+.pb .chips{display:flex;flex-wrap:wrap;gap:6px}
+.pb .chips span{background:#fff;border-radius:999px;padding:4px 11px;font-size:14px;font-weight:600}
+.pb ul{margin:10px 0 0;padding-left:18px;font-size:15px}
+.p-in{background:#DCE6F5}.p-at{background:#F3D9CF}.p-on{background:#D4E2CF}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-size:15px;margin-top:10px}
+.ex div{background:var(--paper);border-radius:10px;padding:8px 12px}
+.ex b{color:var(--accent)}
+.q{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.q .n{font-weight:800;color:var(--violet);min-width:24px}
+.q .gap{display:inline-block;min-width:44px;border-bottom:2px solid var(--ink);text-align:center;font-weight:800}
+.q .opts{margin-left:auto;display:flex;gap:6px}
+.q .opts button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 14px;cursor:pointer}
+.q.ok{background:#DDEED7}.q.ok .gap{color:#2F7A3B}
+.q.bad{background:#F6DAD3}
+.score{font-weight:800;margin-top:12px}
+.text{font-size:18px;line-height:1.75;background:var(--paper);border-radius:16px;padding:18px 22px}
+.text h3{margin:0 0 6px;font-family:Georgia,serif;font-size:24px}
+.text p{margin:0 0 12px}
+.text.hl mark{background:#F3D9CF;border-radius:4px;padding:0 3px;font-weight:700}
+.tf{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:9px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.tf .opts{margin-left:auto;display:flex;gap:6px}
+.tf button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.tf.ok{background:#DDEED7}.tf.bad{background:#F6DAD3}
+.disc{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px;margin-top:6px}
+.disc div{background:var(--green);border-radius:14px;padding:12px 16px;font-size:17px;font-weight:600}
+.disc div i{font-style:normal;color:var(--violet);margin-right:6px}
+.spin{text-align:center;margin-top:16px}
+.spin .card{display:inline-block;min-height:80px;min-width:min(560px,100%);background:var(--ink);color:#fff;border-radius:18px;padding:20px 24px;font-size:22px;font-weight:700;margin-bottom:12px}
+@media(max-width:700px){.ex{grid-template-columns:1fr}}
+
+.hero{background-size:cover!important;background-position:center!important}
+.voc{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.voc div{background:var(--paper);border-radius:14px;padding:10px 14px;cursor:pointer;border:2px solid transparent}
+.voc div:hover{border-color:var(--violet)}
+.voc b{display:block;font-size:18px}.voc span{display:block;color:var(--accent);font-weight:700;font-size:15px}.voc em{display:block;font-size:14px;color:var(--muted);margin-top:3px}
+.mt{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:10px}
+.mt button{font:inherit;font-size:16px;text-align:left;border:2px solid var(--ink);background:#fff;border-radius:14px;padding:9px 14px;cursor:pointer}
+.mt button.sel{background:#FFE7A8}.mt button.done{background:#CDE8C6;border-color:#4C9A5B;cursor:default}
+.ch{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ch .n{font-weight:800;color:var(--violet);min-width:24px}
+.ch .o{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.ch .o button{font:inherit;font-size:15px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.ch.ok{background:#DDEED7}.ch.bad{background:#F6DAD3}
+.ty{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ty input{font:inherit;border:2px solid var(--ink);border-radius:10px;padding:4px 10px;width:220px}
+.ty.ok{background:#DDEED7}.ty.bad{background:#F6DAD3}
+.ty small{color:var(--muted)}
+.photo{width:100%;height:300px;object-fit:cover;border-radius:16px;display:block}
+.cap{font-size:11px;color:var(--muted);margin:4px 0 12px}
+.pics{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.pics figure{margin:0;background:var(--paper);border-radius:16px;overflow:hidden}
+.pics img{width:100%;height:170px;object-fit:cover;display:block}
+.pics figcaption{padding:8px 12px;font-weight:700}
+.pics small{display:block;font-weight:400;font-size:10px;color:var(--muted)}
+.lis{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:8px 0 14px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{aspect-ratio:16/9;background:#000;position:relative}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;background-size:cover;background-position:center;cursor:pointer;display:grid;place-items:center}
+.vid .play span{background:#E5484D;color:#fff;font-weight:800;border-radius:12px;padding:10px 20px}
+.vid .info{padding:12px 16px}.vid h3{margin:0;font-size:18px}.vid small{color:var(--muted)}
+.vid ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th,.tbl td{border:1px solid #ddd;padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--paper)}
+@media(max-width:700px){.mt{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="/game-lessons/kit.css">
+</head>
+<body>
+<header class="hero">
+  <div class="kicker">A1 · teens · Граматика: тренажер Є, існує: there is / there are</div>
+  <h1>There is / There are: 100 tasks</h1>
+  <p>A1 · 6 parts · 60 min</p>
+  <span class="cr">Photo: Unsplash</span>
+</header>
+<button class="lk-tbtn" id="teacherBtn" type="button">Teacher version</button>
+<div class="wrap">
+  <section class="lk-overview">
+    <h2>In this lesson you will:</h2>
+    <ul><li>Повторимо правило: Є, існує: there is / there are
+100 завдань від простого до складного
+Розберемо головні пастки</li></ul>
+    <div class="lk-stages" id="stages"></div>
+  </section>
+  <section id="s1" data-stage="practice" data-min="10">
+    <h2><span class="lk-n">1</span>Теорія <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<div class="warn"><p><b>Коли вживаємо</b></p><p>Щось є (існує) у якомусь місці: There is a new café near my school. (Біля моєї школи є нове кафе.)</p><p>Скільки чогось є: There are 25 students in our group. (У нашій групі 25 студентів.)</p><p>Згадуємо щось уперше: There’s a message for you. It’s from Dan. (Тобі повідомлення. Воно від Дена.)</p><p>Питаємо, чи є щось: Is there a pharmacy here? Are there any buses at night? (Тут є аптека? Вночі ходять автобуси?)</p><p>Про минуле: there was / there were: There were a lot of people at the concert. (На концерті було багато людей.)</p></div>
+    <div class="warn"><p><b>Форми</b></p><p>+  There is (there’s) + a / an + однина або + незлічуване (milk, money). Приклад: There’s a cat on the roof.</p><p>+  There are + some / число / a lot of + множина. Приклад: There are some apples in the bag.</p><p>−  There isn’t a / any ...; There aren’t any .... Приклад: There aren’t any clean cups.</p><p>?  Is there a / any ...? Are there any ...?. Приклад: Are there any tickets left?</p><p>коротка відповідь  Yes, there is / are. No, there isn’t / aren’t. У «так» не скорочуємо. Приклад: Is there a lift? No, there isn’t.</p><p>how many  How many + множина + are there ...?. Приклад: How many rooms are there in your flat?</p><p>минуле  There was + однина; There were + множина. Приклад: There was a storm last night.</p></div>
+    <div class="warn"><p><b>Головна пастка</b></p><p>«У моїй кімнаті є ліжко». Не перекладай порядок слів з української. Англійською починаємо з there is, а місце ставимо в кінець.</p><p>✗ In my room is a bed.</p><p>✓ There is a bed in my room.</p><p>There are, they are, their. There are: є, існують. They are (they’re): вони є. Their: їхній. Звучать схоже, але значать різне.</p><p>✗ Their are two dogs in the garden.</p><p>✓ There are two dogs in the garden.</p><p>There have / There is + множина. Have тут не вживаємо. Is чи are залежить від того, що стоїть після: одне чи кілька.</p><p>✗ There have two pizzas in the fridge. There is two pizzas.</p><p>✓ There are two pizzas in the fridge.</p></div>
+    <div class="warn"><p><b>Маркери:</b> a / an, some, any, a lot of, no, how many, how much, in, on, under, next to, near</p></div>
+    <div class="warn"><p><b>a / some / any з there is / there are</b></p><p>У ствердженні: a / an для одного, some для кількох або для незлічуваного. У запереченні й питанні: any. Якщо в реченні вже є no, not не додаємо: There are no chairs. Коли перелічуємо, дієслово узгоджуємо з першим предметом: There is a sofa and two chairs.</p><p>· однина · множина · незлічуване</p><p>+ · There is a pen. · There are some pens. · There is some water.</p><p>− · There isn’t a pen. · There aren’t any pens. · There isn’t any water.</p><p>? · Is there a pen? · Are there any pens? · Is there any water?</p></div>
+    <p class="lk-tnote" data-ru="Тренажер на 100 завдань: 5 раундів по 20. На уроці можна пройти 1-2 раунди, решту задати додому. Пояснення до кожної відповіді учень бачить у тренажері на сайті (розділ «Граматика»).&lt;br&gt;">Тренажер на 100 завдань: 5 раундів по 20. На уроці можна пройти 1-2 раунди, решту задати додому. Пояснення до кожної відповіді учень бачить у тренажері на сайті (розділ «Граматика»).<br></p>
+  </section>
+  <section id="s2" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">2</span>Раунд 1. Форми: is чи are <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="is"><span class="n">1</span><span class="s">There ___ a cat on the sofa.</span><span class="o"><button type="button">be</button><button type="button">is</button><button type="button">are</button></span></div>
+<div class="ch" data-a="are"><span class="n">2</span><span class="s">There ___ two pizzas in the fridge.</span><span class="o"><button type="button">have</button><button type="button">are</button><button type="button">is</button></span></div>
+<div class="ch" data-a="is"><span class="n">3</span><span class="s">There ___ some milk in the glass.</span><span class="o"><button type="button">are</button><button type="button">is</button><button type="button">have</button></span></div>
+<div class="ch" data-a="are"><span class="n">4</span><span class="s">There ___ a lot of people at the concert.</span><span class="o"><button type="button">are</button><button type="button">is</button><button type="button">has</button></span></div>
+<div class="ch" data-a="an"><span class="n">5</span><span class="s">There is ___ apple in my bag.</span><span class="o"><button type="button">some</button><button type="button">an</button><button type="button">a</button></span></div>
+<div class="ch" data-a="some"><span class="n">6</span><span class="s">There are ___ books on my desk.</span><span class="o"><button type="button">an</button><button type="button">some</button><button type="button">a</button></span></div>
+<div class="ch" data-a="a"><span class="n">7</span><span class="s">There is ___ new student in our class.</span><span class="o"><button type="button">some</button><button type="button">an</button><button type="button">a</button></span></div>
+<div class="ch" data-a="are"><span class="n">8</span><span class="s">There ___ three bedrooms in our flat.</span><span class="o"><button type="button">is</button><button type="button">are</button><button type="button">be</button></span></div>
+<div class="ch" data-a="is"><span class="n">9</span><span class="s">There ___ an old piano in the hall.</span><span class="o"><button type="button">is</button><button type="button">am</button><button type="button">are</button></span></div>
+<div class="ch" data-a="is"><span class="n">10</span><span class="s">There ___ some money in my wallet.</span><span class="o"><button type="button">have</button><button type="button">is</button><button type="button">are</button></span></div>
+<div class="ch" data-a="are"><span class="n">11</span><span class="s">There ___ five cats in my grandma’s house!</span><span class="o"><button type="button">are</button><button type="button">has</button><button type="button">is</button></span></div>
+<div class="ch" data-a="There’s a bus stop near my school."><span class="n">12</span><span class="s">Обери правильне речення: скорочення: ___</span><span class="o"><button type="button">There’re is a bus stop near my school.</button><button type="button">Theres a bus stop near my school.</button><button type="button">There’s a bus stop near my school.</button></span></div>
+<div class="ch" data-a="is"><span class="n">13</span><span class="s">There ___ a lot of homework today.</span><span class="o"><button type="button">is</button><button type="button">are</button><button type="button">have</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; is · are · is · are · an · some · a · are · is · is · are · There’s a bus stop near my school. · is"><b>Відповіді:</b> is · are · is · are · an · some · a · are · is · is · are · There’s a bus stop near my school. · is</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="is"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>There ___ (be) a big mirror in the bathroom.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="are"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>There ___ (be) six players in a volleyball team.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="is"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>There ___ (be) some bread on the table.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="are"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>There ___ (be) twenty students in my group.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="an"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>There is ___ (a/an) umbrella in the car.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="some"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>There are ___ (a/some) cookies in the box.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="There’s|There is|there’s|there is"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>___ (there is) a good film on TV tonight.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; is · are · is · are · an · some · There’s"><b>Відповіді:</b> is · are · is · are · an · some · There’s</p>
+  </section>
+  <section id="s3" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">3</span>Раунд 2. Заперечення і питання <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="isn’t"><span class="n">1</span><span class="s">There ___ any sugar in my tea.</span><span class="o"><button type="button">aren’t</button><button type="button">not</button><button type="button">isn’t</button></span></div>
+<div class="ch" data-a="aren’t"><span class="n">2</span><span class="s">There ___ any students in the classroom.</span><span class="o"><button type="button">aren’t</button><button type="button">isn’t</button><button type="button">no</button></span></div>
+<div class="ch" data-a="Is"><span class="n">3</span><span class="s">___ there a pharmacy near here?</span><span class="o"><button type="button">Are</button><button type="button">Do</button><button type="button">Is</button></span></div>
+<div class="ch" data-a="Are"><span class="n">4</span><span class="s">___ there any eggs in the fridge?</span><span class="o"><button type="button">Have</button><button type="button">Is</button><button type="button">Are</button></span></div>
+<div class="ch" data-a="isn’t"><span class="n">5</span><span class="s">Is there a lift in your building? No, there ___.</span><span class="o"><button type="button">aren’t</button><button type="button">is</button><button type="button">isn’t</button></span></div>
+<div class="ch" data-a="are"><span class="n">6</span><span class="s">Are there any good cafés here? Yes, there ___.</span><span class="o"><button type="button">is</button><button type="button">aren’t</button><button type="button">are</button></span></div>
+<div class="ch" data-a="any"><span class="n">7</span><span class="s">There aren’t ___ clean cups.</span><span class="o"><button type="button">any</button><button type="button">some</button><button type="button">a</button></span></div>
+<div class="ch" data-a="a"><span class="n">8</span><span class="s">Is there ___ swimming pool in your town?</span><span class="o"><button type="button">any</button><button type="button">a</button><button type="button">some</button></span></div>
+<div class="ch" data-a="any"><span class="n">9</span><span class="s">Are there ___ tickets for tonight?</span><span class="o"><button type="button">an</button><button type="button">a</button><button type="button">any</button></span></div>
+<div class="ch" data-a="There isn’t a TV in my room."><span class="n">10</span><span class="s">Обери правильне речення: заперечення: ___</span><span class="o"><button type="button">There doesn’t a TV in my room.</button><button type="button">There not is a TV in my room.</button><button type="button">There isn’t a TV in my room.</button></span></div>
+<div class="ch" data-a="Are there a lot of fans?"><span class="n">11</span><span class="s">Обери правильне речення: питання: ___</span><span class="o"><button type="button">Are there a lot of fans?</button><button type="button">There are a lot of fans?</button><button type="button">Is there a lot of fans?</button></span></div>
+<div class="ch" data-a="are"><span class="n">12</span><span class="s">There ___ no chairs in the room.</span><span class="o"><button type="button">is</button><button type="button">are</button><button type="button">aren’t</button></span></div>
+<div class="ch" data-a="is"><span class="n">13</span><span class="s">Is there any coffee left? Yes, there ___.</span><span class="o"><button type="button">is</button><button type="button">are</button><button type="button">’s</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; isn’t · aren’t · Is · Are · isn’t · are · any · a · any · There isn’t a TV in my room. · Are there a lot of fans? · are · is"><b>Відповіді:</b> isn’t · aren’t · Is · Are · isn’t · are · any · a · any · There isn’t a TV in my room. · Are there a lot of fans? · are · is</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="isn’t|is not"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>There ___ (be, −) a microwave in our kitchen.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="aren’t|are not"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>There ___ (be, −) any shops in this village.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Are|are"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>___ (be) there any cats in this house?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Is|is"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>___ (be) there a bank on this street?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="isn’t|is not"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Is there a printer in the office? No, there ___ (be, −).</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="are"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Are there any bananas? Yes, there ___ (be).</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="any"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>There isn’t ___ (some/any) water in the bottle.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; isn’t · aren’t · Are · Is · isn’t · are · any"><b>Відповіді:</b> isn’t · aren’t · Are · Is · isn’t · are · any</p>
+  </section>
+  <section id="s4" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">4</span>Раунд 3. Коли вживати і how many <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="are"><span class="n">1</span><span class="s">How many students ___ there in your class?</span><span class="o"><button type="button">are</button><button type="button">is</button><button type="button">do</button></span></div>
+<div class="ch" data-a="days"><span class="n">2</span><span class="s">How many ___ are there in a week?</span><span class="o"><button type="button">day</button><button type="button">days</button><button type="button">day’s</button></span></div>
+<div class="ch" data-a="is"><span class="n">3</span><span class="s">How much milk ___ there in the fridge?</span><span class="o"><button type="button">have</button><button type="button">are</button><button type="button">is</button></span></div>
+<div class="ch" data-a="are"><span class="n">4</span><span class="s">There ___ 12 months in a year.</span><span class="o"><button type="button">have</button><button type="button">are</button><button type="button">is</button></span></div>
+<div class="ch" data-a="There’s"><span class="n">5</span><span class="s">Help! ___ a spider in the bath!</span><span class="o"><button type="button">Its</button><button type="button">There’s</button><button type="button">Their</button></span></div>
+<div class="ch" data-a="It’s"><span class="n">6</span><span class="s">There is a dog in the yard. ___ very big.</span><span class="o"><button type="button">It’s</button><button type="button">There’s</button><button type="button">Its</button></span></div>
+<div class="ch" data-a="They’re"><span class="n">7</span><span class="s">There are two new games in the shop. ___ really expensive.</span><span class="o"><button type="button">They’re</button><button type="button">Their</button><button type="button">There are</button></span></div>
+<div class="ch" data-a="is"><span class="n">8</span><span class="s">Look! There ___ a message from Dan on your phone.</span><span class="o"><button type="button">are</button><button type="button">be</button><button type="button">is</button></span></div>
+<div class="ch" data-a="are"><span class="n">9</span><span class="s">There ___ lots of trees in our park.</span><span class="o"><button type="button">has</button><button type="button">are</button><button type="button">is</button></span></div>
+<div class="ch" data-a="people are"><span class="n">10</span><span class="s">How many ___ there in your family? Four.</span><span class="o"><button type="button">people is</button><button type="button">people are</button><button type="button">peoples are</button></span></div>
+<div class="ch" data-a="is"><span class="n">11</span><span class="s">There ___ a lot of noise outside.</span><span class="o"><button type="button">are</button><button type="button">have</button><button type="button">is</button></span></div>
+<div class="ch" data-a="there are"><span class="n">12</span><span class="s">Is there a cinema in your town? Yes, ___ two.</span><span class="o"><button type="button">there is</button><button type="button">there are</button><button type="button">it is</button></span></div>
+<div class="ch" data-a="is"><span class="n">13</span><span class="s">There ___ a pen in my pencil case, but there aren’t any pencils.</span><span class="o"><button type="button">have</button><button type="button">is</button><button type="button">are</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; are · days · is · are · There’s · It’s · They’re · is · are · people are · is · there are · is"><b>Відповіді:</b> are · days · is · are · There’s · It’s · They’re · is · are · people are · is · there are · is</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="are"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>How many players ___ (be) there in a football team?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="are"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>There ___ (be) seven days in a week.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="is"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>There ___ (be) a problem with my laptop.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="many"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>How ___ (much/many) chairs are there?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="It|it"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>There’s a new café near school. ___ (it/there) is really cosy.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="is"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>There ___ (be) an interesting post on Lily’s blog.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="are"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>How many bedrooms ___ (be) there in your flat?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; are · are · is · many · It · is · are"><b>Відповіді:</b> are · are · is · many · It · is · are</p>
+  </section>
+  <section id="s5" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">5</span>Раунд 4. Пастки <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="There is a bed in my room."><span class="n">1</span><span class="s">Обери правильне речення: ліжко в кімнаті: ___</span><span class="o"><button type="button">In my room has a bed.</button><button type="button">There is a bed in my room.</button><button type="button">In my room there are a bed.</button></span></div>
+<div class="ch" data-a="There is a cake on the table."><span class="n">2</span><span class="s">Обери правильне речення: торт на столі: ___</span><span class="o"><button type="button">There have a cake on the table.</button><button type="button">There is a cake on the table.</button><button type="button">On the table are a cake.</button></span></div>
+<div class="ch" data-a="There are many parks in London."><span class="n">3</span><span class="s">Обери правильне речення: парки в Лондоні: ___</span><span class="o"><button type="button">There are many parks in London.</button><button type="button">In London have many parks.</button><button type="button">In London is many parks.</button></span></div>
+<div class="ch" data-a="There are two dogs in the garden."><span class="n">4</span><span class="s">Обери правильне речення: собаки в саду: ___</span><span class="o"><button type="button">There are two dogs in the garden.</button><button type="button">Their are two dogs in the garden.</button><button type="button">They are two dogs in the garden.</button></span></div>
+<div class="ch" data-a="They are"><span class="n">5</span><span class="s">Meet Max and Lily! ___ my best friends.</span><span class="o"><button type="button">Their</button><button type="button">There are</button><button type="button">They are</button></span></div>
+<div class="ch" data-a="Their"><span class="n">6</span><span class="s">I like my neighbours. ___ house is next to ours.</span><span class="o"><button type="button">There</button><button type="button">Their</button><button type="button">They’re</button></span></div>
+<div class="ch" data-a="They’re"><span class="n">7</span><span class="s">Where are the kids? ___ in the garden.</span><span class="o"><button type="button">They’re</button><button type="button">Their</button><button type="button">There</button></span></div>
+<div class="ch" data-a="are"><span class="n">8</span><span class="s">There ___ two mistakes in your test.</span><span class="o"><button type="button">are</button><button type="button">have</button><button type="button">is</button></span></div>
+<div class="ch" data-a="There are a lot of cars here."><span class="n">9</span><span class="s">Обери правильне речення: машини: ___</span><span class="o"><button type="button">There is a lot of cars here.</button><button type="button">There are a lot of cars here.</button><button type="button">There have a lot of cars here.</button></span></div>
+<div class="ch" data-a="Is there a gym in your school?"><span class="n">10</span><span class="s">Обери правильне речення: спортзал: ___</span><span class="o"><button type="button">Is a gym in your school?</button><button type="button">Is there a gym in your school?</button><button type="button">Have there a gym in your school?</button></span></div>
+<div class="ch" data-a="There is some water in the jug."><span class="n">11</span><span class="s">Обери правильне речення: вода: ___</span><span class="o"><button type="button">There are some water in the jug.</button><button type="button">There is any water in the jug.</button><button type="button">There is some water in the jug.</button></span></div>
+<div class="ch" data-a="There isn’t any milk."><span class="n">12</span><span class="s">Обери правильне речення: молоко: ___</span><span class="o"><button type="button">There isn’t any milk.</button><button type="button">There is not no milk.</button><button type="button">There isn’t no milk.</button></span></div>
+<div class="ch" data-a="There is a bus at 8."><span class="n">13</span><span class="s">Обери правильне речення: автобус: ___</span><span class="o"><button type="button">They’re is a bus at 8.</button><button type="button">There is a bus at 8.</button><button type="button">Their is a bus at 8.</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; There is a bed in my room. · There is a cake on the table. · There are many parks in London. · There are two dogs in the garden. · They are · Their · They’re · are · There are a lot of cars here. · Is there a gym in your school? · There is some water in the jug. · There isn’t any milk. · There is a bus at 8."><b>Відповіді:</b> There is a bed in my room. · There is a cake on the table. · There are many parks in London. · There are two dogs in the garden. · They are · Their · They’re · are · There are a lot of cars here. · Is there a gym in your school? · There is some water in the jug. · There isn’t any milk. · There is a bus at 8.</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="There|there"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>___ (there/their/they’re) are three cafés on this street.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Their|their"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>My cousins live in Edinburgh. ___ (there/their/they’re) flat is in the centre.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="they’re|they are"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Tom and Dan are late. I think ___ (there/their/they’re) stuck in traffic.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="there are|there’re"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>In my bag ___ (there + be) two pens and a notebook.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="is"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>There ___ (be) a lot of snow this morning.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="are"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>There ___ (be) a lot of tourists in summer.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="there"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>Put the boxes over ___ (there/their/they’re), please.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; There · Their · they’re · there are · is · are · there"><b>Відповіді:</b> There · Their · they’re · there are · is · are · there</p>
+  </section>
+  <section id="s6" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">6</span>Раунд 5. Фінальний бос <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="were"><span class="n">1</span><span class="s">Yesterday there ___ a lot of people at the match.</span><span class="o"><button type="button">are</button><button type="button">were</button><button type="button">was</button></span></div>
+<div class="ch" data-a="was"><span class="n">2</span><span class="s">There ___ a strange noise last night. I couldn’t sleep.</span><span class="o"><button type="button">is</button><button type="button">were</button><button type="button">was</button></span></div>
+<div class="ch" data-a="any"><span class="n">3</span><span class="s">There weren’t ___ tickets left, so we stayed at home.</span><span class="o"><button type="button">a</button><button type="button">any</button><button type="button">some</button></span></div>
+<div class="ch" data-a="Was"><span class="n">4</span><span class="s">___ there a party at Max’s house last Saturday?</span><span class="o"><button type="button">Is</button><button type="button">Was</button><button type="button">Were</button></span></div>
+<div class="ch" data-a="is"><span class="n">5</span><span class="s">There ___ a sofa, two armchairs and a TV in the living room.</span><span class="o"><button type="button">is</button><button type="button">are</button><button type="button">has</button></span></div>
+<div class="ch" data-a="isn’t"><span class="n">6</span><span class="s">I can’t make a sandwich. There ___ any bread.</span><span class="o"><button type="button">is</button><button type="button">aren’t</button><button type="button">isn’t</button></span></div>
+<div class="ch" data-a="there’s"><span class="n">7</span><span class="s">Is there a supermarket near your flat? Yes, ___ one on the corner.</span><span class="o"><button type="button">it’s</button><button type="button">there’s</button><button type="button">their</button></span></div>
+<div class="ch" data-a="were"><span class="n">8</span><span class="s">How many people ___ there at your birthday party last year?</span><span class="o"><button type="button">was</button><button type="button">are</button><button type="button">were</button></span></div>
+<div class="ch" data-a="They’re"><span class="n">9</span><span class="s">There are two cats in the photo. ___ both black.</span><span class="o"><button type="button">There are</button><button type="button">They’re</button><button type="button">Their</button></span></div>
+<div class="ch" data-a="There were some old photos in the box."><span class="n">10</span><span class="s">Обери правильне речення: фото в коробці: ___</span><span class="o"><button type="button">There were some old photos in the box.</button><button type="button">Their were some old photos in the box.</button><button type="button">There was some old photos in the box.</button></span></div>
+<div class="ch" data-a="wasn’t"><span class="n">11</span><span class="s">There ___ any homework yesterday. Great!</span><span class="o"><button type="button">weren’t</button><button type="button">isn’t</button><button type="button">wasn’t</button></span></div>
+<div class="ch" data-a="aren’t"><span class="n">12</span><span class="s">We need to go shopping. There ___ any eggs or tomatoes.</span><span class="o"><button type="button">not</button><button type="button">isn’t</button><button type="button">aren’t</button></span></div>
+<div class="ch" data-a="there aren’t"><span class="n">13</span><span class="s">Are there any messages for me? No, ___.</span><span class="o"><button type="button">there aren’t</button><button type="button">there isn’t</button><button type="button">they aren’t</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; were · was · any · Was · is · isn’t · there’s · were · They’re · There were some old photos in the box. · wasn’t · aren’t · there aren’t"><b>Відповіді:</b> were · was · any · Was · is · isn’t · there’s · were · They’re · There were some old photos in the box. · wasn’t · aren’t · there aren’t</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="was"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>There ___ (be, past) a good film on TV yesterday.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="were"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>There ___ (be, past) twenty people on the bus this morning.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="there are|there’re"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Wow, ___ (there + be) so many likes on your new post!</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="are"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Why ___ (be) there so many cars outside today?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="isn’t|is not"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>There ___ (be, −) a single cloud in the sky. Let’s go to the beach!</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="are"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>How many apps ___ (be) there on your phone? About fifty.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="there’s|there is"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>My town is small, but ___ (there + be) a great skate park.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; was · were · there are · are · isn’t · are · there’s"><b>Відповіді:</b> was · were · there are · are · isn’t · are · there’s</p>
+  </section>
+  <section class="end"><h2>Great job!</h2><p>See you next lesson.</p></section>
+</div>
+<div class="toast" id="toast"></div>
+<script>window.MURLY_LESSON={"id": "lib-drill-there-is-are", "title": "There is / There are: 100 tasks", "homework": ["s2", "s3", "s4", "s5", "s6"], "hw": {"s2": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "There {is|are|be} a cat on the sofa.\nThere {are|is|have} two pizzas in the fridge.\nThere {is|are|have} some milk in the glass.\nThere {are|is|has} a lot of people at the concert.\nThere is {an|a|some} apple in my bag.\nThere are {some|a|an} books on my desk.\nThere is {a|some|an} new student in our class.\nThere {are|is|be} three bedrooms in our flat.\nThere {is|are|am} an old piano in the hall.\nThere {is|are|have} some money in my wallet.\nThere {are|is|has} five cats in my grandma’s house!\nОбери правильне речення: скорочення: {There’s a bus stop near my school.|There’re is a bus stop near my school.|Theres a bus stop near my school.}\nThere {is|are|have} a lot of homework today."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "There [is] (be) a big mirror in the bathroom.\nThere [are] (be) six players in a volleyball team.\nThere [is] (be) some bread on the table.\nThere [are] (be) twenty students in my group.\nThere is [an] (a/an) umbrella in the car.\nThere are [some] (a/some) cookies in the box.\n[There’s/There is/there’s/there is] (there is) a good film on TV tonight."}], "s3": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "There {isn’t|aren’t|not} any sugar in my tea.\nThere {aren’t|isn’t|no} any students in the classroom.\n{Is|Are|Do} there a pharmacy near here?\n{Are|Is|Have} there any eggs in the fridge?\nIs there a lift in your building? No, there {isn’t|aren’t|is}.\nAre there any good cafés here? Yes, there {are|is|aren’t}.\nThere aren’t {any|some|a} clean cups.\nIs there {a|any|some} swimming pool in your town?\nAre there {any|a|an} tickets for tonight?\nОбери правильне речення: заперечення: {There isn’t a TV in my room.|There not is a TV in my room.|There doesn’t a TV in my room.}\nОбери правильне речення: питання: {Are there a lot of fans?|There are a lot of fans?|Is there a lot of fans?}\nThere {are|aren’t|is} no chairs in the room.\nIs there any coffee left? Yes, there {is|’s|are}."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "There [isn’t/is not] (be, −) a microwave in our kitchen.\nThere [aren’t/are not] (be, −) any shops in this village.\n[Are/are] (be) there any cats in this house?\n[Is/is] (be) there a bank on this street?\nIs there a printer in the office? No, there [isn’t/is not] (be, −).\nAre there any bananas? Yes, there [are] (be).\nThere isn’t [any] (some/any) water in the bottle."}], "s4": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "How many students {are|is|do} there in your class?\nHow many {days|day|day’s} are there in a week?\nHow much milk {is|are|have} there in the fridge?\nThere {are|is|have} 12 months in a year.\nHelp! {There’s|Its|Their} a spider in the bath!\nThere is a dog in the yard. {It’s|There’s|Its} very big.\nThere are two new games in the shop. {They’re|There are|Their} really expensive.\nLook! There {is|are|be} a message from Dan on your phone.\nThere {are|is|has} lots of trees in our park.\nHow many {people are|people is|peoples are} there in your family? Four.\nThere {is|are|have} a lot of noise outside.\nIs there a cinema in your town? Yes, {there are|there is|it is} two.\nThere {is|are|have} a pen in my pencil case, but there aren’t any pencils."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "How many players [are] (be) there in a football team?\nThere [are] (be) seven days in a week.\nThere [is] (be) a problem with my laptop.\nHow [many] (much/many) chairs are there?\nThere’s a new café near school. [It/it] (it/there) is really cosy.\nThere [is] (be) an interesting post on Lily’s blog.\nHow many bedrooms [are] (be) there in your flat?"}], "s5": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Обери правильне речення: ліжко в кімнаті: {There is a bed in my room.|In my room has a bed.|In my room there are a bed.}\nОбери правильне речення: торт на столі: {There is a cake on the table.|There have a cake on the table.|On the table are a cake.}\nОбери правильне речення: парки в Лондоні: {There are many parks in London.|In London have many parks.|In London is many parks.}\nОбери правильне речення: собаки в саду: {There are two dogs in the garden.|Their are two dogs in the garden.|They are two dogs in the garden.}\nMeet Max and Lily! {They are|There are|Their} my best friends.\nI like my neighbours. {Their|There|They’re} house is next to ours.\nWhere are the kids? {They’re|There|Their} in the garden.\nThere {are|is|have} two mistakes in your test.\nОбери правильне речення: машини: {There are a lot of cars here.|There is a lot of cars here.|There have a lot of cars here.}\nОбери правильне речення: спортзал: {Is there a gym in your school?|Have there a gym in your school?|Is a gym in your school?}\nОбери правильне речення: вода: {There is some water in the jug.|There are some water in the jug.|There is any water in the jug.}\nОбери правильне речення: молоко: {There isn’t any milk.|There isn’t no milk.|There is not no milk.}\nОбери правильне речення: автобус: {There is a bus at 8.|Their is a bus at 8.|They’re is a bus at 8.}"}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "[There/there] (there/their/they’re) are three cafés on this street.\nMy cousins live in Edinburgh. [Their/their] (there/their/they’re) flat is in the centre.\nTom and Dan are late. I think [they’re/they are] (there/their/they’re) stuck in traffic.\nIn my bag [there are/there’re] (there + be) two pens and a notebook.\nThere [is] (be) a lot of snow this morning.\nThere [are] (be) a lot of tourists in summer.\nPut the boxes over [there] (there/their/they’re), please."}], "s6": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Yesterday there {were|was|are} a lot of people at the match.\nThere {was|were|is} a strange noise last night. I couldn’t sleep.\nThere weren’t {any|some|a} tickets left, so we stayed at home.\n{Was|Were|Is} there a party at Max’s house last Saturday?\nThere {is|are|has} a sofa, two armchairs and a TV in the living room.\nI can’t make a sandwich. There {isn’t|aren’t|is} any bread.\nIs there a supermarket near your flat? Yes, {there’s|it’s|their} one on the corner.\nHow many people {were|are|was} there at your birthday party last year?\nThere are two cats in the photo. {They’re|There are|Their} both black.\nОбери правильне речення: фото в коробці: {There were some old photos in the box.|Their were some old photos in the box.|There was some old photos in the box.}\nThere {wasn’t|weren’t|isn’t} any homework yesterday. Great!\nWe need to go shopping. There {aren’t|isn’t|not} any eggs or tomatoes.\nAre there any messages for me? No, {there aren’t|they aren’t|there isn’t}."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "There [was] (be, past) a good film on TV yesterday.\nThere [were] (be, past) twenty people on the bus this morning.\nWow, [there are/there’re] (there + be) so many likes on your new post!\nWhy [are] (be) there so many cars outside today?\nThere [isn’t/is not] (be, −) a single cloud in the sky. Let’s go to the beach!\nHow many apps [are] (be) there on your phone? About fifty.\nMy town is small, but [there’s/there is] (there + be) a great skate park."}]}};</script>
+<script>
+(function(){var l=(document.cookie.match(/(?:^|; )murly_lang=(\w+)/)||[])[1];try{l=l||localStorage.getItem('murly:tlang')}catch(e){}l=l==='ru'?'ru':'uk';document.querySelectorAll('[data-pairs-'+l+']').forEach(function(b){b.dataset.pairs=b.getAttribute('data-pairs-'+l)});})();
+</script>
+<script>
+const $ = (id) => document.getElementById(id);
+const LIS = {};
+function say(w, rate) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; const v = speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang) && /Google|Natural|Libby|Sonia|Daniel/.test(x.name)) || speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang)); if (v) u.voice = v; u.rate = rate || .95; speechSynthesis.speak(u); } catch (e) { } }
+const sh = (a) => a.map((x) => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map((x) => x[1]);
+document.querySelectorAll('.voc div').forEach((d) => d.onclick = () => say(d.dataset.say));
+document.querySelectorAll('[data-play]').forEach((b) => b.onclick = () => say(LIS[b.dataset.play], b.dataset.slow ? .75 : .95));
+document.querySelectorAll('[data-stop]').forEach((b) => b.onclick = () => { try { speechSynthesis.cancel(); } catch (e) { } });
+document.querySelectorAll('.ch').forEach((q) => q.querySelectorAll('button').forEach((b) => b.onclick = () => { if (q.classList.contains('ok')) return; const ok = b.textContent === q.dataset.a; q.classList.toggle('ok', ok); q.classList.toggle('bad', !ok); if (ok) { const s = q.querySelector('.s'); if (s && s.textContent.includes('___')) { s.textContent = s.textContent.replace('___', q.dataset.a); } } }));
+const norm = (x) => x.toLowerCase().replace(/[’']/g, "'").replace(/[,;:"“”«»]/g, ' ').replace(/\s+/g, ' ').replace(/[.!?]$/, '').trim();
+document.querySelectorAll('.ty').forEach((r) => { const inp = r.querySelector('input'); const chk = () => { const ok = r.dataset.a.split('|').some((a) => norm(a) === norm(inp.value)); r.classList.toggle('ok', ok); r.classList.toggle('bad', !ok && inp.value.trim() !== ''); }; r.querySelector('button').onclick = chk; inp.onkeydown = (e) => { if (e.key === 'Enter') chk(); }; });
+document.querySelectorAll('[data-mt]').forEach((box) => { const pairs = JSON.parse(box.dataset.pairs); const L = sh(pairs.map((p) => p[0])), R = sh(pairs.map((p) => p[1])); let sel = null, done = 0, err = 0; box.innerHTML = L.map((w, i) => `<button type="button" data-w="${w}">${w}</button><button type="button" data-d="${R[i]}">${R[i]}</button>`).join('');
+  box.querySelectorAll('button').forEach((b) => b.onclick = () => { if (b.classList.contains('done')) return; if (!sel || (sel.dataset.w && b.dataset.w) || (sel.dataset.d && b.dataset.d)) { if (sel) sel.classList.remove('sel'); sel = b; b.classList.add('sel'); return; } const w = sel.dataset.w || b.dataset.w, d = sel.dataset.d || b.dataset.d; if (pairs.some((p) => p[0] === w && p[1] === d)) { sel.classList.add('done'); b.classList.add('done'); done++; say(w); if (done === pairs.length) document.querySelector(`[data-mtres="${box.dataset.mt}"]`).textContent = err ? `Done! Mistakes: ${err}` : 'Perfect!'; } else err++; sel.classList.remove('sel'); sel = null; }); });
+document.querySelectorAll('[data-vids]').forEach((box) => JSON.parse(box.dataset.vids).forEach(([id, title, ch, qs]) => { const d = document.createElement('div'); d.className = 'vid'; d.innerHTML = `<div class="frame"><button class="play" type="button" style="background-image:url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)"><span>PLAY</span></button></div><div class="info"><h3>${title}</h3><small>YouTube · ${ch}</small><ol>${qs.map((q) => `<li>${q}</li>`).join('')}</ol></div>`; d.querySelector('.play').onclick = (e) => { e.currentTarget.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&cc_load_policy=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${title}"></iframe>`; }; box.appendChild(d); }));
+document.querySelectorAll('[data-spin]').forEach((b) => { const list = JSON.parse(b.dataset.spin); let last = -1; b.onclick = () => { let i; do { i = Math.floor(Math.random() * list.length); } while (i === last && list.length > 1); last = i; document.getElementById(b.dataset.target).textContent = list[i]; }; });
+try { const k = 'murly:' + (window.MURLY_LESSON ? MURLY_LESSON.id : 'x') + ':hw'; const t = $('hwText'); if (t) { t.value = localStorage.getItem(k) || ''; t.oninput = () => localStorage.setItem(k, t.value); } } catch (e) { }
+const STAGES = [...document.querySelectorAll('.wrap > section[id]')];
+$('stages').innerHTML = STAGES.map((s) => `<a href="#${s.id}"><b>${s.querySelector('.lk-n').textContent}</b><span>${s.dataset.stage}</span><small>${s.dataset.min !== '0' ? s.dataset.min + ' min' : 'at home'}</small></a>`).join('');
+$('teacherBtn').onclick = (e) => { const on = document.body.classList.toggle('teacher'); e.currentTarget.textContent = on ? 'Student version' : 'Teacher version'; };
+</script>
+<script src="/game-lessons/kit.js" defer></script>
+</body>
+</html>

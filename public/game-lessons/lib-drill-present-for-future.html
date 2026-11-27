@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Present tenses for the future; future continuous and perfect: 100 tasks (B1) | Murly</title>
+<link rel="icon" href="/favicon.svg">
+<meta name="description" content="Повторимо правило: Теперішні часи для майбутнього, Future Continuous і Future Perfect
+100 завдань від простого до складного
+Розберемо головні пастки">
+<link rel="canonical" href="https://murly.com.ua/game-lessons/lib-drill-present-for-future.html">
+<style>
+:root{--paper:#F3F0EA;--ink:#17181C;--violet:#3D4A7A;--lav:#D9D3C7;--pink:#E9C9BC;--green:#D4E2CF;--white:#fff;--muted:#62646B;--accent:#B5482F}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+/* hero */
+.hero{background:linear-gradient(rgba(16,17,22,.5),rgba(16,17,22,.72)),url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1400&q=70&auto=format&fit=crop");color:#fff;padding:70px 18px 56px;text-align:center;position:relative;overflow:hidden}
+.hero .kicker{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#E9C9BC;font-weight:700}
+.hero .cr{position:absolute;right:12px;bottom:8px;font-size:11px;color:rgba(255,255,255,.6)}
+.hero h1{margin:8px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(36px,6vw,64px);letter-spacing:-.5px;font-weight:700}
+.hero h1 span{color:var(--pink);font-style:italic}
+.hero p{margin:12px 0 0;font-size:17px;color:#e6e2da}
+.hero .flags{display:flex;justify-content:center;gap:12px;margin-top:22px;flex-wrap:wrap}
+.hero .flags svg{width:40px;height:26px;border-radius:3px;opacity:.9}
+/* sections */
+section{margin-top:30px;background:var(--white);border-radius:18px;padding:28px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.05)}
+section h2{margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tag{font-family:"Segoe UI",system-ui,sans-serif;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--paper);color:var(--accent);text-transform:uppercase;letter-spacing:1px}
+.lk-n{display:inline-grid;place-items:center;width:42px;height:42px;background:var(--violet);color:#fff;border-radius:50%;font-size:21px;flex:none}
+.lk-mode{font-size:13px;font-weight:700;border:2px dashed var(--lav);color:var(--muted);padding:2px 10px;border-radius:999px}
+.lk-ins{font-size:17px;background:var(--paper);border-radius:12px;padding:10px 14px;margin:6px 0 18px}
+.lk-sub{margin:24px 0 10px;font-size:19px}
+.btn{font:inherit;font-weight:700;border:0;border-radius:999px;background:var(--ink);color:#fff;padding:10px 20px;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+.btn.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+/* teacher */
+.lk-tbtn{position:fixed;right:16px;top:70px;z-index:45;font:inherit;font-weight:800;border:2px solid var(--ink);background:var(--pink);padding:8px 14px;border-radius:12px;cursor:pointer}
+body.teacher .lk-tbtn{background:var(--green)}
+.lk-ans,.lk-tnote{display:none}
+body.teacher .lk-ans{display:block;margin-top:8px;font-weight:700;color:#1d5a12;background:var(--green);border-left:5px solid #5aa845;padding:6px 10px;font-size:15px;border-radius:6px}
+body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff3f7;border-left:5px solid #d9789a;padding:8px 12px;font-size:15px;border-radius:6px}
+/* overview */
+.lk-overview ul{font-size:17px;line-height:1.7;margin:6px 0 16px}
+.lk-stages{display:flex;flex-wrap:wrap;gap:8px}
+.lk-stages a{display:grid;border-radius:14px;padding:8px 12px;text-decoration:none;color:var(--ink);background:var(--paper);font-weight:700;min-width:100px}
+.lk-stages a span{text-transform:capitalize}
+.lk-stages a b{font-size:20px;color:var(--violet)}
+.lk-stages a small{font-weight:600;color:var(--muted)}
+/* warm-up */
+.taxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tax{background:var(--paper);border-radius:18px;padding:16px;display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center}
+.tax svg{width:56px;height:56px}
+.tax b{display:block;font-size:17px}
+.tax small{color:var(--muted);font-size:14px}
+.qs{display:grid;gap:10px;margin-top:18px}
+.qs div{background:var(--green);border-radius:14px;padding:10px 16px;font-size:18px;font-weight:600}
+.phr{background:#fff7e8;border-radius:14px;padding:12px 16px;margin-top:16px;font-size:15px}
+.phr ul{margin:6px 0 0;padding-left:18px}
+.fic{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:16px}
+.fic .c{background:#fff;border:2px solid #1B2140;border-radius:16px;padding:14px 16px;box-shadow:3px 3px 0 #1B2140}
+.fic .c b{display:block;font-size:18px;line-height:1.35;margin-bottom:8px}
+.fic .c .k{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.fic .c .k span{font-size:13px;background:#eef1fb;border-radius:999px;padding:3px 10px}
+.fic .c details{margin-top:8px;font-size:15px;color:#3b4160}
+.fic .c summary{cursor:pointer;font-weight:700;color:#534AB7}
+.fi-n{display:inline-flex;width:28px;height:28px;border-radius:50%;background:#2F4BA0;color:#fff;align-items:center;justify-content:center;font-size:14px;margin-right:6px}
+/* vocab */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:12px}
+.vc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:2px solid transparent;transition:border-color .2s,transform .2s}
+.vc:hover{border-color:var(--violet);transform:translateY(-2px)}
+.vc b{font-size:18px;display:flex;align-items:center;gap:8px}
+.vc b svg{width:20px;height:20px;flex:none;color:var(--violet)}
+.vc p{margin:6px 0 0;font-size:14px;color:var(--muted)}
+.vc em{display:block;margin-top:6px;font-size:14px;color:var(--violet);font-style:normal;font-weight:600}
+.vc.played{background:#e6ecfb}
+/* grammar */
+.gram{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.gb{border-radius:18px;padding:16px}
+.gb h3{margin:0 0 6px;font-size:19px}
+.gb .f{display:inline-block;background:#fff;border-radius:8px;padding:3px 10px;font-weight:800;margin:4px 0;font-family:Consolas,monospace;font-size:15px}
+.gb p{margin:6px 0 0;font-size:15px}
+.g1{background:var(--pink)}.g2{background:var(--lav)}.g3{background:var(--green)}.g4{background:#fbe7c6}
+.warn{margin-top:14px;background:var(--ink);color:#fff;border-radius:14px;padding:12px 16px;font-size:16px}
+.warn b{color:var(--pink)}
+.q{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:2px dashed var(--paper);font-size:18px}
+.q:last-child{border-bottom:0}
+.q .n{width:32px;height:32px;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;border-radius:50%;font-weight:800;font-size:15px}
+.opt{font:inherit;font-size:16px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:10px;padding:4px 12px;cursor:pointer;margin:0 2px}
+.opt.ok{background:var(--green);border-color:#5aa845}
+.opt.bad{background:var(--pink);animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+/* tour */
+.tour{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.law{border-radius:22px;overflow:hidden;background:var(--paper);display:flex;flex-direction:column}
+.law .pic{height:150px;display:grid;place-items:center;position:relative}
+.law .pic svg.ill{width:130px;height:130px}
+.law .pic svg.fl{position:absolute;left:14px;top:14px;width:46px;height:30px;border-radius:5px;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.law .pic .no{position:absolute;right:14px;top:14px;background:var(--ink);color:#fff;font-weight:800;border-radius:999px;padding:2px 10px;font-size:13px}
+.law .body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.law h3{margin:0;font-size:20px}
+.law .where{font-size:13px;font-weight:800;color:var(--violet);text-transform:uppercase;letter-spacing:1px}
+.law p{margin:0;font-size:16px}
+.law .why{font-size:14px;color:var(--muted)}
+.law .dq{margin-top:auto;background:#fff;border-radius:12px;padding:8px 12px;font-weight:700;font-size:15px}
+.law .lsn{font:inherit;font-size:13px;font-weight:700;background:none;border:0;color:var(--violet);cursor:pointer;padding:0;text-align:left}
+/* game */
+.game{max-width:720px;margin:0 auto;text-align:center}
+.score{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.score span{background:var(--paper);border-radius:999px;padding:6px 16px;font-weight:800}
+.stmt{background:var(--ink);color:#fff;border-radius:22px;padding:28px 24px;min-height:150px;display:grid;place-items:center;font-size:23px;font-weight:700;position:relative}
+.stmt small{position:absolute;top:12px;left:18px;font-size:13px;color:var(--lav);font-weight:700}
+.choose{display:flex;justify-content:center;gap:14px;margin:18px 0}
+.choose button{font:inherit;font-size:18px;font-weight:700;border:2px solid var(--ink);border-radius:999px;padding:12px 28px;cursor:pointer}
+.choose .bl{background:var(--green)}.choose .bm{background:var(--pink)}
+.choose button:disabled{opacity:.5;cursor:default}
+.verdict{min-height:70px;font-size:17px;background:var(--paper);border-radius:16px;padding:12px 16px;text-align:left}
+.verdict b.r{color:#2d7a1d}.verdict b.w{color:#b23a62}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.dots i{width:14px;height:14px;border-radius:50%;background:var(--paper)}
+.dots i.r{background:#7cc663}.dots i.w{background:#e47b9f}.dots i.c{outline:3px solid var(--violet)}
+.final{font-size:22px;font-weight:800;color:var(--violet)}
+/* invent */
+.inv{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.frames{display:grid;gap:10px}
+.frames label{font-size:14px;font-weight:700;color:var(--muted)}
+.frames select,.frames input{font:inherit;width:100%;padding:8px 10px;border:2px solid var(--lav);border-radius:10px;background:#fff}
+.poster{background:var(--paper);border:3px solid var(--ink);border-radius:20px;padding:22px;text-align:center;min-height:260px;display:flex;flex-direction:column;gap:10px;justify-content:center}
+.poster .seal{width:70px;height:70px;margin:0 auto}
+.poster h3{margin:0;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--violet)}
+.poster .rule{font-size:22px;font-weight:800}
+.poster .pen{font-size:16px;color:var(--muted)}
+.ideas{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ideas span{background:var(--pink);border-radius:999px;padding:5px 12px;font-size:14px;font-weight:600}
+/* roleplay */
+.rp{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.role{border-radius:20px;padding:18px}
+.role h3{margin:0 0 6px;display:flex;align-items:center;gap:10px}
+.role h3 svg{width:42px;height:42px}
+.role ul{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.r1{background:var(--lav)}.r2{background:var(--green)}
+.scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:16px}
+.sc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:3px solid transparent}
+.sc.on{border-color:var(--violet);background:#fff}
+.sc b{display:block;font-size:17px;margin-bottom:4px}
+.sc p{margin:0;font-size:15px}
+.timer{font-size:40px;font-weight:800;text-align:center;margin:14px 0 6px;color:var(--violet)}
+.ctr{text-align:center}
+/* homework */
+.hwb{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hwc{background:var(--paper);border-radius:18px;padding:18px}
+.hwc h3{margin:0 0 8px}
+.hwc ol,.hwc ul{margin:6px 0 0;padding-left:20px;line-height:1.7}
+.hwc textarea{width:100%;min-height:150px;font:inherit;border:2px solid var(--lav);border-radius:12px;padding:10px;margin-top:10px}
+.end{text-align:center;background:var(--ink);color:#fff;box-shadow:none}
+.end h2{justify-content:center}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(140px);background:var(--ink);color:#fff;font-weight:800;padding:12px 22px;border-radius:14px;transition:transform .3s;z-index:50}
+.toast.show{transform:translateX(-50%) translateY(0)}
+/* photos */
+.ph{margin:0}
+.ph img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;background:var(--paper)}
+.ph figcaption{font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.2px}
+.tax{grid-template-columns:1fr !important;padding:12px !important}
+.law .pic{height:auto !important;display:block !important;padding:0;position:relative}
+.law .pic .ph img{border-radius:0;aspect-ratio:16/10;transition:filter .5s}
+.law .pic .ph figcaption{padding:4px 12px 0}
+.law.hide .pic .ph img{filter:blur(10px) grayscale(.6)}
+.law.hide .reveal-body,.law.hide .fl,.law.hide .where{visibility:hidden}
+.law .clue{font-size:15px;font-style:italic;color:var(--ink)}
+.law .gc{display:flex;flex-wrap:wrap;gap:6px}
+.law .gc button{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:4px 12px;cursor:pointer}
+.law .gc button.ok{background:var(--green)}.law .gc button.bad{background:var(--pink)}
+.law:not(.hide) .guess{display:none}
+.fair{display:grid;gap:4px;background:#fff;border-radius:12px;padding:8px 12px}
+.fair .ends{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.fair input{width:100%;accent-color:var(--accent)}
+.fair output{font-size:14px;font-weight:700;color:var(--accent)}
+.gph{max-width:720px;margin:0 auto 12px}
+.gph img{aspect-ratio:21/9}
+.fine{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.fq{background:var(--paper);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.fq h3{margin:0;font-size:18px}
+.fq .opts{display:flex;flex-wrap:wrap;gap:6px}
+.fq .opts button{font:inherit;font-size:14px;font-weight:700;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 12px;cursor:pointer}
+.fq .opts button.ok{background:var(--green)}.fq .opts button.bad{background:var(--pink)}
+.fq .res{font-size:15px;min-height:22px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{position:relative;aspect-ratio:16/9;background:#111}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;cursor:pointer;background:#111 center/cover;display:grid;place-items:center}
+.vid .play span{background:rgba(0,0,0,.7);color:#fff;font-weight:700;border-radius:999px;padding:10px 20px;font-size:15px;letter-spacing:1px}
+.vid .info{padding:14px 16px}
+.vid .info h3{margin:0 0 2px;font-size:18px}
+.vid .info small{color:var(--muted)}
+.vid .info ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+@media(max-width:760px){.inv,.rp,.hwb{grid-template-columns:1fr}.lk-tbtn{top:auto;bottom:70px}}
+
+.pr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.pb{border-radius:18px;padding:16px 18px}
+.pb h3{margin:0;font-family:Georgia,serif;font-size:30px}
+.pb .m{font-size:15px;color:var(--muted);margin:2px 0 8px}
+.pb .chips{display:flex;flex-wrap:wrap;gap:6px}
+.pb .chips span{background:#fff;border-radius:999px;padding:4px 11px;font-size:14px;font-weight:600}
+.pb ul{margin:10px 0 0;padding-left:18px;font-size:15px}
+.p-in{background:#DCE6F5}.p-at{background:#F3D9CF}.p-on{background:#D4E2CF}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-size:15px;margin-top:10px}
+.ex div{background:var(--paper);border-radius:10px;padding:8px 12px}
+.ex b{color:var(--accent)}
+.q{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.q .n{font-weight:800;color:var(--violet);min-width:24px}
+.q .gap{display:inline-block;min-width:44px;border-bottom:2px solid var(--ink);text-align:center;font-weight:800}
+.q .opts{margin-left:auto;display:flex;gap:6px}
+.q .opts button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 14px;cursor:pointer}
+.q.ok{background:#DDEED7}.q.ok .gap{color:#2F7A3B}
+.q.bad{background:#F6DAD3}
+.score{font-weight:800;margin-top:12px}
+.text{font-size:18px;line-height:1.75;background:var(--paper);border-radius:16px;padding:18px 22px}
+.text h3{margin:0 0 6px;font-family:Georgia,serif;font-size:24px}
+.text p{margin:0 0 12px}
+.text.hl mark{background:#F3D9CF;border-radius:4px;padding:0 3px;font-weight:700}
+.tf{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:9px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.tf .opts{margin-left:auto;display:flex;gap:6px}
+.tf button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.tf.ok{background:#DDEED7}.tf.bad{background:#F6DAD3}
+.disc{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px;margin-top:6px}
+.disc div{background:var(--green);border-radius:14px;padding:12px 16px;font-size:17px;font-weight:600}
+.disc div i{font-style:normal;color:var(--violet);margin-right:6px}
+.spin{text-align:center;margin-top:16px}
+.spin .card{display:inline-block;min-height:80px;min-width:min(560px,100%);background:var(--ink);color:#fff;border-radius:18px;padding:20px 24px;font-size:22px;font-weight:700;margin-bottom:12px}
+@media(max-width:700px){.ex{grid-template-columns:1fr}}
+
+.hero{background-size:cover!important;background-position:center!important}
+.voc{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.voc div{background:var(--paper);border-radius:14px;padding:10px 14px;cursor:pointer;border:2px solid transparent}
+.voc div:hover{border-color:var(--violet)}
+.voc b{display:block;font-size:18px}.voc span{display:block;color:var(--accent);font-weight:700;font-size:15px}.voc em{display:block;font-size:14px;color:var(--muted);margin-top:3px}
+.mt{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:10px}
+.mt button{font:inherit;font-size:16px;text-align:left;border:2px solid var(--ink);background:#fff;border-radius:14px;padding:9px 14px;cursor:pointer}
+.mt button.sel{background:#FFE7A8}.mt button.done{background:#CDE8C6;border-color:#4C9A5B;cursor:default}
+.ch{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ch .n{font-weight:800;color:var(--violet);min-width:24px}
+.ch .o{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.ch .o button{font:inherit;font-size:15px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.ch.ok{background:#DDEED7}.ch.bad{background:#F6DAD3}
+.ty{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ty input{font:inherit;border:2px solid var(--ink);border-radius:10px;padding:4px 10px;width:220px}
+.ty.ok{background:#DDEED7}.ty.bad{background:#F6DAD3}
+.ty small{color:var(--muted)}
+.photo{width:100%;height:300px;object-fit:cover;border-radius:16px;display:block}
+.cap{font-size:11px;color:var(--muted);margin:4px 0 12px}
+.pics{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.pics figure{margin:0;background:var(--paper);border-radius:16px;overflow:hidden}
+.pics img{width:100%;height:170px;object-fit:cover;display:block}
+.pics figcaption{padding:8px 12px;font-weight:700}
+.pics small{display:block;font-weight:400;font-size:10px;color:var(--muted)}
+.lis{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:8px 0 14px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{aspect-ratio:16/9;background:#000;position:relative}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;background-size:cover;background-position:center;cursor:pointer;display:grid;place-items:center}
+.vid .play span{background:#E5484D;color:#fff;font-weight:800;border-radius:12px;padding:10px 20px}
+.vid .info{padding:12px 16px}.vid h3{margin:0;font-size:18px}.vid small{color:var(--muted)}
+.vid ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th,.tbl td{border:1px solid #ddd;padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--paper)}
+@media(max-width:700px){.mt{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="/game-lessons/kit.css">
+</head>
+<body>
+<header class="hero">
+  <div class="kicker">B1 · teens · Граматика: тренажер Теперішні часи для майбутнього, Future Continuous і Future Perfect</div>
+  <h1>Present tenses for the future; future continuous and perfect: 100 tasks</h1>
+  <p>B1 · 6 parts · 60 min</p>
+  <span class="cr">Photo: Unsplash</span>
+</header>
+<button class="lk-tbtn" id="teacherBtn" type="button">Teacher version</button>
+<div class="wrap">
+  <section class="lk-overview">
+    <h2>In this lesson you will:</h2>
+    <ul><li>Повторимо правило: Теперішні часи для майбутнього, Future Continuous і Future Perfect
+100 завдань від простого до складного
+Розберемо головні пастки</li></ul>
+    <div class="lk-stages" id="stages"></div>
+  </section>
+  <section id="s1" data-stage="practice" data-min="10">
+    <h2><span class="lk-n">1</span>Теорія <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<div class="warn"><p><b>Коли вживаємо</b></p><p>Present Continuous: домовленість, є час і люди: I’m meeting Lily at the café at six. (Я зустрічаюся з Лілі в кафе о шостій.)</p><p>Present Simple: розклад, графік, програма: The film starts at 7:30, so don’t be late. (Фільм починається о 7:30, тож не запізнюйся.)</p><p>Future Continuous: дія буде в процесі в певний момент: This time tomorrow I’ll be flying to Rome. (Завтра в цей час я летітиму до Рима.)</p><p>Future Continuous: ввічливо питаємо про чужі плани: Will you be using your laptop tonight? (Ти користуватимешся ноутбуком сьогодні ввечері?)</p><p>Future Perfect: дія завершиться до певного моменту: By Friday I’ll have finished the project. (До п’ятниці я вже закінчу проєкт.)</p></div>
+    <div class="warn"><p><b>Форми</b></p><p>+  домовленість: am / is / are + V-ing + коли. Приклад: We’re flying to Rome on Monday.</p><p>+  розклад: V / V-s (he, she, it + -s). Приклад: The bus leaves at 8:10.</p><p>+  Future Continuous: will (’ll) be + V-ing. Приклад: At nine I’ll be playing football.</p><p>+  Future Perfect: will (’ll) have + V3. Приклад: By June we’ll have moved house.</p><p>−  won’t be + V-ing / won’t have + V3; для розкладу don’t / doesn’t + V. Приклад: She won’t be working on Sunday. The shop doesn’t open on Mondays.</p><p>?  Will + підмет + be + V-ing? / Will + підмет + have + V3? / Are you + V-ing? / Does it + V?. Приклад: Will you have finished by lunch? What time does the train leave?</p></div>
+    <div class="warn"><p><b>Головна пастка</b></p><p>Present Simple для своїх планів. Present Simple про майбутнє вживаємо для розкладів і графіків. Особисті домовленості з людьми передаємо через Present Continuous.</p><p>✗ I see the dentist tomorrow at four.</p><p>✓ I’m seeing the dentist tomorrow at four.</p><p>Загублене be у Future Continuous. Між will і V-ing обов’язково стоїть be: will be + V-ing.</p><p>✗ This time tomorrow I will lying on the beach.</p><p>✓ This time tomorrow I will be lying on the beach.</p><p>Future Perfect: have + третя форма. Після will have стоїть V3 (finished, done, written), а не перша чи друга форма. Маркер by означає «до (якогось моменту)».</p><p>✗ By ten I will have finish my essay.</p><p>✓ By ten I will have finished my essay.</p></div>
+    <div class="warn"><p><b>Маркери:</b> tonight, on Saturday, tomorrow at five, the train leaves at ..., this time tomorrow, this time next week, at 8 p.m. tomorrow, all evening, by Friday, by then, by the end of the year, by the time ...</p></div>
+    <div class="warn"><p><b>Шпаргалка: яка форма для майбутнього</b></p><p>Спитай себе: це розклад? домовленість з людьми? дія в процесі в певний момент? чи вона вже завершиться до певного моменту? Will і going to мають свій окремий тренажер.</p><p>Ситуація · Форма · Приклад</p><p>Розклад, графік · Present Simple · The match starts at 3.</p><p>Домовленість з людьми · Present Continuous · I’m having lunch with Dan on Friday.</p><p>Дія в процесі в момент майбутнього · will be + V-ing · At 3 I’ll be watching the match.</p><p>Ввічливе питання про плани · Will you be + V-ing? · Will you be going to the shop later?</p><p>Завершиться до певного моменту · will have + V3 · By 5 the match will have finished.</p></div>
+    <p class="lk-tnote" data-ru="Тренажер на 100 завдань: 5 раундів по 20. На уроці можна пройти 1-2 раунди, решту задати додому. Пояснення до кожної відповіді учень бачить у тренажері на сайті (розділ «Граматика»).&lt;br&gt;">Тренажер на 100 завдань: 5 раундів по 20. На уроці можна пройти 1-2 раунди, решту задати додому. Пояснення до кожної відповіді учень бачить у тренажері на сайті (розділ «Граматика»).<br></p>
+  </section>
+  <section id="s2" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">2</span>Раунд 1. Форми: збираємо конструкцію <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="will be sitting"><span class="n">1</span><span class="s">This time tomorrow I ___ on a plane to Lisbon.</span><span class="o"><button type="button">will be sitting</button><button type="button">will be sit</button><button type="button">will sitting</button><button type="button">am sit</button></span></div>
+<div class="ch" data-a="leaves"><span class="n">2</span><span class="s">Hurry up! The bus ___ at 7:40.</span><span class="o"><button type="button">leaving</button><button type="button">leaves</button><button type="button">is leave</button><button type="button">leave</button></span></div>
+<div class="ch" data-a="is visiting"><span class="n">3</span><span class="s">Lily ___ her grandparents in York next weekend.</span><span class="o"><button type="button">visits</button><button type="button">visiting</button><button type="button">is visiting</button><button type="button">is visit</button></span></div>
+<div class="ch" data-a="opens"><span class="n">4</span><span class="s">Tomorrow the museum ___ at ten, so we can sleep a bit longer.</span><span class="o"><button type="button">will opening</button><button type="button">opening</button><button type="button">open</button><button type="button">opens</button></span></div>
+<div class="ch" data-a="will have passed"><span class="n">5</span><span class="s">By next June, my brother ___ his driving test.</span><span class="o"><button type="button">has passed</button><button type="button">will have pass</button><button type="button">will have passed</button><button type="button">will passed</button></span></div>
+<div class="ch" data-a="leaves"><span class="n">6</span><span class="s">Our train ___ at 6:15 tomorrow morning, so set an alarm.</span><span class="o"><button type="button">is leave</button><button type="button">leaving</button><button type="button">leave</button><button type="button">leaves</button></span></div>
+<div class="ch" data-a="will be having"><span class="n">7</span><span class="s">Don’t call me at nine. I ___ my driving lesson then.</span><span class="o"><button type="button">will having</button><button type="button">am have</button><button type="button">have had</button><button type="button">will be having</button></span></div>
+<div class="ch" data-a="will have ridden"><span class="n">8</span><span class="s">By the end of this month, Sophie ___ 200 km on her bike.</span><span class="o"><button type="button">will be ride</button><button type="button">will have ridden</button><button type="button">will ridden</button><button type="button">will have rode</button></span></div>
+<div class="ch" data-a="land"><span class="n">9</span><span class="s">What time does your flight ___ tomorrow?</span><span class="o"><button type="button">land</button><button type="button">landed</button><button type="button">lands</button><button type="button">landing</button></span></div>
+<div class="ch" data-a="are getting"><span class="n">10</span><span class="s">Kate and Dan ___ married in August.</span><span class="o"><button type="button">are get</button><button type="button">are getting</button><button type="button">getting</button><button type="button">gets</button></span></div>
+<div class="ch" data-a="will be hiking"><span class="n">11</span><span class="s">Next week at this time, we ___ in the mountains.</span><span class="o"><button type="button">will be hiking</button><button type="button">are hike</button><button type="button">will be hike</button><button type="button">will hiking</button></span></div>
+<div class="ch" data-a="opens"><span class="n">12</span><span class="s">The new café ___ on Monday, so let’s try it on Tuesday.</span><span class="o"><button type="button">open</button><button type="button">is opens</button><button type="button">opening</button><button type="button">opens</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; will be sitting · leaves · is visiting · opens · will have passed · leaves · will be having · will have ridden · land · are getting · will be hiking · opens"><b>Відповіді:</b> will be sitting · leaves · is visiting · opens · will have passed · leaves · will be having · will have ridden · land · are getting · will be hiking · opens</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="will have read"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>By Sunday Max ___ (read) the whole book.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="are having|’re having"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>We ___ (have, Present Continuous) a party at Emma’s place on Saturday.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="will be watching|’ll be watching"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>At 8 p.m. tomorrow we ___ (watch, Future Continuous) the final.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="will have cooked|’ll have cooked"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>By the time you get home, I ___ (cook, Future Perfect) dinner.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="is meeting|’s meeting"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Tom ___ (meet, Present Continuous) his new coach on Thursday.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="starts"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>The concert ___ (start, Present Simple) at 8 p.m., so let’s meet at half past seven.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="will be living|’ll be living"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>In ten years I ___ (live, Future Continuous) in a house by the sea, I hope.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="will have found|’ll have found"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>By 2030 scientists ___ (find, Future Perfect) a cure for the common cold, I’m sure.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; will have read · are having · will be watching · will have cooked · is meeting · starts · will be living · will have found"><b>Відповіді:</b> will have read · are having · will be watching · will have cooked · is meeting · starts · will be living · will have found</p>
+  </section>
+  <section id="s3" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">3</span>Раунд 2. Заперечення і питання <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="am not coming"><span class="n">1</span><span class="s">I ___ to the party on Friday: I’m visiting my aunt.</span><span class="o"><button type="button">am not coming</button><button type="button">am not come</button><button type="button">don’t coming</button><button type="button">not coming</button></span></div>
+<div class="ch" data-a="Will"><span class="n">2</span><span class="s">___ you be using the car this evening? I need to go to the shop.</span><span class="o"><button type="button">Do</button><button type="button">Will</button><button type="button">Have</button><button type="button">Are</button></span></div>
+<div class="ch" data-a="does"><span class="n">3</span><span class="s">What time ___ the match start on Saturday?</span><span class="o"><button type="button">do</button><button type="button">does</button><button type="button">is</button><button type="button">will be</button></span></div>
+<div class="ch" data-a="are"><span class="n">4</span><span class="s">When ___ you leaving for the airport tomorrow?</span><span class="o"><button type="button">are</button><button type="button">do</button><button type="button">will</button><button type="button">have</button></span></div>
+<div class="ch" data-a="doesn’t open"><span class="n">5</span><span class="s">The shop ___ on Sunday, so let’s buy everything today.</span><span class="o"><button type="button">don’t open</button><button type="button">doesn’t open</button><button type="button">won’t opening</button><button type="button">not opens</button></span></div>
+<div class="ch" data-a="isn’t taking"><span class="n">6</span><span class="s">Max ___ the train at 7:05 because he’s getting a lift from his dad.</span><span class="o"><button type="button">isn’t taking</button><button type="button">not takes</button><button type="button">doesn’t taking</button><button type="button">isn’t take</button></span></div>
+<div class="ch" data-a="won’t have started"><span class="n">7</span><span class="s">By the time we arrive, the film ___ yet, so we won’t miss anything.</span><span class="o"><button type="button">won’t have started</button><button type="button">didn’t start</button><button type="button">hasn’t start</button><button type="button">won’t start</button></span></div>
+<div class="ch" data-a="will you be doing"><span class="n">8</span><span class="s">What ___ at this time on Saturday? Shall we play tennis?</span><span class="o"><button type="button">will you be doing</button><button type="button">are you be doing</button><button type="button">you will be doing</button><button type="button">will you doing</button></span></div>
+<div class="ch" data-a="won’t have done"><span class="n">9</span><span class="s">Dan ___ his homework by dinner time: he has too much.</span><span class="o"><button type="button">doesn’t have done</button><button type="button">won’t have did</button><button type="button">won’t done</button><button type="button">won’t have done</button></span></div>
+<div class="ch" data-a="am meeting"><span class="n">10</span><span class="s">Are you free on Thursday? ~ No, sorry, I ___ my cousin at the station.</span><span class="o"><button type="button">meet</button><button type="button">will meeting</button><button type="button">meeting</button><button type="button">am meeting</button></span></div>
+<div class="ch" data-a="won’t be using"><span class="n">11</span><span class="s">I ___ the laptop tonight, so you can take it.</span><span class="o"><button type="button">won’t be using</button><button type="button">won’t be use</button><button type="button">won’t using</button><button type="button">don’t be using</button></span></div>
+<div class="ch" data-a="Will"><span class="n">12</span><span class="s">___ she have finished the cake by six?</span><span class="o"><button type="button">Is</button><button type="button">Will</button><button type="button">Does</button><button type="button">Has</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; am not coming · Will · does · are · doesn’t open · isn’t taking · won’t have started · will you be doing · won’t have done · am meeting · won’t be using · Will"><b>Відповіді:</b> am not coming · Will · does · are · doesn’t open · isn’t taking · won’t have started · will you be doing · won’t have done · am meeting · won’t be using · Will</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="won’t be working|will not be working"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Sorry, I ___ (not work, Future Continuous) tomorrow, so I can help you move.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="won’t have finished|will not have finished"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Don’t phone Lily at six: she ___ (not finish, Future Perfect) her shift by then.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Will you have finished"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>___ (you, finish) the report by Friday? The boss needs it on Monday morning.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="aren’t going|are not going|’re not going"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>We ___ (not go, Present Continuous) on holiday this summer. We’re staying at home and saving money.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Does the bus leave"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>___ (the bus, leave) at 9:20 or at 9:30?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Is Sophie coming"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>___ (Sophie, come, Present Continuous) to the barbecue on Sunday?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="doesn’t start|does not start"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>The lesson ___ (not start, Present Simple) at nine tomorrow. It starts at ten.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="won’t have arrived|will not have arrived"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>Relax, the guests ___ (not arrive, Future Perfect) by five: they’re coming at seven.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; won’t be working · won’t have finished · Will you have finished · aren’t going · Does the bus leave · Is Sophie coming · doesn’t start · won’t have arrived"><b>Відповіді:</b> won’t be working · won’t have finished · Will you have finished · aren’t going · Does the bus leave · Is Sophie coming · doesn’t start · won’t have arrived</p>
+  </section>
+  <section id="s4" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">4</span>Раунд 3. Коли що вживати <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="starts"><span class="n">1</span><span class="s">Look, I’ve got the tickets! The show ___ at 7:30.</span><span class="o"><button type="button">starts</button><button type="button">is start</button><button type="button">will have started</button><button type="button">has started</button></span></div>
+<div class="ch" data-a="am flying"><span class="n">2</span><span class="s">I can’t come to the meeting on Friday. I ___ to London.</span><span class="o"><button type="button">flew</button><button type="button">will have flown</button><button type="button">am flying</button><button type="button">fly</button></span></div>
+<div class="ch" data-a="will have cleaned"><span class="n">3</span><span class="s">By the time Mum gets home, the kids ___ the kitchen. It will be spotless!</span><span class="o"><button type="button">will be cleaning</button><button type="button">clean</button><button type="button">will have cleaned</button><button type="button">are cleaning</button></span></div>
+<div class="ch" data-a="Will"><span class="n">4</span><span class="s">___ you be passing the post office? Could you post this letter for me?</span><span class="o"><button type="button">Will</button><button type="button">Are</button><button type="button">Do</button><button type="button">Have</button></span></div>
+<div class="ch" data-a="is having"><span class="n">5</span><span class="s">Tonight Emma ___ dinner with her colleagues at an Italian place. It’s all booked.</span><span class="o"><button type="button">will have had</button><button type="button">has</button><button type="button">is having</button><button type="button">had</button></span></div>
+<div class="ch" data-a="will be taking"><span class="n">6</span><span class="s">Don’t text me between two and four tomorrow. I ___ my driving test then.</span><span class="o"><button type="button">will be taking</button><button type="button">will have taken</button><button type="button">took</button><button type="button">have taken</button></span></div>
+<div class="ch" data-a="leaves"><span class="n">7</span><span class="s">Hurry! The last tram ___ in five minutes.</span><span class="o"><button type="button">has left</button><button type="button">left</button><button type="button">will have left</button><button type="button">leaves</button></span></div>
+<div class="ch" data-a="won’t be using"><span class="n">8</span><span class="s">“Can I borrow your bike tomorrow?” “Sure, I ___ it. I’m working from home.”</span><span class="o"><button type="button">won’t have used</button><button type="button">didn’t use</button><button type="button">am not use</button><button type="button">won’t be using</button></span></div>
+<div class="ch" data-a="are you doing"><span class="n">9</span><span class="s">What ___ on Saturday evening? Want to come to the cinema with us?</span><span class="o"><button type="button">do you do</button><button type="button">are you doing</button><button type="button">did you do</button><button type="button">will you have done</button></span></div>
+<div class="ch" data-a="start"><span class="n">10</span><span class="s">Our English lessons ___ on 1 September this year.</span><span class="o"><button type="button">starts</button><button type="button">starting</button><button type="button">start</button><button type="button">will have start</button></span></div>
+<div class="ch" data-a="will be having"><span class="n">11</span><span class="s">Please don’t come at 6. We ___ dinner then, and the kitchen is tiny.</span><span class="o"><button type="button">will be having</button><button type="button">had</button><button type="button">will have had</button><button type="button">have</button></span></div>
+<div class="ch" data-a="are eating"><span class="n">12</span><span class="s">I’ve booked a table. We ___ at the new sushi place at eight.</span><span class="o"><button type="button">are eating</button><button type="button">ate</button><button type="button">eat</button><button type="button">will have eaten</button></span></div>
+<div class="ch" data-a="will have decorated"><span class="n">13</span><span class="s">By the time the guests arrive, Lily ___ the room with balloons.</span><span class="o"><button type="button">decorates</button><button type="button">is decorating</button><button type="button">will have decorated</button><button type="button">decorated</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; starts · am flying · will have cleaned · Will · is having · will be taking · leaves · won’t be using · are you doing · start · will be having · are eating · will have decorated"><b>Відповіді:</b> starts · am flying · will have cleaned · Will · is having · will be taking · leaves · won’t be using · are you doing · start · will be having · are eating · will have decorated</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="will be sleeping|’ll be sleeping"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Don’t visit Tom at 10 a.m. tomorrow: he ___ (sleep) after his night shift.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="will have finished"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>By the time she’s 25, my little sister ___ (finish) university.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="will have put|’ll have put"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Call me after nine: by then I ___ (put) the kids to bed.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="will be lying|’ll be lying"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>This time next week, Dan and I ___ (lie) on a beach in Greece.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="will have learned|will have learnt|’ll have learned|’ll have learnt"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>By the end of this course, you ___ (learn) more than 500 new words.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="will have saved|’ll have saved"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>I’m sure that by next summer Max ___ (save) enough money for a new bike.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="will be counting|’ll be counting"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>At midnight on 31 December we ___ (count) down the seconds with our friends.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; will be sleeping · will have finished · will have put · will be lying · will have learned · will have saved · will be counting"><b>Відповіді:</b> will be sleeping · will have finished · will have put · will be lying · will have learned · will have saved · will be counting</p>
+  </section>
+  <section id="s5" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">5</span>Раунд 4. Пастки: загублене be і зайвий Present Simple <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="I’m seeing the dentist tomorrow at four."><span class="n">1</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">I see the dentist tomorrow at four.</button><button type="button">I seeing the dentist tomorrow at four.</button><button type="button">I’m see the dentist tomorrow at four.</button><button type="button">I’m seeing the dentist tomorrow at four.</button></span></div>
+<div class="ch" data-a="This time tomorrow I will be lying on a beach."><span class="n">2</span><span class="s">Яке речення правильне?: ___</span><span class="o"><button type="button">This time tomorrow I am lie on a beach.</button><button type="button">This time tomorrow I will lying on a beach.</button><button type="button">This time tomorrow I will be lie on a beach.</button><button type="button">This time tomorrow I will be lying on a beach.</button></span></div>
+<div class="ch" data-a="By Friday I will have finished it."><span class="n">3</span><span class="s">Знайди речення без помилки: ___</span><span class="o"><button type="button">By Friday I will have finish it.</button><button type="button">By Friday I have finished it.</button><button type="button">By Friday I will finished it.</button><button type="button">By Friday I will have finished it.</button></span></div>
+<div class="ch" data-a="The film starts at nine tonight."><span class="n">4</span><span class="s">Де немає помилки?: ___</span><span class="o"><button type="button">The film start at nine tonight.</button><button type="button">The film is start at nine tonight.</button><button type="button">The film starts at nine tonight.</button><button type="button">The film starting at nine tonight.</button></span></div>
+<div class="ch" data-a="Will you be using the printer later?"><span class="n">5</span><span class="s">Знайди правильне питання: ___</span><span class="o"><button type="button">Do you be using the printer later?</button><button type="button">Are you be using the printer later?</button><button type="button">Will you using the printer later?</button><button type="button">Will you be using the printer later?</button></span></div>
+<div class="ch" data-a="What time does the concert end?"><span class="n">6</span><span class="s">Яке питання правильне?: ___</span><span class="o"><button type="button">What time the concert ends?</button><button type="button">What time does the concert end?</button><button type="button">What time is the concert end?</button><button type="button">What time does the concert ends?</button></span></div>
+<div class="ch" data-a="is meeting"><span class="n">7</span><span class="s">Lily ___ her best friend’s parents for the first time next Tuesday: she’s so nervous!</span><span class="o"><button type="button">is meeting</button><button type="button">meets</button><button type="button">is meet</button><button type="button">meeting</button></span></div>
+<div class="ch" data-a="They’re flying to Spain on Monday."><span class="n">8</span><span class="s">Обери речення без помилки: ___</span><span class="o"><button type="button">They flying to Spain on Monday.</button><button type="button">They’re flys to Spain on Monday.</button><button type="button">They’re flying to Spain on Monday.</button><button type="button">They’re fly to Spain on Monday.</button></span></div>
+<div class="ch" data-a="will have left"><span class="n">9</span><span class="s">By the time you read this message, I ___ the country.</span><span class="o"><button type="button">will have left</button><button type="button">have left</button><button type="button">will be left</button><button type="button">will leave</button></span></div>
+<div class="ch" data-a="Will you have finished by six?"><span class="n">10</span><span class="s">Де все правильно?: ___</span><span class="o"><button type="button">Will you have finished by six?</button><button type="button">Will you have finish by six?</button><button type="button">Do you have finished by six?</button><button type="button">Will you finished by six?</button></span></div>
+<div class="ch" data-a="will have read"><span class="n">11</span><span class="s">I promise I ___ the book by the time you need it.</span><span class="o"><button type="button">will have readed</button><button type="button">will have read</button><button type="button">am reading</button><button type="button">will read had</button></span></div>
+<div class="ch" data-a="Next year I will be studying in Kraków."><span class="n">12</span><span class="s">Яке речення звучить правильно?: ___</span><span class="o"><button type="button">Next year I be studying in Kraków.</button><button type="button">Next year I will be study in Kraków.</button><button type="button">Next year I will be studying in Kraków.</button><button type="button">Next year I will studying in Kraków.</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; I’m seeing the dentist tomorrow at four. · This time tomorrow I will be lying on a beach. · By Friday I will have finished it. · The film starts at nine tonight. · Will you be using the printer later? · What time does the concert end? · is meeting · They’re flying to Spain on Monday. · will have left · Will you have finished by six? · will have read · Next year I will be studying in Kraków."><b>Відповіді:</b> I’m seeing the dentist tomorrow at four. · This time tomorrow I will be lying on a beach. · By Friday I will have finished it. · The film starts at nine tonight. · Will you be using the printer later? · What time does the concert end? · is meeting · They’re flying to Spain on Monday. · will have left · Will you have finished by six? · will have read · Next year I will be studying in Kraków.</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="will have begun|’ll have begun"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>By the time we get to the stadium, the match ___ (begin).</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="will be flying|’ll be flying"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Tomorrow at noon Kate ___ (fly) over the Alps.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="will have been|’ll have been"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>By next spring our cat ___ (be) with us for ten years.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="will have landed|’ll have landed"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>By 5 p.m. the plane ___ (land), so call me then.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="won’t be studying|will not be studying"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>At 9 p.m. Dan ___ (not study): call him then.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="will be swimming|’ll be swimming"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Lily ___ (swim) in the sea at this time tomorrow. Lucky her!</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="will have stopped|’ll have stopped"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>By 2035 people ___ (stop) using cash, I think.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="will have dried|’ll have dried"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>Don’t worry, by Monday the paint ___ (dry).</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; will have begun · will be flying · will have been · will have landed · won’t be studying · will be swimming · will have stopped · will have dried"><b>Відповіді:</b> will have begun · will be flying · will have been · will have landed · won’t be studying · will be swimming · will have stopped · will have dried</p>
+  </section>
+  <section id="s6" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">6</span>Раунд 5. Фінальний бос <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="am visiting"><span class="n">1</span><span class="s">Lily: “Are you free tonight?” Max: “No, I ___ my grandma. We’ve already planned it.”</span><span class="o"><button type="button">will have visited</button><button type="button">visited</button><button type="button">visit</button><button type="button">am visiting</button></span></div>
+<div class="ch" data-a="leaves"><span class="n">2</span><span class="s">The ferry timetable says: dep. 14:20. So the ferry ___ at twenty past two.</span><span class="o"><button type="button">will have left</button><button type="button">leaving</button><button type="button">is leave</button><button type="button">leaves</button></span></div>
+<div class="ch" data-a="will be meeting"><span class="n">3</span><span class="s">“Can we talk at 3?” “Sorry, I ___ a client then. How about 4?”</span><span class="o"><button type="button">will be meeting</button><button type="button">met</button><button type="button">meet</button><button type="button">will have met</button></span></div>
+<div class="ch" data-a="are going"><span class="n">4</span><span class="s">I’ve already bought the tickets. We ___ to the concert on Friday!</span><span class="o"><button type="button">are going</button><button type="button">went</button><button type="button">go</button><button type="button">will have gone</button></span></div>
+<div class="ch" data-a="Will"><span class="n">5</span><span class="s">“___ you be going past the bakery?” “Yes, why?” “Could you buy me a croissant?”</span><span class="o"><button type="button">Do</button><button type="button">Will</button><button type="button">Did</button><button type="button">Are</button></span></div>
+<div class="ch" data-a="ends"><span class="n">6</span><span class="s">The school year ___ on 31 May, and then we have three months off!</span><span class="o"><button type="button">ends</button><button type="button">end</button><button type="button">is end</button><button type="button">will have end</button></span></div>
+<div class="ch" data-a="am attending"><span class="n">7</span><span class="s">“What are your plans for the weekend?” “I ___ my cousin’s wedding in Edinburgh.”</span><span class="o"><button type="button">am attending</button><button type="button">attend</button><button type="button">attending</button><button type="button">will have attended</button></span></div>
+<div class="ch" data-a="will have built"><span class="n">8</span><span class="s">The new shopping centre opens next month. By then they ___ the car park.</span><span class="o"><button type="button">will have built</button><button type="button">build</button><button type="button">will build</button><button type="button">are building</button></span></div>
+<div class="ch" data-a="am playing"><span class="n">9</span><span class="s">“Why can’t you come on Saturday?” “Because I ___ in a chess tournament. It starts at ten.”</span><span class="o"><button type="button">will have played</button><button type="button">played</button><button type="button">am play</button><button type="button">am playing</button></span></div>
+<div class="ch" data-a="will be relaxing"><span class="n">10</span><span class="s">I’m on holiday from Monday. This time next week I ___ by the pool.</span><span class="o"><button type="button">will have relaxed</button><button type="button">relax</button><button type="button">will be relaxing</button><button type="button">am relax</button></span></div>
+<div class="ch" data-a="won’t be using"><span class="n">11</span><span class="s">“Will you be using the projector after lunch?” “No, I ___ it. Take it.”</span><span class="o"><button type="button">not using</button><button type="button">don’t be using</button><button type="button">won’t be using</button><button type="button">won’t have use</button></span></div>
+<div class="ch" data-a="will have arrived"><span class="n">12</span><span class="s">Our guests’ train arrives at 7, so by 7:30 they ___ at our house.</span><span class="o"><button type="button">will have arrived</button><button type="button">arrive</button><button type="button">will arriving</button><button type="button">are arriving</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; am visiting · leaves · will be meeting · are going · Will · ends · am attending · will have built · am playing · will be relaxing · won’t be using · will have arrived"><b>Відповіді:</b> am visiting · leaves · will be meeting · are going · Will · ends · am attending · will have built · am playing · will be relaxing · won’t be using · will have arrived</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="will be writing|’ll be writing"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>The exam is at 10 and lasts two hours. So at 11 a.m. I ___ (write) my essay.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="will have painted|’ll have painted"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Dan starts painting the fence at 9 and needs three hours. By noon he ___ (paint) it.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="will have got|will have gotten|’ll have got|’ll have gotten"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Sophie’s plane lands at 6 and the drive home takes an hour. By 8 she ___ (get) home.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="will have been|’ll have been"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>My parents got married in 2002. By 2027 they ___ (be) married for 25 years.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="will be playing|’ll be playing"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Don’t call Tom after dinner tomorrow: he ___ (play) online with his friends all evening.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="will have eaten|’ll have eaten"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>By the time the film ends, Max ___ (eat) the whole bowl of popcorn. He always does!</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="leaves"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>Lily, the bus ___ (leave, Present Simple) in ten minutes! Where are you?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="will have watched|’ll have watched"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>By the end of the week Kate ___ (watch) all eight episodes of the show.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; will be writing · will have painted · will have got · will have been · will be playing · will have eaten · leaves · will have watched"><b>Відповіді:</b> will be writing · will have painted · will have got · will have been · will be playing · will have eaten · leaves · will have watched</p>
+  </section>
+  <section class="end"><h2>Great job!</h2><p>See you next lesson.</p></section>
+</div>
+<div class="toast" id="toast"></div>
+<script>window.MURLY_LESSON={"id": "lib-drill-present-for-future", "title": "Present tenses for the future; future continuous and perfect: 100 tasks", "homework": ["s2", "s3", "s4", "s5", "s6"], "hw": {"s2": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "This time tomorrow I {will be sitting|will be sit|will sitting|am sit} on a plane to Lisbon.\nHurry up! The bus {leaves|leave|leaving|is leave} at 7:40.\nLily {is visiting|visiting|is visit|visits} her grandparents in York next weekend.\nTomorrow the museum {opens|open|will opening|opening} at ten, so we can sleep a bit longer.\nBy next June, my brother {will have passed|will have pass|will passed|has passed} his driving test.\nOur train {leaves|leave|is leave|leaving} at 6:15 tomorrow morning, so set an alarm.\nDon’t call me at nine. I {will be having|have had|am have|will having} my driving lesson then.\nBy the end of this month, Sophie {will have ridden|will have rode|will ridden|will be ride} 200 km on her bike.\nWhat time does your flight {land|lands|landing|landed} tomorrow?\nKate and Dan {are getting|gets|are get|getting} married in August.\nNext week at this time, we {will be hiking|will be hike|will hiking|are hike} in the mountains.\nThe new café {opens|open|opening|is opens} on Monday, so let’s try it on Tuesday."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "By Sunday Max [will have read] (read) the whole book.\nWe [are having/’re having] (have, Present Continuous) a party at Emma’s place on Saturday.\nAt 8 p.m. tomorrow we [will be watching/’ll be watching] (watch, Future Continuous) the final.\nBy the time you get home, I [will have cooked/’ll have cooked] (cook, Future Perfect) dinner.\nTom [is meeting/’s meeting] (meet, Present Continuous) his new coach on Thursday.\nThe concert [starts] (start, Present Simple) at 8 p.m., so let’s meet at half past seven.\nIn ten years I [will be living/’ll be living] (live, Future Continuous) in a house by the sea, I hope.\nBy 2030 scientists [will have found/’ll have found] (find, Future Perfect) a cure for the common cold, I’m sure."}], "s3": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "I {am not coming|don’t coming|not coming|am not come} to the party on Friday: I’m visiting my aunt.\n{Will|Are|Do|Have} you be using the car this evening? I need to go to the shop.\nWhat time {does|do|is|will be} the match start on Saturday?\nWhen {are|do|will|have} you leaving for the airport tomorrow?\nThe shop {doesn’t open|don’t open|won’t opening|not opens} on Sunday, so let’s buy everything today.\nMax {isn’t taking|doesn’t taking|not takes|isn’t take} the train at 7:05 because he’s getting a lift from his dad.\nBy the time we arrive, the film {won’t have started|won’t start|didn’t start|hasn’t start} yet, so we won’t miss anything.\nWhat {will you be doing|will you doing|are you be doing|you will be doing} at this time on Saturday? Shall we play tennis?\nDan {won’t have done|won’t done|doesn’t have done|won’t have did} his homework by dinner time: he has too much.\nAre you free on Thursday? ~ No, sorry, I {am meeting|meet|will meeting|meeting} my cousin at the station.\nI {won’t be using|won’t be use|don’t be using|won’t using} the laptop tonight, so you can take it.\n{Will|Is|Does|Has} she have finished the cake by six?"}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "Sorry, I [won’t be working/will not be working] (not work, Future Continuous) tomorrow, so I can help you move.\nDon’t phone Lily at six: she [won’t have finished/will not have finished] (not finish, Future Perfect) her shift by then.\n[Will you have finished] (you, finish) the report by Friday? The boss needs it on Monday morning.\nWe [aren’t going/are not going/’re not going] (not go, Present Continuous) on holiday this summer. We’re staying at home and saving money.\n[Does the bus leave] (the bus, leave) at 9:20 or at 9:30?\n[Is Sophie coming] (Sophie, come, Present Continuous) to the barbecue on Sunday?\nThe lesson [doesn’t start/does not start] (not start, Present Simple) at nine tomorrow. It starts at ten.\nRelax, the guests [won’t have arrived/will not have arrived] (not arrive, Future Perfect) by five: they’re coming at seven."}], "s4": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Look, I’ve got the tickets! The show {starts|will have started|has started|is start} at 7:30.\nI can’t come to the meeting on Friday. I {am flying|fly|will have flown|flew} to London.\nBy the time Mum gets home, the kids {will have cleaned|will be cleaning|clean|are cleaning} the kitchen. It will be spotless!\n{Will|Do|Are|Have} you be passing the post office? Could you post this letter for me?\nTonight Emma {is having|has|will have had|had} dinner with her colleagues at an Italian place. It’s all booked.\nDon’t text me between two and four tomorrow. I {will be taking|took|will have taken|have taken} my driving test then.\nHurry! The last tram {leaves|will have left|left|has left} in five minutes.\n“Can I borrow your bike tomorrow?” “Sure, I {won’t be using|won’t have used|didn’t use|am not use} it. I’m working from home.”\nWhat {are you doing|do you do|will you have done|did you do} on Saturday evening? Want to come to the cinema with us?\nOur English lessons {start|will have start|starting|starts} on 1 September this year.\nPlease don’t come at 6. We {will be having|will have had|have|had} dinner then, and the kitchen is tiny.\nI’ve booked a table. We {are eating|eat|will have eaten|ate} at the new sushi place at eight.\nBy the time the guests arrive, Lily {will have decorated|decorates|is decorating|decorated} the room with balloons."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "Don’t visit Tom at 10 a.m. tomorrow: he [will be sleeping/’ll be sleeping] (sleep) after his night shift.\nBy the time she’s 25, my little sister [will have finished] (finish) university.\nCall me after nine: by then I [will have put/’ll have put] (put) the kids to bed.\nThis time next week, Dan and I [will be lying/’ll be lying] (lie) on a beach in Greece.\nBy the end of this course, you [will have learned/will have learnt/’ll have learned/’ll have learnt] (learn) more than 500 new words.\nI’m sure that by next summer Max [will have saved/’ll have saved] (save) enough money for a new bike.\nAt midnight on 31 December we [will be counting/’ll be counting] (count) down the seconds with our friends."}], "s5": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Обери правильне речення: {I’m seeing the dentist tomorrow at four.|I see the dentist tomorrow at four.|I seeing the dentist tomorrow at four.|I’m see the dentist tomorrow at four.}\nЯке речення правильне?: {This time tomorrow I will be lying on a beach.|This time tomorrow I will lying on a beach.|This time tomorrow I will be lie on a beach.|This time tomorrow I am lie on a beach.}\nЗнайди речення без помилки: {By Friday I will have finished it.|By Friday I will have finish it.|By Friday I will finished it.|By Friday I have finished it.}\nДе немає помилки?: {The film starts at nine tonight.|The film start at nine tonight.|The film is start at nine tonight.|The film starting at nine tonight.}\nЗнайди правильне питання: {Will you be using the printer later?|Will you using the printer later?|Are you be using the printer later?|Do you be using the printer later?}\nЯке питання правильне?: {What time does the concert end?|What time the concert ends?|What time is the concert end?|What time does the concert ends?}\nLily {is meeting|meets|is meet|meeting} her best friend’s parents for the first time next Tuesday: she’s so nervous!\nОбери речення без помилки: {They’re flying to Spain on Monday.|They flying to Spain on Monday.|They’re fly to Spain on Monday.|They’re flys to Spain on Monday.}\nBy the time you read this message, I {will have left|will leave|have left|will be left} the country.\nДе все правильно?: {Will you have finished by six?|Will you have finish by six?|Will you finished by six?|Do you have finished by six?}\nI promise I {will have read|will have readed|will read had|am reading} the book by the time you need it.\nЯке речення звучить правильно?: {Next year I will be studying in Kraków.|Next year I will be study in Kraków.|Next year I will studying in Kraków.|Next year I be studying in Kraków.}"}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "By the time we get to the stadium, the match [will have begun/’ll have begun] (begin).\nTomorrow at noon Kate [will be flying/’ll be flying] (fly) over the Alps.\nBy next spring our cat [will have been/’ll have been] (be) with us for ten years.\nBy 5 p.m. the plane [will have landed/’ll have landed] (land), so call me then.\nAt 9 p.m. Dan [won’t be studying/will not be studying] (not study): call him then.\nLily [will be swimming/’ll be swimming] (swim) in the sea at this time tomorrow. Lucky her!\nBy 2035 people [will have stopped/’ll have stopped] (stop) using cash, I think.\nDon’t worry, by Monday the paint [will have dried/’ll have dried] (dry)."}], "s6": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Lily: “Are you free tonight?” Max: “No, I {am visiting|visit|will have visited|visited} my grandma. We’ve already planned it.”\nThe ferry timetable says: dep. 14:20. So the ferry {leaves|is leave|will have left|leaving} at twenty past two.\n“Can we talk at 3?” “Sorry, I {will be meeting|will have met|meet|met} a client then. How about 4?”\nI’ve already bought the tickets. We {are going|go|will have gone|went} to the concert on Friday!\n“{Will|Do|Are|Did} you be going past the bakery?” “Yes, why?” “Could you buy me a croissant?”\nThe school year {ends|end|is end|will have end} on 31 May, and then we have three months off!\n“What are your plans for the weekend?” “I {am attending|attend|will have attended|attending} my cousin’s wedding in Edinburgh.”\nThe new shopping centre opens next month. By then they {will have built|will build|are building|build} the car park.\n“Why can’t you come on Saturday?” “Because I {am playing|will have played|am play|played} in a chess tournament. It starts at ten.”\nI’m on holiday from Monday. This time next week I {will be relaxing|will have relaxed|relax|am relax} by the pool.\n“Will you be using the projector after lunch?” “No, I {won’t be using|won’t have use|don’t be using|not using} it. Take it.”\nOur guests’ train arrives at 7, so by 7:30 they {will have arrived|arrive|are arriving|will arriving} at our house."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "The exam is at 10 and lasts two hours. So at 11 a.m. I [will be writing/’ll be writing] (write) my essay.\nDan starts painting the fence at 9 and needs three hours. By noon he [will have painted/’ll have painted] (paint) it.\nSophie’s plane lands at 6 and the drive home takes an hour. By 8 she [will have got/will have gotten/’ll have got/’ll have gotten] (get) home.\nMy parents got married in 2002. By 2027 they [will have been/’ll have been] (be) married for 25 years.\nDon’t call Tom after dinner tomorrow: he [will be playing/’ll be playing] (play) online with his friends all evening.\nBy the time the film ends, Max [will have eaten/’ll have eaten] (eat) the whole bowl of popcorn. He always does!\nLily, the bus [leaves] (leave, Present Simple) in ten minutes! Where are you?\nBy the end of the week Kate [will have watched/’ll have watched] (watch) all eight episodes of the show."}]}};</script>
+<script>
+(function(){var l=(document.cookie.match(/(?:^|; )murly_lang=(\w+)/)||[])[1];try{l=l||localStorage.getItem('murly:tlang')}catch(e){}l=l==='ru'?'ru':'uk';document.querySelectorAll('[data-pairs-'+l+']').forEach(function(b){b.dataset.pairs=b.getAttribute('data-pairs-'+l)});})();
+</script>
+<script>
+const $ = (id) => document.getElementById(id);
+const LIS = {};
+function say(w, rate) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; const v = speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang) && /Google|Natural|Libby|Sonia|Daniel/.test(x.name)) || speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang)); if (v) u.voice = v; u.rate = rate || .95; speechSynthesis.speak(u); } catch (e) { } }
+const sh = (a) => a.map((x) => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map((x) => x[1]);
+document.querySelectorAll('.voc div').forEach((d) => d.onclick = () => say(d.dataset.say));
+document.querySelectorAll('[data-play]').forEach((b) => b.onclick = () => say(LIS[b.dataset.play], b.dataset.slow ? .75 : .95));
+document.querySelectorAll('[data-stop]').forEach((b) => b.onclick = () => { try { speechSynthesis.cancel(); } catch (e) { } });
+document.querySelectorAll('.ch').forEach((q) => q.querySelectorAll('button').forEach((b) => b.onclick = () => { if (q.classList.contains('ok')) return; const ok = b.textContent === q.dataset.a; q.classList.toggle('ok', ok); q.classList.toggle('bad', !ok); if (ok) { const s = q.querySelector('.s'); if (s && s.textContent.includes('___')) { s.textContent = s.textContent.replace('___', q.dataset.a); } } }));
+const norm = (x) => x.toLowerCase().replace(/[’']/g, "'").replace(/[,;:"“”«»]/g, ' ').replace(/\s+/g, ' ').replace(/[.!?]$/, '').trim();
+document.querySelectorAll('.ty').forEach((r) => { const inp = r.querySelector('input'); const chk = () => { const ok = r.dataset.a.split('|').some((a) => norm(a) === norm(inp.value)); r.classList.toggle('ok', ok); r.classList.toggle('bad', !ok && inp.value.trim() !== ''); }; r.querySelector('button').onclick = chk; inp.onkeydown = (e) => { if (e.key === 'Enter') chk(); }; });
+document.querySelectorAll('[data-mt]').forEach((box) => { const pairs = JSON.parse(box.dataset.pairs); const L = sh(pairs.map((p) => p[0])), R = sh(pairs.map((p) => p[1])); let sel = null, done = 0, err = 0; box.innerHTML = L.map((w, i) => `<button type="button" data-w="${w}">${w}</button><button type="button" data-d="${R[i]}">${R[i]}</button>`).join('');
+  box.querySelectorAll('button').forEach((b) => b.onclick = () => { if (b.classList.contains('done')) return; if (!sel || (sel.dataset.w && b.dataset.w) || (sel.dataset.d && b.dataset.d)) { if (sel) sel.classList.remove('sel'); sel = b; b.classList.add('sel'); return; } const w = sel.dataset.w || b.dataset.w, d = sel.dataset.d || b.dataset.d; if (pairs.some((p) => p[0] === w && p[1] === d)) { sel.classList.add('done'); b.classList.add('done'); done++; say(w); if (done === pairs.length) document.querySelector(`[data-mtres="${box.dataset.mt}"]`).textContent = err ? `Done! Mistakes: ${err}` : 'Perfect!'; } else err++; sel.classList.remove('sel'); sel = null; }); });
+document.querySelectorAll('[data-vids]').forEach((box) => JSON.parse(box.dataset.vids).forEach(([id, title, ch, qs]) => { const d = document.createElement('div'); d.className = 'vid'; d.innerHTML = `<div class="frame"><button class="play" type="button" style="background-image:url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)"><span>PLAY</span></button></div><div class="info"><h3>${title}</h3><small>YouTube · ${ch}</small><ol>${qs.map((q) => `<li>${q}</li>`).join('')}</ol></div>`; d.querySelector('.play').onclick = (e) => { e.currentTarget.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&cc_load_policy=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${title}"></iframe>`; }; box.appendChild(d); }));
+document.querySelectorAll('[data-spin]').forEach((b) => { const list = JSON.parse(b.dataset.spin); let last = -1; b.onclick = () => { let i; do { i = Math.floor(Math.random() * list.length); } while (i === last && list.length > 1); last = i; document.getElementById(b.dataset.target).textContent = list[i]; }; });
+try { const k = 'murly:' + (window.MURLY_LESSON ? MURLY_LESSON.id : 'x') + ':hw'; const t = $('hwText'); if (t) { t.value = localStorage.getItem(k) || ''; t.oninput = () => localStorage.setItem(k, t.value); } } catch (e) { }
+const STAGES = [...document.querySelectorAll('.wrap > section[id]')];
+$('stages').innerHTML = STAGES.map((s) => `<a href="#${s.id}"><b>${s.querySelector('.lk-n').textContent}</b><span>${s.dataset.stage}</span><small>${s.dataset.min !== '0' ? s.dataset.min + ' min' : 'at home'}</small></a>`).join('');
+$('teacherBtn').onclick = (e) => { const on = document.body.classList.toggle('teacher'); e.currentTarget.textContent = on ? 'Student version' : 'Teacher version'; };
+</script>
+<script src="/game-lessons/kit.js" defer></script>
+</body>
+</html>

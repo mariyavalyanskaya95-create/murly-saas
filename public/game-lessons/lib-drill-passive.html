@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Passive voice: 100 tasks (B1) | Murly</title>
+<link rel="icon" href="/favicon.svg">
+<meta name="description" content="Повторимо правило: Пасивний стан
+100 завдань від простого до складного
+Розберемо головні пастки">
+<link rel="canonical" href="https://murly.com.ua/game-lessons/lib-drill-passive.html">
+<style>
+:root{--paper:#F3F0EA;--ink:#17181C;--violet:#3D4A7A;--lav:#D9D3C7;--pink:#E9C9BC;--green:#D4E2CF;--white:#fff;--muted:#62646B;--accent:#B5482F}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+/* hero */
+.hero{background:linear-gradient(rgba(16,17,22,.5),rgba(16,17,22,.72)),url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1400&q=70&auto=format&fit=crop");color:#fff;padding:70px 18px 56px;text-align:center;position:relative;overflow:hidden}
+.hero .kicker{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#E9C9BC;font-weight:700}
+.hero .cr{position:absolute;right:12px;bottom:8px;font-size:11px;color:rgba(255,255,255,.6)}
+.hero h1{margin:8px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(36px,6vw,64px);letter-spacing:-.5px;font-weight:700}
+.hero h1 span{color:var(--pink);font-style:italic}
+.hero p{margin:12px 0 0;font-size:17px;color:#e6e2da}
+.hero .flags{display:flex;justify-content:center;gap:12px;margin-top:22px;flex-wrap:wrap}
+.hero .flags svg{width:40px;height:26px;border-radius:3px;opacity:.9}
+/* sections */
+section{margin-top:30px;background:var(--white);border-radius:18px;padding:28px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.05)}
+section h2{margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tag{font-family:"Segoe UI",system-ui,sans-serif;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--paper);color:var(--accent);text-transform:uppercase;letter-spacing:1px}
+.lk-n{display:inline-grid;place-items:center;width:42px;height:42px;background:var(--violet);color:#fff;border-radius:50%;font-size:21px;flex:none}
+.lk-mode{font-size:13px;font-weight:700;border:2px dashed var(--lav);color:var(--muted);padding:2px 10px;border-radius:999px}
+.lk-ins{font-size:17px;background:var(--paper);border-radius:12px;padding:10px 14px;margin:6px 0 18px}
+.lk-sub{margin:24px 0 10px;font-size:19px}
+.btn{font:inherit;font-weight:700;border:0;border-radius:999px;background:var(--ink);color:#fff;padding:10px 20px;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+.btn.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+/* teacher */
+.lk-tbtn{position:fixed;right:16px;top:70px;z-index:45;font:inherit;font-weight:800;border:2px solid var(--ink);background:var(--pink);padding:8px 14px;border-radius:12px;cursor:pointer}
+body.teacher .lk-tbtn{background:var(--green)}
+.lk-ans,.lk-tnote{display:none}
+body.teacher .lk-ans{display:block;margin-top:8px;font-weight:700;color:#1d5a12;background:var(--green);border-left:5px solid #5aa845;padding:6px 10px;font-size:15px;border-radius:6px}
+body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff3f7;border-left:5px solid #d9789a;padding:8px 12px;font-size:15px;border-radius:6px}
+/* overview */
+.lk-overview ul{font-size:17px;line-height:1.7;margin:6px 0 16px}
+.lk-stages{display:flex;flex-wrap:wrap;gap:8px}
+.lk-stages a{display:grid;border-radius:14px;padding:8px 12px;text-decoration:none;color:var(--ink);background:var(--paper);font-weight:700;min-width:100px}
+.lk-stages a span{text-transform:capitalize}
+.lk-stages a b{font-size:20px;color:var(--violet)}
+.lk-stages a small{font-weight:600;color:var(--muted)}
+/* warm-up */
+.taxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tax{background:var(--paper);border-radius:18px;padding:16px;display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center}
+.tax svg{width:56px;height:56px}
+.tax b{display:block;font-size:17px}
+.tax small{color:var(--muted);font-size:14px}
+.qs{display:grid;gap:10px;margin-top:18px}
+.qs div{background:var(--green);border-radius:14px;padding:10px 16px;font-size:18px;font-weight:600}
+.phr{background:#fff7e8;border-radius:14px;padding:12px 16px;margin-top:16px;font-size:15px}
+.phr ul{margin:6px 0 0;padding-left:18px}
+.fic{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:16px}
+.fic .c{background:#fff;border:2px solid #1B2140;border-radius:16px;padding:14px 16px;box-shadow:3px 3px 0 #1B2140}
+.fic .c b{display:block;font-size:18px;line-height:1.35;margin-bottom:8px}
+.fic .c .k{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.fic .c .k span{font-size:13px;background:#eef1fb;border-radius:999px;padding:3px 10px}
+.fic .c details{margin-top:8px;font-size:15px;color:#3b4160}
+.fic .c summary{cursor:pointer;font-weight:700;color:#534AB7}
+.fi-n{display:inline-flex;width:28px;height:28px;border-radius:50%;background:#2F4BA0;color:#fff;align-items:center;justify-content:center;font-size:14px;margin-right:6px}
+/* vocab */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:12px}
+.vc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:2px solid transparent;transition:border-color .2s,transform .2s}
+.vc:hover{border-color:var(--violet);transform:translateY(-2px)}
+.vc b{font-size:18px;display:flex;align-items:center;gap:8px}
+.vc b svg{width:20px;height:20px;flex:none;color:var(--violet)}
+.vc p{margin:6px 0 0;font-size:14px;color:var(--muted)}
+.vc em{display:block;margin-top:6px;font-size:14px;color:var(--violet);font-style:normal;font-weight:600}
+.vc.played{background:#e6ecfb}
+/* grammar */
+.gram{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.gb{border-radius:18px;padding:16px}
+.gb h3{margin:0 0 6px;font-size:19px}
+.gb .f{display:inline-block;background:#fff;border-radius:8px;padding:3px 10px;font-weight:800;margin:4px 0;font-family:Consolas,monospace;font-size:15px}
+.gb p{margin:6px 0 0;font-size:15px}
+.g1{background:var(--pink)}.g2{background:var(--lav)}.g3{background:var(--green)}.g4{background:#fbe7c6}
+.warn{margin-top:14px;background:var(--ink);color:#fff;border-radius:14px;padding:12px 16px;font-size:16px}
+.warn b{color:var(--pink)}
+.q{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:2px dashed var(--paper);font-size:18px}
+.q:last-child{border-bottom:0}
+.q .n{width:32px;height:32px;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;border-radius:50%;font-weight:800;font-size:15px}
+.opt{font:inherit;font-size:16px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:10px;padding:4px 12px;cursor:pointer;margin:0 2px}
+.opt.ok{background:var(--green);border-color:#5aa845}
+.opt.bad{background:var(--pink);animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+/* tour */
+.tour{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.law{border-radius:22px;overflow:hidden;background:var(--paper);display:flex;flex-direction:column}
+.law .pic{height:150px;display:grid;place-items:center;position:relative}
+.law .pic svg.ill{width:130px;height:130px}
+.law .pic svg.fl{position:absolute;left:14px;top:14px;width:46px;height:30px;border-radius:5px;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.law .pic .no{position:absolute;right:14px;top:14px;background:var(--ink);color:#fff;font-weight:800;border-radius:999px;padding:2px 10px;font-size:13px}
+.law .body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.law h3{margin:0;font-size:20px}
+.law .where{font-size:13px;font-weight:800;color:var(--violet);text-transform:uppercase;letter-spacing:1px}
+.law p{margin:0;font-size:16px}
+.law .why{font-size:14px;color:var(--muted)}
+.law .dq{margin-top:auto;background:#fff;border-radius:12px;padding:8px 12px;font-weight:700;font-size:15px}
+.law .lsn{font:inherit;font-size:13px;font-weight:700;background:none;border:0;color:var(--violet);cursor:pointer;padding:0;text-align:left}
+/* game */
+.game{max-width:720px;margin:0 auto;text-align:center}
+.score{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.score span{background:var(--paper);border-radius:999px;padding:6px 16px;font-weight:800}
+.stmt{background:var(--ink);color:#fff;border-radius:22px;padding:28px 24px;min-height:150px;display:grid;place-items:center;font-size:23px;font-weight:700;position:relative}
+.stmt small{position:absolute;top:12px;left:18px;font-size:13px;color:var(--lav);font-weight:700}
+.choose{display:flex;justify-content:center;gap:14px;margin:18px 0}
+.choose button{font:inherit;font-size:18px;font-weight:700;border:2px solid var(--ink);border-radius:999px;padding:12px 28px;cursor:pointer}
+.choose .bl{background:var(--green)}.choose .bm{background:var(--pink)}
+.choose button:disabled{opacity:.5;cursor:default}
+.verdict{min-height:70px;font-size:17px;background:var(--paper);border-radius:16px;padding:12px 16px;text-align:left}
+.verdict b.r{color:#2d7a1d}.verdict b.w{color:#b23a62}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.dots i{width:14px;height:14px;border-radius:50%;background:var(--paper)}
+.dots i.r{background:#7cc663}.dots i.w{background:#e47b9f}.dots i.c{outline:3px solid var(--violet)}
+.final{font-size:22px;font-weight:800;color:var(--violet)}
+/* invent */
+.inv{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.frames{display:grid;gap:10px}
+.frames label{font-size:14px;font-weight:700;color:var(--muted)}
+.frames select,.frames input{font:inherit;width:100%;padding:8px 10px;border:2px solid var(--lav);border-radius:10px;background:#fff}
+.poster{background:var(--paper);border:3px solid var(--ink);border-radius:20px;padding:22px;text-align:center;min-height:260px;display:flex;flex-direction:column;gap:10px;justify-content:center}
+.poster .seal{width:70px;height:70px;margin:0 auto}
+.poster h3{margin:0;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--violet)}
+.poster .rule{font-size:22px;font-weight:800}
+.poster .pen{font-size:16px;color:var(--muted)}
+.ideas{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ideas span{background:var(--pink);border-radius:999px;padding:5px 12px;font-size:14px;font-weight:600}
+/* roleplay */
+.rp{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.role{border-radius:20px;padding:18px}
+.role h3{margin:0 0 6px;display:flex;align-items:center;gap:10px}
+.role h3 svg{width:42px;height:42px}
+.role ul{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.r1{background:var(--lav)}.r2{background:var(--green)}
+.scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:16px}
+.sc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:3px solid transparent}
+.sc.on{border-color:var(--violet);background:#fff}
+.sc b{display:block;font-size:17px;margin-bottom:4px}
+.sc p{margin:0;font-size:15px}
+.timer{font-size:40px;font-weight:800;text-align:center;margin:14px 0 6px;color:var(--violet)}
+.ctr{text-align:center}
+/* homework */
+.hwb{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hwc{background:var(--paper);border-radius:18px;padding:18px}
+.hwc h3{margin:0 0 8px}
+.hwc ol,.hwc ul{margin:6px 0 0;padding-left:20px;line-height:1.7}
+.hwc textarea{width:100%;min-height:150px;font:inherit;border:2px solid var(--lav);border-radius:12px;padding:10px;margin-top:10px}
+.end{text-align:center;background:var(--ink);color:#fff;box-shadow:none}
+.end h2{justify-content:center}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(140px);background:var(--ink);color:#fff;font-weight:800;padding:12px 22px;border-radius:14px;transition:transform .3s;z-index:50}
+.toast.show{transform:translateX(-50%) translateY(0)}
+/* photos */
+.ph{margin:0}
+.ph img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;background:var(--paper)}
+.ph figcaption{font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.2px}
+.tax{grid-template-columns:1fr !important;padding:12px !important}
+.law .pic{height:auto !important;display:block !important;padding:0;position:relative}
+.law .pic .ph img{border-radius:0;aspect-ratio:16/10;transition:filter .5s}
+.law .pic .ph figcaption{padding:4px 12px 0}
+.law.hide .pic .ph img{filter:blur(10px) grayscale(.6)}
+.law.hide .reveal-body,.law.hide .fl,.law.hide .where{visibility:hidden}
+.law .clue{font-size:15px;font-style:italic;color:var(--ink)}
+.law .gc{display:flex;flex-wrap:wrap;gap:6px}
+.law .gc button{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:4px 12px;cursor:pointer}
+.law .gc button.ok{background:var(--green)}.law .gc button.bad{background:var(--pink)}
+.law:not(.hide) .guess{display:none}
+.fair{display:grid;gap:4px;background:#fff;border-radius:12px;padding:8px 12px}
+.fair .ends{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.fair input{width:100%;accent-color:var(--accent)}
+.fair output{font-size:14px;font-weight:700;color:var(--accent)}
+.gph{max-width:720px;margin:0 auto 12px}
+.gph img{aspect-ratio:21/9}
+.fine{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.fq{background:var(--paper);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.fq h3{margin:0;font-size:18px}
+.fq .opts{display:flex;flex-wrap:wrap;gap:6px}
+.fq .opts button{font:inherit;font-size:14px;font-weight:700;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 12px;cursor:pointer}
+.fq .opts button.ok{background:var(--green)}.fq .opts button.bad{background:var(--pink)}
+.fq .res{font-size:15px;min-height:22px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{position:relative;aspect-ratio:16/9;background:#111}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;cursor:pointer;background:#111 center/cover;display:grid;place-items:center}
+.vid .play span{background:rgba(0,0,0,.7);color:#fff;font-weight:700;border-radius:999px;padding:10px 20px;font-size:15px;letter-spacing:1px}
+.vid .info{padding:14px 16px}
+.vid .info h3{margin:0 0 2px;font-size:18px}
+.vid .info small{color:var(--muted)}
+.vid .info ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+@media(max-width:760px){.inv,.rp,.hwb{grid-template-columns:1fr}.lk-tbtn{top:auto;bottom:70px}}
+
+.pr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.pb{border-radius:18px;padding:16px 18px}
+.pb h3{margin:0;font-family:Georgia,serif;font-size:30px}
+.pb .m{font-size:15px;color:var(--muted);margin:2px 0 8px}
+.pb .chips{display:flex;flex-wrap:wrap;gap:6px}
+.pb .chips span{background:#fff;border-radius:999px;padding:4px 11px;font-size:14px;font-weight:600}
+.pb ul{margin:10px 0 0;padding-left:18px;font-size:15px}
+.p-in{background:#DCE6F5}.p-at{background:#F3D9CF}.p-on{background:#D4E2CF}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-size:15px;margin-top:10px}
+.ex div{background:var(--paper);border-radius:10px;padding:8px 12px}
+.ex b{color:var(--accent)}
+.q{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.q .n{font-weight:800;color:var(--violet);min-width:24px}
+.q .gap{display:inline-block;min-width:44px;border-bottom:2px solid var(--ink);text-align:center;font-weight:800}
+.q .opts{margin-left:auto;display:flex;gap:6px}
+.q .opts button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 14px;cursor:pointer}
+.q.ok{background:#DDEED7}.q.ok .gap{color:#2F7A3B}
+.q.bad{background:#F6DAD3}
+.score{font-weight:800;margin-top:12px}
+.text{font-size:18px;line-height:1.75;background:var(--paper);border-radius:16px;padding:18px 22px}
+.text h3{margin:0 0 6px;font-family:Georgia,serif;font-size:24px}
+.text p{margin:0 0 12px}
+.text.hl mark{background:#F3D9CF;border-radius:4px;padding:0 3px;font-weight:700}
+.tf{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:9px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.tf .opts{margin-left:auto;display:flex;gap:6px}
+.tf button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.tf.ok{background:#DDEED7}.tf.bad{background:#F6DAD3}
+.disc{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px;margin-top:6px}
+.disc div{background:var(--green);border-radius:14px;padding:12px 16px;font-size:17px;font-weight:600}
+.disc div i{font-style:normal;color:var(--violet);margin-right:6px}
+.spin{text-align:center;margin-top:16px}
+.spin .card{display:inline-block;min-height:80px;min-width:min(560px,100%);background:var(--ink);color:#fff;border-radius:18px;padding:20px 24px;font-size:22px;font-weight:700;margin-bottom:12px}
+@media(max-width:700px){.ex{grid-template-columns:1fr}}
+
+.hero{background-size:cover!important;background-position:center!important}
+.voc{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.voc div{background:var(--paper);border-radius:14px;padding:10px 14px;cursor:pointer;border:2px solid transparent}
+.voc div:hover{border-color:var(--violet)}
+.voc b{display:block;font-size:18px}.voc span{display:block;color:var(--accent);font-weight:700;font-size:15px}.voc em{display:block;font-size:14px;color:var(--muted);margin-top:3px}
+.mt{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:10px}
+.mt button{font:inherit;font-size:16px;text-align:left;border:2px solid var(--ink);background:#fff;border-radius:14px;padding:9px 14px;cursor:pointer}
+.mt button.sel{background:#FFE7A8}.mt button.done{background:#CDE8C6;border-color:#4C9A5B;cursor:default}
+.ch{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ch .n{font-weight:800;color:var(--violet);min-width:24px}
+.ch .o{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.ch .o button{font:inherit;font-size:15px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.ch.ok{background:#DDEED7}.ch.bad{background:#F6DAD3}
+.ty{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ty input{font:inherit;border:2px solid var(--ink);border-radius:10px;padding:4px 10px;width:220px}
+.ty.ok{background:#DDEED7}.ty.bad{background:#F6DAD3}
+.ty small{color:var(--muted)}
+.photo{width:100%;height:300px;object-fit:cover;border-radius:16px;display:block}
+.cap{font-size:11px;color:var(--muted);margin:4px 0 12px}
+.pics{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.pics figure{margin:0;background:var(--paper);border-radius:16px;overflow:hidden}
+.pics img{width:100%;height:170px;object-fit:cover;display:block}
+.pics figcaption{padding:8px 12px;font-weight:700}
+.pics small{display:block;font-weight:400;font-size:10px;color:var(--muted)}
+.lis{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:8px 0 14px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{aspect-ratio:16/9;background:#000;position:relative}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;background-size:cover;background-position:center;cursor:pointer;display:grid;place-items:center}
+.vid .play span{background:#E5484D;color:#fff;font-weight:800;border-radius:12px;padding:10px 20px}
+.vid .info{padding:12px 16px}.vid h3{margin:0;font-size:18px}.vid small{color:var(--muted)}
+.vid ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th,.tbl td{border:1px solid #ddd;padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--paper)}
+@media(max-width:700px){.mt{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="/game-lessons/kit.css">
+</head>
+<body>
+<header class="hero">
+  <div class="kicker">B1 · teens · Граматика: тренажер Пасивний стан</div>
+  <h1>Passive voice: 100 tasks</h1>
+  <p>B1 · 6 parts · 60 min</p>
+  <span class="cr">Photo: Unsplash</span>
+</header>
+<button class="lk-tbtn" id="teacherBtn" type="button">Teacher version</button>
+<div class="wrap">
+  <section class="lk-overview">
+    <h2>In this lesson you will:</h2>
+    <ul><li>Повторимо правило: Пасивний стан
+100 завдань від простого до складного
+Розберемо головні пастки</li></ul>
+    <div class="lk-stages" id="stages"></div>
+  </section>
+  <section id="s1" data-stage="practice" data-min="10">
+    <h2><span class="lk-n">1</span>Теорія <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<div class="warn"><p><b>Коли вживаємо</b></p><p>Важливо, що сталося, а не хто це зробив: The school concert was moved to Friday. (Шкільний концерт перенесли на п’ятницю.)</p><p>Виконавець невідомий або неважливий: My umbrella was taken from the café. (Мою парасольку забрали з кафе.)</p><p>Процеси, правила, оголошення: The floors are washed every evening. (Підлогу миють щовечора.)</p><p>Хочемо назвати виконавця в кінці: by: This mural was painted by students. (Цей мурал намалювали учні.)</p><p>Майбутнє і результат (will be / has been): The winners will be announced on Friday. (Переможців оголосять у п’ятницю.)</p></div>
+    <div class="warn"><p><b>Форми</b></p><p>+  Present Simple: am / is / are + V3. Приклад: The parcels are delivered in the morning.</p><p>+  Past Simple: was / were + V3. Приклад: The pie was eaten in five minutes.</p><p>−  be + not + V3: isn’t / aren’t / wasn’t / weren’t + V3. Приклад: The tickets weren’t sold online.</p><p>?  Am / Is / Are / Was / Were + підмет + V3?. Приклад: Is lunch included?</p><p>by  by + хто зробив, якщо це важливо. Приклад: The photo was taken by my brother.</p><p>will  Майбутнє: will be + V3. Приклад: The new rules will be explained tomorrow.</p><p>has  Present Perfect: has / have been + V3. Приклад: The app has been updated.</p></div>
+    <div class="warn"><p><b>Головна пастка</b></p><p>Після be тільки V3. У пасиві після am / is / are / was / were завжди третя форма. Is make, was write: так не буває.</p><p>✗ The pizza is make in a wood oven.</p><p>✓ The pizza is made in a wood oven.</p><p>Неправильні дієслова не мають -ed. Builded, stealed, writed не існують. V3 неправильних дієслів треба знати напам’ять (таблиця нижче).</p><p>✗ The stadium was builded in 2012.</p><p>✓ The stadium was built in 2012.</p><p>Пасив чи актив?. Якщо підмет сам робить дію, пасив не потрібен. Дієслова без об’єкта (happen, arrive, sleep, die) взагалі не мають пасиву.</p><p>✗ The accident was happened at night.</p><p>✓ The accident happened at night.</p></div>
+    <div class="warn"><p><b>Маркери:</b> by, is / are + V3, was / were + V3, was born, is made of, every day / every year, in 2010 / last year, will be + V3, has been + V3, already / yet / just</p></div>
+    <div class="warn"><p><b>V3 частих неправильних дієслів</b></p><p>У пасиві після be завжди третя форма (V3). Правильні дієслова: просто + -ed (cleaned, invited, cancelled). Неправильні треба знати: ось ті, що найчастіше трапляються в пасиві. Колонки: V1, V2, V3, переклад.</p><p>make · made · made · робити, виготовляти</p><p>build · built · built · будувати</p><p>write · wrote · written · писати</p><p>take · took · taken · брати, фотографувати</p><p>give · gave · given · давати</p><p>steal · stole · stolen · красти</p><p>send · sent · sent · надсилати</p><p>sell · sold · sold · продавати</p><p>find · found · found · знаходити</p><p>break · broke · broken · ламати, розбивати</p><p>eat · ate · eaten · їсти</p><p>speak · spoke · spoken · говорити</p><p>teach · taught · taught · навчати</p><p>choose · chose · chosen · обирати</p><p>grow · grew · grown · вирощувати</p></div>
+    <p class="lk-tnote" data-ru="Тренажер на 100 завдань: 5 раундів по 20. На уроці можна пройти 1-2 раунди, решту задати додому. Пояснення до кожної відповіді учень бачить у тренажері на сайті (розділ «Граматика»).&lt;br&gt;">Тренажер на 100 завдань: 5 раундів по 20. На уроці можна пройти 1-2 раунди, решту задати додому. Пояснення до кожної відповіді учень бачить у тренажері на сайті (розділ «Граматика»).<br></p>
+  </section>
+  <section id="s2" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">2</span>Раунд 1. Present Simple: is / are + V3 <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="are made"><span class="n">1</span><span class="s">These sneakers ___ in Vietnam.</span><span class="o"><button type="button">make</button><button type="button">are made</button><button type="button">are make</button><button type="button">is made</button></span></div>
+<div class="ch" data-a="is baked"><span class="n">2</span><span class="s">Fresh bread ___ here every morning.</span><span class="o"><button type="button">baked</button><button type="button">are baked</button><button type="button">is baked</button><button type="button">is bake</button></span></div>
+<div class="ch" data-a="is spoken"><span class="n">3</span><span class="s">Spanish ___ in many countries of South America.</span><span class="o"><button type="button">are spoken</button><button type="button">is speak</button><button type="button">is spoken</button><button type="button">speaks</button></span></div>
+<div class="ch" data-a="is fed"><span class="n">4</span><span class="s">Our cat ___ twice a day.</span><span class="o"><button type="button">is feeded</button><button type="button">are fed</button><button type="button">is fed</button><button type="button">is feed</button></span></div>
+<div class="ch" data-a="are posted"><span class="n">5</span><span class="s">Millions of photos ___ on Instagram every day.</span><span class="o"><button type="button">post</button><button type="button">are posted</button><button type="button">is posted</button><button type="button">are post</button></span></div>
+<div class="ch" data-a="are sold"><span class="n">6</span><span class="s">The tickets ___ online only.</span><span class="o"><button type="button">are sold</button><button type="button">is selling</button><button type="button">are sell</button><button type="button">is sold</button></span></div>
+<div class="ch" data-a="is collected"><span class="n">7</span><span class="s">The rubbish ___ on Tuesdays.</span><span class="o"><button type="button">collects</button><button type="button">is collect</button><button type="button">are collected</button><button type="button">is collected</button></span></div>
+<div class="ch" data-a="are sent"><span class="n">8</span><span class="s">The emails ___ automatically.</span><span class="o"><button type="button">are sent</button><button type="button">is sent</button><button type="button">are send</button><button type="button">sends</button></span></div>
+<div class="ch" data-a="am invited"><span class="n">9</span><span class="s">I ___ to every party in our class.</span><span class="o"><button type="button">invited</button><button type="button">is invited</button><button type="button">am invited</button><button type="button">am invite</button></span></div>
+<div class="ch" data-a="are washed"><span class="n">10</span><span class="s">The windows in our flat ___ once a month.</span><span class="o"><button type="button">is washed</button><button type="button">washed</button><button type="button">wash</button><button type="button">are washed</button></span></div>
+<div class="ch" data-a="is walked"><span class="n">11</span><span class="s">Our dog ___ every morning by my dad.</span><span class="o"><button type="button">is walking</button><button type="button">walks</button><button type="button">is walked</button><button type="button">are walked</button></span></div>
+<div class="ch" data-a="is played"><span class="n">12</span><span class="s">This song ___ at every wedding!</span><span class="o"><button type="button">is play</button><button type="button">was play</button><button type="button">is played</button><button type="button">are played</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; are made · is baked · is spoken · is fed · are posted · are sold · is collected · are sent · am invited · are washed · is walked · is played"><b>Відповіді:</b> are made · is baked · is spoken · is fed · are posted · are sold · is collected · are sent · am invited · are washed · is walked · is played</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="is cleaned"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>The classroom ___ (clean) every evening.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="are released"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>The new episodes ___ (release) every Friday.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="is served"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Breakfast ___ (serve) from 7 to 10 a.m.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="are produced|were produced"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>These cars ___ (produce) in Japan.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="is played"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>This game ___ (play) all over the world.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="are sent|were sent"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>The results of the test ___ (send) to parents by email.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="are kept|were kept"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>The keys ___ (keep) in the top drawer.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="are eaten"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>Pancakes ___ (eat) with honey in our family.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; is cleaned · are released · is served · are produced · is played · are sent · are kept · are eaten"><b>Відповіді:</b> is cleaned · are released · is served · are produced · is played · are sent · are kept · are eaten</p>
+  </section>
+  <section id="s3" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">3</span>Раунд 2. Past Simple: was / were + V3 <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="was stolen"><span class="n">1</span><span class="s">My phone ___ on the bus yesterday.</span><span class="o"><button type="button">were stolen</button><button type="button">is stolen</button><button type="button">stole</button><button type="button">was stolen</button></span></div>
+<div class="ch" data-a="was introduced"><span class="n">2</span><span class="s">The first iPhone ___ in 2007.</span><span class="o"><button type="button">was introduced</button><button type="button">introduced</button><button type="button">is introduced</button><button type="button">were introduced</button></span></div>
+<div class="ch" data-a="were broken"><span class="n">3</span><span class="s">Two windows ___ by the ball.</span><span class="o"><button type="button">broke</button><button type="button">were broken</button><button type="button">are broke</button><button type="button">was broken</button></span></div>
+<div class="ch" data-a="were called"><span class="n">4</span><span class="s">Yesterday we ___ to the director’s office.</span><span class="o"><button type="button">were called</button><button type="button">called</button><button type="button">was called</button><button type="button">are call</button></span></div>
+<div class="ch" data-a="was eaten"><span class="n">5</span><span class="s">The cake ___ in ten minutes.</span><span class="o"><button type="button">were eaten</button><button type="button">was ate</button><button type="button">was eaten</button><button type="button">ate</button></span></div>
+<div class="ch" data-a="were painted"><span class="n">6</span><span class="s">These pictures ___ by my grandma.</span><span class="o"><button type="button">were painted</button><button type="button">painted</button><button type="button">was painted</button><button type="button">were paint</button></span></div>
+<div class="ch" data-a="was written"><span class="n">7</span><span class="s">The letter ___ in pencil.</span><span class="o"><button type="button">was written</button><button type="button">wrote</button><button type="button">was wrote</button><button type="button">were written</button></span></div>
+<div class="ch" data-a="were sold"><span class="n">8</span><span class="s">All the tickets ___ in an hour.</span><span class="o"><button type="button">were sold</button><button type="button">was sold</button><button type="button">were sell</button><button type="button">was sell</button></span></div>
+<div class="ch" data-a="was born"><span class="n">9</span><span class="s">Emma ___ in Edinburgh in 2008.</span><span class="o"><button type="button">is born</button><button type="button">born</button><button type="button">was born</button><button type="button">were born</button></span></div>
+<div class="ch" data-a="was built"><span class="n">10</span><span class="s">The bridge ___ in two years.</span><span class="o"><button type="button">were built</button><button type="button">was built</button><button type="button">built</button><button type="button">was builded</button></span></div>
+<div class="ch" data-a="were covered"><span class="n">11</span><span class="s">The streets ___ with snow in the morning.</span><span class="o"><button type="button">are cover</button><button type="button">covered</button><button type="button">were covered</button><button type="button">was covered</button></span></div>
+<div class="ch" data-a="was found"><span class="n">12</span><span class="s">The lost kitten ___ by a neighbour.</span><span class="o"><button type="button">was found</button><button type="button">were found</button><button type="button">was finded</button><button type="button">found</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; was stolen · was introduced · were broken · were called · was eaten · were painted · was written · were sold · was born · was built · were covered · was found"><b>Відповіді:</b> was stolen · was introduced · were broken · were called · was eaten · were painted · was written · were sold · was born · was built · were covered · was found</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="were taken"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>The photos ___ (take) at Lily’s birthday party.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="was cancelled|was canceled"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>The match ___ (cancel) because of the rain.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="was bought"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>The old cinema ___ (buy) by a coffee chain last year.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="was invited"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Tom ___ (invite) to the final interview last week.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="were chosen"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Last year the winners ___ (choose) by the audience.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="was delivered"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>The parcel ___ (deliver) to the wrong address yesterday.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="was written"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>The music for the film ___ (write) by a young composer.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="were switched"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>The lights ___ (switch) off at midnight last night.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; were taken · was cancelled · was bought · was invited · were chosen · was delivered · was written · were switched"><b>Відповіді:</b> were taken · was cancelled · was bought · was invited · were chosen · was delivered · was written · were switched</p>
+  </section>
+  <section id="s4" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">4</span>Раунд 3. By, заперечення і питання <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="by"><span class="n">1</span><span class="s">This video was filmed ___ my little sister.</span><span class="o"><button type="button">of</button><button type="button">at</button><button type="button">by</button><button type="button">from</button></span></div>
+<div class="ch" data-a="Was"><span class="n">2</span><span class="s">___ the homework checked yesterday?</span><span class="o"><button type="button">Was</button><button type="button">Were</button><button type="button">Is</button><button type="button">Did</button></span></div>
+<div class="ch" data-a="aren’t held"><span class="n">3</span><span class="s">Classes ___ on Saturdays at our school.</span><span class="o"><button type="button">isn’t held</button><button type="button">aren’t hold</button><button type="button">don’t held</button><button type="button">aren’t held</button></span></div>
+<div class="ch" data-a="by"><span class="n">4</span><span class="s">Was the poster designed ___ Max?</span><span class="o"><button type="button">from</button><button type="button">by</button><button type="button">at</button><button type="button">of</button></span></div>
+<div class="ch" data-a="wasn’t lost"><span class="n">5</span><span class="s">My bag ___ at the airport, thank goodness.</span><span class="o"><button type="button">didn’t lose</button><button type="button">wasn’t lost</button><button type="button">weren’t lost</button><button type="button">wasn’t lose</button></span></div>
+<div class="ch" data-a="aren’t allowed"><span class="n">6</span><span class="s">Pets ___ in this hotel.</span><span class="o"><button type="button">aren’t allow</button><button type="button">isn’t allowed</button><button type="button">aren’t allowed</button><button type="button">don’t allowed</button></span></div>
+<div class="ch" data-a="Were"><span class="n">7</span><span class="s">___ you invited to Sophie’s party last week?</span><span class="o"><button type="button">Did</button><button type="button">Were</button><button type="button">Was</button><button type="button">Are</button></span></div>
+<div class="ch" data-a="by"><span class="n">8</span><span class="s">This app was created ___ two students from Manchester.</span><span class="o"><button type="button">by</button><button type="button">from</button><button type="button">of</button><button type="button">at</button></span></div>
+<div class="ch" data-a="written"><span class="n">9</span><span class="s">Is this word ___ with a capital letter?</span><span class="o"><button type="button">wrote</button><button type="button">writing</button><button type="button">written</button><button type="button">write</button></span></div>
+<div class="ch" data-a="was"><span class="n">10</span><span class="s">Who ___ the first computer invented by?</span><span class="o"><button type="button">were</button><button type="button">was</button><button type="button">did</button><button type="button">is</button></span></div>
+<div class="ch" data-a="by"><span class="n">11</span><span class="s">The best goal was scored ___ a 15-year-old player.</span><span class="o"><button type="button">of</button><button type="button">at</button><button type="button">from</button><button type="button">by</button></span></div>
+<div class="ch" data-a="aren’t given"><span class="n">12</span><span class="s">Plastic bags ___ in this supermarket anymore.</span><span class="o"><button type="button">aren’t given</button><button type="button">aren’t give</button><button type="button">don’t give</button><button type="button">isn’t given</button></span></div>
+<div class="ch" data-a="The book was written by my aunt."><span class="n">13</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">The book was written from my aunt.</button><button type="button">The book wrote by my aunt.</button><button type="button">The book is wrote by my aunt.</button><button type="button">The book was written by my aunt.</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; by · Was · aren’t held · by · wasn’t lost · aren’t allowed · Were · by · written · was · by · aren’t given · The book was written by my aunt."><b>Відповіді:</b> by · Was · aren’t held · by · wasn’t lost · aren’t allowed · Were · by · written · was · by · aren’t given · The book was written by my aunt.</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="weren’t baked|were not baked"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>The cookies ___ (not / bake) by Dan, they were bought in a shop.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="is the room cleaned"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>How often ___ (the room / clean)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="was the Eiffel Tower built"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>When ___ (the Eiffel Tower / build)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="wasn’t noticed|was not noticed"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>The mistake ___ (not / notice) by the teacher, so I got a good mark.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="wasn’t shown|was not shown"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>The match ___ (not / show) on TV, so we listened to it on the radio.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Was your phone repaired|was your phone repaired"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>___ (your phone / repair) last week?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="isn’t played|is not played"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>Football ___ (not / play) in the park after 9 p.m.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; weren’t baked · is the room cleaned · was the Eiffel Tower built · wasn’t noticed · wasn’t shown · Was your phone repaired · isn’t played"><b>Відповіді:</b> weren’t baked · is the room cleaned · was the Eiffel Tower built · wasn’t noticed · wasn’t shown · Was your phone repaired · isn’t played</p>
+  </section>
+  <section id="s5" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">5</span>Раунд 4. Пастки <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="The pizza is made by hand."><span class="n">1</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">The pizza is make by hand.</button><button type="button">The pizza made by hand.</button><button type="button">The pizza is maked by hand.</button><button type="button">The pizza is made by hand.</button></span></div>
+<div class="ch" data-a="was built"><span class="n">2</span><span class="s">Our school ___ in 1975.</span><span class="o"><button type="button">was builded</button><button type="button">was build</button><button type="button">was built</button><button type="button">built</button></span></div>
+<div class="ch" data-a="happened"><span class="n">3</span><span class="s">The accident ___ at night.</span><span class="o"><button type="button">is happened</button><button type="button">was happen</button><button type="button">happened</button><button type="button">was happened</button></span></div>
+<div class="ch" data-a="took"><span class="n">4</span><span class="s">Max ___ a great photo of the sunset.</span><span class="o"><button type="button">was took</button><button type="button">is taken</button><button type="button">took</button><button type="button">was taken</button></span></div>
+<div class="ch" data-a="was taken"><span class="n">5</span><span class="s">This photo ___ by Max on our trip.</span><span class="o"><button type="button">was taken</button><button type="button">took</button><button type="button">was took</button><button type="button">is take</button></span></div>
+<div class="ch" data-a="My grandparents were born in Brighton."><span class="n">6</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">My grandparents were born in Brighton.</button><button type="button">My grandparents born in Brighton.</button><button type="button">My grandparents are born in Brighton.</button><button type="button">My grandparents was born in Brighton.</button></span></div>
+<div class="ch" data-a="arrived"><span class="n">7</span><span class="s">The train ___ ten minutes ago.</span><span class="o"><button type="button">was arrived</button><button type="button">is arrived</button><button type="button">was arrive</button><button type="button">arrived</button></span></div>
+<div class="ch" data-a="does"><span class="n">8</span><span class="s">Lily ___ her homework every evening.</span><span class="o"><button type="button">is did</button><button type="button">was done</button><button type="button">is done</button><button type="button">does</button></span></div>
+<div class="ch" data-a="was remixed"><span class="n">9</span><span class="s">This song ___ by a famous DJ.</span><span class="o"><button type="button">was remix</button><button type="button">is remixing</button><button type="button">was remixed</button><button type="button">remixed</button></span></div>
+<div class="ch" data-a="The emails were sent yesterday."><span class="n">10</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">The emails was sent yesterday.</button><button type="button">The emails were sent yesterday.</button><button type="button">The emails sent yesterday.</button><button type="button">The emails were send yesterday.</button></span></div>
+<div class="ch" data-a="slept"><span class="n">11</span><span class="s">The cat ___ under the bed all morning.</span><span class="o"><button type="button">is slept</button><button type="button">slept</button><button type="button">was slept</button><button type="button">was sleep</button></span></div>
+<div class="ch" data-a="checked"><span class="n">12</span><span class="s">Our teacher ___ the tests on Monday.</span><span class="o"><button type="button">was checked</button><button type="button">was check</button><button type="button">is checked</button><button type="button">checked</button></span></div>
+<div class="ch" data-a="were checked"><span class="n">13</span><span class="s">The tests ___ by our teacher on Monday.</span><span class="o"><button type="button">were checked</button><button type="button">was checked</button><button type="button">were check</button><button type="button">checked</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; The pizza is made by hand. · was built · happened · took · was taken · My grandparents were born in Brighton. · arrived · does · was remixed · The emails were sent yesterday. · slept · checked · were checked"><b>Відповіді:</b> The pizza is made by hand. · was built · happened · took · was taken · My grandparents were born in Brighton. · arrived · does · was remixed · The emails were sent yesterday. · slept · checked · were checked</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="was stolen"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>On Tuesday, the bike ___ (steal) from outside the gym.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="were eaten|had been eaten"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>All the sandwiches ___ (eat) before the teacher arrived.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="was sent"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>The parcel ___ (send) last Monday, so it should arrive soon.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="is grown"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>A lot of rice ___ (grow) in Asia.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="were given"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>The players ___ (give) new uniforms before the match.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="is made|was made"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>The sculpture ___ (make) of recycled plastic.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="was taught"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>Dan ___ (teach) to swim by his uncle when he was five.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; was stolen · were eaten · was sent · is grown · were given · is made · was taught"><b>Відповіді:</b> was stolen · were eaten · was sent · is grown · were given · is made · was taught</p>
+  </section>
+  <section id="s6" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">6</span>Раунд 5. Фінальний бос <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="will be announced"><span class="n">1</span><span class="s">The test was on Monday. The results ___ tomorrow.</span><span class="o"><button type="button">will announce</button><button type="button">will be announced</button><button type="button">are announce</button><button type="button">were announced</button></span></div>
+<div class="ch" data-a="has been sent"><span class="n">2</span><span class="s">Good news! Your order ___. It’s on its way.</span><span class="o"><button type="button">has sent</button><button type="button">has been send</button><button type="button">have been sent</button><button type="button">has been sent</button></span></div>
+<div class="ch" data-a="have been painted"><span class="n">3</span><span class="s">Our flat looks different. The walls ___ blue.</span><span class="o"><button type="button">have painted</button><button type="button">have been paint</button><button type="button">have been painted</button><button type="button">has been painted</button></span></div>
+<div class="ch" data-a="hasn’t been repaired"><span class="n">4</span><span class="s">I can’t use my laptop. It ___ yet.</span><span class="o"><button type="button">haven’t been repaired</button><button type="button">isn’t been repaired</button><button type="button">hasn’t been repaired</button><button type="button">hasn’t repaired</button></span></div>
+<div class="ch" data-a="are introduced"><span class="n">5</span><span class="s">In our English club, ten new words ___ every week.</span><span class="o"><button type="button">is introduced</button><button type="button">introduce</button><button type="button">are introduce</button><button type="button">are introduced</button></span></div>
+<div class="ch" data-a="will be cancelled"><span class="n">6</span><span class="s">Look at the sky. Tomorrow’s match ___ if it rains.</span><span class="o"><button type="button">is cancel</button><button type="button">will cancel</button><button type="button">will be cancelled</button><button type="button">was cancelled</button></span></div>
+<div class="ch" data-a="has been chosen"><span class="n">7</span><span class="s">Lily is so happy. She ___ for the national swimming team.</span><span class="o"><button type="button">have been chosen</button><button type="button">has chosen</button><button type="button">has been choose</button><button type="button">has been chosen</button></span></div>
+<div class="ch" data-a="The tickets will be sent by email."><span class="n">8</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">The tickets will sent by email.</button><button type="button">The tickets will be sent by email.</button><button type="button">The tickets will send by email.</button><button type="button">The tickets will be send by email.</button></span></div>
+<div class="ch" data-a="is visited"><span class="n">9</span><span class="s">The museum is very popular. It ___ by thousands of tourists every summer.</span><span class="o"><button type="button">was visited</button><button type="button">is visited</button><button type="button">visits</button><button type="button">is visit</button></span></div>
+<div class="ch" data-a="was cooked"><span class="n">10</span><span class="s">Max is a great cook. Yesterday every dish at the party ___ by him.</span><span class="o"><button type="button">cooked</button><button type="button">was cooked</button><button type="button">was cook</button><button type="button">were cooked</button></span></div>
+<div class="ch" data-a="will be returned"><span class="n">11</span><span class="s">The phones ___ at the end of the lesson. Don’t worry.</span><span class="o"><button type="button">are return</button><button type="button">will be returned</button><button type="button">will be return</button><button type="button">will return</button></span></div>
+<div class="ch" data-a="A new teacher has been hired."><span class="n">12</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">A new teacher has been hired.</button><button type="button">A new teacher have been hired.</button><button type="button">A new teacher has hired.</button><button type="button">A new teacher has been hire.</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; will be announced · has been sent · have been painted · hasn’t been repaired · are introduced · will be cancelled · has been chosen · The tickets will be sent by email. · is visited · was cooked · will be returned · A new teacher has been hired."><b>Відповіді:</b> will be announced · has been sent · have been painted · hasn’t been repaired · are introduced · will be cancelled · has been chosen · The tickets will be sent by email. · is visited · was cooked · will be returned · A new teacher has been hired.</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="will be prepared|will have been prepared"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Don’t worry about the party. Everything ___ (prepare) by Friday.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="will be opened|is going to be opened"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>The concert hall is almost finished. It ___ (open) by a famous singer next month.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="was made"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>My grandpa loves this chair. It ___ (make) by his father in 1960.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="was written"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Tom didn’t write this essay. It ___ (write) by his older brother.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="has just been fixed|’s just been fixed|was just fixed"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Great news: the bug in the game ___ (just / fix). You can play again.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="hasn’t been used|has not been used"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Nobody uses this old laptop now. It ___ (not / use) for years.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="was found"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>Our kitten is two months old. She ___ (find) in a box near the shop.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="will be taken|are going to be taken"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>The next match is in Edinburgh. The fans ___ (take) there by bus next Saturday.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; will be prepared · will be opened · was made · was written · has just been fixed · hasn’t been used · was found · will be taken"><b>Відповіді:</b> will be prepared · will be opened · was made · was written · has just been fixed · hasn’t been used · was found · will be taken</p>
+  </section>
+  <section class="end"><h2>Great job!</h2><p>See you next lesson.</p></section>
+</div>
+<div class="toast" id="toast"></div>
+<script>window.MURLY_LESSON={"id": "lib-drill-passive", "title": "Passive voice: 100 tasks", "homework": ["s2", "s3", "s4", "s5", "s6"], "hw": {"s2": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "These sneakers {are made|make|is made|are make} in Vietnam.\nFresh bread {is baked|baked|is bake|are baked} here every morning.\nSpanish {is spoken|speaks|are spoken|is speak} in many countries of South America.\nOur cat {is fed|is feeded|are fed|is feed} twice a day.\nMillions of photos {are posted|is posted|post|are post} on Instagram every day.\nThe tickets {are sold|is sold|are sell|is selling} online only.\nThe rubbish {is collected|collects|are collected|is collect} on Tuesdays.\nThe emails {are sent|is sent|are send|sends} automatically.\nI {am invited|am invite|invited|is invited} to every party in our class.\nThe windows in our flat {are washed|is washed|wash|washed} once a month.\nOur dog {is walked|walks|is walking|are walked} every morning by my dad.\nThis song {is played|are played|is play|was play} at every wedding!"}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "The classroom [is cleaned] (clean) every evening.\nThe new episodes [are released] (release) every Friday.\nBreakfast [is served] (serve) from 7 to 10 a.m.\nThese cars [are produced/were produced] (produce) in Japan.\nThis game [is played] (play) all over the world.\nThe results of the test [are sent/were sent] (send) to parents by email.\nThe keys [are kept/were kept] (keep) in the top drawer.\nPancakes [are eaten] (eat) with honey in our family."}], "s3": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "My phone {was stolen|stole|were stolen|is stolen} on the bus yesterday.\nThe first iPhone {was introduced|were introduced|introduced|is introduced} in 2007.\nTwo windows {were broken|broke|was broken|are broke} by the ball.\nYesterday we {were called|was called|called|are call} to the director’s office.\nThe cake {was eaten|was ate|were eaten|ate} in ten minutes.\nThese pictures {were painted|was painted|painted|were paint} by my grandma.\nThe letter {was written|was wrote|were written|wrote} in pencil.\nAll the tickets {were sold|were sell|was sold|was sell} in an hour.\nEmma {was born|born|is born|were born} in Edinburgh in 2008.\nThe bridge {was built|built|were built|was builded} in two years.\nThe streets {were covered|was covered|covered|are cover} with snow in the morning.\nThe lost kitten {was found|found|was finded|were found} by a neighbour."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "The photos [were taken] (take) at Lily’s birthday party.\nThe match [was cancelled/was canceled] (cancel) because of the rain.\nThe old cinema [was bought] (buy) by a coffee chain last year.\nTom [was invited] (invite) to the final interview last week.\nLast year the winners [were chosen] (choose) by the audience.\nThe parcel [was delivered] (deliver) to the wrong address yesterday.\nThe music for the film [was written] (write) by a young composer.\nThe lights [were switched] (switch) off at midnight last night."}], "s4": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "This video was filmed {by|from|at|of} my little sister.\n{Was|Did|Were|Is} the homework checked yesterday?\nClasses {aren’t held|don’t held|isn’t held|aren’t hold} on Saturdays at our school.\nWas the poster designed {by|from|of|at} Max?\nMy bag {wasn’t lost|didn’t lose|wasn’t lose|weren’t lost} at the airport, thank goodness.\nPets {aren’t allowed|don’t allowed|isn’t allowed|aren’t allow} in this hotel.\n{Were|Did|Was|Are} you invited to Sophie’s party last week?\nThis app was created {by|from|of|at} two students from Manchester.\nIs this word {written|write|wrote|writing} with a capital letter?\nWho {was|did|were|is} the first computer invented by?\nThe best goal was scored {by|of|at|from} a 15-year-old player.\nPlastic bags {aren’t given|don’t give|aren’t give|isn’t given} in this supermarket anymore.\nОбери правильне речення: {The book was written by my aunt.|The book was written from my aunt.|The book wrote by my aunt.|The book is wrote by my aunt.}"}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "The cookies [weren’t baked/were not baked] (not / bake) by Dan, they were bought in a shop.\nHow often [is the room cleaned] (the room / clean)?\nWhen [was the Eiffel Tower built] (the Eiffel Tower / build)?\nThe mistake [wasn’t noticed/was not noticed] (not / notice) by the teacher, so I got a good mark.\nThe match [wasn’t shown/was not shown] (not / show) on TV, so we listened to it on the radio.\n[Was your phone repaired/was your phone repaired] (your phone / repair) last week?\nFootball [isn’t played/is not played] (not / play) in the park after 9 p.m."}], "s5": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Обери правильне речення: {The pizza is made by hand.|The pizza is make by hand.|The pizza is maked by hand.|The pizza made by hand.}\nOur school {was built|was builded|built|was build} in 1975.\nThe accident {happened|was happened|is happened|was happen} at night.\nMax {took|was taken|was took|is taken} a great photo of the sunset.\nThis photo {was taken|took|was took|is take} by Max on our trip.\nОбери правильне речення: {My grandparents were born in Brighton.|My grandparents was born in Brighton.|My grandparents born in Brighton.|My grandparents are born in Brighton.}\nThe train {arrived|was arrived|is arrived|was arrive} ten minutes ago.\nLily {does|is done|is did|was done} her homework every evening.\nThis song {was remixed|remixed|was remix|is remixing} by a famous DJ.\nОбери правильне речення: {The emails were sent yesterday.|The emails was sent yesterday.|The emails were send yesterday.|The emails sent yesterday.}\nThe cat {slept|was slept|was sleep|is slept} under the bed all morning.\nOur teacher {checked|was checked|was check|is checked} the tests on Monday.\nThe tests {were checked|checked|were check|was checked} by our teacher on Monday."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "On Tuesday, the bike [was stolen] (steal) from outside the gym.\nAll the sandwiches [were eaten/had been eaten] (eat) before the teacher arrived.\nThe parcel [was sent] (send) last Monday, so it should arrive soon.\nA lot of rice [is grown] (grow) in Asia.\nThe players [were given] (give) new uniforms before the match.\nThe sculpture [is made/was made] (make) of recycled plastic.\nDan [was taught] (teach) to swim by his uncle when he was five."}], "s6": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "The test was on Monday. The results {will be announced|will announce|are announce|were announced} tomorrow.\nGood news! Your order {has been sent|has sent|have been sent|has been send}. It’s on its way.\nOur flat looks different. The walls {have been painted|has been painted|have painted|have been paint} blue.\nI can’t use my laptop. It {hasn’t been repaired|hasn’t repaired|isn’t been repaired|haven’t been repaired} yet.\nIn our English club, ten new words {are introduced|is introduced|introduce|are introduce} every week.\nLook at the sky. Tomorrow’s match {will be cancelled|will cancel|is cancel|was cancelled} if it rains.\nLily is so happy. She {has been chosen|has chosen|have been chosen|has been choose} for the national swimming team.\nОбери правильне речення: {The tickets will be sent by email.|The tickets will be send by email.|The tickets will send by email.|The tickets will sent by email.}\nThe museum is very popular. It {is visited|visits|was visited|is visit} by thousands of tourists every summer.\nMax is a great cook. Yesterday every dish at the party {was cooked|cooked|were cooked|was cook} by him.\nThe phones {will be returned|will be return|are return|will return} at the end of the lesson. Don’t worry.\nОбери правильне речення: {A new teacher has been hired.|A new teacher has hired.|A new teacher have been hired.|A new teacher has been hire.}"}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "Don’t worry about the party. Everything [will be prepared/will have been prepared] (prepare) by Friday.\nThe concert hall is almost finished. It [will be opened/is going to be opened] (open) by a famous singer next month.\nMy grandpa loves this chair. It [was made] (make) by his father in 1960.\nTom didn’t write this essay. It [was written] (write) by his older brother.\nGreat news: the bug in the game [has just been fixed/’s just been fixed/was just fixed] (just / fix). You can play again.\nNobody uses this old laptop now. It [hasn’t been used/has not been used] (not / use) for years.\nOur kitten is two months old. She [was found] (find) in a box near the shop.\nThe next match is in Edinburgh. The fans [will be taken/are going to be taken] (take) there by bus next Saturday."}]}};</script>
+<script>
+(function(){var l=(document.cookie.match(/(?:^|; )murly_lang=(\w+)/)||[])[1];try{l=l||localStorage.getItem('murly:tlang')}catch(e){}l=l==='ru'?'ru':'uk';document.querySelectorAll('[data-pairs-'+l+']').forEach(function(b){b.dataset.pairs=b.getAttribute('data-pairs-'+l)});})();
+</script>
+<script>
+const $ = (id) => document.getElementById(id);
+const LIS = {};
+function say(w, rate) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; const v = speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang) && /Google|Natural|Libby|Sonia|Daniel/.test(x.name)) || speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang)); if (v) u.voice = v; u.rate = rate || .95; speechSynthesis.speak(u); } catch (e) { } }
+const sh = (a) => a.map((x) => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map((x) => x[1]);
+document.querySelectorAll('.voc div').forEach((d) => d.onclick = () => say(d.dataset.say));
+document.querySelectorAll('[data-play]').forEach((b) => b.onclick = () => say(LIS[b.dataset.play], b.dataset.slow ? .75 : .95));
+document.querySelectorAll('[data-stop]').forEach((b) => b.onclick = () => { try { speechSynthesis.cancel(); } catch (e) { } });
+document.querySelectorAll('.ch').forEach((q) => q.querySelectorAll('button').forEach((b) => b.onclick = () => { if (q.classList.contains('ok')) return; const ok = b.textContent === q.dataset.a; q.classList.toggle('ok', ok); q.classList.toggle('bad', !ok); if (ok) { const s = q.querySelector('.s'); if (s && s.textContent.includes('___')) { s.textContent = s.textContent.replace('___', q.dataset.a); } } }));
+const norm = (x) => x.toLowerCase().replace(/[’']/g, "'").replace(/[,;:"“”«»]/g, ' ').replace(/\s+/g, ' ').replace(/[.!?]$/, '').trim();
+document.querySelectorAll('.ty').forEach((r) => { const inp = r.querySelector('input'); const chk = () => { const ok = r.dataset.a.split('|').some((a) => norm(a) === norm(inp.value)); r.classList.toggle('ok', ok); r.classList.toggle('bad', !ok && inp.value.trim() !== ''); }; r.querySelector('button').onclick = chk; inp.onkeydown = (e) => { if (e.key === 'Enter') chk(); }; });
+document.querySelectorAll('[data-mt]').forEach((box) => { const pairs = JSON.parse(box.dataset.pairs); const L = sh(pairs.map((p) => p[0])), R = sh(pairs.map((p) => p[1])); let sel = null, done = 0, err = 0; box.innerHTML = L.map((w, i) => `<button type="button" data-w="${w}">${w}</button><button type="button" data-d="${R[i]}">${R[i]}</button>`).join('');
+  box.querySelectorAll('button').forEach((b) => b.onclick = () => { if (b.classList.contains('done')) return; if (!sel || (sel.dataset.w && b.dataset.w) || (sel.dataset.d && b.dataset.d)) { if (sel) sel.classList.remove('sel'); sel = b; b.classList.add('sel'); return; } const w = sel.dataset.w || b.dataset.w, d = sel.dataset.d || b.dataset.d; if (pairs.some((p) => p[0] === w && p[1] === d)) { sel.classList.add('done'); b.classList.add('done'); done++; say(w); if (done === pairs.length) document.querySelector(`[data-mtres="${box.dataset.mt}"]`).textContent = err ? `Done! Mistakes: ${err}` : 'Perfect!'; } else err++; sel.classList.remove('sel'); sel = null; }); });
+document.querySelectorAll('[data-vids]').forEach((box) => JSON.parse(box.dataset.vids).forEach(([id, title, ch, qs]) => { const d = document.createElement('div'); d.className = 'vid'; d.innerHTML = `<div class="frame"><button class="play" type="button" style="background-image:url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)"><span>PLAY</span></button></div><div class="info"><h3>${title}</h3><small>YouTube · ${ch}</small><ol>${qs.map((q) => `<li>${q}</li>`).join('')}</ol></div>`; d.querySelector('.play').onclick = (e) => { e.currentTarget.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&cc_load_policy=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${title}"></iframe>`; }; box.appendChild(d); }));
+document.querySelectorAll('[data-spin]').forEach((b) => { const list = JSON.parse(b.dataset.spin); let last = -1; b.onclick = () => { let i; do { i = Math.floor(Math.random() * list.length); } while (i === last && list.length > 1); last = i; document.getElementById(b.dataset.target).textContent = list[i]; }; });
+try { const k = 'murly:' + (window.MURLY_LESSON ? MURLY_LESSON.id : 'x') + ':hw'; const t = $('hwText'); if (t) { t.value = localStorage.getItem(k) || ''; t.oninput = () => localStorage.setItem(k, t.value); } } catch (e) { }
+const STAGES = [...document.querySelectorAll('.wrap > section[id]')];
+$('stages').innerHTML = STAGES.map((s) => `<a href="#${s.id}"><b>${s.querySelector('.lk-n').textContent}</b><span>${s.dataset.stage}</span><small>${s.dataset.min !== '0' ? s.dataset.min + ' min' : 'at home'}</small></a>`).join('');
+$('teacherBtn').onclick = (e) => { const on = document.body.classList.toggle('teacher'); e.currentTarget.textContent = on ? 'Student version' : 'Teacher version'; };
+</script>
+<script src="/game-lessons/kit.js" defer></script>
+</body>
+</html>

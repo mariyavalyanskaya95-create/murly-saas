@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plurals, countable and uncountable nouns: 100 tasks (A2) | Murly</title>
+<link rel="icon" href="/favicon.svg">
+<meta name="description" content="Повторимо правило: Множина, злічувані і незлічувані іменники
+100 завдань від простого до складного
+Розберемо головні пастки">
+<link rel="canonical" href="https://murly.com.ua/game-lessons/lib-drill-plurals-countable.html">
+<style>
+:root{--paper:#F3F0EA;--ink:#17181C;--violet:#3D4A7A;--lav:#D9D3C7;--pink:#E9C9BC;--green:#D4E2CF;--white:#fff;--muted:#62646B;--accent:#B5482F}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+/* hero */
+.hero{background:linear-gradient(rgba(16,17,22,.5),rgba(16,17,22,.72)),url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1400&q=70&auto=format&fit=crop");color:#fff;padding:70px 18px 56px;text-align:center;position:relative;overflow:hidden}
+.hero .kicker{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#E9C9BC;font-weight:700}
+.hero .cr{position:absolute;right:12px;bottom:8px;font-size:11px;color:rgba(255,255,255,.6)}
+.hero h1{margin:8px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(36px,6vw,64px);letter-spacing:-.5px;font-weight:700}
+.hero h1 span{color:var(--pink);font-style:italic}
+.hero p{margin:12px 0 0;font-size:17px;color:#e6e2da}
+.hero .flags{display:flex;justify-content:center;gap:12px;margin-top:22px;flex-wrap:wrap}
+.hero .flags svg{width:40px;height:26px;border-radius:3px;opacity:.9}
+/* sections */
+section{margin-top:30px;background:var(--white);border-radius:18px;padding:28px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.05)}
+section h2{margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tag{font-family:"Segoe UI",system-ui,sans-serif;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--paper);color:var(--accent);text-transform:uppercase;letter-spacing:1px}
+.lk-n{display:inline-grid;place-items:center;width:42px;height:42px;background:var(--violet);color:#fff;border-radius:50%;font-size:21px;flex:none}
+.lk-mode{font-size:13px;font-weight:700;border:2px dashed var(--lav);color:var(--muted);padding:2px 10px;border-radius:999px}
+.lk-ins{font-size:17px;background:var(--paper);border-radius:12px;padding:10px 14px;margin:6px 0 18px}
+.lk-sub{margin:24px 0 10px;font-size:19px}
+.btn{font:inherit;font-weight:700;border:0;border-radius:999px;background:var(--ink);color:#fff;padding:10px 20px;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+.btn.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+/* teacher */
+.lk-tbtn{position:fixed;right:16px;top:70px;z-index:45;font:inherit;font-weight:800;border:2px solid var(--ink);background:var(--pink);padding:8px 14px;border-radius:12px;cursor:pointer}
+body.teacher .lk-tbtn{background:var(--green)}
+.lk-ans,.lk-tnote{display:none}
+body.teacher .lk-ans{display:block;margin-top:8px;font-weight:700;color:#1d5a12;background:var(--green);border-left:5px solid #5aa845;padding:6px 10px;font-size:15px;border-radius:6px}
+body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff3f7;border-left:5px solid #d9789a;padding:8px 12px;font-size:15px;border-radius:6px}
+/* overview */
+.lk-overview ul{font-size:17px;line-height:1.7;margin:6px 0 16px}
+.lk-stages{display:flex;flex-wrap:wrap;gap:8px}
+.lk-stages a{display:grid;border-radius:14px;padding:8px 12px;text-decoration:none;color:var(--ink);background:var(--paper);font-weight:700;min-width:100px}
+.lk-stages a span{text-transform:capitalize}
+.lk-stages a b{font-size:20px;color:var(--violet)}
+.lk-stages a small{font-weight:600;color:var(--muted)}
+/* warm-up */
+.taxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tax{background:var(--paper);border-radius:18px;padding:16px;display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center}
+.tax svg{width:56px;height:56px}
+.tax b{display:block;font-size:17px}
+.tax small{color:var(--muted);font-size:14px}
+.qs{display:grid;gap:10px;margin-top:18px}
+.qs div{background:var(--green);border-radius:14px;padding:10px 16px;font-size:18px;font-weight:600}
+.phr{background:#fff7e8;border-radius:14px;padding:12px 16px;margin-top:16px;font-size:15px}
+.phr ul{margin:6px 0 0;padding-left:18px}
+.fic{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:16px}
+.fic .c{background:#fff;border:2px solid #1B2140;border-radius:16px;padding:14px 16px;box-shadow:3px 3px 0 #1B2140}
+.fic .c b{display:block;font-size:18px;line-height:1.35;margin-bottom:8px}
+.fic .c .k{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.fic .c .k span{font-size:13px;background:#eef1fb;border-radius:999px;padding:3px 10px}
+.fic .c details{margin-top:8px;font-size:15px;color:#3b4160}
+.fic .c summary{cursor:pointer;font-weight:700;color:#534AB7}
+.fi-n{display:inline-flex;width:28px;height:28px;border-radius:50%;background:#2F4BA0;color:#fff;align-items:center;justify-content:center;font-size:14px;margin-right:6px}
+/* vocab */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:12px}
+.vc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:2px solid transparent;transition:border-color .2s,transform .2s}
+.vc:hover{border-color:var(--violet);transform:translateY(-2px)}
+.vc b{font-size:18px;display:flex;align-items:center;gap:8px}
+.vc b svg{width:20px;height:20px;flex:none;color:var(--violet)}
+.vc p{margin:6px 0 0;font-size:14px;color:var(--muted)}
+.vc em{display:block;margin-top:6px;font-size:14px;color:var(--violet);font-style:normal;font-weight:600}
+.vc.played{background:#e6ecfb}
+/* grammar */
+.gram{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.gb{border-radius:18px;padding:16px}
+.gb h3{margin:0 0 6px;font-size:19px}
+.gb .f{display:inline-block;background:#fff;border-radius:8px;padding:3px 10px;font-weight:800;margin:4px 0;font-family:Consolas,monospace;font-size:15px}
+.gb p{margin:6px 0 0;font-size:15px}
+.g1{background:var(--pink)}.g2{background:var(--lav)}.g3{background:var(--green)}.g4{background:#fbe7c6}
+.warn{margin-top:14px;background:var(--ink);color:#fff;border-radius:14px;padding:12px 16px;font-size:16px}
+.warn b{color:var(--pink)}
+.q{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:2px dashed var(--paper);font-size:18px}
+.q:last-child{border-bottom:0}
+.q .n{width:32px;height:32px;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;border-radius:50%;font-weight:800;font-size:15px}
+.opt{font:inherit;font-size:16px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:10px;padding:4px 12px;cursor:pointer;margin:0 2px}
+.opt.ok{background:var(--green);border-color:#5aa845}
+.opt.bad{background:var(--pink);animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+/* tour */
+.tour{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.law{border-radius:22px;overflow:hidden;background:var(--paper);display:flex;flex-direction:column}
+.law .pic{height:150px;display:grid;place-items:center;position:relative}
+.law .pic svg.ill{width:130px;height:130px}
+.law .pic svg.fl{position:absolute;left:14px;top:14px;width:46px;height:30px;border-radius:5px;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.law .pic .no{position:absolute;right:14px;top:14px;background:var(--ink);color:#fff;font-weight:800;border-radius:999px;padding:2px 10px;font-size:13px}
+.law .body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.law h3{margin:0;font-size:20px}
+.law .where{font-size:13px;font-weight:800;color:var(--violet);text-transform:uppercase;letter-spacing:1px}
+.law p{margin:0;font-size:16px}
+.law .why{font-size:14px;color:var(--muted)}
+.law .dq{margin-top:auto;background:#fff;border-radius:12px;padding:8px 12px;font-weight:700;font-size:15px}
+.law .lsn{font:inherit;font-size:13px;font-weight:700;background:none;border:0;color:var(--violet);cursor:pointer;padding:0;text-align:left}
+/* game */
+.game{max-width:720px;margin:0 auto;text-align:center}
+.score{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.score span{background:var(--paper);border-radius:999px;padding:6px 16px;font-weight:800}
+.stmt{background:var(--ink);color:#fff;border-radius:22px;padding:28px 24px;min-height:150px;display:grid;place-items:center;font-size:23px;font-weight:700;position:relative}
+.stmt small{position:absolute;top:12px;left:18px;font-size:13px;color:var(--lav);font-weight:700}
+.choose{display:flex;justify-content:center;gap:14px;margin:18px 0}
+.choose button{font:inherit;font-size:18px;font-weight:700;border:2px solid var(--ink);border-radius:999px;padding:12px 28px;cursor:pointer}
+.choose .bl{background:var(--green)}.choose .bm{background:var(--pink)}
+.choose button:disabled{opacity:.5;cursor:default}
+.verdict{min-height:70px;font-size:17px;background:var(--paper);border-radius:16px;padding:12px 16px;text-align:left}
+.verdict b.r{color:#2d7a1d}.verdict b.w{color:#b23a62}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.dots i{width:14px;height:14px;border-radius:50%;background:var(--paper)}
+.dots i.r{background:#7cc663}.dots i.w{background:#e47b9f}.dots i.c{outline:3px solid var(--violet)}
+.final{font-size:22px;font-weight:800;color:var(--violet)}
+/* invent */
+.inv{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.frames{display:grid;gap:10px}
+.frames label{font-size:14px;font-weight:700;color:var(--muted)}
+.frames select,.frames input{font:inherit;width:100%;padding:8px 10px;border:2px solid var(--lav);border-radius:10px;background:#fff}
+.poster{background:var(--paper);border:3px solid var(--ink);border-radius:20px;padding:22px;text-align:center;min-height:260px;display:flex;flex-direction:column;gap:10px;justify-content:center}
+.poster .seal{width:70px;height:70px;margin:0 auto}
+.poster h3{margin:0;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--violet)}
+.poster .rule{font-size:22px;font-weight:800}
+.poster .pen{font-size:16px;color:var(--muted)}
+.ideas{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ideas span{background:var(--pink);border-radius:999px;padding:5px 12px;font-size:14px;font-weight:600}
+/* roleplay */
+.rp{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.role{border-radius:20px;padding:18px}
+.role h3{margin:0 0 6px;display:flex;align-items:center;gap:10px}
+.role h3 svg{width:42px;height:42px}
+.role ul{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.r1{background:var(--lav)}.r2{background:var(--green)}
+.scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:16px}
+.sc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:3px solid transparent}
+.sc.on{border-color:var(--violet);background:#fff}
+.sc b{display:block;font-size:17px;margin-bottom:4px}
+.sc p{margin:0;font-size:15px}
+.timer{font-size:40px;font-weight:800;text-align:center;margin:14px 0 6px;color:var(--violet)}
+.ctr{text-align:center}
+/* homework */
+.hwb{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hwc{background:var(--paper);border-radius:18px;padding:18px}
+.hwc h3{margin:0 0 8px}
+.hwc ol,.hwc ul{margin:6px 0 0;padding-left:20px;line-height:1.7}
+.hwc textarea{width:100%;min-height:150px;font:inherit;border:2px solid var(--lav);border-radius:12px;padding:10px;margin-top:10px}
+.end{text-align:center;background:var(--ink);color:#fff;box-shadow:none}
+.end h2{justify-content:center}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(140px);background:var(--ink);color:#fff;font-weight:800;padding:12px 22px;border-radius:14px;transition:transform .3s;z-index:50}
+.toast.show{transform:translateX(-50%) translateY(0)}
+/* photos */
+.ph{margin:0}
+.ph img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;background:var(--paper)}
+.ph figcaption{font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.2px}
+.tax{grid-template-columns:1fr !important;padding:12px !important}
+.law .pic{height:auto !important;display:block !important;padding:0;position:relative}
+.law .pic .ph img{border-radius:0;aspect-ratio:16/10;transition:filter .5s}
+.law .pic .ph figcaption{padding:4px 12px 0}
+.law.hide .pic .ph img{filter:blur(10px) grayscale(.6)}
+.law.hide .reveal-body,.law.hide .fl,.law.hide .where{visibility:hidden}
+.law .clue{font-size:15px;font-style:italic;color:var(--ink)}
+.law .gc{display:flex;flex-wrap:wrap;gap:6px}
+.law .gc button{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:4px 12px;cursor:pointer}
+.law .gc button.ok{background:var(--green)}.law .gc button.bad{background:var(--pink)}
+.law:not(.hide) .guess{display:none}
+.fair{display:grid;gap:4px;background:#fff;border-radius:12px;padding:8px 12px}
+.fair .ends{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.fair input{width:100%;accent-color:var(--accent)}
+.fair output{font-size:14px;font-weight:700;color:var(--accent)}
+.gph{max-width:720px;margin:0 auto 12px}
+.gph img{aspect-ratio:21/9}
+.fine{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.fq{background:var(--paper);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.fq h3{margin:0;font-size:18px}
+.fq .opts{display:flex;flex-wrap:wrap;gap:6px}
+.fq .opts button{font:inherit;font-size:14px;font-weight:700;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 12px;cursor:pointer}
+.fq .opts button.ok{background:var(--green)}.fq .opts button.bad{background:var(--pink)}
+.fq .res{font-size:15px;min-height:22px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{position:relative;aspect-ratio:16/9;background:#111}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;cursor:pointer;background:#111 center/cover;display:grid;place-items:center}
+.vid .play span{background:rgba(0,0,0,.7);color:#fff;font-weight:700;border-radius:999px;padding:10px 20px;font-size:15px;letter-spacing:1px}
+.vid .info{padding:14px 16px}
+.vid .info h3{margin:0 0 2px;font-size:18px}
+.vid .info small{color:var(--muted)}
+.vid .info ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+@media(max-width:760px){.inv,.rp,.hwb{grid-template-columns:1fr}.lk-tbtn{top:auto;bottom:70px}}
+
+.pr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.pb{border-radius:18px;padding:16px 18px}
+.pb h3{margin:0;font-family:Georgia,serif;font-size:30px}
+.pb .m{font-size:15px;color:var(--muted);margin:2px 0 8px}
+.pb .chips{display:flex;flex-wrap:wrap;gap:6px}
+.pb .chips span{background:#fff;border-radius:999px;padding:4px 11px;font-size:14px;font-weight:600}
+.pb ul{margin:10px 0 0;padding-left:18px;font-size:15px}
+.p-in{background:#DCE6F5}.p-at{background:#F3D9CF}.p-on{background:#D4E2CF}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-size:15px;margin-top:10px}
+.ex div{background:var(--paper);border-radius:10px;padding:8px 12px}
+.ex b{color:var(--accent)}
+.q{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.q .n{font-weight:800;color:var(--violet);min-width:24px}
+.q .gap{display:inline-block;min-width:44px;border-bottom:2px solid var(--ink);text-align:center;font-weight:800}
+.q .opts{margin-left:auto;display:flex;gap:6px}
+.q .opts button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 14px;cursor:pointer}
+.q.ok{background:#DDEED7}.q.ok .gap{color:#2F7A3B}
+.q.bad{background:#F6DAD3}
+.score{font-weight:800;margin-top:12px}
+.text{font-size:18px;line-height:1.75;background:var(--paper);border-radius:16px;padding:18px 22px}
+.text h3{margin:0 0 6px;font-family:Georgia,serif;font-size:24px}
+.text p{margin:0 0 12px}
+.text.hl mark{background:#F3D9CF;border-radius:4px;padding:0 3px;font-weight:700}
+.tf{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:9px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.tf .opts{margin-left:auto;display:flex;gap:6px}
+.tf button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.tf.ok{background:#DDEED7}.tf.bad{background:#F6DAD3}
+.disc{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px;margin-top:6px}
+.disc div{background:var(--green);border-radius:14px;padding:12px 16px;font-size:17px;font-weight:600}
+.disc div i{font-style:normal;color:var(--violet);margin-right:6px}
+.spin{text-align:center;margin-top:16px}
+.spin .card{display:inline-block;min-height:80px;min-width:min(560px,100%);background:var(--ink);color:#fff;border-radius:18px;padding:20px 24px;font-size:22px;font-weight:700;margin-bottom:12px}
+@media(max-width:700px){.ex{grid-template-columns:1fr}}
+
+.hero{background-size:cover!important;background-position:center!important}
+.voc{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.voc div{background:var(--paper);border-radius:14px;padding:10px 14px;cursor:pointer;border:2px solid transparent}
+.voc div:hover{border-color:var(--violet)}
+.voc b{display:block;font-size:18px}.voc span{display:block;color:var(--accent);font-weight:700;font-size:15px}.voc em{display:block;font-size:14px;color:var(--muted);margin-top:3px}
+.mt{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:10px}
+.mt button{font:inherit;font-size:16px;text-align:left;border:2px solid var(--ink);background:#fff;border-radius:14px;padding:9px 14px;cursor:pointer}
+.mt button.sel{background:#FFE7A8}.mt button.done{background:#CDE8C6;border-color:#4C9A5B;cursor:default}
+.ch{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ch .n{font-weight:800;color:var(--violet);min-width:24px}
+.ch .o{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.ch .o button{font:inherit;font-size:15px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.ch.ok{background:#DDEED7}.ch.bad{background:#F6DAD3}
+.ty{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ty input{font:inherit;border:2px solid var(--ink);border-radius:10px;padding:4px 10px;width:220px}
+.ty.ok{background:#DDEED7}.ty.bad{background:#F6DAD3}
+.ty small{color:var(--muted)}
+.photo{width:100%;height:300px;object-fit:cover;border-radius:16px;display:block}
+.cap{font-size:11px;color:var(--muted);margin:4px 0 12px}
+.pics{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.pics figure{margin:0;background:var(--paper);border-radius:16px;overflow:hidden}
+.pics img{width:100%;height:170px;object-fit:cover;display:block}
+.pics figcaption{padding:8px 12px;font-weight:700}
+.pics small{display:block;font-weight:400;font-size:10px;color:var(--muted)}
+.lis{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:8px 0 14px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{aspect-ratio:16/9;background:#000;position:relative}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;background-size:cover;background-position:center;cursor:pointer;display:grid;place-items:center}
+.vid .play span{background:#E5484D;color:#fff;font-weight:800;border-radius:12px;padding:10px 20px}
+.vid .info{padding:12px 16px}.vid h3{margin:0;font-size:18px}.vid small{color:var(--muted)}
+.vid ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th,.tbl td{border:1px solid #ddd;padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--paper)}
+@media(max-width:700px){.mt{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="/game-lessons/kit.css">
+</head>
+<body>
+<header class="hero">
+  <div class="kicker">A2 · teens · Граматика: тренажер Множина, злічувані і незлічувані іменники</div>
+  <h1>Plurals, countable and uncountable nouns: 100 tasks</h1>
+  <p>A2 · 6 parts · 60 min</p>
+  <span class="cr">Photo: Unsplash</span>
+</header>
+<button class="lk-tbtn" id="teacherBtn" type="button">Teacher version</button>
+<div class="wrap">
+  <section class="lk-overview">
+    <h2>In this lesson you will:</h2>
+    <ul><li>Повторимо правило: Множина, злічувані і незлічувані іменники
+100 завдань від простого до складного
+Розберемо головні пастки</li></ul>
+    <div class="lk-stages" id="stages"></div>
+  </section>
+  <section id="s1" data-stage="practice" data-min="10">
+    <h2><span class="lk-n">1</span>Теорія <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<div class="warn"><p><b>Коли вживаємо</b></p><p>Більше одного: зазвичай додаємо -s: I’ve got two cats and a hamster. (У мене два коти і хом’як.)</p><p>Після -s, -sh, -ch, -x і в деяких словах на -o: -es: We washed all the dishes and packed the boxes. (Ми помили весь посуд і склали коробки.)</p><p>Неправильна множина: слово змінюється всередині: Three men and two children were waiting for the bus. (Троє чоловіків і двоє дітей чекали на автобус.)</p><p>Незлічувані: без a / an, без -s, дієслово в однині: This information is really useful. (Ця інформація дуже корисна.)</p><p>Порахувати незлічуване: a piece of, a cup of, a bottle of: Can I have a cup of tea and two slices of cake? (Можна мені чашку чаю і два шматочки торта?)</p></div>
+    <div class="warn"><p><b>Форми</b></p><p>+s  більшість слів: просто додаємо -s. Приклад: a book → books, a game → games</p><p>+es  після s, ss, sh, ch, x і в деяких словах на -o (tomato, potato, hero). Приклад: bus → buses, glass → glasses, watch → watches, box → boxes, potato → potatoes</p><p>-ies  приголосна + y: y → ies. Голосна + y: просто -s.. Приклад: party → parties, city → cities, but day → days, key → keys</p><p>-ves  багато слів на -f / -fe: f → ves. Приклад: knife → knives, leaf → leaves, shelf → shelves</p><p>неправ.  неправильна множина: треба запам’ятати. Приклад: man → men, child → children, person → people, tooth → teeth, sheep → sheep</p><p>−  незлічувані: без a / an і без -s, дієслово is / was. Приклад: some advice, the news is, my homework was</p><p>of  щоб порахувати незлічуване: число + одиниця + of. Приклад: a piece of advice, two cups of coffee, three bottles of water</p></div>
+    <div class="warn"><p><b>Головна пастка</b></p><p>Advice, information, furniture без -s. В українській «поради», «меблі», «новини» звучать як множина, а в англійській ці слова незлічувані: без -s і без a / an. Одну штуку рахуємо через a piece of.</p><p>✗ I need some informations about the trip.</p><p>✓ I need some information about the trip.</p><p>News is, people are. News закінчується на -s, але це однина: the news is. А people, навпаки, без -s, але множина: people are. Так само jeans, trousers, glasses завжди у множині.</p><p>✗ The news are great, and the people is happy.</p><p>✓ The news is great, and the people are happy.</p><p>A / an перед незлічуваним. A / an означає «одна штука», тому з незлічуваними його не ставимо. Замість цього some або a piece of.</p><p>✗ We bought a new furniture.</p><p>✓ We bought some new furniture.</p></div>
+    <div class="warn"><p><b>Маркери:</b> a piece of, a cup of, a glass of, a bottle of, a slice of, a loaf of, a bar of, a pair of, some, How many? / How much?</p></div>
+    <div class="warn"><p><b>Неправильна множина і як порахувати незлічуване</b></p><p>Ці форми не підкоряються правилам, їх варто вивчити напам’ять. Таблиця: однина, множина або «одиниця», переклад.</p><p>man · men · чоловік</p><p>woman · women · жінка</p><p>child · children · дитина</p><p>person · people · людина</p><p>foot · feet · стопа, нога</p><p>tooth · teeth · зуб</p><p>mouse · mice · миша</p><p>sheep · sheep · вівця</p><p>fish · fish · риба</p><p>knife / life · knives / lives · ніж / життя</p><p>advice · a piece of advice · порада</p><p>information · a piece of information · інформація</p><p>furniture · a piece of furniture · меблі</p><p>bread · a loaf of bread / a slice of bread · хліб</p><p>chocolate · a bar of chocolate · шоколад</p></div>
+    <p class="lk-tnote" data-ru="Тренажер на 100 завдань: 5 раундів по 20. На уроці можна пройти 1-2 раунди, решту задати додому. Пояснення до кожної відповіді учень бачить у тренажері на сайті (розділ «Граматика»).&lt;br&gt;">Тренажер на 100 завдань: 5 раундів по 20. На уроці можна пройти 1-2 раунди, решту задати додому. Пояснення до кожної відповіді учень бачить у тренажері на сайті (розділ «Граматика»).<br></p>
+  </section>
+  <section id="s2" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">2</span>Раунд 1. Форми множини <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="tomatoes"><span class="n">1</span><span class="s">We need three ___ for the salad.</span><span class="o"><button type="button">tomatoies</button><button type="button">tomatos</button><button type="button">tomatoes</button><button type="button">tomato</button></span></div>
+<div class="ch" data-a="photos"><span class="n">2</span><span class="s">How many ___ did you take on holiday?</span><span class="o"><button type="button">photo</button><button type="button">photies</button><button type="button">photoes</button><button type="button">photos</button></span></div>
+<div class="ch" data-a="libraries"><span class="n">3</span><span class="s">Our school has two ___.</span><span class="o"><button type="button">librarys</button><button type="button">libraries</button><button type="button">library</button><button type="button">libraryes</button></span></div>
+<div class="ch" data-a="women"><span class="n">4</span><span class="s">Two ___ are waiting at the bus stop.</span><span class="o"><button type="button">womens</button><button type="button">woman</button><button type="button">womans</button><button type="button">women</button></span></div>
+<div class="ch" data-a="feet"><span class="n">5</span><span class="s">I’ve been walking all day, and my ___ hurt.</span><span class="o"><button type="button">feets</button><button type="button">foot</button><button type="button">foots</button><button type="button">feet</button></span></div>
+<div class="ch" data-a="sheep"><span class="n">6</span><span class="s">The farmer has fifty ___.</span><span class="o"><button type="button">sheepes</button><button type="button">sheeps</button><button type="button">sheep</button><button type="button">sheepies</button></span></div>
+<div class="ch" data-a="dishes"><span class="n">7</span><span class="s">Max washed all the ___ after dinner.</span><span class="o"><button type="button">dish</button><button type="button">dishes</button><button type="button">dishs</button><button type="button">dishies</button></span></div>
+<div class="ch" data-a="people"><span class="n">8</span><span class="s">Twenty ___ came to Lily’s party.</span><span class="o"><button type="button">person</button><button type="button">peoples</button><button type="button">persones</button><button type="button">people</button></span></div>
+<div class="ch" data-a="mice"><span class="n">9</span><span class="s">We saw two little ___ in the kitchen!</span><span class="o"><button type="button">mouses</button><button type="button">mice</button><button type="button">mouse</button><button type="button">mices</button></span></div>
+<div class="ch" data-a="babies"><span class="n">10</span><span class="s">Our neighbours have three ___.</span><span class="o"><button type="button">babyes</button><button type="button">babys</button><button type="button">babies</button><button type="button">baby</button></span></div>
+<div class="ch" data-a="watches"><span class="n">11</span><span class="s">Dan collects old ___.</span><span class="o"><button type="button">watchs</button><button type="button">watchies</button><button type="button">watch</button><button type="button">watches</button></span></div>
+<div class="ch" data-a="shelves"><span class="n">12</span><span class="s">My room has two ___ with books and plants.</span><span class="o"><button type="button">shelfs</button><button type="button">shelve</button><button type="button">shelfes</button><button type="button">shelves</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; tomatoes · photos · libraries · women · feet · sheep · dishes · people · mice · babies · watches · shelves"><b>Відповіді:</b> tomatoes · photos · libraries · women · feet · sheep · dishes · people · mice · babies · watches · shelves</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="boxes"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>I bought two ___ (box) of cereal.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="buses"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>There are three ___ (bus) to the airport every hour.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="cities"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>We visited four ___ (city) in Italy.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="teeth"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>My little brother has two ___ (tooth) missing.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="knives"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Can you wash these ___ (knife), please?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="children"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Most ___ (child) love cartoons.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="keys"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>I have two ___ (key): one for the flat and one for the garage.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="leaves"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>The ___ (leaf) are turning yellow.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; boxes · buses · cities · teeth · knives · children · keys · leaves"><b>Відповіді:</b> boxes · buses · cities · teeth · knives · children · keys · leaves</p>
+  </section>
+  <section id="s3" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">3</span>Раунд 2. Незлічувані: без a і без -s <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="some"><span class="n">1</span><span class="s">She gave me ___ useful advice.</span><span class="o"><button type="button">many</button><button type="button">a</button><button type="button">some</button><button type="button">an</button></span></div>
+<div class="ch" data-a="is"><span class="n">2</span><span class="s">There ___ no milk in the fridge.</span><span class="o"><button type="button">be</button><button type="button">are</button><button type="button">is</button><button type="button">am</button></span></div>
+<div class="ch" data-a="luggage"><span class="n">3</span><span class="s">How much ___ do you take on holiday?</span><span class="o"><button type="button">luggages</button><button type="button">luggage</button><button type="button">luggage’s</button><button type="button">a luggage</button></span></div>
+<div class="ch" data-a="We bought some new furniture."><span class="n">4</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">We bought new furnitures.</button><button type="button">We bought some new furniture.</button><button type="button">We bought a new furniture.</button><button type="button">We bought some new furnitures.</button></span></div>
+<div class="ch" data-a="some information"><span class="n">5</span><span class="s">I need ___ about the train times.</span><span class="o"><button type="button">an information</button><button type="button">some informations</button><button type="button">informations</button><button type="button">some information</button></span></div>
+<div class="ch" data-a="are"><span class="n">6</span><span class="s">My trousers ___ dirty.</span><span class="o"><button type="button">was</button><button type="button">are</button><button type="button">is</button><button type="button">be</button></span></div>
+<div class="ch" data-a="was"><span class="n">7</span><span class="s">The traffic ___ terrible this morning.</span><span class="o"><button type="button">have</button><button type="button">are</button><button type="button">were</button><button type="button">was</button></span></div>
+<div class="ch" data-a="many"><span class="n">8</span><span class="s">How ___ chairs do we need for the party?</span><span class="o"><button type="button">lot</button><button type="button">much</button><button type="button">many</button><button type="button">more</button></span></div>
+<div class="ch" data-a="some"><span class="n">9</span><span class="s">There’s ___ sand in my shoes.</span><span class="o"><button type="button">many</button><button type="button">a</button><button type="button">an</button><button type="button">some</button></span></div>
+<div class="ch" data-a="How much money do you have?"><span class="n">10</span><span class="s">Обери питання без помилки: ___</span><span class="o"><button type="button">How much moneys do you have?</button><button type="button">How many moneys do you have?</button><button type="button">How much money do you have?</button><button type="button">How many money do you have?</button></span></div>
+<div class="ch" data-a="bread"><span class="n">11</span><span class="s">I don’t eat much ___.</span><span class="o"><button type="button">bread</button><button type="button">a bread</button><button type="button">bread’s</button><button type="button">breads</button></span></div>
+<div class="ch" data-a="is"><span class="n">12</span><span class="s">Physics ___ my favourite subject.</span><span class="o"><button type="button">were</button><button type="button">is</button><button type="button">be</button><button type="button">are</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; some · is · luggage · We bought some new furniture. · some information · are · was · many · some · How much money do you have? · bread · is"><b>Відповіді:</b> some · is · luggage · We bought some new furniture. · some information · are · was · many · some · How much money do you have? · bread · is</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="advice"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Can you give me some ___ (advice) about learning the guitar?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="furniture"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>We need some new ___ (furniture) for the living room.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="is|’s|was"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>The news ___ (be) really good today.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="is"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>My hair ___ (be) too long. I need a haircut.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="homework"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>I haven’t done my ___ (homework) yet.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="are|were"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>These jeans ___ (be) too tight.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="are|were"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>The people in this town ___ (be) very friendly.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="information"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>I don’t have much ___ (information) about the course.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; advice · furniture · is · is · homework · are · are · information"><b>Відповіді:</b> advice · furniture · is · is · homework · are · are · information</p>
+  </section>
+  <section id="s4" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">4</span>Раунд 3. A piece of, a cup of: рахуємо незлічуване <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="cup"><span class="n">1</span><span class="s">Would you like a ___ of coffee?</span><span class="o"><button type="button">bar</button><button type="button">cup</button><button type="button">loaf</button><button type="button">piece</button></span></div>
+<div class="ch" data-a="bottle"><span class="n">2</span><span class="s">I always take a ___ of water to the gym.</span><span class="o"><button type="button">piece</button><button type="button">loaf</button><button type="button">bottle</button><button type="button">slice</button></span></div>
+<div class="ch" data-a="piece"><span class="n">3</span><span class="s">Can I have a ___ of cake?</span><span class="o"><button type="button">loaf</button><button type="button">piece</button><button type="button">glass</button><button type="button">bottle</button></span></div>
+<div class="ch" data-a="loaf"><span class="n">4</span><span class="s">We need a ___ of bread for the sandwiches.</span><span class="o"><button type="button">bar</button><button type="button">loaf</button><button type="button">glass</button><button type="button">cup</button></span></div>
+<div class="ch" data-a="bar"><span class="n">5</span><span class="s">She bought a ___ of chocolate for her brother.</span><span class="o"><button type="button">slice</button><button type="button">loaf</button><button type="button">glass</button><button type="button">bar</button></span></div>
+<div class="ch" data-a="piece"><span class="n">6</span><span class="s">I have an interesting ___ of news for you.</span><span class="o"><button type="button">cup</button><button type="button">loaf</button><button type="button">slice</button><button type="button">piece</button></span></div>
+<div class="ch" data-a="I had two cups of tea."><span class="n">7</span><span class="s">Знайди речення без помилки: ___</span><span class="o"><button type="button">I had two cups of tea.</button><button type="button">I had two cup of teas.</button><button type="button">I had two cup of tea.</button><button type="button">I had two cups of teas.</button></span></div>
+<div class="ch" data-a="two pieces of advice"><span class="n">8</span><span class="s">He gave me ___.</span><span class="o"><button type="button">two pieces of advice</button><button type="button">two advice</button><button type="button">two piece of advices</button><button type="button">two advices</button></span></div>
+<div class="ch" data-a="carton"><span class="n">9</span><span class="s">Can you get a ___ of milk on your way home?</span><span class="o"><button type="button">slice</button><button type="button">bar</button><button type="button">carton</button><button type="button">piece</button></span></div>
+<div class="ch" data-a="sheet"><span class="n">10</span><span class="s">There’s a ___ of paper on your desk.</span><span class="o"><button type="button">loaf</button><button type="button">sheet</button><button type="button">cup</button><button type="button">glass</button></span></div>
+<div class="ch" data-a="a glass"><span class="n">11</span><span class="s">Would you like ___ of orange juice?</span><span class="o"><button type="button">a bar</button><button type="button">a loaf</button><button type="button">a glass</button><button type="button">a piece</button></span></div>
+<div class="ch" data-a="three bags of popcorn"><span class="n">12</span><span class="s">We ate ___ in one evening!</span><span class="o"><button type="button">three bag of popcorns</button><button type="button">three bags of popcorn</button><button type="button">three popcorns</button><button type="button">three bags of popcorns</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; cup · bottle · piece · loaf · bar · piece · I had two cups of tea. · two pieces of advice · carton · sheet · a glass · three bags of popcorn"><b>Відповіді:</b> cup · bottle · piece · loaf · bar · piece · I had two cups of tea. · two pieces of advice · carton · sheet · a glass · three bags of popcorn</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="slices"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>We ordered two ___ (slice) of pizza each.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="glasses"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>I drink three ___ (glass) of water a day.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="loaves"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Could you buy two ___ (loaf) of bread?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="advice"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>That’s a great piece of ___ (advice)!</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="bottles"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>There are two ___ (bottle) of juice in the fridge.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="packets"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>We need four ___ (packet) of crisps for the party.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="furniture"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>I bought a new piece of ___ (furniture) for my room: a desk.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="jars"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>Granny made three ___ (jar) of jam.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; slices · glasses · loaves · advice · bottles · packets · furniture · jars"><b>Відповіді:</b> slices · glasses · loaves · advice · bottles · packets · furniture · jars</p>
+  </section>
+  <section id="s5" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">5</span>Раунд 4. Пастки <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="The news is on at nine."><span class="n">1</span><span class="s">Яке речення правильне?: ___</span><span class="o"><button type="button">The news are on at nine.</button><button type="button">The newses are on at nine.</button><button type="button">The news is on at nine.</button><button type="button">A news is on at nine.</button></span></div>
+<div class="ch" data-a="is"><span class="n">2</span><span class="s">Our luggage ___ very heavy.</span><span class="o"><button type="button">have</button><button type="button">are</button><button type="button">is</button><button type="button">were</button></span></div>
+<div class="ch" data-a="hair"><span class="n">3</span><span class="s">Lily has long dark ___.</span><span class="o"><button type="button">hairs</button><button type="button">hair’s</button><button type="button">a hair</button><button type="button">hair</button></span></div>
+<div class="ch" data-a="some"><span class="n">4</span><span class="s">I need ___ money for the cinema.</span><span class="o"><button type="button">an</button><button type="button">a</button><button type="button">some</button><button type="button">many</button></span></div>
+<div class="ch" data-a="children"><span class="n">5</span><span class="s">Two ___ are playing in the garden.</span><span class="o"><button type="button">child</button><button type="button">children</button><button type="button">childrens</button><button type="button">childs</button></span></div>
+<div class="ch" data-a="Can you give me some advice?"><span class="n">6</span><span class="s">Де немає помилки?: ___</span><span class="o"><button type="button">Can you give me some advice?</button><button type="button">Can you give me an advice?</button><button type="button">Can you give me some advices?</button><button type="button">Can you give me a advices?</button></span></div>
+<div class="ch" data-a="some scissors"><span class="n">7</span><span class="s">I need ___ to cut this paper.</span><span class="o"><button type="button">one scissor</button><button type="button">some scissors</button><button type="button">a scissors</button><button type="button">a scissor</button></span></div>
+<div class="ch" data-a="shoes"><span class="n">8</span><span class="s">These ___ are too small for me.</span><span class="o"><button type="button">shoeses</button><button type="button">shoe’s</button><button type="button">shoe</button><button type="button">shoes</button></span></div>
+<div class="ch" data-a="furniture"><span class="n">9</span><span class="s">We don’t have much ___ in our new flat yet.</span><span class="o"><button type="button">furnitures</button><button type="button">furniture</button><button type="button">chairs</button><button type="button">a furniture</button></span></div>
+<div class="ch" data-a="Our team has two new players."><span class="n">10</span><span class="s">Де все правильно?: ___</span><span class="o"><button type="button">Our team has two new players.</button><button type="button">Our team has two new player.</button><button type="button">Our team has two news players.</button><button type="button">Our team have two new player.</button></span></div>
+<div class="ch" data-a="were"><span class="n">11</span><span class="s">There ___ a lot of people at the concert.</span><span class="o"><button type="button">is</button><button type="button">were</button><button type="button">be</button><button type="button">was</button></span></div>
+<div class="ch" data-a="homework"><span class="n">12</span><span class="s">Can you help me with my ___?</span><span class="o"><button type="button">homeworks</button><button type="button">a homework</button><button type="button">homeworks’</button><button type="button">homework</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; The news is on at nine. · is · hair · some · children · Can you give me some advice? · some scissors · shoes · furniture · Our team has two new players. · were · homework"><b>Відповіді:</b> The news is on at nine. · is · hair · some · children · Can you give me some advice? · some scissors · shoes · furniture · Our team has two new players. · were · homework</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="homework"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>The teacher gave us a lot of ___ (homework) this week.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="people"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Most ___ (person) in my class have a phone.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="information"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>We need more ___ (information) before we decide.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="men"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Three ___ (man) are fixing the roof.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="are|were"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Where ___ (be) my sunglasses?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="is|’s|was"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>The money ___ (be) in my wallet.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="news"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>I’ve got some good ___ (news) for you!</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="photos"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>These ___ (photo) are from our trip to Edinburgh.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; homework · people · information · men · are · is · news · photos"><b>Відповіді:</b> homework · people · information · men · are · is · news · photos</p>
+  </section>
+  <section id="s6" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">6</span>Раунд 5. Фінальний бос <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="potatoes"><span class="n">1</span><span class="s">At the market we bought some ___ and a loaf of bread.</span><span class="o"><button type="button">potatoeses</button><button type="button">potatoes</button><button type="button">potatoe</button><button type="button">potatos</button></span></div>
+<div class="ch" data-a="was"><span class="n">2</span><span class="s">The trip was great, but the weather ___ awful.</span><span class="o"><button type="button">are</button><button type="button">have been</button><button type="button">was</button><button type="button">were</button></span></div>
+<div class="ch" data-a="I bought two kilos of apples."><span class="n">3</span><span class="s">Яке речення звучить правильно?: ___</span><span class="o"><button type="button">I bought two kilo of apple.</button><button type="button">I bought two kiloes of apples.</button><button type="button">I bought two kilos of apples.</button><button type="button">I bought two kilos of apple.</button></span></div>
+<div class="ch" data-a="a good piece of advice"><span class="n">4</span><span class="s">Max is a great goalkeeper. He gave me ___ before the match.</span><span class="o"><button type="button">a good advice</button><button type="button">good advices</button><button type="button">a piece of good advices</button><button type="button">a good piece of advice</button></span></div>
+<div class="ch" data-a="much"><span class="n">5</span><span class="s">How ___ sugar do you take in your tea?</span><span class="o"><button type="button">few</button><button type="button">lot</button><button type="button">many</button><button type="button">much</button></span></div>
+<div class="ch" data-a="pairs"><span class="n">6</span><span class="s">Lily loves fashion. She has three ___ of jeans.</span><span class="o"><button type="button">pair</button><button type="button">piece</button><button type="button">pairs</button><button type="button">pieces</button></span></div>
+<div class="ch" data-a="Your information is correct."><span class="n">7</span><span class="s">Обери речення без помилки: ___</span><span class="o"><button type="button">Your informations are correct.</button><button type="button">Your information are correct.</button><button type="button">Your information is correct.</button><button type="button">Your informations is correct.</button></span></div>
+<div class="ch" data-a="people"><span class="n">8</span><span class="s">There are two ___ in my class called Sam.</span><span class="o"><button type="button">people</button><button type="button">peoples’</button><button type="button">peoples</button><button type="button">person</button></span></div>
+<div class="ch" data-a="ponies"><span class="n">9</span><span class="s">Dan’s family has two ___ and a dog.</span><span class="o"><button type="button">ponyes</button><button type="button">ponys</button><button type="button">pony</button><button type="button">ponies</button></span></div>
+<div class="ch" data-a="is"><span class="n">10</span><span class="s">There ___ some money on the table. Is it yours?</span><span class="o"><button type="button">be</button><button type="button">is</button><button type="button">were</button><button type="button">are</button></span></div>
+<div class="ch" data-a="Two men and three women came in."><span class="n">11</span><span class="s">Де немає жодної помилки?: ___</span><span class="o"><button type="button">Two mans and three womans came in.</button><button type="button">Two men and three womans came in.</button><button type="button">Two men and three women came in.</button><button type="button">Two mens and three women came in.</button></span></div>
+<div class="ch" data-a="are"><span class="n">12</span><span class="s">I love this café. The cakes ___ always fresh.</span><span class="o"><button type="button">is</button><button type="button">was</button><button type="button">are</button><button type="button">be</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; potatoes · was · I bought two kilos of apples. · a good piece of advice · much · pairs · Your information is correct. · people · ponies · is · Two men and three women came in. · are"><b>Відповіді:</b> potatoes · was · I bought two kilos of apples. · a good piece of advice · much · pairs · Your information is correct. · people · ponies · is · Two men and three women came in. · are</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="parties"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>The ___ (party) at Max’s place are always fun.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="brushes"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>I need two new ___ (brush) for painting.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="luggage"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Emma packed her ___ (luggage) the night before the trip.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="is|was"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Thanks! Your advice ___ (be) always so helpful.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="wolves"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>There were lots of ___ (wolf) in this forest a hundred years ago.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="work"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>I can’t come tonight. I have a lot of ___ (work) to do.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="strawberries"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>The ___ (strawberry) from Granny’s garden are so sweet.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="cups"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>Can I have two ___ (cup) of hot chocolate, please?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; parties · brushes · luggage · is · wolves · work · strawberries · cups"><b>Відповіді:</b> parties · brushes · luggage · is · wolves · work · strawberries · cups</p>
+  </section>
+  <section class="end"><h2>Great job!</h2><p>See you next lesson.</p></section>
+</div>
+<div class="toast" id="toast"></div>
+<script>window.MURLY_LESSON={"id": "lib-drill-plurals-countable", "title": "Plurals, countable and uncountable nouns: 100 tasks", "homework": ["s2", "s3", "s4", "s5", "s6"], "hw": {"s2": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "We need three {tomatoes|tomatoies|tomatos|tomato} for the salad.\nHow many {photos|photoes|photies|photo} did you take on holiday?\nOur school has two {libraries|librarys|library|libraryes}.\nTwo {women|womans|womens|woman} are waiting at the bus stop.\nI’ve been walking all day, and my {feet|foots|foot|feets} hurt.\nThe farmer has fifty {sheep|sheepies|sheepes|sheeps}.\nMax washed all the {dishes|dish|dishs|dishies} after dinner.\nTwenty {people|peoples|person|persones} came to Lily’s party.\nWe saw two little {mice|mouse|mices|mouses} in the kitchen!\nOur neighbours have three {babies|babyes|baby|babys}.\nDan collects old {watches|watchs|watch|watchies}.\nMy room has two {shelves|shelve|shelfs|shelfes} with books and plants."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "I bought two [boxes] (box) of cereal.\nThere are three [buses] (bus) to the airport every hour.\nWe visited four [cities] (city) in Italy.\nMy little brother has two [teeth] (tooth) missing.\nCan you wash these [knives] (knife), please?\nMost [children] (child) love cartoons.\nI have two [keys] (key): one for the flat and one for the garage.\nThe [leaves] (leaf) are turning yellow."}], "s3": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "She gave me {some|an|a|many} useful advice.\nThere {is|be|am|are} no milk in the fridge.\nHow much {luggage|luggage’s|luggages|a luggage} do you take on holiday?\nОбери правильне речення: {We bought some new furniture.|We bought some new furnitures.|We bought a new furniture.|We bought new furnitures.}\nI need {some information|an information|some informations|informations} about the train times.\nMy trousers {are|be|was|is} dirty.\nThe traffic {was|are|were|have} terrible this morning.\nHow {many|much|more|lot} chairs do we need for the party?\nThere’s {some|a|many|an} sand in my shoes.\nОбери питання без помилки: {How much money do you have?|How much moneys do you have?|How many moneys do you have?|How many money do you have?}\nI don’t eat much {bread|a bread|bread’s|breads}.\nPhysics {is|be|are|were} my favourite subject."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "Can you give me some [advice] (advice) about learning the guitar?\nWe need some new [furniture] (furniture) for the living room.\nThe news [is/’s/was] (be) really good today.\nMy hair [is] (be) too long. I need a haircut.\nI haven’t done my [homework] (homework) yet.\nThese jeans [are/were] (be) too tight.\nThe people in this town [are/were] (be) very friendly.\nI don’t have much [information] (information) about the course."}], "s4": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Would you like a {cup|piece|bar|loaf} of coffee?\nI always take a {bottle|loaf|slice|piece} of water to the gym.\nCan I have a {piece|bottle|glass|loaf} of cake?\nWe need a {loaf|bar|glass|cup} of bread for the sandwiches.\nShe bought a {bar|slice|loaf|glass} of chocolate for her brother.\nI have an interesting {piece|cup|loaf|slice} of news for you.\nЗнайди речення без помилки: {I had two cups of tea.|I had two cups of teas.|I had two cup of tea.|I had two cup of teas.}\nHe gave me {two pieces of advice|two advice|two advices|two piece of advices}.\nCan you get a {carton|bar|piece|slice} of milk on your way home?\nThere’s a {sheet|loaf|glass|cup} of paper on your desk.\nWould you like {a glass|a piece|a loaf|a bar} of orange juice?\nWe ate {three bags of popcorn|three bag of popcorns|three popcorns|three bags of popcorns} in one evening!"}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "We ordered two [slices] (slice) of pizza each.\nI drink three [glasses] (glass) of water a day.\nCould you buy two [loaves] (loaf) of bread?\nThat’s a great piece of [advice] (advice)!\nThere are two [bottles] (bottle) of juice in the fridge.\nWe need four [packets] (packet) of crisps for the party.\nI bought a new piece of [furniture] (furniture) for my room: a desk.\nGranny made three [jars] (jar) of jam."}], "s5": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Яке речення правильне?: {The news is on at nine.|The newses are on at nine.|The news are on at nine.|A news is on at nine.}\nOur luggage {is|were|have|are} very heavy.\nLily has long dark {hair|hairs|a hair|hair’s}.\nI need {some|an|many|a} money for the cinema.\nTwo {children|childs|childrens|child} are playing in the garden.\nДе немає помилки?: {Can you give me some advice?|Can you give me some advices?|Can you give me an advice?|Can you give me a advices?}\nI need {some scissors|a scissors|a scissor|one scissor} to cut this paper.\nThese {shoes|shoe|shoe’s|shoeses} are too small for me.\nWe don’t have much {furniture|a furniture|chairs|furnitures} in our new flat yet.\nДе все правильно?: {Our team has two new players.|Our team has two news players.|Our team have two new player.|Our team has two new player.}\nThere {were|is|was|be} a lot of people at the concert.\nCan you help me with my {homework|homeworks’|a homework|homeworks}?"}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "The teacher gave us a lot of [homework] (homework) this week.\nMost [people] (person) in my class have a phone.\nWe need more [information] (information) before we decide.\nThree [men] (man) are fixing the roof.\nWhere [are/were] (be) my sunglasses?\nThe money [is/’s/was] (be) in my wallet.\nI’ve got some good [news] (news) for you!\nThese [photos] (photo) are from our trip to Edinburgh."}], "s6": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "At the market we bought some {potatoes|potatoeses|potatos|potatoe} and a loaf of bread.\nThe trip was great, but the weather {was|were|are|have been} awful.\nЯке речення звучить правильно?: {I bought two kilos of apples.|I bought two kilo of apple.|I bought two kilos of apple.|I bought two kiloes of apples.}\nMax is a great goalkeeper. He gave me {a good piece of advice|good advices|a good advice|a piece of good advices} before the match.\nHow {much|few|many|lot} sugar do you take in your tea?\nLily loves fashion. She has three {pairs|pair|pieces|piece} of jeans.\nОбери речення без помилки: {Your information is correct.|Your information are correct.|Your informations is correct.|Your informations are correct.}\nThere are two {people|person|peoples’|peoples} in my class called Sam.\nDan’s family has two {ponies|pony|ponyes|ponys} and a dog.\nThere {is|are|be|were} some money on the table. Is it yours?\nДе немає жодної помилки?: {Two men and three women came in.|Two mans and three womans came in.|Two mens and three women came in.|Two men and three womans came in.}\nI love this café. The cakes {are|was|be|is} always fresh."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "The [parties] (party) at Max’s place are always fun.\nI need two new [brushes] (brush) for painting.\nEmma packed her [luggage] (luggage) the night before the trip.\nThanks! Your advice [is/was] (be) always so helpful.\nThere were lots of [wolves] (wolf) in this forest a hundred years ago.\nI can’t come tonight. I have a lot of [work] (work) to do.\nThe [strawberries] (strawberry) from Granny’s garden are so sweet.\nCan I have two [cups] (cup) of hot chocolate, please?"}]}};</script>
+<script>
+(function(){var l=(document.cookie.match(/(?:^|; )murly_lang=(\w+)/)||[])[1];try{l=l||localStorage.getItem('murly:tlang')}catch(e){}l=l==='ru'?'ru':'uk';document.querySelectorAll('[data-pairs-'+l+']').forEach(function(b){b.dataset.pairs=b.getAttribute('data-pairs-'+l)});})();
+</script>
+<script>
+const $ = (id) => document.getElementById(id);
+const LIS = {};
+function say(w, rate) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; const v = speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang) && /Google|Natural|Libby|Sonia|Daniel/.test(x.name)) || speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang)); if (v) u.voice = v; u.rate = rate || .95; speechSynthesis.speak(u); } catch (e) { } }
+const sh = (a) => a.map((x) => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map((x) => x[1]);
+document.querySelectorAll('.voc div').forEach((d) => d.onclick = () => say(d.dataset.say));
+document.querySelectorAll('[data-play]').forEach((b) => b.onclick = () => say(LIS[b.dataset.play], b.dataset.slow ? .75 : .95));
+document.querySelectorAll('[data-stop]').forEach((b) => b.onclick = () => { try { speechSynthesis.cancel(); } catch (e) { } });
+document.querySelectorAll('.ch').forEach((q) => q.querySelectorAll('button').forEach((b) => b.onclick = () => { if (q.classList.contains('ok')) return; const ok = b.textContent === q.dataset.a; q.classList.toggle('ok', ok); q.classList.toggle('bad', !ok); if (ok) { const s = q.querySelector('.s'); if (s && s.textContent.includes('___')) { s.textContent = s.textContent.replace('___', q.dataset.a); } } }));
+const norm = (x) => x.toLowerCase().replace(/[’']/g, "'").replace(/[,;:"“”«»]/g, ' ').replace(/\s+/g, ' ').replace(/[.!?]$/, '').trim();
+document.querySelectorAll('.ty').forEach((r) => { const inp = r.querySelector('input'); const chk = () => { const ok = r.dataset.a.split('|').some((a) => norm(a) === norm(inp.value)); r.classList.toggle('ok', ok); r.classList.toggle('bad', !ok && inp.value.trim() !== ''); }; r.querySelector('button').onclick = chk; inp.onkeydown = (e) => { if (e.key === 'Enter') chk(); }; });
+document.querySelectorAll('[data-mt]').forEach((box) => { const pairs = JSON.parse(box.dataset.pairs); const L = sh(pairs.map((p) => p[0])), R = sh(pairs.map((p) => p[1])); let sel = null, done = 0, err = 0; box.innerHTML = L.map((w, i) => `<button type="button" data-w="${w}">${w}</button><button type="button" data-d="${R[i]}">${R[i]}</button>`).join('');
+  box.querySelectorAll('button').forEach((b) => b.onclick = () => { if (b.classList.contains('done')) return; if (!sel || (sel.dataset.w && b.dataset.w) || (sel.dataset.d && b.dataset.d)) { if (sel) sel.classList.remove('sel'); sel = b; b.classList.add('sel'); return; } const w = sel.dataset.w || b.dataset.w, d = sel.dataset.d || b.dataset.d; if (pairs.some((p) => p[0] === w && p[1] === d)) { sel.classList.add('done'); b.classList.add('done'); done++; say(w); if (done === pairs.length) document.querySelector(`[data-mtres="${box.dataset.mt}"]`).textContent = err ? `Done! Mistakes: ${err}` : 'Perfect!'; } else err++; sel.classList.remove('sel'); sel = null; }); });
+document.querySelectorAll('[data-vids]').forEach((box) => JSON.parse(box.dataset.vids).forEach(([id, title, ch, qs]) => { const d = document.createElement('div'); d.className = 'vid'; d.innerHTML = `<div class="frame"><button class="play" type="button" style="background-image:url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)"><span>PLAY</span></button></div><div class="info"><h3>${title}</h3><small>YouTube · ${ch}</small><ol>${qs.map((q) => `<li>${q}</li>`).join('')}</ol></div>`; d.querySelector('.play').onclick = (e) => { e.currentTarget.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&cc_load_policy=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${title}"></iframe>`; }; box.appendChild(d); }));
+document.querySelectorAll('[data-spin]').forEach((b) => { const list = JSON.parse(b.dataset.spin); let last = -1; b.onclick = () => { let i; do { i = Math.floor(Math.random() * list.length); } while (i === last && list.length > 1); last = i; document.getElementById(b.dataset.target).textContent = list[i]; }; });
+try { const k = 'murly:' + (window.MURLY_LESSON ? MURLY_LESSON.id : 'x') + ':hw'; const t = $('hwText'); if (t) { t.value = localStorage.getItem(k) || ''; t.oninput = () => localStorage.setItem(k, t.value); } } catch (e) { }
+const STAGES = [...document.querySelectorAll('.wrap > section[id]')];
+$('stages').innerHTML = STAGES.map((s) => `<a href="#${s.id}"><b>${s.querySelector('.lk-n').textContent}</b><span>${s.dataset.stage}</span><small>${s.dataset.min !== '0' ? s.dataset.min + ' min' : 'at home'}</small></a>`).join('');
+$('teacherBtn').onclick = (e) => { const on = document.body.classList.toggle('teacher'); e.currentTarget.textContent = on ? 'Student version' : 'Teacher version'; };
+</script>
+<script src="/game-lessons/kit.js" defer></script>
+</body>
+</html>
