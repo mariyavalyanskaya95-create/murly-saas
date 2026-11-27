@@ -348,7 +348,7 @@
   const hwCount = (id) => (HW[id] || []).reduce((n, b) => n + String(b.text || '').split('\n').filter((x) => x.trim()).length, 0);
   function hwModal(preset) {
     if (!D || D.local) { toastMk(T('Задати домашку можна на murly.com.ua, коли ви увійшли як учитель.', 'Задать домашку можно на murly.com.ua, когда вы вошли как учитель.')); return; }
-    const ids = Object.keys(HW).filter((k) => info(k) && HW[k].length);
+    const ids = INFO.map((x) => x.id).filter((k) => HW[k] && HW[k].length);
     const pre = new Set(preset === 'all' ? HOME : [preset]);
     modal(`<h3>${IC.hw}${T('Задати домашкою', 'Задать домашкой')}</h3>
       <label>${T('Учень', 'Ученик')}</label>${studentSelect()}
