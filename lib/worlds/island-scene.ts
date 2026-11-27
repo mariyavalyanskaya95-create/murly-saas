@@ -762,7 +762,8 @@ export class IslandScene {
     // плоскі шари поверх трави: всі однаково «підняті» над травою, а між собою малюються по черзі (renderOrder), без боротьби глибин
     const layer = (m: THREE.Material, k: number) => { m.polygonOffset = true; m.polygonOffsetFactor = -4; m.polygonOffsetUnits = -4; m.depthWrite = false; m.userData.ord = k; return m; };
     const sandM = toon('#F3DFA7'); sandM.polygonOffset = true; sandM.polygonOffsetFactor = sandM.polygonOffsetUnits = 8; const sand = mesh(g, sandM, false); sand.position.y = -0.05; this.scene.add(sand);
-    const gg = new THREE.CircleGeometry(68, 96); gg.rotateX(-Math.PI / 2);
+    // кільця замість «віяла» трикутників: інакше пагорби на краю нахиляють довгі трикутники і трава вилазить на дороги
+    const gg = new THREE.RingGeometry(0, 68, 128, 34); gg.rotateX(-Math.PI / 2);
     const pos = gg.attributes.position as THREE.BufferAttribute;
     // трава з легкими пагорбами по краях
     for (let i = 0; i < pos.count; i++) { const x = pos.getX(i), z = pos.getZ(i); const d = Math.hypot(x, z); pos.setY(i, d > 55 ? Math.sin(x * 0.2) * Math.cos(z * 0.17) * 0.6 * ((d - 55) / 13) : 0); }
