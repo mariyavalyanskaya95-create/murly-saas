@@ -213,8 +213,8 @@ export async function POST(req: Request) {
         // завдання з ігрового уроку приходять текстом у форматі редактора вправ: розбираємо тут
         if (Array.isArray(p.itemsText)) {
           const ok = new Set(SECTION_TYPES.map((x) => x.id));
-          p.items = (p.itemsText as Row[]).slice(0, 20).filter((x) => ok.has(String(x.type) as SectionType))
-            .map((x) => parseSection(String(x.type) as SectionType, String(x.instruction ?? '').slice(0, 300), String(x.text ?? '').slice(0, 6000)))
+          p.items = (p.itemsText as Row[]).slice(0, 40).filter((x) => ok.has(String(x.type) as SectionType))
+            .map((x) => parseSection(String(x.type) as SectionType, String(x.instruction ?? '').slice(0, 300), String(x.text ?? '').slice(0, 12000)))
             .filter((x) => x.tasks.length);
           p.kind = 'exercise';
           delete p.itemsText;
