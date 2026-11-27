@@ -797,13 +797,15 @@ export function HomeworkForm({ studentIds, groupId, onDone }: { studentIds: stri
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!targets.length) return;
-    if (kind === 'text' && !instructions.trim()) return;
-    if (kind === 'exercise' && !sections.length) return;
+    // упражнение без вопросов, но с картинкой або текстом відправляємо як письмове завдання
+    const k0 = kind === 'exercise' && !sections.length && (files.length || instructions.trim()) ? 'text' : kind;
+    if (k0 === 'text' && !instructions.trim() && !files.length) return;
+    if (k0 === 'exercise' && !sections.length) return;
     const gameLabel = t(GAMES.find((g) => g.id === game)!.label);
     const base = {
-      kind: kind === 'quest' ? 'game' as const : kind,
-      title: title.trim() || (kind === 'quest' ? `${t({ uk: 'Знайди мене', ru: 'Найди меня', en: 'Find me' })} ${t(QUEST_LIST.find((q) => q.id === quest)!.title)}` : kind === 'mock' ? t({ uk: `Пробний НМТ №${mock}`, ru: `Пробный НМТ №${mock}`, en: `NMT mock test #${mock}` }) : kind === 'game' ? `${t({ uk: 'Слова', ru: 'Слова', en: 'Words' })}: ${gameLabel.toLowerCase()}` : kind === 'exercise' ? t({ uk: 'Вправа', ru: 'Упражнение', en: 'Exercise' }) : t({ uk: 'Письмове завдання', ru: 'Письменное задание', en: 'Written task' })),
-      items: kind === 'exercise' ? sections : undefined,
+      kind: k0 === 'quest' ? 'game' as const : k0,
+      title: title.trim() || (kind === 'quest' ? `${t({ uk: 'Знайди мене', ru: 'Найди меня', en: 'Find me' })} ${t(QUEST_LIST.find((q) => q.id === quest)!.title)}` : kind === 'mock' ? t({ uk: `Пробний НМТ №${mock}`, ru: `Пробный НМТ №${mock}`, en: `NMT mock test #${mock}` }) : kind === 'game' ? `${t({ uk: 'Слова', ru: 'Слова', en: 'Words' })}: ${gameLabel.toLowerCase()}` : k0 === 'exercise' ? t({ uk: 'Вправа', ru: 'Упражнение', en: 'Exercise' }) : t({ uk: 'Письмове завдання', ru: 'Письменное задание', en: 'Written task' })),
+      items: k0 === 'exercise' ? sections : undefined,
       instructions: instructions.trim() || undefined,
       game: kind === 'quest' ? quest : kind === 'game' ? game : kind === 'mock' ? mock : undefined,
       direction: kind === 'game' ? direction : undefined,
@@ -891,7 +893,7 @@ export function HomeworkForm({ studentIds, groupId, onDone }: { studentIds: stri
           </div>
         )}
         {kids.length > 0 && <ParentToggle on={parentOn} set={setToParent} kids={kids} />}
-        <div className="t-form__actions"><button className="mu-btn mu-btn--lime" type="submit" disabled={!targets.length || (kind === 'game' && words < 4) || (kind === 'game' && picked.length > 0 && picked.length < 4) || (kind === 'exercise' && !sections.length)}>{group ? t({ uk: `Задати всім (${targets.length})`, ru: `Задать всем (${targets.length})`, en: `Assign to all (${targets.length})` }) : t({ uk: 'Задати', ru: 'Задать', en: 'Assign' })}</button></div>
+        <div className="t-form__actions"><button className="mu-btn mu-btn--lime" type="submit" disabled={!targets.length || (kind === 'game' && words < 4) || (kind === 'game' && picked.length > 0 && picked.length < 4) || (kind === 'exercise' && !sections.length && !files.length && !instructions.trim()) || (kind === 'text' && !instructions.trim() && !files.length)}>{group ? t({ uk: `Задати всім (${targets.length})`, ru: `Задать всем (${targets.length})`, en: `Assign to all (${targets.length})` }) : t({ uk: 'Задати', ru: 'Задать', en: 'Assign' })}</button></div>
       </div>
     </form>
   );
