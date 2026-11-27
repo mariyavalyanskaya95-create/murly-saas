@@ -217,6 +217,9 @@ function wearStyle(rig: Rig, o: Outfit) {
   if (hair === 'hair-pigtails') { cap(); [-1, 1].forEach((d) => { const p = mesh(new THREE.CapsuleGeometry(0.1, 0.25, 6, 10), toon(hc)); p.position.set(0.52 * d, 0.02, -0.12); p.rotation.z = 0.5 * d; H.add(p); const bw = sph(0.06, '#F76AA8', 8); bw.position.set(0.47 * d, 0.16, -0.12); H.add(bw); }); }
   if (hair === 'hair-mohawk') { for (let i = 0; i < 6; i++) { const m = box(0.08, 0.26 - Math.abs(i - 2.5) * 0.03, 0.14, hc); m.position.set(0, 0.5, 0.22 - i * 0.12); H.add(m); } }
   if (hair === 'hair-long') { cap(); const bk = sph(0.45, hc, 16); bk.scale.set(1.05, 1.35, 0.45); bk.position.set(0, -0.15, -0.3); H.add(bk); }
+  if (hair === 'hair-buns') { cap(); [-1, 1].forEach((d) => { const b = sph(0.17, hc, 12); b.position.set(0.3 * d, 0.5, -0.05); H.add(b); }); }
+  if (hair === 'hair-waves') { cap(); const bk = sph(0.45, hc, 16); bk.scale.set(1.08, 1.4, 0.45); bk.position.set(0, -0.2, -0.3); H.add(bk); [-1, 1].forEach((d) => { for (let i = 0; i < 5; i++) { const w = sph(0.11, hc, 10); w.position.set((0.44 + (i % 2) * 0.05) * d, 0.05 - i * 0.14, -0.08); H.add(w); } }); }
+  if (hair === 'hair-bow') { cap(); const bk = sph(0.45, hc, 16); bk.scale.set(1.05, 1.2, 0.45); bk.position.set(0, -0.1, -0.3); H.add(bk); const bow = new THREE.Group(); [-1, 1].forEach((d) => { const w = sph(0.13, '#FFB3D1', 12); w.scale.set(1.3, 0.85, 0.5); w.position.x = 0.13 * d; bow.add(w); }); const kn = sph(0.06, '#F76AA8', 8); bow.add(kn); bow.position.set(0, 0.48, -0.15); bow.rotation.x = -0.4; H.add(bow); }
   const T = S.top; const top = o.top ?? 'top-none';
   if (top !== 'top-none') {
     let mat = toon(tc);
@@ -227,12 +230,18 @@ function wearStyle(rig: Rig, o: Outfit) {
     if (top === 'top-hoodie') { const hd = mesh(new THREE.TorusGeometry(0.25, 0.1, 8, 16), toon(tc)); hd.position.set(0, 1.02, -0.28); hd.rotation.x = 0.6; T.add(hd); }
     if (top === 'top-jacket') { const col = mesh(new THREE.TorusGeometry(0.3, 0.06, 6, 18), toon('#FFFFFF')); col.rotation.x = Math.PI / 2; col.position.y = 1.0; T.add(col); [0.85, 0.7, 0.55].forEach((y) => { const bt = sph(0.035, '#FFC53D', 8); bt.position.set(0, y, 0.48); T.add(bt); }); }
     if (top === 'top-dress') { const sk = mesh(new THREE.CylinderGeometry(0.42, 0.68, 0.55, 20, 1, true), new THREE.MeshToonMaterial({ color: tc, gradientMap: grad!, side: THREE.DoubleSide })); sk.position.y = 0.3; T.add(sk); }
+    if (top === 'top-fluffy') { for (let i = 0; i < 22; i++) { const a = (i / 22) * Math.PI * 2; const b = sph(0.1, tc, 8); b.position.set(Math.cos(a) * 0.5, 0.55 + (i % 3) * 0.14, Math.sin(a) * 0.47); T.add(b); } }
+    if (top === 'top-tutu') { for (let i = 0; i < 3; i++) { const sk = mesh(new THREE.CylinderGeometry(0.45 + i * 0.05, 0.75 + i * 0.06, 0.16, 22, 1, true), new THREE.MeshToonMaterial({ color: i === 1 ? '#FFFFFF' : tc, gradientMap: grad!, side: THREE.DoubleSide, transparent: true, opacity: 0.88 })); sk.position.y = 0.42 - i * 0.1; T.add(sk); } const bow = sph(0.08, '#FFFFFF', 8); bow.scale.set(1.6, 0.8, 0.6); bow.position.set(0, 0.96, 0.4); T.add(bow); }
+    if (top === 'top-cardigan') { const col = box(0.06, 0.6, 0.05, '#FFFFFF'); col.position.set(0, 0.72, 0.47); T.add(col); [0.9, 0.75, 0.6].forEach((y) => { const bt = sph(0.03, '#FFFFFF', 8); bt.position.set(0.06, y, 0.48); T.add(bt); }); const ht = sph(0.07, '#E5484D', 10); ht.scale.set(1, 0.9, 0.4); ht.position.set(-0.2, 0.85, 0.43); T.add(ht); }
+    if (top === 'top-sporty') { [-1, 1].forEach((d) => { const st = box(0.04, 0.7, 0.04, '#FFFFFF'); st.position.set(0.47 * d, 0.7, 0.1); st.rotation.z = 0.15 * d; T.add(st); }); const zip = box(0.02, 0.6, 0.03, '#C9CED6'); zip.position.set(0, 0.72, 0.48); T.add(zip); const col = mesh(new THREE.TorusGeometry(0.28, 0.05, 6, 18), toon(tc)); col.rotation.x = Math.PI / 2; col.position.y = 1.0; T.add(col); }
     if (top === 'top-overalls') { const low = sph(0.52, tc, 20); low.scale.set(1.02, 0.55, 0.96); low.position.y = 0.4; T.add(low); const bib = box(0.36, 0.3, 0.06, tc); bib.position.set(0, 0.72, 0.42); T.add(bib); [-0.14, 0.14].forEach((x) => { const st = box(0.06, 0.4, 0.04, tc); st.position.set(x, 0.92, 0.36); st.rotation.x = -0.3; T.add(st); const bt = sph(0.035, '#FFC53D', 8); bt.position.set(x, 0.84, 0.46); T.add(bt); }); shirt.material = toon('#FFFFFF'); }
   }
   const bottom = o.bottom ?? 'bottom-none';
-  if (bottom !== 'bottom-none' && top !== 'top-dress' && top !== 'top-overalls') {
+  if (bottom !== 'bottom-none' && top !== 'top-dress' && top !== 'top-overalls' && top !== 'top-tutu') {
     const c = bottom === 'bottom-jeans' ? (o.bottomC ?? '#3D5A99') : bc;
-    if (bottom === 'bottom-skirt') { const sk = mesh(new THREE.CylinderGeometry(0.46, 0.64, 0.38, 20, 1, true), new THREE.MeshToonMaterial({ color: c, gradientMap: grad!, side: THREE.DoubleSide })); sk.position.y = 0.32; T.add(sk); }
+    if (bottom === 'bottom-tutu') { for (let i = 0; i < 3; i++) { const sk = mesh(new THREE.CylinderGeometry(0.47 + i * 0.04, 0.72 + i * 0.05, 0.14, 22, 1, true), new THREE.MeshToonMaterial({ color: i === 1 ? '#FFFFFF' : c, gradientMap: grad!, side: THREE.DoubleSide, transparent: true, opacity: 0.88 })); sk.position.y = 0.36 - i * 0.08; T.add(sk); } }
+    else if (bottom === 'bottom-cargo') { const hip = sph(0.515, c, 20); hip.scale.set(1.01, 0.42, 0.95); hip.position.y = 0.33; T.add(hip); [S.legL, S.legR].forEach((lg, i) => { const l = mesh(new THREE.CylinderGeometry(0.17, 0.2, 0.3, 12), toon(c)); l.position.y = 0.0; lg.add(l); const pk = box(0.12, 0.1, 0.05, c); pk.position.set(0.17 * (i ? 1 : -1), 0.02, 0); lg.add(pk); }); }
+    else if (bottom === 'bottom-skirt') { const sk = mesh(new THREE.CylinderGeometry(0.46, 0.64, 0.38, 20, 1, true), new THREE.MeshToonMaterial({ color: c, gradientMap: grad!, side: THREE.DoubleSide })); sk.position.y = 0.32; T.add(sk); }
     else {
       const hip = sph(0.515, c, 20); hip.scale.set(1.01, 0.42, 0.95); hip.position.y = 0.33; T.add(hip);
       if (bottom !== 'bottom-shorts') [S.legL, S.legR].forEach((lg) => { const l = mesh(new THREE.CapsuleGeometry(0.145, 0.12, 6, 10), toon(c)); lg.add(l); });
@@ -241,6 +250,9 @@ function wearStyle(rig: Rig, o: Outfit) {
   const shoes = o.shoes ?? 'shoes-none';
   if (shoes !== 'shoes-none') [S.legL, S.legR].forEach((lg) => {
     if (shoes === 'shoes-boots' || shoes === 'shoes-wellies') { const b = cyl(0.16, 0.17, 0.26, shoes === 'shoes-wellies' ? (o.shoesC ?? '#FFC53D') : (o.shoesC ?? '#6B4F2A'), 12); b.position.y = -0.08; lg.add(b); const toe = box(0.3, 0.12, 0.2, shoes === 'shoes-wellies' ? (o.shoesC ?? '#FFC53D') : (o.shoesC ?? '#6B4F2A')); toe.position.set(0, -0.15, 0.12); lg.add(toe); }
+    else if (shoes === 'shoes-fluffy') { const w = cyl(0.2, 0.22, 0.3, sc2, 14); w.position.y = -0.04; lg.add(w); for (let i = 0; i < 2; i++) { const r0 = mesh(new THREE.TorusGeometry(0.2, 0.05, 6, 14), toon(sc2)); r0.rotation.x = Math.PI / 2; r0.position.y = 0.08 - i * 0.16; lg.add(r0); } const s0 = box(0.28, 0.1, 0.34, '#6B4F2A'); s0.position.set(0, -0.17, 0.05); lg.add(s0); }
+    else if (shoes === 'shoes-platforms') { const s0 = box(0.28, 0.12, 0.34, sc2); s0.position.set(0, -0.12, 0.05); lg.add(s0); const sole = box(0.3, 0.12, 0.36, '#1A1A1A'); sole.position.set(0, -0.24, 0.05); lg.add(sole); }
+    else if (shoes === 'shoes-sparkly') { const s0 = mesh(new THREE.BoxGeometry(0.28, 0.13, 0.36), new THREE.MeshStandardMaterial({ color: sc2, metalness: 0.7, roughness: 0.25 })); s0.position.set(0, -0.15, 0.06); lg.add(s0); const sole = box(0.29, 0.04, 0.37, '#FFFFFF'); sole.position.set(0, -0.21, 0.06); lg.add(sole); for (let i = 0; i < 4; i++) { const st = mesh(new THREE.OctahedronGeometry(0.025), new THREE.MeshBasicMaterial({ color: '#FFFFFF' })); st.position.set(-0.1 + i * 0.07, -0.1, 0.24); lg.add(st); } }
     else if (shoes === 'shoes-sandals') { const s0 = box(0.26, 0.04, 0.36, '#8B5E34'); s0.position.set(0, -0.2, 0.05); lg.add(s0); const st = box(0.27, 0.04, 0.05, sc2); st.position.set(0, -0.15, 0.08); lg.add(st); }
     else { const s0 = box(0.28, 0.13, 0.36, sc2); s0.position.set(0, -0.15, 0.06); lg.add(s0); const sole = box(0.29, 0.04, 0.37, '#FFFFFF'); sole.position.set(0, -0.21, 0.06); lg.add(sole); }
   });
@@ -386,6 +398,25 @@ export async function productObj(id: string, size = 0.4): Promise<THREE.Object3D
     case 'icecream': { add(lathe([[0, 0], [0.055 * k, 0.17 * k], [0, 0.17 * k]], '#E0A85E', 14)); for (let i = 0; i < 3; i++) { const ln = add(mesh(new THREE.TorusGeometry((0.015 + i * 0.015) * k, 0.003 * k, 4, 14), toon('#B9803E')), 0, (0.05 + i * 0.04) * k); ln.rotation.x = Math.PI / 2; } add(sph(0.06 * k, '#F7A1B5', 14), 0, 0.2 * k); add(sph(0.052 * k, '#FFF3DA', 14), 0, 0.26 * k); add(sph(0.018 * k, '#C8102E', 8), 0, 0.31 * k); break; }
     case 'frozen pizza': { const t = labelTex('PIZZA', '#E5484D', '#FFFFFF'); const top = new THREE.CanvasTexture((() => { const cv = document.createElement('canvas'); cv.width = 256; cv.height = 256; const x = cv.getContext('2d')!; x.fillStyle = '#9ED3F0'; x.fillRect(0, 0, 256, 256); x.fillStyle = '#E8B46A'; x.beginPath(); x.arc(128, 128, 100, 0, 7); x.fill(); x.fillStyle = '#D9402E'; x.beginPath(); x.arc(128, 128, 84, 0, 7); x.fill(); x.fillStyle = '#FFD86B'; x.beginPath(); x.arc(128, 128, 72, 0, 7); x.fill(); x.fillStyle = '#B8322A'; [[90, 100], [160, 110], [120, 160], [150, 70], [80, 150]].forEach(([a, b]) => { x.beginPath(); x.arc(a, b, 14, 0, 7); x.fill(); }); return cv; })()); top.colorSpace = THREE.SRGBColorSpace; const m0 = toon('#9ED3F0'); add(mesh(new THREE.BoxGeometry(0.26 * k, 0.04 * k, 0.26 * k), [m0, m0, lbl(top), m0, lbl(t), m0]), 0, 0.02 * k); break; }
     case 'peas': { add(packBox(0.18 * k, 0.22 * k, 0.06 * k, '#30A46C', labelTex('PEAS', '#30A46C', '#FFFFFF', (x) => { x.fillStyle = '#7ED957'; for (let i = 0; i < 9; i++) { x.beginPath(); x.arc(70 + (i % 3) * 58, 50 + Math.floor(i / 3) * 44, 20, 0, 7); x.fill(); } x.fillStyle = '#DDF3FF'; x.fillRect(0, 0, 256, 18); })), 0, 0.11 * k); break; }
+    // ---- кафе ----
+    case 'cafe-cocoa': case 'cafe-tea': case 'cafe-latte': {
+      const mug = key === 'cafe-tea' ? '#FFFFFF' : key === 'cafe-latte' ? '#E8DCC8' : '#E5484D';
+      if (key === 'cafe-tea') { const sau = cyl(0.13 * k, 0.12 * k, 0.015 * k, '#FFFFFF', 20); sau.position.y = 0.008 * k; g.add(sau); }
+      add(lathe([[0, 0], [0.07 * k, 0], [0.09 * k, 0.14 * k], [0.084 * k, 0.14 * k], [0.064 * k, 0.01 * k], [0, 0.01 * k]], mug, 20), 0, 0.015 * k);
+      const h = add(mesh(new THREE.TorusGeometry(0.04 * k, 0.012 * k, 6, 14), toon(mug)), 0.095 * k, 0.09 * k); h.rotation.y = Math.PI / 2;
+      add(cyl(0.083 * k, 0.083 * k, 0.006 * k, key === 'cafe-tea' ? '#C0703E' : key === 'cafe-latte' ? '#C8A77A' : '#5A3417', 18), 0, 0.14 * k);
+      if (key === 'cafe-cocoa') { const cr = add(sph(0.07 * k, '#FFFFFF', 12), 0, 0.16 * k); cr.scale.y = 0.6; ['#FFB3D1', '#FFFFFF', '#FFE08A'].forEach((c0, i) => add(box(0.025 * k, 0.025 * k, 0.025 * k, c0), Math.cos(i * 2) * 0.04 * k, 0.19 * k, Math.sin(i * 2) * 0.04 * k)); }
+      if (key === 'cafe-latte') { const ht = add(sph(0.03 * k, '#FFFFFF', 8), 0, 0.145 * k); ht.scale.set(1.2, 0.15, 1); }
+      if (key === 'cafe-tea') { const tag = add(box(0.03 * k, 0.04 * k, 0.004 * k, '#FFC53D'), 0.1 * k, 0.1 * k); tag.rotation.z = 0.2; }
+      break; }
+    case 'cafe-shake': { add(lathe([[0, 0], [0.05 * k, 0], [0.065 * k, 0.24 * k], [0, 0.24 * k]], '#F7A1B5', 18)); const cr = add(sph(0.07 * k, '#FFFFFF', 12), 0, 0.26 * k); cr.scale.y = 0.7; add(sph(0.025 * k, '#C8102E', 8), 0, 0.31 * k); const st = add(cyl(0.008 * k, 0.008 * k, 0.2 * k, '#3E7BFA', 6), 0.03 * k, 0.3 * k); st.rotation.z = -0.25; break; }
+    case 'cafe-choccake': { add(plate(k)); [['#5A3417', 0.06], ['#F3E2C8', 0.012], ['#5A3417', 0.06], ['#3B2210', 0.02]].reduce((y, [c0, h]) => { const sl = mesh(new THREE.CylinderGeometry(0.17 * k, 0.17 * k, (h as number) * k, 24, 1, false, 0, Math.PI / 3), toon(c0 as string)); sl.position.set(-0.04 * k, (y + (h as number) / 2) * k, -0.04 * k); g.add(sl); return y + (h as number); }, 0.015); add(sph(0.022 * k, '#C8102E', 8), 0.04 * k, 0.18 * k, 0.07 * k); break; }
+    case 'cafe-strawcake': { add(cyl(0.17 * k, 0.17 * k, 0.12 * k, '#FFF3E8', 26), 0, 0.06 * k); add(cyl(0.175 * k, 0.175 * k, 0.03 * k, '#F7A1B5', 26), 0, 0.13 * k); for (let i = 0; i < 7; i++) { const a = i * 0.9; const s0 = lathe([[0, 0], [0.02 * k, 0.01 * k], [0.03 * k, 0.035 * k], [0, 0.055 * k]], '#E8303F', 10); s0.position.set(Math.cos(a) * 0.11 * k, 0.145 * k, Math.sin(a) * 0.11 * k); g.add(s0); } for (let i = 0; i < 12; i++) { const d = add(sph(0.022 * k, '#FFFFFF', 6), Math.cos(i * 0.52) * 0.17 * k, 0.03 * k, Math.sin(i * 0.52) * 0.17 * k); d.scale.y = 0.7; } break; }
+    case 'cafe-cupcake': { add(lathe([[0, 0], [0.06 * k, 0], [0.08 * k, 0.09 * k], [0, 0.09 * k]], '#FFC53D', 12)); for (let i = 0; i < 3; i++) { const t = add(mesh(new THREE.TorusGeometry((0.065 - i * 0.02) * k, 0.03 * k, 8, 18), toon('#F7A1B5')), 0, (0.11 + i * 0.035) * k); t.rotation.x = Math.PI / 2; } add(sph(0.022 * k, '#C8102E', 8), 0, 0.21 * k); ['#3E7BFA', '#FFC53D', '#30A46C', '#FFFFFF'].forEach((c0, i) => add(box(0.02 * k, 0.006 * k, 0.006 * k, c0), Math.cos(i * 1.6) * 0.05 * k, 0.15 * k, Math.sin(i * 1.6) * 0.05 * k)); break; }
+    case 'cafe-donut': { const d = add(mesh(new THREE.TorusGeometry(0.09 * k, 0.045 * k, 12, 24), toon('#E0A85E')), 0, 0.045 * k); d.rotation.x = Math.PI / 2; const ic = add(mesh(new THREE.TorusGeometry(0.09 * k, 0.046 * k, 12, 24, Math.PI * 2), toon('#F76AA8')), 0, 0.058 * k); ic.rotation.x = Math.PI / 2; ic.scale.z = 0.5; ['#FFFFFF', '#FFC53D', '#3E7BFA', '#30A46C', '#FFFFFF', '#E5484D'].forEach((c0, i) => { const sp = add(box(0.022 * k, 0.006 * k, 0.006 * k, c0), Math.cos(i * 1.05) * 0.09 * k, 0.085 * k, Math.sin(i * 1.05) * 0.09 * k); sp.rotation.y = i; }); break; }
+    case 'cafe-cinnamon': { for (let i = 0; i < 3; i++) { const r0 = add(mesh(new THREE.TorusGeometry((0.03 + i * 0.035) * k, 0.03 * k, 8, 20), toon(i % 2 ? '#B8763A' : '#D9A066')), 0, 0.035 * k); r0.rotation.x = Math.PI / 2; } const ic = add(cyl(0.1 * k, 0.1 * k, 0.008 * k, '#FFF6E5', 18), 0, 0.07 * k); ic.scale.set(0.9, 1, 0.8); break; }
+    case 'cafe-macarons': { add(box(0.28 * k, 0.04 * k, 0.12 * k, '#FFFFFF'), 0, 0.02 * k); ['#F7A1B5', '#B79CF0', '#8EDBA8', '#FFE08A'].forEach((c0, i) => { const x = -0.1 * k + i * 0.066 * k; const t1 = cyl(0.03 * k, 0.03 * k, 0.018 * k, c0, 14); t1.position.set(x, 0.055 * k, 0); g.add(t1); add(cyl(0.026 * k, 0.026 * k, 0.012 * k, '#FFFFFF', 14), x, 0.07 * k); const t2 = cyl(0.03 * k, 0.03 * k, 0.018 * k, c0, 14); t2.position.set(x, 0.085 * k, 0); g.add(t2); }); break; }
+    case 'cafe-cookie': { const c0 = add(cyl(0.1 * k, 0.1 * k, 0.025 * k, '#D9A066', 18), 0, 0.0125 * k); c0.scale.z = 0.95; for (let i = 0; i < 7; i++) add(sph(0.014 * k, '#4A2C14', 6), Math.cos(i * 0.9) * 0.06 * k, 0.027 * k, Math.sin(i * 0.9) * 0.055 * k); break; }
     // ---- страви ----
     case 'dish:pancakes': { add(plate(k)); for (let i = 0; i < 4; i++) add(cyl(0.14 * k, 0.14 * k, 0.025 * k, i % 2 ? '#E8B46A' : '#DDA458', 24), 0, (0.025 + i * 0.026) * k); add(lathe([[0, 0], [0.12 * k, 0], [0.1 * k, 0.01 * k], [0, 0.012 * k]], '#B5651D', 20), 0, 0.12 * k); add(box(0.05 * k, 0.025 * k, 0.05 * k, '#FFE36B'), 0, 0.14 * k); break; }
     case 'dish:omelette': { add(plate(k)); const o = add(mesh(new THREE.SphereGeometry(0.13 * k, 20, 10, 0, Math.PI), toon('#FFD54A')), 0, 0.015 * k); o.rotation.x = -Math.PI / 2; o.scale.z = 0.35; for (let i = 0; i < 3; i++) add(box(0.02 * k, 0.005 * k, 0.012 * k, '#3E9B4F'), (i - 1) * 0.05 * k, 0.06 * k, -0.02 * k); break; }
@@ -481,7 +512,7 @@ export function thumbFor(id: string): Promise<string> {
   tq = job.catch(() => ''); return job.catch(() => '');
 }
 async function thumbObj(id: string): Promise<THREE.Object3D | null> {
-  if (id.startsWith('dish:') || PRODUCTS.some((x) => x.id === id)) return productObj(id, 1);
+  if (id.startsWith('dish:') || id.startsWith('cafe-') || PRODUCTS.some((x) => x.id === id)) return productObj(id, 1);
   const furOf = FUR.find((f) => f.id === id);
   if (furOf) return makeCat(furOf.color).root;
   if (id.startsWith('ride-')) { const g = makeRide(id); const glb: Record<string, string> = { 'ride-hatch': 'car_hatchback', 'ride-sedan': 'car_sedan', 'ride-wagon': 'car_stationwagon', 'ride-yellow': 'car_taxi', 'ride-police': 'car_police' }; if (glb[id]) { const m = await model('city', glb[id], 2.6); const b = new THREE.Box3().setFromObject(m).getSize(new THREE.Vector3()); if (b.x > b.z) m.rotation.y = Math.PI / 2; g.add(m); } return g; }
@@ -1424,7 +1455,7 @@ export class IslandScene {
     }
     if (id === 'cafe') {
       // вітрина з тортами під скляним куполом
-      [-1.6, 1.6].forEach((x, i) => { const st = cyl(0.3, 0.3, 0.05, '#FFFFFF', 20); st.position.set(x, 1.05, -2.55); g.add(st); prod(i ? 'cake' : 'croissant', 0.9, x, 1.08, -2.55); const dome = mesh(new THREE.SphereGeometry(0.34, 20, 12, 0, Math.PI * 2, 0, Math.PI / 2), new THREE.MeshPhysicalMaterial({ color: '#E8F6FF', transparent: true, opacity: 0.35, roughness: 0.05 }), false); dome.position.set(x, 1.08, -2.55); g.add(dome); });
+      [-1.6, 1.6].forEach((x, i) => { const st = cyl(0.3, 0.3, 0.05, '#FFFFFF', 20); st.position.set(x, 1.05, -2.55); g.add(st); prod(i ? 'cafe-strawcake' : 'cafe-cupcake', 0.9, x, 1.08, -2.55); const dome = mesh(new THREE.SphereGeometry(0.34, 20, 12, 0, Math.PI * 2, 0, Math.PI / 2), new THREE.MeshPhysicalMaterial({ color: '#E8F6FF', transparent: true, opacity: 0.35, roughness: 0.05 }), false); dome.position.set(x, 1.08, -2.55); g.add(dome); });
       // смугастий навіс над прилавком
       for (let i = 0; i < 8; i++) { const st = box(0.6, 0.06, 0.9, i % 2 ? '#FFFFFF' : '#F76AA8'); st.position.set(-2.1 + i * 0.6, 2.75, -3.9); st.rotation.x = 0.35; g.add(st); }
       [-4, -1.2, 1.8, 4.6].forEach((x, i) => globeLamp(x, 1.2, ['#FFB3D1', '#FFE08A', '#BDE5C4', '#C9B8FF'][i]));
@@ -1448,7 +1479,9 @@ export class IslandScene {
       { const sh = box(3.2, 0.08, 0.5, '#8B5E34'); sh.position.set(3.4, 2.2, -D / 2 + 0.45); g.add(sh); [2.2, 2.9, 3.6, 4.3].forEach((x, i) => prod(i % 2 ? 'bread' : 'croissant', 0.6, x, 2.25, -D / 2 + 0.45)); }
       // мішки борошна і справжній хліб на вітрині
       prod('flour', 1.2, -5.9, 0, 0.6, 0.3); prod('flour', 1.2, -5.3, 0, 1.2, -0.2); prod('sugar', 1.1, -5.9, 0, 1.6, 0.5);
-      [-1.6, -0.8, 0, 0.8, 1.6].forEach((x, i) => prod(i % 2 ? 'croissant' : 'bread', 0.7, x, 1.02, -2.55, 0.2 * i));
+      [-1.6, -0.8, 0, 0.8, 1.6].forEach((x, i) => prod(['cafe-cupcake', 'cafe-donut', 'cafe-strawcake', 'cafe-cinnamon', 'cafe-choccake'][i], 0.75, x, 1.02, -2.55, 0.2 * i));
+      // вітрина зі склом
+      { const glass = new THREE.Mesh(new THREE.BoxGeometry(4.2, 0.5, 0.5), new THREE.MeshPhysicalMaterial({ color: '#E8F6FF', transparent: true, opacity: 0.25, roughness: 0.05 })); glass.position.set(0, 1.27, -2.55); g.add(glass); }
     }
     if (id === 'boutique') {
       // манекени в сукнях

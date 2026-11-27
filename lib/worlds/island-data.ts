@@ -423,13 +423,16 @@ export const STYLE: { id: string; part: StylePart; en: string; price: number }[]
   { id: 'hair-none', part: 'hair', en: 'no hair', price: 0 }, { id: 'hair-short', part: 'hair', en: 'short hair', price: 0 }, { id: 'hair-spiky', part: 'hair', en: 'spiky hair', price: 0 },
   { id: 'hair-curly', part: 'hair', en: 'curly hair', price: 10 }, { id: 'hair-bob', part: 'hair', en: 'bob', price: 10 }, { id: 'hair-pony', part: 'hair', en: 'ponytail', price: 10 },
   { id: 'hair-bun', part: 'hair', en: 'bun', price: 10 }, { id: 'hair-pigtails', part: 'hair', en: 'pigtails', price: 15 }, { id: 'hair-mohawk', part: 'hair', en: 'mohawk', price: 20 }, { id: 'hair-long', part: 'hair', en: 'long hair', price: 15 },
+  { id: 'hair-buns', part: 'hair', en: 'space buns', price: 25 }, { id: 'hair-waves', part: 'hair', en: 'long waves', price: 30 }, { id: 'hair-bow', part: 'hair', en: 'hair with a big bow', price: 35 },
   { id: 'top-none', part: 'top', en: 'no top', price: 0 }, { id: 'top-tshirt', part: 'top', en: 'T-shirt', price: 0 }, { id: 'top-jumper', part: 'top', en: 'jumper', price: 15 },
   { id: 'top-hoodie', part: 'top', en: 'hoodie', price: 20 }, { id: 'top-jacket', part: 'top', en: 'jacket', price: 25 }, { id: 'top-dress', part: 'top', en: 'dress', price: 25 },
   { id: 'top-stripes', part: 'top', en: 'striped T-shirt', price: 15 }, { id: 'top-overalls', part: 'top', en: 'overalls', price: 20 },
+  { id: 'top-fluffy', part: 'top', en: 'fluffy jumper', price: 35 }, { id: 'top-tutu', part: 'top', en: 'tutu dress', price: 45 }, { id: 'top-cardigan', part: 'top', en: 'heart cardigan', price: 40 }, { id: 'top-sporty', part: 'top', en: 'sports jacket', price: 35 },
   { id: 'bottom-none', part: 'bottom', en: 'no trousers', price: 0 }, { id: 'bottom-shorts', part: 'bottom', en: 'shorts', price: 0 }, { id: 'bottom-jeans', part: 'bottom', en: 'jeans', price: 15 },
-  { id: 'bottom-trousers', part: 'bottom', en: 'trousers', price: 15 }, { id: 'bottom-skirt', part: 'bottom', en: 'skirt', price: 15 },
+  { id: 'bottom-trousers', part: 'bottom', en: 'trousers', price: 15 }, { id: 'bottom-skirt', part: 'bottom', en: 'skirt', price: 15 }, { id: 'bottom-tutu', part: 'bottom', en: 'tutu skirt', price: 30 }, { id: 'bottom-cargo', part: 'bottom', en: 'cargo trousers', price: 30 },
   { id: 'shoes-none', part: 'shoes', en: 'bare paws', price: 0 }, { id: 'shoes-trainers', part: 'shoes', en: 'trainers', price: 0 }, { id: 'shoes-boots', part: 'shoes', en: 'boots', price: 15 },
   { id: 'shoes-sandals', part: 'shoes', en: 'sandals', price: 10 }, { id: 'shoes-wellies', part: 'shoes', en: 'wellies', price: 15 },
+  { id: 'shoes-fluffy', part: 'shoes', en: 'fluffy leg warmers', price: 35 }, { id: 'shoes-platforms', part: 'shoes', en: 'platform shoes', price: 40 }, { id: 'shoes-sparkly', part: 'shoes', en: 'sparkly trainers', price: 45 },
   { id: 'hold-none', part: 'hold', en: 'empty paws', price: 0 }, { id: 'hold-balloon', part: 'hold', en: 'balloon', price: 10 }, { id: 'hold-icecream', part: 'hold', en: 'ice cream', price: 8 },
   { id: 'hold-flower', part: 'hold', en: 'flower', price: 8 }, { id: 'hold-book', part: 'hold', en: 'book', price: 10 }, { id: 'hold-phone', part: 'hold', en: 'phone', price: 20 },
   { id: 'hold-wand', part: 'hold', en: 'magic wand', price: 30 }, { id: 'hold-guitar', part: 'hold', en: 'guitar', price: 40 }, { id: 'hold-umbrella', part: 'hold', en: 'umbrella', price: 15 },
@@ -775,3 +778,19 @@ export const CAT_SHAPES = [{ id: 'classic', en: 'classic' }, { id: 'slim', en: '
 export const CAT_EARS = [{ id: 'pointy', en: 'pointy ears' }, { id: 'round', en: 'round ears' }, { id: 'floppy', en: 'floppy ears' }, { id: 'big', en: 'big ears' }];
 export const CAT_TAILS = [{ id: 'long', en: 'long tail' }, { id: 'fluffy', en: 'fluffy tail' }, { id: 'short', en: 'short tail' }, { id: 'curly', en: 'curly tail' }];
 export const CAT_EYES = [{ id: 'round', en: 'round eyes' }, { id: 'sparkly', en: 'big sparkly eyes' }, { id: 'sleepy', en: 'sleepy eyes' }, { id: 'happy', en: 'happy eyes' }];
+
+// ---- кафе й пекарня: що можна купити з вітрини ----
+export const CAFE_MENU: { id: string; en: string; a: string; price: number; food: number; fun: number; c: string; kind: 'drink' | 'cake' }[] = [
+  { id: 'cafe-cocoa', en: 'hot chocolate', a: 'a', price: 2, food: 10, fun: 10, c: '#7A4E25', kind: 'drink' },
+  { id: 'cafe-latte', en: 'cup of coffee', a: 'a', price: 2, food: 8, fun: 8, c: '#C8A77A', kind: 'drink' },
+  { id: 'cafe-tea', en: 'cup of tea', a: 'a', price: 1, food: 6, fun: 6, c: '#C0703E', kind: 'drink' },
+  { id: 'cafe-shake', en: 'strawberry milkshake', a: 'a', price: 3, food: 15, fun: 12, c: '#F7A1B5', kind: 'drink' },
+  { id: 'cafe-choccake', en: 'slice of chocolate cake', a: 'a', price: 3, food: 25, fun: 10, c: '#5A3417', kind: 'cake' },
+  { id: 'cafe-strawcake', en: 'strawberry cake', a: 'a', price: 4, food: 30, fun: 12, c: '#F7A1B5', kind: 'cake' },
+  { id: 'cafe-cupcake', en: 'cupcake', a: 'a', price: 2, food: 15, fun: 8, c: '#F76AA8', kind: 'cake' },
+  { id: 'cafe-donut', en: 'doughnut', a: 'a', price: 2, food: 15, fun: 8, c: '#F7A1B5', kind: 'cake' },
+  { id: 'cafe-cinnamon', en: 'cinnamon bun', a: 'a', price: 2, food: 18, fun: 6, c: '#C68A4A', kind: 'cake' },
+  { id: 'cafe-macarons', en: 'box of macarons', a: 'a', price: 3, food: 12, fun: 12, c: '#B79CF0', kind: 'cake' },
+  { id: 'cafe-cookie', en: 'chocolate chip cookie', a: 'a', price: 1, food: 8, fun: 5, c: '#C68A4A', kind: 'cake' },
+  { id: 'croissant', en: 'croissant', a: 'a', price: 2, food: 28, fun: 4, c: '#E8B46A', kind: 'cake' },
+];
