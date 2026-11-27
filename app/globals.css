@@ -4956,3 +4956,6 @@ textarea.t-parent__url { width: 300px; font: inherit; font-size: 13px; }
 .il-howto span { font-size: 13.5px; line-height: 1.35; color: #3A3A3A; }
 .il-more { margin: 4px 0 12px; }
 .il-more summary { cursor: pointer; font-weight: 800; padding: 6px 0; }
+.hw-up { padding: 6px; border: 2px dashed transparent; border-radius: 14px; transition: border-color .15s, background .15s; }
+.hw-up.is-over { border-color: #7C66DC; background: #F1EDFF; }
+.hw-up__hint { font-size: 13px; color: #6B6B6B; }
