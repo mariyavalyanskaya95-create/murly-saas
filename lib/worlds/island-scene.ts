@@ -596,7 +596,7 @@ export type Pose = { kind: 'sit' | 'sleep' | 'use' | 'swim' | 'swing' | 'ground'
 type IItem = [string, number, number, number, number?];
 type IDef = { id: string; job: string; title?: string; floor: [string, string]; wall: string; items: IItem[]; npc?: [string, string, number, number, string?]; spot: [number, number]; w?: number; d?: number; model?: string };
 const BAR = (z = -2.6, n = 4): IItem[] => Array.from({ length: n }, (_, i) => ['kitchenBar', (i - (n - 1) / 2) * 1.03, z, 0] as IItem);
-const FLOOR_PAT: Record<string, string> = { post: 'herring', cafe: 'checks', store: 'tiles', bakery: 'terracotta', boutique: 'marble', supermarket: 'tiles', tent: 'grass', school: 'planks', lighthouse: 'planks' };
+const FLOOR_PAT: Record<string, string> = { post: 'herring', cafe: 'checks', store: 'tiles', bakery: 'terracotta', boutique: 'marble', salon: 'checks', supermarket: 'tiles', tent: 'grass', school: 'planks', lighthouse: 'planks' };
 export const INTERIORS: IDef[] = [
   { id: 'post', job: 'post', title: 'POST OFFICE', floor: ['#E9DCC3', '#DCCDB0'], wall: '#F7D9D6', npc: ['Postmaster Pepper', '#9AA3AE', 0, -3.7, 'hat-cap'], spot: [0, -1.3],
     items: [...BAR(), ['cardboardBoxClosed', -1.5, -2.6, 0.3, 0], ['cardboardBoxOpen', 1.5, -2.6, 0, 3], ['bookcaseClosedWide', 3.6, -4.95, 0], ['cardboardBoxClosed', 5, -2, 0.4], ['cardboardBoxClosed', 5.6, -1.4, 0], ['cardboardBoxClosed', 5, -2, 0.2, 8], ['pottedPlant', 6.2, 4.4, 0], ['rugRound', 0, 1.2, 0], ['chair', -5.6, -1, 1.57]] },
@@ -612,6 +612,9 @@ export const INTERIORS: IDef[] = [
   { id: 'boutique', job: 'boutique', title: 'BOUTIQUE', floor: ['#DDF0E4', '#CCE7D6'], wall: '#F2FBF5', npc: ['Miss Silk', '#F7A8C8', 0, -3.7, 'hat-flower'], spot: [0, -1.3],
     items: [...BAR(-2.6, 2), ['coatRackStanding', -4.8, -4.6, 0], ['coatRackStanding', -3.6, -4.6, 0], ['coatRackStanding', -2.4, -4.6, 0], ['coatRackStanding', 3.4, -4.6, 0], ['coatRackStanding', 4.6, -4.6, 0], ['coatRackStanding', 5.4, 0.4, 0],
       ['loungeSofa', -2.4, 3.9, 3.14], ['rugRound', 1.5, 2.0, 0], ['bookcaseClosedWide', 1.8, -4.95, 0], ['pottedPlant', 6.2, -4.6, 0]] },
+  { id: 'salon', job: 'salon', title: 'HAIR SALON', floor: ['#FBE3F0', '#F3CFE3'], wall: '#FFF4FA', npc: ['Stylist Stella', '#F7F3EA', 0, -3.7, 'bow-pink'], spot: [0, -1.3],
+    items: [...BAR(-2.6, 2), ['bathroomCabinet', -5.2, -4.8, 0], ['bathroomMirror', -5.2, -4.95, 0, 2], ['chairModernCushion', -5.2, -3.6, Math.PI], ['bathroomCabinet', -3.2, -4.8, 0], ['bathroomMirror', -3.2, -4.95, 0, 5], ['chairModernCushion', -3.2, -3.6, Math.PI],
+      ['bathroomCabinet', 3.2, -4.8, 0], ['bathroomMirror', 3.2, -4.95, 0, 8], ['chairModernCushion', 3.2, -3.6, Math.PI], ['bathroomSink', 5.4, -4.8, 0], ['loungeDesignSofa', -3, 3.9, Math.PI], ['tableCoffee', -3, 2.6, 0], ['rugRound', 1.8, 1.6, 0], ['lampRoundFloor', 6.2, 3.6, 0], ['pottedPlant', 6.2, -2.6, 0], ['pottedPlant', -6.2, 4.4, 0]] },
   { id: 'tent', job: 'campbook', title: 'CAMP MURLY', floor: ['#B7D98A', '#A6CC78'], wall: '#E9E2C3', spot: [3.6, 1.2],
     items: [['bedSingle', -3.4, -3.6, 0], ['bedSingle', -1.2, -3.6, 0], ['lampRoundFloor', 1.6, -4.8, 0], ['cardboardBoxOpen', 4.2, -4.4, 0.3], ['rugRound', -2.2, 0.4, 0], ['radio', 5.2, -2.2, -1.57], ['chair', 3.6, 0, 3.14]] },
   { id: 'school', job: 'school', title: 'MURLY SCHOOL', floor: ['#E7E2F7', '#DAD3F0'], wall: '#FFF8E1', npc: ['Miss Apple', '#F7F3EA', 0, -4.2, 'glasses-round'], spot: [0, -2.8],
@@ -875,7 +878,7 @@ export class IslandScene {
       const mat = mesh(new THREE.CircleGeometry(1.3, 24), toon(bg), false); mat.rotation.x = -Math.PI / 2; mat.position.set(x, 0.04, dz); this.scene.add(mat);
     }
     // пекарня і бутик
-    for (const [id, file] of [['bakery', 'building_D'], ['boutique', 'building_E'], ['school', 'building_F']] as const) {
+    for (const [id, file] of [['bakery', 'building_D'], ['boutique', 'building_E'], ['school', 'building_F'], ['salon', 'building_H']] as const) {
       const P = PLACES[id]; const m = await add('city', file, P.x, P.z, 9, 0, 5.2);
       const h = new THREE.Box3().setFromObject(m).max.y;
       const sg = sign(P.label, P.color, '#FFFFFF', 6); sg.position.set(P.x, h + 1.4, P.z); this.scene.add(sg);

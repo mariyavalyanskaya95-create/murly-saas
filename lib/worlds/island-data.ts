@@ -186,6 +186,7 @@ export const PLACES = {
   board: { x: -9, z: -6, label: 'NOTICE BOARD', color: '#8B5E34' },
   school: { x: -26, z: -48, label: 'MURLY SCHOOL', color: '#7C66DC' },
   supermarket: { x: 36, z: 46, label: 'SUPERMARKET', color: '#E5484D' },
+  salon: { x: 14, z: -46, label: 'HAIR SALON', color: '#D6409F' },
 };
 
 // ---------- пекарня: торт за замовленням ----------
@@ -242,6 +243,7 @@ export const DESTS: Dest[] = [
   { id: 'store', x: 18, z: 10.4, name: 'the Murly Store', desc: 'the shop where you can buy a bike, a house or a pet' },
   { id: 'pier', x: 0, z: -70, name: 'the fishing pier', desc: 'the place on the beach where cats catch fish' },
   { id: 'supermarket', x: 36, z: 40.4, name: 'the supermarket', desc: 'the big shop where you can buy food for your kitchen' },
+  { id: 'salon', x: 14, z: -40.4, name: 'the Hair Salon', desc: 'the place where you can get a new haircut' },
   { id: 'school', x: -26, z: -42.4, name: 'Murly School', desc: 'the place where young cats learn English with Miss Apple' },
 ];
 export function taxiTask(level: number): { who: string; text: string; dest: Dest } {
@@ -794,3 +796,6 @@ export const CAFE_MENU: { id: string; en: string; a: string; price: number; food
   { id: 'cafe-cookie', en: 'chocolate chip cookie', a: 'a', price: 1, food: 8, fun: 5, c: '#C68A4A', kind: 'cake' },
   { id: 'croissant', en: 'croissant', a: 'a', price: 2, food: 28, fun: 4, c: '#E8B46A', kind: 'cake' },
 ];
+
+// ---------- перукарня: клієнт просить зачіску ----------
+export const SALON_ASK = ['Hi! Can I have {x}, please?', 'Hello! I would like {x} today.', 'Good morning! {X}, please. I have a party tonight!', 'Hi there! My friend has {x}. Can I have it too?', 'Hello! I want to try {x}. Is that OK?'];
