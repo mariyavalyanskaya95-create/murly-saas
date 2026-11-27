@@ -4,6 +4,7 @@ import { L, SITE, esc, notifyParent, tgReady, tgSend } from '@/lib/telegram';
 import { teacherBalances } from '@/lib/tg-menu';
 import { PAID_ENABLED } from '@/lib/plans';
 import { sendWeekly } from '@/lib/weekly';
+import { welcomeEmails } from '@/lib/welcome-mail';
 
 export const dynamic = 'force-dynamic';
 
@@ -13,6 +14,8 @@ export async function GET(req: Request) {
   const secret = process.env.CRON_SECRET;
   const okAuth = secret ? req.headers.get('authorization') === `Bearer ${secret}` : (req.headers.get('user-agent') || '').includes('vercel-cron');
   if (!okAuth) return NextResponse.json({ error: 'auth' }, { status: 401 });
+  // лист новачкам наступного дня: один простий перший крок
+  if (dbReady()) await welcomeEmails().catch((e) => console.error(e));
   if (!tgReady() || !dbReady()) return NextResponse.json({ skipped: true });
 
   await payReminders().catch((e) => console.error(e));
