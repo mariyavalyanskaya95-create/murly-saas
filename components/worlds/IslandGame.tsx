@@ -9,7 +9,7 @@ import { say, sfx } from '@/lib/worlds/sound';
 import { DIALOGS, nextDialog, type Dialog } from '@/lib/worlds/island-dialogs';
 import { CHAT, IslandNet, type NetPlayer } from '@/lib/worlds/island-net';
 import { checkChat, FILTER_MSG } from '@/lib/chat-filter';
-import { migrateSave, npcTrade, TRADE_WANTS, ROOM_TYPES, LAYOUTS, DEFAULT_TYPES, type HomeRooms } from '@/lib/worlds/island-data';
+import { CAT_SHAPES, CAT_EARS, CAT_TAILS, CAT_EYES, migrateSave, npcTrade, TRADE_WANTS, ROOM_TYPES, LAYOUTS, DEFAULT_TYPES, type HomeRooms } from '@/lib/worlds/island-data';
 import { GRAMMAR, LISTEN_WORDS, LOST_PLACES, treasureHunt, PRODUCTS, SHELVES, DISHES, STARTER_PANTRY, cookResult, productOf } from '@/lib/worlds/island-data';
 import { ACT, EMOTES, FOODS, FRIDGE, INGREDIENTS, RECIPES, friendLevel, CHOICES, MELODIES, SKILLS, SKILL_OF, skillLevel, CROPS, cropProgress, JOKES, COMPLIMENTS, RPS, FURN_ALL, FURN_CATS } from '@/lib/worlds/island-data';
 import { ADDRS, DESTS, HAIR_COLOURS, PROFS, STARTER, STYLE, STYLE_COLOURS, profLevel, type StylePart } from '@/lib/worlds/island-data';
@@ -58,7 +58,7 @@ export default function IslandGame() {
   const [kq, setKq] = useState<(ReturnType<typeof keeperQuestion> & { picked?: string }) | null>(null);
   const onPickupRef = useRef<() => void>(() => {});
   const [thumbs, setThumbs] = useState<Record<string, string>>({});
-  const [stab, setStab] = useState<StylePart | 'acc' | 'fur'>('hair');
+  const [stab, setStab] = useState<StylePart | 'acc' | 'fur' | 'body'>('hair');
   const [dlg, setDlg] = useState<{ d: Dialog; node: string; react?: string; said?: string } | null>(null);
   const [menu, setMenu] = useState<null | 'me' | 'friends'>(null); const [justBought, setJustBought] = useState<string | null>(null);
   const restored = useRef(false); const loaded = useRef(false); const [loadedN, setLoadedN] = useState(0);
@@ -983,8 +983,14 @@ export default function IslandGame() {
           <h2>My look</h2>
           <p className="il-note">You have <b>{coins ?? 0}</b> coins. Basic things are free.</p>
           <label className="il-name">My cat&apos;s name <input maxLength={14} value={save.hero ?? ''} placeholder="Type a name" onChange={(e) => setSave({ ...save, hero: e.target.value.replace(/[^\p{L}\p{N} '-]/gu, '') })} onBlur={() => persist({ ...saveRef.current })} /></label>
-          <div className="il-tabs">{([['hair', 'Hair'], ['top', 'Tops'], ['bottom', 'Trousers'], ['shoes', 'Shoes'], ['hold', 'In my paw'], ['acc', 'Hats & more'], ['fur', 'Fur']] as [typeof stab, string][]).map(([k, l]) => <button key={k} type="button" className={stab === k ? 'on' : ''} onClick={() => setStab(k)}>{l}</button>)}</div>
+          <div className="il-tabs">{([['body', 'Body'], ['hair', 'Hair'], ['top', 'Tops'], ['bottom', 'Trousers'], ['shoes', 'Shoes'], ['hold', 'In my paw'], ['acc', 'Hats & more'], ['fur', 'Fur']] as [typeof stab, string][]).map(([k, l]) => <button key={k} type="button" className={stab === k ? 'on' : ''} onClick={() => setStab(k)}>{l}</button>)}</div>
           {colourKey[stab] && <div className="il-swatches">{(stab === 'hair' ? HAIR_COLOURS : STYLE_COLOURS).map((c) => <button key={c} type="button" aria-label={c} className={save.outfit[colourKey[stab]] === c ? 'on' : ''} style={{ background: c }} onClick={() => persist({ ...saveRef.current, outfit: { ...saveRef.current.outfit, [colourKey[stab]]: c } })} />)}</div>}
+          {stab === 'body' && <div className="il-body">
+            {([['shape', 'Body shape', CAT_SHAPES, 'classic'], ['ears', 'Ears', CAT_EARS, 'pointy'], ['tail', 'Tail', CAT_TAILS, 'long'], ['eyes', 'Eyes', CAT_EYES, 'round']] as const).map(([k, label, list, def]) => (
+              <div key={k}><p className="il-sub">{label}</p><div className="il-chips">{list.map((x) => { const on = ((save.outfit as Record<string, string | undefined>)[k] ?? def) === x.id; return (
+                <button key={x.id} type="button" className={`il-chip ${on ? 'il-chip--y' : ''}`} onClick={() => { persist({ ...saveRef.current, outfit: { ...saveRef.current.outfit, [k]: x.id } }); say(`I have ${x.en.endsWith('s') ? '' : 'a '}${k === 'shape' ? `${x.en} body` : x.en}!`); }}>{x.en}</button>); })}</div></div>
+            ))}
+          </div>}
           <div className="il-shop il-shop--side">
             {stab !== 'acc' && stab !== 'fur' && STYLE.filter((x) => x.part === stab).map((it) => { const on = (save.outfit as Record<string, string | undefined>)[it.part] === it.id || (!(save.outfit as Record<string, string | undefined>)[it.part] && it.id.endsWith('-none')); return (
               <div key={it.id} className={`il-item ${on ? 'on' : ''}`}>{thumbs[it.id] ? <img className="il-thumb" src={thumbs[it.id]} alt="" /> : <i className="il-thumb-wait" />}<span>{it.en}</span>
