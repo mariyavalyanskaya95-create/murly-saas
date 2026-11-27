@@ -872,7 +872,7 @@ export function HomeworkForm({ studentIds, groupId, onDone }: { studentIds: stri
           <b>{t({ uk: 'Картинки й файли до завдання', ru: 'Картинки и файлы к заданию', en: 'Pictures and files for the task' })}</b>
           <span className="t-muted">{t({ uk: 'Напр. картинка, яку треба описати, або PDF з текстом', ru: 'Напр. картинка, которую нужно описать, или PDF с текстом', en: 'e.g. a picture to describe or a PDF with a text' })}</span>
           <HwFileList files={files} onRemove={(i) => setFiles((f) => f.filter((_, k) => k !== i))} />
-          <HwUpload count={files.length} onAdd={(f) => setFiles((x) => [...x, ...f])} />
+          <HwUpload paste count={files.length} onAdd={(f) => setFiles((x) => [...x, ...f])} />
         </div>
       )}
       <div className="t-form">
