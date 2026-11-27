@@ -29,6 +29,8 @@ const MENU: { title: T; items: { href: string; icon: string; label: T; text: T; 
       { href: '/songs', icon: 'e-speak', label: { uk: 'Пісні', ru: 'Песни', en: 'Songs' }, text: { uk: 'Taylor Swift, Katy Perry, The Weeknd: вирази й квізи', ru: 'Taylor Swift, Katy Perry, The Weeknd: выражения и квизы', en: 'Taylor Swift, Katy Perry, The Weeknd: phrases and quizzes' } },
       { href: '/cartoons', icon: 'e-speak', label: { uk: 'Мультики', ru: 'Мультики', en: 'Cartoons' }, text: { uk: 'Peppa Pig, Bluey, Numberblocks: фрази й поради', ru: 'Peppa Pig, Bluey, Numberblocks: фразы и советы', en: 'Peppa Pig, Bluey, Numberblocks: phrases and tips' } },
       { href: '/stories', icon: 'e-head', label: { uk: 'Історії й серіали', ru: 'Истории и сериалы', en: 'Stories and series' }, text: { uk: 'Історії, аудіо, аудіосеріали', ru: 'Истории, аудио, аудиосериалы', en: 'Stories, audio, audio series' } },
+      { href: '/lessons', icon: 'e-board', label: { uk: 'Уроки', ru: 'Уроки', en: 'Lessons' }, text: { uk: 'Готові уроки A1-C1, відкриваються одразу', ru: 'Готовые уроки A1-C1, открываются сразу', en: 'Ready-made A1-C1 lessons, open right away' } },
+      { href: '/games', icon: 'e-trophy', label: { uk: 'Ігри', ru: 'Игры', en: 'Games' }, text: { uk: 'Murly Island, боулінг, квести й ігри зі словами', ru: 'Murly Island, боулинг, квесты и игры со словами', en: 'Murly Island, bowling, quests and word games' } },
       { href: '/grammar', icon: 'e-abc', label: { uk: 'Граматика', ru: 'Грамматика', en: 'Grammar' }, text: { uk: '52 теми і тренажери на 100 завдань', ru: '52 темы и тренажёры на 100 заданий', en: '52 topics and 100-task trainers' } },
       { href: '/grammar-book', icon: 'e-book', label: { uk: 'Книга граматики', ru: 'Книга грамматики', en: 'Grammar book' }, text: { uk: 'Правило і вправи з кумедними картинками', ru: 'Правило и упражнения со смешными картинками', en: 'Rules and practice with funny pictures' } },
       { href: '/irregular-verbs', icon: 'e-book', label: { uk: 'Неправильні дієслова', ru: 'Неправильные глаголы', en: 'Irregular verbs' }, text: { uk: 'Таблиця з озвучкою, картки й ігри', ru: 'Таблица с озвучкой, карточки и игры', en: 'Voiced table, cards and games' } },
@@ -90,7 +92,7 @@ export default function SiteNav() {
           <NavSearch open={search} onOpen={() => { setSearch(true); setOpen(false); }} onClose={closeSearch} />
           <LangSwitch className="mu-nav__desk" />
           <SignedOut>
-            <Link href="/sign-in" className="mu-nav__login mu-nav__desk">{t({ uk: 'Увійти', ru: 'Войти', en: 'Log in' })}</Link>
+            <Link href="/sign-in" className="mu-nav__login">{t({ uk: 'Увійти', ru: 'Войти', en: 'Log in' })}</Link>
             <Link href="/sign-up" className="mu-btn mu-btn--lime mu-nav__desk">
               {t({ uk: 'Почати', ru: 'Начать', en: 'Start' })}
               <span className="mu-btn__arrow"><Icon id="e-arrow" /></span>
@@ -108,6 +110,15 @@ export default function SiteNav() {
       </div>
       {open && (
         <div className="mu-mega" id="mu-mega">
+          <SignedOut>
+            <div className="mu-mega__auth mu-mega__auth--top">
+              <Link href="/sign-in" className="mu-btn" onClick={() => setOpen(false)}>{t({ uk: 'Увійти в кабінет', ru: 'Войти в кабинет', en: 'Log in' })}</Link>
+              <Link href="/sign-up" className="mu-btn mu-btn--lime" onClick={() => setOpen(false)}>{t({ uk: 'Почати безкоштовно', ru: 'Начать бесплатно', en: 'Start for free' })}</Link>
+            </div>
+          </SignedOut>
+          <SignedIn>
+            <div className="mu-mega__auth mu-mega__auth--top"><Link href="/dashboard" className="mu-btn mu-btn--lime" onClick={() => setOpen(false)}>{t({ uk: 'Мій кабінет', ru: 'Мой кабинет', en: 'My dashboard' })}</Link></div>
+          </SignedIn>
           <div className="mu-mega__top">
             <LangSwitch />
             {TOP.map((l) => <Link key={l.href} href={l.href} className="g-chip" onClick={() => setOpen(false)}>{t(l.label)}</Link>)}
@@ -125,12 +136,6 @@ export default function SiteNav() {
               </div>
             ))}
           </div>
-          <SignedOut>
-            <div className="mu-mega__auth">
-              <Link href="/sign-in" className="mu-btn" onClick={() => setOpen(false)}>{t({ uk: 'Увійти', ru: 'Войти', en: 'Log in' })}</Link>
-              <Link href="/sign-up" className="mu-btn mu-btn--lime" onClick={() => setOpen(false)}>{t({ uk: 'Почати безкоштовно', ru: 'Начать бесплатно', en: 'Start for free' })}<span className="mu-btn__arrow"><Icon id="e-arrow" /></span></Link>
-            </div>
-          </SignedOut>
         </div>
       )}
     </nav>
