@@ -1329,7 +1329,7 @@ export class IslandScene {
       for (let r = 0; r < 4; r++) for (let c = 0; c < 6; c++) { const hole = box(0.36, 0.32, 0.05, '#5A3E22'); hole.position.set(-1.05 + c * 0.42, 0.25 + r * 0.4, 0.2); wall.add(hole); if ((r * 6 + c) % 3 !== 1) { const env = box(0.28, 0.18, 0.02, ['#FFFFFF', '#FFE08A', '#BFE6FA', '#F7B7C8'][(r + c) % 4]); env.position.set(-1.05 + c * 0.42, 0.28 + r * 0.4, 0.24); env.rotation.z = ((r + c) % 2 ? 0.15 : -0.1); wall.add(env); } }
       put(wall, -4.2, 1.0, BZ + 0.25);
       const cart = new THREE.Group(); const bin = box(1.0, 0.6, 0.6, '#3E7BFA'); bin.position.y = 0.55; cart.add(bin); [[-0.4, -0.25], [0.4, -0.25], [-0.4, 0.25], [0.4, 0.25]].forEach(([x, z]) => { const wh = cyl(0.1, 0.1, 0.06, '#1A1A1A', 12); wh.rotation.x = R; wh.position.set(x, 0.12, z); cart.add(wh); }); for (let i = 0; i < 3; i++) { const pk = box(0.35, 0.25, 0.3, '#C8A77A'); pk.position.set(-0.25 + i * 0.25, 0.95 + (i % 2) * 0.1, 0); pk.rotation.y = i * 0.4; cart.add(pk); }
-      put(cart, -5.2, 0, 2.6, 0.4);
+      put(cart, -5.4, 0, 0.4, 0.4);
       const sc = new THREE.Group(); sc.add(box(0.5, 0.08, 0.4, '#C9CED6')); const dial = cyl(0.14, 0.14, 0.04, '#FFFFFF', 16); dial.rotation.x = R; dial.position.set(0, 0.15, 0.2); sc.add(dial); put(sc, 1.6, 1.0, -2.6);
     }
     if (id === 'cafe') {
@@ -1345,7 +1345,7 @@ export class IslandScene {
       let n = 0; for (let r = 0; r < 3; r++) for (let c = 0; c < 3 - r; c++) { const b = box(0.45, 0.45, 0.45, cols[n++ % 6]); b.position.set(-1.6 + c * 0.47 + r * 0.235, 0.225 + r * 0.45, 3.4); b.rotation.y = (n % 2) * 0.15; g.add(b); }
       const ball = sph(0.5, '#E5484D', 20); ball.position.set(1.2, 0.5, 3.6); g.add(ball); const band = mesh(new THREE.TorusGeometry(0.5, 0.06, 8, 30), toon('#FFFFFF')); band.position.copy(ball.position); band.rotation.y = 0.6; g.add(band);
       const rk = new THREE.Group(); const body = cyl(0.28, 0.32, 1.5, '#FFFFFF', 18); body.position.y = 1.0; rk.add(body); const nose = mesh(new THREE.ConeGeometry(0.28, 0.5, 18), toon('#E5484D')); nose.position.y = 2.0; rk.add(nose); const win = cyl(0.12, 0.12, 0.05, '#8EC9F5', 16); win.rotation.x = R; win.position.set(0, 1.3, 0.3); rk.add(win); for (let i = 0; i < 3; i++) { const fin = box(0.05, 0.5, 0.4, '#3E7BFA'); fin.position.set(Math.cos(i * 2.1) * 0.3, 0.35, Math.sin(i * 2.1) * 0.3); fin.rotation.y = -i * 2.1; rk.add(fin); } put(rk, 6.0, 0, 3.2);
-      void model('furn', 'bear', 1.6).then((b) => { put(b, -3.2, 0, 3.4, 0.4); const b2 = b.clone(true); put(b2, -2.6, 0, 3.8, -0.3); b2.scale.multiplyScalar(0.7); });
+      void model('furn', 'bear', 0.8).then((b) => { put(b, -4.6, 0, -3.7, 0.3); const b2 = b.clone(true); put(b2, -3.7, 0, -3.8, -0.2); b2.scale.multiplyScalar(0.75); });
       for (let i = 0; i < 9; i++) { const st = mesh(new THREE.OctahedronGeometry(0.15), new THREE.MeshToonMaterial({ color: '#FFC53D', emissive: new THREE.Color('#FFC53D'), emissiveIntensity: 0.3 })); st.position.set(-5 + i * 1.3, 3.0 + (i % 2) * 0.25, -1 + (i % 3)); g.add(st); }
     }
     if (id === 'bakery') {
@@ -1354,7 +1354,8 @@ export class IslandScene {
       const mouth = mesh(new THREE.CylinderGeometry(0.5, 0.5, 0.1, 20, 1, false, 0, Math.PI), toon('#2B1A10')); mouth.rotation.set(R, 0, R); mouth.position.set(0, 0.75, 0.6); ov.add(mouth); const fire = mesh(new THREE.ConeGeometry(0.22, 0.4, 8), new THREE.MeshBasicMaterial({ color: '#FF8A2E' })); fire.position.set(0, 0.6, 0.55); ov.add(fire);
       const chim = box(0.5, 1.4, 0.5, '#A34E32'); chim.position.set(0, 2.7, -0.2); ov.add(chim); put(ov, -6.0, 0, -3.6);
       // балки під стелею
-      for (let i = 0; i < 4; i++) { const bm = box(W - 0.4, 0.22, 0.22, '#7A5230'); bm.position.set(0, 3.35, -D / 2 + 1 + i * (D - 2) / 3); g.add(bm); }
+      // полиця з хлібом на задній стіні замість балок (балки закривали огляд)
+      { const sh = box(3.2, 0.08, 0.5, '#8B5E34'); sh.position.set(3.4, 2.2, -D / 2 + 0.45); g.add(sh); [2.2, 2.9, 3.6, 4.3].forEach((x, i) => prod(i % 2 ? 'bread' : 'croissant', 0.6, x, 2.25, -D / 2 + 0.45)); }
       // мішки борошна і справжній хліб на вітрині
       prod('flour', 1.2, -5.9, 0, 0.6, 0.3); prod('flour', 1.2, -5.3, 0, 1.2, -0.2); prod('sugar', 1.1, -5.9, 0, 1.6, 0.5);
       [-1.6, -0.8, 0, 0.8, 1.6].forEach((x, i) => prod(i % 2 ? 'croissant' : 'bread', 0.7, x, 1.02, -2.55, 0.2 * i));
@@ -1475,6 +1476,8 @@ export class IslandScene {
       const flat = it.s.y < 0.35;
       if (me && !flat && Math.abs(it.c.x - at.x) < me.s.x / 2 + 0.5 && Math.abs(it.c.z - at.z) < me.s.z / 2 + 0.5) continue; // вивіска й декор самої будівлі
       const moved = it.bb.clone().translate(new THREE.Vector3(dx, 0, dz)); if (!flat && moved.intersectsBox(room)) continue;
+      // камера дивиться спереду: високі речі між камерою й кімнатою не ставимо, щоб не закривали огляд
+      { const mc = moved.getCenter(new THREE.Vector3()); if (!flat && it.s.y > 1.2 && mc.z > o.z + D / 2 - 1 && mc.z < o.z + D / 2 + 18 && Math.abs(mc.x - o.x) < W / 2 + 10) continue; }
       it.obj.updateWorldMatrix(true, false); const cl = it.obj.clone(true);
       it.obj.matrixWorld.decompose(cl.position, cl.quaternion, cl.scale); cl.position.x += dx; cl.position.z += dz; cl.position.y -= flat ? 0.04 : 0.02;
       this.backdrop.add(cl);
