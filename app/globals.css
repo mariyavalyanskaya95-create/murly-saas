@@ -4959,3 +4959,6 @@ textarea.t-parent__url { width: 300px; font: inherit; font-size: 13px; }
 .hw-up { padding: 6px; border: 2px dashed transparent; border-radius: 14px; transition: border-color .15s, background .15s; }
 .hw-up.is-over { border-color: #7C66DC; background: #F1EDFF; }
 .hw-up__hint { font-size: 13px; color: #6B6B6B; }
+.il-body { display: grid; gap: 6px; margin: 6px 0 10px; }
+.il-body .il-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.il-body .il-chip { font-size: 13px; padding: 6px 11px; }
