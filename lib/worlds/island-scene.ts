@@ -4,6 +4,8 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js';
 import { ADDRS, CARS, DISHES, FUR, HOME, HOME_SIZE, HOUSES, PLACES, PRODUCTS, SHELVES, SHOP, SPEED, type HomeRooms, type Outfit, type RoomItem, type Spot, ROOM_TYPES } from './island-data';
+import { makeHuman, dressHuman } from './island-human';
+import type { HumanLook } from './island-data';
 import { chalkTex, graffitiTex, neonTex, posterTex, wallpaperTex } from './island-art';
 
 const loader = new GLTFLoader();
@@ -82,12 +84,9 @@ export function makeCat(furColor: string, scale = 1): Rig {
   const belly = mesh(new THREE.SphereGeometry(0.5, 24, 18), furMat()); belly.scale.set(1, 1.15, 0.92); belly.position.y = 0.62; body.add(belly);
   const tummy = mesh(new THREE.SphereGeometry(0.36, 20, 14), toon('#FFF6E6')); tummy.scale.set(1, 1.15, 0.6); tummy.position.set(0, 0.58, 0.22); body.add(tummy);
   const head = new THREE.Group(); head.position.y = 1.28; body.add(head);
+  const earsG = new THREE.Group(); earsG.name = 'ears'; head.add(earsG); const eyesG = new THREE.Group(); eyesG.name = 'eyes'; head.add(eyesG);
   const skull = mesh(new THREE.SphereGeometry(0.46, 26, 20), furMat()); skull.scale.set(1.1, 0.95, 1); head.add(skull);
   [-1, 1].forEach((s) => {
-    const ear = mesh(new THREE.ConeGeometry(0.17, 0.32, 4), furMat()); ear.position.set(0.27 * s, 0.4, 0); ear.rotation.z = -0.35 * s; ear.rotation.y = Math.PI / 4; head.add(ear);
-    const inner = mesh(new THREE.ConeGeometry(0.09, 0.18, 4), toon('#F7A1B5')); inner.position.set(0.26 * s, 0.38, 0.05); inner.rotation.z = -0.35 * s; inner.rotation.y = Math.PI / 4; head.add(inner);
-    const eye = mesh(new THREE.SphereGeometry(0.085, 16, 12), toon('#1A1A1A'), false); eye.scale.set(0.9, 1.15, 0.6); eye.position.set(0.17 * s, 0.06, 0.4); head.add(eye);
-    const hi = mesh(new THREE.SphereGeometry(0.03, 8, 6), new THREE.MeshBasicMaterial({ color: '#FFFFFF' }), false); hi.position.set(0.15 * s + 0.02, 0.1, 0.46); head.add(hi);
     const cheek = mesh(new THREE.SphereGeometry(0.07, 12, 8), toon('#F7A1B5'), false); cheek.scale.set(1, 0.6, 0.4); cheek.position.set(0.3 * s, -0.1, 0.34); head.add(cheek);
     for (let i = 0; i < 2; i++) { const w = mesh(new THREE.CylinderGeometry(0.006, 0.006, 0.32, 4), toon('#1A1A1A'), false); w.rotation.z = Math.PI / 2 + (i ? 0.15 : -0.1) * s; w.position.set(0.36 * s, -0.06 - i * 0.05, 0.36); head.add(w); }
   });
@@ -105,6 +104,7 @@ export function makeCat(furColor: string, scale = 1): Rig {
   const tail = new THREE.Group(); tail.position.set(0, 0.45, -0.42); body.add(tail);
   const curve = new THREE.CatmullRomCurve3([new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 0.15, -0.25), new THREE.Vector3(0, 0.5, -0.32), new THREE.Vector3(0.05, 0.75, -0.2)]);
   tail.add(mesh(new THREE.TubeGeometry(curve, 16, 0.07, 8), furMat()));
+  root.userData.cat = { belly, tummy, skull, legL: null as THREE.Mesh | null, legR: null as THREE.Mesh | null };
   const slots: Record<string, THREE.Group> = {};
   (['hat', 'glasses', 'scarf', 'bag', 'hair', 'top'] as const).forEach((k) => { const g = new THREE.Group(); slots[k] = g; (k === 'hat' || k === 'glasses' || k === 'hair' ? head : body).add(g); });
   [['sleeveL', armL], ['sleeveR', armR], ['hand', armR], ['held', armR], ['legL', legL], ['legR', legR]].forEach(([k, par]) => { const g = new THREE.Group(); slots[k as string] = g; (par as THREE.Object3D).add(g); });
@@ -112,12 +112,59 @@ export function makeCat(furColor: string, scale = 1): Rig {
   slots.scarf.position.y = 1.0; slots.bag.position.set(0, 0.7, -0.42);
   root.scale.setScalar(scale);
   root.userData.rig = true;
-  return { root, body, head, armL, armR, legL, legR, tail, fur, slots };
+  const rig = { root, body, head, armL, armR, legL, legR, tail, fur, slots };
+  catBody(rig, {}, furColor);
+  return rig;
+}
+
+// фігура, вуха, хвіст і очі котика
+function catBody(rig: Rig, o: { shape?: string; ears?: string; tail?: string; eyes?: string }, furC: string) {
+  const ud = rig.root.userData.cat as { belly: THREE.Mesh; tummy: THREE.Mesh; skull: THREE.Mesh } | undefined; if (!ud) return;
+  const fm = () => toon(furC);
+  const shape = o.shape ?? 'classic';
+  const B: Record<string, [number, number, number]> = { classic: [1, 1.15, 0.92], slim: [0.8, 1.2, 0.78], chubby: [1.28, 1.08, 1.18], tall: [0.9, 1.25, 0.86], kitten: [0.85, 0.95, 0.8] };
+  const bs = B[shape] ?? B.classic; ud.belly.scale.set(...bs); ud.tummy.scale.set(bs[0], bs[1], 0.6 * bs[2] / 0.92);
+  rig.slots.top.scale.set(bs[0], bs[1] / 1.15, bs[2] / 0.92);
+  const tall = shape === 'tall'; const kit = shape === 'kitten';
+  rig.body.position.y = tall ? 0.18 : 0; rig.head.scale.setScalar(kit ? 1.18 : shape === 'slim' ? 0.95 : 1);
+  rig.root.userData.legY = 0.14;
+  [rig.legL, rig.legR].forEach((l) => { l.scale.set(shape === 'chubby' ? 1.2 : 1, tall ? 1.6 : kit ? 0.8 : 1, shape === 'chubby' ? 1.2 : 1); l.position.y = tall ? 0.3 : 0.14; });
+  rig.root.userData.legY = tall ? 0.3 : 0.14;
+  rig.armL.position.x = -0.48 * bs[0]; rig.armR.position.x = 0.48 * bs[0];
+  // вуха
+  const E = rig.head.getObjectByName('ears') as THREE.Group; E.clear();
+  const ears = o.ears ?? 'pointy';
+  [-1, 1].forEach((s) => {
+    if (ears === 'pointy' || ears === 'big') { const k = ears === 'big' ? 1.45 : 1; const ear = mesh(new THREE.ConeGeometry(0.17 * k, 0.32 * k, 4), fm()); ear.position.set(0.27 * s, 0.4 + (k - 1) * 0.12, 0); ear.rotation.z = -0.35 * s; ear.rotation.y = Math.PI / 4; E.add(ear); const inner = mesh(new THREE.ConeGeometry(0.09 * k, 0.18 * k, 4), toon('#F7A1B5')); inner.position.set(0.26 * s, 0.38 + (k - 1) * 0.12, 0.05); inner.rotation.z = -0.35 * s; inner.rotation.y = Math.PI / 4; E.add(inner); }
+    if (ears === 'round') { const ear = sph(0.15, furC, 14); ear.scale.z = 0.55; ear.position.set(0.3 * s, 0.36, 0); E.add(ear); const inner = sph(0.085, '#F7A1B5', 10); inner.scale.z = 0.4; inner.position.set(0.3 * s, 0.36, 0.05); E.add(inner); }
+    if (ears === 'floppy') { const ear = sph(0.15, furC, 14); ear.scale.set(0.7, 1.3, 0.4); ear.position.set(0.42 * s, 0.12, 0.02); ear.rotation.z = 0.5 * s; E.add(ear); }
+  });
+  // очі
+  const Y = rig.head.getObjectByName('eyes') as THREE.Group; Y.clear();
+  const eyes = o.eyes ?? 'round';
+  [-1, 1].forEach((s) => {
+    if (eyes === 'happy') { const arc = mesh(new THREE.TorusGeometry(0.07, 0.018, 6, 14, Math.PI), toon('#1A1A1A'), false); arc.position.set(0.17 * s, 0.04, 0.44); Y.add(arc); return; }
+    if (eyes === 'sleepy') { const lid = mesh(new THREE.TorusGeometry(0.07, 0.016, 6, 14, Math.PI), toon('#1A1A1A'), false); lid.rotation.z = Math.PI; lid.position.set(0.17 * s, 0.08, 0.44); Y.add(lid); return; }
+    const big = eyes === 'sparkly' ? 1.35 : 1;
+    const eye = mesh(new THREE.SphereGeometry(0.085 * big, 16, 12), toon('#1A1A1A'), false); eye.scale.set(0.9, 1.15, 0.6); eye.position.set(0.17 * s, 0.06, 0.4); Y.add(eye);
+    const hi = mesh(new THREE.SphereGeometry(0.03 * big, 8, 6), new THREE.MeshBasicMaterial({ color: '#FFFFFF' }), false); hi.position.set(0.15 * s + 0.02, 0.1, 0.46); Y.add(hi);
+    if (eyes === 'sparkly') { const h2 = mesh(new THREE.SphereGeometry(0.016, 6, 4), new THREE.MeshBasicMaterial({ color: '#FFFFFF' }), false); h2.position.set(0.19 * s - 0.01, 0.02, 0.47); Y.add(h2); }
+  });
+  // хвіст
+  const T = rig.tail; T.clear();
+  const tl = o.tail ?? 'long';
+  if (tl === 'short') { const b = sph(0.11, furC, 12); b.position.set(0, 0.02, -0.05); T.add(b); }
+  else {
+    const pts = tl === 'curly' ? [new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 0.2, -0.25), new THREE.Vector3(0.15, 0.5, -0.3), new THREE.Vector3(0.05, 0.62, -0.12), new THREE.Vector3(-0.08, 0.5, -0.12)] : [new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 0.15, -0.25), new THREE.Vector3(0, 0.5, -0.32), new THREE.Vector3(0.05, 0.75, -0.2)];
+    T.add(mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), 18, tl === 'fluffy' ? 0.11 : 0.07, 8), fm()));
+    if (tl === 'fluffy') { const tip = sph(0.15, furC, 12); tip.position.copy(pts[pts.length - 1]); T.add(tip); }
+  }
 }
 
 function wear(rig: Rig, o: Outfit) {
   const furC = FUR.find((f) => f.id === o.fur)?.color ?? FUR[0].color;
   rig.fur.forEach((m) => m.color.set(furC));
+  catBody(rig, o, furC);
   Object.values(rig.slots).forEach((g) => g.clear());
   const it = (id?: string) => SHOP.find((s) => s.id === id);
   const h = it(o.hat); const H = rig.slots.hat;
@@ -146,7 +193,7 @@ function wear(rig: Rig, o: Outfit) {
     if (sc.id === 'bow-pink') { [-1, 1].forEach((s) => { const w = mesh(new THREE.ConeGeometry(0.1, 0.16, 8), toon(sc.color!)); w.rotation.z = (Math.PI / 2) * s; w.position.set(0.08 * s, 0, 0.42); S.add(w); }); const k = sph(0.045, sc.color!); k.position.set(0, 0, 0.44); S.add(k); }
     else { const r = mesh(new THREE.TorusGeometry(0.36, 0.08, 8, 24), toon(sc.color!)); r.rotation.x = Math.PI / 2; S.add(r); const t = box(0.14, 0.34, 0.06, sc.color!); t.position.set(0.16, -0.16, 0.33); t.rotation.z = 0.2; S.add(t); }
   }
-  wearStyle(rig, o);
+  if (rig.root.userData.human) dressHuman(rig as never, rig.root.userData.look as HumanLook); else wearStyle(rig, o);
   const b = it(o.bag); const B = rig.slots.bag;
   if (b) {
     if (b.id === 'bag-jetpack') { [-1, 1].forEach((s) => { const t = cyl(0.12, 0.12, 0.5, '#B8C2CC'); t.position.set(0.14 * s, 0, -0.05); B.add(t); const fl = mesh(new THREE.ConeGeometry(0.1, 0.25, 10), new THREE.MeshBasicMaterial({ color: '#FFB224' }), false); fl.rotation.x = Math.PI; fl.position.set(0.14 * s, -0.38, -0.05); fl.name = 'flame'; B.add(fl); }); }
@@ -1441,7 +1488,7 @@ export class IslandScene {
   }
   endPose() {
     if (!this.pose) return; this.pose = null; const h = this.hero;
-    h.root.rotation.set(0, this.heroRot, 0); h.legL.rotation.x = h.legR.rotation.x = 0; h.legL.position.y = h.legR.position.y = 0.14; h.body.rotation.set(0, 0, 0);
+    h.root.rotation.set(0, this.heroRot, 0); h.legL.rotation.x = h.legR.rotation.x = 0; h.legL.position.y = h.legR.position.y = (h.root.userData.legY ?? 0.14); h.body.rotation.set(0, 0, 0);
     this.ev.onPoseEnd?.();
   }
   applyPose(t: number) {
@@ -1449,7 +1496,7 @@ export class IslandScene {
     if (p.kind === 'sit' || p.kind === 'ground' || p.kind === 'swing') {
       const sw = p.kind === 'swing' ? Math.sin(t * 2.4) * 0.5 : 0;
       h.root.position.set(p.x + Math.sin(p.rot) * sw, p.y + (p.kind === 'swing' ? Math.abs(sw) * 0.3 : 0), p.z + Math.cos(p.rot) * sw);
-      h.legL.rotation.x = h.legR.rotation.x = -1.4; h.legL.position.y = h.legR.position.y = 0.3; h.legL.position.z = h.legR.position.z = 0.15;
+      h.legL.rotation.x = h.legR.rotation.x = -1.4; h.legL.position.y = h.legR.position.y = (h.root.userData.legY ?? 0.14) + 0.16; h.legL.position.z = h.legR.position.z = 0.15;
       h.body.position.y = 0; h.body.rotation.x = p.kind === 'swing' ? -sw * 0.3 : 0; h.body.scale.set(1, 1, 1);
       h.armL.rotation.x = h.armR.rotation.x = p.kind === 'swing' ? -2.4 : -0.3; h.armL.rotation.z = -0.35; h.armR.rotation.z = 0.35;
     }
@@ -1593,7 +1640,23 @@ export class IslandScene {
   }
 
   // ---- персонаж, транспорт, улюбленець ----
-  setOutfit(o: Outfit) { wear(this.hero, o); }
+  setOutfit(o: Outfit) { this.lastOutfit = o; wear(this.hero, o); }
+  lastOutfit: Outfit | null = null; avatarKey = 'cat';
+  // котик або людинка: міняємо модель героя, зберігаючи все, що до неї прикріплено
+  setAvatar(mode: 'cat' | 'human', look?: HumanLook) {
+    const key = mode === 'human' && look ? `human|${JSON.stringify(look)}` : 'cat';
+    if (key === this.avatarKey) return;
+    const sameKind = (mode === 'human') === !!this.hero.root.userData.human;
+    if (sameKind && mode === 'human' && look) { this.avatarKey = key; this.hero.root.userData.look = look; if (this.lastOutfit) wear(this.hero, this.lastOutfit); else dressHuman(this.hero as never, look); return; }
+    this.avatarKey = key;
+    const old = this.hero; const next = (mode === 'human' && look ? makeHuman(look) : makeCat(FUR[0].color)) as unknown as Rig;
+    next.root.position.copy(old.root.position); next.root.rotation.copy(old.root.rotation);
+    [...old.root.children].forEach((c) => { if (c !== old.body && !old.root.userData.legs?.includes(c) && c !== old.legL && c !== old.legR) next.root.add(c); });
+    if (this.carry.parent) next.body.add(this.carry);
+    if (this.heldObj) next.slots.held.add(this.heldObj);
+    this.scene.remove(old.root); this.scene.add(next.root); this.hero = next;
+    if (this.lastOutfit) wear(this.hero, this.lastOutfit);
+  }
   setRide(id: string | null) {
     if (this.ride) { this.hero.root.remove(this.ride); this.ride = null; }
     this.rideId = id;

@@ -90,12 +90,12 @@ export const SHOP: ShopItem[] = [
 export const SPEED: Record<string, number> = { 'ride-skate': 1.6, 'ride-bike': 2.0, 'ride-scooter': 2.4, 'ride-car': 3.0, 'ride-hatch': 3.0, 'ride-sedan': 3.1, 'ride-wagon': 3.1, 'ride-yellow': 3.2, 'ride-taxi': 3.0, 'ride-police': 3.3, 'ride-ufo': 3.4 };
 export const CARS = ['ride-car', 'ride-hatch', 'ride-sedan', 'ride-wagon', 'ride-yellow', 'ride-taxi', 'ride-police', 'ride-ufo'];
 
-export type Outfit = { fur: string; hat?: string; glasses?: string; scarf?: string; bag?: string; hair?: string; hairC?: string; top?: string; topC?: string; bottom?: string; bottomC?: string; shoes?: string; shoesC?: string; hold?: string };
+export type Outfit = { fur: string; hat?: string; glasses?: string; scarf?: string; bag?: string; hair?: string; hairC?: string; top?: string; topC?: string; bottom?: string; bottomC?: string; shoes?: string; shoesC?: string; hold?: string; shape?: string; ears?: string; tail?: string; eyes?: string };
 export type RoomItem = { f: string; x: number; z: number; r: number };
 export type Daily = { date: string; ids: string[]; prog: Record<string, number>; paid?: boolean };
 export type Save = { v: number; owned: string[]; outfit: Outfit; ride: string | null; pet: string | null; house: number; yard: string[]; jobs: Record<string, number>; name?: string; localCoins?: number; stars?: string[]; starBonus?: boolean; talks?: number;
   furn?: string[]; room?: RoomItem[]; daily?: Daily; fish?: Record<string, number>; badges?: string[];
-  prof?: string; friends?: Record<string, number>; needs?: { food: number; energy: number; fun: number }; bag?: Record<string, number>; hero?: string; skills?: Record<string, number>; pantry?: Record<string, number>; homeWall?: string; homeFloor?: string; rooms?: HomeRooms; tut?: string[]; tutOff?: boolean; goal?: { id: string; en: string; price: number } | null; props?: { f: string; x: number; y: number; z: number; room: string }[]; garden?: ({ crop: string; at: number; water?: boolean } | null)[]; petName?: string; dialogs?: string[]; pos?: { x: number; z: number; room?: string | null }; tasks?: Record<string, unknown>; last?: { at: string; place: string; doing?: string } };
+  prof?: string; friends?: Record<string, number>; needs?: { food: number; energy: number; fun: number }; bag?: Record<string, number>; hero?: string; skills?: Record<string, number>; pantry?: Record<string, number>; homeWall?: string; homeFloor?: string; rooms?: HomeRooms; tut?: string[]; tutOff?: boolean; avatar?: 'cat' | 'human'; look?: HumanLook; goal?: { id: string; en: string; price: number } | null; props?: { f: string; x: number; y: number; z: number; room: string }[]; garden?: ({ crop: string; at: number; water?: boolean } | null)[]; petName?: string; dialogs?: string[]; pos?: { x: number; z: number; room?: string | null }; tasks?: Record<string, unknown>; last?: { at: string; place: string; doing?: string } };
 export const START: Save = { v: 2, owned: ['fur-ginger', 'house-1', 'floor-light'], outfit: { fur: 'fur-ginger' }, ride: null, pet: null, house: 1, yard: [], jobs: {}, tut: [] };
 
 // ---------- карта ----------
@@ -748,3 +748,30 @@ export const LAYOUTS: { id: number; en: string; n: number; minHouse: number }[] 
   { id: 4, en: 'Four rooms', n: 4, minHouse: 3 },
 ];
 export const DEFAULT_TYPES = ['living', 'bedroom', 'kitchen', 'bathroom'];
+
+// ---- людинка замість котика (можна перемкнути назад у My look) ----
+export type HumanLook = { body: 'girl' | 'boy'; skin: string; eyes: string; hair: string; hairC: string; top: string; topC: string; bottom: string; bottomC: string; shoes: string; shoesC: string; ears?: boolean };
+export const SKINS = ['#FBE0CF', '#F3C9A8', '#E3AD86', '#C98B62', '#9C6644', '#6E4630'];
+export const EYE_COLOURS = ['#4A3426', '#2E6FD8', '#30A46C', '#7A5230', '#6B5B95'];
+export const H_HAIR: { id: string; en: string }[] = [
+  { id: 'long', en: 'long hair' }, { id: 'bob', en: 'bob' }, { id: 'buns', en: 'space buns' }, { id: 'ponytail', en: 'ponytail' },
+  { id: 'pigtails', en: 'pigtails' }, { id: 'curly', en: 'curly hair' }, { id: 'short', en: 'short hair' }, { id: 'spiky', en: 'spiky hair' }, { id: 'waves', en: 'long waves' },
+];
+export const H_HAIR_COLOURS = ['#3B2A20', '#6B4F2A', '#A0764B', '#E6C07B', '#F2E4C4', '#1A1A1A', '#C8553D', '#F7A1B5', '#B79CF0', '#8EC9F5'];
+export const H_TOPS: { id: string; en: string }[] = [
+  { id: 'tee', en: 'T-shirt' }, { id: 'hoodie', en: 'hoodie' }, { id: 'sweater', en: 'jumper' }, { id: 'crop', en: 'crop top' }, { id: 'dress', en: 'dress' }, { id: 'puff', en: 'puffy dress' }, { id: 'shirt', en: 'shirt' },
+];
+export const H_BOTTOMS: { id: string; en: string }[] = [
+  { id: 'jeans', en: 'jeans' }, { id: 'shorts', en: 'shorts' }, { id: 'skirt', en: 'skirt' }, { id: 'leggings', en: 'leggings' }, { id: 'none', en: 'no bottoms (with a dress)' },
+];
+export const H_SHOES: { id: string; en: string }[] = [
+  { id: 'sneakers', en: 'trainers' }, { id: 'boots', en: 'boots' }, { id: 'platforms', en: 'platform shoes' }, { id: 'fluffy', en: 'fluffy leg warmers' },
+];
+export const CLOTH_COLOURS = ['#FFFFFF', '#1A1A1A', '#E5484D', '#F76AA8', '#F7B7C8', '#FFC53D', '#30A46C', '#3E7BFA', '#8EC9F5', '#7C66DC', '#7A4E25', '#C8A77A'];
+export const START_LOOK: HumanLook = { body: 'girl', skin: '#F3C9A8', eyes: '#4A3426', hair: 'long', hairC: '#6B4F2A', top: 'tee', topC: '#F7B7C8', bottom: 'skirt', bottomC: '#7A4E25', shoes: 'sneakers', shoesC: '#FFFFFF' };
+
+// ---- тіло котика: фігура, вуха, хвіст, очі (усе безкоштовно) ----
+export const CAT_SHAPES = [{ id: 'classic', en: 'classic' }, { id: 'slim', en: 'slim' }, { id: 'chubby', en: 'chubby' }, { id: 'tall', en: 'tall' }, { id: 'kitten', en: 'kitten' }];
+export const CAT_EARS = [{ id: 'pointy', en: 'pointy ears' }, { id: 'round', en: 'round ears' }, { id: 'floppy', en: 'floppy ears' }, { id: 'big', en: 'big ears' }];
+export const CAT_TAILS = [{ id: 'long', en: 'long tail' }, { id: 'fluffy', en: 'fluffy tail' }, { id: 'short', en: 'short tail' }, { id: 'curly', en: 'curly tail' }];
+export const CAT_EYES = [{ id: 'round', en: 'round eyes' }, { id: 'sparkly', en: 'big sparkly eyes' }, { id: 'sleepy', en: 'sleepy eyes' }, { id: 'happy', en: 'happy eyes' }];
