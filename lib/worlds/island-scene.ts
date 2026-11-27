@@ -62,6 +62,17 @@ const box = (w: number, h: number, d: number, c: string | number) => mesh(new TH
 const cyl = (rt: number, rb: number, h: number, c: string | number, seg = 16) => mesh(new THREE.CylinderGeometry(rt, rb, h, seg), toon(c));
 
 // табличка-надпис над будівлею
+// цінник для полиці супермаркету (кешуємо текстури)
+const TAGS: Record<string, THREE.CanvasTexture> = {};
+function priceTag(name: string, price: number) {
+  const k = `${name}|${price}`; if (TAGS[k]) return TAGS[k];
+  const cv = document.createElement('canvas'); cv.width = 256; cv.height = 100; const x = cv.getContext('2d')!;
+  x.fillStyle = '#FFFFFF'; x.fillRect(0, 0, 256, 100); x.fillStyle = '#FFC53D'; x.fillRect(0, 0, 256, 14);
+  x.fillStyle = '#1A1A1A'; x.textAlign = 'center'; x.textBaseline = 'middle';
+  let fs = 34; x.font = `700 ${fs}px Arial`; while (x.measureText(name).width > 236 && fs > 16) { fs -= 2; x.font = `700 ${fs}px Arial`; }
+  x.fillText(name, 128, 44); x.font = '800 30px Arial'; x.fillStyle = '#B54708'; x.fillText(`${price} coin${price === 1 ? '' : 's'}`, 128, 80);
+  const t = new THREE.CanvasTexture(cv); t.colorSpace = THREE.SRGBColorSpace; TAGS[k] = t; return t;
+}
 function sign(text: string, bg = '#1A1A1A', fg = '#FFFFFF', w = 4) {
   const cv = document.createElement('canvas'); cv.width = 512; cv.height = 128;
   const x = cv.getContext('2d')!;
@@ -1431,7 +1442,9 @@ export class IslandScene {
         const top = box(3.5, 0.35, 0.15, sh.c); top.position.set(0, 2.45, 0.38); u.add(top);
         const lab = sign(sh.en.toUpperCase(), sh.c, '#FFFFFF', 3.2); lab.position.set(0, 2.85, 0.3); u.add(lab);
         const prods = PRODUCTS.filter((p) => p.cat === sh.id);
-        [0.2, 0.85, 1.5].forEach((y, lv) => { for (let k = 0; k < 6; k++) { const pid = prods[(k + lv * 2) % prods.length].id; void productObj(pid, 0.42).then((ob) => { ob.position.set(-1.4 + k * 0.56, y, 0.1); u.add(ob); }); } });
+        [0.2, 0.85, 1.5].forEach((y, lv) => { for (let k = 0; k < 6; k++) { const pr = prods[(k + lv * 2) % prods.length]; const pid = pr.id; void productObj(pid, 0.42).then((ob) => { ob.position.set(-1.4 + k * 0.56, y, 0.1); u.add(ob); });
+          // цінник на краю полиці: назва англійською і ціна в монетках
+          const tag = new THREE.Mesh(new THREE.PlaneGeometry(0.5, 0.2), new THREE.MeshBasicMaterial({ map: priceTag(pr.en, pr.price) })); tag.position.set(-1.4 + k * 0.56, y - 0.07, 0.435); u.add(tag); } });
         this.roomColsExtra.push({ room: 'supermarket', x: o.x + x, z: o.z + z, r: 1.0 }, { room: 'supermarket', x: o.x + x - 1.2, z: o.z + z, r: 0.8 }, { room: 'supermarket', x: o.x + x + 1.2, z: o.z + z, r: 0.8 });
         this.spots.push({ id: `shelf:${sh.id}`, x: o.x + x, z: o.z + z + 1.4, r: 1.4, label: sh.en });
         this.shelfPos[sh.id] = { x: o.x + x, z: o.z + z };
