@@ -589,6 +589,7 @@ export class IslandScene {
   ride: THREE.Group | null = null; rideId: string | null = null;
   pet: THREE.Group | null = null; petPos = new THREE.Vector3(); petId: string | null = null;
   homeGroup = new THREE.Group(); yardGroup = new THREE.Group();
+  skyDome!: THREE.Mesh; skyU!: { top: { value: THREE.Color }; mid: { value: THREE.Color }; bot: { value: THREE.Color } };
   marker: THREE.Group; markerOn = false; carry: THREE.Mesh;
   water: THREE.Mesh; npcs: { rig: Rig; home: THREE.Vector3; t: number; goal: THREE.Vector3 }[] = [];
   clouds: THREE.Group[] = []; tramp: THREE.Vector3 | null = null;
@@ -641,6 +642,12 @@ export class IslandScene {
     this.cam = new THREE.PerspectiveCamera(55, 1, 0.1, 600);
     this.scene.background = new THREE.Color('#9ED8F7');
     this.scene.fog = new THREE.Fog('#BFE6FA', 70, 220);
+    // небо з градієнтом: насичене вгорі, світле біля горизонту
+    this.skyU = { top: { value: new THREE.Color('#5DB7F0') }, mid: { value: new THREE.Color('#9ED8F7') }, bot: { value: new THREE.Color('#E8F6FF') } };
+    this.skyDome = new THREE.Mesh(new THREE.SphereGeometry(480, 32, 16), new THREE.ShaderMaterial({ uniforms: this.skyU, side: THREE.BackSide, depthWrite: false, fog: false,
+      vertexShader: 'varying float vY; void main(){ vY = normalize(position).y; gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0); }',
+      fragmentShader: 'uniform vec3 top; uniform vec3 mid; uniform vec3 bot; varying float vY; void main(){ float h = clamp(vY, -0.2, 1.0); vec3 c = h < 0.12 ? mix(bot, mid, smoothstep(-0.05, 0.12, h)) : mix(mid, top, smoothstep(0.12, 0.7, h)); gl_FragColor = vec4(c, 1.0); }' }));
+    this.skyDome.renderOrder = -1; this.skyDome.frustumCulled = false; this.scene.add(this.skyDome);
 
     const hemi = new THREE.HemisphereLight('#E8F6FF', '#9BC97A', 1.25); this.scene.add(hemi); this.hemi = hemi; this.cloudMat.gradientMap = toon('#fff').gradientMap;
     const sun = new THREE.DirectionalLight('#FFF4DD', 2.3); sun.position.set(40, 60, 25); sun.castShadow = true;
@@ -1776,6 +1783,7 @@ export class IslandScene {
     const dusk = Math.max(0, 1 - Math.abs(e) / 0.22) * (e > -0.2 ? 1 : 0);
     sky.lerp(new THREE.Color('#F4A27A'), dusk * 0.55).lerp(new THREE.Color(day > 0.5 ? '#8E9BA8' : '#2A3242'), this.rain * 0.65);
     (this.scene.background as THREE.Color).copy(sky);
+    if (this.skyU) { this.skyU.mid.value.copy(sky); this.skyU.top.value.copy(sky).multiplyScalar(0.78).lerp(new THREE.Color('#2E6FD8'), 0.25 * day); this.skyU.bot.value.copy(sky).lerp(new THREE.Color(dusk > 0.05 ? '#FFC9A0' : '#FFFFFF'), 0.35 * day + dusk * 0.4); this.skyDome.position.copy(this.cam.position); }
     (this.scene.fog as THREE.Fog).color.copy(sky).lerp(new THREE.Color('#FFFFFF'), 0.15 * day);
     this.hemi.intensity = (0.32 + 0.95 * day) * (1 - this.rain * 0.25);
     this.sun.intensity = (0.12 + 2.2 * day) * (1 - this.rain * 0.55);
