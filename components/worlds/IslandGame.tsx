@@ -758,6 +758,24 @@ export default function IslandGame() {
   };
   // ---- дім всередині ----
   const furnOwned = FURN_ALL.filter((f) => save.owned.includes(`furn-${f.f}`));
+  // ---- перші кроки для новачка: один наступний крок і кнопка «Show me» ----
+  const GUIDE: { id: string; en: string; tip: string; ok: (s: Save) => boolean; go: () => void }[] = [
+    { id: 'job', en: 'Do a job at the Cat Cafe', tip: 'Walk to the Cat Cafe, go inside and talk to Chef Mia.', ok: (s) => Object.entries(s.jobs ?? {}).some(([k, n]) => k !== 'cook' && n > 0), go: () => showWay('cafe') },
+    { id: 'talk', en: 'Talk to a cat on the island', tip: 'Walk up to any cat and press Talk.', ok: (s) => (s.talks ?? 0) > 0, go: () => { setPanel(null); flash('Walk up to any cat and press the yellow Talk button.'); } },
+    { id: 'buy', en: 'Buy something in the shop', tip: 'Press Shop and choose a hat, a pet or furniture.', ok: (s) => s.owned.some((id) => !START.owned.includes(id)), go: () => setPanel('store') },
+    { id: 'home', en: 'Put a thing in your home', tip: 'Buy furniture, then press Put it in my home.', ok: (s) => (s.room ?? []).length > 0, go: () => { const f = FURN_ALL.find((x) => saveRef.current.owned.includes(`furn-${x.f}`)); if (f) placeFurn(f.f); else { setTab('Furniture'); setPanel('store'); } } },
+    { id: 'cook', en: 'Cook something in your kitchen', tip: 'Go home, walk to the stove or fridge and cook.', ok: (s) => (s.jobs?.cook ?? 0) > 0, go: () => { setPanel(null); sc.current?.teleportHome(); flash('Go inside your home and use the fridge or the stove.'); } },
+  ];
+  const guideNext = GUIDE.find((g) => !g.ok(save));
+  const guideDone = GUIDE.filter((g) => g.ok(save)).length;
+  useEffect(() => {
+    if (!loaded.current) return;
+    const got = saveRef.current.tut ?? []; const newly = GUIDE.filter((g) => g.ok(saveRef.current) && !got.includes(g.id));
+    if (!newly.length) return;
+    const fresh = saveRef.current.tut === undefined; persist({ ...saveRef.current, tut: [...got, ...newly.map((g) => g.id)] });
+    // старим гравцям, у яких кроки вже були зроблені до цього оновлення, монети не нараховуємо
+    if (!fresh) newly.forEach((g) => { void earn(2, `Well done: ${g.en}!`); });
+  }, [save.jobs, save.talks, save.owned, save.room]); // eslint-disable-line react-hooks/exhaustive-deps
   // поставити меблі: переносимо додому й одразу вмикаємо розстановку
   const placeFurn = (f: string) => {
     const sx = sc.current; if (!sx) return;
@@ -905,7 +923,13 @@ export default function IslandGame() {
       </div>}
       {caption && !panel && <div className="il-caption">{caption} <button type="button" className="il-mini" onClick={() => say(caption)}>Listen</button>{acting && <span className="il-acting" />}<button type="button" className="il-mini" onClick={() => { setCaption(null); if (sc.current?.pose) sc.current.setPose(null); setActing(null); }}>OK</button></div>}
       {!inside && <canvas ref={mini} className="il-mini-map" width={150} height={150} onClick={() => setPanel('jobs')} aria-label="Map" />}
-      {!panel && !inside && !delivery && !taxi?.driving && <div className="il-today" onClick={() => setPanel('today')}>{daily.ids.map((id) => { const m = MISSIONS.find((x) => x.id === id)!; const n = Math.min(daily.prog[id] ?? 0, m.n); return <div key={id} className={n >= m.n ? 'on' : ''}>{m.en.replace('{n}', String(m.n))} <b>{n}/{m.n}</b></div>; })}</div>}
+      {!panel && guideNext && !save.tutOff && <div className="il-guide">
+        <b>Getting started {guideDone}/{GUIDE.length}</b>
+        <span>{guideNext.en}</span>
+        <small>{guideNext.tip}</small>
+        <div><button type="button" className="il-mini" onClick={guideNext.go}>Show me</button><button type="button" className="il-mini il-mini--ghost" onClick={() => persist({ ...saveRef.current, tutOff: true })}>Hide</button></div>
+      </div>}
+      {!panel && !inside && !delivery && !taxi?.driving && <div className={`il-today ${guideNext && !save.tutOff ? 'il-today--low' : ''}`} onClick={() => setPanel('today')}>{daily.ids.map((id) => { const m = MISSIONS.find((x) => x.id === id)!; const n = Math.min(daily.prog[id] ?? 0, m.n); return <div key={id} className={n >= m.n ? 'on' : ''}>{m.en.replace('{n}', String(m.n))} <b>{n}/{m.n}</b></div>; })}</div>}
       {inside === 'home' && decor.on && !panel && (
         <div className="il-tray">
           {decor.picked !== null && room[decor.picked] ? <>
@@ -984,7 +1008,15 @@ export default function IslandGame() {
 
             {panel === 'help' && <>
               <h2>Welcome to Murly Island!</h2>
-              <p>Walk around, do jobs in English and earn Murly coins. Spend them in the shop on clothes, a house, cool rides and pets.</p>
+              <div className="il-howto">
+                <div><Ico n="cat" /><b>Move</b><span>{touch ? 'Use the joystick or tap the ground.' : 'W A S D or click the ground. Drag to turn.'}</span></div>
+                <div><Ico n="hand" /><b>Earn coins</b><span>Go into a shop or cafe and do the job at the counter.</span></div>
+                <div><Ico n="shop" /><b>Shop</b><span>Buy clothes, pets, rides and furniture. Save in your piggy bank.</span></div>
+                <div><Ico n="house" /><b>Your home</b><span>Press Home, go inside and press Build to place things.</span></div>
+                <div><Ico n="people" /><b>Friends</b><span>Walk up to a cat and press Talk. Swap things and make friends.</span></div>
+                <div><Ico n="star" /><b>Your cat</b><span>Watch Food, Energy and Fun. Eat, sleep and play.</span></div>
+              </div>
+              <details className="il-more"><summary>More tips</summary>
               <ul className="il-list">
                 <li><b>Computer:</b> W A S D or arrows to walk, Shift to run, Space to jump, Q to dance, M for the map. Or click on the ground to walk there.</li>
                 <li><b>Tablet and phone:</b> move with the joystick on the left, or tap on the ground to walk there. Swipe to turn the camera.</li>
@@ -1004,7 +1036,7 @@ export default function IslandGame() {
                 <li><b>Your home:</b> buy a house, go inside and decorate it with furniture from the shop.</li>
                 <li><b>Day and night:</b> one day on the island is 8 minutes. Look for fireflies at night and boats on the sea!</li>
                 <li><b>Talk:</b> walk to a coloured mat and press E or tap the yellow button.</li>
-              </ul>
+              </ul></details>
               {capped && <p className="il-note">You have earned all your coins for today. You can still play and shop!</p>}
               <button type="button" className="il-go" onClick={() => setPanel(null)}>Let&apos;s play!</button>
             </>}
