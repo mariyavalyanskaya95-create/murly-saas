@@ -4969,3 +4969,9 @@ textarea.t-parent__url { width: 300px; font: inherit; font-size: 13px; }
 .il-shopbtns .il-go { flex: 1 1 160px; margin: 0; }
 .il-go--pink { background: #FFB3D1; }
 .il-go--mint { background: #A8EBCB; }
+
+.il-order{position:fixed;left:50%;bottom:110px;transform:translateX(-50%);z-index:60;width:min(520px,92vw);background:#fffdf6;border:2px solid var(--mu-ink);border-radius:18px;box-shadow:5px 5px 0 var(--mu-ink);padding:16px 18px}
+.il-order__q{margin:0 0 6px;font-size:17px}.il-order__h{margin:0 0 10px;font-size:14px;color:var(--mu-ink-muted)}
+.il-order__opts{display:grid;gap:8px}.il-order__opts button{font:inherit;font-size:16px;text-align:left;padding:10px 14px;border:2px solid var(--mu-ink);border-radius:12px;background:#fff;cursor:pointer}
+.il-order__opts button:hover{background:#f3eefc}.il-order__opts button.is-bad{background:#ffe3e3;border-color:#c2183f;text-decoration:line-through}
+.il-order__tip{margin:10px 0 0;font-weight:700;color:#b54708}.il-order__x{margin-top:10px;font:inherit;font-size:14px;background:none;border:0;text-decoration:underline;cursor:pointer;color:var(--mu-ink-muted)}
