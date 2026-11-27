@@ -717,7 +717,7 @@ export class IslandScene {
     el.appendChild(this.renderer.domElement);
     // м'яке світло оточення: моделі виглядають об'ємно й чисто, як у Sims
     { const pm = new THREE.PMREMGenerator(this.renderer); this.scene.environment = pm.fromScene(new RoomEnvironment(), 0.04).texture; pm.dispose(); (this.scene as THREE.Scene & { environmentIntensity?: number }).environmentIntensity = 0.45; }
-    this.cam = new THREE.PerspectiveCamera(55, 1, 0.1, 600);
+    this.cam = new THREE.PerspectiveCamera(55, 1, 0.3, 600);
     this.scene.background = new THREE.Color('#9ED8F7');
     this.scene.fog = new THREE.Fog('#BFE6FA', 70, 220);
     // небо з градієнтом: насичене вгорі, світле біля горизонту
@@ -758,7 +758,9 @@ export class IslandScene {
   buildGround() {
     const R = 78;
     const g = new THREE.CircleGeometry(R, 96, 0, Math.PI * 2); g.rotateX(-Math.PI / 2);
-    const sand = mesh(g, toon('#F3DFA7'), false); sand.position.y = -0.05; this.scene.add(sand);
+    // шари землі: щоб не «пробивали» одне одного здалеку, задаємо їм порядок через polygonOffset
+    const layer = (m: THREE.Material, k: number) => { m.polygonOffset = true; m.polygonOffsetFactor = k; m.polygonOffsetUnits = k; return m; };
+    const sand = mesh(g, layer(toon('#F3DFA7'), 8), false); sand.position.y = -0.05; this.scene.add(sand);
     const gg = new THREE.CircleGeometry(68, 96); gg.rotateX(-Math.PI / 2);
     const pos = gg.attributes.position as THREE.BufferAttribute;
     // трава з легкими пагорбами по краях
@@ -766,16 +768,26 @@ export class IslandScene {
     gg.computeVertexNormals();
     const grass = mesh(gg, toon('#8BCB62'), false); this.scene.add(grass);
     // дороги: хрест і кільце
-    const road = toon('#6E7480'); const line = toon('#FFFFFF');
-    const strip = (x: number, z: number, w: number, l: number, rot = 0) => {
-      const r = mesh(new THREE.PlaneGeometry(w, l), road, false); r.rotation.x = -Math.PI / 2; r.rotation.z = rot; r.position.set(x, 0.02, z); this.scene.add(r);
+    const road = layer(toon('#5E6470'), -2); const line = layer(toon('#FFFFFF'), -4); const walkM = layer(new THREE.MeshToonMaterial({ map: (() => { const cv = document.createElement('canvas'); cv.width = 128; cv.height = 128; const x = cv.getContext('2d')!; x.fillStyle = '#DAD3C3'; x.fillRect(0, 0, 128, 128); x.fillStyle = '#C9C1AF'; for (let i = 0; i <= 4; i++) { x.fillRect(0, i * 32 - 1, 128, 3); x.fillRect(i * 32 - 1, 0, 3, 128); } const t = new THREE.CanvasTexture(cv); t.wrapS = t.wrapT = THREE.RepeatWrapping; t.colorSpace = THREE.SRGBColorSpace; return t; })(), gradientMap: toon('#fff').gradientMap }), -1);
+    const flat = (geo: THREE.BufferGeometry, m: THREE.Material, x: number, y: number, z: number, rot = 0) => { const p0 = mesh(geo, m, false); p0.rotation.x = -Math.PI / 2; p0.rotation.z = rot; p0.position.set(x, y, z); p0.receiveShadow = true; this.scene.add(p0); return p0; };
+    const strip = (w: number, l: number, rot = 0) => {
+      flat(new THREE.PlaneGeometry(w, l), road, 0, 0.02, 0, rot);
+      // тротуари з плиткою по обидва боки
+      [-1, 1].forEach((sd) => { const ox = rot ? 0 : sd * (w / 2 + 0.7), oz = rot ? sd * (w / 2 + 0.7) : 0; const wg = new THREE.PlaneGeometry(1.4, l); const uv = wg.attributes.uv as THREE.BufferAttribute; for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i) * 1, uv.getY(i) * l / 1.4); flat(wg, walkM, ox, 0.02, oz, rot); });
+      // білі краї й пунктир посередині
+      [-1, 1].forEach((sd) => flat(new THREE.PlaneGeometry(0.14, l), line, rot ? 0 : sd * (w / 2 - 0.25), 0.025, rot ? sd * (w / 2 - 0.25) : 0, rot));
       const n = Math.floor(l / 3);
-      for (let i = 0; i < n; i++) { const d = mesh(new THREE.PlaneGeometry(0.25, 1.4), line, false); d.rotation.x = -Math.PI / 2; d.rotation.z = rot; const t = -l / 2 + 1.5 + i * 3; d.position.set(x + Math.sin(rot) * -t * 0 + (rot ? t : 0), 0.03, z + (rot ? 0 : t)); this.scene.add(d); }
+      for (let i = 0; i < n; i++) { const t = -l / 2 + 1.5 + i * 3; if (Math.abs(t) < 10.5) continue; flat(new THREE.PlaneGeometry(0.25, 1.4), line, rot ? t : 0, 0.03, rot ? 0 : t, rot); }
     };
-    strip(0, 0, 6, 110); strip(0, 0, 6, 110, Math.PI / 2);
-    const ring = mesh(new THREE.RingGeometry(30, 35, 72), road, false); ring.rotation.x = -Math.PI / 2; ring.position.y = 0.015; this.scene.add(ring);
+    strip(6, 110); strip(6, 110, Math.PI / 2);
+    const ring = flat(new THREE.RingGeometry(30, 35, 96), road, 0, 0.015, 0); ring.renderOrder = 0;
+    [30.15, 34.85].forEach((rr) => flat(new THREE.RingGeometry(rr - 0.07, rr + 0.07, 96), line, 0, 0.025, 0));
     // площа з фонтаном
-    const plaza = mesh(new THREE.CircleGeometry(9, 40), toon('#E9DCC3'), false); plaza.rotation.x = -Math.PI / 2; plaza.position.y = 0.035; this.scene.add(plaza);
+    // мощена площа з бордюром
+    const pcv = document.createElement('canvas'); pcv.width = 256; pcv.height = 256; { const x = pcv.getContext('2d')!; x.fillStyle = '#EADFC8'; x.fillRect(0, 0, 256, 256); for (let r = 0; r < 8; r++) for (let c = 0; c < 8; c++) { x.fillStyle = (r + c) % 3 === 0 ? '#E0D2B4' : (r * c) % 4 === 1 ? '#F2E8D4' : '#EADFC8'; x.fillRect(c * 32 + 2 + (r % 2) * 16, r * 32 + 2, 28, 28); } }
+    const ptx = new THREE.CanvasTexture(pcv); ptx.wrapS = ptx.wrapT = THREE.RepeatWrapping; ptx.repeat.set(4, 4); ptx.colorSpace = THREE.SRGBColorSpace;
+    flat(new THREE.CircleGeometry(9.6, 64), layer(new THREE.MeshToonMaterial({ map: ptx, gradientMap: toon('#fff').gradientMap }), -6), 0, 0.035, 0);
+    const curb = mesh(new THREE.TorusGeometry(9.6, 0.14, 6, 96), toon('#CFC3A8')); curb.rotation.x = -Math.PI / 2; curb.scale.z = 0.6; curb.position.y = 0.03; this.scene.add(curb);
     const basin = cyl(3.2, 3.4, 0.7, '#D8CBB0', 32); basin.position.y = 0.35; this.scene.add(basin);
     const pool = mesh(new THREE.CircleGeometry(2.9, 32), new THREE.MeshStandardMaterial({ color: '#58B9E8', roughness: 0.15, metalness: 0.1 }), false); pool.rotation.x = -Math.PI / 2; pool.position.y = 0.68; this.scene.add(pool);
     const col = cyl(0.35, 0.5, 2, '#D8CBB0'); col.position.y = 1.4; this.scene.add(col);
@@ -788,8 +800,8 @@ export class IslandScene {
     const ok = (x: number, z: number) => {
       const r = Math.hypot(x, z);
       if (r > 54 || r < 10.5) return false;
-      if (Math.abs(x) < 4 || Math.abs(z) < 4) return false;
-      if (r > 29 && r < 36) return false;
+      if (Math.abs(x) < 4.8 || Math.abs(z) < 4.8) return false;
+      if (r > 29 && r < 36) return false; if (r < 11.5) return false;
       for (const c of this.colliders) if (Math.hypot(x - c.x, z - c.z) < c.r + 1.5) return false;
       return true;
     };
@@ -943,7 +955,7 @@ export class IslandScene {
       g.position.set(x, 1, z); g.visible = !this.got.has(`s${i}`); this.scene.add(g); this.stars.push({ id: `s${i}`, obj: g });
     });
     // твій ділянка
-    const plot = mesh(new THREE.PlaneGeometry(18, 16), toon('#A6D97F'), false); plot.rotation.x = -Math.PI / 2; plot.position.set(HOME.x, 0.03, HOME.z); this.scene.add(plot);
+    const plotM = toon('#A6D97F'); plotM.polygonOffset = true; plotM.polygonOffsetFactor = plotM.polygonOffsetUnits = -2; const plot = mesh(new THREE.PlaneGeometry(18, 16), plotM, false); plot.rotation.x = -Math.PI / 2; plot.position.set(HOME.x, 0.03, HOME.z); this.scene.add(plot);
     this.spots.push({ id: 'home', x: HOME.x, z: HOME.z - 7, r: 3, label: 'MY HOME' });
     this.setHouse(this.houseLevel); this.setYard(this.yardList);
   }
