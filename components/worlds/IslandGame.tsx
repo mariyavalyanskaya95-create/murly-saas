@@ -9,7 +9,7 @@ import { say, sfx } from '@/lib/worlds/sound';
 import { DIALOGS, nextDialog, type Dialog } from '@/lib/worlds/island-dialogs';
 import { CHAT, IslandNet, type NetPlayer } from '@/lib/worlds/island-net';
 import { checkChat, FILTER_MSG } from '@/lib/chat-filter';
-import { CAFE_MENU, CAT_SHAPES, CAT_EARS, CAT_TAILS, CAT_EYES, migrateSave, npcTrade, TRADE_WANTS, ROOM_TYPES, LAYOUTS, DEFAULT_TYPES, type HomeRooms } from '@/lib/worlds/island-data';
+import { SALON_ASK, CAFE_MENU, CAT_SHAPES, CAT_EARS, CAT_TAILS, CAT_EYES, migrateSave, npcTrade, TRADE_WANTS, ROOM_TYPES, LAYOUTS, DEFAULT_TYPES, type HomeRooms } from '@/lib/worlds/island-data';
 import { GRAMMAR, LISTEN_WORDS, LOST_PLACES, treasureHunt, PRODUCTS, SHELVES, DISHES, STARTER_PANTRY, cookResult, productOf } from '@/lib/worlds/island-data';
 import { ACT, EMOTES, FOODS, FRIDGE, INGREDIENTS, RECIPES, friendLevel, CHOICES, MELODIES, SKILLS, SKILL_OF, skillLevel, CROPS, cropProgress, JOKES, COMPLIMENTS, RPS, FURN_ALL, FURN_CATS } from '@/lib/worlds/island-data';
 import { ADDRS, DESTS, HAIR_COLOURS, PROFS, STARTER, STYLE, STYLE_COLOURS, profLevel, type StylePart } from '@/lib/worlds/island-data';
@@ -18,7 +18,7 @@ import { BADGES, CAFE_DRINK, CAFE_FOOD, CLOTHES, COLOURS, FISH, FLAVOURS, FRUIT,
 import type { IslandScene } from '@/lib/worlds/island-scene';
 import type { Spot } from '@/lib/worlds/island-data';
 
-type Panel = null | 'post' | 'cafe' | 'market' | 'store' | 'home' | 'help' | 'npc' | 'jobs' | 'bakery' | 'boutique' | 'taxi' | 'pier' | 'today' | 'icecream' | 'board' | 'errand' | 'keeper' | 'style' | 'career' | 'dialog' | 'fridge' | 'cook' | 'bag' | 'friend' | 'acts' | 'choose' | 'book' | 'wordgame' | 'garden' | 'skills' | 'joke' | 'nice' | 'rps' | 'school' | 'online' | 'chat' | 'shelf' | 'checkout' | 'tradenpc' | 'tradeplayer' | 'rooms';
+type Panel = null | 'post' | 'cafe' | 'market' | 'store' | 'home' | 'help' | 'npc' | 'jobs' | 'bakery' | 'boutique' | 'taxi' | 'pier' | 'today' | 'icecream' | 'board' | 'errand' | 'keeper' | 'style' | 'career' | 'dialog' | 'fridge' | 'cook' | 'bag' | 'friend' | 'acts' | 'choose' | 'book' | 'wordgame' | 'garden' | 'skills' | 'joke' | 'nice' | 'rps' | 'school' | 'online' | 'chat' | 'shelf' | 'checkout' | 'tradenpc' | 'tradeplayer' | 'rooms' | 'salon';
 type Tab = Cat | 'Furniture';
 const LS = 'murly-island-v1';
 const GUEST_COINS = 60;
@@ -60,6 +60,7 @@ export default function IslandGame() {
   const [thumbs, setThumbs] = useState<Record<string, string>>({});
   const [stab, setStab] = useState<StylePart | 'acc' | 'fur' | 'body'>('hair');
   const [dlg, setDlg] = useState<{ d: Dialog; node: string; react?: string; said?: string } | null>(null);
+  const [hairJob, setHairJob] = useState<null | { who: string; text: string; want: string; opts: string[] }>(null);
   const [order, setOrder] = useState<null | { q: string; opts: string[]; ok: string; tip: string; done: string; run: () => void; wrong: string | null }>(null);
   const [menu, setMenu] = useState<null | 'me' | 'friends'>(null); const [justBought, setJustBought] = useState<string | null>(null);
   const restored = useRef(false); const loaded = useRef(false); const [loadedN, setLoadedN] = useState(0);
@@ -251,7 +252,7 @@ export default function IslandGame() {
       x.fillStyle = '#8BCB62'; x.beginPath(); x.arc(W / 2, W / 2, 68 * k, 0, Math.PI * 2); x.fill();
       const P = (px: number, pz: number) => [W / 2 + px * k, W / 2 + pz * k] as const;
       const dot = (px: number, pz: number, col: string, r = 3) => { const [a, b] = P(px, pz); x.fillStyle = col; x.beginPath(); x.arc(a, b, r, 0, Math.PI * 2); x.fill(); };
-      const COL: Record<string, string> = { post: '#E5484D', cafe: '#F76AA8', store: '#7C66DC', market: '#F5862D', home: '#FFC53D', supermarket: '#E5484D', bakery: '#C8925A', boutique: '#30A46C', taxi: '#FFE08A', pier: '#3E7BFA', icecream: '#F76AA8', board: '#8B5E34' };
+      const COL: Record<string, string> = { post: '#E5484D', cafe: '#F76AA8', store: '#7C66DC', market: '#F5862D', home: '#FFC53D', supermarket: '#E5484D', bakery: '#C8925A', boutique: '#30A46C', salon: '#D6409F', taxi: '#FFE08A', pier: '#3E7BFA', icecream: '#F76AA8', board: '#8B5E34' };
       x.fillStyle = '#B8865A'; const [p1, p2] = P(-1.5, -66); x.fillRect(p1, p2, 3 * k, 20 * k);
       s.spots.forEach((sp) => { const k2 = sp.id.replace('enter-', ''); if (COL[k2] && Math.hypot(sp.x, sp.z) < 90) dot(sp.x, sp.z, COL[k2], 4); });
       if (s.markerOn) dot(s.marker.position.x, s.marker.position.z, '#FFC53D', 6);
@@ -279,6 +280,7 @@ export default function IslandGame() {
     { id: 'market', en: 'Fruit Market', what: 'Give customers the right number of fruit.' },
     { id: 'bakery', en: 'Bakery', what: 'Bake the cake the customer wants.' },
     { id: 'boutique', en: 'Boutique', what: 'Find the clothes and colours people ask for.' },
+    { id: 'salon', en: 'Hair Salon', what: 'Give customers the hairstyle they ask for. Get a new look!' },
     { id: 'taxi', en: 'Taxi', what: 'Drive passengers to the right place.' },
     { id: 'pier', en: 'Fishing pier', what: 'Solve word riddles and catch fish.' },
     { id: 'icecream', en: 'Ice cream stand', what: 'Make ice creams on the beach.' },
@@ -327,6 +329,7 @@ export default function IslandGame() {
     }
     if (s.id === 'home' && saveRef.current.house > 0) { sc.current?.enterHome(); setInside('home'); say('Welcome home!'); return; }
     if (s.id === 'bakery') { if (!cake) { const o = cakeOrder(saveRef.current.jobs.bakery ?? 0); setCake(o); setCakeSel({}); say(o.text); } setPanel('bakery'); return; }
+    if (s.id === 'salon') { if (!hairJob) newHairJob(); else say(hairJob.text); setPanel('salon'); return; }
     if (s.id === 'boutique') { if (!dress) { const o = dressOrder(saveRef.current.jobs.boutique ?? 0); setDress(o); setRack([]); say(o.text); } setPanel('boutique'); return; }
     if (s.id === 'taxi') { if (taxi?.driving) { flash(`Your passenger wants to go to ${taxi.dest.name}.`, false); return; } if (!taxi) { const o = taxiTask(saveRef.current.jobs.taxi ?? 0); setTaxi({ ...o, at: 0, hint: false, driving: false }); say(o.text); } setPanel('taxi'); return; }
     if (s.id === 'pier') { newRiddle(); setPanel('pier'); return; }
@@ -578,6 +581,22 @@ export default function IslandGame() {
     if (!order) return;
     if (o !== order.ok) { sfx.bad(); setOrder({ ...order, wrong: o }); return; }
     say(o); const r = order.run; const d = order.done; setOrder(null); flash(d); window.setTimeout(r, 600);
+  };
+  // перукарня: клієнт просить зачіску, треба вибрати правильну з чотирьох картинок
+  const newHairJob = () => {
+    const pool = STYLE.filter((x) => x.part === 'hair' && x.id !== 'hair-none');
+    const want = pool[Math.floor(Math.random() * pool.length)];
+    const others = pool.filter((x) => x.id !== want.id).sort(() => Math.random() - 0.5).slice(0, 3);
+    const t = SALON_ASK[Math.floor(Math.random() * SALON_ASK.length)];
+    const x = /^(bob|bun)$/.test(want.en) ? `a ${want.en}` : want.en;
+    const text = t.replace('{x}', x).replace('{X}', x[0].toUpperCase() + x.slice(1));
+    setHairJob({ who: ['Mr Fluff', 'Lily', 'Captain Paws', 'Grandma Whiskers', 'Tom', 'Daisy', 'Professor Meow', 'Ruby'][Math.floor(Math.random() * 8)], text, want: want.id, opts: [want, ...others].sort(() => Math.random() - 0.5).map((o) => o.id) }); say(text);
+    wantThumbs(pool.map((p) => p.id));
+  };
+  const pickHair = (id: string) => {
+    if (!hairJob) return;
+    if (id !== hairJob.want) { sfx.bad(); const en = STYLE.find((x) => x.id === id)?.en ?? ''; flash(`That is ${en}. Listen again!`, false); return; }
+    say('I love it! Thank you!'); setHairJob(null); setPanel(null); done('salon', 4, 'Happy customer.');
   };
   const cookIt = () => {
     const r = RECIPES.find((x) => x.id === recipe); if (!r) return;
@@ -1165,6 +1184,19 @@ export default function IslandGame() {
               <div className="il-grid">{TOPPINGS.map((t) => <button key={t} type="button" className={`il-pick ${cakeSel.topping === t ? 'on' : ''}`} onClick={() => { sfx.pick(); setCakeSel({ ...cakeSel, topping: t }); }}>{t}</button>)}</div>
               <button type="button" className="il-go" onClick={bakeCake} disabled={!cakeSel.flavour || !cakeSel.layers || !cakeSel.topping}>Bake it!</button>
               <div className="il-snacks"><span>Buy a snack for your bag:</span><button type="button" onClick={() => buySnack('cake', 2)}>slice of cake <i className="il-coin" /> 2</button><button type="button" onClick={() => buySnack('cookie', 1)}>cookie <i className="il-coin" /> 1</button></div>
+            </>}
+
+            {panel === 'salon' && hairJob && <>
+              <h2>Hair Salon</h2>
+              <div className="il-shopbtns">
+                <button type="button" className="il-go il-go--pink" onClick={() => { setStab('hair'); setPanel('style'); say('Welcome! Which hairstyle do you like?'); }}>Get a new hairstyle</button>
+              </div>
+              <p className="il-sub il-sub--job">Work: help a customer</p>
+              <p className="il-who">{hairJob.who} says:</p>
+              <p className="il-say">&ldquo;{hairJob.text}&rdquo; <button type="button" className="il-mini" onClick={() => say(hairJob.text)}>Listen</button></p>
+              <p className="il-sub">Choose the right hairstyle</p>
+              <div className="il-shop il-shop--sm">{hairJob.opts.map((id) => (
+                <button key={id} type="button" className="il-item" onClick={() => pickHair(id)}>{thumbs[id] ? <img className="il-thumb" src={thumbs[id]} alt="" /> : <i className="il-thumb-wait" />}</button>))}</div>
             </>}
 
             {panel === 'boutique' && dress && <>
