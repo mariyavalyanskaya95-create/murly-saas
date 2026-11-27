@@ -3696,7 +3696,8 @@ details.bb-tip > p:last-child{margin-bottom:22px}
 .lc:hover .lc__pic img{transform:scale(1.05)}
 .lc__pic .mu-ic,.lc__pic svg{width:48px;height:48px}
 .lc__kind{font-size:14px;color:var(--mu-ink-muted);margin-top:4px}
-.lc__title{margin:0;font-size:21px;line-height:1.2;font-weight:800}
+.lc__title{margin:0;font-size:21px;line-height:1.2;font-weight:800;overflow-wrap:anywhere;min-width:0}
+.lc{min-width:0}.lc__about{overflow-wrap:anywhere}
 .lc__about{margin:0;font-size:15px;line-height:1.5;color:#333;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
 .lc__tags{display:flex;flex-wrap:wrap;gap:6px}
 .lc__tag{background:#f3eefc;border-radius:999px;padding:4px 12px;font-size:13px;font-weight:600}
