@@ -9,7 +9,7 @@ import { say, sfx } from '@/lib/worlds/sound';
 import { DIALOGS, nextDialog, type Dialog } from '@/lib/worlds/island-dialogs';
 import { CHAT, IslandNet, type NetPlayer } from '@/lib/worlds/island-net';
 import { checkChat, FILTER_MSG } from '@/lib/chat-filter';
-import { CAT_SHAPES, CAT_EARS, CAT_TAILS, CAT_EYES, migrateSave, npcTrade, TRADE_WANTS, ROOM_TYPES, LAYOUTS, DEFAULT_TYPES, type HomeRooms } from '@/lib/worlds/island-data';
+import { CAFE_MENU, CAT_SHAPES, CAT_EARS, CAT_TAILS, CAT_EYES, migrateSave, npcTrade, TRADE_WANTS, ROOM_TYPES, LAYOUTS, DEFAULT_TYPES, type HomeRooms } from '@/lib/worlds/island-data';
 import { GRAMMAR, LISTEN_WORDS, LOST_PLACES, treasureHunt, PRODUCTS, SHELVES, DISHES, STARTER_PANTRY, cookResult, productOf } from '@/lib/worlds/island-data';
 import { ACT, EMOTES, FOODS, FRIDGE, INGREDIENTS, RECIPES, friendLevel, CHOICES, MELODIES, SKILLS, SKILL_OF, skillLevel, CROPS, cropProgress, JOKES, COMPLIMENTS, RPS, FURN_ALL, FURN_CATS } from '@/lib/worlds/island-data';
 import { ADDRS, DESTS, HAIR_COLOURS, PROFS, STARTER, STYLE, STYLE_COLOURS, profLevel, type StylePart } from '@/lib/worlds/island-data';
@@ -537,6 +537,7 @@ export default function IslandGame() {
   const mood = (() => { const n = needs; if (n.food < 25) return 'Hungry'; if (n.energy < 25) return 'Tired'; if (n.fun < 25) return 'Bored'; const avg = (n.food + n.energy + n.fun) / 3; return avg > 70 ? 'Happy' : avg > 45 ? 'OK' : 'Grumpy'; })();
   const foodOf = (id: string): { en: string; a: string; food: number; fun: number; c: string } | null => {
     if (id.startsWith('dish:')) { const d0 = DISHES.find((x) => `dish:${x.id}` === id); if (d0) return { en: d0.en.replace(/^an? /, ''), a: /^an? /.test(d0.en) ? d0.en.split(' ')[0] : '', food: d0.food, fun: d0.fun, c: d0.c }; }
+    { const cm = CAFE_MENU.find((x) => x.id === id); if (cm && id !== 'croissant') return { en: cm.en, a: cm.a, food: cm.food, fun: cm.fun, c: cm.c }; }
     { const pr = productOf(id); if (pr) return { en: pr.en, a: pr.a, food: pr.food || 5, fun: 0, c: pr.c }; }
     return foodOf0(id);
   };
@@ -547,6 +548,15 @@ export default function IslandGame() {
     addNeeds({ food: f.food, fun: f.fun }); sfx.coin(); sc.current?.bubble('Yum!'); tell(`I'm eating ${f.a ? `${f.a} ${f.en}` : f.en}. Delicious!`);
   };
   const toBag = (id: string) => { const b = { ...(saveRef.current.bag ?? {}) }; b[id] = (b[id] ?? 0) + 1; persist({ ...saveRef.current, bag: b }); sfx.pick(); const f = foodOf(id); flash(`${f?.en ?? id} is in your bag now.`); };
+  // вітрина кафе й пекарні: картинка, ціна, «Buy» (у сумку)
+  const cafeMenu = (kinds: ('drink' | 'cake')[], title: string) => (
+    <div className="il-menu">
+      <p className="il-sub">{title}</p>
+      <div className="il-shop il-shop--sm">{CAFE_MENU.filter((m) => kinds.includes(m.kind)).map((m) => (
+        <div key={m.id} className="il-item">{thumbs[m.id] ? <img className="il-thumb" src={thumbs[m.id]} alt="" /> : <i className="il-thumb-wait" />}<span>{m.en}</span>
+          <button type="button" className="buy" onClick={() => { void buySnack(m.id, m.price); say(`Can I have ${m.a} ${m.en}, please?`); }}><i className="il-coin" /> {m.price}</button></div>))}</div>
+    </div>
+  );
   const buySnack = async (id: string, price: number) => { const f = foodOf(id); if (!f) return; if (await buy({ id: `snack-${id}-${Date.now()}`, price, en: f.en })) { const s0 = saveRef.current; persist({ ...s0, owned: s0.owned.filter((x) => !x.startsWith('snack-')), bag: { ...(s0.bag ?? {}), [id]: (s0.bag?.[id] ?? 0) + 1 } }); } };
   const cookIt = () => {
     const r = RECIPES.find((x) => x.id === recipe); if (!r) return;
@@ -804,6 +814,7 @@ export default function IslandGame() {
     if (panel === 'store' && tab === 'Furniture' && fcat === 'special') wantThumbs(FURN_ALL.filter((f) => f.f.startsWith('x-')).map((f) => f.f));
     if (decor.on) wantThumbs(FURN_ALL.filter((f) => f.f.startsWith('x-')).map((f) => f.f));
     if (panel === 'home') wantThumbs([...SHOP.filter((x) => save.owned.includes(x.id)).map((x) => x.id), ...FURN_ALL.filter((f) => f.f.startsWith('x-') && save.owned.includes(`furn-${f.f}`)).map((f) => f.f)]);
+    if (panel === 'cafe' || panel === 'bakery') wantThumbs(CAFE_MENU.map((m) => m.id));
     if (panel === 'style') wantThumbs(stab === 'acc' ? SHOP.filter((x) => x.cat === 'Clothes').map((x) => x.id) : stab === 'fur' ? FUR.map((f) => f.id) : STYLE.filter((x) => x.part === stab).map((x) => x.id));
   }, [panel, tab, stab, fcat, decor.on]); // eslint-disable-line react-hooks/exhaustive-deps
   // ---- де зупинився: позиція, кімната, завдання ----
@@ -1076,6 +1087,8 @@ export default function IslandGame() {
 
             {panel === 'cafe' && cafe && <>
               <h2>Cat Cafe</h2>
+              {cafeMenu(['drink', 'cake'], 'Buy a drink or a cake for your bag')}
+              <p className="il-sub il-sub--job">Work: make food for a customer</p>
               <p className="il-who">{cafe.who} says:</p>
               <p className="il-say">&ldquo;{cafe.text}&rdquo; <button type="button" className="il-mini" onClick={() => say(cafe.text)}>Listen</button></p>
               <p className="il-sub">Sandwich</p>
@@ -1111,6 +1124,8 @@ export default function IslandGame() {
 
             {panel === 'bakery' && cake && <>
               <h2>Bakery</h2>
+              {cafeMenu(['cake', 'drink'], 'Buy cakes and drinks for your bag')}
+              <p className="il-sub il-sub--job">Work: bake a cake for a customer</p>
               <p className="il-who">{cake.who} says:</p>
               <p className="il-say">&ldquo;{cake.text}&rdquo; <button type="button" className="il-mini" onClick={() => say(cake.text)}>Listen</button></p>
               <div className="il-cake">{Array.from({ length: cakeSel.layers ?? 1 }).map((_, i) => <span key={i} style={{ background: FLAVOURS.find((f) => f.id === cakeSel.flavour)?.color ?? '#EDE6D6', width: `${120 - i * 22}px` }} />)}<em>{cakeSel.topping ?? ''}</em></div>
@@ -1126,6 +1141,12 @@ export default function IslandGame() {
 
             {panel === 'boutique' && dress && <>
               <h2>Boutique</h2>
+              <div className="il-shopbtns">
+                <button type="button" className="il-go" onClick={() => { setStab('top'); setPanel('style'); }}>Buy clothes and shoes</button>
+                <button type="button" className="il-go il-go--pink" onClick={() => { setStab('hair'); setPanel('style'); say('Welcome to the hair salon! Which hairstyle do you like?'); }}>Hair salon</button>
+                <button type="button" className="il-go il-go--mint" onClick={() => { setStab('body'); setPanel('style'); }}>Change my body</button>
+              </div>
+              <p className="il-sub il-sub--job">Work: help a customer</p>
               <p className="il-who">{dress.who} says:</p>
               <p className="il-say">&ldquo;{dress.text}&rdquo; <button type="button" className="il-mini" onClick={() => say(dress.text)}>Listen</button></p>
               <p className="il-sub">1. Choose a colour</p>
