@@ -4981,3 +4981,7 @@ textarea.t-parent__url { width: 300px; font: inherit; font-size: 13px; }
 @media (max-width: 380px) { .mu-nav__login { padding: 6px 8px; font-size: 13px; } }
 .mu-mega__auth.mu-mega__auth--top { display: none; margin: 0 0 14px; padding-top: 0; border-top: 0; }
 @media (max-width: 1080px) { .mu-mega__auth.mu-mega__auth--top { display: flex; gap: 10px; flex-wrap: wrap; } }
+/* мем у перегляді уроку не розпирає сторінку на телефоні */
+.ls-meme figcaption { min-width: 0; } .ls-meme b { overflow-wrap: anywhere; }
+@media (max-width: 560px) { .ls-meme { flex-direction: column; text-align: center; padding: 12px; } .ls-meme__kit { width: 90px; } .ls-meme b { font-size: 16px; } }
+.t-card.le-view { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
