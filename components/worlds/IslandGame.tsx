@@ -286,6 +286,8 @@ export default function IslandGame() {
     { id: 'grandma', en: 'Grandma Rose', what: 'Visit any house and help Grandma Rose.' },
     { id: 'lighthouse', en: 'Lighthouse', what: 'Answer Captain Ted’s questions about time and weather.' },
     { id: 'store', en: 'Murly Store', what: 'Buy clothes, furniture, a house, rides and pets.' },
+    { id: 'school', en: 'Murly School', what: 'Learn English words and play with Miss Apple.' },
+    { id: 'tent', en: 'Campsite', what: 'Sit by the campfire, read a book and sleep in the tent.' },
     { id: 'home', en: 'My home', what: 'Your house and yard.' },
   ];
   const showWay = (id: string) => { if (sc.current?.inside) { sc.current.exitHome(); setInside(null); } const p = id === 'grandma' ? sc.current?.spotPos('door-a2') : sc.current?.spotPos(`enter-${id}`) ?? sc.current?.spotPos(id); if (p) { sc.current?.setMarker(p.x, p.z); sc.current?.walkTo(p.x, p.z); } setPanel(null); };
