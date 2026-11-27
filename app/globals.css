@@ -4945,7 +4945,7 @@ textarea.t-parent__url { width: 300px; font: inherit; font-size: 13px; }
 .il-guide small { font-size: 12.5px; color: #4A4A4A; line-height: 1.35; }
 .il-guide div { display: flex; gap: 6px; margin-top: 4px; }
 .il-mini--ghost { background: transparent; }
-.il-today--low { top: 196px; }
+.il-today--low { top: 218px; }
 @media (max-width: 720px) { .il-guide { width: 220px; top: 58px; } }
 .il.is-touch .il-guide { top: 64px; }
 .il:has(.il-guide).is-touch .il-needs { top: 232px; }
