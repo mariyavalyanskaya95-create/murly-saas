@@ -4985,3 +4985,5 @@ textarea.t-parent__url { width: 300px; font: inherit; font-size: 13px; }
 .ls-meme figcaption { min-width: 0; } .ls-meme b { overflow-wrap: anywhere; }
 @media (max-width: 560px) { .ls-meme { flex-direction: column; text-align: center; padding: 12px; } .ls-meme__kit { width: 90px; } .ls-meme b { font-size: 16px; } }
 .t-card.le-view { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+/* наліпки: стрічка вибору прокручується всередині, сторінка не роз'їжджається на телефоні */
+.sr-tray{min-width:0;max-width:100%}.sr-tray__list{max-width:100%}
