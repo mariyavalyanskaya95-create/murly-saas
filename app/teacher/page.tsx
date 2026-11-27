@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Icon from '@/components/Icon';
 import LessonRow from '@/components/teacher/LessonRow';
 import { LessonForm, StudentForm } from '@/components/teacher/forms';
@@ -13,6 +13,8 @@ export default function TeacherToday() {
   const t = useT();
   const { data, ready } = useTeacher();
   const [open, setOpen] = useState<'student' | 'lesson' | null>(null);
+  // з листа «Додайте першого учня» (?start=student) одразу відкриваємо форму
+  useEffect(() => { try { if (new URLSearchParams(window.location.search).get('start') === 'student') setOpen('student'); } catch { /* */ } }, []);
   if (!ready) return null;
 
   const today = new Date();
@@ -56,6 +58,14 @@ export default function TeacherToday() {
       {open === 'student' && <div className="t-card"><h2>{t({ uk: 'Новий учень', ru: 'Новый ученик', en: 'New student' })}</h2><StudentForm onDone={() => setOpen(null)} /></div>}
       {open === 'lesson' && <div className="t-card"><h2>{t({ uk: 'Нове заняття', ru: 'Новое занятие', en: 'New lesson' })}</h2><LessonForm onDone={() => setOpen(null)} /></div>}
 
+      {data.students.length === 0 && open !== 'student' && (
+        <section className="t-card t-first">
+          <h2>{t({ uk: 'Почніть з одного учня', ru: 'Начните с одного ученика', en: 'Start with one student' })}</h2>
+          <p>{t({ uk: 'Це займе хвилину: потрібне лише ім’я. Учень одразу отримає свій кабінет з домашкою, словником та іграми, а у вас з’являться розклад, оплати й статистика.', ru: 'Это займёт минуту: нужно только имя. Ученик сразу получит свой кабинет с домашкой, словарём и играми, а у вас появятся расписание, оплаты и статистика.', en: 'It takes a minute: you only need a name. Your student gets their own space with homework, words and games, and you get a schedule, payments and progress.' })}</p>
+          <button type="button" className="mu-btn mu-btn--lime t-first__go" onClick={() => setOpen('student')}>{t({ uk: '+ Додати першого учня', ru: '+ Добавить первого ученика', en: '+ Add your first student' })}</button>
+          <p className="t-first__alt">{t({ uk: 'Або спершу подивіться ', ru: 'Или сначала посмотрите ', en: 'Or first look at ' })}<Link href="/teacher/lessons">{t({ uk: 'готові уроки', ru: 'готовые уроки', en: 'ready-made lessons' })}</Link>{t({ uk: ' чи ', ru: ' или ', en: ' or ' })}<Link href="/teacher/games">{t({ uk: 'ігри для заняття', ru: 'игры для занятия', en: 'games for class' })}</Link>.</p>
+        </section>
+      )}
       <Onboarding onAddStudent={() => setOpen('student')} onAddLesson={() => setOpen('lesson')} />
 
       <div className="t-stats">
