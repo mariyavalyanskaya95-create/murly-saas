@@ -2,6 +2,7 @@
 // Сторінка готового уроку: картка (рівень, теги, що буде на уроці) і весь урок на одній сторінці.
 // Перемикач «Версія учня / Версія вчителя»: у вчителя нотатки до етапів і всі відповіді.
 import Link from 'next/link';
+import { kitUrl } from '@/lib/kit-lessons';
 import { useState } from 'react';
 import Icon from '@/components/Icon';
 import LessonView from './LessonView';
@@ -32,6 +33,7 @@ export default function LessonPublic({ plan, isTeacher, signedIn }: { plan: Plan
             <span className="le-tag"><Icon id="d-clock" />{plan.duration ?? 60} {t({ uk: 'хв', ru: 'мин', en: 'min' })}</span>
           </div>
           <h1>{plan.title}</h1>
+          {kitUrl(plan.id) && <a href={kitUrl(plan.id)!} target="_blank" rel="noreferrer" className="mu-btn mu-btn--lime" style={{ margin: '10px 0' }}>{t({ uk: 'Відкрити урок', ru: 'Открыть урок', en: 'Open lesson' })}</a>}
           {aims.length > 0 && (
             <>
               <h2 className="lp-sub">{t({ uk: 'Що буде на уроці', ru: 'Что будет на уроке', en: 'In this lesson' })}</h2>

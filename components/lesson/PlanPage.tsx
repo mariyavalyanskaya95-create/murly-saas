@@ -1,5 +1,6 @@
 'use client';
 import Link from 'next/link';
+import { kitUrl } from '@/lib/kit-lessons';
 import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import Icon from '../Icon';
@@ -212,6 +213,7 @@ export default function PlanPage({ id, libPlans }: { id: string; libPlans?: Reco
         <div>
           <span className="le-head__meta">{plan.level} · {ageLabel(plan.age, t.lang)}{plan.topic ? ` · ${plan.topic}` : ''}{lib ? ` · ${t({ uk: 'Бібліотека Murly', ru: 'Библиотека Murly', en: 'Murly library' })}` : ''}</span>
           <h1>{plan.title || t({ uk: 'Без назви', ru: 'Без названия', en: 'Untitled' })}</h1>
+          {kitUrl(plan.id) && <a href={kitUrl(plan.id)!} target="_blank" rel="noreferrer" className="mu-btn mu-btn--lime" style={{ margin: '10px 0' }}>{t({ uk: 'Відкрити урок', ru: 'Открыть урок', en: 'Open lesson' })}</a>}
           <span className="le-head__meta">{plan.duration ? `${plan.duration} ${t({ uk: 'хв', ru: 'мин', en: 'min' })} · ` : ''}{plural(plan.blocks.length, t.lang, BLOCKS)} · {plural(points, t.lang, POINTS)} {t({ uk: 'у вправах', ru: 'в упражнениях', en: 'in exercises' })}</span>
         </div>
         <div className="t-head__actions">
