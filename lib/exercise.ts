@@ -190,7 +190,7 @@ export function normalizeSections<S extends Section>(sections: S[] | undefined |
       ? ({ ...s0, type: 'open', tasks: s0.tasks.map((t) => ({ prompt: (t.parts ?? []).map((p) => (p.t === 'text' ? p.v : '')).join('').trim() })) } as typeof s0)
       : s0;
     // «Відкриті питання» з пропусками ____ показуємо як речення з полем у пропуску (перевіряє вчитель)
-    if (s && s.type === 'open' && Array.isArray(s.tasks) && s.tasks.length && s.tasks.every((t) => BLANK.test(t.prompt || ''))) {
+    if (s && s.type === 'open' && Array.isArray(s.tasks) && s.tasks.length && s.tasks.every((t) => /_{2,}/.test(t.prompt || ''))) {
       return { ...s, type: 'gap', tasks: s.tasks.map((t) => {
         const parts: Part[] = [];
         (t.prompt || '').split(/(_{2,}|…+|\.{3,})/).forEach((chunk) => {
