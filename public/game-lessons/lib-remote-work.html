@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Working from home: freedom or trap? (B2) | Murly</title>
+<link rel="icon" href="/favicon.svg">
+<meta name="description" content="Послухаємо дискусію двох колег про віддалену роботу
+Вивчимо фрази для обговорення переваг і недоліків
+Потренуємо I’d rather, I’d prefer і prefer… to…
+">
+<link rel="canonical" href="https://murly.com.ua/game-lessons/lib-remote-work.html">
+<style>
+:root{--paper:#F3F0EA;--ink:#17181C;--violet:#3D4A7A;--lav:#D9D3C7;--pink:#E9C9BC;--green:#D4E2CF;--white:#fff;--muted:#62646B;--accent:#B5482F}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+/* hero */
+.hero{background:linear-gradient(rgba(16,17,22,.5),rgba(16,17,22,.72)),url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1400&q=70&auto=format&fit=crop");color:#fff;padding:70px 18px 56px;text-align:center;position:relative;overflow:hidden}
+.hero .kicker{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#E9C9BC;font-weight:700}
+.hero .cr{position:absolute;right:12px;bottom:8px;font-size:11px;color:rgba(255,255,255,.6)}
+.hero h1{margin:8px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(36px,6vw,64px);letter-spacing:-.5px;font-weight:700}
+.hero h1 span{color:var(--pink);font-style:italic}
+.hero p{margin:12px 0 0;font-size:17px;color:#e6e2da}
+.hero .flags{display:flex;justify-content:center;gap:12px;margin-top:22px;flex-wrap:wrap}
+.hero .flags svg{width:40px;height:26px;border-radius:3px;opacity:.9}
+/* sections */
+section{margin-top:30px;background:var(--white);border-radius:18px;padding:28px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.05)}
+section h2{margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tag{font-family:"Segoe UI",system-ui,sans-serif;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--paper);color:var(--accent);text-transform:uppercase;letter-spacing:1px}
+.lk-n{display:inline-grid;place-items:center;width:42px;height:42px;background:var(--violet);color:#fff;border-radius:50%;font-size:21px;flex:none}
+.lk-mode{font-size:13px;font-weight:700;border:2px dashed var(--lav);color:var(--muted);padding:2px 10px;border-radius:999px}
+.lk-ins{font-size:17px;background:var(--paper);border-radius:12px;padding:10px 14px;margin:6px 0 18px}
+.lk-sub{margin:24px 0 10px;font-size:19px}
+.btn{font:inherit;font-weight:700;border:0;border-radius:999px;background:var(--ink);color:#fff;padding:10px 20px;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+.btn.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+/* teacher */
+.lk-tbtn{position:fixed;right:16px;top:70px;z-index:45;font:inherit;font-weight:800;border:2px solid var(--ink);background:var(--pink);padding:8px 14px;border-radius:12px;cursor:pointer}
+body.teacher .lk-tbtn{background:var(--green)}
+.lk-ans,.lk-tnote{display:none}
+body.teacher .lk-ans{display:block;margin-top:8px;font-weight:700;color:#1d5a12;background:var(--green);border-left:5px solid #5aa845;padding:6px 10px;font-size:15px;border-radius:6px}
+body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff3f7;border-left:5px solid #d9789a;padding:8px 12px;font-size:15px;border-radius:6px}
+/* overview */
+.lk-overview ul{font-size:17px;line-height:1.7;margin:6px 0 16px}
+.lk-stages{display:flex;flex-wrap:wrap;gap:8px}
+.lk-stages a{display:grid;border-radius:14px;padding:8px 12px;text-decoration:none;color:var(--ink);background:var(--paper);font-weight:700;min-width:100px}
+.lk-stages a span{text-transform:capitalize}
+.lk-stages a b{font-size:20px;color:var(--violet)}
+.lk-stages a small{font-weight:600;color:var(--muted)}
+/* warm-up */
+.taxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tax{background:var(--paper);border-radius:18px;padding:16px;display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center}
+.tax svg{width:56px;height:56px}
+.tax b{display:block;font-size:17px}
+.tax small{color:var(--muted);font-size:14px}
+.qs{display:grid;gap:10px;margin-top:18px}
+.qs div{background:var(--green);border-radius:14px;padding:10px 16px;font-size:18px;font-weight:600}
+.phr{background:#fff7e8;border-radius:14px;padding:12px 16px;margin-top:16px;font-size:15px}
+.phr ul{margin:6px 0 0;padding-left:18px}
+.fic{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:16px}
+.fic .c{background:#fff;border:2px solid #1B2140;border-radius:16px;padding:14px 16px;box-shadow:3px 3px 0 #1B2140}
+.fic .c b{display:block;font-size:18px;line-height:1.35;margin-bottom:8px}
+.fic .c .k{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.fic .c .k span{font-size:13px;background:#eef1fb;border-radius:999px;padding:3px 10px}
+.fic .c details{margin-top:8px;font-size:15px;color:#3b4160}
+.fic .c summary{cursor:pointer;font-weight:700;color:#534AB7}
+.fi-n{display:inline-flex;width:28px;height:28px;border-radius:50%;background:#2F4BA0;color:#fff;align-items:center;justify-content:center;font-size:14px;margin-right:6px}
+/* vocab */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:12px}
+.vc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:2px solid transparent;transition:border-color .2s,transform .2s}
+.vc:hover{border-color:var(--violet);transform:translateY(-2px)}
+.vc b{font-size:18px;display:flex;align-items:center;gap:8px}
+.vc b svg{width:20px;height:20px;flex:none;color:var(--violet)}
+.vc p{margin:6px 0 0;font-size:14px;color:var(--muted)}
+.vc em{display:block;margin-top:6px;font-size:14px;color:var(--violet);font-style:normal;font-weight:600}
+.vc.played{background:#e6ecfb}
+/* grammar */
+.gram{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.gb{border-radius:18px;padding:16px}
+.gb h3{margin:0 0 6px;font-size:19px}
+.gb .f{display:inline-block;background:#fff;border-radius:8px;padding:3px 10px;font-weight:800;margin:4px 0;font-family:Consolas,monospace;font-size:15px}
+.gb p{margin:6px 0 0;font-size:15px}
+.g1{background:var(--pink)}.g2{background:var(--lav)}.g3{background:var(--green)}.g4{background:#fbe7c6}
+.warn{margin-top:14px;background:var(--ink);color:#fff;border-radius:14px;padding:12px 16px;font-size:16px}
+.warn b{color:var(--pink)}
+.q{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:2px dashed var(--paper);font-size:18px}
+.q:last-child{border-bottom:0}
+.q .n{width:32px;height:32px;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;border-radius:50%;font-weight:800;font-size:15px}
+.opt{font:inherit;font-size:16px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:10px;padding:4px 12px;cursor:pointer;margin:0 2px}
+.opt.ok{background:var(--green);border-color:#5aa845}
+.opt.bad{background:var(--pink);animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+/* tour */
+.tour{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.law{border-radius:22px;overflow:hidden;background:var(--paper);display:flex;flex-direction:column}
+.law .pic{height:150px;display:grid;place-items:center;position:relative}
+.law .pic svg.ill{width:130px;height:130px}
+.law .pic svg.fl{position:absolute;left:14px;top:14px;width:46px;height:30px;border-radius:5px;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.law .pic .no{position:absolute;right:14px;top:14px;background:var(--ink);color:#fff;font-weight:800;border-radius:999px;padding:2px 10px;font-size:13px}
+.law .body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.law h3{margin:0;font-size:20px}
+.law .where{font-size:13px;font-weight:800;color:var(--violet);text-transform:uppercase;letter-spacing:1px}
+.law p{margin:0;font-size:16px}
+.law .why{font-size:14px;color:var(--muted)}
+.law .dq{margin-top:auto;background:#fff;border-radius:12px;padding:8px 12px;font-weight:700;font-size:15px}
+.law .lsn{font:inherit;font-size:13px;font-weight:700;background:none;border:0;color:var(--violet);cursor:pointer;padding:0;text-align:left}
+/* game */
+.game{max-width:720px;margin:0 auto;text-align:center}
+.score{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.score span{background:var(--paper);border-radius:999px;padding:6px 16px;font-weight:800}
+.stmt{background:var(--ink);color:#fff;border-radius:22px;padding:28px 24px;min-height:150px;display:grid;place-items:center;font-size:23px;font-weight:700;position:relative}
+.stmt small{position:absolute;top:12px;left:18px;font-size:13px;color:var(--lav);font-weight:700}
+.choose{display:flex;justify-content:center;gap:14px;margin:18px 0}
+.choose button{font:inherit;font-size:18px;font-weight:700;border:2px solid var(--ink);border-radius:999px;padding:12px 28px;cursor:pointer}
+.choose .bl{background:var(--green)}.choose .bm{background:var(--pink)}
+.choose button:disabled{opacity:.5;cursor:default}
+.verdict{min-height:70px;font-size:17px;background:var(--paper);border-radius:16px;padding:12px 16px;text-align:left}
+.verdict b.r{color:#2d7a1d}.verdict b.w{color:#b23a62}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.dots i{width:14px;height:14px;border-radius:50%;background:var(--paper)}
+.dots i.r{background:#7cc663}.dots i.w{background:#e47b9f}.dots i.c{outline:3px solid var(--violet)}
+.final{font-size:22px;font-weight:800;color:var(--violet)}
+/* invent */
+.inv{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.frames{display:grid;gap:10px}
+.frames label{font-size:14px;font-weight:700;color:var(--muted)}
+.frames select,.frames input{font:inherit;width:100%;padding:8px 10px;border:2px solid var(--lav);border-radius:10px;background:#fff}
+.poster{background:var(--paper);border:3px solid var(--ink);border-radius:20px;padding:22px;text-align:center;min-height:260px;display:flex;flex-direction:column;gap:10px;justify-content:center}
+.poster .seal{width:70px;height:70px;margin:0 auto}
+.poster h3{margin:0;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--violet)}
+.poster .rule{font-size:22px;font-weight:800}
+.poster .pen{font-size:16px;color:var(--muted)}
+.ideas{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ideas span{background:var(--pink);border-radius:999px;padding:5px 12px;font-size:14px;font-weight:600}
+/* roleplay */
+.rp{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.role{border-radius:20px;padding:18px}
+.role h3{margin:0 0 6px;display:flex;align-items:center;gap:10px}
+.role h3 svg{width:42px;height:42px}
+.role ul{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.r1{background:var(--lav)}.r2{background:var(--green)}
+.scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:16px}
+.sc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:3px solid transparent}
+.sc.on{border-color:var(--violet);background:#fff}
+.sc b{display:block;font-size:17px;margin-bottom:4px}
+.sc p{margin:0;font-size:15px}
+.timer{font-size:40px;font-weight:800;text-align:center;margin:14px 0 6px;color:var(--violet)}
+.ctr{text-align:center}
+/* homework */
+.hwb{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hwc{background:var(--paper);border-radius:18px;padding:18px}
+.hwc h3{margin:0 0 8px}
+.hwc ol,.hwc ul{margin:6px 0 0;padding-left:20px;line-height:1.7}
+.hwc textarea{width:100%;min-height:150px;font:inherit;border:2px solid var(--lav);border-radius:12px;padding:10px;margin-top:10px}
+.end{text-align:center;background:var(--ink);color:#fff;box-shadow:none}
+.end h2{justify-content:center}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(140px);background:var(--ink);color:#fff;font-weight:800;padding:12px 22px;border-radius:14px;transition:transform .3s;z-index:50}
+.toast.show{transform:translateX(-50%) translateY(0)}
+/* photos */
+.ph{margin:0}
+.ph img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;background:var(--paper)}
+.ph figcaption{font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.2px}
+.tax{grid-template-columns:1fr !important;padding:12px !important}
+.law .pic{height:auto !important;display:block !important;padding:0;position:relative}
+.law .pic .ph img{border-radius:0;aspect-ratio:16/10;transition:filter .5s}
+.law .pic .ph figcaption{padding:4px 12px 0}
+.law.hide .pic .ph img{filter:blur(10px) grayscale(.6)}
+.law.hide .reveal-body,.law.hide .fl,.law.hide .where{visibility:hidden}
+.law .clue{font-size:15px;font-style:italic;color:var(--ink)}
+.law .gc{display:flex;flex-wrap:wrap;gap:6px}
+.law .gc button{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:4px 12px;cursor:pointer}
+.law .gc button.ok{background:var(--green)}.law .gc button.bad{background:var(--pink)}
+.law:not(.hide) .guess{display:none}
+.fair{display:grid;gap:4px;background:#fff;border-radius:12px;padding:8px 12px}
+.fair .ends{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.fair input{width:100%;accent-color:var(--accent)}
+.fair output{font-size:14px;font-weight:700;color:var(--accent)}
+.gph{max-width:720px;margin:0 auto 12px}
+.gph img{aspect-ratio:21/9}
+.fine{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.fq{background:var(--paper);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.fq h3{margin:0;font-size:18px}
+.fq .opts{display:flex;flex-wrap:wrap;gap:6px}
+.fq .opts button{font:inherit;font-size:14px;font-weight:700;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 12px;cursor:pointer}
+.fq .opts button.ok{background:var(--green)}.fq .opts button.bad{background:var(--pink)}
+.fq .res{font-size:15px;min-height:22px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{position:relative;aspect-ratio:16/9;background:#111}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;cursor:pointer;background:#111 center/cover;display:grid;place-items:center}
+.vid .play span{background:rgba(0,0,0,.7);color:#fff;font-weight:700;border-radius:999px;padding:10px 20px;font-size:15px;letter-spacing:1px}
+.vid .info{padding:14px 16px}
+.vid .info h3{margin:0 0 2px;font-size:18px}
+.vid .info small{color:var(--muted)}
+.vid .info ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+@media(max-width:760px){.inv,.rp,.hwb{grid-template-columns:1fr}.lk-tbtn{top:auto;bottom:70px}}
+
+.pr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.pb{border-radius:18px;padding:16px 18px}
+.pb h3{margin:0;font-family:Georgia,serif;font-size:30px}
+.pb .m{font-size:15px;color:var(--muted);margin:2px 0 8px}
+.pb .chips{display:flex;flex-wrap:wrap;gap:6px}
+.pb .chips span{background:#fff;border-radius:999px;padding:4px 11px;font-size:14px;font-weight:600}
+.pb ul{margin:10px 0 0;padding-left:18px;font-size:15px}
+.p-in{background:#DCE6F5}.p-at{background:#F3D9CF}.p-on{background:#D4E2CF}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-size:15px;margin-top:10px}
+.ex div{background:var(--paper);border-radius:10px;padding:8px 12px}
+.ex b{color:var(--accent)}
+.q{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.q .n{font-weight:800;color:var(--violet);min-width:24px}
+.q .gap{display:inline-block;min-width:44px;border-bottom:2px solid var(--ink);text-align:center;font-weight:800}
+.q .opts{margin-left:auto;display:flex;gap:6px}
+.q .opts button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 14px;cursor:pointer}
+.q.ok{background:#DDEED7}.q.ok .gap{color:#2F7A3B}
+.q.bad{background:#F6DAD3}
+.score{font-weight:800;margin-top:12px}
+.text{font-size:18px;line-height:1.75;background:var(--paper);border-radius:16px;padding:18px 22px}
+.text h3{margin:0 0 6px;font-family:Georgia,serif;font-size:24px}
+.text p{margin:0 0 12px}
+.text.hl mark{background:#F3D9CF;border-radius:4px;padding:0 3px;font-weight:700}
+.tf{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:9px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.tf .opts{margin-left:auto;display:flex;gap:6px}
+.tf button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.tf.ok{background:#DDEED7}.tf.bad{background:#F6DAD3}
+.disc{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px;margin-top:6px}
+.disc div{background:var(--green);border-radius:14px;padding:12px 16px;font-size:17px;font-weight:600}
+.disc div i{font-style:normal;color:var(--violet);margin-right:6px}
+.spin{text-align:center;margin-top:16px}
+.spin .card{display:inline-block;min-height:80px;min-width:min(560px,100%);background:var(--ink);color:#fff;border-radius:18px;padding:20px 24px;font-size:22px;font-weight:700;margin-bottom:12px}
+@media(max-width:700px){.ex{grid-template-columns:1fr}}
+
+.hero{background-size:cover!important;background-position:center!important}
+.voc{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.voc div{background:var(--paper);border-radius:14px;padding:10px 14px;cursor:pointer;border:2px solid transparent}
+.voc div:hover{border-color:var(--violet)}
+.voc b{display:block;font-size:18px}.voc span{display:block;color:var(--accent);font-weight:700;font-size:15px}.voc em{display:block;font-size:14px;color:var(--muted);margin-top:3px}
+.mt{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:10px}
+.mt button{font:inherit;font-size:16px;text-align:left;border:2px solid var(--ink);background:#fff;border-radius:14px;padding:9px 14px;cursor:pointer}
+.mt button.sel{background:#FFE7A8}.mt button.done{background:#CDE8C6;border-color:#4C9A5B;cursor:default}
+.ch{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ch .n{font-weight:800;color:var(--violet);min-width:24px}
+.ch .o{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.ch .o button{font:inherit;font-size:15px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.ch.ok{background:#DDEED7}.ch.bad{background:#F6DAD3}
+.ty{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ty input{font:inherit;border:2px solid var(--ink);border-radius:10px;padding:4px 10px;width:220px}
+.ty.ok{background:#DDEED7}.ty.bad{background:#F6DAD3}
+.ty small{color:var(--muted)}
+.photo{width:100%;height:300px;object-fit:cover;border-radius:16px;display:block}
+.cap{font-size:11px;color:var(--muted);margin:4px 0 12px}
+.pics{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.pics figure{margin:0;background:var(--paper);border-radius:16px;overflow:hidden}
+.pics img{width:100%;height:170px;object-fit:cover;display:block}
+.pics figcaption{padding:8px 12px;font-weight:700}
+.pics small{display:block;font-weight:400;font-size:10px;color:var(--muted)}
+.lis{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:8px 0 14px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{aspect-ratio:16/9;background:#000;position:relative}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;background-size:cover;background-position:center;cursor:pointer;display:grid;place-items:center}
+.vid .play span{background:#E5484D;color:#fff;font-weight:800;border-radius:12px;padding:10px 20px}
+.vid .info{padding:12px 16px}.vid h3{margin:0;font-size:18px}.vid small{color:var(--muted)}
+.vid ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th,.tbl td{border:1px solid #ddd;padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--paper)}
+@media(max-width:700px){.mt{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="/game-lessons/kit.css">
+</head>
+<body>
+<header class="hero">
+  <div class="kicker">B2 · adults · Робота</div>
+  <h1>Working from home: freedom or trap?</h1>
+  <p>B2 · 7 parts · 60 min</p>
+  <span class="cr">Photo: Unsplash</span>
+</header>
+<button class="lk-tbtn" id="teacherBtn" type="button">Teacher version</button>
+<div class="wrap">
+  <section class="lk-overview">
+    <h2>In this lesson you will:</h2>
+    <ul><li>Послухаємо дискусію двох колег про віддалену роботу
+Вивчимо фрази для обговорення переваг і недоліків
+Потренуємо I’d rather, I’d prefer і prefer… to…
+Домовимося з керівником про гібридний графік і напишемо лист</li></ul>
+    <div class="lk-stages" id="stages"></div>
+  </section>
+  <section id="s1" data-stage="warm-up" data-min="5">
+    <h2><span class="lk-n">1</span>Warm-up <span class="tag">warm-up</span><span class="lk-mode">teacher + student</span></h2>
+<div class="qs"><div>Do you work (or study) from home? How often?</div><div>What is the hardest thing about working from home?</div></div>
+    <h3 class="lk-sub">How much do you agree?</h3><div class="qs"><div>I am more productive at home than in the office. (agree or disagree? Why?)</div><div>Working from home makes people lonely. (agree or disagree? Why?)</div><div>Companies should let employees choose where they work. (agree or disagree? Why?)</div></div>
+    <p class="lk-tnote" data-ru="2 питання усно і шкала (не оцінюється). Попросіть учня пояснити одну крайню відповідь. Час 4-5 хв. Помилки записуйте, але не виправляйте.&lt;br&gt;">2 питання усно і шкала (не оцінюється). Попросіть учня пояснити одну крайню відповідь. Час 4-5 хв. Помилки записуйте, але не виправляйте.<br></p>
+  </section>
+  <section id="s2" data-stage="vocabulary" data-min="10">
+    <h2><span class="lk-n">2</span>Vocabulary <span class="tag">vocabulary</span><span class="lk-mode">teacher + student</span></h2>
+<div class="voc"><div data-say="to commute. "><b>to commute</b><span><span data-tr-uk="їздити на роботу" data-tr-ru="їздити на роботу">їздити на роботу</span></span><em></em></div>
+<div data-say="a commute. "><b>a commute</b><span><span data-tr-uk="дорога на роботу" data-tr-ru="дорога на роботу">дорога на роботу</span></span><em></em></div>
+<div data-say="flexible hours. "><b>flexible hours</b><span><span data-tr-uk="гнучкий графік" data-tr-ru="гнучкий графік">гнучкий графік</span></span><em></em></div>
+<div data-say="to be distracted. "><b>to be distracted</b><span><span data-tr-uk="відволікатися" data-tr-ru="відволікатися">відволікатися</span></span><em></em></div>
+<div data-say="isolated. "><b>isolated</b><span><span data-tr-uk="ізольований, самотній" data-tr-ru="ізольований, самотній">ізольований, самотній</span></span><em></em></div>
+<div data-say="to switch off. "><b>to switch off</b><span><span data-tr-uk="відключитися (від роботи)" data-tr-ru="відключитися (від роботи)">відключитися (від роботи)</span></span><em></em></div>
+<div data-say="a work-life balance. "><b>a work-life balance</b><span><span data-tr-uk="баланс роботи й життя" data-tr-ru="баланс роботи й життя">баланс роботи й життя</span></span><em></em></div>
+<div data-say="productivity. "><b>productivity</b><span><span data-tr-uk="продуктивність" data-tr-ru="продуктивність">продуктивність</span></span><em></em></div>
+<div data-say="face-to-face. "><b>face-to-face</b><span><span data-tr-uk="наживо, особисто" data-tr-ru="наживо, особисто">наживо, особисто</span></span><em></em></div>
+<div data-say="a hybrid schedule. "><b>a hybrid schedule</b><span><span data-tr-uk="гібридний графік" data-tr-ru="гібридний графік">гібридний графік</span></span><em></em></div>
+<div data-say="a downside. "><b>a downside</b><span><span data-tr-uk="недолік" data-tr-ru="недолік">недолік</span></span><em></em></div>
+<div data-say="to set boundaries. "><b>to set boundaries</b><span><span data-tr-uk="встановлювати межі" data-tr-ru="встановлювати межі">встановлювати межі</span></span><em></em></div></div>
+    <div class="mt" data-mt="m2" data-pairs="[[&quot;to commute&quot;, &quot;їздити на роботу&quot;], [&quot;a commute&quot;, &quot;дорога на роботу&quot;], [&quot;flexible hours&quot;, &quot;гнучкий графік&quot;], [&quot;to be distracted&quot;, &quot;відволікатися&quot;], [&quot;isolated&quot;, &quot;ізольований, самотній&quot;], [&quot;to switch off&quot;, &quot;відключитися (від роботи)&quot;], [&quot;a work-life balance&quot;, &quot;баланс роботи й життя&quot;], [&quot;productivity&quot;, &quot;продуктивність&quot;]]"></div><div class="score" data-mtres="m2"></div>
+    <h3 class="lk-sub">Match the words with their meanings.</h3><div class="ch" data-a="you can choose when you start and finish"><span class="n">1</span><span class="s">flexible hours ___</span><span class="o"><button type="button">in person, not online</button><button type="button">feeling alone and cut off from other people</button><button type="button">how much work you get done</button><button type="button">you can choose when you start and finish</button><button type="button">to stop thinking about work</button></span></div>
+<div class="ch" data-a="feeling alone and cut off from other people"><span class="n">2</span><span class="s">isolated ___</span><span class="o"><button type="button">feeling alone and cut off from other people</button><button type="button">you can choose when you start and finish</button><button type="button">to stop thinking about work</button><button type="button">in person, not online</button><button type="button">how much work you get done</button></span></div>
+<div class="ch" data-a="to stop thinking about work"><span class="n">3</span><span class="s">to switch off ___</span><span class="o"><button type="button">to stop thinking about work</button><button type="button">how much work you get done</button><button type="button">feeling alone and cut off from other people</button><button type="button">you can choose when you start and finish</button><button type="button">in person, not online</button></span></div>
+<div class="ch" data-a="how much work you get done"><span class="n">4</span><span class="s">productivity ___</span><span class="o"><button type="button">to stop thinking about work</button><button type="button">feeling alone and cut off from other people</button><button type="button">how much work you get done</button><button type="button">in person, not online</button><button type="button">you can choose when you start and finish</button></span></div>
+<div class="ch" data-a="in person, not online"><span class="n">5</span><span class="s">face-to-face ___</span><span class="o"><button type="button">how much work you get done</button><button type="button">feeling alone and cut off from other people</button><button type="button">in person, not online</button><button type="button">you can choose when you start and finish</button><button type="button">to stop thinking about work</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; you can choose when you start and finish · feeling alone and cut off from other people · to stop thinking about work · how much work you get done · in person, not online"><b>Відповіді:</b> you can choose when you start and finish · feeling alone and cut off from other people · to stop thinking about work · how much work you get done · in person, not online</p>
+    <h3 class="lk-sub">Choose the right word.</h3><div class="ch" data-a="distracted"><span class="n">1</span><span class="s">I’m easily ___ at home because my kids are always around.</span><span class="o"><button type="button">distracted</button><button type="button">flexible</button><button type="button">isolated</button></span></div>
+<div class="ch" data-a="commute"><span class="n">2</span><span class="s">My ___ takes an hour each way.</span><span class="o"><button type="button">commuting</button><button type="button">commute</button><button type="button">commuter</button></span></div>
+<div class="ch" data-a="switch off"><span class="n">3</span><span class="s">After work I need to ___ completely.</span><span class="o"><button type="button">switch on</button><button type="button">turn up</button><button type="button">switch off</button></span></div>
+<div class="ch" data-a="hybrid"><span class="n">4</span><span class="s">Our company has a ___ schedule: two days in the office, three at home.</span><span class="o"><button type="button">mixed-up</button><button type="button">half</button><button type="button">hybrid</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; distracted · commute · switch off · hybrid"><b>Відповіді:</b> distracted · commute · switch off · hybrid</p>
+    <p class="lk-tnote" data-ru="Розберіть різницю to commute (дієслово) і a commute (іменник). Вправи 5-6 хв. Попросіть учня розповісти про свій commute і work-life balance 2-3 реченнями.&lt;br&gt;">Розберіть різницю to commute (дієслово) і a commute (іменник). Вправи 5-6 хв. Попросіть учня розповісти про свій commute і work-life balance 2-3 реченнями.<br></p>
+  </section>
+  <section id="s3" data-stage="listening" data-min="15">
+    <h2><span class="lk-n">3</span>Listening <span class="tag">listening</span><span class="lk-mode">teacher + student</span></h2>
+<div class="text"><p><b>Before you listen:</b> Kate and Daniel work for the same company. One of them loves working from home, the other is not so sure. Who do you think is who?</p></div>
+    <div class="text"><h3>Two colleagues talk about remote work</h3><p class="lk-ins">Your teacher reads the dialogue (or plays it). Listen first, then read.</p><details><summary>Show the script</summary><p>Kate: So, are you coming back to the office next week, or are you staying at home?</p><p>Daniel: Honestly, I’d rather stay at home. I save almost two hours a day on my commute.</p><p>Kate: That’s a lot. But don’t you feel isolated? I missed people so much last year.</p><p>Daniel: Sometimes, yes. But I have flexible hours, so I can go to the gym at lunchtime and see friends in the evening.</p><p>Kate: For me the problem is switching off. When my laptop is on the kitchen table, I keep checking emails until ten at night.</p><p>Daniel: That’s fair. I set a strict rule: at six o’clock the laptop goes into a drawer.</p><p>Kate: And what about productivity? I’m easily distracted at home.</p><p>Daniel: I’m actually more productive. Fewer meetings, fewer interruptions. But I agree that brainstorming works better face-to-face.</p><p>Kate: So maybe the answer is a mix. Two days in the office, three at home?</p><p>Daniel: That sounds like the best of both worlds.</p><p>Kate: I’ll suggest it to our manager. She keeps saying she wants to see us more often.</p><p>Daniel: Then let’s give her facts, not feelings. If our results are good, she can’t really complain.</p><p>Kate: Good idea. I’ll make a short list of pros and cons before Friday’s meeting.</p></details></div>
+    <h3 class="lk-sub">Gist: listen once and choose.</h3><div class="ch" data-a="the pros and cons of working from home"><span class="n">1</span><span class="s">The conversation is mainly about ___.</span><span class="o"><button type="button">problems with public transport</button><button type="button">the pros and cons of working from home</button><button type="button">how to find a new job</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; the pros and cons of working from home"><b>Відповіді:</b> the pros and cons of working from home</p>
+    <h3 class="lk-sub">Detail: listen again. True or False?</h3><div class="ch" data-a="True"><span class="n">1</span><span class="s">Daniel saves about two hours a day by working from home.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="True"><span class="n">2</span><span class="s">Kate felt lonely when she worked from home.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="False"><span class="n">3</span><span class="s">Daniel works until ten at night.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="True"><span class="n">4</span><span class="s">Both of them think a mix of office and home could work.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="True"><span class="n">5</span><span class="s">Kate is going to talk to their manager about a mixed schedule.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="False"><span class="n">6</span><span class="s">Daniel thinks they should focus on how they feel.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; True · True · False · True · True · False"><b>Відповіді:</b> True · True · False · True · True · False</p>
+    <h3 class="lk-sub">Advantages or disadvantages of working from home?</h3><div class="ch" data-a="Advantages"><span class="n">1</span><span class="s">no commute ___</span><span class="o"><button type="button">Advantages</button><button type="button">Disadvantages</button></span></div>
+<div class="ch" data-a="Disadvantages"><span class="n">2</span><span class="s">feeling isolated ___</span><span class="o"><button type="button">Advantages</button><button type="button">Disadvantages</button></span></div>
+<div class="ch" data-a="Advantages"><span class="n">3</span><span class="s">flexible hours ___</span><span class="o"><button type="button">Advantages</button><button type="button">Disadvantages</button></span></div>
+<div class="ch" data-a="Disadvantages"><span class="n">4</span><span class="s">difficulty switching off ___</span><span class="o"><button type="button">Advantages</button><button type="button">Disadvantages</button></span></div>
+<div class="ch" data-a="Advantages"><span class="n">5</span><span class="s">fewer interruptions ___</span><span class="o"><button type="button">Advantages</button><button type="button">Disadvantages</button></span></div>
+<div class="ch" data-a="Disadvantages"><span class="n">6</span><span class="s">getting distracted ___</span><span class="o"><button type="button">Advantages</button><button type="button">Disadvantages</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; Advantages · Disadvantages · Advantages · Disadvantages · Advantages · Disadvantages"><b>Відповіді:</b> Advantages · Disadvantages · Advantages · Disadvantages · Advantages · Disadvantages</p>
+    <p class="lk-tnote" data-ru="Перше прослуховування на gist, друге на деталі. Зверніть увагу: до десятої вечора працює Kate, а не Daniel, це типова пастка. Після перевірки запитайте: «Чия позиція вам ближча?» (1-2 хв).&lt;br&gt;">Перше прослуховування на gist, друге на деталі. Зверніть увагу: до десятої вечора працює Kate, а не Daniel, це типова пастка. Після перевірки запитайте: «Чия позиція вам ближча?» (1-2 хв).<br></p>
+  </section>
+  <section id="s4" data-stage="practice" data-min="10">
+    <h2><span class="lk-n">4</span>Language focus <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<div class="warn"><p>Обговорюємо плюси й мінуси: <b>The main benefit is… / The downside is… / It depends on… / The best of both worlds.</b> Перевага: <b>I’d rather + дієслово без to</b> (I’d rather stay at home), <b>I’d rather not…</b>, <b>I’d rather A than B</b>. Також <b>I’d prefer + to + дієслово</b> і <b>I prefer + -ing + to + -ing</b> (I prefer working at home to commuting).</p></div>
+    <h3 class="lk-sub">Complete the sentences.</h3><div class="ty" data-a="rather"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>I’d ___ work from home than spend two hours on the train.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="downside|disadvantage"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>The main ___ is that I feel isolated.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="worlds"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>A mix of office and home is the best of both ___.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="to"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>I prefer working at home ___ working in the office.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="prefer"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>I’d ___ to have a quiet place to work.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="not"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>I’d rather ___ go back to the office full time.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; rather · downside · worlds · to · prefer · not"><b>Відповіді:</b> rather · downside · worlds · to · prefer · not</p>
+    <h3 class="lk-sub">Choose the correct form.</h3><div class="ch" data-a="stay"><span class="n">1</span><span class="s">I’d rather ___ at home today.</span><span class="o"><button type="button">to stay</button><button type="button">stay</button><button type="button">staying</button></span></div>
+<div class="ch" data-a="working"><span class="n">2</span><span class="s">She prefers ___ early in the morning.</span><span class="o"><button type="button">to working</button><button type="button">working</button><button type="button">work</button></span></div>
+<div class="ch" data-a="than"><span class="n">3</span><span class="s">We’d rather work in the office ___ at home.</span><span class="o"><button type="button">than</button><button type="button">to</button><button type="button">that</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; stay · working · than"><b>Відповіді:</b> stay · working · than</p>
+    <h3 class="lk-sub">Переклади англійською.</h3><div class="ty" data-a="I’d rather work from home|I would rather work from home|I’d prefer to work from home"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Я б краще працював з дому</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="The main downside is that I feel isolated|The main disadvantage is that I feel isolated"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Головний недолік у тому, що я почуваюся ізольованим</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="It’s the best of both worlds|It is the best of both worlds"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Це найкраще з двох світів</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; I’d rather work from home · The main downside is that I feel isolated · It’s the best of both worlds"><b>Відповіді:</b> I’d rather work from home · The main downside is that I feel isolated · It’s the best of both worlds</p>
+    <p class="lk-tnote" data-ru="Типові помилки: «I’d rather to stay» і «I prefer work at home than…». Виправляйте одразу і просіть повторити. Вправи 6-7 хв, перевірка вголос з поясненням.&lt;br&gt;">Типові помилки: «I’d rather to stay» і «I prefer work at home than…». Виправляйте одразу і просіть повторити. Вправи 6-7 хв, перевірка вголос з поясненням.<br></p>
+  </section>
+  <section id="s5" data-stage="speaking" data-min="12">
+    <h2><span class="lk-n">5</span>Speaking <span class="tag">speaking</span><span class="lk-mode">teacher + student</span></h2>
+<div class="text"><p><b>Card A: the employee.</b> You want to work from home three days a week. Explain the benefits for you and for the company, mention one possible downside and how you will solve it.</p><p><b>Card B: the manager.</b> You are worried about team spirit and communication. Ask difficult questions, but be open to a compromise. Agree only if the employee offers a clear plan.</p></div>
+    <div class="qs"><div>Role play: use your cards (3-4 minutes), then swap roles.</div><div>Which jobs can never be done from home?</div><div>Will offices still exist in twenty years? Why or why not?</div></div>
+    <h3 class="lk-sub">Speaking: record a 1-minute answer.</h3><div class="qs"><div>Would you rather work from home or in an office? Give at least two reasons and mention one downside. (say it out loud)</div></div>
+    <p class="lk-tnote" data-ru="Рольова гра з переговорами: керівник має не погодитися одразу. Вимагайте фрази з Language focus. 7-8 хв на гру, 3-4 хв на питання. Voice можна перенести в домашнє завдання.&lt;br&gt;">Рольова гра з переговорами: керівник має не погодитися одразу. Вимагайте фрази з Language focus. 7-8 хв на гру, 3-4 хв на питання. Voice можна перенести в домашнє завдання.<br></p>
+  </section>
+  <section id="s6" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">6</span>Extra practice · якщо лишився час або на наступний урок <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Встав rather, prefer, to або than.</h3><div class="ty" data-a="rather"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>I’d ___ not go to the office on Fridays.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="to"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>She prefers cycling ___ driving to work.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="than"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>We’d rather meet online ___ travel for two hours.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="prefer"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>I’d ___ to start early and finish at four.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="rather"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Would you ___ work from home or from a café?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="to"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>He prefers working alone ___ working in a team.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; rather · to · than · prefer · rather · to"><b>Відповіді:</b> rather · to · than · prefer · rather · to</p>
+    <h3 class="lk-sub">Match the words with their meanings.</h3><div class="ch" data-a="the journey to and from work"><span class="n">1</span><span class="s">a commute ___</span><span class="o"><button type="button">a disadvantage</button><button type="button">some days in the office, some days at home</button><button type="button">to lose focus because of something else</button><button type="button">enough time for both your job and your private life</button><button type="button">to decide clear limits between work and free time</button><button type="button">the journey to and from work</button></span></div>
+<div class="ch" data-a="a disadvantage"><span class="n">2</span><span class="s">a downside ___</span><span class="o"><button type="button">a disadvantage</button><button type="button">to lose focus because of something else</button><button type="button">enough time for both your job and your private life</button><button type="button">the journey to and from work</button><button type="button">some days in the office, some days at home</button><button type="button">to decide clear limits between work and free time</button></span></div>
+<div class="ch" data-a="to decide clear limits between work and free time"><span class="n">3</span><span class="s">to set boundaries ___</span><span class="o"><button type="button">a disadvantage</button><button type="button">to lose focus because of something else</button><button type="button">to decide clear limits between work and free time</button><button type="button">the journey to and from work</button><button type="button">some days in the office, some days at home</button><button type="button">enough time for both your job and your private life</button></span></div>
+<div class="ch" data-a="some days in the office, some days at home"><span class="n">4</span><span class="s">a hybrid schedule ___</span><span class="o"><button type="button">a disadvantage</button><button type="button">to lose focus because of something else</button><button type="button">enough time for both your job and your private life</button><button type="button">to decide clear limits between work and free time</button><button type="button">the journey to and from work</button><button type="button">some days in the office, some days at home</button></span></div>
+<div class="ch" data-a="enough time for both your job and your private life"><span class="n">5</span><span class="s">a work-life balance ___</span><span class="o"><button type="button">to decide clear limits between work and free time</button><button type="button">some days in the office, some days at home</button><button type="button">a disadvantage</button><button type="button">enough time for both your job and your private life</button><button type="button">to lose focus because of something else</button><button type="button">the journey to and from work</button></span></div>
+<div class="ch" data-a="to lose focus because of something else"><span class="n">6</span><span class="s">to be distracted ___</span><span class="o"><button type="button">some days in the office, some days at home</button><button type="button">to decide clear limits between work and free time</button><button type="button">enough time for both your job and your private life</button><button type="button">a disadvantage</button><button type="button">to lose focus because of something else</button><button type="button">the journey to and from work</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; the journey to and from work · a disadvantage · to decide clear limits between work and free time · some days in the office, some days at home · enough time for both your job and your private life · to lose focus because of something else"><b>Відповіді:</b> the journey to and from work · a disadvantage · to decide clear limits between work and free time · some days in the office, some days at home · enough time for both your job and your private life · to lose focus because of something else</p>
+    <h3 class="lk-sub">Переклади англійською.</h3><div class="ty" data-a="My commute takes an hour|My commute takes one hour|The commute takes an hour"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Дорога на роботу займає годину</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="I have flexible hours|I’ve got flexible hours|I have a flexible schedule"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>У мене гнучкий графік</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="It’s hard for me to switch off in the evening|It is hard for me to switch off in the evening|I find it hard to switch off in the evening"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Мені важко відключитися від роботи ввечері</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="I’d rather not work at weekends|I would rather not work at weekends|I’d rather not work on weekends|I would rather not work on weekends"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Я б краще не працював у вихідні</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="I prefer working at home to working in the office|I prefer working from home to working in the office|I prefer working at home to working at the office|I prefer working from home to working at the office"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Я віддаю перевагу роботі вдома, а не в офісі</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="The main benefit is that I don’t waste time commuting|The main advantage is that I don’t waste time commuting|The main benefit is that I don’t spend time commuting|The main advantage is that I don’t spend time commuting|The main benefit is that I don’t waste time on the commute"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Головна перевага в тому, що я не витрачаю час на дорогу</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; My commute takes an hour · I have flexible hours · It’s hard for me to switch off in the evening · I’d rather not work at weekends · I prefer working at home to working in the office · The main benefit is that I don’t waste time commuting"><b>Відповіді:</b> My commute takes an hour · I have flexible hours · It’s hard for me to switch off in the evening · I’d rather not work at weekends · I prefer working at home to working in the office · The main benefit is that I don’t waste time commuting</p>
+    <h3 class="lk-sub">Remote work: finish the phrase</h3><p class="lk-ins">Match the beginning with the end</p>
+    <div class="spin"><div class="card" id="g67">Click "Next card"</div><br><button class="btn" type="button" data-spin="[&quot;the best of&quot;, &quot;a work-life&quot;, &quot;flexible&quot;, &quot;a hybrid&quot;, &quot;to set&quot;, &quot;to switch&quot;, &quot;to be easily&quot;, &quot;to work from&quot;]" data-target="g67">Next card</button></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; both worlds · balance · hours · schedule · boundaries · off · distracted · home"><b>Відповіді:</b> both worlds · balance · hours · schedule · boundaries · off · distracted · home</p>
+    <p class="lk-tnote" data-ru="10-12 хв наприкінці уроку або на початку наступного. Ключ: I’d rather + інфінітив без to і than; I prefer A-ing to B-ing; I’d prefer + to + дієслово. У першому gap лише rather, бо «I’d prefer not go» неправильно. Останній переклад має багато коректних варіантів (benefit/advantage, commuting/on the commute), зараховуйте інші вручну.&lt;br&gt;">10-12 хв наприкінці уроку або на початку наступного. Ключ: I’d rather + інфінітив без to і than; I prefer A-ing to B-ing; I’d prefer + to + дієслово. У першому gap лише rather, бо «I’d prefer not go» неправильно. Останній переклад має багато коректних варіантів (benefit/advantage, commuting/on the commute), зараховуйте інші вручну.<br></p>
+  </section>
+  <section id="s7" data-stage="writing" data-min="8">
+    <h2><span class="lk-n">7</span>Writing <span class="tag">writing</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Writing: 120-150 words.</h3><div class="qs"><div>Write an email to your manager asking for a hybrid schedule. Explain why, suggest which days you will be in the office and how you will stay in touch with the team.</div></div>
+    <p class="lk-tnote" data-ru="На уроці учень пише план і перший абзац листа (5-6 хв), решту вдома. Нагадайте структуру: мета, аргументи, пропозиція, ввічливе завершення. Домашнє завдання: дописати лист і записати voice-відповідь, якщо не встигли.&lt;br&gt;">На уроці учень пише план і перший абзац листа (5-6 хв), решту вдома. Нагадайте структуру: мета, аргументи, пропозиція, ввічливе завершення. Домашнє завдання: дописати лист і записати voice-відповідь, якщо не встигли.<br></p>
+    <h3 class="lk-sub">Homework plus: обери правильну форму.</h3><div class="ch" data-a="not work"><span class="n">1</span><span class="s">I’d rather ___ late tonight.</span><span class="o"><button type="button">not work</button><button type="button">not to work</button><button type="button">don’t work</button></span></div>
+<div class="ch" data-a="meeting"><span class="n">2</span><span class="s">They prefer ___ face-to-face.</span><span class="o"><button type="button">meet</button><button type="button">to meeting</button><button type="button">meeting</button></span></div>
+<div class="ch" data-a="to have"><span class="n">3</span><span class="s">I’d prefer ___ a quiet room for calls.</span><span class="o"><button type="button">to have</button><button type="button">have</button><button type="button">having</button></span></div>
+<div class="ch" data-a="than"><span class="n">4</span><span class="s">She’d rather work at home ___ in a noisy office.</span><span class="o"><button type="button">than</button><button type="button">as</button><button type="button">to</button></span></div>
+<div class="ch" data-a="start"><span class="n">5</span><span class="s">Would you rather ___ at eight or at ten?</span><span class="o"><button type="button">starting</button><button type="button">start</button><button type="button">to start</button></span></div>
+<div class="ch" data-a="to"><span class="n">6</span><span class="s">He prefers his home office ___ the open-plan office.</span><span class="o"><button type="button">to</button><button type="button">from</button><button type="button">than</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; not work · meeting · to have · than · start · to"><b>Відповіді:</b> not work · meeting · to have · than · start · to</p>
+    <h3 class="lk-sub">Встав слово з уроку.</h3><div class="ty" data-a="commute"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>My daily ___ takes 90 minutes by train.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="distracted"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>I can’t concentrate at home, I get ___ by everything.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="isolated|lonely"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Since I moved to the village, I sometimes feel ___.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="flexible"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Thanks to ___ hours, I can take my son to school.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="downside|disadvantage|drawback"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>The main ___ of remote work is the lack of contact.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="balance"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>To keep a healthy work-life ___, I never check emails after 7 pm.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; commute · distracted · isolated · flexible · downside · balance"><b>Відповіді:</b> commute · distracted · isolated · flexible · downside · balance</p>
+    <h3 class="lk-sub">Письмо: відповідай 4-6 реченнями.</h3><div class="qs"><div>Describe your ideal working week. How many days would you spend at home and in the office?</div><div>What rules would you set to switch off after work at home?</div><div>Would you rather have a shorter commute or more flexible hours? Explain why.</div></div>
+  </section>
+  <section class="end"><h2>Great job!</h2><p>See you next lesson.</p></section>
+</div>
+<div class="toast" id="toast"></div>
+<script>window.MURLY_LESSON={"id": "lib-remote-work", "title": "Working from home: freedom or trap?", "homework": ["s2", "s3", "s4", "s6", "s7"], "hw": {"s2": [{"type": "choice", "instruction": "Match the words with their meanings.", "text": "flexible hours {you can choose when you start and finish|feeling alone and cut off from other people|to stop thinking about work|how much work you get done|in person, not online}\nisolated {feeling alone and cut off from other people|you can choose when you start and finish|to stop thinking about work|how much work you get done|in person, not online}\nto switch off {to stop thinking about work|you can choose when you start and finish|feeling alone and cut off from other people|how much work you get done|in person, not online}\nproductivity {how much work you get done|you can choose when you start and finish|feeling alone and cut off from other people|to stop thinking about work|in person, not online}\nface-to-face {in person, not online|you can choose when you start and finish|feeling alone and cut off from other people|to stop thinking about work|how much work you get done}"}, {"type": "choice", "instruction": "Choose the right word.", "text": "I’m easily {distracted|isolated|flexible} at home because my kids are always around.\nMy {commute|commuting|commuter} takes an hour each way.\nAfter work I need to {switch off|switch on|turn up} completely.\nOur company has a {hybrid|mixed-up|half} schedule: two days in the office, three at home."}], "s3": [{"type": "choice", "instruction": "Gist: listen once and choose.", "text": "The conversation is mainly about {the pros and cons of working from home|how to find a new job|problems with public transport}."}, {"type": "choice", "instruction": "Detail: listen again. True or False?", "text": "Daniel saves about two hours a day by working from home. {True|False}\nKate felt lonely when she worked from home. {True|False}\nDaniel works until ten at night. {False|True}\nBoth of them think a mix of office and home could work. {True|False}\nKate is going to talk to their manager about a mixed schedule. {True|False}\nDaniel thinks they should focus on how they feel. {False|True}"}, {"type": "choice", "instruction": "Advantages or disadvantages of working from home?", "text": "no commute {Advantages|Disadvantages}\nfeeling isolated {Disadvantages|Advantages}\nflexible hours {Advantages|Disadvantages}\ndifficulty switching off {Disadvantages|Advantages}\nfewer interruptions {Advantages|Disadvantages}\ngetting distracted {Disadvantages|Advantages}"}], "s4": [{"type": "gap", "instruction": "Complete the sentences.", "text": "I’d [rather] work from home than spend two hours on the train.\nThe main [downside/disadvantage] is that I feel isolated.\nA mix of office and home is the best of both [worlds].\nI prefer working at home [to] working in the office.\nI’d [prefer] to have a quiet place to work.\nI’d rather [not] go back to the office full time."}, {"type": "choice", "instruction": "Choose the correct form.", "text": "I’d rather {stay|to stay|staying} at home today.\nShe prefers {working|work|to working} early in the morning.\nWe’d rather work in the office {than|to|that} at home."}, {"type": "gap", "instruction": "Переклади англійською.", "text": "Я б краще працював з дому → [I’d rather work from home/I would rather work from home/I’d prefer to work from home]\nГоловний недолік у тому, що я почуваюся ізольованим → [The main downside is that I feel isolated/The main disadvantage is that I feel isolated]\nЦе найкраще з двох світів → [It’s the best of both worlds/It is the best of both worlds]"}], "s6": [{"type": "gap", "instruction": "Встав rather, prefer, to або than.", "text": "I’d [rather] not go to the office on Fridays.\nShe prefers cycling [to] driving to work.\nWe’d rather meet online [than] travel for two hours.\nI’d [prefer] to start early and finish at four.\nWould you [rather] work from home or from a café?\nHe prefers working alone [to] working in a team."}, {"type": "choice", "instruction": "Match the words with their meanings.", "text": "a commute {the journey to and from work|a disadvantage|to decide clear limits between work and free time|some days in the office, some days at home|enough time for both your job and your private life|to lose focus because of something else}\na downside {a disadvantage|the journey to and from work|to decide clear limits between work and free time|some days in the office, some days at home|enough time for both your job and your private life|to lose focus because of something else}\nto set boundaries {to decide clear limits between work and free time|the journey to and from work|a disadvantage|some days in the office, some days at home|enough time for both your job and your private life|to lose focus because of something else}\na hybrid schedule {some days in the office, some days at home|the journey to and from work|a disadvantage|to decide clear limits between work and free time|enough time for both your job and your private life|to lose focus because of something else}\na work-life balance {enough time for both your job and your private life|the journey to and from work|a disadvantage|to decide clear limits between work and free time|some days in the office, some days at home|to lose focus because of something else}\nto be distracted {to lose focus because of something else|the journey to and from work|a disadvantage|to decide clear limits between work and free time|some days in the office, some days at home|enough time for both your job and your private life}"}, {"type": "gap", "instruction": "Переклади англійською.", "text": "Дорога на роботу займає годину → [My commute takes an hour/My commute takes one hour/The commute takes an hour]\nУ мене гнучкий графік → [I have flexible hours/I’ve got flexible hours/I have a flexible schedule]\nМені важко відключитися від роботи ввечері → [It’s hard for me to switch off in the evening/It is hard for me to switch off in the evening/I find it hard to switch off in the evening]\nЯ б краще не працював у вихідні → [I’d rather not work at weekends/I would rather not work at weekends/I’d rather not work on weekends/I would rather not work on weekends]\nЯ віддаю перевагу роботі вдома, а не в офісі → [I prefer working at home to working in the office/I prefer working from home to working in the office/I prefer working at home to working at the office/I prefer working from home to working at the office]\nГоловна перевага в тому, що я не витрачаю час на дорогу → [The main benefit is that I don’t waste time commuting/The main advantage is that I don’t waste time commuting/The main benefit is that I don’t spend time commuting/The main advantage is that I don’t spend time commuting/The main benefit is that I don’t waste time on the commute]"}], "s7": [{"type": "open", "instruction": "Writing: 120-150 words.", "text": "Write an email to your manager asking for a hybrid schedule. Explain why, suggest which days you will be in the office and how you will stay in touch with the team."}, {"type": "choice", "instruction": "Homework plus: обери правильну форму.", "text": "I’d rather {not work|not to work|don’t work} late tonight.\nThey prefer {meeting|meet|to meeting} face-to-face.\nI’d prefer {to have|having|have} a quiet room for calls.\nShe’d rather work at home {than|to|as} in a noisy office.\nWould you rather {start|to start|starting} at eight or at ten?\nHe prefers his home office {to|than|from} the open-plan office."}, {"type": "gap", "instruction": "Встав слово з уроку.", "text": "My daily [commute] takes 90 minutes by train.\nI can’t concentrate at home, I get [distracted] by everything.\nSince I moved to the village, I sometimes feel [isolated/lonely].\nThanks to [flexible] hours, I can take my son to school.\nThe main [downside/disadvantage/drawback] of remote work is the lack of contact.\nTo keep a healthy work-life [balance], I never check emails after 7 pm."}, {"type": "open", "instruction": "Письмо: відповідай 4-6 реченнями.", "text": "Describe your ideal working week. How many days would you spend at home and in the office?\nWhat rules would you set to switch off after work at home?\nWould you rather have a shorter commute or more flexible hours? Explain why."}]}};</script>
+<script>
+(function(){var l=(document.cookie.match(/(?:^|; )murly_lang=(\w+)/)||[])[1];try{l=l||localStorage.getItem('murly:tlang')}catch(e){}l=l==='ru'?'ru':'uk';document.querySelectorAll('[data-pairs-'+l+']').forEach(function(b){b.dataset.pairs=b.getAttribute('data-pairs-'+l)});})();
+</script>
+<script>
+const $ = (id) => document.getElementById(id);
+const LIS = {};
+function say(w, rate) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; const v = speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang) && /Google|Natural|Libby|Sonia|Daniel/.test(x.name)) || speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang)); if (v) u.voice = v; u.rate = rate || .95; speechSynthesis.speak(u); } catch (e) { } }
+const sh = (a) => a.map((x) => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map((x) => x[1]);
+document.querySelectorAll('.voc div').forEach((d) => d.onclick = () => say(d.dataset.say));
+document.querySelectorAll('[data-play]').forEach((b) => b.onclick = () => say(LIS[b.dataset.play], b.dataset.slow ? .75 : .95));
+document.querySelectorAll('[data-stop]').forEach((b) => b.onclick = () => { try { speechSynthesis.cancel(); } catch (e) { } });
+document.querySelectorAll('.ch').forEach((q) => q.querySelectorAll('button').forEach((b) => b.onclick = () => { if (q.classList.contains('ok')) return; const ok = b.textContent === q.dataset.a; q.classList.toggle('ok', ok); q.classList.toggle('bad', !ok); if (ok) { const s = q.querySelector('.s'); if (s && s.textContent.includes('___')) { s.textContent = s.textContent.replace('___', q.dataset.a); } } }));
+const norm = (x) => x.toLowerCase().replace(/[’']/g, "'").replace(/[,;:"“”«»]/g, ' ').replace(/\s+/g, ' ').replace(/[.!?]$/, '').trim();
+document.querySelectorAll('.ty').forEach((r) => { const inp = r.querySelector('input'); const chk = () => { const ok = r.dataset.a.split('|').some((a) => norm(a) === norm(inp.value)); r.classList.toggle('ok', ok); r.classList.toggle('bad', !ok && inp.value.trim() !== ''); }; r.querySelector('button').onclick = chk; inp.onkeydown = (e) => { if (e.key === 'Enter') chk(); }; });
+document.querySelectorAll('[data-mt]').forEach((box) => { const pairs = JSON.parse(box.dataset.pairs); const L = sh(pairs.map((p) => p[0])), R = sh(pairs.map((p) => p[1])); let sel = null, done = 0, err = 0; box.innerHTML = L.map((w, i) => `<button type="button" data-w="${w}">${w}</button><button type="button" data-d="${R[i]}">${R[i]}</button>`).join('');
+  box.querySelectorAll('button').forEach((b) => b.onclick = () => { if (b.classList.contains('done')) return; if (!sel || (sel.dataset.w && b.dataset.w) || (sel.dataset.d && b.dataset.d)) { if (sel) sel.classList.remove('sel'); sel = b; b.classList.add('sel'); return; } const w = sel.dataset.w || b.dataset.w, d = sel.dataset.d || b.dataset.d; if (pairs.some((p) => p[0] === w && p[1] === d)) { sel.classList.add('done'); b.classList.add('done'); done++; say(w); if (done === pairs.length) document.querySelector(`[data-mtres="${box.dataset.mt}"]`).textContent = err ? `Done! Mistakes: ${err}` : 'Perfect!'; } else err++; sel.classList.remove('sel'); sel = null; }); });
+document.querySelectorAll('[data-vids]').forEach((box) => JSON.parse(box.dataset.vids).forEach(([id, title, ch, qs]) => { const d = document.createElement('div'); d.className = 'vid'; d.innerHTML = `<div class="frame"><button class="play" type="button" style="background-image:url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)"><span>PLAY</span></button></div><div class="info"><h3>${title}</h3><small>YouTube · ${ch}</small><ol>${qs.map((q) => `<li>${q}</li>`).join('')}</ol></div>`; d.querySelector('.play').onclick = (e) => { e.currentTarget.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&cc_load_policy=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${title}"></iframe>`; }; box.appendChild(d); }));
+document.querySelectorAll('[data-spin]').forEach((b) => { const list = JSON.parse(b.dataset.spin); let last = -1; b.onclick = () => { let i; do { i = Math.floor(Math.random() * list.length); } while (i === last && list.length > 1); last = i; document.getElementById(b.dataset.target).textContent = list[i]; }; });
+try { const k = 'murly:' + (window.MURLY_LESSON ? MURLY_LESSON.id : 'x') + ':hw'; const t = $('hwText'); if (t) { t.value = localStorage.getItem(k) || ''; t.oninput = () => localStorage.setItem(k, t.value); } } catch (e) { }
+const STAGES = [...document.querySelectorAll('.wrap > section[id]')];
+$('stages').innerHTML = STAGES.map((s) => `<a href="#${s.id}"><b>${s.querySelector('.lk-n').textContent}</b><span>${s.dataset.stage}</span><small>${s.dataset.min !== '0' ? s.dataset.min + ' min' : 'at home'}</small></a>`).join('');
+$('teacherBtn').onclick = (e) => { const on = document.body.classList.toggle('teacher'); e.currentTarget.textContent = on ? 'Student version' : 'Teacher version'; };
+</script>
+<script src="/game-lessons/kit.js" defer></script>
+</body>
+</html>

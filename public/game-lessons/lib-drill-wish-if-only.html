@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wish and if only: 100 tasks (B1) | Murly</title>
+<link rel="icon" href="/favicon.svg">
+<meta name="description" content="Повторимо правило: Бажання: wish і if only
+100 завдань від простого до складного
+Розберемо головні пастки">
+<link rel="canonical" href="https://murly.com.ua/game-lessons/lib-drill-wish-if-only.html">
+<style>
+:root{--paper:#F3F0EA;--ink:#17181C;--violet:#3D4A7A;--lav:#D9D3C7;--pink:#E9C9BC;--green:#D4E2CF;--white:#fff;--muted:#62646B;--accent:#B5482F}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+/* hero */
+.hero{background:linear-gradient(rgba(16,17,22,.5),rgba(16,17,22,.72)),url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1400&q=70&auto=format&fit=crop");color:#fff;padding:70px 18px 56px;text-align:center;position:relative;overflow:hidden}
+.hero .kicker{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#E9C9BC;font-weight:700}
+.hero .cr{position:absolute;right:12px;bottom:8px;font-size:11px;color:rgba(255,255,255,.6)}
+.hero h1{margin:8px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(36px,6vw,64px);letter-spacing:-.5px;font-weight:700}
+.hero h1 span{color:var(--pink);font-style:italic}
+.hero p{margin:12px 0 0;font-size:17px;color:#e6e2da}
+.hero .flags{display:flex;justify-content:center;gap:12px;margin-top:22px;flex-wrap:wrap}
+.hero .flags svg{width:40px;height:26px;border-radius:3px;opacity:.9}
+/* sections */
+section{margin-top:30px;background:var(--white);border-radius:18px;padding:28px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.05)}
+section h2{margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tag{font-family:"Segoe UI",system-ui,sans-serif;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--paper);color:var(--accent);text-transform:uppercase;letter-spacing:1px}
+.lk-n{display:inline-grid;place-items:center;width:42px;height:42px;background:var(--violet);color:#fff;border-radius:50%;font-size:21px;flex:none}
+.lk-mode{font-size:13px;font-weight:700;border:2px dashed var(--lav);color:var(--muted);padding:2px 10px;border-radius:999px}
+.lk-ins{font-size:17px;background:var(--paper);border-radius:12px;padding:10px 14px;margin:6px 0 18px}
+.lk-sub{margin:24px 0 10px;font-size:19px}
+.btn{font:inherit;font-weight:700;border:0;border-radius:999px;background:var(--ink);color:#fff;padding:10px 20px;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+.btn.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+/* teacher */
+.lk-tbtn{position:fixed;right:16px;top:70px;z-index:45;font:inherit;font-weight:800;border:2px solid var(--ink);background:var(--pink);padding:8px 14px;border-radius:12px;cursor:pointer}
+body.teacher .lk-tbtn{background:var(--green)}
+.lk-ans,.lk-tnote{display:none}
+body.teacher .lk-ans{display:block;margin-top:8px;font-weight:700;color:#1d5a12;background:var(--green);border-left:5px solid #5aa845;padding:6px 10px;font-size:15px;border-radius:6px}
+body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff3f7;border-left:5px solid #d9789a;padding:8px 12px;font-size:15px;border-radius:6px}
+/* overview */
+.lk-overview ul{font-size:17px;line-height:1.7;margin:6px 0 16px}
+.lk-stages{display:flex;flex-wrap:wrap;gap:8px}
+.lk-stages a{display:grid;border-radius:14px;padding:8px 12px;text-decoration:none;color:var(--ink);background:var(--paper);font-weight:700;min-width:100px}
+.lk-stages a span{text-transform:capitalize}
+.lk-stages a b{font-size:20px;color:var(--violet)}
+.lk-stages a small{font-weight:600;color:var(--muted)}
+/* warm-up */
+.taxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tax{background:var(--paper);border-radius:18px;padding:16px;display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center}
+.tax svg{width:56px;height:56px}
+.tax b{display:block;font-size:17px}
+.tax small{color:var(--muted);font-size:14px}
+.qs{display:grid;gap:10px;margin-top:18px}
+.qs div{background:var(--green);border-radius:14px;padding:10px 16px;font-size:18px;font-weight:600}
+.phr{background:#fff7e8;border-radius:14px;padding:12px 16px;margin-top:16px;font-size:15px}
+.phr ul{margin:6px 0 0;padding-left:18px}
+.fic{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:16px}
+.fic .c{background:#fff;border:2px solid #1B2140;border-radius:16px;padding:14px 16px;box-shadow:3px 3px 0 #1B2140}
+.fic .c b{display:block;font-size:18px;line-height:1.35;margin-bottom:8px}
+.fic .c .k{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.fic .c .k span{font-size:13px;background:#eef1fb;border-radius:999px;padding:3px 10px}
+.fic .c details{margin-top:8px;font-size:15px;color:#3b4160}
+.fic .c summary{cursor:pointer;font-weight:700;color:#534AB7}
+.fi-n{display:inline-flex;width:28px;height:28px;border-radius:50%;background:#2F4BA0;color:#fff;align-items:center;justify-content:center;font-size:14px;margin-right:6px}
+/* vocab */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:12px}
+.vc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:2px solid transparent;transition:border-color .2s,transform .2s}
+.vc:hover{border-color:var(--violet);transform:translateY(-2px)}
+.vc b{font-size:18px;display:flex;align-items:center;gap:8px}
+.vc b svg{width:20px;height:20px;flex:none;color:var(--violet)}
+.vc p{margin:6px 0 0;font-size:14px;color:var(--muted)}
+.vc em{display:block;margin-top:6px;font-size:14px;color:var(--violet);font-style:normal;font-weight:600}
+.vc.played{background:#e6ecfb}
+/* grammar */
+.gram{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.gb{border-radius:18px;padding:16px}
+.gb h3{margin:0 0 6px;font-size:19px}
+.gb .f{display:inline-block;background:#fff;border-radius:8px;padding:3px 10px;font-weight:800;margin:4px 0;font-family:Consolas,monospace;font-size:15px}
+.gb p{margin:6px 0 0;font-size:15px}
+.g1{background:var(--pink)}.g2{background:var(--lav)}.g3{background:var(--green)}.g4{background:#fbe7c6}
+.warn{margin-top:14px;background:var(--ink);color:#fff;border-radius:14px;padding:12px 16px;font-size:16px}
+.warn b{color:var(--pink)}
+.q{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:2px dashed var(--paper);font-size:18px}
+.q:last-child{border-bottom:0}
+.q .n{width:32px;height:32px;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;border-radius:50%;font-weight:800;font-size:15px}
+.opt{font:inherit;font-size:16px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:10px;padding:4px 12px;cursor:pointer;margin:0 2px}
+.opt.ok{background:var(--green);border-color:#5aa845}
+.opt.bad{background:var(--pink);animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+/* tour */
+.tour{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.law{border-radius:22px;overflow:hidden;background:var(--paper);display:flex;flex-direction:column}
+.law .pic{height:150px;display:grid;place-items:center;position:relative}
+.law .pic svg.ill{width:130px;height:130px}
+.law .pic svg.fl{position:absolute;left:14px;top:14px;width:46px;height:30px;border-radius:5px;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.law .pic .no{position:absolute;right:14px;top:14px;background:var(--ink);color:#fff;font-weight:800;border-radius:999px;padding:2px 10px;font-size:13px}
+.law .body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.law h3{margin:0;font-size:20px}
+.law .where{font-size:13px;font-weight:800;color:var(--violet);text-transform:uppercase;letter-spacing:1px}
+.law p{margin:0;font-size:16px}
+.law .why{font-size:14px;color:var(--muted)}
+.law .dq{margin-top:auto;background:#fff;border-radius:12px;padding:8px 12px;font-weight:700;font-size:15px}
+.law .lsn{font:inherit;font-size:13px;font-weight:700;background:none;border:0;color:var(--violet);cursor:pointer;padding:0;text-align:left}
+/* game */
+.game{max-width:720px;margin:0 auto;text-align:center}
+.score{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.score span{background:var(--paper);border-radius:999px;padding:6px 16px;font-weight:800}
+.stmt{background:var(--ink);color:#fff;border-radius:22px;padding:28px 24px;min-height:150px;display:grid;place-items:center;font-size:23px;font-weight:700;position:relative}
+.stmt small{position:absolute;top:12px;left:18px;font-size:13px;color:var(--lav);font-weight:700}
+.choose{display:flex;justify-content:center;gap:14px;margin:18px 0}
+.choose button{font:inherit;font-size:18px;font-weight:700;border:2px solid var(--ink);border-radius:999px;padding:12px 28px;cursor:pointer}
+.choose .bl{background:var(--green)}.choose .bm{background:var(--pink)}
+.choose button:disabled{opacity:.5;cursor:default}
+.verdict{min-height:70px;font-size:17px;background:var(--paper);border-radius:16px;padding:12px 16px;text-align:left}
+.verdict b.r{color:#2d7a1d}.verdict b.w{color:#b23a62}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.dots i{width:14px;height:14px;border-radius:50%;background:var(--paper)}
+.dots i.r{background:#7cc663}.dots i.w{background:#e47b9f}.dots i.c{outline:3px solid var(--violet)}
+.final{font-size:22px;font-weight:800;color:var(--violet)}
+/* invent */
+.inv{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.frames{display:grid;gap:10px}
+.frames label{font-size:14px;font-weight:700;color:var(--muted)}
+.frames select,.frames input{font:inherit;width:100%;padding:8px 10px;border:2px solid var(--lav);border-radius:10px;background:#fff}
+.poster{background:var(--paper);border:3px solid var(--ink);border-radius:20px;padding:22px;text-align:center;min-height:260px;display:flex;flex-direction:column;gap:10px;justify-content:center}
+.poster .seal{width:70px;height:70px;margin:0 auto}
+.poster h3{margin:0;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--violet)}
+.poster .rule{font-size:22px;font-weight:800}
+.poster .pen{font-size:16px;color:var(--muted)}
+.ideas{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ideas span{background:var(--pink);border-radius:999px;padding:5px 12px;font-size:14px;font-weight:600}
+/* roleplay */
+.rp{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.role{border-radius:20px;padding:18px}
+.role h3{margin:0 0 6px;display:flex;align-items:center;gap:10px}
+.role h3 svg{width:42px;height:42px}
+.role ul{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.r1{background:var(--lav)}.r2{background:var(--green)}
+.scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:16px}
+.sc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:3px solid transparent}
+.sc.on{border-color:var(--violet);background:#fff}
+.sc b{display:block;font-size:17px;margin-bottom:4px}
+.sc p{margin:0;font-size:15px}
+.timer{font-size:40px;font-weight:800;text-align:center;margin:14px 0 6px;color:var(--violet)}
+.ctr{text-align:center}
+/* homework */
+.hwb{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hwc{background:var(--paper);border-radius:18px;padding:18px}
+.hwc h3{margin:0 0 8px}
+.hwc ol,.hwc ul{margin:6px 0 0;padding-left:20px;line-height:1.7}
+.hwc textarea{width:100%;min-height:150px;font:inherit;border:2px solid var(--lav);border-radius:12px;padding:10px;margin-top:10px}
+.end{text-align:center;background:var(--ink);color:#fff;box-shadow:none}
+.end h2{justify-content:center}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(140px);background:var(--ink);color:#fff;font-weight:800;padding:12px 22px;border-radius:14px;transition:transform .3s;z-index:50}
+.toast.show{transform:translateX(-50%) translateY(0)}
+/* photos */
+.ph{margin:0}
+.ph img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;background:var(--paper)}
+.ph figcaption{font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.2px}
+.tax{grid-template-columns:1fr !important;padding:12px !important}
+.law .pic{height:auto !important;display:block !important;padding:0;position:relative}
+.law .pic .ph img{border-radius:0;aspect-ratio:16/10;transition:filter .5s}
+.law .pic .ph figcaption{padding:4px 12px 0}
+.law.hide .pic .ph img{filter:blur(10px) grayscale(.6)}
+.law.hide .reveal-body,.law.hide .fl,.law.hide .where{visibility:hidden}
+.law .clue{font-size:15px;font-style:italic;color:var(--ink)}
+.law .gc{display:flex;flex-wrap:wrap;gap:6px}
+.law .gc button{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:4px 12px;cursor:pointer}
+.law .gc button.ok{background:var(--green)}.law .gc button.bad{background:var(--pink)}
+.law:not(.hide) .guess{display:none}
+.fair{display:grid;gap:4px;background:#fff;border-radius:12px;padding:8px 12px}
+.fair .ends{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.fair input{width:100%;accent-color:var(--accent)}
+.fair output{font-size:14px;font-weight:700;color:var(--accent)}
+.gph{max-width:720px;margin:0 auto 12px}
+.gph img{aspect-ratio:21/9}
+.fine{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.fq{background:var(--paper);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.fq h3{margin:0;font-size:18px}
+.fq .opts{display:flex;flex-wrap:wrap;gap:6px}
+.fq .opts button{font:inherit;font-size:14px;font-weight:700;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 12px;cursor:pointer}
+.fq .opts button.ok{background:var(--green)}.fq .opts button.bad{background:var(--pink)}
+.fq .res{font-size:15px;min-height:22px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{position:relative;aspect-ratio:16/9;background:#111}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;cursor:pointer;background:#111 center/cover;display:grid;place-items:center}
+.vid .play span{background:rgba(0,0,0,.7);color:#fff;font-weight:700;border-radius:999px;padding:10px 20px;font-size:15px;letter-spacing:1px}
+.vid .info{padding:14px 16px}
+.vid .info h3{margin:0 0 2px;font-size:18px}
+.vid .info small{color:var(--muted)}
+.vid .info ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+@media(max-width:760px){.inv,.rp,.hwb{grid-template-columns:1fr}.lk-tbtn{top:auto;bottom:70px}}
+
+.pr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.pb{border-radius:18px;padding:16px 18px}
+.pb h3{margin:0;font-family:Georgia,serif;font-size:30px}
+.pb .m{font-size:15px;color:var(--muted);margin:2px 0 8px}
+.pb .chips{display:flex;flex-wrap:wrap;gap:6px}
+.pb .chips span{background:#fff;border-radius:999px;padding:4px 11px;font-size:14px;font-weight:600}
+.pb ul{margin:10px 0 0;padding-left:18px;font-size:15px}
+.p-in{background:#DCE6F5}.p-at{background:#F3D9CF}.p-on{background:#D4E2CF}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-size:15px;margin-top:10px}
+.ex div{background:var(--paper);border-radius:10px;padding:8px 12px}
+.ex b{color:var(--accent)}
+.q{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.q .n{font-weight:800;color:var(--violet);min-width:24px}
+.q .gap{display:inline-block;min-width:44px;border-bottom:2px solid var(--ink);text-align:center;font-weight:800}
+.q .opts{margin-left:auto;display:flex;gap:6px}
+.q .opts button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 14px;cursor:pointer}
+.q.ok{background:#DDEED7}.q.ok .gap{color:#2F7A3B}
+.q.bad{background:#F6DAD3}
+.score{font-weight:800;margin-top:12px}
+.text{font-size:18px;line-height:1.75;background:var(--paper);border-radius:16px;padding:18px 22px}
+.text h3{margin:0 0 6px;font-family:Georgia,serif;font-size:24px}
+.text p{margin:0 0 12px}
+.text.hl mark{background:#F3D9CF;border-radius:4px;padding:0 3px;font-weight:700}
+.tf{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:9px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.tf .opts{margin-left:auto;display:flex;gap:6px}
+.tf button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.tf.ok{background:#DDEED7}.tf.bad{background:#F6DAD3}
+.disc{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px;margin-top:6px}
+.disc div{background:var(--green);border-radius:14px;padding:12px 16px;font-size:17px;font-weight:600}
+.disc div i{font-style:normal;color:var(--violet);margin-right:6px}
+.spin{text-align:center;margin-top:16px}
+.spin .card{display:inline-block;min-height:80px;min-width:min(560px,100%);background:var(--ink);color:#fff;border-radius:18px;padding:20px 24px;font-size:22px;font-weight:700;margin-bottom:12px}
+@media(max-width:700px){.ex{grid-template-columns:1fr}}
+
+.hero{background-size:cover!important;background-position:center!important}
+.voc{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.voc div{background:var(--paper);border-radius:14px;padding:10px 14px;cursor:pointer;border:2px solid transparent}
+.voc div:hover{border-color:var(--violet)}
+.voc b{display:block;font-size:18px}.voc span{display:block;color:var(--accent);font-weight:700;font-size:15px}.voc em{display:block;font-size:14px;color:var(--muted);margin-top:3px}
+.mt{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:10px}
+.mt button{font:inherit;font-size:16px;text-align:left;border:2px solid var(--ink);background:#fff;border-radius:14px;padding:9px 14px;cursor:pointer}
+.mt button.sel{background:#FFE7A8}.mt button.done{background:#CDE8C6;border-color:#4C9A5B;cursor:default}
+.ch{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ch .n{font-weight:800;color:var(--violet);min-width:24px}
+.ch .o{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.ch .o button{font:inherit;font-size:15px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.ch.ok{background:#DDEED7}.ch.bad{background:#F6DAD3}
+.ty{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ty input{font:inherit;border:2px solid var(--ink);border-radius:10px;padding:4px 10px;width:220px}
+.ty.ok{background:#DDEED7}.ty.bad{background:#F6DAD3}
+.ty small{color:var(--muted)}
+.photo{width:100%;height:300px;object-fit:cover;border-radius:16px;display:block}
+.cap{font-size:11px;color:var(--muted);margin:4px 0 12px}
+.pics{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.pics figure{margin:0;background:var(--paper);border-radius:16px;overflow:hidden}
+.pics img{width:100%;height:170px;object-fit:cover;display:block}
+.pics figcaption{padding:8px 12px;font-weight:700}
+.pics small{display:block;font-weight:400;font-size:10px;color:var(--muted)}
+.lis{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:8px 0 14px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{aspect-ratio:16/9;background:#000;position:relative}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;background-size:cover;background-position:center;cursor:pointer;display:grid;place-items:center}
+.vid .play span{background:#E5484D;color:#fff;font-weight:800;border-radius:12px;padding:10px 20px}
+.vid .info{padding:12px 16px}.vid h3{margin:0;font-size:18px}.vid small{color:var(--muted)}
+.vid ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th,.tbl td{border:1px solid #ddd;padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--paper)}
+@media(max-width:700px){.mt{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="/game-lessons/kit.css">
+</head>
+<body>
+<header class="hero">
+  <div class="kicker">B1 · teens · Граматика: тренажер Бажання: wish і if only</div>
+  <h1>Wish and if only: 100 tasks</h1>
+  <p>B1 · 6 parts · 60 min</p>
+  <span class="cr">Photo: Unsplash</span>
+</header>
+<button class="lk-tbtn" id="teacherBtn" type="button">Teacher version</button>
+<div class="wrap">
+  <section class="lk-overview">
+    <h2>In this lesson you will:</h2>
+    <ul><li>Повторимо правило: Бажання: wish і if only
+100 завдань від простого до складного
+Розберемо головні пастки</li></ul>
+    <div class="lk-stages" id="stages"></div>
+  </section>
+  <section id="s1" data-stage="practice" data-min="10">
+    <h2><span class="lk-n">1</span>Теорія <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<div class="warn"><p><b>Коли вживаємо</b></p><p>Хочу, щоб зараз було інакше: wish + Past Simple: I wish I had a dog. (Шкода, що в мене немає собаки.)</p><p>Не вмію, а хотілося б: wish + could: I wish I could play the guitar. (Шкода, що я не вмію грати на гітарі.)</p><p>Жаль про минуле: wish + Past Perfect: I wish I had gone to the concert. (Шкода, що я не пішов на концерт.)</p><p>Хтось дратує, хочу, щоб змінився: wish + would: I wish my brother would stop shouting. (Хоч би брат перестав кричати.)</p><p>Ще сильніше бажання: If only ...: If only I had more time! (Якби ж у мене було більше часу!)</p></div>
+    <div class="warn"><p><b>Форми</b></p><p>зараз  wish / if only + Past Simple (be → were або was). Приклад: I wish I knew the answer. I wish I were taller.</p><p>вміння  wish + could + V. Приклад: I wish I could fly.</p><p>минуле  wish / if only + had (not) + V3. Приклад: I wish I hadn’t said that.</p><p>would  wish + інша людина або річ + would (not) + V: роздратування, хочемо, щоб це змінилося. Приклад: I wish you wouldn’t be late.</p><p>−  wish + didn’t / wasn’t / weren’t / couldn’t / hadn’t + V. Приклад: I wish it wasn’t so cold.</p><p>?  Do you (ever) wish you ...? Don’t you wish ...?. Приклад: Do you ever wish you lived in Spain?</p></div>
+    <div class="warn"><p><b>Головна пастка</b></p><p>wish + теперішній час. Після wish час відступає на крок назад: про зараз беремо Past Simple, про минуле Past Perfect.</p><p>✗ I wish I have a bike.</p><p>✓ I wish I had a bike.</p><p>I wish I would. wish + would про себе не вживаємо. Для себе беремо could або Past Simple.</p><p>✗ I wish I would speak French.</p><p>✓ I wish I could speak French.</p><p>wish чи hope. Про реальне майбутнє, яке може статися, кажемо hope + теперішній час. wish говорить про те, що нереально або вже не зміниш.</p><p>✗ I wish you pass your exam.</p><p>✓ I hope you pass your exam.</p></div>
+    <div class="warn"><p><b>Маркери:</b> шкода, що ... → wish, якби ж ... → if only, зараз → Past Simple, вчора, тоді → had + V3, дратує → wish ... would, не вмію → wish I could, реальне майбутнє → hope</p></div>
+    <div class="warn"><p><b>Шпаргалка: який час після wish</b></p><p>Після wish та if only час завжди відступає на крок назад. Таблиця: про що, форма, приклад, переклад.</p><p>зараз · Past Simple · I wish I lived by the sea. · Шкода, що я не живу біля моря.</p><p>зараз, be · were / was · I wish it were Friday. · Шкода, що сьогодні не п’ятниця.</p><p>вміння · could + V · I wish I could dance. · Шкода, що я не вмію танцювати.</p><p>минуле · had + V3 · I wish I had listened. · Шкода, що я не послухав.</p><p>дратує · would + V · I wish he would call. · Хоч би він подзвонив.</p><p>реальне майбутнє · hope + теперішній час · I hope you like it. · Сподіваюся, тобі сподобається.</p></div>
+    <p class="lk-tnote" data-ru="Тренажер на 100 завдань: 5 раундів по 20. На уроці можна пройти 1-2 раунди, решту задати додому. Пояснення до кожної відповіді учень бачить у тренажері на сайті (розділ «Граматика»).&lt;br&gt;">Тренажер на 100 завдань: 5 раундів по 20. На уроці можна пройти 1-2 раунди, решту задати додому. Пояснення до кожної відповіді учень бачить у тренажері на сайті (розділ «Граматика»).<br></p>
+  </section>
+  <section id="s2" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">2</span>Раунд 1. Форми: крок назад після wish <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="had"><span class="n">1</span><span class="s">I wish I ___ a dog.</span><span class="o"><button type="button">am having</button><button type="button">had</button><button type="button">have</button><button type="button">will have</button></span></div>
+<div class="ch" data-a="were"><span class="n">2</span><span class="s">Max wishes he ___ taller.</span><span class="o"><button type="button">were</button><button type="button">be</button><button type="button">is</button><button type="button">will be</button></span></div>
+<div class="ch" data-a="could"><span class="n">3</span><span class="s">I wish I ___ swim. Everyone is in the pool!</span><span class="o"><button type="button">would</button><button type="button">could</button><button type="button">will</button><button type="button">can</button></span></div>
+<div class="ch" data-a="had gone"><span class="n">4</span><span class="s">Sophie wishes she ___ to the concert last week.</span><span class="o"><button type="button">had gone</button><button type="button">has gone</button><button type="button">will go</button><button type="button">goes</button></span></div>
+<div class="ch" data-a="was"><span class="n">5</span><span class="s">If only it ___ the weekend!</span><span class="o"><button type="button">be</button><button type="button">is</button><button type="button">will be</button><button type="button">was</button></span></div>
+<div class="ch" data-a="would stop"><span class="n">6</span><span class="s">I wish my sister ___ borrowing my clothes.</span><span class="o"><button type="button">stops</button><button type="button">is stopping</button><button type="button">would stop</button><button type="button">will stop</button></span></div>
+<div class="ch" data-a="had studied"><span class="n">7</span><span class="s">I wish I ___ harder for the test yesterday.</span><span class="o"><button type="button">had studied</button><button type="button">would study</button><button type="button">studied</button><button type="button">study</button></span></div>
+<div class="ch" data-a="had"><span class="n">8</span><span class="s">Kate wishes she ___ a car.</span><span class="o"><button type="button">had</button><button type="button">have</button><button type="button">would have</button><button type="button">has</button></span></div>
+<div class="ch" data-a="had caught"><span class="n">9</span><span class="s">We’re so late. If only we ___ the earlier bus!</span><span class="o"><button type="button">would catch</button><button type="button">have caught</button><button type="button">had caught</button><button type="button">catch</button></span></div>
+<div class="ch" data-a="would stop"><span class="n">10</span><span class="s">I wish the neighbours’ dog ___ barking at night.</span><span class="o"><button type="button">is stop</button><button type="button">would stop</button><button type="button">will stop</button><button type="button">stops</button></span></div>
+<div class="ch" data-a="knew"><span class="n">11</span><span class="s">I wish I ___ the answer. This question is so hard.</span><span class="o"><button type="button">will know</button><button type="button">knew</button><button type="button">have known</button><button type="button">know</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; had · were · could · had gone · was · would stop · had studied · had · had caught · would stop · knew"><b>Відповіді:</b> had · were · could · had gone · was · would stop · had studied · had · had caught · would stop · knew</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="knew"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>I wish I ___ (know) Lily’s phone number.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="lived"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>I wish we ___ (live) closer to the sea.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="hadn’t eaten|had not eaten"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>I wish I ___ (not, eat) that third burger last night.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="had"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>If only I ___ (have) more time for my hobbies.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="could speak"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Dan wishes he ___ (can, speak) Spanish.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="would tidy|’d tidy"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>I wish you ___ (would, tidy) your room for once.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="were|was"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>I wish I ___ (be) on holiday right now.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="didn’t have|did not have"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>Lily wishes she ___ (not, have) so much homework.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="had gone|’d gone"><span class="n" style="font-weight:800;color:var(--violet)">9</span><span>Tom wishes he ___ (go) to bed earlier last night.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; knew · lived · hadn’t eaten · had · could speak · would tidy · were · didn’t have · had gone"><b>Відповіді:</b> knew · lived · hadn’t eaten · had · could speak · would tidy · were · didn’t have · had gone</p>
+  </section>
+  <section id="s3" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">3</span>Раунд 2. Заперечення і питання <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="wasn’t"><span class="n">1</span><span class="s">I wish it ___ so cold today.</span><span class="o"><button type="button">isn’t</button><button type="button">won’t be</button><button type="button">wasn’t</button><button type="button">doesn’t</button></span></div>
+<div class="ch" data-a="lived"><span class="n">2</span><span class="s">Do you ever wish you ___ in a big city?</span><span class="o"><button type="button">are living</button><button type="button">live</button><button type="button">will live</button><button type="button">lived</button></span></div>
+<div class="ch" data-a="wouldn’t"><span class="n">3</span><span class="s">I wish you ___ talk during the film. It’s annoying.</span><span class="o"><button type="button">not would</button><button type="button">won’t</button><button type="button">don’t</button><button type="button">wouldn’t</button></span></div>
+<div class="ch" data-a="hadn’t left"><span class="n">4</span><span class="s">Don’t you wish you ___ your phone at home today?</span><span class="o"><button type="button">haven’t left</button><button type="button">don’t leave</button><button type="button">hadn’t left</button><button type="button">didn’t leave</button></span></div>
+<div class="ch" data-a="weren’t"><span class="n">5</span><span class="s">Emma wishes her parents ___ so strict.</span><span class="o"><button type="button">weren’t</button><button type="button">won’t be</button><button type="button">aren’t</button><button type="button">not are</button></span></div>
+<div class="ch" data-a="had chosen"><span class="n">6</span><span class="s">Does Sophie wish she ___ a different school last year?</span><span class="o"><button type="button">has chosen</button><button type="button">had chosen</button><button type="button">will choose</button><button type="button">chooses</button></span></div>
+<div class="ch" data-a="wouldn’t be"><span class="n">7</span><span class="s">If only Dan ___ late all the time!</span><span class="o"><button type="button">doesn’t be</button><button type="button">isn’t</button><button type="button">won’t be</button><button type="button">wouldn’t be</button></span></div>
+<div class="ch" data-a="didn’t"><span class="n">8</span><span class="s">Tom wishes he ___ sing so badly.</span><span class="o"><button type="button">hasn’t</button><button type="button">didn’t</button><button type="button">doesn’t</button><button type="button">won’t</button></span></div>
+<div class="ch" data-a="had done"><span class="n">9</span><span class="s">What do you wish you ___ yesterday?</span><span class="o"><button type="button">did</button><button type="button">have done</button><button type="button">had done</button><button type="button">do</button></span></div>
+<div class="ch" data-a="wouldn’t"><span class="n">10</span><span class="s">I wish people ___ litter in the park.</span><span class="o"><button type="button">aren’t</button><button type="button">won’t</button><button type="button">don’t</button><button type="button">wouldn’t</button></span></div>
+<div class="ch" data-a="could"><span class="n">11</span><span class="s">Do you wish you ___ fly?</span><span class="o"><button type="button">can</button><button type="button">could</button><button type="button">will</button><button type="button">would</button></span></div>
+<div class="ch" data-a="had"><span class="n">12</span><span class="s">Don’t you wish you ___ more free time?</span><span class="o"><button type="button">would have</button><button type="button">had</button><button type="button">having</button><button type="button">have</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; wasn’t · lived · wouldn’t · hadn’t left · weren’t · had chosen · wouldn’t be · didn’t · had done · wouldn’t · could · had"><b>Відповіді:</b> wasn’t · lived · wouldn’t · hadn’t left · weren’t · had chosen · wouldn’t be · didn’t · had done · wouldn’t · could · had</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="didn’t have to|did not have to"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>I wish I ___ (not, have to) get up so early.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="hadn’t said|had not said"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Max wishes he ___ (not, say) that to his friend yesterday.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="weren’t|wasn’t|were not|was not"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>If only I ___ (not, be) so shy.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="wouldn’t use|would not use"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>I wish my brother ___ (would, not, use) my headphones.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="hadn’t forgotten|had not forgotten"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>I wish I ___ (not, forget) my keys this morning.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="didn’t live|did not live"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Lily wishes she ___ (not, live) so far from school.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="hadn’t bought|had not bought"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>We wish we ___ (not, buy) such a big sofa. It doesn’t fit!</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="wouldn’t wake|would not wake"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>I wish my cat ___ (would, not, wake) me up at 5 a.m.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; didn’t have to · hadn’t said · weren’t · wouldn’t use · hadn’t forgotten · didn’t live · hadn’t bought · wouldn’t wake"><b>Відповіді:</b> didn’t have to · hadn’t said · weren’t · wouldn’t use · hadn’t forgotten · didn’t live · hadn’t bought · wouldn’t wake</p>
+  </section>
+  <section id="s4" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">4</span>Раунд 3. Зараз, минуле чи дратує? <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="had taken"><span class="n">1</span><span class="s">I failed my driving test. I wish I ___ more lessons.</span><span class="o"><button type="button">took</button><button type="button">would take</button><button type="button">had taken</button><button type="button">take</button></span></div>
+<div class="ch" data-a="would put"><span class="n">2</span><span class="s">My brother always leaves his socks everywhere. I wish he ___ them away.</span><span class="o"><button type="button">will put</button><button type="button">would put</button><button type="button">had put</button><button type="button">puts</button></span></div>
+<div class="ch" data-a="had"><span class="n">3</span><span class="s">I don’t have a bike. I wish I ___ one.</span><span class="o"><button type="button">had had</button><button type="button">would have</button><button type="button">had</button><button type="button">have</button></span></div>
+<div class="ch" data-a="hadn’t eaten"><span class="n">4</span><span class="s">Max ate the last cookie. Now he wishes he ___ it.</span><span class="o"><button type="button">doesn’t eat</button><button type="button">wouldn’t eat</button><button type="button">didn’t eat</button><button type="button">hadn’t eaten</button></span></div>
+<div class="ch" data-a="would stop"><span class="n">5</span><span class="s">You keep interrupting me! I wish you ___!</span><span class="o"><button type="button">would stop</button><button type="button">will stop</button><button type="button">had stopped</button><button type="button">stop</button></span></div>
+<div class="ch" data-a="could"><span class="n">6</span><span class="s">Kate can’t come to the match. She wishes she ___.</span><span class="o"><button type="button">would</button><button type="button">could</button><button type="button">can</button><button type="button">will</button></span></div>
+<div class="ch" data-a="would turn"><span class="n">7</span><span class="s">The music next door is so loud. I wish they ___ it down.</span><span class="o"><button type="button">will turn</button><button type="button">would turn</button><button type="button">turn</button><button type="button">had turned</button></span></div>
+<div class="ch" data-a="had been"><span class="n">8</span><span class="s">We spent all our money on the first day. If only we ___ more careful!</span><span class="o"><button type="button">had been</button><button type="button">were</button><button type="button">would be</button><button type="button">are</button></span></div>
+<div class="ch" data-a="had gone"><span class="n">9</span><span class="s">I wish I ___ to the dentist last month. Now my tooth hurts.</span><span class="o"><button type="button">go</button><button type="button">went</button><button type="button">would go</button><button type="button">had gone</button></span></div>
+<div class="ch" data-a="would put"><span class="n">10</span><span class="s">Emma is always on her phone at dinner. Her mum wishes she ___ it away.</span><span class="o"><button type="button">will put</button><button type="button">had put</button><button type="button">would put</button><button type="button">puts</button></span></div>
+<div class="ch" data-a="was"><span class="n">11</span><span class="s">It’s Monday morning. I wish it ___ Saturday.</span><span class="o"><button type="button">would be</button><button type="button">had been</button><button type="button">is</button><button type="button">was</button></span></div>
+<div class="ch" data-a="hadn’t told"><span class="n">12</span><span class="s">I told Tom my secret, and he told everyone. I wish I ___ him.</span><span class="o"><button type="button">wouldn’t tell</button><button type="button">hadn’t told</button><button type="button">don’t tell</button><button type="button">didn’t tell</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; had taken · would put · had · hadn’t eaten · would stop · could · would turn · had been · had gone · would put · was · hadn’t told"><b>Відповіді:</b> had taken · would put · had · hadn’t eaten · would stop · could · would turn · had been · had gone · would put · was · hadn’t told</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="were|was"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>It’s raining and I’m stuck at home. I wish I ___ (be) at the beach.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="had gone|’d gone"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Lily missed the party. Now she wishes she ___ (go).</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="had"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>My phone is so old. I wish I ___ (have) a new one.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="had brought|’d brought"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>I didn’t bring my camera. I wish I ___ (bring) it.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="could understand"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>I can’t understand this song. I wish I ___ (can, understand) French.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="were|was"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Our flat is tiny. If only it ___ (be) a bit bigger!</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="had listened|’d listened"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>Dan didn’t listen to the coach. Now he wishes he ___ (listen).</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="knew"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>I don’t know how to cook. I wish I ___ (know) how.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; were · had gone · had · had brought · could understand · were · had listened · knew"><b>Відповіді:</b> were · had gone · had · had brought · could understand · were · had listened · knew</p>
+  </section>
+  <section id="s5" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">5</span>Раунд 4. Пастки: wish чи hope, I wish I would <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="I wish I had more friends."><span class="n">1</span><span class="s">Обери правильне речення: ___</span><span class="o"><button type="button">I wish I have more friends.</button><button type="button">I wish I will have more friends.</button><button type="button">I wish I had more friends.</button><button type="button">I wish I having more friends.</button></span></div>
+<div class="ch" data-a="hope"><span class="n">2</span><span class="s">Good luck tomorrow! I ___ you win.</span><span class="o"><button type="button">wish</button><button type="button">would</button><button type="button">wished</button><button type="button">hope</button></span></div>
+<div class="ch" data-a="I wish I could speak French."><span class="n">3</span><span class="s">Яке речення правильне?: ___</span><span class="o"><button type="button">I wish I could speak French.</button><button type="button">I wish I can speak French.</button><button type="button">I wish I will speak French.</button><button type="button">I wish I would speak French.</button></span></div>
+<div class="ch" data-a="I wish I had gone to the party yesterday."><span class="n">4</span><span class="s">Знайди речення без помилки: ___</span><span class="o"><button type="button">I wish I would go to the party yesterday.</button><button type="button">I wish I go to the party yesterday.</button><button type="button">I wish I had gone to the party yesterday.</button><button type="button">I wish I have gone to the party yesterday.</button></span></div>
+<div class="ch" data-a="hadn’t sent"><span class="n">5</span><span class="s">If only I ___ that email! My boss is furious.</span><span class="o"><button type="button">didn’t send</button><button type="button">wouldn’t send</button><button type="button">hadn’t sent</button><button type="button">don’t send</button></span></div>
+<div class="ch" data-a="I wish I knew his name."><span class="n">6</span><span class="s">Де немає помилки?: ___</span><span class="o"><button type="button">I wish I would know his name.</button><button type="button">I wish I knew his name.</button><button type="button">I wish I know his name.</button><button type="button">I wish I known his name.</button></span></div>
+<div class="ch" data-a="wasn’t"><span class="n">7</span><span class="s">I wish I ___ so tired. I can’t focus.</span><span class="o"><button type="button">am not</button><button type="button">haven’t been</button><button type="button">wouldn’t be</button><button type="button">wasn’t</button></span></div>
+<div class="ch" data-a="I hope you feel better soon."><span class="n">8</span><span class="s">Обери речення без помилки: ___</span><span class="o"><button type="button">I wish you will feel better soon.</button><button type="button">I wish you feel better soon.</button><button type="button">I hope you feel better soon.</button><button type="button">I hope you would feel better soon.</button></span></div>
+<div class="ch" data-a="would call"><span class="n">9</span><span class="s">My uncle never phones. I wish he ___ me more often.</span><span class="o"><button type="button">has called</button><button type="button">will call</button><button type="button">would call</button><button type="button">calls</button></span></div>
+<div class="ch" data-a="If only I was richer."><span class="n">10</span><span class="s">Яке речення звучить правильно?: ___</span><span class="o"><button type="button">If only I was richer.</button><button type="button">If only I am richer.</button><button type="button">If only I be richer.</button><button type="button">If only I will be richer.</button></span></div>
+<div class="ch" data-a="had spent"><span class="n">11</span><span class="s">Sophie wishes she ___ more time with her grandparents last summer.</span><span class="o"><button type="button">would spend</button><button type="button">spends</button><button type="button">had spent</button><button type="button">has spent</button></span></div>
+<div class="ch" data-a="wish"><span class="n">12</span><span class="s">We ___ you a happy birthday!</span><span class="o"><button type="button">would</button><button type="button">wish</button><button type="button">wishing</button><button type="button">hope</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; I wish I had more friends. · hope · I wish I could speak French. · I wish I had gone to the party yesterday. · hadn’t sent · I wish I knew his name. · wasn’t · I hope you feel better soon. · would call · If only I was richer. · had spent · wish"><b>Відповіді:</b> I wish I had more friends. · hope · I wish I could speak French. · I wish I had gone to the party yesterday. · hadn’t sent · I wish I knew his name. · wasn’t · I hope you feel better soon. · would call · If only I was richer. · had spent · wish</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="hope"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>I ___ (hope / wish) you have a great time in Rome!</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="wish"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>I ___ (hope / wish) I had a twin sister.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="would stop|’d stop"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>I wish it ___ (would, stop) raining. I want to go out!</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="could come"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>I wish I ___ (can, come) to your party, but I’m away that weekend.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="hadn’t sold|had not sold"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Max wishes he ___ (not, sell) his old guitar last year.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="had listened|’d listened"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>If only I ___ (listen) to my mum yesterday!</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="were|was"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>I wish I ___ (be) better at maths.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="wouldn’t be|would not be"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>I wish my friends ___ (would, not, be) late every time.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; hope · wish · would stop · could come · hadn’t sold · had listened · were · wouldn’t be"><b>Відповіді:</b> hope · wish · would stop · could come · hadn’t sold · had listened · were · wouldn’t be</p>
+  </section>
+  <section id="s6" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">6</span>Раунд 5. Фінальний бос: якби ж <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="could"><span class="n">1</span><span class="s">Lily: “I’m so bored at home.” Max: “I wish I ___ help, but I’m at work.”</span><span class="o"><button type="button">can</button><button type="button">could</button><button type="button">would</button><button type="button">will</button></span></div>
+<div class="ch" data-a="would sing"><span class="n">2</span><span class="s">Dan’s little sister keeps singing the same song. He wishes she ___ something else.</span><span class="o"><button type="button">will sing</button><button type="button">had sung</button><button type="button">would sing</button><button type="button">sings</button></span></div>
+<div class="ch" data-a="had told"><span class="n">3</span><span class="s">Tom: “Why didn’t you tell me about the sale?” Lily: “Sorry! I wish I ___ you.”</span><span class="o"><button type="button">told</button><button type="button">had told</button><button type="button">would tell</button><button type="button">tell</button></span></div>
+<div class="ch" data-a="had"><span class="n">4</span><span class="s">It’s 35 degrees. If only we ___ air conditioning!</span><span class="o"><button type="button">had</button><button type="button">have</button><button type="button">had had</button><button type="button">would have</button></span></div>
+<div class="ch" data-a="hadn’t eaten"><span class="n">5</span><span class="s">Sophie wishes she ___ so many sweets at the party. Now she feels sick.</span><span class="o"><button type="button">hadn’t eaten</button><button type="button">wouldn’t eat</button><button type="button">didn’t eat</button><button type="button">doesn’t eat</button></span></div>
+<div class="ch" data-a="were"><span class="n">6</span><span class="s">“Are you going to the festival?” “No, but I wish I ___.”</span><span class="o"><button type="button">do</button><button type="button">will</button><button type="button">am</button><button type="button">were</button></span></div>
+<div class="ch" data-a="hope"><span class="n">7</span><span class="s">“Good luck with the interview!” “Thanks, I ___ I get the job.”</span><span class="o"><button type="button">hope</button><button type="button">would</button><button type="button">wish</button><button type="button">wished</button></span></div>
+<div class="ch" data-a="had checked"><span class="n">8</span><span class="s">I forgot my umbrella and got soaked. If only I ___ the forecast!</span><span class="o"><button type="button">had checked</button><button type="button">would check</button><button type="button">check</button><button type="button">checked</button></span></div>
+<div class="ch" data-a="wouldn’t"><span class="n">9</span><span class="s">My dad keeps checking his phone at dinner. I wish he ___.</span><span class="o"><button type="button">isn’t</button><button type="button">doesn’t</button><button type="button">won’t</button><button type="button">wouldn’t</button></span></div>
+<div class="ch" data-a="were"><span class="n">10</span><span class="s">Lily wishes she ___ more confident when she speaks English.</span><span class="o"><button type="button">were</button><button type="button">has been</button><button type="button">will be</button><button type="button">is</button></span></div>
+<div class="ch" data-a="had kept"><span class="n">11</span><span class="s">Dan sold his old games console. Now he wishes he ___ it.</span><span class="o"><button type="button">has kept</button><button type="button">had kept</button><button type="button">keeps</button><button type="button">would keep</button></span></div>
+<div class="ch" data-a="had been"><span class="n">12</span><span class="s">I’m sorry I missed your wedding. I wish I ___ there.</span><span class="o"><button type="button">would be</button><button type="button">had been</button><button type="button">were</button><button type="button">am</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; could · would sing · had told · had · hadn’t eaten · were · hope · had checked · wouldn’t · were · had kept · had been"><b>Відповіді:</b> could · would sing · had told · had · hadn’t eaten · were · hope · had checked · wouldn’t · were · had kept · had been</p>
+    <h3 class="lk-sub">Впиши правильну форму.</h3><div class="ty" data-a="hadn’t worn|had not worn"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Kate lost her favourite earrings at the beach. She wishes she ___ (not, wear) them.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="didn’t have to|did not have to"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>I have to work on Saturday. I wish I ___ (not, have to).</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="could drive"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Emma is learning to drive. She wishes she ___ (can, drive) already.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="would wash|’d wash"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>My roommate never washes the dishes. I wish he ___ (would, wash) them sometimes.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="lived"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Max lives in a small village. He wishes he ___ (live) in a big city.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="had left|’d left"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>We missed the start of the film. I wish we ___ (leave) home earlier.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="had"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>I wish I ___ (have) a cat. My parents say no.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="would stop|’d stop"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>Kate wishes her little brother ___ (would, stop) asking questions.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; hadn’t worn · didn’t have to · could drive · would wash · lived · had left · had · would stop"><b>Відповіді:</b> hadn’t worn · didn’t have to · could drive · would wash · lived · had left · had · would stop</p>
+  </section>
+  <section class="end"><h2>Great job!</h2><p>See you next lesson.</p></section>
+</div>
+<div class="toast" id="toast"></div>
+<script>window.MURLY_LESSON={"id": "lib-drill-wish-if-only", "title": "Wish and if only: 100 tasks", "homework": ["s2", "s3", "s4", "s5", "s6"], "hw": {"s2": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "I wish I {had|have|will have|am having} a dog.\nMax wishes he {were|be|is|will be} taller.\nI wish I {could|can|will|would} swim. Everyone is in the pool!\nSophie wishes she {had gone|has gone|goes|will go} to the concert last week.\nIf only it {was|is|be|will be} the weekend!\nI wish my sister {would stop|will stop|stops|is stopping} borrowing my clothes.\nI wish I {had studied|studied|study|would study} harder for the test yesterday.\nKate wishes she {had|has|have|would have} a car.\nWe’re so late. If only we {had caught|catch|would catch|have caught} the earlier bus!\nI wish the neighbours’ dog {would stop|stops|is stop|will stop} barking at night.\nI wish I {knew|know|have known|will know} the answer. This question is so hard."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "I wish I [knew] (know) Lily’s phone number.\nI wish we [lived] (live) closer to the sea.\nI wish I [hadn’t eaten/had not eaten] (not, eat) that third burger last night.\nIf only I [had] (have) more time for my hobbies.\nDan wishes he [could speak] (can, speak) Spanish.\nI wish you [would tidy/’d tidy] (would, tidy) your room for once.\nI wish I [were/was] (be) on holiday right now.\nLily wishes she [didn’t have/did not have] (not, have) so much homework.\nTom wishes he [had gone/’d gone] (go) to bed earlier last night."}], "s3": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "I wish it {wasn’t|isn’t|doesn’t|won’t be} so cold today.\nDo you ever wish you {lived|live|are living|will live} in a big city?\nI wish you {wouldn’t|don’t|won’t|not would} talk during the film. It’s annoying.\nDon’t you wish you {hadn’t left|didn’t leave|haven’t left|don’t leave} your phone at home today?\nEmma wishes her parents {weren’t|aren’t|won’t be|not are} so strict.\nDoes Sophie wish she {had chosen|chooses|has chosen|will choose} a different school last year?\nIf only Dan {wouldn’t be|doesn’t be|won’t be|isn’t} late all the time!\nTom wishes he {didn’t|doesn’t|won’t|hasn’t} sing so badly.\nWhat do you wish you {had done|did|have done|do} yesterday?\nI wish people {wouldn’t|won’t|don’t|aren’t} litter in the park.\nDo you wish you {could|can|would|will} fly?\nDon’t you wish you {had|have|would have|having} more free time?"}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "I wish I [didn’t have to/did not have to] (not, have to) get up so early.\nMax wishes he [hadn’t said/had not said] (not, say) that to his friend yesterday.\nIf only I [weren’t/wasn’t/were not/was not] (not, be) so shy.\nI wish my brother [wouldn’t use/would not use] (would, not, use) my headphones.\nI wish I [hadn’t forgotten/had not forgotten] (not, forget) my keys this morning.\nLily wishes she [didn’t live/did not live] (not, live) so far from school.\nWe wish we [hadn’t bought/had not bought] (not, buy) such a big sofa. It doesn’t fit!\nI wish my cat [wouldn’t wake/would not wake] (would, not, wake) me up at 5 a.m."}], "s4": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "I failed my driving test. I wish I {had taken|took|take|would take} more lessons.\nMy brother always leaves his socks everywhere. I wish he {would put|puts|had put|will put} them away.\nI don’t have a bike. I wish I {had|would have|had had|have} one.\nMax ate the last cookie. Now he wishes he {hadn’t eaten|didn’t eat|wouldn’t eat|doesn’t eat} it.\nYou keep interrupting me! I wish you {would stop|will stop|had stopped|stop}!\nKate can’t come to the match. She wishes she {could|will|can|would}.\nThe music next door is so loud. I wish they {would turn|had turned|turn|will turn} it down.\nWe spent all our money on the first day. If only we {had been|were|would be|are} more careful!\nI wish I {had gone|went|would go|go} to the dentist last month. Now my tooth hurts.\nEmma is always on her phone at dinner. Her mum wishes she {would put|had put|puts|will put} it away.\nIt’s Monday morning. I wish it {was|is|would be|had been} Saturday.\nI told Tom my secret, and he told everyone. I wish I {hadn’t told|didn’t tell|wouldn’t tell|don’t tell} him."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "It’s raining and I’m stuck at home. I wish I [were/was] (be) at the beach.\nLily missed the party. Now she wishes she [had gone/’d gone] (go).\nMy phone is so old. I wish I [had] (have) a new one.\nI didn’t bring my camera. I wish I [had brought/’d brought] (bring) it.\nI can’t understand this song. I wish I [could understand] (can, understand) French.\nOur flat is tiny. If only it [were/was] (be) a bit bigger!\nDan didn’t listen to the coach. Now he wishes he [had listened/’d listened] (listen).\nI don’t know how to cook. I wish I [knew] (know) how."}], "s5": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Обери правильне речення: {I wish I had more friends.|I wish I have more friends.|I wish I will have more friends.|I wish I having more friends.}\nGood luck tomorrow! I {hope|wish|wished|would} you win.\nЯке речення правильне?: {I wish I could speak French.|I wish I would speak French.|I wish I can speak French.|I wish I will speak French.}\nЗнайди речення без помилки: {I wish I had gone to the party yesterday.|I wish I have gone to the party yesterday.|I wish I would go to the party yesterday.|I wish I go to the party yesterday.}\nIf only I {hadn’t sent|didn’t send|wouldn’t send|don’t send} that email! My boss is furious.\nДе немає помилки?: {I wish I knew his name.|I wish I know his name.|I wish I would know his name.|I wish I known his name.}\nI wish I {wasn’t|am not|wouldn’t be|haven’t been} so tired. I can’t focus.\nОбери речення без помилки: {I hope you feel better soon.|I wish you feel better soon.|I hope you would feel better soon.|I wish you will feel better soon.}\nMy uncle never phones. I wish he {would call|calls|will call|has called} me more often.\nЯке речення звучить правильно?: {If only I was richer.|If only I will be richer.|If only I am richer.|If only I be richer.}\nSophie wishes she {had spent|spends|has spent|would spend} more time with her grandparents last summer.\nWe {wish|hope|wishing|would} you a happy birthday!"}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "I [hope] (hope / wish) you have a great time in Rome!\nI [wish] (hope / wish) I had a twin sister.\nI wish it [would stop/’d stop] (would, stop) raining. I want to go out!\nI wish I [could come] (can, come) to your party, but I’m away that weekend.\nMax wishes he [hadn’t sold/had not sold] (not, sell) his old guitar last year.\nIf only I [had listened/’d listened] (listen) to my mum yesterday!\nI wish I [were/was] (be) better at maths.\nI wish my friends [wouldn’t be/would not be] (would, not, be) late every time."}], "s6": [{"type": "choice", "instruction": "Обери правильний варіант.", "text": "Lily: “I’m so bored at home.” Max: “I wish I {could|can|would|will} help, but I’m at work.”\nDan’s little sister keeps singing the same song. He wishes she {would sing|sings|had sung|will sing} something else.\nTom: “Why didn’t you tell me about the sale?” Lily: “Sorry! I wish I {had told|told|would tell|tell} you.”\nIt’s 35 degrees. If only we {had|have|would have|had had} air conditioning!\nSophie wishes she {hadn’t eaten|didn’t eat|wouldn’t eat|doesn’t eat} so many sweets at the party. Now she feels sick.\n“Are you going to the festival?” “No, but I wish I {were|am|will|do}.”\n“Good luck with the interview!” “Thanks, I {hope|wish|would|wished} I get the job.”\nI forgot my umbrella and got soaked. If only I {had checked|checked|would check|check} the forecast!\nMy dad keeps checking his phone at dinner. I wish he {wouldn’t|doesn’t|won’t|isn’t}.\nLily wishes she {were|is|will be|has been} more confident when she speaks English.\nDan sold his old games console. Now he wishes he {had kept|keeps|has kept|would keep} it.\nI’m sorry I missed your wedding. I wish I {had been|were|would be|am} there."}, {"type": "gap", "instruction": "Впиши правильну форму.", "text": "Kate lost her favourite earrings at the beach. She wishes she [hadn’t worn/had not worn] (not, wear) them.\nI have to work on Saturday. I wish I [didn’t have to/did not have to] (not, have to).\nEmma is learning to drive. She wishes she [could drive] (can, drive) already.\nMy roommate never washes the dishes. I wish he [would wash/’d wash] (would, wash) them sometimes.\nMax lives in a small village. He wishes he [lived] (live) in a big city.\nWe missed the start of the film. I wish we [had left/’d left] (leave) home earlier.\nI wish I [had] (have) a cat. My parents say no.\nKate wishes her little brother [would stop/’d stop] (would, stop) asking questions."}]}};</script>
+<script>
+(function(){var l=(document.cookie.match(/(?:^|; )murly_lang=(\w+)/)||[])[1];try{l=l||localStorage.getItem('murly:tlang')}catch(e){}l=l==='ru'?'ru':'uk';document.querySelectorAll('[data-pairs-'+l+']').forEach(function(b){b.dataset.pairs=b.getAttribute('data-pairs-'+l)});})();
+</script>
+<script>
+const $ = (id) => document.getElementById(id);
+const LIS = {};
+function say(w, rate) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; const v = speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang) && /Google|Natural|Libby|Sonia|Daniel/.test(x.name)) || speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang)); if (v) u.voice = v; u.rate = rate || .95; speechSynthesis.speak(u); } catch (e) { } }
+const sh = (a) => a.map((x) => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map((x) => x[1]);
+document.querySelectorAll('.voc div').forEach((d) => d.onclick = () => say(d.dataset.say));
+document.querySelectorAll('[data-play]').forEach((b) => b.onclick = () => say(LIS[b.dataset.play], b.dataset.slow ? .75 : .95));
+document.querySelectorAll('[data-stop]').forEach((b) => b.onclick = () => { try { speechSynthesis.cancel(); } catch (e) { } });
+document.querySelectorAll('.ch').forEach((q) => q.querySelectorAll('button').forEach((b) => b.onclick = () => { if (q.classList.contains('ok')) return; const ok = b.textContent === q.dataset.a; q.classList.toggle('ok', ok); q.classList.toggle('bad', !ok); if (ok) { const s = q.querySelector('.s'); if (s && s.textContent.includes('___')) { s.textContent = s.textContent.replace('___', q.dataset.a); } } }));
+const norm = (x) => x.toLowerCase().replace(/[’']/g, "'").replace(/[,;:"“”«»]/g, ' ').replace(/\s+/g, ' ').replace(/[.!?]$/, '').trim();
+document.querySelectorAll('.ty').forEach((r) => { const inp = r.querySelector('input'); const chk = () => { const ok = r.dataset.a.split('|').some((a) => norm(a) === norm(inp.value)); r.classList.toggle('ok', ok); r.classList.toggle('bad', !ok && inp.value.trim() !== ''); }; r.querySelector('button').onclick = chk; inp.onkeydown = (e) => { if (e.key === 'Enter') chk(); }; });
+document.querySelectorAll('[data-mt]').forEach((box) => { const pairs = JSON.parse(box.dataset.pairs); const L = sh(pairs.map((p) => p[0])), R = sh(pairs.map((p) => p[1])); let sel = null, done = 0, err = 0; box.innerHTML = L.map((w, i) => `<button type="button" data-w="${w}">${w}</button><button type="button" data-d="${R[i]}">${R[i]}</button>`).join('');
+  box.querySelectorAll('button').forEach((b) => b.onclick = () => { if (b.classList.contains('done')) return; if (!sel || (sel.dataset.w && b.dataset.w) || (sel.dataset.d && b.dataset.d)) { if (sel) sel.classList.remove('sel'); sel = b; b.classList.add('sel'); return; } const w = sel.dataset.w || b.dataset.w, d = sel.dataset.d || b.dataset.d; if (pairs.some((p) => p[0] === w && p[1] === d)) { sel.classList.add('done'); b.classList.add('done'); done++; say(w); if (done === pairs.length) document.querySelector(`[data-mtres="${box.dataset.mt}"]`).textContent = err ? `Done! Mistakes: ${err}` : 'Perfect!'; } else err++; sel.classList.remove('sel'); sel = null; }); });
+document.querySelectorAll('[data-vids]').forEach((box) => JSON.parse(box.dataset.vids).forEach(([id, title, ch, qs]) => { const d = document.createElement('div'); d.className = 'vid'; d.innerHTML = `<div class="frame"><button class="play" type="button" style="background-image:url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)"><span>PLAY</span></button></div><div class="info"><h3>${title}</h3><small>YouTube · ${ch}</small><ol>${qs.map((q) => `<li>${q}</li>`).join('')}</ol></div>`; d.querySelector('.play').onclick = (e) => { e.currentTarget.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&cc_load_policy=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${title}"></iframe>`; }; box.appendChild(d); }));
+document.querySelectorAll('[data-spin]').forEach((b) => { const list = JSON.parse(b.dataset.spin); let last = -1; b.onclick = () => { let i; do { i = Math.floor(Math.random() * list.length); } while (i === last && list.length > 1); last = i; document.getElementById(b.dataset.target).textContent = list[i]; }; });
+try { const k = 'murly:' + (window.MURLY_LESSON ? MURLY_LESSON.id : 'x') + ':hw'; const t = $('hwText'); if (t) { t.value = localStorage.getItem(k) || ''; t.oninput = () => localStorage.setItem(k, t.value); } } catch (e) { }
+const STAGES = [...document.querySelectorAll('.wrap > section[id]')];
+$('stages').innerHTML = STAGES.map((s) => `<a href="#${s.id}"><b>${s.querySelector('.lk-n').textContent}</b><span>${s.dataset.stage}</span><small>${s.dataset.min !== '0' ? s.dataset.min + ' min' : 'at home'}</small></a>`).join('');
+$('teacherBtn').onclick = (e) => { const on = document.body.classList.toggle('teacher'); e.currentTarget.textContent = on ? 'Student version' : 'Teacher version'; };
+</script>
+<script src="/game-lessons/kit.js" defer></script>
+</body>
+</html>

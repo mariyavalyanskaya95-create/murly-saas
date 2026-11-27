@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reading: заголовки до абзаців (B1) | Murly</title>
+<link rel="icon" href="/favicon.svg">
+<meta name="description" content="Потренуємо завдання НМТ «підбери заголовок до абзацу» із зайвими варіантами
+Навчимось шукати головну думку і перефразування, а не окремі слова
+Вивчимо">
+<link rel="canonical" href="https://murly.com.ua/game-lessons/lib-nmt-headings.html">
+<style>
+:root{--paper:#F3F0EA;--ink:#17181C;--violet:#3D4A7A;--lav:#D9D3C7;--pink:#E9C9BC;--green:#D4E2CF;--white:#fff;--muted:#62646B;--accent:#B5482F}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+/* hero */
+.hero{background:linear-gradient(rgba(16,17,22,.5),rgba(16,17,22,.72)),url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1400&q=70&auto=format&fit=crop");color:#fff;padding:70px 18px 56px;text-align:center;position:relative;overflow:hidden}
+.hero .kicker{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#E9C9BC;font-weight:700}
+.hero .cr{position:absolute;right:12px;bottom:8px;font-size:11px;color:rgba(255,255,255,.6)}
+.hero h1{margin:8px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(36px,6vw,64px);letter-spacing:-.5px;font-weight:700}
+.hero h1 span{color:var(--pink);font-style:italic}
+.hero p{margin:12px 0 0;font-size:17px;color:#e6e2da}
+.hero .flags{display:flex;justify-content:center;gap:12px;margin-top:22px;flex-wrap:wrap}
+.hero .flags svg{width:40px;height:26px;border-radius:3px;opacity:.9}
+/* sections */
+section{margin-top:30px;background:var(--white);border-radius:18px;padding:28px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.05)}
+section h2{margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tag{font-family:"Segoe UI",system-ui,sans-serif;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--paper);color:var(--accent);text-transform:uppercase;letter-spacing:1px}
+.lk-n{display:inline-grid;place-items:center;width:42px;height:42px;background:var(--violet);color:#fff;border-radius:50%;font-size:21px;flex:none}
+.lk-mode{font-size:13px;font-weight:700;border:2px dashed var(--lav);color:var(--muted);padding:2px 10px;border-radius:999px}
+.lk-ins{font-size:17px;background:var(--paper);border-radius:12px;padding:10px 14px;margin:6px 0 18px}
+.lk-sub{margin:24px 0 10px;font-size:19px}
+.btn{font:inherit;font-weight:700;border:0;border-radius:999px;background:var(--ink);color:#fff;padding:10px 20px;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+.btn.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+/* teacher */
+.lk-tbtn{position:fixed;right:16px;top:70px;z-index:45;font:inherit;font-weight:800;border:2px solid var(--ink);background:var(--pink);padding:8px 14px;border-radius:12px;cursor:pointer}
+body.teacher .lk-tbtn{background:var(--green)}
+.lk-ans,.lk-tnote{display:none}
+body.teacher .lk-ans{display:block;margin-top:8px;font-weight:700;color:#1d5a12;background:var(--green);border-left:5px solid #5aa845;padding:6px 10px;font-size:15px;border-radius:6px}
+body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff3f7;border-left:5px solid #d9789a;padding:8px 12px;font-size:15px;border-radius:6px}
+/* overview */
+.lk-overview ul{font-size:17px;line-height:1.7;margin:6px 0 16px}
+.lk-stages{display:flex;flex-wrap:wrap;gap:8px}
+.lk-stages a{display:grid;border-radius:14px;padding:8px 12px;text-decoration:none;color:var(--ink);background:var(--paper);font-weight:700;min-width:100px}
+.lk-stages a span{text-transform:capitalize}
+.lk-stages a b{font-size:20px;color:var(--violet)}
+.lk-stages a small{font-weight:600;color:var(--muted)}
+/* warm-up */
+.taxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tax{background:var(--paper);border-radius:18px;padding:16px;display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center}
+.tax svg{width:56px;height:56px}
+.tax b{display:block;font-size:17px}
+.tax small{color:var(--muted);font-size:14px}
+.qs{display:grid;gap:10px;margin-top:18px}
+.qs div{background:var(--green);border-radius:14px;padding:10px 16px;font-size:18px;font-weight:600}
+.phr{background:#fff7e8;border-radius:14px;padding:12px 16px;margin-top:16px;font-size:15px}
+.phr ul{margin:6px 0 0;padding-left:18px}
+.fic{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:16px}
+.fic .c{background:#fff;border:2px solid #1B2140;border-radius:16px;padding:14px 16px;box-shadow:3px 3px 0 #1B2140}
+.fic .c b{display:block;font-size:18px;line-height:1.35;margin-bottom:8px}
+.fic .c .k{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.fic .c .k span{font-size:13px;background:#eef1fb;border-radius:999px;padding:3px 10px}
+.fic .c details{margin-top:8px;font-size:15px;color:#3b4160}
+.fic .c summary{cursor:pointer;font-weight:700;color:#534AB7}
+.fi-n{display:inline-flex;width:28px;height:28px;border-radius:50%;background:#2F4BA0;color:#fff;align-items:center;justify-content:center;font-size:14px;margin-right:6px}
+/* vocab */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:12px}
+.vc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:2px solid transparent;transition:border-color .2s,transform .2s}
+.vc:hover{border-color:var(--violet);transform:translateY(-2px)}
+.vc b{font-size:18px;display:flex;align-items:center;gap:8px}
+.vc b svg{width:20px;height:20px;flex:none;color:var(--violet)}
+.vc p{margin:6px 0 0;font-size:14px;color:var(--muted)}
+.vc em{display:block;margin-top:6px;font-size:14px;color:var(--violet);font-style:normal;font-weight:600}
+.vc.played{background:#e6ecfb}
+/* grammar */
+.gram{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.gb{border-radius:18px;padding:16px}
+.gb h3{margin:0 0 6px;font-size:19px}
+.gb .f{display:inline-block;background:#fff;border-radius:8px;padding:3px 10px;font-weight:800;margin:4px 0;font-family:Consolas,monospace;font-size:15px}
+.gb p{margin:6px 0 0;font-size:15px}
+.g1{background:var(--pink)}.g2{background:var(--lav)}.g3{background:var(--green)}.g4{background:#fbe7c6}
+.warn{margin-top:14px;background:var(--ink);color:#fff;border-radius:14px;padding:12px 16px;font-size:16px}
+.warn b{color:var(--pink)}
+.q{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:2px dashed var(--paper);font-size:18px}
+.q:last-child{border-bottom:0}
+.q .n{width:32px;height:32px;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;border-radius:50%;font-weight:800;font-size:15px}
+.opt{font:inherit;font-size:16px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:10px;padding:4px 12px;cursor:pointer;margin:0 2px}
+.opt.ok{background:var(--green);border-color:#5aa845}
+.opt.bad{background:var(--pink);animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+/* tour */
+.tour{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.law{border-radius:22px;overflow:hidden;background:var(--paper);display:flex;flex-direction:column}
+.law .pic{height:150px;display:grid;place-items:center;position:relative}
+.law .pic svg.ill{width:130px;height:130px}
+.law .pic svg.fl{position:absolute;left:14px;top:14px;width:46px;height:30px;border-radius:5px;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.law .pic .no{position:absolute;right:14px;top:14px;background:var(--ink);color:#fff;font-weight:800;border-radius:999px;padding:2px 10px;font-size:13px}
+.law .body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.law h3{margin:0;font-size:20px}
+.law .where{font-size:13px;font-weight:800;color:var(--violet);text-transform:uppercase;letter-spacing:1px}
+.law p{margin:0;font-size:16px}
+.law .why{font-size:14px;color:var(--muted)}
+.law .dq{margin-top:auto;background:#fff;border-radius:12px;padding:8px 12px;font-weight:700;font-size:15px}
+.law .lsn{font:inherit;font-size:13px;font-weight:700;background:none;border:0;color:var(--violet);cursor:pointer;padding:0;text-align:left}
+/* game */
+.game{max-width:720px;margin:0 auto;text-align:center}
+.score{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.score span{background:var(--paper);border-radius:999px;padding:6px 16px;font-weight:800}
+.stmt{background:var(--ink);color:#fff;border-radius:22px;padding:28px 24px;min-height:150px;display:grid;place-items:center;font-size:23px;font-weight:700;position:relative}
+.stmt small{position:absolute;top:12px;left:18px;font-size:13px;color:var(--lav);font-weight:700}
+.choose{display:flex;justify-content:center;gap:14px;margin:18px 0}
+.choose button{font:inherit;font-size:18px;font-weight:700;border:2px solid var(--ink);border-radius:999px;padding:12px 28px;cursor:pointer}
+.choose .bl{background:var(--green)}.choose .bm{background:var(--pink)}
+.choose button:disabled{opacity:.5;cursor:default}
+.verdict{min-height:70px;font-size:17px;background:var(--paper);border-radius:16px;padding:12px 16px;text-align:left}
+.verdict b.r{color:#2d7a1d}.verdict b.w{color:#b23a62}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.dots i{width:14px;height:14px;border-radius:50%;background:var(--paper)}
+.dots i.r{background:#7cc663}.dots i.w{background:#e47b9f}.dots i.c{outline:3px solid var(--violet)}
+.final{font-size:22px;font-weight:800;color:var(--violet)}
+/* invent */
+.inv{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.frames{display:grid;gap:10px}
+.frames label{font-size:14px;font-weight:700;color:var(--muted)}
+.frames select,.frames input{font:inherit;width:100%;padding:8px 10px;border:2px solid var(--lav);border-radius:10px;background:#fff}
+.poster{background:var(--paper);border:3px solid var(--ink);border-radius:20px;padding:22px;text-align:center;min-height:260px;display:flex;flex-direction:column;gap:10px;justify-content:center}
+.poster .seal{width:70px;height:70px;margin:0 auto}
+.poster h3{margin:0;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--violet)}
+.poster .rule{font-size:22px;font-weight:800}
+.poster .pen{font-size:16px;color:var(--muted)}
+.ideas{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ideas span{background:var(--pink);border-radius:999px;padding:5px 12px;font-size:14px;font-weight:600}
+/* roleplay */
+.rp{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.role{border-radius:20px;padding:18px}
+.role h3{margin:0 0 6px;display:flex;align-items:center;gap:10px}
+.role h3 svg{width:42px;height:42px}
+.role ul{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.r1{background:var(--lav)}.r2{background:var(--green)}
+.scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:16px}
+.sc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:3px solid transparent}
+.sc.on{border-color:var(--violet);background:#fff}
+.sc b{display:block;font-size:17px;margin-bottom:4px}
+.sc p{margin:0;font-size:15px}
+.timer{font-size:40px;font-weight:800;text-align:center;margin:14px 0 6px;color:var(--violet)}
+.ctr{text-align:center}
+/* homework */
+.hwb{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hwc{background:var(--paper);border-radius:18px;padding:18px}
+.hwc h3{margin:0 0 8px}
+.hwc ol,.hwc ul{margin:6px 0 0;padding-left:20px;line-height:1.7}
+.hwc textarea{width:100%;min-height:150px;font:inherit;border:2px solid var(--lav);border-radius:12px;padding:10px;margin-top:10px}
+.end{text-align:center;background:var(--ink);color:#fff;box-shadow:none}
+.end h2{justify-content:center}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(140px);background:var(--ink);color:#fff;font-weight:800;padding:12px 22px;border-radius:14px;transition:transform .3s;z-index:50}
+.toast.show{transform:translateX(-50%) translateY(0)}
+/* photos */
+.ph{margin:0}
+.ph img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;background:var(--paper)}
+.ph figcaption{font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.2px}
+.tax{grid-template-columns:1fr !important;padding:12px !important}
+.law .pic{height:auto !important;display:block !important;padding:0;position:relative}
+.law .pic .ph img{border-radius:0;aspect-ratio:16/10;transition:filter .5s}
+.law .pic .ph figcaption{padding:4px 12px 0}
+.law.hide .pic .ph img{filter:blur(10px) grayscale(.6)}
+.law.hide .reveal-body,.law.hide .fl,.law.hide .where{visibility:hidden}
+.law .clue{font-size:15px;font-style:italic;color:var(--ink)}
+.law .gc{display:flex;flex-wrap:wrap;gap:6px}
+.law .gc button{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:4px 12px;cursor:pointer}
+.law .gc button.ok{background:var(--green)}.law .gc button.bad{background:var(--pink)}
+.law:not(.hide) .guess{display:none}
+.fair{display:grid;gap:4px;background:#fff;border-radius:12px;padding:8px 12px}
+.fair .ends{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.fair input{width:100%;accent-color:var(--accent)}
+.fair output{font-size:14px;font-weight:700;color:var(--accent)}
+.gph{max-width:720px;margin:0 auto 12px}
+.gph img{aspect-ratio:21/9}
+.fine{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.fq{background:var(--paper);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.fq h3{margin:0;font-size:18px}
+.fq .opts{display:flex;flex-wrap:wrap;gap:6px}
+.fq .opts button{font:inherit;font-size:14px;font-weight:700;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 12px;cursor:pointer}
+.fq .opts button.ok{background:var(--green)}.fq .opts button.bad{background:var(--pink)}
+.fq .res{font-size:15px;min-height:22px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{position:relative;aspect-ratio:16/9;background:#111}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;cursor:pointer;background:#111 center/cover;display:grid;place-items:center}
+.vid .play span{background:rgba(0,0,0,.7);color:#fff;font-weight:700;border-radius:999px;padding:10px 20px;font-size:15px;letter-spacing:1px}
+.vid .info{padding:14px 16px}
+.vid .info h3{margin:0 0 2px;font-size:18px}
+.vid .info small{color:var(--muted)}
+.vid .info ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+@media(max-width:760px){.inv,.rp,.hwb{grid-template-columns:1fr}.lk-tbtn{top:auto;bottom:70px}}
+
+.pr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.pb{border-radius:18px;padding:16px 18px}
+.pb h3{margin:0;font-family:Georgia,serif;font-size:30px}
+.pb .m{font-size:15px;color:var(--muted);margin:2px 0 8px}
+.pb .chips{display:flex;flex-wrap:wrap;gap:6px}
+.pb .chips span{background:#fff;border-radius:999px;padding:4px 11px;font-size:14px;font-weight:600}
+.pb ul{margin:10px 0 0;padding-left:18px;font-size:15px}
+.p-in{background:#DCE6F5}.p-at{background:#F3D9CF}.p-on{background:#D4E2CF}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-size:15px;margin-top:10px}
+.ex div{background:var(--paper);border-radius:10px;padding:8px 12px}
+.ex b{color:var(--accent)}
+.q{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.q .n{font-weight:800;color:var(--violet);min-width:24px}
+.q .gap{display:inline-block;min-width:44px;border-bottom:2px solid var(--ink);text-align:center;font-weight:800}
+.q .opts{margin-left:auto;display:flex;gap:6px}
+.q .opts button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 14px;cursor:pointer}
+.q.ok{background:#DDEED7}.q.ok .gap{color:#2F7A3B}
+.q.bad{background:#F6DAD3}
+.score{font-weight:800;margin-top:12px}
+.text{font-size:18px;line-height:1.75;background:var(--paper);border-radius:16px;padding:18px 22px}
+.text h3{margin:0 0 6px;font-family:Georgia,serif;font-size:24px}
+.text p{margin:0 0 12px}
+.text.hl mark{background:#F3D9CF;border-radius:4px;padding:0 3px;font-weight:700}
+.tf{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:9px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.tf .opts{margin-left:auto;display:flex;gap:6px}
+.tf button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.tf.ok{background:#DDEED7}.tf.bad{background:#F6DAD3}
+.disc{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px;margin-top:6px}
+.disc div{background:var(--green);border-radius:14px;padding:12px 16px;font-size:17px;font-weight:600}
+.disc div i{font-style:normal;color:var(--violet);margin-right:6px}
+.spin{text-align:center;margin-top:16px}
+.spin .card{display:inline-block;min-height:80px;min-width:min(560px,100%);background:var(--ink);color:#fff;border-radius:18px;padding:20px 24px;font-size:22px;font-weight:700;margin-bottom:12px}
+@media(max-width:700px){.ex{grid-template-columns:1fr}}
+
+.hero{background-size:cover!important;background-position:center!important}
+.voc{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.voc div{background:var(--paper);border-radius:14px;padding:10px 14px;cursor:pointer;border:2px solid transparent}
+.voc div:hover{border-color:var(--violet)}
+.voc b{display:block;font-size:18px}.voc span{display:block;color:var(--accent);font-weight:700;font-size:15px}.voc em{display:block;font-size:14px;color:var(--muted);margin-top:3px}
+.mt{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:10px}
+.mt button{font:inherit;font-size:16px;text-align:left;border:2px solid var(--ink);background:#fff;border-radius:14px;padding:9px 14px;cursor:pointer}
+.mt button.sel{background:#FFE7A8}.mt button.done{background:#CDE8C6;border-color:#4C9A5B;cursor:default}
+.ch{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ch .n{font-weight:800;color:var(--violet);min-width:24px}
+.ch .o{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.ch .o button{font:inherit;font-size:15px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.ch.ok{background:#DDEED7}.ch.bad{background:#F6DAD3}
+.ty{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ty input{font:inherit;border:2px solid var(--ink);border-radius:10px;padding:4px 10px;width:220px}
+.ty.ok{background:#DDEED7}.ty.bad{background:#F6DAD3}
+.ty small{color:var(--muted)}
+.photo{width:100%;height:300px;object-fit:cover;border-radius:16px;display:block}
+.cap{font-size:11px;color:var(--muted);margin:4px 0 12px}
+.pics{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.pics figure{margin:0;background:var(--paper);border-radius:16px;overflow:hidden}
+.pics img{width:100%;height:170px;object-fit:cover;display:block}
+.pics figcaption{padding:8px 12px;font-weight:700}
+.pics small{display:block;font-weight:400;font-size:10px;color:var(--muted)}
+.lis{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:8px 0 14px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{aspect-ratio:16/9;background:#000;position:relative}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;background-size:cover;background-position:center;cursor:pointer;display:grid;place-items:center}
+.vid .play span{background:#E5484D;color:#fff;font-weight:800;border-radius:12px;padding:10px 20px}
+.vid .info{padding:12px 16px}.vid h3{margin:0;font-size:18px}.vid small{color:var(--muted)}
+.vid ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th,.tbl td{border:1px solid #ddd;padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--paper)}
+@media(max-width:700px){.mt{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="/game-lessons/kit.css">
+</head>
+<body>
+<header class="hero">
+  <div class="kicker">B1 · teens · Reading</div>
+  <h1>Reading: заголовки до абзаців</h1>
+  <p>B1 · 8 parts · 60 min</p>
+  <span class="cr">Photo: Unsplash</span>
+</header>
+<button class="lk-tbtn" id="teacherBtn" type="button">Teacher version</button>
+<div class="wrap">
+  <section class="lk-overview">
+    <h2>In this lesson you will:</h2>
+    <ul><li>Потренуємо завдання НМТ «підбери заголовок до абзацу» із зайвими варіантами
+Навчимось шукати головну думку і перефразування, а не окремі слова
+Вивчимо лексику про сон, звички і дозвілля
+Обговоримо режим дня підлітків</li></ul>
+    <div class="lk-stages" id="stages"></div>
+  </section>
+  <section id="s1" data-stage="warm-up" data-min="5">
+    <h2><span class="lk-n">1</span>Warm-up <span class="tag">warm-up</span><span class="lk-mode">teacher + student</span></h2>
+<p class="lk-tnote" data-ru="Перші питання про сон готують до тексту 1. Не виправляйте помилки, лише слухайте. Шкала думок без правильних відповідей, до неї можна повернутися на етапі Speaking.&lt;br&gt;">Перші питання про сон готують до тексту 1. Не виправляйте помилки, лише слухайте. Шкала думок без правильних відповідей, до неї можна повернутися на етапі Speaking.<br></p>
+    <div class="qs"><div>What time do you go to bed on school days?</div><div>How do you feel in the first lesson in the morning?</div></div>
+    <h3 class="lk-sub">How much do you agree?</h3><div class="qs"><div>Teenagers need more sleep than adults. (agree or disagree? Why?)</div><div>Using a phone in bed is a bad idea. (agree or disagree? Why?)</div><div>School should start later. (agree or disagree? Why?)</div></div>
+  </section>
+  <section id="s2" data-stage="vocabulary" data-min="10">
+    <h2><span class="lk-n">2</span>Vocabulary <span class="tag">vocabulary</span><span class="lk-mode">teacher + student</span></h2>
+<p class="lk-tnote" data-ru="Прочитайте слова, звертаючи увагу на вимову adolescence, hormone, exhausted. Match учень робить сам, gap перевіряємо разом. Попросіть учня розповісти про свій вечірній розпорядок, використовуючи 3 нові слова.&lt;br&gt;">Прочитайте слова, звертаючи увагу на вимову adolescence, hormone, exhausted. Match учень робить сам, gap перевіряємо разом. Попросіть учня розповісти про свій вечірній розпорядок, використовуючи 3 нові слова.<br></p>
+    <div class="voc"><div data-say="adolescence. "><b>adolescence</b><span><span data-tr-uk="підлітковий вік" data-tr-ru="підлітковий вік">підлітковий вік</span></span><em></em></div>
+<div data-say="a hormone. "><b>a hormone</b><span><span data-tr-uk="гормон" data-tr-ru="гормон">гормон</span></span><em></em></div>
+<div data-say="laziness. "><b>laziness</b><span><span data-tr-uk="лінощі" data-tr-ru="лінощі">лінощі</span></span><em></em></div>
+<div data-say="to stay up late. "><b>to stay up late</b><span><span data-tr-uk="довго не лягати спати" data-tr-ru="довго не лягати спати">довго не лягати спати</span></span><em></em></div>
+<div data-say="to concentrate. "><b>to concentrate</b><span><span data-tr-uk="зосереджуватися" data-tr-ru="зосереджуватися">зосереджуватися</span></span><em></em></div>
+<div data-say="to recommend. "><b>to recommend</b><span><span data-tr-uk="рекомендувати" data-tr-ru="рекомендувати">рекомендувати</span></span><em></em></div>
+<div data-say="to advise. "><b>to advise</b><span><span data-tr-uk="радити" data-tr-ru="радити">радити</span></span><em></em></div>
+<div data-say="a grade. "><b>a grade</b><span><span data-tr-uk="оцінка" data-tr-ru="оцінка">оцінка</span></span><em></em></div>
+<div data-say="to keep someone awake. "><b>to keep someone awake</b><span><span data-tr-uk="не давати комусь заснути" data-tr-ru="не давати комусь заснути">не давати комусь заснути</span></span><em></em></div>
+<div data-say="a routine. "><b>a routine</b><span><span data-tr-uk="розпорядок" data-tr-ru="розпорядок">розпорядок</span></span><em></em></div>
+<div data-say="exhausted. "><b>exhausted</b><span><span data-tr-uk="виснажений" data-tr-ru="виснажений">виснажений</span></span><em></em></div>
+<div data-say="a habit. "><b>a habit</b><span><span data-tr-uk="звичка" data-tr-ru="звичка">звичка</span></span><em></em></div></div>
+    <div class="mt" data-mt="m2" data-pairs="[[&quot;adolescence&quot;, &quot;підлітковий вік&quot;], [&quot;a hormone&quot;, &quot;гормон&quot;], [&quot;laziness&quot;, &quot;лінощі&quot;], [&quot;to stay up late&quot;, &quot;довго не лягати спати&quot;], [&quot;to concentrate&quot;, &quot;зосереджуватися&quot;], [&quot;to recommend&quot;, &quot;рекомендувати&quot;], [&quot;to advise&quot;, &quot;радити&quot;], [&quot;a grade&quot;, &quot;оцінка&quot;]]"></div><div class="score" data-mtres="m2"></div>
+    <h3 class="lk-sub">Match the words with their meanings.</h3><div class="ch" data-a="not wanting to work or make an effort"><span class="n">1</span><span class="s">laziness ___</span><span class="o"><button type="button">the things you usually do in the same order</button><button type="button">to go to bed later than usual</button><button type="button">extremely tired</button><button type="button">something you do often, almost without thinking</button><button type="button">not wanting to work or make an effort</button></span></div>
+<div class="ch" data-a="extremely tired"><span class="n">2</span><span class="s">exhausted ___</span><span class="o"><button type="button">the things you usually do in the same order</button><button type="button">to go to bed later than usual</button><button type="button">extremely tired</button><button type="button">something you do often, almost without thinking</button><button type="button">not wanting to work or make an effort</button></span></div>
+<div class="ch" data-a="the things you usually do in the same order"><span class="n">3</span><span class="s">a routine ___</span><span class="o"><button type="button">to go to bed later than usual</button><button type="button">the things you usually do in the same order</button><button type="button">something you do often, almost without thinking</button><button type="button">not wanting to work or make an effort</button><button type="button">extremely tired</button></span></div>
+<div class="ch" data-a="to go to bed later than usual"><span class="n">4</span><span class="s">to stay up late ___</span><span class="o"><button type="button">the things you usually do in the same order</button><button type="button">something you do often, almost without thinking</button><button type="button">not wanting to work or make an effort</button><button type="button">extremely tired</button><button type="button">to go to bed later than usual</button></span></div>
+<div class="ch" data-a="something you do often, almost without thinking"><span class="n">5</span><span class="s">a habit ___</span><span class="o"><button type="button">to go to bed later than usual</button><button type="button">extremely tired</button><button type="button">the things you usually do in the same order</button><button type="button">something you do often, almost without thinking</button><button type="button">not wanting to work or make an effort</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; not wanting to work or make an effort · extremely tired · the things you usually do in the same order · to go to bed later than usual · something you do often, almost without thinking"><b>Відповіді:</b> not wanting to work or make an effort · extremely tired · the things you usually do in the same order · to go to bed later than usual · something you do often, almost without thinking</p>
+    <h3 class="lk-sub">Complete with: routine, habit, stay up, grade.</h3><div class="ty" data-a="routine"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>My morning ___ starts with a glass of water.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="habit"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Checking my phone in bed is a bad ___.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="stay up"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>On Fridays I usually ___ late and watch films.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="grade"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>She got the top ___ in the physics test.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; routine · habit · stay up · grade"><b>Відповіді:</b> routine · habit · stay up · grade</p>
+  </section>
+  <section id="s3" data-stage="reading" data-min="15">
+    <h2><span class="lk-n">3</span>НМТ Reading 1: Sleep and teenagers <span class="tag">reading</span><span class="lk-mode">teacher + student</span></h2>
+<div class="warn"><p>Прочитай абзац і сформулюй його головну думку своїми словами. Лише потім шукай заголовок. Пастка: заголовок з тим самим словом, що й у тексті, часто неправильний. Головне не слова, а зміст. На НМТ заголовків більше, ніж абзаців, тож деякі залишаться зайвими.</p></div>
+    <p class="lk-tnote" data-ru="Дайте 7 хвилин на текст і заголовки. Тут уже є два зайві заголовки: «Teenagers who sleep too much» і «Why adults need less sleep». Після перевірки обговоріть, чому вони не підходять жодному абзацу: перший суперечить тексту, другого в тексті немає взагалі.&lt;br&gt;">Дайте 7 хвилин на текст і заголовки. Тут уже є два зайві заголовки: «Teenagers who sleep too much» і «Why adults need less sleep». Після перевірки обговоріть, чому вони не підходять жодному абзацу: перший суперечить тексту, другого в тексті немає взагалі.<br></p>
+    <div class="text"><p><b>A.</b> Many parents complain that their teenage children stay up late and cannot get out of bed in the morning. Scientists say this is not just laziness. During adolescence, the body starts producing the sleep hormone later in the evening, so teenagers naturally feel sleepy later.</p><p><b>B.</b> Unfortunately, school still starts early. As a result, many students sleep only six or seven hours, while experts recommend eight to ten. Tired students find it harder to concentrate, remember new information and control their emotions.</p><p><b>C.</b> Some schools have tried a later start. In several studies, when lessons began an hour later, students slept longer, were late less often and even got better grades.</p><p><b>D.</b> Phones make the problem worse. The bright screen tells the brain that it is still daytime, and endless videos and messages keep us awake. Doctors advise putting the phone away at least an hour before going to bed.</p></div>
+    <h3 class="lk-sub">Choose the best heading for each paragraph. Two headings are extra.</h3><div class="ch" data-a="It’s biology, not laziness"><span class="n">1</span><span class="s">Paragraph A: ___</span><span class="o"><button type="button">Not enough rest for learning</button><button type="button">Teenagers who sleep too much</button><button type="button">A screen that steals your sleep</button><button type="button">An experiment that worked</button><button type="button">It’s biology, not laziness</button><button type="button">Why adults need less sleep</button></span></div>
+<div class="ch" data-a="Not enough rest for learning"><span class="n">2</span><span class="s">Paragraph B: ___</span><span class="o"><button type="button">Teenagers who sleep too much</button><button type="button">A screen that steals your sleep</button><button type="button">Why adults need less sleep</button><button type="button">Not enough rest for learning</button><button type="button">An experiment that worked</button><button type="button">It’s biology, not laziness</button></span></div>
+<div class="ch" data-a="An experiment that worked"><span class="n">3</span><span class="s">Paragraph C: ___</span><span class="o"><button type="button">A screen that steals your sleep</button><button type="button">Teenagers who sleep too much</button><button type="button">It’s biology, not laziness</button><button type="button">Not enough rest for learning</button><button type="button">Why adults need less sleep</button><button type="button">An experiment that worked</button></span></div>
+<div class="ch" data-a="A screen that steals your sleep"><span class="n">4</span><span class="s">Paragraph D: ___</span><span class="o"><button type="button">Not enough rest for learning</button><button type="button">Teenagers who sleep too much</button><button type="button">A screen that steals your sleep</button><button type="button">It’s biology, not laziness</button><button type="button">Why adults need less sleep</button><button type="button">An experiment that worked</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; It’s biology, not laziness · Not enough rest for learning · An experiment that worked · A screen that steals your sleep"><b>Відповіді:</b> It’s biology, not laziness · Not enough rest for learning · An experiment that worked · A screen that steals your sleep</p>
+    <h3 class="lk-sub">True or False?</h3><div class="ch" data-a="True"><span class="n">1</span><span class="s">Teenagers feel sleepy later because of a hormone.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="False"><span class="n">2</span><span class="s">Experts recommend six hours of sleep for teenagers.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="True"><span class="n">3</span><span class="s">A later school start helped students in some studies.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="False"><span class="n">4</span><span class="s">Doctors say you can use your phone until you fall asleep.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; True · False · True · False"><b>Відповіді:</b> True · False · True · False</p>
+    <h3 class="lk-sub">Find the words in the text.</h3><div class="ty" data-a="adolescence"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>the period when a child becomes an adult (paragraph A): ___</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="concentrate"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>to give all your attention to something (paragraph B): ___</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="advise"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>suggest what someone should do (paragraph D): ___</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; adolescence · concentrate · advise"><b>Відповіді:</b> adolescence · concentrate · advise</p>
+  </section>
+  <section id="s4" data-stage="reading" data-min="12">
+    <h2><span class="lk-n">4</span>НМТ Reading 2: Board games are back <span class="tag">reading</span><span class="lk-mode">teacher + student</span></h2>
+<div class="warn"><p>Заголовки НМТ майже завжди <b>перефразовують</b> текст. «Advice for beginners» у тексті може звучати як «If you want to start…». Підкресли в абзаці фразу, яка доводить твій вибір.</p></div>
+    <p class="lk-tnote" data-ru="Цей текст учень виконує на час: 6 хвилин. Зайві заголовки тут: «Games that only adults can play» і «How to win every time». Другий навмисно схожий на абзац E: в абзаці сказано якраз протилежне (don’t worry about winning). Друга вправа тренує пошук перефразувань.&lt;br&gt;">Цей текст учень виконує на час: 6 хвилин. Зайві заголовки тут: «Games that only adults can play» і «How to win every time». Другий навмисно схожий на абзац E: в абзаці сказано якраз протилежне (don’t worry about winning). Друга вправа тренує пошук перефразувань.<br></p>
+    <div class="text"><p><b>A.</b> Ten years ago, many people thought board games would soon disappear. Today, cafés where you can play board games are opening in cities all over the world, and sales of games have grown every year.</p><p><b>B.</b> Why? Many young people say they are tired of screens. After a day of online lessons and messages, sitting around a table with real cards and dice feels refreshing. “It’s the only time my friends and I put our phones away,” says Oliver, 16.</p><p><b>C.</b> Board games are not only fun. Strategy games teach you to plan ahead, and cooperative games, where all the players work together against the game, build teamwork. Some teachers now use them in maths and language lessons.</p><p><b>D.</b> Not everyone is a fan, though. Some games take hours to learn, and the rule books can be thicker than a school textbook. Good games can also be expensive, which is why many players borrow them from libraries or game clubs.</p><p><b>E.</b> If you want to start, choose a short, simple game for three or four players. Invite friends who don’t usually play, and don’t worry about winning. The best part is the conversation, not the score.</p></div>
+    <h3 class="lk-sub">Choose the best heading for each paragraph. Two headings are extra.</h3><div class="ch" data-a="An old hobby makes a comeback"><span class="n">1</span><span class="s">Paragraph A: ___</span><span class="o"><button type="button">A break from the digital world</button><button type="button">An old hobby makes a comeback</button><button type="button">A few disadvantages</button><button type="button">How to win every time</button><button type="button">Games that only adults can play</button><button type="button">Advice for beginners</button><button type="button">More than just entertainment</button></span></div>
+<div class="ch" data-a="A break from the digital world"><span class="n">2</span><span class="s">Paragraph B: ___</span><span class="o"><button type="button">How to win every time</button><button type="button">More than just entertainment</button><button type="button">Games that only adults can play</button><button type="button">A break from the digital world</button><button type="button">An old hobby makes a comeback</button><button type="button">Advice for beginners</button><button type="button">A few disadvantages</button></span></div>
+<div class="ch" data-a="More than just entertainment"><span class="n">3</span><span class="s">Paragraph C: ___</span><span class="o"><button type="button">Games that only adults can play</button><button type="button">More than just entertainment</button><button type="button">How to win every time</button><button type="button">An old hobby makes a comeback</button><button type="button">A break from the digital world</button><button type="button">Advice for beginners</button><button type="button">A few disadvantages</button></span></div>
+<div class="ch" data-a="A few disadvantages"><span class="n">4</span><span class="s">Paragraph D: ___</span><span class="o"><button type="button">An old hobby makes a comeback</button><button type="button">A few disadvantages</button><button type="button">Games that only adults can play</button><button type="button">A break from the digital world</button><button type="button">More than just entertainment</button><button type="button">How to win every time</button><button type="button">Advice for beginners</button></span></div>
+<div class="ch" data-a="Advice for beginners"><span class="n">5</span><span class="s">Paragraph E: ___</span><span class="o"><button type="button">Games that only adults can play</button><button type="button">An old hobby makes a comeback</button><button type="button">Advice for beginners</button><button type="button">A break from the digital world</button><button type="button">More than just entertainment</button><button type="button">How to win every time</button><button type="button">A few disadvantages</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; An old hobby makes a comeback · A break from the digital world · More than just entertainment · A few disadvantages · Advice for beginners"><b>Відповіді:</b> An old hobby makes a comeback · A break from the digital world · More than just entertainment · A few disadvantages · Advice for beginners</p>
+    <h3 class="lk-sub">Match the words in the headings with the phrases in the text that prove them.</h3><div class="ch" data-a="sales of games have grown every year"><span class="n">1</span><span class="s">makes a comeback ___</span><span class="o"><button type="button">can also be expensive</button><button type="button">teach you to plan ahead</button><button type="button">sales of games have grown every year</button><button type="button">put our phones away</button><button type="button">if you want to start</button></span></div>
+<div class="ch" data-a="put our phones away"><span class="n">2</span><span class="s">a break from the digital world ___</span><span class="o"><button type="button">sales of games have grown every year</button><button type="button">if you want to start</button><button type="button">can also be expensive</button><button type="button">put our phones away</button><button type="button">teach you to plan ahead</button></span></div>
+<div class="ch" data-a="teach you to plan ahead"><span class="n">3</span><span class="s">more than entertainment ___</span><span class="o"><button type="button">teach you to plan ahead</button><button type="button">sales of games have grown every year</button><button type="button">if you want to start</button><button type="button">put our phones away</button><button type="button">can also be expensive</button></span></div>
+<div class="ch" data-a="can also be expensive"><span class="n">4</span><span class="s">disadvantages ___</span><span class="o"><button type="button">teach you to plan ahead</button><button type="button">sales of games have grown every year</button><button type="button">put our phones away</button><button type="button">can also be expensive</button><button type="button">if you want to start</button></span></div>
+<div class="ch" data-a="if you want to start"><span class="n">5</span><span class="s">beginners ___</span><span class="o"><button type="button">teach you to plan ahead</button><button type="button">sales of games have grown every year</button><button type="button">if you want to start</button><button type="button">can also be expensive</button><button type="button">put our phones away</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; sales of games have grown every year · put our phones away · teach you to plan ahead · can also be expensive · if you want to start"><b>Відповіді:</b> sales of games have grown every year · put our phones away · teach you to plan ahead · can also be expensive · if you want to start</p>
+  </section>
+  <section id="s5" data-stage="speaking" data-min="8">
+    <h2><span class="lk-n">5</span>Speaking <span class="tag">speaking</span><span class="lk-mode">teacher + student</span></h2>
+<p class="lk-tnote" data-ru="Попросіть учня давати розгорнуті відповіді з аргументами (because, for example). Наприкінці поверніться до шкали з Warm-up: чи змінилася думка про пізній початок уроків після тексту?&lt;br&gt;">Попросіть учня давати розгорнуті відповіді з аргументами (because, for example). Наприкінці поверніться до шкали з Warm-up: чи змінилася думка про пізній початок уроків після тексту?<br></p>
+    <div class="qs"><div>Should schools start later? Why or why not?</div><div>What is your evening routine before you go to sleep?</div><div>What helps you concentrate when you are tired?</div><div>Do you prefer board games or video games? Why?</div><div>What advice would you give a friend who can’t fall asleep?</div></div>
+  </section>
+  <section id="s6" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">6</span>Extra practice · якщо лишився час або на наступний урок <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">НМТ: обери найкращий заголовок до кожного міні-абзацу (A-D).</h3><div class="ch" data-a="Changing one habit"><span class="n">1</span><span class="s">“I used to drink cola in the evening and then stay awake until 2 am. Now I drink only water after 6 pm.” ___</span><span class="o"><button type="button">A new evening job</button><button type="button">Cola is good for you</button><button type="button">Staying up all night</button><button type="button">Changing one habit</button></span></div>
+<div class="ch" data-a="A later start helps"><span class="n">2</span><span class="s">“Our school starts at 9:30 now. Students say they feel less tired in the first lesson.” ___</span><span class="o"><button type="button">Lessons get longer</button><button type="button">Teachers come late</button><button type="button">No first lesson any more</button><button type="button">A later start helps</button></span></div>
+<div class="ch" data-a="When tiredness costs you marks"><span class="n">3</span><span class="s">“After three nights of little sleep, Lily couldn’t concentrate in the test and got a low grade.” ___</span><span class="o"><button type="button">Lily’s favourite subject</button><button type="button">How to pass every test</button><button type="button">When tiredness costs you marks</button><button type="button">A night at the library</button></span></div>
+<div class="ch" data-a="Keep a regular routine"><span class="n">4</span><span class="s">“Doctors recommend going to bed and getting up at the same time every day, even at weekends.” ___</span><span class="o"><button type="button">Sleep longer at weekends</button><button type="button">Doctors who never sleep</button><button type="button">Keep a regular routine</button><button type="button">Weekend plans</button></span></div>
+<div class="ch" data-a="Offline fun is popular again"><span class="n">5</span><span class="s">“Board game cafés are full every Friday. Young people come to play, talk and forget about their phones.” ___</span><span class="o"><button type="button">Why games are expensive</button><button type="button">A Friday homework club</button><button type="button">Cafés sell new phones</button><button type="button">Offline fun is popular again</button></span></div>
+<div class="ch" data-a="The downside of a hobby"><span class="n">6</span><span class="s">“Some games take hours to learn, and the boxes can cost as much as a new pair of trainers.” ___</span><span class="o"><button type="button">The downside of a hobby</button><button type="button">How to buy trainers</button><button type="button">Games for small children</button><button type="button">Cheap fun for everyone</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; Changing one habit · A later start helps · When tiredness costs you marks · Keep a regular routine · Offline fun is popular again · The downside of a hobby"><b>Відповіді:</b> Changing one habit · A later start helps · When tiredness costs you marks · Keep a regular routine · Offline fun is popular again · The downside of a hobby</p>
+    <h3 class="lk-sub">Встав слово: exhausted, concentrate, recommend, habit, routine, laziness.</h3><div class="ty" data-a="exhausted"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>After the long hike we were completely ___.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="concentrate"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>I can’t ___ when my brother plays loud music.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="recommend"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Doctors ___ eight to ten hours of sleep for teenagers.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="habit"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Reading a paper book before bed is a good ___.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="routine"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>My evening ___ is simple: shower, book, sleep.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="laziness"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Not doing your homework just because you don’t want to is ___.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; exhausted · concentrate · recommend · habit · routine · laziness"><b>Відповіді:</b> exhausted · concentrate · recommend · habit · routine · laziness</p>
+    <h3 class="lk-sub">З’єднай фразу з її перефразуванням, як у заголовках НМТ.</h3><div class="ch" data-a="stay up late"><span class="n">1</span><span class="s">go to bed late ___</span><span class="o"><button type="button">take a break from screens</button><button type="button">exhausted</button><button type="button">find it hard to concentrate</button><button type="button">medical advice</button><button type="button">become popular again</button><button type="button">stay up late</button></span></div>
+<div class="ch" data-a="exhausted"><span class="n">2</span><span class="s">extremely tired ___</span><span class="o"><button type="button">medical advice</button><button type="button">take a break from screens</button><button type="button">stay up late</button><button type="button">find it hard to concentrate</button><button type="button">exhausted</button><button type="button">become popular again</button></span></div>
+<div class="ch" data-a="find it hard to concentrate"><span class="n">3</span><span class="s">can’t focus ___</span><span class="o"><button type="button">medical advice</button><button type="button">find it hard to concentrate</button><button type="button">take a break from screens</button><button type="button">become popular again</button><button type="button">exhausted</button><button type="button">stay up late</button></span></div>
+<div class="ch" data-a="medical advice"><span class="n">4</span><span class="s">a doctor’s suggestion ___</span><span class="o"><button type="button">medical advice</button><button type="button">find it hard to concentrate</button><button type="button">exhausted</button><button type="button">take a break from screens</button><button type="button">become popular again</button><button type="button">stay up late</button></span></div>
+<div class="ch" data-a="become popular again"><span class="n">5</span><span class="s">make a comeback ___</span><span class="o"><button type="button">take a break from screens</button><button type="button">exhausted</button><button type="button">stay up late</button><button type="button">medical advice</button><button type="button">become popular again</button><button type="button">find it hard to concentrate</button></span></div>
+<div class="ch" data-a="take a break from screens"><span class="n">6</span><span class="s">put your phone away ___</span><span class="o"><button type="button">medical advice</button><button type="button">stay up late</button><button type="button">exhausted</button><button type="button">find it hard to concentrate</button><button type="button">become popular again</button><button type="button">take a break from screens</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; stay up late · exhausted · find it hard to concentrate · medical advice · become popular again · take a break from screens"><b>Відповіді:</b> stay up late · exhausted · find it hard to concentrate · medical advice · become popular again · take a break from screens</p>
+    <h3 class="lk-sub">Synonym hunt</h3><p class="lk-ins">Знайди синонім або перефразування.</p>
+    <div class="spin"><div class="card" id="g67">Click "Next card"</div><br><button class="btn" type="button" data-spin="[&quot;exhausted&quot;, &quot;to advise&quot;, &quot;a habit&quot;, &quot;to concentrate&quot;, &quot;a grade&quot;, &quot;laziness&quot;, &quot;a routine&quot;, &quot;adolescence&quot;, &quot;to recommend&quot;]" data-target="g67">Next card</button></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; very tired · to suggest · something you do often · to focus · a mark · not wanting to work · the usual order of your day · the teenage years · to say something is a good idea"><b>Відповіді:</b> very tired · to suggest · something you do often · to focus · a mark · not wanting to work · the usual order of your day · the teenage years · to say something is a good idea</p>
+    <p class="lk-tnote" data-ru="Extra practice можна виконати, якщо лишився час, або на початку наступного уроку. У заголовках учень спершу формулює головну думку міні-абзацу своїми словами, потім обирає варіант. Пастки: «Staying up all night» і «Sleep longer at weekends» повторюють слова з тексту, але не передають головну думку. Вправа на перефразування і гра тренують головну навичку завдання НМТ: бачити той самий зміст у різних словах.&lt;br&gt;">Extra practice можна виконати, якщо лишився час, або на початку наступного уроку. У заголовках учень спершу формулює головну думку міні-абзацу своїми словами, потім обирає варіант. Пастки: «Staying up all night» і «Sleep longer at weekends» повторюють слова з тексту, але не передають головну думку. Вправа на перефразування і гра тренують головну навичку завдання НМТ: бачити той самий зміст у різних словах.<br></p>
+  </section>
+  <section id="s7" data-stage="wrap-up" data-min="10">
+    <h2><span class="lk-n">7</span>Mini test and wrap-up <span class="tag">wrap-up</span><span class="lk-mode">teacher + student</span></h2>
+<p class="lk-tnote" data-ru="Міні-тест: три короткі абзаци, 4 хвилини. Потім учень сам пише заголовок до абзацу 1 і пояснює вибір. Домашнє завдання: знайти коротку статтю англійською (3-4 абзаци), написати заголовок до кожного абзацу і один зайвий заголовок-пастку.&lt;br&gt;">Міні-тест: три короткі абзаци, 4 хвилини. Потім учень сам пише заголовок до абзацу 1 і пояснює вибір. Домашнє завдання: знайти коротку статтю англійською (3-4 абзаци), написати заголовок до кожного абзацу і один зайвий заголовок-пастку.<br></p>
+    <div class="text"><p><b>1.</b> Mia used to sleep with her phone next to her pillow. Now she charges it in the kitchen and reads a paper book before bed. She says she falls asleep twenty minutes faster.</p><p><b>2.</b> At Greenfield School, students spend five minutes outside between lessons, even in winter. Teachers believe that fresh air helps students to stay alert in class.</p><p><b>3.</b> Energy drinks may seem like a quick solution for tired students, but they often contain huge amounts of sugar and caffeine. Doctors warn that they can cause headaches and make it even harder to sleep.</p></div>
+    <h3 class="lk-sub">Choose the best heading.</h3><div class="ch" data-a="A new bedtime habit"><span class="n">1</span><span class="s">Paragraph 1: ___</span><span class="o"><button type="button">A new bedtime habit</button><button type="button">Charging phones faster</button><button type="button">Sleeping in the kitchen</button><button type="button">Why paper books are expensive</button></span></div>
+<div class="ch" data-a="Fresh air for a fresh mind"><span class="n">2</span><span class="s">Paragraph 2: ___</span><span class="o"><button type="button">Fresh air for a fresh mind</button><button type="button">Winter sports at school</button><button type="button">Teachers who love the cold</button><button type="button">Longer lessons, better results</button></span></div>
+<div class="ch" data-a="A dangerous shortcut"><span class="n">3</span><span class="s">Paragraph 3: ___</span><span class="o"><button type="button">Sugar-free and safe</button><button type="button">How to make energy drinks</button><button type="button">A dangerous shortcut</button><button type="button">The best drinks for students</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; A new bedtime habit · Fresh air for a fresh mind · A dangerous shortcut"><b>Відповіді:</b> A new bedtime habit · Fresh air for a fresh mind · A dangerous shortcut</p>
+    <h3 class="lk-sub">Write your own heading.</h3><div class="qs"><div>Write a different heading for paragraph 1 (3-6 words). Explain in one sentence why it fits.</div></div>
+  </section>
+  <section id="s8" data-stage="homework" data-min="8">
+    <h2><span class="lk-n">8</span>Homework plus <span class="tag">homework</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">НМТ: обери найкращу відповідь за текстом «Sleep and teenagers» (A-D).</h3><div class="ch" data-a="their body produces a hormone later"><span class="n">1</span><span class="s">According to paragraph A, teenagers feel sleepy later because ___.</span><span class="o"><button type="button">their body produces a hormone later</button><button type="button">they use phones in bed</button><button type="button">they are lazy</button><button type="button">school starts early</button></span></div>
+<div class="ch" data-a="eight to ten hours"><span class="n">2</span><span class="s">Experts recommend that teenagers sleep ___.</span><span class="o"><button type="button">twelve hours</button><button type="button">five hours</button><button type="button">eight to ten hours</button><button type="button">six or seven hours</button></span></div>
+<div class="ch" data-a="remember new information"><span class="n">3</span><span class="s">Tired students find it harder to ___.</span><span class="o"><button type="button">play board games</button><button type="button">get up late</button><button type="button">remember new information</button><button type="button">use their phones</button></span></div>
+<div class="ch" data-a="get better grades"><span class="n">4</span><span class="s">In the studies, a later start helped students to ___.</span><span class="o"><button type="button">have longer breaks</button><button type="button">get better grades</button><button type="button">finish school earlier</button><button type="button">use phones less</button></span></div>
+<div class="ch" data-a="tells the brain it is still daytime"><span class="n">5</span><span class="s">The bright screen of a phone ___.</span><span class="o"><button type="button">keeps the room warm</button><button type="button">makes you hungry</button><button type="button">tells the brain it is still daytime</button><button type="button">helps you fall asleep</button></span></div>
+<div class="ch" data-a="at least an hour before bed"><span class="n">6</span><span class="s">Doctors advise putting the phone away ___.</span><span class="o"><button type="button">in the morning</button><button type="button">during lessons</button><button type="button">at least an hour before bed</button><button type="button">just before you close your eyes</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; their body produces a hormone later · eight to ten hours · remember new information · get better grades · tells the brain it is still daytime · at least an hour before bed"><b>Відповіді:</b> their body produces a hormone later · eight to ten hours · remember new information · get better grades · tells the brain it is still daytime · at least an hour before bed</p>
+    <h3 class="lk-sub">Переклади англійською.</h3><div class="ty" data-a="I often stay up late"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Я часто довго не лягаю спати</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Doctors advise using the phone less|Doctors advise using your phone less|Doctors advise using phones less|Doctors advise people to use their phones less"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Лікарі радять менше користуватися телефоном</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="I can’t concentrate|I cannot concentrate|I can’t focus|I cannot focus"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Я не можу зосередитися</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="I have a bad habit|I’ve got a bad habit|I have got a bad habit"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>У мене погана звичка</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="I am exhausted after training|I’m exhausted after training|I am exhausted after the training|I’m exhausted after the training|After training I am exhausted|After training I’m exhausted"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Після тренування я виснажений</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="She got a good grade|She got a good mark|She has got a good grade|She has got a good mark"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Вона отримала гарну оцінку</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; I often stay up late · Doctors advise using the phone less · I can’t concentrate · I have a bad habit · I am exhausted after training · She got a good grade"><b>Відповіді:</b> I often stay up late · Doctors advise using the phone less · I can’t concentrate · I have a bad habit · I am exhausted after training · She got a good grade</p>
+    <h3 class="lk-sub">Письмо: дай розгорнуту відповідь.</h3><div class="qs"><div>Write a paragraph (4-5 sentences) about your sleep habits. Then write a heading for it.</div><div>Write one extra trap heading for your paragraph and explain in one sentence why it does not fit.</div></div>
+  </section>
+  <section class="end"><h2>Great job!</h2><p>See you next lesson.</p></section>
+</div>
+<div class="toast" id="toast"></div>
+<script>window.MURLY_LESSON={"id": "lib-nmt-headings", "title": "Reading: заголовки до абзаців", "homework": ["s2", "s3", "s4", "s6", "s7", "s8"], "hw": {"s2": [{"type": "choice", "instruction": "Match the words with their meanings.", "text": "laziness {not wanting to work or make an effort|extremely tired|the things you usually do in the same order|to go to bed later than usual|something you do often, almost without thinking}\nexhausted {extremely tired|not wanting to work or make an effort|the things you usually do in the same order|to go to bed later than usual|something you do often, almost without thinking}\na routine {the things you usually do in the same order|not wanting to work or make an effort|extremely tired|to go to bed later than usual|something you do often, almost without thinking}\nto stay up late {to go to bed later than usual|not wanting to work or make an effort|extremely tired|the things you usually do in the same order|something you do often, almost without thinking}\na habit {something you do often, almost without thinking|not wanting to work or make an effort|extremely tired|the things you usually do in the same order|to go to bed later than usual}"}, {"type": "gap", "instruction": "Complete with: routine, habit, stay up, grade.", "text": "My morning [routine] starts with a glass of water.\nChecking my phone in bed is a bad [habit].\nOn Fridays I usually [stay up] late and watch films.\nShe got the top [grade] in the physics test."}], "s3": [{"type": "choice", "instruction": "Choose the best heading for each paragraph. Two headings are extra.", "text": "Paragraph A: {It’s biology, not laziness|Not enough rest for learning|An experiment that worked|A screen that steals your sleep|Teenagers who sleep too much|Why adults need less sleep}\nParagraph B: {Not enough rest for learning|It’s biology, not laziness|An experiment that worked|A screen that steals your sleep|Teenagers who sleep too much|Why adults need less sleep}\nParagraph C: {An experiment that worked|It’s biology, not laziness|Not enough rest for learning|A screen that steals your sleep|Teenagers who sleep too much|Why adults need less sleep}\nParagraph D: {A screen that steals your sleep|It’s biology, not laziness|Not enough rest for learning|An experiment that worked|Teenagers who sleep too much|Why adults need less sleep}"}, {"type": "choice", "instruction": "True or False?", "text": "Teenagers feel sleepy later because of a hormone. {True|False}\nExperts recommend six hours of sleep for teenagers. {False|True}\nA later school start helped students in some studies. {True|False}\nDoctors say you can use your phone until you fall asleep. {False|True}"}, {"type": "gap", "instruction": "Find the words in the text.", "text": "the period when a child becomes an adult (paragraph A): [adolescence]\nto give all your attention to something (paragraph B): [concentrate]\nsuggest what someone should do (paragraph D): [advise]"}], "s4": [{"type": "choice", "instruction": "Choose the best heading for each paragraph. Two headings are extra.", "text": "Paragraph A: {An old hobby makes a comeback|A break from the digital world|More than just entertainment|A few disadvantages|Advice for beginners|Games that only adults can play|How to win every time}\nParagraph B: {A break from the digital world|An old hobby makes a comeback|More than just entertainment|A few disadvantages|Advice for beginners|Games that only adults can play|How to win every time}\nParagraph C: {More than just entertainment|An old hobby makes a comeback|A break from the digital world|A few disadvantages|Advice for beginners|Games that only adults can play|How to win every time}\nParagraph D: {A few disadvantages|An old hobby makes a comeback|A break from the digital world|More than just entertainment|Advice for beginners|Games that only adults can play|How to win every time}\nParagraph E: {Advice for beginners|An old hobby makes a comeback|A break from the digital world|More than just entertainment|A few disadvantages|Games that only adults can play|How to win every time}"}, {"type": "choice", "instruction": "Match the words in the headings with the phrases in the text that prove them.", "text": "makes a comeback {sales of games have grown every year|put our phones away|teach you to plan ahead|can also be expensive|if you want to start}\na break from the digital world {put our phones away|sales of games have grown every year|teach you to plan ahead|can also be expensive|if you want to start}\nmore than entertainment {teach you to plan ahead|sales of games have grown every year|put our phones away|can also be expensive|if you want to start}\ndisadvantages {can also be expensive|sales of games have grown every year|put our phones away|teach you to plan ahead|if you want to start}\nbeginners {if you want to start|sales of games have grown every year|put our phones away|teach you to plan ahead|can also be expensive}"}], "s6": [{"type": "choice", "instruction": "НМТ: обери найкращий заголовок до кожного міні-абзацу (A-D).", "text": "“I used to drink cola in the evening and then stay awake until 2 am. Now I drink only water after 6 pm.” {Changing one habit|Cola is good for you|Staying up all night|A new evening job}\n“Our school starts at 9:30 now. Students say they feel less tired in the first lesson.” {A later start helps|Lessons get longer|Teachers come late|No first lesson any more}\n“After three nights of little sleep, Lily couldn’t concentrate in the test and got a low grade.” {When tiredness costs you marks|How to pass every test|A night at the library|Lily’s favourite subject}\n“Doctors recommend going to bed and getting up at the same time every day, even at weekends.” {Keep a regular routine|Sleep longer at weekends|Doctors who never sleep|Weekend plans}\n“Board game cafés are full every Friday. Young people come to play, talk and forget about their phones.” {Offline fun is popular again|Cafés sell new phones|A Friday homework club|Why games are expensive}\n“Some games take hours to learn, and the boxes can cost as much as a new pair of trainers.” {The downside of a hobby|Cheap fun for everyone|How to buy trainers|Games for small children}"}, {"type": "gap", "instruction": "Встав слово: exhausted, concentrate, recommend, habit, routine, laziness.", "text": "After the long hike we were completely [exhausted].\nI can’t [concentrate] when my brother plays loud music.\nDoctors [recommend] eight to ten hours of sleep for teenagers.\nReading a paper book before bed is a good [habit].\nMy evening [routine] is simple: shower, book, sleep.\nNot doing your homework just because you don’t want to is [laziness]."}, {"type": "choice", "instruction": "З’єднай фразу з її перефразуванням, як у заголовках НМТ.", "text": "go to bed late {stay up late|exhausted|find it hard to concentrate|medical advice|become popular again|take a break from screens}\nextremely tired {exhausted|stay up late|find it hard to concentrate|medical advice|become popular again|take a break from screens}\ncan’t focus {find it hard to concentrate|stay up late|exhausted|medical advice|become popular again|take a break from screens}\na doctor’s suggestion {medical advice|stay up late|exhausted|find it hard to concentrate|become popular again|take a break from screens}\nmake a comeback {become popular again|stay up late|exhausted|find it hard to concentrate|medical advice|take a break from screens}\nput your phone away {take a break from screens|stay up late|exhausted|find it hard to concentrate|medical advice|become popular again}"}], "s7": [{"type": "choice", "instruction": "Choose the best heading.", "text": "Paragraph 1: {A new bedtime habit|Why paper books are expensive|Charging phones faster|Sleeping in the kitchen}\nParagraph 2: {Fresh air for a fresh mind|Winter sports at school|Longer lessons, better results|Teachers who love the cold}\nParagraph 3: {A dangerous shortcut|The best drinks for students|How to make energy drinks|Sugar-free and safe}"}, {"type": "open", "instruction": "Write your own heading.", "text": "Write a different heading for paragraph 1 (3-6 words). Explain in one sentence why it fits."}], "s8": [{"type": "choice", "instruction": "НМТ: обери найкращу відповідь за текстом «Sleep and teenagers» (A-D).", "text": "According to paragraph A, teenagers feel sleepy later because {their body produces a hormone later|they are lazy|they use phones in bed|school starts early}.\nExperts recommend that teenagers sleep {eight to ten hours|six or seven hours|five hours|twelve hours}.\nTired students find it harder to {remember new information|get up late|play board games|use their phones}.\nIn the studies, a later start helped students to {get better grades|finish school earlier|use phones less|have longer breaks}.\nThe bright screen of a phone {tells the brain it is still daytime|helps you fall asleep|makes you hungry|keeps the room warm}.\nDoctors advise putting the phone away {at least an hour before bed|just before you close your eyes|in the morning|during lessons}."}, {"type": "gap", "instruction": "Переклади англійською.", "text": "Я часто довго не лягаю спати → [I often stay up late]\nЛікарі радять менше користуватися телефоном → [Doctors advise using the phone less/Doctors advise using your phone less/Doctors advise using phones less/Doctors advise people to use their phones less]\nЯ не можу зосередитися → [I can’t concentrate/I cannot concentrate/I can’t focus/I cannot focus]\nУ мене погана звичка → [I have a bad habit/I’ve got a bad habit/I have got a bad habit]\nПісля тренування я виснажений → [I am exhausted after training/I’m exhausted after training/I am exhausted after the training/I’m exhausted after the training/After training I am exhausted/After training I’m exhausted]\nВона отримала гарну оцінку → [She got a good grade/She got a good mark/She has got a good grade/She has got a good mark]"}, {"type": "open", "instruction": "Письмо: дай розгорнуту відповідь.", "text": "Write a paragraph (4-5 sentences) about your sleep habits. Then write a heading for it.\nWrite one extra trap heading for your paragraph and explain in one sentence why it does not fit."}]}};</script>
+<script>
+(function(){var l=(document.cookie.match(/(?:^|; )murly_lang=(\w+)/)||[])[1];try{l=l||localStorage.getItem('murly:tlang')}catch(e){}l=l==='ru'?'ru':'uk';document.querySelectorAll('[data-pairs-'+l+']').forEach(function(b){b.dataset.pairs=b.getAttribute('data-pairs-'+l)});})();
+</script>
+<script>
+const $ = (id) => document.getElementById(id);
+const LIS = {};
+function say(w, rate) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; const v = speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang) && /Google|Natural|Libby|Sonia|Daniel/.test(x.name)) || speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang)); if (v) u.voice = v; u.rate = rate || .95; speechSynthesis.speak(u); } catch (e) { } }
+const sh = (a) => a.map((x) => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map((x) => x[1]);
+document.querySelectorAll('.voc div').forEach((d) => d.onclick = () => say(d.dataset.say));
+document.querySelectorAll('[data-play]').forEach((b) => b.onclick = () => say(LIS[b.dataset.play], b.dataset.slow ? .75 : .95));
+document.querySelectorAll('[data-stop]').forEach((b) => b.onclick = () => { try { speechSynthesis.cancel(); } catch (e) { } });
+document.querySelectorAll('.ch').forEach((q) => q.querySelectorAll('button').forEach((b) => b.onclick = () => { if (q.classList.contains('ok')) return; const ok = b.textContent === q.dataset.a; q.classList.toggle('ok', ok); q.classList.toggle('bad', !ok); if (ok) { const s = q.querySelector('.s'); if (s && s.textContent.includes('___')) { s.textContent = s.textContent.replace('___', q.dataset.a); } } }));
+const norm = (x) => x.toLowerCase().replace(/[’']/g, "'").replace(/[,;:"“”«»]/g, ' ').replace(/\s+/g, ' ').replace(/[.!?]$/, '').trim();
+document.querySelectorAll('.ty').forEach((r) => { const inp = r.querySelector('input'); const chk = () => { const ok = r.dataset.a.split('|').some((a) => norm(a) === norm(inp.value)); r.classList.toggle('ok', ok); r.classList.toggle('bad', !ok && inp.value.trim() !== ''); }; r.querySelector('button').onclick = chk; inp.onkeydown = (e) => { if (e.key === 'Enter') chk(); }; });
+document.querySelectorAll('[data-mt]').forEach((box) => { const pairs = JSON.parse(box.dataset.pairs); const L = sh(pairs.map((p) => p[0])), R = sh(pairs.map((p) => p[1])); let sel = null, done = 0, err = 0; box.innerHTML = L.map((w, i) => `<button type="button" data-w="${w}">${w}</button><button type="button" data-d="${R[i]}">${R[i]}</button>`).join('');
+  box.querySelectorAll('button').forEach((b) => b.onclick = () => { if (b.classList.contains('done')) return; if (!sel || (sel.dataset.w && b.dataset.w) || (sel.dataset.d && b.dataset.d)) { if (sel) sel.classList.remove('sel'); sel = b; b.classList.add('sel'); return; } const w = sel.dataset.w || b.dataset.w, d = sel.dataset.d || b.dataset.d; if (pairs.some((p) => p[0] === w && p[1] === d)) { sel.classList.add('done'); b.classList.add('done'); done++; say(w); if (done === pairs.length) document.querySelector(`[data-mtres="${box.dataset.mt}"]`).textContent = err ? `Done! Mistakes: ${err}` : 'Perfect!'; } else err++; sel.classList.remove('sel'); sel = null; }); });
+document.querySelectorAll('[data-vids]').forEach((box) => JSON.parse(box.dataset.vids).forEach(([id, title, ch, qs]) => { const d = document.createElement('div'); d.className = 'vid'; d.innerHTML = `<div class="frame"><button class="play" type="button" style="background-image:url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)"><span>PLAY</span></button></div><div class="info"><h3>${title}</h3><small>YouTube · ${ch}</small><ol>${qs.map((q) => `<li>${q}</li>`).join('')}</ol></div>`; d.querySelector('.play').onclick = (e) => { e.currentTarget.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&cc_load_policy=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${title}"></iframe>`; }; box.appendChild(d); }));
+document.querySelectorAll('[data-spin]').forEach((b) => { const list = JSON.parse(b.dataset.spin); let last = -1; b.onclick = () => { let i; do { i = Math.floor(Math.random() * list.length); } while (i === last && list.length > 1); last = i; document.getElementById(b.dataset.target).textContent = list[i]; }; });
+try { const k = 'murly:' + (window.MURLY_LESSON ? MURLY_LESSON.id : 'x') + ':hw'; const t = $('hwText'); if (t) { t.value = localStorage.getItem(k) || ''; t.oninput = () => localStorage.setItem(k, t.value); } } catch (e) { }
+const STAGES = [...document.querySelectorAll('.wrap > section[id]')];
+$('stages').innerHTML = STAGES.map((s) => `<a href="#${s.id}"><b>${s.querySelector('.lk-n').textContent}</b><span>${s.dataset.stage}</span><small>${s.dataset.min !== '0' ? s.dataset.min + ' min' : 'at home'}</small></a>`).join('');
+$('teacherBtn').onclick = (e) => { const on = document.body.classList.toggle('teacher'); e.currentTarget.textContent = on ? 'Student version' : 'Teacher version'; };
+</script>
+<script src="/game-lessons/kit.js" defer></script>
+</body>
+</html>

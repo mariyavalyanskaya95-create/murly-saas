@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Just, already, yet: is it done? (A2) | Murly</title>
+<link rel="icon" href="/favicon.svg">
+<meta name="description" content="Будуємо Present Perfect: I have done, she has done
+Вживаємо just (щойно), already (вже) і yet (ще не / вже в питаннях)
+Ставимо слова just, already, ye">
+<link rel="canonical" href="https://murly.com.ua/game-lessons/lib-gr-just-already-yet.html">
+<style>
+:root{--paper:#F3F0EA;--ink:#17181C;--violet:#3D4A7A;--lav:#D9D3C7;--pink:#E9C9BC;--green:#D4E2CF;--white:#fff;--muted:#62646B;--accent:#B5482F}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+/* hero */
+.hero{background:linear-gradient(rgba(16,17,22,.5),rgba(16,17,22,.72)),url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1400&q=70&auto=format&fit=crop");color:#fff;padding:70px 18px 56px;text-align:center;position:relative;overflow:hidden}
+.hero .kicker{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#E9C9BC;font-weight:700}
+.hero .cr{position:absolute;right:12px;bottom:8px;font-size:11px;color:rgba(255,255,255,.6)}
+.hero h1{margin:8px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(36px,6vw,64px);letter-spacing:-.5px;font-weight:700}
+.hero h1 span{color:var(--pink);font-style:italic}
+.hero p{margin:12px 0 0;font-size:17px;color:#e6e2da}
+.hero .flags{display:flex;justify-content:center;gap:12px;margin-top:22px;flex-wrap:wrap}
+.hero .flags svg{width:40px;height:26px;border-radius:3px;opacity:.9}
+/* sections */
+section{margin-top:30px;background:var(--white);border-radius:18px;padding:28px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.05)}
+section h2{margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tag{font-family:"Segoe UI",system-ui,sans-serif;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--paper);color:var(--accent);text-transform:uppercase;letter-spacing:1px}
+.lk-n{display:inline-grid;place-items:center;width:42px;height:42px;background:var(--violet);color:#fff;border-radius:50%;font-size:21px;flex:none}
+.lk-mode{font-size:13px;font-weight:700;border:2px dashed var(--lav);color:var(--muted);padding:2px 10px;border-radius:999px}
+.lk-ins{font-size:17px;background:var(--paper);border-radius:12px;padding:10px 14px;margin:6px 0 18px}
+.lk-sub{margin:24px 0 10px;font-size:19px}
+.btn{font:inherit;font-weight:700;border:0;border-radius:999px;background:var(--ink);color:#fff;padding:10px 20px;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+.btn.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+/* teacher */
+.lk-tbtn{position:fixed;right:16px;top:70px;z-index:45;font:inherit;font-weight:800;border:2px solid var(--ink);background:var(--pink);padding:8px 14px;border-radius:12px;cursor:pointer}
+body.teacher .lk-tbtn{background:var(--green)}
+.lk-ans,.lk-tnote{display:none}
+body.teacher .lk-ans{display:block;margin-top:8px;font-weight:700;color:#1d5a12;background:var(--green);border-left:5px solid #5aa845;padding:6px 10px;font-size:15px;border-radius:6px}
+body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff3f7;border-left:5px solid #d9789a;padding:8px 12px;font-size:15px;border-radius:6px}
+/* overview */
+.lk-overview ul{font-size:17px;line-height:1.7;margin:6px 0 16px}
+.lk-stages{display:flex;flex-wrap:wrap;gap:8px}
+.lk-stages a{display:grid;border-radius:14px;padding:8px 12px;text-decoration:none;color:var(--ink);background:var(--paper);font-weight:700;min-width:100px}
+.lk-stages a span{text-transform:capitalize}
+.lk-stages a b{font-size:20px;color:var(--violet)}
+.lk-stages a small{font-weight:600;color:var(--muted)}
+/* warm-up */
+.taxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tax{background:var(--paper);border-radius:18px;padding:16px;display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center}
+.tax svg{width:56px;height:56px}
+.tax b{display:block;font-size:17px}
+.tax small{color:var(--muted);font-size:14px}
+.qs{display:grid;gap:10px;margin-top:18px}
+.qs div{background:var(--green);border-radius:14px;padding:10px 16px;font-size:18px;font-weight:600}
+.phr{background:#fff7e8;border-radius:14px;padding:12px 16px;margin-top:16px;font-size:15px}
+.phr ul{margin:6px 0 0;padding-left:18px}
+.fic{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:16px}
+.fic .c{background:#fff;border:2px solid #1B2140;border-radius:16px;padding:14px 16px;box-shadow:3px 3px 0 #1B2140}
+.fic .c b{display:block;font-size:18px;line-height:1.35;margin-bottom:8px}
+.fic .c .k{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.fic .c .k span{font-size:13px;background:#eef1fb;border-radius:999px;padding:3px 10px}
+.fic .c details{margin-top:8px;font-size:15px;color:#3b4160}
+.fic .c summary{cursor:pointer;font-weight:700;color:#534AB7}
+.fi-n{display:inline-flex;width:28px;height:28px;border-radius:50%;background:#2F4BA0;color:#fff;align-items:center;justify-content:center;font-size:14px;margin-right:6px}
+/* vocab */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:12px}
+.vc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:2px solid transparent;transition:border-color .2s,transform .2s}
+.vc:hover{border-color:var(--violet);transform:translateY(-2px)}
+.vc b{font-size:18px;display:flex;align-items:center;gap:8px}
+.vc b svg{width:20px;height:20px;flex:none;color:var(--violet)}
+.vc p{margin:6px 0 0;font-size:14px;color:var(--muted)}
+.vc em{display:block;margin-top:6px;font-size:14px;color:var(--violet);font-style:normal;font-weight:600}
+.vc.played{background:#e6ecfb}
+/* grammar */
+.gram{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.gb{border-radius:18px;padding:16px}
+.gb h3{margin:0 0 6px;font-size:19px}
+.gb .f{display:inline-block;background:#fff;border-radius:8px;padding:3px 10px;font-weight:800;margin:4px 0;font-family:Consolas,monospace;font-size:15px}
+.gb p{margin:6px 0 0;font-size:15px}
+.g1{background:var(--pink)}.g2{background:var(--lav)}.g3{background:var(--green)}.g4{background:#fbe7c6}
+.warn{margin-top:14px;background:var(--ink);color:#fff;border-radius:14px;padding:12px 16px;font-size:16px}
+.warn b{color:var(--pink)}
+.q{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:2px dashed var(--paper);font-size:18px}
+.q:last-child{border-bottom:0}
+.q .n{width:32px;height:32px;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;border-radius:50%;font-weight:800;font-size:15px}
+.opt{font:inherit;font-size:16px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:10px;padding:4px 12px;cursor:pointer;margin:0 2px}
+.opt.ok{background:var(--green);border-color:#5aa845}
+.opt.bad{background:var(--pink);animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+/* tour */
+.tour{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.law{border-radius:22px;overflow:hidden;background:var(--paper);display:flex;flex-direction:column}
+.law .pic{height:150px;display:grid;place-items:center;position:relative}
+.law .pic svg.ill{width:130px;height:130px}
+.law .pic svg.fl{position:absolute;left:14px;top:14px;width:46px;height:30px;border-radius:5px;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.law .pic .no{position:absolute;right:14px;top:14px;background:var(--ink);color:#fff;font-weight:800;border-radius:999px;padding:2px 10px;font-size:13px}
+.law .body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.law h3{margin:0;font-size:20px}
+.law .where{font-size:13px;font-weight:800;color:var(--violet);text-transform:uppercase;letter-spacing:1px}
+.law p{margin:0;font-size:16px}
+.law .why{font-size:14px;color:var(--muted)}
+.law .dq{margin-top:auto;background:#fff;border-radius:12px;padding:8px 12px;font-weight:700;font-size:15px}
+.law .lsn{font:inherit;font-size:13px;font-weight:700;background:none;border:0;color:var(--violet);cursor:pointer;padding:0;text-align:left}
+/* game */
+.game{max-width:720px;margin:0 auto;text-align:center}
+.score{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.score span{background:var(--paper);border-radius:999px;padding:6px 16px;font-weight:800}
+.stmt{background:var(--ink);color:#fff;border-radius:22px;padding:28px 24px;min-height:150px;display:grid;place-items:center;font-size:23px;font-weight:700;position:relative}
+.stmt small{position:absolute;top:12px;left:18px;font-size:13px;color:var(--lav);font-weight:700}
+.choose{display:flex;justify-content:center;gap:14px;margin:18px 0}
+.choose button{font:inherit;font-size:18px;font-weight:700;border:2px solid var(--ink);border-radius:999px;padding:12px 28px;cursor:pointer}
+.choose .bl{background:var(--green)}.choose .bm{background:var(--pink)}
+.choose button:disabled{opacity:.5;cursor:default}
+.verdict{min-height:70px;font-size:17px;background:var(--paper);border-radius:16px;padding:12px 16px;text-align:left}
+.verdict b.r{color:#2d7a1d}.verdict b.w{color:#b23a62}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.dots i{width:14px;height:14px;border-radius:50%;background:var(--paper)}
+.dots i.r{background:#7cc663}.dots i.w{background:#e47b9f}.dots i.c{outline:3px solid var(--violet)}
+.final{font-size:22px;font-weight:800;color:var(--violet)}
+/* invent */
+.inv{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.frames{display:grid;gap:10px}
+.frames label{font-size:14px;font-weight:700;color:var(--muted)}
+.frames select,.frames input{font:inherit;width:100%;padding:8px 10px;border:2px solid var(--lav);border-radius:10px;background:#fff}
+.poster{background:var(--paper);border:3px solid var(--ink);border-radius:20px;padding:22px;text-align:center;min-height:260px;display:flex;flex-direction:column;gap:10px;justify-content:center}
+.poster .seal{width:70px;height:70px;margin:0 auto}
+.poster h3{margin:0;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--violet)}
+.poster .rule{font-size:22px;font-weight:800}
+.poster .pen{font-size:16px;color:var(--muted)}
+.ideas{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ideas span{background:var(--pink);border-radius:999px;padding:5px 12px;font-size:14px;font-weight:600}
+/* roleplay */
+.rp{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.role{border-radius:20px;padding:18px}
+.role h3{margin:0 0 6px;display:flex;align-items:center;gap:10px}
+.role h3 svg{width:42px;height:42px}
+.role ul{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.r1{background:var(--lav)}.r2{background:var(--green)}
+.scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:16px}
+.sc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:3px solid transparent}
+.sc.on{border-color:var(--violet);background:#fff}
+.sc b{display:block;font-size:17px;margin-bottom:4px}
+.sc p{margin:0;font-size:15px}
+.timer{font-size:40px;font-weight:800;text-align:center;margin:14px 0 6px;color:var(--violet)}
+.ctr{text-align:center}
+/* homework */
+.hwb{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hwc{background:var(--paper);border-radius:18px;padding:18px}
+.hwc h3{margin:0 0 8px}
+.hwc ol,.hwc ul{margin:6px 0 0;padding-left:20px;line-height:1.7}
+.hwc textarea{width:100%;min-height:150px;font:inherit;border:2px solid var(--lav);border-radius:12px;padding:10px;margin-top:10px}
+.end{text-align:center;background:var(--ink);color:#fff;box-shadow:none}
+.end h2{justify-content:center}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(140px);background:var(--ink);color:#fff;font-weight:800;padding:12px 22px;border-radius:14px;transition:transform .3s;z-index:50}
+.toast.show{transform:translateX(-50%) translateY(0)}
+/* photos */
+.ph{margin:0}
+.ph img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;background:var(--paper)}
+.ph figcaption{font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.2px}
+.tax{grid-template-columns:1fr !important;padding:12px !important}
+.law .pic{height:auto !important;display:block !important;padding:0;position:relative}
+.law .pic .ph img{border-radius:0;aspect-ratio:16/10;transition:filter .5s}
+.law .pic .ph figcaption{padding:4px 12px 0}
+.law.hide .pic .ph img{filter:blur(10px) grayscale(.6)}
+.law.hide .reveal-body,.law.hide .fl,.law.hide .where{visibility:hidden}
+.law .clue{font-size:15px;font-style:italic;color:var(--ink)}
+.law .gc{display:flex;flex-wrap:wrap;gap:6px}
+.law .gc button{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:4px 12px;cursor:pointer}
+.law .gc button.ok{background:var(--green)}.law .gc button.bad{background:var(--pink)}
+.law:not(.hide) .guess{display:none}
+.fair{display:grid;gap:4px;background:#fff;border-radius:12px;padding:8px 12px}
+.fair .ends{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.fair input{width:100%;accent-color:var(--accent)}
+.fair output{font-size:14px;font-weight:700;color:var(--accent)}
+.gph{max-width:720px;margin:0 auto 12px}
+.gph img{aspect-ratio:21/9}
+.fine{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.fq{background:var(--paper);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.fq h3{margin:0;font-size:18px}
+.fq .opts{display:flex;flex-wrap:wrap;gap:6px}
+.fq .opts button{font:inherit;font-size:14px;font-weight:700;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 12px;cursor:pointer}
+.fq .opts button.ok{background:var(--green)}.fq .opts button.bad{background:var(--pink)}
+.fq .res{font-size:15px;min-height:22px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{position:relative;aspect-ratio:16/9;background:#111}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;cursor:pointer;background:#111 center/cover;display:grid;place-items:center}
+.vid .play span{background:rgba(0,0,0,.7);color:#fff;font-weight:700;border-radius:999px;padding:10px 20px;font-size:15px;letter-spacing:1px}
+.vid .info{padding:14px 16px}
+.vid .info h3{margin:0 0 2px;font-size:18px}
+.vid .info small{color:var(--muted)}
+.vid .info ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+@media(max-width:760px){.inv,.rp,.hwb{grid-template-columns:1fr}.lk-tbtn{top:auto;bottom:70px}}
+
+.pr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.pb{border-radius:18px;padding:16px 18px}
+.pb h3{margin:0;font-family:Georgia,serif;font-size:30px}
+.pb .m{font-size:15px;color:var(--muted);margin:2px 0 8px}
+.pb .chips{display:flex;flex-wrap:wrap;gap:6px}
+.pb .chips span{background:#fff;border-radius:999px;padding:4px 11px;font-size:14px;font-weight:600}
+.pb ul{margin:10px 0 0;padding-left:18px;font-size:15px}
+.p-in{background:#DCE6F5}.p-at{background:#F3D9CF}.p-on{background:#D4E2CF}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-size:15px;margin-top:10px}
+.ex div{background:var(--paper);border-radius:10px;padding:8px 12px}
+.ex b{color:var(--accent)}
+.q{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.q .n{font-weight:800;color:var(--violet);min-width:24px}
+.q .gap{display:inline-block;min-width:44px;border-bottom:2px solid var(--ink);text-align:center;font-weight:800}
+.q .opts{margin-left:auto;display:flex;gap:6px}
+.q .opts button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 14px;cursor:pointer}
+.q.ok{background:#DDEED7}.q.ok .gap{color:#2F7A3B}
+.q.bad{background:#F6DAD3}
+.score{font-weight:800;margin-top:12px}
+.text{font-size:18px;line-height:1.75;background:var(--paper);border-radius:16px;padding:18px 22px}
+.text h3{margin:0 0 6px;font-family:Georgia,serif;font-size:24px}
+.text p{margin:0 0 12px}
+.text.hl mark{background:#F3D9CF;border-radius:4px;padding:0 3px;font-weight:700}
+.tf{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:9px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.tf .opts{margin-left:auto;display:flex;gap:6px}
+.tf button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.tf.ok{background:#DDEED7}.tf.bad{background:#F6DAD3}
+.disc{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px;margin-top:6px}
+.disc div{background:var(--green);border-radius:14px;padding:12px 16px;font-size:17px;font-weight:600}
+.disc div i{font-style:normal;color:var(--violet);margin-right:6px}
+.spin{text-align:center;margin-top:16px}
+.spin .card{display:inline-block;min-height:80px;min-width:min(560px,100%);background:var(--ink);color:#fff;border-radius:18px;padding:20px 24px;font-size:22px;font-weight:700;margin-bottom:12px}
+@media(max-width:700px){.ex{grid-template-columns:1fr}}
+
+.hero{background-size:cover!important;background-position:center!important}
+.voc{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.voc div{background:var(--paper);border-radius:14px;padding:10px 14px;cursor:pointer;border:2px solid transparent}
+.voc div:hover{border-color:var(--violet)}
+.voc b{display:block;font-size:18px}.voc span{display:block;color:var(--accent);font-weight:700;font-size:15px}.voc em{display:block;font-size:14px;color:var(--muted);margin-top:3px}
+.mt{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:10px}
+.mt button{font:inherit;font-size:16px;text-align:left;border:2px solid var(--ink);background:#fff;border-radius:14px;padding:9px 14px;cursor:pointer}
+.mt button.sel{background:#FFE7A8}.mt button.done{background:#CDE8C6;border-color:#4C9A5B;cursor:default}
+.ch{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ch .n{font-weight:800;color:var(--violet);min-width:24px}
+.ch .o{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.ch .o button{font:inherit;font-size:15px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.ch.ok{background:#DDEED7}.ch.bad{background:#F6DAD3}
+.ty{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ty input{font:inherit;border:2px solid var(--ink);border-radius:10px;padding:4px 10px;width:220px}
+.ty.ok{background:#DDEED7}.ty.bad{background:#F6DAD3}
+.ty small{color:var(--muted)}
+.photo{width:100%;height:300px;object-fit:cover;border-radius:16px;display:block}
+.cap{font-size:11px;color:var(--muted);margin:4px 0 12px}
+.pics{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.pics figure{margin:0;background:var(--paper);border-radius:16px;overflow:hidden}
+.pics img{width:100%;height:170px;object-fit:cover;display:block}
+.pics figcaption{padding:8px 12px;font-weight:700}
+.pics small{display:block;font-weight:400;font-size:10px;color:var(--muted)}
+.lis{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:8px 0 14px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{aspect-ratio:16/9;background:#000;position:relative}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;background-size:cover;background-position:center;cursor:pointer;display:grid;place-items:center}
+.vid .play span{background:#E5484D;color:#fff;font-weight:800;border-radius:12px;padding:10px 20px}
+.vid .info{padding:12px 16px}.vid h3{margin:0;font-size:18px}.vid small{color:var(--muted)}
+.vid ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th,.tbl td{border:1px solid #ddd;padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--paper)}
+@media(max-width:700px){.mt{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="/game-lessons/kit.css">
+</head>
+<body>
+<header class="hero">
+  <div class="kicker">A2 · teens · Граматика: Present Perfect (just, already, yet)</div>
+  <h1>Just, already, yet: is it done?</h1>
+  <p>A2 · 10 parts · 60 min</p>
+  <span class="cr">Photo: Unsplash</span>
+</header>
+<button class="lk-tbtn" id="teacherBtn" type="button">Teacher version</button>
+<div class="wrap">
+  <section class="lk-overview">
+    <h2>In this lesson you will:</h2>
+    <ul><li>Будуємо Present Perfect: I have done, she has done
+Вживаємо just (щойно), already (вже) і yet (ще не / вже в питаннях)
+Ставимо слова just, already, yet на правильне місце в реченні
+Розповідаємо, що ми вже зробили, а що ще ні</li></ul>
+    <div class="lk-stages" id="stages"></div>
+  </section>
+  <section id="s1" data-stage="warm-up" data-min="4">
+    <h2><span class="lk-n">1</span>Warm-up <span class="tag">warm-up</span><span class="lk-mode">teacher + student</span></h2>
+<div class="qs"><div>What have you done today? Tell me three things.</div><div>Have you had breakfast today?</div><div>What is the last thing you ate?</div><div>Is your homework for tomorrow ready?</div><div>Is your room tidy right now?</div><div>What do you always do at the last minute?</div><div>Have you checked your phone in the last ten minutes? Be honest!</div><div>Has your cat (or a pet you know) done anything funny this week?</div></div>
+    <p class="lk-tnote" data-ru="Обери 4-5 питань, 3-4 хв. Не виправляй, просто слухай, чи вживає учень have / has + третю форму. Найчастіше учні кажуть «I already did it» або «I have do». Запиши 2-3 помилки для етапу «Розбір помилок». Наприкінці запитай: «Як сказати англійською “я вже зробив домашку”?»&lt;br&gt;">Обери 4-5 питань, 3-4 хв. Не виправляй, просто слухай, чи вживає учень have / has + третю форму. Найчастіше учні кажуть «I already did it» або «I have do». Запиши 2-3 помилки для етапу «Розбір помилок». Наприкінці запитай: «Як сказати англійською “я вже зробив домашку”?»<br></p>
+  </section>
+  <section id="s2" data-stage="practice" data-min="7">
+    <h2><span class="lk-n">2</span>Lead-in <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<div class="text"><p><b>Group chat: Rosie’s surprise party (Saturday, 6 pm)</b></p><p><b>Mark:</b> Guys, the party is in two hours! What have you done? What haven’t you done yet?<br><b>Lucy:</b> I’ve already bought the balloons. Twenty pink balloons!<br><b>Dan:</b> I’ve just picked up the cake. It’s in my bag. Don’t ask.<br><b>Mark:</b> In your BAG?! Has it survived?<br><b>Dan:</b> Not yet. I mean, yes. Mostly.<br><b>Lucy:</b> Has anyone invited Rosie’s cousin yet?<br><b>Mark:</b> Yes, I’ve already sent her a message. She hasn’t answered yet.<br><b>Sophie:</b> Hi! Sorry, I’ve just woken up. Have I missed anything?<br><b>Mark:</b> Sophie, have you made the playlist yet?<br><b>Sophie:</b> Ummm... not yet. But I’ve already chosen the first song!<br><b>Dan:</b> Breaking news: my cat has just sat on the cake.<br><b>Lucy:</b> NOOOO.</p></div>
+    <div class="voc"><div data-say="surprise party. "><b>surprise party</b><span><span data-tr-uk="вечірка-сюрприз" data-tr-ru="вечірка-сюрприз">вечірка-сюрприз</span></span><em></em></div>
+<div data-say="balloon. "><b>balloon</b><span><span data-tr-uk="повітряна кулька" data-tr-ru="повітряна кулька">повітряна кулька</span></span><em></em></div>
+<div data-say="pick up. "><b>pick up</b><span><span data-tr-uk="забрати" data-tr-ru="забрати">забрати</span></span><em></em></div>
+<div data-say="survive. "><b>survive</b><span><span data-tr-uk="вижити, вціліти" data-tr-ru="вижити, вціліти">вижити, вціліти</span></span><em></em></div>
+<div data-say="invite. "><b>invite</b><span><span data-tr-uk="запрошувати" data-tr-ru="запрошувати">запрошувати</span></span><em></em></div>
+<div data-say="cousin. "><b>cousin</b><span><span data-tr-uk="двоюрідний брат, двоюрідна сестра" data-tr-ru="двоюрідний брат, двоюрідна сестра">двоюрідний брат, двоюрідна сестра</span></span><em></em></div>
+<div data-say="send a message. "><b>send a message</b><span><span data-tr-uk="надіслати повідомлення" data-tr-ru="надіслати повідомлення">надіслати повідомлення</span></span><em></em></div>
+<div data-say="wake up. "><b>wake up</b><span><span data-tr-uk="прокидатися" data-tr-ru="прокидатися">прокидатися</span></span><em></em></div>
+<div data-say="miss. "><b>miss</b><span><span data-tr-uk="пропустити" data-tr-ru="пропустити">пропустити</span></span><em></em></div>
+<div data-say="playlist. "><b>playlist</b><span><span data-tr-uk="плейлист, добірка пісень" data-tr-ru="плейлист, добірка пісень">плейлист, добірка пісень</span></span><em></em></div>
+<div data-say="choose. "><b>choose</b><span><span data-tr-uk="обирати" data-tr-ru="обирати">обирати</span></span><em></em></div>
+<div data-say="breaking news. "><b>breaking news</b><span><span data-tr-uk="термінова новина" data-tr-ru="термінова новина">термінова новина</span></span><em></em></div>
+<div data-say="tidy. "><b>tidy</b><span><span data-tr-uk="охайний, прибирати" data-tr-ru="охайний, прибирати">охайний, прибирати</span></span><em></em></div>
+<div data-say="last minute. "><b>last minute</b><span><span data-tr-uk="останній момент" data-tr-ru="останній момент">останній момент</span></span><em></em></div></div>
+    <div class="mt" data-mt="m2" data-pairs="[[&quot;surprise party&quot;, &quot;вечірка-сюрприз&quot;], [&quot;balloon&quot;, &quot;повітряна кулька&quot;], [&quot;pick up&quot;, &quot;забрати&quot;], [&quot;survive&quot;, &quot;вижити, вціліти&quot;], [&quot;invite&quot;, &quot;запрошувати&quot;], [&quot;cousin&quot;, &quot;двоюрідний брат, двоюрідна сестра&quot;], [&quot;send a message&quot;, &quot;надіслати повідомлення&quot;], [&quot;wake up&quot;, &quot;прокидатися&quot;]]"></div><div class="score" data-mtres="m2"></div>
+    <h3 class="lk-sub">Прочитай чат і обери True або False.</h3><div class="ch" data-a="True"><span class="n">1</span><span class="s">Lucy has already bought the balloons.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="False"><span class="n">2</span><span class="s">Dan has just bought a new bag.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="False"><span class="n">3</span><span class="s">Rosie’s cousin has already answered.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="True"><span class="n">4</span><span class="s">Sophie has just woken up.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="False"><span class="n">5</span><span class="s">Sophie has made the playlist.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="True"><span class="n">6</span><span class="s">Dan’s cat has just sat on the cake.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; True · False · False · True · False · True"><b>Відповіді:</b> True · False · False · True · False · True</p>
+    <p class="lk-tnote" data-ru="Розподіліть ролі і прочитайте чат «за персонажів». Слова пройди швидко: учень знаходить їх у тексті. Після True / False попроси підкреслити всі have / has + третю форму і обвести just, already, yet. Запитай: де стоїть yet у реченні? А already? Хай учень сам помітить, що yet в кінці, а just і already посередині.&lt;br&gt;">Розподіліть ролі і прочитайте чат «за персонажів». Слова пройди швидко: учень знаходить їх у тексті. Після True / False попроси підкреслити всі have / has + третю форму і обвести just, already, yet. Запитай: де стоїть yet у реченні? А already? Хай учень сам помітить, що yet в кінці, а just і already посередині.<br></p>
+  </section>
+  <section id="s3" data-stage="practice" data-min="5">
+    <h2><span class="lk-n">3</span>Rule <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<div class="warn"><p><b>Present Perfect = have / has + третя форма дієслова (V3).</b><br>Результат важливий ЗАРАЗ, а коли саме це сталося, не важливо.</p><p>I / you / we / they <b>have</b> (’ve) done | he / she / it <b>has</b> (’s) done<br>Правильні дієслова: + -ed (finish → finished). Неправильні: третя колонка (eat → eaten, do → done, buy → bought).</p><p><b>just</b> = щойно (між have і V3): I’ve <b>just</b> finished. = Я щойно закінчив.<br><b>already</b> = вже, раніше, ніж чекали (між have і V3): She’s <b>already</b> left. = Вона вже пішла.<br><b>yet</b> = в питаннях «вже?», в запереченнях «ще не» (В КІНЦІ речення):<br>Have you eaten <b>yet</b>? = Ти вже поїв? | I haven’t eaten <b>yet</b>. = Я ще не їв.</p><p><b>Лайфхак «Бутерброд».</b> Just і already лежать усередині бутерброда між have і V3. Yet як вишенька: завжди зверху, в самому кінці.</p></div>
+    <p class="lk-tnote" data-ru="Намалюй «бутерброд»: нижня булка have / has, начинка just / already, верхня булка V3. Yet малюй окремо на кінці речення. Поясни, що «вже» українською має два переклади: already у ствердженні, yet у питанні. На все 5 хв.&lt;br&gt;">Намалюй «бутерброд»: нижня булка have / has, начинка just / already, верхня булка V3. Yet малюй окремо на кінці речення. Поясни, що «вже» українською має два переклади: already у ствердженні, yet у питанні. На все 5 хв.<br></p>
+  </section>
+  <section id="s4" data-stage="reading" data-min="4">
+    <h2><span class="lk-n">4</span>Game: just, already or yet? <span class="tag">reading</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Just, already or yet?</h3><p class="lk-ins">Choose just, already or yet</p>
+    <div class="spin"><div class="card" id="g41">Click "Next card"</div><br><button class="btn" type="button" data-spin="[&quot;Have you finished ___?&quot;, &quot;I’ve ___ eaten. I’m not hungry.&quot;, &quot;The bus has ___ left. Run!&quot;, &quot;She hasn’t called me ___.&quot;, &quot;Wow, you’ve ___ finished? That was fast!&quot;, &quot;Has the film started ___?&quot;, &quot;I’ve ___ woken up. I’m still sleepy.&quot;, &quot;We haven’t decided ___.&quot;, &quot;Breaking news: the cat has ___ jumped on the cake!&quot;, &quot;I don’t need help. I’ve ___ done it.&quot;]" data-target="g41">Next card</button></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; yet · already · just · yet · already · yet · just · yet · just · already"><b>Відповіді:</b> yet · already · just · yet · already · yet · just · yet · just · already</p>
+    <p class="lk-tnote" data-ru="Учень сам обирає формат гри (квіз, пари, картки). Після кожної відповіді хай пояснить коротко: «питання, тому yet» або «одну секунду тому, тому just».&lt;br&gt;">Учень сам обирає формат гри (квіз, пари, картки). Після кожної відповіді хай пояснить коротко: «питання, тому yet» або «одну секунду тому, тому just».<br></p>
+  </section>
+  <section id="s5" data-stage="practice" data-min="12">
+    <h2><span class="lk-n">5</span>Practice <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Розкрий дужки. Вжий Present Perfect і слово в дужках.</h3><div class="ty" data-a="have just finished|’ve just finished"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>I ___ (just / finish) my project.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="has already eaten|’s already eaten"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Tom ___ (already / eat) all the cookies.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="haven’t started|have not started"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>We ___ (not start) the test yet.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Has called"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>___ Anna ___ (call) you yet?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="have just arrived|’ve just arrived"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>My parents ___ (just / arrive) home.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="has already broken|’s already broken"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>The cat ___ (already / break) two cups today.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="haven’t seen|have not seen"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>I ___ (not see) the new episode yet.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Have done"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>___ you ___ (do) your homework yet?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; have just finished · has already eaten · haven’t started · Has / called · have just arrived · has already broken · haven’t seen · Have / done"><b>Відповіді:</b> have just finished · has already eaten · haven’t started · Has / called · have just arrived · has already broken · haven’t seen · Have / done</p>
+    <h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="just"><span class="n">1</span><span class="s">I have ___ sent you the photo. Check your phone!</span><span class="o"><button type="button">just</button><button type="button">ever</button><button type="button">yet</button></span></div>
+<div class="ch" data-a="yet"><span class="n">2</span><span class="s">Have you bought the tickets ___?</span><span class="o"><button type="button">already</button><button type="button">yet</button><button type="button">just</button></span></div>
+<div class="ch" data-a="already"><span class="n">3</span><span class="s">She has ___ read this book twice.</span><span class="o"><button type="button">yet</button><button type="button">already</button><button type="button">still</button></span></div>
+<div class="ch" data-a="yet"><span class="n">4</span><span class="s">We haven’t had lunch ___.</span><span class="o"><button type="button">just</button><button type="button">yet</button><button type="button">already</button></span></div>
+<div class="ch" data-a="already left"><span class="n">5</span><span class="s">Dan has ___. You’re too late.</span><span class="o"><button type="button">yet left</button><button type="button">left already yet</button><button type="button">already left</button></span></div>
+<div class="ch" data-a="finished"><span class="n">6</span><span class="s">Have you ___ your essay yet?</span><span class="o"><button type="button">finishing</button><button type="button">finished</button><button type="button">finish</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; just · yet · already · yet · already left · finished"><b>Відповіді:</b> just · yet · already · yet · already left · finished</p>
+    <h3 class="lk-sub">Де стоїть слово в реченні?</h3><div class="ch" data-a="between have and V3"><span class="n">1</span><span class="s">just ___</span><span class="o"><button type="button">at the end</button><button type="button">between have and V3</button></span></div>
+<div class="ch" data-a="at the end"><span class="n">2</span><span class="s">yet ___</span><span class="o"><button type="button">between have and V3</button><button type="button">at the end</button></span></div>
+<div class="ch" data-a="between have and V3"><span class="n">3</span><span class="s">already ___</span><span class="o"><button type="button">at the end</button><button type="button">between have and V3</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; between have and V3 · at the end · between have and V3"><b>Відповіді:</b> between have and V3 · at the end · between have and V3</p>
+    <h3 class="lk-sub">Переклади англійською.</h3><div class="ty" data-a="I have just eaten|I’ve just eaten|I have just had lunch|I’ve just had lunch"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Я щойно поїв</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Have you done your homework yet?|Have you done the homework yet?"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Ти вже зробив домашнє завдання?</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="She hasn’t come yet|She has not come yet|She hasn’t arrived yet|She has not arrived yet"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Вона ще не прийшла</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="We have already seen this film|We’ve already seen this film|We have already seen this movie|We’ve already seen this movie"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Ми вже бачили цей фільм</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="My cat has just broken a cup|My cat’s just broken a cup|My cat has just broken the cup"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Мій кіт щойно розбив чашку</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="They haven’t answered yet|They have not answered yet|They haven’t replied yet|They have not replied yet"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Вони ще не відповіли</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; I have just eaten · Have you done your homework yet? · She hasn’t come yet · We have already seen this film · My cat has just broken a cup · They haven’t answered yet"><b>Відповіді:</b> I have just eaten · Have you done your homework yet? · She hasn’t come yet · We have already seen this film · My cat has just broken a cup · They haven’t answered yet</p>
+    <p class="lk-tnote" data-ru="Gap і choice учень робить сам (5-6 хв), потім перевірка разом. Sort усно, за 30 секунд. У перекладі звертай увагу, що «вже» в питанні перекладається yet, а не already. Скорочені форми ’ve / ’s теж правильні.&lt;br&gt;">Gap і choice учень робить сам (5-6 хв), потім перевірка разом. Sort усно, за 30 секунд. У перекладі звертай увагу, що «вже» в питанні перекладається yet, а не already. Скорочені форми ’ve / ’s теж правильні.<br></p>
+  </section>
+  <section id="s6" data-stage="video" data-min="8">
+    <h2><span class="lk-n">6</span>Video: Mr Bean’s busy morning <span class="tag">video</span><span class="lk-mode">teacher + student</span></h2>
+<div class="frame" style="aspect-ratio:16/9"><iframe src="https://www.youtube-nocookie.com/embed/568a0HDEn7w" style="width:100%;height:100%;border:0" allowfullscreen loading="lazy"></iframe></div>
+    <p class="lk-ins">Watch the clip. Pause after each action and say what Mr Bean has just done. Then say 2 things he hasn’t done yet.</p>
+    <div class="frame" style="aspect-ratio:16/9"><iframe src="https://www.youtube-nocookie.com/embed/aFgLrWiNHFc" style="width:100%;height:100%;border:0" allowfullscreen loading="lazy"></iframe></div>
+    <p class="lk-ins">Watch the turkey scene. Answer: Has Mr Bean cooked the turkey yet? What has he just put on his head?</p>
+    <p class="lk-tnote" data-ru="Перегляньте 2-3 хвилини першого кліпу. Зупиняй після кожної дії (орієнтовно кожні 20-30 секунд, точні моменти переглянь перед уроком) і питай: What has he just done? Учень відповідає He has just ... (woken up, brushed his teeth, put on his shirt). Потім: What hasn’t he done yet? (He hasn’t had breakfast yet.) Другий кліп опційно, якщо лишився час: Has he cooked the turkey yet? No, he hasn’t. He has just put it on his head.&lt;br&gt;">Перегляньте 2-3 хвилини першого кліпу. Зупиняй після кожної дії (орієнтовно кожні 20-30 секунд, точні моменти переглянь перед уроком) і питай: What has he just done? Учень відповідає He has just ... (woken up, brushed his teeth, put on his shirt). Потім: What hasn’t he done yet? (He hasn’t had breakfast yet.) Другий кліп опційно, якщо лишився час: Has he cooked the turkey yet? No, he hasn’t. He has just put it on his head.<br></p>
+  </section>
+  <section id="s7" data-stage="practice" data-min="6">
+    <h2><span class="lk-n">7</span>Розбір помилок <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<div class="warn"><p><b>Топ-5 помилок українськомовних учнів</b></p><p>1. «I already did it.» (у британській англійській на уроці неправильно) → <b>I have already done it.</b> З already, just, yet вживаємо Present Perfect.<br>2. «Have you done it already?» замість звичного питання → <b>Have you done it yet?</b> У питаннях «вже» = yet.<br>3. «I have yet finished.» (неправильно) → <b>I haven’t finished yet.</b> Yet в кінці і з запереченням.<br>4. «She have just left.» (неправильно) → <b>She has just left.</b> Для he / she / it тільки has.<br>5. «I have just eat.» (неправильно) → <b>I have just eaten.</b> Після have / has третя форма, а не перша.</p></div>
+    <h3 class="lk-sub">Знайди правильне речення.</h3><div class="ch" data-a="I have just finished my test."><span class="n">1</span><span class="s">___</span><span class="o"><button type="button">I just have finish my test.</button><button type="button">I have finished just my test.</button><button type="button">I have just finished my test.</button></span></div>
+<div class="ch" data-a="Have you seen the new video yet?"><span class="n">2</span><span class="s">___</span><span class="o"><button type="button">Did you seen the new video yet?</button><button type="button">Have you seen yet the new video?</button><button type="button">Have you seen the new video yet?</button></span></div>
+<div class="ch" data-a="She hasn’t replied yet."><span class="n">3</span><span class="s">___</span><span class="o"><button type="button">She has replied not yet.</button><button type="button">She hasn’t yet replied yet.</button><button type="button">She hasn’t replied yet.</button></span></div>
+<div class="ch" data-a="My brother has already left."><span class="n">4</span><span class="s">___</span><span class="o"><button type="button">My brother has already left.</button><button type="button">My brother has already leave.</button><button type="button">My brother have already left.</button></span></div>
+<div class="ch" data-a="We have already bought the tickets."><span class="n">5</span><span class="s">___</span><span class="o"><button type="button">We already have buy the tickets.</button><button type="button">We have bought already yet the tickets.</button><button type="button">We have already bought the tickets.</button></span></div>
+<div class="ch" data-a="The cat has just eaten my sandwich."><span class="n">6</span><span class="s">___</span><span class="o"><button type="button">The cat has just eat my sandwich.</button><button type="button">The cat have just eaten my sandwich.</button><button type="button">The cat has just eaten my sandwich.</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; I have just finished my test. · Have you seen the new video yet? · She hasn’t replied yet. · My brother has already left. · We have already bought the tickets. · The cat has just eaten my sandwich."><b>Відповіді:</b> I have just finished my test. · Have you seen the new video yet? · She hasn’t replied yet. · My brother has already left. · We have already bought the tickets. · The cat has just eaten my sandwich.</p>
+    <p class="lk-tnote" data-ru="Розберіть tip, потім вправа на час (60 секунд). Про помилку 1: в американській англійській «I already did it» звучить нормально, але на уроці тренуємо Present Perfect. Поверни помилки з розминки і попроси учня виправити їх.&lt;br&gt;">Розберіть tip, потім вправа на час (60 секунд). Про помилку 1: в американській англійській «I already did it» звучить нормально, але на уроці тренуємо Present Perfect. Поверни помилки з розминки і попроси учня виправити їх.<br></p>
+  </section>
+  <section id="s8" data-stage="speaking" data-min="8">
+    <h2><span class="lk-n">8</span>Speaking <span class="tag">speaking</span><span class="lk-mode">teacher + student</span></h2>
+<div class="qs"><div>What have you already done today?</div><div>What haven’t you done yet today?</div><div>Have you finished your homework for tomorrow yet?</div><div>What have you just learned in this lesson?</div><div>Have you seen any good films or series this month? Which ones?</div><div>What has your best friend just posted online?</div><div>Have you already planned your summer? What are your plans?</div><div>What have you wanted to do for a long time, but haven’t done yet?</div><div>Has your cat (or any cat you know) already destroyed something today?</div><div>What has your phone just told you? (Look at your last notification!)</div></div>
+    <p class="lk-tnote" data-ru="Обери 6-7 питань. Вимагай повні речення з have / has + V3 і правильним місцем just, already, yet. Друге коло, «To-do list»: учень пише список із 5 справ на тиждень, ти питаєш Have you ... yet?, він відповідає Yes, I’ve already ... / No, not yet. Записуй помилки і розбери 2-3 наприкінці.&lt;br&gt;">Обери 6-7 питань. Вимагай повні речення з have / has + V3 і правильним місцем just, already, yet. Друге коло, «To-do list»: учень пише список із 5 справ на тиждень, ти питаєш Have you ... yet?, він відповідає Yes, I’ve already ... / No, not yet. Записуй помилки і розбери 2-3 наприкінці.<br></p>
+  </section>
+  <section id="s9" data-stage="practice" data-min="3">
+    <h2><span class="lk-n">9</span>Speed round <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Speed round: V3 sprint</h3><p class="lk-ins">Write the third form (V3) of the verb</p>
+    <div class="spin"><div class="card" id="g91">Click "Next card"</div><br><button class="btn" type="button" data-spin="[&quot;eat&quot;, &quot;do&quot;, &quot;see&quot;, &quot;buy&quot;, &quot;go&quot;, &quot;write&quot;, &quot;break&quot;, &quot;send&quot;, &quot;make&quot;, &quot;finish&quot;, &quot;wake up&quot;, &quot;take&quot;]" data-target="g91">Next card</button></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; eaten · done · seen · bought · gone · written · broken · sent · made · finished · woken up · taken"><b>Відповіді:</b> eaten · done · seen · bought · gone · written · broken · sent · made · finished · woken up · taken</p>
+    <p class="lk-tnote" data-ru="Гра на швидкість: 5 секунд на слово. Якщо учень плутає другу і третю форму (ate замість eaten), попроси назвати всі три: eat, ate, eaten.&lt;br&gt;">Гра на швидкість: 5 секунд на слово. Якщо учень плутає другу і третю форму (ate замість eaten), попроси назвати всі три: eat, ate, eaten.<br></p>
+  </section>
+  <section id="s10" data-stage="homework" data-min="3">
+    <h2><span class="lk-n">10</span>Homework <span class="tag">homework</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Розкрий дужки. Вжий just, already або yet.</h3><div class="ty" data-a="have already read|’ve already read"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>I ___ (already / read) this book.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Has fixed"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>___ your dad ___ (fix) the bike yet?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="haven’t arrived|have not arrived"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>They ___ (not arrive) yet.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="has just sent|’s just sent"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>She ___ (just / send) me a funny meme.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="have already watched|’ve already watched"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>We ___ (already / watch) all the episodes.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; have already read · Has / fixed · haven’t arrived · has just sent · have already watched"><b>Відповіді:</b> have already read · Has / fixed · haven’t arrived · has just sent · have already watched</p>
+    <h3 class="lk-sub">Напиши свій список справ на тиждень (6 пунктів) і 6 речень: що ти вже зробив, що щойно, а що ще ні.</h3><div class="qs"><div>I have already... I have just... I haven’t ... yet.</div></div>
+    <p class="lk-tnote" data-ru="Домашнє: вправа + «To-do list» з 6 реченнями. Перевір, щоб у кожному реченні було have / has + V3 і just, already або yet на правильному місці. На наступному уроці учень читає свій список, а ти ставиш питання Have you ... yet?&lt;br&gt;">Домашнє: вправа + «To-do list» з 6 реченнями. Перевір, щоб у кожному реченні було have / has + V3 і just, already або yet на правильному місці. На наступному уроці учень читає свій список, а ти ставиш питання Have you ... yet?<br></p>
+  </section>
+  <section class="end"><h2>Great job!</h2><p>See you next lesson.</p></section>
+</div>
+<div class="toast" id="toast"></div>
+<script>window.MURLY_LESSON={"id": "lib-gr-just-already-yet", "title": "Just, already, yet: is it done?", "homework": ["s2", "s5", "s7", "s10"], "hw": {"s2": [{"type": "choice", "instruction": "Прочитай чат і обери True або False.", "text": "Lucy has already bought the balloons. {True|False}\nDan has just bought a new bag. {False|True}\nRosie’s cousin has already answered. {False|True}\nSophie has just woken up. {True|False}\nSophie has made the playlist. {False|True}\nDan’s cat has just sat on the cake. {True|False}"}], "s5": [{"type": "gap", "instruction": "Розкрий дужки. Вжий Present Perfect і слово в дужках.", "text": "I [have just finished/’ve just finished] (just / finish) my project.\nTom [has already eaten/’s already eaten] (already / eat) all the cookies.\nWe [haven’t started/have not started] (not start) the test yet.\n[Has] Anna [called] (call) you yet?\nMy parents [have just arrived/’ve just arrived] (just / arrive) home.\nThe cat [has already broken/’s already broken] (already / break) two cups today.\nI [haven’t seen/have not seen] (not see) the new episode yet.\n[Have] you [done] (do) your homework yet?"}, {"type": "choice", "instruction": "Обери правильний варіант.", "text": "I have {just|yet|ever} sent you the photo. Check your phone!\nHave you bought the tickets {yet|already|just}?\nShe has {already|yet|still} read this book twice.\nWe haven’t had lunch {yet|already|just}.\nDan has {already left|left already yet|yet left}. You’re too late.\nHave you {finished|finish|finishing} your essay yet?"}, {"type": "choice", "instruction": "Де стоїть слово в реченні?", "text": "just {between have and V3|at the end}\nyet {at the end|between have and V3}\nalready {between have and V3|at the end}"}, {"type": "gap", "instruction": "Переклади англійською.", "text": "Я щойно поїв → [I have just eaten/I’ve just eaten/I have just had lunch/I’ve just had lunch]\nТи вже зробив домашнє завдання? → [Have you done your homework yet?/Have you done the homework yet?]\nВона ще не прийшла → [She hasn’t come yet/She has not come yet/She hasn’t arrived yet/She has not arrived yet]\nМи вже бачили цей фільм → [We have already seen this film/We’ve already seen this film/We have already seen this movie/We’ve already seen this movie]\nМій кіт щойно розбив чашку → [My cat has just broken a cup/My cat’s just broken a cup/My cat has just broken the cup]\nВони ще не відповіли → [They haven’t answered yet/They have not answered yet/They haven’t replied yet/They have not replied yet]"}], "s7": [{"type": "choice", "instruction": "Знайди правильне речення.", "text": "{I have just finished my test.|I have finished just my test.|I just have finish my test.}\n{Have you seen the new video yet?|Have you seen yet the new video?|Did you seen the new video yet?}\n{She hasn’t replied yet.|She hasn’t yet replied yet.|She has replied not yet.}\n{My brother has already left.|My brother have already left.|My brother has already leave.}\n{We have already bought the tickets.|We have bought already yet the tickets.|We already have buy the tickets.}\n{The cat has just eaten my sandwich.|The cat have just eaten my sandwich.|The cat has just eat my sandwich.}"}], "s10": [{"type": "gap", "instruction": "Розкрий дужки. Вжий just, already або yet.", "text": "I [have already read/’ve already read] (already / read) this book.\n[Has] your dad [fixed] (fix) the bike yet?\nThey [haven’t arrived/have not arrived] (not arrive) yet.\nShe [has just sent/’s just sent] (just / send) me a funny meme.\nWe [have already watched/’ve already watched] (already / watch) all the episodes."}, {"type": "open", "instruction": "Напиши свій список справ на тиждень (6 пунктів) і 6 речень: що ти вже зробив, що щойно, а що ще ні.", "text": "I have already I have just I haven’t  yet."}]}};</script>
+<script>
+(function(){var l=(document.cookie.match(/(?:^|; )murly_lang=(\w+)/)||[])[1];try{l=l||localStorage.getItem('murly:tlang')}catch(e){}l=l==='ru'?'ru':'uk';document.querySelectorAll('[data-pairs-'+l+']').forEach(function(b){b.dataset.pairs=b.getAttribute('data-pairs-'+l)});})();
+</script>
+<script>
+const $ = (id) => document.getElementById(id);
+const LIS = {};
+function say(w, rate) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; const v = speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang) && /Google|Natural|Libby|Sonia|Daniel/.test(x.name)) || speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang)); if (v) u.voice = v; u.rate = rate || .95; speechSynthesis.speak(u); } catch (e) { } }
+const sh = (a) => a.map((x) => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map((x) => x[1]);
+document.querySelectorAll('.voc div').forEach((d) => d.onclick = () => say(d.dataset.say));
+document.querySelectorAll('[data-play]').forEach((b) => b.onclick = () => say(LIS[b.dataset.play], b.dataset.slow ? .75 : .95));
+document.querySelectorAll('[data-stop]').forEach((b) => b.onclick = () => { try { speechSynthesis.cancel(); } catch (e) { } });
+document.querySelectorAll('.ch').forEach((q) => q.querySelectorAll('button').forEach((b) => b.onclick = () => { if (q.classList.contains('ok')) return; const ok = b.textContent === q.dataset.a; q.classList.toggle('ok', ok); q.classList.toggle('bad', !ok); if (ok) { const s = q.querySelector('.s'); if (s && s.textContent.includes('___')) { s.textContent = s.textContent.replace('___', q.dataset.a); } } }));
+const norm = (x) => x.toLowerCase().replace(/[’']/g, "'").replace(/[,;:"“”«»]/g, ' ').replace(/\s+/g, ' ').replace(/[.!?]$/, '').trim();
+document.querySelectorAll('.ty').forEach((r) => { const inp = r.querySelector('input'); const chk = () => { const ok = r.dataset.a.split('|').some((a) => norm(a) === norm(inp.value)); r.classList.toggle('ok', ok); r.classList.toggle('bad', !ok && inp.value.trim() !== ''); }; r.querySelector('button').onclick = chk; inp.onkeydown = (e) => { if (e.key === 'Enter') chk(); }; });
+document.querySelectorAll('[data-mt]').forEach((box) => { const pairs = JSON.parse(box.dataset.pairs); const L = sh(pairs.map((p) => p[0])), R = sh(pairs.map((p) => p[1])); let sel = null, done = 0, err = 0; box.innerHTML = L.map((w, i) => `<button type="button" data-w="${w}">${w}</button><button type="button" data-d="${R[i]}">${R[i]}</button>`).join('');
+  box.querySelectorAll('button').forEach((b) => b.onclick = () => { if (b.classList.contains('done')) return; if (!sel || (sel.dataset.w && b.dataset.w) || (sel.dataset.d && b.dataset.d)) { if (sel) sel.classList.remove('sel'); sel = b; b.classList.add('sel'); return; } const w = sel.dataset.w || b.dataset.w, d = sel.dataset.d || b.dataset.d; if (pairs.some((p) => p[0] === w && p[1] === d)) { sel.classList.add('done'); b.classList.add('done'); done++; say(w); if (done === pairs.length) document.querySelector(`[data-mtres="${box.dataset.mt}"]`).textContent = err ? `Done! Mistakes: ${err}` : 'Perfect!'; } else err++; sel.classList.remove('sel'); sel = null; }); });
+document.querySelectorAll('[data-vids]').forEach((box) => JSON.parse(box.dataset.vids).forEach(([id, title, ch, qs]) => { const d = document.createElement('div'); d.className = 'vid'; d.innerHTML = `<div class="frame"><button class="play" type="button" style="background-image:url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)"><span>PLAY</span></button></div><div class="info"><h3>${title}</h3><small>YouTube · ${ch}</small><ol>${qs.map((q) => `<li>${q}</li>`).join('')}</ol></div>`; d.querySelector('.play').onclick = (e) => { e.currentTarget.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&cc_load_policy=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${title}"></iframe>`; }; box.appendChild(d); }));
+document.querySelectorAll('[data-spin]').forEach((b) => { const list = JSON.parse(b.dataset.spin); let last = -1; b.onclick = () => { let i; do { i = Math.floor(Math.random() * list.length); } while (i === last && list.length > 1); last = i; document.getElementById(b.dataset.target).textContent = list[i]; }; });
+try { const k = 'murly:' + (window.MURLY_LESSON ? MURLY_LESSON.id : 'x') + ':hw'; const t = $('hwText'); if (t) { t.value = localStorage.getItem(k) || ''; t.oninput = () => localStorage.setItem(k, t.value); } } catch (e) { }
+const STAGES = [...document.querySelectorAll('.wrap > section[id]')];
+$('stages').innerHTML = STAGES.map((s) => `<a href="#${s.id}"><b>${s.querySelector('.lk-n').textContent}</b><span>${s.dataset.stage}</span><small>${s.dataset.min !== '0' ? s.dataset.min + ' min' : 'at home'}</small></a>`).join('');
+$('teacherBtn').onclick = (e) => { const on = document.body.classList.toggle('teacher'); e.currentTarget.textContent = on ? 'Student version' : 'Teacher version'; };
+</script>
+<script src="/game-lessons/kit.js" defer></script>
+</body>
+</html>

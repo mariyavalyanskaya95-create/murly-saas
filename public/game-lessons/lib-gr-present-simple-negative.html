@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>I don’t, she doesn’t: the art of saying no (A1) | Murly</title>
+<link rel="icon" href="/favicon.svg">
+<meta name="description" content="Будуємо заперечення в Present Simple: I don’t play, she doesn’t play
+Розрізняємо don’t і doesn’t і не додаємо -s після doesn’t
+Розповідаємо, що ми і н">
+<link rel="canonical" href="https://murly.com.ua/game-lessons/lib-gr-present-simple-negative.html">
+<style>
+:root{--paper:#F3F0EA;--ink:#17181C;--violet:#3D4A7A;--lav:#D9D3C7;--pink:#E9C9BC;--green:#D4E2CF;--white:#fff;--muted:#62646B;--accent:#B5482F}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+/* hero */
+.hero{background:linear-gradient(rgba(16,17,22,.5),rgba(16,17,22,.72)),url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1400&q=70&auto=format&fit=crop");color:#fff;padding:70px 18px 56px;text-align:center;position:relative;overflow:hidden}
+.hero .kicker{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#E9C9BC;font-weight:700}
+.hero .cr{position:absolute;right:12px;bottom:8px;font-size:11px;color:rgba(255,255,255,.6)}
+.hero h1{margin:8px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(36px,6vw,64px);letter-spacing:-.5px;font-weight:700}
+.hero h1 span{color:var(--pink);font-style:italic}
+.hero p{margin:12px 0 0;font-size:17px;color:#e6e2da}
+.hero .flags{display:flex;justify-content:center;gap:12px;margin-top:22px;flex-wrap:wrap}
+.hero .flags svg{width:40px;height:26px;border-radius:3px;opacity:.9}
+/* sections */
+section{margin-top:30px;background:var(--white);border-radius:18px;padding:28px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.05)}
+section h2{margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tag{font-family:"Segoe UI",system-ui,sans-serif;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--paper);color:var(--accent);text-transform:uppercase;letter-spacing:1px}
+.lk-n{display:inline-grid;place-items:center;width:42px;height:42px;background:var(--violet);color:#fff;border-radius:50%;font-size:21px;flex:none}
+.lk-mode{font-size:13px;font-weight:700;border:2px dashed var(--lav);color:var(--muted);padding:2px 10px;border-radius:999px}
+.lk-ins{font-size:17px;background:var(--paper);border-radius:12px;padding:10px 14px;margin:6px 0 18px}
+.lk-sub{margin:24px 0 10px;font-size:19px}
+.btn{font:inherit;font-weight:700;border:0;border-radius:999px;background:var(--ink);color:#fff;padding:10px 20px;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+.btn.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+/* teacher */
+.lk-tbtn{position:fixed;right:16px;top:70px;z-index:45;font:inherit;font-weight:800;border:2px solid var(--ink);background:var(--pink);padding:8px 14px;border-radius:12px;cursor:pointer}
+body.teacher .lk-tbtn{background:var(--green)}
+.lk-ans,.lk-tnote{display:none}
+body.teacher .lk-ans{display:block;margin-top:8px;font-weight:700;color:#1d5a12;background:var(--green);border-left:5px solid #5aa845;padding:6px 10px;font-size:15px;border-radius:6px}
+body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff3f7;border-left:5px solid #d9789a;padding:8px 12px;font-size:15px;border-radius:6px}
+/* overview */
+.lk-overview ul{font-size:17px;line-height:1.7;margin:6px 0 16px}
+.lk-stages{display:flex;flex-wrap:wrap;gap:8px}
+.lk-stages a{display:grid;border-radius:14px;padding:8px 12px;text-decoration:none;color:var(--ink);background:var(--paper);font-weight:700;min-width:100px}
+.lk-stages a span{text-transform:capitalize}
+.lk-stages a b{font-size:20px;color:var(--violet)}
+.lk-stages a small{font-weight:600;color:var(--muted)}
+/* warm-up */
+.taxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tax{background:var(--paper);border-radius:18px;padding:16px;display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center}
+.tax svg{width:56px;height:56px}
+.tax b{display:block;font-size:17px}
+.tax small{color:var(--muted);font-size:14px}
+.qs{display:grid;gap:10px;margin-top:18px}
+.qs div{background:var(--green);border-radius:14px;padding:10px 16px;font-size:18px;font-weight:600}
+.phr{background:#fff7e8;border-radius:14px;padding:12px 16px;margin-top:16px;font-size:15px}
+.phr ul{margin:6px 0 0;padding-left:18px}
+.fic{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:16px}
+.fic .c{background:#fff;border:2px solid #1B2140;border-radius:16px;padding:14px 16px;box-shadow:3px 3px 0 #1B2140}
+.fic .c b{display:block;font-size:18px;line-height:1.35;margin-bottom:8px}
+.fic .c .k{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.fic .c .k span{font-size:13px;background:#eef1fb;border-radius:999px;padding:3px 10px}
+.fic .c details{margin-top:8px;font-size:15px;color:#3b4160}
+.fic .c summary{cursor:pointer;font-weight:700;color:#534AB7}
+.fi-n{display:inline-flex;width:28px;height:28px;border-radius:50%;background:#2F4BA0;color:#fff;align-items:center;justify-content:center;font-size:14px;margin-right:6px}
+/* vocab */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:12px}
+.vc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:2px solid transparent;transition:border-color .2s,transform .2s}
+.vc:hover{border-color:var(--violet);transform:translateY(-2px)}
+.vc b{font-size:18px;display:flex;align-items:center;gap:8px}
+.vc b svg{width:20px;height:20px;flex:none;color:var(--violet)}
+.vc p{margin:6px 0 0;font-size:14px;color:var(--muted)}
+.vc em{display:block;margin-top:6px;font-size:14px;color:var(--violet);font-style:normal;font-weight:600}
+.vc.played{background:#e6ecfb}
+/* grammar */
+.gram{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.gb{border-radius:18px;padding:16px}
+.gb h3{margin:0 0 6px;font-size:19px}
+.gb .f{display:inline-block;background:#fff;border-radius:8px;padding:3px 10px;font-weight:800;margin:4px 0;font-family:Consolas,monospace;font-size:15px}
+.gb p{margin:6px 0 0;font-size:15px}
+.g1{background:var(--pink)}.g2{background:var(--lav)}.g3{background:var(--green)}.g4{background:#fbe7c6}
+.warn{margin-top:14px;background:var(--ink);color:#fff;border-radius:14px;padding:12px 16px;font-size:16px}
+.warn b{color:var(--pink)}
+.q{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:2px dashed var(--paper);font-size:18px}
+.q:last-child{border-bottom:0}
+.q .n{width:32px;height:32px;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;border-radius:50%;font-weight:800;font-size:15px}
+.opt{font:inherit;font-size:16px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:10px;padding:4px 12px;cursor:pointer;margin:0 2px}
+.opt.ok{background:var(--green);border-color:#5aa845}
+.opt.bad{background:var(--pink);animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+/* tour */
+.tour{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.law{border-radius:22px;overflow:hidden;background:var(--paper);display:flex;flex-direction:column}
+.law .pic{height:150px;display:grid;place-items:center;position:relative}
+.law .pic svg.ill{width:130px;height:130px}
+.law .pic svg.fl{position:absolute;left:14px;top:14px;width:46px;height:30px;border-radius:5px;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.law .pic .no{position:absolute;right:14px;top:14px;background:var(--ink);color:#fff;font-weight:800;border-radius:999px;padding:2px 10px;font-size:13px}
+.law .body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.law h3{margin:0;font-size:20px}
+.law .where{font-size:13px;font-weight:800;color:var(--violet);text-transform:uppercase;letter-spacing:1px}
+.law p{margin:0;font-size:16px}
+.law .why{font-size:14px;color:var(--muted)}
+.law .dq{margin-top:auto;background:#fff;border-radius:12px;padding:8px 12px;font-weight:700;font-size:15px}
+.law .lsn{font:inherit;font-size:13px;font-weight:700;background:none;border:0;color:var(--violet);cursor:pointer;padding:0;text-align:left}
+/* game */
+.game{max-width:720px;margin:0 auto;text-align:center}
+.score{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.score span{background:var(--paper);border-radius:999px;padding:6px 16px;font-weight:800}
+.stmt{background:var(--ink);color:#fff;border-radius:22px;padding:28px 24px;min-height:150px;display:grid;place-items:center;font-size:23px;font-weight:700;position:relative}
+.stmt small{position:absolute;top:12px;left:18px;font-size:13px;color:var(--lav);font-weight:700}
+.choose{display:flex;justify-content:center;gap:14px;margin:18px 0}
+.choose button{font:inherit;font-size:18px;font-weight:700;border:2px solid var(--ink);border-radius:999px;padding:12px 28px;cursor:pointer}
+.choose .bl{background:var(--green)}.choose .bm{background:var(--pink)}
+.choose button:disabled{opacity:.5;cursor:default}
+.verdict{min-height:70px;font-size:17px;background:var(--paper);border-radius:16px;padding:12px 16px;text-align:left}
+.verdict b.r{color:#2d7a1d}.verdict b.w{color:#b23a62}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.dots i{width:14px;height:14px;border-radius:50%;background:var(--paper)}
+.dots i.r{background:#7cc663}.dots i.w{background:#e47b9f}.dots i.c{outline:3px solid var(--violet)}
+.final{font-size:22px;font-weight:800;color:var(--violet)}
+/* invent */
+.inv{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.frames{display:grid;gap:10px}
+.frames label{font-size:14px;font-weight:700;color:var(--muted)}
+.frames select,.frames input{font:inherit;width:100%;padding:8px 10px;border:2px solid var(--lav);border-radius:10px;background:#fff}
+.poster{background:var(--paper);border:3px solid var(--ink);border-radius:20px;padding:22px;text-align:center;min-height:260px;display:flex;flex-direction:column;gap:10px;justify-content:center}
+.poster .seal{width:70px;height:70px;margin:0 auto}
+.poster h3{margin:0;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--violet)}
+.poster .rule{font-size:22px;font-weight:800}
+.poster .pen{font-size:16px;color:var(--muted)}
+.ideas{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ideas span{background:var(--pink);border-radius:999px;padding:5px 12px;font-size:14px;font-weight:600}
+/* roleplay */
+.rp{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.role{border-radius:20px;padding:18px}
+.role h3{margin:0 0 6px;display:flex;align-items:center;gap:10px}
+.role h3 svg{width:42px;height:42px}
+.role ul{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.r1{background:var(--lav)}.r2{background:var(--green)}
+.scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:16px}
+.sc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:3px solid transparent}
+.sc.on{border-color:var(--violet);background:#fff}
+.sc b{display:block;font-size:17px;margin-bottom:4px}
+.sc p{margin:0;font-size:15px}
+.timer{font-size:40px;font-weight:800;text-align:center;margin:14px 0 6px;color:var(--violet)}
+.ctr{text-align:center}
+/* homework */
+.hwb{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hwc{background:var(--paper);border-radius:18px;padding:18px}
+.hwc h3{margin:0 0 8px}
+.hwc ol,.hwc ul{margin:6px 0 0;padding-left:20px;line-height:1.7}
+.hwc textarea{width:100%;min-height:150px;font:inherit;border:2px solid var(--lav);border-radius:12px;padding:10px;margin-top:10px}
+.end{text-align:center;background:var(--ink);color:#fff;box-shadow:none}
+.end h2{justify-content:center}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(140px);background:var(--ink);color:#fff;font-weight:800;padding:12px 22px;border-radius:14px;transition:transform .3s;z-index:50}
+.toast.show{transform:translateX(-50%) translateY(0)}
+/* photos */
+.ph{margin:0}
+.ph img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;background:var(--paper)}
+.ph figcaption{font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.2px}
+.tax{grid-template-columns:1fr !important;padding:12px !important}
+.law .pic{height:auto !important;display:block !important;padding:0;position:relative}
+.law .pic .ph img{border-radius:0;aspect-ratio:16/10;transition:filter .5s}
+.law .pic .ph figcaption{padding:4px 12px 0}
+.law.hide .pic .ph img{filter:blur(10px) grayscale(.6)}
+.law.hide .reveal-body,.law.hide .fl,.law.hide .where{visibility:hidden}
+.law .clue{font-size:15px;font-style:italic;color:var(--ink)}
+.law .gc{display:flex;flex-wrap:wrap;gap:6px}
+.law .gc button{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:4px 12px;cursor:pointer}
+.law .gc button.ok{background:var(--green)}.law .gc button.bad{background:var(--pink)}
+.law:not(.hide) .guess{display:none}
+.fair{display:grid;gap:4px;background:#fff;border-radius:12px;padding:8px 12px}
+.fair .ends{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.fair input{width:100%;accent-color:var(--accent)}
+.fair output{font-size:14px;font-weight:700;color:var(--accent)}
+.gph{max-width:720px;margin:0 auto 12px}
+.gph img{aspect-ratio:21/9}
+.fine{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.fq{background:var(--paper);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.fq h3{margin:0;font-size:18px}
+.fq .opts{display:flex;flex-wrap:wrap;gap:6px}
+.fq .opts button{font:inherit;font-size:14px;font-weight:700;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 12px;cursor:pointer}
+.fq .opts button.ok{background:var(--green)}.fq .opts button.bad{background:var(--pink)}
+.fq .res{font-size:15px;min-height:22px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{position:relative;aspect-ratio:16/9;background:#111}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;cursor:pointer;background:#111 center/cover;display:grid;place-items:center}
+.vid .play span{background:rgba(0,0,0,.7);color:#fff;font-weight:700;border-radius:999px;padding:10px 20px;font-size:15px;letter-spacing:1px}
+.vid .info{padding:14px 16px}
+.vid .info h3{margin:0 0 2px;font-size:18px}
+.vid .info small{color:var(--muted)}
+.vid .info ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+@media(max-width:760px){.inv,.rp,.hwb{grid-template-columns:1fr}.lk-tbtn{top:auto;bottom:70px}}
+
+.pr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.pb{border-radius:18px;padding:16px 18px}
+.pb h3{margin:0;font-family:Georgia,serif;font-size:30px}
+.pb .m{font-size:15px;color:var(--muted);margin:2px 0 8px}
+.pb .chips{display:flex;flex-wrap:wrap;gap:6px}
+.pb .chips span{background:#fff;border-radius:999px;padding:4px 11px;font-size:14px;font-weight:600}
+.pb ul{margin:10px 0 0;padding-left:18px;font-size:15px}
+.p-in{background:#DCE6F5}.p-at{background:#F3D9CF}.p-on{background:#D4E2CF}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-size:15px;margin-top:10px}
+.ex div{background:var(--paper);border-radius:10px;padding:8px 12px}
+.ex b{color:var(--accent)}
+.q{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.q .n{font-weight:800;color:var(--violet);min-width:24px}
+.q .gap{display:inline-block;min-width:44px;border-bottom:2px solid var(--ink);text-align:center;font-weight:800}
+.q .opts{margin-left:auto;display:flex;gap:6px}
+.q .opts button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 14px;cursor:pointer}
+.q.ok{background:#DDEED7}.q.ok .gap{color:#2F7A3B}
+.q.bad{background:#F6DAD3}
+.score{font-weight:800;margin-top:12px}
+.text{font-size:18px;line-height:1.75;background:var(--paper);border-radius:16px;padding:18px 22px}
+.text h3{margin:0 0 6px;font-family:Georgia,serif;font-size:24px}
+.text p{margin:0 0 12px}
+.text.hl mark{background:#F3D9CF;border-radius:4px;padding:0 3px;font-weight:700}
+.tf{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:9px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.tf .opts{margin-left:auto;display:flex;gap:6px}
+.tf button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.tf.ok{background:#DDEED7}.tf.bad{background:#F6DAD3}
+.disc{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px;margin-top:6px}
+.disc div{background:var(--green);border-radius:14px;padding:12px 16px;font-size:17px;font-weight:600}
+.disc div i{font-style:normal;color:var(--violet);margin-right:6px}
+.spin{text-align:center;margin-top:16px}
+.spin .card{display:inline-block;min-height:80px;min-width:min(560px,100%);background:var(--ink);color:#fff;border-radius:18px;padding:20px 24px;font-size:22px;font-weight:700;margin-bottom:12px}
+@media(max-width:700px){.ex{grid-template-columns:1fr}}
+
+.hero{background-size:cover!important;background-position:center!important}
+.voc{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.voc div{background:var(--paper);border-radius:14px;padding:10px 14px;cursor:pointer;border:2px solid transparent}
+.voc div:hover{border-color:var(--violet)}
+.voc b{display:block;font-size:18px}.voc span{display:block;color:var(--accent);font-weight:700;font-size:15px}.voc em{display:block;font-size:14px;color:var(--muted);margin-top:3px}
+.mt{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:10px}
+.mt button{font:inherit;font-size:16px;text-align:left;border:2px solid var(--ink);background:#fff;border-radius:14px;padding:9px 14px;cursor:pointer}
+.mt button.sel{background:#FFE7A8}.mt button.done{background:#CDE8C6;border-color:#4C9A5B;cursor:default}
+.ch{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ch .n{font-weight:800;color:var(--violet);min-width:24px}
+.ch .o{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.ch .o button{font:inherit;font-size:15px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.ch.ok{background:#DDEED7}.ch.bad{background:#F6DAD3}
+.ty{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ty input{font:inherit;border:2px solid var(--ink);border-radius:10px;padding:4px 10px;width:220px}
+.ty.ok{background:#DDEED7}.ty.bad{background:#F6DAD3}
+.ty small{color:var(--muted)}
+.photo{width:100%;height:300px;object-fit:cover;border-radius:16px;display:block}
+.cap{font-size:11px;color:var(--muted);margin:4px 0 12px}
+.pics{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.pics figure{margin:0;background:var(--paper);border-radius:16px;overflow:hidden}
+.pics img{width:100%;height:170px;object-fit:cover;display:block}
+.pics figcaption{padding:8px 12px;font-weight:700}
+.pics small{display:block;font-weight:400;font-size:10px;color:var(--muted)}
+.lis{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:8px 0 14px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{aspect-ratio:16/9;background:#000;position:relative}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;background-size:cover;background-position:center;cursor:pointer;display:grid;place-items:center}
+.vid .play span{background:#E5484D;color:#fff;font-weight:800;border-radius:12px;padding:10px 20px}
+.vid .info{padding:12px 16px}.vid h3{margin:0;font-size:18px}.vid small{color:var(--muted)}
+.vid ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th,.tbl td{border:1px solid #ddd;padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--paper)}
+@media(max-width:700px){.mt{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="/game-lessons/kit.css">
+</head>
+<body>
+<header class="hero">
+  <div class="kicker">A1 · teens · Граматика: Present Simple (заперечення)</div>
+  <h1>I don’t, she doesn’t: the art of saying no</h1>
+  <p>A1 · 10 parts · 60 min</p>
+  <span class="cr">Photo: Unsplash</span>
+</header>
+<button class="lk-tbtn" id="teacherBtn" type="button">Teacher version</button>
+<div class="wrap">
+  <section class="lk-overview">
+    <h2>In this lesson you will:</h2>
+    <ul><li>Будуємо заперечення в Present Simple: I don’t play, she doesn’t play
+Розрізняємо don’t і doesn’t і не додаємо -s після doesn’t
+Розповідаємо, що ми і наші друзі не робимо
+Пишемо короткий текст «Things I never do»</li></ul>
+    <div class="lk-stages" id="stages"></div>
+  </section>
+  <section id="s1" data-stage="warm-up" data-min="4">
+    <h2><span class="lk-n">1</span>Warm-up <span class="tag">warm-up</span><span class="lk-mode">teacher + student</span></h2>
+<div class="qs"><div>What do you do every morning before school?</div><div>Do you like Mondays? Why?</div><div>Name one thing you never eat.</div><div>Name one app you never use.</div><div>What do you never do on Sunday?</div><div>Which sport do you never watch on TV?</div><div>What does your cat or dog never do? (Or a pet you know.)</div><div>What do you never say to your teacher?</div></div>
+    <p class="lk-tnote" data-ru="Розговори учня 3-4 хв, обери 4-5 питань. Не виправляй граматику, просто послухай, чи вживає він уже don’t / doesn’t. Якщо учень каже «I not like», запам’ятай і повернись до цього на етапі «Розбір помилок». Наприкінці запитай: «Як сказати англійською “я не люблю понеділки”?»&lt;br&gt;">Розговори учня 3-4 хв, обери 4-5 питань. Не виправляй граматику, просто послухай, чи вживає він уже don’t / doesn’t. Якщо учень каже «I not like», запам’ятай і повернись до цього на етапі «Розбір помилок». Наприкінці запитай: «Як сказати англійською “я не люблю понеділки”?»<br></p>
+  </section>
+  <section id="s2" data-stage="practice" data-min="7">
+    <h2><span class="lk-n">2</span>Lead-in <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<div class="text"><p><b>Meet Biscuit, the laziest cat in London</b></p><p>Biscuit is the cat of my friend Dana. He is orange, fat and very proud.</p><p>Biscuit doesn’t get up early. He sleeps until twelve. He doesn’t play with toys, because toys are “for kittens”. He doesn’t like the vacuum cleaner and he doesn’t drink water from a bowl. He only drinks from the kitchen tap!</p><p>Dana and her brother Max don’t understand Biscuit. “We don’t have a lazy day at all,” says Max. “We go to school, we do homework, we go to football. And Biscuit? He doesn’t do anything!”</p><p>But Biscuit doesn’t care. He has a very important job: he sits on Dana’s laptop when she does her homework.</p></div>
+    <div class="voc"><div data-say="lazy. "><b>lazy</b><span><span data-tr-uk="ледачий" data-tr-ru="ледачий">ледачий</span></span><em></em></div>
+<div data-say="proud. "><b>proud</b><span><span data-tr-uk="гордий" data-tr-ru="гордий">гордий</span></span><em></em></div>
+<div data-say="get up. "><b>get up</b><span><span data-tr-uk="вставати" data-tr-ru="вставати">вставати</span></span><em></em></div>
+<div data-say="toy. "><b>toy</b><span><span data-tr-uk="іграшка" data-tr-ru="іграшка">іграшка</span></span><em></em></div>
+<div data-say="kitten. "><b>kitten</b><span><span data-tr-uk="кошеня" data-tr-ru="кошеня">кошеня</span></span><em></em></div>
+<div data-say="vacuum cleaner. "><b>vacuum cleaner</b><span><span data-tr-uk="пилосос" data-tr-ru="пилосос">пилосос</span></span><em></em></div>
+<div data-say="bowl. "><b>bowl</b><span><span data-tr-uk="миска" data-tr-ru="миска">миска</span></span><em></em></div>
+<div data-say="tap. "><b>tap</b><span><span data-tr-uk="кран" data-tr-ru="кран">кран</span></span><em></em></div>
+<div data-say="understand. "><b>understand</b><span><span data-tr-uk="розуміти" data-tr-ru="розуміти">розуміти</span></span><em></em></div>
+<div data-say="care. "><b>care</b><span><span data-tr-uk="перейматися, зважати" data-tr-ru="перейматися, зважати">перейматися, зважати</span></span><em></em></div>
+<div data-say="laptop. "><b>laptop</b><span><span data-tr-uk="ноутбук" data-tr-ru="ноутбук">ноутбук</span></span><em></em></div>
+<div data-say="homework. "><b>homework</b><span><span data-tr-uk="домашнє завдання" data-tr-ru="домашнє завдання">домашнє завдання</span></span><em></em></div>
+<div data-say="spinach. "><b>spinach</b><span><span data-tr-uk="шпинат" data-tr-ru="шпинат">шпинат</span></span><em></em></div>
+<div data-say="allow. "><b>allow</b><span><span data-tr-uk="дозволяти" data-tr-ru="дозволяти">дозволяти</span></span><em></em></div></div>
+    <div class="mt" data-mt="m2" data-pairs="[[&quot;lazy&quot;, &quot;ледачий&quot;], [&quot;proud&quot;, &quot;гордий&quot;], [&quot;get up&quot;, &quot;вставати&quot;], [&quot;toy&quot;, &quot;іграшка&quot;], [&quot;kitten&quot;, &quot;кошеня&quot;], [&quot;vacuum cleaner&quot;, &quot;пилосос&quot;], [&quot;bowl&quot;, &quot;миска&quot;], [&quot;tap&quot;, &quot;кран&quot;]]"></div><div class="score" data-mtres="m2"></div>
+    <h3 class="lk-sub">Прочитай текст і обери True або False.</h3><div class="ch" data-a="False"><span class="n">1</span><span class="s">Biscuit gets up early.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="False"><span class="n">2</span><span class="s">Biscuit plays with toys every day.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="True"><span class="n">3</span><span class="s">Biscuit doesn’t like the vacuum cleaner.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="False"><span class="n">4</span><span class="s">Biscuit drinks water from a bowl.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="True"><span class="n">5</span><span class="s">Dana and Max don’t have a lazy day.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="True"><span class="n">6</span><span class="s">Biscuit sits on Dana’s laptop.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; False · False · True · False · True · True"><b>Відповіді:</b> False · False · True · False · True · True</p>
+    <p class="lk-tnote" data-ru="Учень читає текст вголос (або ти читаєш, а він слідкує). Слова зі списку пройди швидко: учень знаходить їх у тексті. Після True / False попроси знайти всі заперечення і підкреслити їх. Запитай: чому про Biscuit «doesn’t», а про Dana and Max «don’t»? Нехай учень сам спробує сформулювати правило.&lt;br&gt;">Учень читає текст вголос (або ти читаєш, а він слідкує). Слова зі списку пройди швидко: учень знаходить їх у тексті. Після True / False попроси знайти всі заперечення і підкреслити їх. Запитай: чому про Biscuit «doesn’t», а про Dana and Max «don’t»? Нехай учень сам спробує сформулювати правило.<br></p>
+  </section>
+  <section id="s3" data-stage="practice" data-min="5">
+    <h2><span class="lk-n">3</span>Rule <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<div class="warn"><p><b>Заперечення в Present Simple = don’t / doesn’t + дієслово без змін.</b></p><p><b>I / you / we / they</b> + <b>don’t</b> (= do not) + дієслово<br><b>he / she / it</b> + <b>doesn’t</b> (= does not) + дієслово</p><p>I <b>don’t</b> like spinach. = Я не люблю шпинат.<br>We <b>don’t</b> have lessons on Sunday. = У нас немає уроків у неділю.<br>She <b>doesn’t</b> play chess. = Вона не грає в шахи.<br>My cat <b>doesn’t</b> eat vegetables. = Мій кіт не їсть овочі.</p><p><b>Лайфхак «Злодій -s».</b> She play<b>s</b>, але в запереченні <b>doesn’t</b> «краде» цю -s собі: She doe<b>s</b>n’t play. Тому після doesn’t дієслово завжди голе.</p></div>
+    <p class="lk-tnote" data-ru="Намалюй дві колонки: don’t (I, you, we, they) і doesn’t (he, she, it). Покажи «злодія -s»: напиши She plays, потім доклей doesn’t і перенеси -s стрілкою. На все правило 5 хв, далі одразу гра.&lt;br&gt;">Намалюй дві колонки: don’t (I, you, we, they) і doesn’t (he, she, it). Покажи «злодія -s»: напиши She plays, потім доклей doesn’t і перенеси -s стрілкою. На все правило 5 хв, далі одразу гра.<br></p>
+  </section>
+  <section id="s4" data-stage="game" data-min="4">
+    <h2><span class="lk-n">4</span>Game: Don’t or doesn’t? <span class="tag">game</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Don’t or doesn’t?</h3><p class="lk-ins">Choose don’t or doesn’t</p>
+    <div class="spin"><div class="card" id="g41">Click "Next card"</div><br><button class="btn" type="button" data-spin="[&quot;My brother ___ like peas.&quot;, &quot;I ___ eat fish.&quot;, &quot;Our teacher ___ give tests on Friday.&quot;, &quot;We ___ have PE today.&quot;, &quot;The cat ___ drink milk.&quot;, &quot;They ___ live in York.&quot;, &quot;My phone ___ work.&quot;, &quot;You ___ need a pen.&quot;, &quot;Sophie ___ play the piano.&quot;, &quot;My parents ___ watch TikTok.&quot;]" data-target="g41">Next card</button></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; doesn’t · don’t · doesn’t · don’t · doesn’t · don’t · doesn’t · don’t · doesn’t · don’t"><b>Відповіді:</b> doesn’t · don’t · doesn’t · don’t · doesn’t · don’t · doesn’t · don’t · doesn’t · don’t</p>
+    <p class="lk-tnote" data-ru="Учень сам обирає формат гри (квіз, пари, картки). Хай пояснює кожну відповідь одним словом: «brother = he, тому doesn’t».&lt;br&gt;">Учень сам обирає формат гри (квіз, пари, картки). Хай пояснює кожну відповідь одним словом: «brother = he, тому doesn’t».<br></p>
+  </section>
+  <section id="s5" data-stage="practice" data-min="12">
+    <h2><span class="lk-n">5</span>Practice <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Розкрий дужки. Напиши don’t або doesn’t + дієслово.</h3><div class="ty" data-a="don’t like|do not like"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>I ___ (not like) horror films.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="doesn’t eat|does not eat"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>My sister ___ (not eat) meat.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="don’t have|do not have"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>We ___ (not have) PE on Fridays.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="doesn’t go|does not go"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Our cat ___ (not go) outside.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="doesn’t watch|does not watch"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Tom ___ (not watch) TV in the morning.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="don’t live|do not live"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>They ___ (not live) near the school.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="doesn’t work|does not work"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>My phone ___ (not work) without Wi-Fi.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="don’t need|do not need"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>You ___ (not need) a pen for this test.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; don’t like · doesn’t eat · don’t have · doesn’t go · doesn’t watch · don’t live · doesn’t work · don’t need"><b>Відповіді:</b> don’t like · doesn’t eat · don’t have · doesn’t go · doesn’t watch · don’t live · doesn’t work · don’t need</p>
+    <h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="doesn’t"><span class="n">1</span><span class="s">She ___ like rap music.</span><span class="o"><button type="button">doesn’t</button><button type="button">not</button><button type="button">don’t</button></span></div>
+<div class="ch" data-a="don’t"><span class="n">2</span><span class="s">I ___ play the guitar.</span><span class="o"><button type="button">don’t</button><button type="button">not</button><button type="button">doesn’t</button></span></div>
+<div class="ch" data-a="don’t"><span class="n">3</span><span class="s">My friends ___ use Facebook.</span><span class="o"><button type="button">aren’t</button><button type="button">doesn’t</button><button type="button">don’t</button></span></div>
+<div class="ch" data-a="wear"><span class="n">4</span><span class="s">Max doesn’t ___ a school uniform.</span><span class="o"><button type="button">wearing</button><button type="button">wears</button><button type="button">wear</button></span></div>
+<div class="ch" data-a="doesn’t"><span class="n">5</span><span class="s">It ___ rain much in summer here.</span><span class="o"><button type="button">don’t</button><button type="button">doesn’t</button><button type="button">isn’t</button></span></div>
+<div class="ch" data-a="don’t"><span class="n">6</span><span class="s">We ___ get up early on Saturday.</span><span class="o"><button type="button">doesn’t</button><button type="button">don’t</button><button type="button">not</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; doesn’t · don’t · don’t · wear · doesn’t · don’t"><b>Відповіді:</b> doesn’t · don’t · don’t · wear · doesn’t · don’t</p>
+    <h3 class="lk-sub">Розклади займенники та іменники по групах.</h3><div class="ch" data-a="don’t"><span class="n">1</span><span class="s">I ___</span><span class="o"><button type="button">don’t</button><button type="button">doesn’t</button></span></div>
+<div class="ch" data-a="doesn’t"><span class="n">2</span><span class="s">he ___</span><span class="o"><button type="button">don’t</button><button type="button">doesn’t</button></span></div>
+<div class="ch" data-a="don’t"><span class="n">3</span><span class="s">you ___</span><span class="o"><button type="button">don’t</button><button type="button">doesn’t</button></span></div>
+<div class="ch" data-a="doesn’t"><span class="n">4</span><span class="s">she ___</span><span class="o"><button type="button">doesn’t</button><button type="button">don’t</button></span></div>
+<div class="ch" data-a="don’t"><span class="n">5</span><span class="s">we ___</span><span class="o"><button type="button">don’t</button><button type="button">doesn’t</button></span></div>
+<div class="ch" data-a="doesn’t"><span class="n">6</span><span class="s">it ___</span><span class="o"><button type="button">don’t</button><button type="button">doesn’t</button></span></div>
+<div class="ch" data-a="don’t"><span class="n">7</span><span class="s">they ___</span><span class="o"><button type="button">don’t</button><button type="button">doesn’t</button></span></div>
+<div class="ch" data-a="doesn’t"><span class="n">8</span><span class="s">my brother ___</span><span class="o"><button type="button">don’t</button><button type="button">doesn’t</button></span></div>
+<div class="ch" data-a="don’t"><span class="n">9</span><span class="s">my parents ___</span><span class="o"><button type="button">doesn’t</button><button type="button">don’t</button></span></div>
+<div class="ch" data-a="doesn’t"><span class="n">10</span><span class="s">the cat ___</span><span class="o"><button type="button">don’t</button><button type="button">doesn’t</button></span></div>
+<div class="ch" data-a="don’t"><span class="n">11</span><span class="s">Ann and Kate ___</span><span class="o"><button type="button">don’t</button><button type="button">doesn’t</button></span></div>
+<div class="ch" data-a="doesn’t"><span class="n">12</span><span class="s">our teacher ___</span><span class="o"><button type="button">don’t</button><button type="button">doesn’t</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; don’t · doesn’t · don’t · doesn’t · don’t · doesn’t · don’t · doesn’t · don’t · doesn’t · don’t · doesn’t"><b>Відповіді:</b> don’t · doesn’t · don’t · doesn’t · don’t · doesn’t · don’t · doesn’t · don’t · doesn’t · don’t · doesn’t</p>
+    <h3 class="lk-sub">Переклади англійською.</h3><div class="ty" data-a="I don’t drink coffee|I do not drink coffee"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Я не п’ю каву</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="My brother doesn’t like maths|My brother does not like maths|My brother doesn’t like math|My brother does not like math"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Мій брат не любить математику</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="We don’t play football|We do not play football"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Ми не граємо у футбол</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="The cat doesn’t eat fish|The cat does not eat fish|A cat doesn’t eat fish"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Кіт не їсть рибу</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="They don’t know the answer|They do not know the answer"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Вони не знають відповідь</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="She doesn’t go to school on Saturday|She does not go to school on Saturday|She doesn’t go to school on Saturdays|She does not go to school on Saturdays"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Вона не ходить до школи в суботу</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; I don’t drink coffee · My brother doesn’t like maths · We don’t play football · The cat doesn’t eat fish · They don’t know the answer · She doesn’t go to school on Saturday"><b>Відповіді:</b> I don’t drink coffee · My brother doesn’t like maths · We don’t play football · The cat doesn’t eat fish · They don’t know the answer · She doesn’t go to school on Saturday</p>
+    <p class="lk-tnote" data-ru="Gap і choice учень робить сам (5-6 хв), потім перевірка разом: проси пояснити кожну відповідь словами «бо she, тому doesn’t». Sort робимо усно і швидко. У перекладі звертай увагу, щоб після doesn’t не було -s. Повна форма do not теж правильна.&lt;br&gt;">Gap і choice учень робить сам (5-6 хв), потім перевірка разом: проси пояснити кожну відповідь словами «бо she, тому doesn’t». Sort робимо усно і швидко. У перекладі звертай увагу, щоб після doesn’t не було -s. Повна форма do not теж правильна.<br></p>
+  </section>
+  <section id="s6" data-stage="video" data-min="8">
+    <h2><span class="lk-n">6</span>Video: Mr Bean’s morning <span class="tag">video</span><span class="lk-mode">teacher + student</span></h2>
+<div class="frame" style="aspect-ratio:16/9"><iframe src="https://www.youtube-nocookie.com/embed/QQZjYb5d4NM" style="width:100%;height:100%;border:0" allowfullscreen loading="lazy"></iframe></div>
+    <p class="lk-ins">Watch Mr Bean’s morning routine. Then write 5 sentences: what doesn’t Mr Bean do like a normal person? Example: He doesn’t ... like us.</p>
+    <p class="lk-tnote" data-ru="Перед переглядом спитай: What do you do every morning? (wake up, wash, brush teeth, have breakfast, get dressed). Дивіться шматками: зупиняй після кожної ранкової дії (орієнтовно кожні 30-40 секунд, точні моменти зупинок переглянь перед уроком) і питай: Does a normal person do it like this? What doesn’t Mr Bean do? Учень відповідає He doesn’t ... за тим, що бачить. Після перегляду учень читає свої 5 речень, ти додаєш одне своє, і порівнюєте: «I don’t do it like Mr Bean, I ...».&lt;br&gt;">Перед переглядом спитай: What do you do every morning? (wake up, wash, brush teeth, have breakfast, get dressed). Дивіться шматками: зупиняй після кожної ранкової дії (орієнтовно кожні 30-40 секунд, точні моменти зупинок переглянь перед уроком) і питай: Does a normal person do it like this? What doesn’t Mr Bean do? Учень відповідає He doesn’t ... за тим, що бачить. Після перегляду учень читає свої 5 речень, ти додаєш одне своє, і порівнюєте: «I don’t do it like Mr Bean, I ...».<br></p>
+  </section>
+  <section id="s7" data-stage="practice" data-min="6">
+    <h2><span class="lk-n">7</span>Розбір помилок <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<div class="warn"><p><b>Топ-5 помилок українськомовних учнів</b></p><p>1. «I not like pizza.» (неправильно) → <b>I don’t like pizza.</b> Просто not перед дієсловом не працює, потрібен помічник don’t.<br>2. «She don’t like pizza.» (неправильно) → <b>She doesn’t like pizza.</b> Для he / she / it тільки doesn’t.<br>3. «He doesn’t likes pizza.» (неправильно) → <b>He doesn’t like pizza.</b> Doesn’t уже «вкрав» -s.<br>4. «My friends doesn’t play chess.» (неправильно) → <b>My friends don’t play chess.</b> Friends = they, отже don’t.<br>5. «I am not like pizza.» (неправильно) → <b>I don’t like pizza.</b> Am not тільки з прикметниками і -ing (I am not hungry), а не зі звичайними дієсловами.</p></div>
+    <h3 class="lk-sub">Знайди правильне речення.</h3><div class="ch" data-a="My dog doesn’t like cats."><span class="n">1</span><span class="s">___</span><span class="o"><button type="button">My dog doesn’t like cats.</button><button type="button">My dog don’t like cats.</button><button type="button">My dog doesn’t likes cats.</button></span></div>
+<div class="ch" data-a="We don’t go to school in July."><span class="n">2</span><span class="s">___</span><span class="o"><button type="button">We doesn’t go to school in July.</button><button type="button">We not go to school in July.</button><button type="button">We don’t go to school in July.</button></span></div>
+<div class="ch" data-a="Lily doesn’t speak French."><span class="n">3</span><span class="s">___</span><span class="o"><button type="button">Lily doesn’t speak French.</button><button type="button">Lily not speak French.</button><button type="button">Lily doesn’t speaks French.</button></span></div>
+<div class="ch" data-a="I don’t understand this joke."><span class="n">4</span><span class="s">___</span><span class="o"><button type="button">I not understand this joke.</button><button type="button">I don’t understand this joke.</button><button type="button">I am not understand this joke.</button></span></div>
+<div class="ch" data-a="The bus doesn’t stop here."><span class="n">5</span><span class="s">___</span><span class="o"><button type="button">The bus don’t stop here.</button><button type="button">The bus doesn’t stops here.</button><button type="button">The bus doesn’t stop here.</button></span></div>
+<div class="ch" data-a="My parents don’t watch cartoons."><span class="n">6</span><span class="s">___</span><span class="o"><button type="button">My parents doesn’t watch cartoons.</button><button type="button">My parents don’t watches cartoons.</button><button type="button">My parents don’t watch cartoons.</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; My dog doesn’t like cats. · We don’t go to school in July. · Lily doesn’t speak French. · I don’t understand this joke. · The bus doesn’t stop here. · My parents don’t watch cartoons."><b>Відповіді:</b> My dog doesn’t like cats. · We don’t go to school in July. · Lily doesn’t speak French. · I don’t understand this joke. · The bus doesn’t stop here. · My parents don’t watch cartoons.</p>
+    <p class="lk-tnote" data-ru="Розбери помилки з tip, потім учень робить вправу на час (60 секунд). За кожну правильну відповідь бал, за пояснення помилки ще бал. Поверни помилки, які ти записав на розминці, і попроси учня виправити їх.&lt;br&gt;">Розбери помилки з tip, потім учень робить вправу на час (60 секунд). За кожну правильну відповідь бал, за пояснення помилки ще бал. Поверни помилки, які ти записав на розминці, і попроси учня виправити їх.<br></p>
+  </section>
+  <section id="s8" data-stage="speaking" data-min="8">
+    <h2><span class="lk-n">8</span>Speaking <span class="tag">speaking</span><span class="lk-mode">teacher + student</span></h2>
+<div class="qs"><div>Tell me three things you don’t do at the weekend.</div><div>What food doesn’t your best friend like?</div><div>What doesn’t your teacher allow in class?</div><div>Which apps don’t you use? Why?</div><div>What doesn’t your pet (or a pet you know) like?</div><div>What don’t your parents understand about teenagers?</div><div>What doesn’t your cat know about you? (Be honest!)</div><div>Which chores don’t you do at home, even when your mum asks?</div><div>What doesn’t your phone do, but you want it to do?</div><div>What don’t you want for your birthday?</div></div>
+    <p class="lk-tnote" data-ru="Учень відповідає повними реченнями з don’t / doesn’t, обери 6-7 питань. Після кожної відповіді постав уточнювальне питання (Why not?). Друге коло: «Two truths and a lie» у запереченнях: учень каже 3 речення про себе з don’t, ти вгадуєш, яке неправда. Потім міняєтеся. Записуй помилки і розбери 2-3 наприкінці.&lt;br&gt;">Учень відповідає повними реченнями з don’t / doesn’t, обери 6-7 питань. Після кожної відповіді постав уточнювальне питання (Why not?). Друге коло: «Two truths and a lie» у запереченнях: учень каже 3 речення про себе з don’t, ти вгадуєш, яке неправда. Потім міняєтеся. Записуй помилки і розбери 2-3 наприкінці.<br></p>
+  </section>
+  <section id="s9" data-stage="practice" data-min="3">
+    <h2><span class="lk-n">9</span>Speed round <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Speed round: make it negative</h3><p class="lk-ins">Make the sentence negative. Write only the verb part</p>
+    <div class="spin"><div class="card" id="g91">Click "Next card"</div><br><button class="btn" type="button" data-spin="[&quot;She plays tennis.&quot;, &quot;I like rap.&quot;, &quot;He watches anime.&quot;, &quot;We have maths today.&quot;, &quot;The cat sleeps on my bed.&quot;, &quot;They live here.&quot;, &quot;My mum drinks coffee.&quot;, &quot;You know the answer.&quot;, &quot;It rains a lot.&quot;, &quot;Dan goes to the gym.&quot;]" data-target="g91">Next card</button></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; doesn’t play · don’t like · doesn’t watch · don’t have · doesn’t sleep · don’t live · doesn’t drink · don’t know · doesn’t rain · doesn’t go"><b>Відповіді:</b> doesn’t play · don’t like · doesn’t watch · don’t have · doesn’t sleep · don’t live · doesn’t drink · don’t know · doesn’t rain · doesn’t go</p>
+    <p class="lk-tnote" data-ru="Гра на швидкість: учень відповідає без пауз. Якщо помиляється в -s після doesn’t, нагадай про «злодія -s».&lt;br&gt;">Гра на швидкість: учень відповідає без пауз. Якщо помиляється в -s після doesn’t, нагадай про «злодія -s».<br></p>
+  </section>
+  <section id="s10" data-stage="homework" data-min="3">
+    <h2><span class="lk-n">10</span>Homework <span class="tag">homework</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Зроби речення запереченнями.</h3><div class="ty" data-a="doesn’t play|does not play"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Lily plays tennis. → Lily ___ tennis.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="don’t like|do not like"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>I like pizza with pineapple. → I ___ pizza with pineapple.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="doesn’t give|does not give"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Our teacher gives a lot of homework. → Our teacher ___ a lot of homework.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="don’t live|do not live"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>My cousins live in York. → My cousins ___ in York.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="doesn’t sleep|does not sleep"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>The cat sleeps on my bed. → The cat ___ on my bed.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; doesn’t play · don’t like · doesn’t give · don’t live · doesn’t sleep"><b>Відповіді:</b> doesn’t play · don’t like · doesn’t give · don’t live · doesn’t sleep</p>
+    <h3 class="lk-sub">Напиши 6 речень «Things I never do» (3 про себе, 3 про когось із родини або друзів).</h3><div class="qs"><div>Things I don’t do... Things my friend or my mum doesn’t do...</div></div>
+    <div class="frame" style="aspect-ratio:16/9"><iframe src="https://www.youtube-nocookie.com/embed/_palZkuM1BQ" style="width:100%;height:100%;border:0" allowfullscreen loading="lazy"></iframe></div>
+    <p class="lk-ins">Watch Mr Bean at the swimming pool. Write 4 sentences: what doesn’t Mr Bean do like the other people at the pool?</p>
+    <p class="lk-tnote" data-ru="Домашнє завдання: вправа на перетворення, 6 речень про себе й інших і 4 речення про Mr Bean у басейні. Перевір, щоб хоча б у трьох реченнях було doesn’t. На наступному уроці почни з того, що учень читає 2 найсмішніші речення.&lt;br&gt;">Домашнє завдання: вправа на перетворення, 6 речень про себе й інших і 4 речення про Mr Bean у басейні. Перевір, щоб хоча б у трьох реченнях було doesn’t. На наступному уроці почни з того, що учень читає 2 найсмішніші речення.<br></p>
+  </section>
+  <section class="end"><h2>Great job!</h2><p>See you next lesson.</p></section>
+</div>
+<div class="toast" id="toast"></div>
+<script>window.MURLY_LESSON={"id": "lib-gr-present-simple-negative", "title": "I don’t, she doesn’t: the art of saying no", "homework": ["s2", "s5", "s7", "s10"], "hw": {"s2": [{"type": "choice", "instruction": "Прочитай текст і обери True або False.", "text": "Biscuit gets up early. {False|True}\nBiscuit plays with toys every day. {False|True}\nBiscuit doesn’t like the vacuum cleaner. {True|False}\nBiscuit drinks water from a bowl. {False|True}\nDana and Max don’t have a lazy day. {True|False}\nBiscuit sits on Dana’s laptop. {True|False}"}], "s5": [{"type": "gap", "instruction": "Розкрий дужки. Напиши don’t або doesn’t + дієслово.", "text": "I [don’t like/do not like] (not like) horror films.\nMy sister [doesn’t eat/does not eat] (not eat) meat.\nWe [don’t have/do not have] (not have) PE on Fridays.\nOur cat [doesn’t go/does not go] (not go) outside.\nTom [doesn’t watch/does not watch] (not watch) TV in the morning.\nThey [don’t live/do not live] (not live) near the school.\nMy phone [doesn’t work/does not work] (not work) without Wi-Fi.\nYou [don’t need/do not need] (not need) a pen for this test."}, {"type": "choice", "instruction": "Обери правильний варіант.", "text": "She {doesn’t|don’t|not} like rap music.\nI {don’t|doesn’t|not} play the guitar.\nMy friends {don’t|doesn’t|aren’t} use Facebook.\nMax doesn’t {wear|wears|wearing} a school uniform.\nIt {doesn’t|don’t|isn’t} rain much in summer here.\nWe {don’t|doesn’t|not} get up early on Saturday."}, {"type": "choice", "instruction": "Розклади займенники та іменники по групах.", "text": "I {don’t|doesn’t}\nhe {doesn’t|don’t}\nyou {don’t|doesn’t}\nshe {doesn’t|don’t}\nwe {don’t|doesn’t}\nit {doesn’t|don’t}\nthey {don’t|doesn’t}\nmy brother {doesn’t|don’t}\nmy parents {don’t|doesn’t}\nthe cat {doesn’t|don’t}\nAnn and Kate {don’t|doesn’t}\nour teacher {doesn’t|don’t}"}, {"type": "gap", "instruction": "Переклади англійською.", "text": "Я не п’ю каву → [I don’t drink coffee/I do not drink coffee]\nМій брат не любить математику → [My brother doesn’t like maths/My brother does not like maths/My brother doesn’t like math/My brother does not like math]\nМи не граємо у футбол → [We don’t play football/We do not play football]\nКіт не їсть рибу → [The cat doesn’t eat fish/The cat does not eat fish/A cat doesn’t eat fish]\nВони не знають відповідь → [They don’t know the answer/They do not know the answer]\nВона не ходить до школи в суботу → [She doesn’t go to school on Saturday/She does not go to school on Saturday/She doesn’t go to school on Saturdays/She does not go to school on Saturdays]"}], "s7": [{"type": "choice", "instruction": "Знайди правильне речення.", "text": "{My dog doesn’t like cats.|My dog don’t like cats.|My dog doesn’t likes cats.}\n{We don’t go to school in July.|We doesn’t go to school in July.|We not go to school in July.}\n{Lily doesn’t speak French.|Lily doesn’t speaks French.|Lily not speak French.}\n{I don’t understand this joke.|I am not understand this joke.|I not understand this joke.}\n{The bus doesn’t stop here.|The bus don’t stop here.|The bus doesn’t stops here.}\n{My parents don’t watch cartoons.|My parents doesn’t watch cartoons.|My parents don’t watches cartoons.}"}], "s10": [{"type": "gap", "instruction": "Зроби речення запереченнями.", "text": "Lily plays tennis. → Lily [doesn’t play/does not play] tennis.\nI like pizza with pineapple. → I [don’t like/do not like] pizza with pineapple.\nOur teacher gives a lot of homework. → Our teacher [doesn’t give/does not give] a lot of homework.\nMy cousins live in York. → My cousins [don’t live/do not live] in York.\nThe cat sleeps on my bed. → The cat [doesn’t sleep/does not sleep] on my bed."}, {"type": "open", "instruction": "Напиши 6 речень «Things I never do» (3 про себе, 3 про когось із родини або друзів).", "text": "Things I don’t do Things my friend or my mum doesn’t do"}]}};</script>
+<script>
+(function(){var l=(document.cookie.match(/(?:^|; )murly_lang=(\w+)/)||[])[1];try{l=l||localStorage.getItem('murly:tlang')}catch(e){}l=l==='ru'?'ru':'uk';document.querySelectorAll('[data-pairs-'+l+']').forEach(function(b){b.dataset.pairs=b.getAttribute('data-pairs-'+l)});})();
+</script>
+<script>
+const $ = (id) => document.getElementById(id);
+const LIS = {};
+function say(w, rate) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; const v = speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang) && /Google|Natural|Libby|Sonia|Daniel/.test(x.name)) || speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang)); if (v) u.voice = v; u.rate = rate || .95; speechSynthesis.speak(u); } catch (e) { } }
+const sh = (a) => a.map((x) => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map((x) => x[1]);
+document.querySelectorAll('.voc div').forEach((d) => d.onclick = () => say(d.dataset.say));
+document.querySelectorAll('[data-play]').forEach((b) => b.onclick = () => say(LIS[b.dataset.play], b.dataset.slow ? .75 : .95));
+document.querySelectorAll('[data-stop]').forEach((b) => b.onclick = () => { try { speechSynthesis.cancel(); } catch (e) { } });
+document.querySelectorAll('.ch').forEach((q) => q.querySelectorAll('button').forEach((b) => b.onclick = () => { if (q.classList.contains('ok')) return; const ok = b.textContent === q.dataset.a; q.classList.toggle('ok', ok); q.classList.toggle('bad', !ok); if (ok) { const s = q.querySelector('.s'); if (s && s.textContent.includes('___')) { s.textContent = s.textContent.replace('___', q.dataset.a); } } }));
+const norm = (x) => x.toLowerCase().replace(/[’']/g, "'").replace(/[,;:"“”«»]/g, ' ').replace(/\s+/g, ' ').replace(/[.!?]$/, '').trim();
+document.querySelectorAll('.ty').forEach((r) => { const inp = r.querySelector('input'); const chk = () => { const ok = r.dataset.a.split('|').some((a) => norm(a) === norm(inp.value)); r.classList.toggle('ok', ok); r.classList.toggle('bad', !ok && inp.value.trim() !== ''); }; r.querySelector('button').onclick = chk; inp.onkeydown = (e) => { if (e.key === 'Enter') chk(); }; });
+document.querySelectorAll('[data-mt]').forEach((box) => { const pairs = JSON.parse(box.dataset.pairs); const L = sh(pairs.map((p) => p[0])), R = sh(pairs.map((p) => p[1])); let sel = null, done = 0, err = 0; box.innerHTML = L.map((w, i) => `<button type="button" data-w="${w}">${w}</button><button type="button" data-d="${R[i]}">${R[i]}</button>`).join('');
+  box.querySelectorAll('button').forEach((b) => b.onclick = () => { if (b.classList.contains('done')) return; if (!sel || (sel.dataset.w && b.dataset.w) || (sel.dataset.d && b.dataset.d)) { if (sel) sel.classList.remove('sel'); sel = b; b.classList.add('sel'); return; } const w = sel.dataset.w || b.dataset.w, d = sel.dataset.d || b.dataset.d; if (pairs.some((p) => p[0] === w && p[1] === d)) { sel.classList.add('done'); b.classList.add('done'); done++; say(w); if (done === pairs.length) document.querySelector(`[data-mtres="${box.dataset.mt}"]`).textContent = err ? `Done! Mistakes: ${err}` : 'Perfect!'; } else err++; sel.classList.remove('sel'); sel = null; }); });
+document.querySelectorAll('[data-vids]').forEach((box) => JSON.parse(box.dataset.vids).forEach(([id, title, ch, qs]) => { const d = document.createElement('div'); d.className = 'vid'; d.innerHTML = `<div class="frame"><button class="play" type="button" style="background-image:url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)"><span>PLAY</span></button></div><div class="info"><h3>${title}</h3><small>YouTube · ${ch}</small><ol>${qs.map((q) => `<li>${q}</li>`).join('')}</ol></div>`; d.querySelector('.play').onclick = (e) => { e.currentTarget.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&cc_load_policy=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${title}"></iframe>`; }; box.appendChild(d); }));
+document.querySelectorAll('[data-spin]').forEach((b) => { const list = JSON.parse(b.dataset.spin); let last = -1; b.onclick = () => { let i; do { i = Math.floor(Math.random() * list.length); } while (i === last && list.length > 1); last = i; document.getElementById(b.dataset.target).textContent = list[i]; }; });
+try { const k = 'murly:' + (window.MURLY_LESSON ? MURLY_LESSON.id : 'x') + ':hw'; const t = $('hwText'); if (t) { t.value = localStorage.getItem(k) || ''; t.oninput = () => localStorage.setItem(k, t.value); } } catch (e) { }
+const STAGES = [...document.querySelectorAll('.wrap > section[id]')];
+$('stages').innerHTML = STAGES.map((s) => `<a href="#${s.id}"><b>${s.querySelector('.lk-n').textContent}</b><span>${s.dataset.stage}</span><small>${s.dataset.min !== '0' ? s.dataset.min + ' min' : 'at home'}</small></a>`).join('');
+$('teacherBtn').onclick = (e) => { const on = document.body.classList.toggle('teacher'); e.currentTarget.textContent = on ? 'Student version' : 'Teacher version'; };
+</script>
+<script src="/game-lessons/kit.js" defer></script>
+</body>
+</html>

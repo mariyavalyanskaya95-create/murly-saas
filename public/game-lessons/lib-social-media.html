@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Social media and me (A2) | Murly</title>
+<link rel="icon" href="/favicon.svg">
+<meta name="description" content="Вивчимо слова про соцмережі: post, follow, scroll, screen time
+Прочитаємо і послухаємо історії підлітків про життя онлайн
+Потренуємо прислівники часто">
+<link rel="canonical" href="https://murly.com.ua/game-lessons/lib-social-media.html">
+<style>
+:root{--paper:#F3F0EA;--ink:#17181C;--violet:#3D4A7A;--lav:#D9D3C7;--pink:#E9C9BC;--green:#D4E2CF;--white:#fff;--muted:#62646B;--accent:#B5482F}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+/* hero */
+.hero{background:linear-gradient(rgba(16,17,22,.5),rgba(16,17,22,.72)),url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1400&q=70&auto=format&fit=crop");color:#fff;padding:70px 18px 56px;text-align:center;position:relative;overflow:hidden}
+.hero .kicker{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#E9C9BC;font-weight:700}
+.hero .cr{position:absolute;right:12px;bottom:8px;font-size:11px;color:rgba(255,255,255,.6)}
+.hero h1{margin:8px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(36px,6vw,64px);letter-spacing:-.5px;font-weight:700}
+.hero h1 span{color:var(--pink);font-style:italic}
+.hero p{margin:12px 0 0;font-size:17px;color:#e6e2da}
+.hero .flags{display:flex;justify-content:center;gap:12px;margin-top:22px;flex-wrap:wrap}
+.hero .flags svg{width:40px;height:26px;border-radius:3px;opacity:.9}
+/* sections */
+section{margin-top:30px;background:var(--white);border-radius:18px;padding:28px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.05)}
+section h2{margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tag{font-family:"Segoe UI",system-ui,sans-serif;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--paper);color:var(--accent);text-transform:uppercase;letter-spacing:1px}
+.lk-n{display:inline-grid;place-items:center;width:42px;height:42px;background:var(--violet);color:#fff;border-radius:50%;font-size:21px;flex:none}
+.lk-mode{font-size:13px;font-weight:700;border:2px dashed var(--lav);color:var(--muted);padding:2px 10px;border-radius:999px}
+.lk-ins{font-size:17px;background:var(--paper);border-radius:12px;padding:10px 14px;margin:6px 0 18px}
+.lk-sub{margin:24px 0 10px;font-size:19px}
+.btn{font:inherit;font-weight:700;border:0;border-radius:999px;background:var(--ink);color:#fff;padding:10px 20px;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+.btn.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+/* teacher */
+.lk-tbtn{position:fixed;right:16px;top:70px;z-index:45;font:inherit;font-weight:800;border:2px solid var(--ink);background:var(--pink);padding:8px 14px;border-radius:12px;cursor:pointer}
+body.teacher .lk-tbtn{background:var(--green)}
+.lk-ans,.lk-tnote{display:none}
+body.teacher .lk-ans{display:block;margin-top:8px;font-weight:700;color:#1d5a12;background:var(--green);border-left:5px solid #5aa845;padding:6px 10px;font-size:15px;border-radius:6px}
+body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff3f7;border-left:5px solid #d9789a;padding:8px 12px;font-size:15px;border-radius:6px}
+/* overview */
+.lk-overview ul{font-size:17px;line-height:1.7;margin:6px 0 16px}
+.lk-stages{display:flex;flex-wrap:wrap;gap:8px}
+.lk-stages a{display:grid;border-radius:14px;padding:8px 12px;text-decoration:none;color:var(--ink);background:var(--paper);font-weight:700;min-width:100px}
+.lk-stages a span{text-transform:capitalize}
+.lk-stages a b{font-size:20px;color:var(--violet)}
+.lk-stages a small{font-weight:600;color:var(--muted)}
+/* warm-up */
+.taxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tax{background:var(--paper);border-radius:18px;padding:16px;display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center}
+.tax svg{width:56px;height:56px}
+.tax b{display:block;font-size:17px}
+.tax small{color:var(--muted);font-size:14px}
+.qs{display:grid;gap:10px;margin-top:18px}
+.qs div{background:var(--green);border-radius:14px;padding:10px 16px;font-size:18px;font-weight:600}
+.phr{background:#fff7e8;border-radius:14px;padding:12px 16px;margin-top:16px;font-size:15px}
+.phr ul{margin:6px 0 0;padding-left:18px}
+.fic{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:16px}
+.fic .c{background:#fff;border:2px solid #1B2140;border-radius:16px;padding:14px 16px;box-shadow:3px 3px 0 #1B2140}
+.fic .c b{display:block;font-size:18px;line-height:1.35;margin-bottom:8px}
+.fic .c .k{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.fic .c .k span{font-size:13px;background:#eef1fb;border-radius:999px;padding:3px 10px}
+.fic .c details{margin-top:8px;font-size:15px;color:#3b4160}
+.fic .c summary{cursor:pointer;font-weight:700;color:#534AB7}
+.fi-n{display:inline-flex;width:28px;height:28px;border-radius:50%;background:#2F4BA0;color:#fff;align-items:center;justify-content:center;font-size:14px;margin-right:6px}
+/* vocab */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:12px}
+.vc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:2px solid transparent;transition:border-color .2s,transform .2s}
+.vc:hover{border-color:var(--violet);transform:translateY(-2px)}
+.vc b{font-size:18px;display:flex;align-items:center;gap:8px}
+.vc b svg{width:20px;height:20px;flex:none;color:var(--violet)}
+.vc p{margin:6px 0 0;font-size:14px;color:var(--muted)}
+.vc em{display:block;margin-top:6px;font-size:14px;color:var(--violet);font-style:normal;font-weight:600}
+.vc.played{background:#e6ecfb}
+/* grammar */
+.gram{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.gb{border-radius:18px;padding:16px}
+.gb h3{margin:0 0 6px;font-size:19px}
+.gb .f{display:inline-block;background:#fff;border-radius:8px;padding:3px 10px;font-weight:800;margin:4px 0;font-family:Consolas,monospace;font-size:15px}
+.gb p{margin:6px 0 0;font-size:15px}
+.g1{background:var(--pink)}.g2{background:var(--lav)}.g3{background:var(--green)}.g4{background:#fbe7c6}
+.warn{margin-top:14px;background:var(--ink);color:#fff;border-radius:14px;padding:12px 16px;font-size:16px}
+.warn b{color:var(--pink)}
+.q{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:2px dashed var(--paper);font-size:18px}
+.q:last-child{border-bottom:0}
+.q .n{width:32px;height:32px;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;border-radius:50%;font-weight:800;font-size:15px}
+.opt{font:inherit;font-size:16px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:10px;padding:4px 12px;cursor:pointer;margin:0 2px}
+.opt.ok{background:var(--green);border-color:#5aa845}
+.opt.bad{background:var(--pink);animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+/* tour */
+.tour{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.law{border-radius:22px;overflow:hidden;background:var(--paper);display:flex;flex-direction:column}
+.law .pic{height:150px;display:grid;place-items:center;position:relative}
+.law .pic svg.ill{width:130px;height:130px}
+.law .pic svg.fl{position:absolute;left:14px;top:14px;width:46px;height:30px;border-radius:5px;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.law .pic .no{position:absolute;right:14px;top:14px;background:var(--ink);color:#fff;font-weight:800;border-radius:999px;padding:2px 10px;font-size:13px}
+.law .body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.law h3{margin:0;font-size:20px}
+.law .where{font-size:13px;font-weight:800;color:var(--violet);text-transform:uppercase;letter-spacing:1px}
+.law p{margin:0;font-size:16px}
+.law .why{font-size:14px;color:var(--muted)}
+.law .dq{margin-top:auto;background:#fff;border-radius:12px;padding:8px 12px;font-weight:700;font-size:15px}
+.law .lsn{font:inherit;font-size:13px;font-weight:700;background:none;border:0;color:var(--violet);cursor:pointer;padding:0;text-align:left}
+/* game */
+.game{max-width:720px;margin:0 auto;text-align:center}
+.score{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.score span{background:var(--paper);border-radius:999px;padding:6px 16px;font-weight:800}
+.stmt{background:var(--ink);color:#fff;border-radius:22px;padding:28px 24px;min-height:150px;display:grid;place-items:center;font-size:23px;font-weight:700;position:relative}
+.stmt small{position:absolute;top:12px;left:18px;font-size:13px;color:var(--lav);font-weight:700}
+.choose{display:flex;justify-content:center;gap:14px;margin:18px 0}
+.choose button{font:inherit;font-size:18px;font-weight:700;border:2px solid var(--ink);border-radius:999px;padding:12px 28px;cursor:pointer}
+.choose .bl{background:var(--green)}.choose .bm{background:var(--pink)}
+.choose button:disabled{opacity:.5;cursor:default}
+.verdict{min-height:70px;font-size:17px;background:var(--paper);border-radius:16px;padding:12px 16px;text-align:left}
+.verdict b.r{color:#2d7a1d}.verdict b.w{color:#b23a62}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.dots i{width:14px;height:14px;border-radius:50%;background:var(--paper)}
+.dots i.r{background:#7cc663}.dots i.w{background:#e47b9f}.dots i.c{outline:3px solid var(--violet)}
+.final{font-size:22px;font-weight:800;color:var(--violet)}
+/* invent */
+.inv{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.frames{display:grid;gap:10px}
+.frames label{font-size:14px;font-weight:700;color:var(--muted)}
+.frames select,.frames input{font:inherit;width:100%;padding:8px 10px;border:2px solid var(--lav);border-radius:10px;background:#fff}
+.poster{background:var(--paper);border:3px solid var(--ink);border-radius:20px;padding:22px;text-align:center;min-height:260px;display:flex;flex-direction:column;gap:10px;justify-content:center}
+.poster .seal{width:70px;height:70px;margin:0 auto}
+.poster h3{margin:0;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--violet)}
+.poster .rule{font-size:22px;font-weight:800}
+.poster .pen{font-size:16px;color:var(--muted)}
+.ideas{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ideas span{background:var(--pink);border-radius:999px;padding:5px 12px;font-size:14px;font-weight:600}
+/* roleplay */
+.rp{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.role{border-radius:20px;padding:18px}
+.role h3{margin:0 0 6px;display:flex;align-items:center;gap:10px}
+.role h3 svg{width:42px;height:42px}
+.role ul{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.r1{background:var(--lav)}.r2{background:var(--green)}
+.scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:16px}
+.sc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:3px solid transparent}
+.sc.on{border-color:var(--violet);background:#fff}
+.sc b{display:block;font-size:17px;margin-bottom:4px}
+.sc p{margin:0;font-size:15px}
+.timer{font-size:40px;font-weight:800;text-align:center;margin:14px 0 6px;color:var(--violet)}
+.ctr{text-align:center}
+/* homework */
+.hwb{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hwc{background:var(--paper);border-radius:18px;padding:18px}
+.hwc h3{margin:0 0 8px}
+.hwc ol,.hwc ul{margin:6px 0 0;padding-left:20px;line-height:1.7}
+.hwc textarea{width:100%;min-height:150px;font:inherit;border:2px solid var(--lav);border-radius:12px;padding:10px;margin-top:10px}
+.end{text-align:center;background:var(--ink);color:#fff;box-shadow:none}
+.end h2{justify-content:center}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(140px);background:var(--ink);color:#fff;font-weight:800;padding:12px 22px;border-radius:14px;transition:transform .3s;z-index:50}
+.toast.show{transform:translateX(-50%) translateY(0)}
+/* photos */
+.ph{margin:0}
+.ph img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;background:var(--paper)}
+.ph figcaption{font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.2px}
+.tax{grid-template-columns:1fr !important;padding:12px !important}
+.law .pic{height:auto !important;display:block !important;padding:0;position:relative}
+.law .pic .ph img{border-radius:0;aspect-ratio:16/10;transition:filter .5s}
+.law .pic .ph figcaption{padding:4px 12px 0}
+.law.hide .pic .ph img{filter:blur(10px) grayscale(.6)}
+.law.hide .reveal-body,.law.hide .fl,.law.hide .where{visibility:hidden}
+.law .clue{font-size:15px;font-style:italic;color:var(--ink)}
+.law .gc{display:flex;flex-wrap:wrap;gap:6px}
+.law .gc button{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:4px 12px;cursor:pointer}
+.law .gc button.ok{background:var(--green)}.law .gc button.bad{background:var(--pink)}
+.law:not(.hide) .guess{display:none}
+.fair{display:grid;gap:4px;background:#fff;border-radius:12px;padding:8px 12px}
+.fair .ends{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.fair input{width:100%;accent-color:var(--accent)}
+.fair output{font-size:14px;font-weight:700;color:var(--accent)}
+.gph{max-width:720px;margin:0 auto 12px}
+.gph img{aspect-ratio:21/9}
+.fine{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.fq{background:var(--paper);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.fq h3{margin:0;font-size:18px}
+.fq .opts{display:flex;flex-wrap:wrap;gap:6px}
+.fq .opts button{font:inherit;font-size:14px;font-weight:700;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 12px;cursor:pointer}
+.fq .opts button.ok{background:var(--green)}.fq .opts button.bad{background:var(--pink)}
+.fq .res{font-size:15px;min-height:22px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{position:relative;aspect-ratio:16/9;background:#111}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;cursor:pointer;background:#111 center/cover;display:grid;place-items:center}
+.vid .play span{background:rgba(0,0,0,.7);color:#fff;font-weight:700;border-radius:999px;padding:10px 20px;font-size:15px;letter-spacing:1px}
+.vid .info{padding:14px 16px}
+.vid .info h3{margin:0 0 2px;font-size:18px}
+.vid .info small{color:var(--muted)}
+.vid .info ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+@media(max-width:760px){.inv,.rp,.hwb{grid-template-columns:1fr}.lk-tbtn{top:auto;bottom:70px}}
+
+.pr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.pb{border-radius:18px;padding:16px 18px}
+.pb h3{margin:0;font-family:Georgia,serif;font-size:30px}
+.pb .m{font-size:15px;color:var(--muted);margin:2px 0 8px}
+.pb .chips{display:flex;flex-wrap:wrap;gap:6px}
+.pb .chips span{background:#fff;border-radius:999px;padding:4px 11px;font-size:14px;font-weight:600}
+.pb ul{margin:10px 0 0;padding-left:18px;font-size:15px}
+.p-in{background:#DCE6F5}.p-at{background:#F3D9CF}.p-on{background:#D4E2CF}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-size:15px;margin-top:10px}
+.ex div{background:var(--paper);border-radius:10px;padding:8px 12px}
+.ex b{color:var(--accent)}
+.q{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.q .n{font-weight:800;color:var(--violet);min-width:24px}
+.q .gap{display:inline-block;min-width:44px;border-bottom:2px solid var(--ink);text-align:center;font-weight:800}
+.q .opts{margin-left:auto;display:flex;gap:6px}
+.q .opts button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 14px;cursor:pointer}
+.q.ok{background:#DDEED7}.q.ok .gap{color:#2F7A3B}
+.q.bad{background:#F6DAD3}
+.score{font-weight:800;margin-top:12px}
+.text{font-size:18px;line-height:1.75;background:var(--paper);border-radius:16px;padding:18px 22px}
+.text h3{margin:0 0 6px;font-family:Georgia,serif;font-size:24px}
+.text p{margin:0 0 12px}
+.text.hl mark{background:#F3D9CF;border-radius:4px;padding:0 3px;font-weight:700}
+.tf{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:9px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.tf .opts{margin-left:auto;display:flex;gap:6px}
+.tf button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.tf.ok{background:#DDEED7}.tf.bad{background:#F6DAD3}
+.disc{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px;margin-top:6px}
+.disc div{background:var(--green);border-radius:14px;padding:12px 16px;font-size:17px;font-weight:600}
+.disc div i{font-style:normal;color:var(--violet);margin-right:6px}
+.spin{text-align:center;margin-top:16px}
+.spin .card{display:inline-block;min-height:80px;min-width:min(560px,100%);background:var(--ink);color:#fff;border-radius:18px;padding:20px 24px;font-size:22px;font-weight:700;margin-bottom:12px}
+@media(max-width:700px){.ex{grid-template-columns:1fr}}
+
+.hero{background-size:cover!important;background-position:center!important}
+.voc{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.voc div{background:var(--paper);border-radius:14px;padding:10px 14px;cursor:pointer;border:2px solid transparent}
+.voc div:hover{border-color:var(--violet)}
+.voc b{display:block;font-size:18px}.voc span{display:block;color:var(--accent);font-weight:700;font-size:15px}.voc em{display:block;font-size:14px;color:var(--muted);margin-top:3px}
+.mt{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:10px}
+.mt button{font:inherit;font-size:16px;text-align:left;border:2px solid var(--ink);background:#fff;border-radius:14px;padding:9px 14px;cursor:pointer}
+.mt button.sel{background:#FFE7A8}.mt button.done{background:#CDE8C6;border-color:#4C9A5B;cursor:default}
+.ch{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ch .n{font-weight:800;color:var(--violet);min-width:24px}
+.ch .o{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.ch .o button{font:inherit;font-size:15px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.ch.ok{background:#DDEED7}.ch.bad{background:#F6DAD3}
+.ty{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ty input{font:inherit;border:2px solid var(--ink);border-radius:10px;padding:4px 10px;width:220px}
+.ty.ok{background:#DDEED7}.ty.bad{background:#F6DAD3}
+.ty small{color:var(--muted)}
+.photo{width:100%;height:300px;object-fit:cover;border-radius:16px;display:block}
+.cap{font-size:11px;color:var(--muted);margin:4px 0 12px}
+.pics{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.pics figure{margin:0;background:var(--paper);border-radius:16px;overflow:hidden}
+.pics img{width:100%;height:170px;object-fit:cover;display:block}
+.pics figcaption{padding:8px 12px;font-weight:700}
+.pics small{display:block;font-weight:400;font-size:10px;color:var(--muted)}
+.lis{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:8px 0 14px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{aspect-ratio:16/9;background:#000;position:relative}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;background-size:cover;background-position:center;cursor:pointer;display:grid;place-items:center}
+.vid .play span{background:#E5484D;color:#fff;font-weight:800;border-radius:12px;padding:10px 20px}
+.vid .info{padding:12px 16px}.vid h3{margin:0;font-size:18px}.vid small{color:var(--muted)}
+.vid ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th,.tbl td{border:1px solid #ddd;padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--paper)}
+@media(max-width:700px){.mt{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="/game-lessons/kit.css">
+</head>
+<body>
+<header class="hero">
+  <div class="kicker">A2 · teens · Соцмережі</div>
+  <h1>Social media and me</h1>
+  <p>A2 · 7 parts · 60 min</p>
+  <span class="cr">Photo: Unsplash</span>
+</header>
+<button class="lk-tbtn" id="teacherBtn" type="button">Teacher version</button>
+<div class="wrap">
+  <section class="lk-overview">
+    <h2>In this lesson you will:</h2>
+    <ul><li>Вивчимо слова про соцмережі: post, follow, scroll, screen time
+Прочитаємо і послухаємо історії підлітків про життя онлайн
+Потренуємо прислівники частоти: always, usually, never
+Обговоримо, як безпечно і з користю проводити час у мережі</li></ul>
+    <div class="lk-stages" id="stages"></div>
+  </section>
+  <section id="s1" data-stage="warm-up" data-min="5">
+    <h2><span class="lk-n">1</span>Warm-up <span class="tag">warm-up</span><span class="lk-mode">teacher + student</span></h2>
+<div class="qs"><div>Which apps do you use every day?</div><div>What is the first thing you do with your phone in the morning?</div><div>Do you think you spend too much time online?</div></div>
+    <h3 class="lk-sub">How much do you agree?</h3><div class="qs"><div>I check my phone more than 20 times a day. (agree or disagree? Why?)</div><div>Social media makes me happy. (agree or disagree? Why?)</div><div>I can easily live one day without my phone. (agree or disagree? Why?)</div></div>
+    <p class="lk-tnote" data-ru="Спершу коротке обговорення, потім учень заповнює шкалу. Попроси пояснити одну відповідь: Why do you agree? Не виправляй помилки, просто запиши 2-3 типові для етапу Language focus. 5 хвилин.&lt;br&gt;">Спершу коротке обговорення, потім учень заповнює шкалу. Попроси пояснити одну відповідь: Why do you agree? Не виправляй помилки, просто запиши 2-3 типові для етапу Language focus. 5 хвилин.<br></p>
+  </section>
+  <section id="s2" data-stage="vocabulary" data-min="10">
+    <h2><span class="lk-n">2</span>Vocabulary <span class="tag">vocabulary</span><span class="lk-mode">teacher + student</span></h2>
+<div class="voc"><div data-say="to post. "><b>to post</b><span><span data-tr-uk="публікувати" data-tr-ru="публікувати">публікувати</span></span><em></em></div>
+<div data-say="to follow. "><b>to follow</b><span><span data-tr-uk="підписуватися" data-tr-ru="підписуватися">підписуватися</span></span><em></em></div>
+<div data-say="a follower. "><b>a follower</b><span><span data-tr-uk="підписник" data-tr-ru="підписник">підписник</span></span><em></em></div>
+<div data-say="to scroll. "><b>to scroll</b><span><span data-tr-uk="гортати стрічку" data-tr-ru="гортати стрічку">гортати стрічку</span></span><em></em></div>
+<div data-say="screen time. "><b>screen time</b><span><span data-tr-uk="час перед екраном" data-tr-ru="час перед екраном">час перед екраном</span></span><em></em></div>
+<div data-say="to share. "><b>to share</b><span><span data-tr-uk="ділитися" data-tr-ru="ділитися">ділитися</span></span><em></em></div>
+<div data-say="a notification. "><b>a notification</b><span><span data-tr-uk="сповіщення" data-tr-ru="сповіщення">сповіщення</span></span><em></em></div>
+<div data-say="a comment. "><b>a comment</b><span><span data-tr-uk="коментар" data-tr-ru="коментар">коментар</span></span><em></em></div>
+<div data-say="to like. "><b>to like</b><span><span data-tr-uk="вподобати, лайкнути" data-tr-ru="вподобати, лайкнути">вподобати, лайкнути</span></span><em></em></div>
+<div data-say="private. "><b>private</b><span><span data-tr-uk="приватний" data-tr-ru="приватний">приватний</span></span><em></em></div>
+<div data-say="a profile. "><b>a profile</b><span><span data-tr-uk="профіль" data-tr-ru="профіль">профіль</span></span><em></em></div>
+<div data-say="to block. "><b>to block</b><span><span data-tr-uk="заблокувати" data-tr-ru="заблокувати">заблокувати</span></span><em></em></div></div>
+    <div class="mt" data-mt="m2" data-pairs="[[&quot;to post&quot;, &quot;публікувати&quot;], [&quot;to follow&quot;, &quot;підписуватися&quot;], [&quot;a follower&quot;, &quot;підписник&quot;], [&quot;to scroll&quot;, &quot;гортати стрічку&quot;], [&quot;screen time&quot;, &quot;час перед екраном&quot;], [&quot;to share&quot;, &quot;ділитися&quot;], [&quot;a notification&quot;, &quot;сповіщення&quot;], [&quot;a comment&quot;, &quot;коментар&quot;]]"></div><div class="score" data-mtres="m2"></div>
+    <h3 class="lk-sub">Match the words with their meanings.</h3><div class="ch" data-a="a person who sees your posts every day"><span class="n">1</span><span class="s">a follower ___</span><span class="o"><button type="button">a message from an app about something new</button><button type="button">to stop a person from contacting you</button><button type="button">to move down a page on your screen</button><button type="button">only for you or your friends</button><button type="button">a person who sees your posts every day</button></span></div>
+<div class="ch" data-a="to move down a page on your screen"><span class="n">2</span><span class="s">to scroll ___</span><span class="o"><button type="button">to move down a page on your screen</button><button type="button">to stop a person from contacting you</button><button type="button">a message from an app about something new</button><button type="button">a person who sees your posts every day</button><button type="button">only for you or your friends</button></span></div>
+<div class="ch" data-a="a message from an app about something new"><span class="n">3</span><span class="s">a notification ___</span><span class="o"><button type="button">a message from an app about something new</button><button type="button">to move down a page on your screen</button><button type="button">to stop a person from contacting you</button><button type="button">only for you or your friends</button><button type="button">a person who sees your posts every day</button></span></div>
+<div class="ch" data-a="only for you or your friends"><span class="n">4</span><span class="s">private ___</span><span class="o"><button type="button">only for you or your friends</button><button type="button">to move down a page on your screen</button><button type="button">a person who sees your posts every day</button><button type="button">to stop a person from contacting you</button><button type="button">a message from an app about something new</button></span></div>
+<div class="ch" data-a="to stop a person from contacting you"><span class="n">5</span><span class="s">to block ___</span><span class="o"><button type="button">a person who sees your posts every day</button><button type="button">to stop a person from contacting you</button><button type="button">a message from an app about something new</button><button type="button">only for you or your friends</button><button type="button">to move down a page on your screen</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; a person who sees your posts every day · to move down a page on your screen · a message from an app about something new · only for you or your friends · to stop a person from contacting you"><b>Відповіді:</b> a person who sees your posts every day · to move down a page on your screen · a message from an app about something new · only for you or your friends · to stop a person from contacting you</p>
+    <h3 class="lk-sub">Complete the sentences: comment, profile, share, like.</h3><div class="ty" data-a="like"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Please ___ my new photo!</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="comment"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>She wrote a funny ___ under my video.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="profile"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>My ___ is private, so only friends can see it.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="share"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Don’t ___ your password with anyone.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; like · comment · profile · share"><b>Відповіді:</b> like · comment · profile · share</p>
+    <p class="lk-tnote" data-ru="Покажи свій (або вигаданий) профіль у соцмережі і назви елементи: profile, post, comment, like, followers. Учень повторює і показує на екрані. Для швидкого повторення: ти кажеш українське слово, учень англійське, на швидкість. 10 хвилин.&lt;br&gt;">Покажи свій (або вигаданий) профіль у соцмережі і назви елементи: profile, post, comment, like, followers. Учень повторює і показує на екрані. Для швидкого повторення: ти кажеш українське слово, учень англійське, на швидкість. 10 хвилин.<br></p>
+  </section>
+  <section id="s3" data-stage="reading" data-min="15">
+    <h2><span class="lk-n">3</span>Reading <span class="tag">reading</span><span class="lk-mode">teacher + student</span></h2>
+<div class="text"><p><b>Mia’s screen time challenge</b></p><p>Mia is fifteen and she lives in London. She uses TikTok and Instagram every day. She usually posts photos at the weekend, but she never shares her address or her school online. Her profile is private, and she only accepts people she knows.</p><p>Last month Mia looked at her screen time and got a shock: it was about three hours a day! She often scrolled TikTok before bed and then couldn’t sleep. She also got more than a hundred notifications every day.</p><p>So Mia started a challenge. Now she turns off notifications after 9 p.m. and she always leaves her phone in the kitchen at night. She sometimes still watches videos, but only for 30 minutes after homework. Her screen time is now one and a half hours a day. "I have more time for drawing and for my friends," Mia says. "And I sleep much better!"</p></div>
+    <h3 class="lk-sub">What is the text mainly about?</h3><div class="ch" data-a="how Mia spends less time on her phone"><span class="n">1</span><span class="s">The text is about ___.</span><span class="o"><button type="button">how Mia spends less time on her phone</button><button type="button">why Mia doesn’t like Instagram</button><button type="button">how to become famous on TikTok</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; how Mia spends less time on her phone"><b>Відповіді:</b> how Mia spends less time on her phone</p>
+    <h3 class="lk-sub">True or False?</h3><div class="ch" data-a="False"><span class="n">1</span><span class="s">Mia’s profile is open to everyone.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="True"><span class="n">2</span><span class="s">Mia had about three hours of screen time a day.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="True"><span class="n">3</span><span class="s">She often scrolled TikTok before bed.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="False"><span class="n">4</span><span class="s">Now Mia sleeps with her phone next to her bed.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; False · True · True · False"><b>Відповіді:</b> False · True · True · False</p>
+    <h3 class="lk-sub">Choose the correct answer.</h3><div class="ch" data-a="after 9 p.m."><span class="n">1</span><span class="s">Mia turns off notifications ___.</span><span class="o"><button type="button">in the morning</button><button type="button">at school</button><button type="button">after 9 p.m.</button></span></div>
+<div class="ch" data-a="one and a half hours"><span class="n">2</span><span class="s">Now her screen time is ___ a day.</span><span class="o"><button type="button">three hours</button><button type="button">thirty minutes</button><button type="button">one and a half hours</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; after 9 p.m. · one and a half hours"><b>Відповіді:</b> after 9 p.m. · one and a half hours</p>
+    <p class="lk-tnote" data-ru="Перший раз учень читає швидко (2 хвилини) і відповідає на питання про головну ідею. Потім читає ще раз для деталей. Після перевірки попроси знайти в тексті всі прислівники частоти (usually, never, often, always, sometimes) і підкреслити їх: це місток до граматики. 15 хвилин.&lt;br&gt;">Перший раз учень читає швидко (2 хвилини) і відповідає на питання про головну ідею. Потім читає ще раз для деталей. Після перевірки попроси знайти в тексті всі прислівники частоти (usually, never, often, always, sometimes) і підкреслити їх: це місток до граматики. 15 хвилин.<br></p>
+  </section>
+  <section id="s4" data-stage="practice" data-min="10">
+    <h2><span class="lk-n">4</span>Language focus <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<div class="warn"><p>Прислівники частоти (always, usually, often, sometimes, never) ставимо <b>перед основним дієсловом</b>: She usually posts. Але <b>після to be</b>: She is always online. Питання: <b>How often</b> do you post?</p></div>
+    <h3 class="lk-sub">Choose the correct option.</h3><div class="ch" data-a="usually posts"><span class="n">1</span><span class="s">She ___ photos at the weekend.</span><span class="o"><button type="button">posts usually</button><button type="button">usually posts</button></span></div>
+<div class="ch" data-a="never shares"><span class="n">2</span><span class="s">Mia ___ her address.</span><span class="o"><button type="button">never shares</button><button type="button">shares never</button></span></div>
+<div class="ch" data-a="am always"><span class="n">3</span><span class="s">I ___ online in the evening.</span><span class="o"><button type="button">am always</button><button type="button">always am</button></span></div>
+<div class="ch" data-a="How often"><span class="n">4</span><span class="s">___ do you check your phone?</span><span class="o"><button type="button">How often</button><button type="button">How much</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; usually posts · never shares · am always · How often"><b>Відповіді:</b> usually posts · never shares · am always · How often</p>
+    <h3 class="lk-sub">Complete the sentences: follow, scroll, notification.</h3><div class="ty" data-a="notification"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>I got a ___ from my friend.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="follow"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Do you ___ any musicians?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="scroll"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>I ___ TikTok before bed.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; notification · follow · scroll"><b>Відповіді:</b> notification · follow · scroll</p>
+    <h3 class="lk-sub">Translate into English.</h3><div class="ty" data-a="I never post photos|I never post pictures"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Я ніколи не публікую фото</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="She often shares videos"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Вона часто ділиться відео</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="He is always online in the evening|He’s always online in the evening"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Він завжди онлайн увечері</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; I never post photos · She often shares videos · He is always online in the evening"><b>Відповіді:</b> I never post photos · She often shares videos · He is always online in the evening</p>
+    <p class="lk-tnote" data-ru="Поверни помилки з розминки і виправте їх разом. Типова помилка: I post usually. Покажи порядок слів на «лінійці»: хто + прислівник + дієслово. Можна дати учню картки зі словами речення, щоб він склав їх у правильному порядку. 10 хвилин.&lt;br&gt;">Поверни помилки з розминки і виправте їх разом. Типова помилка: I post usually. Покажи порядок слів на «лінійці»: хто + прислівник + дієслово. Можна дати учню картки зі словами речення, щоб він склав їх у правильному порядку. 10 хвилин.<br></p>
+  </section>
+  <section id="s5" data-stage="listening" data-min="14">
+    <h2><span class="lk-n">5</span>Listening and speaking <span class="tag">listening</span><span class="lk-mode">teacher + student</span></h2>
+<div class="text"><h3>Do you want to try the challenge?</h3><p class="lk-ins">Your teacher reads the dialogue (or plays it). Listen first, then read.</p><details><summary>Show the script</summary><p>Max: Hey Sophie, why didn’t you answer my message yesterday?</p><p>Sophie: Sorry! I’m trying a new challenge. I never use my phone after nine.</p><p>Max: Seriously? I always scroll before bed. It helps me relax.</p><p>Sophie: I usually did that too, but then I couldn’t sleep. Now I read a book instead.</p><p>Max: And what about your followers? Don’t they miss your posts?</p><p>Sophie: I still post, but only at the weekend. My real friends can call me.</p><p>Max: Hmm, maybe I can try it. But only for one week!</p><p>Sophie: Deal! Let’s compare our screen time next Friday.</p></details></div>
+    <h3 class="lk-sub">Listen. True or False?</h3><div class="ch" data-a="True"><span class="n">1</span><span class="s">Sophie doesn’t use her phone after nine.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="False"><span class="n">2</span><span class="s">Max never scrolls before bed.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="False"><span class="n">3</span><span class="s">Sophie stopped posting completely.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="True"><span class="n">4</span><span class="s">Max agrees to try the challenge for a week.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; True · False · False · True"><b>Відповіді:</b> True · False · False · True</p>
+    <div class="qs"><div>Is three hours of screen time a lot? Why?</div><div>What should you never share online?</div><div>Role-play: you are Max and Sophie one week later. Did the challenge work?</div><div>What is one good thing and one bad thing about social media?</div></div>
+    <p class="lk-tnote" data-ru="Аудіо прослухати двічі: спершу без завдання (хто про що говорить), потім із True/False. Далі рольова гра: учень і вчитель - Max і Sophie через тиждень. Учень має вжити мінімум 2 прислівники частоти і 2 нові слова. Виправляй м’яко, повторюючи фразу правильно. 14 хвилин.&lt;br&gt;">Аудіо прослухати двічі: спершу без завдання (хто про що говорить), потім із True/False. Далі рольова гра: учень і вчитель - Max і Sophie через тиждень. Учень має вжити мінімум 2 прислівники частоти і 2 нові слова. Виправляй м’яко, повторюючи фразу правильно. 14 хвилин.<br></p>
+  </section>
+  <section id="s6" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">6</span>Extra practice · якщо лишився час або на наступний урок <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Встав слово: post, follow, notifications, blocked, profile, share, scroll.</h3><div class="ty" data-a="post"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>I usually ___ photos of my cat at the weekend.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="follow"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Do you ___ any football players?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="notifications"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Turn off ___ at night and sleep better.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="blocked"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Ann ___ a stranger who sent her strange messages.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="profile"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>My ___ is private, so strangers can’t see my photos.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="share"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Never ___ your password with anyone.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="scroll"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>I sometimes ___ TikTok for an hour and forget about my homework.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; post · follow · notifications · blocked · profile · share · scroll"><b>Відповіді:</b> post · follow · notifications · blocked · profile · share · scroll</p>
+    <h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="never post"><span class="n">1</span><span class="s">I ___ my phone number online.</span><span class="o"><button type="button">post never</button><button type="button">never post</button></span></div>
+<div class="ch" data-a="is usually"><span class="n">2</span><span class="s">She ___ online after school.</span><span class="o"><button type="button">is usually</button><button type="button">usually is</button></span></div>
+<div class="ch" data-a="often share"><span class="n">3</span><span class="s">They ___ funny videos.</span><span class="o"><button type="button">share often</button><button type="button">often share</button></span></div>
+<div class="ch" data-a="How often"><span class="n">4</span><span class="s">___ do you post photos?</span><span class="o"><button type="button">How many</button><button type="button">How often</button></span></div>
+<div class="ch" data-a="always checks"><span class="n">5</span><span class="s">He ___ his notifications in the morning.</span><span class="o"><button type="button">checks always</button><button type="button">always checks</button></span></div>
+<div class="ch" data-a="are never"><span class="n">6</span><span class="s">We ___ online during lessons.</span><span class="o"><button type="button">never are</button><button type="button">are never</button></span></div>
+<div class="ch" data-a="hardly ever uses"><span class="n">7</span><span class="s">Max ___ Facebook.</span><span class="o"><button type="button">uses hardly ever</button><button type="button">hardly ever uses</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; never post · is usually · often share · How often · always checks · are never · hardly ever uses"><b>Відповіді:</b> never post · is usually · often share · How often · always checks · are never · hardly ever uses</p>
+    <h3 class="lk-sub">Переклади англійською.</h3><div class="ty" data-a="I usually scroll my feed in the evening|I usually scroll through my feed in the evening|I usually scroll in the evening"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Я зазвичай гортаю стрічку ввечері</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="She never shares her address"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Вона ніколи не ділиться своєю адресою</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="My profile is private"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Мій профіль приватний</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="He often likes my photos|He often likes my pictures"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Він часто лайкає мої фото</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="We always turn off notifications at night|We always turn notifications off at night|We always switch off notifications at night"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Ми завжди вимикаємо сповіщення вночі</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="How often do you post videos?"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Як часто ти публікуєш відео?</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; I usually scroll my feed in the evening · She never shares her address · My profile is private · He often likes my photos · We always turn off notifications at night · How often do you post videos?"><b>Відповіді:</b> I usually scroll my feed in the evening · She never shares her address · My profile is private · He often likes my photos · We always turn off notifications at night · How often do you post videos?</p>
+    <h3 class="lk-sub">Як часто?</h3><p class="lk-ins">Знайди переклад.</p>
+    <div class="spin"><div class="card" id="g67">Click "Next card"</div><br><button class="btn" type="button" data-spin="[&quot;always&quot;, &quot;usually&quot;, &quot;often&quot;, &quot;sometimes&quot;, &quot;hardly ever&quot;, &quot;never&quot;, &quot;How often…?&quot;, &quot;screen time&quot;, &quot;a follower&quot;]" data-target="g67">Next card</button></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; завжди · зазвичай · часто · іноді · майже ніколи · ніколи · Як часто…? · час перед екраном · підписник"><b>Відповіді:</b> завжди · зазвичай · часто · іноді · майже ніколи · ніколи · Як часто…? · час перед екраном · підписник</p>
+    <p class="lk-tnote" data-ru="Секції можна дати наприкінці уроку або як розминку на наступному. Нове тут hardly ever (майже ніколи): воно стоїть там само, де never. Нагадай про to be: She is usually online. У першій секції blocked у минулому часі, бо в реченні є sent. У перекладі «гортаю стрічку» зараховуються scroll, scroll my feed і scroll through my feed. Після гри попроси учня сказати про себе по одному реченню з кожним прислівником.&lt;br&gt;">Секції можна дати наприкінці уроку або як розминку на наступному. Нове тут hardly ever (майже ніколи): воно стоїть там само, де never. Нагадай про to be: She is usually online. У першій секції blocked у минулому часі, бо в реченні є sent. У перекладі «гортаю стрічку» зараховуються scroll, scroll my feed і scroll through my feed. Після гри попроси учня сказати про себе по одному реченню з кожним прислівником.<br></p>
+  </section>
+  <section id="s7" data-stage="writing" data-min="6">
+    <h2><span class="lk-n">7</span>Writing <span class="tag">writing</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Write a short post (40-50 words) for a school blog.</h3><div class="qs"><div>My social media rules: How often do you use social media? What do you always or never do online? Use at least three adverbs of frequency.</div></div>
+    <p class="lk-tnote" data-ru="Якщо часу мало, учень пише лише 3 речення-правила. Домашнє завдання: подивитися свою статистику screen time за тиждень і записати голосове на 1 хвилину: How much time do I spend online? What can I change? Можна запропонувати власний challenge на тиждень, як у Mia.&lt;br&gt;">Якщо часу мало, учень пише лише 3 речення-правила. Домашнє завдання: подивитися свою статистику screen time за тиждень і записати голосове на 1 хвилину: How much time do I spend online? What can I change? Можна запропонувати власний challenge на тиждень, як у Mia.<br></p>
+    <h3 class="lk-sub">Homework plus. Встав прислівник частоти: always, usually, often, sometimes, never. Подивись на відсотки.</h3><div class="ty" data-a="always"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>I ___ (100%) do my homework before I go online.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="usually"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>She ___ (80%) posts on Saturday.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="often"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>They ___ (60%) watch videos together.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="sometimes"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>We ___ (30%) play games online.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="never"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>He ___ (0%) shares his password.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="never"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>I am ___ (0%) online after 10 p.m.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; always · usually · often · sometimes · never · never"><b>Відповіді:</b> always · usually · often · sometimes · never · never</p>
+    <h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="usually posts"><span class="n">1</span><span class="s">Mia ___ at the weekend.</span><span class="o"><button type="button">posts usually</button><button type="button">usually posts</button></span></div>
+<div class="ch" data-a="is"><span class="n">2</span><span class="s">Mia’s profile ___ private.</span><span class="o"><button type="button">are</button><button type="button">is</button></span></div>
+<div class="ch" data-a="never uses"><span class="n">3</span><span class="s">Sophie ___ her phone after nine.</span><span class="o"><button type="button">uses never</button><button type="button">never uses</button></span></div>
+<div class="ch" data-a="is always"><span class="n">4</span><span class="s">Max ___ tired in the morning because he scrolls at night.</span><span class="o"><button type="button">is always</button><button type="button">always is</button></span></div>
+<div class="ch" data-a="notifications"><span class="n">5</span><span class="s">I got fifty ___ in one hour, so I turned off the sound.</span><span class="o"><button type="button">profiles</button><button type="button">notifications</button></span></div>
+<div class="ch" data-a="share"><span class="n">6</span><span class="s">Don’t ___ your home address online.</span><span class="o"><button type="button">follow</button><button type="button">share</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; usually posts · is · never uses · is always · notifications · share"><b>Відповіді:</b> usually posts · is · never uses · is always · notifications · share</p>
+    <h3 class="lk-sub">Напиши відповіді англійською.</h3><div class="qs"><div>How often do you use social media? Write three sentences with always, usually or never.</div><div>What are your three rules for a safe life online?</div><div>Do you want to try Mia’s challenge? Why or why not?</div></div>
+  </section>
+  <section class="end"><h2>Great job!</h2><p>See you next lesson.</p></section>
+</div>
+<div class="toast" id="toast"></div>
+<script>window.MURLY_LESSON={"id": "lib-social-media", "title": "Social media and me", "homework": ["s2", "s3", "s4", "s5", "s6", "s7"], "hw": {"s2": [{"type": "choice", "instruction": "Match the words with their meanings.", "text": "a follower {a person who sees your posts every day|to move down a page on your screen|a message from an app about something new|only for you or your friends|to stop a person from contacting you}\nto scroll {to move down a page on your screen|a person who sees your posts every day|a message from an app about something new|only for you or your friends|to stop a person from contacting you}\na notification {a message from an app about something new|a person who sees your posts every day|to move down a page on your screen|only for you or your friends|to stop a person from contacting you}\nprivate {only for you or your friends|a person who sees your posts every day|to move down a page on your screen|a message from an app about something new|to stop a person from contacting you}\nto block {to stop a person from contacting you|a person who sees your posts every day|to move down a page on your screen|a message from an app about something new|only for you or your friends}"}, {"type": "gap", "instruction": "Complete the sentences: comment, profile, share, like.", "text": "Please [like] my new photo!\nShe wrote a funny [comment] under my video.\nMy [profile] is private, so only friends can see it.\nDon’t [share] your password with anyone."}], "s3": [{"type": "choice", "instruction": "What is the text mainly about?", "text": "The text is about {how Mia spends less time on her phone|how to become famous on TikTok|why Mia doesn’t like Instagram}."}, {"type": "choice", "instruction": "True or False?", "text": "Mia’s profile is open to everyone. {False|True}\nMia had about three hours of screen time a day. {True|False}\nShe often scrolled TikTok before bed. {True|False}\nNow Mia sleeps with her phone next to her bed. {False|True}"}, {"type": "choice", "instruction": "Choose the correct answer.", "text": "Mia turns off notifications {after 9 p.m.|in the morning|at school}.\nNow her screen time is {one and a half hours|three hours|thirty minutes} a day."}], "s4": [{"type": "choice", "instruction": "Choose the correct option.", "text": "She {usually posts|posts usually} photos at the weekend.\nMia {never shares|shares never} her address.\nI {am always|always am} online in the evening.\n{How often|How much} do you check your phone?"}, {"type": "gap", "instruction": "Complete the sentences: follow, scroll, notification.", "text": "I got a [notification] from my friend.\nDo you [follow] any musicians?\nI [scroll] TikTok before bed."}, {"type": "gap", "instruction": "Translate into English.", "text": "Я ніколи не публікую фото → [I never post photos/I never post pictures]\nВона часто ділиться відео → [She often shares videos]\nВін завжди онлайн увечері → [He is always online in the evening/He’s always online in the evening]"}], "s5": [{"type": "choice", "instruction": "Listen. True or False?", "text": "Sophie doesn’t use her phone after nine. {True|False}\nMax never scrolls before bed. {False|True}\nSophie stopped posting completely. {False|True}\nMax agrees to try the challenge for a week. {True|False}"}], "s6": [{"type": "gap", "instruction": "Встав слово: post, follow, notifications, blocked, profile, share, scroll.", "text": "I usually [post] photos of my cat at the weekend.\nDo you [follow] any football players?\nTurn off [notifications] at night and sleep better.\nAnn [blocked] a stranger who sent her strange messages.\nMy [profile] is private, so strangers can’t see my photos.\nNever [share] your password with anyone.\nI sometimes [scroll] TikTok for an hour and forget about my homework."}, {"type": "choice", "instruction": "Обери правильний варіант.", "text": "I {never post|post never} my phone number online.\nShe {is usually|usually is} online after school.\nThey {often share|share often} funny videos.\n{How often|How many} do you post photos?\nHe {always checks|checks always} his notifications in the morning.\nWe {are never|never are} online during lessons.\nMax {hardly ever uses|uses hardly ever} Facebook."}, {"type": "gap", "instruction": "Переклади англійською.", "text": "Я зазвичай гортаю стрічку ввечері → [I usually scroll my feed in the evening/I usually scroll through my feed in the evening/I usually scroll in the evening]\nВона ніколи не ділиться своєю адресою → [She never shares her address]\nМій профіль приватний → [My profile is private]\nВін часто лайкає мої фото → [He often likes my photos/He often likes my pictures]\nМи завжди вимикаємо сповіщення вночі → [We always turn off notifications at night/We always turn notifications off at night/We always switch off notifications at night]\nЯк часто ти публікуєш відео? → [How often do you post videos?]"}], "s7": [{"type": "open", "instruction": "Write a short post (40-50 words) for a school blog.", "text": "My social media rules: How often do you use social media? What do you always or never do online? Use at least three adverbs of frequency."}, {"type": "gap", "instruction": "Homework plus. Встав прислівник частоти: always, usually, often, sometimes, never. Подивись на відсотки.", "text": "I [always] (100%) do my homework before I go online.\nShe [usually] (80%) posts on Saturday.\nThey [often] (60%) watch videos together.\nWe [sometimes] (30%) play games online.\nHe [never] (0%) shares his password.\nI am [never] (0%) online after 10 p.m."}, {"type": "choice", "instruction": "Обери правильний варіант.", "text": "Mia {usually posts|posts usually} at the weekend.\nMia’s profile {is|are} private.\nSophie {never uses|uses never} her phone after nine.\nMax {is always|always is} tired in the morning because he scrolls at night.\nI got fifty {notifications|profiles} in one hour, so I turned off the sound.\nDon’t {share|follow} your home address online."}, {"type": "open", "instruction": "Напиши відповіді англійською.", "text": "How often do you use social media? Write three sentences with always, usually or never.\nWhat are your three rules for a safe life online?\nDo you want to try Mia’s challenge? Why or why not?"}]}};</script>
+<script>
+(function(){var l=(document.cookie.match(/(?:^|; )murly_lang=(\w+)/)||[])[1];try{l=l||localStorage.getItem('murly:tlang')}catch(e){}l=l==='ru'?'ru':'uk';document.querySelectorAll('[data-pairs-'+l+']').forEach(function(b){b.dataset.pairs=b.getAttribute('data-pairs-'+l)});})();
+</script>
+<script>
+const $ = (id) => document.getElementById(id);
+const LIS = {};
+function say(w, rate) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; const v = speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang) && /Google|Natural|Libby|Sonia|Daniel/.test(x.name)) || speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang)); if (v) u.voice = v; u.rate = rate || .95; speechSynthesis.speak(u); } catch (e) { } }
+const sh = (a) => a.map((x) => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map((x) => x[1]);
+document.querySelectorAll('.voc div').forEach((d) => d.onclick = () => say(d.dataset.say));
+document.querySelectorAll('[data-play]').forEach((b) => b.onclick = () => say(LIS[b.dataset.play], b.dataset.slow ? .75 : .95));
+document.querySelectorAll('[data-stop]').forEach((b) => b.onclick = () => { try { speechSynthesis.cancel(); } catch (e) { } });
+document.querySelectorAll('.ch').forEach((q) => q.querySelectorAll('button').forEach((b) => b.onclick = () => { if (q.classList.contains('ok')) return; const ok = b.textContent === q.dataset.a; q.classList.toggle('ok', ok); q.classList.toggle('bad', !ok); if (ok) { const s = q.querySelector('.s'); if (s && s.textContent.includes('___')) { s.textContent = s.textContent.replace('___', q.dataset.a); } } }));
+const norm = (x) => x.toLowerCase().replace(/[’']/g, "'").replace(/[,;:"“”«»]/g, ' ').replace(/\s+/g, ' ').replace(/[.!?]$/, '').trim();
+document.querySelectorAll('.ty').forEach((r) => { const inp = r.querySelector('input'); const chk = () => { const ok = r.dataset.a.split('|').some((a) => norm(a) === norm(inp.value)); r.classList.toggle('ok', ok); r.classList.toggle('bad', !ok && inp.value.trim() !== ''); }; r.querySelector('button').onclick = chk; inp.onkeydown = (e) => { if (e.key === 'Enter') chk(); }; });
+document.querySelectorAll('[data-mt]').forEach((box) => { const pairs = JSON.parse(box.dataset.pairs); const L = sh(pairs.map((p) => p[0])), R = sh(pairs.map((p) => p[1])); let sel = null, done = 0, err = 0; box.innerHTML = L.map((w, i) => `<button type="button" data-w="${w}">${w}</button><button type="button" data-d="${R[i]}">${R[i]}</button>`).join('');
+  box.querySelectorAll('button').forEach((b) => b.onclick = () => { if (b.classList.contains('done')) return; if (!sel || (sel.dataset.w && b.dataset.w) || (sel.dataset.d && b.dataset.d)) { if (sel) sel.classList.remove('sel'); sel = b; b.classList.add('sel'); return; } const w = sel.dataset.w || b.dataset.w, d = sel.dataset.d || b.dataset.d; if (pairs.some((p) => p[0] === w && p[1] === d)) { sel.classList.add('done'); b.classList.add('done'); done++; say(w); if (done === pairs.length) document.querySelector(`[data-mtres="${box.dataset.mt}"]`).textContent = err ? `Done! Mistakes: ${err}` : 'Perfect!'; } else err++; sel.classList.remove('sel'); sel = null; }); });
+document.querySelectorAll('[data-vids]').forEach((box) => JSON.parse(box.dataset.vids).forEach(([id, title, ch, qs]) => { const d = document.createElement('div'); d.className = 'vid'; d.innerHTML = `<div class="frame"><button class="play" type="button" style="background-image:url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)"><span>PLAY</span></button></div><div class="info"><h3>${title}</h3><small>YouTube · ${ch}</small><ol>${qs.map((q) => `<li>${q}</li>`).join('')}</ol></div>`; d.querySelector('.play').onclick = (e) => { e.currentTarget.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&cc_load_policy=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${title}"></iframe>`; }; box.appendChild(d); }));
+document.querySelectorAll('[data-spin]').forEach((b) => { const list = JSON.parse(b.dataset.spin); let last = -1; b.onclick = () => { let i; do { i = Math.floor(Math.random() * list.length); } while (i === last && list.length > 1); last = i; document.getElementById(b.dataset.target).textContent = list[i]; }; });
+try { const k = 'murly:' + (window.MURLY_LESSON ? MURLY_LESSON.id : 'x') + ':hw'; const t = $('hwText'); if (t) { t.value = localStorage.getItem(k) || ''; t.oninput = () => localStorage.setItem(k, t.value); } } catch (e) { }
+const STAGES = [...document.querySelectorAll('.wrap > section[id]')];
+$('stages').innerHTML = STAGES.map((s) => `<a href="#${s.id}"><b>${s.querySelector('.lk-n').textContent}</b><span>${s.dataset.stage}</span><small>${s.dataset.min !== '0' ? s.dataset.min + ' min' : 'at home'}</small></a>`).join('');
+$('teacherBtn').onclick = (e) => { const on = document.body.classList.toggle('teacher'); e.currentTarget.textContent = on ? 'Student version' : 'Teacher version'; };
+</script>
+<script src="/game-lessons/kit.js" defer></script>
+</body>
+</html>

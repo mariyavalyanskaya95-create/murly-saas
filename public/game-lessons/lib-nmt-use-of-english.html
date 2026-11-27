@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Use of English: tricky pairs (B1) | Murly</title>
+<link rel="icon" href="/favicon.svg">
+<meta name="description" content="Розберемо пари слів, на яких часто помиляються в НМТ: make/do, say/tell, since/for
+Додамо пари borrow/lend, remember/remind, lose/miss
+Потренуємо Use ">
+<link rel="canonical" href="https://murly.com.ua/game-lessons/lib-nmt-use-of-english.html">
+<style>
+:root{--paper:#F3F0EA;--ink:#17181C;--violet:#3D4A7A;--lav:#D9D3C7;--pink:#E9C9BC;--green:#D4E2CF;--white:#fff;--muted:#62646B;--accent:#B5482F}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+/* hero */
+.hero{background:linear-gradient(rgba(16,17,22,.5),rgba(16,17,22,.72)),url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1400&q=70&auto=format&fit=crop");color:#fff;padding:70px 18px 56px;text-align:center;position:relative;overflow:hidden}
+.hero .kicker{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#E9C9BC;font-weight:700}
+.hero .cr{position:absolute;right:12px;bottom:8px;font-size:11px;color:rgba(255,255,255,.6)}
+.hero h1{margin:8px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(36px,6vw,64px);letter-spacing:-.5px;font-weight:700}
+.hero h1 span{color:var(--pink);font-style:italic}
+.hero p{margin:12px 0 0;font-size:17px;color:#e6e2da}
+.hero .flags{display:flex;justify-content:center;gap:12px;margin-top:22px;flex-wrap:wrap}
+.hero .flags svg{width:40px;height:26px;border-radius:3px;opacity:.9}
+/* sections */
+section{margin-top:30px;background:var(--white);border-radius:18px;padding:28px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.05)}
+section h2{margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tag{font-family:"Segoe UI",system-ui,sans-serif;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--paper);color:var(--accent);text-transform:uppercase;letter-spacing:1px}
+.lk-n{display:inline-grid;place-items:center;width:42px;height:42px;background:var(--violet);color:#fff;border-radius:50%;font-size:21px;flex:none}
+.lk-mode{font-size:13px;font-weight:700;border:2px dashed var(--lav);color:var(--muted);padding:2px 10px;border-radius:999px}
+.lk-ins{font-size:17px;background:var(--paper);border-radius:12px;padding:10px 14px;margin:6px 0 18px}
+.lk-sub{margin:24px 0 10px;font-size:19px}
+.btn{font:inherit;font-weight:700;border:0;border-radius:999px;background:var(--ink);color:#fff;padding:10px 20px;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+.btn.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+/* teacher */
+.lk-tbtn{position:fixed;right:16px;top:70px;z-index:45;font:inherit;font-weight:800;border:2px solid var(--ink);background:var(--pink);padding:8px 14px;border-radius:12px;cursor:pointer}
+body.teacher .lk-tbtn{background:var(--green)}
+.lk-ans,.lk-tnote{display:none}
+body.teacher .lk-ans{display:block;margin-top:8px;font-weight:700;color:#1d5a12;background:var(--green);border-left:5px solid #5aa845;padding:6px 10px;font-size:15px;border-radius:6px}
+body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff3f7;border-left:5px solid #d9789a;padding:8px 12px;font-size:15px;border-radius:6px}
+/* overview */
+.lk-overview ul{font-size:17px;line-height:1.7;margin:6px 0 16px}
+.lk-stages{display:flex;flex-wrap:wrap;gap:8px}
+.lk-stages a{display:grid;border-radius:14px;padding:8px 12px;text-decoration:none;color:var(--ink);background:var(--paper);font-weight:700;min-width:100px}
+.lk-stages a span{text-transform:capitalize}
+.lk-stages a b{font-size:20px;color:var(--violet)}
+.lk-stages a small{font-weight:600;color:var(--muted)}
+/* warm-up */
+.taxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tax{background:var(--paper);border-radius:18px;padding:16px;display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center}
+.tax svg{width:56px;height:56px}
+.tax b{display:block;font-size:17px}
+.tax small{color:var(--muted);font-size:14px}
+.qs{display:grid;gap:10px;margin-top:18px}
+.qs div{background:var(--green);border-radius:14px;padding:10px 16px;font-size:18px;font-weight:600}
+.phr{background:#fff7e8;border-radius:14px;padding:12px 16px;margin-top:16px;font-size:15px}
+.phr ul{margin:6px 0 0;padding-left:18px}
+.fic{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:16px}
+.fic .c{background:#fff;border:2px solid #1B2140;border-radius:16px;padding:14px 16px;box-shadow:3px 3px 0 #1B2140}
+.fic .c b{display:block;font-size:18px;line-height:1.35;margin-bottom:8px}
+.fic .c .k{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.fic .c .k span{font-size:13px;background:#eef1fb;border-radius:999px;padding:3px 10px}
+.fic .c details{margin-top:8px;font-size:15px;color:#3b4160}
+.fic .c summary{cursor:pointer;font-weight:700;color:#534AB7}
+.fi-n{display:inline-flex;width:28px;height:28px;border-radius:50%;background:#2F4BA0;color:#fff;align-items:center;justify-content:center;font-size:14px;margin-right:6px}
+/* vocab */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:12px}
+.vc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:2px solid transparent;transition:border-color .2s,transform .2s}
+.vc:hover{border-color:var(--violet);transform:translateY(-2px)}
+.vc b{font-size:18px;display:flex;align-items:center;gap:8px}
+.vc b svg{width:20px;height:20px;flex:none;color:var(--violet)}
+.vc p{margin:6px 0 0;font-size:14px;color:var(--muted)}
+.vc em{display:block;margin-top:6px;font-size:14px;color:var(--violet);font-style:normal;font-weight:600}
+.vc.played{background:#e6ecfb}
+/* grammar */
+.gram{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.gb{border-radius:18px;padding:16px}
+.gb h3{margin:0 0 6px;font-size:19px}
+.gb .f{display:inline-block;background:#fff;border-radius:8px;padding:3px 10px;font-weight:800;margin:4px 0;font-family:Consolas,monospace;font-size:15px}
+.gb p{margin:6px 0 0;font-size:15px}
+.g1{background:var(--pink)}.g2{background:var(--lav)}.g3{background:var(--green)}.g4{background:#fbe7c6}
+.warn{margin-top:14px;background:var(--ink);color:#fff;border-radius:14px;padding:12px 16px;font-size:16px}
+.warn b{color:var(--pink)}
+.q{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:2px dashed var(--paper);font-size:18px}
+.q:last-child{border-bottom:0}
+.q .n{width:32px;height:32px;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;border-radius:50%;font-weight:800;font-size:15px}
+.opt{font:inherit;font-size:16px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:10px;padding:4px 12px;cursor:pointer;margin:0 2px}
+.opt.ok{background:var(--green);border-color:#5aa845}
+.opt.bad{background:var(--pink);animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+/* tour */
+.tour{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.law{border-radius:22px;overflow:hidden;background:var(--paper);display:flex;flex-direction:column}
+.law .pic{height:150px;display:grid;place-items:center;position:relative}
+.law .pic svg.ill{width:130px;height:130px}
+.law .pic svg.fl{position:absolute;left:14px;top:14px;width:46px;height:30px;border-radius:5px;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.law .pic .no{position:absolute;right:14px;top:14px;background:var(--ink);color:#fff;font-weight:800;border-radius:999px;padding:2px 10px;font-size:13px}
+.law .body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.law h3{margin:0;font-size:20px}
+.law .where{font-size:13px;font-weight:800;color:var(--violet);text-transform:uppercase;letter-spacing:1px}
+.law p{margin:0;font-size:16px}
+.law .why{font-size:14px;color:var(--muted)}
+.law .dq{margin-top:auto;background:#fff;border-radius:12px;padding:8px 12px;font-weight:700;font-size:15px}
+.law .lsn{font:inherit;font-size:13px;font-weight:700;background:none;border:0;color:var(--violet);cursor:pointer;padding:0;text-align:left}
+/* game */
+.game{max-width:720px;margin:0 auto;text-align:center}
+.score{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.score span{background:var(--paper);border-radius:999px;padding:6px 16px;font-weight:800}
+.stmt{background:var(--ink);color:#fff;border-radius:22px;padding:28px 24px;min-height:150px;display:grid;place-items:center;font-size:23px;font-weight:700;position:relative}
+.stmt small{position:absolute;top:12px;left:18px;font-size:13px;color:var(--lav);font-weight:700}
+.choose{display:flex;justify-content:center;gap:14px;margin:18px 0}
+.choose button{font:inherit;font-size:18px;font-weight:700;border:2px solid var(--ink);border-radius:999px;padding:12px 28px;cursor:pointer}
+.choose .bl{background:var(--green)}.choose .bm{background:var(--pink)}
+.choose button:disabled{opacity:.5;cursor:default}
+.verdict{min-height:70px;font-size:17px;background:var(--paper);border-radius:16px;padding:12px 16px;text-align:left}
+.verdict b.r{color:#2d7a1d}.verdict b.w{color:#b23a62}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.dots i{width:14px;height:14px;border-radius:50%;background:var(--paper)}
+.dots i.r{background:#7cc663}.dots i.w{background:#e47b9f}.dots i.c{outline:3px solid var(--violet)}
+.final{font-size:22px;font-weight:800;color:var(--violet)}
+/* invent */
+.inv{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.frames{display:grid;gap:10px}
+.frames label{font-size:14px;font-weight:700;color:var(--muted)}
+.frames select,.frames input{font:inherit;width:100%;padding:8px 10px;border:2px solid var(--lav);border-radius:10px;background:#fff}
+.poster{background:var(--paper);border:3px solid var(--ink);border-radius:20px;padding:22px;text-align:center;min-height:260px;display:flex;flex-direction:column;gap:10px;justify-content:center}
+.poster .seal{width:70px;height:70px;margin:0 auto}
+.poster h3{margin:0;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--violet)}
+.poster .rule{font-size:22px;font-weight:800}
+.poster .pen{font-size:16px;color:var(--muted)}
+.ideas{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ideas span{background:var(--pink);border-radius:999px;padding:5px 12px;font-size:14px;font-weight:600}
+/* roleplay */
+.rp{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.role{border-radius:20px;padding:18px}
+.role h3{margin:0 0 6px;display:flex;align-items:center;gap:10px}
+.role h3 svg{width:42px;height:42px}
+.role ul{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.r1{background:var(--lav)}.r2{background:var(--green)}
+.scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:16px}
+.sc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:3px solid transparent}
+.sc.on{border-color:var(--violet);background:#fff}
+.sc b{display:block;font-size:17px;margin-bottom:4px}
+.sc p{margin:0;font-size:15px}
+.timer{font-size:40px;font-weight:800;text-align:center;margin:14px 0 6px;color:var(--violet)}
+.ctr{text-align:center}
+/* homework */
+.hwb{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hwc{background:var(--paper);border-radius:18px;padding:18px}
+.hwc h3{margin:0 0 8px}
+.hwc ol,.hwc ul{margin:6px 0 0;padding-left:20px;line-height:1.7}
+.hwc textarea{width:100%;min-height:150px;font:inherit;border:2px solid var(--lav);border-radius:12px;padding:10px;margin-top:10px}
+.end{text-align:center;background:var(--ink);color:#fff;box-shadow:none}
+.end h2{justify-content:center}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(140px);background:var(--ink);color:#fff;font-weight:800;padding:12px 22px;border-radius:14px;transition:transform .3s;z-index:50}
+.toast.show{transform:translateX(-50%) translateY(0)}
+/* photos */
+.ph{margin:0}
+.ph img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;background:var(--paper)}
+.ph figcaption{font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.2px}
+.tax{grid-template-columns:1fr !important;padding:12px !important}
+.law .pic{height:auto !important;display:block !important;padding:0;position:relative}
+.law .pic .ph img{border-radius:0;aspect-ratio:16/10;transition:filter .5s}
+.law .pic .ph figcaption{padding:4px 12px 0}
+.law.hide .pic .ph img{filter:blur(10px) grayscale(.6)}
+.law.hide .reveal-body,.law.hide .fl,.law.hide .where{visibility:hidden}
+.law .clue{font-size:15px;font-style:italic;color:var(--ink)}
+.law .gc{display:flex;flex-wrap:wrap;gap:6px}
+.law .gc button{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:4px 12px;cursor:pointer}
+.law .gc button.ok{background:var(--green)}.law .gc button.bad{background:var(--pink)}
+.law:not(.hide) .guess{display:none}
+.fair{display:grid;gap:4px;background:#fff;border-radius:12px;padding:8px 12px}
+.fair .ends{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.fair input{width:100%;accent-color:var(--accent)}
+.fair output{font-size:14px;font-weight:700;color:var(--accent)}
+.gph{max-width:720px;margin:0 auto 12px}
+.gph img{aspect-ratio:21/9}
+.fine{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.fq{background:var(--paper);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.fq h3{margin:0;font-size:18px}
+.fq .opts{display:flex;flex-wrap:wrap;gap:6px}
+.fq .opts button{font:inherit;font-size:14px;font-weight:700;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 12px;cursor:pointer}
+.fq .opts button.ok{background:var(--green)}.fq .opts button.bad{background:var(--pink)}
+.fq .res{font-size:15px;min-height:22px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{position:relative;aspect-ratio:16/9;background:#111}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;cursor:pointer;background:#111 center/cover;display:grid;place-items:center}
+.vid .play span{background:rgba(0,0,0,.7);color:#fff;font-weight:700;border-radius:999px;padding:10px 20px;font-size:15px;letter-spacing:1px}
+.vid .info{padding:14px 16px}
+.vid .info h3{margin:0 0 2px;font-size:18px}
+.vid .info small{color:var(--muted)}
+.vid .info ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+@media(max-width:760px){.inv,.rp,.hwb{grid-template-columns:1fr}.lk-tbtn{top:auto;bottom:70px}}
+
+.pr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.pb{border-radius:18px;padding:16px 18px}
+.pb h3{margin:0;font-family:Georgia,serif;font-size:30px}
+.pb .m{font-size:15px;color:var(--muted);margin:2px 0 8px}
+.pb .chips{display:flex;flex-wrap:wrap;gap:6px}
+.pb .chips span{background:#fff;border-radius:999px;padding:4px 11px;font-size:14px;font-weight:600}
+.pb ul{margin:10px 0 0;padding-left:18px;font-size:15px}
+.p-in{background:#DCE6F5}.p-at{background:#F3D9CF}.p-on{background:#D4E2CF}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-size:15px;margin-top:10px}
+.ex div{background:var(--paper);border-radius:10px;padding:8px 12px}
+.ex b{color:var(--accent)}
+.q{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.q .n{font-weight:800;color:var(--violet);min-width:24px}
+.q .gap{display:inline-block;min-width:44px;border-bottom:2px solid var(--ink);text-align:center;font-weight:800}
+.q .opts{margin-left:auto;display:flex;gap:6px}
+.q .opts button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 14px;cursor:pointer}
+.q.ok{background:#DDEED7}.q.ok .gap{color:#2F7A3B}
+.q.bad{background:#F6DAD3}
+.score{font-weight:800;margin-top:12px}
+.text{font-size:18px;line-height:1.75;background:var(--paper);border-radius:16px;padding:18px 22px}
+.text h3{margin:0 0 6px;font-family:Georgia,serif;font-size:24px}
+.text p{margin:0 0 12px}
+.text.hl mark{background:#F3D9CF;border-radius:4px;padding:0 3px;font-weight:700}
+.tf{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:9px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.tf .opts{margin-left:auto;display:flex;gap:6px}
+.tf button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.tf.ok{background:#DDEED7}.tf.bad{background:#F6DAD3}
+.disc{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px;margin-top:6px}
+.disc div{background:var(--green);border-radius:14px;padding:12px 16px;font-size:17px;font-weight:600}
+.disc div i{font-style:normal;color:var(--violet);margin-right:6px}
+.spin{text-align:center;margin-top:16px}
+.spin .card{display:inline-block;min-height:80px;min-width:min(560px,100%);background:var(--ink);color:#fff;border-radius:18px;padding:20px 24px;font-size:22px;font-weight:700;margin-bottom:12px}
+@media(max-width:700px){.ex{grid-template-columns:1fr}}
+
+.hero{background-size:cover!important;background-position:center!important}
+.voc{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.voc div{background:var(--paper);border-radius:14px;padding:10px 14px;cursor:pointer;border:2px solid transparent}
+.voc div:hover{border-color:var(--violet)}
+.voc b{display:block;font-size:18px}.voc span{display:block;color:var(--accent);font-weight:700;font-size:15px}.voc em{display:block;font-size:14px;color:var(--muted);margin-top:3px}
+.mt{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:10px}
+.mt button{font:inherit;font-size:16px;text-align:left;border:2px solid var(--ink);background:#fff;border-radius:14px;padding:9px 14px;cursor:pointer}
+.mt button.sel{background:#FFE7A8}.mt button.done{background:#CDE8C6;border-color:#4C9A5B;cursor:default}
+.ch{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ch .n{font-weight:800;color:var(--violet);min-width:24px}
+.ch .o{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.ch .o button{font:inherit;font-size:15px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.ch.ok{background:#DDEED7}.ch.bad{background:#F6DAD3}
+.ty{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ty input{font:inherit;border:2px solid var(--ink);border-radius:10px;padding:4px 10px;width:220px}
+.ty.ok{background:#DDEED7}.ty.bad{background:#F6DAD3}
+.ty small{color:var(--muted)}
+.photo{width:100%;height:300px;object-fit:cover;border-radius:16px;display:block}
+.cap{font-size:11px;color:var(--muted);margin:4px 0 12px}
+.pics{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.pics figure{margin:0;background:var(--paper);border-radius:16px;overflow:hidden}
+.pics img{width:100%;height:170px;object-fit:cover;display:block}
+.pics figcaption{padding:8px 12px;font-weight:700}
+.pics small{display:block;font-weight:400;font-size:10px;color:var(--muted)}
+.lis{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:8px 0 14px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{aspect-ratio:16/9;background:#000;position:relative}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;background-size:cover;background-position:center;cursor:pointer;display:grid;place-items:center}
+.vid .play span{background:#E5484D;color:#fff;font-weight:800;border-radius:12px;padding:10px 20px}
+.vid .info{padding:12px 16px}.vid h3{margin:0;font-size:18px}.vid small{color:var(--muted)}
+.vid ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th,.tbl td{border:1px solid #ddd;padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--paper)}
+@media(max-width:700px){.mt{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="/game-lessons/kit.css">
+</head>
+<body>
+<header class="hero">
+  <div class="kicker">B1 · teens · Use of English</div>
+  <h1>Use of English: tricky pairs</h1>
+  <p>B1 · 8 parts · 60 min</p>
+  <span class="cr">Photo: Unsplash</span>
+</header>
+<button class="lk-tbtn" id="teacherBtn" type="button">Teacher version</button>
+<div class="wrap">
+  <section class="lk-overview">
+    <h2>In this lesson you will:</h2>
+    <ul><li>Розберемо пари слів, на яких часто помиляються в НМТ: make/do, say/tell, since/for
+Додамо пари borrow/lend, remember/remind, lose/miss
+Потренуємо Use of English з чотирма варіантами в зв’язному тексті
+Закріпимо пари в усному мовленні та перекладі</li></ul>
+    <div class="lk-stages" id="stages"></div>
+  </section>
+  <section id="s1" data-stage="warm-up" data-min="5">
+    <h2><span class="lk-n">1</span>Warm-up <span class="tag">warm-up</span><span class="lk-mode">teacher + student</span></h2>
+<p class="lk-tnote" data-ru="Короткий квіз «на швидкість»: учень відповідає без підказок, а ви фіксуєте, які пари він уже плутає. Пояснення залиште на наступні етапи.&lt;br&gt;">Короткий квіз «на швидкість»: учень відповідає без підказок, а ви фіксуєте, які пари він уже плутає. Пояснення залиште на наступні етапи.<br></p>
+    <div class="qs"><div>Which English words do you often mix up?</div><div>Is it easier for you to learn grammar or vocabulary? Why?</div></div>
+    <h3 class="lk-sub">Quick quiz: choose the correct word.</h3><div class="ch" data-a="borrowed"><span class="n">1</span><span class="s">I ___ a pen from my friend.</span><span class="o"><button type="button">borrowed</button><button type="button">lent</button></span></div>
+<div class="ch" data-a="lend"><span class="n">2</span><span class="s">Could you ___ me your charger?</span><span class="o"><button type="button">lend</button><button type="button">borrow</button></span></div>
+<div class="ch" data-a="remind"><span class="n">3</span><span class="s">Please ___ me to buy milk.</span><span class="o"><button type="button">remember</button><button type="button">remind</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; borrowed · lend · remind"><b>Відповіді:</b> borrowed · lend · remind</p>
+  </section>
+  <section id="s2" data-stage="vocabulary" data-min="12">
+    <h2><span class="lk-n">2</span>Vocabulary: make, do, say, tell <span class="tag">vocabulary</span><span class="lk-mode">teacher + student</span></h2>
+<div class="warn"><p><b>make</b> = створювати щось нове (make a cake, make a mistake, make friends, make a decision).<br><b>do</b> = виконувати дію, роботу (do homework, do sport, do your best, do the shopping).</p><p><b>say</b> something (say hello, say yes), але <b>tell</b> someone something (tell me, tell the truth, tell a story).</p></div>
+    <p class="lk-tnote" data-ru="Пройдіться по списку слів і попросіть учня скласти по одному реченню з 3-4 виразами. У сортуванні пастка: make a noise, make a phone call, do a favour. Обговоріть, що ці вирази треба просто запам’ятати.&lt;br&gt;">Пройдіться по списку слів і попросіть учня скласти по одному реченню з 3-4 виразами. У сортуванні пастка: make a noise, make a phone call, do a favour. Обговоріть, що ці вирази треба просто запам’ятати.<br></p>
+    <div class="voc"><div data-say="make a mistake. "><b>make a mistake</b><span><span data-tr-uk="зробити помилку" data-tr-ru="зробити помилку">зробити помилку</span></span><em></em></div>
+<div data-say="make friends. "><b>make friends</b><span><span data-tr-uk="подружитися" data-tr-ru="подружитися">подружитися</span></span><em></em></div>
+<div data-say="make a decision. "><b>make a decision</b><span><span data-tr-uk="ухвалити рішення" data-tr-ru="ухвалити рішення">ухвалити рішення</span></span><em></em></div>
+<div data-say="do homework. "><b>do homework</b><span><span data-tr-uk="робити домашнє завдання" data-tr-ru="робити домашнє завдання">робити домашнє завдання</span></span><em></em></div>
+<div data-say="do your best. "><b>do your best</b><span><span data-tr-uk="зробити все можливе" data-tr-ru="зробити все можливе">зробити все можливе</span></span><em></em></div>
+<div data-say="do the shopping. "><b>do the shopping</b><span><span data-tr-uk="робити покупки" data-tr-ru="робити покупки">робити покупки</span></span><em></em></div>
+<div data-say="say something. "><b>say something</b><span><span data-tr-uk="сказати щось" data-tr-ru="сказати щось">сказати щось</span></span><em></em></div>
+<div data-say="tell someone. "><b>tell someone</b><span><span data-tr-uk="сказати комусь" data-tr-ru="сказати комусь">сказати комусь</span></span><em></em></div>
+<div data-say="tell the truth. "><b>tell the truth</b><span><span data-tr-uk="казати правду" data-tr-ru="казати правду">казати правду</span></span><em></em></div>
+<div data-say="borrow from. "><b>borrow from</b><span><span data-tr-uk="позичати (у когось)" data-tr-ru="позичати (у когось)">позичати (у когось)</span></span><em></em></div>
+<div data-say="lend to. "><b>lend to</b><span><span data-tr-uk="позичати (комусь)" data-tr-ru="позичати (комусь)">позичати (комусь)</span></span><em></em></div>
+<div data-say="remind. "><b>remind</b><span><span data-tr-uk="нагадувати" data-tr-ru="нагадувати">нагадувати</span></span><em></em></div></div>
+    <div class="mt" data-mt="m2" data-pairs="[[&quot;make a mistake&quot;, &quot;зробити помилку&quot;], [&quot;make friends&quot;, &quot;подружитися&quot;], [&quot;make a decision&quot;, &quot;ухвалити рішення&quot;], [&quot;do homework&quot;, &quot;робити домашнє завдання&quot;], [&quot;do your best&quot;, &quot;зробити все можливе&quot;], [&quot;do the shopping&quot;, &quot;робити покупки&quot;], [&quot;say something&quot;, &quot;сказати щось&quot;], [&quot;tell someone&quot;, &quot;сказати комусь&quot;]]"></div><div class="score" data-mtres="m2"></div>
+    <h3 class="lk-sub">Make or do?</h3><div class="ch" data-a="Make"><span class="n">1</span><span class="s">a mistake ___</span><span class="o"><button type="button">Make</button><button type="button">Do</button></span></div>
+<div class="ch" data-a="Do"><span class="n">2</span><span class="s">homework ___</span><span class="o"><button type="button">Do</button><button type="button">Make</button></span></div>
+<div class="ch" data-a="Make"><span class="n">3</span><span class="s">a decision ___</span><span class="o"><button type="button">Do</button><button type="button">Make</button></span></div>
+<div class="ch" data-a="Do"><span class="n">4</span><span class="s">the shopping ___</span><span class="o"><button type="button">Do</button><button type="button">Make</button></span></div>
+<div class="ch" data-a="Make"><span class="n">5</span><span class="s">a noise ___</span><span class="o"><button type="button">Do</button><button type="button">Make</button></span></div>
+<div class="ch" data-a="Do"><span class="n">6</span><span class="s">sport ___</span><span class="o"><button type="button">Do</button><button type="button">Make</button></span></div>
+<div class="ch" data-a="Make"><span class="n">7</span><span class="s">friends ___</span><span class="o"><button type="button">Do</button><button type="button">Make</button></span></div>
+<div class="ch" data-a="Do"><span class="n">8</span><span class="s">a favour ___</span><span class="o"><button type="button">Make</button><button type="button">Do</button></span></div>
+<div class="ch" data-a="Make"><span class="n">9</span><span class="s">a phone call ___</span><span class="o"><button type="button">Do</button><button type="button">Make</button></span></div>
+<div class="ch" data-a="Do"><span class="n">10</span><span class="s">your best ___</span><span class="o"><button type="button">Do</button><button type="button">Make</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; Make · Do · Make · Do · Make · Do · Make · Do · Make · Do"><b>Відповіді:</b> Make · Do · Make · Do · Make · Do · Make · Do · Make · Do</p>
+    <h3 class="lk-sub">Say or tell?</h3><div class="ch" data-a="tell"><span class="n">1</span><span class="s">Can you ___ me the time?</span><span class="o"><button type="button">say</button><button type="button">tell</button></span></div>
+<div class="ch" data-a="said"><span class="n">2</span><span class="s">She ___ that she was tired.</span><span class="o"><button type="button">told</button><button type="button">said</button></span></div>
+<div class="ch" data-a="tell"><span class="n">3</span><span class="s">Don’t ___ anyone my secret!</span><span class="o"><button type="button">tell</button><button type="button">say</button></span></div>
+<div class="ch" data-a="said"><span class="n">4</span><span class="s">He ___ goodbye and left.</span><span class="o"><button type="button">told</button><button type="button">said</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; tell · said · tell · said"><b>Відповіді:</b> tell · said · tell · said</p>
+  </section>
+  <section id="s3" data-stage="practice" data-min="10">
+    <h2><span class="lk-n">3</span>More tricky pairs <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<div class="warn"><p><b>since</b> + момент (since Monday, since 2018), <b>for</b> + період (for two weeks, for an hour).</p><p><b>borrow</b> = взяти на час (borrow FROM someone), <b>lend</b> = дати на час (lend TO someone).</p><p><b>remember</b> = пам’ятати самому, <b>remind</b> = нагадати комусь.</p><p><b>lose</b> = загубити, програти; <b>miss</b> = пропустити, спізнитися на, сумувати за.</p></div>
+    <p class="lk-tnote" data-ru="Попросіть учня до кожної пари придумати власний приклад з життя. Помилки виправляйте через питання: «Хто кому дає річ?» для borrow/lend, «Момент чи період?» для since/for.&lt;br&gt;">Попросіть учня до кожної пари придумати власний приклад з життя. Помилки виправляйте через питання: «Хто кому дає річ?» для borrow/lend, «Момент чи період?» для since/for.<br></p>
+    <h3 class="lk-sub">Choose the correct word.</h3><div class="ch" data-a="since"><span class="n">1</span><span class="s">I have lived here ___ 2018.</span><span class="o"><button type="button">for</button><button type="button">since</button></span></div>
+<div class="ch" data-a="for"><span class="n">2</span><span class="s">We have waited ___ an hour.</span><span class="o"><button type="button">since</button><button type="button">for</button></span></div>
+<div class="ch" data-a="since"><span class="n">3</span><span class="s">She has been ill ___ Monday.</span><span class="o"><button type="button">for</button><button type="button">since</button></span></div>
+<div class="ch" data-a="miss"><span class="n">4</span><span class="s">Hurry up or we’ll ___ the bus!</span><span class="o"><button type="button">lose</button><button type="button">miss</button></span></div>
+<div class="ch" data-a="lose"><span class="n">5</span><span class="s">I always ___ my keys.</span><span class="o"><button type="button">miss</button><button type="button">lose</button></span></div>
+<div class="ch" data-a="remind"><span class="n">6</span><span class="s">Can you ___ me about the test tomorrow?</span><span class="o"><button type="button">remind</button><button type="button">remember</button></span></div>
+<div class="ch" data-a="lends"><span class="n">7</span><span class="s">My brother never ___ me his bike.</span><span class="o"><button type="button">borrows</button><button type="button">lends</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; since · for · since · miss · lose · remind · lends"><b>Відповіді:</b> since · for · since · miss · lose · remind · lends</p>
+  </section>
+  <section id="s4" data-stage="practice" data-min="15">
+    <h2><span class="lk-n">4</span>НМТ Use of English <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<div class="warn"><p>Стратегія для тексту з пропусками: 1) прочитай увесь текст, щоб зрозуміти зміст; 2) для кожного пропуску визнач, що перевіряють: граматику (час, форма) чи лексику (значення, сталий вираз); 3) підстав відповідь і перевір слова <b>до і після</b> пропуску; 4) не залишай пропусків без відповіді.</p></div>
+    <p class="lk-tnote" data-ru="Текст A учень виконує самостійно за 5 хвилин, текст B за 5 хвилин, далі 5 хвилин на розбір. Розбираючи помилку, просіть назвати тип пропуску (час, прийменник, пара слів). Зверніть увагу на часові маркери: last summer, since then, for two months.&lt;br&gt;">Текст A учень виконує самостійно за 5 хвилин, текст B за 5 хвилин, далі 5 хвилин на розбір. Розбираючи помилку, просіть назвати тип пропуску (час, прийменник, пара слів). Зверніть увагу на часові маркери: last summer, since then, for two months.<br></p>
+    <h3 class="lk-sub">Text A: My summer camp. Choose the correct option (A-D).</h3><div class="ch" data-a="went"><span class="n">1</span><span class="s">Last summer I ___ to a language camp in Scotland.</span><span class="o"><button type="button">go</button><button type="button">was going</button><button type="button">have gone</button><button type="button">went</button></span></div>
+<div class="ch" data-a="made"><span class="n">2</span><span class="s">On the first day I ___ friends with a boy from York.</span><span class="o"><button type="button">took</button><button type="button">got</button><button type="button">did</button><button type="button">made</button></span></div>
+<div class="ch" data-a="had"><span class="n">3</span><span class="s">We ___ lessons every morning and went hiking in the afternoon.</span><span class="o"><button type="button">were having</button><button type="button">have had</button><button type="button">had</button><button type="button">has</button></span></div>
+<div class="ch" data-a="told"><span class="n">4</span><span class="s">One evening our teacher ___ us funny stories about his life in London.</span><span class="o"><button type="button">spoke</button><button type="button">talked</button><button type="button">said</button><button type="button">told</button></span></div>
+<div class="ch" data-a="have studied"><span class="n">5</span><span class="s">I ___ English since I was seven, but that summer I finally started to speak it.</span><span class="o"><button type="button">am studying</button><button type="button">study</button><button type="button">studied</button><button type="button">have studied</button></span></div>
+<div class="ch" data-a="have kept"><span class="n">6</span><span class="s">Since then I ___ in touch with everyone from the camp.</span><span class="o"><button type="button">kept</button><button type="button">am keeping</button><button type="button">keep</button><button type="button">have kept</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; went · made · had · told · have studied · have kept"><b>Відповіді:</b> went · made · had · told · have studied · have kept</p>
+    <h3 class="lk-sub">Text B: The camera. Choose the correct option (A-D).</h3><div class="ch" data-a="borrow"><span class="n">1</span><span class="s">Last week my sister asked if she could ___ my camera for a school project.</span><span class="o"><button type="button">lend</button><button type="button">borrow</button><button type="button">give</button><button type="button">take</button></span></div>
+<div class="ch" data-a="reminded"><span class="n">2</span><span class="s">I said yes, but I ___ her to charge the battery.</span><span class="o"><button type="button">remarked</button><button type="button">remembered</button><button type="button">recalled</button><button type="button">reminded</button></span></div>
+<div class="ch" data-a="did"><span class="n">3</span><span class="s">She ___ her project in the park with three classmates.</span><span class="o"><button type="button">took</button><button type="button">had</button><button type="button">made</button><button type="button">did</button></span></div>
+<div class="ch" data-a="lost"><span class="n">4</span><span class="s">Unfortunately, she nearly ___ the lens cap in the grass.</span><span class="o"><button type="button">left</button><button type="button">lost</button><button type="button">missed</button><button type="button">forgot</button></span></div>
+<div class="ch" data-a="said"><span class="n">5</span><span class="s">“I’ll be more careful next time,” she ___.</span><span class="o"><button type="button">spoke</button><button type="button">talked</button><button type="button">told</button><button type="button">said</button></span></div>
+<div class="ch" data-a="for"><span class="n">6</span><span class="s">Now she has been saving money ___ two months to buy her own camera.</span><span class="o"><button type="button">during</button><button type="button">for</button><button type="button">from</button><button type="button">since</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; borrow · reminded · did · lost · said · for"><b>Відповіді:</b> borrow · reminded · did · lost · said · for</p>
+  </section>
+  <section id="s5" data-stage="speaking" data-min="8">
+    <h2><span class="lk-n">5</span>Speaking <span class="tag">speaking</span><span class="lk-mode">teacher + student</span></h2>
+<p class="lk-tnote" data-ru="Учень відповідає розгорнуто, 3-4 речення на питання. Ваше завдання: слухати лише пари з уроку. Записуйте помилки і в кінці етапу дайте 1-2 хвилини на виправлення разом.&lt;br&gt;">Учень відповідає розгорнуто, 3-4 речення на питання. Ваше завдання: слухати лише пари з уроку. Записуйте помилки і в кінці етапу дайте 1-2 хвилини на виправлення разом.<br></p>
+    <div class="qs"><div>Tell me about a mistake you made and what you learnt from it.</div><div>When did you last lend something to a friend? Did you get it back?</div><div>What do you often forget? Who reminds you?</div><div>Have you ever missed a bus, a train or an important event? What happened?</div><div>How long have you known your best friend?</div></div>
+  </section>
+  <section id="s6" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">6</span>Extra practice · якщо лишився час або на наступний урок <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">НМТ: обери правильний варіант (A-D).</h3><div class="ch" data-a="made"><span class="n">1</span><span class="s">I’m sorry, I ___ a mistake in your name.</span><span class="o"><button type="button">made</button><button type="button">had</button><button type="button">did</button><button type="button">took</button></span></div>
+<div class="ch" data-a="do"><span class="n">2</span><span class="s">Can you ___ me a favour and close the window?</span><span class="o"><button type="button">give</button><button type="button">take</button><button type="button">do</button><button type="button">make</button></span></div>
+<div class="ch" data-a="told"><span class="n">3</span><span class="s">My teacher ___ us to start the test.</span><span class="o"><button type="button">told</button><button type="button">talked</button><button type="button">spoke</button><button type="button">said</button></span></div>
+<div class="ch" data-a="said"><span class="n">4</span><span class="s">She ___ that the shop was closed.</span><span class="o"><button type="button">spoke</button><button type="button">said</button><button type="button">told</button><button type="button">talked</button></span></div>
+<div class="ch" data-a="since"><span class="n">5</span><span class="s">Tom has played the guitar ___ he was nine.</span><span class="o"><button type="button">since</button><button type="button">during</button><button type="button">for</button><button type="button">from</button></span></div>
+<div class="ch" data-a="borrow"><span class="n">6</span><span class="s">I need to ___ some money from my brother.</span><span class="o"><button type="button">borrow</button><button type="button">lend</button><button type="button">owe</button><button type="button">pay</button></span></div>
+<div class="ch" data-a="missed"><span class="n">7</span><span class="s">Oh no! We’ve ___ the last train.</span><span class="o"><button type="button">left</button><button type="button">lost</button><button type="button">passed</button><button type="button">missed</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; made · do · told · said · since · borrow · missed"><b>Відповіді:</b> made · do · told · said · since · borrow · missed</p>
+    <h3 class="lk-sub">Встав правильне слово з пари в дужках.</h3><div class="ty" data-a="remind"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Please ___ (remember / remind) me to call Grandma.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="remember"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>I can’t ___ (remember / remind) his phone number.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="lost"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Our team ___ (lost / missed) the match yesterday.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="miss"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>I really ___ (lose / miss) my friends from the summer camp.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="lend"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Could you ___ (borrow / lend) me your umbrella?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="for"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>We’ve lived in this flat ___ (since / for) ten years.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; remind · remember · lost · miss · lend · for"><b>Відповіді:</b> remind · remember · lost · miss · lend · for</p>
+    <h3 class="lk-sub">З’єднай вираз з перекладом.</h3><div class="ch" data-a="шуміти"><span class="n">1</span><span class="s">make a noise ___</span><span class="o"><button type="button">збрехати</button><button type="button">зробити послугу</button><button type="button">програти гру</button><button type="button">шуміти</button><button type="button">вибачитися</button><button type="button">спізнитися на автобус</button></span></div>
+<div class="ch" data-a="зробити послугу"><span class="n">2</span><span class="s">do a favour ___</span><span class="o"><button type="button">вибачитися</button><button type="button">шуміти</button><button type="button">програти гру</button><button type="button">зробити послугу</button><button type="button">спізнитися на автобус</button><button type="button">збрехати</button></span></div>
+<div class="ch" data-a="збрехати"><span class="n">3</span><span class="s">tell a lie ___</span><span class="o"><button type="button">програти гру</button><button type="button">шуміти</button><button type="button">спізнитися на автобус</button><button type="button">вибачитися</button><button type="button">зробити послугу</button><button type="button">збрехати</button></span></div>
+<div class="ch" data-a="вибачитися"><span class="n">4</span><span class="s">say sorry ___</span><span class="o"><button type="button">програти гру</button><button type="button">збрехати</button><button type="button">спізнитися на автобус</button><button type="button">вибачитися</button><button type="button">шуміти</button><button type="button">зробити послугу</button></span></div>
+<div class="ch" data-a="спізнитися на автобус"><span class="n">5</span><span class="s">miss the bus ___</span><span class="o"><button type="button">програти гру</button><button type="button">зробити послугу</button><button type="button">шуміти</button><button type="button">спізнитися на автобус</button><button type="button">вибачитися</button><button type="button">збрехати</button></span></div>
+<div class="ch" data-a="програти гру"><span class="n">6</span><span class="s">lose a game ___</span><span class="o"><button type="button">спізнитися на автобус</button><button type="button">збрехати</button><button type="button">зробити послугу</button><button type="button">вибачитися</button><button type="button">шуміти</button><button type="button">програти гру</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; шуміти · зробити послугу · збрехати · вибачитися · спізнитися на автобус · програти гру"><b>Відповіді:</b> шуміти · зробити послугу · збрехати · вибачитися · спізнитися на автобус · програти гру</p>
+    <h3 class="lk-sub">Tricky pairs: meanings</h3><p class="lk-ins">Знайди значення кожного слова з пари.</p>
+    <div class="spin"><div class="card" id="g67">Click "Next card"</div><br><button class="btn" type="button" data-spin="[&quot;borrow&quot;, &quot;lend&quot;, &quot;remember&quot;, &quot;remind&quot;, &quot;lose&quot;, &quot;miss&quot;, &quot;since&quot;, &quot;for&quot;, &quot;say&quot;, &quot;tell&quot;]" data-target="g67">Next card</button></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; take something for a short time · give something for a short time · keep something in your mind · help someone not to forget · not be able to find something · be too late for a bus or a train · from a point in time until now · during a period of time · speak words · give information to someone"><b>Відповіді:</b> take something for a short time · give something for a short time · keep something in your mind · help someone not to forget · not be able to find something · be too late for a bus or a train · from a point in time until now · during a period of time · speak words · give information to someone</p>
+    <p class="lk-tnote" data-ru="Extra practice можна виконати, якщо лишився час, або на початку наступного уроку як повторення. У тесті A-D пастки: do me a favour (не make), told us (після tell потрібен об’єкт), said that (без об’єкта). У перекладі виразів зверніть увагу: say sorry, але tell a lie. Гра на значення: попросіть учня після кожної пари скласти власне речення.&lt;br&gt;">Extra practice можна виконати, якщо лишився час, або на початку наступного уроку як повторення. У тесті A-D пастки: do me a favour (не make), told us (після tell потрібен об’єкт), said that (без об’єкта). У перекладі виразів зверніть увагу: say sorry, але tell a lie. Гра на значення: попросіть учня після кожної пари скласти власне речення.<br></p>
+  </section>
+  <section id="s7" data-stage="wrap-up" data-min="10">
+    <h2><span class="lk-n">7</span>Mini test and wrap-up <span class="tag">wrap-up</span><span class="lk-mode">teacher + student</span></h2>
+<p class="lk-tnote" data-ru="Міні-тест учень виконує без підказок. Переклад перевіряйте гнучко: зараховуйте вручну правильні варіанти, яких немає в ключі. Домашнє завдання: скласти 10 власних речень, по два на кожну пару, і пройти гру зі словами уроку.&lt;br&gt;">Міні-тест учень виконує без підказок. Переклад перевіряйте гнучко: зараховуйте вручну правильні варіанти, яких немає в ключі. Домашнє завдання: скласти 10 власних речень, по два на кожну пару, і пройти гру зі словами уроку.<br></p>
+    <h3 class="lk-sub">Встав правильне слово з пари в дужках.</h3><div class="ty" data-a="tell"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Could you ___ (say / tell) me your address?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="for"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>I’ve had this phone ___ (since / for) three years.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="did"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>We ___ (made / did) the shopping on Saturday morning.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="remind"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Did you ___ (remind / remember) Tom about the party?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; tell · for · did · remind"><b>Відповіді:</b> tell · for · did · remind</p>
+    <h3 class="lk-sub">Переклади англійською.</h3><div class="ty" data-a="I do my homework every evening|I do homework every evening"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Я роблю домашнє завдання щовечора</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="She told me the truth"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Вона сказала мені правду</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="We have known each other for three years|We’ve known each other for three years"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Ми знаємо одне одного вже три роки</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Can you lend me your notebook?|Could you lend me your notebook?|Can you lend me your exercise book?|Could you lend me your exercise book?"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Можеш позичити мені свій зошит?</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="I don’t want to miss the beginning of the film|I do not want to miss the beginning of the film|I don’t want to miss the start of the film|I do not want to miss the start of the film|I don’t want to miss the beginning of the movie|I don’t want to miss the start of the movie"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Я не хочу пропустити початок фільму</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; I do my homework every evening · She told me the truth · We have known each other for three years · Can you lend me your notebook? · I don’t want to miss the beginning of the film"><b>Відповіді:</b> I do my homework every evening · She told me the truth · We have known each other for three years · Can you lend me your notebook? · I don’t want to miss the beginning of the film</p>
+  </section>
+  <section id="s8" data-stage="homework" data-min="8">
+    <h2><span class="lk-n">8</span>Homework plus <span class="tag">homework</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">НМТ Text C: My first job. Обери правильний варіант (A-D).</h3><div class="ch" data-a="got"><span class="n">1</span><span class="s">Last summer I ___ a part-time job in a café.</span><span class="o"><button type="button">did</button><button type="button">won</button><button type="button">made</button><button type="button">got</button></span></div>
+<div class="ch" data-a="told"><span class="n">2</span><span class="s">On my first day the manager ___ me the rules.</span><span class="o"><button type="button">spoke</button><button type="button">told</button><button type="button">explained</button><button type="button">said</button></span></div>
+<div class="ch" data-a="made"><span class="n">3</span><span class="s">I ___ a lot of mistakes with the coffee machine.</span><span class="o"><button type="button">got</button><button type="button">did</button><button type="button">made</button><button type="button">had</button></span></div>
+<div class="ch" data-a="borrow"><span class="n">4</span><span class="s">I had to ___ a black shirt from my cousin.</span><span class="o"><button type="button">owe</button><button type="button">rent</button><button type="button">lend</button><button type="button">borrow</button></span></div>
+<div class="ch" data-a="missed"><span class="n">5</span><span class="s">One morning I ___ the bus and arrived late.</span><span class="o"><button type="button">left</button><button type="button">passed</button><button type="button">lost</button><button type="button">missed</button></span></div>
+<div class="ch" data-a="since"><span class="n">6</span><span class="s">I have saved a lot of money ___ June.</span><span class="o"><button type="button">from</button><button type="button">since</button><button type="button">during</button><button type="button">for</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; got · told · made · borrow · missed · since"><b>Відповіді:</b> got · told · made · borrow · missed · since</p>
+    <h3 class="lk-sub">Переклади англійською.</h3><div class="ty" data-a="Remind me about the test|Please remind me about the test|Remind me about the test, please"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Нагадай мені про тест</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="I lost my keys|I’ve lost my keys|I have lost my keys"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Я загубив ключі</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="He always tells the truth"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Він завжди каже правду</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="We made a decision|We have made a decision|We’ve made a decision"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Ми ухвалили рішення</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="I miss my grandma|I miss my granny|I miss my grandmother"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Я сумую за бабусею</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="I borrowed a book from Anna|I borrowed the book from Anna"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Я позичив книжку в Анни</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; Remind me about the test · I lost my keys · He always tells the truth · We made a decision · I miss my grandma · I borrowed a book from Anna"><b>Відповіді:</b> Remind me about the test · I lost my keys · He always tells the truth · We made a decision · I miss my grandma · I borrowed a book from Anna</p>
+    <h3 class="lk-sub">Письмо: дай розгорнуту відповідь.</h3><div class="qs"><div>Write three sentences about things you have done since September. Use since and for.</div><div>Tell a short story (4-5 sentences) about a day when you missed or lost something. Use at least three words from today’s pairs.</div></div>
+  </section>
+  <section class="end"><h2>Great job!</h2><p>See you next lesson.</p></section>
+</div>
+<div class="toast" id="toast"></div>
+<script>window.MURLY_LESSON={"id": "lib-nmt-use-of-english", "title": "Use of English: tricky pairs", "homework": ["s1", "s2", "s3", "s4", "s6", "s7", "s8"], "hw": {"s1": [{"type": "choice", "instruction": "Quick quiz: choose the correct word.", "text": "I {borrowed|lent} a pen from my friend.\nCould you {lend|borrow} me your charger?\nPlease {remind|remember} me to buy milk."}], "s2": [{"type": "choice", "instruction": "Make or do?", "text": "a mistake {Make|Do}\nhomework {Do|Make}\na decision {Make|Do}\nthe shopping {Do|Make}\na noise {Make|Do}\nsport {Do|Make}\nfriends {Make|Do}\na favour {Do|Make}\na phone call {Make|Do}\nyour best {Do|Make}"}, {"type": "choice", "instruction": "Say or tell?", "text": "Can you {tell|say} me the time?\nShe {said|told} that she was tired.\nDon’t {tell|say} anyone my secret!\nHe {said|told} goodbye and left."}], "s3": [{"type": "choice", "instruction": "Choose the correct word.", "text": "I have lived here {since|for} 2018.\nWe have waited {for|since} an hour.\nShe has been ill {since|for} Monday.\nHurry up or we’ll {miss|lose} the bus!\nI always {lose|miss} my keys.\nCan you {remind|remember} me about the test tomorrow?\nMy brother never {lends|borrows} me his bike."}], "s4": [{"type": "choice", "instruction": "Text A: My summer camp. Choose the correct option (A-D).", "text": "Last summer I {went|have gone|go|was going} to a language camp in Scotland.\nOn the first day I {made|did|took|got} friends with a boy from York.\nWe {had|have had|were having|has} lessons every morning and went hiking in the afternoon.\nOne evening our teacher {told|said|spoke|talked} us funny stories about his life in London.\nI {have studied|study|studied|am studying} English since I was seven, but that summer I finally started to speak it.\nSince then I {have kept|keep|kept|am keeping} in touch with everyone from the camp."}, {"type": "choice", "instruction": "Text B: The camera. Choose the correct option (A-D).", "text": "Last week my sister asked if she could {borrow|lend|take|give} my camera for a school project.\nI said yes, but I {reminded|remembered|remarked|recalled} her to charge the battery.\nShe {did|made|took|had} her project in the park with three classmates.\nUnfortunately, she nearly {lost|missed|left|forgot} the lens cap in the grass.\n“I’ll be more careful next time,” she {said|told|spoke|talked}.\nNow she has been saving money {for|since|during|from} two months to buy her own camera."}], "s6": [{"type": "choice", "instruction": "НМТ: обери правильний варіант (A-D).", "text": "I’m sorry, I {made|did|took|had} a mistake in your name.\nCan you {do|make|take|give} me a favour and close the window?\nMy teacher {told|said|spoke|talked} us to start the test.\nShe {said|told|spoke|talked} that the shop was closed.\nTom has played the guitar {since|for|from|during} he was nine.\nI need to {borrow|lend|owe|pay} some money from my brother.\nOh no! We’ve {missed|lost|left|passed} the last train."}, {"type": "gap", "instruction": "Встав правильне слово з пари в дужках.", "text": "Please [remind] (remember / remind) me to call Grandma.\nI can’t [remember] (remember / remind) his phone number.\nOur team [lost] (lost / missed) the match yesterday.\nI really [miss] (lose / miss) my friends from the summer camp.\nCould you [lend] (borrow / lend) me your umbrella?\nWe’ve lived in this flat [for] (since / for) ten years."}, {"type": "choice", "instruction": "З’єднай вираз з перекладом.", "text": "make a noise {шуміти|зробити послугу|збрехати|вибачитися|спізнитися на автобус|програти гру}\ndo a favour {зробити послугу|шуміти|збрехати|вибачитися|спізнитися на автобус|програти гру}\ntell a lie {збрехати|шуміти|зробити послугу|вибачитися|спізнитися на автобус|програти гру}\nsay sorry {вибачитися|шуміти|зробити послугу|збрехати|спізнитися на автобус|програти гру}\nmiss the bus {спізнитися на автобус|шуміти|зробити послугу|збрехати|вибачитися|програти гру}\nlose a game {програти гру|шуміти|зробити послугу|збрехати|вибачитися|спізнитися на автобус}"}], "s7": [{"type": "gap", "instruction": "Встав правильне слово з пари в дужках.", "text": "Could you [tell] (say / tell) me your address?\nI’ve had this phone [for] (since / for) three years.\nWe [did] (made / did) the shopping on Saturday morning.\nDid you [remind] (remind / remember) Tom about the party?"}, {"type": "gap", "instruction": "Переклади англійською.", "text": "Я роблю домашнє завдання щовечора → [I do my homework every evening/I do homework every evening]\nВона сказала мені правду → [She told me the truth]\nМи знаємо одне одного вже три роки → [We have known each other for three years/We’ve known each other for three years]\nМожеш позичити мені свій зошит? → [Can you lend me your notebook?/Could you lend me your notebook?/Can you lend me your exercise book?/Could you lend me your exercise book?]\nЯ не хочу пропустити початок фільму → [I don’t want to miss the beginning of the film/I do not want to miss the beginning of the film/I don’t want to miss the start of the film/I do not want to miss the start of the film/I don’t want to miss the beginning of the movie/I don’t want to miss the start of the movie]"}], "s8": [{"type": "choice", "instruction": "НМТ Text C: My first job. Обери правильний варіант (A-D).", "text": "Last summer I {got|made|did|won} a part-time job in a café.\nOn my first day the manager {told|said|spoke|explained} me the rules.\nI {made|did|had|got} a lot of mistakes with the coffee machine.\nI had to {borrow|lend|rent|owe} a black shirt from my cousin.\nOne morning I {missed|lost|left|passed} the bus and arrived late.\nI have saved a lot of money {since|for|from|during} June."}, {"type": "gap", "instruction": "Переклади англійською.", "text": "Нагадай мені про тест → [Remind me about the test/Please remind me about the test/Remind me about the test, please]\nЯ загубив ключі → [I lost my keys/I’ve lost my keys/I have lost my keys]\nВін завжди каже правду → [He always tells the truth]\nМи ухвалили рішення → [We made a decision/We have made a decision/We’ve made a decision]\nЯ сумую за бабусею → [I miss my grandma/I miss my granny/I miss my grandmother]\nЯ позичив книжку в Анни → [I borrowed a book from Anna/I borrowed the book from Anna]"}, {"type": "open", "instruction": "Письмо: дай розгорнуту відповідь.", "text": "Write three sentences about things you have done since September. Use since and for.\nTell a short story (4-5 sentences) about a day when you missed or lost something. Use at least three words from today’s pairs."}]}};</script>
+<script>
+(function(){var l=(document.cookie.match(/(?:^|; )murly_lang=(\w+)/)||[])[1];try{l=l||localStorage.getItem('murly:tlang')}catch(e){}l=l==='ru'?'ru':'uk';document.querySelectorAll('[data-pairs-'+l+']').forEach(function(b){b.dataset.pairs=b.getAttribute('data-pairs-'+l)});})();
+</script>
+<script>
+const $ = (id) => document.getElementById(id);
+const LIS = {};
+function say(w, rate) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; const v = speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang) && /Google|Natural|Libby|Sonia|Daniel/.test(x.name)) || speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang)); if (v) u.voice = v; u.rate = rate || .95; speechSynthesis.speak(u); } catch (e) { } }
+const sh = (a) => a.map((x) => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map((x) => x[1]);
+document.querySelectorAll('.voc div').forEach((d) => d.onclick = () => say(d.dataset.say));
+document.querySelectorAll('[data-play]').forEach((b) => b.onclick = () => say(LIS[b.dataset.play], b.dataset.slow ? .75 : .95));
+document.querySelectorAll('[data-stop]').forEach((b) => b.onclick = () => { try { speechSynthesis.cancel(); } catch (e) { } });
+document.querySelectorAll('.ch').forEach((q) => q.querySelectorAll('button').forEach((b) => b.onclick = () => { if (q.classList.contains('ok')) return; const ok = b.textContent === q.dataset.a; q.classList.toggle('ok', ok); q.classList.toggle('bad', !ok); if (ok) { const s = q.querySelector('.s'); if (s && s.textContent.includes('___')) { s.textContent = s.textContent.replace('___', q.dataset.a); } } }));
+const norm = (x) => x.toLowerCase().replace(/[’']/g, "'").replace(/[,;:"“”«»]/g, ' ').replace(/\s+/g, ' ').replace(/[.!?]$/, '').trim();
+document.querySelectorAll('.ty').forEach((r) => { const inp = r.querySelector('input'); const chk = () => { const ok = r.dataset.a.split('|').some((a) => norm(a) === norm(inp.value)); r.classList.toggle('ok', ok); r.classList.toggle('bad', !ok && inp.value.trim() !== ''); }; r.querySelector('button').onclick = chk; inp.onkeydown = (e) => { if (e.key === 'Enter') chk(); }; });
+document.querySelectorAll('[data-mt]').forEach((box) => { const pairs = JSON.parse(box.dataset.pairs); const L = sh(pairs.map((p) => p[0])), R = sh(pairs.map((p) => p[1])); let sel = null, done = 0, err = 0; box.innerHTML = L.map((w, i) => `<button type="button" data-w="${w}">${w}</button><button type="button" data-d="${R[i]}">${R[i]}</button>`).join('');
+  box.querySelectorAll('button').forEach((b) => b.onclick = () => { if (b.classList.contains('done')) return; if (!sel || (sel.dataset.w && b.dataset.w) || (sel.dataset.d && b.dataset.d)) { if (sel) sel.classList.remove('sel'); sel = b; b.classList.add('sel'); return; } const w = sel.dataset.w || b.dataset.w, d = sel.dataset.d || b.dataset.d; if (pairs.some((p) => p[0] === w && p[1] === d)) { sel.classList.add('done'); b.classList.add('done'); done++; say(w); if (done === pairs.length) document.querySelector(`[data-mtres="${box.dataset.mt}"]`).textContent = err ? `Done! Mistakes: ${err}` : 'Perfect!'; } else err++; sel.classList.remove('sel'); sel = null; }); });
+document.querySelectorAll('[data-vids]').forEach((box) => JSON.parse(box.dataset.vids).forEach(([id, title, ch, qs]) => { const d = document.createElement('div'); d.className = 'vid'; d.innerHTML = `<div class="frame"><button class="play" type="button" style="background-image:url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)"><span>PLAY</span></button></div><div class="info"><h3>${title}</h3><small>YouTube · ${ch}</small><ol>${qs.map((q) => `<li>${q}</li>`).join('')}</ol></div>`; d.querySelector('.play').onclick = (e) => { e.currentTarget.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&cc_load_policy=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${title}"></iframe>`; }; box.appendChild(d); }));
+document.querySelectorAll('[data-spin]').forEach((b) => { const list = JSON.parse(b.dataset.spin); let last = -1; b.onclick = () => { let i; do { i = Math.floor(Math.random() * list.length); } while (i === last && list.length > 1); last = i; document.getElementById(b.dataset.target).textContent = list[i]; }; });
+try { const k = 'murly:' + (window.MURLY_LESSON ? MURLY_LESSON.id : 'x') + ':hw'; const t = $('hwText'); if (t) { t.value = localStorage.getItem(k) || ''; t.oninput = () => localStorage.setItem(k, t.value); } } catch (e) { }
+const STAGES = [...document.querySelectorAll('.wrap > section[id]')];
+$('stages').innerHTML = STAGES.map((s) => `<a href="#${s.id}"><b>${s.querySelector('.lk-n').textContent}</b><span>${s.dataset.stage}</span><small>${s.dataset.min !== '0' ? s.dataset.min + ' min' : 'at home'}</small></a>`).join('');
+$('teacherBtn').onclick = (e) => { const on = document.body.classList.toggle('teacher'); e.currentTarget.textContent = on ? 'Student version' : 'Teacher version'; };
+</script>
+<script src="/game-lessons/kit.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Speak like a native: work idioms (C1) | Murly</title>
+<link rel="icon" href="/favicon.svg">
+<meta name="description" content="Вивчимо 12 поширених ідіом про роботу
+Послухаємо робочу нараду і знайдемо ідіоми в контексті
+Навчимося змінювати форму ідіом у реченні і доречно їх вж">
+<link rel="canonical" href="https://murly.com.ua/game-lessons/lib-idioms-c1.html">
+<style>
+:root{--paper:#F3F0EA;--ink:#17181C;--violet:#3D4A7A;--lav:#D9D3C7;--pink:#E9C9BC;--green:#D4E2CF;--white:#fff;--muted:#62646B;--accent:#B5482F}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+/* hero */
+.hero{background:linear-gradient(rgba(16,17,22,.5),rgba(16,17,22,.72)),url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1400&q=70&auto=format&fit=crop");color:#fff;padding:70px 18px 56px;text-align:center;position:relative;overflow:hidden}
+.hero .kicker{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#E9C9BC;font-weight:700}
+.hero .cr{position:absolute;right:12px;bottom:8px;font-size:11px;color:rgba(255,255,255,.6)}
+.hero h1{margin:8px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(36px,6vw,64px);letter-spacing:-.5px;font-weight:700}
+.hero h1 span{color:var(--pink);font-style:italic}
+.hero p{margin:12px 0 0;font-size:17px;color:#e6e2da}
+.hero .flags{display:flex;justify-content:center;gap:12px;margin-top:22px;flex-wrap:wrap}
+.hero .flags svg{width:40px;height:26px;border-radius:3px;opacity:.9}
+/* sections */
+section{margin-top:30px;background:var(--white);border-radius:18px;padding:28px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.05)}
+section h2{margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tag{font-family:"Segoe UI",system-ui,sans-serif;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--paper);color:var(--accent);text-transform:uppercase;letter-spacing:1px}
+.lk-n{display:inline-grid;place-items:center;width:42px;height:42px;background:var(--violet);color:#fff;border-radius:50%;font-size:21px;flex:none}
+.lk-mode{font-size:13px;font-weight:700;border:2px dashed var(--lav);color:var(--muted);padding:2px 10px;border-radius:999px}
+.lk-ins{font-size:17px;background:var(--paper);border-radius:12px;padding:10px 14px;margin:6px 0 18px}
+.lk-sub{margin:24px 0 10px;font-size:19px}
+.btn{font:inherit;font-weight:700;border:0;border-radius:999px;background:var(--ink);color:#fff;padding:10px 20px;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+.btn.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+/* teacher */
+.lk-tbtn{position:fixed;right:16px;top:70px;z-index:45;font:inherit;font-weight:800;border:2px solid var(--ink);background:var(--pink);padding:8px 14px;border-radius:12px;cursor:pointer}
+body.teacher .lk-tbtn{background:var(--green)}
+.lk-ans,.lk-tnote{display:none}
+body.teacher .lk-ans{display:block;margin-top:8px;font-weight:700;color:#1d5a12;background:var(--green);border-left:5px solid #5aa845;padding:6px 10px;font-size:15px;border-radius:6px}
+body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff3f7;border-left:5px solid #d9789a;padding:8px 12px;font-size:15px;border-radius:6px}
+/* overview */
+.lk-overview ul{font-size:17px;line-height:1.7;margin:6px 0 16px}
+.lk-stages{display:flex;flex-wrap:wrap;gap:8px}
+.lk-stages a{display:grid;border-radius:14px;padding:8px 12px;text-decoration:none;color:var(--ink);background:var(--paper);font-weight:700;min-width:100px}
+.lk-stages a span{text-transform:capitalize}
+.lk-stages a b{font-size:20px;color:var(--violet)}
+.lk-stages a small{font-weight:600;color:var(--muted)}
+/* warm-up */
+.taxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tax{background:var(--paper);border-radius:18px;padding:16px;display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center}
+.tax svg{width:56px;height:56px}
+.tax b{display:block;font-size:17px}
+.tax small{color:var(--muted);font-size:14px}
+.qs{display:grid;gap:10px;margin-top:18px}
+.qs div{background:var(--green);border-radius:14px;padding:10px 16px;font-size:18px;font-weight:600}
+.phr{background:#fff7e8;border-radius:14px;padding:12px 16px;margin-top:16px;font-size:15px}
+.phr ul{margin:6px 0 0;padding-left:18px}
+.fic{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:16px}
+.fic .c{background:#fff;border:2px solid #1B2140;border-radius:16px;padding:14px 16px;box-shadow:3px 3px 0 #1B2140}
+.fic .c b{display:block;font-size:18px;line-height:1.35;margin-bottom:8px}
+.fic .c .k{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.fic .c .k span{font-size:13px;background:#eef1fb;border-radius:999px;padding:3px 10px}
+.fic .c details{margin-top:8px;font-size:15px;color:#3b4160}
+.fic .c summary{cursor:pointer;font-weight:700;color:#534AB7}
+.fi-n{display:inline-flex;width:28px;height:28px;border-radius:50%;background:#2F4BA0;color:#fff;align-items:center;justify-content:center;font-size:14px;margin-right:6px}
+/* vocab */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:12px}
+.vc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:2px solid transparent;transition:border-color .2s,transform .2s}
+.vc:hover{border-color:var(--violet);transform:translateY(-2px)}
+.vc b{font-size:18px;display:flex;align-items:center;gap:8px}
+.vc b svg{width:20px;height:20px;flex:none;color:var(--violet)}
+.vc p{margin:6px 0 0;font-size:14px;color:var(--muted)}
+.vc em{display:block;margin-top:6px;font-size:14px;color:var(--violet);font-style:normal;font-weight:600}
+.vc.played{background:#e6ecfb}
+/* grammar */
+.gram{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.gb{border-radius:18px;padding:16px}
+.gb h3{margin:0 0 6px;font-size:19px}
+.gb .f{display:inline-block;background:#fff;border-radius:8px;padding:3px 10px;font-weight:800;margin:4px 0;font-family:Consolas,monospace;font-size:15px}
+.gb p{margin:6px 0 0;font-size:15px}
+.g1{background:var(--pink)}.g2{background:var(--lav)}.g3{background:var(--green)}.g4{background:#fbe7c6}
+.warn{margin-top:14px;background:var(--ink);color:#fff;border-radius:14px;padding:12px 16px;font-size:16px}
+.warn b{color:var(--pink)}
+.q{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:2px dashed var(--paper);font-size:18px}
+.q:last-child{border-bottom:0}
+.q .n{width:32px;height:32px;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;border-radius:50%;font-weight:800;font-size:15px}
+.opt{font:inherit;font-size:16px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:10px;padding:4px 12px;cursor:pointer;margin:0 2px}
+.opt.ok{background:var(--green);border-color:#5aa845}
+.opt.bad{background:var(--pink);animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+/* tour */
+.tour{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.law{border-radius:22px;overflow:hidden;background:var(--paper);display:flex;flex-direction:column}
+.law .pic{height:150px;display:grid;place-items:center;position:relative}
+.law .pic svg.ill{width:130px;height:130px}
+.law .pic svg.fl{position:absolute;left:14px;top:14px;width:46px;height:30px;border-radius:5px;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.law .pic .no{position:absolute;right:14px;top:14px;background:var(--ink);color:#fff;font-weight:800;border-radius:999px;padding:2px 10px;font-size:13px}
+.law .body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.law h3{margin:0;font-size:20px}
+.law .where{font-size:13px;font-weight:800;color:var(--violet);text-transform:uppercase;letter-spacing:1px}
+.law p{margin:0;font-size:16px}
+.law .why{font-size:14px;color:var(--muted)}
+.law .dq{margin-top:auto;background:#fff;border-radius:12px;padding:8px 12px;font-weight:700;font-size:15px}
+.law .lsn{font:inherit;font-size:13px;font-weight:700;background:none;border:0;color:var(--violet);cursor:pointer;padding:0;text-align:left}
+/* game */
+.game{max-width:720px;margin:0 auto;text-align:center}
+.score{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.score span{background:var(--paper);border-radius:999px;padding:6px 16px;font-weight:800}
+.stmt{background:var(--ink);color:#fff;border-radius:22px;padding:28px 24px;min-height:150px;display:grid;place-items:center;font-size:23px;font-weight:700;position:relative}
+.stmt small{position:absolute;top:12px;left:18px;font-size:13px;color:var(--lav);font-weight:700}
+.choose{display:flex;justify-content:center;gap:14px;margin:18px 0}
+.choose button{font:inherit;font-size:18px;font-weight:700;border:2px solid var(--ink);border-radius:999px;padding:12px 28px;cursor:pointer}
+.choose .bl{background:var(--green)}.choose .bm{background:var(--pink)}
+.choose button:disabled{opacity:.5;cursor:default}
+.verdict{min-height:70px;font-size:17px;background:var(--paper);border-radius:16px;padding:12px 16px;text-align:left}
+.verdict b.r{color:#2d7a1d}.verdict b.w{color:#b23a62}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.dots i{width:14px;height:14px;border-radius:50%;background:var(--paper)}
+.dots i.r{background:#7cc663}.dots i.w{background:#e47b9f}.dots i.c{outline:3px solid var(--violet)}
+.final{font-size:22px;font-weight:800;color:var(--violet)}
+/* invent */
+.inv{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.frames{display:grid;gap:10px}
+.frames label{font-size:14px;font-weight:700;color:var(--muted)}
+.frames select,.frames input{font:inherit;width:100%;padding:8px 10px;border:2px solid var(--lav);border-radius:10px;background:#fff}
+.poster{background:var(--paper);border:3px solid var(--ink);border-radius:20px;padding:22px;text-align:center;min-height:260px;display:flex;flex-direction:column;gap:10px;justify-content:center}
+.poster .seal{width:70px;height:70px;margin:0 auto}
+.poster h3{margin:0;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--violet)}
+.poster .rule{font-size:22px;font-weight:800}
+.poster .pen{font-size:16px;color:var(--muted)}
+.ideas{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ideas span{background:var(--pink);border-radius:999px;padding:5px 12px;font-size:14px;font-weight:600}
+/* roleplay */
+.rp{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.role{border-radius:20px;padding:18px}
+.role h3{margin:0 0 6px;display:flex;align-items:center;gap:10px}
+.role h3 svg{width:42px;height:42px}
+.role ul{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.r1{background:var(--lav)}.r2{background:var(--green)}
+.scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:16px}
+.sc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:3px solid transparent}
+.sc.on{border-color:var(--violet);background:#fff}
+.sc b{display:block;font-size:17px;margin-bottom:4px}
+.sc p{margin:0;font-size:15px}
+.timer{font-size:40px;font-weight:800;text-align:center;margin:14px 0 6px;color:var(--violet)}
+.ctr{text-align:center}
+/* homework */
+.hwb{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hwc{background:var(--paper);border-radius:18px;padding:18px}
+.hwc h3{margin:0 0 8px}
+.hwc ol,.hwc ul{margin:6px 0 0;padding-left:20px;line-height:1.7}
+.hwc textarea{width:100%;min-height:150px;font:inherit;border:2px solid var(--lav);border-radius:12px;padding:10px;margin-top:10px}
+.end{text-align:center;background:var(--ink);color:#fff;box-shadow:none}
+.end h2{justify-content:center}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(140px);background:var(--ink);color:#fff;font-weight:800;padding:12px 22px;border-radius:14px;transition:transform .3s;z-index:50}
+.toast.show{transform:translateX(-50%) translateY(0)}
+/* photos */
+.ph{margin:0}
+.ph img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;background:var(--paper)}
+.ph figcaption{font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.2px}
+.tax{grid-template-columns:1fr !important;padding:12px !important}
+.law .pic{height:auto !important;display:block !important;padding:0;position:relative}
+.law .pic .ph img{border-radius:0;aspect-ratio:16/10;transition:filter .5s}
+.law .pic .ph figcaption{padding:4px 12px 0}
+.law.hide .pic .ph img{filter:blur(10px) grayscale(.6)}
+.law.hide .reveal-body,.law.hide .fl,.law.hide .where{visibility:hidden}
+.law .clue{font-size:15px;font-style:italic;color:var(--ink)}
+.law .gc{display:flex;flex-wrap:wrap;gap:6px}
+.law .gc button{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:4px 12px;cursor:pointer}
+.law .gc button.ok{background:var(--green)}.law .gc button.bad{background:var(--pink)}
+.law:not(.hide) .guess{display:none}
+.fair{display:grid;gap:4px;background:#fff;border-radius:12px;padding:8px 12px}
+.fair .ends{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.fair input{width:100%;accent-color:var(--accent)}
+.fair output{font-size:14px;font-weight:700;color:var(--accent)}
+.gph{max-width:720px;margin:0 auto 12px}
+.gph img{aspect-ratio:21/9}
+.fine{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.fq{background:var(--paper);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.fq h3{margin:0;font-size:18px}
+.fq .opts{display:flex;flex-wrap:wrap;gap:6px}
+.fq .opts button{font:inherit;font-size:14px;font-weight:700;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 12px;cursor:pointer}
+.fq .opts button.ok{background:var(--green)}.fq .opts button.bad{background:var(--pink)}
+.fq .res{font-size:15px;min-height:22px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{position:relative;aspect-ratio:16/9;background:#111}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;cursor:pointer;background:#111 center/cover;display:grid;place-items:center}
+.vid .play span{background:rgba(0,0,0,.7);color:#fff;font-weight:700;border-radius:999px;padding:10px 20px;font-size:15px;letter-spacing:1px}
+.vid .info{padding:14px 16px}
+.vid .info h3{margin:0 0 2px;font-size:18px}
+.vid .info small{color:var(--muted)}
+.vid .info ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+@media(max-width:760px){.inv,.rp,.hwb{grid-template-columns:1fr}.lk-tbtn{top:auto;bottom:70px}}
+
+.pr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.pb{border-radius:18px;padding:16px 18px}
+.pb h3{margin:0;font-family:Georgia,serif;font-size:30px}
+.pb .m{font-size:15px;color:var(--muted);margin:2px 0 8px}
+.pb .chips{display:flex;flex-wrap:wrap;gap:6px}
+.pb .chips span{background:#fff;border-radius:999px;padding:4px 11px;font-size:14px;font-weight:600}
+.pb ul{margin:10px 0 0;padding-left:18px;font-size:15px}
+.p-in{background:#DCE6F5}.p-at{background:#F3D9CF}.p-on{background:#D4E2CF}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-size:15px;margin-top:10px}
+.ex div{background:var(--paper);border-radius:10px;padding:8px 12px}
+.ex b{color:var(--accent)}
+.q{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.q .n{font-weight:800;color:var(--violet);min-width:24px}
+.q .gap{display:inline-block;min-width:44px;border-bottom:2px solid var(--ink);text-align:center;font-weight:800}
+.q .opts{margin-left:auto;display:flex;gap:6px}
+.q .opts button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 14px;cursor:pointer}
+.q.ok{background:#DDEED7}.q.ok .gap{color:#2F7A3B}
+.q.bad{background:#F6DAD3}
+.score{font-weight:800;margin-top:12px}
+.text{font-size:18px;line-height:1.75;background:var(--paper);border-radius:16px;padding:18px 22px}
+.text h3{margin:0 0 6px;font-family:Georgia,serif;font-size:24px}
+.text p{margin:0 0 12px}
+.text.hl mark{background:#F3D9CF;border-radius:4px;padding:0 3px;font-weight:700}
+.tf{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:9px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.tf .opts{margin-left:auto;display:flex;gap:6px}
+.tf button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.tf.ok{background:#DDEED7}.tf.bad{background:#F6DAD3}
+.disc{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px;margin-top:6px}
+.disc div{background:var(--green);border-radius:14px;padding:12px 16px;font-size:17px;font-weight:600}
+.disc div i{font-style:normal;color:var(--violet);margin-right:6px}
+.spin{text-align:center;margin-top:16px}
+.spin .card{display:inline-block;min-height:80px;min-width:min(560px,100%);background:var(--ink);color:#fff;border-radius:18px;padding:20px 24px;font-size:22px;font-weight:700;margin-bottom:12px}
+@media(max-width:700px){.ex{grid-template-columns:1fr}}
+
+.hero{background-size:cover!important;background-position:center!important}
+.voc{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.voc div{background:var(--paper);border-radius:14px;padding:10px 14px;cursor:pointer;border:2px solid transparent}
+.voc div:hover{border-color:var(--violet)}
+.voc b{display:block;font-size:18px}.voc span{display:block;color:var(--accent);font-weight:700;font-size:15px}.voc em{display:block;font-size:14px;color:var(--muted);margin-top:3px}
+.mt{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:10px}
+.mt button{font:inherit;font-size:16px;text-align:left;border:2px solid var(--ink);background:#fff;border-radius:14px;padding:9px 14px;cursor:pointer}
+.mt button.sel{background:#FFE7A8}.mt button.done{background:#CDE8C6;border-color:#4C9A5B;cursor:default}
+.ch{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ch .n{font-weight:800;color:var(--violet);min-width:24px}
+.ch .o{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.ch .o button{font:inherit;font-size:15px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.ch.ok{background:#DDEED7}.ch.bad{background:#F6DAD3}
+.ty{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ty input{font:inherit;border:2px solid var(--ink);border-radius:10px;padding:4px 10px;width:220px}
+.ty.ok{background:#DDEED7}.ty.bad{background:#F6DAD3}
+.ty small{color:var(--muted)}
+.photo{width:100%;height:300px;object-fit:cover;border-radius:16px;display:block}
+.cap{font-size:11px;color:var(--muted);margin:4px 0 12px}
+.pics{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.pics figure{margin:0;background:var(--paper);border-radius:16px;overflow:hidden}
+.pics img{width:100%;height:170px;object-fit:cover;display:block}
+.pics figcaption{padding:8px 12px;font-weight:700}
+.pics small{display:block;font-weight:400;font-size:10px;color:var(--muted)}
+.lis{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:8px 0 14px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{aspect-ratio:16/9;background:#000;position:relative}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;background-size:cover;background-position:center;cursor:pointer;display:grid;place-items:center}
+.vid .play span{background:#E5484D;color:#fff;font-weight:800;border-radius:12px;padding:10px 20px}
+.vid .info{padding:12px 16px}.vid h3{margin:0;font-size:18px}.vid small{color:var(--muted)}
+.vid ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th,.tbl td{border:1px solid #ddd;padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--paper)}
+@media(max-width:700px){.mt{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="/game-lessons/kit.css">
+</head>
+<body>
+<header class="hero">
+  <div class="kicker">C1 · adults · Ідіоми · Робота</div>
+  <h1>Speak like a native: work idioms</h1>
+  <p>C1 · 7 parts · 60 min</p>
+  <span class="cr">Photo: Unsplash</span>
+</header>
+<button class="lk-tbtn" id="teacherBtn" type="button">Teacher version</button>
+<div class="wrap">
+  <section class="lk-overview">
+    <h2>In this lesson you will:</h2>
+    <ul><li>Вивчимо 12 поширених ідіом про роботу
+Послухаємо робочу нараду і знайдемо ідіоми в контексті
+Навчимося змінювати форму ідіом у реченні і доречно їх вживати
+Потренуємо їх у розмові і в робочому повідомленні</li></ul>
+    <div class="lk-stages" id="stages"></div>
+  </section>
+  <section id="s1" data-stage="warm-up" data-min="5">
+    <h2><span class="lk-n">1</span>Warm-up <span class="tag">warm-up</span><span class="lk-mode">teacher + student</span></h2>
+<div class="qs"><div>Do you use idioms in your own language? Give an example.</div><div>Why do you think idioms are hard to learn?</div></div>
+    <h3 class="lk-sub">Guess the meaning.</h3><div class="ch" data-a="let’s stop working for today"><span class="n">1</span><span class="s">"Let’s call it a day" probably means ___.</span><span class="o"><button type="button">let’s phone someone</button><button type="button">let’s name a holiday</button><button type="button">let’s stop working for today</button></span></div>
+<div class="ch" data-a="it’s your turn to act"><span class="n">2</span><span class="s">"The ball is in your court" probably means ___.</span><span class="o"><button type="button">you are good at sport</button><button type="button">it’s your turn to act</button><button type="button">you have lost the game</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; let’s stop working for today · it’s your turn to act"><b>Відповіді:</b> let’s stop working for today · it’s your turn to act</p>
+    <p class="lk-tnote" data-ru="Попросіть учня навести українську ідіому про роботу і пояснити її англійською. Потім 2 питання на здогадку. Не давайте правильних відповідей одразу, нехай учень пояснить логіку.&lt;br&gt;">Попросіть учня навести українську ідіому про роботу і пояснити її англійською. Потім 2 питання на здогадку. Не давайте правильних відповідей одразу, нехай учень пояснить логіку.<br></p>
+  </section>
+  <section id="s2" data-stage="vocabulary" data-min="10">
+    <h2><span class="lk-n">2</span>Vocabulary <span class="tag">vocabulary</span><span class="lk-mode">teacher + student</span></h2>
+<div class="voc"><div data-say="to cut corners. "><b>to cut corners</b><span><span data-tr-uk="халтурити, економити на якості" data-tr-ru="халтурити, економити на якості">халтурити, економити на якості</span></span><em></em></div>
+<div data-say="to call it a day. "><b>to call it a day</b><span><span data-tr-uk="закінчити на сьогодні" data-tr-ru="закінчити на сьогодні">закінчити на сьогодні</span></span><em></em></div>
+<div data-say="to be on the same page. "><b>to be on the same page</b><span><span data-tr-uk="однаково розуміти ситуацію" data-tr-ru="однаково розуміти ситуацію">однаково розуміти ситуацію</span></span><em></em></div>
+<div data-say="to think outside the box. "><b>to think outside the box</b><span><span data-tr-uk="мислити нестандартно" data-tr-ru="мислити нестандартно">мислити нестандартно</span></span><em></em></div>
+<div data-say="the ball is in your court. "><b>the ball is in your court</b><span><span data-tr-uk="тепер твій хід" data-tr-ru="тепер твій хід">тепер твій хід</span></span><em></em></div>
+<div data-say="to get the ball rolling. "><b>to get the ball rolling</b><span><span data-tr-uk="почати, запустити процес" data-tr-ru="почати, запустити процес">почати, запустити процес</span></span><em></em></div>
+<div data-say="to pull your weight. "><b>to pull your weight</b><span><span data-tr-uk="робити свою частину роботи" data-tr-ru="робити свою частину роботи">робити свою частину роботи</span></span><em></em></div>
+<div data-say="back to the drawing board. "><b>back to the drawing board</b><span><span data-tr-uk="почати все спочатку" data-tr-ru="почати все спочатку">почати все спочатку</span></span><em></em></div>
+<div data-say="a steep learning curve. "><b>a steep learning curve</b><span><span data-tr-uk="швидке і складне навчання" data-tr-ru="швидке і складне навчання">швидке і складне навчання</span></span><em></em></div>
+<div data-say="to go the extra mile. "><b>to go the extra mile</b><span><span data-tr-uk="зробити більше, ніж треба" data-tr-ru="зробити більше, ніж треба">зробити більше, ніж треба</span></span><em></em></div>
+<div data-say="to be snowed under. "><b>to be snowed under</b><span><span data-tr-uk="бути завваленим роботою" data-tr-ru="бути завваленим роботою">бути завваленим роботою</span></span><em></em></div>
+<div data-say="to touch base. "><b>to touch base</b><span><span data-tr-uk="коротко зв’язатися, звіритися" data-tr-ru="коротко зв’язатися, звіритися">коротко зв’язатися, звіритися</span></span><em></em></div></div>
+    <div class="mt" data-mt="m2" data-pairs="[[&quot;to cut corners&quot;, &quot;халтурити, економити на якості&quot;], [&quot;to call it a day&quot;, &quot;закінчити на сьогодні&quot;], [&quot;to be on the same page&quot;, &quot;однаково розуміти ситуацію&quot;], [&quot;to think outside the box&quot;, &quot;мислити нестандартно&quot;], [&quot;the ball is in your court&quot;, &quot;тепер твій хід&quot;], [&quot;to get the ball rolling&quot;, &quot;почати, запустити процес&quot;], [&quot;to pull your weight&quot;, &quot;робити свою частину роботи&quot;], [&quot;back to the drawing board&quot;, &quot;почати все спочатку&quot;]]"></div><div class="score" data-mtres="m2"></div>
+    <h3 class="lk-sub">Match the idioms with their meanings.</h3><div class="ch" data-a="to do something badly to save time or money"><span class="n">1</span><span class="s">to cut corners ___</span><span class="o"><button type="button">to do your fair share of work</button><button type="button">to start again after a failure</button><button type="button">to do more than is expected</button><button type="button">to have far too much work</button><button type="button">to make brief contact to check progress</button><button type="button">to do something badly to save time or money</button></span></div>
+<div class="ch" data-a="to do your fair share of work"><span class="n">2</span><span class="s">to pull your weight ___</span><span class="o"><button type="button">to do your fair share of work</button><button type="button">to start again after a failure</button><button type="button">to do more than is expected</button><button type="button">to make brief contact to check progress</button><button type="button">to have far too much work</button><button type="button">to do something badly to save time or money</button></span></div>
+<div class="ch" data-a="to start again after a failure"><span class="n">3</span><span class="s">back to the drawing board ___</span><span class="o"><button type="button">to make brief contact to check progress</button><button type="button">to start again after a failure</button><button type="button">to do something badly to save time or money</button><button type="button">to do more than is expected</button><button type="button">to do your fair share of work</button><button type="button">to have far too much work</button></span></div>
+<div class="ch" data-a="to do more than is expected"><span class="n">4</span><span class="s">to go the extra mile ___</span><span class="o"><button type="button">to make brief contact to check progress</button><button type="button">to start again after a failure</button><button type="button">to do more than is expected</button><button type="button">to have far too much work</button><button type="button">to do something badly to save time or money</button><button type="button">to do your fair share of work</button></span></div>
+<div class="ch" data-a="to have far too much work"><span class="n">5</span><span class="s">to be snowed under ___</span><span class="o"><button type="button">to make brief contact to check progress</button><button type="button">to start again after a failure</button><button type="button">to do something badly to save time or money</button><button type="button">to have far too much work</button><button type="button">to do more than is expected</button><button type="button">to do your fair share of work</button></span></div>
+<div class="ch" data-a="to make brief contact to check progress"><span class="n">6</span><span class="s">to touch base ___</span><span class="o"><button type="button">to start again after a failure</button><button type="button">to do your fair share of work</button><button type="button">to do something badly to save time or money</button><button type="button">to do more than is expected</button><button type="button">to have far too much work</button><button type="button">to make brief contact to check progress</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; to do something badly to save time or money · to do your fair share of work · to start again after a failure · to do more than is expected · to have far too much work · to make brief contact to check progress"><b>Відповіді:</b> to do something badly to save time or money · to do your fair share of work · to start again after a failure · to do more than is expected · to have far too much work · to make brief contact to check progress</p>
+    <h3 class="lk-sub">Would you use it to praise or to criticise a colleague?</h3><div class="ch" data-a="Praise"><span class="n">1</span><span class="s">goes the extra mile ___</span><span class="o"><button type="button">Criticise</button><button type="button">Praise</button></span></div>
+<div class="ch" data-a="Criticise"><span class="n">2</span><span class="s">cuts corners ___</span><span class="o"><button type="button">Praise</button><button type="button">Criticise</button></span></div>
+<div class="ch" data-a="Praise"><span class="n">3</span><span class="s">thinks outside the box ___</span><span class="o"><button type="button">Criticise</button><button type="button">Praise</button></span></div>
+<div class="ch" data-a="Criticise"><span class="n">4</span><span class="s">doesn’t pull their weight ___</span><span class="o"><button type="button">Criticise</button><button type="button">Praise</button></span></div>
+<div class="ch" data-a="Praise"><span class="n">5</span><span class="s">always pulls their weight ___</span><span class="o"><button type="button">Praise</button><button type="button">Criticise</button></span></div>
+<div class="ch" data-a="Criticise"><span class="n">6</span><span class="s">calls it a day at three o’clock ___</span><span class="o"><button type="button">Criticise</button><button type="button">Praise</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; Praise · Criticise · Praise · Criticise · Praise · Criticise"><b>Відповіді:</b> Praise · Criticise · Praise · Criticise · Praise · Criticise</p>
+    <p class="lk-tnote" data-ru="Розберіть ідіоми, звертаючи увагу на образ (drawing board = креслярська дошка, snowed under = засипаний снігом). Вправи 5-6 хв. Попросіть учня описати колегу (без імен), використавши 2 ідіоми.&lt;br&gt;">Розберіть ідіоми, звертаючи увагу на образ (drawing board = креслярська дошка, snowed under = засипаний снігом). Вправи 5-6 хв. Попросіть учня описати колегу (без імен), використавши 2 ідіоми.<br></p>
+  </section>
+  <section id="s3" data-stage="listening" data-min="15">
+    <h2><span class="lk-n">3</span>Listening <span class="tag">listening</span><span class="lk-mode">teacher + student</span></h2>
+<div class="text"><p><b>Before you listen:</b> a design team has received bad news from a client. What do you think the manager will say?</p></div>
+    <div class="text"><h3>A team meeting</h3><p class="lk-ins">Your teacher reads the dialogue (or plays it). Listen first, then read.</p><details><summary>Show the script</summary><p>Manager: Right, let’s get the ball rolling. The client didn’t like our first design.</p><p>Emma: So it’s back to the drawing board?</p><p>Manager: I’m afraid so. And this time we can’t cut corners. They noticed the small mistakes.</p><p>Mark: To be fair, the deadline was crazy. Some of us really went the extra mile.</p><p>Manager: I know, and I appreciate it. But we need everyone to pull their weight this time.</p><p>Emma: Can we try something completely different? Let’s think outside the box.</p><p>Manager: Great. What about our new designer, Sam? Is he settling in?</p><p>Mark: He’s doing well, but it’s a steep learning curve for him. And he’s snowed under with the other project.</p><p>Manager: Then let’s not overload him. Mark, could you touch base with him on Wednesday?</p><p>Mark: Sure, no problem.</p><p>Manager: Send me your ideas by Friday. Once we send the new version, the ball is in their court.</p><p>Emma: Sounds good. Are we all on the same page?</p><p>Manager: I think so. It’s six o’clock, let’s call it a day.</p></details></div>
+    <h3 class="lk-sub">Gist: listen once and choose.</h3><div class="ch" data-a="redo the design for the client"><span class="n">1</span><span class="s">The team has to ___.</span><span class="o"><button type="button">redo the design for the client</button><button type="button">hire a new manager</button><button type="button">plan an office party</button></span></div>
+<div class="ch" data-a="agrees on the next steps"><span class="n">2</span><span class="s">At the end of the meeting, the team ___.</span><span class="o"><button type="button">argues about the deadline</button><button type="button">decides to lose the client</button><button type="button">agrees on the next steps</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; redo the design for the client · agrees on the next steps"><b>Відповіді:</b> redo the design for the client · agrees on the next steps</p>
+    <h3 class="lk-sub">Detail: listen again. True or False?</h3><div class="ch" data-a="True"><span class="n">1</span><span class="s">The client noticed small mistakes in the first design.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="False"><span class="n">2</span><span class="s">Mark thinks nobody worked hard on the first version.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="False"><span class="n">3</span><span class="s">Sam is finding his new job easy.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="True"><span class="n">4</span><span class="s">Mark will check in with Sam on Wednesday.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="False"><span class="n">5</span><span class="s">The team must send their ideas by Monday.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; True · False · False · True · False"><b>Відповіді:</b> True · False · False · True · False</p>
+    <p class="lk-tnote" data-ru="Перше прослуховування: про що нарада. Друге: деталі. Потім попросіть учня виписати всі ідіоми, які він почув (їх 12), і пояснити 3 з них своїми словами. 13-15 хв.&lt;br&gt;">Перше прослуховування: про що нарада. Друге: деталі. Потім попросіть учня виписати всі ідіоми, які він почув (їх 12), і пояснити 3 з них своїми словами. 13-15 хв.<br></p>
+  </section>
+  <section id="s4" data-stage="practice" data-min="10">
+    <h2><span class="lk-n">4</span>Language focus <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<div class="warn"><p>Ідіоми живуть у реченні: дієслово змінюється за часом і особою (<b>He never pulls his weight. / We cut corners last time. / I’ve been snowed under.</b>), а займенник за контекстом (<b>the ball is in your / their court</b>). Не перевантажуй мову ідіомами: одна-дві за розмову звучать природно, п’ять поспіль звучать як підручник.</p></div>
+    <h3 class="lk-sub">Choose the right idiom.</h3><div class="ch" data-a="call it a day"><span class="n">1</span><span class="s">I’m exhausted. Let’s ___.</span><span class="o"><button type="button">call it a day</button><button type="button">get the ball rolling</button></span></div>
+<div class="ch" data-a="their court"><span class="n">2</span><span class="s">We sent our offer. Now the ball is in ___.</span><span class="o"><button type="button">their court</button><button type="button">their box</button></span></div>
+<div class="ch" data-a="curve"><span class="n">3</span><span class="s">My first month in the new job was a steep learning ___.</span><span class="o"><button type="button">curve</button><button type="button">line</button></span></div>
+<div class="ch" data-a="page"><span class="n">4</span><span class="s">Before we start, let’s make sure we’re all on the same ___.</span><span class="o"><button type="button">book</button><button type="button">page</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; call it a day · their court · curve · page"><b>Відповіді:</b> call it a day · their court · curve · page</p>
+    <h3 class="lk-sub">Complete with the correct form of the verb.</h3><div class="ty" data-a="snowed"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Sorry I didn’t reply, I’ve been ___ under all week.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="pulls"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>He never ___ his weight, so the rest of us do his work.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="cut"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>We ___ corners on the last project and the client noticed.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="touch"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Let’s ___ base on Thursday to see where we are.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="goes"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>She always ___ the extra mile for her clients.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; snowed · pulls · cut · touch · goes"><b>Відповіді:</b> snowed · pulls · cut · touch · goes</p>
+    <h3 class="lk-sub">Переклади англійською, використовуючи ідіоми.</h3><div class="ty" data-a="The ball is in your court|Now the ball is in your court"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Тепер твій хід</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Let’s call it a day|Let us call it a day"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Давайте на сьогодні закінчимо</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="We’ll have to go back to the drawing board|We will have to go back to the drawing board|It’s back to the drawing board"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Нам доведеться почати все спочатку</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; The ball is in your court · Let’s call it a day · We’ll have to go back to the drawing board"><b>Відповіді:</b> The ball is in your court · Let’s call it a day · We’ll have to go back to the drawing board</p>
+    <p class="lk-tnote" data-ru="Наголосіть, що ідіоми не можна перекладати дослівно і змінювати в них іменники (не their box, не learning line). Вправи 6-7 хв. Переклад може мати інші коректні варіанти: зараховуйте їх вручну.&lt;br&gt;">Наголосіть, що ідіоми не можна перекладати дослівно і змінювати в них іменники (не their box, не learning line). Вправи 6-7 хв. Переклад може мати інші коректні варіанти: зараховуйте їх вручну.<br></p>
+  </section>
+  <section id="s5" data-stage="speaking" data-min="12">
+    <h2><span class="lk-n">5</span>Speaking <span class="tag">speaking</span><span class="lk-mode">teacher + student</span></h2>
+<div class="text"><p><b>Card A: the team lead.</b> A project is behind schedule. Start the meeting, explain the problem, ask who can help and agree on the next steps. Use at least four idioms.</p><p><b>Card B: the team member.</b> You are overloaded with another project and a colleague is not doing their part. Explain your situation honestly, suggest a solution and agree on when to check in.</p></div>
+    <div class="qs"><div>Role play: run a 3-minute meeting using your cards, then swap roles.</div><div>Have you ever had to go back to the drawing board? What happened?</div><div>Is it ever OK to cut corners?</div><div>Who in your life always goes the extra mile?</div></div>
+    <h3 class="lk-sub">Speaking: record a short story (1 minute).</h3><div class="qs"><div>Tell a story about a project at work or school that went wrong. Use at least three idioms from the lesson. (say it out loud)</div></div>
+    <p class="lk-tnote" data-ru="Рольова гра 6-7 хв, потім питання. Рахуйте, скільки ідіом учень ужив доречно, і відзначте ті, що прозвучали неприродно. Voice-завдання можна перенести в домашнє.&lt;br&gt;">Рольова гра 6-7 хв, потім питання. Рахуйте, скільки ідіом учень ужив доречно, і відзначте ті, що прозвучали неприродно. Voice-завдання можна перенести в домашнє.<br></p>
+  </section>
+  <section id="s6" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">6</span>Extra practice · якщо лишився час або на наступний урок <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Доповни ідіому одним словом.</h3><div class="ty" data-a="ball"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Let’s get the ___ rolling with a quick update.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="board"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>The client rejected everything, so it’s back to the drawing ___.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="box"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>We need someone who can think outside the ___.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="mile"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>She always goes the extra ___ for her team.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="under"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>I’m afraid I’m snowed ___ this week.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="page"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>We’re not on the same ___ about the budget.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; ball · board · box · mile · under · page"><b>Відповіді:</b> ball · board · box · mile · under · page</p>
+    <h3 class="lk-sub">Обери ідіому, яка підходить до ситуації.</h3><div class="ch" data-a="pull his weight"><span class="n">1</span><span class="s">Your colleague does very little while others do everything. He doesn’t ___.</span><span class="o"><button type="button">go the extra mile</button><button type="button">pull his weight</button><button type="button">think outside the box</button></span></div>
+<div class="ch" data-a="in their court"><span class="n">2</span><span class="s">You sent the proposal and now wait for the client’s decision. The ball is ___.</span><span class="o"><button type="button">back to the drawing board</button><button type="button">in their court</button><button type="button">on the same page</button></span></div>
+<div class="ch" data-a="Let’s call it a day"><span class="n">3</span><span class="s">It’s 7 pm and everyone is tired. ___.</span><span class="o"><button type="button">Let’s call it a day</button><button type="button">Let’s get the ball rolling</button><button type="button">Let’s cut corners</button></span></div>
+<div class="ch" data-a="a steep learning curve"><span class="n">4</span><span class="s">A new employee has to learn many things very fast. It’s ___.</span><span class="o"><button type="button">a drawing board</button><button type="button">a steep learning curve</button><button type="button">the extra mile</button></span></div>
+<div class="ch" data-a="cut corners"><span class="n">5</span><span class="s">The builders used cheap materials to finish faster. They ___.</span><span class="o"><button type="button">pulled their weight</button><button type="button">cut corners</button><button type="button">touched base</button></span></div>
+<div class="ch" data-a="touch base"><span class="n">6</span><span class="s">You want a quick call to check progress. Let’s ___.</span><span class="o"><button type="button">touch base</button><button type="button">be snowed under</button><button type="button">call it a day</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; pull his weight · in their court · Let’s call it a day · a steep learning curve · cut corners · touch base"><b>Відповіді:</b> pull his weight · in their court · Let’s call it a day · a steep learning curve · cut corners · touch base</p>
+    <h3 class="lk-sub">Переклади англійською, використовуючи ідіоми.</h3><div class="ty" data-a="He never pulls his weight"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Він ніколи не робить свою частину роботи</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="I’m snowed under|I am snowed under|I’m snowed under with work|I am snowed under with work"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Я завалена роботою</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Let’s get the ball rolling|Let us get the ball rolling"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Давайте почнемо</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="We need to think outside the box|We have to think outside the box"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Нам треба мислити нестандартно</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Let’s touch base on Monday|Let us touch base on Monday"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Давай звіримося в понеділок</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Don’t cut corners|Do not cut corners"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Не економ на якості</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; He never pulls his weight · I’m snowed under · Let’s get the ball rolling · We need to think outside the box · Let’s touch base on Monday · Don’t cut corners"><b>Відповіді:</b> He never pulls his weight · I’m snowed under · Let’s get the ball rolling · We need to think outside the box · Let’s touch base on Monday · Don’t cut corners</p>
+    <h3 class="lk-sub">Idioms: finish the phrase</h3><p class="lk-ins">Match the beginning of the idiom with the end</p>
+    <div class="spin"><div class="card" id="g67">Click "Next card"</div><br><button class="btn" type="button" data-spin="[&quot;to cut&quot;, &quot;to call it&quot;, &quot;to be on the same&quot;, &quot;to think outside&quot;, &quot;the ball is&quot;, &quot;to get the ball&quot;, &quot;to pull&quot;, &quot;back to&quot;, &quot;to go the extra&quot;, &quot;to touch&quot;]" data-target="g67">Next card</button></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; corners · a day · page · the box · in your court · rolling · your weight · the drawing board · mile · base"><b>Відповіді:</b> corners · a day · page · the box · in your court · rolling · your weight · the drawing board · mile · base</p>
+    <p class="lk-tnote" data-ru="10-12 хв наприкінці уроку або як розминка наступного разу. У choice спершу попросіть учня пояснити ситуацію своїми словами, а вже потім обрати ідіому. Переклад: «Давайте почнемо» можна перекласти й нейтрально (Let’s start), але завдання вимагає ідіоми, тож зараховуйте Let’s get the ball rolling. Гру зручно робити на швидкість: вчитель каже початок, учень закінчує.&lt;br&gt;">10-12 хв наприкінці уроку або як розминка наступного разу. У choice спершу попросіть учня пояснити ситуацію своїми словами, а вже потім обрати ідіому. Переклад: «Давайте почнемо» можна перекласти й нейтрально (Let’s start), але завдання вимагає ідіоми, тож зараховуйте Let’s get the ball rolling. Гру зручно робити на швидкість: вчитель каже початок, учень закінчує.<br></p>
+  </section>
+  <section id="s7" data-stage="wrap-up" data-min="8">
+    <h2><span class="lk-n">7</span>Wrap-up <span class="tag">wrap-up</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Writing: 80-100 words.</h3><div class="qs"><div>Write a message to your team in a work chat after a difficult week. Thank them, explain what happens next and use three idioms naturally.</div></div>
+    <p class="lk-tnote" data-ru="Учні пишуть 5-6 хв, потім вчитель коментує доречність ідіом і тон. Домашнє завдання: дописати повідомлення, записати voice-історію і помітити хоча б 2 ідіоми з уроку в серіалі, подкасті чи робочих листах.&lt;br&gt;">Учні пишуть 5-6 хв, потім вчитель коментує доречність ідіом і тон. Домашнє завдання: дописати повідомлення, записати voice-історію і помітити хоча б 2 ідіоми з уроку в серіалі, подкасті чи робочих листах.<br></p>
+    <h3 class="lk-sub">Homework plus: розкрий дужки.</h3><div class="ty" data-a="cut"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Last year we ___ (cut) corners and lost a big client.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="has been"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>She ___ (be) snowed under since Monday.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="pulls"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>If everyone ___ (pull) their weight, we’ll finish on time.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="called"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>We ___ (call) it a day at five yesterday.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="went"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>He ___ (go) the extra mile to help me last week.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="will touch|am going to touch"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>I ___ (touch) base with the client tomorrow.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; cut · has been · pulls · called · went · will touch"><b>Відповіді:</b> cut · has been · pulls · called · went · will touch</p>
+    <h3 class="lk-sub">З’єднай ідіому із ситуацією.</h3><div class="ch" data-a="The first plan failed completely."><span class="n">1</span><span class="s">It’s back to the drawing board. ___</span><span class="o"><button type="button">The first plan failed completely.</button><button type="button">Now it is your decision.</button><button type="button">We understand the plan in the same way.</button><button type="button">He did much more than was expected.</button><button type="button">I had to learn a lot very quickly.</button><button type="button">Let’s find an unusual solution.</button></span></div>
+<div class="ch" data-a="Now it is your decision."><span class="n">2</span><span class="s">The ball is in your court. ___</span><span class="o"><button type="button">Now it is your decision.</button><button type="button">He did much more than was expected.</button><button type="button">We understand the plan in the same way.</button><button type="button">Let’s find an unusual solution.</button><button type="button">I had to learn a lot very quickly.</button><button type="button">The first plan failed completely.</button></span></div>
+<div class="ch" data-a="I had to learn a lot very quickly."><span class="n">3</span><span class="s">It was a steep learning curve. ___</span><span class="o"><button type="button">He did much more than was expected.</button><button type="button">I had to learn a lot very quickly.</button><button type="button">Now it is your decision.</button><button type="button">Let’s find an unusual solution.</button><button type="button">We understand the plan in the same way.</button><button type="button">The first plan failed completely.</button></span></div>
+<div class="ch" data-a="We understand the plan in the same way."><span class="n">4</span><span class="s">We’re on the same page. ___</span><span class="o"><button type="button">The first plan failed completely.</button><button type="button">Let’s find an unusual solution.</button><button type="button">I had to learn a lot very quickly.</button><button type="button">Now it is your decision.</button><button type="button">He did much more than was expected.</button><button type="button">We understand the plan in the same way.</button></span></div>
+<div class="ch" data-a="Let’s find an unusual solution."><span class="n">5</span><span class="s">Let’s think outside the box. ___</span><span class="o"><button type="button">He did much more than was expected.</button><button type="button">I had to learn a lot very quickly.</button><button type="button">Let’s find an unusual solution.</button><button type="button">Now it is your decision.</button><button type="button">We understand the plan in the same way.</button><button type="button">The first plan failed completely.</button></span></div>
+<div class="ch" data-a="He did much more than was expected."><span class="n">6</span><span class="s">He went the extra mile. ___</span><span class="o"><button type="button">He did much more than was expected.</button><button type="button">Now it is your decision.</button><button type="button">Let’s find an unusual solution.</button><button type="button">I had to learn a lot very quickly.</button><button type="button">We understand the plan in the same way.</button><button type="button">The first plan failed completely.</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; The first plan failed completely. · Now it is your decision. · I had to learn a lot very quickly. · We understand the plan in the same way. · Let’s find an unusual solution. · He did much more than was expected."><b>Відповіді:</b> The first plan failed completely. · Now it is your decision. · I had to learn a lot very quickly. · We understand the plan in the same way. · Let’s find an unusual solution. · He did much more than was expected.</p>
+    <h3 class="lk-sub">Письмо: відповідай 3-5 реченнями.</h3><div class="qs"><div>Describe a colleague or classmate who always goes the extra mile. Use two more idioms.</div><div>Write a short email to your manager explaining that you are snowed under and suggesting a solution.</div><div>Which idiom from the lesson do you like most? When could you use it this week?</div></div>
+  </section>
+  <section class="end"><h2>Great job!</h2><p>See you next lesson.</p></section>
+</div>
+<div class="toast" id="toast"></div>
+<script>window.MURLY_LESSON={"id": "lib-idioms-c1", "title": "Speak like a native: work idioms", "homework": ["s1", "s2", "s3", "s4", "s6", "s7"], "hw": {"s1": [{"type": "choice", "instruction": "Guess the meaning.", "text": "\"Let’s call it a day\" probably means {let’s stop working for today|let’s name a holiday|let’s phone someone}.\n\"The ball is in your court\" probably means {it’s your turn to act|you are good at sport|you have lost the game}."}], "s2": [{"type": "choice", "instruction": "Match the idioms with their meanings.", "text": "to cut corners {to do something badly to save time or money|to do your fair share of work|to start again after a failure|to do more than is expected|to have far too much work|to make brief contact to check progress}\nto pull your weight {to do your fair share of work|to do something badly to save time or money|to start again after a failure|to do more than is expected|to have far too much work|to make brief contact to check progress}\nback to the drawing board {to start again after a failure|to do something badly to save time or money|to do your fair share of work|to do more than is expected|to have far too much work|to make brief contact to check progress}\nto go the extra mile {to do more than is expected|to do something badly to save time or money|to do your fair share of work|to start again after a failure|to have far too much work|to make brief contact to check progress}\nto be snowed under {to have far too much work|to do something badly to save time or money|to do your fair share of work|to start again after a failure|to do more than is expected|to make brief contact to check progress}\nto touch base {to make brief contact to check progress|to do something badly to save time or money|to do your fair share of work|to start again after a failure|to do more than is expected|to have far too much work}"}, {"type": "choice", "instruction": "Would you use it to praise or to criticise a colleague?", "text": "goes the extra mile {Praise|Criticise}\ncuts corners {Criticise|Praise}\nthinks outside the box {Praise|Criticise}\ndoesn’t pull their weight {Criticise|Praise}\nalways pulls their weight {Praise|Criticise}\ncalls it a day at three o’clock {Criticise|Praise}"}], "s3": [{"type": "choice", "instruction": "Gist: listen once and choose.", "text": "The team has to {redo the design for the client|plan an office party|hire a new manager}.\nAt the end of the meeting, the team {agrees on the next steps|argues about the deadline|decides to lose the client}."}, {"type": "choice", "instruction": "Detail: listen again. True or False?", "text": "The client noticed small mistakes in the first design. {True|False}\nMark thinks nobody worked hard on the first version. {False|True}\nSam is finding his new job easy. {False|True}\nMark will check in with Sam on Wednesday. {True|False}\nThe team must send their ideas by Monday. {False|True}"}], "s4": [{"type": "choice", "instruction": "Choose the right idiom.", "text": "I’m exhausted. Let’s {call it a day|get the ball rolling}.\nWe sent our offer. Now the ball is in {their court|their box}.\nMy first month in the new job was a steep learning {curve|line}.\nBefore we start, let’s make sure we’re all on the same {page|book}."}, {"type": "gap", "instruction": "Complete with the correct form of the verb.", "text": "Sorry I didn’t reply, I’ve been [snowed] under all week.\nHe never [pulls] his weight, so the rest of us do his work.\nWe [cut] corners on the last project and the client noticed.\nLet’s [touch] base on Thursday to see where we are.\nShe always [goes] the extra mile for her clients."}, {"type": "gap", "instruction": "Переклади англійською, використовуючи ідіоми.", "text": "Тепер твій хід → [The ball is in your court/Now the ball is in your court]\nДавайте на сьогодні закінчимо → [Let’s call it a day/Let us call it a day]\nНам доведеться почати все спочатку → [We’ll have to go back to the drawing board/We will have to go back to the drawing board/It’s back to the drawing board]"}], "s6": [{"type": "gap", "instruction": "Доповни ідіому одним словом.", "text": "Let’s get the [ball] rolling with a quick update.\nThe client rejected everything, so it’s back to the drawing [board].\nWe need someone who can think outside the [box].\nShe always goes the extra [mile] for her team.\nI’m afraid I’m snowed [under] this week.\nWe’re not on the same [page] about the budget."}, {"type": "choice", "instruction": "Обери ідіому, яка підходить до ситуації.", "text": "Your colleague does very little while others do everything. He doesn’t {pull his weight|go the extra mile|think outside the box}.\nYou sent the proposal and now wait for the client’s decision. The ball is {in their court|on the same page|back to the drawing board}.\nIt’s 7 pm and everyone is tired. {Let’s call it a day|Let’s get the ball rolling|Let’s cut corners}.\nA new employee has to learn many things very fast. It’s {a steep learning curve|the extra mile|a drawing board}.\nThe builders used cheap materials to finish faster. They {cut corners|touched base|pulled their weight}.\nYou want a quick call to check progress. Let’s {touch base|call it a day|be snowed under}."}, {"type": "gap", "instruction": "Переклади англійською, використовуючи ідіоми.", "text": "Він ніколи не робить свою частину роботи → [He never pulls his weight]\nЯ завалена роботою → [I’m snowed under/I am snowed under/I’m snowed under with work/I am snowed under with work]\nДавайте почнемо → [Let’s get the ball rolling/Let us get the ball rolling]\nНам треба мислити нестандартно → [We need to think outside the box/We have to think outside the box]\nДавай звіримося в понеділок → [Let’s touch base on Monday/Let us touch base on Monday]\nНе економ на якості → [Don’t cut corners/Do not cut corners]"}], "s7": [{"type": "open", "instruction": "Writing: 80-100 words.", "text": "Write a message to your team in a work chat after a difficult week. Thank them, explain what happens next and use three idioms naturally."}, {"type": "gap", "instruction": "Homework plus: розкрий дужки.", "text": "Last year we [cut] (cut) corners and lost a big client.\nShe [has been] (be) snowed under since Monday.\nIf everyone [pulls] (pull) their weight, we’ll finish on time.\nWe [called] (call) it a day at five yesterday.\nHe [went] (go) the extra mile to help me last week.\nI [will touch/am going to touch] (touch) base with the client tomorrow."}, {"type": "choice", "instruction": "З’єднай ідіому із ситуацією.", "text": "It’s back to the drawing board. {The first plan failed completely.|Now it is your decision.|I had to learn a lot very quickly.|We understand the plan in the same way.|Let’s find an unusual solution.|He did much more than was expected.}\nThe ball is in your court. {Now it is your decision.|The first plan failed completely.|I had to learn a lot very quickly.|We understand the plan in the same way.|Let’s find an unusual solution.|He did much more than was expected.}\nIt was a steep learning curve. {I had to learn a lot very quickly.|The first plan failed completely.|Now it is your decision.|We understand the plan in the same way.|Let’s find an unusual solution.|He did much more than was expected.}\nWe’re on the same page. {We understand the plan in the same way.|The first plan failed completely.|Now it is your decision.|I had to learn a lot very quickly.|Let’s find an unusual solution.|He did much more than was expected.}\nLet’s think outside the box. {Let’s find an unusual solution.|The first plan failed completely.|Now it is your decision.|I had to learn a lot very quickly.|We understand the plan in the same way.|He did much more than was expected.}\nHe went the extra mile. {He did much more than was expected.|The first plan failed completely.|Now it is your decision.|I had to learn a lot very quickly.|We understand the plan in the same way.|Let’s find an unusual solution.}"}, {"type": "open", "instruction": "Письмо: відповідай 3-5 реченнями.", "text": "Describe a colleague or classmate who always goes the extra mile. Use two more idioms.\nWrite a short email to your manager explaining that you are snowed under and suggesting a solution.\nWhich idiom from the lesson do you like most? When could you use it this week?"}]}};</script>
+<script>
+(function(){var l=(document.cookie.match(/(?:^|; )murly_lang=(\w+)/)||[])[1];try{l=l||localStorage.getItem('murly:tlang')}catch(e){}l=l==='ru'?'ru':'uk';document.querySelectorAll('[data-pairs-'+l+']').forEach(function(b){b.dataset.pairs=b.getAttribute('data-pairs-'+l)});})();
+</script>
+<script>
+const $ = (id) => document.getElementById(id);
+const LIS = {};
+function say(w, rate) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; const v = speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang) && /Google|Natural|Libby|Sonia|Daniel/.test(x.name)) || speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang)); if (v) u.voice = v; u.rate = rate || .95; speechSynthesis.speak(u); } catch (e) { } }
+const sh = (a) => a.map((x) => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map((x) => x[1]);
+document.querySelectorAll('.voc div').forEach((d) => d.onclick = () => say(d.dataset.say));
+document.querySelectorAll('[data-play]').forEach((b) => b.onclick = () => say(LIS[b.dataset.play], b.dataset.slow ? .75 : .95));
+document.querySelectorAll('[data-stop]').forEach((b) => b.onclick = () => { try { speechSynthesis.cancel(); } catch (e) { } });
+document.querySelectorAll('.ch').forEach((q) => q.querySelectorAll('button').forEach((b) => b.onclick = () => { if (q.classList.contains('ok')) return; const ok = b.textContent === q.dataset.a; q.classList.toggle('ok', ok); q.classList.toggle('bad', !ok); if (ok) { const s = q.querySelector('.s'); if (s && s.textContent.includes('___')) { s.textContent = s.textContent.replace('___', q.dataset.a); } } }));
+const norm = (x) => x.toLowerCase().replace(/[’']/g, "'").replace(/[,;:"“”«»]/g, ' ').replace(/\s+/g, ' ').replace(/[.!?]$/, '').trim();
+document.querySelectorAll('.ty').forEach((r) => { const inp = r.querySelector('input'); const chk = () => { const ok = r.dataset.a.split('|').some((a) => norm(a) === norm(inp.value)); r.classList.toggle('ok', ok); r.classList.toggle('bad', !ok && inp.value.trim() !== ''); }; r.querySelector('button').onclick = chk; inp.onkeydown = (e) => { if (e.key === 'Enter') chk(); }; });
+document.querySelectorAll('[data-mt]').forEach((box) => { const pairs = JSON.parse(box.dataset.pairs); const L = sh(pairs.map((p) => p[0])), R = sh(pairs.map((p) => p[1])); let sel = null, done = 0, err = 0; box.innerHTML = L.map((w, i) => `<button type="button" data-w="${w}">${w}</button><button type="button" data-d="${R[i]}">${R[i]}</button>`).join('');
+  box.querySelectorAll('button').forEach((b) => b.onclick = () => { if (b.classList.contains('done')) return; if (!sel || (sel.dataset.w && b.dataset.w) || (sel.dataset.d && b.dataset.d)) { if (sel) sel.classList.remove('sel'); sel = b; b.classList.add('sel'); return; } const w = sel.dataset.w || b.dataset.w, d = sel.dataset.d || b.dataset.d; if (pairs.some((p) => p[0] === w && p[1] === d)) { sel.classList.add('done'); b.classList.add('done'); done++; say(w); if (done === pairs.length) document.querySelector(`[data-mtres="${box.dataset.mt}"]`).textContent = err ? `Done! Mistakes: ${err}` : 'Perfect!'; } else err++; sel.classList.remove('sel'); sel = null; }); });
+document.querySelectorAll('[data-vids]').forEach((box) => JSON.parse(box.dataset.vids).forEach(([id, title, ch, qs]) => { const d = document.createElement('div'); d.className = 'vid'; d.innerHTML = `<div class="frame"><button class="play" type="button" style="background-image:url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)"><span>PLAY</span></button></div><div class="info"><h3>${title}</h3><small>YouTube · ${ch}</small><ol>${qs.map((q) => `<li>${q}</li>`).join('')}</ol></div>`; d.querySelector('.play').onclick = (e) => { e.currentTarget.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&cc_load_policy=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${title}"></iframe>`; }; box.appendChild(d); }));
+document.querySelectorAll('[data-spin]').forEach((b) => { const list = JSON.parse(b.dataset.spin); let last = -1; b.onclick = () => { let i; do { i = Math.floor(Math.random() * list.length); } while (i === last && list.length > 1); last = i; document.getElementById(b.dataset.target).textContent = list[i]; }; });
+try { const k = 'murly:' + (window.MURLY_LESSON ? MURLY_LESSON.id : 'x') + ':hw'; const t = $('hwText'); if (t) { t.value = localStorage.getItem(k) || ''; t.oninput = () => localStorage.setItem(k, t.value); } } catch (e) { }
+const STAGES = [...document.querySelectorAll('.wrap > section[id]')];
+$('stages').innerHTML = STAGES.map((s) => `<a href="#${s.id}"><b>${s.querySelector('.lk-n').textContent}</b><span>${s.dataset.stage}</span><small>${s.dataset.min !== '0' ? s.dataset.min + ' min' : 'at home'}</small></a>`).join('');
+$('teacherBtn').onclick = (e) => { const on = document.body.classList.toggle('teacher'); e.currentTarget.textContent = on ? 'Student version' : 'Teacher version'; };
+</script>
+<script src="/game-lessons/kit.js" defer></script>
+</body>
+</html>

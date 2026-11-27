@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What were you doing at 8 pm? (A2) | Murly</title>
+<link rel="icon" href="/favicon.svg">
+<meta name="description" content="Знаю, як утворити Past Continuous: was / were + -ing
+Розумію, що він описує дію в процесі в певний момент у минулому
+Вмію будувати заперечення і питан">
+<link rel="canonical" href="https://murly.com.ua/game-lessons/lib-gr-past-continuous.html">
+<style>
+:root{--paper:#F3F0EA;--ink:#17181C;--violet:#3D4A7A;--lav:#D9D3C7;--pink:#E9C9BC;--green:#D4E2CF;--white:#fff;--muted:#62646B;--accent:#B5482F}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+/* hero */
+.hero{background:linear-gradient(rgba(16,17,22,.5),rgba(16,17,22,.72)),url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1400&q=70&auto=format&fit=crop");color:#fff;padding:70px 18px 56px;text-align:center;position:relative;overflow:hidden}
+.hero .kicker{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#E9C9BC;font-weight:700}
+.hero .cr{position:absolute;right:12px;bottom:8px;font-size:11px;color:rgba(255,255,255,.6)}
+.hero h1{margin:8px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(36px,6vw,64px);letter-spacing:-.5px;font-weight:700}
+.hero h1 span{color:var(--pink);font-style:italic}
+.hero p{margin:12px 0 0;font-size:17px;color:#e6e2da}
+.hero .flags{display:flex;justify-content:center;gap:12px;margin-top:22px;flex-wrap:wrap}
+.hero .flags svg{width:40px;height:26px;border-radius:3px;opacity:.9}
+/* sections */
+section{margin-top:30px;background:var(--white);border-radius:18px;padding:28px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.05)}
+section h2{margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tag{font-family:"Segoe UI",system-ui,sans-serif;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--paper);color:var(--accent);text-transform:uppercase;letter-spacing:1px}
+.lk-n{display:inline-grid;place-items:center;width:42px;height:42px;background:var(--violet);color:#fff;border-radius:50%;font-size:21px;flex:none}
+.lk-mode{font-size:13px;font-weight:700;border:2px dashed var(--lav);color:var(--muted);padding:2px 10px;border-radius:999px}
+.lk-ins{font-size:17px;background:var(--paper);border-radius:12px;padding:10px 14px;margin:6px 0 18px}
+.lk-sub{margin:24px 0 10px;font-size:19px}
+.btn{font:inherit;font-weight:700;border:0;border-radius:999px;background:var(--ink);color:#fff;padding:10px 20px;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+.btn.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+/* teacher */
+.lk-tbtn{position:fixed;right:16px;top:70px;z-index:45;font:inherit;font-weight:800;border:2px solid var(--ink);background:var(--pink);padding:8px 14px;border-radius:12px;cursor:pointer}
+body.teacher .lk-tbtn{background:var(--green)}
+.lk-ans,.lk-tnote{display:none}
+body.teacher .lk-ans{display:block;margin-top:8px;font-weight:700;color:#1d5a12;background:var(--green);border-left:5px solid #5aa845;padding:6px 10px;font-size:15px;border-radius:6px}
+body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff3f7;border-left:5px solid #d9789a;padding:8px 12px;font-size:15px;border-radius:6px}
+/* overview */
+.lk-overview ul{font-size:17px;line-height:1.7;margin:6px 0 16px}
+.lk-stages{display:flex;flex-wrap:wrap;gap:8px}
+.lk-stages a{display:grid;border-radius:14px;padding:8px 12px;text-decoration:none;color:var(--ink);background:var(--paper);font-weight:700;min-width:100px}
+.lk-stages a span{text-transform:capitalize}
+.lk-stages a b{font-size:20px;color:var(--violet)}
+.lk-stages a small{font-weight:600;color:var(--muted)}
+/* warm-up */
+.taxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tax{background:var(--paper);border-radius:18px;padding:16px;display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center}
+.tax svg{width:56px;height:56px}
+.tax b{display:block;font-size:17px}
+.tax small{color:var(--muted);font-size:14px}
+.qs{display:grid;gap:10px;margin-top:18px}
+.qs div{background:var(--green);border-radius:14px;padding:10px 16px;font-size:18px;font-weight:600}
+.phr{background:#fff7e8;border-radius:14px;padding:12px 16px;margin-top:16px;font-size:15px}
+.phr ul{margin:6px 0 0;padding-left:18px}
+.fic{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:16px}
+.fic .c{background:#fff;border:2px solid #1B2140;border-radius:16px;padding:14px 16px;box-shadow:3px 3px 0 #1B2140}
+.fic .c b{display:block;font-size:18px;line-height:1.35;margin-bottom:8px}
+.fic .c .k{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.fic .c .k span{font-size:13px;background:#eef1fb;border-radius:999px;padding:3px 10px}
+.fic .c details{margin-top:8px;font-size:15px;color:#3b4160}
+.fic .c summary{cursor:pointer;font-weight:700;color:#534AB7}
+.fi-n{display:inline-flex;width:28px;height:28px;border-radius:50%;background:#2F4BA0;color:#fff;align-items:center;justify-content:center;font-size:14px;margin-right:6px}
+/* vocab */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:12px}
+.vc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:2px solid transparent;transition:border-color .2s,transform .2s}
+.vc:hover{border-color:var(--violet);transform:translateY(-2px)}
+.vc b{font-size:18px;display:flex;align-items:center;gap:8px}
+.vc b svg{width:20px;height:20px;flex:none;color:var(--violet)}
+.vc p{margin:6px 0 0;font-size:14px;color:var(--muted)}
+.vc em{display:block;margin-top:6px;font-size:14px;color:var(--violet);font-style:normal;font-weight:600}
+.vc.played{background:#e6ecfb}
+/* grammar */
+.gram{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.gb{border-radius:18px;padding:16px}
+.gb h3{margin:0 0 6px;font-size:19px}
+.gb .f{display:inline-block;background:#fff;border-radius:8px;padding:3px 10px;font-weight:800;margin:4px 0;font-family:Consolas,monospace;font-size:15px}
+.gb p{margin:6px 0 0;font-size:15px}
+.g1{background:var(--pink)}.g2{background:var(--lav)}.g3{background:var(--green)}.g4{background:#fbe7c6}
+.warn{margin-top:14px;background:var(--ink);color:#fff;border-radius:14px;padding:12px 16px;font-size:16px}
+.warn b{color:var(--pink)}
+.q{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:2px dashed var(--paper);font-size:18px}
+.q:last-child{border-bottom:0}
+.q .n{width:32px;height:32px;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;border-radius:50%;font-weight:800;font-size:15px}
+.opt{font:inherit;font-size:16px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:10px;padding:4px 12px;cursor:pointer;margin:0 2px}
+.opt.ok{background:var(--green);border-color:#5aa845}
+.opt.bad{background:var(--pink);animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+/* tour */
+.tour{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.law{border-radius:22px;overflow:hidden;background:var(--paper);display:flex;flex-direction:column}
+.law .pic{height:150px;display:grid;place-items:center;position:relative}
+.law .pic svg.ill{width:130px;height:130px}
+.law .pic svg.fl{position:absolute;left:14px;top:14px;width:46px;height:30px;border-radius:5px;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.law .pic .no{position:absolute;right:14px;top:14px;background:var(--ink);color:#fff;font-weight:800;border-radius:999px;padding:2px 10px;font-size:13px}
+.law .body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.law h3{margin:0;font-size:20px}
+.law .where{font-size:13px;font-weight:800;color:var(--violet);text-transform:uppercase;letter-spacing:1px}
+.law p{margin:0;font-size:16px}
+.law .why{font-size:14px;color:var(--muted)}
+.law .dq{margin-top:auto;background:#fff;border-radius:12px;padding:8px 12px;font-weight:700;font-size:15px}
+.law .lsn{font:inherit;font-size:13px;font-weight:700;background:none;border:0;color:var(--violet);cursor:pointer;padding:0;text-align:left}
+/* game */
+.game{max-width:720px;margin:0 auto;text-align:center}
+.score{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.score span{background:var(--paper);border-radius:999px;padding:6px 16px;font-weight:800}
+.stmt{background:var(--ink);color:#fff;border-radius:22px;padding:28px 24px;min-height:150px;display:grid;place-items:center;font-size:23px;font-weight:700;position:relative}
+.stmt small{position:absolute;top:12px;left:18px;font-size:13px;color:var(--lav);font-weight:700}
+.choose{display:flex;justify-content:center;gap:14px;margin:18px 0}
+.choose button{font:inherit;font-size:18px;font-weight:700;border:2px solid var(--ink);border-radius:999px;padding:12px 28px;cursor:pointer}
+.choose .bl{background:var(--green)}.choose .bm{background:var(--pink)}
+.choose button:disabled{opacity:.5;cursor:default}
+.verdict{min-height:70px;font-size:17px;background:var(--paper);border-radius:16px;padding:12px 16px;text-align:left}
+.verdict b.r{color:#2d7a1d}.verdict b.w{color:#b23a62}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.dots i{width:14px;height:14px;border-radius:50%;background:var(--paper)}
+.dots i.r{background:#7cc663}.dots i.w{background:#e47b9f}.dots i.c{outline:3px solid var(--violet)}
+.final{font-size:22px;font-weight:800;color:var(--violet)}
+/* invent */
+.inv{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.frames{display:grid;gap:10px}
+.frames label{font-size:14px;font-weight:700;color:var(--muted)}
+.frames select,.frames input{font:inherit;width:100%;padding:8px 10px;border:2px solid var(--lav);border-radius:10px;background:#fff}
+.poster{background:var(--paper);border:3px solid var(--ink);border-radius:20px;padding:22px;text-align:center;min-height:260px;display:flex;flex-direction:column;gap:10px;justify-content:center}
+.poster .seal{width:70px;height:70px;margin:0 auto}
+.poster h3{margin:0;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--violet)}
+.poster .rule{font-size:22px;font-weight:800}
+.poster .pen{font-size:16px;color:var(--muted)}
+.ideas{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ideas span{background:var(--pink);border-radius:999px;padding:5px 12px;font-size:14px;font-weight:600}
+/* roleplay */
+.rp{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.role{border-radius:20px;padding:18px}
+.role h3{margin:0 0 6px;display:flex;align-items:center;gap:10px}
+.role h3 svg{width:42px;height:42px}
+.role ul{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.r1{background:var(--lav)}.r2{background:var(--green)}
+.scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:16px}
+.sc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:3px solid transparent}
+.sc.on{border-color:var(--violet);background:#fff}
+.sc b{display:block;font-size:17px;margin-bottom:4px}
+.sc p{margin:0;font-size:15px}
+.timer{font-size:40px;font-weight:800;text-align:center;margin:14px 0 6px;color:var(--violet)}
+.ctr{text-align:center}
+/* homework */
+.hwb{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hwc{background:var(--paper);border-radius:18px;padding:18px}
+.hwc h3{margin:0 0 8px}
+.hwc ol,.hwc ul{margin:6px 0 0;padding-left:20px;line-height:1.7}
+.hwc textarea{width:100%;min-height:150px;font:inherit;border:2px solid var(--lav);border-radius:12px;padding:10px;margin-top:10px}
+.end{text-align:center;background:var(--ink);color:#fff;box-shadow:none}
+.end h2{justify-content:center}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(140px);background:var(--ink);color:#fff;font-weight:800;padding:12px 22px;border-radius:14px;transition:transform .3s;z-index:50}
+.toast.show{transform:translateX(-50%) translateY(0)}
+/* photos */
+.ph{margin:0}
+.ph img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;background:var(--paper)}
+.ph figcaption{font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.2px}
+.tax{grid-template-columns:1fr !important;padding:12px !important}
+.law .pic{height:auto !important;display:block !important;padding:0;position:relative}
+.law .pic .ph img{border-radius:0;aspect-ratio:16/10;transition:filter .5s}
+.law .pic .ph figcaption{padding:4px 12px 0}
+.law.hide .pic .ph img{filter:blur(10px) grayscale(.6)}
+.law.hide .reveal-body,.law.hide .fl,.law.hide .where{visibility:hidden}
+.law .clue{font-size:15px;font-style:italic;color:var(--ink)}
+.law .gc{display:flex;flex-wrap:wrap;gap:6px}
+.law .gc button{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:4px 12px;cursor:pointer}
+.law .gc button.ok{background:var(--green)}.law .gc button.bad{background:var(--pink)}
+.law:not(.hide) .guess{display:none}
+.fair{display:grid;gap:4px;background:#fff;border-radius:12px;padding:8px 12px}
+.fair .ends{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.fair input{width:100%;accent-color:var(--accent)}
+.fair output{font-size:14px;font-weight:700;color:var(--accent)}
+.gph{max-width:720px;margin:0 auto 12px}
+.gph img{aspect-ratio:21/9}
+.fine{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.fq{background:var(--paper);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.fq h3{margin:0;font-size:18px}
+.fq .opts{display:flex;flex-wrap:wrap;gap:6px}
+.fq .opts button{font:inherit;font-size:14px;font-weight:700;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 12px;cursor:pointer}
+.fq .opts button.ok{background:var(--green)}.fq .opts button.bad{background:var(--pink)}
+.fq .res{font-size:15px;min-height:22px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{position:relative;aspect-ratio:16/9;background:#111}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;cursor:pointer;background:#111 center/cover;display:grid;place-items:center}
+.vid .play span{background:rgba(0,0,0,.7);color:#fff;font-weight:700;border-radius:999px;padding:10px 20px;font-size:15px;letter-spacing:1px}
+.vid .info{padding:14px 16px}
+.vid .info h3{margin:0 0 2px;font-size:18px}
+.vid .info small{color:var(--muted)}
+.vid .info ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+@media(max-width:760px){.inv,.rp,.hwb{grid-template-columns:1fr}.lk-tbtn{top:auto;bottom:70px}}
+
+.pr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.pb{border-radius:18px;padding:16px 18px}
+.pb h3{margin:0;font-family:Georgia,serif;font-size:30px}
+.pb .m{font-size:15px;color:var(--muted);margin:2px 0 8px}
+.pb .chips{display:flex;flex-wrap:wrap;gap:6px}
+.pb .chips span{background:#fff;border-radius:999px;padding:4px 11px;font-size:14px;font-weight:600}
+.pb ul{margin:10px 0 0;padding-left:18px;font-size:15px}
+.p-in{background:#DCE6F5}.p-at{background:#F3D9CF}.p-on{background:#D4E2CF}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-size:15px;margin-top:10px}
+.ex div{background:var(--paper);border-radius:10px;padding:8px 12px}
+.ex b{color:var(--accent)}
+.q{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.q .n{font-weight:800;color:var(--violet);min-width:24px}
+.q .gap{display:inline-block;min-width:44px;border-bottom:2px solid var(--ink);text-align:center;font-weight:800}
+.q .opts{margin-left:auto;display:flex;gap:6px}
+.q .opts button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 14px;cursor:pointer}
+.q.ok{background:#DDEED7}.q.ok .gap{color:#2F7A3B}
+.q.bad{background:#F6DAD3}
+.score{font-weight:800;margin-top:12px}
+.text{font-size:18px;line-height:1.75;background:var(--paper);border-radius:16px;padding:18px 22px}
+.text h3{margin:0 0 6px;font-family:Georgia,serif;font-size:24px}
+.text p{margin:0 0 12px}
+.text.hl mark{background:#F3D9CF;border-radius:4px;padding:0 3px;font-weight:700}
+.tf{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:9px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.tf .opts{margin-left:auto;display:flex;gap:6px}
+.tf button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.tf.ok{background:#DDEED7}.tf.bad{background:#F6DAD3}
+.disc{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px;margin-top:6px}
+.disc div{background:var(--green);border-radius:14px;padding:12px 16px;font-size:17px;font-weight:600}
+.disc div i{font-style:normal;color:var(--violet);margin-right:6px}
+.spin{text-align:center;margin-top:16px}
+.spin .card{display:inline-block;min-height:80px;min-width:min(560px,100%);background:var(--ink);color:#fff;border-radius:18px;padding:20px 24px;font-size:22px;font-weight:700;margin-bottom:12px}
+@media(max-width:700px){.ex{grid-template-columns:1fr}}
+
+.hero{background-size:cover!important;background-position:center!important}
+.voc{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.voc div{background:var(--paper);border-radius:14px;padding:10px 14px;cursor:pointer;border:2px solid transparent}
+.voc div:hover{border-color:var(--violet)}
+.voc b{display:block;font-size:18px}.voc span{display:block;color:var(--accent);font-weight:700;font-size:15px}.voc em{display:block;font-size:14px;color:var(--muted);margin-top:3px}
+.mt{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:10px}
+.mt button{font:inherit;font-size:16px;text-align:left;border:2px solid var(--ink);background:#fff;border-radius:14px;padding:9px 14px;cursor:pointer}
+.mt button.sel{background:#FFE7A8}.mt button.done{background:#CDE8C6;border-color:#4C9A5B;cursor:default}
+.ch{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ch .n{font-weight:800;color:var(--violet);min-width:24px}
+.ch .o{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.ch .o button{font:inherit;font-size:15px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.ch.ok{background:#DDEED7}.ch.bad{background:#F6DAD3}
+.ty{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ty input{font:inherit;border:2px solid var(--ink);border-radius:10px;padding:4px 10px;width:220px}
+.ty.ok{background:#DDEED7}.ty.bad{background:#F6DAD3}
+.ty small{color:var(--muted)}
+.photo{width:100%;height:300px;object-fit:cover;border-radius:16px;display:block}
+.cap{font-size:11px;color:var(--muted);margin:4px 0 12px}
+.pics{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.pics figure{margin:0;background:var(--paper);border-radius:16px;overflow:hidden}
+.pics img{width:100%;height:170px;object-fit:cover;display:block}
+.pics figcaption{padding:8px 12px;font-weight:700}
+.pics small{display:block;font-weight:400;font-size:10px;color:var(--muted)}
+.lis{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:8px 0 14px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{aspect-ratio:16/9;background:#000;position:relative}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;background-size:cover;background-position:center;cursor:pointer;display:grid;place-items:center}
+.vid .play span{background:#E5484D;color:#fff;font-weight:800;border-radius:12px;padding:10px 20px}
+.vid .info{padding:12px 16px}.vid h3{margin:0;font-size:18px}.vid small{color:var(--muted)}
+.vid ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th,.tbl td{border:1px solid #ddd;padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--paper)}
+@media(max-width:700px){.mt{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="/game-lessons/kit.css">
+</head>
+<body>
+<header class="hero">
+  <div class="kicker">A2 · teens · Граматика: Past Continuous</div>
+  <h1>What were you doing at 8 pm?</h1>
+  <p>A2 · 9 parts · 60 min</p>
+  <span class="cr">Photo: Unsplash</span>
+</header>
+<button class="lk-tbtn" id="teacherBtn" type="button">Teacher version</button>
+<div class="wrap">
+  <section class="lk-overview">
+    <h2>In this lesson you will:</h2>
+    <ul><li>Знаю, як утворити Past Continuous: was / were + -ing
+Розумію, що він описує дію в процесі в певний момент у минулому
+Вмію будувати заперечення і питання: Were you sleeping?
+Можу розповісти, що я робив учора о певній годині</li></ul>
+    <div class="lk-stages" id="stages"></div>
+  </section>
+  <section id="s1" data-stage="warm-up" data-min="5">
+    <h2><span class="lk-n">1</span>Warm-up <span class="tag">warm-up</span><span class="lk-mode">teacher + student</span></h2>
+<div class="qs"><div>What are you doing right now?</div><div>What is your family doing right now, do you think?</div><div>What did you do yesterday evening?</div><div>What time did you have dinner yesterday?</div><div>Where were you at 7 am today?</div><div>Were you asleep or awake at midnight?</div><div>Are you a good detective?</div><div>What is your cat doing right now? Guess!</div></div>
+    <p class="lk-tnote" data-ru="Перші два питання повторюють Present Continuous (am / is / are + -ing). Нагадай: «Це те, що відбувається зараз. Сьогодні ми переносимо цей процес у минуле». Перевір домашку: учень читає 2-3 питання зі свого інтерв’ю.&lt;br&gt;">Перші два питання повторюють Present Continuous (am / is / are + -ing). Нагадай: «Це те, що відбувається зараз. Сьогодні ми переносимо цей процес у минуле». Перевір домашку: учень читає 2-3 питання зі свого інтерв’ю.<br></p>
+  </section>
+  <section id="s2" data-stage="practice" data-min="6">
+    <h2><span class="lk-n">2</span>Lead-in <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<div class="text"><p><b>The great cookie mystery</b></p><p>Yesterday Mum baked 12 chocolate cookies. At 8 pm she looked at the plate. It was empty!</p><p>“OK, everyone. What <b>were</b> you <b>doing</b> at 8 pm?” she asked.</p><p><b>Dad:</b> “I <b>was washing</b> the car. Look, my hands are wet!”</p><p><b>Sam (15):</b> “I <b>was doing</b> my homework. I <b>wasn’t eating</b> anything, I promise!”</p><p><b>Grandma:</b> “I <b>was talking</b> to my friend on the phone. We <b>were laughing</b> a lot.”</p><p><b>Little Jack (6):</b> “I <b>was sleeping</b>!” (But his mouth was full of chocolate.)</p><p>And Pixel the cat? Pixel <b>was sitting</b> on the sofa. He <b>was looking</b> very happy.</p><p>So who ate the cookies? Jack <b>wasn’t sleeping</b>, that’s for sure!</p></div>
+    <div class="voc"><div data-say="bake. "><b>bake</b><span><span data-tr-uk="пекти" data-tr-ru="пекти">пекти</span></span><em></em></div>
+<div data-say="cookie. "><b>cookie</b><span><span data-tr-uk="печиво" data-tr-ru="печиво">печиво</span></span><em></em></div>
+<div data-say="plate. "><b>plate</b><span><span data-tr-uk="тарілка" data-tr-ru="тарілка">тарілка</span></span><em></em></div>
+<div data-say="empty. "><b>empty</b><span><span data-tr-uk="порожній" data-tr-ru="порожній">порожній</span></span><em></em></div>
+<div data-say="wash. "><b>wash</b><span><span data-tr-uk="мити" data-tr-ru="мити">мити</span></span><em></em></div>
+<div data-say="wet. "><b>wet</b><span><span data-tr-uk="мокрий" data-tr-ru="мокрий">мокрий</span></span><em></em></div>
+<div data-say="promise. "><b>promise</b><span><span data-tr-uk="обіцяти" data-tr-ru="обіцяти">обіцяти</span></span><em></em></div>
+<div data-say="laugh. "><b>laugh</b><span><span data-tr-uk="сміятися" data-tr-ru="сміятися">сміятися</span></span><em></em></div>
+<div data-say="full of. "><b>full of</b><span><span data-tr-uk="повний чогось" data-tr-ru="повний чогось">повний чогось</span></span><em></em></div>
+<div data-say="mystery. "><b>mystery</b><span><span data-tr-uk="таємниця" data-tr-ru="таємниця">таємниця</span></span><em></em></div>
+<div data-say="detective. "><b>detective</b><span><span data-tr-uk="детектив" data-tr-ru="детектив">детектив</span></span><em></em></div>
+<div data-say="at that moment. "><b>at that moment</b><span><span data-tr-uk="в той момент" data-tr-ru="в той момент">в той момент</span></span><em></em></div>
+<div data-say="asleep. "><b>asleep</b><span><span data-tr-uk="сплячий" data-tr-ru="сплячий">сплячий</span></span><em></em></div>
+<div data-say="awake. "><b>awake</b><span><span data-tr-uk="який не спить" data-tr-ru="який не спить">який не спить</span></span><em></em></div></div>
+    <div class="mt" data-mt="m2" data-pairs="[[&quot;bake&quot;, &quot;пекти&quot;], [&quot;cookie&quot;, &quot;печиво&quot;], [&quot;plate&quot;, &quot;тарілка&quot;], [&quot;empty&quot;, &quot;порожній&quot;], [&quot;wash&quot;, &quot;мити&quot;], [&quot;wet&quot;, &quot;мокрий&quot;], [&quot;promise&quot;, &quot;обіцяти&quot;], [&quot;laugh&quot;, &quot;сміятися&quot;]]"></div><div class="score" data-mtres="m2"></div>
+    <h3 class="lk-sub">Прочитай історію і обери True або False.</h3><div class="ch" data-a="True"><span class="n">1</span><span class="s">Mum baked 12 cookies.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="True"><span class="n">2</span><span class="s">At 8 pm Dad was washing the car.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="False"><span class="n">3</span><span class="s">Sam was eating cookies.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="True"><span class="n">4</span><span class="s">Grandma was talking on the phone.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="False"><span class="n">5</span><span class="s">Pixel was sleeping in the kitchen.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="False"><span class="n">6</span><span class="s">Jack was really sleeping.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; True · True · False · True · False · False"><b>Відповіді:</b> True · True · False · True · False · False</p>
+    <p class="lk-tnote" data-ru="Розіграйте історію: учень читає репліки членів родини «акторськими» голосами. Потім питання: «Who ate the cookies? How do you know?» Попроси знайти всі was / were + -ing і запитай, чому про Grandma and her friend сказано were laughing.&lt;br&gt;">Розіграйте історію: учень читає репліки членів родини «акторськими» голосами. Потім питання: «Who ate the cookies? How do you know?» Попроси знайти всі was / were + -ing і запитай, чому про Grandma and her friend сказано were laughing.<br></p>
+  </section>
+  <section id="s3" data-stage="practice" data-min="5">
+    <h2><span class="lk-n">3</span>Rule <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<div class="warn"><p><b>Past Continuous</b> це дія <b>в процесі</b> в певний момент у минулому. Уяви, що ти поставив фільм на паузу: «О 8 вечора я <b>саме робив</b> домашку».</p><p><b>Форма:</b> was / were + дієслово<b>-ing</b><br>I / he / she / it → <b>was</b> · I <b>was watching</b> TV at 9 pm. = О 9 вечора я дивився телевізор.<br>you / we / they → <b>were</b> · They <b>were playing</b> football. = Вони грали у футбол (у той момент).</p><p><b>Заперечення:</b> I <b>wasn’t</b> sleeping. · We <b>weren’t</b> listening.<br><b>Питання:</b> <b>Was</b> she <b>sleeping</b>? Yes, she <b>was</b>. / No, she <b>wasn’t</b>.<br><b>What were</b> you <b>doing</b> at 10 pm? = Що ти робив о 10 вечора?</p><p><b>Маркери:</b> at 8 pm yesterday, at this time yesterday, all evening, at that moment.</p><p>Лайфхак: Past Simple це фото (сталося і все), Past Continuous це відео на паузі (дія тривала).</p></div>
+    <p class="lk-tnote" data-ru="Порівняй з Present Continuous: am / is / are + -ing → was / were + -ing. Покажи на прикладі учня: «Yesterday at 9 pm you were… what?» Нагадай правопис -ing: make → making, swim → swimming.&lt;br&gt;">Порівняй з Present Continuous: am / is / are + -ing → was / were + -ing. Покажи на прикладі учня: «Yesterday at 9 pm you were… what?» Нагадай правопис -ing: make → making, swim → swimming.<br></p>
+  </section>
+  <section id="s4" data-stage="practice" data-min="13">
+    <h2><span class="lk-n">4</span>Practice <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Was or were?</h3><p class="lk-ins">Choose was or were</p>
+    <div class="spin"><div class="card" id="g41">Click "Next card"</div><br><button class="btn" type="button" data-spin="[&quot;I ___ sleeping.&quot;, &quot;They ___ dancing.&quot;, &quot;My cat ___ hiding.&quot;, &quot;You ___ laughing.&quot;, &quot;We ___ waiting for the bus.&quot;, &quot;Mum ___ cooking.&quot;, &quot;The kids ___ shouting.&quot;, &quot;It ___ raining.&quot;, &quot;My friends ___ playing games.&quot;, &quot;He ___ singing in the shower.&quot;]" data-target="g41">Next card</button></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; was · were · was · were · were · was · were · was · were · was"><b>Відповіді:</b> was · were · was · were · were · was · were · was · were · was</p>
+    <h3 class="lk-sub">Розкрий дужки: постав дієслово в Past Continuous.</h3><div class="ty" data-a="was watching"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>At 9 pm yesterday I ___ (watch) a series.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="were cooking"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>My parents ___ (cook) dinner at 7.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="was raining"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>It ___ (rain) all morning.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="were waiting"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>We ___ (wait) for the bus at 8:15.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="was sleeping"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>My cat ___ (sleep) on my homework again.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="were chatting"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Lily and Hannah ___ (chat) in the corridor.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="wasn’t listening|was not listening"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>I ___ (not listen) to the teacher, sorry!</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="weren’t doing|were not doing"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>The kids ___ (not do) their homework.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; was watching · were cooking · was raining · were waiting · was sleeping · were chatting · wasn’t listening · weren’t doing"><b>Відповіді:</b> was watching · were cooking · was raining · were waiting · was sleeping · were chatting · wasn’t listening · weren’t doing</p>
+    <h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="was sleeping"><span class="n">1</span><span class="s">At midnight I ___.</span><span class="o"><button type="button">were sleeping</button><button type="button">was sleep</button><button type="button">was sleeping</button></span></div>
+<div class="ch" data-a="were you doing"><span class="n">2</span><span class="s">What ___ at 6 pm?</span><span class="o"><button type="button">did you doing</button><button type="button">were you doing</button><button type="button">was you doing</button></span></div>
+<div class="ch" data-a="weren’t playing"><span class="n">3</span><span class="s">They ___ football at 5.</span><span class="o"><button type="button">wasn’t playing</button><button type="button">didn’t playing</button><button type="button">weren’t playing</button></span></div>
+<div class="ch" data-a="Was"><span class="n">4</span><span class="s">___ she studying when you called?</span><span class="o"><button type="button">Was</button><button type="button">Did</button><button type="button">Were</button></span></div>
+<div class="ch" data-a="were swimming"><span class="n">5</span><span class="s">We ___ in the lake at this time yesterday.</span><span class="o"><button type="button">was swimming</button><button type="button">were swimming</button><button type="button">were swim</button></span></div>
+<div class="ch" data-a="was making"><span class="n">6</span><span class="s">My brother ___ a video all evening.</span><span class="o"><button type="button">was making</button><button type="button">was maked</button><button type="button">were making</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; was sleeping · were you doing · weren’t playing · Was · were swimming · was making"><b>Відповіді:</b> was sleeping · were you doing · weren’t playing · Was · were swimming · was making</p>
+    <h3 class="lk-sub">Що робили ці люди вчора о 8 вечора? З’єднай.</h3><div class="ch" data-a="was cooking pasta."><span class="n">1</span><span class="s">The chef ___</span><span class="o"><button type="button">was cooking pasta.</button><button type="button">was sleeping in a box.</button><button type="button">was catching the ball.</button><button type="button">were singing at the concert.</button><button type="button">were writing a test.</button><button type="button">was playing music.</button></span></div>
+<div class="ch" data-a="was playing music."><span class="n">2</span><span class="s">The DJ ___</span><span class="o"><button type="button">was cooking pasta.</button><button type="button">was catching the ball.</button><button type="button">was playing music.</button><button type="button">was sleeping in a box.</button><button type="button">were writing a test.</button><button type="button">were singing at the concert.</button></span></div>
+<div class="ch" data-a="was catching the ball."><span class="n">3</span><span class="s">The goalkeeper ___</span><span class="o"><button type="button">was sleeping in a box.</button><button type="button">was playing music.</button><button type="button">was cooking pasta.</button><button type="button">were writing a test.</button><button type="button">was catching the ball.</button><button type="button">were singing at the concert.</button></span></div>
+<div class="ch" data-a="were writing a test."><span class="n">4</span><span class="s">The students ___</span><span class="o"><button type="button">was playing music.</button><button type="button">were singing at the concert.</button><button type="button">were writing a test.</button><button type="button">was cooking pasta.</button><button type="button">was catching the ball.</button><button type="button">was sleeping in a box.</button></span></div>
+<div class="ch" data-a="was sleeping in a box."><span class="n">5</span><span class="s">The cat ___</span><span class="o"><button type="button">was catching the ball.</button><button type="button">was sleeping in a box.</button><button type="button">was cooking pasta.</button><button type="button">were singing at the concert.</button><button type="button">were writing a test.</button><button type="button">was playing music.</button></span></div>
+<div class="ch" data-a="were singing at the concert."><span class="n">6</span><span class="s">The fans ___</span><span class="o"><button type="button">were writing a test.</button><button type="button">were singing at the concert.</button><button type="button">was sleeping in a box.</button><button type="button">was cooking pasta.</button><button type="button">was playing music.</button><button type="button">was catching the ball.</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; was cooking pasta. · was playing music. · was catching the ball. · were writing a test. · was sleeping in a box. · were singing at the concert."><b>Відповіді:</b> was cooking pasta. · was playing music. · was catching the ball. · were writing a test. · was sleeping in a box. · were singing at the concert.</p>
+    <h3 class="lk-sub">Переклади англійською.</h3><div class="ty" data-a="I was sleeping at 10 pm|At 10 pm I was sleeping"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Я спав о 10 вечора.</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="What were you doing at 5 yesterday?|What were you doing yesterday at 5?"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Що ти робив учора о 5?</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="We weren’t watching TV|We were not watching TV"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Ми не дивились телевізор.</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="She was reading a book"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Вона читала книжку.</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="It was raining"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Ішов дощ.</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="They were playing games all evening"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Вони грали в ігри весь вечір.</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; I was sleeping at 10 pm · What were you doing at 5 yesterday? · We weren’t watching TV · She was reading a book · It was raining · They were playing games all evening"><b>Відповіді:</b> I was sleeping at 10 pm · What were you doing at 5 yesterday? · We weren’t watching TV · She was reading a book · It was raining · They were playing games all evening</p>
+    <p class="lk-tnote" data-ru="Гра на розгін, потім вправи. Якщо учень пише was sleep, нагадай формулу: was / were + -ing. У match пояснюй нові слова за потреби (chef, goalkeeper). У перекладі «я спав» може бути і Past Simple, але тут ідеться про момент «о 10 вечора», тому Past Continuous.&lt;br&gt;">Гра на розгін, потім вправи. Якщо учень пише was sleep, нагадай формулу: was / were + -ing. У match пояснюй нові слова за потреби (chef, goalkeeper). У перекладі «я спав» може бути і Past Simple, але тут ідеться про момент «о 10 вечора», тому Past Continuous.<br></p>
+  </section>
+  <section id="s5" data-stage="video" data-min="7">
+    <h2><span class="lk-n">5</span>Video: Watch and describe <span class="tag">video</span><span class="lk-mode">teacher + student</span></h2>
+<div class="frame" style="aspect-ratio:16/9"><iframe src="https://www.youtube-nocookie.com/embed/gZujYUcY5xc" style="width:100%;height:100%;border:0" allowfullscreen loading="lazy"></iframe></div>
+    <p class="lk-ins">Watch, then I pause. Say what Mr Bean and the other people were doing at that moment. (He was standing… The kids were swimming…)</p>
+    <p class="lk-tnote" data-ru="Перед уроком переглянь відео і познач 4 моменти для паузи (орієнтовно кожні 40-60 секунд). Дивіться відрізок, ставиш на паузу, вимикаєш екран і питаєш: «What was Mr Bean doing? What were the other people doing?» Учень відповідає з пам’яті: He was walking. He was standing on the board. The kids were swimming / playing. Гра на пам’ять: хто більше дій згадав у Past Continuous.&lt;br&gt;">Перед уроком переглянь відео і познач 4 моменти для паузи (орієнтовно кожні 40-60 секунд). Дивіться відрізок, ставиш на паузу, вимикаєш екран і питаєш: «What was Mr Bean doing? What were the other people doing?» Учень відповідає з пам’яті: He was walking. He was standing on the board. The kids were swimming / playing. Гра на пам’ять: хто більше дій згадав у Past Continuous.<br></p>
+  </section>
+  <section id="s6" data-stage="practice" data-min="5">
+    <h2><span class="lk-n">6</span>Розбір помилок <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<div class="warn"><p><b>Типові помилки:</b></p><p>I was sleep at 10. → I was <b>sleeping</b> at 10. (після was потрібне -ing)<br>They was playing. → They <b>were</b> playing. (they завжди з were)<br>What you were doing? → What <b>were you</b> doing? (were перед підметом)<br>Did you sleeping? → <b>Were</b> you sleeping? (у Past Continuous питання з was / were)<br>I was knowing the answer. → I <b>knew</b> the answer. (know, like, want не ставимо в -ing)</p></div>
+    <h3 class="lk-sub">Detective time! Знайди правильне речення.</h3><div class="ch" data-a="I was walking my dog."><span class="n">1</span><span class="s">___</span><span class="o"><button type="button">I was walk my dog.</button><button type="button">I was walking my dog.</button><button type="button">I were walking my dog.</button></span></div>
+<div class="ch" data-a="We were having dinner."><span class="n">2</span><span class="s">___</span><span class="o"><button type="button">We were have dinner.</button><button type="button">We were having dinner.</button><button type="button">We was having dinner.</button></span></div>
+<div class="ch" data-a="Was Jack sleeping?"><span class="n">3</span><span class="s">___</span><span class="o"><button type="button">Was Jack sleeping?</button><button type="button">Jack was sleeping?</button><button type="button">Did Jack sleeping?</button></span></div>
+<div class="ch" data-a="What were you doing?"><span class="n">4</span><span class="s">___</span><span class="o"><button type="button">What you were doing?</button><button type="button">What did you doing?</button><button type="button">What were you doing?</button></span></div>
+<div class="ch" data-a="She wasn’t eating cookies."><span class="n">5</span><span class="s">___</span><span class="o"><button type="button">She weren’t eating cookies.</button><button type="button">She didn’t eating cookies.</button><button type="button">She wasn’t eating cookies.</button></span></div>
+<div class="ch" data-a="I wanted a cookie."><span class="n">6</span><span class="s">___</span><span class="o"><button type="button">I were wanting a cookie.</button><button type="button">I wanted a cookie.</button><button type="button">I was wanting a cookie.</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; I was walking my dog. · We were having dinner. · Was Jack sleeping? · What were you doing? · She wasn’t eating cookies. · I wanted a cookie."><b>Відповіді:</b> I was walking my dog. · We were having dinner. · Was Jack sleeping? · What were you doing? · She wasn’t eating cookies. · I wanted a cookie.</p>
+    <p class="lk-tnote" data-ru="Ці речення можна використати для гри «Alibi»: учень детектив, ти підозрюваний. Він ставить питання Were you...? What were you doing at...?, ти відповідаєш. Останнє речення про want: поясни коротко, що дієслова почуттів і знань зазвичай не мають -ing.&lt;br&gt;">Ці речення можна використати для гри «Alibi»: учень детектив, ти підозрюваний. Він ставить питання Were you...? What were you doing at...?, ти відповідаєш. Останнє речення про want: поясни коротко, що дієслова почуттів і знань зазвичай не мають -ing.<br></p>
+  </section>
+  <section id="s7" data-stage="speaking" data-min="8">
+    <h2><span class="lk-n">7</span>Speaking <span class="tag">speaking</span><span class="lk-mode">teacher + student</span></h2>
+<div class="qs"><div>What were you doing at 7 am today?</div><div>What were you doing at 9 pm yesterday?</div><div>What was your family doing at dinner time yesterday?</div><div>What were you doing at this time last Sunday?</div><div>Were you sleeping at midnight on New Year’s Eve?</div><div>What was the weather like this morning? Was it raining?</div><div>What were you doing when your teacher came into the classroom today?</div><div>Imagine: what was your cat doing while you were at school?</div><div>What was your best friend doing yesterday evening? Guess!</div><div>Were you listening to music at any time yesterday? What were you listening to?</div></div>
+    <p class="lk-tnote" data-ru="Гра «Alibi»: «Yesterday someone ate all the cookies at 8 pm. What were you doing?» Учень вигадує алібі (3-4 речення), ти ставиш уточнювальні питання: Were you alone? What was your brother doing? Потім міняйтесь. Виправляй тільки was / were і -ing.&lt;br&gt;">Гра «Alibi»: «Yesterday someone ate all the cookies at 8 pm. What were you doing?» Учень вигадує алібі (3-4 речення), ти ставиш уточнювальні питання: Were you alone? What was your brother doing? Потім міняйтесь. Виправляй тільки was / were і -ing.<br></p>
+  </section>
+  <section id="s8" data-stage="practice" data-min="6">
+    <h2><span class="lk-n">8</span>Speed round <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Speed round: was doing</h3><p class="lk-ins">Write the Past Continuous form</p>
+    <div class="spin"><div class="card" id="g81">Click "Next card"</div><br><button class="btn" type="button" data-spin="[&quot;I / sleep&quot;, &quot;they / dance&quot;, &quot;she / cook&quot;, &quot;we / swim&quot;, &quot;he / run&quot;, &quot;you / laugh&quot;, &quot;it / rain&quot;, &quot;the cat / hide&quot;, &quot;my friends / chat&quot;, &quot;I / not listen&quot;]" data-target="g81">Next card</button></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; I was sleeping · they were dancing · she was cooking · we were swimming · he was running · you were laughing · it was raining · the cat was hiding · my friends were chatting · I wasn’t listening"><b>Відповіді:</b> I was sleeping · they were dancing · she was cooking · we were swimming · he was running · you were laughing · it was raining · the cat was hiding · my friends were chatting · I wasn’t listening</p>
+    <p class="lk-tnote" data-ru="Засікай 60 секунд, потім друга спроба. Стеж за правописом: swim → swimming, run → running, hide → hiding.&lt;br&gt;">Засікай 60 секунд, потім друга спроба. Стеж за правописом: swim → swimming, run → running, hide → hiding.<br></p>
+  </section>
+  <section id="s9" data-stage="homework" data-min="5">
+    <h2><span class="lk-n">9</span>Homework <span class="tag">homework</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Напиши «A day in pictures»: що ти робив учора в цей час (6 речень).</h3><div class="qs"><div>At 7 am I was...</div><div>At 10 am I was...</div><div>At 1 pm ...</div><div>At 4 pm ...</div><div>At 7 pm ...</div><div>At 10 pm ...</div></div>
+    <p class="lk-tnote" data-ru="Домашка: 6 речень у Past Continuous про вчорашній день, бонус: що в ці моменти робив хтось із родини або улюбленець. На наступному уроці вчимося поєднувати Past Continuous і Past Simple через when і while.&lt;br&gt;">Домашка: 6 речень у Past Continuous про вчорашній день, бонус: що в ці моменти робив хтось із родини або улюбленець. На наступному уроці вчимося поєднувати Past Continuous і Past Simple через when і while.<br></p>
+  </section>
+  <section class="end"><h2>Great job!</h2><p>See you next lesson.</p></section>
+</div>
+<div class="toast" id="toast"></div>
+<script>window.MURLY_LESSON={"id": "lib-gr-past-continuous", "title": "What were you doing at 8 pm?", "homework": ["s2", "s4", "s6", "s9"], "hw": {"s2": [{"type": "choice", "instruction": "Прочитай історію і обери True або False.", "text": "Mum baked 12 cookies. {True|False}\nAt 8 pm Dad was washing the car. {True|False}\nSam was eating cookies. {False|True}\nGrandma was talking on the phone. {True|False}\nPixel was sleeping in the kitchen. {False|True}\nJack was really sleeping. {False|True}"}], "s4": [{"type": "gap", "instruction": "Розкрий дужки: постав дієслово в Past Continuous.", "text": "At 9 pm yesterday I [was watching] (watch) a series.\nMy parents [were cooking] (cook) dinner at 7.\nIt [was raining] (rain) all morning.\nWe [were waiting] (wait) for the bus at 8:15.\nMy cat [was sleeping] (sleep) on my homework again.\nLily and Hannah [were chatting] (chat) in the corridor.\nI [wasn’t listening/was not listening] (not listen) to the teacher, sorry!\nThe kids [weren’t doing/were not doing] (not do) their homework."}, {"type": "choice", "instruction": "Обери правильний варіант.", "text": "At midnight I {was sleeping|were sleeping|was sleep}.\nWhat {were you doing|was you doing|did you doing} at 6 pm?\nThey {weren’t playing|wasn’t playing|didn’t playing} football at 5.\n{Was|Were|Did} she studying when you called?\nWe {were swimming|was swimming|were swim} in the lake at this time yesterday.\nMy brother {was making|was maked|were making} a video all evening."}, {"type": "choice", "instruction": "Що робили ці люди вчора о 8 вечора? З’єднай.", "text": "The chef {was cooking pasta.|was playing music.|was catching the ball.|were writing a test.|was sleeping in a box.|were singing at the concert.}\nThe DJ {was playing music.|was cooking pasta.|was catching the ball.|were writing a test.|was sleeping in a box.|were singing at the concert.}\nThe goalkeeper {was catching the ball.|was cooking pasta.|was playing music.|were writing a test.|was sleeping in a box.|were singing at the concert.}\nThe students {were writing a test.|was cooking pasta.|was playing music.|was catching the ball.|was sleeping in a box.|were singing at the concert.}\nThe cat {was sleeping in a box.|was cooking pasta.|was playing music.|was catching the ball.|were writing a test.|were singing at the concert.}\nThe fans {were singing at the concert.|was cooking pasta.|was playing music.|was catching the ball.|were writing a test.|was sleeping in a box.}"}, {"type": "gap", "instruction": "Переклади англійською.", "text": "Я спав о 10 вечора. → [I was sleeping at 10 pm/At 10 pm I was sleeping]\nЩо ти робив учора о 5? → [What were you doing at 5 yesterday?/What were you doing yesterday at 5?]\nМи не дивились телевізор. → [We weren’t watching TV/We were not watching TV]\nВона читала книжку. → [She was reading a book]\nІшов дощ. → [It was raining]\nВони грали в ігри весь вечір. → [They were playing games all evening]"}], "s6": [{"type": "choice", "instruction": "Detective time! Знайди правильне речення.", "text": "{I was walking my dog.|I was walk my dog.|I were walking my dog.}\n{We were having dinner.|We was having dinner.|We were have dinner.}\n{Was Jack sleeping?|Did Jack sleeping?|Jack was sleeping?}\n{What were you doing?|What you were doing?|What did you doing?}\n{She wasn’t eating cookies.|She didn’t eating cookies.|She weren’t eating cookies.}\n{I wanted a cookie.|I was wanting a cookie.|I were wanting a cookie.}"}], "s9": [{"type": "open", "instruction": "Напиши «A day in pictures»: що ти робив учора в цей час (6 речень).", "text": "At 7 am I was\nAt 10 am I was\nAt 1 pm\nAt 4 pm\nAt 7 pm\nAt 10 pm"}]}};</script>
+<script>
+(function(){var l=(document.cookie.match(/(?:^|; )murly_lang=(\w+)/)||[])[1];try{l=l||localStorage.getItem('murly:tlang')}catch(e){}l=l==='ru'?'ru':'uk';document.querySelectorAll('[data-pairs-'+l+']').forEach(function(b){b.dataset.pairs=b.getAttribute('data-pairs-'+l)});})();
+</script>
+<script>
+const $ = (id) => document.getElementById(id);
+const LIS = {};
+function say(w, rate) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; const v = speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang) && /Google|Natural|Libby|Sonia|Daniel/.test(x.name)) || speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang)); if (v) u.voice = v; u.rate = rate || .95; speechSynthesis.speak(u); } catch (e) { } }
+const sh = (a) => a.map((x) => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map((x) => x[1]);
+document.querySelectorAll('.voc div').forEach((d) => d.onclick = () => say(d.dataset.say));
+document.querySelectorAll('[data-play]').forEach((b) => b.onclick = () => say(LIS[b.dataset.play], b.dataset.slow ? .75 : .95));
+document.querySelectorAll('[data-stop]').forEach((b) => b.onclick = () => { try { speechSynthesis.cancel(); } catch (e) { } });
+document.querySelectorAll('.ch').forEach((q) => q.querySelectorAll('button').forEach((b) => b.onclick = () => { if (q.classList.contains('ok')) return; const ok = b.textContent === q.dataset.a; q.classList.toggle('ok', ok); q.classList.toggle('bad', !ok); if (ok) { const s = q.querySelector('.s'); if (s && s.textContent.includes('___')) { s.textContent = s.textContent.replace('___', q.dataset.a); } } }));
+const norm = (x) => x.toLowerCase().replace(/[’']/g, "'").replace(/[,;:"“”«»]/g, ' ').replace(/\s+/g, ' ').replace(/[.!?]$/, '').trim();
+document.querySelectorAll('.ty').forEach((r) => { const inp = r.querySelector('input'); const chk = () => { const ok = r.dataset.a.split('|').some((a) => norm(a) === norm(inp.value)); r.classList.toggle('ok', ok); r.classList.toggle('bad', !ok && inp.value.trim() !== ''); }; r.querySelector('button').onclick = chk; inp.onkeydown = (e) => { if (e.key === 'Enter') chk(); }; });
+document.querySelectorAll('[data-mt]').forEach((box) => { const pairs = JSON.parse(box.dataset.pairs); const L = sh(pairs.map((p) => p[0])), R = sh(pairs.map((p) => p[1])); let sel = null, done = 0, err = 0; box.innerHTML = L.map((w, i) => `<button type="button" data-w="${w}">${w}</button><button type="button" data-d="${R[i]}">${R[i]}</button>`).join('');
+  box.querySelectorAll('button').forEach((b) => b.onclick = () => { if (b.classList.contains('done')) return; if (!sel || (sel.dataset.w && b.dataset.w) || (sel.dataset.d && b.dataset.d)) { if (sel) sel.classList.remove('sel'); sel = b; b.classList.add('sel'); return; } const w = sel.dataset.w || b.dataset.w, d = sel.dataset.d || b.dataset.d; if (pairs.some((p) => p[0] === w && p[1] === d)) { sel.classList.add('done'); b.classList.add('done'); done++; say(w); if (done === pairs.length) document.querySelector(`[data-mtres="${box.dataset.mt}"]`).textContent = err ? `Done! Mistakes: ${err}` : 'Perfect!'; } else err++; sel.classList.remove('sel'); sel = null; }); });
+document.querySelectorAll('[data-vids]').forEach((box) => JSON.parse(box.dataset.vids).forEach(([id, title, ch, qs]) => { const d = document.createElement('div'); d.className = 'vid'; d.innerHTML = `<div class="frame"><button class="play" type="button" style="background-image:url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)"><span>PLAY</span></button></div><div class="info"><h3>${title}</h3><small>YouTube · ${ch}</small><ol>${qs.map((q) => `<li>${q}</li>`).join('')}</ol></div>`; d.querySelector('.play').onclick = (e) => { e.currentTarget.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&cc_load_policy=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${title}"></iframe>`; }; box.appendChild(d); }));
+document.querySelectorAll('[data-spin]').forEach((b) => { const list = JSON.parse(b.dataset.spin); let last = -1; b.onclick = () => { let i; do { i = Math.floor(Math.random() * list.length); } while (i === last && list.length > 1); last = i; document.getElementById(b.dataset.target).textContent = list[i]; }; });
+try { const k = 'murly:' + (window.MURLY_LESSON ? MURLY_LESSON.id : 'x') + ':hw'; const t = $('hwText'); if (t) { t.value = localStorage.getItem(k) || ''; t.oninput = () => localStorage.setItem(k, t.value); } } catch (e) { }
+const STAGES = [...document.querySelectorAll('.wrap > section[id]')];
+$('stages').innerHTML = STAGES.map((s) => `<a href="#${s.id}"><b>${s.querySelector('.lk-n').textContent}</b><span>${s.dataset.stage}</span><small>${s.dataset.min !== '0' ? s.dataset.min + ' min' : 'at home'}</small></a>`).join('');
+$('teacherBtn').onclick = (e) => { const on = document.body.classList.toggle('teacher'); e.currentTarget.textContent = on ? 'Student version' : 'Teacher version'; };
+</script>
+<script src="/game-lessons/kit.js" defer></script>
+</body>
+</html>

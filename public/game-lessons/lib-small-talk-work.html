@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Small talk at work (B1) | Murly</title>
+<link rel="icon" href="/favicon.svg">
+<meta name="description" content="Вивчимо фрази, щоб почати, підтримати й завершити розмову з колегою
+Послухаємо розмову двох колег на офісній кухні
+Потренуємо питання в Past Simple і ">
+<link rel="canonical" href="https://murly.com.ua/game-lessons/lib-small-talk-work.html">
+<style>
+:root{--paper:#F3F0EA;--ink:#17181C;--violet:#3D4A7A;--lav:#D9D3C7;--pink:#E9C9BC;--green:#D4E2CF;--white:#fff;--muted:#62646B;--accent:#B5482F}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+/* hero */
+.hero{background:linear-gradient(rgba(16,17,22,.5),rgba(16,17,22,.72)),url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1400&q=70&auto=format&fit=crop");color:#fff;padding:70px 18px 56px;text-align:center;position:relative;overflow:hidden}
+.hero .kicker{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#E9C9BC;font-weight:700}
+.hero .cr{position:absolute;right:12px;bottom:8px;font-size:11px;color:rgba(255,255,255,.6)}
+.hero h1{margin:8px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(36px,6vw,64px);letter-spacing:-.5px;font-weight:700}
+.hero h1 span{color:var(--pink);font-style:italic}
+.hero p{margin:12px 0 0;font-size:17px;color:#e6e2da}
+.hero .flags{display:flex;justify-content:center;gap:12px;margin-top:22px;flex-wrap:wrap}
+.hero .flags svg{width:40px;height:26px;border-radius:3px;opacity:.9}
+/* sections */
+section{margin-top:30px;background:var(--white);border-radius:18px;padding:28px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.05)}
+section h2{margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tag{font-family:"Segoe UI",system-ui,sans-serif;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--paper);color:var(--accent);text-transform:uppercase;letter-spacing:1px}
+.lk-n{display:inline-grid;place-items:center;width:42px;height:42px;background:var(--violet);color:#fff;border-radius:50%;font-size:21px;flex:none}
+.lk-mode{font-size:13px;font-weight:700;border:2px dashed var(--lav);color:var(--muted);padding:2px 10px;border-radius:999px}
+.lk-ins{font-size:17px;background:var(--paper);border-radius:12px;padding:10px 14px;margin:6px 0 18px}
+.lk-sub{margin:24px 0 10px;font-size:19px}
+.btn{font:inherit;font-weight:700;border:0;border-radius:999px;background:var(--ink);color:#fff;padding:10px 20px;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+.btn.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+/* teacher */
+.lk-tbtn{position:fixed;right:16px;top:70px;z-index:45;font:inherit;font-weight:800;border:2px solid var(--ink);background:var(--pink);padding:8px 14px;border-radius:12px;cursor:pointer}
+body.teacher .lk-tbtn{background:var(--green)}
+.lk-ans,.lk-tnote{display:none}
+body.teacher .lk-ans{display:block;margin-top:8px;font-weight:700;color:#1d5a12;background:var(--green);border-left:5px solid #5aa845;padding:6px 10px;font-size:15px;border-radius:6px}
+body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff3f7;border-left:5px solid #d9789a;padding:8px 12px;font-size:15px;border-radius:6px}
+/* overview */
+.lk-overview ul{font-size:17px;line-height:1.7;margin:6px 0 16px}
+.lk-stages{display:flex;flex-wrap:wrap;gap:8px}
+.lk-stages a{display:grid;border-radius:14px;padding:8px 12px;text-decoration:none;color:var(--ink);background:var(--paper);font-weight:700;min-width:100px}
+.lk-stages a span{text-transform:capitalize}
+.lk-stages a b{font-size:20px;color:var(--violet)}
+.lk-stages a small{font-weight:600;color:var(--muted)}
+/* warm-up */
+.taxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tax{background:var(--paper);border-radius:18px;padding:16px;display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center}
+.tax svg{width:56px;height:56px}
+.tax b{display:block;font-size:17px}
+.tax small{color:var(--muted);font-size:14px}
+.qs{display:grid;gap:10px;margin-top:18px}
+.qs div{background:var(--green);border-radius:14px;padding:10px 16px;font-size:18px;font-weight:600}
+.phr{background:#fff7e8;border-radius:14px;padding:12px 16px;margin-top:16px;font-size:15px}
+.phr ul{margin:6px 0 0;padding-left:18px}
+.fic{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:16px}
+.fic .c{background:#fff;border:2px solid #1B2140;border-radius:16px;padding:14px 16px;box-shadow:3px 3px 0 #1B2140}
+.fic .c b{display:block;font-size:18px;line-height:1.35;margin-bottom:8px}
+.fic .c .k{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.fic .c .k span{font-size:13px;background:#eef1fb;border-radius:999px;padding:3px 10px}
+.fic .c details{margin-top:8px;font-size:15px;color:#3b4160}
+.fic .c summary{cursor:pointer;font-weight:700;color:#534AB7}
+.fi-n{display:inline-flex;width:28px;height:28px;border-radius:50%;background:#2F4BA0;color:#fff;align-items:center;justify-content:center;font-size:14px;margin-right:6px}
+/* vocab */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:12px}
+.vc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:2px solid transparent;transition:border-color .2s,transform .2s}
+.vc:hover{border-color:var(--violet);transform:translateY(-2px)}
+.vc b{font-size:18px;display:flex;align-items:center;gap:8px}
+.vc b svg{width:20px;height:20px;flex:none;color:var(--violet)}
+.vc p{margin:6px 0 0;font-size:14px;color:var(--muted)}
+.vc em{display:block;margin-top:6px;font-size:14px;color:var(--violet);font-style:normal;font-weight:600}
+.vc.played{background:#e6ecfb}
+/* grammar */
+.gram{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.gb{border-radius:18px;padding:16px}
+.gb h3{margin:0 0 6px;font-size:19px}
+.gb .f{display:inline-block;background:#fff;border-radius:8px;padding:3px 10px;font-weight:800;margin:4px 0;font-family:Consolas,monospace;font-size:15px}
+.gb p{margin:6px 0 0;font-size:15px}
+.g1{background:var(--pink)}.g2{background:var(--lav)}.g3{background:var(--green)}.g4{background:#fbe7c6}
+.warn{margin-top:14px;background:var(--ink);color:#fff;border-radius:14px;padding:12px 16px;font-size:16px}
+.warn b{color:var(--pink)}
+.q{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:2px dashed var(--paper);font-size:18px}
+.q:last-child{border-bottom:0}
+.q .n{width:32px;height:32px;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;border-radius:50%;font-weight:800;font-size:15px}
+.opt{font:inherit;font-size:16px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:10px;padding:4px 12px;cursor:pointer;margin:0 2px}
+.opt.ok{background:var(--green);border-color:#5aa845}
+.opt.bad{background:var(--pink);animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+/* tour */
+.tour{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.law{border-radius:22px;overflow:hidden;background:var(--paper);display:flex;flex-direction:column}
+.law .pic{height:150px;display:grid;place-items:center;position:relative}
+.law .pic svg.ill{width:130px;height:130px}
+.law .pic svg.fl{position:absolute;left:14px;top:14px;width:46px;height:30px;border-radius:5px;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.law .pic .no{position:absolute;right:14px;top:14px;background:var(--ink);color:#fff;font-weight:800;border-radius:999px;padding:2px 10px;font-size:13px}
+.law .body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.law h3{margin:0;font-size:20px}
+.law .where{font-size:13px;font-weight:800;color:var(--violet);text-transform:uppercase;letter-spacing:1px}
+.law p{margin:0;font-size:16px}
+.law .why{font-size:14px;color:var(--muted)}
+.law .dq{margin-top:auto;background:#fff;border-radius:12px;padding:8px 12px;font-weight:700;font-size:15px}
+.law .lsn{font:inherit;font-size:13px;font-weight:700;background:none;border:0;color:var(--violet);cursor:pointer;padding:0;text-align:left}
+/* game */
+.game{max-width:720px;margin:0 auto;text-align:center}
+.score{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.score span{background:var(--paper);border-radius:999px;padding:6px 16px;font-weight:800}
+.stmt{background:var(--ink);color:#fff;border-radius:22px;padding:28px 24px;min-height:150px;display:grid;place-items:center;font-size:23px;font-weight:700;position:relative}
+.stmt small{position:absolute;top:12px;left:18px;font-size:13px;color:var(--lav);font-weight:700}
+.choose{display:flex;justify-content:center;gap:14px;margin:18px 0}
+.choose button{font:inherit;font-size:18px;font-weight:700;border:2px solid var(--ink);border-radius:999px;padding:12px 28px;cursor:pointer}
+.choose .bl{background:var(--green)}.choose .bm{background:var(--pink)}
+.choose button:disabled{opacity:.5;cursor:default}
+.verdict{min-height:70px;font-size:17px;background:var(--paper);border-radius:16px;padding:12px 16px;text-align:left}
+.verdict b.r{color:#2d7a1d}.verdict b.w{color:#b23a62}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.dots i{width:14px;height:14px;border-radius:50%;background:var(--paper)}
+.dots i.r{background:#7cc663}.dots i.w{background:#e47b9f}.dots i.c{outline:3px solid var(--violet)}
+.final{font-size:22px;font-weight:800;color:var(--violet)}
+/* invent */
+.inv{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.frames{display:grid;gap:10px}
+.frames label{font-size:14px;font-weight:700;color:var(--muted)}
+.frames select,.frames input{font:inherit;width:100%;padding:8px 10px;border:2px solid var(--lav);border-radius:10px;background:#fff}
+.poster{background:var(--paper);border:3px solid var(--ink);border-radius:20px;padding:22px;text-align:center;min-height:260px;display:flex;flex-direction:column;gap:10px;justify-content:center}
+.poster .seal{width:70px;height:70px;margin:0 auto}
+.poster h3{margin:0;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--violet)}
+.poster .rule{font-size:22px;font-weight:800}
+.poster .pen{font-size:16px;color:var(--muted)}
+.ideas{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ideas span{background:var(--pink);border-radius:999px;padding:5px 12px;font-size:14px;font-weight:600}
+/* roleplay */
+.rp{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.role{border-radius:20px;padding:18px}
+.role h3{margin:0 0 6px;display:flex;align-items:center;gap:10px}
+.role h3 svg{width:42px;height:42px}
+.role ul{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.r1{background:var(--lav)}.r2{background:var(--green)}
+.scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:16px}
+.sc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:3px solid transparent}
+.sc.on{border-color:var(--violet);background:#fff}
+.sc b{display:block;font-size:17px;margin-bottom:4px}
+.sc p{margin:0;font-size:15px}
+.timer{font-size:40px;font-weight:800;text-align:center;margin:14px 0 6px;color:var(--violet)}
+.ctr{text-align:center}
+/* homework */
+.hwb{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hwc{background:var(--paper);border-radius:18px;padding:18px}
+.hwc h3{margin:0 0 8px}
+.hwc ol,.hwc ul{margin:6px 0 0;padding-left:20px;line-height:1.7}
+.hwc textarea{width:100%;min-height:150px;font:inherit;border:2px solid var(--lav);border-radius:12px;padding:10px;margin-top:10px}
+.end{text-align:center;background:var(--ink);color:#fff;box-shadow:none}
+.end h2{justify-content:center}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(140px);background:var(--ink);color:#fff;font-weight:800;padding:12px 22px;border-radius:14px;transition:transform .3s;z-index:50}
+.toast.show{transform:translateX(-50%) translateY(0)}
+/* photos */
+.ph{margin:0}
+.ph img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;background:var(--paper)}
+.ph figcaption{font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.2px}
+.tax{grid-template-columns:1fr !important;padding:12px !important}
+.law .pic{height:auto !important;display:block !important;padding:0;position:relative}
+.law .pic .ph img{border-radius:0;aspect-ratio:16/10;transition:filter .5s}
+.law .pic .ph figcaption{padding:4px 12px 0}
+.law.hide .pic .ph img{filter:blur(10px) grayscale(.6)}
+.law.hide .reveal-body,.law.hide .fl,.law.hide .where{visibility:hidden}
+.law .clue{font-size:15px;font-style:italic;color:var(--ink)}
+.law .gc{display:flex;flex-wrap:wrap;gap:6px}
+.law .gc button{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:4px 12px;cursor:pointer}
+.law .gc button.ok{background:var(--green)}.law .gc button.bad{background:var(--pink)}
+.law:not(.hide) .guess{display:none}
+.fair{display:grid;gap:4px;background:#fff;border-radius:12px;padding:8px 12px}
+.fair .ends{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.fair input{width:100%;accent-color:var(--accent)}
+.fair output{font-size:14px;font-weight:700;color:var(--accent)}
+.gph{max-width:720px;margin:0 auto 12px}
+.gph img{aspect-ratio:21/9}
+.fine{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.fq{background:var(--paper);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.fq h3{margin:0;font-size:18px}
+.fq .opts{display:flex;flex-wrap:wrap;gap:6px}
+.fq .opts button{font:inherit;font-size:14px;font-weight:700;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 12px;cursor:pointer}
+.fq .opts button.ok{background:var(--green)}.fq .opts button.bad{background:var(--pink)}
+.fq .res{font-size:15px;min-height:22px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{position:relative;aspect-ratio:16/9;background:#111}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;cursor:pointer;background:#111 center/cover;display:grid;place-items:center}
+.vid .play span{background:rgba(0,0,0,.7);color:#fff;font-weight:700;border-radius:999px;padding:10px 20px;font-size:15px;letter-spacing:1px}
+.vid .info{padding:14px 16px}
+.vid .info h3{margin:0 0 2px;font-size:18px}
+.vid .info small{color:var(--muted)}
+.vid .info ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+@media(max-width:760px){.inv,.rp,.hwb{grid-template-columns:1fr}.lk-tbtn{top:auto;bottom:70px}}
+
+.pr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.pb{border-radius:18px;padding:16px 18px}
+.pb h3{margin:0;font-family:Georgia,serif;font-size:30px}
+.pb .m{font-size:15px;color:var(--muted);margin:2px 0 8px}
+.pb .chips{display:flex;flex-wrap:wrap;gap:6px}
+.pb .chips span{background:#fff;border-radius:999px;padding:4px 11px;font-size:14px;font-weight:600}
+.pb ul{margin:10px 0 0;padding-left:18px;font-size:15px}
+.p-in{background:#DCE6F5}.p-at{background:#F3D9CF}.p-on{background:#D4E2CF}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-size:15px;margin-top:10px}
+.ex div{background:var(--paper);border-radius:10px;padding:8px 12px}
+.ex b{color:var(--accent)}
+.q{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.q .n{font-weight:800;color:var(--violet);min-width:24px}
+.q .gap{display:inline-block;min-width:44px;border-bottom:2px solid var(--ink);text-align:center;font-weight:800}
+.q .opts{margin-left:auto;display:flex;gap:6px}
+.q .opts button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 14px;cursor:pointer}
+.q.ok{background:#DDEED7}.q.ok .gap{color:#2F7A3B}
+.q.bad{background:#F6DAD3}
+.score{font-weight:800;margin-top:12px}
+.text{font-size:18px;line-height:1.75;background:var(--paper);border-radius:16px;padding:18px 22px}
+.text h3{margin:0 0 6px;font-family:Georgia,serif;font-size:24px}
+.text p{margin:0 0 12px}
+.text.hl mark{background:#F3D9CF;border-radius:4px;padding:0 3px;font-weight:700}
+.tf{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:9px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.tf .opts{margin-left:auto;display:flex;gap:6px}
+.tf button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.tf.ok{background:#DDEED7}.tf.bad{background:#F6DAD3}
+.disc{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px;margin-top:6px}
+.disc div{background:var(--green);border-radius:14px;padding:12px 16px;font-size:17px;font-weight:600}
+.disc div i{font-style:normal;color:var(--violet);margin-right:6px}
+.spin{text-align:center;margin-top:16px}
+.spin .card{display:inline-block;min-height:80px;min-width:min(560px,100%);background:var(--ink);color:#fff;border-radius:18px;padding:20px 24px;font-size:22px;font-weight:700;margin-bottom:12px}
+@media(max-width:700px){.ex{grid-template-columns:1fr}}
+
+.hero{background-size:cover!important;background-position:center!important}
+.voc{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.voc div{background:var(--paper);border-radius:14px;padding:10px 14px;cursor:pointer;border:2px solid transparent}
+.voc div:hover{border-color:var(--violet)}
+.voc b{display:block;font-size:18px}.voc span{display:block;color:var(--accent);font-weight:700;font-size:15px}.voc em{display:block;font-size:14px;color:var(--muted);margin-top:3px}
+.mt{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:10px}
+.mt button{font:inherit;font-size:16px;text-align:left;border:2px solid var(--ink);background:#fff;border-radius:14px;padding:9px 14px;cursor:pointer}
+.mt button.sel{background:#FFE7A8}.mt button.done{background:#CDE8C6;border-color:#4C9A5B;cursor:default}
+.ch{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ch .n{font-weight:800;color:var(--violet);min-width:24px}
+.ch .o{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.ch .o button{font:inherit;font-size:15px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.ch.ok{background:#DDEED7}.ch.bad{background:#F6DAD3}
+.ty{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ty input{font:inherit;border:2px solid var(--ink);border-radius:10px;padding:4px 10px;width:220px}
+.ty.ok{background:#DDEED7}.ty.bad{background:#F6DAD3}
+.ty small{color:var(--muted)}
+.photo{width:100%;height:300px;object-fit:cover;border-radius:16px;display:block}
+.cap{font-size:11px;color:var(--muted);margin:4px 0 12px}
+.pics{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.pics figure{margin:0;background:var(--paper);border-radius:16px;overflow:hidden}
+.pics img{width:100%;height:170px;object-fit:cover;display:block}
+.pics figcaption{padding:8px 12px;font-weight:700}
+.pics small{display:block;font-weight:400;font-size:10px;color:var(--muted)}
+.lis{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:8px 0 14px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{aspect-ratio:16/9;background:#000;position:relative}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;background-size:cover;background-position:center;cursor:pointer;display:grid;place-items:center}
+.vid .play span{background:#E5484D;color:#fff;font-weight:800;border-radius:12px;padding:10px 20px}
+.vid .info{padding:12px 16px}.vid h3{margin:0;font-size:18px}.vid small{color:var(--muted)}
+.vid ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th,.tbl td{border:1px solid #ddd;padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--paper)}
+@media(max-width:700px){.mt{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="/game-lessons/kit.css">
+</head>
+<body>
+<header class="hero">
+  <div class="kicker">B1 · adults · Робота</div>
+  <h1>Small talk at work</h1>
+  <p>B1 · 7 parts · 60 min</p>
+  <span class="cr">Photo: Unsplash</span>
+</header>
+<button class="lk-tbtn" id="teacherBtn" type="button">Teacher version</button>
+<div class="wrap">
+  <section class="lk-overview">
+    <h2>In this lesson you will:</h2>
+    <ul><li>Вивчимо фрази, щоб почати, підтримати й завершити розмову з колегою
+Послухаємо розмову двох колег на офісній кухні
+Потренуємо питання в Past Simple і Present Perfect для small talk
+Розіграємо розмову з новим колегою</li></ul>
+    <div class="lk-stages" id="stages"></div>
+  </section>
+  <section id="s1" data-stage="warm-up" data-min="5">
+    <h2><span class="lk-n">1</span>Warm-up <span class="tag">warm-up</span><span class="lk-mode">teacher + student</span></h2>
+<div class="text"><p>Small talk is a short, friendly conversation about safe topics: the weather, the weekend, travel or plans. It helps people feel relaxed before a meeting and makes a new team feel less like strangers.</p></div>
+    <div class="qs"><div>Who do you usually talk to at work or at your place of study before the day starts?</div><div>Do you enjoy small talk, or do you find it awkward? Why?</div></div>
+    <h3 class="lk-sub">Safe or risky? Put the topics into the right group.</h3><div class="ch" data-a="Safe topics"><span class="n">1</span><span class="s">the weather ___</span><span class="o"><button type="button">Risky topics</button><button type="button">Safe topics</button></span></div>
+<div class="ch" data-a="Risky topics"><span class="n">2</span><span class="s">salary ___</span><span class="o"><button type="button">Risky topics</button><button type="button">Safe topics</button></span></div>
+<div class="ch" data-a="Safe topics"><span class="n">3</span><span class="s">weekend plans ___</span><span class="o"><button type="button">Safe topics</button><button type="button">Risky topics</button></span></div>
+<div class="ch" data-a="Risky topics"><span class="n">4</span><span class="s">politics ___</span><span class="o"><button type="button">Safe topics</button><button type="button">Risky topics</button></span></div>
+<div class="ch" data-a="Safe topics"><span class="n">5</span><span class="s">travel ___</span><span class="o"><button type="button">Risky topics</button><button type="button">Safe topics</button></span></div>
+<div class="ch" data-a="Risky topics"><span class="n">6</span><span class="s">religion ___</span><span class="o"><button type="button">Safe topics</button><button type="button">Risky topics</button></span></div>
+<div class="ch" data-a="Safe topics"><span class="n">7</span><span class="s">food and cafés ___</span><span class="o"><button type="button">Safe topics</button><button type="button">Risky topics</button></span></div>
+<div class="ch" data-a="Risky topics"><span class="n">8</span><span class="s">someone’s weight ___</span><span class="o"><button type="button">Risky topics</button><button type="button">Safe topics</button></span></div>
+<div class="ch" data-a="Safe topics"><span class="n">9</span><span class="s">sport ___</span><span class="o"><button type="button">Risky topics</button><button type="button">Safe topics</button></span></div>
+<div class="ch" data-a="Risky topics"><span class="n">10</span><span class="s">personal problems ___</span><span class="o"><button type="button">Safe topics</button><button type="button">Risky topics</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; Safe topics · Risky topics · Safe topics · Risky topics · Safe topics · Risky topics · Safe topics · Risky topics · Safe topics · Risky topics"><b>Відповіді:</b> Safe topics · Risky topics · Safe topics · Risky topics · Safe topics · Risky topics · Safe topics · Risky topics · Safe topics · Risky topics</p>
+    <p class="lk-tnote" data-ru="Почніть з 2 питань у парах (2 хв), потім швидко сортування (2-3 хв). Не виправляйте помилки під час розмови, лише запишіть 2-3 типові і поверніться до них на етапі Language focus. Запитайте, чи «ризиковані» теми однакові в Україні і в інших країнах.&lt;br&gt;">Почніть з 2 питань у парах (2 хв), потім швидко сортування (2-3 хв). Не виправляйте помилки під час розмови, лише запишіть 2-3 типові і поверніться до них на етапі Language focus. Запитайте, чи «ризиковані» теми однакові в Україні і в інших країнах.<br></p>
+  </section>
+  <section id="s2" data-stage="vocabulary" data-min="10">
+    <h2><span class="lk-n">2</span>Vocabulary <span class="tag">vocabulary</span><span class="lk-mode">teacher + student</span></h2>
+<div class="voc"><div data-say="How’s it going?. "><b>How’s it going?</b><span><span data-tr-uk="Як справи?" data-tr-ru="Як справи?">Як справи?</span></span><em></em></div>
+<div data-say="Did you have a good weekend?. "><b>Did you have a good weekend?</b><span><span data-tr-uk="Як минули вихідні?" data-tr-ru="Як минули вихідні?">Як минули вихідні?</span></span><em></em></div>
+<div data-say="Any plans for the holidays?. "><b>Any plans for the holidays?</b><span><span data-tr-uk="Є плани на свята?" data-tr-ru="Є плани на свята?">Є плани на свята?</span></span><em></em></div>
+<div data-say="It was nice talking to you.. "><b>It was nice talking to you.</b><span><span data-tr-uk="Приємно було поговорити." data-tr-ru="Приємно було поговорити.">Приємно було поговорити.</span></span><em></em></div>
+<div data-say="to catch up. "><b>to catch up</b><span><span data-tr-uk="поспілкуватися, наздогнати новини" data-tr-ru="поспілкуватися, наздогнати новини">поспілкуватися, наздогнати новини</span></span><em></em></div>
+<div data-say="to break the ice. "><b>to break the ice</b><span><span data-tr-uk="розрядити атмосферу, почати розмову" data-tr-ru="розрядити атмосферу, почати розмову">розрядити атмосферу, почати розмову</span></span><em></em></div>
+<div data-say="a colleague. "><b>a colleague</b><span><span data-tr-uk="колега" data-tr-ru="колега">колега</span></span><em></em></div>
+<div data-say="a safe topic. "><b>a safe topic</b><span><span data-tr-uk="безпечна тема" data-tr-ru="безпечна тема">безпечна тема</span></span><em></em></div>
+<div data-say="to keep the conversation going. "><b>to keep the conversation going</b><span><span data-tr-uk="підтримувати розмову" data-tr-ru="підтримувати розмову">підтримувати розмову</span></span><em></em></div>
+<div data-say="Sounds great!. "><b>Sounds great!</b><span><span data-tr-uk="Звучить чудово!" data-tr-ru="Звучить чудово!">Звучить чудово!</span></span><em></em></div>
+<div data-say="I’d better get going.. "><b>I’d better get going.</b><span><span data-tr-uk="Мені вже час іти." data-tr-ru="Мені вже час іти.">Мені вже час іти.</span></span><em></em></div>
+<div data-say="by the way. "><b>by the way</b><span><span data-tr-uk="до речі" data-tr-ru="до речі">до речі</span></span><em></em></div></div>
+    <div class="mt" data-mt="m2" data-pairs="[[&quot;How’s it going?&quot;, &quot;Як справи?&quot;], [&quot;Did you have a good weekend?&quot;, &quot;Як минули вихідні?&quot;], [&quot;Any plans for the holidays?&quot;, &quot;Є плани на свята?&quot;], [&quot;It was nice talking to you.&quot;, &quot;Приємно було поговорити.&quot;], [&quot;to catch up&quot;, &quot;поспілкуватися, наздогнати новини&quot;], [&quot;to break the ice&quot;, &quot;розрядити атмосферу, почати розмову&quot;], [&quot;a colleague&quot;, &quot;колега&quot;], [&quot;a safe topic&quot;, &quot;безпечна тема&quot;]]"></div><div class="score" data-mtres="m2"></div>
+    <h3 class="lk-sub">Match the phrases with their meanings.</h3><div class="ch" data-a="to start a conversation in a relaxed way"><span class="n">1</span><span class="s">to break the ice ___</span><span class="o"><button type="button">to talk about what has happened since you last met</button><button type="button">a polite way to end a conversation</button><button type="button">to start a conversation in a relaxed way</button><button type="button">something everyone can talk about without problems</button><button type="button">a phrase to introduce a new topic</button></span></div>
+<div class="ch" data-a="to talk about what has happened since you last met"><span class="n">2</span><span class="s">to catch up ___</span><span class="o"><button type="button">a polite way to end a conversation</button><button type="button">something everyone can talk about without problems</button><button type="button">to start a conversation in a relaxed way</button><button type="button">to talk about what has happened since you last met</button><button type="button">a phrase to introduce a new topic</button></span></div>
+<div class="ch" data-a="something everyone can talk about without problems"><span class="n">3</span><span class="s">a safe topic ___</span><span class="o"><button type="button">a polite way to end a conversation</button><button type="button">something everyone can talk about without problems</button><button type="button">to talk about what has happened since you last met</button><button type="button">a phrase to introduce a new topic</button><button type="button">to start a conversation in a relaxed way</button></span></div>
+<div class="ch" data-a="a polite way to end a conversation"><span class="n">4</span><span class="s">I’d better get going. ___</span><span class="o"><button type="button">a polite way to end a conversation</button><button type="button">to start a conversation in a relaxed way</button><button type="button">a phrase to introduce a new topic</button><button type="button">to talk about what has happened since you last met</button><button type="button">something everyone can talk about without problems</button></span></div>
+<div class="ch" data-a="a phrase to introduce a new topic"><span class="n">5</span><span class="s">by the way ___</span><span class="o"><button type="button">to start a conversation in a relaxed way</button><button type="button">a phrase to introduce a new topic</button><button type="button">to talk about what has happened since you last met</button><button type="button">a polite way to end a conversation</button><button type="button">something everyone can talk about without problems</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; to start a conversation in a relaxed way · to talk about what has happened since you last met · something everyone can talk about without problems · a polite way to end a conversation · a phrase to introduce a new topic"><b>Відповіді:</b> to start a conversation in a relaxed way · to talk about what has happened since you last met · something everyone can talk about without problems · a polite way to end a conversation · a phrase to introduce a new topic</p>
+    <h3 class="lk-sub">Обери найбільш природну відповідь.</h3><div class="ch" data-a="Pretty good, thanks. And you?"><span class="n">1</span><span class="s">How’s it going? ___</span><span class="o"><button type="button">I am going.</button><button type="button">Pretty good, thanks. And you?</button><button type="button">Yes.</button></span></div>
+<div class="ch" data-a="Yes, I visited my parents. How was yours?"><span class="n">2</span><span class="s">Did you have a good weekend? ___</span><span class="o"><button type="button">Yes, I visited my parents. How was yours?</button><button type="button">Weekend is good.</button><button type="button">I have.</button></span></div>
+<div class="ch" data-a="We’re going to the mountains. What about you?"><span class="n">3</span><span class="s">Any plans for the holidays? ___</span><span class="o"><button type="button">We’re going to the mountains. What about you?</button><button type="button">Yes, I plan.</button><button type="button">Holidays are plans.</button></span></div>
+<div class="ch" data-a="Sure, see you later!"><span class="n">4</span><span class="s">Sorry, I’d better get going. ___</span><span class="o"><button type="button">Sure, see you later!</button><button type="button">Going where?</button><button type="button">No, you don’t.</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; Pretty good, thanks. And you? · Yes, I visited my parents. How was yours? · We’re going to the mountains. What about you? · Sure, see you later!"><b>Відповіді:</b> Pretty good, thanks. And you? · Yes, I visited my parents. How was yours? · We’re going to the mountains. What about you? · Sure, see you later!</p>
+    <p class="lk-tnote" data-ru="Прочитайте фрази вголос з природною інтонацією (How’s it GOing?). Учні повторюють хором або по черзі. Вправи 5-6 хв, перевірка разом. Якщо учень відповідає одним словом, попросіть «додати деталь і повернути питання».&lt;br&gt;">Прочитайте фрази вголос з природною інтонацією (How’s it GOing?). Учні повторюють хором або по черзі. Вправи 5-6 хв, перевірка разом. Якщо учень відповідає одним словом, попросіть «додати деталь і повернути питання».<br></p>
+  </section>
+  <section id="s3" data-stage="listening" data-min="15">
+    <h2><span class="lk-n">3</span>Listening <span class="tag">listening</span><span class="lk-mode">teacher + student</span></h2>
+<div class="text"><p><b>Before you listen:</b> Olivia has just started a new job. On Monday morning she meets a colleague in the office kitchen. What do you think they will talk about?</p></div>
+    <div class="text"><h3>Monday morning in the office kitchen</h3><p class="lk-ins">Your teacher reads the dialogue (or plays it). Listen first, then read.</p><details><summary>Show the script</summary><p>Mark: Morning! I don’t think we’ve met. I’m Mark, from the sales team.</p><p>Olivia: Hi Mark, nice to meet you. I’m Olivia. I started in marketing last week.</p><p>Mark: Oh, welcome! How’s it going so far?</p><p>Olivia: Pretty well, thanks. Everyone is very friendly. It’s a bit busy, though.</p><p>Mark: Yes, Mondays are always crazy here. Did you have a good weekend?</p><p>Olivia: Yes, lovely, thanks. I went cycling by the river with my sister. How about you?</p><p>Mark: Nothing special. I watched football and cooked a big dinner for some friends.</p><p>Olivia: Sounds nice. What did you cook?</p><p>Mark: A Thai curry. It was a bit too spicy, but everyone ate it!</p><p>Olivia: Ha, that’s the main thing. By the way, is the coffee machine always this slow?</p><p>Mark: Always. That’s why we have the best conversations here.</p><p>Olivia: Good to know. Any plans for the summer holidays?</p><p>Mark: We’re thinking about Cornwall. Have you ever been there?</p><p>Olivia: No, never, but I’d love to go. Oh, my meeting starts in two minutes. I’d better get going.</p><p>Mark: Sure. It was nice talking to you. Let’s catch up at lunch sometime.</p><p>Olivia: Great idea. See you later!</p></details></div>
+    <h3 class="lk-sub">Gist: listen once and choose the answer.</h3><div class="ch" data-a="In the office kitchen"><span class="n">1</span><span class="s">Where are Olivia and Mark? ___</span><span class="o"><button type="button">In the office kitchen</button><button type="button">In a restaurant</button><button type="button">In a meeting room</button></span></div>
+<div class="ch" data-a="Olivia has a meeting"><span class="n">2</span><span class="s">Why does the conversation end? ___</span><span class="o"><button type="button">Mark is angry</button><button type="button">The coffee machine breaks</button><button type="button">Olivia has a meeting</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; In the office kitchen · Olivia has a meeting"><b>Відповіді:</b> In the office kitchen · Olivia has a meeting</p>
+    <h3 class="lk-sub">Detail: listen again. True or False?</h3><div class="ch" data-a="True"><span class="n">1</span><span class="s">Olivia started working in marketing last week.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="False"><span class="n">2</span><span class="s">Mark works in the marketing team.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="True"><span class="n">3</span><span class="s">Olivia went cycling with her sister at the weekend.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="False"><span class="n">4</span><span class="s">Mark cooked a Thai curry for his family.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="True"><span class="n">5</span><span class="s">Mark is thinking about a holiday in Cornwall.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; True · False · True · False · True"><b>Відповіді:</b> True · False · True · False · True</p>
+    <p class="lk-tnote" data-ru="Перше прослуховування на загальне розуміння (gist), друге на деталі. Після перевірки попросіть знайти в діалозі 3 способи повернути питання (How about you? / Have you ever…? / What did you cook?) і 1 спосіб завершити розмову. Загалом 12-15 хв.&lt;br&gt;">Перше прослуховування на загальне розуміння (gist), друге на деталі. Після перевірки попросіть знайти в діалозі 3 способи повернути питання (How about you? / Have you ever…? / What did you cook?) і 1 спосіб завершити розмову. Загалом 12-15 хв.<br></p>
+  </section>
+  <section id="s4" data-stage="practice" data-min="10">
+    <h2><span class="lk-n">4</span>Language focus <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<div class="warn"><p>Відповідай не одним словом, а коротким реченням і поверни питання: <b>Not bad, thanks. I went hiking. How about you?</b> Про минулі вихідні питаємо в Past Simple: <b>Did you have…? / What did you do? / How was…?</b> Про досвід взагалі в Present Perfect: <b>Have you ever been to…?</b></p></div>
+    <h3 class="lk-sub">Complete the questions and phrases.</h3><div class="ty" data-a="Did"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>___ you have a good weekend?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="was"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>How ___ your holiday?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="did"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>What ___ you do on Saturday?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Have"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>___ you ever been to Cornwall?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="talking"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>It was nice ___ to you.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="catch"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Let’s ___ up after the meeting.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; Did · was · did · Have · talking · catch"><b>Відповіді:</b> Did · was · did · Have · talking · catch</p>
+    <h3 class="lk-sub">Переклади англійською.</h3><div class="ty" data-a="Did you have a good weekend?|How was your weekend?"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Як минули вихідні?</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="It was nice talking to you|It was nice to talk to you|Nice talking to you"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Приємно було поговорити</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="I’d better get going|I’d better go|I have to go"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Мені вже час іти</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Any plans for the holidays?|Do you have any plans for the holidays?"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Є плани на свята?</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; Did you have a good weekend? · It was nice talking to you · I’d better get going · Any plans for the holidays?"><b>Відповіді:</b> Did you have a good weekend? · It was nice talking to you · I’d better get going · Any plans for the holidays?</p>
+    <p class="lk-tnote" data-ru="Нагадайте різницю: конкретний час у минулому (weekend, Saturday) = Past Simple; досвід без часу = Present Perfect. Типова помилка українців: «How was your weekend? - Was good.» Виправляйте одразу: It was good. Вправи 6-7 хв, перевірка вголос.&lt;br&gt;">Нагадайте різницю: конкретний час у минулому (weekend, Saturday) = Past Simple; досвід без часу = Present Perfect. Типова помилка українців: «How was your weekend? - Was good.» Виправляйте одразу: It was good. Вправи 6-7 хв, перевірка вголос.<br></p>
+  </section>
+  <section id="s5" data-stage="speaking" data-min="12">
+    <h2><span class="lk-n">5</span>Speaking <span class="tag">speaking</span><span class="lk-mode">teacher + student</span></h2>
+<div class="text"><p><b>Card A: the new colleague.</b> You started at the company two weeks ago. You meet a colleague by the coffee machine. Introduce yourself, ask about their weekend and one more safe topic. Then end the conversation politely.</p><p><b>Card B: the experienced colleague.</b> You have worked here for three years. Welcome the new colleague, answer with full sentences and ask questions back. Recommend a good place for lunch near the office.</p></div>
+    <div class="qs"><div>Role play: use your cards. Speak for 2-3 minutes, then swap roles.</div><div>Which topics are not good for small talk? Are they the same in Ukraine and in the UK or the USA?</div><div>Is small talk a waste of time or an important work skill? Why?</div></div>
+    <h3 class="lk-sub">Record a 1-minute answer.</h3><div class="qs"><div>A colleague asks you: "Did you have a good weekend?" Answer with two or three details and ask two questions back. (say it out loud)</div></div>
+    <p class="lk-tnote" data-ru="Рольова гра в парах 2-3 хв на роль, потім обмін. В індивідуальному уроці вчитель грає роль B. Слухайте, чи учень повертає питання і чи завершує розмову ввічливо. Після гри дайте 2 сильні фрази і 2 виправлення. Voice можна дати вдома, якщо бракує часу.&lt;br&gt;">Рольова гра в парах 2-3 хв на роль, потім обмін. В індивідуальному уроці вчитель грає роль B. Слухайте, чи учень повертає питання і чи завершує розмову ввічливо. Після гри дайте 2 сильні фрази і 2 виправлення. Voice можна дати вдома, якщо бракує часу.<br></p>
+  </section>
+  <section id="s6" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">6</span>Extra practice · якщо лишився час або на наступний урок <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Встав одне слово у фразу для small talk.</h3><div class="ty" data-a="going"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>How’s it ___?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="weekend"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Did you have a good ___?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="plans"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Any ___ for the holidays?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="up"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Let’s catch ___ at lunch sometime.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="going"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>I’d better get ___. My bus leaves in five minutes.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="way"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>By the ___, have you tried the new café downstairs?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; going · weekend · plans · up · going · way"><b>Відповіді:</b> going · weekend · plans · up · going · way</p>
+    <h3 class="lk-sub">Past Simple чи Present Perfect? Обери правильну форму.</h3><div class="ch" data-a="Did you go"><span class="n">1</span><span class="s">___ anywhere nice last weekend?</span><span class="o"><button type="button">Do you go</button><button type="button">Have you gone</button><button type="button">Did you go</button></span></div>
+<div class="ch" data-a="Have you ever been"><span class="n">2</span><span class="s">___ to Cornwall?</span><span class="o"><button type="button">Were you ever be</button><button type="button">Have you ever been</button><button type="button">Did you ever be</button></span></div>
+<div class="ch" data-a="did you do"><span class="n">3</span><span class="s">What ___ on Saturday evening?</span><span class="o"><button type="button">have you done</button><button type="button">do you do</button><button type="button">did you do</button></span></div>
+<div class="ch" data-a="went"><span class="n">4</span><span class="s">I ___ to a concert on Friday.</span><span class="o"><button type="button">go</button><button type="button">have gone</button><button type="button">went</button></span></div>
+<div class="ch" data-a="have never tried"><span class="n">5</span><span class="s">I ___ sushi in my life.</span><span class="o"><button type="button">did never try</button><button type="button">have never tried</button><button type="button">am never trying</button></span></div>
+<div class="ch" data-a="have worked"><span class="n">6</span><span class="s">We ___ together since 2022.</span><span class="o"><button type="button">have worked</button><button type="button">worked</button><button type="button">work</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; Did you go · Have you ever been · did you do · went · have never tried · have worked"><b>Відповіді:</b> Did you go · Have you ever been · did you do · went · have never tried · have worked</p>
+    <h3 class="lk-sub">Переклади англійською.</h3><div class="ty" data-a="What did you do on Saturday?"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Що ти робив у суботу?</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="By the way, have you ever been to Cornwall?"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>До речі, ти коли-небудь був у Корнуоллі?</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Sounds great!|That sounds great!"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Звучить чудово!</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Let’s catch up at lunch|Let’s catch up over lunch|Let us catch up at lunch"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Давай поспілкуємося за обідом</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="I went hiking with my friends|I went hiking with friends"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Я ходив у похід з друзями</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Have you ever tried Thai food?"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Ти колись пробував тайську їжу?</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; What did you do on Saturday? · By the way, have you ever been to Cornwall? · Sounds great! · Let’s catch up at lunch · I went hiking with my friends · Have you ever tried Thai food?"><b>Відповіді:</b> What did you do on Saturday? · By the way, have you ever been to Cornwall? · Sounds great! · Let’s catch up at lunch · I went hiking with my friends · Have you ever tried Thai food?</p>
+    <h3 class="lk-sub">Small talk: finish the phrase</h3><p class="lk-ins">Match the beginning with the end</p>
+    <div class="spin"><div class="card" id="g67">Click "Next card"</div><br><button class="btn" type="button" data-spin="[&quot;How’s it&quot;, &quot;Did you have a good&quot;, &quot;Any plans for&quot;, &quot;It was nice&quot;, &quot;I’d better&quot;, &quot;Have you ever&quot;, &quot;Pretty good, thanks.&quot;, &quot;Nice to&quot;]" data-target="g67">Next card</button></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; going? · weekend? · the holidays? · talking to you. · get going. · been to Cornwall? · And you? · meet you."><b>Відповіді:</b> going? · weekend? · the holidays? · talking to you. · get going. · been to Cornwall? · And you? · meet you.</p>
+    <p class="lk-tnote" data-ru="Блок на 10-12 хв, якщо лишився час, або розминка на початку наступного уроку. У choice звертайте увагу на маркери часу: last weekend, on Friday = Past Simple; ever, never, since = Present Perfect. «I have never tried sushi in my life»: життя ще триває, тому Present Perfect. Переклад може мати інші правильні варіанти (How was your Saturday? тощо), зараховуйте їх вручну. Гру можна робити на швидкість: учень читає початок, вчитель або партнер закінчує.&lt;br&gt;">Блок на 10-12 хв, якщо лишився час, або розминка на початку наступного уроку. У choice звертайте увагу на маркери часу: last weekend, on Friday = Past Simple; ever, never, since = Present Perfect. «I have never tried sushi in my life»: життя ще триває, тому Present Perfect. Переклад може мати інші правильні варіанти (How was your Saturday? тощо), зараховуйте їх вручну. Гру можна робити на швидкість: учень читає початок, вчитель або партнер закінчує.<br></p>
+  </section>
+  <section id="s7" data-stage="wrap-up" data-min="8">
+    <h2><span class="lk-n">7</span>Wrap-up <span class="tag">wrap-up</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Writing: 40-60 words.</h3><div class="qs"><div>Write a short chat message to a colleague you met today. Say it was nice talking, mention one thing you talked about and suggest catching up at lunch.</div><div>What three questions will you use next time you meet someone new at work?</div></div>
+    <p class="lk-tnote" data-ru="Учні пишуть 5 хв, 1-2 читають уголос. Домашнє завдання: записати voice-відповідь (якщо не встигли), а наступного робочого дня спробувати small talk з колегою англійською або українською і принести 1 фразу, яка спрацювала.&lt;br&gt;">Учні пишуть 5 хв, 1-2 читають уголос. Домашнє завдання: записати voice-відповідь (якщо не встигли), а наступного робочого дня спробувати small talk з колегою англійською або українською і принести 1 фразу, яка спрацювала.<br></p>
+    <h3 class="lk-sub">Homework plus: розкрий дужки.</h3><div class="ty" data-a="was"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>How ___ (be) your weekend?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="visited"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>I ___ (visit) my grandparents on Saturday.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="cooked"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>We ___ (cook) a big dinner for the whole family.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Have"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>___ you ever been to Brighton?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="was"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>It ___ (be) nice talking to you yesterday.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="has worked"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Mark ___ (work) here for three years.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; was · visited · cooked · Have · was · has worked"><b>Відповіді:</b> was · visited · cooked · Have · was · has worked</p>
+    <h3 class="lk-sub">Обери найбільш природну відповідь.</h3><div class="ch" data-a="Not bad, thanks. Busy Monday! How about you?"><span class="n">1</span><span class="s">Morning! How’s it going? ___</span><span class="o"><button type="button">I go fine.</button><button type="button">Not bad, thanks. Busy Monday! How about you?</button><button type="button">Yes, it goes.</button></span></div>
+<div class="ch" data-a="Not much, I just relaxed at home. And you?"><span class="n">2</span><span class="s">Did you do anything nice at the weekend? ___</span><span class="o"><button type="button">No.</button><button type="button">I did a weekend.</button><button type="button">Not much, I just relaxed at home. And you?</button></span></div>
+<div class="ch" data-a="No, never, but I’d love to go."><span class="n">3</span><span class="s">Have you ever been to Cornwall? ___</span><span class="o"><button type="button">Yes, I was go.</button><button type="button">No, never, but I’d love to go.</button><button type="button">No, I didn’t go.</button></span></div>
+<div class="ch" data-a="Lucky you! Where exactly?"><span class="n">4</span><span class="s">I’m off to Scotland next week! ___</span><span class="o"><button type="button">I don’t care.</button><button type="button">Lucky you! Where exactly?</button><button type="button">Scotland is a country.</button></span></div>
+<div class="ch" data-a="You too! See you later."><span class="n">5</span><span class="s">It was nice talking to you. ___</span><span class="o"><button type="button">You too! See you later.</button><button type="button">Thank you for talking.</button><button type="button">Me too talking.</button></span></div>
+<div class="ch" data-a="Sure, catch you later!"><span class="n">6</span><span class="s">Sorry, I’d better get going. ___</span><span class="o"><button type="button">Get going where?</button><button type="button">Sure, catch you later!</button><button type="button">No, you don’t.</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; Not bad, thanks. Busy Monday! How about you? · Not much, I just relaxed at home. And you? · No, never, but I’d love to go. · Lucky you! Where exactly? · You too! See you later. · Sure, catch you later!"><b>Відповіді:</b> Not bad, thanks. Busy Monday! How about you? · Not much, I just relaxed at home. And you? · No, never, but I’d love to go. · Lucky you! Where exactly? · You too! See you later. · Sure, catch you later!</p>
+    <h3 class="lk-sub">Письмо: відповідай 3-5 реченнями.</h3><div class="qs"><div>Describe a time when small talk helped you at work, at school or on a trip.</div><div>What do you usually say to break the ice with someone new? Write three phrases and explain why they work.</div><div>Write a short dialogue (6-8 lines) between you and a colleague on Monday morning.</div></div>
+  </section>
+  <section class="end"><h2>Great job!</h2><p>See you next lesson.</p></section>
+</div>
+<div class="toast" id="toast"></div>
+<script>window.MURLY_LESSON={"id": "lib-small-talk-work", "title": "Small talk at work", "homework": ["s1", "s2", "s3", "s4", "s6", "s7"], "hw": {"s1": [{"type": "choice", "instruction": "Safe or risky? Put the topics into the right group.", "text": "the weather {Safe topics|Risky topics}\nsalary {Risky topics|Safe topics}\nweekend plans {Safe topics|Risky topics}\npolitics {Risky topics|Safe topics}\ntravel {Safe topics|Risky topics}\nreligion {Risky topics|Safe topics}\nfood and cafés {Safe topics|Risky topics}\nsomeone’s weight {Risky topics|Safe topics}\nsport {Safe topics|Risky topics}\npersonal problems {Risky topics|Safe topics}"}], "s2": [{"type": "choice", "instruction": "Match the phrases with their meanings.", "text": "to break the ice {to start a conversation in a relaxed way|to talk about what has happened since you last met|something everyone can talk about without problems|a polite way to end a conversation|a phrase to introduce a new topic}\nto catch up {to talk about what has happened since you last met|to start a conversation in a relaxed way|something everyone can talk about without problems|a polite way to end a conversation|a phrase to introduce a new topic}\na safe topic {something everyone can talk about without problems|to start a conversation in a relaxed way|to talk about what has happened since you last met|a polite way to end a conversation|a phrase to introduce a new topic}\nI’d better get going. {a polite way to end a conversation|to start a conversation in a relaxed way|to talk about what has happened since you last met|something everyone can talk about without problems|a phrase to introduce a new topic}\nby the way {a phrase to introduce a new topic|to start a conversation in a relaxed way|to talk about what has happened since you last met|something everyone can talk about without problems|a polite way to end a conversation}"}, {"type": "choice", "instruction": "Обери найбільш природну відповідь.", "text": "How’s it going? {Pretty good, thanks. And you?|Yes.|I am going.}\nDid you have a good weekend? {Yes, I visited my parents. How was yours?|Weekend is good.|I have.}\nAny plans for the holidays? {We’re going to the mountains. What about you?|Yes, I plan.|Holidays are plans.}\nSorry, I’d better get going. {Sure, see you later!|No, you don’t.|Going where?}"}], "s3": [{"type": "choice", "instruction": "Gist: listen once and choose the answer.", "text": "Where are Olivia and Mark? {In the office kitchen|In a restaurant|In a meeting room}\nWhy does the conversation end? {Olivia has a meeting|Mark is angry|The coffee machine breaks}"}, {"type": "choice", "instruction": "Detail: listen again. True or False?", "text": "Olivia started working in marketing last week. {True|False}\nMark works in the marketing team. {False|True}\nOlivia went cycling with her sister at the weekend. {True|False}\nMark cooked a Thai curry for his family. {False|True}\nMark is thinking about a holiday in Cornwall. {True|False}"}], "s4": [{"type": "gap", "instruction": "Complete the questions and phrases.", "text": "[Did] you have a good weekend?\nHow [was] your holiday?\nWhat [did] you do on Saturday?\n[Have] you ever been to Cornwall?\nIt was nice [talking] to you.\nLet’s [catch] up after the meeting."}, {"type": "gap", "instruction": "Переклади англійською.", "text": "Як минули вихідні? → [Did you have a good weekend?/How was your weekend?]\nПриємно було поговорити → [It was nice talking to you/It was nice to talk to you/Nice talking to you]\nМені вже час іти → [I’d better get going/I’d better go/I have to go]\nЄ плани на свята? → [Any plans for the holidays?/Do you have any plans for the holidays?]"}], "s6": [{"type": "gap", "instruction": "Встав одне слово у фразу для small talk.", "text": "How’s it [going]?\nDid you have a good [weekend]?\nAny [plans] for the holidays?\nLet’s catch [up] at lunch sometime.\nI’d better get [going]. My bus leaves in five minutes.\nBy the [way], have you tried the new café downstairs?"}, {"type": "choice", "instruction": "Past Simple чи Present Perfect? Обери правильну форму.", "text": "{Did you go|Have you gone|Do you go} anywhere nice last weekend?\n{Have you ever been|Did you ever be|Were you ever be} to Cornwall?\nWhat {did you do|have you done|do you do} on Saturday evening?\nI {went|have gone|go} to a concert on Friday.\nI {have never tried|did never try|am never trying} sushi in my life.\nWe {have worked|work|worked} together since 2022."}, {"type": "gap", "instruction": "Переклади англійською.", "text": "Що ти робив у суботу? → [What did you do on Saturday?]\nДо речі, ти коли-небудь був у Корнуоллі? → [By the way, have you ever been to Cornwall?]\nЗвучить чудово! → [Sounds great!/That sounds great!]\nДавай поспілкуємося за обідом → [Let’s catch up at lunch/Let’s catch up over lunch/Let us catch up at lunch]\nЯ ходив у похід з друзями → [I went hiking with my friends/I went hiking with friends]\nТи колись пробував тайську їжу? → [Have you ever tried Thai food?]"}], "s7": [{"type": "open", "instruction": "Writing: 40-60 words.", "text": "Write a short chat message to a colleague you met today. Say it was nice talking, mention one thing you talked about and suggest catching up at lunch.\nWhat three questions will you use next time you meet someone new at work?"}, {"type": "gap", "instruction": "Homework plus: розкрий дужки.", "text": "How [was] (be) your weekend?\nI [visited] (visit) my grandparents on Saturday.\nWe [cooked] (cook) a big dinner for the whole family.\n[Have] you ever been to Brighton?\nIt [was] (be) nice talking to you yesterday.\nMark [has worked] (work) here for three years."}, {"type": "choice", "instruction": "Обери найбільш природну відповідь.", "text": "Morning! How’s it going? {Not bad, thanks. Busy Monday! How about you?|I go fine.|Yes, it goes.}\nDid you do anything nice at the weekend? {Not much, I just relaxed at home. And you?|No.|I did a weekend.}\nHave you ever been to Cornwall? {No, never, but I’d love to go.|No, I didn’t go.|Yes, I was go.}\nI’m off to Scotland next week! {Lucky you! Where exactly?|I don’t care.|Scotland is a country.}\nIt was nice talking to you. {You too! See you later.|Me too talking.|Thank you for talking.}\nSorry, I’d better get going. {Sure, catch you later!|Get going where?|No, you don’t.}"}, {"type": "open", "instruction": "Письмо: відповідай 3-5 реченнями.", "text": "Describe a time when small talk helped you at work, at school or on a trip.\nWhat do you usually say to break the ice with someone new? Write three phrases and explain why they work.\nWrite a short dialogue (6-8 lines) between you and a colleague on Monday morning."}]}};</script>
+<script>
+(function(){var l=(document.cookie.match(/(?:^|; )murly_lang=(\w+)/)||[])[1];try{l=l||localStorage.getItem('murly:tlang')}catch(e){}l=l==='ru'?'ru':'uk';document.querySelectorAll('[data-pairs-'+l+']').forEach(function(b){b.dataset.pairs=b.getAttribute('data-pairs-'+l)});})();
+</script>
+<script>
+const $ = (id) => document.getElementById(id);
+const LIS = {};
+function say(w, rate) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; const v = speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang) && /Google|Natural|Libby|Sonia|Daniel/.test(x.name)) || speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang)); if (v) u.voice = v; u.rate = rate || .95; speechSynthesis.speak(u); } catch (e) { } }
+const sh = (a) => a.map((x) => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map((x) => x[1]);
+document.querySelectorAll('.voc div').forEach((d) => d.onclick = () => say(d.dataset.say));
+document.querySelectorAll('[data-play]').forEach((b) => b.onclick = () => say(LIS[b.dataset.play], b.dataset.slow ? .75 : .95));
+document.querySelectorAll('[data-stop]').forEach((b) => b.onclick = () => { try { speechSynthesis.cancel(); } catch (e) { } });
+document.querySelectorAll('.ch').forEach((q) => q.querySelectorAll('button').forEach((b) => b.onclick = () => { if (q.classList.contains('ok')) return; const ok = b.textContent === q.dataset.a; q.classList.toggle('ok', ok); q.classList.toggle('bad', !ok); if (ok) { const s = q.querySelector('.s'); if (s && s.textContent.includes('___')) { s.textContent = s.textContent.replace('___', q.dataset.a); } } }));
+const norm = (x) => x.toLowerCase().replace(/[’']/g, "'").replace(/[,;:"“”«»]/g, ' ').replace(/\s+/g, ' ').replace(/[.!?]$/, '').trim();
+document.querySelectorAll('.ty').forEach((r) => { const inp = r.querySelector('input'); const chk = () => { const ok = r.dataset.a.split('|').some((a) => norm(a) === norm(inp.value)); r.classList.toggle('ok', ok); r.classList.toggle('bad', !ok && inp.value.trim() !== ''); }; r.querySelector('button').onclick = chk; inp.onkeydown = (e) => { if (e.key === 'Enter') chk(); }; });
+document.querySelectorAll('[data-mt]').forEach((box) => { const pairs = JSON.parse(box.dataset.pairs); const L = sh(pairs.map((p) => p[0])), R = sh(pairs.map((p) => p[1])); let sel = null, done = 0, err = 0; box.innerHTML = L.map((w, i) => `<button type="button" data-w="${w}">${w}</button><button type="button" data-d="${R[i]}">${R[i]}</button>`).join('');
+  box.querySelectorAll('button').forEach((b) => b.onclick = () => { if (b.classList.contains('done')) return; if (!sel || (sel.dataset.w && b.dataset.w) || (sel.dataset.d && b.dataset.d)) { if (sel) sel.classList.remove('sel'); sel = b; b.classList.add('sel'); return; } const w = sel.dataset.w || b.dataset.w, d = sel.dataset.d || b.dataset.d; if (pairs.some((p) => p[0] === w && p[1] === d)) { sel.classList.add('done'); b.classList.add('done'); done++; say(w); if (done === pairs.length) document.querySelector(`[data-mtres="${box.dataset.mt}"]`).textContent = err ? `Done! Mistakes: ${err}` : 'Perfect!'; } else err++; sel.classList.remove('sel'); sel = null; }); });
+document.querySelectorAll('[data-vids]').forEach((box) => JSON.parse(box.dataset.vids).forEach(([id, title, ch, qs]) => { const d = document.createElement('div'); d.className = 'vid'; d.innerHTML = `<div class="frame"><button class="play" type="button" style="background-image:url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)"><span>PLAY</span></button></div><div class="info"><h3>${title}</h3><small>YouTube · ${ch}</small><ol>${qs.map((q) => `<li>${q}</li>`).join('')}</ol></div>`; d.querySelector('.play').onclick = (e) => { e.currentTarget.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&cc_load_policy=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${title}"></iframe>`; }; box.appendChild(d); }));
+document.querySelectorAll('[data-spin]').forEach((b) => { const list = JSON.parse(b.dataset.spin); let last = -1; b.onclick = () => { let i; do { i = Math.floor(Math.random() * list.length); } while (i === last && list.length > 1); last = i; document.getElementById(b.dataset.target).textContent = list[i]; }; });
+try { const k = 'murly:' + (window.MURLY_LESSON ? MURLY_LESSON.id : 'x') + ':hw'; const t = $('hwText'); if (t) { t.value = localStorage.getItem(k) || ''; t.oninput = () => localStorage.setItem(k, t.value); } } catch (e) { }
+const STAGES = [...document.querySelectorAll('.wrap > section[id]')];
+$('stages').innerHTML = STAGES.map((s) => `<a href="#${s.id}"><b>${s.querySelector('.lk-n').textContent}</b><span>${s.dataset.stage}</span><small>${s.dataset.min !== '0' ? s.dataset.min + ' min' : 'at home'}</small></a>`).join('');
+$('teacherBtn').onclick = (e) => { const on = document.body.classList.toggle('teacher'); e.currentTarget.textContent = on ? 'Student version' : 'Teacher version'; };
+</script>
+<script src="/game-lessons/kit.js" defer></script>
+</body>
+</html>

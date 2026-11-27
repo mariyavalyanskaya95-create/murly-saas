@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Use of English: пропуски в тексті (B1) | Murly</title>
+<link rel="icon" href="/favicon.svg">
+<meta name="description" content="Потренуємо завдання як на НМТ: текст з пропусками і варіантами A-D
+Повторимо часи, прийменники і сталі словосполучення
+Розберемо типові пастки і навчи">
+<link rel="canonical" href="https://murly.com.ua/game-lessons/lib-nmt-cloze.html">
+<style>
+:root{--paper:#F3F0EA;--ink:#17181C;--violet:#3D4A7A;--lav:#D9D3C7;--pink:#E9C9BC;--green:#D4E2CF;--white:#fff;--muted:#62646B;--accent:#B5482F}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+/* hero */
+.hero{background:linear-gradient(rgba(16,17,22,.5),rgba(16,17,22,.72)),url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1400&q=70&auto=format&fit=crop");color:#fff;padding:70px 18px 56px;text-align:center;position:relative;overflow:hidden}
+.hero .kicker{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#E9C9BC;font-weight:700}
+.hero .cr{position:absolute;right:12px;bottom:8px;font-size:11px;color:rgba(255,255,255,.6)}
+.hero h1{margin:8px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(36px,6vw,64px);letter-spacing:-.5px;font-weight:700}
+.hero h1 span{color:var(--pink);font-style:italic}
+.hero p{margin:12px 0 0;font-size:17px;color:#e6e2da}
+.hero .flags{display:flex;justify-content:center;gap:12px;margin-top:22px;flex-wrap:wrap}
+.hero .flags svg{width:40px;height:26px;border-radius:3px;opacity:.9}
+/* sections */
+section{margin-top:30px;background:var(--white);border-radius:18px;padding:28px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.05)}
+section h2{margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tag{font-family:"Segoe UI",system-ui,sans-serif;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--paper);color:var(--accent);text-transform:uppercase;letter-spacing:1px}
+.lk-n{display:inline-grid;place-items:center;width:42px;height:42px;background:var(--violet);color:#fff;border-radius:50%;font-size:21px;flex:none}
+.lk-mode{font-size:13px;font-weight:700;border:2px dashed var(--lav);color:var(--muted);padding:2px 10px;border-radius:999px}
+.lk-ins{font-size:17px;background:var(--paper);border-radius:12px;padding:10px 14px;margin:6px 0 18px}
+.lk-sub{margin:24px 0 10px;font-size:19px}
+.btn{font:inherit;font-weight:700;border:0;border-radius:999px;background:var(--ink);color:#fff;padding:10px 20px;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+.btn.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+/* teacher */
+.lk-tbtn{position:fixed;right:16px;top:70px;z-index:45;font:inherit;font-weight:800;border:2px solid var(--ink);background:var(--pink);padding:8px 14px;border-radius:12px;cursor:pointer}
+body.teacher .lk-tbtn{background:var(--green)}
+.lk-ans,.lk-tnote{display:none}
+body.teacher .lk-ans{display:block;margin-top:8px;font-weight:700;color:#1d5a12;background:var(--green);border-left:5px solid #5aa845;padding:6px 10px;font-size:15px;border-radius:6px}
+body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff3f7;border-left:5px solid #d9789a;padding:8px 12px;font-size:15px;border-radius:6px}
+/* overview */
+.lk-overview ul{font-size:17px;line-height:1.7;margin:6px 0 16px}
+.lk-stages{display:flex;flex-wrap:wrap;gap:8px}
+.lk-stages a{display:grid;border-radius:14px;padding:8px 12px;text-decoration:none;color:var(--ink);background:var(--paper);font-weight:700;min-width:100px}
+.lk-stages a span{text-transform:capitalize}
+.lk-stages a b{font-size:20px;color:var(--violet)}
+.lk-stages a small{font-weight:600;color:var(--muted)}
+/* warm-up */
+.taxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tax{background:var(--paper);border-radius:18px;padding:16px;display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center}
+.tax svg{width:56px;height:56px}
+.tax b{display:block;font-size:17px}
+.tax small{color:var(--muted);font-size:14px}
+.qs{display:grid;gap:10px;margin-top:18px}
+.qs div{background:var(--green);border-radius:14px;padding:10px 16px;font-size:18px;font-weight:600}
+.phr{background:#fff7e8;border-radius:14px;padding:12px 16px;margin-top:16px;font-size:15px}
+.phr ul{margin:6px 0 0;padding-left:18px}
+.fic{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:16px}
+.fic .c{background:#fff;border:2px solid #1B2140;border-radius:16px;padding:14px 16px;box-shadow:3px 3px 0 #1B2140}
+.fic .c b{display:block;font-size:18px;line-height:1.35;margin-bottom:8px}
+.fic .c .k{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.fic .c .k span{font-size:13px;background:#eef1fb;border-radius:999px;padding:3px 10px}
+.fic .c details{margin-top:8px;font-size:15px;color:#3b4160}
+.fic .c summary{cursor:pointer;font-weight:700;color:#534AB7}
+.fi-n{display:inline-flex;width:28px;height:28px;border-radius:50%;background:#2F4BA0;color:#fff;align-items:center;justify-content:center;font-size:14px;margin-right:6px}
+/* vocab */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:12px}
+.vc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:2px solid transparent;transition:border-color .2s,transform .2s}
+.vc:hover{border-color:var(--violet);transform:translateY(-2px)}
+.vc b{font-size:18px;display:flex;align-items:center;gap:8px}
+.vc b svg{width:20px;height:20px;flex:none;color:var(--violet)}
+.vc p{margin:6px 0 0;font-size:14px;color:var(--muted)}
+.vc em{display:block;margin-top:6px;font-size:14px;color:var(--violet);font-style:normal;font-weight:600}
+.vc.played{background:#e6ecfb}
+/* grammar */
+.gram{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.gb{border-radius:18px;padding:16px}
+.gb h3{margin:0 0 6px;font-size:19px}
+.gb .f{display:inline-block;background:#fff;border-radius:8px;padding:3px 10px;font-weight:800;margin:4px 0;font-family:Consolas,monospace;font-size:15px}
+.gb p{margin:6px 0 0;font-size:15px}
+.g1{background:var(--pink)}.g2{background:var(--lav)}.g3{background:var(--green)}.g4{background:#fbe7c6}
+.warn{margin-top:14px;background:var(--ink);color:#fff;border-radius:14px;padding:12px 16px;font-size:16px}
+.warn b{color:var(--pink)}
+.q{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:2px dashed var(--paper);font-size:18px}
+.q:last-child{border-bottom:0}
+.q .n{width:32px;height:32px;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;border-radius:50%;font-weight:800;font-size:15px}
+.opt{font:inherit;font-size:16px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:10px;padding:4px 12px;cursor:pointer;margin:0 2px}
+.opt.ok{background:var(--green);border-color:#5aa845}
+.opt.bad{background:var(--pink);animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+/* tour */
+.tour{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.law{border-radius:22px;overflow:hidden;background:var(--paper);display:flex;flex-direction:column}
+.law .pic{height:150px;display:grid;place-items:center;position:relative}
+.law .pic svg.ill{width:130px;height:130px}
+.law .pic svg.fl{position:absolute;left:14px;top:14px;width:46px;height:30px;border-radius:5px;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.law .pic .no{position:absolute;right:14px;top:14px;background:var(--ink);color:#fff;font-weight:800;border-radius:999px;padding:2px 10px;font-size:13px}
+.law .body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.law h3{margin:0;font-size:20px}
+.law .where{font-size:13px;font-weight:800;color:var(--violet);text-transform:uppercase;letter-spacing:1px}
+.law p{margin:0;font-size:16px}
+.law .why{font-size:14px;color:var(--muted)}
+.law .dq{margin-top:auto;background:#fff;border-radius:12px;padding:8px 12px;font-weight:700;font-size:15px}
+.law .lsn{font:inherit;font-size:13px;font-weight:700;background:none;border:0;color:var(--violet);cursor:pointer;padding:0;text-align:left}
+/* game */
+.game{max-width:720px;margin:0 auto;text-align:center}
+.score{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.score span{background:var(--paper);border-radius:999px;padding:6px 16px;font-weight:800}
+.stmt{background:var(--ink);color:#fff;border-radius:22px;padding:28px 24px;min-height:150px;display:grid;place-items:center;font-size:23px;font-weight:700;position:relative}
+.stmt small{position:absolute;top:12px;left:18px;font-size:13px;color:var(--lav);font-weight:700}
+.choose{display:flex;justify-content:center;gap:14px;margin:18px 0}
+.choose button{font:inherit;font-size:18px;font-weight:700;border:2px solid var(--ink);border-radius:999px;padding:12px 28px;cursor:pointer}
+.choose .bl{background:var(--green)}.choose .bm{background:var(--pink)}
+.choose button:disabled{opacity:.5;cursor:default}
+.verdict{min-height:70px;font-size:17px;background:var(--paper);border-radius:16px;padding:12px 16px;text-align:left}
+.verdict b.r{color:#2d7a1d}.verdict b.w{color:#b23a62}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.dots i{width:14px;height:14px;border-radius:50%;background:var(--paper)}
+.dots i.r{background:#7cc663}.dots i.w{background:#e47b9f}.dots i.c{outline:3px solid var(--violet)}
+.final{font-size:22px;font-weight:800;color:var(--violet)}
+/* invent */
+.inv{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.frames{display:grid;gap:10px}
+.frames label{font-size:14px;font-weight:700;color:var(--muted)}
+.frames select,.frames input{font:inherit;width:100%;padding:8px 10px;border:2px solid var(--lav);border-radius:10px;background:#fff}
+.poster{background:var(--paper);border:3px solid var(--ink);border-radius:20px;padding:22px;text-align:center;min-height:260px;display:flex;flex-direction:column;gap:10px;justify-content:center}
+.poster .seal{width:70px;height:70px;margin:0 auto}
+.poster h3{margin:0;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--violet)}
+.poster .rule{font-size:22px;font-weight:800}
+.poster .pen{font-size:16px;color:var(--muted)}
+.ideas{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ideas span{background:var(--pink);border-radius:999px;padding:5px 12px;font-size:14px;font-weight:600}
+/* roleplay */
+.rp{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.role{border-radius:20px;padding:18px}
+.role h3{margin:0 0 6px;display:flex;align-items:center;gap:10px}
+.role h3 svg{width:42px;height:42px}
+.role ul{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.r1{background:var(--lav)}.r2{background:var(--green)}
+.scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:16px}
+.sc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:3px solid transparent}
+.sc.on{border-color:var(--violet);background:#fff}
+.sc b{display:block;font-size:17px;margin-bottom:4px}
+.sc p{margin:0;font-size:15px}
+.timer{font-size:40px;font-weight:800;text-align:center;margin:14px 0 6px;color:var(--violet)}
+.ctr{text-align:center}
+/* homework */
+.hwb{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hwc{background:var(--paper);border-radius:18px;padding:18px}
+.hwc h3{margin:0 0 8px}
+.hwc ol,.hwc ul{margin:6px 0 0;padding-left:20px;line-height:1.7}
+.hwc textarea{width:100%;min-height:150px;font:inherit;border:2px solid var(--lav);border-radius:12px;padding:10px;margin-top:10px}
+.end{text-align:center;background:var(--ink);color:#fff;box-shadow:none}
+.end h2{justify-content:center}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(140px);background:var(--ink);color:#fff;font-weight:800;padding:12px 22px;border-radius:14px;transition:transform .3s;z-index:50}
+.toast.show{transform:translateX(-50%) translateY(0)}
+/* photos */
+.ph{margin:0}
+.ph img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;background:var(--paper)}
+.ph figcaption{font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.2px}
+.tax{grid-template-columns:1fr !important;padding:12px !important}
+.law .pic{height:auto !important;display:block !important;padding:0;position:relative}
+.law .pic .ph img{border-radius:0;aspect-ratio:16/10;transition:filter .5s}
+.law .pic .ph figcaption{padding:4px 12px 0}
+.law.hide .pic .ph img{filter:blur(10px) grayscale(.6)}
+.law.hide .reveal-body,.law.hide .fl,.law.hide .where{visibility:hidden}
+.law .clue{font-size:15px;font-style:italic;color:var(--ink)}
+.law .gc{display:flex;flex-wrap:wrap;gap:6px}
+.law .gc button{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:4px 12px;cursor:pointer}
+.law .gc button.ok{background:var(--green)}.law .gc button.bad{background:var(--pink)}
+.law:not(.hide) .guess{display:none}
+.fair{display:grid;gap:4px;background:#fff;border-radius:12px;padding:8px 12px}
+.fair .ends{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.fair input{width:100%;accent-color:var(--accent)}
+.fair output{font-size:14px;font-weight:700;color:var(--accent)}
+.gph{max-width:720px;margin:0 auto 12px}
+.gph img{aspect-ratio:21/9}
+.fine{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.fq{background:var(--paper);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.fq h3{margin:0;font-size:18px}
+.fq .opts{display:flex;flex-wrap:wrap;gap:6px}
+.fq .opts button{font:inherit;font-size:14px;font-weight:700;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 12px;cursor:pointer}
+.fq .opts button.ok{background:var(--green)}.fq .opts button.bad{background:var(--pink)}
+.fq .res{font-size:15px;min-height:22px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{position:relative;aspect-ratio:16/9;background:#111}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;cursor:pointer;background:#111 center/cover;display:grid;place-items:center}
+.vid .play span{background:rgba(0,0,0,.7);color:#fff;font-weight:700;border-radius:999px;padding:10px 20px;font-size:15px;letter-spacing:1px}
+.vid .info{padding:14px 16px}
+.vid .info h3{margin:0 0 2px;font-size:18px}
+.vid .info small{color:var(--muted)}
+.vid .info ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+@media(max-width:760px){.inv,.rp,.hwb{grid-template-columns:1fr}.lk-tbtn{top:auto;bottom:70px}}
+
+.pr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.pb{border-radius:18px;padding:16px 18px}
+.pb h3{margin:0;font-family:Georgia,serif;font-size:30px}
+.pb .m{font-size:15px;color:var(--muted);margin:2px 0 8px}
+.pb .chips{display:flex;flex-wrap:wrap;gap:6px}
+.pb .chips span{background:#fff;border-radius:999px;padding:4px 11px;font-size:14px;font-weight:600}
+.pb ul{margin:10px 0 0;padding-left:18px;font-size:15px}
+.p-in{background:#DCE6F5}.p-at{background:#F3D9CF}.p-on{background:#D4E2CF}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-size:15px;margin-top:10px}
+.ex div{background:var(--paper);border-radius:10px;padding:8px 12px}
+.ex b{color:var(--accent)}
+.q{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.q .n{font-weight:800;color:var(--violet);min-width:24px}
+.q .gap{display:inline-block;min-width:44px;border-bottom:2px solid var(--ink);text-align:center;font-weight:800}
+.q .opts{margin-left:auto;display:flex;gap:6px}
+.q .opts button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 14px;cursor:pointer}
+.q.ok{background:#DDEED7}.q.ok .gap{color:#2F7A3B}
+.q.bad{background:#F6DAD3}
+.score{font-weight:800;margin-top:12px}
+.text{font-size:18px;line-height:1.75;background:var(--paper);border-radius:16px;padding:18px 22px}
+.text h3{margin:0 0 6px;font-family:Georgia,serif;font-size:24px}
+.text p{margin:0 0 12px}
+.text.hl mark{background:#F3D9CF;border-radius:4px;padding:0 3px;font-weight:700}
+.tf{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:9px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.tf .opts{margin-left:auto;display:flex;gap:6px}
+.tf button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.tf.ok{background:#DDEED7}.tf.bad{background:#F6DAD3}
+.disc{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px;margin-top:6px}
+.disc div{background:var(--green);border-radius:14px;padding:12px 16px;font-size:17px;font-weight:600}
+.disc div i{font-style:normal;color:var(--violet);margin-right:6px}
+.spin{text-align:center;margin-top:16px}
+.spin .card{display:inline-block;min-height:80px;min-width:min(560px,100%);background:var(--ink);color:#fff;border-radius:18px;padding:20px 24px;font-size:22px;font-weight:700;margin-bottom:12px}
+@media(max-width:700px){.ex{grid-template-columns:1fr}}
+
+.hero{background-size:cover!important;background-position:center!important}
+.voc{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.voc div{background:var(--paper);border-radius:14px;padding:10px 14px;cursor:pointer;border:2px solid transparent}
+.voc div:hover{border-color:var(--violet)}
+.voc b{display:block;font-size:18px}.voc span{display:block;color:var(--accent);font-weight:700;font-size:15px}.voc em{display:block;font-size:14px;color:var(--muted);margin-top:3px}
+.mt{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:10px}
+.mt button{font:inherit;font-size:16px;text-align:left;border:2px solid var(--ink);background:#fff;border-radius:14px;padding:9px 14px;cursor:pointer}
+.mt button.sel{background:#FFE7A8}.mt button.done{background:#CDE8C6;border-color:#4C9A5B;cursor:default}
+.ch{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ch .n{font-weight:800;color:var(--violet);min-width:24px}
+.ch .o{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.ch .o button{font:inherit;font-size:15px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.ch.ok{background:#DDEED7}.ch.bad{background:#F6DAD3}
+.ty{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ty input{font:inherit;border:2px solid var(--ink);border-radius:10px;padding:4px 10px;width:220px}
+.ty.ok{background:#DDEED7}.ty.bad{background:#F6DAD3}
+.ty small{color:var(--muted)}
+.photo{width:100%;height:300px;object-fit:cover;border-radius:16px;display:block}
+.cap{font-size:11px;color:var(--muted);margin:4px 0 12px}
+.pics{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.pics figure{margin:0;background:var(--paper);border-radius:16px;overflow:hidden}
+.pics img{width:100%;height:170px;object-fit:cover;display:block}
+.pics figcaption{padding:8px 12px;font-weight:700}
+.pics small{display:block;font-weight:400;font-size:10px;color:var(--muted)}
+.lis{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:8px 0 14px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{aspect-ratio:16/9;background:#000;position:relative}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;background-size:cover;background-position:center;cursor:pointer;display:grid;place-items:center}
+.vid .play span{background:#E5484D;color:#fff;font-weight:800;border-radius:12px;padding:10px 20px}
+.vid .info{padding:12px 16px}.vid h3{margin:0;font-size:18px}.vid small{color:var(--muted)}
+.vid ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th,.tbl td{border:1px solid #ddd;padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--paper)}
+@media(max-width:700px){.mt{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="/game-lessons/kit.css">
+</head>
+<body>
+<header class="hero">
+  <div class="kicker">B1 · teens · Use of English</div>
+  <h1>Use of English: пропуски в тексті</h1>
+  <p>B1 · 8 parts · 60 min</p>
+  <span class="cr">Photo: Unsplash</span>
+</header>
+<button class="lk-tbtn" id="teacherBtn" type="button">Teacher version</button>
+<div class="wrap">
+  <section class="lk-overview">
+    <h2>In this lesson you will:</h2>
+    <ul><li>Потренуємо завдання як на НМТ: текст з пропусками і варіантами A-D
+Повторимо часи, прийменники і сталі словосполучення
+Розберемо типові пастки і навчимося визначати тип пропуску
+Закріпимо лексику про хобі та волонтерство</li></ul>
+    <div class="lk-stages" id="stages"></div>
+  </section>
+  <section id="s1" data-stage="warm-up" data-min="5">
+    <h2><span class="lk-n">1</span>Warm-up <span class="tag">warm-up</span><span class="lk-mode">teacher + student</span></h2>
+<p class="lk-tnote" data-ru="Коротко поговоріть про хобі і волонтерство: це теми обох текстів уроку. Твердження про формат завдання обговоріть, а не просто перевірте: учень має пояснити, чому так.&lt;br&gt;">Коротко поговоріть про хобі і волонтерство: це теми обох текстів уроку. Твердження про формат завдання обговоріть, а не просто перевірте: учень має пояснити, чому так.<br></p>
+    <div class="qs"><div>What hobbies are popular among your friends?</div><div>Have you ever volunteered? What did you do?</div></div>
+    <h3 class="lk-sub">True or False? The НМТ Use of English task.</h3><div class="ch" data-a="True"><span class="n">1</span><span class="s">Each gap has four options, and only one is correct.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="False"><span class="n">2</span><span class="s">It is best to choose answers before reading the whole text.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="True"><span class="n">3</span><span class="s">Sometimes the right answer depends on the words after the gap.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; True · False · True"><b>Відповіді:</b> True · False · True</p>
+  </section>
+  <section id="s2" data-stage="vocabulary" data-min="10">
+    <h2><span class="lk-n">2</span>Strategy and vocabulary <span class="tag">vocabulary</span><span class="lk-mode">teacher + student</span></h2>
+<div class="warn"><p>Спершу прочитай увесь текст, не дивлячись на варіанти. Потім для кожного пропуску подумай: потрібне слово за значенням, граматикою чи це стійке словосполучення? Перевір, чи слово підходить і до того, що до пропуску, і до того, що після.</p></div>
+    <p class="lk-tnote" data-ru="Формат схожий на завдання НМТ, але тексти наші власні. Слова уроку зустрінуться в обох текстах. Типові пастки тут: make/do, for/since, say/tell, interested in. Попросіть учня скласти речення з 3 виразами про себе.&lt;br&gt;">Формат схожий на завдання НМТ, але тексти наші власні. Слова уроку зустрінуться в обох текстах. Типові пастки тут: make/do, for/since, say/tell, interested in. Попросіть учня скласти речення з 3 виразами про себе.<br></p>
+    <div class="voc"><div data-say="to take up. "><b>to take up</b><span><span data-tr-uk="почати займатися (хобі)" data-tr-ru="почати займатися (хобі)">почати займатися (хобі)</span></span><em></em></div>
+<div data-say="to be interested in. "><b>to be interested in</b><span><span data-tr-uk="цікавитися" data-tr-ru="цікавитися">цікавитися</span></span><em></em></div>
+<div data-say="to be good at. "><b>to be good at</b><span><span data-tr-uk="бути вправним у" data-tr-ru="бути вправним у">бути вправним у</span></span><em></em></div>
+<div data-say="to look after. "><b>to look after</b><span><span data-tr-uk="доглядати" data-tr-ru="доглядати">доглядати</span></span><em></em></div>
+<div data-say="to pay attention to. "><b>to pay attention to</b><span><span data-tr-uk="звертати увагу на" data-tr-ru="звертати увагу на">звертати увагу на</span></span><em></em></div>
+<div data-say="to make friends. "><b>to make friends</b><span><span data-tr-uk="заводити друзів" data-tr-ru="заводити друзів">заводити друзів</span></span><em></em></div>
+<div data-say="to develop skills. "><b>to develop skills</b><span><span data-tr-uk="розвивати навички" data-tr-ru="розвивати навички">розвивати навички</span></span><em></em></div>
+<div data-say="to spend time. "><b>to spend time</b><span><span data-tr-uk="проводити час" data-tr-ru="проводити час">проводити час</span></span><em></em></div>
+<div data-say="to take part in. "><b>to take part in</b><span><span data-tr-uk="брати участь у" data-tr-ru="брати участь у">брати участь у</span></span><em></em></div>
+<div data-say="an animal shelter. "><b>an animal shelter</b><span><span data-tr-uk="притулок для тварин" data-tr-ru="притулок для тварин">притулок для тварин</span></span><em></em></div>
+<div data-say="elderly people. "><b>elderly people</b><span><span data-tr-uk="літні люди" data-tr-ru="літні люди">літні люди</span></span><em></em></div>
+<div data-say="a local competition. "><b>a local competition</b><span><span data-tr-uk="місцевий конкурс" data-tr-ru="місцевий конкурс">місцевий конкурс</span></span><em></em></div></div>
+    <div class="mt" data-mt="m2" data-pairs="[[&quot;to take up&quot;, &quot;почати займатися (хобі)&quot;], [&quot;to be interested in&quot;, &quot;цікавитися&quot;], [&quot;to be good at&quot;, &quot;бути вправним у&quot;], [&quot;to look after&quot;, &quot;доглядати&quot;], [&quot;to pay attention to&quot;, &quot;звертати увагу на&quot;], [&quot;to make friends&quot;, &quot;заводити друзів&quot;], [&quot;to develop skills&quot;, &quot;розвивати навички&quot;], [&quot;to spend time&quot;, &quot;проводити час&quot;]]"></div><div class="score" data-mtres="m2"></div>
+    <h3 class="lk-sub">Match the beginnings with the endings.</h3><div class="ch" data-a="in photography"><span class="n">1</span><span class="s">be interested ___</span><span class="o"><button type="button">at maths</button><button type="button">in a competition</button><button type="button">to the details</button><button type="button">after a younger brother</button><button type="button">in photography</button></span></div>
+<div class="ch" data-a="at maths"><span class="n">2</span><span class="s">be good ___</span><span class="o"><button type="button">at maths</button><button type="button">after a younger brother</button><button type="button">to the details</button><button type="button">in photography</button><button type="button">in a competition</button></span></div>
+<div class="ch" data-a="after a younger brother"><span class="n">3</span><span class="s">look ___</span><span class="o"><button type="button">after a younger brother</button><button type="button">in photography</button><button type="button">to the details</button><button type="button">in a competition</button><button type="button">at maths</button></span></div>
+<div class="ch" data-a="to the details"><span class="n">4</span><span class="s">pay attention ___</span><span class="o"><button type="button">at maths</button><button type="button">after a younger brother</button><button type="button">to the details</button><button type="button">in a competition</button><button type="button">in photography</button></span></div>
+<div class="ch" data-a="in a competition"><span class="n">5</span><span class="s">take part ___</span><span class="o"><button type="button">to the details</button><button type="button">after a younger brother</button><button type="button">at maths</button><button type="button">in a competition</button><button type="button">in photography</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; in photography · at maths · after a younger brother · to the details · in a competition"><b>Відповіді:</b> in photography · at maths · after a younger brother · to the details · in a competition</p>
+  </section>
+  <section id="s3" data-stage="practice" data-min="15">
+    <h2><span class="lk-n">3</span>НМТ Task 1: A new hobby <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<div class="warn"><p>Три типи пропусків:</p><p><b>Граматика:</b> час або форма дієслова (became / has become). Шукай маркери часу: last month, for more than a year.<br><b>Лексика:</b> значення слова (take up / take after).<br><b>Колокації і прийменники:</b> слова, що «ходять парою» (interested in, make mistakes).</p></div>
+    <p class="lk-tnote" data-ru="Дайте 6 хвилин на текст, як на іспиті. Під час перевірки учень називає тип кожного пропуску. Сортування for/since виконується після тексту як закріплення пастки з пропуску 6.&lt;br&gt;">Дайте 6 хвилин на текст, як на іспиті. Під час перевірки учень називає тип кожного пропуску. Сортування for/since виконується після тексту як закріплення пастки з пропуску 6.<br></p>
+    <h3 class="lk-sub">Choose the correct option for each gap (A-D).</h3><div class="ch" data-a="take up"><span class="n">1</span><span class="s">Last year my friend Max decided to ___ photography.</span><span class="o"><button type="button">take off</button><button type="button">take after</button><button type="button">take up</button><button type="button">take over</button></span></div>
+<div class="ch" data-a="in"><span class="n">2</span><span class="s">He had always been interested ___ taking pictures, but he never had a good camera.</span><span class="o"><button type="button">in</button><button type="button">on</button><button type="button">about</button><button type="button">at</button></span></div>
+<div class="ch" data-a="for"><span class="n">3</span><span class="s">His parents gave him one ___ his birthday.</span><span class="o"><button type="button">for</button><button type="button">during</button><button type="button">while</button><button type="button">since</button></span></div>
+<div class="ch" data-a="made"><span class="n">4</span><span class="s">At first he ___ a lot of mistakes.</span><span class="o"><button type="button">had</button><button type="button">got</button><button type="button">made</button><button type="button">did</button></span></div>
+<div class="ch" data-a="became"><span class="n">5</span><span class="s">But he practised every day, and soon his photos ___ really good.</span><span class="o"><button type="button">become</button><button type="button">became</button><button type="button">becoming</button><button type="button">have become</button></span></div>
+<div class="ch" data-a="for"><span class="n">6</span><span class="s">Now he has been taking photos ___ more than a year.</span><span class="o"><button type="button">from</button><button type="button">during</button><button type="button">for</button><button type="button">since</button></span></div>
+<div class="ch" data-a="won"><span class="n">7</span><span class="s">Last month he ___ a local competition.</span><span class="o"><button type="button">won</button><button type="button">has won</button><button type="button">wins</button><button type="button">was winning</button></span></div>
+<div class="ch" data-a="told"><span class="n">8</span><span class="s">He ___ me that he wants to study photography at university.</span><span class="o"><button type="button">told</button><button type="button">talked</button><button type="button">said</button><button type="button">spoke</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; take up · in · for · made · became · for · won · told"><b>Відповіді:</b> take up · in · for · made · became · for · won · told</p>
+    <h3 class="lk-sub">For or since?</h3><div class="ch" data-a="For"><span class="n">1</span><span class="s">two weeks ___</span><span class="o"><button type="button">For</button><button type="button">Since</button></span></div>
+<div class="ch" data-a="Since"><span class="n">2</span><span class="s">2020 ___</span><span class="o"><button type="button">Since</button><button type="button">For</button></span></div>
+<div class="ch" data-a="For"><span class="n">3</span><span class="s">ages ___</span><span class="o"><button type="button">Since</button><button type="button">For</button></span></div>
+<div class="ch" data-a="Since"><span class="n">4</span><span class="s">Monday ___</span><span class="o"><button type="button">For</button><button type="button">Since</button></span></div>
+<div class="ch" data-a="For"><span class="n">5</span><span class="s">more than a year ___</span><span class="o"><button type="button">For</button><button type="button">Since</button></span></div>
+<div class="ch" data-a="Since"><span class="n">6</span><span class="s">I was ten ___</span><span class="o"><button type="button">Since</button><button type="button">For</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; For · Since · For · Since · For · Since"><b>Відповіді:</b> For · Since · For · Since · For · Since</p>
+  </section>
+  <section id="s4" data-stage="practice" data-min="10">
+    <h2><span class="lk-n">4</span>НМТ Task 2: Volunteering <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<p class="lk-tnote" data-ru="Цей текст учень виконує на час: 4 хвилини. Потім перевірка і розбір пасток: spend/pass time, look after, pay attention to. Нагадайте: якщо не знаєш відповіді, відкинь явно неправильні варіанти і обери з тих, що залишилися.&lt;br&gt;">Цей текст учень виконує на час: 4 хвилини. Потім перевірка і розбір пасток: spend/pass time, look after, pay attention to. Нагадайте: якщо не знаєш відповіді, відкинь явно неправильні варіанти і обери з тих, що залишилися.<br></p>
+    <h3 class="lk-sub">Choose the correct option for each gap (A-D).</h3><div class="ch" data-a="spend"><span class="n">1</span><span class="s">More and more teenagers ___ their free time volunteering.</span><span class="o"><button type="button">take</button><button type="button">spend</button><button type="button">pass</button><button type="button">waste</button></span></div>
+<div class="ch" data-a="look"><span class="n">2</span><span class="s">They help in animal shelters, clean parks or ___ after elderly people.</span><span class="o"><button type="button">look</button><button type="button">see</button><button type="button">watch</button><button type="button">care</button></span></div>
+<div class="ch" data-a="make"><span class="n">3</span><span class="s">Volunteering is a great way to ___ new friends.</span><span class="o"><button type="button">do</button><button type="button">get</button><button type="button">make</button><button type="button">have</button></span></div>
+<div class="ch" data-a="develop"><span class="n">4</span><span class="s">It also helps you ___ useful skills.</span><span class="o"><button type="button">grow</button><button type="button">raise</button><button type="button">rise</button><button type="button">develop</button></span></div>
+<div class="ch" data-a="to"><span class="n">5</span><span class="s">Many universities pay attention ___ volunteering experience.</span><span class="o"><button type="button">on</button><button type="button">at</button><button type="button">for</button><button type="button">to</button></span></div>
+<div class="ch" data-a="want"><span class="n">6</span><span class="s">If you ___ to try, start with a small local project.</span><span class="o"><button type="button">wanted</button><button type="button">would want</button><button type="button">want</button><button type="button">will want</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; spend · look · make · develop · to · want"><b>Відповіді:</b> spend · look · make · develop · to · want</p>
+  </section>
+  <section id="s5" data-stage="listening" data-min="10">
+    <h2><span class="lk-n">5</span>Listening and speaking <span class="tag">listening</span><span class="lk-mode">teacher + student</span></h2>
+<p class="lk-tnote" data-ru="Інтерв’ю продовжує історію Макса з тексту 1. Слухаємо двічі. Після вправи учень відповідає на питання, використовуючи щонайменше три вирази зі списку слів. Виправляйте помилки в прийменниках одразу, але коротко.&lt;br&gt;">Інтерв’ю продовжує історію Макса з тексту 1. Слухаємо двічі. Після вправи учень відповідає на питання, використовуючи щонайменше три вирази зі списку слів. Виправляйте помилки в прийменниках одразу, але коротко.<br></p>
+    <div class="text"><h3>School radio: an interview with Max</h3><p class="lk-ins">Your teacher reads the dialogue (or plays it). Listen first, then read.</p><details><summary>Show the script</summary><p>Host: Today on our school radio we have Max, who won the local photo competition last month. Congratulations, Max!</p><p>Max: Thank you! I still can’t believe it.</p><p>Host: When did you take up photography?</p><p>Max: About a year and a half ago. My parents gave me a camera for my birthday.</p><p>Host: Was it easy at first?</p><p>Max: Not at all. I made lots of mistakes. Half of my photos were too dark.</p><p>Host: What helped you most?</p><p>Max: Practice, really. I took photos every day, even on my way to school. And I watched online lessons.</p><p>Host: What was your winning photo?</p><p>Max: An old man feeding pigeons in the park next to the animal shelter where I volunteer.</p><p>Host: And what are your plans?</p><p>Max: I want to study photography at university, so I’m saving money for a better lens.</p></details></div>
+    <h3 class="lk-sub">True or False?</h3><div class="ch" data-a="True"><span class="n">1</span><span class="s">Max took up photography about a year and a half ago.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="False"><span class="n">2</span><span class="s">Many of his first photos were too bright.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="True"><span class="n">3</span><span class="s">Max volunteers at an animal shelter.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="False"><span class="n">4</span><span class="s">Max is saving money for a new camera.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; True · False · True · False"><b>Відповіді:</b> True · False · True · False</p>
+    <div class="qs"><div>Would you like to take up photography? Why or why not?</div><div>What skills can you develop by volunteering?</div><div>Tell me about a competition you took part in.</div></div>
+  </section>
+  <section id="s6" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">6</span>Extra practice · якщо лишився час або на наступний урок <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">НМТ Text C: A school garden. Обери правильний варіант (A-D).</h3><div class="ch" data-a="take"><span class="n">1</span><span class="s">Two years ago our class decided to ___ part in a school garden project.</span><span class="o"><button type="button">do</button><button type="button">get</button><button type="button">make</button><button type="button">take</button></span></div>
+<div class="ch" data-a="in"><span class="n">2</span><span class="s">At first, nobody was really interested ___ plants.</span><span class="o"><button type="button">in</button><button type="button">for</button><button type="button">on</button><button type="button">at</button></span></div>
+<div class="ch" data-a="at"><span class="n">3</span><span class="s">But our biology teacher was very good ___ explaining things.</span><span class="o"><button type="button">at</button><button type="button">in</button><button type="button">on</button><button type="button">with</button></span></div>
+<div class="ch" data-a="spent"><span class="n">4</span><span class="s">Every week we ___ two hours in the garden after lessons.</span><span class="o"><button type="button">spent</button><button type="button">passed</button><button type="button">lost</button><button type="button">took</button></span></div>
+<div class="ch" data-a="to"><span class="n">5</span><span class="s">We learnt to pay attention ___ the weather and the soil.</span><span class="o"><button type="button">at</button><button type="button">on</button><button type="button">for</button><button type="button">to</button></span></div>
+<div class="ch" data-a="have grown"><span class="n">6</span><span class="s">Since then we ___ tomatoes, beans and pumpkins.</span><span class="o"><button type="button">are growing</button><button type="button">have grown</button><button type="button">grow</button><button type="button">grew</button></span></div>
+<div class="ch" data-a="gave"><span class="n">7</span><span class="s">Last autumn we ___ our vegetables to elderly people in our town.</span><span class="o"><button type="button">have given</button><button type="button">gave</button><button type="button">were giving</button><button type="button">give</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; take · in · at · spent · to · have grown · gave"><b>Відповіді:</b> take · in · at · spent · to · have grown · gave</p>
+    <h3 class="lk-sub">Встав одне слово: up, in, at, after, to, for.</h3><div class="ty" data-a="up"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>My little brother wants to take ___ chess.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="in"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Are you interested ___ science?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="at"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>She is very good ___ drawing.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="after"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Who looks ___ your dog when you are away?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="to"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Please pay attention ___ the instructions.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="for"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>I have volunteered at the shelter ___ two years.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; up · in · at · after · to · for"><b>Відповіді:</b> up · in · at · after · to · for</p>
+    <h3 class="lk-sub">З’єднай частини речення.</h3><div class="ch" data-a="develop useful skills."><span class="n">1</span><span class="s">Volunteering helps you ___</span><span class="o"><button type="button">since he was twelve.</button><button type="button">after cats and dogs.</button><button type="button">develop useful skills.</button><button type="button">in a local competition.</button><button type="button">new friends at summer camps.</button><button type="button">reading books.</button></span></div>
+<div class="ch" data-a="after cats and dogs."><span class="n">2</span><span class="s">At the animal shelter, we look ___</span><span class="o"><button type="button">develop useful skills.</button><button type="button">after cats and dogs.</button><button type="button">in a local competition.</button><button type="button">new friends at summer camps.</button><button type="button">since he was twelve.</button><button type="button">reading books.</button></span></div>
+<div class="ch" data-a="in a local competition."><span class="n">3</span><span class="s">She took part ___</span><span class="o"><button type="button">after cats and dogs.</button><button type="button">develop useful skills.</button><button type="button">new friends at summer camps.</button><button type="button">in a local competition.</button><button type="button">reading books.</button><button type="button">since he was twelve.</button></span></div>
+<div class="ch" data-a="reading books."><span class="n">4</span><span class="s">I spend most of my free time ___</span><span class="o"><button type="button">after cats and dogs.</button><button type="button">develop useful skills.</button><button type="button">since he was twelve.</button><button type="button">reading books.</button><button type="button">new friends at summer camps.</button><button type="button">in a local competition.</button></span></div>
+<div class="ch" data-a="new friends at summer camps."><span class="n">5</span><span class="s">Many teenagers make ___</span><span class="o"><button type="button">since he was twelve.</button><button type="button">reading books.</button><button type="button">new friends at summer camps.</button><button type="button">develop useful skills.</button><button type="button">after cats and dogs.</button><button type="button">in a local competition.</button></span></div>
+<div class="ch" data-a="since he was twelve."><span class="n">6</span><span class="s">He has been interested in robots ___</span><span class="o"><button type="button">reading books.</button><button type="button">since he was twelve.</button><button type="button">new friends at summer camps.</button><button type="button">develop useful skills.</button><button type="button">in a local competition.</button><button type="button">after cats and dogs.</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; develop useful skills. · after cats and dogs. · in a local competition. · reading books. · new friends at summer camps. · since he was twelve."><b>Відповіді:</b> develop useful skills. · after cats and dogs. · in a local competition. · reading books. · new friends at summer camps. · since he was twelve.</p>
+    <h3 class="lk-sub">Collocations race</h3><p class="lk-ins">Склади сталий вираз: початок = кінець.</p>
+    <div class="spin"><div class="card" id="g67">Click "Next card"</div><br><button class="btn" type="button" data-spin="[&quot;take part&quot;, &quot;be interested&quot;, &quot;be good&quot;, &quot;look&quot;, &quot;pay attention&quot;, &quot;make&quot;, &quot;develop&quot;, &quot;spend&quot;]" data-target="g67">Next card</button></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; in a project · in photography · at sport · after elderly people · to details · new friends · useful skills · time with friends"><b>Відповіді:</b> in a project · in photography · at sport · after elderly people · to details · new friends · useful skills · time with friends</p>
+    <p class="lk-tnote" data-ru="Extra practice можна виконати, якщо лишився час, або як розминку на наступному уроці. Text C учень виконує на час: 4 хвилини, як на НМТ, і називає тип кожного пропуску (граматика, лексика, прийменник). Пастки: spend, а не pass time; have grown через since then; gave через last autumn. У грі учень бачить початок виразу і має швидко знайти кінець.&lt;br&gt;">Extra practice можна виконати, якщо лишився час, або як розминку на наступному уроці. Text C учень виконує на час: 4 хвилини, як на НМТ, і називає тип кожного пропуску (граматика, лексика, прийменник). Пастки: spend, а не pass time; have grown через since then; gave через last autumn. У грі учень бачить початок виразу і має швидко знайти кінець.<br></p>
+  </section>
+  <section id="s7" data-stage="wrap-up" data-min="10">
+    <h2><span class="lk-n">7</span>Mini test and wrap-up <span class="tag">wrap-up</span><span class="lk-mode">teacher + student</span></h2>
+<p class="lk-tnote" data-ru="Міні-тест без підказок, 5 хвилин. Потім підсумок: учень називає три пастки, які запам’ятав. Домашнє завдання: скласти власний текст на 6 речень з пропусками і варіантами A-D на тему хобі та обмінятися ним на наступному уроці.&lt;br&gt;">Міні-тест без підказок, 5 хвилин. Потім підсумок: учень називає три пастки, які запам’ятав. Домашнє завдання: скласти власний текст на 6 речень з пропусками і варіантами A-D на тему хобі та обмінятися ним на наступному уроці.<br></p>
+    <h3 class="lk-sub">Встав одне слово.</h3><div class="ty" data-a="since"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>I have known her ___ 2020.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="tell"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Can you ___ me the way to the station?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="at"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>She is very good ___ maths.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="do"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Don’t forget to ___ your homework!</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="after"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>My grandma looks ___ my little sister on weekdays.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="part"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>I’d like to take ___ in the school marathon.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; since · tell · at · do · after · part"><b>Відповіді:</b> since · tell · at · do · after · part</p>
+    <h3 class="lk-sub">Переклади англійською.</h3><div class="ty" data-a="I am interested in photography|I’m interested in photography"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Я цікавлюся фотографією</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="She took up yoga last year"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Вона почала займатися йогою минулого року</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="We spend our weekends at an animal shelter|We spend our weekends in an animal shelter|We spend weekends at an animal shelter|We spend weekends in an animal shelter"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Ми проводимо вихідні в притулку для тварин</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; I am interested in photography · She took up yoga last year · We spend our weekends at an animal shelter"><b>Відповіді:</b> I am interested in photography · She took up yoga last year · We spend our weekends at an animal shelter</p>
+  </section>
+  <section id="s8" data-stage="homework" data-min="8">
+    <h2><span class="lk-n">8</span>Homework plus <span class="tag">homework</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">НМТ Text D: A charity run. Обери правильний варіант (A-D).</h3><div class="ch" data-a="organised"><span class="n">1</span><span class="s">Last month our school ___ a charity run.</span><span class="o"><button type="button">was organising</button><button type="button">organised</button><button type="button">has organised</button><button type="button">organises</button></span></div>
+<div class="ch" data-a="part"><span class="n">2</span><span class="s">More than two hundred students took ___ in it.</span><span class="o"><button type="button">care</button><button type="button">place</button><button type="button">part</button><button type="button">time</button></span></div>
+<div class="ch" data-a="had trained"><span class="n">3</span><span class="s">Before the race I ___ for three months.</span><span class="o"><button type="button">had trained</button><button type="button">am training</button><button type="button">train</button><button type="button">have trained</button></span></div>
+<div class="ch" data-a="at"><span class="n">4</span><span class="s">My best friend is not good ___ running, so she helped at the finish line.</span><span class="o"><button type="button">in</button><button type="button">with</button><button type="button">on</button><button type="button">at</button></span></div>
+<div class="ch" data-a="shelter"><span class="n">5</span><span class="s">We collected money to help an animal ___ in our town.</span><span class="o"><button type="button">shell</button><button type="button">shelter</button><button type="button">shield</button><button type="button">shade</button></span></div>
+<div class="ch" data-a="to run"><span class="n">6</span><span class="s">Next year I hope ___ again with my brother.</span><span class="o"><button type="button">ran</button><button type="button">to run</button><button type="button">running</button><button type="button">run</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; organised · part · had trained · at · shelter · to run"><b>Відповіді:</b> organised · part · had trained · at · shelter · to run</p>
+    <h3 class="lk-sub">Переклади англійською.</h3><div class="ty" data-a="My brother looks after our dog|My brother takes care of our dog"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Мій брат доглядає за нашим собакою</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="She is good at drawing|She’s good at drawing|She is good at painting|She’s good at painting"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Вона добре вміє малювати</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="I want to take part in the competition|I want to take part in a competition|I’d like to take part in the competition|I would like to take part in the competition|I’d like to take part in a competition|I would like to take part in a competition"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Я хочу взяти участь у конкурсі</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="He has been a volunteer since 2022|He’s been a volunteer since 2022|He has volunteered since 2022|He has been volunteering since 2022|He’s been volunteering since 2022"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Він волонтер з 2022 року</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="We spend a lot of time together|We spend lots of time together"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Ми проводимо багато часу разом</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="She always pays attention to details|She always pays attention to the details"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Вона завжди звертає увагу на деталі</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; My brother looks after our dog · She is good at drawing · I want to take part in the competition · He has been a volunteer since 2022 · We spend a lot of time together · She always pays attention to details"><b>Відповіді:</b> My brother looks after our dog · She is good at drawing · I want to take part in the competition · He has been a volunteer since 2022 · We spend a lot of time together · She always pays attention to details</p>
+    <h3 class="lk-sub">Письмо: дай розгорнуту відповідь.</h3><div class="qs"><div>Write a short text (5-6 sentences) about your hobby. Use take up, be interested in and be good at.</div><div>Would you like to volunteer? Where and why? Write 3-4 sentences.</div></div>
+  </section>
+  <section class="end"><h2>Great job!</h2><p>See you next lesson.</p></section>
+</div>
+<div class="toast" id="toast"></div>
+<script>window.MURLY_LESSON={"id": "lib-nmt-cloze", "title": "Use of English: пропуски в тексті", "homework": ["s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8"], "hw": {"s1": [{"type": "choice", "instruction": "True or False? The НМТ Use of English task.", "text": "Each gap has four options, and only one is correct. {True|False}\nIt is best to choose answers before reading the whole text. {False|True}\nSometimes the right answer depends on the words after the gap. {True|False}"}], "s2": [{"type": "choice", "instruction": "Match the beginnings with the endings.", "text": "be interested {in photography|at maths|after a younger brother|to the details|in a competition}\nbe good {at maths|in photography|after a younger brother|to the details|in a competition}\nlook {after a younger brother|in photography|at maths|to the details|in a competition}\npay attention {to the details|in photography|at maths|after a younger brother|in a competition}\ntake part {in a competition|in photography|at maths|after a younger brother|to the details}"}], "s3": [{"type": "choice", "instruction": "Choose the correct option for each gap (A-D).", "text": "Last year my friend Max decided to {take up|take off|take after|take over} photography.\nHe had always been interested {in|on|at|about} taking pictures, but he never had a good camera.\nHis parents gave him one {for|since|during|while} his birthday.\nAt first he {made|did|got|had} a lot of mistakes.\nBut he practised every day, and soon his photos {became|become|have become|becoming} really good.\nNow he has been taking photos {for|since|from|during} more than a year.\nLast month he {won|wins|has won|was winning} a local competition.\nHe {told|said|spoke|talked} me that he wants to study photography at university."}, {"type": "choice", "instruction": "For or since?", "text": "two weeks {For|Since}\n2020 {Since|For}\nages {For|Since}\nMonday {Since|For}\nmore than a year {For|Since}\nI was ten {Since|For}"}], "s4": [{"type": "choice", "instruction": "Choose the correct option for each gap (A-D).", "text": "More and more teenagers {spend|pass|waste|take} their free time volunteering.\nThey help in animal shelters, clean parks or {look|watch|see|care} after elderly people.\nVolunteering is a great way to {make|do|have|get} new friends.\nIt also helps you {develop|grow|rise|raise} useful skills.\nMany universities pay attention {to|for|on|at} volunteering experience.\nIf you {want|will want|wanted|would want} to try, start with a small local project."}], "s5": [{"type": "choice", "instruction": "True or False?", "text": "Max took up photography about a year and a half ago. {True|False}\nMany of his first photos were too bright. {False|True}\nMax volunteers at an animal shelter. {True|False}\nMax is saving money for a new camera. {False|True}"}], "s6": [{"type": "choice", "instruction": "НМТ Text C: A school garden. Обери правильний варіант (A-D).", "text": "Two years ago our class decided to {take|make|do|get} part in a school garden project.\nAt first, nobody was really interested {in|on|at|for} plants.\nBut our biology teacher was very good {at|in|on|with} explaining things.\nEvery week we {spent|passed|took|lost} two hours in the garden after lessons.\nWe learnt to pay attention {to|on|at|for} the weather and the soil.\nSince then we {have grown|grew|grow|are growing} tomatoes, beans and pumpkins.\nLast autumn we {gave|have given|give|were giving} our vegetables to elderly people in our town."}, {"type": "gap", "instruction": "Встав одне слово: up, in, at, after, to, for.", "text": "My little brother wants to take [up] chess.\nAre you interested [in] science?\nShe is very good [at] drawing.\nWho looks [after] your dog when you are away?\nPlease pay attention [to] the instructions.\nI have volunteered at the shelter [for] two years."}, {"type": "choice", "instruction": "З’єднай частини речення.", "text": "Volunteering helps you {develop useful skills.|after cats and dogs.|in a local competition.|reading books.|new friends at summer camps.|since he was twelve.}\nAt the animal shelter, we look {after cats and dogs.|develop useful skills.|in a local competition.|reading books.|new friends at summer camps.|since he was twelve.}\nShe took part {in a local competition.|develop useful skills.|after cats and dogs.|reading books.|new friends at summer camps.|since he was twelve.}\nI spend most of my free time {reading books.|develop useful skills.|after cats and dogs.|in a local competition.|new friends at summer camps.|since he was twelve.}\nMany teenagers make {new friends at summer camps.|develop useful skills.|after cats and dogs.|in a local competition.|reading books.|since he was twelve.}\nHe has been interested in robots {since he was twelve.|develop useful skills.|after cats and dogs.|in a local competition.|reading books.|new friends at summer camps.}"}], "s7": [{"type": "gap", "instruction": "Встав одне слово.", "text": "I have known her [since] 2020.\nCan you [tell] me the way to the station?\nShe is very good [at] maths.\nDon’t forget to [do] your homework!\nMy grandma looks [after] my little sister on weekdays.\nI’d like to take [part] in the school marathon."}, {"type": "gap", "instruction": "Переклади англійською.", "text": "Я цікавлюся фотографією → [I am interested in photography/I’m interested in photography]\nВона почала займатися йогою минулого року → [She took up yoga last year]\nМи проводимо вихідні в притулку для тварин → [We spend our weekends at an animal shelter/We spend our weekends in an animal shelter/We spend weekends at an animal shelter/We spend weekends in an animal shelter]"}], "s8": [{"type": "choice", "instruction": "НМТ Text D: A charity run. Обери правильний варіант (A-D).", "text": "Last month our school {organised|has organised|organises|was organising} a charity run.\nMore than two hundred students took {part|place|care|time} in it.\nBefore the race I {had trained|have trained|train|am training} for three months.\nMy best friend is not good {at|in|on|with} running, so she helped at the finish line.\nWe collected money to help an animal {shelter|shell|shield|shade} in our town.\nNext year I hope {to run|running|run|ran} again with my brother."}, {"type": "gap", "instruction": "Переклади англійською.", "text": "Мій брат доглядає за нашим собакою → [My brother looks after our dog/My brother takes care of our dog]\nВона добре вміє малювати → [She is good at drawing/She’s good at drawing/She is good at painting/She’s good at painting]\nЯ хочу взяти участь у конкурсі → [I want to take part in the competition/I want to take part in a competition/I’d like to take part in the competition/I would like to take part in the competition/I’d like to take part in a competition/I would like to take part in a competition]\nВін волонтер з 2022 року → [He has been a volunteer since 2022/He’s been a volunteer since 2022/He has volunteered since 2022/He has been volunteering since 2022/He’s been volunteering since 2022]\nМи проводимо багато часу разом → [We spend a lot of time together/We spend lots of time together]\nВона завжди звертає увагу на деталі → [She always pays attention to details/She always pays attention to the details]"}, {"type": "open", "instruction": "Письмо: дай розгорнуту відповідь.", "text": "Write a short text (5-6 sentences) about your hobby. Use take up, be interested in and be good at.\nWould you like to volunteer? Where and why? Write 3-4 sentences."}]}};</script>
+<script>
+(function(){var l=(document.cookie.match(/(?:^|; )murly_lang=(\w+)/)||[])[1];try{l=l||localStorage.getItem('murly:tlang')}catch(e){}l=l==='ru'?'ru':'uk';document.querySelectorAll('[data-pairs-'+l+']').forEach(function(b){b.dataset.pairs=b.getAttribute('data-pairs-'+l)});})();
+</script>
+<script>
+const $ = (id) => document.getElementById(id);
+const LIS = {};
+function say(w, rate) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; const v = speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang) && /Google|Natural|Libby|Sonia|Daniel/.test(x.name)) || speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang)); if (v) u.voice = v; u.rate = rate || .95; speechSynthesis.speak(u); } catch (e) { } }
+const sh = (a) => a.map((x) => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map((x) => x[1]);
+document.querySelectorAll('.voc div').forEach((d) => d.onclick = () => say(d.dataset.say));
+document.querySelectorAll('[data-play]').forEach((b) => b.onclick = () => say(LIS[b.dataset.play], b.dataset.slow ? .75 : .95));
+document.querySelectorAll('[data-stop]').forEach((b) => b.onclick = () => { try { speechSynthesis.cancel(); } catch (e) { } });
+document.querySelectorAll('.ch').forEach((q) => q.querySelectorAll('button').forEach((b) => b.onclick = () => { if (q.classList.contains('ok')) return; const ok = b.textContent === q.dataset.a; q.classList.toggle('ok', ok); q.classList.toggle('bad', !ok); if (ok) { const s = q.querySelector('.s'); if (s && s.textContent.includes('___')) { s.textContent = s.textContent.replace('___', q.dataset.a); } } }));
+const norm = (x) => x.toLowerCase().replace(/[’']/g, "'").replace(/[,;:"“”«»]/g, ' ').replace(/\s+/g, ' ').replace(/[.!?]$/, '').trim();
+document.querySelectorAll('.ty').forEach((r) => { const inp = r.querySelector('input'); const chk = () => { const ok = r.dataset.a.split('|').some((a) => norm(a) === norm(inp.value)); r.classList.toggle('ok', ok); r.classList.toggle('bad', !ok && inp.value.trim() !== ''); }; r.querySelector('button').onclick = chk; inp.onkeydown = (e) => { if (e.key === 'Enter') chk(); }; });
+document.querySelectorAll('[data-mt]').forEach((box) => { const pairs = JSON.parse(box.dataset.pairs); const L = sh(pairs.map((p) => p[0])), R = sh(pairs.map((p) => p[1])); let sel = null, done = 0, err = 0; box.innerHTML = L.map((w, i) => `<button type="button" data-w="${w}">${w}</button><button type="button" data-d="${R[i]}">${R[i]}</button>`).join('');
+  box.querySelectorAll('button').forEach((b) => b.onclick = () => { if (b.classList.contains('done')) return; if (!sel || (sel.dataset.w && b.dataset.w) || (sel.dataset.d && b.dataset.d)) { if (sel) sel.classList.remove('sel'); sel = b; b.classList.add('sel'); return; } const w = sel.dataset.w || b.dataset.w, d = sel.dataset.d || b.dataset.d; if (pairs.some((p) => p[0] === w && p[1] === d)) { sel.classList.add('done'); b.classList.add('done'); done++; say(w); if (done === pairs.length) document.querySelector(`[data-mtres="${box.dataset.mt}"]`).textContent = err ? `Done! Mistakes: ${err}` : 'Perfect!'; } else err++; sel.classList.remove('sel'); sel = null; }); });
+document.querySelectorAll('[data-vids]').forEach((box) => JSON.parse(box.dataset.vids).forEach(([id, title, ch, qs]) => { const d = document.createElement('div'); d.className = 'vid'; d.innerHTML = `<div class="frame"><button class="play" type="button" style="background-image:url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)"><span>PLAY</span></button></div><div class="info"><h3>${title}</h3><small>YouTube · ${ch}</small><ol>${qs.map((q) => `<li>${q}</li>`).join('')}</ol></div>`; d.querySelector('.play').onclick = (e) => { e.currentTarget.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&cc_load_policy=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${title}"></iframe>`; }; box.appendChild(d); }));
+document.querySelectorAll('[data-spin]').forEach((b) => { const list = JSON.parse(b.dataset.spin); let last = -1; b.onclick = () => { let i; do { i = Math.floor(Math.random() * list.length); } while (i === last && list.length > 1); last = i; document.getElementById(b.dataset.target).textContent = list[i]; }; });
+try { const k = 'murly:' + (window.MURLY_LESSON ? MURLY_LESSON.id : 'x') + ':hw'; const t = $('hwText'); if (t) { t.value = localStorage.getItem(k) || ''; t.oninput = () => localStorage.setItem(k, t.value); } } catch (e) { }
+const STAGES = [...document.querySelectorAll('.wrap > section[id]')];
+$('stages').innerHTML = STAGES.map((s) => `<a href="#${s.id}"><b>${s.querySelector('.lk-n').textContent}</b><span>${s.dataset.stage}</span><small>${s.dataset.min !== '0' ? s.dataset.min + ' min' : 'at home'}</small></a>`).join('');
+$('teacherBtn').onclick = (e) => { const on = document.body.classList.toggle('teacher'); e.currentTarget.textContent = on ? 'Student version' : 'Teacher version'; };
+</script>
+<script src="/game-lessons/kit.js" defer></script>
+</body>
+</html>

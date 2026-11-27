@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stress: friend or enemy? (B2) | Murly</title>
+<link rel="icon" href="/favicon.svg">
+<meta name="description" content="Обговоримо, як ми реагуємо на стрес
+Подивимось TED talk і перевіримо розуміння
+Вивчимо лексику про емоції і здоров’я, дієслова з прийменниками
+Поспере">
+<link rel="canonical" href="https://murly.com.ua/game-lessons/lib-stress-friend.html">
+<style>
+:root{--paper:#F3F0EA;--ink:#17181C;--violet:#3D4A7A;--lav:#D9D3C7;--pink:#E9C9BC;--green:#D4E2CF;--white:#fff;--muted:#62646B;--accent:#B5482F}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+/* hero */
+.hero{background:linear-gradient(rgba(16,17,22,.5),rgba(16,17,22,.72)),url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1400&q=70&auto=format&fit=crop");color:#fff;padding:70px 18px 56px;text-align:center;position:relative;overflow:hidden}
+.hero .kicker{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#E9C9BC;font-weight:700}
+.hero .cr{position:absolute;right:12px;bottom:8px;font-size:11px;color:rgba(255,255,255,.6)}
+.hero h1{margin:8px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(36px,6vw,64px);letter-spacing:-.5px;font-weight:700}
+.hero h1 span{color:var(--pink);font-style:italic}
+.hero p{margin:12px 0 0;font-size:17px;color:#e6e2da}
+.hero .flags{display:flex;justify-content:center;gap:12px;margin-top:22px;flex-wrap:wrap}
+.hero .flags svg{width:40px;height:26px;border-radius:3px;opacity:.9}
+/* sections */
+section{margin-top:30px;background:var(--white);border-radius:18px;padding:28px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.05)}
+section h2{margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tag{font-family:"Segoe UI",system-ui,sans-serif;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--paper);color:var(--accent);text-transform:uppercase;letter-spacing:1px}
+.lk-n{display:inline-grid;place-items:center;width:42px;height:42px;background:var(--violet);color:#fff;border-radius:50%;font-size:21px;flex:none}
+.lk-mode{font-size:13px;font-weight:700;border:2px dashed var(--lav);color:var(--muted);padding:2px 10px;border-radius:999px}
+.lk-ins{font-size:17px;background:var(--paper);border-radius:12px;padding:10px 14px;margin:6px 0 18px}
+.lk-sub{margin:24px 0 10px;font-size:19px}
+.btn{font:inherit;font-weight:700;border:0;border-radius:999px;background:var(--ink);color:#fff;padding:10px 20px;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+.btn.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+/* teacher */
+.lk-tbtn{position:fixed;right:16px;top:70px;z-index:45;font:inherit;font-weight:800;border:2px solid var(--ink);background:var(--pink);padding:8px 14px;border-radius:12px;cursor:pointer}
+body.teacher .lk-tbtn{background:var(--green)}
+.lk-ans,.lk-tnote{display:none}
+body.teacher .lk-ans{display:block;margin-top:8px;font-weight:700;color:#1d5a12;background:var(--green);border-left:5px solid #5aa845;padding:6px 10px;font-size:15px;border-radius:6px}
+body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff3f7;border-left:5px solid #d9789a;padding:8px 12px;font-size:15px;border-radius:6px}
+/* overview */
+.lk-overview ul{font-size:17px;line-height:1.7;margin:6px 0 16px}
+.lk-stages{display:flex;flex-wrap:wrap;gap:8px}
+.lk-stages a{display:grid;border-radius:14px;padding:8px 12px;text-decoration:none;color:var(--ink);background:var(--paper);font-weight:700;min-width:100px}
+.lk-stages a span{text-transform:capitalize}
+.lk-stages a b{font-size:20px;color:var(--violet)}
+.lk-stages a small{font-weight:600;color:var(--muted)}
+/* warm-up */
+.taxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tax{background:var(--paper);border-radius:18px;padding:16px;display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center}
+.tax svg{width:56px;height:56px}
+.tax b{display:block;font-size:17px}
+.tax small{color:var(--muted);font-size:14px}
+.qs{display:grid;gap:10px;margin-top:18px}
+.qs div{background:var(--green);border-radius:14px;padding:10px 16px;font-size:18px;font-weight:600}
+.phr{background:#fff7e8;border-radius:14px;padding:12px 16px;margin-top:16px;font-size:15px}
+.phr ul{margin:6px 0 0;padding-left:18px}
+.fic{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:16px}
+.fic .c{background:#fff;border:2px solid #1B2140;border-radius:16px;padding:14px 16px;box-shadow:3px 3px 0 #1B2140}
+.fic .c b{display:block;font-size:18px;line-height:1.35;margin-bottom:8px}
+.fic .c .k{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.fic .c .k span{font-size:13px;background:#eef1fb;border-radius:999px;padding:3px 10px}
+.fic .c details{margin-top:8px;font-size:15px;color:#3b4160}
+.fic .c summary{cursor:pointer;font-weight:700;color:#534AB7}
+.fi-n{display:inline-flex;width:28px;height:28px;border-radius:50%;background:#2F4BA0;color:#fff;align-items:center;justify-content:center;font-size:14px;margin-right:6px}
+/* vocab */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:12px}
+.vc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:2px solid transparent;transition:border-color .2s,transform .2s}
+.vc:hover{border-color:var(--violet);transform:translateY(-2px)}
+.vc b{font-size:18px;display:flex;align-items:center;gap:8px}
+.vc b svg{width:20px;height:20px;flex:none;color:var(--violet)}
+.vc p{margin:6px 0 0;font-size:14px;color:var(--muted)}
+.vc em{display:block;margin-top:6px;font-size:14px;color:var(--violet);font-style:normal;font-weight:600}
+.vc.played{background:#e6ecfb}
+/* grammar */
+.gram{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.gb{border-radius:18px;padding:16px}
+.gb h3{margin:0 0 6px;font-size:19px}
+.gb .f{display:inline-block;background:#fff;border-radius:8px;padding:3px 10px;font-weight:800;margin:4px 0;font-family:Consolas,monospace;font-size:15px}
+.gb p{margin:6px 0 0;font-size:15px}
+.g1{background:var(--pink)}.g2{background:var(--lav)}.g3{background:var(--green)}.g4{background:#fbe7c6}
+.warn{margin-top:14px;background:var(--ink);color:#fff;border-radius:14px;padding:12px 16px;font-size:16px}
+.warn b{color:var(--pink)}
+.q{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:2px dashed var(--paper);font-size:18px}
+.q:last-child{border-bottom:0}
+.q .n{width:32px;height:32px;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;border-radius:50%;font-weight:800;font-size:15px}
+.opt{font:inherit;font-size:16px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:10px;padding:4px 12px;cursor:pointer;margin:0 2px}
+.opt.ok{background:var(--green);border-color:#5aa845}
+.opt.bad{background:var(--pink);animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+/* tour */
+.tour{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.law{border-radius:22px;overflow:hidden;background:var(--paper);display:flex;flex-direction:column}
+.law .pic{height:150px;display:grid;place-items:center;position:relative}
+.law .pic svg.ill{width:130px;height:130px}
+.law .pic svg.fl{position:absolute;left:14px;top:14px;width:46px;height:30px;border-radius:5px;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.law .pic .no{position:absolute;right:14px;top:14px;background:var(--ink);color:#fff;font-weight:800;border-radius:999px;padding:2px 10px;font-size:13px}
+.law .body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.law h3{margin:0;font-size:20px}
+.law .where{font-size:13px;font-weight:800;color:var(--violet);text-transform:uppercase;letter-spacing:1px}
+.law p{margin:0;font-size:16px}
+.law .why{font-size:14px;color:var(--muted)}
+.law .dq{margin-top:auto;background:#fff;border-radius:12px;padding:8px 12px;font-weight:700;font-size:15px}
+.law .lsn{font:inherit;font-size:13px;font-weight:700;background:none;border:0;color:var(--violet);cursor:pointer;padding:0;text-align:left}
+/* game */
+.game{max-width:720px;margin:0 auto;text-align:center}
+.score{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.score span{background:var(--paper);border-radius:999px;padding:6px 16px;font-weight:800}
+.stmt{background:var(--ink);color:#fff;border-radius:22px;padding:28px 24px;min-height:150px;display:grid;place-items:center;font-size:23px;font-weight:700;position:relative}
+.stmt small{position:absolute;top:12px;left:18px;font-size:13px;color:var(--lav);font-weight:700}
+.choose{display:flex;justify-content:center;gap:14px;margin:18px 0}
+.choose button{font:inherit;font-size:18px;font-weight:700;border:2px solid var(--ink);border-radius:999px;padding:12px 28px;cursor:pointer}
+.choose .bl{background:var(--green)}.choose .bm{background:var(--pink)}
+.choose button:disabled{opacity:.5;cursor:default}
+.verdict{min-height:70px;font-size:17px;background:var(--paper);border-radius:16px;padding:12px 16px;text-align:left}
+.verdict b.r{color:#2d7a1d}.verdict b.w{color:#b23a62}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.dots i{width:14px;height:14px;border-radius:50%;background:var(--paper)}
+.dots i.r{background:#7cc663}.dots i.w{background:#e47b9f}.dots i.c{outline:3px solid var(--violet)}
+.final{font-size:22px;font-weight:800;color:var(--violet)}
+/* invent */
+.inv{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.frames{display:grid;gap:10px}
+.frames label{font-size:14px;font-weight:700;color:var(--muted)}
+.frames select,.frames input{font:inherit;width:100%;padding:8px 10px;border:2px solid var(--lav);border-radius:10px;background:#fff}
+.poster{background:var(--paper);border:3px solid var(--ink);border-radius:20px;padding:22px;text-align:center;min-height:260px;display:flex;flex-direction:column;gap:10px;justify-content:center}
+.poster .seal{width:70px;height:70px;margin:0 auto}
+.poster h3{margin:0;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--violet)}
+.poster .rule{font-size:22px;font-weight:800}
+.poster .pen{font-size:16px;color:var(--muted)}
+.ideas{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ideas span{background:var(--pink);border-radius:999px;padding:5px 12px;font-size:14px;font-weight:600}
+/* roleplay */
+.rp{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.role{border-radius:20px;padding:18px}
+.role h3{margin:0 0 6px;display:flex;align-items:center;gap:10px}
+.role h3 svg{width:42px;height:42px}
+.role ul{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.r1{background:var(--lav)}.r2{background:var(--green)}
+.scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:16px}
+.sc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:3px solid transparent}
+.sc.on{border-color:var(--violet);background:#fff}
+.sc b{display:block;font-size:17px;margin-bottom:4px}
+.sc p{margin:0;font-size:15px}
+.timer{font-size:40px;font-weight:800;text-align:center;margin:14px 0 6px;color:var(--violet)}
+.ctr{text-align:center}
+/* homework */
+.hwb{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hwc{background:var(--paper);border-radius:18px;padding:18px}
+.hwc h3{margin:0 0 8px}
+.hwc ol,.hwc ul{margin:6px 0 0;padding-left:20px;line-height:1.7}
+.hwc textarea{width:100%;min-height:150px;font:inherit;border:2px solid var(--lav);border-radius:12px;padding:10px;margin-top:10px}
+.end{text-align:center;background:var(--ink);color:#fff;box-shadow:none}
+.end h2{justify-content:center}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(140px);background:var(--ink);color:#fff;font-weight:800;padding:12px 22px;border-radius:14px;transition:transform .3s;z-index:50}
+.toast.show{transform:translateX(-50%) translateY(0)}
+/* photos */
+.ph{margin:0}
+.ph img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;background:var(--paper)}
+.ph figcaption{font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.2px}
+.tax{grid-template-columns:1fr !important;padding:12px !important}
+.law .pic{height:auto !important;display:block !important;padding:0;position:relative}
+.law .pic .ph img{border-radius:0;aspect-ratio:16/10;transition:filter .5s}
+.law .pic .ph figcaption{padding:4px 12px 0}
+.law.hide .pic .ph img{filter:blur(10px) grayscale(.6)}
+.law.hide .reveal-body,.law.hide .fl,.law.hide .where{visibility:hidden}
+.law .clue{font-size:15px;font-style:italic;color:var(--ink)}
+.law .gc{display:flex;flex-wrap:wrap;gap:6px}
+.law .gc button{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:4px 12px;cursor:pointer}
+.law .gc button.ok{background:var(--green)}.law .gc button.bad{background:var(--pink)}
+.law:not(.hide) .guess{display:none}
+.fair{display:grid;gap:4px;background:#fff;border-radius:12px;padding:8px 12px}
+.fair .ends{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.fair input{width:100%;accent-color:var(--accent)}
+.fair output{font-size:14px;font-weight:700;color:var(--accent)}
+.gph{max-width:720px;margin:0 auto 12px}
+.gph img{aspect-ratio:21/9}
+.fine{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.fq{background:var(--paper);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.fq h3{margin:0;font-size:18px}
+.fq .opts{display:flex;flex-wrap:wrap;gap:6px}
+.fq .opts button{font:inherit;font-size:14px;font-weight:700;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 12px;cursor:pointer}
+.fq .opts button.ok{background:var(--green)}.fq .opts button.bad{background:var(--pink)}
+.fq .res{font-size:15px;min-height:22px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{position:relative;aspect-ratio:16/9;background:#111}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;cursor:pointer;background:#111 center/cover;display:grid;place-items:center}
+.vid .play span{background:rgba(0,0,0,.7);color:#fff;font-weight:700;border-radius:999px;padding:10px 20px;font-size:15px;letter-spacing:1px}
+.vid .info{padding:14px 16px}
+.vid .info h3{margin:0 0 2px;font-size:18px}
+.vid .info small{color:var(--muted)}
+.vid .info ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+@media(max-width:760px){.inv,.rp,.hwb{grid-template-columns:1fr}.lk-tbtn{top:auto;bottom:70px}}
+
+.pr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.pb{border-radius:18px;padding:16px 18px}
+.pb h3{margin:0;font-family:Georgia,serif;font-size:30px}
+.pb .m{font-size:15px;color:var(--muted);margin:2px 0 8px}
+.pb .chips{display:flex;flex-wrap:wrap;gap:6px}
+.pb .chips span{background:#fff;border-radius:999px;padding:4px 11px;font-size:14px;font-weight:600}
+.pb ul{margin:10px 0 0;padding-left:18px;font-size:15px}
+.p-in{background:#DCE6F5}.p-at{background:#F3D9CF}.p-on{background:#D4E2CF}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-size:15px;margin-top:10px}
+.ex div{background:var(--paper);border-radius:10px;padding:8px 12px}
+.ex b{color:var(--accent)}
+.q{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.q .n{font-weight:800;color:var(--violet);min-width:24px}
+.q .gap{display:inline-block;min-width:44px;border-bottom:2px solid var(--ink);text-align:center;font-weight:800}
+.q .opts{margin-left:auto;display:flex;gap:6px}
+.q .opts button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 14px;cursor:pointer}
+.q.ok{background:#DDEED7}.q.ok .gap{color:#2F7A3B}
+.q.bad{background:#F6DAD3}
+.score{font-weight:800;margin-top:12px}
+.text{font-size:18px;line-height:1.75;background:var(--paper);border-radius:16px;padding:18px 22px}
+.text h3{margin:0 0 6px;font-family:Georgia,serif;font-size:24px}
+.text p{margin:0 0 12px}
+.text.hl mark{background:#F3D9CF;border-radius:4px;padding:0 3px;font-weight:700}
+.tf{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:9px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.tf .opts{margin-left:auto;display:flex;gap:6px}
+.tf button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.tf.ok{background:#DDEED7}.tf.bad{background:#F6DAD3}
+.disc{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px;margin-top:6px}
+.disc div{background:var(--green);border-radius:14px;padding:12px 16px;font-size:17px;font-weight:600}
+.disc div i{font-style:normal;color:var(--violet);margin-right:6px}
+.spin{text-align:center;margin-top:16px}
+.spin .card{display:inline-block;min-height:80px;min-width:min(560px,100%);background:var(--ink);color:#fff;border-radius:18px;padding:20px 24px;font-size:22px;font-weight:700;margin-bottom:12px}
+@media(max-width:700px){.ex{grid-template-columns:1fr}}
+
+.hero{background-size:cover!important;background-position:center!important}
+.voc{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.voc div{background:var(--paper);border-radius:14px;padding:10px 14px;cursor:pointer;border:2px solid transparent}
+.voc div:hover{border-color:var(--violet)}
+.voc b{display:block;font-size:18px}.voc span{display:block;color:var(--accent);font-weight:700;font-size:15px}.voc em{display:block;font-size:14px;color:var(--muted);margin-top:3px}
+.mt{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:10px}
+.mt button{font:inherit;font-size:16px;text-align:left;border:2px solid var(--ink);background:#fff;border-radius:14px;padding:9px 14px;cursor:pointer}
+.mt button.sel{background:#FFE7A8}.mt button.done{background:#CDE8C6;border-color:#4C9A5B;cursor:default}
+.ch{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ch .n{font-weight:800;color:var(--violet);min-width:24px}
+.ch .o{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.ch .o button{font:inherit;font-size:15px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.ch.ok{background:#DDEED7}.ch.bad{background:#F6DAD3}
+.ty{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ty input{font:inherit;border:2px solid var(--ink);border-radius:10px;padding:4px 10px;width:220px}
+.ty.ok{background:#DDEED7}.ty.bad{background:#F6DAD3}
+.ty small{color:var(--muted)}
+.photo{width:100%;height:300px;object-fit:cover;border-radius:16px;display:block}
+.cap{font-size:11px;color:var(--muted);margin:4px 0 12px}
+.pics{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.pics figure{margin:0;background:var(--paper);border-radius:16px;overflow:hidden}
+.pics img{width:100%;height:170px;object-fit:cover;display:block}
+.pics figcaption{padding:8px 12px;font-weight:700}
+.pics small{display:block;font-weight:400;font-size:10px;color:var(--muted)}
+.lis{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:8px 0 14px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{aspect-ratio:16/9;background:#000;position:relative}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;background-size:cover;background-position:center;cursor:pointer;display:grid;place-items:center}
+.vid .play span{background:#E5484D;color:#fff;font-weight:800;border-radius:12px;padding:10px 20px}
+.vid .info{padding:12px 16px}.vid h3{margin:0;font-size:18px}.vid small{color:var(--muted)}
+.vid ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th,.tbl td{border:1px solid #ddd;padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--paper)}
+@media(max-width:700px){.mt{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="/game-lessons/kit.css">
+</head>
+<body>
+<header class="hero">
+  <div class="kicker">B2 · adults · Психологія</div>
+  <h1>Stress: friend or enemy?</h1>
+  <p>B2 · 7 parts · 60 min</p>
+  <span class="cr">Photo: Unsplash</span>
+</header>
+<button class="lk-tbtn" id="teacherBtn" type="button">Teacher version</button>
+<div class="wrap">
+  <section class="lk-overview">
+    <h2>In this lesson you will:</h2>
+    <ul><li>Обговоримо, як ми реагуємо на стрес
+Подивимось TED talk і перевіримо розуміння
+Вивчимо лексику про емоції і здоров’я, дієслова з прийменниками
+Посперечаємось і висловимо думку, погоджуючись і не погоджуючись</li></ul>
+    <div class="lk-stages" id="stages"></div>
+  </section>
+  <section id="s1" data-stage="warm-up" data-min="5">
+    <h2><span class="lk-n">1</span>Warm-up <span class="tag">warm-up</span><span class="lk-mode">teacher + student</span></h2>
+<div class="qs"><div>What makes you stressed?</div><div>Is stress always bad? Can it help you sometimes?</div></div>
+    <h3 class="lk-sub">How much do you agree?</h3><div class="qs"><div>Stress at work is unavoidable. (agree or disagree? Why?)</div><div>A little stress helps me do my best work. (agree or disagree? Why?)</div><div>I know how to switch off after a stressful day. (agree or disagree? Why?)</div></div>
+    <p class="lk-tnote" data-ru="Короткий старт: 2 питання усно, потім шкала думки (не оцінюється). Попросіть пояснити одну відповідь зі шкали. Не заглиблюйтеся в особисті історії, якщо учень не хоче: тема чутлива, давайте право відповідати загально.&lt;br&gt;">Короткий старт: 2 питання усно, потім шкала думки (не оцінюється). Попросіть пояснити одну відповідь зі шкали. Не заглиблюйтеся в особисті історії, якщо учень не хоче: тема чутлива, давайте право відповідати загально.<br></p>
+  </section>
+  <section id="s2" data-stage="vocabulary" data-min="10">
+    <h2><span class="lk-n">2</span>Vocabulary <span class="tag">vocabulary</span><span class="lk-mode">teacher + student</span></h2>
+<div class="voc"><div data-say="to cope with. "><b>to cope with</b><span><span data-tr-uk="справлятися з" data-tr-ru="справлятися з">справлятися з</span></span><em></em></div>
+<div data-say="a heart rate. "><b>a heart rate</b><span><span data-tr-uk="пульс" data-tr-ru="пульс">пульс</span></span><em></em></div>
+<div data-say="harmful. "><b>harmful</b><span><span data-tr-uk="шкідливий" data-tr-ru="шкідливий">шкідливий</span></span><em></em></div>
+<div data-say="to reach out. "><b>to reach out</b><span><span data-tr-uk="звертатися по підтримку" data-tr-ru="звертатися по підтримку">звертатися по підтримку</span></span><em></em></div>
+<div data-say="resilience. "><b>resilience</b><span><span data-tr-uk="стійкість" data-tr-ru="стійкість">стійкість</span></span><em></em></div>
+<div data-say="to perceive. "><b>to perceive</b><span><span data-tr-uk="сприймати" data-tr-ru="сприймати">сприймати</span></span><em></em></div>
+<div data-say="anxious. "><b>anxious</b><span><span data-tr-uk="тривожний" data-tr-ru="тривожний">тривожний</span></span><em></em></div>
+<div data-say="to be under pressure. "><b>to be under pressure</b><span><span data-tr-uk="бути під тиском" data-tr-ru="бути під тиском">бути під тиском</span></span><em></em></div>
+<div data-say="to burn out. "><b>to burn out</b><span><span data-tr-uk="вигоріти" data-tr-ru="вигоріти">вигоріти</span></span><em></em></div>
+<div data-say="a coping strategy. "><b>a coping strategy</b><span><span data-tr-uk="спосіб упоратися (зі стресом)" data-tr-ru="спосіб упоратися (зі стресом)">спосіб упоратися (зі стресом)</span></span><em></em></div>
+<div data-say="to take a toll on. "><b>to take a toll on</b><span><span data-tr-uk="негативно позначатися на" data-tr-ru="негативно позначатися на">негативно позначатися на</span></span><em></em></div>
+<div data-say="overwhelmed. "><b>overwhelmed</b><span><span data-tr-uk="перевантажений, пригнічений" data-tr-ru="перевантажений, пригнічений">перевантажений, пригнічений</span></span><em></em></div></div>
+    <div class="mt" data-mt="m2" data-pairs="[[&quot;to cope with&quot;, &quot;справлятися з&quot;], [&quot;a heart rate&quot;, &quot;пульс&quot;], [&quot;harmful&quot;, &quot;шкідливий&quot;], [&quot;to reach out&quot;, &quot;звертатися по підтримку&quot;], [&quot;resilience&quot;, &quot;стійкість&quot;], [&quot;to perceive&quot;, &quot;сприймати&quot;], [&quot;anxious&quot;, &quot;тривожний&quot;], [&quot;to be under pressure&quot;, &quot;бути під тиском&quot;]]"></div><div class="score" data-mtres="m2"></div>
+    <h3 class="lk-sub">Match the words with their meanings.</h3><div class="ch" data-a="causing damage"><span class="n">1</span><span class="s">harmful ___</span><span class="o"><button type="button">worried and nervous</button><button type="button">causing damage</button><button type="button">feeling there is too much to deal with</button><button type="button">to deal successfully with a problem</button><button type="button">the ability to recover from difficulties</button><button type="button">to have a bad effect on something over time</button></span></div>
+<div class="ch" data-a="to deal successfully with a problem"><span class="n">2</span><span class="s">to cope with ___</span><span class="o"><button type="button">worried and nervous</button><button type="button">to have a bad effect on something over time</button><button type="button">the ability to recover from difficulties</button><button type="button">causing damage</button><button type="button">feeling there is too much to deal with</button><button type="button">to deal successfully with a problem</button></span></div>
+<div class="ch" data-a="worried and nervous"><span class="n">3</span><span class="s">anxious ___</span><span class="o"><button type="button">worried and nervous</button><button type="button">causing damage</button><button type="button">to deal successfully with a problem</button><button type="button">the ability to recover from difficulties</button><button type="button">to have a bad effect on something over time</button><button type="button">feeling there is too much to deal with</button></span></div>
+<div class="ch" data-a="the ability to recover from difficulties"><span class="n">4</span><span class="s">resilience ___</span><span class="o"><button type="button">to deal successfully with a problem</button><button type="button">causing damage</button><button type="button">the ability to recover from difficulties</button><button type="button">feeling there is too much to deal with</button><button type="button">to have a bad effect on something over time</button><button type="button">worried and nervous</button></span></div>
+<div class="ch" data-a="feeling there is too much to deal with"><span class="n">5</span><span class="s">overwhelmed ___</span><span class="o"><button type="button">to deal successfully with a problem</button><button type="button">worried and nervous</button><button type="button">the ability to recover from difficulties</button><button type="button">to have a bad effect on something over time</button><button type="button">causing damage</button><button type="button">feeling there is too much to deal with</button></span></div>
+<div class="ch" data-a="to have a bad effect on something over time"><span class="n">6</span><span class="s">to take a toll on ___</span><span class="o"><button type="button">worried and nervous</button><button type="button">the ability to recover from difficulties</button><button type="button">causing damage</button><button type="button">to deal successfully with a problem</button><button type="button">feeling there is too much to deal with</button><button type="button">to have a bad effect on something over time</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; causing damage · to deal successfully with a problem · worried and nervous · the ability to recover from difficulties · feeling there is too much to deal with · to have a bad effect on something over time"><b>Відповіді:</b> causing damage · to deal successfully with a problem · worried and nervous · the ability to recover from difficulties · feeling there is too much to deal with · to have a bad effect on something over time</p>
+    <h3 class="lk-sub">Complete the sentences with words from the list.</h3><div class="ty" data-a="overwhelmed"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>After three weeks of overtime, I felt completely ___.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="toll"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Long hours without breaks can take a ___ on your health.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="out"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>If you feel lonely, don’t be afraid to reach ___ to friends.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="strategy"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Going for a run is my favourite coping ___.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; overwhelmed · toll · out · strategy"><b>Відповіді:</b> overwhelmed · toll · out · strategy</p>
+    <p class="lk-tnote" data-ru="Пройдіться по словах, звертаючи увагу на вимову resilience /rɪˈzɪliəns/ і perceive. Вправи 5-6 хв. Попросіть учня скласти одне власне речення з to take a toll on і to burn out.&lt;br&gt;">Пройдіться по словах, звертаючи увагу на вимову resilience /rɪˈzɪliəns/ і perceive. Вправи 5-6 хв. Попросіть учня скласти одне власне речення з to take a toll on і to burn out.<br></p>
+  </section>
+  <section id="s3" data-stage="video" data-min="15">
+    <h2><span class="lk-n">3</span>Video <span class="tag">video</span><span class="lk-mode">teacher + student</span></h2>
+<div class="text"><p><b>Before you watch:</b> the speaker is a health psychologist. She once told people that stress makes them sick. Then she changed her mind. Why do you think that happened?</p></div>
+    <div class="frame" style="aspect-ratio:16/9"><iframe src="https://www.youtube-nocookie.com/embed/RcGyVTAoXEU" style="width:100%;height:100%;border:0" allowfullscreen loading="lazy"></iframe></div>
+    <p class="lk-ins">Подивись talk (14 хв, можна з субтитрами). Яка головна ідея спікерки?</p>
+    <h3 class="lk-sub">Gist: choose the main idea.</h3><div class="ch" data-a="the way we think about stress changes its effect on us"><span class="n">1</span><span class="s">The main message of the talk is that ___.</span><span class="o"><button type="button">stress is only a problem for older people</button><button type="button">we should avoid stress at all costs</button><button type="button">the way we think about stress changes its effect on us</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; the way we think about stress changes its effect on us"><b>Відповіді:</b> the way we think about stress changes its effect on us</p>
+    <h3 class="lk-sub">Detail: True or False?</h3><div class="ch" data-a="False"><span class="n">1</span><span class="s">The speaker says stress is always bad for your health.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="True"><span class="n">2</span><span class="s">The way you think about stress can change how it affects you.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="True"><span class="n">3</span><span class="s">In the study she describes, believing that stress is harmful was linked to a higher risk of dying.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="True"><span class="n">4</span><span class="s">The speaker describes a pounding heart as a sign that your body is getting ready for a challenge.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="True"><span class="n">5</span><span class="s">The speaker suggests that reaching out to others can help under stress.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; False · True · True · True · True"><b>Відповіді:</b> False · True · True · True · True</p>
+    <p class="lk-tnote" data-ru="Якщо часу мало, подивіться перші 6-7 хвилин: там основне дослідження і ключова ідея. Решту можна дати додому. Спершу gist-питання, потім деталі. Обговоріть, чи погоджуються учні з ідеєю, але коротко: дискусія буде на етапі Speaking.&lt;br&gt;">Якщо часу мало, подивіться перші 6-7 хвилин: там основне дослідження і ключова ідея. Решту можна дати додому. Спершу gist-питання, потім деталі. Обговоріть, чи погоджуються учні з ідеєю, але коротко: дискусія буде на етапі Speaking.<br></p>
+  </section>
+  <section id="s4" data-stage="practice" data-min="10">
+    <h2><span class="lk-n">4</span>Language focus <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<div class="text"><h3>Two colleagues discuss the talk</h3><p class="lk-ins">Your teacher reads the dialogue (or plays it). Listen first, then read.</p><details><summary>Show the script</summary><p>Lily: Did you watch that TED talk about stress? I couldn’t stop thinking about it.</p><p>Tom: I did. To be honest, I’m not so sure about it. Stress nearly made me burn out two years ago.</p><p>Lily: I see what you mean, but she doesn’t say stress is harmless. She says the way we perceive it matters.</p><p>Tom: That’s a fair point. When I thought my racing heart was a disaster, I panicked even more.</p><p>Lily: Exactly. And the part about reaching out to people? I couldn’t agree more.</p><p>Tom: True. Although I’d say companies also need to reduce the pressure, not just change how we think.</p><p>Lily: Good point. Nobody can cope with everything on their own.</p></details></div>
+    <div class="warn"><p>Погоджуємося: <b>I couldn’t agree more. / That’s exactly what I think. / Good point.</b> Не погоджуємося м’яко: <b>I’m not so sure about that. / I see what you mean, but… / That’s not always true.</b> Дієслова з прийменниками: <b>cope with, reach out to, suffer from, worry about, take a toll on</b>.</p></div>
+    <h3 class="lk-sub">Which phrases are for agreeing and which are for disagreeing?</h3><div class="ch" data-a="Agreeing"><span class="n">1</span><span class="s">That’s exactly what I think. ___</span><span class="o"><button type="button">Agreeing</button><button type="button">Disagreeing</button></span></div>
+<div class="ch" data-a="Disagreeing"><span class="n">2</span><span class="s">I’m not so sure about that. ___</span><span class="o"><button type="button">Agreeing</button><button type="button">Disagreeing</button></span></div>
+<div class="ch" data-a="Agreeing"><span class="n">3</span><span class="s">I couldn’t agree more. ___</span><span class="o"><button type="button">Agreeing</button><button type="button">Disagreeing</button></span></div>
+<div class="ch" data-a="Disagreeing"><span class="n">4</span><span class="s">I see it differently. ___</span><span class="o"><button type="button">Agreeing</button><button type="button">Disagreeing</button></span></div>
+<div class="ch" data-a="Agreeing"><span class="n">5</span><span class="s">Good point. ___</span><span class="o"><button type="button">Disagreeing</button><button type="button">Agreeing</button></span></div>
+<div class="ch" data-a="Disagreeing"><span class="n">6</span><span class="s">That’s not always true. ___</span><span class="o"><button type="button">Disagreeing</button><button type="button">Agreeing</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; Agreeing · Disagreeing · Agreeing · Disagreeing · Agreeing · Disagreeing"><b>Відповіді:</b> Agreeing · Disagreeing · Agreeing · Disagreeing · Agreeing · Disagreeing</p>
+    <h3 class="lk-sub">Complete with the right preposition.</h3><div class="ty" data-a="with"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>How do you cope ___ pressure at work?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="on"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Too much overtime can take a toll ___ your sleep.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="out"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Don’t be afraid to reach ___ to a friend when you feel anxious.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="from"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>She has been suffering ___ headaches since the new project started.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="about"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>I try not to worry ___ things I can’t control.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; with · on · out · from · about"><b>Відповіді:</b> with · on · out · from · about</p>
+    <h3 class="lk-sub">Переклади англійською.</h3><div class="ty" data-a="I’m not so sure about that|I’m not sure about that"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Я не впевнений щодо цього</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="I couldn’t agree more|I could not agree more|I completely agree"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Повністю з тобою згоден</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="How do you cope with stress?|How do you deal with stress?"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Як ти справляєшся зі стресом?</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; I’m not so sure about that · I couldn’t agree more · How do you cope with stress?"><b>Відповіді:</b> I’m not so sure about that · I couldn’t agree more · How do you cope with stress?</p>
+    <p class="lk-tnote" data-ru="Прослухайте короткий діалог і попросіть знайти фрази згоди й незгоди. Потім вправи 6-7 хв. Типова помилка: «cope the stress» без with і «worry for». Виправляйте одразу і просіть повторити речення повністю.&lt;br&gt;">Прослухайте короткий діалог і попросіть знайти фрази згоди й незгоди. Потім вправи 6-7 хв. Типова помилка: «cope the stress» без with і «worry for». Виправляйте одразу і просіть повторити речення повністю.<br></p>
+  </section>
+  <section id="s5" data-stage="speaking" data-min="12">
+    <h2><span class="lk-n">5</span>Speaking <span class="tag">speaking</span><span class="lk-mode">teacher + student</span></h2>
+<div class="text"><p><b>Card A: the team member.</b> For the last month you have worked more than 50 hours a week and you feel overwhelmed. Explain the problem to your manager calmly and suggest two changes that would help.</p><p><b>Card B: the manager.</b> The deadline is important, but you don’t want to lose a good employee. Listen, show that you understand, offer one solution and negotiate.</p></div>
+    <div class="qs"><div>Role play: use your cards (3 minutes), then swap roles.</div><div>Do you agree that stress can be "your friend"? Use phrases from the lesson.</div><div>What do you usually do to cope with stress at work?</div><div>How can companies help their employees feel less anxious?</div></div>
+    <p class="lk-tnote" data-ru="Рольова гра 6 хв (обидві ролі), дискусія 5-6 хв. Вимагайте хоча б 2 фрази згоди/незгоди. Записуйте помилки з прийменниками і розберіть їх наприкінці етапу (1 хв).&lt;br&gt;">Рольова гра 6 хв (обидві ролі), дискусія 5-6 хв. Вимагайте хоча б 2 фрази згоди/незгоди. Записуйте помилки з прийменниками і розберіть їх наприкінці етапу (1 хв).<br></p>
+  </section>
+  <section id="s6" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">6</span>Extra practice · якщо лишився час або на наступний урок <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Встав слово з уроку.</h3><div class="ty" data-a="out"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>If you work 60 hours a week for months, you may burn ___.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="pressure"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>She is under a lot of ___ because the deadline is tomorrow.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="resilience"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Your ___ grows every time you recover from a difficult situation.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="perceive|see|view"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>The way we ___ stress changes how our body reacts.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="harmful|bad"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Lack of sleep can be ___ to your health.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="rate"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Before a presentation my heart ___ goes up, but I remind myself that my body is getting ready.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; out · pressure · resilience · perceive · harmful · rate"><b>Відповіді:</b> out · pressure · resilience · perceive · harmful · rate</p>
+    <h3 class="lk-sub">Обери правильний прийменник.</h3><div class="ch" data-a="from"><span class="n">1</span><span class="s">She has been suffering ___ insomnia for months.</span><span class="o"><button type="button">with</button><button type="button">of</button><button type="button">from</button></span></div>
+<div class="ch" data-a="about"><span class="n">2</span><span class="s">I try not to worry ___ things I can’t change.</span><span class="o"><button type="button">about</button><button type="button">for</button><button type="button">of</button></span></div>
+<div class="ch" data-a="with"><span class="n">3</span><span class="s">How do you cope ___ a heavy workload?</span><span class="o"><button type="button">with</button><button type="button">for</button><button type="button">by</button></span></div>
+<div class="ch" data-a="on"><span class="n">4</span><span class="s">Constant stress can take a toll ___ your health.</span><span class="o"><button type="button">at</button><button type="button">on</button><button type="button">to</button></span></div>
+<div class="ch" data-a="to"><span class="n">5</span><span class="s">It’s important to reach out ___ people you trust.</span><span class="o"><button type="button">for</button><button type="button">at</button><button type="button">to</button></span></div>
+<div class="ch" data-a="about"><span class="n">6</span><span class="s">Many employees complain ___ unrealistic deadlines.</span><span class="o"><button type="button">for</button><button type="button">about</button><button type="button">on</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; from · about · with · on · to · about"><b>Відповіді:</b> from · about · with · on · to · about</p>
+    <h3 class="lk-sub">Переклади англійською.</h3><div class="ty" data-a="I’m under pressure this week|I am under pressure this week|I’m under a lot of pressure this week"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Я під тиском цього тижня</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Don’t be afraid to reach out to friends|Don’t be afraid to reach out to your friends|Do not be afraid to reach out to friends"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Не бійся звертатися по підтримку до друзів</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Stress takes a toll on my sleep|Stress is taking a toll on my sleep"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Стрес негативно позначається на моєму сні</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="I feel overwhelmed|I’m feeling overwhelmed|I am feeling overwhelmed"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Я почуваюся перевантаженим</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="I see what you mean, but that’s not always true|I see what you mean, but it’s not always true|I see what you mean, but that is not always true"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Я розумію, що ти маєш на увазі, але це не завжди так</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="He burned out after two years without a holiday|He burnt out after two years without a holiday|He burned out after two years without a vacation|He burnt out after two years without a vacation"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Він вигорів після двох років без відпустки</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; I’m under pressure this week · Don’t be afraid to reach out to friends · Stress takes a toll on my sleep · I feel overwhelmed · I see what you mean, but that’s not always true · He burned out after two years without a holiday"><b>Відповіді:</b> I’m under pressure this week · Don’t be afraid to reach out to friends · Stress takes a toll on my sleep · I feel overwhelmed · I see what you mean, but that’s not always true · He burned out after two years without a holiday</p>
+    <h3 class="lk-sub">Stress vocabulary: word and meaning</h3><p class="lk-ins">Match the word with its meaning</p>
+    <div class="spin"><div class="card" id="g67">Click "Next card"</div><br><button class="btn" type="button" data-spin="[&quot;harmful&quot;, &quot;anxious&quot;, &quot;resilience&quot;, &quot;overwhelmed&quot;, &quot;to burn out&quot;, &quot;to reach out&quot;, &quot;to perceive&quot;, &quot;a coping strategy&quot;]" data-target="g67">Next card</button></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; causing damage · worried and nervous · the ability to recover from difficulties · having too much to deal with · to become exhausted after too much work · to ask other people for support · to see or understand something in a certain way · a way to deal with a difficult situation"><b>Відповіді:</b> causing damage · worried and nervous · the ability to recover from difficulties · having too much to deal with · to become exhausted after too much work · to ask other people for support · to see or understand something in a certain way · a way to deal with a difficult situation</p>
+    <p class="lk-tnote" data-ru="10-12 хв на кінець уроку або як повторення на наступному. У gap про perceive зараховуються see і view, про harmful також bad. Прийменники: suffer from, worry about, cope with, take a toll on, reach out to, complain about. Типові помилки: «suffer of», «worry for». Гру можна зробити усно: вчитель читає визначення, учень називає слово.&lt;br&gt;">10-12 хв на кінець уроку або як повторення на наступному. У gap про perceive зараховуються see і view, про harmful також bad. Прийменники: suffer from, worry about, cope with, take a toll on, reach out to, complain about. Типові помилки: «suffer of», «worry for». Гру можна зробити усно: вчитель читає визначення, учень називає слово.<br></p>
+  </section>
+  <section id="s7" data-stage="writing" data-min="8">
+    <h2><span class="lk-n">7</span>Writing <span class="tag">writing</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Writing: 100-120 words.</h3><div class="qs"><div>Write a short opinion post: "Stress is not the enemy". Agree or disagree and give examples from your life.</div></div>
+    <p class="lk-tnote" data-ru="На уроці учень складає план (теза, 2 аргументи, висновок) і пише вступ, решту дописує вдома. Домашнє завдання: дописати пост і додивитися talk до кінця, виписавши 3 нові вирази.&lt;br&gt;">На уроці учень складає план (теза, 2 аргументи, висновок) і пише вступ, решту дописує вдома. Домашнє завдання: дописати пост і додивитися talk до кінця, виписавши 3 нові вирази.<br></p>
+    <h3 class="lk-sub">Homework plus: доповни фрази згоди й незгоди.</h3><div class="ty" data-a="more"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>I couldn’t agree ___. Stress isn’t always bad.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="sure"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>I’m not so ___ about that.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="mean"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>I see what you ___, but some stress is harmful.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="point"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>That’s a fair ___.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="think"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>That’s exactly what I ___.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="differently"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>I see it ___.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; more · sure · mean · point · think · differently"><b>Відповіді:</b> more · sure · mean · point · think · differently</p>
+    <h3 class="lk-sub">Обери правильне слово.</h3><div class="ch" data-a="burning out"><span class="n">1</span><span class="s">After months of overtime, she was close to ___.</span><span class="o"><button type="button">burning down</button><button type="button">burning up</button><button type="button">burning out</button></span></div>
+<div class="ch" data-a="coping strategy"><span class="n">2</span><span class="s">Talking to a friend is a healthy ___.</span><span class="o"><button type="button">coping way</button><button type="button">cope strategy</button><button type="button">coping strategy</button></span></div>
+<div class="ch" data-a="under"><span class="n">3</span><span class="s">I’m ___ a lot of pressure at the moment.</span><span class="o"><button type="button">under</button><button type="button">on</button><button type="button">in</button></span></div>
+<div class="ch" data-a="resilience"><span class="n">4</span><span class="s">Regular exercise helps build ___.</span><span class="o"><button type="button">resilient</button><button type="button">resilience</button><button type="button">resiliently</button></span></div>
+<div class="ch" data-a="harmful"><span class="n">5</span><span class="s">Skipping meals under stress is ___ to your health.</span><span class="o"><button type="button">harmed</button><button type="button">harmful</button><button type="button">harming</button></span></div>
+<div class="ch" data-a="pounding"><span class="n">6</span><span class="s">When my heart is ___, I take a few deep breaths.</span><span class="o"><button type="button">hitting</button><button type="button">pounding</button><button type="button">knocking</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; burning out · coping strategy · under · resilience · harmful · pounding"><b>Відповіді:</b> burning out · coping strategy · under · resilience · harmful · pounding</p>
+    <h3 class="lk-sub">Письмо: відповідай 4-6 реченнями.</h3><div class="qs"><div>Describe a stressful situation at work or in your studies and how you coped with it.</div><div>Do you agree that stress can be your friend? Use two phrases for agreeing or disagreeing.</div><div>Give a colleague three pieces of advice on how to avoid burning out.</div></div>
+  </section>
+  <section class="end"><h2>Great job!</h2><p>See you next lesson.</p></section>
+</div>
+<div class="toast" id="toast"></div>
+<script>window.MURLY_LESSON={"id": "lib-stress-friend", "title": "Stress: friend or enemy?", "homework": ["s2", "s3", "s4", "s6", "s7"], "hw": {"s2": [{"type": "choice", "instruction": "Match the words with their meanings.", "text": "harmful {causing damage|to deal successfully with a problem|worried and nervous|the ability to recover from difficulties|feeling there is too much to deal with|to have a bad effect on something over time}\nto cope with {to deal successfully with a problem|causing damage|worried and nervous|the ability to recover from difficulties|feeling there is too much to deal with|to have a bad effect on something over time}\nanxious {worried and nervous|causing damage|to deal successfully with a problem|the ability to recover from difficulties|feeling there is too much to deal with|to have a bad effect on something over time}\nresilience {the ability to recover from difficulties|causing damage|to deal successfully with a problem|worried and nervous|feeling there is too much to deal with|to have a bad effect on something over time}\noverwhelmed {feeling there is too much to deal with|causing damage|to deal successfully with a problem|worried and nervous|the ability to recover from difficulties|to have a bad effect on something over time}\nto take a toll on {to have a bad effect on something over time|causing damage|to deal successfully with a problem|worried and nervous|the ability to recover from difficulties|feeling there is too much to deal with}"}, {"type": "gap", "instruction": "Complete the sentences with words from the list.", "text": "After three weeks of overtime, I felt completely [overwhelmed].\nLong hours without breaks can take a [toll] on your health.\nIf you feel lonely, don’t be afraid to reach [out] to friends.\nGoing for a run is my favourite coping [strategy]."}], "s3": [{"type": "choice", "instruction": "Gist: choose the main idea.", "text": "The main message of the talk is that {the way we think about stress changes its effect on us|we should avoid stress at all costs|stress is only a problem for older people}."}, {"type": "choice", "instruction": "Detail: True or False?", "text": "The speaker says stress is always bad for your health. {False|True}\nThe way you think about stress can change how it affects you. {True|False}\nIn the study she describes, believing that stress is harmful was linked to a higher risk of dying. {True|False}\nThe speaker describes a pounding heart as a sign that your body is getting ready for a challenge. {True|False}\nThe speaker suggests that reaching out to others can help under stress. {True|False}"}], "s4": [{"type": "choice", "instruction": "Which phrases are for agreeing and which are for disagreeing?", "text": "That’s exactly what I think. {Agreeing|Disagreeing}\nI’m not so sure about that. {Disagreeing|Agreeing}\nI couldn’t agree more. {Agreeing|Disagreeing}\nI see it differently. {Disagreeing|Agreeing}\nGood point. {Agreeing|Disagreeing}\nThat’s not always true. {Disagreeing|Agreeing}"}, {"type": "gap", "instruction": "Complete with the right preposition.", "text": "How do you cope [with] pressure at work?\nToo much overtime can take a toll [on] your sleep.\nDon’t be afraid to reach [out] to a friend when you feel anxious.\nShe has been suffering [from] headaches since the new project started.\nI try not to worry [about] things I can’t control."}, {"type": "gap", "instruction": "Переклади англійською.", "text": "Я не впевнений щодо цього → [I’m not so sure about that/I’m not sure about that]\nПовністю з тобою згоден → [I couldn’t agree more/I could not agree more/I completely agree]\nЯк ти справляєшся зі стресом? → [How do you cope with stress?/How do you deal with stress?]"}], "s6": [{"type": "gap", "instruction": "Встав слово з уроку.", "text": "If you work 60 hours a week for months, you may burn [out].\nShe is under a lot of [pressure] because the deadline is tomorrow.\nYour [resilience] grows every time you recover from a difficult situation.\nThe way we [perceive/see/view] stress changes how our body reacts.\nLack of sleep can be [harmful/bad] to your health.\nBefore a presentation my heart [rate] goes up, but I remind myself that my body is getting ready."}, {"type": "choice", "instruction": "Обери правильний прийменник.", "text": "She has been suffering {from|of|with} insomnia for months.\nI try not to worry {about|for|of} things I can’t change.\nHow do you cope {with|by|for} a heavy workload?\nConstant stress can take a toll {on|at|to} your health.\nIt’s important to reach out {to|for|at} people you trust.\nMany employees complain {about|for|on} unrealistic deadlines."}, {"type": "gap", "instruction": "Переклади англійською.", "text": "Я під тиском цього тижня → [I’m under pressure this week/I am under pressure this week/I’m under a lot of pressure this week]\nНе бійся звертатися по підтримку до друзів → [Don’t be afraid to reach out to friends/Don’t be afraid to reach out to your friends/Do not be afraid to reach out to friends]\nСтрес негативно позначається на моєму сні → [Stress takes a toll on my sleep/Stress is taking a toll on my sleep]\nЯ почуваюся перевантаженим → [I feel overwhelmed/I’m feeling overwhelmed/I am feeling overwhelmed]\nЯ розумію, що ти маєш на увазі, але це не завжди так → [I see what you mean, but that’s not always true/I see what you mean, but it’s not always true/I see what you mean, but that is not always true]\nВін вигорів після двох років без відпустки → [He burned out after two years without a holiday/He burnt out after two years without a holiday/He burned out after two years without a vacation/He burnt out after two years without a vacation]"}], "s7": [{"type": "open", "instruction": "Writing: 100-120 words.", "text": "Write a short opinion post: \"Stress is not the enemy\". Agree or disagree and give examples from your life."}, {"type": "gap", "instruction": "Homework plus: доповни фрази згоди й незгоди.", "text": "I couldn’t agree [more]. Stress isn’t always bad.\nI’m not so [sure] about that.\nI see what you [mean], but some stress is harmful.\nThat’s a fair [point].\nThat’s exactly what I [think].\nI see it [differently]."}, {"type": "choice", "instruction": "Обери правильне слово.", "text": "After months of overtime, she was close to {burning out|burning up|burning down}.\nTalking to a friend is a healthy {coping strategy|coping way|cope strategy}.\nI’m {under|in|on} a lot of pressure at the moment.\nRegular exercise helps build {resilience|resilient|resiliently}.\nSkipping meals under stress is {harmful|harmed|harming} to your health.\nWhen my heart is {pounding|knocking|hitting}, I take a few deep breaths."}, {"type": "open", "instruction": "Письмо: відповідай 4-6 реченнями.", "text": "Describe a stressful situation at work or in your studies and how you coped with it.\nDo you agree that stress can be your friend? Use two phrases for agreeing or disagreeing.\nGive a colleague three pieces of advice on how to avoid burning out."}]}};</script>
+<script>
+(function(){var l=(document.cookie.match(/(?:^|; )murly_lang=(\w+)/)||[])[1];try{l=l||localStorage.getItem('murly:tlang')}catch(e){}l=l==='ru'?'ru':'uk';document.querySelectorAll('[data-pairs-'+l+']').forEach(function(b){b.dataset.pairs=b.getAttribute('data-pairs-'+l)});})();
+</script>
+<script>
+const $ = (id) => document.getElementById(id);
+const LIS = {};
+function say(w, rate) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; const v = speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang) && /Google|Natural|Libby|Sonia|Daniel/.test(x.name)) || speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang)); if (v) u.voice = v; u.rate = rate || .95; speechSynthesis.speak(u); } catch (e) { } }
+const sh = (a) => a.map((x) => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map((x) => x[1]);
+document.querySelectorAll('.voc div').forEach((d) => d.onclick = () => say(d.dataset.say));
+document.querySelectorAll('[data-play]').forEach((b) => b.onclick = () => say(LIS[b.dataset.play], b.dataset.slow ? .75 : .95));
+document.querySelectorAll('[data-stop]').forEach((b) => b.onclick = () => { try { speechSynthesis.cancel(); } catch (e) { } });
+document.querySelectorAll('.ch').forEach((q) => q.querySelectorAll('button').forEach((b) => b.onclick = () => { if (q.classList.contains('ok')) return; const ok = b.textContent === q.dataset.a; q.classList.toggle('ok', ok); q.classList.toggle('bad', !ok); if (ok) { const s = q.querySelector('.s'); if (s && s.textContent.includes('___')) { s.textContent = s.textContent.replace('___', q.dataset.a); } } }));
+const norm = (x) => x.toLowerCase().replace(/[’']/g, "'").replace(/[,;:"“”«»]/g, ' ').replace(/\s+/g, ' ').replace(/[.!?]$/, '').trim();
+document.querySelectorAll('.ty').forEach((r) => { const inp = r.querySelector('input'); const chk = () => { const ok = r.dataset.a.split('|').some((a) => norm(a) === norm(inp.value)); r.classList.toggle('ok', ok); r.classList.toggle('bad', !ok && inp.value.trim() !== ''); }; r.querySelector('button').onclick = chk; inp.onkeydown = (e) => { if (e.key === 'Enter') chk(); }; });
+document.querySelectorAll('[data-mt]').forEach((box) => { const pairs = JSON.parse(box.dataset.pairs); const L = sh(pairs.map((p) => p[0])), R = sh(pairs.map((p) => p[1])); let sel = null, done = 0, err = 0; box.innerHTML = L.map((w, i) => `<button type="button" data-w="${w}">${w}</button><button type="button" data-d="${R[i]}">${R[i]}</button>`).join('');
+  box.querySelectorAll('button').forEach((b) => b.onclick = () => { if (b.classList.contains('done')) return; if (!sel || (sel.dataset.w && b.dataset.w) || (sel.dataset.d && b.dataset.d)) { if (sel) sel.classList.remove('sel'); sel = b; b.classList.add('sel'); return; } const w = sel.dataset.w || b.dataset.w, d = sel.dataset.d || b.dataset.d; if (pairs.some((p) => p[0] === w && p[1] === d)) { sel.classList.add('done'); b.classList.add('done'); done++; say(w); if (done === pairs.length) document.querySelector(`[data-mtres="${box.dataset.mt}"]`).textContent = err ? `Done! Mistakes: ${err}` : 'Perfect!'; } else err++; sel.classList.remove('sel'); sel = null; }); });
+document.querySelectorAll('[data-vids]').forEach((box) => JSON.parse(box.dataset.vids).forEach(([id, title, ch, qs]) => { const d = document.createElement('div'); d.className = 'vid'; d.innerHTML = `<div class="frame"><button class="play" type="button" style="background-image:url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)"><span>PLAY</span></button></div><div class="info"><h3>${title}</h3><small>YouTube · ${ch}</small><ol>${qs.map((q) => `<li>${q}</li>`).join('')}</ol></div>`; d.querySelector('.play').onclick = (e) => { e.currentTarget.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&cc_load_policy=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${title}"></iframe>`; }; box.appendChild(d); }));
+document.querySelectorAll('[data-spin]').forEach((b) => { const list = JSON.parse(b.dataset.spin); let last = -1; b.onclick = () => { let i; do { i = Math.floor(Math.random() * list.length); } while (i === last && list.length > 1); last = i; document.getElementById(b.dataset.target).textContent = list[i]; }; });
+try { const k = 'murly:' + (window.MURLY_LESSON ? MURLY_LESSON.id : 'x') + ':hw'; const t = $('hwText'); if (t) { t.value = localStorage.getItem(k) || ''; t.oninput = () => localStorage.setItem(k, t.value); } } catch (e) { }
+const STAGES = [...document.querySelectorAll('.wrap > section[id]')];
+$('stages').innerHTML = STAGES.map((s) => `<a href="#${s.id}"><b>${s.querySelector('.lk-n').textContent}</b><span>${s.dataset.stage}</span><small>${s.dataset.min !== '0' ? s.dataset.min + ' min' : 'at home'}</small></a>`).join('');
+$('teacherBtn').onclick = (e) => { const on = document.body.classList.toggle('teacher'); e.currentTarget.textContent = on ? 'Student version' : 'Teacher version'; };
+</script>
+<script src="/game-lessons/kit.js" defer></script>
+</body>
+</html>

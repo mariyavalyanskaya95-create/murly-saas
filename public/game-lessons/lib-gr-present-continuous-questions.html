@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What are you doing? Spill the tea! (A1) | Murly</title>
+<link rel="icon" href="/favicon.svg">
+<meta name="description" content="Ставлю Yes / No питання в Present Continuous: Are you working?
+Відповідаю коротко: Yes, I am. / No, he isn’t.
+Ставлю питання з what, where, why, who
+М">
+<link rel="canonical" href="https://murly.com.ua/game-lessons/lib-gr-present-continuous-questions.html">
+<style>
+:root{--paper:#F3F0EA;--ink:#17181C;--violet:#3D4A7A;--lav:#D9D3C7;--pink:#E9C9BC;--green:#D4E2CF;--white:#fff;--muted:#62646B;--accent:#B5482F}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+/* hero */
+.hero{background:linear-gradient(rgba(16,17,22,.5),rgba(16,17,22,.72)),url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1400&q=70&auto=format&fit=crop");color:#fff;padding:70px 18px 56px;text-align:center;position:relative;overflow:hidden}
+.hero .kicker{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#E9C9BC;font-weight:700}
+.hero .cr{position:absolute;right:12px;bottom:8px;font-size:11px;color:rgba(255,255,255,.6)}
+.hero h1{margin:8px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(36px,6vw,64px);letter-spacing:-.5px;font-weight:700}
+.hero h1 span{color:var(--pink);font-style:italic}
+.hero p{margin:12px 0 0;font-size:17px;color:#e6e2da}
+.hero .flags{display:flex;justify-content:center;gap:12px;margin-top:22px;flex-wrap:wrap}
+.hero .flags svg{width:40px;height:26px;border-radius:3px;opacity:.9}
+/* sections */
+section{margin-top:30px;background:var(--white);border-radius:18px;padding:28px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.05)}
+section h2{margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tag{font-family:"Segoe UI",system-ui,sans-serif;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--paper);color:var(--accent);text-transform:uppercase;letter-spacing:1px}
+.lk-n{display:inline-grid;place-items:center;width:42px;height:42px;background:var(--violet);color:#fff;border-radius:50%;font-size:21px;flex:none}
+.lk-mode{font-size:13px;font-weight:700;border:2px dashed var(--lav);color:var(--muted);padding:2px 10px;border-radius:999px}
+.lk-ins{font-size:17px;background:var(--paper);border-radius:12px;padding:10px 14px;margin:6px 0 18px}
+.lk-sub{margin:24px 0 10px;font-size:19px}
+.btn{font:inherit;font-weight:700;border:0;border-radius:999px;background:var(--ink);color:#fff;padding:10px 20px;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+.btn.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+/* teacher */
+.lk-tbtn{position:fixed;right:16px;top:70px;z-index:45;font:inherit;font-weight:800;border:2px solid var(--ink);background:var(--pink);padding:8px 14px;border-radius:12px;cursor:pointer}
+body.teacher .lk-tbtn{background:var(--green)}
+.lk-ans,.lk-tnote{display:none}
+body.teacher .lk-ans{display:block;margin-top:8px;font-weight:700;color:#1d5a12;background:var(--green);border-left:5px solid #5aa845;padding:6px 10px;font-size:15px;border-radius:6px}
+body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff3f7;border-left:5px solid #d9789a;padding:8px 12px;font-size:15px;border-radius:6px}
+/* overview */
+.lk-overview ul{font-size:17px;line-height:1.7;margin:6px 0 16px}
+.lk-stages{display:flex;flex-wrap:wrap;gap:8px}
+.lk-stages a{display:grid;border-radius:14px;padding:8px 12px;text-decoration:none;color:var(--ink);background:var(--paper);font-weight:700;min-width:100px}
+.lk-stages a span{text-transform:capitalize}
+.lk-stages a b{font-size:20px;color:var(--violet)}
+.lk-stages a small{font-weight:600;color:var(--muted)}
+/* warm-up */
+.taxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tax{background:var(--paper);border-radius:18px;padding:16px;display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center}
+.tax svg{width:56px;height:56px}
+.tax b{display:block;font-size:17px}
+.tax small{color:var(--muted);font-size:14px}
+.qs{display:grid;gap:10px;margin-top:18px}
+.qs div{background:var(--green);border-radius:14px;padding:10px 16px;font-size:18px;font-weight:600}
+.phr{background:#fff7e8;border-radius:14px;padding:12px 16px;margin-top:16px;font-size:15px}
+.phr ul{margin:6px 0 0;padding-left:18px}
+.fic{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:16px}
+.fic .c{background:#fff;border:2px solid #1B2140;border-radius:16px;padding:14px 16px;box-shadow:3px 3px 0 #1B2140}
+.fic .c b{display:block;font-size:18px;line-height:1.35;margin-bottom:8px}
+.fic .c .k{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.fic .c .k span{font-size:13px;background:#eef1fb;border-radius:999px;padding:3px 10px}
+.fic .c details{margin-top:8px;font-size:15px;color:#3b4160}
+.fic .c summary{cursor:pointer;font-weight:700;color:#534AB7}
+.fi-n{display:inline-flex;width:28px;height:28px;border-radius:50%;background:#2F4BA0;color:#fff;align-items:center;justify-content:center;font-size:14px;margin-right:6px}
+/* vocab */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:12px}
+.vc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:2px solid transparent;transition:border-color .2s,transform .2s}
+.vc:hover{border-color:var(--violet);transform:translateY(-2px)}
+.vc b{font-size:18px;display:flex;align-items:center;gap:8px}
+.vc b svg{width:20px;height:20px;flex:none;color:var(--violet)}
+.vc p{margin:6px 0 0;font-size:14px;color:var(--muted)}
+.vc em{display:block;margin-top:6px;font-size:14px;color:var(--violet);font-style:normal;font-weight:600}
+.vc.played{background:#e6ecfb}
+/* grammar */
+.gram{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.gb{border-radius:18px;padding:16px}
+.gb h3{margin:0 0 6px;font-size:19px}
+.gb .f{display:inline-block;background:#fff;border-radius:8px;padding:3px 10px;font-weight:800;margin:4px 0;font-family:Consolas,monospace;font-size:15px}
+.gb p{margin:6px 0 0;font-size:15px}
+.g1{background:var(--pink)}.g2{background:var(--lav)}.g3{background:var(--green)}.g4{background:#fbe7c6}
+.warn{margin-top:14px;background:var(--ink);color:#fff;border-radius:14px;padding:12px 16px;font-size:16px}
+.warn b{color:var(--pink)}
+.q{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:2px dashed var(--paper);font-size:18px}
+.q:last-child{border-bottom:0}
+.q .n{width:32px;height:32px;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;border-radius:50%;font-weight:800;font-size:15px}
+.opt{font:inherit;font-size:16px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:10px;padding:4px 12px;cursor:pointer;margin:0 2px}
+.opt.ok{background:var(--green);border-color:#5aa845}
+.opt.bad{background:var(--pink);animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+/* tour */
+.tour{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.law{border-radius:22px;overflow:hidden;background:var(--paper);display:flex;flex-direction:column}
+.law .pic{height:150px;display:grid;place-items:center;position:relative}
+.law .pic svg.ill{width:130px;height:130px}
+.law .pic svg.fl{position:absolute;left:14px;top:14px;width:46px;height:30px;border-radius:5px;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.law .pic .no{position:absolute;right:14px;top:14px;background:var(--ink);color:#fff;font-weight:800;border-radius:999px;padding:2px 10px;font-size:13px}
+.law .body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.law h3{margin:0;font-size:20px}
+.law .where{font-size:13px;font-weight:800;color:var(--violet);text-transform:uppercase;letter-spacing:1px}
+.law p{margin:0;font-size:16px}
+.law .why{font-size:14px;color:var(--muted)}
+.law .dq{margin-top:auto;background:#fff;border-radius:12px;padding:8px 12px;font-weight:700;font-size:15px}
+.law .lsn{font:inherit;font-size:13px;font-weight:700;background:none;border:0;color:var(--violet);cursor:pointer;padding:0;text-align:left}
+/* game */
+.game{max-width:720px;margin:0 auto;text-align:center}
+.score{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.score span{background:var(--paper);border-radius:999px;padding:6px 16px;font-weight:800}
+.stmt{background:var(--ink);color:#fff;border-radius:22px;padding:28px 24px;min-height:150px;display:grid;place-items:center;font-size:23px;font-weight:700;position:relative}
+.stmt small{position:absolute;top:12px;left:18px;font-size:13px;color:var(--lav);font-weight:700}
+.choose{display:flex;justify-content:center;gap:14px;margin:18px 0}
+.choose button{font:inherit;font-size:18px;font-weight:700;border:2px solid var(--ink);border-radius:999px;padding:12px 28px;cursor:pointer}
+.choose .bl{background:var(--green)}.choose .bm{background:var(--pink)}
+.choose button:disabled{opacity:.5;cursor:default}
+.verdict{min-height:70px;font-size:17px;background:var(--paper);border-radius:16px;padding:12px 16px;text-align:left}
+.verdict b.r{color:#2d7a1d}.verdict b.w{color:#b23a62}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.dots i{width:14px;height:14px;border-radius:50%;background:var(--paper)}
+.dots i.r{background:#7cc663}.dots i.w{background:#e47b9f}.dots i.c{outline:3px solid var(--violet)}
+.final{font-size:22px;font-weight:800;color:var(--violet)}
+/* invent */
+.inv{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.frames{display:grid;gap:10px}
+.frames label{font-size:14px;font-weight:700;color:var(--muted)}
+.frames select,.frames input{font:inherit;width:100%;padding:8px 10px;border:2px solid var(--lav);border-radius:10px;background:#fff}
+.poster{background:var(--paper);border:3px solid var(--ink);border-radius:20px;padding:22px;text-align:center;min-height:260px;display:flex;flex-direction:column;gap:10px;justify-content:center}
+.poster .seal{width:70px;height:70px;margin:0 auto}
+.poster h3{margin:0;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--violet)}
+.poster .rule{font-size:22px;font-weight:800}
+.poster .pen{font-size:16px;color:var(--muted)}
+.ideas{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ideas span{background:var(--pink);border-radius:999px;padding:5px 12px;font-size:14px;font-weight:600}
+/* roleplay */
+.rp{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.role{border-radius:20px;padding:18px}
+.role h3{margin:0 0 6px;display:flex;align-items:center;gap:10px}
+.role h3 svg{width:42px;height:42px}
+.role ul{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.r1{background:var(--lav)}.r2{background:var(--green)}
+.scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:16px}
+.sc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:3px solid transparent}
+.sc.on{border-color:var(--violet);background:#fff}
+.sc b{display:block;font-size:17px;margin-bottom:4px}
+.sc p{margin:0;font-size:15px}
+.timer{font-size:40px;font-weight:800;text-align:center;margin:14px 0 6px;color:var(--violet)}
+.ctr{text-align:center}
+/* homework */
+.hwb{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hwc{background:var(--paper);border-radius:18px;padding:18px}
+.hwc h3{margin:0 0 8px}
+.hwc ol,.hwc ul{margin:6px 0 0;padding-left:20px;line-height:1.7}
+.hwc textarea{width:100%;min-height:150px;font:inherit;border:2px solid var(--lav);border-radius:12px;padding:10px;margin-top:10px}
+.end{text-align:center;background:var(--ink);color:#fff;box-shadow:none}
+.end h2{justify-content:center}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(140px);background:var(--ink);color:#fff;font-weight:800;padding:12px 22px;border-radius:14px;transition:transform .3s;z-index:50}
+.toast.show{transform:translateX(-50%) translateY(0)}
+/* photos */
+.ph{margin:0}
+.ph img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;background:var(--paper)}
+.ph figcaption{font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.2px}
+.tax{grid-template-columns:1fr !important;padding:12px !important}
+.law .pic{height:auto !important;display:block !important;padding:0;position:relative}
+.law .pic .ph img{border-radius:0;aspect-ratio:16/10;transition:filter .5s}
+.law .pic .ph figcaption{padding:4px 12px 0}
+.law.hide .pic .ph img{filter:blur(10px) grayscale(.6)}
+.law.hide .reveal-body,.law.hide .fl,.law.hide .where{visibility:hidden}
+.law .clue{font-size:15px;font-style:italic;color:var(--ink)}
+.law .gc{display:flex;flex-wrap:wrap;gap:6px}
+.law .gc button{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:4px 12px;cursor:pointer}
+.law .gc button.ok{background:var(--green)}.law .gc button.bad{background:var(--pink)}
+.law:not(.hide) .guess{display:none}
+.fair{display:grid;gap:4px;background:#fff;border-radius:12px;padding:8px 12px}
+.fair .ends{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.fair input{width:100%;accent-color:var(--accent)}
+.fair output{font-size:14px;font-weight:700;color:var(--accent)}
+.gph{max-width:720px;margin:0 auto 12px}
+.gph img{aspect-ratio:21/9}
+.fine{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.fq{background:var(--paper);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.fq h3{margin:0;font-size:18px}
+.fq .opts{display:flex;flex-wrap:wrap;gap:6px}
+.fq .opts button{font:inherit;font-size:14px;font-weight:700;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 12px;cursor:pointer}
+.fq .opts button.ok{background:var(--green)}.fq .opts button.bad{background:var(--pink)}
+.fq .res{font-size:15px;min-height:22px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{position:relative;aspect-ratio:16/9;background:#111}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;cursor:pointer;background:#111 center/cover;display:grid;place-items:center}
+.vid .play span{background:rgba(0,0,0,.7);color:#fff;font-weight:700;border-radius:999px;padding:10px 20px;font-size:15px;letter-spacing:1px}
+.vid .info{padding:14px 16px}
+.vid .info h3{margin:0 0 2px;font-size:18px}
+.vid .info small{color:var(--muted)}
+.vid .info ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+@media(max-width:760px){.inv,.rp,.hwb{grid-template-columns:1fr}.lk-tbtn{top:auto;bottom:70px}}
+
+.pr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.pb{border-radius:18px;padding:16px 18px}
+.pb h3{margin:0;font-family:Georgia,serif;font-size:30px}
+.pb .m{font-size:15px;color:var(--muted);margin:2px 0 8px}
+.pb .chips{display:flex;flex-wrap:wrap;gap:6px}
+.pb .chips span{background:#fff;border-radius:999px;padding:4px 11px;font-size:14px;font-weight:600}
+.pb ul{margin:10px 0 0;padding-left:18px;font-size:15px}
+.p-in{background:#DCE6F5}.p-at{background:#F3D9CF}.p-on{background:#D4E2CF}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-size:15px;margin-top:10px}
+.ex div{background:var(--paper);border-radius:10px;padding:8px 12px}
+.ex b{color:var(--accent)}
+.q{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.q .n{font-weight:800;color:var(--violet);min-width:24px}
+.q .gap{display:inline-block;min-width:44px;border-bottom:2px solid var(--ink);text-align:center;font-weight:800}
+.q .opts{margin-left:auto;display:flex;gap:6px}
+.q .opts button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 14px;cursor:pointer}
+.q.ok{background:#DDEED7}.q.ok .gap{color:#2F7A3B}
+.q.bad{background:#F6DAD3}
+.score{font-weight:800;margin-top:12px}
+.text{font-size:18px;line-height:1.75;background:var(--paper);border-radius:16px;padding:18px 22px}
+.text h3{margin:0 0 6px;font-family:Georgia,serif;font-size:24px}
+.text p{margin:0 0 12px}
+.text.hl mark{background:#F3D9CF;border-radius:4px;padding:0 3px;font-weight:700}
+.tf{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:9px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.tf .opts{margin-left:auto;display:flex;gap:6px}
+.tf button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.tf.ok{background:#DDEED7}.tf.bad{background:#F6DAD3}
+.disc{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px;margin-top:6px}
+.disc div{background:var(--green);border-radius:14px;padding:12px 16px;font-size:17px;font-weight:600}
+.disc div i{font-style:normal;color:var(--violet);margin-right:6px}
+.spin{text-align:center;margin-top:16px}
+.spin .card{display:inline-block;min-height:80px;min-width:min(560px,100%);background:var(--ink);color:#fff;border-radius:18px;padding:20px 24px;font-size:22px;font-weight:700;margin-bottom:12px}
+@media(max-width:700px){.ex{grid-template-columns:1fr}}
+
+.hero{background-size:cover!important;background-position:center!important}
+.voc{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.voc div{background:var(--paper);border-radius:14px;padding:10px 14px;cursor:pointer;border:2px solid transparent}
+.voc div:hover{border-color:var(--violet)}
+.voc b{display:block;font-size:18px}.voc span{display:block;color:var(--accent);font-weight:700;font-size:15px}.voc em{display:block;font-size:14px;color:var(--muted);margin-top:3px}
+.mt{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:10px}
+.mt button{font:inherit;font-size:16px;text-align:left;border:2px solid var(--ink);background:#fff;border-radius:14px;padding:9px 14px;cursor:pointer}
+.mt button.sel{background:#FFE7A8}.mt button.done{background:#CDE8C6;border-color:#4C9A5B;cursor:default}
+.ch{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ch .n{font-weight:800;color:var(--violet);min-width:24px}
+.ch .o{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.ch .o button{font:inherit;font-size:15px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.ch.ok{background:#DDEED7}.ch.bad{background:#F6DAD3}
+.ty{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ty input{font:inherit;border:2px solid var(--ink);border-radius:10px;padding:4px 10px;width:220px}
+.ty.ok{background:#DDEED7}.ty.bad{background:#F6DAD3}
+.ty small{color:var(--muted)}
+.photo{width:100%;height:300px;object-fit:cover;border-radius:16px;display:block}
+.cap{font-size:11px;color:var(--muted);margin:4px 0 12px}
+.pics{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.pics figure{margin:0;background:var(--paper);border-radius:16px;overflow:hidden}
+.pics img{width:100%;height:170px;object-fit:cover;display:block}
+.pics figcaption{padding:8px 12px;font-weight:700}
+.pics small{display:block;font-weight:400;font-size:10px;color:var(--muted)}
+.lis{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:8px 0 14px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{aspect-ratio:16/9;background:#000;position:relative}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;background-size:cover;background-position:center;cursor:pointer;display:grid;place-items:center}
+.vid .play span{background:#E5484D;color:#fff;font-weight:800;border-radius:12px;padding:10px 20px}
+.vid .info{padding:12px 16px}.vid h3{margin:0;font-size:18px}.vid small{color:var(--muted)}
+.vid ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th,.tbl td{border:1px solid #ddd;padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--paper)}
+@media(max-width:700px){.mt{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="/game-lessons/kit.css">
+</head>
+<body>
+<header class="hero">
+  <div class="kicker">A1 · teens · Граматика: Present Continuous (питання)</div>
+  <h1>What are you doing? Spill the tea!</h1>
+  <p>A1 · 9 parts · 60 min</p>
+  <span class="cr">Photo: Unsplash</span>
+</header>
+<button class="lk-tbtn" id="teacherBtn" type="button">Teacher version</button>
+<div class="wrap">
+  <section class="lk-overview">
+    <h2>In this lesson you will:</h2>
+    <ul><li>Ставлю Yes / No питання в Present Continuous: Are you working?
+Відповідаю коротко: Yes, I am</li><li>/ No, he isn’t</li><li>Ставлю питання з what, where, why, who
+Можу розпитати друга по телефону, що він зараз робить</li></ul>
+    <div class="lk-stages" id="stages"></div>
+  </section>
+  <section id="s1" data-stage="warm-up" data-min="5">
+    <h2><span class="lk-n">1</span>Warm-up <span class="tag">warm-up</span><span class="lk-mode">teacher + student</span></h2>
+<div class="qs"><div>What are you doing right now?</div><div>What is your best friend doing now, do you think?</div><div>Who are you texting a lot these days?</div><div>What song are you listening to a lot this week?</div><div>What series are you watching these days?</div><div>Are you eating anything right now?</div><div>Is anyone in your home making noise now?</div><div>What is your cat (or your neighbour’s cat) planning right now?</div></div>
+    <p class="lk-tnote" data-ru="Перевір домашній «стрім»: учень читає 3-4 речення. Постав до них питання (Are you sitting on your bed? What is your cat doing?), але поки не пояснюй форму. Подивись, чи учень відповідає короткими відповідями з теми to be, вони тут працюють так само.&lt;br&gt;">Перевір домашній «стрім»: учень читає 3-4 речення. Постав до них питання (Are you sitting on your bed? What is your cat doing?), але поки не пояснюй форму. Подивись, чи учень відповідає короткими відповідями з теми to be, вони тут працюють так само.<br></p>
+  </section>
+  <section id="s2" data-stage="practice" data-min="6">
+    <h2><span class="lk-n">2</span>Lead-in <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<div class="text"><h3>Where are you?!</h3><p class="lk-ins">Your teacher reads the dialogue (or plays it). Listen first, then read.</p><details><summary>Show the script</summary><p>A: Hey, Chloe! Where are you? Are you coming?</p><p>B: Hi, Dan! Yes, I’m coming. I’m on the bus.</p><p>A: The bus? Why are you taking the bus? The park is near your house!</p><p>B: I’m not at home. I’m at my grandma’s. Wait, what are you doing?</p><p>A: I’m waiting for you! And Mia is here too.</p><p>B: What is she doing?</p><p>A: She’s eating ice cream. Your ice cream, I think.</p><p>B: What?! Is she joking?</p><p>A: No, she isn’t. She’s laughing. Hey, is your cat travelling with you? I can hear a cat.</p><p>B: Yes, he is. Grandma is giving him back to me. He’s meowing in his bag.</p><p>A: Ha! OK, hurry up!</p></details></div>
+    <div class="voc"><div data-say="come (coming). "><b>come (coming)</b><span><span data-tr-uk="іти (сюди), приходити" data-tr-ru="іти (сюди), приходити">іти (сюди), приходити</span></span><em></em></div>
+<div data-say="take the bus. "><b>take the bus</b><span><span data-tr-uk="їхати автобусом" data-tr-ru="їхати автобусом">їхати автобусом</span></span><em></em></div>
+<div data-say="near. "><b>near</b><span><span data-tr-uk="біля, недалеко" data-tr-ru="біля, недалеко">біля, недалеко</span></span><em></em></div>
+<div data-say="at my grandma’s. "><b>at my grandma’s</b><span><span data-tr-uk="у бабусі" data-tr-ru="у бабусі">у бабусі</span></span><em></em></div>
+<div data-say="wait for. "><b>wait for</b><span><span data-tr-uk="чекати на" data-tr-ru="чекати на">чекати на</span></span><em></em></div>
+<div data-say="joke. "><b>joke</b><span><span data-tr-uk="жартувати" data-tr-ru="жартувати">жартувати</span></span><em></em></div>
+<div data-say="laugh. "><b>laugh</b><span><span data-tr-uk="сміятися" data-tr-ru="сміятися">сміятися</span></span><em></em></div>
+<div data-say="travel. "><b>travel</b><span><span data-tr-uk="подорожувати, їхати" data-tr-ru="подорожувати, їхати">подорожувати, їхати</span></span><em></em></div>
+<div data-say="meow. "><b>meow</b><span><span data-tr-uk="нявкати" data-tr-ru="нявкати">нявкати</span></span><em></em></div>
+<div data-say="Hurry up!. "><b>Hurry up!</b><span><span data-tr-uk="Поспішай!" data-tr-ru="Поспішай!">Поспішай!</span></span><em></em></div>
+<div data-say="cry. "><b>cry</b><span><span data-tr-uk="плакати" data-tr-ru="плакати">плакати</span></span><em></em></div>
+<div data-say="wear. "><b>wear</b><span><span data-tr-uk="бути вдягненим у" data-tr-ru="бути вдягненим у">бути вдягненим у</span></span><em></em></div>
+<div data-say="hoodie. "><b>hoodie</b><span><span data-tr-uk="худі" data-tr-ru="худі">худі</span></span><em></em></div>
+<div data-say="text. "><b>text</b><span><span data-tr-uk="писати повідомлення" data-tr-ru="писати повідомлення">писати повідомлення</span></span><em></em></div></div>
+    <div class="mt" data-mt="m2" data-pairs="[[&quot;come (coming)&quot;, &quot;іти (сюди), приходити&quot;], [&quot;take the bus&quot;, &quot;їхати автобусом&quot;], [&quot;near&quot;, &quot;біля, недалеко&quot;], [&quot;at my grandma’s&quot;, &quot;у бабусі&quot;], [&quot;wait for&quot;, &quot;чекати на&quot;], [&quot;joke&quot;, &quot;жартувати&quot;], [&quot;laugh&quot;, &quot;сміятися&quot;], [&quot;travel&quot;, &quot;подорожувати, їхати&quot;]]"></div><div class="score" data-mtres="m2"></div>
+    <h3 class="lk-sub">Послухай (або прочитай) і обери правильну відповідь.</h3><div class="ch" data-a="on the bus"><span class="n">1</span><span class="s">Where is Chloe? ___</span><span class="o"><button type="button">at home</button><button type="button">on the bus</button><button type="button">in the park</button></span></div>
+<div class="ch" data-a="She’s at her grandma’s."><span class="n">2</span><span class="s">Why is Chloe taking the bus? ___</span><span class="o"><button type="button">She’s at her grandma’s.</button><button type="button">She is tired.</button><button type="button">She’s late.</button></span></div>
+<div class="ch" data-a="He’s waiting for Chloe."><span class="n">3</span><span class="s">What is Dan doing? ___</span><span class="o"><button type="button">He’s on the bus.</button><button type="button">He’s waiting for Chloe.</button><button type="button">He’s eating ice cream.</button></span></div>
+<div class="ch" data-a="She’s eating ice cream."><span class="n">4</span><span class="s">What is Mia doing? ___</span><span class="o"><button type="button">She’s singing.</button><button type="button">She’s sleeping.</button><button type="button">She’s eating ice cream.</button></span></div>
+<div class="ch" data-a="No, she isn’t."><span class="n">5</span><span class="s">Is Mia joking? ___</span><span class="o"><button type="button">No, she isn’t.</button><button type="button">Yes, she is.</button></span></div>
+<div class="ch" data-a="Yes, he is."><span class="n">6</span><span class="s">Is the cat travelling with Chloe? ___</span><span class="o"><button type="button">Yes, he is.</button><button type="button">No, he isn’t.</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; on the bus · She’s at her grandma’s. · He’s waiting for Chloe. · She’s eating ice cream. · No, she isn’t. · Yes, he is."><b>Відповіді:</b> on the bus · She’s at her grandma’s. · He’s waiting for Chloe. · She’s eating ice cream. · No, she isn’t. · Yes, he is.</p>
+    <p class="lk-tnote" data-ru="Прочитай діалог за ролями, потім поміняйтеся ролями. Після вправи попроси учня знайти всі питання і розділити їх на 2 групи: Yes / No питання і ті, що починаються з what, where, why. Запитай: «Що стоїть на першому місці в Yes / No питанні?»&lt;br&gt;">Прочитай діалог за ролями, потім поміняйтеся ролями. Після вправи попроси учня знайти всі питання і розділити їх на 2 групи: Yes / No питання і ті, що починаються з what, where, why. Запитай: «Що стоїть на першому місці в Yes / No питанні?»<br></p>
+  </section>
+  <section id="s3" data-stage="practice" data-min="5">
+    <h2><span class="lk-n">3</span>Rule <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<div class="warn"><p><b>Питання в Present Continuous</b> будуємо так само, як питання з to be: <b>am / is / are</b> стрибає на початок, а -ing залишається на місці.</p><p>You <b>are</b> reading. → <b>Are</b> you reading? = Ти читаєш?<br>He <b>is</b> sleeping. → <b>Is</b> he sleeping? = Він спить?</p><p><b>Короткі відповіді</b> (без -ing!):<br>Are you working? → Yes, I <b>am</b>. / No, I<b>’m not</b>.<br>Is she crying? → Yes, she <b>is</b>. / No, she <b>isn’t</b>.</p><p><b>Питальне слово + am / is / are + хто? + -ing?</b><br><b>What</b> are you doing? · <b>Where</b> is she going? · <b>Why</b> are you laughing? · <b>Who</b> are you talking to?</p><p>Лайфхак: <b>What are you doing?</b> це «чарівна фраза». Запам’ятай її цілком, як пароль від Wi-Fi.</p></div>
+    <p class="lk-tnote" data-ru="Порівняй з питаннями to be: схема та сама, тільки додається -ing. Окремо покажи «Who are you talking to?»: прийменник у кінці.&lt;br&gt;">Порівняй з питаннями to be: схема та сама, тільки додається -ing. Окремо покажи «Who are you talking to?»: прийменник у кінці.<br></p>
+  </section>
+  <section id="s4" data-stage="practice" data-min="13">
+    <h2><span class="lk-n">4</span>Practice <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">What, where, why or who?</h3><p class="lk-ins">Choose the question word: What, Where, Why or Who</p>
+    <div class="spin"><div class="card" id="g41">Click "Next card"</div><br><button class="btn" type="button" data-spin="[&quot;Ice cream. ___ is she eating?&quot;, &quot;To the park. ___ are you going?&quot;, &quot;Because it’s funny. ___ are you laughing?&quot;, &quot;My cousin. ___ are you talking to?&quot;, &quot;A video. ___ are you making?&quot;, &quot;At the bus stop. ___ is Dan waiting?&quot;, &quot;Because she’s sad. ___ is Mia crying?&quot;, &quot;Chloe. ___ are you texting?&quot;, &quot;Pizza. ___ is the cat stealing?&quot;, &quot;Home. ___ are we going?&quot;]" data-target="g41">Next card</button></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; What · Where · Why · Who · What · Where · Why · Who · What · Where"><b>Відповіді:</b> What · Where · Why · Who · What · Where · Why · Who · What · Where</p>
+    <h3 class="lk-sub">Розкрий дужки і склади питання.</h3><div class="ty" data-a="Are you listening"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>___ (you / listen) to me?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Is it raining"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>___ (it / rain) outside?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Are they playing"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>___ (they / play) Minecraft again?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Is your brother sleeping"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>___ (your brother / sleep)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="are you doing"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>What ___ (you / do)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="is she going"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Where ___ (she / go)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="are you laughing"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>Why ___ (you / laugh)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="is the cat eating"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>What ___ (the cat / eat)?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; Are you listening · Is it raining · Are they playing · Is your brother sleeping · are you doing · is she going · are you laughing · is the cat eating"><b>Відповіді:</b> Are you listening · Is it raining · Are they playing · Is your brother sleeping · are you doing · is she going · are you laughing · is the cat eating</p>
+    <h3 class="lk-sub">Обери правильну коротку відповідь.</h3><div class="ch" data-a="I’m not"><span class="n">1</span><span class="s">Are you doing your homework? No, ___.</span><span class="o"><button type="button">I amn’t</button><button type="button">I don’t</button><button type="button">I’m not</button></span></div>
+<div class="ch" data-a="she is"><span class="n">2</span><span class="s">Is Mia dancing? Yes, ___.</span><span class="o"><button type="button">she’s</button><button type="button">she is</button><button type="button">she does</button></span></div>
+<div class="ch" data-a="they are"><span class="n">3</span><span class="s">Are your parents working today? Yes, ___.</span><span class="o"><button type="button">they do</button><button type="button">they are</button><button type="button">they’re</button></span></div>
+<div class="ch" data-a="it isn’t"><span class="n">4</span><span class="s">Is the dog barking? No, ___.</span><span class="o"><button type="button">it doesn’t</button><button type="button">it isn’t</button><button type="button">it not</button></span></div>
+<div class="ch" data-a="we are"><span class="n">5</span><span class="s">Are we going home? Yes, ___.</span><span class="o"><button type="button">we are</button><button type="button">we going</button><button type="button">we’re</button></span></div>
+<div class="ch" data-a="he isn’t"><span class="n">6</span><span class="s">Is Dan wearing his new hoodie? No, ___.</span><span class="o"><button type="button">he isn’t</button><button type="button">he not is</button><button type="button">he doesn’t</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; I’m not · she is · they are · it isn’t · we are · he isn’t"><b>Відповіді:</b> I’m not · she is · they are · it isn’t · we are · he isn’t</p>
+    <h3 class="lk-sub">Знайди відповідь на питання.</h3><div class="ch" data-a="I’m making a sandwich."><span class="n">1</span><span class="s">What are you doing? ___</span><span class="o"><button type="button">To the skate park.</button><button type="button">My cousin from Liverpool.</button><button type="button">I’m making a sandwich.</button><button type="button">No, I’m not. I’m ill.</button><button type="button">Yes, it is. Look!</button><button type="button">She’s watching a sad film.</button></span></div>
+<div class="ch" data-a="To the skate park."><span class="n">2</span><span class="s">Where are you going? ___</span><span class="o"><button type="button">Yes, it is. Look!</button><button type="button">To the skate park.</button><button type="button">My cousin from Liverpool.</button><button type="button">She’s watching a sad film.</button><button type="button">No, I’m not. I’m ill.</button><button type="button">I’m making a sandwich.</button></span></div>
+<div class="ch" data-a="She’s watching a sad film."><span class="n">3</span><span class="s">Why is Mia crying? ___</span><span class="o"><button type="button">My cousin from Liverpool.</button><button type="button">No, I’m not. I’m ill.</button><button type="button">Yes, it is. Look!</button><button type="button">I’m making a sandwich.</button><button type="button">To the skate park.</button><button type="button">She’s watching a sad film.</button></span></div>
+<div class="ch" data-a="My cousin from Liverpool."><span class="n">4</span><span class="s">Who are you talking to? ___</span><span class="o"><button type="button">I’m making a sandwich.</button><button type="button">She’s watching a sad film.</button><button type="button">No, I’m not. I’m ill.</button><button type="button">To the skate park.</button><button type="button">My cousin from Liverpool.</button><button type="button">Yes, it is. Look!</button></span></div>
+<div class="ch" data-a="Yes, it is. Look!"><span class="n">5</span><span class="s">Is it snowing? ___</span><span class="o"><button type="button">I’m making a sandwich.</button><button type="button">Yes, it is. Look!</button><button type="button">To the skate park.</button><button type="button">My cousin from Liverpool.</button><button type="button">She’s watching a sad film.</button><button type="button">No, I’m not. I’m ill.</button></span></div>
+<div class="ch" data-a="No, I’m not. I’m ill."><span class="n">6</span><span class="s">Are you coming to the party? ___</span><span class="o"><button type="button">My cousin from Liverpool.</button><button type="button">Yes, it is. Look!</button><button type="button">I’m making a sandwich.</button><button type="button">No, I’m not. I’m ill.</button><button type="button">To the skate park.</button><button type="button">She’s watching a sad film.</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; I’m making a sandwich. · To the skate park. · She’s watching a sad film. · My cousin from Liverpool. · Yes, it is. Look! · No, I’m not. I’m ill."><b>Відповіді:</b> I’m making a sandwich. · To the skate park. · She’s watching a sad film. · My cousin from Liverpool. · Yes, it is. Look! · No, I’m not. I’m ill.</p>
+    <h3 class="lk-sub">Переклади англійською.</h3><div class="ty" data-a="What are you doing?"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Що ти робиш?</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Are you listening?"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Ти слухаєш?</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Where are you going?"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Куди ви йдете?</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Why is the cat running?"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Чому кіт біжить?</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Is your sister sleeping?"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Твоя сестра спить?</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Who is he talking to?|Who’s he talking to?"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>З ким він говорить?</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; What are you doing? · Are you listening? · Where are you going? · Why is the cat running? · Is your sister sleeping? · Who is he talking to?"><b>Відповіді:</b> What are you doing? · Are you listening? · Where are you going? · Why is the cat running? · Is your sister sleeping? · Who is he talking to?</p>
+    <p class="lk-tnote" data-ru="У gap учень має сам поставити дієслово на початок. Якщо він пише «You are listening», нагадай про кота, що стрибає першим. У Match можна попросити учня придумати свою відповідь на кожне питання усно.&lt;br&gt;">У gap учень має сам поставити дієслово на початок. Якщо він пише «You are listening», нагадай про кота, що стрибає першим. У Match можна попросити учня придумати свою відповідь на кожне питання усно.<br></p>
+  </section>
+  <section id="s5" data-stage="video" data-min="7">
+    <h2><span class="lk-n">5</span>Video: Pause and ask <span class="tag">video</span><span class="lk-mode">teacher + student</span></h2>
+<div class="frame" style="aspect-ratio:16/9"><iframe src="https://www.youtube-nocookie.com/embed/6aK2CKrdjbE" style="width:100%;height:100%;border:0" allowfullscreen loading="lazy"></iframe></div>
+    <p class="lk-ins">Watch and pause. Ask 3 questions about the scene: What is he doing? Is he…? Why is he…?</p>
+    <div class="frame" style="aspect-ratio:16/9"><iframe src="https://www.youtube-nocookie.com/embed/jG902yH_POY" style="width:100%;height:100%;border:0" allowfullscreen loading="lazy"></iframe></div>
+    <p class="lk-ins">Watch and answer with short answers: Is Mr Bean swimming? Is he jumping? Are the people watching him?</p>
+    <p class="lk-tnote" data-ru="Перед уроком переглянь відео і обери 3-4 паузи (щоразу, коли Mr Bean починає щось нове, орієнтовно кожні 40-60 секунд). На паузах ролі міняються: спочатку питаєш ти (What is he doing? Is he smiling?), учень відповідає коротко (Yes, he is. / No, he isn’t. He’s…). Потім учень ставить питання тобі. Очікувані питання: What is he holding? Why is he laughing? Is the teacher looking at him? Are the people watching? Для Just Dive Bean: Is he standing on the diving board? Is he scared? Is he jumping? Якщо часу мало, візьми одне відео.&lt;br&gt;">Перед уроком переглянь відео і обери 3-4 паузи (щоразу, коли Mr Bean починає щось нове, орієнтовно кожні 40-60 секунд). На паузах ролі міняються: спочатку питаєш ти (What is he doing? Is he smiling?), учень відповідає коротко (Yes, he is. / No, he isn’t. He’s…). Потім учень ставить питання тобі. Очікувані питання: What is he holding? Why is he laughing? Is the teacher looking at him? Are the people watching? Для Just Dive Bean: Is he standing on the diving board? Is he scared? Is he jumping? Якщо часу мало, візьми одне відео.<br></p>
+  </section>
+  <section id="s6" data-stage="practice" data-min="5">
+    <h2><span class="lk-n">6</span>Розбір помилок <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<div class="warn"><p><b>Типові помилки:</b></p><p>What you are doing? → What <b>are you</b> doing? (am / is / are перед підметом)<br>You are doing what? → <b>What are</b> you doing? (питальне слово на початок)<br>Do you reading? → <b>Are</b> you reading? (do тут не потрібне, тільки am / is / are)<br>Yes, I’m. → Yes, I <b>am</b>. (у короткій відповіді «так» не скорочуємо)<br>To who are you talking? → <b>Who</b> are you talking <b>to</b>? (прийменник у кінці)</p></div>
+    <h3 class="lk-sub">Знайди правильне речення.</h3><div class="ch" data-a="Is she sitting?"><span class="n">1</span><span class="s">___</span><span class="o"><button type="button">Is she sit?</button><button type="button">Is she sitting?</button><button type="button">Does she sitting?</button></span></div>
+<div class="ch" data-a="Are they eating?"><span class="n">2</span><span class="s">___</span><span class="o"><button type="button">Are they eat?</button><button type="button">Do they eating?</button><button type="button">Are they eating?</button></span></div>
+<div class="ch" data-a="What is he holding?"><span class="n">3</span><span class="s">___</span><span class="o"><button type="button">What is he hold?</button><button type="button">What is he holding?</button><button type="button">What he is holding?</button></span></div>
+<div class="ch" data-a="Where are they going?"><span class="n">4</span><span class="s">___</span><span class="o"><button type="button">Where they are going?</button><button type="button">Where are they going?</button><button type="button">Where do they going?</button></span></div>
+<div class="ch" data-a="Is it raining?"><span class="n">5</span><span class="s">___</span><span class="o"><button type="button">Is it rain?</button><button type="button">Does it raining?</button><button type="button">Is it raining?</button></span></div>
+<div class="ch" data-a="Why is he smiling?"><span class="n">6</span><span class="s">___</span><span class="o"><button type="button">Why he smiling?</button><button type="button">Why is he smileing?</button><button type="button">Why is he smiling?</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; Is she sitting? · Are they eating? · What is he holding? · Where are they going? · Is it raining? · Why is he smiling?"><b>Відповіді:</b> Is she sitting? · Are they eating? · What is he holding? · Where are they going? · Is it raining? · Why is he smiling?</p>
+    <p class="lk-tnote" data-ru="Після вправи учень пояснює, що не так у неправильних варіантах. Ці ж питання знадобляться для гри «Guess the scene»: загадай сцену (a cat is sitting on a pizza; a boy is dancing in the rain), учень вгадує за 10 Yes / No питань.&lt;br&gt;">Після вправи учень пояснює, що не так у неправильних варіантах. Ці ж питання знадобляться для гри «Guess the scene»: загадай сцену (a cat is sitting on a pizza; a boy is dancing in the rain), учень вгадує за 10 Yes / No питань.<br></p>
+  </section>
+  <section id="s7" data-stage="speaking" data-min="8">
+    <h2><span class="lk-n">7</span>Speaking <span class="tag">speaking</span><span class="lk-mode">teacher + student</span></h2>
+<div class="qs"><div>Role play: call a friend. Ask: Where are you? What are you doing? Who are you with?</div><div>Guess: What is your mum or dad doing right now?</div><div>Look at a photo on your phone. Ask me 3 questions about it, I’ll answer.</div><div>Are you learning anything new these days? What?</div><div>Are you reading or watching anything interesting this week?</div><div>What game or series are your friends talking about these days?</div><div>Is your cat planning something evil right now? What is it doing?</div><div>Imagine I’m calling you from the moon. Ask me 3 questions.</div><div>What is your favourite singer doing right now, do you think?</div><div>Why are you smiling? (Answer with a funny reason!)</div></div>
+    <p class="lk-tnote" data-ru="Головне тут рольова гра «Phone call». Учень «дзвонить» тобі, ти в смішній ситуації (ти в зоопарку, і мавпа краде твій бутерброд). Учень мусить з’ясувати питаннями, де ти, що робиш і чому смієшся. Потім міняєтеся. Нагадай, що Present Continuous також для дій «у ці дні» (I’m reading a great book this week).&lt;br&gt;">Головне тут рольова гра «Phone call». Учень «дзвонить» тобі, ти в смішній ситуації (ти в зоопарку, і мавпа краде твій бутерброд). Учень мусить з’ясувати питаннями, де ти, що робиш і чому смієшся. Потім міняєтеся. Нагадай, що Present Continuous також для дій «у ці дні» (I’m reading a great book this week).<br></p>
+  </section>
+  <section id="s8" data-stage="practice" data-min="6">
+    <h2><span class="lk-n">8</span>Speed round <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Speed round: short answers</h3><p class="lk-ins">Give the short answer</p>
+    <div class="spin"><div class="card" id="g81">Click "Next card"</div><br><button class="btn" type="button" data-spin="[&quot;Are you sleeping? (no)&quot;, &quot;Is she dancing? (yes)&quot;, &quot;Are they coming? (yes)&quot;, &quot;Is it raining? (no)&quot;, &quot;Is Dan waiting? (yes)&quot;, &quot;Are we going home? (yes)&quot;, &quot;Is the TV working? (no)&quot;, &quot;Are you listening? (yes)&quot;, &quot;Are your friends playing? (no)&quot;, &quot;Is Mia joking? (no)&quot;]" data-target="g81">Next card</button></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; No, I’m not · Yes, she is · Yes, they are · No, it isn’t · Yes, he is · Yes, we are · No, it isn’t · Yes, I am · No, they aren’t · No, she isn’t"><b>Відповіді:</b> No, I’m not · Yes, she is · Yes, they are · No, it isn’t · Yes, he is · Yes, we are · No, it isn’t · Yes, I am · No, they aren’t · No, she isn’t</p>
+    <p class="lk-tnote" data-ru="Дві спроби на час. Головне: без -ing у короткій відповіді і без «Yes, I’m».&lt;br&gt;">Дві спроби на час. Головне: без -ing у короткій відповіді і без «Yes, I’m».<br></p>
+  </section>
+  <section id="s9" data-stage="homework" data-min="5">
+    <h2><span class="lk-n">9</span>Homework <span class="tag">homework</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Напиши діалог «телефонна розмова» (8-10 реплік).</h3><div class="qs"><div>Write a phone call between you and a friend.</div><div>Use at least 4 questions in Present Continuous (What are you doing? Where are you going?...).</div><div>Use at least 3 short answers (Yes, I am. / No, she isn’t.).</div></div>
+    <p class="lk-tnote" data-ru="Домашка: діалог на 8-10 реплік. Можна записати голосове повідомлення, де учень читає діалог «за двох», змінюючи голос. На наступному уроці перейдемо до Present Simple, тож попроси учня також подумати, що він робить щодня (не зараз).&lt;br&gt;">Домашка: діалог на 8-10 реплік. Можна записати голосове повідомлення, де учень читає діалог «за двох», змінюючи голос. На наступному уроці перейдемо до Present Simple, тож попроси учня також подумати, що він робить щодня (не зараз).<br></p>
+  </section>
+  <section class="end"><h2>Great job!</h2><p>See you next lesson.</p></section>
+</div>
+<div class="toast" id="toast"></div>
+<script>window.MURLY_LESSON={"id": "lib-gr-present-continuous-questions", "title": "What are you doing? Spill the tea!", "homework": ["s2", "s4", "s6", "s9"], "hw": {"s2": [{"type": "choice", "instruction": "Послухай (або прочитай) і обери правильну відповідь.", "text": "Where is Chloe? {on the bus|at home|in the park}\nWhy is Chloe taking the bus? {She’s at her grandma’s.|She’s late.|She is tired.}\nWhat is Dan doing? {He’s waiting for Chloe.|He’s eating ice cream.|He’s on the bus.}\nWhat is Mia doing? {She’s eating ice cream.|She’s sleeping.|She’s singing.}\nIs Mia joking? {No, she isn’t.|Yes, she is.}\nIs the cat travelling with Chloe? {Yes, he is.|No, he isn’t.}"}], "s4": [{"type": "gap", "instruction": "Розкрий дужки і склади питання.", "text": "[Are you listening] (you / listen) to me?\n[Is it raining] (it / rain) outside?\n[Are they playing] (they / play) Minecraft again?\n[Is your brother sleeping] (your brother / sleep)?\nWhat [are you doing] (you / do)?\nWhere [is she going] (she / go)?\nWhy [are you laughing] (you / laugh)?\nWhat [is the cat eating] (the cat / eat)?"}, {"type": "choice", "instruction": "Обери правильну коротку відповідь.", "text": "Are you doing your homework? No, {I’m not|I don’t|I amn’t}.\nIs Mia dancing? Yes, {she is|she’s|she does}.\nAre your parents working today? Yes, {they are|they’re|they do}.\nIs the dog barking? No, {it isn’t|it doesn’t|it not}.\nAre we going home? Yes, {we are|we’re|we going}.\nIs Dan wearing his new hoodie? No, {he isn’t|he doesn’t|he not is}."}, {"type": "choice", "instruction": "Знайди відповідь на питання.", "text": "What are you doing? {I’m making a sandwich.|To the skate park.|She’s watching a sad film.|My cousin from Liverpool.|Yes, it is. Look!|No, I’m not. I’m ill.}\nWhere are you going? {To the skate park.|I’m making a sandwich.|She’s watching a sad film.|My cousin from Liverpool.|Yes, it is. Look!|No, I’m not. I’m ill.}\nWhy is Mia crying? {She’s watching a sad film.|I’m making a sandwich.|To the skate park.|My cousin from Liverpool.|Yes, it is. Look!|No, I’m not. I’m ill.}\nWho are you talking to? {My cousin from Liverpool.|I’m making a sandwich.|To the skate park.|She’s watching a sad film.|Yes, it is. Look!|No, I’m not. I’m ill.}\nIs it snowing? {Yes, it is. Look!|I’m making a sandwich.|To the skate park.|She’s watching a sad film.|My cousin from Liverpool.|No, I’m not. I’m ill.}\nAre you coming to the party? {No, I’m not. I’m ill.|I’m making a sandwich.|To the skate park.|She’s watching a sad film.|My cousin from Liverpool.|Yes, it is. Look!}"}, {"type": "gap", "instruction": "Переклади англійською.", "text": "Що ти робиш? → [What are you doing?]\nТи слухаєш? → [Are you listening?]\nКуди ви йдете? → [Where are you going?]\nЧому кіт біжить? → [Why is the cat running?]\nТвоя сестра спить? → [Is your sister sleeping?]\nЗ ким він говорить? → [Who is he talking to?/Who’s he talking to?]"}], "s6": [{"type": "choice", "instruction": "Знайди правильне речення.", "text": "{Is she sitting?|Does she sitting?|Is she sit?}\n{Are they eating?|Are they eat?|Do they eating?}\n{What is he holding?|What he is holding?|What is he hold?}\n{Where are they going?|Where they are going?|Where do they going?}\n{Is it raining?|Is it rain?|Does it raining?}\n{Why is he smiling?|Why he smiling?|Why is he smileing?}"}], "s9": [{"type": "open", "instruction": "Напиши діалог «телефонна розмова» (8-10 реплік).", "text": "Write a phone call between you and a friend.\nUse at least 4 questions in Present Continuous (What are you doing? Where are you going?).\nUse at least 3 short answers (Yes, I am. / No, she isn’t.)."}]}};</script>
+<script>
+(function(){var l=(document.cookie.match(/(?:^|; )murly_lang=(\w+)/)||[])[1];try{l=l||localStorage.getItem('murly:tlang')}catch(e){}l=l==='ru'?'ru':'uk';document.querySelectorAll('[data-pairs-'+l+']').forEach(function(b){b.dataset.pairs=b.getAttribute('data-pairs-'+l)});})();
+</script>
+<script>
+const $ = (id) => document.getElementById(id);
+const LIS = {};
+function say(w, rate) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; const v = speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang) && /Google|Natural|Libby|Sonia|Daniel/.test(x.name)) || speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang)); if (v) u.voice = v; u.rate = rate || .95; speechSynthesis.speak(u); } catch (e) { } }
+const sh = (a) => a.map((x) => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map((x) => x[1]);
+document.querySelectorAll('.voc div').forEach((d) => d.onclick = () => say(d.dataset.say));
+document.querySelectorAll('[data-play]').forEach((b) => b.onclick = () => say(LIS[b.dataset.play], b.dataset.slow ? .75 : .95));
+document.querySelectorAll('[data-stop]').forEach((b) => b.onclick = () => { try { speechSynthesis.cancel(); } catch (e) { } });
+document.querySelectorAll('.ch').forEach((q) => q.querySelectorAll('button').forEach((b) => b.onclick = () => { if (q.classList.contains('ok')) return; const ok = b.textContent === q.dataset.a; q.classList.toggle('ok', ok); q.classList.toggle('bad', !ok); if (ok) { const s = q.querySelector('.s'); if (s && s.textContent.includes('___')) { s.textContent = s.textContent.replace('___', q.dataset.a); } } }));
+const norm = (x) => x.toLowerCase().replace(/[’']/g, "'").replace(/[,;:"“”«»]/g, ' ').replace(/\s+/g, ' ').replace(/[.!?]$/, '').trim();
+document.querySelectorAll('.ty').forEach((r) => { const inp = r.querySelector('input'); const chk = () => { const ok = r.dataset.a.split('|').some((a) => norm(a) === norm(inp.value)); r.classList.toggle('ok', ok); r.classList.toggle('bad', !ok && inp.value.trim() !== ''); }; r.querySelector('button').onclick = chk; inp.onkeydown = (e) => { if (e.key === 'Enter') chk(); }; });
+document.querySelectorAll('[data-mt]').forEach((box) => { const pairs = JSON.parse(box.dataset.pairs); const L = sh(pairs.map((p) => p[0])), R = sh(pairs.map((p) => p[1])); let sel = null, done = 0, err = 0; box.innerHTML = L.map((w, i) => `<button type="button" data-w="${w}">${w}</button><button type="button" data-d="${R[i]}">${R[i]}</button>`).join('');
+  box.querySelectorAll('button').forEach((b) => b.onclick = () => { if (b.classList.contains('done')) return; if (!sel || (sel.dataset.w && b.dataset.w) || (sel.dataset.d && b.dataset.d)) { if (sel) sel.classList.remove('sel'); sel = b; b.classList.add('sel'); return; } const w = sel.dataset.w || b.dataset.w, d = sel.dataset.d || b.dataset.d; if (pairs.some((p) => p[0] === w && p[1] === d)) { sel.classList.add('done'); b.classList.add('done'); done++; say(w); if (done === pairs.length) document.querySelector(`[data-mtres="${box.dataset.mt}"]`).textContent = err ? `Done! Mistakes: ${err}` : 'Perfect!'; } else err++; sel.classList.remove('sel'); sel = null; }); });
+document.querySelectorAll('[data-vids]').forEach((box) => JSON.parse(box.dataset.vids).forEach(([id, title, ch, qs]) => { const d = document.createElement('div'); d.className = 'vid'; d.innerHTML = `<div class="frame"><button class="play" type="button" style="background-image:url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)"><span>PLAY</span></button></div><div class="info"><h3>${title}</h3><small>YouTube · ${ch}</small><ol>${qs.map((q) => `<li>${q}</li>`).join('')}</ol></div>`; d.querySelector('.play').onclick = (e) => { e.currentTarget.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&cc_load_policy=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${title}"></iframe>`; }; box.appendChild(d); }));
+document.querySelectorAll('[data-spin]').forEach((b) => { const list = JSON.parse(b.dataset.spin); let last = -1; b.onclick = () => { let i; do { i = Math.floor(Math.random() * list.length); } while (i === last && list.length > 1); last = i; document.getElementById(b.dataset.target).textContent = list[i]; }; });
+try { const k = 'murly:' + (window.MURLY_LESSON ? MURLY_LESSON.id : 'x') + ':hw'; const t = $('hwText'); if (t) { t.value = localStorage.getItem(k) || ''; t.oninput = () => localStorage.setItem(k, t.value); } } catch (e) { }
+const STAGES = [...document.querySelectorAll('.wrap > section[id]')];
+$('stages').innerHTML = STAGES.map((s) => `<a href="#${s.id}"><b>${s.querySelector('.lk-n').textContent}</b><span>${s.dataset.stage}</span><small>${s.dataset.min !== '0' ? s.dataset.min + ' min' : 'at home'}</small></a>`).join('');
+$('teacherBtn').onclick = (e) => { const on = document.body.classList.toggle('teacher'); e.currentTarget.textContent = on ? 'Student version' : 'Teacher version'; };
+</script>
+<script src="/game-lessons/kit.js" defer></script>
+</body>
+</html>

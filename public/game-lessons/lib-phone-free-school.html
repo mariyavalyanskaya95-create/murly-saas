@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The phone-free school (B1) | Murly</title>
+<link rel="icon" href="/favicon.svg">
+<meta name="description" content="Потренуємо читання у форматі НМТ з вибором відповіді A-D
+Вивчимо лексику про шкільні правила і телефони
+Повторимо модальні дієслова для правил: have t">
+<link rel="canonical" href="https://murly.com.ua/game-lessons/lib-phone-free-school.html">
+<style>
+:root{--paper:#F3F0EA;--ink:#17181C;--violet:#3D4A7A;--lav:#D9D3C7;--pink:#E9C9BC;--green:#D4E2CF;--white:#fff;--muted:#62646B;--accent:#B5482F}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+/* hero */
+.hero{background:linear-gradient(rgba(16,17,22,.5),rgba(16,17,22,.72)),url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1400&q=70&auto=format&fit=crop");color:#fff;padding:70px 18px 56px;text-align:center;position:relative;overflow:hidden}
+.hero .kicker{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#E9C9BC;font-weight:700}
+.hero .cr{position:absolute;right:12px;bottom:8px;font-size:11px;color:rgba(255,255,255,.6)}
+.hero h1{margin:8px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(36px,6vw,64px);letter-spacing:-.5px;font-weight:700}
+.hero h1 span{color:var(--pink);font-style:italic}
+.hero p{margin:12px 0 0;font-size:17px;color:#e6e2da}
+.hero .flags{display:flex;justify-content:center;gap:12px;margin-top:22px;flex-wrap:wrap}
+.hero .flags svg{width:40px;height:26px;border-radius:3px;opacity:.9}
+/* sections */
+section{margin-top:30px;background:var(--white);border-radius:18px;padding:28px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.05)}
+section h2{margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tag{font-family:"Segoe UI",system-ui,sans-serif;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--paper);color:var(--accent);text-transform:uppercase;letter-spacing:1px}
+.lk-n{display:inline-grid;place-items:center;width:42px;height:42px;background:var(--violet);color:#fff;border-radius:50%;font-size:21px;flex:none}
+.lk-mode{font-size:13px;font-weight:700;border:2px dashed var(--lav);color:var(--muted);padding:2px 10px;border-radius:999px}
+.lk-ins{font-size:17px;background:var(--paper);border-radius:12px;padding:10px 14px;margin:6px 0 18px}
+.lk-sub{margin:24px 0 10px;font-size:19px}
+.btn{font:inherit;font-weight:700;border:0;border-radius:999px;background:var(--ink);color:#fff;padding:10px 20px;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+.btn.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+/* teacher */
+.lk-tbtn{position:fixed;right:16px;top:70px;z-index:45;font:inherit;font-weight:800;border:2px solid var(--ink);background:var(--pink);padding:8px 14px;border-radius:12px;cursor:pointer}
+body.teacher .lk-tbtn{background:var(--green)}
+.lk-ans,.lk-tnote{display:none}
+body.teacher .lk-ans{display:block;margin-top:8px;font-weight:700;color:#1d5a12;background:var(--green);border-left:5px solid #5aa845;padding:6px 10px;font-size:15px;border-radius:6px}
+body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff3f7;border-left:5px solid #d9789a;padding:8px 12px;font-size:15px;border-radius:6px}
+/* overview */
+.lk-overview ul{font-size:17px;line-height:1.7;margin:6px 0 16px}
+.lk-stages{display:flex;flex-wrap:wrap;gap:8px}
+.lk-stages a{display:grid;border-radius:14px;padding:8px 12px;text-decoration:none;color:var(--ink);background:var(--paper);font-weight:700;min-width:100px}
+.lk-stages a span{text-transform:capitalize}
+.lk-stages a b{font-size:20px;color:var(--violet)}
+.lk-stages a small{font-weight:600;color:var(--muted)}
+/* warm-up */
+.taxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tax{background:var(--paper);border-radius:18px;padding:16px;display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center}
+.tax svg{width:56px;height:56px}
+.tax b{display:block;font-size:17px}
+.tax small{color:var(--muted);font-size:14px}
+.qs{display:grid;gap:10px;margin-top:18px}
+.qs div{background:var(--green);border-radius:14px;padding:10px 16px;font-size:18px;font-weight:600}
+.phr{background:#fff7e8;border-radius:14px;padding:12px 16px;margin-top:16px;font-size:15px}
+.phr ul{margin:6px 0 0;padding-left:18px}
+.fic{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:16px}
+.fic .c{background:#fff;border:2px solid #1B2140;border-radius:16px;padding:14px 16px;box-shadow:3px 3px 0 #1B2140}
+.fic .c b{display:block;font-size:18px;line-height:1.35;margin-bottom:8px}
+.fic .c .k{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.fic .c .k span{font-size:13px;background:#eef1fb;border-radius:999px;padding:3px 10px}
+.fic .c details{margin-top:8px;font-size:15px;color:#3b4160}
+.fic .c summary{cursor:pointer;font-weight:700;color:#534AB7}
+.fi-n{display:inline-flex;width:28px;height:28px;border-radius:50%;background:#2F4BA0;color:#fff;align-items:center;justify-content:center;font-size:14px;margin-right:6px}
+/* vocab */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:12px}
+.vc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:2px solid transparent;transition:border-color .2s,transform .2s}
+.vc:hover{border-color:var(--violet);transform:translateY(-2px)}
+.vc b{font-size:18px;display:flex;align-items:center;gap:8px}
+.vc b svg{width:20px;height:20px;flex:none;color:var(--violet)}
+.vc p{margin:6px 0 0;font-size:14px;color:var(--muted)}
+.vc em{display:block;margin-top:6px;font-size:14px;color:var(--violet);font-style:normal;font-weight:600}
+.vc.played{background:#e6ecfb}
+/* grammar */
+.gram{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.gb{border-radius:18px;padding:16px}
+.gb h3{margin:0 0 6px;font-size:19px}
+.gb .f{display:inline-block;background:#fff;border-radius:8px;padding:3px 10px;font-weight:800;margin:4px 0;font-family:Consolas,monospace;font-size:15px}
+.gb p{margin:6px 0 0;font-size:15px}
+.g1{background:var(--pink)}.g2{background:var(--lav)}.g3{background:var(--green)}.g4{background:#fbe7c6}
+.warn{margin-top:14px;background:var(--ink);color:#fff;border-radius:14px;padding:12px 16px;font-size:16px}
+.warn b{color:var(--pink)}
+.q{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:2px dashed var(--paper);font-size:18px}
+.q:last-child{border-bottom:0}
+.q .n{width:32px;height:32px;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;border-radius:50%;font-weight:800;font-size:15px}
+.opt{font:inherit;font-size:16px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:10px;padding:4px 12px;cursor:pointer;margin:0 2px}
+.opt.ok{background:var(--green);border-color:#5aa845}
+.opt.bad{background:var(--pink);animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+/* tour */
+.tour{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.law{border-radius:22px;overflow:hidden;background:var(--paper);display:flex;flex-direction:column}
+.law .pic{height:150px;display:grid;place-items:center;position:relative}
+.law .pic svg.ill{width:130px;height:130px}
+.law .pic svg.fl{position:absolute;left:14px;top:14px;width:46px;height:30px;border-radius:5px;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.law .pic .no{position:absolute;right:14px;top:14px;background:var(--ink);color:#fff;font-weight:800;border-radius:999px;padding:2px 10px;font-size:13px}
+.law .body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.law h3{margin:0;font-size:20px}
+.law .where{font-size:13px;font-weight:800;color:var(--violet);text-transform:uppercase;letter-spacing:1px}
+.law p{margin:0;font-size:16px}
+.law .why{font-size:14px;color:var(--muted)}
+.law .dq{margin-top:auto;background:#fff;border-radius:12px;padding:8px 12px;font-weight:700;font-size:15px}
+.law .lsn{font:inherit;font-size:13px;font-weight:700;background:none;border:0;color:var(--violet);cursor:pointer;padding:0;text-align:left}
+/* game */
+.game{max-width:720px;margin:0 auto;text-align:center}
+.score{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.score span{background:var(--paper);border-radius:999px;padding:6px 16px;font-weight:800}
+.stmt{background:var(--ink);color:#fff;border-radius:22px;padding:28px 24px;min-height:150px;display:grid;place-items:center;font-size:23px;font-weight:700;position:relative}
+.stmt small{position:absolute;top:12px;left:18px;font-size:13px;color:var(--lav);font-weight:700}
+.choose{display:flex;justify-content:center;gap:14px;margin:18px 0}
+.choose button{font:inherit;font-size:18px;font-weight:700;border:2px solid var(--ink);border-radius:999px;padding:12px 28px;cursor:pointer}
+.choose .bl{background:var(--green)}.choose .bm{background:var(--pink)}
+.choose button:disabled{opacity:.5;cursor:default}
+.verdict{min-height:70px;font-size:17px;background:var(--paper);border-radius:16px;padding:12px 16px;text-align:left}
+.verdict b.r{color:#2d7a1d}.verdict b.w{color:#b23a62}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.dots i{width:14px;height:14px;border-radius:50%;background:var(--paper)}
+.dots i.r{background:#7cc663}.dots i.w{background:#e47b9f}.dots i.c{outline:3px solid var(--violet)}
+.final{font-size:22px;font-weight:800;color:var(--violet)}
+/* invent */
+.inv{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.frames{display:grid;gap:10px}
+.frames label{font-size:14px;font-weight:700;color:var(--muted)}
+.frames select,.frames input{font:inherit;width:100%;padding:8px 10px;border:2px solid var(--lav);border-radius:10px;background:#fff}
+.poster{background:var(--paper);border:3px solid var(--ink);border-radius:20px;padding:22px;text-align:center;min-height:260px;display:flex;flex-direction:column;gap:10px;justify-content:center}
+.poster .seal{width:70px;height:70px;margin:0 auto}
+.poster h3{margin:0;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--violet)}
+.poster .rule{font-size:22px;font-weight:800}
+.poster .pen{font-size:16px;color:var(--muted)}
+.ideas{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ideas span{background:var(--pink);border-radius:999px;padding:5px 12px;font-size:14px;font-weight:600}
+/* roleplay */
+.rp{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.role{border-radius:20px;padding:18px}
+.role h3{margin:0 0 6px;display:flex;align-items:center;gap:10px}
+.role h3 svg{width:42px;height:42px}
+.role ul{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.r1{background:var(--lav)}.r2{background:var(--green)}
+.scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:16px}
+.sc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:3px solid transparent}
+.sc.on{border-color:var(--violet);background:#fff}
+.sc b{display:block;font-size:17px;margin-bottom:4px}
+.sc p{margin:0;font-size:15px}
+.timer{font-size:40px;font-weight:800;text-align:center;margin:14px 0 6px;color:var(--violet)}
+.ctr{text-align:center}
+/* homework */
+.hwb{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hwc{background:var(--paper);border-radius:18px;padding:18px}
+.hwc h3{margin:0 0 8px}
+.hwc ol,.hwc ul{margin:6px 0 0;padding-left:20px;line-height:1.7}
+.hwc textarea{width:100%;min-height:150px;font:inherit;border:2px solid var(--lav);border-radius:12px;padding:10px;margin-top:10px}
+.end{text-align:center;background:var(--ink);color:#fff;box-shadow:none}
+.end h2{justify-content:center}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(140px);background:var(--ink);color:#fff;font-weight:800;padding:12px 22px;border-radius:14px;transition:transform .3s;z-index:50}
+.toast.show{transform:translateX(-50%) translateY(0)}
+/* photos */
+.ph{margin:0}
+.ph img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;background:var(--paper)}
+.ph figcaption{font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.2px}
+.tax{grid-template-columns:1fr !important;padding:12px !important}
+.law .pic{height:auto !important;display:block !important;padding:0;position:relative}
+.law .pic .ph img{border-radius:0;aspect-ratio:16/10;transition:filter .5s}
+.law .pic .ph figcaption{padding:4px 12px 0}
+.law.hide .pic .ph img{filter:blur(10px) grayscale(.6)}
+.law.hide .reveal-body,.law.hide .fl,.law.hide .where{visibility:hidden}
+.law .clue{font-size:15px;font-style:italic;color:var(--ink)}
+.law .gc{display:flex;flex-wrap:wrap;gap:6px}
+.law .gc button{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:4px 12px;cursor:pointer}
+.law .gc button.ok{background:var(--green)}.law .gc button.bad{background:var(--pink)}
+.law:not(.hide) .guess{display:none}
+.fair{display:grid;gap:4px;background:#fff;border-radius:12px;padding:8px 12px}
+.fair .ends{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.fair input{width:100%;accent-color:var(--accent)}
+.fair output{font-size:14px;font-weight:700;color:var(--accent)}
+.gph{max-width:720px;margin:0 auto 12px}
+.gph img{aspect-ratio:21/9}
+.fine{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.fq{background:var(--paper);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.fq h3{margin:0;font-size:18px}
+.fq .opts{display:flex;flex-wrap:wrap;gap:6px}
+.fq .opts button{font:inherit;font-size:14px;font-weight:700;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 12px;cursor:pointer}
+.fq .opts button.ok{background:var(--green)}.fq .opts button.bad{background:var(--pink)}
+.fq .res{font-size:15px;min-height:22px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{position:relative;aspect-ratio:16/9;background:#111}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;cursor:pointer;background:#111 center/cover;display:grid;place-items:center}
+.vid .play span{background:rgba(0,0,0,.7);color:#fff;font-weight:700;border-radius:999px;padding:10px 20px;font-size:15px;letter-spacing:1px}
+.vid .info{padding:14px 16px}
+.vid .info h3{margin:0 0 2px;font-size:18px}
+.vid .info small{color:var(--muted)}
+.vid .info ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+@media(max-width:760px){.inv,.rp,.hwb{grid-template-columns:1fr}.lk-tbtn{top:auto;bottom:70px}}
+
+.pr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.pb{border-radius:18px;padding:16px 18px}
+.pb h3{margin:0;font-family:Georgia,serif;font-size:30px}
+.pb .m{font-size:15px;color:var(--muted);margin:2px 0 8px}
+.pb .chips{display:flex;flex-wrap:wrap;gap:6px}
+.pb .chips span{background:#fff;border-radius:999px;padding:4px 11px;font-size:14px;font-weight:600}
+.pb ul{margin:10px 0 0;padding-left:18px;font-size:15px}
+.p-in{background:#DCE6F5}.p-at{background:#F3D9CF}.p-on{background:#D4E2CF}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-size:15px;margin-top:10px}
+.ex div{background:var(--paper);border-radius:10px;padding:8px 12px}
+.ex b{color:var(--accent)}
+.q{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.q .n{font-weight:800;color:var(--violet);min-width:24px}
+.q .gap{display:inline-block;min-width:44px;border-bottom:2px solid var(--ink);text-align:center;font-weight:800}
+.q .opts{margin-left:auto;display:flex;gap:6px}
+.q .opts button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 14px;cursor:pointer}
+.q.ok{background:#DDEED7}.q.ok .gap{color:#2F7A3B}
+.q.bad{background:#F6DAD3}
+.score{font-weight:800;margin-top:12px}
+.text{font-size:18px;line-height:1.75;background:var(--paper);border-radius:16px;padding:18px 22px}
+.text h3{margin:0 0 6px;font-family:Georgia,serif;font-size:24px}
+.text p{margin:0 0 12px}
+.text.hl mark{background:#F3D9CF;border-radius:4px;padding:0 3px;font-weight:700}
+.tf{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:9px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.tf .opts{margin-left:auto;display:flex;gap:6px}
+.tf button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.tf.ok{background:#DDEED7}.tf.bad{background:#F6DAD3}
+.disc{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px;margin-top:6px}
+.disc div{background:var(--green);border-radius:14px;padding:12px 16px;font-size:17px;font-weight:600}
+.disc div i{font-style:normal;color:var(--violet);margin-right:6px}
+.spin{text-align:center;margin-top:16px}
+.spin .card{display:inline-block;min-height:80px;min-width:min(560px,100%);background:var(--ink);color:#fff;border-radius:18px;padding:20px 24px;font-size:22px;font-weight:700;margin-bottom:12px}
+@media(max-width:700px){.ex{grid-template-columns:1fr}}
+
+.hero{background-size:cover!important;background-position:center!important}
+.voc{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.voc div{background:var(--paper);border-radius:14px;padding:10px 14px;cursor:pointer;border:2px solid transparent}
+.voc div:hover{border-color:var(--violet)}
+.voc b{display:block;font-size:18px}.voc span{display:block;color:var(--accent);font-weight:700;font-size:15px}.voc em{display:block;font-size:14px;color:var(--muted);margin-top:3px}
+.mt{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:10px}
+.mt button{font:inherit;font-size:16px;text-align:left;border:2px solid var(--ink);background:#fff;border-radius:14px;padding:9px 14px;cursor:pointer}
+.mt button.sel{background:#FFE7A8}.mt button.done{background:#CDE8C6;border-color:#4C9A5B;cursor:default}
+.ch{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ch .n{font-weight:800;color:var(--violet);min-width:24px}
+.ch .o{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.ch .o button{font:inherit;font-size:15px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.ch.ok{background:#DDEED7}.ch.bad{background:#F6DAD3}
+.ty{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ty input{font:inherit;border:2px solid var(--ink);border-radius:10px;padding:4px 10px;width:220px}
+.ty.ok{background:#DDEED7}.ty.bad{background:#F6DAD3}
+.ty small{color:var(--muted)}
+.photo{width:100%;height:300px;object-fit:cover;border-radius:16px;display:block}
+.cap{font-size:11px;color:var(--muted);margin:4px 0 12px}
+.pics{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.pics figure{margin:0;background:var(--paper);border-radius:16px;overflow:hidden}
+.pics img{width:100%;height:170px;object-fit:cover;display:block}
+.pics figcaption{padding:8px 12px;font-weight:700}
+.pics small{display:block;font-weight:400;font-size:10px;color:var(--muted)}
+.lis{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:8px 0 14px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{aspect-ratio:16/9;background:#000;position:relative}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;background-size:cover;background-position:center;cursor:pointer;display:grid;place-items:center}
+.vid .play span{background:#E5484D;color:#fff;font-weight:800;border-radius:12px;padding:10px 20px}
+.vid .info{padding:12px 16px}.vid h3{margin:0;font-size:18px}.vid small{color:var(--muted)}
+.vid ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th,.tbl td{border:1px solid #ddd;padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--paper)}
+@media(max-width:700px){.mt{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="/game-lessons/kit.css">
+</head>
+<body>
+<header class="hero">
+  <div class="kicker">B1 · teens · Школа · Reading</div>
+  <h1>The phone-free school</h1>
+  <p>B1 · 9 parts · 60 min</p>
+  <span class="cr">Photo: Unsplash</span>
+</header>
+<button class="lk-tbtn" id="teacherBtn" type="button">Teacher version</button>
+<div class="wrap">
+  <section class="lk-overview">
+    <h2>In this lesson you will:</h2>
+    <ul><li>Потренуємо читання у форматі НМТ з вибором відповіді A-D
+Вивчимо лексику про шкільні правила і телефони
+Повторимо модальні дієслова для правил: have to, mustn’t, be allowed to
+Напишемо лист директору на 50+ слів</li></ul>
+    <div class="lk-stages" id="stages"></div>
+  </section>
+  <section id="s1" data-stage="warm-up" data-min="5">
+    <h2><span class="lk-n">1</span>Warm-up <span class="tag">warm-up</span><span class="lk-mode">teacher + student</span></h2>
+<p class="lk-tnote" data-ru="Швидке обговорення в парах або з учнем 1:1. Не виправляйте помилки на цьому етапі, лише запишіть 2-3 типові на дошку, щоб повернутися до них у мовному блоці. Шкалу думок збережіть: наприкінці уроку спитайте, чи змінилася думка.&lt;br&gt;">Швидке обговорення в парах або з учнем 1:1. Не виправляйте помилки на цьому етапі, лише запишіть 2-3 типові на дошку, щоб повернутися до них у мовному блоці. Шкалу думок збережіть: наприкінці уроку спитайте, чи змінилася думка.<br></p>
+    <div class="qs"><div>How many hours a day do you use your phone?</div><div>What do you use your phone for at school?</div><div>Could you live without your phone for one school day?</div></div>
+    <h3 class="lk-sub">How much do you agree?</h3><div class="qs"><div>Phones help students learn. (agree or disagree? Why?)</div><div>Phones distract students in lessons. (agree or disagree? Why?)</div><div>Schools, not students, should decide when phones can be used. (agree or disagree? Why?)</div></div>
+  </section>
+  <section id="s2" data-stage="vocabulary" data-min="10">
+    <h2><span class="lk-n">2</span>Vocabulary <span class="tag">vocabulary</span><span class="lk-mode">teacher + student</span></h2>
+<p class="lk-tnote" data-ru="Спершу прочитайте слова вголос, учень повторює. Потім вправи: match виконується самостійно (3 хв), gap перевіряємо разом. Якщо учень помиляється, просіть пояснити значення слова своїми словами англійською, а не перекладати.&lt;br&gt;">Спершу прочитайте слова вголос, учень повторює. Потім вправи: match виконується самостійно (3 хв), gap перевіряємо разом. Якщо учень помиляється, просіть пояснити значення слова своїми словами англійською, а не перекладати.<br></p>
+    <div class="voc"><div data-say="a locker. "><b>a locker</b><span><span data-tr-uk="шафка" data-tr-ru="шафка">шафка</span></span><em></em></div>
+<div data-say="to collect. "><b>to collect</b><span><span data-tr-uk="забирати" data-tr-ru="забирати">забирати</span></span><em></em></div>
+<div data-say="calm. "><b>calm</b><span><span data-tr-uk="спокійний" data-tr-ru="спокійний">спокійний</span></span><em></em></div>
+<div data-say="focused. "><b>focused</b><span><span data-tr-uk="зосереджений" data-tr-ru="зосереджений">зосереджений</span></span><em></em></div>
+<div data-say="an emergency. "><b>an emergency</b><span><span data-tr-uk="надзвичайна ситуація" data-tr-ru="надзвичайна ситуація">надзвичайна ситуація</span></span><em></em></div>
+<div data-say="to contact. "><b>to contact</b><span><span data-tr-uk="зв’язатися" data-tr-ru="зв’язатися">зв’язатися</span></span><em></em></div>
+<div data-say="a rule. "><b>a rule</b><span><span data-tr-uk="правило" data-tr-ru="правило">правило</span></span><em></em></div>
+<div data-say="to scroll. "><b>to scroll</b><span><span data-tr-uk="гортати (стрічку)" data-tr-ru="гортати (стрічку)">гортати (стрічку)</span></span><em></em></div>
+<div data-say="to be allowed to. "><b>to be allowed to</b><span><span data-tr-uk="мати дозвіл" data-tr-ru="мати дозвіл">мати дозвіл</span></span><em></em></div>
+<div data-say="to ban. "><b>to ban</b><span><span data-tr-uk="забороняти" data-tr-ru="забороняти">забороняти</span></span><em></em></div>
+<div data-say="a distraction. "><b>a distraction</b><span><span data-tr-uk="те, що відволікає" data-tr-ru="те, що відволікає">те, що відволікає</span></span><em></em></div>
+<div data-say="research. "><b>research</b><span><span data-tr-uk="пошук інформації, дослідження" data-tr-ru="пошук інформації, дослідження">пошук інформації, дослідження</span></span><em></em></div></div>
+    <div class="mt" data-mt="m2" data-pairs="[[&quot;a locker&quot;, &quot;шафка&quot;], [&quot;to collect&quot;, &quot;забирати&quot;], [&quot;calm&quot;, &quot;спокійний&quot;], [&quot;focused&quot;, &quot;зосереджений&quot;], [&quot;an emergency&quot;, &quot;надзвичайна ситуація&quot;], [&quot;to contact&quot;, &quot;зв’язатися&quot;], [&quot;a rule&quot;, &quot;правило&quot;], [&quot;to scroll&quot;, &quot;гортати (стрічку)&quot;]]"></div><div class="score" data-mtres="m2"></div>
+    <h3 class="lk-sub">Match the words with their meanings.</h3><div class="ch" data-a="a small cupboard to keep your things"><span class="n">1</span><span class="s">a locker ___</span><span class="o"><button type="button">a sudden dangerous situation</button><button type="button">quiet and peaceful</button><button type="button">a small cupboard to keep your things</button><button type="button">to call or write to someone</button><button type="button">something that takes your attention away</button></span></div>
+<div class="ch" data-a="quiet and peaceful"><span class="n">2</span><span class="s">calm ___</span><span class="o"><button type="button">to call or write to someone</button><button type="button">a small cupboard to keep your things</button><button type="button">something that takes your attention away</button><button type="button">quiet and peaceful</button><button type="button">a sudden dangerous situation</button></span></div>
+<div class="ch" data-a="a sudden dangerous situation"><span class="n">3</span><span class="s">an emergency ___</span><span class="o"><button type="button">a small cupboard to keep your things</button><button type="button">something that takes your attention away</button><button type="button">a sudden dangerous situation</button><button type="button">quiet and peaceful</button><button type="button">to call or write to someone</button></span></div>
+<div class="ch" data-a="to call or write to someone"><span class="n">4</span><span class="s">to contact ___</span><span class="o"><button type="button">to call or write to someone</button><button type="button">something that takes your attention away</button><button type="button">a sudden dangerous situation</button><button type="button">a small cupboard to keep your things</button><button type="button">quiet and peaceful</button></span></div>
+<div class="ch" data-a="something that takes your attention away"><span class="n">5</span><span class="s">a distraction ___</span><span class="o"><button type="button">to call or write to someone</button><button type="button">quiet and peaceful</button><button type="button">a sudden dangerous situation</button><button type="button">a small cupboard to keep your things</button><button type="button">something that takes your attention away</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; a small cupboard to keep your things · quiet and peaceful · a sudden dangerous situation · to call or write to someone · something that takes your attention away"><b>Відповіді:</b> a small cupboard to keep your things · quiet and peaceful · a sudden dangerous situation · to call or write to someone · something that takes your attention away</p>
+    <h3 class="lk-sub">Complete with: ban, scroll, focused, allowed, research.</h3><div class="ty" data-a="ban"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Many schools want to ___ phones during lessons.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="scroll"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>I can’t stop once I start to ___ through videos.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="focused"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>It’s easier to stay ___ in a quiet room.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="allowed"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Are we ___ to use dictionaries in the test?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="research"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>We used the library computers for our history ___.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; ban · scroll · focused · allowed · research"><b>Відповіді:</b> ban · scroll · focused · allowed · research</p>
+  </section>
+  <section id="s3" data-stage="reading" data-min="15">
+    <h2><span class="lk-n">3</span>Reading: НМТ multiple choice <span class="tag">reading</span><span class="lk-mode">teacher + student</span></h2>
+<div class="warn"><p>Лайфхак для НМТ: спочатку прочитай питання, потім текст. Підкресли ключові слова в питанні, а в тексті шукай їхні <b>синоніми</b>, а не ті самі слова. Варіант, який повторює слово з тексту дослівно, часто є пасткою.</p></div>
+    <p class="lk-tnote" data-ru="Дайте 6-7 хвилин на текст і питання без словника, як на іспиті. Під час перевірки просіть учня показати рядок у тексті, який доводить відповідь. Для кожного неправильного варіанту A-D коротко поясніть, чому він не підходить.&lt;br&gt;">Дайте 6-7 хвилин на текст і питання без словника, як на іспиті. Під час перевірки просіть учня показати рядок у тексті, який доводить відповідь. Для кожного неправильного варіанту A-D коротко поясніть, чому він не підходить.<br></p>
+    <div class="text"><p>Last September, Oakfield Secondary School tried something new: no phones during the school day. Students now leave their phones in a locker when they arrive and collect them at 3 pm.</p><p>At first, many students were unhappy. “I felt lost without my phone for the first week,” says Grace, 15. “But then I noticed that people started talking at lunch instead of scrolling.”</p><p>Teachers say lessons have become calmer. “Students are more focused, and fewer of them come to class late,” explains Mr Collins, the head teacher. However, some parents are worried that they cannot contact their children during the day. The school now allows parents to call the office in an emergency.</p><p>There were other changes too. Fewer arguments started on social media during the school day, and the library became much busier during breaks. “I’ve read four books this term,” says Max, 14. “Before, I spent every break on my phone.”</p><p>After one year, the school asked students what they thought. Almost two thirds said they would keep the rule, although many wanted to use phones in the library for research.</p></div>
+    <h3 class="lk-sub">True or False?</h3><div class="ch" data-a="False"><span class="n">1</span><span class="s">Students keep their phones in their bags during lessons.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="True"><span class="n">2</span><span class="s">Grace found the first week difficult.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="False"><span class="n">3</span><span class="s">According to Mr Collins, students are less focused now.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="True"><span class="n">4</span><span class="s">Parents can call the school office if something serious happens.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; False · True · False · True"><b>Відповіді:</b> False · True · False · True</p>
+    <h3 class="lk-sub">Choose the best answer (A-D).</h3><div class="ch" data-a="People talked to each other at lunch"><span class="n">1</span><span class="s">What did Grace notice after the first week? ___</span><span class="o"><button type="button">People talked to each other at lunch</button><button type="button">She did not miss her phone at all</button><button type="button">Her friends lost their phones</button><button type="button">Lunch breaks became shorter</button></span></div>
+<div class="ch" data-a="concentrate better in class"><span class="n">2</span><span class="s">According to Mr Collins, the rule has helped students to ___</span><span class="o"><button type="button">get higher marks in every subject</button><button type="button">concentrate better in class</button><button type="button">make more friends online</button><button type="button">finish school earlier</button></span></div>
+<div class="ch" data-a="It let parents call the office in an emergency"><span class="n">3</span><span class="s">How did the school respond to parents’ worries? ___</span><span class="o"><button type="button">It asked parents to visit the school</button><button type="button">It let parents call the office in an emergency</button><button type="button">It cancelled the rule for younger students</button><button type="button">It gave every student a school phone</button></span></div>
+<div class="ch" data-a="He used his breaks differently after the ban"><span class="n">4</span><span class="s">Why does Max mention books? ___</span><span class="o"><button type="button">He needed books for his research</button><button type="button">He had to read them for homework</button><button type="button">He used his breaks differently after the ban</button><button type="button">The library sold books cheaply</button></span></div>
+<div class="ch" data-a="keep the rule but use phones in the library"><span class="n">5</span><span class="s">Most students wanted to ___</span><span class="o"><button type="button">stop the rule completely</button><button type="button">make the rule stricter</button><button type="button">use phones only at lunch</button><button type="button">keep the rule but use phones in the library</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; People talked to each other at lunch · concentrate better in class · It let parents call the office in an emergency · He used his breaks differently after the ban · keep the rule but use phones in the library"><b>Відповіді:</b> People talked to each other at lunch · concentrate better in class · It let parents call the office in an emergency · He used his breaks differently after the ban · keep the rule but use phones in the library</p>
+  </section>
+  <section id="s4" data-stage="listening" data-min="10">
+    <h2><span class="lk-n">4</span>Listening <span class="tag">listening</span><span class="lk-mode">teacher + student</span></h2>
+<p class="lk-tnote" data-ru="Перше прослуховування: учень лише відповідає, хто за правило, а хто проти. Друге: виконує вправу. Після перевірки попросіть знайти в діалозі фрази для згоди і незгоди (I see your point, That’s fair) і запишіть їх для етапу говоріння.&lt;br&gt;">Перше прослуховування: учень лише відповідає, хто за правило, а хто проти. Друге: виконує вправу. Після перевірки попросіть знайти в діалозі фрази для згоди і незгоди (I see your point, That’s fair) і запишіть їх для етапу говоріння.<br></p>
+    <div class="text"><h3>Student council meeting</h3><p class="lk-ins">Your teacher reads the dialogue (or plays it). Listen first, then read.</p><details><summary>Show the script</summary><p>Anna: OK, everyone, today we need to decide what we think about the phone-free rule.</p><p>Mark: I’ll be honest, I don’t like it. My bus is often late, and I can’t tell my mum.</p><p>Anna: But you can use the phone in the office, right?</p><p>Mark: Yes, but there’s always a queue at the end of the day.</p><p>Sophie: I see your point, Mark, but I think the rule works. Lessons are much quieter now.</p><p>Mark: Quieter, maybe. But we live in a digital world. We should learn to use phones wisely, not just hide them.</p><p>Sophie: That’s fair. What if we had phone time in the library for research?</p><p>Anna: I like that idea. Twenty minutes a day, only for schoolwork.</p><p>Mark: And maybe a phone zone near the bus stop after lessons?</p><p>Anna: Great. So we keep the rule, add a library session and ask about a phone zone. Let’s vote on Friday.</p></details></div>
+    <h3 class="lk-sub">True or False?</h3><div class="ch" data-a="False"><span class="n">1</span><span class="s">Mark is happy with the phone-free rule.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="True"><span class="n">2</span><span class="s">Mark’s problem is connected with his bus.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="True"><span class="n">3</span><span class="s">Sophie thinks lessons have become quieter.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="False"><span class="n">4</span><span class="s">The students decide to cancel the rule.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; False · True · True · False"><b>Відповіді:</b> False · True · True · False</p>
+    <h3 class="lk-sub">Choose the correct answer.</h3><div class="ch" data-a="learn to use phones wisely"><span class="n">1</span><span class="s">Mark believes students should ___.</span><span class="o"><button type="button">learn to use phones wisely</button><button type="button">use phones only at home</button><button type="button">buy cheaper phones</button><button type="button">never use phones at school</button></span></div>
+<div class="ch" data-a="in the library"><span class="n">2</span><span class="s">Sophie suggests phone time ___.</span><span class="o"><button type="button">in every lesson</button><button type="button">at lunch</button><button type="button">in the library</button><button type="button">on the bus</button></span></div>
+<div class="ch" data-a="on Friday"><span class="n">3</span><span class="s">The vote will take place ___.</span><span class="o"><button type="button">on Friday</button><button type="button">today</button><button type="button">after the holidays</button><button type="button">next month</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; learn to use phones wisely · in the library · on Friday"><b>Відповіді:</b> learn to use phones wisely · in the library · on Friday</p>
+  </section>
+  <section id="s5" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">5</span>Language focus: rules <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<div class="warn"><p>Як говорити про правила:</p><p><b>must / have to</b> = обов’язок (треба)<br><b>mustn’t / be not allowed to</b> = заборона (не можна)<br><b>don’t have to</b> = немає потреби (не обов’язково)<br><b>can / be allowed to</b> = дозвіл (можна)</p><p>Пастка НМТ: <b>don’t have to</b> НЕ означає заборону. You don’t have to come = можеш не приходити.</p></div>
+    <p class="lk-tnote" data-ru="Почніть з прикладів зі шкільних правил учня. Типова помилка: mustn’t замість don’t have to. Якщо учень плутає, намалюйте шкалу «заборона → вибір → обов’язок». Переклад перевіряйте гнучко: зараховуйте синонімічні варіанти вручну.&lt;br&gt;">Почніть з прикладів зі шкільних правил учня. Типова помилка: mustn’t замість don’t have to. Якщо учень плутає, намалюйте шкалу «заборона → вибір → обов’язок». Переклад перевіряйте гнучко: зараховуйте синонімічні варіанти вручну.<br></p>
+    <h3 class="lk-sub">Choose the correct option.</h3><div class="ch" data-a="have to"><span class="n">1</span><span class="s">Students ___ leave their phones in a locker when they arrive.</span><span class="o"><button type="button">have to</button><button type="button">don’t have to</button><button type="button">can</button></span></div>
+<div class="ch" data-a="mustn’t"><span class="n">2</span><span class="s">You ___ use your phone during a test.</span><span class="o"><button type="button">can</button><button type="button">mustn’t</button><button type="button">don’t have to</button></span></div>
+<div class="ch" data-a="don’t have to"><span class="n">3</span><span class="s">On Saturdays we ___ wear a school uniform.</span><span class="o"><button type="button">mustn’t</button><button type="button">have to</button><button type="button">don’t have to</button></span></div>
+<div class="ch" data-a="are allowed to"><span class="n">4</span><span class="s">Parents ___ call the office in an emergency.</span><span class="o"><button type="button">aren’t allowed to</button><button type="button">mustn’t</button><button type="button">are allowed to</button></span></div>
+<div class="ch" data-a="to play"><span class="n">5</span><span class="s">During breaks, students are allowed ___ board games in the library.</span><span class="o"><button type="button">playing</button><button type="button">play</button><button type="button">to play</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; have to · mustn’t · don’t have to · are allowed to · to play"><b>Відповіді:</b> have to · mustn’t · don’t have to · are allowed to · to play</p>
+    <h3 class="lk-sub">Переклади англійською.</h3><div class="ty" data-a="We are not allowed to use phones in lessons|We aren’t allowed to use phones in lessons|We mustn’t use phones in lessons|We must not use phones in lessons|We can’t use phones in lessons|We cannot use phones in lessons"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Нам не можна користуватися телефонами на уроках</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="You don’t have to come tomorrow|You do not have to come tomorrow"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Тобі не обов’язково приходити завтра</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Students have to leave their phones in lockers|Students must leave their phones in lockers|Students have to leave their phones in the lockers|Students must leave their phones in the lockers"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Учні мають залишати телефони в шафках</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; We are not allowed to use phones in lessons · You don’t have to come tomorrow · Students have to leave their phones in lockers"><b>Відповіді:</b> We are not allowed to use phones in lessons · You don’t have to come tomorrow · Students have to leave their phones in lockers</p>
+  </section>
+  <section id="s6" data-stage="speaking" data-min="7">
+    <h2><span class="lk-n">6</span>Speaking <span class="tag">speaking</span><span class="lk-mode">teacher + student</span></h2>
+<p class="lk-tnote" data-ru="Попросіть учня в кожній відповіді вжити хоча б одну конструкцію з мовного блоку і одну фразу з діалогу (I see your point, That’s fair). Виправляйте делікатно: повторіть речення правильно і попросіть учня повторити.&lt;br&gt;">Попросіть учня в кожній відповіді вжити хоча б одну конструкцію з мовного блоку і одну фразу з діалогу (I see your point, That’s fair). Виправляйте делікатно: повторіть речення правильно і попросіть учня повторити.<br></p>
+    <div class="qs"><div>Would you like a phone-free school? Why or why not?</div><div>What are the good and bad sides of phones at school?</div><div>Mark wants a phone zone near the bus stop. Is it a good compromise?</div><div>Which rule would you change at your school? Use have to, mustn’t or be allowed to.</div><div>Imagine you are the head teacher. What three phone rules would you make?</div></div>
+  </section>
+  <section id="s7" data-stage="practice" data-min="8">
+    <h2><span class="lk-n">7</span>Extra practice · якщо лишився час або на наступний урок <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Встав слово: locker, collect, calm, emergency, contact, distraction.</h3><div class="ty" data-a="locker"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Please put your bag in your ___ before the lesson.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="collect"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>You can ___ your phone from the office at 3 pm.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="calm"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>The library is a ___ place to study.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="emergency"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Call this number only in an ___.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="contact"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>How can parents ___ the school during the day?</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="distraction"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Loud music is a big ___ when I do my homework.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; locker · collect · calm · emergency · contact · distraction"><b>Відповіді:</b> locker · collect · calm · emergency · contact · distraction</p>
+    <h3 class="lk-sub">Обери правильний варіант: обов’язок, заборона чи вибір.</h3><div class="ch" data-a="don’t have to"><span class="n">1</span><span class="s">It’s Saturday, so we ___ get up early.</span><span class="o"><button type="button">don’t have to</button><button type="button">have to</button><button type="button">mustn’t</button></span></div>
+<div class="ch" data-a="mustn’t"><span class="n">2</span><span class="s">You ___ run in the corridor. It’s dangerous.</span><span class="o"><button type="button">can</button><button type="button">mustn’t</button><button type="button">don’t have to</button></span></div>
+<div class="ch" data-a="have to"><span class="n">3</span><span class="s">Everybody wears a blue jacket because we ___ wear a uniform.</span><span class="o"><button type="button">have to</button><button type="button">don’t have to</button><button type="button">aren’t allowed to</button></span></div>
+<div class="ch" data-a="allowed to"><span class="n">4</span><span class="s">Are we ___ use calculators in the maths test?</span><span class="o"><button type="button">allowed</button><button type="button">allow to</button><button type="button">allowed to</button></span></div>
+<div class="ch" data-a="don’t have to"><span class="n">5</span><span class="s">You ___ bring lunch, but you can if you want.</span><span class="o"><button type="button">have to</button><button type="button">don’t have to</button><button type="button">mustn’t</button></span></div>
+<div class="ch" data-a="aren’t allowed to"><span class="n">6</span><span class="s">Phones are a distraction, so students ___ use them during tests.</span><span class="o"><button type="button">are allowed to</button><button type="button">aren’t allowed to</button><button type="button">don’t have to</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; don’t have to · mustn’t · have to · allowed to · don’t have to · aren’t allowed to"><b>Відповіді:</b> don’t have to · mustn’t · have to · allowed to · don’t have to · aren’t allowed to</p>
+    <h3 class="lk-sub">Переклади англійською.</h3><div class="ty" data-a="We have to leave our bags in lockers|We have to leave our bags in the lockers|We must leave our bags in lockers|We must leave our bags in the lockers"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Ми маємо залишати сумки в шафках</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="You don’t have to call your mum|You do not have to call your mum|You don’t have to call your mom|You do not have to call your mom|You don’t have to phone your mum|You do not have to phone your mum"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Тобі не обов’язково телефонувати мамі</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Can I call home?|May I call home?|Can I phone home?|May I phone home?|Am I allowed to call home?"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Можна мені зателефонувати додому?</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Don’t scroll in the lesson|Do not scroll in the lesson|Don’t scroll during the lesson|Do not scroll during the lesson|Don’t scroll in class|Do not scroll in class"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Не гортай стрічку на уроці</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="Students have become more focused|Students became more focused|The students have become more focused|The students became more focused"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Учні стали більш зосередженими</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="The school has banned phones|The school banned phones|The school has banned mobile phones|The school banned mobile phones"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Школа заборонила телефони</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; We have to leave our bags in lockers · You don’t have to call your mum · Can I call home? · Don’t scroll in the lesson · Students have become more focused · The school has banned phones"><b>Відповіді:</b> We have to leave our bags in lockers · You don’t have to call your mum · Can I call home? · Don’t scroll in the lesson · Students have become more focused · The school has banned phones</p>
+    <h3 class="lk-sub">Phone rules: quick match</h3><p class="lk-ins">З’єднай слово з перекладом.</p>
+    <div class="spin"><div class="card" id="g77">Click "Next card"</div><br><button class="btn" type="button" data-spin="[&quot;a locker&quot;, &quot;to collect&quot;, &quot;calm&quot;, &quot;focused&quot;, &quot;an emergency&quot;, &quot;to scroll&quot;, &quot;a distraction&quot;, &quot;to be allowed to&quot;, &quot;to ban&quot;, &quot;research&quot;]" data-target="g77">Next card</button></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; шафка · забирати · спокійний · зосереджений · надзвичайна ситуація · гортати стрічку · те, що відволікає · мати дозвіл · забороняти · дослідження"><b>Відповіді:</b> шафка · забирати · спокійний · зосереджений · надзвичайна ситуація · гортати стрічку · те, що відволікає · мати дозвіл · забороняти · дослідження</p>
+    <p class="lk-tnote" data-ru="Extra practice можна виконати, якщо лишився час, або дати як розминку на початку наступного уроку. У секції з модальними нагадайте шкалу: mustn’t = заборона, don’t have to = не обов’язково. У реченні про обід правильна відповідь don’t have to, бо далі сказано «but you can if you want». У перекладі зараховуйте вручну синонімічні варіанти (must / have to, phone / call), яких немає в ключі. Гру можна пройти на швидкість двічі: спершу з англійської, потім з української.&lt;br&gt;">Extra practice можна виконати, якщо лишився час, або дати як розминку на початку наступного уроку. У секції з модальними нагадайте шкалу: mustn’t = заборона, don’t have to = не обов’язково. У реченні про обід правильна відповідь don’t have to, бо далі сказано «but you can if you want». У перекладі зараховуйте вручну синонімічні варіанти (must / have to, phone / call), яких немає в ключі. Гру можна пройти на швидкість двічі: спершу з англійської, потім з української.<br></p>
+  </section>
+  <section id="s8" data-stage="writing" data-min="5">
+    <h2><span class="lk-n">8</span>НМТ Writing and wrap-up <span class="tag">writing</span><span class="lk-mode">teacher + student</span></h2>
+<div class="warn"><p>Лист на НМТ: звертання (<b>Dear Mr Collins,</b>) → одне речення, навіщо пишеш → кожен пункт завдання окремим абзацом → завершення (<b>I hope you will consider my ideas.</b>) → підпис. Мінімум 50 слів, усі пункти обов’язкові.</p></div>
+    <p class="lk-tnote" data-ru="На уроці учень складає план листа (2 хв), а сам лист пише вдома. Домашнє завдання: написати лист 50-70 слів і вивчити слова уроку в грі. Наостанок поверніться до шкали думок з Warm-up: чи змінилася думка учня?&lt;br&gt;">На уроці учень складає план листа (2 хв), а сам лист пише вдома. Домашнє завдання: написати лист 50-70 слів і вивчити слова уроку в грі. Наостанок поверніться до шкали думок з Warm-up: чи змінилася думка учня?<br></p>
+    <h3 class="lk-sub">НМТ Writing: 50-70 words.</h3><div class="qs"><div>Write an email to your head teacher. Say if you support a phone-free day at your school, give two reasons and suggest one rule that would make it fair for everyone.</div></div>
+  </section>
+  <section id="s9" data-stage="homework" data-min="8">
+    <h2><span class="lk-n">9</span>Homework plus <span class="tag">homework</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Встав have to, don’t have to, mustn’t або can.</h3><div class="ty" data-a="mustn’t|must not|can’t|cannot"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>It’s a test, so you ___ talk to your friends.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="don’t have to|do not have to"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Tomorrow is a holiday, so we ___ go to school.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="can"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>In the library you ___ read any book you like, it’s free.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="have to|must"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>If you are late, you ___ go to the office first.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="don’t have to|do not have to"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>We ___ buy books, the school gives them to us.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="mustn’t|must not|can’t|cannot"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>The concert has started, so you ___ talk now.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; mustn’t · don’t have to · can · have to · don’t have to · mustn’t"><b>Відповіді:</b> mustn’t · don’t have to · can · have to · don’t have to · mustn’t</p>
+    <h3 class="lk-sub">Обери правильну відповідь за текстом уроку.</h3><div class="ch" data-a="at 3 pm"><span class="n">1</span><span class="s">At Oakfield, students collect their phones ___.</span><span class="o"><button type="button">in the morning</button><button type="button">at 3 pm</button><button type="button">at lunch</button></span></div>
+<div class="ch" data-a="lost"><span class="n">2</span><span class="s">In the first week, Grace felt ___ without her phone.</span><span class="o"><button type="button">happy</button><button type="button">calm</button><button type="button">lost</button></span></div>
+<div class="ch" data-a="come to class late"><span class="n">3</span><span class="s">Mr Collins says that fewer students ___.</span><span class="o"><button type="button">come to class late</button><button type="button">forget their homework</button><button type="button">get bad marks</button></span></div>
+<div class="ch" data-a="much busier"><span class="n">4</span><span class="s">During breaks, the library became ___.</span><span class="o"><button type="button">quieter</button><button type="button">much busier</button><button type="button">closed</button></span></div>
+<div class="ch" data-a="four books"><span class="n">5</span><span class="s">Max has read ___ this term.</span><span class="o"><button type="button">two books</button><button type="button">four books</button><button type="button">ten books</button></span></div>
+<div class="ch" data-a="keep the rule"><span class="n">6</span><span class="s">Almost two thirds of the students would ___.</span><span class="o"><button type="button">make the rule stricter</button><button type="button">keep the rule</button><button type="button">cancel the rule</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; at 3 pm · lost · come to class late · much busier · four books · keep the rule"><b>Відповіді:</b> at 3 pm · lost · come to class late · much busier · four books · keep the rule</p>
+    <h3 class="lk-sub">Письмо: 2-3 речення на кожне питання.</h3><div class="qs"><div>What are three rules at your school? Use have to, mustn’t or be allowed to.</div><div>Imagine one school day without your phone. What would you do instead?</div><div>Should parents be able to contact their children at school at any time? Why or why not?</div></div>
+  </section>
+  <section class="end"><h2>Great job!</h2><p>See you next lesson.</p></section>
+</div>
+<div class="toast" id="toast"></div>
+<script>window.MURLY_LESSON={"id": "lib-phone-free-school", "title": "The phone-free school", "homework": ["s2", "s3", "s4", "s5", "s7", "s8", "s9"], "hw": {"s2": [{"type": "choice", "instruction": "Match the words with their meanings.", "text": "a locker {a small cupboard to keep your things|quiet and peaceful|a sudden dangerous situation|to call or write to someone|something that takes your attention away}\ncalm {quiet and peaceful|a small cupboard to keep your things|a sudden dangerous situation|to call or write to someone|something that takes your attention away}\nan emergency {a sudden dangerous situation|a small cupboard to keep your things|quiet and peaceful|to call or write to someone|something that takes your attention away}\nto contact {to call or write to someone|a small cupboard to keep your things|quiet and peaceful|a sudden dangerous situation|something that takes your attention away}\na distraction {something that takes your attention away|a small cupboard to keep your things|quiet and peaceful|a sudden dangerous situation|to call or write to someone}"}, {"type": "gap", "instruction": "Complete with: ban, scroll, focused, allowed, research.", "text": "Many schools want to [ban] phones during lessons.\nI can’t stop once I start to [scroll] through videos.\nIt’s easier to stay [focused] in a quiet room.\nAre we [allowed] to use dictionaries in the test?\nWe used the library computers for our history [research]."}], "s3": [{"type": "choice", "instruction": "True or False?", "text": "Students keep their phones in their bags during lessons. {False|True}\nGrace found the first week difficult. {True|False}\nAccording to Mr Collins, students are less focused now. {False|True}\nParents can call the school office if something serious happens. {True|False}"}, {"type": "choice", "instruction": "Choose the best answer (A-D).", "text": "What did Grace notice after the first week? {People talked to each other at lunch|She did not miss her phone at all|Her friends lost their phones|Lunch breaks became shorter}\nAccording to Mr Collins, the rule has helped students to {concentrate better in class|get higher marks in every subject|make more friends online|finish school earlier}\nHow did the school respond to parents’ worries? {It let parents call the office in an emergency|It gave every student a school phone|It cancelled the rule for younger students|It asked parents to visit the school}\nWhy does Max mention books? {He used his breaks differently after the ban|He needed books for his research|The library sold books cheaply|He had to read them for homework}\nMost students wanted to {keep the rule but use phones in the library|stop the rule completely|make the rule stricter|use phones only at lunch}"}], "s4": [{"type": "choice", "instruction": "True or False?", "text": "Mark is happy with the phone-free rule. {False|True}\nMark’s problem is connected with his bus. {True|False}\nSophie thinks lessons have become quieter. {True|False}\nThe students decide to cancel the rule. {False|True}"}, {"type": "choice", "instruction": "Choose the correct answer.", "text": "Mark believes students should {learn to use phones wisely|never use phones at school|buy cheaper phones|use phones only at home}.\nSophie suggests phone time {in the library|in every lesson|at lunch|on the bus}.\nThe vote will take place {on Friday|today|next month|after the holidays}."}], "s5": [{"type": "choice", "instruction": "Choose the correct option.", "text": "Students {have to|don’t have to|can} leave their phones in a locker when they arrive.\nYou {mustn’t|don’t have to|can} use your phone during a test.\nOn Saturdays we {don’t have to|mustn’t|have to} wear a school uniform.\nParents {are allowed to|aren’t allowed to|mustn’t} call the office in an emergency.\nDuring breaks, students are allowed {to play|play|playing} board games in the library."}, {"type": "gap", "instruction": "Переклади англійською.", "text": "Нам не можна користуватися телефонами на уроках → [We are not allowed to use phones in lessons/We aren’t allowed to use phones in lessons/We mustn’t use phones in lessons/We must not use phones in lessons/We can’t use phones in lessons/We cannot use phones in lessons]\nТобі не обов’язково приходити завтра → [You don’t have to come tomorrow/You do not have to come tomorrow]\nУчні мають залишати телефони в шафках → [Students have to leave their phones in lockers/Students must leave their phones in lockers/Students have to leave their phones in the lockers/Students must leave their phones in the lockers]"}], "s7": [{"type": "gap", "instruction": "Встав слово: locker, collect, calm, emergency, contact, distraction.", "text": "Please put your bag in your [locker] before the lesson.\nYou can [collect] your phone from the office at 3 pm.\nThe library is a [calm] place to study.\nCall this number only in an [emergency].\nHow can parents [contact] the school during the day?\nLoud music is a big [distraction] when I do my homework."}, {"type": "choice", "instruction": "Обери правильний варіант: обов’язок, заборона чи вибір.", "text": "It’s Saturday, so we {don’t have to|mustn’t|have to} get up early.\nYou {mustn’t|don’t have to|can} run in the corridor. It’s dangerous.\nEverybody wears a blue jacket because we {have to|don’t have to|aren’t allowed to} wear a uniform.\nAre we {allowed to|allow to|allowed} use calculators in the maths test?\nYou {don’t have to|mustn’t|have to} bring lunch, but you can if you want.\nPhones are a distraction, so students {aren’t allowed to|don’t have to|are allowed to} use them during tests."}, {"type": "gap", "instruction": "Переклади англійською.", "text": "Ми маємо залишати сумки в шафках → [We have to leave our bags in lockers/We have to leave our bags in the lockers/We must leave our bags in lockers/We must leave our bags in the lockers]\nТобі не обов’язково телефонувати мамі → [You don’t have to call your mum/You do not have to call your mum/You don’t have to call your mom/You do not have to call your mom/You don’t have to phone your mum/You do not have to phone your mum]\nМожна мені зателефонувати додому? → [Can I call home?/May I call home?/Can I phone home?/May I phone home?/Am I allowed to call home?]\nНе гортай стрічку на уроці → [Don’t scroll in the lesson/Do not scroll in the lesson/Don’t scroll during the lesson/Do not scroll during the lesson/Don’t scroll in class/Do not scroll in class]\nУчні стали більш зосередженими → [Students have become more focused/Students became more focused/The students have become more focused/The students became more focused]\nШкола заборонила телефони → [The school has banned phones/The school banned phones/The school has banned mobile phones/The school banned mobile phones]"}], "s8": [{"type": "open", "instruction": "НМТ Writing: 50-70 words.", "text": "Write an email to your head teacher. Say if you support a phone-free day at your school, give two reasons and suggest one rule that would make it fair for everyone."}], "s9": [{"type": "gap", "instruction": "Встав have to, don’t have to, mustn’t або can.", "text": "It’s a test, so you [mustn’t/must not/can’t/cannot] talk to your friends.\nTomorrow is a holiday, so we [don’t have to/do not have to] go to school.\nIn the library you [can] read any book you like, it’s free.\nIf you are late, you [have to/must] go to the office first.\nWe [don’t have to/do not have to] buy books, the school gives them to us.\nThe concert has started, so you [mustn’t/must not/can’t/cannot] talk now."}, {"type": "choice", "instruction": "Обери правильну відповідь за текстом уроку.", "text": "At Oakfield, students collect their phones {at 3 pm|at lunch|in the morning}.\nIn the first week, Grace felt {lost|happy|calm} without her phone.\nMr Collins says that fewer students {come to class late|forget their homework|get bad marks}.\nDuring breaks, the library became {much busier|closed|quieter}.\nMax has read {four books|two books|ten books} this term.\nAlmost two thirds of the students would {keep the rule|cancel the rule|make the rule stricter}."}, {"type": "open", "instruction": "Письмо: 2-3 речення на кожне питання.", "text": "What are three rules at your school? Use have to, mustn’t or be allowed to.\nImagine one school day without your phone. What would you do instead?\nShould parents be able to contact their children at school at any time? Why or why not?"}]}};</script>
+<script>
+(function(){var l=(document.cookie.match(/(?:^|; )murly_lang=(\w+)/)||[])[1];try{l=l||localStorage.getItem('murly:tlang')}catch(e){}l=l==='ru'?'ru':'uk';document.querySelectorAll('[data-pairs-'+l+']').forEach(function(b){b.dataset.pairs=b.getAttribute('data-pairs-'+l)});})();
+</script>
+<script>
+const $ = (id) => document.getElementById(id);
+const LIS = {};
+function say(w, rate) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; const v = speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang) && /Google|Natural|Libby|Sonia|Daniel/.test(x.name)) || speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang)); if (v) u.voice = v; u.rate = rate || .95; speechSynthesis.speak(u); } catch (e) { } }
+const sh = (a) => a.map((x) => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map((x) => x[1]);
+document.querySelectorAll('.voc div').forEach((d) => d.onclick = () => say(d.dataset.say));
+document.querySelectorAll('[data-play]').forEach((b) => b.onclick = () => say(LIS[b.dataset.play], b.dataset.slow ? .75 : .95));
+document.querySelectorAll('[data-stop]').forEach((b) => b.onclick = () => { try { speechSynthesis.cancel(); } catch (e) { } });
+document.querySelectorAll('.ch').forEach((q) => q.querySelectorAll('button').forEach((b) => b.onclick = () => { if (q.classList.contains('ok')) return; const ok = b.textContent === q.dataset.a; q.classList.toggle('ok', ok); q.classList.toggle('bad', !ok); if (ok) { const s = q.querySelector('.s'); if (s && s.textContent.includes('___')) { s.textContent = s.textContent.replace('___', q.dataset.a); } } }));
+const norm = (x) => x.toLowerCase().replace(/[’']/g, "'").replace(/[,;:"“”«»]/g, ' ').replace(/\s+/g, ' ').replace(/[.!?]$/, '').trim();
+document.querySelectorAll('.ty').forEach((r) => { const inp = r.querySelector('input'); const chk = () => { const ok = r.dataset.a.split('|').some((a) => norm(a) === norm(inp.value)); r.classList.toggle('ok', ok); r.classList.toggle('bad', !ok && inp.value.trim() !== ''); }; r.querySelector('button').onclick = chk; inp.onkeydown = (e) => { if (e.key === 'Enter') chk(); }; });
+document.querySelectorAll('[data-mt]').forEach((box) => { const pairs = JSON.parse(box.dataset.pairs); const L = sh(pairs.map((p) => p[0])), R = sh(pairs.map((p) => p[1])); let sel = null, done = 0, err = 0; box.innerHTML = L.map((w, i) => `<button type="button" data-w="${w}">${w}</button><button type="button" data-d="${R[i]}">${R[i]}</button>`).join('');
+  box.querySelectorAll('button').forEach((b) => b.onclick = () => { if (b.classList.contains('done')) return; if (!sel || (sel.dataset.w && b.dataset.w) || (sel.dataset.d && b.dataset.d)) { if (sel) sel.classList.remove('sel'); sel = b; b.classList.add('sel'); return; } const w = sel.dataset.w || b.dataset.w, d = sel.dataset.d || b.dataset.d; if (pairs.some((p) => p[0] === w && p[1] === d)) { sel.classList.add('done'); b.classList.add('done'); done++; say(w); if (done === pairs.length) document.querySelector(`[data-mtres="${box.dataset.mt}"]`).textContent = err ? `Done! Mistakes: ${err}` : 'Perfect!'; } else err++; sel.classList.remove('sel'); sel = null; }); });
+document.querySelectorAll('[data-vids]').forEach((box) => JSON.parse(box.dataset.vids).forEach(([id, title, ch, qs]) => { const d = document.createElement('div'); d.className = 'vid'; d.innerHTML = `<div class="frame"><button class="play" type="button" style="background-image:url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)"><span>PLAY</span></button></div><div class="info"><h3>${title}</h3><small>YouTube · ${ch}</small><ol>${qs.map((q) => `<li>${q}</li>`).join('')}</ol></div>`; d.querySelector('.play').onclick = (e) => { e.currentTarget.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&cc_load_policy=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${title}"></iframe>`; }; box.appendChild(d); }));
+document.querySelectorAll('[data-spin]').forEach((b) => { const list = JSON.parse(b.dataset.spin); let last = -1; b.onclick = () => { let i; do { i = Math.floor(Math.random() * list.length); } while (i === last && list.length > 1); last = i; document.getElementById(b.dataset.target).textContent = list[i]; }; });
+try { const k = 'murly:' + (window.MURLY_LESSON ? MURLY_LESSON.id : 'x') + ':hw'; const t = $('hwText'); if (t) { t.value = localStorage.getItem(k) || ''; t.oninput = () => localStorage.setItem(k, t.value); } } catch (e) { }
+const STAGES = [...document.querySelectorAll('.wrap > section[id]')];
+$('stages').innerHTML = STAGES.map((s) => `<a href="#${s.id}"><b>${s.querySelector('.lk-n').textContent}</b><span>${s.dataset.stage}</span><small>${s.dataset.min !== '0' ? s.dataset.min + ' min' : 'at home'}</small></a>`).join('');
+$('teacherBtn').onclick = (e) => { const on = document.body.classList.toggle('teacher'); e.currentTarget.textContent = on ? 'Student version' : 'Teacher version'; };
+</script>
+<script src="/game-lessons/kit.js" defer></script>
+</body>
+</html>

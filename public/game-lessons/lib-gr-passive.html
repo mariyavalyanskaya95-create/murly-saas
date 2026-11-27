@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>It is made, it was built: the passive (A2) | Murly</title>
+<link rel="icon" href="/favicon.svg">
+<meta name="description" content="Будуємо пасив: am / is / are + V3 і was / were + V3
+Розуміємо, коли важливо не хто зробив, а що сталося з предметом
+Вживаємо by, щоб сказати, хто зроб">
+<link rel="canonical" href="https://murly.com.ua/game-lessons/lib-gr-passive.html">
+<style>
+:root{--paper:#F3F0EA;--ink:#17181C;--violet:#3D4A7A;--lav:#D9D3C7;--pink:#E9C9BC;--green:#D4E2CF;--white:#fff;--muted:#62646B;--accent:#B5482F}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px 80px}
+/* hero */
+.hero{background:linear-gradient(rgba(16,17,22,.5),rgba(16,17,22,.72)),url("https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=1400&q=70&auto=format&fit=crop");color:#fff;padding:70px 18px 56px;text-align:center;position:relative;overflow:hidden}
+.hero .kicker{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#E9C9BC;font-weight:700}
+.hero .cr{position:absolute;right:12px;bottom:8px;font-size:11px;color:rgba(255,255,255,.6)}
+.hero h1{margin:8px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(36px,6vw,64px);letter-spacing:-.5px;font-weight:700}
+.hero h1 span{color:var(--pink);font-style:italic}
+.hero p{margin:12px 0 0;font-size:17px;color:#e6e2da}
+.hero .flags{display:flex;justify-content:center;gap:12px;margin-top:22px;flex-wrap:wrap}
+.hero .flags svg{width:40px;height:26px;border-radius:3px;opacity:.9}
+/* sections */
+section{margin-top:30px;background:var(--white);border-radius:18px;padding:28px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.05)}
+section h2{margin:0 0 10px;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:28px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tag{font-family:"Segoe UI",system-ui,sans-serif;font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--paper);color:var(--accent);text-transform:uppercase;letter-spacing:1px}
+.lk-n{display:inline-grid;place-items:center;width:42px;height:42px;background:var(--violet);color:#fff;border-radius:50%;font-size:21px;flex:none}
+.lk-mode{font-size:13px;font-weight:700;border:2px dashed var(--lav);color:var(--muted);padding:2px 10px;border-radius:999px}
+.lk-ins{font-size:17px;background:var(--paper);border-radius:12px;padding:10px 14px;margin:6px 0 18px}
+.lk-sub{margin:24px 0 10px;font-size:19px}
+.btn{font:inherit;font-weight:700;border:0;border-radius:999px;background:var(--ink);color:#fff;padding:10px 20px;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+.btn.alt{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+/* teacher */
+.lk-tbtn{position:fixed;right:16px;top:70px;z-index:45;font:inherit;font-weight:800;border:2px solid var(--ink);background:var(--pink);padding:8px 14px;border-radius:12px;cursor:pointer}
+body.teacher .lk-tbtn{background:var(--green)}
+.lk-ans,.lk-tnote{display:none}
+body.teacher .lk-ans{display:block;margin-top:8px;font-weight:700;color:#1d5a12;background:var(--green);border-left:5px solid #5aa845;padding:6px 10px;font-size:15px;border-radius:6px}
+body.teacher .lk-tnote{display:block;margin-top:14px;background:#fff3f7;border-left:5px solid #d9789a;padding:8px 12px;font-size:15px;border-radius:6px}
+/* overview */
+.lk-overview ul{font-size:17px;line-height:1.7;margin:6px 0 16px}
+.lk-stages{display:flex;flex-wrap:wrap;gap:8px}
+.lk-stages a{display:grid;border-radius:14px;padding:8px 12px;text-decoration:none;color:var(--ink);background:var(--paper);font-weight:700;min-width:100px}
+.lk-stages a span{text-transform:capitalize}
+.lk-stages a b{font-size:20px;color:var(--violet)}
+.lk-stages a small{font-weight:600;color:var(--muted)}
+/* warm-up */
+.taxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tax{background:var(--paper);border-radius:18px;padding:16px;display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center}
+.tax svg{width:56px;height:56px}
+.tax b{display:block;font-size:17px}
+.tax small{color:var(--muted);font-size:14px}
+.qs{display:grid;gap:10px;margin-top:18px}
+.qs div{background:var(--green);border-radius:14px;padding:10px 16px;font-size:18px;font-weight:600}
+.phr{background:#fff7e8;border-radius:14px;padding:12px 16px;margin-top:16px;font-size:15px}
+.phr ul{margin:6px 0 0;padding-left:18px}
+.fic{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:16px}
+.fic .c{background:#fff;border:2px solid #1B2140;border-radius:16px;padding:14px 16px;box-shadow:3px 3px 0 #1B2140}
+.fic .c b{display:block;font-size:18px;line-height:1.35;margin-bottom:8px}
+.fic .c .k{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.fic .c .k span{font-size:13px;background:#eef1fb;border-radius:999px;padding:3px 10px}
+.fic .c details{margin-top:8px;font-size:15px;color:#3b4160}
+.fic .c summary{cursor:pointer;font-weight:700;color:#534AB7}
+.fi-n{display:inline-flex;width:28px;height:28px;border-radius:50%;background:#2F4BA0;color:#fff;align-items:center;justify-content:center;font-size:14px;margin-right:6px}
+/* vocab */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:12px}
+.vc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:2px solid transparent;transition:border-color .2s,transform .2s}
+.vc:hover{border-color:var(--violet);transform:translateY(-2px)}
+.vc b{font-size:18px;display:flex;align-items:center;gap:8px}
+.vc b svg{width:20px;height:20px;flex:none;color:var(--violet)}
+.vc p{margin:6px 0 0;font-size:14px;color:var(--muted)}
+.vc em{display:block;margin-top:6px;font-size:14px;color:var(--violet);font-style:normal;font-weight:600}
+.vc.played{background:#e6ecfb}
+/* grammar */
+.gram{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.gb{border-radius:18px;padding:16px}
+.gb h3{margin:0 0 6px;font-size:19px}
+.gb .f{display:inline-block;background:#fff;border-radius:8px;padding:3px 10px;font-weight:800;margin:4px 0;font-family:Consolas,monospace;font-size:15px}
+.gb p{margin:6px 0 0;font-size:15px}
+.g1{background:var(--pink)}.g2{background:var(--lav)}.g3{background:var(--green)}.g4{background:#fbe7c6}
+.warn{margin-top:14px;background:var(--ink);color:#fff;border-radius:14px;padding:12px 16px;font-size:16px}
+.warn b{color:var(--pink)}
+.q{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:2px dashed var(--paper);font-size:18px}
+.q:last-child{border-bottom:0}
+.q .n{width:32px;height:32px;flex:none;display:grid;place-items:center;background:var(--ink);color:#fff;border-radius:50%;font-weight:800;font-size:15px}
+.opt{font:inherit;font-size:16px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:10px;padding:4px 12px;cursor:pointer;margin:0 2px}
+.opt.ok{background:var(--green);border-color:#5aa845}
+.opt.bad{background:var(--pink);animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+/* tour */
+.tour{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.law{border-radius:22px;overflow:hidden;background:var(--paper);display:flex;flex-direction:column}
+.law .pic{height:150px;display:grid;place-items:center;position:relative}
+.law .pic svg.ill{width:130px;height:130px}
+.law .pic svg.fl{position:absolute;left:14px;top:14px;width:46px;height:30px;border-radius:5px;box-shadow:0 2px 0 rgba(0,0,0,.25)}
+.law .pic .no{position:absolute;right:14px;top:14px;background:var(--ink);color:#fff;font-weight:800;border-radius:999px;padding:2px 10px;font-size:13px}
+.law .body{padding:14px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.law h3{margin:0;font-size:20px}
+.law .where{font-size:13px;font-weight:800;color:var(--violet);text-transform:uppercase;letter-spacing:1px}
+.law p{margin:0;font-size:16px}
+.law .why{font-size:14px;color:var(--muted)}
+.law .dq{margin-top:auto;background:#fff;border-radius:12px;padding:8px 12px;font-weight:700;font-size:15px}
+.law .lsn{font:inherit;font-size:13px;font-weight:700;background:none;border:0;color:var(--violet);cursor:pointer;padding:0;text-align:left}
+/* game */
+.game{max-width:720px;margin:0 auto;text-align:center}
+.score{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.score span{background:var(--paper);border-radius:999px;padding:6px 16px;font-weight:800}
+.stmt{background:var(--ink);color:#fff;border-radius:22px;padding:28px 24px;min-height:150px;display:grid;place-items:center;font-size:23px;font-weight:700;position:relative}
+.stmt small{position:absolute;top:12px;left:18px;font-size:13px;color:var(--lav);font-weight:700}
+.choose{display:flex;justify-content:center;gap:14px;margin:18px 0}
+.choose button{font:inherit;font-size:18px;font-weight:700;border:2px solid var(--ink);border-radius:999px;padding:12px 28px;cursor:pointer}
+.choose .bl{background:var(--green)}.choose .bm{background:var(--pink)}
+.choose button:disabled{opacity:.5;cursor:default}
+.verdict{min-height:70px;font-size:17px;background:var(--paper);border-radius:16px;padding:12px 16px;text-align:left}
+.verdict b.r{color:#2d7a1d}.verdict b.w{color:#b23a62}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:14px}
+.dots i{width:14px;height:14px;border-radius:50%;background:var(--paper)}
+.dots i.r{background:#7cc663}.dots i.w{background:#e47b9f}.dots i.c{outline:3px solid var(--violet)}
+.final{font-size:22px;font-weight:800;color:var(--violet)}
+/* invent */
+.inv{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.frames{display:grid;gap:10px}
+.frames label{font-size:14px;font-weight:700;color:var(--muted)}
+.frames select,.frames input{font:inherit;width:100%;padding:8px 10px;border:2px solid var(--lav);border-radius:10px;background:#fff}
+.poster{background:var(--paper);border:3px solid var(--ink);border-radius:20px;padding:22px;text-align:center;min-height:260px;display:flex;flex-direction:column;gap:10px;justify-content:center}
+.poster .seal{width:70px;height:70px;margin:0 auto}
+.poster h3{margin:0;font-size:15px;letter-spacing:2px;text-transform:uppercase;color:var(--violet)}
+.poster .rule{font-size:22px;font-weight:800}
+.poster .pen{font-size:16px;color:var(--muted)}
+.ideas{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ideas span{background:var(--pink);border-radius:999px;padding:5px 12px;font-size:14px;font-weight:600}
+/* roleplay */
+.rp{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.role{border-radius:20px;padding:18px}
+.role h3{margin:0 0 6px;display:flex;align-items:center;gap:10px}
+.role h3 svg{width:42px;height:42px}
+.role ul{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.r1{background:var(--lav)}.r2{background:var(--green)}
+.scen{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:16px}
+.sc{background:var(--paper);border-radius:16px;padding:14px;cursor:pointer;border:3px solid transparent}
+.sc.on{border-color:var(--violet);background:#fff}
+.sc b{display:block;font-size:17px;margin-bottom:4px}
+.sc p{margin:0;font-size:15px}
+.timer{font-size:40px;font-weight:800;text-align:center;margin:14px 0 6px;color:var(--violet)}
+.ctr{text-align:center}
+/* homework */
+.hwb{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hwc{background:var(--paper);border-radius:18px;padding:18px}
+.hwc h3{margin:0 0 8px}
+.hwc ol,.hwc ul{margin:6px 0 0;padding-left:20px;line-height:1.7}
+.hwc textarea{width:100%;min-height:150px;font:inherit;border:2px solid var(--lav);border-radius:12px;padding:10px;margin-top:10px}
+.end{text-align:center;background:var(--ink);color:#fff;box-shadow:none}
+.end h2{justify-content:center}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(140px);background:var(--ink);color:#fff;font-weight:800;padding:12px 22px;border-radius:14px;transition:transform .3s;z-index:50}
+.toast.show{transform:translateX(-50%) translateY(0)}
+/* photos */
+.ph{margin:0}
+.ph img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:14px;background:var(--paper)}
+.ph figcaption{font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.2px}
+.tax{grid-template-columns:1fr !important;padding:12px !important}
+.law .pic{height:auto !important;display:block !important;padding:0;position:relative}
+.law .pic .ph img{border-radius:0;aspect-ratio:16/10;transition:filter .5s}
+.law .pic .ph figcaption{padding:4px 12px 0}
+.law.hide .pic .ph img{filter:blur(10px) grayscale(.6)}
+.law.hide .reveal-body,.law.hide .fl,.law.hide .where{visibility:hidden}
+.law .clue{font-size:15px;font-style:italic;color:var(--ink)}
+.law .gc{display:flex;flex-wrap:wrap;gap:6px}
+.law .gc button{font:inherit;font-size:14px;font-weight:600;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:4px 12px;cursor:pointer}
+.law .gc button.ok{background:var(--green)}.law .gc button.bad{background:var(--pink)}
+.law:not(.hide) .guess{display:none}
+.fair{display:grid;gap:4px;background:#fff;border-radius:12px;padding:8px 12px}
+.fair .ends{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.fair input{width:100%;accent-color:var(--accent)}
+.fair output{font-size:14px;font-weight:700;color:var(--accent)}
+.gph{max-width:720px;margin:0 auto 12px}
+.gph img{aspect-ratio:21/9}
+.fine{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.fq{background:var(--paper);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.fq h3{margin:0;font-size:18px}
+.fq .opts{display:flex;flex-wrap:wrap;gap:6px}
+.fq .opts button{font:inherit;font-size:14px;font-weight:700;border:1.5px solid var(--ink);background:#fff;border-radius:999px;padding:5px 12px;cursor:pointer}
+.fq .opts button.ok{background:var(--green)}.fq .opts button.bad{background:var(--pink)}
+.fq .res{font-size:15px;min-height:22px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{position:relative;aspect-ratio:16/9;background:#111}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;cursor:pointer;background:#111 center/cover;display:grid;place-items:center}
+.vid .play span{background:rgba(0,0,0,.7);color:#fff;font-weight:700;border-radius:999px;padding:10px 20px;font-size:15px;letter-spacing:1px}
+.vid .info{padding:14px 16px}
+.vid .info h3{margin:0 0 2px;font-size:18px}
+.vid .info small{color:var(--muted)}
+.vid .info ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+@media(max-width:760px){.inv,.rp,.hwb{grid-template-columns:1fr}.lk-tbtn{top:auto;bottom:70px}}
+
+.pr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.pb{border-radius:18px;padding:16px 18px}
+.pb h3{margin:0;font-family:Georgia,serif;font-size:30px}
+.pb .m{font-size:15px;color:var(--muted);margin:2px 0 8px}
+.pb .chips{display:flex;flex-wrap:wrap;gap:6px}
+.pb .chips span{background:#fff;border-radius:999px;padding:4px 11px;font-size:14px;font-weight:600}
+.pb ul{margin:10px 0 0;padding-left:18px;font-size:15px}
+.p-in{background:#DCE6F5}.p-at{background:#F3D9CF}.p-on{background:#D4E2CF}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-size:15px;margin-top:10px}
+.ex div{background:var(--paper);border-radius:10px;padding:8px 12px}
+.ex b{color:var(--accent)}
+.q{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.q .n{font-weight:800;color:var(--violet);min-width:24px}
+.q .gap{display:inline-block;min-width:44px;border-bottom:2px solid var(--ink);text-align:center;font-weight:800}
+.q .opts{margin-left:auto;display:flex;gap:6px}
+.q .opts button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 14px;cursor:pointer}
+.q.ok{background:#DDEED7}.q.ok .gap{color:#2F7A3B}
+.q.bad{background:#F6DAD3}
+.score{font-weight:800;margin-top:12px}
+.text{font-size:18px;line-height:1.75;background:var(--paper);border-radius:16px;padding:18px 22px}
+.text h3{margin:0 0 6px;font-family:Georgia,serif;font-size:24px}
+.text p{margin:0 0 12px}
+.text.hl mark{background:#F3D9CF;border-radius:4px;padding:0 3px;font-weight:700}
+.tf{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:9px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px}
+.tf .opts{margin-left:auto;display:flex;gap:6px}
+.tf button{font:inherit;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.tf.ok{background:#DDEED7}.tf.bad{background:#F6DAD3}
+.disc{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px;margin-top:6px}
+.disc div{background:var(--green);border-radius:14px;padding:12px 16px;font-size:17px;font-weight:600}
+.disc div i{font-style:normal;color:var(--violet);margin-right:6px}
+.spin{text-align:center;margin-top:16px}
+.spin .card{display:inline-block;min-height:80px;min-width:min(560px,100%);background:var(--ink);color:#fff;border-radius:18px;padding:20px 24px;font-size:22px;font-weight:700;margin-bottom:12px}
+@media(max-width:700px){.ex{grid-template-columns:1fr}}
+
+.hero{background-size:cover!important;background-position:center!important}
+.voc{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.voc div{background:var(--paper);border-radius:14px;padding:10px 14px;cursor:pointer;border:2px solid transparent}
+.voc div:hover{border-color:var(--violet)}
+.voc b{display:block;font-size:18px}.voc span{display:block;color:var(--accent);font-weight:700;font-size:15px}.voc em{display:block;font-size:14px;color:var(--muted);margin-top:3px}
+.mt{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:10px}
+.mt button{font:inherit;font-size:16px;text-align:left;border:2px solid var(--ink);background:#fff;border-radius:14px;padding:9px 14px;cursor:pointer}
+.mt button.sel{background:#FFE7A8}.mt button.done{background:#CDE8C6;border-color:#4C9A5B;cursor:default}
+.ch{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ch .n{font-weight:800;color:var(--violet);min-width:24px}
+.ch .o{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+.ch .o button{font:inherit;font-size:15px;font-weight:700;border:2px solid var(--ink);background:#fff;border-radius:999px;padding:3px 12px;cursor:pointer}
+.ch.ok{background:#DDEED7}.ch.bad{background:#F6DAD3}
+.ty{padding:10px 12px;border-radius:12px;background:var(--paper);margin-top:8px;font-size:17px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.ty input{font:inherit;border:2px solid var(--ink);border-radius:10px;padding:4px 10px;width:220px}
+.ty.ok{background:#DDEED7}.ty.bad{background:#F6DAD3}
+.ty small{color:var(--muted)}
+.photo{width:100%;height:300px;object-fit:cover;border-radius:16px;display:block}
+.cap{font-size:11px;color:var(--muted);margin:4px 0 12px}
+.pics{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.pics figure{margin:0;background:var(--paper);border-radius:16px;overflow:hidden}
+.pics img{width:100%;height:170px;object-fit:cover;display:block}
+.pics figcaption{padding:8px 12px;font-weight:700}
+.pics small{display:block;font-weight:400;font-size:10px;color:var(--muted)}
+.lis{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:8px 0 14px}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.vid{background:var(--paper);border-radius:16px;overflow:hidden}
+.vid .frame{aspect-ratio:16/9;background:#000;position:relative}
+.vid .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:0;border:0;background-size:cover;background-position:center;cursor:pointer;display:grid;place-items:center}
+.vid .play span{background:#E5484D;color:#fff;font-weight:800;border-radius:12px;padding:10px 20px}
+.vid .info{padding:12px 16px}.vid h3{margin:0;font-size:18px}.vid small{color:var(--muted)}
+.vid ol{margin:8px 0 0;padding-left:20px;font-size:15px;line-height:1.6}
+.tbl{width:100%;border-collapse:collapse;font-size:15px}
+.tbl th,.tbl td{border:1px solid #ddd;padding:8px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--paper)}
+@media(max-width:700px){.mt{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="/game-lessons/kit.css">
+</head>
+<body>
+<header class="hero">
+  <div class="kicker">A2 · teens · Граматика: пасивний стан (is done / was done)</div>
+  <h1>It is made, it was built: the passive</h1>
+  <p>A2 · 10 parts · 60 min</p>
+  <span class="cr">Photo: Unsplash</span>
+</header>
+<button class="lk-tbtn" id="teacherBtn" type="button">Teacher version</button>
+<div class="wrap">
+  <section class="lk-overview">
+    <h2>In this lesson you will:</h2>
+    <ul><li>Будуємо пасив: am / is / are + V3 і was / were + V3
+Розуміємо, коли важливо не хто зробив, а що сталося з предметом
+Вживаємо by, щоб сказати, хто зробив: painted by Leonardo
+Розповідаємо, де і з чого зроблені речі навколо нас</li></ul>
+    <div class="lk-stages" id="stages"></div>
+  </section>
+  <section id="s1" data-stage="warm-up" data-min="4">
+    <h2><span class="lk-n">1</span>Warm-up <span class="tag">warm-up</span><span class="lk-mode">teacher + student</span></h2>
+<div class="qs"><div>What is your favourite snack? Do you know where it comes from?</div><div>Look at your clothes. Where do you think they come from?</div><div>What is your favourite book or film? Who wrote or made it?</div><div>Which famous building do you want to see?</div><div>What is your favourite app? Who created it?</div><div>What do you think: who invented pizza?</div><div>How old is your school building?</div><div>Who cleans your room: you, your parents or nobody?</div></div>
+    <p class="lk-tnote" data-ru="Обери 4-5 питань. Наприкінці покажи будь-яку річ (ручку, телефон) і запитай: «Як сказати англійською “це зроблено в Китаї”?» Учні часто кажуть «It made in China» або «It is make in China». Запиши варіант учня.&lt;br&gt;">Обери 4-5 питань. Наприкінці покажи будь-яку річ (ручку, телефон) і запитай: «Як сказати англійською “це зроблено в Китаї”?» Учні часто кажуть «It made in China» або «It is make in China». Запиши варіант учня.<br></p>
+  </section>
+  <section id="s2" data-stage="practice" data-min="7">
+    <h2><span class="lk-n">2</span>Lead-in <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<div class="text"><p><b>Fun facts quiz from our school blog</b></p><p>1. The Harry Potter books were written by J. K. Rowling. The first book was published in 1997.<br>2. The Eiffel Tower was built for a big exhibition in Paris in 1889. Many people hated it at first!<br>3. The Mona Lisa was painted by Leonardo da Vinci. Today it is visited by millions of people every year.<br>4. The first video on YouTube was uploaded in 2005. It is only 19 seconds long and it is about elephants at a zoo.<br>5. Tea is grown in China, India and many other countries. In Britain, about 100 million cups of tea are drunk every day.<br>6. Bubble tea was invented in Taiwan in the 1980s.</p><p>And one fact about our school: the windows in our classroom are cleaned once a year. You can see it.</p></div>
+    <div class="voc"><div data-say="fun fact. "><b>fun fact</b><span><span data-tr-uk="цікавий факт" data-tr-ru="цікавий факт">цікавий факт</span></span><em></em></div>
+<div data-say="write. "><b>write</b><span><span data-tr-uk="писати" data-tr-ru="писати">писати</span></span><em></em></div>
+<div data-say="publish. "><b>publish</b><span><span data-tr-uk="видавати, публікувати" data-tr-ru="видавати, публікувати">видавати, публікувати</span></span><em></em></div>
+<div data-say="build. "><b>build</b><span><span data-tr-uk="будувати" data-tr-ru="будувати">будувати</span></span><em></em></div>
+<div data-say="exhibition. "><b>exhibition</b><span><span data-tr-uk="виставка" data-tr-ru="виставка">виставка</span></span><em></em></div>
+<div data-say="paint. "><b>paint</b><span><span data-tr-uk="малювати фарбами" data-tr-ru="малювати фарбами">малювати фарбами</span></span><em></em></div>
+<div data-say="visit. "><b>visit</b><span><span data-tr-uk="відвідувати" data-tr-ru="відвідувати">відвідувати</span></span><em></em></div>
+<div data-say="upload. "><b>upload</b><span><span data-tr-uk="завантажувати (в мережу)" data-tr-ru="завантажувати (в мережу)">завантажувати (в мережу)</span></span><em></em></div>
+<div data-say="grow. "><b>grow</b><span><span data-tr-uk="вирощувати" data-tr-ru="вирощувати">вирощувати</span></span><em></em></div>
+<div data-say="invent. "><b>invent</b><span><span data-tr-uk="винаходити" data-tr-ru="винаходити">винаходити</span></span><em></em></div>
+<div data-say="clean. "><b>clean</b><span><span data-tr-uk="прибирати, чистити" data-tr-ru="прибирати, чистити">прибирати, чистити</span></span><em></em></div>
+<div data-say="made in. "><b>made in</b><span><span data-tr-uk="виготовлено в" data-tr-ru="виготовлено в">виготовлено в</span></span><em></em></div>
+<div data-say="by. "><b>by</b><span><span data-tr-uk="(ким) кимось" data-tr-ru="(ким) кимось">(ким) кимось</span></span><em></em></div>
+<div data-say="million. "><b>million</b><span><span data-tr-uk="мільйон" data-tr-ru="мільйон">мільйон</span></span><em></em></div></div>
+    <div class="mt" data-mt="m2" data-pairs="[[&quot;fun fact&quot;, &quot;цікавий факт&quot;], [&quot;write&quot;, &quot;писати&quot;], [&quot;publish&quot;, &quot;видавати, публікувати&quot;], [&quot;build&quot;, &quot;будувати&quot;], [&quot;exhibition&quot;, &quot;виставка&quot;], [&quot;paint&quot;, &quot;малювати фарбами&quot;], [&quot;visit&quot;, &quot;відвідувати&quot;], [&quot;upload&quot;, &quot;завантажувати (в мережу)&quot;]]"></div><div class="score" data-mtres="m2"></div>
+    <h3 class="lk-sub">Прочитай факти і обери True або False.</h3><div class="ch" data-a="True"><span class="n">1</span><span class="s">The Harry Potter books were written by J. K. Rowling.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="False"><span class="n">2</span><span class="s">The Eiffel Tower was built in 1999.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="True"><span class="n">3</span><span class="s">The Mona Lisa was painted by Leonardo da Vinci.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="True"><span class="n">4</span><span class="s">The first YouTube video was uploaded in 2005.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="False"><span class="n">5</span><span class="s">Tea is grown only in Britain.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+<div class="ch" data-a="False"><span class="n">6</span><span class="s">Bubble tea was invented in Japan.</span><span class="o"><button type="button">True</button><button type="button">False</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; True · False · True · True · False · False"><b>Відповіді:</b> True · False · True · True · False · False</p>
+    <p class="lk-tnote" data-ru="Перед читанням учень вгадує відповіді на питання (Who wrote Harry Potter? When was the Eiffel Tower built?), потім читає і перевіряє. Після True / False попроси підкреслити всі is / are / was / were + V3. Запитай: хто будував Ейфелеву вежу? Хто вирощує чай? Чи важливо це в тексті? Учень сам помітить: важлива річ, а не людина.&lt;br&gt;">Перед читанням учень вгадує відповіді на питання (Who wrote Harry Potter? When was the Eiffel Tower built?), потім читає і перевіряє. Після True / False попроси підкреслити всі is / are / was / were + V3. Запитай: хто будував Ейфелеву вежу? Хто вирощує чай? Чи важливо це в тексті? Учень сам помітить: важлива річ, а не людина.<br></p>
+  </section>
+  <section id="s3" data-stage="practice" data-min="5">
+    <h2><span class="lk-n">3</span>Rule <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<div class="warn"><p><b>Пасив = be + третя форма дієслова (V3).</b><br>Важливо не ХТО зробив, а ЩО сталося з предметом.</p><p><b>Present:</b> am / is / are + V3<br>Pizza <b>is made</b> with cheese. = Піцу роблять (готують) з сиром.<br>These phones <b>are made</b> in Korea. = Ці телефони виготовляють у Кореї.</p><p><b>Past:</b> was / were + V3<br>This house <b>was built</b> in 1950. = Цей будинок побудували в 1950 році.<br>The cakes <b>were eaten</b> in five minutes. = Торти з’їли за п’ять хвилин.</p><p><b>Хто зробив?</b> Додаємо <b>by</b>: The Mona Lisa was painted <b>by</b> Leonardo.<br><b>Заперечення і питання:</b> It <b>isn’t</b> made in China. | <b>Was</b> it <b>built</b> in 2000?</p><p><b>Лайфхак «Головний герой».</b> В активному реченні герой той, хто робить (Leonardo painted it). У пасиві героєм стає предмет (It was painted). Українською часто кажемо «його побудували», «тут продають», а англійською це пасив.</p></div>
+    <p class="lk-tnote" data-ru="Напиши активне речення Leonardo painted the Mona Lisa і стрілкою переверни: The Mona Lisa was painted by Leonardo. Покажи, що be бере на себе час (is / was), а дієслово завжди V3. На все 5 хв.&lt;br&gt;">Напиши активне речення Leonardo painted the Mona Lisa і стрілкою переверни: The Mona Lisa was painted by Leonardo. Покажи, що be бере на себе час (is / was), а дієслово завжди V3. На все 5 хв.<br></p>
+  </section>
+  <section id="s4" data-stage="game" data-min="4">
+    <h2><span class="lk-n">4</span>Game: is, are, was or were? <span class="tag">game</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Is, are, was or were?</h3><p class="lk-ins">Choose is, are, was or were</p>
+    <div class="spin"><div class="card" id="g41">Click "Next card"</div><br><button class="btn" type="button" data-spin="[&quot;English ___ spoken in many countries.&quot;, &quot;These sneakers ___ made in Vietnam.&quot;, &quot;This castle ___ built 500 years ago.&quot;, &quot;The cookies ___ eaten last night.&quot;, &quot;Our homework ___ checked every Monday.&quot;, &quot;The first iPhone ___ sold in 2007.&quot;, &quot;Bananas ___ grown in hot countries.&quot;, &quot;The windows ___ broken yesterday.&quot;, &quot;Breakfast ___ served at 8 every day.&quot;, &quot;The Harry Potter films ___ made in Britain.&quot;]" data-target="g41">Next card</button></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; is · are · was · were · is · was · are · were · is · were"><b>Відповіді:</b> is · are · was · were · is · was · are · were · is · were</p>
+    <p class="lk-tnote" data-ru="Учень сам обирає формат гри. Для кожної відповіді питай дві речі: однина чи множина? теперішнє чи минуле?&lt;br&gt;">Учень сам обирає формат гри. Для кожної відповіді питай дві речі: однина чи множина? теперішнє чи минуле?<br></p>
+  </section>
+  <section id="s5" data-stage="practice" data-min="12">
+    <h2><span class="lk-n">5</span>Practice <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Розкрий дужки. Вжий пасив (is / are / was / were + V3).</h3><div class="ty" data-a="is grown"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Coffee ___ (grow) in Brazil.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="was written"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>This song ___ (write) in 2015.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="is cleaned"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>The school canteen ___ (clean) every evening.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="were taken"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>These photos ___ (take) on my phone.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="is made"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Paper ___ (make) from wood.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="was played"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>The match ___ (play) in the rain.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="was painted"><span class="n" style="font-weight:800;color:var(--violet)">7</span><span>Our classroom ___ (paint) last summer.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="are posted"><span class="n" style="font-weight:800;color:var(--violet)">8</span><span>Thousands of selfies ___ (post) every minute.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; is grown · was written · is cleaned · were taken · is made · was played · was painted · are posted"><b>Відповіді:</b> is grown · was written · is cleaned · were taken · is made · was played · was painted · are posted</p>
+    <h3 class="lk-sub">Обери правильний варіант.</h3><div class="ch" data-a="was stolen"><span class="n">1</span><span class="s">My bike ___ last week.</span><span class="o"><button type="button">stole</button><button type="button">was steal</button><button type="button">was stolen</button></span></div>
+<div class="ch" data-a="are made"><span class="n">2</span><span class="s">These shoes ___ in Italy.</span><span class="o"><button type="button">made</button><button type="button">are made</button><button type="button">are make</button></span></div>
+<div class="ch" data-a="was cancelled"><span class="n">3</span><span class="s">The lesson ___ yesterday.</span><span class="o"><button type="button">is cancel</button><button type="button">cancelled</button><button type="button">was cancelled</button></span></div>
+<div class="ch" data-a="is eaten"><span class="n">4</span><span class="s">Pizza ___ all over the world.</span><span class="o"><button type="button">eats</button><button type="button">is eaten</button><button type="button">is eat</button></span></div>
+<div class="ch" data-a="were cleaned"><span class="n">5</span><span class="s">The windows ___ last Friday.</span><span class="o"><button type="button">cleaned</button><button type="button">was cleaned</button><button type="button">were cleaned</button></span></div>
+<div class="ch" data-a="was written by"><span class="n">6</span><span class="s">This book ___ a 15-year-old girl.</span><span class="o"><button type="button">wrote by</button><button type="button">was written from</button><button type="button">was written by</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; was stolen · are made · was cancelled · is eaten · were cleaned · was written by"><b>Відповіді:</b> was stolen · are made · was cancelled · is eaten · were cleaned · was written by</p>
+    <h3 class="lk-sub">Теперішній чи минулий пасив?</h3><div class="ch" data-a="present"><span class="n">1</span><span class="s">is made ___</span><span class="o"><button type="button">past</button><button type="button">present</button></span></div>
+<div class="ch" data-a="past"><span class="n">2</span><span class="s">was built ___</span><span class="o"><button type="button">past</button><button type="button">present</button></span></div>
+<div class="ch" data-a="present"><span class="n">3</span><span class="s">are grown ___</span><span class="o"><button type="button">present</button><button type="button">past</button></span></div>
+<div class="ch" data-a="past"><span class="n">4</span><span class="s">were eaten ___</span><span class="o"><button type="button">present</button><button type="button">past</button></span></div>
+<div class="ch" data-a="present"><span class="n">5</span><span class="s">is spoken ___</span><span class="o"><button type="button">present</button><button type="button">past</button></span></div>
+<div class="ch" data-a="past"><span class="n">6</span><span class="s">was painted ___</span><span class="o"><button type="button">present</button><button type="button">past</button></span></div>
+<div class="ch" data-a="present"><span class="n">7</span><span class="s">are sold ___</span><span class="o"><button type="button">past</button><button type="button">present</button></span></div>
+<div class="ch" data-a="past"><span class="n">8</span><span class="s">were taken ___</span><span class="o"><button type="button">present</button><button type="button">past</button></span></div>
+<div class="ch" data-a="present"><span class="n">9</span><span class="s">is cleaned ___</span><span class="o"><button type="button">present</button><button type="button">past</button></span></div>
+<div class="ch" data-a="past"><span class="n">10</span><span class="s">was invented ___</span><span class="o"><button type="button">present</button><button type="button">past</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; present · past · present · past · present · past · present · past · present · past"><b>Відповіді:</b> present · past · present · past · present · past · present · past · present · past</p>
+    <h3 class="lk-sub">Переклади англійською.</h3><div class="ty" data-a="This phone is made in China|This phone was made in China"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Цей телефон зроблено в Китаї</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="English is spoken in many countries"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>Англійською мовою розмовляють у багатьох країнах</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="This house was built in 1990"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>Цей будинок побудували в 1990 році</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="My cookies were eaten|My biscuits were eaten"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Моє печиво з’їли</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="These photos were taken in the Rocky Mountains|These photos were taken in the Rockies"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>Ці фото зробили у Скелястих горах</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="The picture was painted by my sister|The painting was painted by my sister|The picture was drawn by my sister"><span class="n" style="font-weight:800;color:var(--violet)">6</span><span>Картину намалювала моя сестра</span><input type="text" autocomplete="off" spellcheck="false" style="width:360px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; This phone is made in China · English is spoken in many countries · This house was built in 1990 · My cookies were eaten · These photos were taken in the Rocky Mountains · The picture was painted by my sister"><b>Відповіді:</b> This phone is made in China · English is spoken in many countries · This house was built in 1990 · My cookies were eaten · These photos were taken in the Rocky Mountains · The picture was painted by my sister</p>
+    <p class="lk-tnote" data-ru="Gap і choice учень робить сам, потім перевірка. Головна пастка: «It made in China» без be. Друга: was / were (The windows were). У перекладі допомагай знайти, що українською пасив звучить як «побудували», «з’їли», «розмовляють».&lt;br&gt;">Gap і choice учень робить сам, потім перевірка. Головна пастка: «It made in China» без be. Друга: was / were (The windows were). У перекладі допомагай знайти, що українською пасив звучить як «побудували», «з’їли», «розмовляють».<br></p>
+  </section>
+  <section id="s6" data-stage="video" data-min="8">
+    <h2><span class="lk-n">6</span>Video: Mr Bean at the fete <span class="tag">video</span><span class="lk-mode">teacher + student</span></h2>
+<div class="frame" style="aspect-ratio:16/9"><iframe src="https://www.youtube-nocookie.com/embed/PX1d-R59PaA" style="width:100%;height:100%;border:0" allowfullscreen loading="lazy"></iframe></div>
+    <p class="lk-ins">Watch for 2-3 minutes. Then answer: What was sold at the fete? What prizes were given? What was eaten? Use was / were + V3.</p>
+    <div class="frame" style="aspect-ratio:16/9"><iframe src="https://www.youtube-nocookie.com/embed/_Ot_vJLJ86M" style="width:100%;height:100%;border:0" allowfullscreen loading="lazy"></iframe></div>
+    <p class="lk-ins">Watch and answer: When were the exam papers given out? Was Mr Bean helped by anyone? Was the exam finished on time?</p>
+    <p class="lk-tnote" data-ru="Перший кліп: зупиняй кожні 40-60 секунд (точні моменти переглянь перед уроком) і питай: What is sold here? Is it made at home? Was anything broken? Учень відповідає пасивом (Cakes are sold. The ... was broken). Підкажи V3, якщо треба: sold, given, won, broken. Другий кліп опційно, якщо є час: зупини, коли роздають екзаменаційні листи (The papers are given out).&lt;br&gt;">Перший кліп: зупиняй кожні 40-60 секунд (точні моменти переглянь перед уроком) і питай: What is sold here? Is it made at home? Was anything broken? Учень відповідає пасивом (Cakes are sold. The ... was broken). Підкажи V3, якщо треба: sold, given, won, broken. Другий кліп опційно, якщо є час: зупини, коли роздають екзаменаційні листи (The papers are given out).<br></p>
+  </section>
+  <section id="s7" data-stage="practice" data-min="6">
+    <h2><span class="lk-n">7</span>Розбір помилок <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<div class="warn"><p><b>Топ-5 помилок українськомовних учнів</b></p><p>1. «It made in China.» (неправильно) → <b>It is made in China.</b> Без be пасиву немає.<br>2. «The house was build in 1990.» (неправильно) → <b>The house was built in 1990.</b> Потрібна третя форма.<br>3. «The windows was cleaned.» (неправильно) → <b>The windows were cleaned.</b> Множина = were.<br>4. «This book was written from J. K. Rowling.» (неправильно) → <b>This book was written by J. K. Rowling.</b> Хто зробив = by.<br>5. «In this shop sell phones.» (неправильно) → <b>Phones are sold in this shop.</b> Українське «продають» без «хто» = пасив.</p></div>
+    <h3 class="lk-sub">Знайди правильне речення.</h3><div class="ch" data-a="Tea is grown in India."><span class="n">1</span><span class="s">___</span><span class="o"><button type="button">Tea is grow in India.</button><button type="button">Tea grown in India.</button><button type="button">Tea is grown in India.</button></span></div>
+<div class="ch" data-a="The bridge was built in 1960."><span class="n">2</span><span class="s">___</span><span class="o"><button type="button">The bridge was build in 1960.</button><button type="button">The bridge was built in 1960.</button><button type="button">The bridge built in 1960.</button></span></div>
+<div class="ch" data-a="The cakes were eaten by the kids."><span class="n">3</span><span class="s">___</span><span class="o"><button type="button">The cakes were eaten by the kids.</button><button type="button">The cakes were eat by the kids.</button><button type="button">The cakes was eaten by the kids.</button></span></div>
+<div class="ch" data-a="This photo was taken by my dad."><span class="n">4</span><span class="s">___</span><span class="o"><button type="button">This photo was taken by my dad.</button><button type="button">This photo was taken from my dad.</button><button type="button">This photo took by my dad.</button></span></div>
+<div class="ch" data-a="Phones are sold in this shop."><span class="n">5</span><span class="s">___</span><span class="o"><button type="button">Phones are sold in this shop.</button><button type="button">In this shop sell phones.</button><button type="button">Phones sold in this shop.</button></span></div>
+<div class="ch" data-a="Was the window broken by the cat?"><span class="n">6</span><span class="s">___</span><span class="o"><button type="button">Was the window broken by the cat?</button><button type="button">Was the window break by the cat?</button><button type="button">Did the window broken by the cat?</button></span></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; Tea is grown in India. · The bridge was built in 1960. · The cakes were eaten by the kids. · This photo was taken by my dad. · Phones are sold in this shop. · Was the window broken by the cat?"><b>Відповіді:</b> Tea is grown in India. · The bridge was built in 1960. · The cakes were eaten by the kids. · This photo was taken by my dad. · Phones are sold in this shop. · Was the window broken by the cat?</p>
+    <p class="lk-tnote" data-ru="Розберіть tip, потім вправа на час. Поверни речення учня з розминки («це зроблено в Китаї») і попроси виправити.&lt;br&gt;">Розберіть tip, потім вправа на час. Поверни речення учня з розминки («це зроблено в Китаї») і попроси виправити.<br></p>
+  </section>
+  <section id="s8" data-stage="speaking" data-min="8">
+    <h2><span class="lk-n">8</span>Speaking <span class="tag">speaking</span><span class="lk-mode">teacher + student</span></h2>
+<div class="qs"><div>Look at three things on your desk. Where are they made?</div><div>What is your phone made of? Where was it made?</div><div>When was your school built? Do you know?</div><div>Which languages are spoken in your family?</div><div>Which famous book was written by your favourite writer?</div><div>What food is eaten in your family on holidays?</div><div>Which famous building was built a very long time ago? Have you seen it?</div><div>What was invented by a teenager, do you think?</div><div>Which of your things was broken by a pet or a little brother or sister?</div><div>Imagine your room is a museum. Which objects are shown there and why?</div></div>
+    <p class="lk-tnote" data-ru="Обери 6-7 питань. Підказуй V3 потрібних дієслів (made, built, spoken, written, eaten, invented, broken). Друге коло, «Музей»: учень обирає 3 речі в кімнаті і проводить «екскурсію»: This chair was bought in 2020. It is used by my cat. Ти ставиш питання Was it...? Where was it made?&lt;br&gt;">Обери 6-7 питань. Підказуй V3 потрібних дієслів (made, built, spoken, written, eaten, invented, broken). Друге коло, «Музей»: учень обирає 3 речі в кімнаті і проводить «екскурсію»: This chair was bought in 2020. It is used by my cat. Ти ставиш питання Was it...? Where was it made?<br></p>
+  </section>
+  <section id="s9" data-stage="practice" data-min="3">
+    <h2><span class="lk-n">9</span>Speed round <span class="tag">practice</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Speed round: Who made it?</h3><p class="lk-ins">Answer the quiz question</p>
+    <div class="spin"><div class="card" id="g91">Click "Next card"</div><br><button class="btn" type="button" data-spin="[&quot;The Mona Lisa was painted by ___.&quot;, &quot;The Harry Potter books were written by ___.&quot;, &quot;The Eiffel Tower is in ___.&quot;, &quot;Bubble tea was invented in ___.&quot;, &quot;The first YouTube video was about ___.&quot;, &quot;Pizza Margherita was first made in ___.&quot;, &quot;Coffee is made from ___.&quot;, &quot;Paper is made from ___.&quot;, &quot;Cheese is made from ___.&quot;, &quot;Chips are made from ___.&quot;]" data-target="g91">Next card</button></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; Leonardo da Vinci · J. K. Rowling · Paris · Taiwan · elephants · Italy · beans · wood · milk · potatoes"><b>Відповіді:</b> Leonardo da Vinci · J. K. Rowling · Paris · Taiwan · elephants · Italy · beans · wood · milk · potatoes</p>
+    <p class="lk-tnote" data-ru="Грайте як телевікторину. Учень відповідає не лише словом, а й повним реченням: The Mona Lisa was painted by Leonardo da Vinci. Після гри учень придумує 2 свої питання для тебе з was ... by?&lt;br&gt;">Грайте як телевікторину. Учень відповідає не лише словом, а й повним реченням: The Mona Lisa was painted by Leonardo da Vinci. Після гри учень придумує 2 свої питання для тебе з was ... by?<br></p>
+  </section>
+  <section id="s10" data-stage="homework" data-min="3">
+    <h2><span class="lk-n">10</span>Homework <span class="tag">homework</span><span class="lk-mode">teacher + student</span></h2>
+<h3 class="lk-sub">Вжий пасив.</h3><div class="ty" data-a="is made"><span class="n" style="font-weight:800;color:var(--violet)">1</span><span>Chocolate ___ (make) from cocoa beans.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="was published"><span class="n" style="font-weight:800;color:var(--violet)">2</span><span>The first Harry Potter book ___ (publish) in 1997.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="were knitted"><span class="n" style="font-weight:800;color:var(--violet)">3</span><span>These sweaters ___ (knit) by my grandma.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="is played"><span class="n" style="font-weight:800;color:var(--violet)">4</span><span>Football ___ (play) all over the world.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div>
+<div class="ty" data-a="was found"><span class="n" style="font-weight:800;color:var(--violet)">5</span><span>My phone ___ (find) under the sofa.</span><input type="text" autocomplete="off" spellcheck="false" style="width:220px"><button class="btn alt" type="button" style="padding:4px 14px">Check</button></div><div class="qs"></div>
+    <p class="lk-tnote" data-ru="&lt;b&gt;Відповіді:&lt;/b&gt; is made · was published · were knitted · is played · was found"><b>Відповіді:</b> is made · was published · were knitted · is played · was found</p>
+    <h3 class="lk-sub">Напиши «Fun facts quiz» з 6 фактів у пасиві про речі, які ти любиш (їжа, ігри, фільми, місця). Перевір факти в інтернеті.</h3><div class="qs"><div>Minecraft was created by... ... is made in... ... was built in...</div></div>
+    <p class="lk-tnote" data-ru="Домашнє: вправа + свій квіз з 6 фактів. На наступному уроці учень ставить тобі питання зі свого квізу, а ти відповідаєш пасивом. Перевір, щоб не було «It made...» без be.&lt;br&gt;">Домашнє: вправа + свій квіз з 6 фактів. На наступному уроці учень ставить тобі питання зі свого квізу, а ти відповідаєш пасивом. Перевір, щоб не було «It made...» без be.<br></p>
+  </section>
+  <section class="end"><h2>Great job!</h2><p>See you next lesson.</p></section>
+</div>
+<div class="toast" id="toast"></div>
+<script>window.MURLY_LESSON={"id": "lib-gr-passive", "title": "It is made, it was built: the passive", "homework": ["s2", "s5", "s7", "s10"], "hw": {"s2": [{"type": "choice", "instruction": "Прочитай факти і обери True або False.", "text": "The Harry Potter books were written by J. K. Rowling. {True|False}\nThe Eiffel Tower was built in 1999. {False|True}\nThe Mona Lisa was painted by Leonardo da Vinci. {True|False}\nThe first YouTube video was uploaded in 2005. {True|False}\nTea is grown only in Britain. {False|True}\nBubble tea was invented in Japan. {False|True}"}], "s5": [{"type": "gap", "instruction": "Розкрий дужки. Вжий пасив (is / are / was / were + V3).", "text": "Coffee [is grown] (grow) in Brazil.\nThis song [was written] (write) in 2015.\nThe school canteen [is cleaned] (clean) every evening.\nThese photos [were taken] (take) on my phone.\nPaper [is made] (make) from wood.\nThe match [was played] (play) in the rain.\nOur classroom [was painted] (paint) last summer.\nThousands of selfies [are posted] (post) every minute."}, {"type": "choice", "instruction": "Обери правильний варіант.", "text": "My bike {was stolen|stole|was steal} last week.\nThese shoes {are made|made|are make} in Italy.\nThe lesson {was cancelled|cancelled|is cancel} yesterday.\nPizza {is eaten|eats|is eat} all over the world.\nThe windows {were cleaned|was cleaned|cleaned} last Friday.\nThis book {was written by|was written from|wrote by} a 15-year-old girl."}, {"type": "choice", "instruction": "Теперішній чи минулий пасив?", "text": "is made {present|past}\nwas built {past|present}\nare grown {present|past}\nwere eaten {past|present}\nis spoken {present|past}\nwas painted {past|present}\nare sold {present|past}\nwere taken {past|present}\nis cleaned {present|past}\nwas invented {past|present}"}, {"type": "gap", "instruction": "Переклади англійською.", "text": "Цей телефон зроблено в Китаї → [This phone is made in China/This phone was made in China]\nАнглійською мовою розмовляють у багатьох країнах → [English is spoken in many countries]\nЦей будинок побудували в 1990 році → [This house was built in 1990]\nМоє печиво з’їли → [My cookies were eaten/My biscuits were eaten]\nЦі фото зробили у Скелястих горах → [These photos were taken in the Rocky Mountains/These photos were taken in the Rockies]\nКартину намалювала моя сестра → [The picture was painted by my sister/The painting was painted by my sister/The picture was drawn by my sister]"}], "s7": [{"type": "choice", "instruction": "Знайди правильне речення.", "text": "{Tea is grown in India.|Tea grown in India.|Tea is grow in India.}\n{The bridge was built in 1960.|The bridge built in 1960.|The bridge was build in 1960.}\n{The cakes were eaten by the kids.|The cakes was eaten by the kids.|The cakes were eat by the kids.}\n{This photo was taken by my dad.|This photo was taken from my dad.|This photo took by my dad.}\n{Phones are sold in this shop.|In this shop sell phones.|Phones sold in this shop.}\n{Was the window broken by the cat?|Did the window broken by the cat?|Was the window break by the cat?}"}], "s10": [{"type": "gap", "instruction": "Вжий пасив.", "text": "Chocolate [is made] (make) from cocoa beans.\nThe first Harry Potter book [was published] (publish) in 1997.\nThese sweaters [were knitted] (knit) by my grandma.\nFootball [is played] (play) all over the world.\nMy phone [was found] (find) under the sofa."}, {"type": "open", "instruction": "Напиши «Fun facts quiz» з 6 фактів у пасиві про речі, які ти любиш (їжа, ігри, фільми, місця). Перевір факти в інтернеті.", "text": "Minecraft was created by  is made in  was built in"}]}};</script>
+<script>
+(function(){var l=(document.cookie.match(/(?:^|; )murly_lang=(\w+)/)||[])[1];try{l=l||localStorage.getItem('murly:tlang')}catch(e){}l=l==='ru'?'ru':'uk';document.querySelectorAll('[data-pairs-'+l+']').forEach(function(b){b.dataset.pairs=b.getAttribute('data-pairs-'+l)});})();
+</script>
+<script>
+const $ = (id) => document.getElementById(id);
+const LIS = {};
+function say(w, rate) { try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(w); u.lang = 'en-GB'; const v = speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang) && /Google|Natural|Libby|Sonia|Daniel/.test(x.name)) || speechSynthesis.getVoices().find((x) => /en-GB/.test(x.lang)); if (v) u.voice = v; u.rate = rate || .95; speechSynthesis.speak(u); } catch (e) { } }
+const sh = (a) => a.map((x) => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map((x) => x[1]);
+document.querySelectorAll('.voc div').forEach((d) => d.onclick = () => say(d.dataset.say));
+document.querySelectorAll('[data-play]').forEach((b) => b.onclick = () => say(LIS[b.dataset.play], b.dataset.slow ? .75 : .95));
+document.querySelectorAll('[data-stop]').forEach((b) => b.onclick = () => { try { speechSynthesis.cancel(); } catch (e) { } });
+document.querySelectorAll('.ch').forEach((q) => q.querySelectorAll('button').forEach((b) => b.onclick = () => { if (q.classList.contains('ok')) return; const ok = b.textContent === q.dataset.a; q.classList.toggle('ok', ok); q.classList.toggle('bad', !ok); if (ok) { const s = q.querySelector('.s'); if (s && s.textContent.includes('___')) { s.textContent = s.textContent.replace('___', q.dataset.a); } } }));
+const norm = (x) => x.toLowerCase().replace(/[’']/g, "'").replace(/[,;:"“”«»]/g, ' ').replace(/\s+/g, ' ').replace(/[.!?]$/, '').trim();
+document.querySelectorAll('.ty').forEach((r) => { const inp = r.querySelector('input'); const chk = () => { const ok = r.dataset.a.split('|').some((a) => norm(a) === norm(inp.value)); r.classList.toggle('ok', ok); r.classList.toggle('bad', !ok && inp.value.trim() !== ''); }; r.querySelector('button').onclick = chk; inp.onkeydown = (e) => { if (e.key === 'Enter') chk(); }; });
+document.querySelectorAll('[data-mt]').forEach((box) => { const pairs = JSON.parse(box.dataset.pairs); const L = sh(pairs.map((p) => p[0])), R = sh(pairs.map((p) => p[1])); let sel = null, done = 0, err = 0; box.innerHTML = L.map((w, i) => `<button type="button" data-w="${w}">${w}</button><button type="button" data-d="${R[i]}">${R[i]}</button>`).join('');
+  box.querySelectorAll('button').forEach((b) => b.onclick = () => { if (b.classList.contains('done')) return; if (!sel || (sel.dataset.w && b.dataset.w) || (sel.dataset.d && b.dataset.d)) { if (sel) sel.classList.remove('sel'); sel = b; b.classList.add('sel'); return; } const w = sel.dataset.w || b.dataset.w, d = sel.dataset.d || b.dataset.d; if (pairs.some((p) => p[0] === w && p[1] === d)) { sel.classList.add('done'); b.classList.add('done'); done++; say(w); if (done === pairs.length) document.querySelector(`[data-mtres="${box.dataset.mt}"]`).textContent = err ? `Done! Mistakes: ${err}` : 'Perfect!'; } else err++; sel.classList.remove('sel'); sel = null; }); });
+document.querySelectorAll('[data-vids]').forEach((box) => JSON.parse(box.dataset.vids).forEach(([id, title, ch, qs]) => { const d = document.createElement('div'); d.className = 'vid'; d.innerHTML = `<div class="frame"><button class="play" type="button" style="background-image:url(https://i.ytimg.com/vi/${id}/hqdefault.jpg)"><span>PLAY</span></button></div><div class="info"><h3>${title}</h3><small>YouTube · ${ch}</small><ol>${qs.map((q) => `<li>${q}</li>`).join('')}</ol></div>`; d.querySelector('.play').onclick = (e) => { e.currentTarget.outerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&cc_load_policy=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen title="${title}"></iframe>`; }; box.appendChild(d); }));
+document.querySelectorAll('[data-spin]').forEach((b) => { const list = JSON.parse(b.dataset.spin); let last = -1; b.onclick = () => { let i; do { i = Math.floor(Math.random() * list.length); } while (i === last && list.length > 1); last = i; document.getElementById(b.dataset.target).textContent = list[i]; }; });
+try { const k = 'murly:' + (window.MURLY_LESSON ? MURLY_LESSON.id : 'x') + ':hw'; const t = $('hwText'); if (t) { t.value = localStorage.getItem(k) || ''; t.oninput = () => localStorage.setItem(k, t.value); } } catch (e) { }
+const STAGES = [...document.querySelectorAll('.wrap > section[id]')];
+$('stages').innerHTML = STAGES.map((s) => `<a href="#${s.id}"><b>${s.querySelector('.lk-n').textContent}</b><span>${s.dataset.stage}</span><small>${s.dataset.min !== '0' ? s.dataset.min + ' min' : 'at home'}</small></a>`).join('');
+$('teacherBtn').onclick = (e) => { const on = document.body.classList.toggle('teacher'); e.currentTarget.textContent = on ? 'Student version' : 'Teacher version'; };
+</script>
+<script src="/game-lessons/kit.js" defer></script>
+</body>
+</html>
