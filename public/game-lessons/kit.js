@@ -37,6 +37,43 @@
   const secNum = (s, i) => { const n = s.querySelector('.lk-n'); return n ? n.textContent.trim() : String(i + 1); };
   const INFO = SECS.map((s, i) => ({ id: s.id, n: secNum(s, i), title: secTitle(s), min: +(s.dataset.min || 0), el: s }));
   const info = (id) => INFO.find((x) => x.id === id);
+
+  // Домашка з уроку = ВСІ вправи розділу, зібрані прямо зі сторінки (а не лише кілька прикладів з налаштувань)
+  (function autoHW() {
+    const txt = (el) => { if (!el) return ''; const c = el.cloneNode(true); c.querySelectorAll('[data-tr-uk]').forEach((x) => { x.textContent = x.getAttribute(LANG === 'ru' ? 'data-tr-ru' : 'data-tr-uk') || x.textContent; }); return c.textContent.replace(/\s+/g, ' ').trim(); };
+    const clean = (x) => String(x).replace(/[\[\]{}]/g, '').trim();
+    INFO.forEach((sx) => {
+      const out = []; let cur = null; let head = '';
+      const push = (type, line) => { if (!cur || cur.type !== type || cur.head !== head) { cur = { type, head, lines: [] }; out.push(cur); } cur.lines.push(line); };
+      sx.el.querySelectorAll('h3.lk-sub, .ty, .ch, textarea').forEach((el) => {
+        if (el.matches('h3.lk-sub')) { head = txt(el).replace(/\(\d+\)\s*$/, '').trim(); return; }
+        if (el.matches('.ty')) {
+          const alts = String(el.dataset.a || '').split('|').map(clean).filter((x) => x && !x.startsWith("'") && !x.includes('/'));
+          if (!alts.length) return;
+          const sp = [...el.children].find((c) => c.tagName === 'SPAN' && !c.classList.contains('n'));
+          const pr = txt(sp); const n = (pr.match(/_{3,}/g) || []).length;
+          push('gap', n === 1 ? pr.replace(/_{3,}/, '[' + alts.join('/') + ']') : `${pr.replace(/_{3,}/g, '...')} → [${alts.join('/')}]`);
+          return;
+        }
+        if (el.matches('.ch')) {
+          const right = clean(el.dataset.a || ''); const opts = [...el.querySelectorAll('.o button')].map((b) => clean(b.textContent)).filter(Boolean);
+          if (!right || !opts.includes(right)) return;
+          const all = [right, ...opts.filter((o) => o !== right)].join('|'); const st = txt(el.querySelector('.s'));
+          push('choice', /_{3,}/.test(st) ? st.replace(/_{3,}/, '{' + all + '}').replace(/_{3,}/g, '...') : `${st} {${all}}`);
+          return;
+        }
+        if (el.matches('textarea')) {
+          const box = el.closest('.hwc') || el.parentElement; const h = box && box.querySelector('h3'); const pEl = box && box.querySelector('p');
+          out.push({ type: 'open', head: [h && txt(h), pEl && txt(pEl)].filter(Boolean).join('. '), lines: ['Write your answer here.'] }); cur = null;
+        }
+      });
+      if (!out.length) return;
+      const auto = out.map((b) => ({ type: b.type, instruction: b.head || (b.type === 'choice' ? 'Choose the correct option.' : b.type === 'open' ? 'Write your answer.' : 'Fill in the gaps.'), text: b.lines.join('\n') }));
+      const autoN = auto.reduce((n, b) => n + b.text.split('\n').length, 0);
+      const cfg = HW[sx.id] || []; const cfgN = cfg.reduce((n, b) => n + String(b.text || '').split('\n').filter((x) => x.trim()).length, 0);
+      if (autoN >= cfgN) HW[sx.id] = auto.concat(cfg.filter((b) => b.type !== 'gap' && b.type !== 'choice' && !auto.some((a) => a.type === b.type)));
+    });
+  })();
   const lessonUrl = (id) => `${location.origin}/game-lessons/${ID}.html${id ? '#' + id : ''}`;
 
   // ---------- нотатки українською / російською ----------
