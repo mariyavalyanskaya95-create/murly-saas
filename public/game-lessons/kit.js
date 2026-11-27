@@ -52,14 +52,14 @@
           if (!alts.length) return;
           const sp = [...el.children].find((c) => c.tagName === 'SPAN' && !c.classList.contains('n'));
           const pr = txt(sp); const n = (pr.match(/_{3,}/g) || []).length;
-          push('gap', n === 1 ? pr.replace(/_{3,}/, '[' + alts.join('/') + ']') : `${pr.replace(/_{3,}/g, '...')} → [${alts.join('/')}]`);
+          push('gap', n === 1 ? pr.replace(/_{3,}/, '[' + alts.join('/') + ']') : `${pr.replace(/_{3,}/g, '( )')} → [${alts.join('/')}]`);
           return;
         }
         if (el.matches('.ch')) {
           const right = clean(el.dataset.a || ''); const opts = [...el.querySelectorAll('.o button')].map((b) => clean(b.textContent)).filter(Boolean);
           if (!right || !opts.includes(right)) return;
           const all = [right, ...opts.filter((o) => o !== right)].join('|'); const st = txt(el.querySelector('.s'));
-          push('choice', /_{3,}/.test(st) ? st.replace(/_{3,}/, '{' + all + '}').replace(/_{3,}/g, '...') : `${st} {${all}}`);
+          push('choice', /_{3,}/.test(st) ? st.replace(/_{3,}/, '{' + all + '}').replace(/_{3,}/g, '( )') : `${st} {${all}}`);
           return;
         }
         if (el.matches('textarea')) {
