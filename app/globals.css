@@ -4962,3 +4962,9 @@ textarea.t-parent__url { width: 300px; font: inherit; font-size: 13px; }
 .il-body { display: grid; gap: 6px; margin: 6px 0 10px; }
 .il-body .il-chips { display: flex; flex-wrap: wrap; gap: 6px; }
 .il-body .il-chip { font-size: 13px; padding: 6px 11px; }
+.il-menu { margin: 4px 0 6px; }
+.il-sub--job { margin-top: 16px; padding-top: 12px; border-top: 2px dashed #E3D7BF; }
+.il-shopbtns { display: flex; flex-wrap: wrap; gap: 8px; margin: 6px 0 4px; }
+.il-shopbtns .il-go { flex: 1 1 160px; margin: 0; }
+.il-go--pink { background: #FFB3D1; }
+.il-go--mint { background: #A8EBCB; }
