@@ -71,6 +71,7 @@ function Shell({ userId, name, children }: { userId: string; name: string; child
             <Link href="/games" className="t-side__link t-side__extra"><Icon id="e-trophy" />{t({ uk: 'Ігри для учнів', ru: 'Игры для учеников', en: 'Games for students' })}</Link>
             <Link href="/grammar" className="t-side__link t-side__extra"><Icon id="e-book" />{t({ uk: 'Граматика', ru: 'Грамматика', en: 'Grammar' })}</Link>
             <div className="t-side__sep" />
+            <Link href="/teacher/guide" className={`t-side__link t-side__extra ${active('/teacher/guide') ? 'is-on' : ''}`}><Icon id="c-cat" />{t({ uk: 'Чому Murly: мануал', ru: 'Почему Murly: мануал', en: 'Why Murly: guide' })}</Link>
             <FeedbackButton name={name} />
             <button type="button" className="t-side__link t-side__extra t-fb-btn" onClick={() => startTour('teacher')}><Icon id="d-bulb" />{t({ uk: 'Як користуватися', ru: 'Как пользоваться', en: 'How to use' })}</button>
           </nav>
