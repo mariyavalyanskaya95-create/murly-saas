@@ -41,6 +41,15 @@ export async function GET(req: Request) {
   const { userId } = await auth();
   if (!userId || !(await isTeacher(userId))) return NextResponse.json({ error: 'teachers only' }, { status: 403 });
   const u = new URL(req.url);
+  // підказки вчителю в уроках: українська → російська (DeepL), довші тексти
+  if (u.searchParams.get('src') === 'uk' && u.searchParams.get('to') === 'ru') {
+    const qq = (u.searchParams.get('q') || '').trim().slice(0, 3000);
+    if (!qq) return NextResponse.json({ text: '' });
+    const d2 = await deepl(qq, 'RU');
+    if (d2) return NextResponse.json({ text: d2, via: 'DeepL' });
+    const m2 = qq.length <= 480 ? await mymemory(qq, 'uk', 'ru') : null;
+    return NextResponse.json({ text: m2 ?? '', via: m2 ? 'MyMemory' : 'none' });
+  }
   const q = (u.searchParams.get('q') || '').trim().slice(0, 500);
   const to = u.searchParams.get('to') === 'ru' ? 'ru' : 'uk';
   if (!q) return NextResponse.json({ text: '' });
