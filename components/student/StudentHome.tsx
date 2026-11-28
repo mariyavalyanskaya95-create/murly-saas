@@ -175,6 +175,7 @@ function MyLogin({ phone: phone0, pin: pin0 }: { phone?: string; pin?: string })
   const t = useT();
   const [cur, setCur] = useState({ phone: phone0, pin: pin0 });
   const [open, setOpen] = useState(false);
+  const [showPin, setShowPin] = useState(false);
   const [phone, setPhone] = useState(phone0 ? `+${phone0}` : '');
   const [pin, setPin] = useState(pin0 ?? '');
   const [busy, setBusy] = useState(false);
@@ -195,7 +196,7 @@ function MyLogin({ phone: phone0, pin: pin0 }: { phone?: string; pin?: string })
       <h2><Icon id="d-lock" />{t({ uk: 'Мій вхід', ru: 'Мой вход', en: 'My login' })}</h2>
       {cur.pin && !open ? (
         <>
-          <p>{t({ uk: 'Номер', ru: 'Номер', en: 'Number' })}: <b>{cur.phone ? `+${cur.phone}` : ''}</b> · PIN: <b className="t-login__pin">{cur.pin}</b></p>
+          <p>{t({ uk: 'Номер', ru: 'Номер', en: 'Number' })}: <b>{cur.phone ? `+${cur.phone}` : ''}</b> · PIN: <b className="t-login__pin">{showPin ? cur.pin : '••••'}</b> <button type="button" className="t-link-btn" onClick={() => setShowPin(!showPin)}>{showPin ? t({ uk: 'Сховати', ru: 'Скрыть', en: 'Hide' }) : t({ uk: 'Показати', ru: 'Показать', en: 'Show' })}</button></p>
           <p className="t-muted">{t({ uk: 'З будь-якого телефону чи компʼютера: murly.com.ua/login, номер і PIN.', ru: 'С любого телефона или компьютера: murly.com.ua/login, номер и PIN.', en: 'From any phone or computer: murly.com.ua/login, number and PIN.' })}</p>
           <button type="button" className="t-link-btn" onClick={() => setOpen(true)}>{t({ uk: 'Змінити', ru: 'Изменить', en: 'Change' })}</button>
         </>
