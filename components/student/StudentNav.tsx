@@ -22,6 +22,7 @@ export default function StudentNav({ any, nmt, games }: { any: boolean; nmt: boo
     ...(nmt ? [{ href: '/nmt/mock', icon: 'e-cap', label: { uk: 'Пробні НМТ', ru: 'Пробные НМТ', en: 'Mock NMT' }, on: false }] : []),
     { href: '/grammar', icon: 'e-book', label: { uk: 'Граматика', ru: 'Грамматика', en: 'Grammar' }, on: false },
     { href: '/irregular-verbs', icon: 'd-cup', label: { uk: 'Неправильні дієслова', ru: 'Неправильные глаголы', en: 'Irregular verbs' }, on: false },
+    { href: '/student/guide', icon: 'd-bulb', label: { uk: 'Мануал', ru: 'Мануал', en: 'Guide' }, on: path === '/student/guide' },
     { href: '/learn', icon: 'e-head', label: { uk: 'Усі матеріали', ru: 'Все материалы', en: 'All materials' }, on: false },
     ...(games ? [{ href: '/games', icon: 'e-trophy', label: { uk: 'Ігри', ru: 'Игры', en: 'Games' }, on: false }] : []),
   ];
