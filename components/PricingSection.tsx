@@ -21,7 +21,7 @@ type Plan = {
   paid?: boolean;
 };
 
-const FREE_NOTE: T = { uk: 'Перший місяць безкоштовно', ru: 'Первый месяц бесплатно', en: 'First month free' };
+const FREE_NOTE: T = { uk: 'Зараз усе безкоштовно', ru: 'Сейчас всё бесплатно', en: 'Everything is free right now' };
 const TEACHER: Plan[] = [
   {
     more: 'start', icon: 'd-smile', name: { uk: 'Старт', ru: 'Старт', en: 'Start' }, month: 0,
@@ -53,7 +53,7 @@ const TEACHER: Plan[] = [
       { uk: 'Pro для кожного вчителя', ru: 'Pro для каждого учителя', en: 'Pro for every teacher' },
       { uk: 'Спільний список учнів і груп', ru: 'Общий список учеников и групп', en: 'Shared students and groups' },
       { uk: 'Оплати й борги всієї школи', ru: 'Оплаты и долги всей школы', en: 'Payments for the whole school' },
-      { uk: 'Перший місяць безкоштовно', ru: 'Первый месяц бесплатно', en: 'First month free' },
+      { uk: 'Зараз усе безкоштовно', ru: 'Сейчас всё бесплатно', en: 'Everything is free right now' },
     ],
     cta: { uk: 'Написати нам', ru: 'Написать нам', en: 'Contact us' }, href: '/contact',
   },
