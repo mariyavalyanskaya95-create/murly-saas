@@ -5009,3 +5009,11 @@ textarea.t-parent__url { width: 300px; font: inherit; font-size: 13px; }
   .mu-nav__login svg { display: inline-block; }
 }
 @media (max-width: 380px) { .mu-nav__login svg { display: none; } }
+/* урок на телефоні: сітка не ширша за екран (довгі заголовки, select з довгими варіантами) */
+.ls { grid-template-columns: minmax(0, 1fr); }
+.ls > * { min-width: 0; }
+.ls-title, .ls-h { overflow-wrap: anywhere; }
+.ex, .ex-list { grid-template-columns: minmax(0, 1fr); }
+.ex-task, .ex-line, .ex-slot { min-width: 0; max-width: 100%; }
+.ex-select { max-width: 100%; }
+.ex-line { flex-wrap: wrap; }
