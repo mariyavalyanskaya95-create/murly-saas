@@ -92,7 +92,7 @@ export default function SiteNav() {
           <NavSearch open={search} onOpen={() => { setSearch(true); setOpen(false); }} onClose={closeSearch} />
           <LangSwitch className="mu-nav__desk" />
           <SignedOut>
-            <Link href="/sign-in" className="mu-nav__login">{t({ uk: 'Увійти', ru: 'Войти', en: 'Log in' })}</Link>
+            <Link href="/sign-in" className="mu-nav__login"><Icon id="c-paw" />{t({ uk: 'Увійти', ru: 'Войти', en: 'Log in' })}</Link>
             <Link href="/sign-up" className="mu-btn mu-btn--lime mu-nav__desk">
               {t({ uk: 'Почати', ru: 'Начать', en: 'Start' })}
               <span className="mu-btn__arrow"><Icon id="e-arrow" /></span>

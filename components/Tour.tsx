@@ -19,7 +19,9 @@ export default function Tour({ id, steps, auto = true }: { id: string; steps: To
     let seen = false;
     try { seen = localStorage.getItem(KEY(id)) === 'done'; } catch { /* */ }
     const asked = new URLSearchParams(window.location.search).get('tour') === id; // посилання ?tour=site
-    const timer = (auto && !seen) || asked ? window.setTimeout(() => setI(0), 900) : 0;
+    // на телефоні не закриваємо перший екран вікном: навчання лише за кнопкою або посиланням ?tour=
+    const phone = id === 'site' && window.matchMedia('(max-width: 760px)').matches;
+    const timer = (auto && !seen && !phone) || asked ? window.setTimeout(() => setI(0), 900) : 0;
     const on = (e: Event) => { if ((e as CustomEvent).detail === id) setI(0); };
     window.addEventListener('murly:tour', on);
     return () => { window.clearTimeout(timer); window.removeEventListener('murly:tour', on); };
