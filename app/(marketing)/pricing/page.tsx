@@ -16,9 +16,9 @@ export function generateMetadata(): Metadata {
   return {
     title: t({ uk: 'Тарифи Murly: від 0 ₴', ru: 'Тарифы Murly: от 0 ₴', en: 'Murly pricing: from 0 ₴' }),
     description: t({
-      uk: 'Перший місяць безкоштовно. Кабінет вчителя від 0 ₴, Учень Плюс 99 ₴ на місяць і міні-продукти від 85 ₴: чек-лист НМТ, граматика A1-B1, неправильні дієслова.',
-      ru: 'Первый месяц бесплатно. Кабинет учителя от 0 ₴, Ученик Плюс 99 ₴ в месяц и мини-продукты от 85 ₴: чек-лист НМТ, грамматика A1-B1, неправильные глаголы.',
-      en: 'First month free. Teacher dashboard from 0 ₴, Student Plus 99 ₴ a month and mini products from 85 ₴: NMT checklist, A1-B1 grammar, irregular verbs.',
+      uk: 'Зараз усе безкоштовно. Кабінет вчителя від 0 ₴, Учень Плюс 99 ₴ на місяць і міні-продукти від 85 ₴: чек-лист НМТ, граматика A1-B1, неправильні дієслова.',
+      ru: 'Сейчас всё бесплатно. Кабинет учителя от 0 ₴, Ученик Плюс 99 ₴ в месяц и мини-продукты от 85 ₴: чек-лист НМТ, грамматика A1-B1, неправильные глаголы.',
+      en: 'Everything is free right now. Teacher dashboard from 0 ₴, Student Plus 99 ₴ a month and mini products from 85 ₴: NMT checklist, A1-B1 grammar, irregular verbs.',
     }),
   };
 }
