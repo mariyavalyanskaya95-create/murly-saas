@@ -683,6 +683,7 @@ function LoginBox({ id }: { id: string }) {
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState('');
   const [copied, setCopied] = useState(false);
+  const [showPin, setShowPin] = useState(false);
   if (mode !== 'cloud') return null;
   const url = typeof window !== 'undefined' ? `${window.location.origin}/login` : '/login';
   const msg = s.loginPhone && s.loginPin ? t({ uk: `Вхід у Murly: ${url}\nНомер: ${fmtPhone(s.loginPhone)}\nPIN: ${s.loginPin}`, ru: `Вход в Murly: ${url}\nНомер: ${fmtPhone(s.loginPhone)}\nPIN: ${s.loginPin}`, en: `Murly login: ${url}\nNumber: ${fmtPhone(s.loginPhone)}\nPIN: ${s.loginPin}` }) : '';
@@ -708,7 +709,8 @@ function LoginBox({ id }: { id: string }) {
         <>
           <div className="t-login__show">
             <span>{t({ uk: 'Номер', ru: 'Номер', en: 'Number' })}: <b>{fmtPhone(s.loginPhone)}</b></span>
-            <span>PIN: <b className="t-login__pin">{s.loginPin}</b></span>
+            <span>PIN: <b className="t-login__pin">{showPin ? s.loginPin : '•'.repeat(s.loginPin.length)}</b>{' '}
+              <button type="button" className="t-link-btn" onClick={() => setShowPin((v) => !v)}>{showPin ? t({ uk: 'Сховати', ru: 'Скрыть', en: 'Hide' }) : t({ uk: 'Показати', ru: 'Показать', en: 'Show' })}</button></span>
           </div>
           <p className="t-muted">{t({ uk: `Учень входить на ${url}: номер і PIN, без пошти і пароля.`, ru: `Ученик входит на ${url}: номер и PIN, без почты и пароля.`, en: `The student logs in at ${url} with the number and PIN, no email or password.` })}</p>
           <button type="button" className="mu-btn mu-btn--lime t-btn-sm" onClick={copy}>{copied ? t({ uk: 'Скопійовано', ru: 'Скопировано', en: 'Copied' }) : t({ uk: 'Копіювати для учня', ru: 'Копировать для ученика', en: 'Copy for the student' })}</button>
