@@ -97,7 +97,7 @@ export const PLAN_PAGES: PlanPage[] = [
     slug: 'pro', icon: 'd-rocket', kit: 'st-cat-coffee', paid: true, bot: 'teacher',
     name: { uk: 'Вчитель Pro', ru: 'Учитель Pro', en: 'Teacher Pro' },
     price: { month: PRICES.teacherPro, year: PRICES.teacherProYear },
-    note: { uk: 'Перший місяць безкоштовно, без картки', ru: 'Первый месяц бесплатно, без карты', en: 'First month free, no card' },
+    note: { uk: 'Зараз усе безкоштовно, без картки', ru: 'Сейчас всё бесплатно, без карты', en: 'Everything free right now, no card' },
     title: { uk: 'Усе для репетитора', ru: 'Всё для репетитора', en: 'Everything a tutor needs' },
     em: { uk: 'в одному місці.', ru: 'в одном месте.', en: 'in one place.' },
     lead: {
@@ -178,7 +178,7 @@ export const PLAN_PAGES: PlanPage[] = [
         text: { uk: 'Ми підключаємо школу разом з тобою, щоб усе було налаштовано з першого дня.', ru: 'Мы подключаем школу вместе с тобой, чтобы всё было настроено с первого дня.', en: 'We set up the school together with you so everything works from day one.' },
         points: [
           { uk: 'Пишеш нам, ми додаємо вчителів і переносимо учнів', ru: 'Пишешь нам, мы добавляем учителей и переносим учеников', en: 'You message us, we add teachers and move students over' },
-          { uk: 'Перший місяць безкоштовно для всієї школи', ru: 'Первый месяц бесплатно для всей школы', en: 'The first month is free for the whole school' },
+          { uk: 'Зараз усе безкоштовно для всієї школи', ru: 'Сейчас всё бесплатно для всей школы', en: 'Everything is free right now for the whole school' },
           { uk: `${PRICES.school} ₴ на місяць за 5 вчителів, це менше ${Math.ceil(PRICES.school / 5)} ₴ на вчителя`, ru: `${PRICES.school} ₴ в месяц за 5 учителей, это меньше ${Math.ceil(PRICES.school / 5)} ₴ на учителя`, en: `${PRICES.school} ₴ a month for 5 teachers, under ${Math.ceil(PRICES.school / 5)} ₴ per teacher` },
         ],
       },
@@ -194,7 +194,7 @@ export const PLAN_PAGES: PlanPage[] = [
     slug: 'plus', icon: 'd-rocket', kit: 'st-boy-cap', paid: true, bot: 'parent',
     name: { uk: 'Учень Плюс', ru: 'Ученик Плюс', en: 'Student Plus' },
     price: { month: PRICES.studentPlus, year: PRICES.studentPlusYear },
-    note: { uk: 'Перший місяць безкоштовно', ru: 'Первый месяц бесплатно', en: 'First month free' },
+    note: { uk: 'Зараз усе безкоштовно', ru: 'Сейчас всё бесплатно', en: 'Everything is free right now' },
     title: { uk: 'Англійська щодня', ru: 'Английский каждый день', en: 'English every day' },
     em: { uk: 'за ціною кави.', ru: 'по цене кофе.', en: 'for the price of a coffee.' },
     lead: {
