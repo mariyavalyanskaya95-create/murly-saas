@@ -4992,3 +4992,11 @@ textarea.t-parent__url { width: 300px; font: inherit; font-size: 13px; }
 .t-first{border-width:3px;background:#f4ffe9;text-align:center;padding:28px 22px}
 .t-first h2{font-size:28px;margin:0 0 10px}.t-first p{max-width:560px;margin:0 auto 16px;font-size:17px;line-height:1.5}
 .t-first__go{font-size:19px;padding:14px 28px}.t-first__alt{margin-top:14px!important;font-size:15px!important;color:var(--mu-ink-muted)}.t-first__alt a{text-decoration:underline}
+
+/* мануал «Почему Murly» */
+.gd h1{margin:0 0 8px}.gd h2{margin:28px 0 12px}.gd-lead{font-size:18px;line-height:1.5;max-width:760px;margin:0 0 8px}
+.gd-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.gd-card{background:#fff;border:2px solid var(--mu-ink);border-radius:18px;padding:16px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.gd-card h3{margin:0;font-size:18px;overflow-wrap:anywhere}.gd-card p{margin:0;line-height:1.45;flex:1}.gd-card .mu-btn{align-self:flex-start}
+.gd-ic{width:42px;height:42px;border-radius:12px;background:#f3eefc;display:grid;place-items:center}.gd-ic svg{width:24px;height:24px}
+.gd-faq details{background:#fff;border:2px solid var(--mu-ink);border-radius:14px;padding:12px 16px;margin:0 0 10px}.gd-faq summary{font-weight:800;cursor:pointer}.gd-faq p{margin:8px 0 0;line-height:1.45}
