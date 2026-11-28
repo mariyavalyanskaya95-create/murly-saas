@@ -16,8 +16,8 @@ export function generateMetadata({ params }: { params: { id: string } }): Metada
   const s = songById(params.id); const t = tr();
   if (!s) return {};
   return {
-    title: t({ uk: `${s.title} (${s.artist}): фрази з перекладом, англійська по пісні | Murly`, ru: `${s.title} (${s.artist}): фразы с переводом, английский по песне | Murly`, en: `${s.title} (${s.artist}): phrases explained, learn English with the song | Murly` }),
-    description: `${t(s.about)} ${t({ uk: 'Фрази з перекладом:', ru: 'Фразы с переводом:', en: 'Phrases explained:' })} ${s.phrases.slice(0, 5).map((p) => p.en).join(', ')}. ${t({ uk: 'Квіз і вправи безкоштовно.', ru: 'Квиз и упражнения бесплатно.', en: 'Free quiz and exercises.' })}`.slice(0, 300),
+    title: t({ uk: `${s.title} (${s.artist}): переклад і зміст пісні, фрази | Murly`, ru: `${s.title} (${s.artist}): перевод и смысл песни, фразы | Murly`, en: `${s.title} by ${s.artist}: meaning, phrases and translation | Murly` }),
+    description: `${t({ uk: `Переклад і розбір пісні ${s.title} (${s.artist}).`, ru: `Перевод и разбор песни ${s.title} (${s.artist}).`, en: `${s.title} by ${s.artist}: meaning explained.` })} ${t(s.about)} ${t({ uk: 'Фрази з перекладом:', ru: 'Фразы с переводом:', en: 'Phrases explained:' })} ${s.phrases.slice(0, 5).map((p) => p.en).join(', ')}. ${t({ uk: 'Квіз і вправи безкоштовно.', ru: 'Квиз и упражнения бесплатно.', en: 'Free quiz and exercises.' })}`.slice(0, 300),
     alternates: alt(`/songs/${s.id}`),
   };
 }
