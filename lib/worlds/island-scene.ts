@@ -3,7 +3,7 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js';
-import { ADDRS, CARS, DISHES, FUR, HOME, HOME_SIZE, HOUSES, PLACES, PRODUCTS, SHELVES, SHOP, SPEED, type HomeRooms, type Outfit, type RoomItem, type Spot, ROOM_TYPES } from './island-data';
+import { ADDRS, CAFE_MENU, CARS, DISHES, FUR, HOME, HOME_SIZE, HOUSES, PLACES, PRODUCTS, SHELVES, SHOP, SPEED, STYLE, type HomeRooms, type Outfit, type RoomItem, type Spot, ROOM_TYPES } from './island-data';
 import { makeHuman, dressHuman } from './island-human';
 import type { HumanLook } from './island-data';
 import { chalkTex, graffitiTex, neonTex, posterTex, wallpaperTex } from './island-art';
@@ -73,6 +73,12 @@ function priceTag(name: string, price: number) {
   x.fillText(name, 128, 44); x.font = '800 30px Arial'; x.fillStyle = '#B54708'; x.fillText(`${price} coin${price === 1 ? '' : 's'}`, 128, 80);
   const t = new THREE.CanvasTexture(cv); t.colorSpace = THREE.SRGBColorSpace; TAGS[k] = t; return t;
 }
+// цінник-табличка як об'єкт (для кафе, пекарні, бутика)
+function tagMesh(name: string, price: number, w = 0.5) {
+  const m = new THREE.Mesh(new THREE.PlaneGeometry(w, w * 0.4), new THREE.MeshBasicMaterial({ map: priceTag(name, price) }));
+  return m;
+}
+const menuPrice = (id: string) => CAFE_MENU.find((x) => x.id === id) ?? PRODUCTS.find((x) => x.id === id);
 function sign(text: string, bg = '#1A1A1A', fg = '#FFFFFF', w = 4) {
   const cv = document.createElement('canvas'); cv.width = 512; cv.height = 128;
   const x = cv.getContext('2d')!;
@@ -1485,7 +1491,8 @@ export class IslandScene {
     }
     if (id === 'cafe') {
       // вітрина з тортами під скляним куполом
-      [-1.6, 1.6].forEach((x, i) => { const st = cyl(0.3, 0.3, 0.05, '#FFFFFF', 20); st.position.set(x, 1.05, -2.55); g.add(st); prod(i ? 'cafe-strawcake' : 'cafe-cupcake', 0.9, x, 1.08, -2.55); const dome = mesh(new THREE.SphereGeometry(0.34, 20, 12, 0, Math.PI * 2, 0, Math.PI / 2), new THREE.MeshPhysicalMaterial({ color: '#E8F6FF', transparent: true, opacity: 0.35, roughness: 0.05 }), false); dome.position.set(x, 1.08, -2.55); g.add(dome); });
+      [-1.6, 1.6].forEach((x, i) => { const st = cyl(0.3, 0.3, 0.05, '#FFFFFF', 20); st.position.set(x, 1.05, -2.55); g.add(st); prod(i ? 'cafe-strawcake' : 'cafe-cupcake', 0.9, x, 1.08, -2.55);
+        { const it = menuPrice(i ? 'cafe-strawcake' : 'cafe-cupcake'); if (it) { const tg = tagMesh(it.en, it.price, 0.56); tg.position.set(x, 0.98, -2.2); g.add(tg); } } const dome = mesh(new THREE.SphereGeometry(0.34, 20, 12, 0, Math.PI * 2, 0, Math.PI / 2), new THREE.MeshPhysicalMaterial({ color: '#E8F6FF', transparent: true, opacity: 0.35, roughness: 0.05 }), false); dome.position.set(x, 1.08, -2.55); g.add(dome); });
       // смугастий навіс над прилавком
       for (let i = 0; i < 8; i++) { const st = box(0.6, 0.06, 0.9, i % 2 ? '#FFFFFF' : '#F76AA8'); st.position.set(-2.1 + i * 0.6, 2.75, -3.9); st.rotation.x = 0.35; g.add(st); }
       [-4, -1.2, 1.8, 4.6].forEach((x, i) => globeLamp(x, 1.2, ['#FFB3D1', '#FFE08A', '#BDE5C4', '#C9B8FF'][i]));
@@ -1506,15 +1513,17 @@ export class IslandScene {
       const chim = box(0.5, 1.4, 0.5, '#A34E32'); chim.position.set(0, 2.7, -0.2); ov.add(chim); put(ov, -6.0, 0, -3.6);
       // балки під стелею
       // полиця з хлібом на задній стіні замість балок (балки закривали огляд)
-      { const sh = box(3.2, 0.08, 0.5, '#8B5E34'); sh.position.set(3.4, 2.2, -D / 2 + 0.45); g.add(sh); [2.2, 2.9, 3.6, 4.3].forEach((x, i) => prod(i % 2 ? 'bread' : 'croissant', 0.6, x, 2.25, -D / 2 + 0.45)); }
+      { const sh = box(3.2, 0.08, 0.5, '#8B5E34'); sh.position.set(3.4, 2.2, -D / 2 + 0.45); g.add(sh); [2.2, 2.9, 3.6, 4.3].forEach((x, i) => { const pid = i % 2 ? 'bread' : 'croissant'; prod(pid, 0.6, x, 2.25, -D / 2 + 0.45); const it = menuPrice(pid); if (it) { const tg = tagMesh(it.en, it.price, 0.5); tg.position.set(x, 2.1, -D / 2 + 0.72); g.add(tg); } }); }
       // мішки борошна і справжній хліб на вітрині
       prod('flour', 1.2, -5.9, 0, 0.6, 0.3); prod('flour', 1.2, -5.3, 0, 1.2, -0.2); prod('sugar', 1.1, -5.9, 0, 1.6, 0.5);
-      [-1.6, -0.8, 0, 0.8, 1.6].forEach((x, i) => prod(['cafe-cupcake', 'cafe-donut', 'cafe-strawcake', 'cafe-cinnamon', 'cafe-choccake'][i], 0.75, x, 1.02, -2.55, 0.2 * i));
+      [-1.6, -0.8, 0, 0.8, 1.6].forEach((x, i) => { const pid = ['cafe-cupcake', 'cafe-donut', 'cafe-strawcake', 'cafe-cinnamon', 'cafe-choccake'][i]; prod(pid, 0.75, x, 1.02, -2.55, 0.2 * i);
+        const it = menuPrice(pid); if (it) { const tg = tagMesh(it.en, it.price, 0.5); tg.position.set(x, 0.92, -2.27); g.add(tg); } });
       // вітрина зі склом
       { const glass = new THREE.Mesh(new THREE.BoxGeometry(4.2, 0.5, 0.5), new THREE.MeshPhysicalMaterial({ color: '#E8F6FF', transparent: true, opacity: 0.25, roughness: 0.05 })); glass.position.set(0, 1.27, -2.55); g.add(glass); }
     }
     if (id === 'boutique') {
       // манекени в сукнях
+      [[-0.2, 3.6, '#F76AA8', 'top-dress'], [1.2, 3.9, '#7C66DC', 'top-tutu'], [2.6, 3.6, '#30A46C', 'top-cardigan']].forEach(([x, z, , sid]) => { const it = STYLE.find((q) => q.id === sid); if (it) { const tg = new THREE.Sprite(new THREE.SpriteMaterial({ map: priceTag(it.en, it.price) })); tg.scale.set(0.7, 0.28, 1); tg.position.set(x as number, 0.55, z as number); g.add(tg); } });
       [[-0.2, 3.6, '#F76AA8'], [1.2, 3.9, '#7C66DC'], [2.6, 3.6, '#30A46C']].forEach(([x, z, c]) => { const m0 = new THREE.Group(); const base = cyl(0.3, 0.3, 0.06, '#FFFFFF', 18); base.position.y = 0.03; m0.add(base); const pole = cyl(0.03, 0.03, 0.8, '#C9CED6', 6); pole.position.y = 0.45; m0.add(pole); const dress = mesh(new THREE.ConeGeometry(0.42, 1.0, 18), toon(c as string)); dress.position.y = 1.3; m0.add(dress); const torso = cyl(0.17, 0.22, 0.45, c as string, 14); torso.position.y = 1.95; m0.add(torso); const head = sph(0.16, '#F4EEE2', 14); head.position.y = 2.35; m0.add(head); put(m0, x as number, 0, z as number); });
       // примірочна з шторкою
       const fit = new THREE.Group(); const rod = cyl(0.03, 0.03, 1.6, '#C9A33A', 6); rod.rotation.z = R; rod.position.y = 2.4; fit.add(rod); for (let i = 0; i < 6; i++) { const f = box(0.26, 2.2, 0.05, i % 2 ? '#E5484D' : '#C8283C'); f.position.set(-0.65 + i * 0.26, 1.25, (i % 2) * 0.06); fit.add(f); } put(fit, 5.6, 0, 2.4, -R);
