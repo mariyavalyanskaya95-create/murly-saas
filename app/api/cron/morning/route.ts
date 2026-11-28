@@ -24,10 +24,13 @@ export async function GET() {
   const now = Date.now();
   const in24 = new Date(now + 24 * 3600 * 1000).toISOString();
   const ids = students.map((s) => String(s.id)).join(',');
-  const [lessons, hw, dueWords] = await Promise.all([
+  const ago14 = new Date(now - 14 * 864e5).toISOString();
+  const [lessons, hw, dueWords, late] = await Promise.all([
     db.query(`lessons?student_id=in.(${ids})&status=eq.planned&start=gte.${encodeURIComponent(new Date(now).toISOString())}&start=lt.${encodeURIComponent(in24)}&select=student_id,start,topic&order=start.asc`).catch(() => []),
     db.query(`homework?student_id=in.(${ids})&status=eq.assigned&due=gte.${encodeURIComponent(new Date(now).toISOString())}&due=lt.${encodeURIComponent(in24)}&select=student_id,title,due`).catch(() => []),
     db.query(`words?student_id=in.(${ids})&or=(srs_due.is.null,srs_due.lte.${encodeURIComponent(new Date(now).toISOString())})&select=student_id`).catch(() => []),
+    // прострочена домашка за останні 2 тижні: м'яко нагадуємо щоранку
+    db.query(`homework?student_id=in.(${ids})&status=eq.assigned&due=lt.${encodeURIComponent(new Date(now).toISOString())}&due=gte.${encodeURIComponent(ago14)}&select=student_id,title`).catch(() => []),
   ]);
   const lessonsU = uniqLessons(lessons);
   let sent = 0;
@@ -37,11 +40,13 @@ export async function GET() {
     const ls = lessonsU.filter((l) => l.student_id === s.id);
     const hs = hw.filter((h) => h.student_id === s.id);
     const wn = Math.min(15, dueWords.filter((w) => w.student_id === s.id).length);
-    if (!ls.length && !hs.length && wn < 4) continue;
+    const lt = late.filter((h) => h.student_id === s.id);
+    if (!ls.length && !hs.length && !lt.length && wn < 4) continue;
     const lines: string[] = [];
     ls.forEach((l) => lines.push(`📅 ${L(lang, { uk: 'Заняття о', ru: 'Занятие в', en: 'Lesson at' })} <b>${time(String(l.start), lang, tz)}</b>${l.topic ? `: ${esc(String(l.topic))}` : ''}`));
     if (wn >= 4) lines.push(`🔁 ${L(lang, { uk: 'Слова на сьогодні', ru: 'Слова на сегодня', en: 'Words for today' })}: <b>${wn}</b> (5 ${L(lang, { uk: 'хв', ru: 'мин', en: 'min' })})`);
     hs.forEach((h) => lines.push(`📝 ${L(lang, { uk: 'Здати до', ru: 'Сдать до', en: 'Due by' })} <b>${time(String(h.due), lang, tz)}</b>: ${esc(String(h.title))}`));
+    if (lt.length) lines.push(`⏰ ${L(lang, { uk: 'Чекає з минулого разу', ru: 'Ждёт с прошлого раза', en: 'Still waiting' })}: ${lt.slice(0, 3).map((h) => esc(String(h.title))).join(', ')}${lt.length > 3 ? ` +${lt.length - 3}` : ''}`);
     const ok = await tgSend(String(s.tg_chat_id), `${L(lang, { uk: 'Доброго ранку! Сьогодні:', ru: 'Доброе утро! Сегодня:', en: 'Good morning! Today:' })}\n${lines.join('\n')}`,
       { text: L(lang, { uk: 'Мій кабінет', ru: 'Мой кабинет', en: 'My account' }), url: `${SITE}/student` });
     if (ok) sent++;
