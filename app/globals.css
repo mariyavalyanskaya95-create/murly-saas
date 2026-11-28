@@ -5000,3 +5000,12 @@ textarea.t-parent__url { width: 300px; font: inherit; font-size: 13px; }
 .gd-card h3{margin:0;font-size:18px;overflow-wrap:anywhere}.gd-card p{margin:0;line-height:1.45;flex:1}.gd-card .mu-btn{align-self:flex-start}
 .gd-ic{width:42px;height:42px;border-radius:12px;background:#f3eefc;display:grid;place-items:center}.gd-ic svg{width:24px;height:24px}
 .gd-faq details{background:#fff;border:2px solid var(--mu-ink);border-radius:14px;padding:12px 16px;margin:0 0 10px}.gd-faq summary{font-weight:800;cursor:pointer}.gd-faq p{margin:8px 0 0;line-height:1.45}
+
+/* Вхід у кабінет: помітна кнопка в шапці (28.11) */
+.mu-nav__login svg { width: 18px; height: 18px; display: none; }
+@media (max-width: 1240px) and (min-width: 1081px) { .mu-nav__login { display: inline-flex; } }
+@media (max-width: 1080px) {
+  .mu-nav__login { background: var(--mu-lime); color: var(--mu-lime-ink); font-weight: 700; gap: 6px; box-shadow: 0 3px 0 var(--mu-ink); padding: 8px 14px; border-radius: 999px; }
+  .mu-nav__login svg { display: inline-block; }
+}
+@media (max-width: 380px) { .mu-nav__login svg { display: none; } }
