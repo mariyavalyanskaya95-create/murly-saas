@@ -88,7 +88,7 @@ export default function ForTeachersPage() {
               </div>
             ))}
           </div>
-          <p className="mu-hero__note" style={{ textAlign: 'center', marginTop: 28 }}><Link href="/pricing/pro">{t({ uk: 'Перший місяць Pro безкоштовно. Що входить і скільки коштує', ru: 'Первый месяц Pro бесплатно. Что входит и сколько стоит', en: 'First month of Pro free. What’s included and the price' })}</Link></p>
+          <p className="mu-hero__note" style={{ textAlign: 'center', marginTop: 28 }}><Link href="/pricing/pro">{t({ uk: 'Зараз усе безкоштовно. Що входить у тарифи', ru: 'Сейчас всё бесплатно. Что входит в тарифы', en: 'Everything is free right now. What the plans include' })}</Link></p>
         </div>
       </section>
 
