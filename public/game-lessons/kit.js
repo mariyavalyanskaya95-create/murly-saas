@@ -84,7 +84,24 @@
     document.querySelectorAll('[data-tr-ru]').forEach((p) => { if (p.dataset.trUk === undefined) p.dataset.trUk = p.innerHTML; p.innerHTML = LANG === 'ru' ? p.dataset.trRu : p.dataset.trUk; });
     document.querySelectorAll('[data-mk-lang]').forEach((b) => b.classList.toggle('on', b.dataset.mkLang === LANG));
   }
-  function setLang(l, fromCh) { LANG = l; ls.set('murly:tlang', l); try { document.cookie = 'murly_lang=' + l + '; path=/; max-age=31536000; samesite=lax'; } catch (e) { /* */ } applyLang(); if (!fromCh && ch) ch.postMessage({ t: 'lang', l }); if (PULT) renderPult(); else renderBanner(); }
+  // підказки, які є лише українською: у російській версії перекладаємо через DeepL (лише вчителю на сайті), кешуємо в браузері
+  let trBusy = false;
+  async function autoRu() {
+    if (LANG !== 'ru' || !ON_SITE || trBusy) return; trBusy = true;
+    const list = [...document.querySelectorAll('.lk-tnote[data-ru]')].filter((p) => p.dataset.ru === p.dataset.uk || p.getAttribute('data-ru') === (p.dataset.uk || ''));
+    for (const p of list) {
+      const src = p.dataset.uk || p.innerHTML; const key = 'murly:ru:' + src.length + ':' + src.slice(0, 60);
+      let ru = ls.get(key);
+      if (!ru) {
+        const tmp = document.createElement('div'); tmp.innerHTML = src;
+        const plain = src.replace(/<br\s*\/?>/g, '\n').replace(/<(\/?)(b|i|strong|em)>/g, '[[$1$2]]').replace(/<[^>]+>/g, '');
+        try { const r = await fetch('/api/translate?src=uk&to=ru&q=' + encodeURIComponent(plain.slice(0, 1500)), { credentials: 'same-origin' }); if (!r.ok) break; const j = await r.json(); if (j.text) { ru = j.text.replace(/\[\[(\/?)(b|i|strong|em)\]\]/g, '<$1$2>').replace(/\n/g, '<br>'); ls.set(key, ru); } } catch (e) { break; }
+      }
+      if (ru) { p.dataset.ru = ru; if (LANG === 'ru') p.innerHTML = ru; }
+    }
+    trBusy = false;
+  }
+  function setLang(l, fromCh) { LANG = l; ls.set('murly:tlang', l); try { document.cookie = 'murly_lang=' + l + '; path=/; max-age=31536000; samesite=lax'; } catch (e) { /* */ } applyLang(); autoRu(); if (!fromCh && ch) ch.postMessage({ t: 'lang', l }); if (PULT) renderPult(); else renderBanner(); }
   const langSw = () => `<span class="mk-lang"><button type="button" data-mk-lang="uk">УКР</button><button type="button" data-mk-lang="ru">РУС</button></span>`;
   const bindLang = (root) => root.querySelectorAll('[data-mk-lang]').forEach((b) => (b.onclick = () => setLang(b.dataset.mkLang)));
 
@@ -539,7 +556,7 @@ ${langSw()}`;
     document.body.classList.remove('mk-student'); document.body.classList.add('mk-teacher');
     if (ON_SITE && !D.local) vocabAdd();
     if (!D.students.length && D.local) SID = 'local';
-    tools(); renderDock(); renderBanner(); markSection(); watchScroll(); applyLang();
+    tools(); renderDock(); renderBanner(); markSection(); watchScroll(); applyLang(); setTimeout(autoRu, 1500);
     if (!D.local) setTimeout(() => { if (LIVE) warmVoices(); }, 1500);
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
