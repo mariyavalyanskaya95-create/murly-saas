@@ -5,6 +5,7 @@ import { teacherBalances } from '@/lib/tg-menu';
 import { PAID_ENABLED } from '@/lib/plans';
 import { sendWeekly } from '@/lib/weekly';
 import { welcomeEmails } from '@/lib/welcome-mail';
+import { helloTeachers } from '@/lib/hello-mail';
 
 export const dynamic = 'force-dynamic';
 
@@ -15,6 +16,8 @@ export async function GET(req: Request) {
   const okAuth = secret ? req.headers.get('authorization') === `Bearer ${secret}` : (req.headers.get('user-agent') || '').includes('vercel-cron');
   if (!okAuth) return NextResponse.json({ error: 'auth' }, { status: 401 });
   // лист новачкам наступного дня: один простий перший крок
+  // разовий лист-привітання вчителям, що зареєструвалися до 29.11 (спершу він, щоб не було двох листів)
+  if (dbReady()) await helloTeachers().catch((e) => console.error(e));
   if (dbReady()) await welcomeEmails().catch((e) => console.error(e));
   if (!tgReady() || !dbReady()) return NextResponse.json({ skipped: true });
 
